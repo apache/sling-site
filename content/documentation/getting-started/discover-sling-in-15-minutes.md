@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Discover Sling in 15 minutes
 
 The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded JCR content repository and web server, a selection of Sling components, documentation and examples. The Launchpad makes it easy to get started with Sling and to develop script-based applications.

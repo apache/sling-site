@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Installing and Upgrading Bundles
 Excerpt: Explains how to install, upgrade and uninstall Bundles using the Sling Management console.
 

@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Version Policy
 Excerpt: This page is about how we assign versions to exported packages and bundles and defines when to increase which part of the version number.
 

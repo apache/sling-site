@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Authentication - Framework
 Excerpt: The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.
 

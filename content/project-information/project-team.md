@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Project Team
 
 A successful project requires many people to play many roles. Some members write code or documentation, while others are valuable as testers, submitting patches and suggestions.

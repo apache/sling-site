@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Maven Usage
 
 Apache Sling uses Maven as a build tool. This page documents some of the choices that we made when using Maven.

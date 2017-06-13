@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Sling API docs at javadoc.io
 
 [javadocs.io](http://www.javadoc.io/) provides archived javadocs for all Sling modules (and actually

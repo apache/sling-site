@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Dependency Management
 Excerpt: This page is about how we do and don't do dependency management in the Sling project.
 

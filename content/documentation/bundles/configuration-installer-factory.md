@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Configuration Installer Factory
 
 The configuration installer factory provides support for configurations to the [OSGI installer]({{ refs.osgi-installer.path }}). The provisioning of artifacts is handled by installer providers like the file installer or the JCR installer.

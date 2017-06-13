@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Subsystems Installer Factory
 
 The subsystems installer factory provides support for subsystems to the [OSGI installer]({{ refs.osgi-installer.path }}). The provisioning of artifacts is handled by installer providers like the file installer or the JCR installer.

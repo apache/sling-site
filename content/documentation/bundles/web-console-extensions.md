@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Web Console Extensions
 
 The Apache Sling project provides two extensions to the [Apache Felix Web Console](http://felix.apache.org/site/apache-felix-web-console.html) (in addition to a number of plugins, of course):

@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: News
 
 * New Releases: [Apache Sling 9]({{refs.sling-launchpad-9-released.path}}), Apache Sling Launchpad Testing 9, Apache Sling Launchpad Testing WAR version 9, Apache Sling Launchpad Testing Fragment Bundle 2.0.12, Apache Sling Launchpad Testing Services 2.0.12, Apache Sling Launchpad Test Bundles 0.0.2, Apache Sling Launchpad Testing Services WAR 2.0.12, Apache Sling Integration Tests 1.0.4 ( June 12S , 2017 )

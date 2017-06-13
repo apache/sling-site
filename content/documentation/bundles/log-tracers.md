@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Log Tracer
 
 [Log Tracer][SLING-4739] provides support for enabling the logs for specific category at specific 

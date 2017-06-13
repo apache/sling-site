@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: File Installer Provider
 
 The file installer provider scans configured directories and provides the found artifacts (files) to the [OSGI installer]({{ refs.osgi-installer.path }}). The functionality is very similar to Apache Felix FileInstall, with the major difference that this service implements just the task of scanning a file directory. All the management logic is implemented in the OSGi installer and support of various artifact types like bundles, configurations or custom formats is implemented by plugins for the OSGi installer.

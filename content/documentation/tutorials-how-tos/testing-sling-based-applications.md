@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Testing Sling-based applications
 
 Automated testing of OSGi components and services can be challenging, as many of them depend on other services that must be present or simulated for testing.

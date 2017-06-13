@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Sling Caching Services
 
 Caching services are available as a contribution at [https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/cache](https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/cache)

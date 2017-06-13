@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Request Listeners
 
 Sling provides the possibility to "listen" to a request processed by the Sling Engine (`SlingMainServlet`). To get notified you implement the service interface `org.apache.sling.api.request.SlingRequestListener`.

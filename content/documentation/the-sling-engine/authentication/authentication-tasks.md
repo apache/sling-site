@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Authentication - Tasks
 Excerpt: Authentication of HTTP Requests is generally a two-step process: First the credentials must be extracted from the request and second the credentials must be validated. In the case of Sling this means acquiring a JCR Session.
 

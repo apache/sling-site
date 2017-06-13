@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Apache Sling - Bringing Back the Fun!
 
 **Apache Sling&trade;** is an innovative web framework that is intended to

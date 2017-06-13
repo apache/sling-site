@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Development
 
 Welcome to the wonderful world of extending Sling. Refer to these pages to find out how we envision the extension of Sling and how to do it.

@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Getting Started
 
 We're on the way to update the documentation to make it more easy to get in touch with Sling. At the moment we can give you the following starting points:

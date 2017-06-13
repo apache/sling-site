@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Authentication - Actors
 Excerpt: The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.
 

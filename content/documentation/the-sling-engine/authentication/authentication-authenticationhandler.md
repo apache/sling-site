@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Authentication - AuthenticationHandler
 Excerpt: The `AuthenticationHandler` interface defines the service API which may be implemented by authentication handlers registered as OSGi services.
 

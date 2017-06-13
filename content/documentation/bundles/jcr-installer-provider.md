@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: JCR Installer Provider
 
 The JCR installer provider scans the JCR repository for artifacts and provides them to the [OSGI installer]({{ refs.osgi-installer.path }}).

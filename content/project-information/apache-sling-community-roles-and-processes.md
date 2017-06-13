@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Apache Sling Community Roles and Processes
 
 The Community Roles and Processes are put in effect as of 13/May/2009. Updated 7/December/2009 to reflect Sling being a top level project.

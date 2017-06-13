@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Sling Metrics
 
 Sling Metrics bundle provides integration with [Dropwizard Metrics][1] library

@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Hamcrest Integration
 
 Deeper integration with the [Hamcrest matcher library](http://hamcrest.org/).

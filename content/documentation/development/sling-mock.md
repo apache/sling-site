@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Sling Mocks
 
 Mock implementation of selected Sling APIs for easier testing.

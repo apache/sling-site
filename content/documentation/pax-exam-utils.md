@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Sling Pax Exam Utilities
 
 Utilities to help testing Sling components with Pax Exam are available at

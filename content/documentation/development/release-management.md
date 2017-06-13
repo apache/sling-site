@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Release Management
 
 Sling releases (and SNAPSHOTS) are deployed to the [Nexus repository](http://repository.apache.org) instead of the traditional deployment via the Maven 2 mirrors source on `people.apache.org`. This makes the release process much leaner and simpler. In addtion we can benefit from the Apache Parent POM 6, which has most of the release profile setup built-in.

@@ -1,3 +1,9 @@
+Title=TODO add front matter 
+date=1900-01-01
+type=post
+tags=blog
+status=published
+~~~~~~
 Title: Sling Scripting Thymeleaf
 
 Sling Scripting Thymeleaf is the scripting engine for [_Thymeleaf_](http://www.thymeleaf.org) (3.0) templates.
