@@ -1,0 +1,411 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - Modifying Content - The SlingPostServlet</TITLE>
+    <LINK rel="stylesheet" href="http://incubator.apache.org/sling/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://incubator.apache.org/sling/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info.</div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://incubator.apache.org/sling/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://incubator.apache.org/sling/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://incubator.apache.org/">
+          <IMG border="0" alt="Apache Incubator" src="http://incubator.apache.org/images/apache-incubator-logo.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+                                    <P>
+
+<UL>
+	<LI><A href="documentation.html" title="Documentation">Documentation</A></LI>
+	<LI><A href="advanced-topics.html" title="Advanced Topics">Advanced Topics</A></LI>
+	<LI><A href="development.html" title="Development">Development</A></LI>
+	<LI><A href="links.html" title="Links">Links</A></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/faq.html" title="Visit page outside Confluence" rel="nofollow">FAQ<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/" title="Visit page outside Confluence" rel="nofollow">Wiki<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><A href="project-information.html" title="Project Information">Project Information</A></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/thanks.html" title="Visit page outside Confluence" rel="nofollow">Sponsors<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/sponsorship.html" title="Visit page outside Confluence" rel="nofollow">Sponsorship<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>
+
+<IFRAME src="http://www.apache.org/ads/button.html" style="border-width:0; float: left" frameborder="0" scrolling="no" width="135" height="135"></IFRAME>
+<P style="height: 100px">
+</LI>
+</UL>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </DIV>
+    <DIV class="main">
+<H1><A name="ModifyingContent-TheSlingPostServlet-ModifyingContent%3ATheSlingPostServlet"></A>Modifying Content: The SlingPostServlet</H1>
+
+<TABLE cellpadding="5" width="85%" cellspacing="8px" class="noteMacro" border="0" align="center"><COLGROUP><COL width="24"><COL></COLGROUP><TR><TD valign="top"><IMG src="http://cwiki.apache.org/confluence/images/icons/emoticons/warning.gif" width="16" height="16" align="absmiddle" alt="" border="0"></TD><TD><B class="strong">Work In Progress</B><BR>
+<P>This page is work in progress to explain how the SlingPostServlet works after the refactoring as per <SPAN class="nobr"><A href="https://issues.apache.org/jira/browse/SLING-422" title="Visit page outside Confluence" rel="nofollow">SLING-422<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>.</P>
+
+<P>Please also note, that the contents of this page reflects the status of the SlingPostServlet after implementing SLING-422 and does not yet reflect the updates implicated by <SPAN class="nobr"><A href="https://issues.apache.org/jira/browse/SLING-394" title="Visit page outside Confluence" rel="nofollow">SLING-394<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN> and <SPAN class="nobr"><A href="https://issues.apache.org/jira/browse/SLING-458" title="Visit page outside Confluence" rel="nofollow">SLING-458<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></P></TD></TR></TABLE>
+
+
+<DIV>
+<UL>
+  <LI><A href="#ModifyingContent-TheSlingPostServlet-MultipleWaystoModifyContent">Multiple Ways to Modify Content</A></LI>
+  <LI><A href="#ModifyingContent-TheSlingPostServlet-Quickstart%253ACreatingContent">Quickstart: Creating Content</A></LI>
+  <LI><A href="#ModifyingContent-TheSlingPostServlet-SlingPostServletOperations">SlingPostServlet Operations</A></LI>
+  <LI><A href="#ModifyingContent-TheSlingPostServlet-SpecialParameters">Special Parameters</A></LI>
+</UL></DIV>
+
+
+
+<H2><A name="ModifyingContent-TheSlingPostServlet-MultipleWaystoModifyContent"></A>Multiple Ways to Modify Content</H2>
+
+<P>As always in life there is more than one way to do it. So to modify content in a JCR repository underlying Sling, you have multiple options, two of which are WebDAV and the Sling default POST Servlet also called the <EM>SlingPostServlet</EM>. This page is about how you can modify - create, modify, copy, move, delete - content through the <EM>SlingPostServlet</EM>. In addition it also explains how to extend the SlingPostServlet with new operations.</P>
+
+
+<P>What is Content anyway ? In the following discussion, I use the terms <EM>Content</EM> and <EM>Item</EM> interchangeably. With <EM>Content</EM> I just mean some data to be stored in the JCR repository to be later used as the basis for some presentation. In this sense <EM>Content</EM> is a rather conceptual term. <EM>Item</EM> is the name of the parent interface of the JCR <EM>Node</EM> and <EM>Property</EM> interfaces. When speaking of <EM>Items</EM> we mean some actual data stored in the repository ignoring whether the data is actually stored as a <EM>Node</EM> with child nodes and properties or just a single <EM>Property</EM>.</P>
+
+
+<H2><A name="ModifyingContent-TheSlingPostServlet-Quickstart%3ACreatingContent"></A>Quickstart: Creating Content</H2>
+
+<P>To create content you simply send an HTTP request using the path of the node to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:</P>
+
+
+<DIV class="code"><DIV class="codeContent">
+<PRE class="code-java">&lt;form method=<SPAN class="code-quote">&quot;POST&quot;</SPAN> action=<SPAN class="code-quote">&quot;http:<SPAN class="code-comment">//host/some/<SPAN class="code-keyword">new</SPAN>/content&quot;</SPAN> &gt;
+</SPAN>   &lt;input type=<SPAN class="code-quote">&quot;text&quot;</SPAN> name=<SPAN class="code-quote">&quot;title&quot;</SPAN> value=&quot;&quot; /&gt;
+   &lt;input type=<SPAN class="code-quote">&quot;text&quot;</SPAN> name=<SPAN class="code-quote">&quot;text&quot;</SPAN> value=&quot;&quot; /&gt;
+&lt;/form&gt;</PRE>
+</DIV></DIV>
+
+
+<P>This simple form will set the <TT>title</TT> and <TT>text</TT> properties on a node at <TT>/some/new/content</TT>. If this node does not exist it is just created otherwise the existing content would be modified.</P>
+
+<P>Similarly you can do this using the <TT>curl</TT> command line tool:</P>
+
+<DIV class="code"><DIV class="codeContent">
+<PRE class="code-java">$ curl -Ftitle=<SPAN class="code-quote">&quot;some title text&quot;</SPAN> -Ftext=<SPAN class="code-quote">&quot;some body text content&quot;</SPAN> http:<SPAN class="code-comment">//host/some/<SPAN class="code-keyword">new</SPAN>/content</SPAN></PRE>
+</DIV></DIV>
+
+
+<P>You might want to use a specific JCR node type for a newly created node. This is possibly by simply setting a <TT>jcr:primaryType</TT> property on the request, e.g.</P>
+
+<DIV class="code"><DIV class="codeContent">
+<PRE class="code-java">$ curl -F<SPAN class="code-quote">&quot;jcr:primaryType=nt:unstructured&quot;</SPAN> -Ftitle=<SPAN class="code-quote">&quot;some title text&quot;</SPAN> -Ftext=<SPAN class="code-quote">&quot;some body text content&quot;</SPAN> http:<SPAN class="code-comment">//host/some/<SPAN class="code-keyword">new</SPAN>/content</SPAN></PRE>
+</DIV></DIV>
+
+<P>Similary you may assing JCR mixin node types using the <TT>jcr:mixinTypes</TT> property and a Sling resource type using the <TT>sling:resourceType</TT> property. For example:</P>
+
+<DIV class="code"><DIV class="codeContent">
+<PRE class="code-java">$ curl -F<SPAN class="code-quote">&quot;sling:resourceType=sling:sample&quot;</SPAN> -Ftitle=<SPAN class="code-quote">&quot;some title text&quot;</SPAN> -Ftext=<SPAN class="code-quote">&quot;some body text content&quot;</SPAN> http:<SPAN class="code-comment">//host/some/<SPAN class="code-keyword">new</SPAN>/content</SPAN></PRE>
+</DIV></DIV>
+
+
+
+
+<H2><A name="ModifyingContent-TheSlingPostServlet-SlingPostServletOperations"></A>SlingPostServlet Operations</H2>
+
+
+<P>The SlingPostServlet is actually just a frontend to the actual operations. To select the actual operation to execute, the <TT>:operation</TT> request parameter is used. Out of the box, the SlingPostServlet supports the following operations:</P>
+
+<UL>
+	<LI>property not set or empty &ndash; Create new content or modify existing content</LI>
+	<LI><TT>delete</TT> &ndash; Remove existing content</LI>
+	<LI><TT>move</TT> &ndash; Move existing content to a new location</LI>
+	<LI><TT>copy</TT> &ndash; Copy existing content to a new location</LI>
+</UL>
+
+
+<P>All these operations always operate on the resource of the request as returned by <TT>SlingHttpServletRequest.getResource()</TT>. Some operations require additional parameters to be set to operate completely.</P>
+
+
+<H3><A name="ModifyingContent-TheSlingPostServlet-ContentCreationorModification"></A>Content Creation or Modification</H3>
+
+
+<P>The simplest and most common use case, probably, is content creation and modification. We already saw an example above in the quickstart section. In this section we elaborate more on the concrete stuff.</P>
+
+<P>First, the request URL indicates the actual repository node to be handled. If the URL addresses an existing node, the request parameters just provide values for the properties to be set on the existing node.</P>
+
+<P>If the resource of the request is a synthetic resource, e.g. <TT>NonExistingResource</TT> or <TT>StarResource</TT>, a new item is created. The path (including name) of the item to be created is derived from the resource path:</P>
+
+<UL>
+	<LI>If the resource path ends with a <TT>/*</TT> or <TT>/</TT> the name of the item is automatically created using a name creation algorithm taking into account various request parameters.</LI>
+	<LI>Otherwise the resource path is used as the path and name of the new item.</LI>
+</UL>
+
+
+<P>In both cases the path may still include selectors and extensions, which are cut off the path before finding out, what to do.</P>
+
+<P>To illustrate this algorithm, lets look at some examples:</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Resource Path </TH>
+<TH class="confluenceTh"> Item path </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/new</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/new</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/new.html</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/new</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/new.print.a4.html</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/new</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/xxx</TT> where <TT>xxx</TT> is a generated name </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/*</TT></TD>
+<TD class="confluenceTd"> <TT>/content/xxx</TT> where <TT>xxx</TT> is a generated name </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/*.html</TT></TD>
+<TD class="confluenceTd"> <TT>/content/xxx</TT> where <TT>xxx</TT> is a generated name </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/*.print.a4.html</TT></TD>
+<TD class="confluenceTd"> <TT>/content/xxx</TT> where <TT>xxx</TT> is a generated name </TD>
+</TR>
+</TBODY></TABLE>
+
+
+
+<P>TDB: How parameters are used to define content to be stored.</P>
+
+
+
+<H4><A name="ModifyingContent-TheSlingPostServlet-ResponseStatus"></A>Response Status</H4>
+
+<P>The delete operation has the following status responses:</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Status </TH>
+<TH class="confluenceTh"> Explanation </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> 200/OK </TD>
+<TD class="confluenceTd"> An existing node has been updated with content </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 201/CREATED </TD>
+<TD class="confluenceTd"> A new node has been created and filled with content </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 500/INTERNAL SERVER ERROR </TD>
+<TD class="confluenceTd"> Some exception, for example a <TT>RepositoryException</TT>, occurred while processing the request </TD>
+</TR>
+</TBODY></TABLE>
+
+
+<H3><A name="ModifyingContent-TheSlingPostServlet-ContentRemoval"></A>Content Removal</H3>
+
+<P>To remove existing content just address the item to be removed and set the <TT>:operation</TT> parameter to <TT>delete</TT>. For example the following command line removes the <TT>/content/sample</TT> page:</P>
+
+<DIV class="code"><DIV class="codeContent">
+<PRE class="code-java">$ curl -F<SPAN class="code-quote">&quot;:operation=delete&quot;</SPAN> http:<SPAN class="code-comment">//host/content/sample</SPAN></PRE>
+</DIV></DIV>
+
+
+<H4><A name="ModifyingContent-TheSlingPostServlet-ResponseStatus"></A>Response Status</H4>
+
+<P>The delete operation has the following status responses:</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Status </TH>
+<TH class="confluenceTh"> Explanation </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> 200/OK </TD>
+<TD class="confluenceTd"> The resource (and all its descendents) has been removed </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 404/NOT FOUND </TD>
+<TD class="confluenceTd"> The request URL does not address an existing repository item </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 500/INTERNAL SERVER ERROR </TD>
+<TD class="confluenceTd"> Some exception, for example a <TT>RepositoryException</TT>, occurred while processing the request </TD>
+</TR>
+</TBODY></TABLE>
+
+
+<H3><A name="ModifyingContent-TheSlingPostServlet-CopyingContent"></A>Copying Content</H3>
+
+
+<P>To copy existing content to a new location, the <TT>copy</TT> operation is specified. This operation copies the item addressed by the request URL to a new location indicated by the <TT>:dest</TT> parameter. The <TT>:dest</TT> parameter is the absolute or relative path to which the resource is copied. If the path is relative it is assumed to be below the same parent as the request resource. If it is terminated with a <TT>/</TT> character the request resource is copied to an item of the same name under the destination path.</P>
+
+<P>To illustrate the <TT>:dest</TT> parameter handling, lets look at a few examples. All examples are based on addressing the <TT>/content/sample</TT> item:</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> <TT>:dest</TT> Parameter </TH>
+<TH class="confluenceTh"> Destination Absolute Path </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/newSample</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/newSample</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>different/newSample</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/different/newSample</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/different/</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/different/sample</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>different/</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/different/sample</TT> </TD>
+</TR>
+</TBODY></TABLE>
+
+
+<P>If an item already exists at the location derived from the <TT>:dest</TT> parameter, the copy operation fails unless the <TT>:replace</TT> parameter is set to <TT>true</TT> (case is ignored when checking the parameter value).</P>
+
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Status </TH>
+<TH class="confluenceTh"> Explanation </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> 200/OK </TD>
+<TD class="confluenceTd"> The node has been copied to the new location replacing an existing item at the destination </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 201/CREATED </TD>
+<TD class="confluenceTd"> The node has been copied to the new location creating a new item at the destination </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 412/PRECONDITION FAILED </TD>
+<TD class="confluenceTd"> An item already exists at the destination and the <TT>:replace</TT> parameter is not set to <TT>true</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 500/INTERNAL SERVER ERROR </TD>
+<TD class="confluenceTd"> Some exception, for example a <TT>RepositoryException</TT>, occurred while processing the request </TD>
+</TR>
+</TBODY></TABLE>
+
+
+
+
+<H3><A name="ModifyingContent-TheSlingPostServlet-MovingContent"></A>Moving Content</H3>
+
+
+<P>To move existing content to a new location, the <TT>move</TT> operation is specified. This operation moves the item addressed by the request URL to a new location indicated by the <TT>:dest</TT> parameter. The <TT>:dest</TT> parameter is the absolute or relative path to which the resource is moved. If the path is relative it is assumed to be below the same parent as the request resource. If it is terminated with a <TT>/</TT> character the request resource is moved to an item of the same name under the destination path.</P>
+
+<P>To illustrate the <TT>:dest</TT> parameter handling, lets look at a few examples. All examples are based on addressing the <TT>/content/sample</TT> item:</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> <TT>:dest</TT> Parameter </TH>
+<TH class="confluenceTh"> Destination Absolute Path </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/newSample</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/newSample</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>different/newSample</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/different/newSample</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>/content/different/</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/different/sample</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>different/</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/different/sample</TT> </TD>
+</TR>
+</TBODY></TABLE>
+
+
+<P>If an item already exists at the location derived from the <TT>:dest</TT> parameter, the move operation fails unless the <TT>:replace</TT> parameter is set to <TT>true</TT> (case is ignored when checking the parameter value).</P>
+
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Status </TH>
+<TH class="confluenceTh"> Explanation </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> 200/OK </TD>
+<TD class="confluenceTd"> The node has been moved to the new location replacing an existing item at the destination </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 201/CREATED </TD>
+<TD class="confluenceTd"> The node has been moved to the new location creating a new item at the destination </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 412/PRECONDITION FAILED </TD>
+<TD class="confluenceTd"> An item already exists at the destination and the <TT>:replace</TT> parameter is not set to <TT>true</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> 500/INTERNAL SERVER ERROR </TD>
+<TD class="confluenceTd"> Some exception, for example a <TT>RepositoryException</TT>, occurred while processing the request </TD>
+</TR>
+</TBODY></TABLE>
+
+
+
+<H2><A name="ModifyingContent-TheSlingPostServlet-SpecialParameters"></A>Special Parameters</H2>
+
+
+<P>Some parameters have special significance for the complete processing of the SlingPostServlet or are used by multiple operations. This section summarizes these parameters:</P>
+
+
+<H3><A name="ModifyingContent-TheSlingPostServlet-%7B%7B%3Aorder%7D%7D"></A><TT>:order</TT></H3>
+
+<P>Child nodes may be ordered if the primary node type of their common parent node is defined as having orderable child nodes. To employ such ordering, the content creation/modification, move and copy operations support the <TT>:order</TT> parameter which apply child node ordering amongst its sibblings of the target node.</P>
+
+<P>The <TT>:order</TT> parameter may have the following values:</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Value </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>first</TT> </TD>
+<TD class="confluenceTd"> Place the target node as the first amongst its sibblings </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>last</TT> </TD>
+<TD class="confluenceTd"> Place the target node as the last amongst its sibblings </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>before <EM>xyz</EM></TT> </TD>
+<TD class="confluenceTd"> Place the target node immediately before the sibbling whose name is <EM>xyz</EM> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>after <EM>xyz</EM></TT> </TD>
+<TD class="confluenceTd"> Place the target node immediately after the sibbling whose name is <EM>xyz</EM> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> numeric </TD>
+<TD class="confluenceTd"> Place the target node at the indicated numeric place amongst its sibblings where <EM>0</EM> is equivalent to <TT>first</TT> and <EM>1</EM> means the second place </TD>
+</TR>
+</TBODY></TABLE>
+
+
+<H3><A name="ModifyingContent-TheSlingPostServlet-%7B%7B%3Aredirect%7D%7D"></A><TT>:redirect</TT></H3>
+
+<P>Instructs the SlingPostServlet to redirect the client to the indicated location if the operation succeeds. That is the reponse status is set to <EM>302/FOUND</EM> and the <TT>Location</TT> header is set to the value of the <TT>:redirect</TT> parameter.</P>
+
+
+<H3><A name="ModifyingContent-TheSlingPostServlet-%7B%7B%3Astatus%7D%7D"></A><TT>:status</TT></H3>
+
+<P>By default the SlingPostServlet sets response status according to the status of the operation executed. In some cases, it may be desirable to not have the real status codes (e.g. 404 or 505) but a normal <EM>200/OK</EM> to trick the client browser into displaying the response content generated by the SlingPostServlet.</P>
+
+<P>To not send the actual response status back to the client, the <TT>:status</TT> request parameter should be set to <TT>browser</TT>. If this parameter is not set, is empty, is set to <TT>standard</TT> or to any other value, the actual status code is sent back to the client.</P>
+    </DIV>
+  </BODY>
+</HTML>
+

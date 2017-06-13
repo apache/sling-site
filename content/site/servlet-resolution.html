@@ -1,0 +1,299 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - Servlet Resolution</TITLE>
+    <LINK rel="stylesheet" href="http://sling.apache.org/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://sling.apache.org/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info. The migrated but not yet edited version of this page is at <a href='/old-stuff/servlet-resolution.html'>/old-stuff/servlet-resolution.html</a></div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://sling.apache.org/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://sling.apache.org/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://www.apache.org/">
+          <IMG border="0" alt="Apache" src="http://sling.apache.org/site/media.data/apache.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+<P><B>Documentation</B><BR class="atl-forced-newline">
+<A href="getting-started.html" title="Getting Started">Getting Started</A><BR class="atl-forced-newline">
+<A href="the-sling-engine.html" title="The Sling Engine">The Sling Engine</A><BR class="atl-forced-newline">
+<A href="development.html" title="Development">Development</A><BR class="atl-forced-newline">
+<A href="bundles.html" title="Bundles">Bundles</A><BR class="atl-forced-newline">
+<A href="tutorials-how-tos.html" title="Tutorials & How-Tos">Tutorials &amp; How&#45;Tos</A><BR class="atl-forced-newline">
+<A href="configuration.html" title="Configuration">Configuration</A><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/apidocs/sling6/index.html" class="external-link" rel="nofollow">API docs</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.wiki" class="external-link" rel="nofollow">Wiki</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.faq" class="external-link" rel="nofollow">FAQ</A><BR class="atl-forced-newline"></P>
+
+<P><B>Project info</B><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/site/downloads.cgi" class="external-link" rel="nofollow">Downloads</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/licenses/" class="external-link" rel="nofollow">License</A><BR class="atl-forced-newline">
+<A href="contributing.html" title="Contributing">Contributing</A><BR class="atl-forced-newline">
+<A href="news.html" title="News">News</A><BR class="atl-forced-newline">
+<A href="links.html" title="Links">Links</A><BR class="atl-forced-newline">
+<A href="project-information.html" title="Project Information">Project Information</A><BR class="atl-forced-newline">
+<A href="https://issues.apache.org/jira/browse/SLING" class="external-link" rel="nofollow">Issue Tracker</A><BR class="atl-forced-newline">
+<A href="http://svn.apache.org/viewvc/sling/trunk" class="external-link" rel="nofollow">Browse Source Repository</A><BR class="atl-forced-newline">
+<A href="security.html" title="Security">Security</A><BR class="atl-forced-newline"></P>
+
+<P><B>Sponsorship</B><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/thanks.html" class="external-link" rel="nofollow">Thanks</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/sponsorship.html" class="external-link" rel="nofollow">Become a Sponsor</A><BR>
+<A href="http://www.apache.org/foundation/buy_stuff.html" class="external-link" rel="nofollow">Buy Stuff</A></P>
+
+
+  <IFRAME src="http://www.apache.org/ads/button.html" style="border-width:0; float: left" frameborder="0" scrolling="no" width="135" height="135"></IFRAME>
+  <P style="height: 135px"></P>
+    </DIV>
+    <DIV class="main">
+        <DIV class="breadcrump" style="font-size: 80%;">
+<A href="apache-sling.html" title="Apache Sling Website">Apache Sling Website</A>&nbsp;&gt;&nbsp;<A href="apache-sling.html" title="Apache Sling">Apache Sling</A>&nbsp;&gt;&nbsp;<A href="old-stuff.html" title="Old Stuff">Old Stuff</A>&nbsp;&gt;&nbsp;<A href="" title="Servlet Resolution">Servlet Resolution</A>
+        </DIV>
+<H1><A name="ServletResolution-ServletResolution"></A>Servlet Resolution</H1>
+
+<DIV class="panelMacro"><TABLE class="warningMacro"><COLGROUP><COL width="24"><COL></COLGROUP><TR><TD valign="top"><IMG src="https://cwiki.apache.org/confluence/images/icons/emoticons/forbidden.gif" width="16" height="16" align="absmiddle" alt="" border="0"></TD><TD><B>Out Of Sync</B><BR>Please note that the description on this page is out of sync with the most recent developments going on as part of implementing issue <A href="https://issues.apache.org/jira/browse/SLING-387" class="external-link" rel="nofollow">SLING-387</A>. See the links to integration tests at the end of this page for the Current Truth.
+
+<P>Please see the new <A href="servlets.html" title="Servlets">Servlets</A> page.</P></TD></TR></TABLE></DIV>
+
+<DIV>
+<UL>
+    <LI><A href="#ServletResolution-ServletsareResources">Servlets are Resources</A></LI>
+<UL>
+    <LI><A href="#ServletResolution-Example%253ARegistrationbyPath">Example: Registration by Path</A></LI>
+    <LI><A href="#ServletResolution-Example%253ARegistrationbyResourceTypeetc.">Example: Registration by Resource Type etc.</A></LI>
+</UL>
+    <LI><A href="#ServletResolution-ScriptsareServlets">Scripts are Servlets</A></LI>
+    <LI><A href="#ServletResolution-ResolutionProcess">Resolution Process</A></LI>
+    <LI><A href="#ServletResolution-DefaultServlet%2528s%2529">Default Servlet(s)</A></LI>
+    <LI><A href="#ServletResolution-ErrorHandlerServlet%2528s%2529">Error Handler Servlet(s)</A></LI>
+    <LI><A href="#ServletResolution-Integrationtests">Integration tests</A></LI>
+</UL></DIV>
+
+
+<H2><A name="ServletResolution-ServletsareResources"></A>Servlets are Resources</H2>
+
+<P>As explained on the <A href="resources.html" title="Resources">Resources</A> page, the Resource is the central data abstraction of Sling. In this contexts, Servlets are of course also povided as Resources. As such Servlets may be enumerated by iterating the Resource tree and Servlets may be retrieved through the <TT>ResourceResolver</TT>.</P>
+
+<P>To show a Servlet inside the Resource tree, the <TT>sling/servlet-resolver</TT> project provides a <TT>ServletResourceProvider</TT> implementing the <TT>ResourceProvider</TT> interface. For each Servlet registered as an OSGi service with one or more defined service reference properties a <TT>ServletResourceProvider</TT> instance is registered.</P>
+
+<P>The following service reference properties are defined for Servlets defined as OSGi services of type <TT>javax.servlet.Servlet</TT>:</P>
+
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Name </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>sling.servlet.paths</TT> </TD>
+<TD class="confluenceTd"> A list of absolute paths under which the servlet is accessible as a Resource. The property value must either be a single String, an array of Strings or a Vector of Strings. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>sling.servlet.resourceTypes</TT> </TD>
+<TD class="confluenceTd"> The resource type(s) supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is ignored if the <TT>sling.servlet.paths</TT> property is set. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>sling.servlet.selectors</TT> </TD>
+<TD class="confluenceTd">  The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as &lt;em&gt;print.a4&lt;/em&gt;. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is ignored if the <TT>sling.servlet.paths</TT> property is set. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>sling.servlet.extensions</TT> </TD>
+<TD class="confluenceTd"> The request URL extensions supported by the servlet for GET requests. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is ignored if the <TT>sling.servlet.paths</TT> property is set. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>sling.servlet.methods</TT> </TD>
+<TD class="confluenceTd">  The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is ignored if the <TT>sling.servlet.paths</TT> property is set. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>sling.servlet.prefix</TT> </TD>
+<TD class="confluenceTd">  The absolute prefix to make relative paths absolute. This property is a String and is optional. If it is not set, the actual prefix used is derived from the search path of the <TT>ResourceResolver</TT> at the time of registration. </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+
+
+<P>For a Servlet registered as an OSGi service to be used by the Sling Servlet Resolver, the following restrictions apply:</P>
+
+<OL>
+	<LI>Either the <TT>sling.servlet.paths</TT> or the <TT>sling.servlet.resourceTypes</TT> service reference property must be set. If neither is set, the Servlet service is ignored.</LI>
+	<LI>If the <TT>sling.servlet.paths</TT> property is set, all other <TT>sling.servlet.*</TT> properties are ignored.</LI>
+	<LI>Otherwise a Resource provider is registered for the Servlet for each permutation resource types, selectors, extensions and methods.</LI>
+</OL>
+
+
+
+<P>Each path to be used for registration &ndash; either from the <TT>sling.servlet.paths</TT> property or constructed from the other <TT>sling.servlet.*</TT> properties &ndash; must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the <TT>sling.servlet.prefix</TT> service registration property. If this property is not set, the first entry in the <TT>ResourceResolver</TT> search path for the <TT>ResourceResolver.getResource(String)</TT> method is used as the prefix. If this entry cannot be derived, a simpe slash &ndash; <TT>/</TT> &ndash; is used as the prefix.</P>
+
+
+<H3><A name="ServletResolution-Example%3ARegistrationbyPath"></A>Example: Registration by Path</H3>
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+sling.servlet.paths = [ <SPAN class="code-quote">&quot;/libs/sling/sample/html&quot;</SPAN>, <SPAN class="code-quote">&quot;/libs/sling/sample/txt&quot;</SPAN> ]
+sling.servlet.resourceTypes = [ <SPAN class="code-quote">&quot;sling/unused&quot;</SPAN> ]
+sling.servlet.selectors = [ <SPAN class="code-quote">&quot;img&quot;</SPAN> ]
+sling.servlet.extensions = [ <SPAN class="code-quote">&quot;html&quot;</SPAN>, <SPAN class="code-quote">&quot;txt&quot;</SPAN>, <SPAN class="code-quote">&quot;json&quot;</SPAN> ]
+</PRE>
+</DIV></DIV>
+
+<P>A Servlet service registered with these properties is registered under the following paths:</P>
+
+<UL>
+	<LI><TT>/libs/sling/sample/html</TT></LI>
+	<LI><TT>/libs/sling/sample/txt</TT></LI>
+</UL>
+
+
+<P>The registration properties <TT>sling.servlet.resourceTypes</TT>, <TT>sling.servlet.selectors</TT> and <TT>sling.servlet.extensions</TT> are ignored because the <TT>sling.servlet.paths</TT> property is set.</P>
+
+
+<H3><A name="ServletResolution-Example%3ARegistrationbyResourceTypeetc."></A>Example: Registration by Resource Type etc.</H3>
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+sling.servlet.resourceTypes = [ <SPAN class="code-quote">&quot;sling/unused&quot;</SPAN> ]
+sling.servlet.selectors = [ <SPAN class="code-quote">&quot;img&quot;</SPAN>, <SPAN class="code-quote">&quot;tab&quot;</SPAN> ]
+sling.servlet.extensions = [ <SPAN class="code-quote">&quot;html&quot;</SPAN>, <SPAN class="code-quote">&quot;txt&quot;</SPAN>, <SPAN class="code-quote">&quot;json&quot;</SPAN> ]
+</PRE>
+</DIV></DIV>
+
+<P>A Servlet service registered with these properties is registered under the following paths:</P>
+
+<UL>
+	<LI><TT><EM>prefix</EM>/sling/unused/img/html</TT></LI>
+	<LI><TT><EM>prefix</EM>/sling/unused/img/txt</TT></LI>
+	<LI><TT><EM>prefix</EM>/sling/unused/img/json</TT></LI>
+	<LI><TT><EM>prefix</EM>/sling/unused/tab/html</TT></LI>
+	<LI><TT><EM>prefix</EM>/sling/unused/tab/txt</TT></LI>
+	<LI><TT><EM>prefix</EM>/sling/unused/tab/json</TT></LI>
+</UL>
+
+
+<P>As explained the script is registered for each permutation of the resource types, selectors and extension. See above For an explanation of how <TT><EM>prefix</EM></TT> is defined.</P>
+
+
+<H2><A name="ServletResolution-ScriptsareServlets"></A>Scripts are Servlets</H2>
+
+
+<P>The Sling API defines a <TT>SlingScript</TT> interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the <TT>scripting/resolver</TT> bundle in the <TT>DefaultSlingScript</TT> class which also implements the <TT>javax.servlet.Servlet</TT>.</P>
+
+<P>To further simplify the access to scripts from the Resource tree, the <TT>scripting/resolver</TT> bundle registers an <TT>AdapterFactory</TT> to adapt Resources to Scripts and Servlets. In fact the adapter factory returns instances of the <TT>DefaultSlingScript</TT> class for both Scripts and Servlets.</P>
+
+<P>This functionality is used by the <TT>ServletResolver.resolveServlet</TT> implementation in the <TT>sling/servlet-resolver</TT> bundle: This implementation just looks up any Resource in the resource tree according its lookup algorithm (see below). The first matching Resource adapting to a <TT>javax.servlet.Servlet</TT> is used for processing the resource.</P>
+
+<P>So from the perspective of the Servlet resolver, scripts and servlets are handled exactly the same.</P>
+
+
+<H2><A name="ServletResolution-ResolutionProcess"></A>Resolution Process</H2>
+
+<P>The Servlet Resolution Process four elements of a <TT>SlingHttpServletRequest</TT>:</P>
+
+<OL>
+	<LI>The <EM>resource type</EM> as retrieved through <TT>request.getResource().getResourceType()</TT>. Because the resource type may be a node type such as <EM>nt:file</EM>, the resource type is mangled into a path by replacing any colons contained to forward slashs. Also, any backslashes contained are replaced to forward slashes. This should give a relative path. Of course a resource type may also be set to an absolute path. See below.</LI>
+	<LI>The <EM>request selectors</EM> as retrieved through <TT>request.getRequestPathInfo().getSelectorString()</TT>. The selector string is turned into a realtive path by replacing all separating dots by forward slashes. For example the selector string <TT>print.a4</TT> is  converted into the relative path <TT>print/a4</TT>.</LI>
+	<LI>The <EM>request extension</EM> as retrieved through <TT>request.getRequestPathInfo().getExtension()</TT> if the request method is <EM>GET</EM> or <EM>HEAD</EM> and the request extension is not empty.</LI>
+	<LI>The <EM>request method name</EM> for any request method except <EM>GET</EM> or <EM>HEAD</EM> or if the request extension is empty.</LI>
+</OL>
+
+
+<P>The <EM>resource type</EM> is used as a (relative) parent path to the Servlet while the <EM>request extension</EM> or <EM>request method</EM> is used as the Servlet (base) name. The Servlet is retrieved from the Resource tree by calling the <TT>ResourceResolver.getResource(String)</TT> method which handles absolute and relative paths correctly by searching realtive paths in the configured search path.</P>
+
+<P>The pseudo-code for Servlet resolution is as follows:</P>
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+Servlet resolveServlet(SlingHttpServletRequest request) {
+
+    <SPAN class="code-object">String</SPAN> resourceType = request.getResource().getResourceType();
+    resourceType = resourceType.replaceAll(<SPAN class="code-quote">&quot;\\:&quot;</SPAN>, <SPAN class="code-quote">&quot;/&quot;</SPAN>);
+
+    <SPAN class="code-object">String</SPAN> baseName;
+    <SPAN class="code-keyword">if</SPAN> ((<SPAN class="code-quote">&quot;GET&quot;</SPAN>.equals(request.getMethod()) || <SPAN class="code-quote">&quot;HEAD&quot;</SPAN>.equals(request.getMethod())
+            &amp;&amp; request.getRequestPathInfo().getExtension() != <SPAN class="code-keyword">null</SPAN>) {
+        baseName = request.getRequestPathInfo().getExtension();
+    } <SPAN class="code-keyword">else</SPAN> {
+        baseName = request.getMethod();
+    }
+
+    <SPAN class="code-keyword">if</SPAN> (request.getRequestPath().getSelectorString() != <SPAN class="code-keyword">null</SPAN>) {
+        <SPAN class="code-object">String</SPAN> selectors = request.getRequestPath().getSelectorString();
+        selectors = selectors.replace('.', '/');
+        <SPAN class="code-keyword">while</SPAN> (selectors != <SPAN class="code-keyword">null</SPAN>) {
+            <SPAN class="code-object">String</SPAN> path = resourceType + <SPAN class="code-quote">&quot;/&quot;</SPAN> + selectors + <SPAN class="code-quote">&quot;/&quot;</SPAN> + baseName;
+            Servlet servlet = findServletFor(path);
+            <SPAN class="code-keyword">if</SPAN> (servlet != <SPAN class="code-keyword">null</SPAN>) {
+                <SPAN class="code-keyword">return</SPAN> servlet;
+            }
+
+            <SPAN class="code-object">int</SPAN> lastSlash = selectors.lastIndexOf('/');
+            <SPAN class="code-keyword">if</SPAN> (lastSlash &gt; 0) {
+                selectors = selectors.substring(0, lastSlash);
+            } <SPAN class="code-keyword">else</SPAN> {
+                selectors = <SPAN class="code-keyword">null</SPAN>;
+            }
+        }
+    }
+        
+    <SPAN class="code-object">String</SPAN> path = resourceType + <SPAN class="code-quote">&quot;/&quot;</SPAN> + baseName;
+    <SPAN class="code-keyword">return</SPAN> findScriptFor(path);
+}
+
+Servlet findScriptFor(path) {
+    <SPAN class="code-comment">// Find a Servlet or Script with the given path in the search path
+</SPAN>    <SPAN class="code-comment">// where the Script is allowed to have Script language specific
+</SPAN>    <SPAN class="code-comment">// extension, such as .js, .jsp, etc.
+</SPAN>}
+</PRE>
+</DIV></DIV>
+
+
+<H2><A name="ServletResolution-DefaultServlet%28s%29"></A>Default Servlet(s)</H2>
+
+<P>As explained in the Resolution Process section above, a default Servlet is selected if no servlet for the current resource type can be found. To make the provisioning of a default Servlet as versatile as provisioning per resource type Servlets (or scripts), the default Servlet is selected with just a special resource type <TT>sling/servlet/default</TT>.</P>
+
+<P>The actual Servlet or Script called as the default Servlet is resolved exactly the same way as for any resource type. That is, also for the default Servlet selection, the request selectors and extension or method are considered. Also, the Servlet may be a Servlet registered as an OSGi service and provided through a Servlet Resource provider or it may be a Script stored in the repository or provided by the bundle.</P>
+
+<P>Finally, if not even a registered default Servlet may be resolved for the request, because none has been registered, the <TT>sling/servlet-resolve</TT> bundle provides a fall back <TT>DefaultServlet</TT> with the following functionality:</P>
+
+<UL>
+	<LI>If the request has no extension and the Resource of the request adapts to an <TT>InputStream</TT>, the contents of the resoure is stream out as the response. The response content type is taken from the <TT>sling.contentType</TT> Resource meta data or derived from the Resource path. If the <TT>sling.characterEncoding</TT> Resource meta data property is set, that value is used as the response character encoding. Currently there is no ETag and modification time stamp support.</LI>
+	<LI>Otherwise if the object has an OCM mapping, the properties of the mapped object are printed.</LI>
+	<LI>Otherwise just the path of the Resource is printed.</LI>
+</UL>
+
+
+
+<H2><A name="ServletResolution-ErrorHandlerServlet%28s%29"></A>Error Handler Servlet(s)</H2>
+
+<P>The <TT>sling/servlet-resolver</TT> project also provides an implementation of the Sling Core <TT>ErrorHandler</TT> interface, which applies the same Servlet resolution process as used for normal request processing. Error handler Servlets and Scripts are looked up with the predefined resource <TT>sling/servlet/errorhandler</TT> and an error specific name:</P>
+
+<UL>
+	<LI><B>HTTP Status Code Handling</B>: To handle HTTP status code as used by the <TT>HttpServletResponse.sendError</TT> methods, status code is used as the Servlet name. For example to provide a handler for status code 404 (NOT_FOUND), you could create a script <TT>prefix/sling/servlet/errorhandler/404.esp</TT> or for a status code 500 (INTERNAL_SERVER_ERRROR), you might want to register a Servlet at <TT>prefix/sling/servlet/errorhandler/500</TT>.</LI>
+	<LI><B>Throwable Handling</B>: To handle uncaught <TT>Throwables</TT> the simple name of the <TT>Throwable</TT> class is used as the Servlet name. Similarly to the Java <TT>try-catch</TT> clauses the class hierarchy is supported. That is to handle an uncaught <TT>FileNotFoundException</TT>, the names <TT>FileNotFoundException</TT>, <TT>IOException</TT>, <TT>Exception</TT>, <TT>Throwable</TT> are checked for a Servlet and the first one found is then used. Again, the Serlvet may be a Servlet registered as an OSGi service or may be a plain script stored in the JCR repository or provided through some custom Resource provider.</LI>
+</UL>
+
+
+<H2><A name="ServletResolution-Integrationtests"></A>Integration tests</H2>
+<P>A set of simple example servlets is available in the <A href="http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/test-services" class="external-link" rel="nofollow">launchpad/test-services module</A>. </P>
+
+<P>Integration tests in the <A href="http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution" class="external-link" rel="nofollow">launchpad/testing module</A> verify that these examples are correct.</P>
+
+<P>Contributions to these tests and examples are welcome, of course!</P>
+        <DIV class="timestamp" style="margin-top: 30px; font-size: 80%; text-align: right;">
+Last modified by mykee on 2009-08-05 13:35:11.0
+        </DIV>
+        <DIV class="trademarkFooter">
+Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+        </DIV>
+    </DIV>
+  </BODY>
+</HTML>
+

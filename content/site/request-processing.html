@@ -1,0 +1,252 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - Request Processing</TITLE>
+    <LINK rel="stylesheet" href="http://sling.apache.org/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://sling.apache.org/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info. The migrated but not yet edited version of this page is at <a href='/old-stuff/request-processing.html'>/old-stuff/request-processing.html</a></div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://sling.apache.org/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://sling.apache.org/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://www.apache.org/">
+          <IMG border="0" alt="Apache" src="http://sling.apache.org/site/media.data/apache.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+<P><B>Documentation</B><BR class="atl-forced-newline">
+<A href="getting-started.html" title="Getting Started">Getting Started</A><BR class="atl-forced-newline">
+<A href="the-sling-engine.html" title="The Sling Engine">The Sling Engine</A><BR class="atl-forced-newline">
+<A href="development.html" title="Development">Development</A><BR class="atl-forced-newline">
+<A href="bundles.html" title="Bundles">Bundles</A><BR class="atl-forced-newline">
+<A href="tutorials-how-tos.html" title="Tutorials & How-Tos">Tutorials &amp; How&#45;Tos</A><BR class="atl-forced-newline">
+<A href="configuration.html" title="Configuration">Configuration</A><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/apidocs/sling6/index.html" class="external-link" rel="nofollow">API docs</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.wiki" class="external-link" rel="nofollow">Wiki</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.faq" class="external-link" rel="nofollow">FAQ</A><BR class="atl-forced-newline"></P>
+
+<P><B>Project info</B><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/site/downloads.cgi" class="external-link" rel="nofollow">Downloads</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/licenses/" class="external-link" rel="nofollow">License</A><BR class="atl-forced-newline">
+<A href="contributing.html" title="Contributing">Contributing</A><BR class="atl-forced-newline">
+<A href="news.html" title="News">News</A><BR class="atl-forced-newline">
+<A href="links.html" title="Links">Links</A><BR class="atl-forced-newline">
+<A href="project-information.html" title="Project Information">Project Information</A><BR class="atl-forced-newline">
+<A href="https://issues.apache.org/jira/browse/SLING" class="external-link" rel="nofollow">Issue Tracker</A><BR class="atl-forced-newline">
+<A href="http://svn.apache.org/viewvc/sling/trunk" class="external-link" rel="nofollow">Browse Source Repository</A><BR class="atl-forced-newline">
+<A href="security.html" title="Security">Security</A><BR class="atl-forced-newline"></P>
+
+<P><B>Sponsorship</B><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/thanks.html" class="external-link" rel="nofollow">Thanks</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/sponsorship.html" class="external-link" rel="nofollow">Become a Sponsor</A><BR>
+<A href="http://www.apache.org/foundation/buy_stuff.html" class="external-link" rel="nofollow">Buy Stuff</A></P>
+
+
+  <IFRAME src="http://www.apache.org/ads/button.html" style="border-width:0; float: left" frameborder="0" scrolling="no" width="135" height="135"></IFRAME>
+  <P style="height: 135px"></P>
+    </DIV>
+    <DIV class="main">
+        <DIV class="breadcrump" style="font-size: 80%;">
+<A href="apache-sling.html" title="Apache Sling Website">Apache Sling Website</A>&nbsp;&gt;&nbsp;<A href="apache-sling.html" title="Apache Sling">Apache Sling</A>&nbsp;&gt;&nbsp;<A href="old-stuff.html" title="Old Stuff">Old Stuff</A>&nbsp;&gt;&nbsp;<A href="" title="Request Processing">Request Processing</A>
+        </DIV>
+<H1><A name="RequestProcessing-HTTPRequestProcessing"></A>HTTP Request Processing</H1>
+
+<DIV class="panelMacro"><TABLE class="noteMacro"><COLGROUP><COL width="24"><COL></COLGROUP><TR><TD valign="top"><IMG src="https://cwiki.apache.org/confluence/images/icons/emoticons/warning.gif" width="16" height="16" align="absmiddle" alt="" border="0"></TD><TD><B>Page Status</B><BR>2008-02-13: this page is <B>out of sync</B> with the current codebase, needs to be reviewed and updated.</TD></TR></TABLE></DIV>
+
+<P>One of the core problems towards understanding how Sling works is knowing how a Client Request is processed by Sling. This page describes the flow of processing requests inside Sling.</P>
+
+
+<H2><A name="RequestProcessing-CoreRequestProcessing"></A>Core Request Processing</H2>
+
+
+<P>The HTTP request enters Sling in the <TT>org.apache.sling.core.ComponentRequestHandlerImpl.service(ServletRequest req, ServletResponse res)</TT> method as the <TT>ComponentRequestHandlerImpl</TT> is registered as the Servlet handling HTTP requests. This method sets up the initial <TT>ComponentRequest</TT> and <TT>ComponentResponse</TT> objects and hands the request over to the first <TT>ComponentFilterChain</TT>. This first filter chain calls all <TT>ComponentFilter</TT> instances registered as request level filters. After processing all filters in the request level filter chain, the request is handed over to the second <TT>ComponentFilterChain</TT> which calls all <TT>ComponentFilter</TT> instances registered as component level filters. At the end of the second filter chain the <TT>service</TT> method of the actual <TT>Component</TT> to which the request resolved is called.</P>
+
+<P>As the component is now processing the request, it may decide to dispatch the request to some other content such as for example a paragraph system or navigation component. To do this, the component will call the <TT>RequestDispatcher.include</TT> method. If the request dispatcher dispatches to a <TT>Content</TT> object Sling will hand the dispatch request over to the component level filter chain, which at the end will call the <TT>service</TT> method for the <TT>Content</TT> object to dispatched to. This process may be repeated at the component's discretion only limited by processing resources such as available memory.</P>
+
+
+<P>As can be seen Sling itself is absed on the Component API <TT>ComponentFilter</TT> mechanism. As such Sling provides and uses the following filters in the Sling Core bundle:</P>
+
+<TABLE class="wiki-table" cellpadding="0" cellspacing="0" border="0"><TR><TH><TR><TH colspan="2" class="confluenceTh"> Request Level Filters </TH></TR></TH></TR><TR class="table-odd"><TD><TR><TD class="confluenceTd"> <TT>ErrorHandlerFilter</TT> </TD><TD class="confluenceTd"> Handles exceptions thrown while processing the request as well implements the <TT>ComponentResponse.sendError()</TT> method </TD></TR></TD></TR><TR class="table-even"><TD><TR><TD class="confluenceTd"> <TT>AuthenticationFilter</TT> </TD><TD class="confluenceTd"> Implements authentication for the request and provides the JCR Session of the request </TD></TR></TD></TR><TR class="table-odd"><TD><TR><TD class="confluenceTd"> <TT>BurstCacheFilter</TT> </TD><TD class="confluenceTd"> Checks whether the request may be handled by cached response data </TD></TR></TD></TR><TR class="table-even"><TD><TR><TD class="confluenceTd"> <TT>LocaleResolverFilter</TT> </TD><TD class="confluenceTd"> Provides information on the <TT>Locale</TT> to be used for request processing. This filter implements the <TT>ComponentRequest.getLocale()</TT> method </TD></TR></TD></TR><TR class="table-odd"><TD><TR><TD class="confluenceTd"> <TT>ThemeResolverFilter</TT> </TD><TD class="confluenceTd"> Provides the <TT>Theme</TT> for the request. The theme is provided as a request attribute </TD></TR></TD></TR><TR class="table-even"><TD><TR><TD class="confluenceTd"> <TT>URLMapperFilter</TT> </TD><TD class="confluenceTd"> Resolves the request URL to a JCR Node which may be mapped into a <TT>Content</TT> object </TD></TR></TD></TR><TR class="table-odd"><TD><TR><TD class="confluenceTd"> <TT>ZipFilter</TT> </TD><TD class="confluenceTd"> Sample filter showing how the request response might be compressed according to the <EM>Accept-Encoding</EM> request header. This filter is not enabled by default. </TD></TR></TD></TR></TABLE>
+
+
+
+<P>Deducing from these lists of filters, the actual request processing can be refined into the following steps:</P>
+
+<OL>
+	<LI>Extract user authentication information and acquire the JCR session to access content. If the request has no user authentication data the such data may be requested from the user (for example by sending a HTTP 401 status) or an anonymous repository session might be acquired.</LI>
+	<LI>Check whether the request may be handled by data stored in the cache. If the request is cacheable and a cache entry exists for the request URL, the request data is returned to the client and request processing may terminate. Otherwise request processing will continue and optionally ensure that any response data is entered into the cache. Of course, if the request is not cacheable, for example because there are request parameters, or if any of the <TT>Component</TT> instances called during request processing decide to signal non-cacheability for whatever reason, the response data will of course not cached.</LI>
+	<LI>Extract the <TT>java.util.Locale</TT> from the request such that further processing may use properly translated messages. By default, the locale of the underlying Servlet request is used as the request locale. Other possibilities would be to use special cookies or some locale encoding in the path.</LI>
+	<LI>Find the theme (or skin) to use to render the response. This step will add a <TT>org.apache.sling.theme.Theme</TT> object as a request parameter, which may be used by {{Component}}s to decide on specific rendering. For example, the theme may encapsulate information on the CSS to use for responses rendered as HTML.</LI>
+	<LI>Resolve the request URL into a <TT>Content</TT> object.</LI>
+</OL>
+
+
+
+<P>The default request level filter chain setup ends with finding the <TT>Content</TT> object requested by the request URL. After having found this object, the request is handed over to the component level filter chain, which is concerned with handling filtering on a single <TT>Content</TT> instance. As such, the component level filter chain is used for each <TT>Content</TT> object which is to be serviced either on behalf of the HTTP request or on behalf of request dispatcher. Thus the component level filter chain will generally called multiple times during a single request.</P>
+
+
+<TABLE class="wiki-table" cellpadding="0" cellspacing="0" border="0"><TR><TH><TR><TH colspan="2" class="confluenceTh"> Component Level Filters </TH></TR></TH></TR><TR class="table-odd"><TD><TR><TD class="confluenceTd"> <TT>CacheFilter</TT> </TD><TD class="confluenceTd"> Checks whether the request to the current <TT>Content</TT> object may be handled by cached response data </TD></TR></TD></TR><TR class="table-even"><TD><TR><TD class="confluenceTd"> <TT>ComponentResolverFilter</TT> </TD><TD class="confluenceTd"> Resolves the component ID returned by the <TT>Content.getComponentId()</TT> method into a <TT>Component</TT> instances, which will be called to service the request </TD></TR></TD></TR></TABLE>
+
+<P>Again, deducing from the list of filters, the following steps are taking to service a given <TT>Content</TT> object:</P>
+
+<OL>
+	<LI>Check whether the <TT>Content</TT> object processing may be handled from the cache. Same as with request level cache handling, a cache entry may exist for a single <TT>Content</TT> instance depending on whether the request is cacheable at all and on whether a cache entry exists. If a cache entry exists and may be used, the response data is simply spooled into the response and component level processing terminates for the <TT>Content</TT> object. Otherwise processing continues and may optionally lead to a new cache entry for the <TT>Content</TT> object to be reused later.</LI>
+	<LI>Resolve the component ID returned by the <TT>Content.getComponentId()</TT> method into a <TT>Component</TT> object. Of course it is an error, if the component ID cannot be mapped into a <TT>Component</TT> object.</LI>
+</OL>
+
+
+<P>After resolving the <TT>Component</TT> object default component filter chain terminates and control is handed over to the <TT>service</TT> method of the <TT>Component</TT> object resolved in the last step. At the discretion of the component request dispatchers may now be acquired to render other <TT>Content</TT> objects. In this case the component level filter chain is simply kicked of again resulting in the <TT>service</TT> method of another <TT>Component</TT> being called. And so forth.</P>
+
+
+
+<H2><A name="RequestProcessing-ResolvingContent"></A>Resolving Content</H2>
+
+<P>As we have seen, the last step in the request level filter chain is the resolution of the request URL into a <TT>Content</TT> object. The URL Mapper Filter implementing this resolution uses an instance of the <TT>org.apache.sling.content.ContentMapper</TT> interface which is acquired by calling the <TT>org.apache.sling.content.jcr.JcrContentManagerFactory</TT> with the repository session acquired by the authentication filter.</P>
+
+<P>The URL Mapper filter then tries to apply fixed mappings from request URL to destination paths to support shortcut URLs. For example the root path <TT>/</TT> may be mapped into the default landing page at <TT>/default/home</TT>. The list of such mappings is configurable through the Configuration Admin Service.</P>
+
+<P>Next the URL Mapper tries to apply prefix matching patterns. A list of patterns is iterated checking whether the prefix applies and, if so, replacing the prefix with another prefix and trying to resolve the result. This functionality enables relocation of a subtree of the repository. For example, all requests whose prefix is <TT>/here</TT> might be remapped with the new prefix <TT>/content/there</TT>. The result  of this remapping is then resolved.</P>
+
+<P>Resolution (currently) takes place on the last path segment of the request URL containing at least one dot. Parts of that segment are cut off after dots until no more dots exist in the URL. For each resulting substring, the <TT>ContentManager.load(String)</TT> method is called. This processing terminates if a <TT>Content</TT> object is found or if there is nothing to cut off any more.</P>
+
+<P>This resolution is very simple and straight forwards. Future development may add support for the following features:</P>
+
+<UL>
+	<LI><B>Vanity URLs</B> - Map the request URL according to the <TT>Host</TT> request header.</LI>
+	<LI><B>Dynamic Mapping</B> - Add support for a set of variables in path and/or prefix mapping. For example, a prefix mapping  may contain the string <TT>/content/${lang}/${user</TT>} resulting in resolving a prefix according to the language of the current locale and the name of the authenticated used.</LI>
+</UL>
+
+
+
+
+<H2><A name="RequestProcessing-RegisteringComponents"></A>Registering Components</H2>
+
+
+<P>The last step of the component level filter chain is resolving the <TT>Component</TT> from the component ID of the <TT>Content</TT> object. Sling implements this resolution by making use of the OSGi service registry. That is, each component is to be registered as a service with the name <TT>org.apache.sling.component.Component</TT>. The <TT>ComponentResolverFilter</TT> is listening for these components and registers them internally in a map indexed by the IDs of the component as returned by the <TT>Component.getId()</TT> method.</P>
+
+<P>When a component has to be resolved, the component ID returned by the <TT>Content</TT> object is simply looked up in the component map. If found, that component is used. Otherwise a fall back algorithm is applied which is described on the <A href="default-mapping-and-rendering.html" title="Default Mapping and Rendering">Default Content Mapping and Request Rendering</A> page.</P>
+
+
+
+<H2><A name="RequestProcessing-ReqisteringFilters"></A>Reqistering Filters</H2>
+
+<P>Just as <TT>Component</TT> instances used by Sling are expected to be registered as OSGi services, the {{ComponentFilter}}s to be <BR>
+used have to be registered as services under the name <TT>org.apache.sling.component.ComponentFilter</TT>. Sling picks up all registered component filters and adds them to the respective filter chains.</P>
+
+<P>Service properties set upon registration of the filter define the chain to which the filter belongs and the order in which the filters should be processed:</P>
+
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Property </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>filter.scope</TT> </TD>
+<TD class="confluenceTd"> Defines the chain to which the filter is added. Supported values are <TT>component</TT> for component level filters and <TT>request</TT> for request level filters. If this property is missing or set to an unknown value the filter is added to the request level filter chain. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>filter.order</TT> </TD>
+<TD class="confluenceTd"> Defines the weight of the filter to resolve the processing order. This property must be an <TT>java.lang.Integer</TT>. If not set or not an <TT>Integer</TT> the order defaults to <TT>Integer.MAX_VALUE</TT>. The lower the order number the earlier in the filter chain will the filter be inserted. If two filters are registered with the same order value, the filter with the lower <TT>service.id</TT> value is called first. </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+
+
+
+<H2><A name="RequestProcessing-ContentisaJavaObject"></A>Content is a Java Object</H2>
+
+<P>It is crucial to understand that <TT>Content</TT> is an interface and the request processor of Sling does not actually care, how the <TT>Content</TT> instance comes to live as long as the is such an object and there is a <TT>Component</TT> instance capable of servicing the <TT>Content</TT> object.</P>
+
+<P>By default Sling uses the <EM>URL Mapper</EM> to resolve the request URL into a <TT>Content</TT> object. When a <TT>Component</TT> is tasked with servicing a <TT>Content</TT> object it usually uses the <TT>ComponentRequestDispatcher</TT> to ask Sling to service another content object generally identified by a (relative or absolute) path to a JCR Repository Node from which the <TT>Content</TT> object is loaded.</P>
+
+<P>But instead of having Sling resolve a path into a <TT>Content</TT> object the component may just as well create a <TT>Content</TT> object and hand it over to the <TT>ComponentRequestDispatcher</TT> for service. Consider a request which is handled by a <TT>PageComponent</TT>. This component has to draw a navigation tree somewhere in the response. So the component could of course insist on having a <TT>navigation</TT> child node to dispatch rendering to as follows:</P>
+
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+RequestDispatcher rd = request.getRequestDispatcher(<SPAN class="code-quote">&quot;navigation&quot;</SPAN>);
+rd.include(request, response);
+</PRE>
+</DIV></DIV>
+
+
+<P>What happens, though, if there is no <TT>navigation</TT> child node ? Probably, the request will fail with some error status. Of course the component could be more clever and do:</P>
+
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+Content navigation = request.getContent(<SPAN class="code-quote">&quot;navigation&quot;</SPAN>);
+<SPAN class="code-keyword">if</SPAN> (navigation != <SPAN class="code-keyword">null</SPAN>) {
+    RequestDispatcher rd = request.getRequestDispatcher(navigation);
+    rd.include(request, response);
+}
+</PRE>
+</DIV></DIV>
+
+
+<P>Still, if the <TT>navigation</TT> child node does not exist, there is no navigation drawn; at least there will be now error. Since Sling does not actually care, how a <TT>Content</TT> object comes to live, the component could do the following:</P>
+
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+Content navigation = <SPAN class="code-keyword">new</SPAN> Content() {
+    <SPAN class="code-keyword">public</SPAN> <SPAN class="code-object">String</SPAN> getPath() {
+        <SPAN class="code-keyword">return</SPAN> request.getContent().getPath() + <SPAN class="code-quote">&quot;/navigation&quot;</SPAN>;
+    }
+    <SPAN class="code-keyword">public</SPAN> <SPAN class="code-object">String</SPAN> getComponentId() {
+        <SPAN class="code-keyword">return</SPAN> NavigationComponent.getClass().getName();
+    }
+}
+
+RequestDispatcher rd = request.getRequestDispatcher(navigation);
+rd.include(request, response);
+</PRE>
+</DIV></DIV>
+
+
+<P>Of course, the page component now has to have knowledge about the actual <TT>Component</TT> to use.</P>
+
+
+<P>Finally, as a further enhancement, the Component might even decide to first check for a <TT>navigation</TT> child node. If such a node does not exist the navigation <TT>Content</TT> object is just created:</P>
+
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+Content navigation = request.getContent(<SPAN class="code-quote">&quot;navigation&quot;</SPAN>);
+<SPAN class="code-keyword">if</SPAN> (navigation == <SPAN class="code-keyword">null</SPAN>) {
+    navigation = <SPAN class="code-keyword">new</SPAN> Content() {
+        <SPAN class="code-keyword">public</SPAN> <SPAN class="code-object">String</SPAN> getPath() {
+            <SPAN class="code-keyword">return</SPAN> request.getContent().getPath() + <SPAN class="code-quote">&quot;/navigation&quot;</SPAN>;
+        }
+        <SPAN class="code-keyword">public</SPAN> <SPAN class="code-object">String</SPAN> getComponentId() {
+            <SPAN class="code-keyword">return</SPAN> NavigationComponent.getClass().getName();
+        }
+    }
+}
+
+RequestDispatcher rd = request.getRequestDispatcher(navigation);
+rd.include(request, response);
+</PRE>
+</DIV></DIV>
+
+
+<P>This could for example be used to fall back to a default navigation setup while providing for specialized navigation configuration in an optional <TT>navigation</TT> child node.</P>
+        <DIV class="timestamp" style="margin-top: 30px; font-size: 80%; text-align: right;">
+Last modified by mykee on 2008-02-13 07:10:28.0
+        </DIV>
+        <DIV class="trademarkFooter">
+Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+        </DIV>
+    </DIV>
+  </BODY>
+</HTML>
+

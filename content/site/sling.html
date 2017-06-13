@@ -1,0 +1,550 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - Sling</TITLE>
+    <LINK rel="stylesheet" href="http://sling.apache.org/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://sling.apache.org/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info. The migrated but not yet edited version of this page is at <a href='/documentation/development/sling.html'>/documentation/development/sling.html</a></div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://sling.apache.org/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://sling.apache.org/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://www.apache.org/">
+          <IMG border="0" alt="Apache" src="http://sling.apache.org/site/media.data/apache.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+<P><B>Documentation</B><BR class="atl-forced-newline">
+<A href="getting-started.html" title="Getting Started">Getting Started</A><BR class="atl-forced-newline">
+<A href="the-sling-engine.html" title="The Sling Engine">The Sling Engine</A><BR class="atl-forced-newline">
+<A href="development.html" title="Development">Development</A><BR class="atl-forced-newline">
+<A href="bundles.html" title="Bundles">Bundles</A><BR class="atl-forced-newline">
+<A href="tutorials-how-tos.html" title="Tutorials & How-Tos">Tutorials &amp; How&#45;Tos</A><BR class="atl-forced-newline">
+<A href="configuration.html" title="Configuration">Configuration</A><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/apidocs/sling6/index.html" class="external-link" rel="nofollow">API docs</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.wiki" class="external-link" rel="nofollow">Wiki</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.faq" class="external-link" rel="nofollow">FAQ</A><BR class="atl-forced-newline"></P>
+
+<P><B>Project info</B><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/site/downloads.cgi" class="external-link" rel="nofollow">Downloads</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/licenses/" class="external-link" rel="nofollow">License</A><BR class="atl-forced-newline">
+<A href="contributing.html" title="Contributing">Contributing</A><BR class="atl-forced-newline">
+<A href="news.html" title="News">News</A><BR class="atl-forced-newline">
+<A href="links.html" title="Links">Links</A><BR class="atl-forced-newline">
+<A href="project-information.html" title="Project Information">Project Information</A><BR class="atl-forced-newline">
+<A href="https://issues.apache.org/jira/browse/SLING" class="external-link" rel="nofollow">Issue Tracker</A><BR class="atl-forced-newline">
+<A href="http://svn.apache.org/viewvc/sling/trunk" class="external-link" rel="nofollow">Browse Source Repository</A><BR class="atl-forced-newline">
+<A href="security.html" title="Security">Security</A><BR class="atl-forced-newline"></P>
+
+<P><B>Sponsorship</B><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/thanks.html" class="external-link" rel="nofollow">Thanks</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/sponsorship.html" class="external-link" rel="nofollow">Become a Sponsor</A><BR>
+<A href="http://www.apache.org/foundation/buy_stuff.html" class="external-link" rel="nofollow">Buy Stuff</A></P>
+
+
+  <IFRAME src="http://www.apache.org/ads/button.html" style="border-width:0; float: left" frameborder="0" scrolling="no" width="135" height="135"></IFRAME>
+  <P style="height: 135px"></P>
+    </DIV>
+    <DIV class="main">
+        <DIV class="breadcrump" style="font-size: 80%;">
+<A href="apache-sling.html" title="Apache Sling Website">Apache Sling Website</A>&nbsp;&gt;&nbsp;<A href="apache-sling.html" title="Apache Sling">Apache Sling</A>&nbsp;&gt;&nbsp;<A href="documentation.html" title="Documentation">Documentation</A>&nbsp;&gt;&nbsp;<A href="development.html" title="Development">Development</A>&nbsp;&gt;&nbsp;<A href="" title="Sling">Sling</A>
+        </DIV>
+<H1><A name="Sling-MavenSlingPlugin"></A>Maven Sling Plugin</H1>
+
+<P>The Maven Sling Plugin provides a number of goals which may be of help while developping bundles for Sling. To run the plugin you need at least Maven 2.x and JDK 1.5 or higher. Maven Sling Plugin provides the following goals:</P>
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Goals <BR class="atl-forced-newline"> </TH>
+<TH class="confluenceTh"> Description <BR class="atl-forced-newline"> </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <A href="#Sling-deploy">sling:deploy</A> </TD>
+<TD class="confluenceTd"> Deploy a OSGi-bundle into a running Sling instance. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <A href="#Sling-deployfile">sling:deploy-file</A> </TD>
+<TD class="confluenceTd"> Deploy a OSGi-bundle into a running Sling instance without requiring a project descriptor file. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <A href="#Sling-install">sling:install </A> </TD>
+<TD class="confluenceTd"> Install a OSGi-bundle into a running Sling instance <BR class="atl-forced-newline"> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <A href="#Sling-installfile">sling:install-file</A> </TD>
+<TD class="confluenceTd"> Install a OSGi-bundle into a running Sling instance without requiring a project descriptor file. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <A href="#Sling-uninstall">sling:uninstall</A> </TD>
+<TD class="confluenceTd"> Uninstall a OSGi-bundle from a running Sling instance <BR class="atl-forced-newline"> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <A href="#Sling-validate">sling:validate</A> </TD>
+<TD class="confluenceTd"> Validate JSON files in module (used for initial content loading) <BR class="atl-forced-newline"> </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+
+<H2><A name="Sling-Usage"></A>Usage</H2>
+
+<P>You should specify the version in your project's plugin configuration:</P>
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+  ...
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+    <SPAN class="code-tag"><SPAN class="code-comment">&lt;!-- To define the plugin version in your parent POM --&gt;</SPAN></SPAN>
+    <SPAN class="code-tag">&lt;pluginManagement&gt;</SPAN>
+      <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+        <SPAN class="code-tag">&lt;plugin&gt;</SPAN>
+          <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.sling<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+          <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>maven-sling-plugin<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+          <SPAN class="code-tag">&lt;version&gt;</SPAN>2.0.5-SNAPSHOT<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/plugin&gt;</SPAN>
+        ...
+      <SPAN class="code-tag">&lt;/plugins&gt;</SPAN>
+    <SPAN class="code-tag">&lt;/pluginManagement&gt;</SPAN>
+    <SPAN class="code-tag"><SPAN class="code-comment">&lt;!-- To use the plugin goals in your POM or parent POM --&gt;</SPAN></SPAN>
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+      <SPAN class="code-tag">&lt;plugin&gt;</SPAN>
+        <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.sling<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>maven-sling-plugin<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;version&gt;</SPAN>2.0.5-SNAPSHOT<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+      <SPAN class="code-tag">&lt;/plugin&gt;</SPAN>
+      ...
+    <SPAN class="code-tag">&lt;/plugins&gt;</SPAN>
+  <SPAN class="code-tag">&lt;/build&gt;</SPAN>
+  ...
+<SPAN class="code-tag">&lt;/project&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+<P>For more information, see <A href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html" class="external-link" rel="nofollow">&quot;Guide to Configuring Plug-ins&quot;</A></P>
+
+<P><A name="Sling-deploy"></A></P>
+
+<H2><A name="Sling-The%7B%7Bdeploy%7D%7Dgoal"></A>The <TT>deploy</TT> goal</H2>
+
+<P>The <TT>deploy</TT> goal uploads a bundle to a Sling OSGi Bundle Repository server implemented by the <EM>sling-obr</EM> bundle, which may be located on a remote system. The plugin places an HTTP <TT>POST</TT> request to the server sending the bundle file.&nbsp;</P>
+
+<H3><A name="Sling-Use"></A>Use</H3>
+
+<P>To use the <TT>deploy</TT> goal of the Maven Sling Plugin define the following elements in the <TT>&lt;plugins&gt;</TT> section of the POM:</P>
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;?xml version=<SPAN class="code-quote">&quot;1.0&quot;</SPAN> encoding=<SPAN class="code-quote">&quot;ISO-8859-1&quot;</SPAN>?&gt;</SPAN>
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+  ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+    ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+      ....
+      <SPAN class="code-tag">&lt;plugin&gt;</SPAN>
+        <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.sling<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>maven-sling-plugin<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;executions&gt;</SPAN>
+          <SPAN class="code-tag">&lt;execution&gt;</SPAN>
+            <SPAN class="code-tag">&lt;id&gt;</SPAN>deploy-bundle<SPAN class="code-tag">&lt;/id&gt;</SPAN>
+            <SPAN class="code-tag">&lt;goals&gt;</SPAN>
+              <SPAN class="code-tag">&lt;goal&gt;</SPAN>deploy<SPAN class="code-tag">&lt;/goal&gt;</SPAN>
+            <SPAN class="code-tag">&lt;/goals&gt;</SPAN>
+          <SPAN class="code-tag">&lt;/execution&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/executions&gt;</SPAN>
+      <SPAN class="code-tag">&lt;/plugin&gt;</SPAN>
+      ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+    ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+  ....
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<H3><A name="Sling-Configuration"></A>Configuration</H3>
+
+<P>The <TT>deploy</TT> goal may be configured in the <TT>&lt;configuration&gt;</TT> element using the following properties:</P>
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Parameter </TH>
+<TH class="confluenceTh"> Default Value </TH>
+<TH class="confluenceTh"> System Property Overwrite </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>skip</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.deploy.skip</TT> </TD>
+<TD class="confluenceTd"> Whether to skip this step even though it has been configured in the project to be executed. The main use of this setting is preventing deployment of the bundle to a Sling OSGi Bundle Repository server if it is known that there is none or if such an upload is not required. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>buildDirectory</TT> </TD>
+<TD class="confluenceTd"> <TT>${project.build.directory</TT>} </TD>
+<TD class="confluenceTd"> &#45; </TD>
+<TD class="confluenceTd"> The path of the file to be installed </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>jarName</TT> </TD>
+<TD class="confluenceTd"> <TT>${project.build.finalName}.jar</TT> </TD>
+<TD class="confluenceTd"> &#45; </TD>
+<TD class="confluenceTd"> The name of the file to be installed </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>obr</TT> </TD>
+<TD class="confluenceTd"> &#45; </TD>
+<TD class="confluenceTd"> <TT>obr</TT> </TD>
+<TD class="confluenceTd"> The URL of the running Sling instance to which the bundle is installed. Note that this parameter is required and has no defualt value. It must always be specified in the configuration section or on the command line. </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+<P><A name="Sling-deployfile"></A></P>
+
+<H2><A name="Sling-The%7B%7Bdeployfile%7D%7Dgoal"></A>The <TT>deploy-file</TT> goal</H2>
+
+<P>The <TT>deploy-file</TT> goal is equivalent to the <TT>deploy</TT> goal except, that the <TT>deploy-file</TT> does not require a project descriptor file while the <TT>deploy</TT> goal does. In other words the <TT>deploy-file</TT> goal may used to upload any bundle file available to a Sling OBR server instance.</P>
+
+<H3><A name="Sling-Use"></A>Use</H3>
+
+<P>The <TT>deploy-file</TT> goal may only be used from the command line by explicitly calling it as in:</P>
+<DIV class="preformatted panel" style="border-width: 1px;"><DIV class="preformattedContent panelContent">
+<PRE>$ mvn org.apache.sling:maven-sling-plugin:deploy-file -Dsling.file=&lt;file&gt; -Dobr=&lt;url&gt;
+</PRE>
+</DIV></DIV>
+<P>Specifying the bundle file to upload with the <TT>sling.file</TT> property is required.</P>
+
+<H3><A name="Sling-Configuration"></A>Configuration</H3>
+
+<P>The <TT>deploy-file</TT> supports similar configuration parameters as the <TT>deploy</TT> goal with the exception of the <TT>skip</TT> parameter which makes no sense. In addition, all parameters must be specified on the command line by setting system properties. The <TT>bundleFileName</TT> parameter specified as the <TT>sling.file</TT> system property as well as the <TT>obr</TT> URL are required by the <TT>deploy-file</TT> goal.</P>
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Parameter </TH>
+<TH class="confluenceTh"> Default Value </TH>
+<TH class="confluenceTh"> System Property Overwrite </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>bundleFileName</TT> </TD>
+<TD class="confluenceTd"> <TT>${project.build.directory}/${project.build.finalName}.jar</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.file</TT> </TD>
+<TD class="confluenceTd"> The path and name of the file to be installed </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>obr</TT> </TD>
+<TD class="confluenceTd"> &#45; </TD>
+<TD class="confluenceTd"> <TT>obr</TT> </TD>
+<TD class="confluenceTd"> The URL of the running Sling instance to which the bundle is installed. Note that this parameter is required and has no defualt value. It must always be specified in the configuration section or on the command line. </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+<P>Example: To deploy the bundle file <TT>someBundle.jar</TT> to the OBR running at <TT><A href="http://obr.sample.org/" class="external-link" rel="nofollow">http://obr.sample.org</A></TT> you might use the goal as follows:</P>
+<DIV class="preformatted panel" style="border-width: 1px;"><DIV class="preformattedContent panelContent">
+<PRE>$ mvn org.apache.sling:maven-sling-plugin:deploy-file -Dsling.file=someBundle.jar -Dobr=http://obr.sample.org
+</PRE>
+</DIV></DIV>
+<P><A name="Sling-install"></A></P>
+
+<H2><A name="Sling-The%7B%7Binstall%7D%7Dgoal"></A>The <TT>install</TT> goal</H2>
+
+<P>The <TT>install</TT> goal uploads a bundle to a running sling instance, which may be located on a remote system. The plugin places an HTTP <TT>POST</TT> request to the sling instance sending the bundle file together with flags indicating whether to start the bundle and what start level to assign the bundle. It's also possible to HTTP <TT>PUT</TT> instead of <TT>POST</TT> for WebDAV.</P>
+
+<H3><A name="Sling-Use"></A>Use</H3>
+
+<P>To use the <TT>install</TT> goal of the Maven Sling Plugin define the following elements in the <TT>&lt;plugins&gt;</TT> section of the POM:</P>
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;?xml version=<SPAN class="code-quote">&quot;1.0&quot;</SPAN> encoding=<SPAN class="code-quote">&quot;ISO-8859-1&quot;</SPAN>?&gt;</SPAN>
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+  ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+    ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+      ....
+      <SPAN class="code-tag">&lt;plugin&gt;</SPAN>
+        <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.sling<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>maven-sling-plugin<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;executions&gt;</SPAN>
+          <SPAN class="code-tag">&lt;execution&gt;</SPAN>
+            <SPAN class="code-tag">&lt;id&gt;</SPAN>install-bundle<SPAN class="code-tag">&lt;/id&gt;</SPAN>
+            <SPAN class="code-tag">&lt;goals&gt;</SPAN>
+              <SPAN class="code-tag">&lt;goal&gt;</SPAN>install<SPAN class="code-tag">&lt;/goal&gt;</SPAN>
+            <SPAN class="code-tag">&lt;/goals&gt;</SPAN>
+          <SPAN class="code-tag">&lt;/execution&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/executions&gt;</SPAN>
+      <SPAN class="code-tag">&lt;/plugin&gt;</SPAN>
+      ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+    ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+  ....
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<H3><A name="Sling-Configuration"></A>Configuration</H3>
+
+<P>The <TT>install</TT> goal may be configured in the <TT>&lt;configuration&gt;</TT> element using the following properties:</P>
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Parameter </TH>
+<TH class="confluenceTh"> Default Value </TH>
+<TH class="confluenceTh"> System Property Overwrite </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>skip</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.install.skip</TT> </TD>
+<TD class="confluenceTd"> Whether to skip this step even though it has been configured in the project to be executed. The main use of this setting is preventing installation of the bundle to a running Sling installation if it is known that there is none or if such an upload is not required, for example when building the bundle in an automated build system such as Confluence. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>bundleFileName</TT> </TD>
+<TD class="confluenceTd"> <TT>${project.build.directory}/${project.build.finalName}.jar</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.file</TT> </TD>
+<TD class="confluenceTd"> The path and name of the file to be installed </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>bundleStart</TT> </TD>
+<TD class="confluenceTd"> <TT>true</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.bundle.start</TT> </TD>
+<TD class="confluenceTd"> Whether to start the bundle after installing it. If the bundle is just updated, this parameter is ignored even if the bundle is currently stopped </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>bundleStartLevel</TT> </TD>
+<TD class="confluenceTd"> <TT>20</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.bundle.startlevel</TT> </TD>
+<TD class="confluenceTd"> The start level to set on the installed bundle. If the bundle is already installed and therefore is only updated this parameter is ignored. The parameter is also ignored if the running Sling instance has no StartLevel service (which is unusual actually) </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>slingUrl</TT> </TD>
+<TD class="confluenceTd"> <TT>http</TT><TT>://localhost:8080/sling</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.url</TT> </TD>
+<TD class="confluenceTd"> The URL of the running Sling instance to which the bundle is installed </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>user</TT> </TD>
+<TD class="confluenceTd"> <TT>admin</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.user</TT> </TD>
+<TD class="confluenceTd"> The name of the user to authenticate as with the running Sling instance given by the <TT>slingUrl</TT> parameter </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>password</TT> </TD>
+<TD class="confluenceTd"> <TT>admin</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.password</TT> </TD>
+<TD class="confluenceTd"> The password of the user to authenticate as with the running Sling instance given by the <TT>slingUrl</TT> parameter </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>mountByFS</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.mountByFS</TT> </TD>
+<TD class="confluenceTd"> To configure FS ResourceProvider for initial content files (useful for testing) <BR class="atl-forced-newline"> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>usePut</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.usePut</TT> </TD>
+<TD class="confluenceTd"> If a simple HTTP PUT should be used instead of the standard POST to the  felix console. In the uninstall goal, a HTTP DELETE will be  used. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>refreshPackages</TT> </TD>
+<TD class="confluenceTd"> <TT>true</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.refreshPackages</TT> </TD>
+<TD class="confluenceTd"> Whether to refresh the packages after installing the uploaded bundle. If this property is set to <TT>true</TT>, the <TT>PackageAdmin.refreshPackages(Bundle[])</TT> method is called after installing or updating the bundle. </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+<P><A name="Sling-installfile"></A></P>
+
+<H2><A name="Sling-The%7B%7Binstallfile%7D%7Dgoal"></A>The <TT>install-file</TT> goal</H2>
+
+<P>The <TT>install-file</TT> goal is equivalent to the <TT>install</TT> goal except, that the <TT>install-file</TT> does not require a project descriptor file while the <TT>install</TT> goal does. In other words the <TT>install-file</TT> goal may used to upload any bundle file available to a running Sling instance.</P>
+
+<H3><A name="Sling-Use"></A>Use</H3>
+
+<P>The <TT>install-file</TT> goal may only be used from the command line by explicitly calling it as in:</P>
+<DIV class="preformatted panel" style="border-width: 1px;"><DIV class="preformattedContent panelContent">
+<PRE>$ mvn org.apache.sling:maven-sling-plugin:install-file -Dsling.file=&lt;file&gt;
+</PRE>
+</DIV></DIV>
+<P>Specifying the bundle file to upload with the <TT>sling.file</TT> property is required.</P>
+
+<H3><A name="Sling-Configuration"></A>Configuration</H3>
+
+<P>The <TT>install-file</TT> supports the same configuration parameters as the <TT>install</TT> goal with the exception of the <TT>skip</TT> parameter which makes no sense. In addition, all parameters must be specified on the command line by setting system properties. The <TT>bundleFileName</TT> parameter specified as the <TT>sling.file</TT> system property is required by the <TT>install-file</TT> goal.</P>
+
+<P>For a description of the parameters see the configuration section of the <A href="#Sling-install"><TT>install</TT> goal</A> above.</P>
+
+<P>Example: To upload the bundle file <TT>someBundle.jar</TT> you might use the goal as follows:</P>
+<DIV class="preformatted panel" style="border-width: 1px;"><DIV class="preformattedContent panelContent">
+<PRE>$ mvn org.apache.sling:maven-sling-plugin:install-file -Dsling.file=someBundle.jar
+</PRE>
+</DIV></DIV>
+<P><A name="Sling-uninstall"></A></P>
+
+<H2><A name="Sling-The%7B%7Buninstall%7D%7Dgoal"></A>The <TT>uninstall</TT> goal</H2>
+
+<P>The <TT>uninstall</TT> goal uninstalls a bundle from a running sling instance, which may be located on a remote system. The plugin uninstalles a bundle via a HTTP <TT>POST</TT>request. It's also possible to use HTTP <TT>DELETE</TT> instead of <TT>POST</TT> for WebDAV.</P>
+
+<H3><A name="Sling-Use"></A>Use</H3>
+
+<P>To use the <TT>uninstall</TT> goal of the Maven Sling Plugin define the following elements in the <TT>&lt;plugins&gt;</TT> section of the POM:</P>
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;?xml version=<SPAN class="code-quote">&quot;1.0&quot;</SPAN> encoding=<SPAN class="code-quote">&quot;ISO-8859-1&quot;</SPAN>?&gt;</SPAN>
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+  ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+    ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+      ....
+      <SPAN class="code-tag">&lt;plugin&gt;</SPAN>
+        <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.sling<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>maven-sling-plugin<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;executions&gt;</SPAN>
+          <SPAN class="code-tag">&lt;execution&gt;</SPAN>
+            <SPAN class="code-tag">&lt;id&gt;</SPAN>uninstall-bundle<SPAN class="code-tag">&lt;/id&gt;</SPAN>
+            <SPAN class="code-tag">&lt;goals&gt;</SPAN>
+              <SPAN class="code-tag">&lt;goal&gt;</SPAN>uninstall<SPAN class="code-tag">&lt;/goal&gt;</SPAN>
+            <SPAN class="code-tag">&lt;/goals&gt;</SPAN>
+          <SPAN class="code-tag">&lt;/execution&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/executions&gt;</SPAN>
+      <SPAN class="code-tag">&lt;/plugin&gt;</SPAN>
+      ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+    ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+  ....
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<H3><A name="Sling-Configuration"></A>Configuration</H3>
+
+<P>The <TT>uninstall</TT> goal may be configured in the <TT>&lt;configuration&gt;</TT> element using the following properties:</P>
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Parameter </TH>
+<TH class="confluenceTh"> Default Value </TH>
+<TH class="confluenceTh"> System Property Overwrite </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>bundleFileName</TT> </TD>
+<TD class="confluenceTd"> <TT>${project.build.directory}/${project.build.finalName}.jar</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.file</TT> </TD>
+<TD class="confluenceTd"> The path and name of the file to be uninstalled </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>slingUrl</TT> </TD>
+<TD class="confluenceTd"> <TT>http</TT><TT>://localhost:8080/sling</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.url</TT> </TD>
+<TD class="confluenceTd"> The URL of the running Sling instance to which the bundle should be uninstalled </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>user</TT> </TD>
+<TD class="confluenceTd"> <TT>admin</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.user</TT> </TD>
+<TD class="confluenceTd"> The name of the user to authenticate as with the running Sling instance given by the <TT>slingUrl</TT> parameter </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>password</TT> </TD>
+<TD class="confluenceTd"> <TT>admin</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.password</TT> </TD>
+<TD class="confluenceTd"> The password of the user to authenticate as with the running Sling instance given by the <TT>slingUrl</TT> parameter </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>usePut</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.usePut</TT> </TD>
+<TD class="confluenceTd"> In the uninstall goal, a HTTP DELETE will be used. </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+<P><A name="Sling-validate"></A></P>
+
+<H2><A name="Sling-The%7B%7Bvalidate%7D%7Dgoal"></A>The <TT>validate</TT> goal</H2>
+
+<P>The <TT>validate</TT> goal checks the JSON code of a bundle.</P>
+
+<H3><A name="Sling-Use"></A>Use</H3>
+
+<P>To use the <TT>validate</TT> goal of the Maven Sling Plugin define the following elements in the <TT>&lt;plugins&gt;</TT> section of the POM:</P>
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;?xml version=<SPAN class="code-quote">&quot;1.0&quot;</SPAN> encoding=<SPAN class="code-quote">&quot;ISO-8859-1&quot;</SPAN>?&gt;</SPAN>
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+  ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+    ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+      ....
+      <SPAN class="code-tag">&lt;plugin&gt;</SPAN>
+        <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.sling<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>maven-sling-plugin<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+        <SPAN class="code-tag">&lt;executions&gt;</SPAN>
+          <SPAN class="code-tag">&lt;execution&gt;</SPAN>
+            <SPAN class="code-tag">&lt;id&gt;</SPAN>validate-bundle<SPAN class="code-tag">&lt;/id&gt;</SPAN>
+            <SPAN class="code-tag">&lt;goals&gt;</SPAN>
+              <SPAN class="code-tag">&lt;goal&gt;</SPAN>validate<SPAN class="code-tag">&lt;/goal&gt;</SPAN>
+            <SPAN class="code-tag">&lt;/goals&gt;</SPAN>
+          <SPAN class="code-tag">&lt;/execution&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/executions&gt;</SPAN>
+      <SPAN class="code-tag">&lt;/plugin&gt;</SPAN>
+      ....
+    <SPAN class="code-tag">&lt;plugins&gt;</SPAN>
+    ....
+  <SPAN class="code-tag">&lt;build&gt;</SPAN>
+  ....
+<SPAN class="code-tag">&lt;project&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<H3><A name="Sling-Configuration"></A>Configuration</H3>
+
+<P>The <TT>validate</TT> goal may be configured in the <TT>&lt;configuration&gt;</TT> element using the following properties:</P>
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Parameter </TH>
+<TH class="confluenceTh"> Default Value </TH>
+<TH class="confluenceTh"> System Property Overwrite </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>skip</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.validation.skip</TT> </TD>
+<TD class="confluenceTd"> Whether to skip the validation </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>skipJson</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> <TT>sling.validation.skipJson</TT> </TD>
+<TD class="confluenceTd"> Whether to skip the JSON validation. At the time, there's no difference between <TT>skip</TT> and <TT>skipJson</TT> because only JSON files will be validated by now. </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+        <DIV class="timestamp" style="margin-top: 30px; font-size: 80%; text-align: right;">
+Last modified by fmeschbe on 2009-06-30 00:09:14.0
+        </DIV>
+        <DIV class="trademarkFooter">
+Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+        </DIV>
+    </DIV>
+  </BODY>
+</HTML>
+

@@ -1,0 +1,430 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - Component API</TITLE>
+    <LINK rel="stylesheet" href="http://incubator.apache.org/sling/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://incubator.apache.org/sling/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info.</div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://incubator.apache.org/sling/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://incubator.apache.org/sling/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://incubator.apache.org/">
+          <IMG border="0" alt="Apache Incubator" src="http://incubator.apache.org/images/apache-incubator-logo.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+                                    <P>
+
+<UL>
+	<LI><A href="index.html" title="Index">Home</A></LI>
+	<LI><A href="project-information.html" title="Project Information">Project Information</A></LI>
+	<LI><A href="usecases.html" title="UseCases">Use Cases</A></LI>
+	<LI><A href="guides.html" title="Guides">Guides</A></LI>
+	<LI><A href="documentation.html" title="Documentation">Documentation</A></LI>
+	<LI><A href="plugins.html" title="Plugins">Plugins</A></LI>
+	<LI><A href="../SLING/faq.html" title="FAQ">FAQ</A></LI>
+	<LI><A href="links.html" title="Links">Links</A></LI>
+	<LI><A href="old-documentation.html" title="Old Documentation">Old Documentation</A></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/" title="Visit page outside Confluence" rel="nofollow">Wiki<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/thanks.html" title="Visit page outside Confluence" rel="nofollow">Sponsors<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/sponsorship.html" title="Visit page outside Confluence" rel="nofollow">Sponsorship<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+</UL>
+
+
+<P>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </DIV>
+    <DIV class="main">
+<H1><A name="ComponentAPI-TheComponentAPI"></A>The Component API</H1>
+
+
+<H2><A name="ComponentAPI-Introduction"></A>Introduction</H2>
+
+<P>The Component API defines a presentation framework to build Web Applications. As such the Component API builds upon the Servlet API but extends the latter with new functionality:</P>
+
+<UL>
+	<LI>A web page may be built from many different pieces. This aggregation of different pieces is comparable to the functionality provided by the Portlet API. In contrast to the latter, though, the pieces may themselves be aggregates of yet more pieces. So a single web page response may consist of a tree of pieces.</LI>
+	<LI>Just like the Servlet API and the Portlet API the Component API just defines a Java based framework. Implementing the rendering of pieces in some scripting language is left to the implementation of the Component API.</LI>
+	<LI>In contrast to the Servlet API and the Portlet API, the Component API is content centric. That is, the request URL does not address a servlet or a portlet but a piece of content represented by an instance of the <TT>org.apache.sling.component.Content</TT> interface. From this content object, the Component framework will derive the <TT>org.apache.sling.component.Component</TT> instance, which is used to perform any actions and render the response.</LI>
+</UL>
+
+
+<P>An implementation of the presentation framework defined by the Component API is called a <EM>Component Framework</EM>.</P>
+
+
+
+<H2><A name="ComponentAPI-GoingContentCentric"></A>Going Content Centric</H2>
+
+<P>Traditional web applications are built around the notion of a traditional application which is converted into an application which may be used using a Web Browser. Web applications consist of a series of servlets and JSP scripts, which are called based on configuration in the web application deployment descriptor. Such applications are generally based on some internal database or some static filesystem content.</P>
+
+<P>The Component API on the other hand looks more like a traditional web server from the outside, which delivers more or less static content. Thus, while the traditional web application uses the request URL to select a piece of code to execute, the Component API uses the URL to select a piece of content to be delivered.</P>
+
+<P>Apart from using the URLs to address content resources, the Component API abstracts away from a concrete persistence store implementation by defining <EM>content</EM> to be an instance of a class which implements the <TT>Content</TT> interface. Instantiation and management of content is left to the Component Framework.</P>
+
+
+
+<H3><A name="ComponentAPI-ComparsiontotheServletAPI"></A>Comparsion to the Servlet API</H3>
+
+<P>The Component API builds upon the Servlet API. Generally a Component Framework will run inside a Servlet Container and be manifested towards the Servlet Container as a single Servlet, which dispatches requests to the Components depending on the request URLs.</P>
+
+<P>Response rendering may itself be a multi-step operation. Depending on the Component implementation, the rendering may include dispatching for child (or even foreign) Content.</P>
+
+
+
+<H3><A name="ComponentAPI-ComparisiontothePortletAPI"></A>Comparision to the Portlet API</H3>
+
+<P>Unlike the Portlet API, which defines one single level of portlet hierarchy - portlets are just pieces residing besides each other - the Component API allows for hierarchic structuring of Content and hence Compoent renderings. To support this structuring, the Component Framework does not control the rendering process of all elements on the page like the Portlet Container does for the portlets. Instead only the Content object addressed by the request URL is processed and it is left to the Component rendering that Content to dispatch other Content/Component tupels to add more data to the response.</P>
+
+
+<H3><A name="ComponentAPI-ToIteratororToEnumeration"></A>To Iterator or To Enumeration</H3>
+
+<P>With the advent of the Java Collection framework in Java 2, the <TT>Enumeration</TT> has been superceded by the <TT>Iterator</TT>. So the natural choice for the Component API for methods to return enumeratable collection of objects would have be to declare the use of <TT>Iterator</TT> instances. But because the Servlet API defines to use <TT>Enumeration</TT> instances, the Component API will also declare the use of <TT>Enumeration</TT> instances for consistency with the Servlet API extended by the Component API.</P>
+
+
+
+<H2><A name="ComponentAPI-RequestProcessing"></A>Request Processing</H2>
+
+<P>Unlike traditional Servlet API request processing, a Component API request is processed by the Component Framework in three basic steps:</P>
+
+<OL>
+	<LI><B>Content Resolution</B> - The Component Framework derives a Content instance from the client request URL. The details of how to resolve the Content data and how to instantiate and populate the object is outside the scope of this document. One possible solution would be to map the request URL to a <SPAN class="nobr"><A href="http://www.jcp.org/en/jsr/detail?id=170" title="Visit page outside Confluence" rel="nofollow">Java Content Repository<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN> Node and to use an object content mapping tool (e.g. <SPAN class="nobr"><A href="http://incubator.apache.org/graffito/jcr-mapping/index.html" title="Visit page outside Confluence" rel="nofollow">Jackrabbit Object Content Mapping<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>) to instantiate such an object.</LI>
+	<LI><B>Component Resolution</B> - From the Content object created in the first step, the Component object is resolved from the Component ID retrieved from the Content object. The Component ID is a simple string, whose semantics is defined by the Component Framework. One possible definition could be for the Component ID to the fully qualified name of a class implementing the <TT>Component</TT> interface.</LI>
+	<LI><B>Input Processing and Response Generation</B> -  After getting the Content and the Component, the <TT>Component.service()</TT> method is called to process any user supplied input and send the response to the client. To structure the rendered response page, this method is responsible to include other content. See <EM>Dispatching Requests</EM> below for details. See <EM>Error Handling</EM> below for a discussion on how exceptions and HTTP stati are handled.</LI>
+</OL>
+
+
+
+
+<H3><A name="ComponentAPI-URLdecomposition"></A>URL decomposition</H3>
+
+<P>During the <EM>Content Resolution</EM> step, the client request URL is decomposed into the following parts:</P>
+
+<OL>
+	<LI><B>Content Path</B> -  The longest substring of the request URL resolving to a Content object such that the content path is either the complete request URL or the next character in the request URL after the content path is either a dot (<TT>.</TT>) or a slash (<TT>/</TT>).</LI>
+	<LI><B>Selectors</B> -  If the first character in the request URL after the content path is a dot, the string after the dot upto but not including the last dot before the next slash character or the end of the request URL. If the content path spans the complete request URL or if a slash follows the content path in the request URL, no seletors exist. If only one dot follows the content path before the end of the request URL or the next slash, no selectors exist.</LI>
+	<LI><B>Extension</B> -  The string after the last dot after the content path in the request URL but before the end of the request URL or the next slash after the content path in the request URL. If a slash follows the content path in the request URL, the extension is empty.</LI>
+	<LI><B>Suffix Path</B> -  If the request URL contains a slash character after the content path and optional selectors and extension, the path starting with the slash upto the end of the request URL is the suffix path. Otherwise, the suffix path is empty.</LI>
+</OL>
+
+
+<P><B>Examples</B>: Assume there is Content at <TT>/a/b</TT>, which has no child content.</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> URI </TH>
+<TH class="confluenceTh"> Content Path </TH>
+<TH class="confluenceTh"> Selectors </TH>
+<TH class="confluenceTh"> Extension </TH>
+<TH class="confluenceTh"> Suffix </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b                      </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> &quot;&quot;    </TD>
+<TD class="confluenceTd"> &quot;&quot;   </TD>
+<TD class="confluenceTd"> &quot;&quot;         </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.html                 </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> &quot;&quot;    </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> &quot;&quot;         </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.s1.html              </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> s1    </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> &quot;&quot;         </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.s1.s2.html           </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> s1.s2 </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> &quot;&quot;         </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b/c/d                  </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> &quot;&quot;    </TD>
+<TD class="confluenceTd"> &quot;&quot;   </TD>
+<TD class="confluenceTd"> /c/d       </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.html/c/d             </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> &quot;&quot;    </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> /c/d       </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.s1.html/c/d          </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> s1    </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> /c/d       </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.s1.s2.html/c/d       </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> s1.s2 </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> /c/d       </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b/c/d.s.txt            </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> &quot;&quot;    </TD>
+<TD class="confluenceTd"> &quot;&quot;   </TD>
+<TD class="confluenceTd"> /c/d.s.txt </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.html/c/d.s.txt       </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> &quot;&quot;    </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> /c/d.s.txt </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.s1.html/c/d.s.txt    </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> s1    </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> /c/d.s.txt </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> /a/b.s1.s2.html/c/d.s.txt </TD>
+<TD class="confluenceTd"> /a/b </TD>
+<TD class="confluenceTd"> s1.s2 </TD>
+<TD class="confluenceTd"> html </TD>
+<TD class="confluenceTd"> /c/d.s.txt </TD>
+</TR>
+</TBODY></TABLE>
+
+
+
+<H2><A name="ComponentAPI-TheComponentRequest"></A>The ComponentRequest</H2>
+
+<P>The <TT>org.apache.sling.component.ComponentRequest</TT> interface defines the basic data available from the client request to both action processing and response rendering. The ComponentRequest extends the <TT>javax.servlet.http.HTTPServletRequest</TT>.</P>
+
+<P>This section describes the data available from the ComponentRequest. For a complete and normative description of the methods, refer to the Component API JavaDoc. The following information is represented for reference. In the case of differences between the following descriptions and the Component API JavaDoc, the latter takes precedence.</P>
+
+<OL>
+	<LI><B>Content access</B> - Content may be accessed from the ComponentRequest object through the following methods: <TT>getChildren(Content parent)</TT>, <TT>getContent()</TT>, <TT>getContent(String path)</TT>.</LI>
+	<LI><B>Request URL information</B> - In addition to the standard HttpServletRequest information the ComponentRequest provides the following methods: <TT>getExtension()</TT>, <TT>getSelector(int index)</TT>, <TT>getSelectors()</TT>, <TT>getSelectorString()</TT>, <TT>getSuffix()</TT>. Note that the content path is not directly available form the ComponentRequest object. Instead it is available through the <TT>Content.getPath()</TT> method of the Content object retrieved through <TT>ComponentRequest.getContent()</TT>.</LI>
+	<LI><B>Request Parameters</B> - To support user input submitted as <TT>multipart/form-data</TT> encoded POST parameters, the Component API intrduces the <TT>RequestParameter</TT> interface allowing file uploads. Request parameters represented as <TT>RequestParameter</TT> objects are returned by the following methods: <TT>getRequestParameter(String name)</TT>, <TT>getRequestParameterMap()</TT>, <TT>getRequestParameters(String name)</TT>.</LI>
+	<LI><B>Request Dispatching</B> - In addition to standard Serlvet API request dispatching, the Component API supports dispatching requests to render different Content using <TT>ComponentRequestDispatcher</TT> objects returned by this method: <TT>getRequestDispatcher(Content content)</TT>.</LI>
+	<LI><B>Miscellaneous</B> - Finally the ComponentRequest interface provides the following methods: <TT>getCookie(String name)</TT>, <TT>getResponseContentType()</TT>, <TT>getResponseContentTypes()</TT>, <TT>getResourceBundle(Locale locale)</TT>.</LI>
+</OL>
+
+
+<P>The ComponentRequest objects are only valid during the time of executing the =performAction= or =render= methods. Implementations of these methods must not keep references for later use. As such, the ComponentRequest interface and its extensions are defined to not be thread safe.</P>
+
+<P><EM>A note on HTTP Sessions</EM>: The ComponentRequest extends the HttpSerlvetRequest and thus supports standard HTTP sessions. Be aware, though that Sessions are server side sessions and hence violate the sessionless principle of REST and therefore should be used with care. It is almost always possible to not use sessions.</P>
+
+
+
+<H2><A name="ComponentAPI-TheComponentResponse"></A>The ComponentResponse</H2>
+
+<P>The <TT>org.apache.sling.component.ComponentResponse</TT> interface extends the <TT>javax.servet.http.HttpServletResponse</TT> interface with just the following methods: <TT>getContentType()</TT>, <TT>getNamespace()</TT>.</P>
+
+
+<H2><A name="ComponentAPI-TheContent"></A>The Content</H2>
+
+<P>The <TT>org.apache.sling.component.Content</TT> interface defines the general contract required by Content objects handled by the Component framework. Implementations may provide any means to implement and/or extend this interface. The interface defines the following methods:</P>
+
+<OL>
+	<LI><B>getComponentId()</B> - Returns the identifier of the Component used to handle the action and render the response for the client request underlying the Content object.</LI>
+	<LI><B>getPath()</B> - Returns the path derived from the client request URL which lead to the creation of the Content object. See the <A href="#ComponentAPI-URLdecompositionURLdecomposition" title="URL_decomposition URL decomposition on Component API">URL&#95;decomposition URL decomposition</A> section above for more information. It is not required, that the Content object path be a part of the original client request URL. The request URL may also have been mapped to some internal path.</LI>
+</OL>
+
+
+
+
+<H2><A name="ComponentAPI-TheComponent"></A>The Component</H2>
+
+<P>The <TT>org.apache.sling.component.Component</TT> interface defines the API implemented to actually handle requests. As such the Component interface is comparable to the =javax.servlet.Servlet= interface. Like those other interfaces, the Component interface provides methods for life cycle management: <TT>init(ComponentContext context)</TT>, <TT>destroy()</TT>.</P>
+
+
+
+<H3><A name="ComponentAPI-ProcessingtheRequest"></A>Processing the Request</H3>
+
+<P>The Component Framework calls the <TT>service(ComponentRequest request, ComponentResponse response)</TT> method of the Component to have the component process the request optionally processing user input, rendering the response and optionally dispatch to other Content/Component tuples to provide more response data.</P>
+
+
+
+<H3><A name="ComponentAPI-ContentanditsComponent"></A>Content and its Component</H3>
+
+<P>The Content object and a Component form a pair, in which the Content object takes the passive part of providing data to the Component and the Component takes the active part of acting upon the Content object. As a consequence, there always exists a link between a given implementation of the Content interface and a given implementation of the Component interface.</P>
+
+<P>This link is manifested by the Component identifier available from the Content object through the <TT>Content.getComponentId()</TT> method on the one hand. On the other hand, the link is manifested by the <TT>getContentClassName()</TT> and <TT>createContentInstance()</TT> methods of the Component interface.</P>
+
+
+
+<H3><A name="ComponentAPI-ComponentLifecylce"></A>Component Lifecylce</H3>
+
+<P>When a Component instance is created and added to the Component framework, the <TT>init(ComponentContext)</TT> method is called to prepare and initialize the Component. If this method terminates abnormally by throwing an exception, the Component is not used. The Component Framework implementation may try at a later time to recreate the Component, intialize it and use it. If the Component Framework tries to recreate the Component a new instance of the Component must be created to be initialized and used.</P>
+
+<P>When the Component has successfully been initialized, it may be referred to by Content objects. When a client request is to be processed, the Content object is resolved and the <TT>service</TT> method on the Component to which the Content object refers is called. The <TT>service</TT> method may - and generally will - be called simultaneously to handle different requests in different threads. As such, implementations of these methods must be thread safe.</P>
+
+<P>When the Component Framework decides to take a Component out of service, the <TT>destroy()</TT> method is called to give the Component a chance to cleanup any held resources. The destroy method must only be called by the Component Framework when no more request processing is using the Component, that is no thread may be in the <TT>service</TT> method of a Component to be destroyed. Irrespective of whether the destroy method terminated normally or abnormally, the Component will not be used again.</P>
+
+<P>The addition and removal of Components is at the discretion of the Component Framework. A Component may be loaded at framework start time or on demand and my be removed at any time. But only one single Component instance with the same Component identifier may be active at the same time within a single Component Framework instance.</P>
+
+
+
+<H3><A name="ComponentAPI-TheComponentExtension"></A>The ComponentExtension</H3>
+
+<P>To enhance the core functionality of Components, each Component may have zero, one ore more Component Extensions attached. A Component Extensions is a Java object implementing the <TT>org.apache.sling.component.ComponentExtension</TT> interface. This interface just defines a <TT>getName()</TT> method to identify extensions.</P>
+
+<P>The concrete implementation as well as instantiation and management of Component Extensions is left to the Component Framework implementation with one restriction though: The extensions must be available to the Component at the time the <TT>init(ComponentContext)</TT> method is called may only be dropped after the <TT>destroy()</TT> method terminates.</P>
+
+<P>The Component interface defines two methods to access Extensions: The <TT>getExtensions()</TT> method returns a <TT>java.util.Enumeration</TT> of all ComponentExtension objects attached to the component. If no Component Extension are attached to the Component, an empty enumeration is returned. The <TT>getExtension(String name)</TT> returns the named Component Extension attached to the Component or <TT>null</TT> if no such Component Extension is attached to the Component.</P>
+
+<P>Component Frameworks are allowed to share Component Extension instances of the same name between different Component instances. Regardless of whether Component Extensions are shared or not, they must be thread safe, as any Component Extension may be used within the <TT>service</TT> method, which themselves may be called concurrently.</P>
+
+
+
+
+<H2><A name="ComponentAPI-RequestProcessingFilters"></A>Request Processing Filters</H2>
+
+<P>Similar to the Servlet API providing filters for filtering requests and/or responses the Component API provides the <TT>org.apache.sling.component.ComponentFilter</TT> interface. The filters are called by a <TT>ComponentFilterChain</TT> and either handle the request, manipulate the request and/or response object and finally forward the request and response optionally wrapped to the <TT>ComponentFilterChain.doFilter(ComponentRequest, ComponentResponse)</TT> method.</P>
+
+<P>Like the <TT>Component}}s  filters have a defined lifecycle manifested by {{init</TT> and <TT>destroy</TT> methods. When the filter enters the system, the Component Framework calls the <TT>ComponentFilter.init(ComponentContext)</TT> method. Only when this method completes successfully will the filter be put into action and be used during request processing. When the filter leaves the system, the Component Framework removes the filter from being used in filter chains and calls the <TT>ComponentFilter.destroy()</TT> method. This method is not expected to throw any exceptions. The filter may be removed from the Component Framework at the discretion of the Component Framework or because the filter is being unregistered from the Component Framework by some means outside this specification.</P>
+
+<P>This specification does not define how <TT>ComponentFilter</TT> objects are registered with the Component Framework nor is it specified how the order in which the filters are called is defined. Likewise it is outside this specification how the filter instances registered with the Component Framework are configured.</P>
+
+
+
+<H2><A name="ComponentAPI-Sessions"></A>Sessions</H2>
+
+
+<P>The <TT>org.apache.sling.component.ComponentSession</TT> interface provides a way to identify a user across more than one request and to store transient information about that user.</P>
+
+<P>A component can bind an object attribute into a <TT>ComponentSession</TT> by name. The <TT>ComponentSession</TT> interface defines two scopes for storing objects: <TT>APPLICATION_SCOPE</TT>, <TT>COMPONENT_SCOPE</TT>. All objects stored in the session using the <TT>APPLICATION_SCOPE</TT> must be available to all the components, servlets and JSPs that belong to the same component application and that handle a request identified as being a part of the same session. Objects stored in the session using the <TT>COMPONENT_SCOPE</TT> must be available to the component during requests for the same content that the objects where stored from. Attributes stored in the <TT>COMPONENT_SCOPE</TT> are not protected from other web components of the component application. They are just conveniently namespaced.</P>
+
+<P>The component session extends the Servlet API <TT>HttpSession</TT>. Therefore all <TT>HttpSession</TT> listeners do apply to the component session and attributes set in the component session are visible in the <TT>HttpSession</TT> and vice versa.</P>
+
+<P>The attribute accessor methods without the <EM>scope</EM> parameter always refer to <TT>COMPONENT_SCOPE</TT> attributes. To access <TT>APPLICATION_SCOPE</TT> attributes use the accessors taking an explicit <TT>scope</TT> parameter.</P>
+
+<P><EM>A final note on Sessions</EM>: Sessions are server side sessions and hence violate the sessionless principle of REST and therefore should be used with care. It is almost always possible to not use sessions.</P>
+
+
+
+<H2><A name="ComponentAPI-DispatchingRequests"></A>Dispatching Requests</H2>
+
+<P>To include renderings of child Content objects, a <TT>org.apache.sling.component.ComponentRequestDispatcher</TT> object may be retrieved from the ComponentContext with which the Component has been initialized or from the ComponentRequest provided to the service method. Using this dispatcher the reponse of rendering the Content may be included by calling the <TT>ComponentRequestDispatcher.include(ComponentRequest, ComponentResponse)</TT> method.</P>
+
+<P>This method is comparable to the <TT>RequestDispatcher.include(ServletRequest, ServletResponse</TT> method of the Servlet API but dispatching by the <TT>ComponentRequestDispatcher</TT> does not go through the servlet container and stays within the Component Framework.</P>
+
+<P>The <TT>service</TT> method of included Components are called with an instance of the <TT>ComponentRequest</TT> interface whose <TT>getContent()</TT> returns the Content object for the included Content.</P>
+
+<P>When a Component is included by another component the following request attributes are set:</P>
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> <B>Request Attributes</B> </TH>
+<TH class="confluenceTh"> <B>Type</B> </TH>
+<TH class="confluenceTh"> <B>Description</B> </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>org.apache.sling.component.request.content</TT> </TD>
+<TD class="confluenceTd"> String </TD>
+<TD class="confluenceTd"> The <TT>Content</TT> instance to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>org.apache.sling.component.request.component</TT> </TD>
+<TD class="confluenceTd"> String </TD>
+<TD class="confluenceTd"> The <TT>Component</TT> instance for the <TT>Content</TT> object to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. </TD>
+</TR>
+</TBODY></TABLE>
+
+
+<H3><A name="ComponentAPI-ErrorHandling"></A>Error Handling</H3>
+
+<P>While processing requests, the <TT>service</TT> methods called may have problems. Components have multiple options of reporting issues during processing to the client:</P>
+
+<UL>
+	<LI>Set the status of the HTTP response calling the <TT>ComponentResponse.setStatus</TT> method</LI>
+	<LI>Send an error page calling the <TT>ComponentResponse.sendError</TT> method</LI>
+	<LI>Throw an exception</LI>
+</UL>
+
+
+
+<P>If such an exception is thrown, the Component Framework must act upon the exception in one of the following ways:</P>
+
+<UL>
+	<LI>If the request is processed through Servlet API request inclusion, the exception must be given back to the servlet container. A <TT>ComponentException</TT> is just forwarded as a <TT>ServletException</TT>. This is a requirement of the Servlet API specification which states for included requests:</LI>
+</UL>
+
+
+<BLOCKQUOTE>
+<P><B>SRV.8.5 Error Handling</B><BR clear="all">If the servlet that is the target of a request dispatcher throws a runtime exception or a checked exception of type ServletException or IOException, it should be propagated to the calling servlet. All other exceptions should be wrapped as ServletExceptions and the root cause of the exception set to the original exception, as it should not be propagated.</P></BLOCKQUOTE>
+
+<UL>
+	<LI>Otherwise, the Component Framework may handle the error itself in a manner similar to the error handling approach defined the Servlet API specification (Section SRV 9.9 Error Handling of the Java Servlet Specification 2.4). Specifically the request attributes defined by the Servlet API specification must be set for the error handler:</LI>
+</UL>
+
+
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> <B>Request Attributes</B> </TH>
+<TH class="confluenceTh"> <B>Type</B> </TH>
+<TH class="confluenceTh"> <B>Description</B> </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>javax.servlet.error.status_code</TT> </TD>
+<TD class="confluenceTd"> <TT>java.lang.Integer</TT> </TD>
+<TD class="confluenceTd"> The status code of the response. In the case of an exception thrown from the <TT>service</TT>, the code is defined by the Component Framework. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>javax.servlet.error.exception_type</TT> </TD>
+<TD class="confluenceTd"> <TT>java.lang.Class</TT> </TD>
+<TD class="confluenceTd"> The fully qualified name of the exception class thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>javax.servlet.error.message</TT> </TD>
+<TD class="confluenceTd"> <TT>java.lang.String</TT> </TD>
+<TD class="confluenceTd"> The message of the exception thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>javax.servlet.error.exception</TT> </TD>
+<TD class="confluenceTd"> <TT>java.lang.Throwable</TT> </TD>
+<TD class="confluenceTd"> The exception thrown. This attribute does not exist, if error handling does not result from an exception. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>javax.servlet.error.request_uri</TT> </TD>
+<TD class="confluenceTd"> <TT>java.lang.String</TT> </TD>
+<TD class="confluenceTd"> The request URL whose processing resulted in the error. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>javax.servlet.error.servlet_name</TT> </TD>
+<TD class="confluenceTd"> <TT>java.lang.String</TT> </TD>
+<TD class="confluenceTd"> The name of the servlet which yielded the error. The servlet name will generally not have any significance inside the Component Framework. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>org.apache.sling.component.error.componentId</TT> </TD>
+<TD class="confluenceTd"> <TT>java.lang.String</TT> </TD>
+<TD class="confluenceTd"> The identifier of the Component whose <TT>service</TT> method has caused the error. This attribute does not exist, if the Component Framework itself caused the error processing. </TD>
+</TR>
+</TBODY></TABLE>
+<UL>
+	<LI>If the Component Framework decides to not handle the error itself, the exception must be forwarded to the servlet container as a <TT>ComponentException</TT> wrapping the original exception as its root cause.</LI>
+</UL>
+
+
+<P>This specification does not define, how error handlers are configured and used if the Component Framework provides error handling support. Likewise the Component Framework may or may not implement support to handle calls to the <TT>ComponentResponse.sendError</TT> method. The Component Framework may also use its own error handling also for errors resulting from request processing failures, for example if authentication is required or if the request URL cannot be resolved to a Content object.</P>
+    </DIV>
+  </BODY>
+</HTML>
+

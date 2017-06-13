@@ -1,0 +1,47 @@
+How to update the Sling website
+-------------------------------
+
+INTRO
+-----
+The http://sling.apache.org/ website is managed by the ASF CMS
+(http://cms.apache.org).
+
+All Sling committers have read-write access to the website content,
+but it's good practice to discuss big changes on the dev list in advance.
+
+Content is provided in markdown structured text format, see cms.a.o for
+pointers to syntax and conventions.
+
+See also http://wiki.apache.org/general/ApacheCms2010 for help and links.
+
+WORKING IN SVN
+--------------
+Committing content under
+  https://svn.apache.org/repos/asf/sling/site/trunk/
+causes a staging build of the website to be executed.
+
+The staged content becomes available under 
+  http://sling.staging.apache.org/
+
+The build process can be followed at 
+  http://ci.apache.org/builders/sling-site-staging
+
+See the existing content for how to add images and additional files.
+
+To push the changes in production, connect to
+https://cms.apache.org/sling/publish with your LDAP credentials (as set
+on people.apache.org).
+
+BROWSER-BASED EDITING AND PUBLISHING
+------------------------------------
+Starting at https://cms.apache.org/sling/ , one can get a working copy, 
+edit it if needed (with simple preview) and publish it to the live site.
+
+THAT'S IT
+---------
+The Apache CMS is a simple tool compared to some of the CMS we're used to.
+
+The nice thing is that the workflow happens in svn, so it's no different
+than what we do for code.
+
+Enjoy.

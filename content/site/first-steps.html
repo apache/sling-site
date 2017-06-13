@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - First Steps</TITLE>
+    <LINK rel="stylesheet" href="http://incubator.apache.org/sling/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://incubator.apache.org/sling/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info.</div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://incubator.apache.org/sling/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://incubator.apache.org/sling/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://incubator.apache.org/">
+          <IMG border="0" alt="Apache Incubator" src="http://incubator.apache.org/images/apache-incubator-logo.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+                                    <P>
+
+<UL>
+	<LI><A href="index.html" title="Index">Home</A></LI>
+	<LI><A href="project-information.html" title="Project Information">Project Information</A></LI>
+	<LI><A href="usecases.html" title="UseCases">Use Cases</A></LI>
+	<LI><A href="guides.html" title="Guides">Guides</A></LI>
+	<LI><A href="documentation.html" title="Documentation">Documentation</A></LI>
+	<LI><A href="plugins.html" title="Plugins">Plugins</A></LI>
+	<LI><A href="../SLING/faq.html" title="FAQ">FAQ</A></LI>
+	<LI><A href="links.html" title="Links">Links</A></LI>
+	<LI><A href="old-documentation.html" title="Old Documentation">Old Documentation</A></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/" title="Visit page outside Confluence" rel="nofollow">Wiki<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/thanks.html" title="Visit page outside Confluence" rel="nofollow">Sponsors<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/sponsorship.html" title="Visit page outside Confluence" rel="nofollow">Sponsorship<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+</UL>
+
+
+<P>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </DIV>
+    <DIV class="main">
+<H1><A name="FirstSteps-FirstSteps"></A>First Steps</H1>
+
+<P>A short recount on the first step for getting a running Sling instance after checking out the source from the SVN repository</P>
+
+
+<H2><A name="FirstSteps-Prerequisites"></A>Prerequisites</H2>
+
+<P>Before you begin, you should have installed the following tools on your system:</P>
+
+<UL>
+	<LI>Java 5 or higher</LI>
+	<LI>Maven 2.0.7 (or later)</LI>
+</UL>
+
+
+<H2><A name="FirstSteps-GettingaRunningInstance"></A>Getting a Running Instance</H2>
+
+<OL>
+	<LI>Checkout Sling from the Repository
+<DIV class="preformatted"><DIV class="preformattedContent">
+<PRE>$ svn checkout http://svn.apache.org/repos/asf/incubator/sling/trunk sling
+</PRE>
+</DIV></DIV></LI>
+	<LI>Enter the directory and do a full build and local install
+<DIV class="preformatted"><DIV class="preformattedContent">
+<PRE>$ cd sling
+$ mvn install
+</PRE>
+</DIV></DIV></LI>
+	<LI>Enter the <TT>launcher/app</TT> directory and launch Sling for the first time
+<DIV class="preformatted"><DIV class="preformattedContent">
+<PRE>$ cd launcher/app
+$ java -jar -Dsling.home=sling -Dorg.apache.sling.osgi.log.file= target/org.apache.sling.launcher.app-2.0.0-incubator-SNAPSHOT.jar
+</PRE>
+</DIV></DIV>
+<P>Messages should now be printed to the console which is used as the &quot;log file&quot; because the <TT>org.apache.sling.osgi.log.file</TT> (see <A href="logging.html" title="Logging">Logging</A>) is defined empty indicating to use standard output as the log file. The <TT>sling.home</TT> property instructs Sling to use the <TT>sling</TT> directory in the current directory for its data store, which is the Apache Felix bundle archive, the Jackrabbit repository data and configuration. You may also specify another directory here, either a relative or absolute path name (See also <A href="configuration.html" title="Configuration">Configuration</A> for more information).<BR>
+After all messages have been printed you should now be able to contact the Sling Management Console by pointing your web browser at <TT><SPAN class="nobr"><A href="http://localhost:8080/sling" title="Visit page outside Confluence" rel="nofollow">http://localhost:8080/sling<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></TT>. You will be prompted for a user name and password. Enter <TT>admin</TT> as both the user name and the passwort (this may be set on <EM>Configuration</EM> page later). From this console, you may manage the installed bundles, modify configuration objects, dump a configuration status and get some system information.<BR>
+To stop Sling, just hit <TT>Ctrl-C</TT> at the console or click the <EM>Stop</EM> button on the <EM>System Information</EM> page of the Sling Management Console. For the moment, we need a running Sling instance to continue.<BR>
+For now, you just have a bare running OSGi framework and the Sling Management Console. We will now install more bundles to get the real Sling instance.</P></LI>
+	<LI>First we need some bundles from the Apache Felix Commons sub project. Open a new console, checkout these subprojects and install bundles in the running Sling instance as follows:
+<DIV class="preformatted"><DIV class="preformattedContent">
+<PRE>$ svn checkout http://svn.apache.org/repos/asf/felix/trunk/commons felix-commons
+$ cd felix-commons
+$ for DIR in commons-io commons-fileupload commons-collections commons-beanutils commons-codec \
+   cglib ; \
+   do cd ${DIR} ; mvn package org.apache.sling:maven-sling-plugin:2.0.0-incubator-SNAPSHOT:install ; cd .. ; done
+</PRE>
+</DIV></DIV>
+<P>On the <EM>Bundles</EM> page of the Sling Management Console you will see the additional bundles. All bundles are started with status <EM>Active</EM>.</P></LI>
+	<LI>Now you are ready to install the Sling bundles. Go back to the Sling checkout directory and run a loop to install the bundles.
+<DIV class="preformatted"><DIV class="preformattedContent">
+<PRE>$ cd ../..
+$ for DIR in commons/mime api jcr/api jcr/resource jcr/jackrabbit-server jcr/classloader \
+    sling/core scripting/api scripting/resolver scripting/jsp scripting/jsp-taglib \
+    sling/servlet-resolver; \
+    do cd ${DIR} ; mvn package org.apache.sling:maven-sling-plugin:2.0.0-incubator-SNAPSHOT:install ; cd .. ; done
+</PRE>
+</DIV></DIV></LI>
+</OL>
+
+
+
+<P>Congratulations ! You should now have a running Sling instance, which you may start playing around with.</P>
+    </DIV>
+  </BODY>
+</HTML>
+

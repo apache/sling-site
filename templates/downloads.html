@@ -1,0 +1,93 @@
+{% extends "skeleton.html" %}
+{% block title %}Downloads{% endblock %}
+{% block content %}
+<p>
+To get the latest development release of Apache Sling, you can check out
+the <a href="/project-information.html#source-repository">Source Code</a>
+and <a href="/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a>
+yourself. Otherwise, the releases below are available for download. To
+install, just download and extract. The PGP keys at
+<a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a>
+can be used to verify the integrity of the release archives.
+</p>
+
+<p>
+All Apache Sling products are distributed under the terms of The Apache
+Software License (version 2.0). See our
+<a href="/project-information/project-license.html">license</a>, or the LICENSE file included
+in each distribution.
+</p>
+
+<div class="toc">
+<ul>
+<li><a href="#mirrors">Mirrors</a></li>
+<li><a href="#application">Sling Application</a></li>
+<li><a href="#ide-tooling">Sling IDE Tooling</a></li>
+<li><a href="#components">Sling Components</a></li>
+<li><a href="#maven">Maven Plugins</a></li>
+</ul>
+</div>
+
+<h2 id="mirrors">Mirrors</h2>
+
+<p>
+Use the links below to download binary or source distributions of Apache
+Sling from one of our mirrors.
+</p>
+
+<p>
+You are currently using <b>[preferred]</b>. If you encounter a problem with
+this mirror, please select another mirror. If all mirrors are failing,
+there are backup mirrors (at the end of the mirrors list) that should be
+available. If the mirror displayed above is labeled <i>preferred</i>, then
+please reload this page by <a href="/downloads.cgi">clicking here</a>.
+</p>
+
+<form action="[location]" method="get" id="SelectMirror">
+<p>Other mirrors: </p>
+<select name="Preferred">
+[if-any http]
+[for http]<option value="[http]">[http]</option>[end]
+[end]
+[if-any ftp]
+[for ftp]<option value="[ftp]">[ftp]</option>[end]
+[end]
+[if-any backup]
+[for backup]<option value="[backup]">[backup] (backup)</option>[end]
+[end]
+</select>
+<input type="submit" value="Change"></input>
+</form>
+
+<h2 id="application">Sling Application</h2>
+
+{{ launchpad|markdown }}
+
+<p>For quick provisioning using docker you can simply run <code>docker pull apachesling/sling</code> to get access to the latest version of the launchpad.</p>
+
+<p>
+To get the latest code you can
+<a href="/documentation/development/getting-and-building-sling.html">build Sling yourself</a>,
+it's not that hard.
+</p>
+
+<p>
+If you are looking for previous releases of Apache Sling, have a look in
+the <a href="http://archive.apache.org/dist/sling/">archives</a>. For previous
+incubator releases of Apache Sling, have a look in the
+<a href="http://archive.apache.org/dist/incubator/sling/">Incubator archives</a>.
+</p>
+
+<h2 id="ide-tooling">Sling IDE Tooling</h2>
+
+<p>If you want to install the convenience binaries for the IDE tooling, it's recommended that you add <a href="[preferred]sling/eclipse">[preferred]sling/eclipse</a> as an update site URL. This way you will receive updates every time a new version is released. For specific versions and zipped update site download, see the table below.</p>
+
+{{ ide|markdown }}
+
+<h2 id="components">Sling Components</h2>
+{{ content|markdown }}
+
+<h2 id="maven">Maven Plugins</h2>
+{{ maven|markdown }}
+
+{% endblock %}

@@ -1,0 +1,192 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - Content Loading</TITLE>
+    <LINK rel="stylesheet" href="http://incubator.apache.org/sling/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://incubator.apache.org/sling/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info.</div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://incubator.apache.org/sling/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://incubator.apache.org/sling/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://incubator.apache.org/">
+          <IMG border="0" alt="Apache Incubator" src="http://incubator.apache.org/images/apache-incubator-logo.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+                                    <P style="display: none"></P>
+
+<UL>
+	<LI><A href="documentation.html" title="Documentation">Documentation</A></LI>
+	<LI><A href="advanced-topics.html" title="Advanced Topics">Advanced Topics</A></LI>
+	<LI><A href="development.html" title="Development">Development</A></LI>
+	<LI><SPAN class="nobr"><A href="http://incubator.apache.org/sling/site/downloads.cgi" title="Visit page outside Confluence" rel="nofollow">Downloads<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><A href="contributing.html" title="Contributing">Contributing</A></LI>
+	<LI><A href="links.html" title="Links">Links</A></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/faq.html" title="Visit page outside Confluence" rel="nofollow">FAQ<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/" title="Visit page outside Confluence" rel="nofollow">Wiki<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><A href="project-information.html" title="Project Information">Project Information</A></LI>
+	<LI><SPAN class="nobr"><A href="http://incubator.apache.org/sling/apidocs/sling5/index.html" title="Visit page outside Confluence" rel="nofollow">Sling 5 API<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/thanks.html" title="Visit page outside Confluence" rel="nofollow">Sponsors<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/sponsorship.html" title="Visit page outside Confluence" rel="nofollow">Sponsorship<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>
+
+<IFRAME src="http://www.apache.org/ads/button.html" style="border-width:0; float: left" frameborder="0" scrolling="no" width="135" height="135"></IFRAME>
+<P style="height: 100px"></P>
+</LI>
+</UL>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </DIV>
+    <DIV class="main">
+        <DIV class="breadcrump" style="font-size: 80%;">
+<A href="apache-sling.html" title="Apache Sling Website">Apache Sling Website</A>&nbsp;&gt;&nbsp;<A href="apache-sling.html" title="Apache Sling">Apache Sling</A>&nbsp;&gt;&nbsp;<A href="advanced-topics.html" title="Advanced Topics">Advanced Topics</A>&nbsp;&gt;&nbsp;<A href="" title="Content Loading">Content Loading</A>
+        </DIV>
+<H1><A name="ContentLoading-ContentLoadingandNodetypeSupport"></A>Content Loading and Nodetype Support</H1>
+
+<P>Apache Sling provides support for initial content loading into a repository and for registering node types. The <TT>sling-jcr-contentloader</TT> bundle provides loading of content from a bundle into the repository and the <TT>sling-jcr-base</TT> bundle provides node type registration.</P>
+
+
+<H2><A name="ContentLoading-DeclaredNodeTypeRegistration"></A>Declared Node Type Registration</H2>
+
+<P>The <TT>sling-jcr-base</TT> bundle provides low-level repository operations which are at the heart of the functionality of Sling:</P>
+<UL>
+	<LI><B>Node Type Definitions</B> &#45; The class <TT>org.apache.sling.content.jcr.base.NodeTypeLoader</TT> provides methods to register custom node types with a repository given a repository session and a node type definition file in CND format. This class is also used by this bundle to register node types on behalf of other bundles.</LI>
+</UL>
+
+
+<P>Bundles may list node type definition files in CND format in the <TT>Sling-Nodetypes</TT> bundle header. This header is a comma-separated list of resources in the respective bundle. Each resource is taken and fed to the <TT>NodeTypeLoader</TT> to define the node types.</P>
+
+<P>After a bundle has entered the <EM>resolved</EM> state, the node types listed in the <TT>Sling-Nodetypes</TT> bundle header are registered with the repository.</P>
+
+<P>Node types installed by this mechanism will never be removed again by the <TT>sling-jcr-base</TT> bundle. Likewise, registered node types cannot currently be modified using this feature. The <TT>NodeTypeLoader</TT> will try to load nodes defined and fail with a log message if a node type has already been defined. To update existing node type definitions, native repository functionality has to be used.</P>
+
+<P>Nodetype management is currently a problematic issue, as the only API available is contained in the Jackrabbit Core library, which is generally not available to client applications - unless running in the same VM and class loader hierarchy as the Repository. Version 2 of the JCR Specification currently being developped as JSR-283 should fix this issue by providing an official node type management API. Until then, this approach is about the only solution we have.</P>
+
+<H2><A name="ContentLoading-InitialContentLoading"></A>Initial Content Loading</H2>
+
+<P>Bundles can provide initial content, which is loaded into the repository when the bundle has entered the <EM>started</EM> state. Such content is expected to be contained in the bundles accessible through the Bundle entry API methods. Content to be loaded is declared in the <TT>Sling-Initial-Content</TT> bundle manifest header. This header takes a comma-separated list of bundle entry paths. Each entry and all its child entries are accessed and entered into starting with the child entries of the listed entries.</P>
+
+<P>Adding this content preserves the paths of the entries as show in this table, which assumes a <TT>Sling-Initial-Content</TT> header entry of <TT>SLING-INF/content</TT>:</P>
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Entry </TH>
+<TH class="confluenceTh"> Repository Path </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>SLING-INF/content/home</TT> </TD>
+<TD class="confluenceTd"> <TT>/home</TT> </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>SLING-INF/content/content/playground/en/home</TT> </TD>
+<TD class="confluenceTd"> <TT>/content/playground/en/home</TT> </TD>
+</TR>
+</TBODY></TABLE>
+<P>Bundle entries are installed as follows:</P>
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Entry Type </TH>
+<TH class="confluenceTh"> Installation method </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> Directory </TD>
+<TD class="confluenceTd"> Created as a node of type <TT>nt:folder</TT> unless a content definition file of the same name exists in the same directory as the directory to be installed. Example: A directory <TT>SLING-INF/content/dir</TT> is installed as node <TT>/dir</TT> of type <TT>nt:folder</TT> unless a <TT>SLING-INF/content/dir.xml</TT> or <TT>SLING-INF/content/dir.json</TT> file exists which defines the content for the <TT>/dir</TT> node. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> File </TD>
+<TD class="confluenceTd"> Unless the file is a content definition file (see below) an <TT>nt:file</TT> node is created for the file and an <TT>nt:resource</TT> node is created as its <TT>jcr:content</TT> child node to take the contents of the bundle file. The properties of the <TT>nt:resource</TT> node are set from file information as available. If the file is a content definition file, the content is created as defined in the file. See below for the content definition file specification. </TD>
+</TR>
+</TBODY></TABLE>
+<P>It is possible to modify the intial content loading default behaviour by using certain optional directives. Directives should be specified separated by semicolon. They are defined as follows:</P>
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Directive </TH>
+<TH class="confluenceTh"> Definition </TH>
+<TH class="confluenceTh"> Default value </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>overwrite</TT> </TD>
+<TD class="confluenceTd"> <TT>overwrite:=(true&#124;false)</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> The overwrite directive specifies if content should be overwritten or just initially added. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>uninstall</TT> </TD>
+<TD class="confluenceTd"> <TT>uninstall:=(true&#124;false)</TT> </TD>
+<TD class="confluenceTd"> <TT>overwrite</TT> </TD>
+<TD class="confluenceTd"> The uninstall directive specifies if content should be uninstalled when bundle is unregistered. This value defaults to the value of the <TT>overwrite</TT> directive.</TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>path</TT> </TD>
+<TD class="confluenceTd"> <TT>path:=<EM>/target/location</EM></TT> </TD>
+<TD class="confluenceTd"> <TT>/</TT> </TD>
+<TD class="confluenceTd"> The path directive specifies the target node where initial content will be loaded. If the path does not exist yet in the repository, it is created by the content loader. The intermediate nodes are of type <TT>nt:folder</TT>.</TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>checkin</TT> </TD>
+<TD class="confluenceTd"> <TT>checkin:=(true&#124;false)</TT> </TD>
+<TD class="confluenceTd"> <TT>false</TT> </TD>
+<TD class="confluenceTd"> The checkin directive specifies whether versionable nodes should be checked in. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>ignoreImportProviders</TT> </TD>
+<TD class="confluenceTd"> <TT>ignoreImportProviders:=list of extensions</TT> </TD>
+<TD class="confluenceTd"> <TT>empty</TT> </TD>
+<TD class="confluenceTd"> This directive can be used to not run one of the configured extractors (see below). </TD>
+</TR>
+</TBODY></TABLE>
+<P>Examples of these directives uses could be (assumes a Sling-Initial-Content header entry of SLING-INF/content):</P>
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Entry </TH>
+<TH class="confluenceTh"> Behaviour </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>SLING-INF/content/home;overwrite:=true;uninstall:=true</TT> </TD>
+<TD class="confluenceTd"> Overwrites already existing content in <EM>/home</EM> and uninstalls the content when the bundle is unregistered. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>SLING-INF/content/home;path:=/sites/sling_website</TT> </TD>
+<TD class="confluenceTd"> if <EM>/sites/sling_website</EM> exists it loads the content into it. Otherwise, it loads the content into root node <EM>/</EM>.  </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> <TT>SLING-INF/content/home;checkin:=true</TT> </TD>
+<TD class="confluenceTd"> After content loading, versionable nodes are checked in. </TD>
+</TR>
+</TBODY></TABLE>
+
+<H3><A name="ContentLoading-Extractors"></A>Extractors</H3>
+
+<P>By default, the <TT>sling-jcr-contentloader</TT> bundle tries to extract certain file types during content loading. These include <TT>json</TT>, <TT>xml</TT>, <TT>zip</TT>, and <TT>jar</TT> files. Therefore all available extractors are used for content processing. However if some files should be put into the repository unextracted, the <TT>ignoreImportProviders</TT> directive can be used with a comma separated list of extensions that should not be extracted, like <TT>ignoreImportProviders:=jar,zip</TT>.</P>
+
+<H3><A name="ContentLoading-ContentDefinitionFileSpecification"></A>Content Definition File Specification</H3>
+
+<P>Structured content may be specified in content specification file in <SPAN class="nobr"><A href="http://www.json.org/" title="Visit page outside Confluence" rel="nofollow">JSON<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN> or XML format which define subtrees of content. A content definition file contains the definition of a single node with optional properties and child nodes. Each child node may again have its properties and child nodes. The definition of a node is as follows:</P>
+
+<P><B>JSON</B></P>
+<DIV class="preformatted"><DIV class="preformattedContent">
+<PRE>... *TODO* ...
+</PRE>
+</DIV></DIV>
+<P><B>XML</B></P>
+<DIV class="preformatted"><DIV class="preformattedContent">
+<PRE>... *TODO* ...
+</PRE>
+</DIV></DIV>
+
+<H3><A name="ContentLoading-Automatedtests"></A>Automated tests</H3>
+<P>The initial content found in the <SPAN class="nobr"><A href="http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/content/src/main/resources/content/sling-test" title="Visit page outside Confluence" rel="nofollow">sling-test folder of the launchpad initial content<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN> is verified by the <SPAN class="nobr"><A href="http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java" title="Visit page outside Confluence" rel="nofollow">InitialContentTest<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN> when running the <EM>launchpad/testing</EM> integration tests.</P>
+
+<P>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</P>
+        <DIV class="timestamp" style="margin-top: 30px; font-size: 80%; text-align: right;">
+Last modified by bdelacretaz on Fri May 15 22:41:03 PDT 2009
+        </DIV>
+    </DIV>
+  </BODY>
+</HTML>
+

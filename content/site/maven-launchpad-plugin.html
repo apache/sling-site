@@ -1,0 +1,270 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - Maven Launchpad Plugin</TITLE>
+    <LINK rel="stylesheet" href="http://sling.apache.org/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://sling.apache.org/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info. The migrated but not yet edited version of this page is at <a href='/documentation/development/maven-launchpad-plugin.html'>/documentation/development/maven-launchpad-plugin.html</a></div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://sling.apache.org/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://sling.apache.org/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://www.apache.org/">
+          <IMG border="0" alt="Apache" src="http://sling.apache.org/site/media.data/apache.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+<P><B>Documentation</B><BR class="atl-forced-newline">
+<A href="getting-started.html" title="Getting Started">Getting Started</A><BR class="atl-forced-newline">
+<A href="the-sling-engine.html" title="The Sling Engine">The Sling Engine</A><BR class="atl-forced-newline">
+<A href="development.html" title="Development">Development</A><BR class="atl-forced-newline">
+<A href="bundles.html" title="Bundles">Bundles</A><BR class="atl-forced-newline">
+<A href="tutorials-how-tos.html" title="Tutorials & How-Tos">Tutorials &amp; How&#45;Tos</A><BR class="atl-forced-newline">
+<A href="configuration.html" title="Configuration">Configuration</A><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/apidocs/sling6/index.html" class="external-link" rel="nofollow">API docs</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.wiki" class="external-link" rel="nofollow">Wiki</A><BR class="atl-forced-newline">
+<A href="http://s.apache.org/sling.faq" class="external-link" rel="nofollow">FAQ</A><BR class="atl-forced-newline"></P>
+
+<P><B>Project info</B><BR class="atl-forced-newline">
+<A href="http://sling.apache.org/site/downloads.cgi" class="external-link" rel="nofollow">Downloads</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/licenses/" class="external-link" rel="nofollow">License</A><BR class="atl-forced-newline">
+<A href="contributing.html" title="Contributing">Contributing</A><BR class="atl-forced-newline">
+<A href="news.html" title="News">News</A><BR class="atl-forced-newline">
+<A href="links.html" title="Links">Links</A><BR class="atl-forced-newline">
+<A href="project-information.html" title="Project Information">Project Information</A><BR class="atl-forced-newline">
+<A href="https://issues.apache.org/jira/browse/SLING" class="external-link" rel="nofollow">Issue Tracker</A><BR class="atl-forced-newline">
+<A href="http://svn.apache.org/viewvc/sling/trunk" class="external-link" rel="nofollow">Browse Source Repository</A><BR class="atl-forced-newline">
+<A href="security.html" title="Security">Security</A><BR class="atl-forced-newline"></P>
+
+<P><B>Sponsorship</B><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/thanks.html" class="external-link" rel="nofollow">Thanks</A><BR class="atl-forced-newline">
+<A href="http://www.apache.org/foundation/sponsorship.html" class="external-link" rel="nofollow">Become a Sponsor</A><BR>
+<A href="http://www.apache.org/foundation/buy_stuff.html" class="external-link" rel="nofollow">Buy Stuff</A></P>
+
+
+  <IFRAME src="http://www.apache.org/ads/button.html" style="border-width:0; float: left" frameborder="0" scrolling="no" width="135" height="135"></IFRAME>
+  <P style="height: 135px"></P>
+    </DIV>
+    <DIV class="main">
+        <DIV class="breadcrump" style="font-size: 80%;">
+<A href="apache-sling.html" title="Apache Sling Website">Apache Sling Website</A>&nbsp;&gt;&nbsp;<A href="apache-sling.html" title="Apache Sling">Apache Sling</A>&nbsp;&gt;&nbsp;<A href="documentation.html" title="Documentation">Documentation</A>&nbsp;&gt;&nbsp;<A href="development.html" title="Development">Development</A>&nbsp;&gt;&nbsp;<A href="" title="Maven Launchpad Plugin">Maven Launchpad Plugin</A>
+        </DIV>
+<H1><A name="MavenLaunchpadPlugin-MavenLaunchpadPlugin"></A>Maven Launchpad Plugin</H1>
+
+<P>The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi applications. It supports the following runtime scenarios:</P>
+<UL>
+	<LI>A WAR file suitable for running in a JavaEE servlet container.</LI>
+	<LI>A standalone Java application, with HTTP support from the Felix HttpService implementation</LI>
+	<LI>Inside Apache Karaf</LI>
+</UL>
+
+
+<P>In addition, the Maven Launchpad Plugin supports the publishing of an application descriptor, in the form of a <B>bundle list</B>, as a Maven artifact. This descriptor can then be used by downstream application builders as the basis for other applications. In Sling, this is embodied by two Maven projects:</P>
+<UL>
+	<LI><A href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/builder" class="external-link" rel="nofollow">org.apache.sling.launchpad</A> - produces an application descriptor.</LI>
+	<LI><A href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/builder/testing" class="external-link" rel="nofollow">org.apache.sling.launchpad.testing</A> - uses the application descriptor from <TT>org.apache.sling.launchpad</TT> and adds two bundles.</LI>
+</UL>
+
+
+<P>Maven Launchpad Plugin provides the following goals: </P>
+<DIV class="table-wrap">
+<TABLE class="confluenceTable"><TBODY>
+<TR>
+<TH class="confluenceTh"> Goals </TH>
+<TH class="confluenceTh"> Description </TH>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:prepare-package </TD>
+<TD class="confluenceTd"> Create the file system structure required by Sling's Launchpad framework. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:attach-bundle-list </TD>
+<TD class="confluenceTd"> Attach the bundle list descriptor to the current project as a Maven artifact. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:create-karaf-descriptor </TD>
+<TD class="confluenceTd"> Create an Apache Karaf Feature descriptor. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:create-bundle-jar </TD>
+<TD class="confluenceTd"> Create a JAR file containing the bundles in a Launchpad-structured JAR file. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:check-bundle-list-for-snapshots </TD>
+<TD class="confluenceTd"> Validate that the bundle list does not contain any SNAPSHOT versions. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:run </TD>
+<TD class="confluenceTd"> Run a Launchpad application. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:start </TD>
+<TD class="confluenceTd"> Start a Launchpad application. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:stop </TD>
+<TD class="confluenceTd"> Stop a Launchpad application. </TD>
+</TR>
+<TR>
+<TD class="confluenceTd"> launchpad:output-bundle-list </TD>
+<TD class="confluenceTd"> Output the bundle list to the console as XML. (added in version 2.0.8) </TD>
+</TR>
+</TBODY></TABLE>
+</DIV>
+
+
+<H3><A name="MavenLaunchpadPlugin-GeneralConfiguration"></A>General Configuration</H3>
+
+<P>In general, the bulk of the configuration of the Maven Launchpad Plugin is concerned with setting up the bundle list which all of the goals will use. This bundle list is created using the following steps:</P>
+<OL>
+	<LI>If <TT>includeDefaultBundles</TT> is <TT>true</TT> (the default), the default bundle list is loaded. By default, this is <TT>org.apache.sling.launchpad:org.apache.sling.launchpad:RELEASE:xml:bundlelist</TT>, but can be overridden by setting the <TT>defaultBundleList</TT> plugin parameter.</LI>
+	<LI>If <TT>includeDefaultBundles</TT> is <TT>false</TT>, an empty list is created.</LI>
+	<LI>If the bundle list file exists (by default, at <TT>src/main/bundles/list.xml</TT>), the bundles defined in it are added to the bundle list.</LI>
+	<LI>If the <TT>additionalBundles</TT> plugin parameter is defined, those bundles are added to the bundle list.</LI>
+	<LI>If the <TT>bundleExclusions</TT> plugin parameter is defined, those bundles are removed from the bundle list.</LI>
+</OL>
+
+
+<P>When a bundle is added to the bundle list, if a bundle with the same groupId, artifactId, type, and classifier is already in the bundle list, the version of the existing bundle is modified. However, the start level of a bundle is never changed once that bundle is added to the bundle list.</P>
+
+<P>The plugin may also contribute bundles to (or remove bundles from) the bundle list as it sees fit.</P>
+
+<H3><A name="MavenLaunchpadPlugin-FrameworkConfiguration"></A>Framework Configuration</H3>
+
+<P>For the <TT>run</TT> and <TT>start</TT> goals, the plugin will look for a file named <TT>src/test/config/sling.properties</TT>. If this file is present, it will be filtered using standard Maven filtering and used to populate the OSGi framework properties. This can be used, for example, to specify a <TT>repository.xml</TT> file to be used during development:</P>
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-java">
+sling.repository.config.file.url=${basedir}/src/test/config/repository.xml
+</PRE>
+</DIV></DIV>
+
+<H2><A name="MavenLaunchpadPlugin-BundleListFiles"></A>Bundle List Files</H2>
+
+<P>The bundle list file uses a simple XML syntax representing a list of bundles organized into start levels:</P>
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;?xml version=<SPAN class="code-quote">&quot;1.0&quot;</SPAN>?&gt;</SPAN>
+<SPAN class="code-tag">&lt;bundles&gt;</SPAN>
+    <SPAN class="code-tag">&lt;startLevel level=<SPAN class="code-quote">&quot;0&quot;</SPAN>&gt;</SPAN>
+        <SPAN class="code-tag">&lt;bundle&gt;</SPAN>
+            <SPAN class="code-tag">&lt;groupId&gt;</SPAN>commons-io<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>commons-io<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;version&gt;</SPAN>1.4<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/bundle&gt;</SPAN>
+        <SPAN class="code-tag">&lt;bundle&gt;</SPAN>
+            <SPAN class="code-tag">&lt;groupId&gt;</SPAN>commons-collections<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>commons-collections<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;version&gt;</SPAN>3.2.1<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/bundle&gt;</SPAN>
+    <SPAN class="code-tag">&lt;/startLevel&gt;</SPAN>
+
+    <SPAN class="code-tag">&lt;startLevel level=<SPAN class="code-quote">&quot;10&quot;</SPAN>&gt;</SPAN>
+        <SPAN class="code-tag">&lt;bundle&gt;</SPAN>
+            <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.felix<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>org.apache.felix.eventadmin<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;version&gt;</SPAN>1.0.0<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/bundle&gt;</SPAN>
+    <SPAN class="code-tag">&lt;/startLevel&gt;</SPAN>
+
+    <SPAN class="code-tag">&lt;startLevel level=<SPAN class="code-quote">&quot;15&quot;</SPAN>&gt;</SPAN>
+        <SPAN class="code-tag">&lt;bundle&gt;</SPAN>
+            <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.apache.sling<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>org.apache.sling.jcr.api<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+            <SPAN class="code-tag">&lt;version&gt;</SPAN>2.0.2-incubator<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+        <SPAN class="code-tag">&lt;/bundle&gt;</SPAN>
+    <SPAN class="code-tag">&lt;/startLevel&gt;</SPAN>
+<SPAN class="code-tag">&lt;/bundles&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<P>Within each <TT>bundle</TT> element, <TT>type</TT> and <TT>classifier</TT> are also supported.</P>
+
+<H2><A name="MavenLaunchpadPlugin-ArtifactDefinition"></A>Artifact Definition</H2>
+
+<P>The <TT>defaultBundleList</TT>, <TT>jarWebSupport</TT>, <TT>additionalBundles</TT>, and <TT>bundleExclusions</TT> parameters are configured with artifact definitions. This is done using a syntax similar to Maven dependency elements:</P>
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;configuration&gt;</SPAN>
+...
+  <SPAN class="code-tag">&lt;jarWebSupport&gt;</SPAN>
+    <SPAN class="code-tag">&lt;groupId&gt;</SPAN>GROUP_ID<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+    <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>ARTIFACT_ID<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+    <SPAN class="code-tag">&lt;version&gt;</SPAN>VERSION<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+    <SPAN class="code-tag"><SPAN class="code-comment">&lt;!-- type and classifier can also be specified if needed --&gt;</SPAN></SPAN>
+  <SPAN class="code-tag">&lt;/jarWebSupport&gt;</SPAN>
+...
+<SPAN class="code-tag">&lt;/configuration&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<P>For example, to use Pax Web instead of Felix HttpService as the HttpService provider, use the following:</P>
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;configuration&gt;</SPAN>
+...
+  <SPAN class="code-tag">&lt;jarWebSupport&gt;</SPAN>
+    <SPAN class="code-tag">&lt;groupId&gt;</SPAN>org.ops4j.pax.web<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+    <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>pax-web-service<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+    <SPAN class="code-tag">&lt;version&gt;</SPAN>RELEASE<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+    <SPAN class="code-tag"><SPAN class="code-comment">&lt;!-- type and classifier can also be specified if needed --&gt;</SPAN></SPAN>
+  <SPAN class="code-tag">&lt;/jarWebSupport&gt;</SPAN>
+...
+<SPAN class="code-tag">&lt;/configuration&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<P>In the case of <TT>additionalBundles</TT> and <TT>bundleExclusions</TT>, these are arrays of definitions, so an intermediate <TT>bundle</TT> element is necessary:</P>
+
+<DIV class="code panel" style="border-width: 1px;"><DIV class="codeContent panelContent">
+<PRE class="code-xml">
+<SPAN class="code-tag">&lt;configuration&gt;</SPAN>
+...
+  <SPAN class="code-tag">&lt;additionalBundles&gt;</SPAN>
+    <SPAN class="code-tag">&lt;bundle&gt;</SPAN>
+      <SPAN class="code-tag">&lt;groupId&gt;</SPAN>GROUP_ID<SPAN class="code-tag">&lt;/groupId&gt;</SPAN>
+      <SPAN class="code-tag">&lt;artifactId&gt;</SPAN>ARTIFACT_ID<SPAN class="code-tag">&lt;/artifactId&gt;</SPAN>
+      <SPAN class="code-tag">&lt;version&gt;</SPAN>VERSION<SPAN class="code-tag">&lt;/version&gt;</SPAN>
+      <SPAN class="code-tag"><SPAN class="code-comment">&lt;!-- type and classifier can also be specified if needed --&gt;</SPAN></SPAN>
+    <SPAN class="code-tag">&lt;/bundle&gt;</SPAN>
+  <SPAN class="code-tag">&lt;/additionalBundles&gt;</SPAN>
+...
+<SPAN class="code-tag">&lt;/configuration&gt;</SPAN>
+</PRE>
+</DIV></DIV>
+
+<P>By default, bundles are added to start level 0. To change, this use the <TT>startLevel</TT> element within each additional bundle definition.</P>
+
+<H2><A name="MavenLaunchpadPlugin-IntegrationTesting"></A>Integration Testing</H2>
+
+<P>For integration testing examples, see <TT>/samples/inplace-integration-test</TT> and <TT>launchpad/testing</TT> in the Sling source tree.</P>
+
+<H2><A name="MavenLaunchpadPlugin-BundleListRewriting"></A>Bundle List Rewriting</H2>
+
+<P>The Maven Launchpad Plugin supports the use of rules to rewrite the bundle list. These rules are executed by the <A href="http://www.jboss.org/drools" class="external-link" rel="nofollow">Drools</A> rule engine. Typically, this is used along with Maven profiles. For example, Sling's testing project includes a profile called <TT>test-reactor-sling-bundles</TT>. When activated, this profile runs a Drools rule file which scans the project list from the Maven reactor and modifies the version number for bundles which were contained within the reactor.</P>
+
+<P>In order for rules to interact with the Maven build, the following global variables are made available:</P>
+
+<UL>
+	<LI><TT>mavenSession</TT> - an instance of <TT>org.apache.maven.execution.MavenSession</TT>.</LI>
+	<LI><TT>mavenProject</TT> - an instance of <TT>org.apache.maven.project.MavenProject</TT>.</LI>
+</UL>
+
+        <DIV class="timestamp" style="margin-top: 30px; font-size: 80%; text-align: right;">
+Last modified by justinedelson on 2010-10-13 16:00:29.0
+        </DIV>
+        <DIV class="trademarkFooter">
+Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+        </DIV>
+    </DIV>
+  </BODY>
+</HTML>
+

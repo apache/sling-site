@@ -1,0 +1,51 @@
+**[Documentation](/documentation.html)**   
+[Getting Started](/documentation/getting-started.html)   
+[The Sling Engine](/documentation/the-sling-engine.html)   
+[Development](/documentation/development.html)   
+[Bundles](/documentation/bundles.html)   
+[Tutorials & How-Tos](/documentation/tutorials-how-tos.html)   
+[Configuration](/documentation/configuration.html)   
+
+[Wiki](http://s.apache.org/sling.wiki)   
+[FAQ](http://s.apache.org/sling.faq)   
+
+**API Docs**    
+[Sling 9](/apidocs/sling9/index.html)   
+[Sling 8](/apidocs/sling8/index.html)   
+[Sling 7](/apidocs/sling7/index.html)   
+[Sling 6](/apidocs/sling6/index.html)   
+[Sling 5](/apidocs/sling5/index.html)   
+[Archive at javadoc.io](/javadoc-io.html)   
+
+**Project info**   
+[Downloads](/downloads.cgi)   
+[License](http://www.apache.org/licenses/)   
+[Contributing](/contributing.html)   
+[News](/news.html)   
+[Links](/links.html)   
+[Project Information](/project-information.html)   
+[Issue Tracker](https://issues.apache.org/jira/browse/SLING)   
+[Build Server](http://ci.apache.org/builders/sling-trunk)   
+[Security](/project-information/security.html)   
+
+**Source**   
+[Subversion](http://svn.apache.org/viewvc/sling/trunk)   
+[Git](git://git.apache.org/sling.git)   
+[Github Mirror](https://github.com/apache/sling)   
+
+**Sponsorship**   
+[Thanks](http://www.apache.org/foundation/thanks.html)   
+[Become a Sponsor](http://www.apache.org/foundation/sponsorship.html)   
+[Buy Stuff](http://www.apache.org/foundation/buy_stuff.html)   
+
+**[Site Map](/sitemap.html)**
+
+<!-- no valid ads for now, we'll  reactivate this when needed
+<iframe 
+	src="http://www.apache.org/ads/button.html"
+	style="border-width:0; float: left" frameborder="0" 
+	scrolling="no"
+	width="135" 
+	height="135">
+</iframe>
+-->

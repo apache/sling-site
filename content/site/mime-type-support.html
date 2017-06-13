@@ -1,0 +1,167 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - MIME Type Support</TITLE>
+    <LINK rel="stylesheet" href="http://incubator.apache.org/sling/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://incubator.apache.org/sling/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info.</div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://incubator.apache.org/sling/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://incubator.apache.org/sling/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://incubator.apache.org/">
+          <IMG border="0" alt="Apache Incubator" src="http://incubator.apache.org/images/apache-incubator-logo.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+                                    <P style="display: none"></P>
+
+<UL>
+	<LI><A href="documentation.html" title="Documentation">Documentation</A></LI>
+	<LI><A href="advanced-topics.html" title="Advanced Topics">Advanced Topics</A></LI>
+	<LI><A href="development.html" title="Development">Development</A></LI>
+	<LI><SPAN class="nobr"><A href="http://incubator.apache.org/sling/site/downloads.cgi" title="Visit page outside Confluence" rel="nofollow">Downloads<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><A href="contributing.html" title="Contributing">Contributing</A></LI>
+	<LI><A href="links.html" title="Links">Links</A></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/faq.html" title="Visit page outside Confluence" rel="nofollow">FAQ<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/SLING/" title="Visit page outside Confluence" rel="nofollow">Wiki<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><A href="project-information.html" title="Project Information">Project Information</A></LI>
+	<LI><SPAN class="nobr"><A href="http://incubator.apache.org/sling/apidocs/sling5/index.html" title="Visit page outside Confluence" rel="nofollow">Sling 5 API<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/thanks.html" title="Visit page outside Confluence" rel="nofollow">Sponsors<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/sponsorship.html" title="Visit page outside Confluence" rel="nofollow">Sponsorship<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>
+
+<IFRAME src="http://www.apache.org/ads/button.html" style="border-width:0; float: left" frameborder="0" scrolling="no" width="135" height="135"></IFRAME>
+<P style="height: 100px"></P>
+</LI>
+</UL>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </DIV>
+    <DIV class="main">
+        <DIV class="breadcrump" style="font-size: 80%;">
+<A href="apache-sling.html" title="Apache Sling Website">Apache Sling Website</A>&nbsp;&gt;&nbsp;<A href="apache-sling.html" title="Apache Sling">Apache Sling</A>&nbsp;&gt;&nbsp;<A href="advanced-topics.html" title="Advanced Topics">Advanced Topics</A>&nbsp;&gt;&nbsp;<A href="" title="MIME Type Support">MIME Type Support</A>
+        </DIV>
+<H1><A name="MIMETypeSupport-MIMETypeSupport"></A>MIME Type Support</H1>
+
+<P>Support for MIME type mappings is generally a problematic issue. On the one hand applications have to take care to stay up to date with their mappings on the other hands in web applications it is tedious to maintain the mappings. Apache Sling takes a very user and deployment friendly approadch to this problem which is described in detail on this page.</P>
+
+
+<DIV>
+<UL>
+  <LI><A href="#MIMETypeSupport-ServletAPISupport">Servlet API Support</A></LI>
+  <LI><A href="#MIMETypeSupport-EnterSling%253ATheMimeTypeService">Enter Sling: The MimeTypeService</A></LI>
+  <LI><A href="#MIMETypeSupport-AndMore...">And More...</A></LI>
+  <LI><A href="#MIMETypeSupport-ConfiguringMIMETypeMappings">Configuring MIME Type Mappings</A></LI>
+  <LI><A href="#MIMETypeSupport-MIMETypeMappingFileFormat">MIME Type Mapping File Format</A></LI>
+  <LI><A href="#MIMETypeSupport-WebConsolePlugin">Web Console Plugin</A></LI>
+</UL></DIV>
+
+
+<H2><A name="MIMETypeSupport-ServletAPISupport"></A>Servlet API Support</H2>
+
+<P>The Servlet API specification provides a limited support for MIME type mappings :</P>
+
+<UL>
+	<LI>Mappings may be defined in the <TT>mime-mapping</TT> elements of the the web application descriptor <TT>web.xml</TT>. Managing these mappings is presumably tedious. So servlet containers may provide reasonable defaults (or not).</LI>
+	<LI>The <TT>ServletContext.getMimeType(String)</TT> returns a MIME type for a given file name based on the extension of the filename. The mapping returned is based on the servlet container configuration as well as the web application descriptor's <TT>mime-mapping</TT> elements.</LI>
+</UL>
+
+
+
+<H2><A name="MIMETypeSupport-EnterSling%3ATheMimeTypeService"></A>Enter Sling: The MimeTypeService</H2>
+
+<P>Already at the start of the Sling project we realized, that just basing the MIME type mapping decisions on the servlet container will not yield acceptable results. For this reason the Apache Sling projects provides a spezialized and configurable service supporting such mappings: The <SPAN class="nobr"><A href="http://incubator.apache.org/sling/apidocs/sling5/org/apache/sling/commons/mime/MimeTypeService.html" title="Visit page outside Confluence" rel="nofollow"><TT>MimeTypeService</TT><SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>.</P>
+
+<P>This service provides access to registered MIME types and their mappings with two methods:</P>
+
+<UL>
+	<LI><TT>getExtension(String)</TT> &ndash; given a MIME type this methods returns a primary extension. For example for the type <TT>text/plain</TT> this method will return <TT>txt</TT></LI>
+	<LI><TT>getMimeType(String)</TT> &ndash; given a file name or just the extension) returns the mapped MIME type. For example for the filename <TT>sample.html</TT> (or just the extension <TT>html</TT>) this method will return <TT>text/html</TT></LI>
+</UL>
+
+
+
+<P>Two more method allow to programmatically add MIME type mappings:</P>
+
+<UL>
+	<LI><TT>registerMimeType(InputStream)</TT> registers additional mappings from the given input stream which is expected to be formated in traditional <TT>mime.types</TT> file format (see below).</LI>
+	<LI><TT>registerMimeType(String, String...)</TT> registers a single mapping for the give MIME type and the respective extensions.</LI>
+</UL>
+
+
+
+
+<H2><A name="MIMETypeSupport-AndMore..."></A>And More...</H2>
+
+<P>Besides the <TT>MimeTypeService</TT> provided by Apache Sling, there is actually more:</P>
+
+<UL>
+	<LI>The <SPAN class="nobr"><A href="http://incubator.apache.org/sling/apidocs/sling5/org/apache/sling/api/SlingHttpServletRequest.html" title="Visit page outside Confluence" rel="nofollow"><TT>SlingHttpServletRequest</TT><SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN> provides the <TT>getResponseContentType()</TT> method, which returns the preferred <EM>Content-Type</EM> for the response based on the requests extension. This method is implemented by Apache Sling using the <TT>MimeTypeService</TT>. So servlets and scripts may just call this method to set the content type of the response to the desired value.</LI>
+	<LI>Each Servlet (and JSP scripts) is initialized by Apache Sling with a <TT>ServletContext</TT> instance whose implementation of the <TT>getMimeType(String)</TT> effectively calls the <TT>MimeTypeService.getMimeType(String)</TT> method.</LI>
+	<LI>The Scripting support infrastructure of Sling sets the response content type on behalf of the script to the default value as returned by the <TT>SlingHttpServletRequest.getResponseContentType()</TT> method. At the same time the response character set is also set to <TT>UTF-8</TT> for <EM>text</EM> content types.</LI>
+</UL>
+
+
+
+
+<H2><A name="MIMETypeSupport-ConfiguringMIMETypeMappings"></A>Configuring MIME Type Mappings</H2>
+
+
+<P>The implementation of the <TT>MimeTypeService</TT> in the Apache Sling MIME type mapping support (<TT>org.apache.sling.commons.mime</TT>) bundle supports a numnber of ways to configure and extend the set of MIME type mappings:</P>
+
+<UL>
+	<LI>Default configuration. The default configuration is based on the <SPAN class="nobr"><A href="http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types" title="Visit page outside Confluence" rel="nofollow"><TT>mime.types</TT><SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN> file maintained by Roy Fielding for the Apache httpd project and some extensions by Apache Sling.</LI>
+	<LI>Bundle provided mappings. Bundles registered in the OSGi framework may contain MIME type mappings files <TT>META-INF/mime.types</TT> which are loaded automatically by the Apache Sling MIME type mapping support bundle.</LI>
+	<LI>Configuration. Mappings may be supplied by configuration of the <TT>MimeTypeService</TT> implementation as the multi-value string property <TT>mime.types</TT>. Each value of the property corresponds to a line in a MIME type configuration file (see below for the format).</LI>
+	<LI>Registered Mappings. Mappings may be registered with the <TT>MimeTypeService.registerMapping</TT> methods.</LI>
+	<LI><SPAN class="nobr"><A href="http://incubator.apache.org/sling/apidocs/sling5/org/apache/sling/commons/mime/MimeTypeProvider.html" title="Visit page outside Confluence" rel="nofollow"><TT>MimeTypeProvider</TT><SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>. Additional mappings may be provided by service implementing the <TT>MimeTypeProvider</TT> interface. The <TT>MimeTypeService</TT> implementation will call these services in turn until a service returns a mapping provided there is no static configuration to responde to the mapping request.</LI>
+</UL>
+
+
+<P>Please note, that existing mappings cannot be overwritten later. Thus mappings have an inherent priority:</P>
+
+<OL>
+	<LI>Mappings provided by the Apache httpd project's <TT>mime.types</TT> file</LI>
+	<LI>Extensions by the Apache Sling MIME type mapping support bundle</LI>
+	<LI>Bundles providing a <TT>META-INF/mime.types</TT> file in the order of their bundle-id (or startup order if started after the MIME type mapping support bundle)</LI>
+	<LI>OSGi Configuration. Note that bundles started <EM>after</EM> the MIME type mapping support bundle may not overwrite mappings provided by the OSGi configuration. This may sounds like a problem, but in reality this should genrally not matter</LI>
+	<LI>Mappings registered calling the <TT>MimeTypeService.registerMimeType</TT> method</LI>
+	<LI>Mappings provided by <TT>MimeTypeProvider</TT> services</LI>
+</OL>
+
+
+
+
+<H2><A name="MIMETypeSupport-MIMETypeMappingFileFormat"></A>MIME Type Mapping File Format</H2>
+
+<P>The file format for MIME type mapping files is rather simple:</P>
+
+<UL>
+	<LI>The files are assumed to be encoded with the <EM>ISO-8859-1</EM> (aka Latin 1) character encoding</LI>
+	<LI>The files consist of lines defining mappings where each line is terminated with either or both of a carriage return (CR, 0x0c) and line feed character (LF, 0x0a). There is no line continuation support &agrave;-la shell scripts or Java properties files.</LI>
+	<LI>Empty lines and lines starting with a hash sign (<TT>#</TT>) are ignored</LI>
+	<LI>Data lines consist of space (any whitespace matching the <TT>\s</TT> regular expression) separated values. The first value is the MIME type name and the remaining values defining mappings to file name extensions. The first listed file name extension is considered the <EM>default mapping</EM> and is returned by the <TT>MimeTypeService.getExtension(String)</TT> method. Entry lines consisting of just a mime type but no extensions are also (currently) ignored.</LI>
+</UL>
+
+
+<P>THe data line format described here also applies to configuration provided by the values of the <TT>mime.types</TT> property of the MIME type service configuration. The file format description applies to all <TT>META-INF/mime.types</TT> files provided by the bundles as well as input streams supplied to the <TT>MimeTypeService.registerMimeType(InputStream)</TT> method.</P>
+
+
+
+<H2><A name="MIMETypeSupport-WebConsolePlugin"></A>Web Console Plugin</H2>
+
+<P>The Apache Sling MIME type mapping support bundle implements a plugin for the Apache Felix Web Console which may be consulted to investigate the current contents of the MIME type mapping tables.</P>
+
+<P><A href="mime-type-support.data/mimetypes.png" target="mimetypes.png" onclick="window.open(&quot;http://cwiki.apache.org/confluence/download/attachments/117870/mimetypes.png&quot;, &quot;mimetypes.png&quot;, &quot;height=641,width=978,menubar=no,status=no,toolbar=no&quot;); return false;"><IMG src="mime-type-support.data/mimetypes.png.jpeg" title="Sample MIME types console page" align="absmiddle" border="0"></A></P>
+        <DIV class="timestamp" style="margin-top: 30px; font-size: 80%; text-align: right;">
+Last modified by fmeschbe on Mon May 18 00:26:02 PDT 2009
+        </DIV>
+    </DIV>
+  </BODY>
+</HTML>
+

@@ -1,0 +1,114 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>Apache Sling - FAQ</TITLE>
+    <LINK rel="stylesheet" href="http://incubator.apache.org/sling/site/media.data/site.css" type="text/css" media="all">
+    <LINK rel="icon" href="http://incubator.apache.org/sling/site/media.data/favicon.ico">
+    <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  </HEAD>
+  <BODY><div class="siteconversion">This is an old version of the Sling website, see the <a href="http://sling.apache.org/site-conversion.html">site conversion page</a> for more info.</div>
+    <DIV class="title">
+      <DIV class="logo">
+        <A href="http://incubator.apache.org/sling/site/index.html">
+          <IMG border="0" alt="Apache Sling" src="http://incubator.apache.org/sling/site/media.data/logo.png">
+        </A>
+      </DIV>
+      <DIV class="header">
+        <A href="http://incubator.apache.org/">
+          <IMG border="0" alt="Apache Incubator" src="http://incubator.apache.org/images/apache-incubator-logo.png">
+        </A>
+      </DIV>
+    </DIV>
+    <DIV class="menu">
+                                    <P>
+
+<UL>
+	<LI><A href="index.html" title="Index">Home</A></LI>
+	<LI><A href="project-information.html" title="Project Information">Project Information</A></LI>
+	<LI><A href="usecases.html" title="UseCases">Use Cases</A></LI>
+	<LI><A href="guides.html" title="Guides">Guides</A></LI>
+	<LI><A href="documentation.html" title="Documentation">Documentation</A></LI>
+	<LI><A href="plugins.html" title="Plugins">Plugins</A></LI>
+	<LI><A href="" title="FAQ">FAQ</A></LI>
+	<LI><A href="links.html" title="Links">Links</A></LI>
+	<LI><A href="old-documentation.html" title="Old Documentation">Old Documentation</A></LI>
+	<LI><SPAN class="nobr"><A href="http://cwiki.apache.org/confluence/x/GAUB" title="Visit page outside Confluence" rel="nofollow">Wiki<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/thanks.html" title="Visit page outside Confluence" rel="nofollow">Sponsors<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+	<LI><SPAN class="nobr"><A href="http://www.apache.org/foundation/sponsorship.html" title="Visit page outside Confluence" rel="nofollow">Sponsorship<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN></LI>
+</UL>
+
+
+<P>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </DIV>
+    <DIV class="main">
+<H1><A name="FAQ-FrequentlyAskedQuestions"></A>Frequently Asked Questions</H1>
+
+<P>This page lists a series of common questions and answers. It is of course work in progress ...</P>
+<DIV>
+<UL>
+  <LI><A href="#FAQ-AccessingClassesfromtheEnvironment">Accessing Classes from the Environment</A></LI>
+  <LI><A href="#FAQ-HowdoesSlingsupportthe%257B%257Borg.osgi.framework.bootdelegation%257D%257DProperty%253F">How does Sling support the <TT>org.osgi.framework.bootdelegation</TT> Property ?</A></LI>
+  <LI><A href="#FAQ-HowdoseSlingsupportthe%257B%257Borg.osgi.framework.system.packages%257D%257DProperty%253F">How dose Sling support the <TT>org.osgi.framework.system.packages</TT> Property ?</A></LI>
+  <LI><A href="#FAQ-Shouldthe%257B%257Borg.osgi.framework.bootdelegation%257D%257Dorthe%257B%257Borg.osgi.framework.system.packages%257D%257DPropertybeused%253F">Should the <TT>org.osgi.framework.bootdelegation</TT> or the <TT>org.osgi.framework.system.packages</TT> Property be used ?</A></LI>
+  <LI><A href="#FAQ-Isthereaneasywaytoupdatebundlesinarunninginstallationduringdevelopment%253F">Is there an easy way to update bundles in a running installation during development?</A></LI>
+</UL></DIV>
+
+<H3><A name="FAQ-AccessingClassesfromtheEnvironment"></A>Accessing Classes from the Environment</H3>
+
+<P>Mostly when using the Sling Web Application, that is running Sling inside a web application deployed into some servlet container, you might want to share classes between the servlet container and Sling. Some examples of such sharing are:</P>
+<OL>
+	<LI>Accessing EJB from the Application Server</LI>
+	<LI>Sharing classe with another web application such as a Jackrabbit instance</LI>
+	<LI>Using other container features</LI>
+</OL>
+
+
+<P>For such cases the OSGi Core Specification provides a functionality to declare such class sharing. The functionality is defined in terms of two Framework properties <TT>org.osgi.framework.system.packages</TT> and <TT>org.osgi.framework.bootdelegation</TT>:</P>
+<OL>
+	<LI><TT><B>org.osgi.framework.bootdelegation</B></TT> &#45; All classes matching any entry in this list are always loaded from the parent class loader and not through the OSGi framework infrastructure. This property is a comma separated list of package names. A package name may be terminated by a wildcard character such that any package starting with the list entry matches the entry and thus will be used from the parent class loader.</LI>
+	<LI><TT><B>org.osgi.framework.system.packages</B></TT> &#45; Additional package declarations for packages to be exported from the system bundle. This property is a simple package declaration list just like any <TT>Export-Package</TT> manifest header. In a sense the <TT>org.osgi.framework.system.packages</TT> property may be seen as the <TT>Export-Package</TT> manifest header of the system bundle. Namely these entries may not contain wildcards (as is allowed for the <TT>bootdelegation</TT> property) and may contain directives and attributes such as the <TT>uses</TT> directive and the <TT>version</TT> attribute. It is recommended to provide this additional information to help in resolving the bundles. The OSGi Core Specification even prescribes the use of the <TT>uses</TT> directive.</LI>
+</OL>
+
+
+<P>The problem with the <TT>org.osgi.framework.bootdelegation</TT> property is, that it completely bypasses any bundle import wirings and just asks the parent classloader. Such situations are not easily recognizable. Therefore the Sling Console will be enhanced to mark any package import which matchs an entry in the <TT>org.osgi.framework.bootdelegation</TT> appropriately (<SPAN class="nobr"><A href="ttps://issues.apache.org/jira/browse/SLING-148" title="Visit page outside Confluence" rel="nofollow">SLING-148<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>).</P>
+
+<P>Also note, that any package listed as an import in a bundle must be resolveable for the bundle resolve. The import resolution process does not take the <TT>org.osgi.framework.bootdelegation</TT> configuration into account. This means, that regardless of whether a package is listed in the <TT>org.osgi.framework.bootdelegation</TT> property or not, if the package is listed as a required import in the <TT>Import-Package</TT> header, it must be exported by some other bundle.</P>
+
+<H3><A name="FAQ-HowdoesSlingsupportthe%7B%7Borg.osgi.framework.bootdelegation%7D%7DProperty%3F"></A>How does Sling support the <TT>org.osgi.framework.bootdelegation</TT> Property ?</H3>
+
+<P>Sling supports the <TT>org.osgi.framework.bootdelegation</TT> property to list additional classes to be used from the environment by interpreting Sling configuration properties starting with <TT>sling.bootdelegation</TT> (This is done in the <TT>org.apache.sling.launcher.app.Sling.resolve()</TT> method).</P>
+
+<P>If a property starts with the prefix <TT>sling.bootdelegation.class.</TT> the list of packages defined as the property value is only appended to the <TT>org.osgi.framework.bootdelegation</TT> property if the fully qualified class taken from the rest of the property name exists in the parent class loader.</P>
+
+<P>If the property does not start with this <TT>sling.bootdelegation.class.</TT> property, the list of packages is just appended to the <TT>org.osgi.framework.bootdelegation</TT> property.</P>
+
+<H3><A name="FAQ-HowdoseSlingsupportthe%7B%7Borg.osgi.framework.system.packages%7D%7DProperty%3F"></A>How dose Sling support the <TT>org.osgi.framework.system.packages</TT> Property ?</H3>
+
+<P>Currently extending the <TT>org.osgi.framework.system.packages</TT> property in a Sling configuration file is only possibly by setting the <TT>org.apache.sling.launcher.system.packages</TT> property. The value of this property, which <EM>must</EM> start with a comma, is just appended to the <TT>org.osgi.framewrok.system.packages</TT> property.</P>
+
+<P>A more elaborate support as is supported for the <TT>org.osgi.framework.bootdelegation</TT> Property is being prepared (<SPAN class="nobr"><A href="http://issues.apache.org/jira/browse/SLING-147" title="Visit page outside Confluence" rel="nofollow">SLING-147<SUP><IMG class="rendericon" src="http://cwiki.apache.org/confluence/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="" border="0"></SUP></A></SPAN>).</P>
+
+<H3><A name="FAQ-Shouldthe%7B%7Borg.osgi.framework.bootdelegation%7D%7Dorthe%7B%7Borg.osgi.framework.system.packages%7D%7DPropertybeused%3F"></A>Should the <TT>org.osgi.framework.bootdelegation</TT> or the <TT>org.osgi.framework.system.packages</TT> Property be used ?</H3>
+
+<P>So, what mechanism should be used ? The answer is, that it depends.</P>
+
+<P>Most of the time, you will want to use the <TT>org.osgi.framework.system.packages</TT> property. Because this property ensures that you will allways benefit from the normal class resolution mechanism through package imports and exports.</P>
+
+<P>This allows creating the bundles normally by having the package import lists being built according to the packages used by the bundle classes. For example you may use the Apache Felix Maven Bundle Plugin to build your OSGi bundles and the imports are automatically calculated (by default).</P>
+
+<P>The drawback of this method is, that there may be bundles in your system, which export packages also listed in the <TT>org.osgi.framework.system.packages</TT> property. Depending on the export version, the wrong package may be bound. So to prevent such collisions you should not install such bundles.</P>
+
+<P>An example of such a declaration is the Servlet API packages (<TT>javax.servlet</TT>, <TT>javax.servlet.http</TT> and <TT>javax.servlet.resources</TT>). These packages are imported into the OSGi framework by the <TT>SlingServlet</TT> of the <TT>launcher/webapp</TT> project as part of the <TT>org.osgi.framework.system.packages</TT> property. To have this work correctly, no bundle should export the respective packages. In the case of Sling, this means, the <TT>org.apache.felix.commons.sling-api</TT> bundle must not be installed.</P>
+
+<P>If on the other hand you cannot prevent the installation of such bundles and hence the export of the respective packages, you might want to set the <TT>org.osgi.framework.bootdelegation</TT> property conditionally as described above in the answer to how this property is supported in Sling. This ensures the property is only set, if the classes are actually available. This should be used as a fall back only, if the <TT>org.osgi.framework.system.packages</TT> method does not work.</P>
+
+<H3><A name="FAQ-Isthereaneasywaytoupdatebundlesinarunninginstallationduringdevelopment%3F"></A>Is there an easy way to update bundles in a running installation during development?</H3>
+
+<P>The Sling Maven Plugin provides an install goal which is able to install or update a bundle in a running Sling application (if the Sling web console is deployed). If the plugin properties are configured accordingly you can just <TT>mvn clean package org.apache.sling:maven-sling-plugin:install</TT> and the bundle is uploaded.</P>
+
+<P>You can use the <TT>settings.xml</TT> to set the url to your Sling application. See the <A href="plugins.html" title="Plugins">Sling Maven Plugin</A> for more information.</P>
+    </DIV>
+  </BODY>
+</HTML>
+
