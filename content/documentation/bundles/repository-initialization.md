@@ -1,4 +1,9 @@
-Title: Repository Initializers and Repository Initialization Language
+Title=Repository Initializers and Repository Initialization Language
+date=2013-08-25
+type=post
+tags=blog
+status=published
+~~~~~~
 
 The `SlingRepositoryInitializer` mechanism allows for running code before the `SlingRepository` service is registered.
 
