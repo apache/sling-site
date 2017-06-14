@@ -1,4 +1,4 @@
-Title=TODO add front matter 
+title=TODO title for sling-oak-restrictions.md 
 date=1900-01-01
 type=post
 tags=blog

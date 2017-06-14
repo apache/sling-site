@@ -1,4 +1,4 @@
-Title=TODO add front matter 
+title=TODO title for how-to-manage-events-in-sling.md 
 date=1900-01-01
 type=post
 tags=blog
