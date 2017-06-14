@@ -9,15 +9,13 @@ html(lang:'en'){
 
         include template: 'menu.tpl'
 
-        main {
-			div(class:"main") {
-				bodyContents()
-			}
-        }
+		div(class:"main") {
+			bodyContents()
 
-        newLine()
-        include template: 'footer.tpl'
-        newLine()
+			newLine()
+			include template: 'footer.tpl'
+			newLine()
+        }
     }
 }
 newLine()
