@@ -1,10 +1,7 @@
-title=TODO title for scripting-thymeleaf.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Scripting Thymeleaf		
+type=page
 status=published
 ~~~~~~
-Title: Sling Scripting Thymeleaf
 
 Sling Scripting Thymeleaf is the scripting engine for [_Thymeleaf_](http://www.thymeleaf.org) (3.0) templates.
 
@@ -23,14 +20,14 @@ Sling Scripting Thymeleaf is the scripting engine for [_Thymeleaf_](http://www.t
 
 For running Sling Scripting Thymeleaf with Sling's Launchpad some dependencies need to be resolved. This can be achieved by installing the following bundles:
 
-    mvn:org.attoparser/attoparser/2.0.2.RELEASE
-    mvn:org.unbescape/unbescape/1.1.4.RELEASE
-    mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ognl/3.2_1
-    mvn:org.javassist/javassist/3.20.0-GA
+mvn:org.attoparser/attoparser/2.0.2.RELEASE
+mvn:org.unbescape/unbescape/1.1.4.RELEASE
+mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ognl/3.2_1
+mvn:org.javassist/javassist/3.20.0-GA
 
 There is a feature for Karaf:
 
-    karaf@root()> feature:install sling-scripting-thymeleaf
+karaf@root()> feature:install sling-scripting-thymeleaf
 
 **Note:** Sling Scripting Thymeleaf requires an implementation of OSGi Declarative Services 1.3 (e.g. [Apache Felix Service Component Runtime](http://felix.apache.org/documentation/subprojects/apache-felix-service-component-runtime.html) 2.0.0 or greater)
 

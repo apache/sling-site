@@ -1,23 +1,20 @@
-title=TODO title for configuration.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Configuration		
+type=page
 status=published
 ~~~~~~
-Title: Configuration
 
 
 ## Introduction
 
 Configuration in Sling is aligned with respective support by the OSGi specification:
 
-   * Framework and Java system properties are available through the `BundleContext.getProperty(String)` method. These properties are provided in Sling through the Sling launcher.
-   * Bundle Header values are available through the `Bundle.getHeaders()` and `Bundle.getHeaders(String)` methods. These header values are set by the bundle developer in the `META-INF/MANIFEST.MF` file. In fact, all main manifest attributes are available through these methods.
-   * Components managed by the Service Component Runtime and declared in component descriptor files listed in the `Service-Component` manifest header access configuration properties through the `ComponentContext.getProperties()` method. These properties have three sources:
-       1. Configuration specified specifically for factory components
-       2. Properties retrieved from the Configuration Admin Service
-       3. Properties set in the component descriptor
-   * Configuration properties provided to `ManagedService` and `ManagedServiceFactory` instances by the Configuration Admin Service.
+* Framework and Java system properties are available through the `BundleContext.getProperty(String)` method. These properties are provided in Sling through the Sling launcher.
+* Bundle Header values are available through the `Bundle.getHeaders()` and `Bundle.getHeaders(String)` methods. These header values are set by the bundle developer in the `META-INF/MANIFEST.MF` file. In fact, all main manifest attributes are available through these methods.
+* Components managed by the Service Component Runtime and declared in component descriptor files listed in the `Service-Component` manifest header access configuration properties through the `ComponentContext.getProperties()` method. These properties have three sources:
+1. Configuration specified specifically for factory components
+2. Properties retrieved from the Configuration Admin Service
+3. Properties set in the component descriptor
+* Configuration properties provided to `ManagedService` and `ManagedServiceFactory` instances by the Configuration Admin Service.
 
 For the discussion to follow we differentiate between initial configuration provided by Framework and system properties and managed configuration provided by the Configuration Admin Service.
 
@@ -41,8 +38,8 @@ The Sling launcher is responsible to provide the Framework properties to the OSG
 1. Handle OSGi boot delegation support (see below).
 1. Resolve property references of the form `${propName`}
 1. For each property value starting with `ontext:/` do the following, assuming the value to be an URL with scheme `context:`:
-    * Copy the application resource to `${sling.home`} preserving the URL path unless such a file already exists.
-    * Replace the property value with the path to the newly created file. The path has the form `${sling.home}/relpath`.
+* Copy the application resource to `${sling.home`} preserving the URL path unless such a file already exists.
+* Replace the property value with the path to the newly created file. The path has the form `${sling.home}/relpath`.
 1. Store the properties as `${sling.home}/sling.properties` to be re-used on next startup
 1. Setup Bundle auto installation for the Felix Framework
 
@@ -101,7 +98,7 @@ The names of the files are resolved as follows:
 The packaged `sling.properties` file contains the following properties file inclusion setting:
 
 
-    sling.include.jre = jre-${java.specification.version}.properties
+sling.include.jre = jre-${java.specification.version}.properties
 
 
 This is used to include the JRE package list to be made visible inside the OSGi framework.
@@ -153,14 +150,14 @@ As listed in the above section on OSGi Boot Delegation Support, the `org.osgi.fr
 
 The following system property names are reserved:
 
-   * Names starting with `org.osgi.` are reserved for OSGi defined Framework properties
-   * Names starting with `org.apache.felix.` are reserved for the Felix Framework
-   * Names starting with `sling.` and `org.apache.sling.` are reserved for Sling
+* Names starting with `org.osgi.` are reserved for OSGi defined Framework properties
+* Names starting with `org.apache.felix.` are reserved for the Felix Framework
+* Names starting with `sling.` and `org.apache.sling.` are reserved for Sling
 
 To prevent property name collisions, I suggest the following convention:
 
-   * Use fully qualified property names for initial configuration through Framework properties
-   * Use unqualified property names for configuration through the Configuration Admin Service
+* Use fully qualified property names for initial configuration through Framework properties
+* Use unqualified property names for configuration through the Configuration Admin Service
 
 
 ## Well Known Properties

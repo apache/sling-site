@@ -1,10 +1,7 @@
-title=TODO title for content-loading-jcr-contentloader.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Content Loading and Nodetype Support (jcr.contentloader)		
+type=page
 status=published
 ~~~~~~
-Title: Content Loading and Nodetype Support (jcr.contentloader)
 
 Apache Sling provides support for initial content loading into a repository and for registering node types. The `sling-jcr-contentloader` bundle provides loading of content from a bundle into the repository and the `sling-jcr-base` bundle provides node type registration.
 
@@ -18,7 +15,7 @@ Adding this content preserves the paths of the entries as shown in this table, w
 |---|---|
 | `SLING-INF/content/home` | `/home` |
 | `SLING-INF/content/content/playground/en/home` | `/content/playground/en/home` |
-| `SLING-INF/someothercontent/playground/en/home` | not installed at all, because not below the `Sling-Initial-Content` header entry | 
+| `SLING-INF/someothercontent/playground/en/home` | not installed at all, because not below the `Sling-Initial-Content` header entry |
 
 Bundle entries are installed as follows:
 
@@ -73,147 +70,147 @@ The MIME type is derived from the file name extension by first trying to resolve
 
 Nodes, Properties and in fact complete subtrees may be described in XML files using either the JCR SystemView format, or the format described below. In either case, the file must have the .xml extension.
 
-    <node>
-        <!--
-           optional on top level, defaults to XML file name without .xml extension
-           required for child nodes
-        -->
-        <name>xyz</name>
-    
-        <!--
-            optional, defaults to nt:unstructured
-        -->
-        <primaryNodeType>nt:file</primaryNodeType>
-    
-        <!--
-            optional mixin node type
-            may be repeated for multiple mixin node types
-        -->
-        <mixinNodeType>mix:versionable</mixinNodeType>
-        <mixinNodeType>mix:lockable</mixinNodeType>
-    
-        <!--
-            Optional properties for the node. Each <property> element defines
-            a single property of the node. The element may be repeated.
-        -->
-        <property>
-            <!--
-                required property name
-            -->
-            <name>prop</name>
-    
-            <!--
-                value of the property.
-                For multi-value properties, the values are defined by multiple
-                <value> elements nested inside a <values> element instead of a
-                single <value> element
-            -->
-            <value>property value as string</value>
-    
-            <!--
-                Optional type of the property value, defaults to String.
-                This must be one of the property type strings defined in the
-                JCR PropertyType interface.
-            -->
-            <type>String</type>
-        </property>
-    
-        <!--
-            Additional child nodes. May be further nested.
-        -->
-        <node>
-        ....
-        </node>
-    </node>
+<node>
+<!--
+optional on top level, defaults to XML file name without .xml extension
+required for child nodes
+-->
+<name>xyz</name>
+
+<!--
+optional, defaults to nt:unstructured
+-->
+<primaryNodeType>nt:file</primaryNodeType>
+
+<!--
+optional mixin node type
+may be repeated for multiple mixin node types
+-->
+<mixinNodeType>mix:versionable</mixinNodeType>
+<mixinNodeType>mix:lockable</mixinNodeType>
+
+<!--
+Optional properties for the node. Each <property> element defines
+a single property of the node. The element may be repeated.
+-->
+<property>
+<!--
+required property name
+-->
+<name>prop</name>
+
+<!--
+value of the property.
+For multi-value properties, the values are defined by multiple
+<value> elements nested inside a <values> element instead of a
+single <value> element
+-->
+<value>property value as string</value>
+
+<!--
+Optional type of the property value, defaults to String.
+This must be one of the property type strings defined in the
+JCR PropertyType interface.
+-->
+<type>String</type>
+</property>
+
+<!--
+Additional child nodes. May be further nested.
+-->
+<node>
+....
+</node>
+</node>
 
 
 #### Using a custom XML format
 
-By writing an XSLT stylesheet file, you can use whatever XML format you prefer. The XML file references an XSLT stylesheet by using the xml-stylesheet processing instruction: 
+By writing an XSLT stylesheet file, you can use whatever XML format you prefer. The XML file references an XSLT stylesheet by using the xml-stylesheet processing instruction:
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <?xml-stylesheet href="my-transform.xsl" type="text/xsl"?> <!-- The path to my-transform.xsl is relative to this file -->
-    
-    <your_custom_root_node>
-       <your_custom_element>
-       ...
-       </your_custom_element>
-    ...
-    </your_custom_root_node>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="my-transform.xsl" type="text/xsl"?> <!-- The path to my-transform.xsl is relative to this file -->
+
+<your_custom_root_node>
+<your_custom_element>
+...
+</your_custom_element>
+...
+</your_custom_root_node>
 
 
 The my-transform.xsl file is then responsible for translating your format into one of the supported XML formats:
 
 
-    
-    <xsl:stylesheet version="1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" 
-      xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-      xmlns:rep="internal" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    
-      <xsl:template match="your_custom_element">
-        <node>
-          ...
-        </node>
-      </xsl:template>
-      ...
-    </xsl:stylesheet>
-    
+
+<xsl:stylesheet version="1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+xmlns:rep="internal" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="your_custom_element">
+<node>
+...
+</node>
+</xsl:template>
+...
+</xsl:stylesheet>
+
 
 
 ### JSON Descriptor Files
 
 Nodes, Properties and in fact complete subtrees may be described in JSON files using the following skeleton structure (see [http://www.json.org](http://www.json.org) or information on the syntax of JSON) :
 
-    {
-        // child node name
-        "nodename" : {
+{
+// child node name
+"nodename" : {
 
-            // optional primary node type, default "nt:unstructured"
-            "jcr:primaryType": "sling:ScriptedComponent",
+// optional primary node type, default "nt:unstructured"
+"jcr:primaryType": "sling:ScriptedComponent",
 
-            // optional mixin node types as array
-            "jcr:mixinTypes": [ ],
-    
-            // additional properties as name value pairs.
-            // Multi-value properties are defined as JSON array.
-            // Property type is derived from the value
+// optional mixin node types as array
+"jcr:mixinTypes": [ ],
 
-            // String value (default)
-            "sling:contentClass": "com.day.sling.jcr.test.Test",
+// additional properties as name value pairs.
+// Multi-value properties are defined as JSON array.
+// Property type is derived from the value
 
-            // Multi-value String
-            "sampleMulti": [ "v1", "v2" ],
+// String value (default)
+"sling:contentClass": "com.day.sling.jcr.test.Test",
 
-            // Long value, single and multi
-            "sampleStruct": 1,
-            "sampleStructMulti": [ 1, 2, 3 ],
+// Multi-value String
+"sampleMulti": [ "v1", "v2" ],
 
-            // Date follows pattern yyyy-mm-ddTHH:MM:SS.sss±HH:MM
-            "sampleDate": "2014-11-27T13:26:00.000+01:00",
+// Long value, single and multi
+"sampleStruct": 1,
+"sampleStructMulti": [ 1, 2, 3 ],
 
-            // JCR Node Reference with name prefix (removed to derive node name)
-            "jcr:reference:sampleRef": "386b0f48-49c3-4c58-8735-ceee6bfc1933",
+// Date follows pattern yyyy-mm-ddTHH:MM:SS.sss±HH:MM
+"sampleDate": "2014-11-27T13:26:00.000+01:00",
 
-            // JCR Path with name prefix (removed to derive node name)
-            "jcr:path:samplePath": "/content/data",
+// JCR Node Reference with name prefix (removed to derive node name)
+"jcr:reference:sampleRef": "386b0f48-49c3-4c58-8735-ceee6bfc1933",
 
-            // JCR Name with name prefix (removed to derive node name)
-            "jcr:name:sampleName": "data",
+// JCR Path with name prefix (removed to derive node name)
+"jcr:path:samplePath": "/content/data",
 
-            // URI with name prefix (removed to derive node name)
-            "jcr:uri:sampleUri": "http://sling.apache.org/",
+// JCR Name with name prefix (removed to derive node name)
+"jcr:name:sampleName": "data",
 
-            // Child nodes are simple JSON objects
-            "sling:scripts": {
-                "jcr:primaryType": "sling:ScriptList",
-                "sling:Script": {
-                        "jcr:primaryType": "sling:Script",
-                        "sling:name": "/test/content/jsp/start.jsp",
-                        "sling:type": "jsp",
-                        "sling:glob": "*"
-                }
-            }
-    }
+// URI with name prefix (removed to derive node name)
+"jcr:uri:sampleUri": "http://sling.apache.org/",
+
+// Child nodes are simple JSON objects
+"sling:scripts": {
+"jcr:primaryType": "sling:ScriptList",
+"sling:Script": {
+"jcr:primaryType": "sling:Script",
+"sling:name": "/test/content/jsp/start.jsp",
+"sling:type": "jsp",
+"sling:glob": "*"
+}
+}
+}
 
 
 ### Extractors
@@ -222,7 +219,7 @@ By default, the `sling-jcr-contentloader` bundle tries to extract certain file t
 
 ### Workspace Targetting
 
-By default, initial content will be loaded into the default workspace. To override this, add a `Sling-Initial-Content-Workspace` bundle manifest header to specify the workspace. Note that *all* content from a bundle will be loaded into the same workspace. 
+By default, initial content will be loaded into the default workspace. To override this, add a `Sling-Initial-Content-Workspace` bundle manifest header to specify the workspace. Note that *all* content from a bundle will be loaded into the same workspace.
 
 ### Example: Load i18n JSON files
 
@@ -234,9 +231,9 @@ This is an example how such an i18n file can be loaded from an OSGi bundle with 
 
 Within your bundle header you have to define a separate path for the i18n files where you have to explicitly disable the JSON provider:
 
-    <Sling-Initial-Content>
-        SLING-INF/i18n;overwrite:=true;ignoreImportProviders:=json;path:=/apps/myapp/i18n
-    </Sling-Initial-Content>
+<Sling-Initial-Content>
+SLING-INF/i18n;overwrite:=true;ignoreImportProviders:=json;path:=/apps/myapp/i18n
+</Sling-Initial-Content>
 
 The folder `SLING-INF/i18n` from your bundles contains a pair of files for each language, e.g.:
 
@@ -245,28 +242,28 @@ The folder `SLING-INF/i18n` from your bundles contains a pair of files for each 
 
 Example for the content descriptor:
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <node>
-        <name>en.json</name>
-        <mixinNodeType>mix:language</mixinNodeType>
-        <property>
-            <name>jcr:language</name>
-            <value>en</value>
-            <type>String</type>
-        </property>
-    </node>
-    
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<name>en.json</name>
+<mixinNodeType>mix:language</mixinNodeType>
+<property>
+<name>jcr:language</name>
+<value>en</value>
+<type>String</type>
+</property>
+</node>
+
 
 ## Declared Node Type Registration
 
 The `sling-jcr-base` bundle provides low-level repository operations which are at the heart of the functionality of Sling:
-* *Node Type Definitions* \- The class `org.apache.sling.content.jcr.base.NodeTypeLoader` provides methods to register custom node types with a repository given a repository session and a node type definition file in CND format. This class is also used by this bundle to register node types on behalf of other bundles.
+* *Node Type Definitions* - The class `org.apache.sling.content.jcr.base.NodeTypeLoader` provides methods to register custom node types with a repository given a repository session and a node type definition file in CND format. This class is also used by this bundle to register node types on behalf of other bundles.
 
 Bundles may list node type definition files in CND format in the `Sling-Nodetypes` bundle header. This header is a comma-separated list of resources in the respective bundle. Each resource is taken and fed to the `NodeTypeLoader` to define the node types.
 
 After a bundle has entered the *resolved* state, the node types listed in the `Sling-Nodetypes` bundle header are registered with the repository.
 
-Node types installed by this mechanism will never be removed again by the `sling-jcr-base` bundle. 
+Node types installed by this mechanism will never be removed again by the `sling-jcr-base` bundle.
 
 Starting with revision 911430, re-registration of existing node types is enabled by default. To disable this, add `;rereigster:=false` to the resource names for which re-registration should be disabled.
 

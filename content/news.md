@@ -1,10 +1,7 @@
-title=TODO title for news.md 
-date=1900-01-01
-type=post
-tags=blog
+title=News		
+type=page
 status=published
 ~~~~~~
-Title: News
 
 * New Releases: [Apache Sling 9](/news/sling-launchpad-9-released.html), Apache Sling Launchpad Testing 9, Apache Sling Launchpad Testing WAR version 9, Apache Sling Launchpad Testing Fragment Bundle 2.0.12, Apache Sling Launchpad Testing Services 2.0.12, Apache Sling Launchpad Test Bundles 0.0.2, Apache Sling Launchpad Testing Services WAR 2.0.12, Apache Sling Integration Tests 1.0.4 ( June 12S , 2017 )
 * New Releases: Apache Sling JUnit Core 1.0.26, Testing Clients 1.1.0, JUnit Remote Test Runners 1.0.12, Tooling Support Install 1.0.4, and Tooling Support Source 1.0.4 (June 6th, 2017)
@@ -490,4 +487,4 @@ Apache Sling Scripting Sightly JS Use Provider 1.0.6, Apache Sling Resource Merg
 * Apache Sling has graduated into a top level project! (June 17, 2009)
 
 
-  [1]: http://s.apache.org/CVE-2012-2138
+[1]: http://s.apache.org/CVE-2012-2138

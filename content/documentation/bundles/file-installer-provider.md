@@ -1,18 +1,15 @@
-title=TODO title for file-installer-provider.md 
-date=1900-01-01
-type=post
-tags=blog
+title=File Installer Provider		
+type=page
 status=published
 ~~~~~~
-Title: File Installer Provider
 
 The file installer provider scans configured directories and provides the found artifacts (files) to the [OSGI installer](/documentation/bundles/osgi-installer.html). The functionality is very similar to Apache Felix FileInstall, with the major difference that this service implements just the task of scanning a file directory. All the management logic is implemented in the OSGi installer and support of various artifact types like bundles, configurations or custom formats is implemented by plugins for the OSGi installer.
 
- 	 
+
 ## Setup
- 	 
+
 The file installer can be configured with these framework (system) properties:
- 	 
+
 |Property|Default|Description|
 |--|--|--|
 |`sling.fileinstall.dir`| |The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts|
@@ -29,14 +26,14 @@ Start levels are supported as well by creating a directory with the name of the 
 ## Configurations
 
 Configurations are handled by the [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html). The different formats are described there.
- 	 
+
 ## Custom Artifacts
 
 Custom artifacts are handled by the OSGi installer depending on the installed plugins. Have a look at the OSGi installer and its plugins for more information.
 
 ## Runmode Support
 
-The file installer supports run modes for installing artifacts (added with [SLING-4478](https://issues.apache.org/jira/browse/SLING-4478)). Within the scanned directory, a folder prefixed with "install." and followed by one or more run modes (separated by ".") will only be considered if all the respective run modes are active. For example artifacts below a folder named `install.a1.dev` are only taken into account if the run modes `a1` and `dev` are both active. 
+The file installer supports run modes for installing artifacts (added with [SLING-4478](https://issues.apache.org/jira/browse/SLING-4478)). Within the scanned directory, a folder prefixed with "install." and followed by one or more run modes (separated by ".") will only be considered if all the respective run modes are active. For example artifacts below a folder named `install.a1.dev` are only taken into account if the run modes `a1` and `dev` are both active.
 
 You can even combine start level and run mode support. Just pay attention that the run mode foldername must be set on a direct child folder of `sling.fileinstall.dir` while the start level must be set directly on the parent folder of the artifact you want to install. E.g. `<sling.fileinstall.dir>/install.a1.dev/3/mybundle.jar` will only be considered if both run modes `a1` and `dev` are set. If this is the case then the according artifact will be installed in start level 3.
 

@@ -1,10 +1,7 @@
-title=TODO title for osgi-installer.md 
-date=1900-01-01
-type=post
-tags=blog
+title=OSGi Installer		
+type=page
 status=published
 ~~~~~~
-Title: OSGi Installer
 
 # Overview
 
@@ -21,7 +18,7 @@ As the OSGi installer itself is not performing the actual install, update or rem
 It's possible to add own providers, transformers and installer factories to support custom scenarios.
 
 ## API
-The installer API is defined by the `org.apache.sling.installer.api` package 
+The installer API is defined by the `org.apache.sling.installer.api` package
 of the [org.apache.sling.installer.core](http://svn.apache.org/repos/asf/sling/trunk/installer/core/) module. The main
 interface is the `OsgiInstaller` with which installable resources can be registered.
 

@@ -1,14 +1,11 @@
-title=TODO title for servlets.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Servlets and Scripts		
+type=page
 status=published
 ~~~~~~
-Title: Servlets and Scripts
 
 [TOC]
 
-See also [URL to Script Resolution](/documentation/the-sling-engine/url-to-script-resolution.html) which explains how Sling maps URLs 
+See also [URL to Script Resolution](/documentation/the-sling-engine/url-to-script-resolution.html) which explains how Sling maps URLs
 to a script or and servlet.
 
 ## Servlet Registration
@@ -28,7 +25,7 @@ A `SlingServletResolver` listens for `Servlet` services and - given the correct 
 
 For a Servlet registered as an OSGi service to be used by the Sling Servlet Resolver, either one or both of the `sling.servlet.paths` or the `sling.servlet.resourceTypes` service reference properties must be set. If neither is set, the Servlet service is ignored.
 
-Each path to be used for registration - either from the `sling.servlet.paths` property or constructed from the other `sling.servlet.\*` properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the `sling.servlet.prefix` service registration property. If this property is not set, the first entry in the `ResourceResolver` search path for the `ResourceResolver.getResource(String)` method is used as the prefix. If this entry cannot be derived, a simpe slash - `/` \- is used as the prefix.
+Each path to be used for registration - either from the `sling.servlet.paths` property or constructed from the other `sling.servlet.*` properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the `sling.servlet.prefix` service registration property. If this property is not set, the first entry in the `ResourceResolver` search path for the `ResourceResolver.getResource(String)` method is used as the prefix. If this entry cannot be derived, a simpe slash - `/` - is used as the prefix.
 
 If `sling.servlet.methods` is not specified, the servlet is only registered for handling GET and HEAD requests. Make sure to list all methods you want to be handled by this servlet.
 
@@ -41,54 +38,54 @@ Binding servlets by paths has several disadvantages when compared to binding by 
 * if a path-bound servlet is not active, e.g. if the bundle is missing or not started, a POST might result in unexpected results. usually creating a node at /bin/xyz which subsequently overlays the servlets path binding
 * the mapping is not transparent to a developer looking just at the repository
 
-Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths. 
+Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths.
 
 ### Registering a Servlet using Java Annotations
 
-If you are working with the default Apache Sling development stack you can either use 
+If you are working with the default Apache Sling development stack you can either use
 
-* [OSGi DS annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) (introduced with DS 1.2/OSGi 5, properly supported since [bnd 3.0](https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0), being used in [maven-bundle-plugin 3.0.0](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html)) or 
+* [OSGi DS annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) (introduced with DS 1.2/OSGi 5, properly supported since [bnd 3.0](https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0), being used in [maven-bundle-plugin 3.0.0](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html)) or
 * Generic Felix SCR or Sling-specific `@SlingServlet` annotations from [Apache Felix Maven SCR Plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html) to register your Sling servlets:
 
 The following examples show example code how you can register Servlets with Sling
 
 1. OSGi DS annotations (recommended)
 
-        :::java
-        @Component(
-        service = { Servlet.class },
-        property = { 
-            SLING_SERVLET_RESOURCE_TYPES + "=/apps/my/type"
-            SLING_SERVLET_METHODS + "=GET",
-            SLING_SERVLET_EXTENSIONS + "=html",
-            SLING_SERVLET_SELECTORS + "=hello",
-          }
-        )
-        public class MyServlet extends SlingSafeMethodsServlet {
+:::java
+@Component(
+service = { Servlet.class },
+property = {
+SLING_SERVLET_RESOURCE_TYPES + "=/apps/my/type"
+SLING_SERVLET_METHODS + "=GET",
+SLING_SERVLET_EXTENSIONS + "=html",
+SLING_SERVLET_SELECTORS + "=hello",
+}
+)
+public class MyServlet extends SlingSafeMethodsServlet {
 
-            @Override
-            protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-                ...
-            }
-        }
+@Override
+protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+...
+}
+}
 
-    Custom OSGi DS annotations (e.g. for Sling servlets) are not yet supported by the OSGi spec (and therefore by bnd), but this is supposed to be fixed with DS 1.4 (OSGi 7), see also [FELIX-5396](https://issues.apache.org/jira/browse/FELIX-5396).
+Custom OSGi DS annotations (e.g. for Sling servlets) are not yet supported by the OSGi spec (and therefore by bnd), but this is supposed to be fixed with DS 1.4 (OSGi 7), see also [FELIX-5396](https://issues.apache.org/jira/browse/FELIX-5396).
 
 2. The `@SlingServlet` annotation (evaluated by maven-scr-plugin)
 
-        :::java
-        @SlingServlet(
-            resourceTypes = "/apps/my/type",
-            selectors = "hello",
-            extensions = "html",
-            methods = "GET")
-        public class MyServlet extends SlingSafeMethodsServlet {
+:::java
+@SlingServlet(
+resourceTypes = "/apps/my/type",
+selectors = "hello",
+extensions = "html",
+methods = "GET")
+public class MyServlet extends SlingSafeMethodsServlet {
 
-            @Override
-            protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-                ...
-            }
-        }
+@Override
+protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+...
+}
+}
 
 ### Automated tests
 
@@ -101,9 +98,9 @@ Such tests run as part of our continuous integration process, to demonstrate and
 
 ### Example: Registration by Path
 
-    sling.servlet.paths = [ "/libs/sling/sample/html", "/libs/sling/sample/txt" ]
-    sling.servlet.selectors = [ "img" ]
-    sling.servlet.extensions = [ "html", "txt", "json" ]
+sling.servlet.paths = [ "/libs/sling/sample/html", "/libs/sling/sample/txt" ]
+sling.servlet.selectors = [ "img" ]
+sling.servlet.extensions = [ "html", "txt", "json" ]
 
 
 A Servlet service registered with these properties is registered under the following paths:
@@ -117,9 +114,9 @@ The registration properties `sling.servlet.selectors` and `sling.servlet.extensi
 ### Example: Registration by Resource Type etc.
 
 
-    sling.servlet.resourceTypes = [ "sling/unused" ]
-    sling.servlet.selectors = [ "img", "tab" ]
-    sling.servlet.extensions = [ "html", "txt", "json" ]
+sling.servlet.resourceTypes = [ "sling/unused" ]
+sling.servlet.selectors = [ "img", "tab" ]
+sling.servlet.extensions = [ "html", "txt", "json" ]
 
 A Servlet service registered with these properties is registered for the following resource types:
 

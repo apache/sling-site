@@ -1,10 +1,7 @@
-title=TODO title for how-to-manage-events-in-sling.md 
-date=1900-01-01
-type=post
-tags=blog
+title=How to Manage Job in Sling		
+type=page
 status=published
 ~~~~~~
-Title: How to Manage Job in Sling
 
 Apache Sling supports the execution of jobs with the guarantee of processing the job at least once. This can be seen as an extensions of the OSGi event admin, although jobs are not started or processed by OSGi events leveraging the OSGi event admin.
 
@@ -36,15 +33,15 @@ The second one, called **DropBoxEventHandler**:
 * Moves the file according to its extension.
 
 ## Listening to OSGI Events
-To listen to OSGi events in Sling you just need to register an **org.osgi.service.event.EventHandler** service with 
+To listen to OSGi events in Sling you just need to register an **org.osgi.service.event.EventHandler** service with
 an **event.topics** property that describes which event topics the handler is interested in.
 
-To listen to a Sling **resource added** events, for example, you'll set the *event.topics* property to 
+To listen to a Sling **resource added** events, for example, you'll set the *event.topics* property to
 **org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED** in the class annotations:
 
-     :::java
-     @Property(name=org.osgi.service.event.EventConstants.EVENT_TOPIC,
-        value=org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED)
+:::java
+@Property(name=org.osgi.service.event.EventConstants.EVENT_TOPIC,
+value=org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED)
 
 
 The javadocs of the TOPIC_ constants in the [org.apache.sling.api.SlingConstants](/apidocs/sling6/org/apache/sling/api/SlingConstants.html)
@@ -54,36 +51,36 @@ class lists and explains the available event topics available in Sling.
 
 To start a job, the *JobManager* service can be used. It needs a job topic and a payload. In our case we define our dropbox job topic and give the resource path as the payload:
 
-    :::java
-        final String resourcePath = ...; // path to the resource to handle
-	    final Map<String, Object> payload = new HashMap<String, Object>();
-        payload.put("resourcePath", resourcePath);
-        // start job
-        this.jobManager.addJob(JOB_TOPIC, payload);
+:::java
+final String resourcePath = ...; // path to the resource to handle
+final Map<String, Object> payload = new HashMap<String, Object>();
+payload.put("resourcePath", resourcePath);
+// start job
+this.jobManager.addJob(JOB_TOPIC, payload);
 
 To receive the resource event, the service needs to implement the **org.osgi.service.event.EventHandler** interface and register it as an EventHandler service:
 
-    :::java
-    @Component(immediate=true) // immediate should only be used in rare cases (see below)
-    @Service(value=EventHandler.class)
-    public class DropBoxService implements EventHandler {
-        ...
-    }
+:::java
+@Component(immediate=true) // immediate should only be used in rare cases (see below)
+@Service(value=EventHandler.class)
+public class DropBoxService implements EventHandler {
+...
+}
 
 Usually a service should be lazy and therefore not declare itself to be immediate (in the Component annotation). However as this service is an event handler and might receive a lot of events even concurrently, it is advised to set the immediate flag to true on the component. Otherwise our event handler would be created and destroyed with every event coming in.
 
 To start the job we need a reference to the JobManager:
 
-    :::java
-    @Reference
-    private JobManager jobManager;
+:::java
+@Reference
+private JobManager jobManager;
 
-	
+
 The job topic for dropbox job events needs to be defined:
 
-    :::java
-    /** The job topic for dropbox job events. */
-    public static final String JOB_TOPIC = "com/sling/eventing/dropbox/job";
+:::java
+/** The job topic for dropbox job events. */
+public static final String JOB_TOPIC = "com/sling/eventing/dropbox/job";
 
 
 The **org.osgi.service.event.EventHandler#handleEvent(Event event)** method needs to be implemented:
@@ -92,28 +89,28 @@ Its logic is as follows:
 
 * The OSGI event is analyzed.
 * If the event is a file that has been added to */tmp/dropbox*:
-    * An job is created with 1 property:
-        * A property for the file path.
-    * The job is started 
+* An job is created with 1 property:
+* A property for the file path.
+* The job is started
 
 For example:
 
-    :::java
-    public void handleEvent(final Event event) {
-        // get the resource event information
-        final String propPath = (String) event.getProperty(SlingConstants.PROPERTY_PATH);
-        final String propResType = (String) event.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE);
+:::java
+public void handleEvent(final Event event) {
+// get the resource event information
+final String propPath = (String) event.getProperty(SlingConstants.PROPERTY_PATH);
+final String propResType = (String) event.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE);
 
-        // a job is started if a file is added to /tmp/dropbox
-        if ( propPath.startsWith("/tmp/dropbox") && "nt:file".equals(propResType) ) {
-            // create payload
-            final Map<String, Object> payload = new HashMap<String, Object>();
-            payload.put("resourcePath", propPath);
-            // start job
-            this.jobManager.addJob(JOB_TOPIC, payload);
-            logger.info("the dropbox job has been started for: {}", propPath);
-        }
-	}
+// a job is started if a file is added to /tmp/dropbox
+if ( propPath.startsWith("/tmp/dropbox") && "nt:file".equals(propResType) ) {
+// create payload
+final Map<String, Object> payload = new HashMap<String, Object>();
+payload.put("resourcePath", propPath);
+// start job
+this.jobManager.addJob(JOB_TOPIC, payload);
+logger.info("the dropbox job has been started for: {}", propPath);
+}
+}
 
 The complete code for the **DropBoxService** service is available [here](DropBoxService.java).
 
@@ -123,15 +120,15 @@ Now that you have implemented a service that starts a job when a file is uploade
 
 To process to the job that have been defined before the property **job.topics** needs to be set to **DropBoxService.JOB_TOPIC** in the class annotations:
 
-    :::java
-    @Property(name="job.topics",
-        value=DropBoxService.JOB_TOPIC)
+:::java
+@Property(name="job.topics",
+value=DropBoxService.JOB_TOPIC)
 
 In addition the service needs to implement the **org.apache.sling.event.jobs.consumer.JobConsumer** interface:
 
 
-    :::java
-    public class DropBoxEventHandler implements JobConsumer {
+:::java
+public class DropBoxEventHandler implements JobConsumer {
 
 
 Some class fields need to be defined:
@@ -142,22 +139,22 @@ Some class fields need to be defined:
 
 For example:
 
-    :::java
-    /** Default log. */
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+:::java
+/** Default log. */
+protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Reference
-    private ResourceResolverFactory resolverFactory;
-    
-    private final static String IMAGES_PATH = "/dropbox/images/";
-    private final static String MUSIC_PATH = "/dropbox/music/";
-    private final static String MOVIES_PATH = "/dropbox/movies/";
-    private final static String OTHER_PATH = "/dropbox/other/";
+@Reference
+private ResourceResolverFactory resolverFactory;
 
-    
+private final static String IMAGES_PATH = "/dropbox/images/";
+private final static String MUSIC_PATH = "/dropbox/music/";
+private final static String MOVIES_PATH = "/dropbox/movies/";
+private final static String OTHER_PATH = "/dropbox/other/";
+
+
 The **org.apache.sling.event.jobs.consumer.JobConsume#process(Job job)** method needs to be implemented:
 
-    
+
 Its logic is as follows:
 
 * The resource path is extracted from the job.
@@ -167,45 +164,45 @@ Its logic is as follows:
 
 or in Java Code:
 
-    :::java
-    public JobResult process(final Job job) {
-		ResourceResolver adminResolver = null;
-		try {
-            adminResolver = resolverFactory.getAdministrativeResourceResolver(null);
+:::java
+public JobResult process(final Job job) {
+ResourceResolver adminResolver = null;
+try {
+adminResolver = resolverFactory.getAdministrativeResourceResolver(null);
 
-            final String resourcePath = (String) job.getProperty("resourcePath");
-			final String resourceName = resourcePath.substring(resourcePath.lastIndexOf("/") + 1);
+final String resourcePath = (String) job.getProperty("resourcePath");
+final String resourceName = resourcePath.substring(resourcePath.lastIndexOf("/") + 1);
 
-			final Resource res = adminResolver.getResource(resourcePath);
-			if ( res.isResourceType("nt:file") ) {
-	        	final String mimeType = res.getResourceMetadata().getContentType();
-	        	String destDir;
-	        	if (mimeType.equals("image/png")) {
-	        		destDir = IMAGES_PATH;
-	        	}
-	        	else if (mimeType.equals("audio/mpeg")) {
-	        		destDir = MUSIC_PATH;
-	        	}
-	        	else if (mimeType.equals("video/x-msvideo")) {
-	        		destDir = MOVIES_PATH;
-	        	}
-	        	else {
-	        		destDir = OTHER_PATH;
-	        	}
-	        	final Session adminSession = adminResolver.adaptTo(Session.class);
-        		adminSession.move(resourcePath, destDir + resourceName);
-	        	adminSession.save();
-	        	logger.info("The file {} has been moved to {}", resourceName, destDir);
-	        }
-	        return JobResult.OK;
-		} catch (final Exception e) {
-			logger.error("Exception: " + e, e);
-			return JobResult.FAILED;
-        } finally {
-            if (adminResolver != null) {
-                adminResolver.close();
-            }
-        }
-	}
-        
+final Resource res = adminResolver.getResource(resourcePath);
+if ( res.isResourceType("nt:file") ) {
+final String mimeType = res.getResourceMetadata().getContentType();
+String destDir;
+if (mimeType.equals("image/png")) {
+destDir = IMAGES_PATH;
+}
+else if (mimeType.equals("audio/mpeg")) {
+destDir = MUSIC_PATH;
+}
+else if (mimeType.equals("video/x-msvideo")) {
+destDir = MOVIES_PATH;
+}
+else {
+destDir = OTHER_PATH;
+}
+final Session adminSession = adminResolver.adaptTo(Session.class);
+adminSession.move(resourcePath, destDir + resourceName);
+adminSession.save();
+logger.info("The file {} has been moved to {}", resourceName, destDir);
+}
+return JobResult.OK;
+} catch (final Exception e) {
+logger.error("Exception: " + e, e);
+return JobResult.FAILED;
+} finally {
+if (adminResolver != null) {
+adminResolver.close();
+}
+}
+}
+
 The complete code for the **DropBoxEventHandler** service is available [here](DropBoxEventHandler.java).

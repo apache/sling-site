@@ -1,13 +1,10 @@
-title=TODO title for discovery-api-and-impl.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Discovery API and its implementations		
+type=page
 status=published
 ~~~~~~
-Title: Discovery API and its implementations
 
 In many situations a particular Sling-based deployment consists of several Sling instances:
-typically a number of instances would form a `cluster` that share a common content repository - 
+typically a number of instances would form a `cluster` that share a common content repository -
 in other situations, or additionally, instances might be loosely coupled, each with their own repository.
 
 The `discovery-api` bundle introduces an abstraction for such scenarios called `topology`. It provides
@@ -49,7 +46,7 @@ is always part of a cluster (even if the cluster consists of only one instance).
 
 There are no further assumption made on the structure of a topology.
 
-If different clusters in the topology should represent different 'types of clusters' (eg a publish or an author cluster), 
+If different clusters in the topology should represent different 'types of clusters' (eg a publish or an author cluster),
 then that is not explicitly handled by the discovery API. Instead, applications can define properties on each instance
 that model such cluster types or other aspects.
 
@@ -63,13 +60,13 @@ deal with work that must be guaranteed to only execute on one (but any) instance
 
 Additionally each cluster (`ClusterView`) orders its instances in a stable list: each newly joined instances is added
 at the end of the list and retains its order in the list as long as it doesn't leave the cluster. This can be used
-to distribute "singleton" work amongst the cluster to more than just the leader. 
+to distribute "singleton" work amongst the cluster to more than just the leader.
 
 ## Topology Changes
 
-The `DiscoveryService` provides access to the currently valid `TopologyView`. Additionally, applications can 
+The `DiscoveryService` provides access to the currently valid `TopologyView`. Additionally, applications can
 register a `TopologyEventListener` and thus be informed about any changes in the topology. Whenever the discovery
-service detects that an instance is no longer responding or has newly joined, or a new leader has been elected, 
+service detects that an instance is no longer responding or has newly joined, or a new leader has been elected,
 it sends a `TOPOLOGY_CHANGING` event, starts
 settling the change within the topology (i.e. making sure everybody else in the topology agrees with the change) and finally
 sends a `TOPOLOGY_CHANGED` event with the new topology.
@@ -78,23 +75,23 @@ Additionally, when "only" properties have changed, a `PROPERTIES_CHANGED` event 
 
 Note that the detection of topology (or properties) changes will incur a delay which is implementation dependent.
 
-The following is an example of a listener. Note that the binding is done automatically by OSGi, as soon as a 
+The following is an example of a listener. Note that the binding is done automatically by OSGi, as soon as a
 `TopologyEventListener` is registered.
 
-	import org.apache.felix.scr.annotations.Component;
-	import org.apache.felix.scr.annotations.Service;
-	import org.apache.sling.discovery.TopologyEvent;
-	import org.apache.sling.discovery.TopologyEventListener;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
+import org.apache.sling.discovery.TopologyEvent;
+import org.apache.sling.discovery.TopologyEventListener;
 
-	@Component
-	@Service(value = { TopologyEventListener.class })
-	public class MyTopologyEventListener implements TopologyEventListener {
-	
-	    public void handleTopologyEvent(final TopologyEvent event) {
-	    	// your code here
-	    }
-	
-	}
+@Component
+@Service(value = { TopologyEventListener.class })
+public class MyTopologyEventListener implements TopologyEventListener {
+
+public void handleTopologyEvent(final TopologyEvent event) {
+// your code here
+}
+
+}
 
 
 ## Properties
@@ -111,26 +108,26 @@ meant to be used to announce configuration information for accessing proper mess
 
 The following is an example of a `PropertyProvider` that provides `sample.value1` and `sample.value2` properties:
 
-	import org.apache.felix.scr.annotations.Component;
-	import org.apache.felix.scr.annotations.Service;
-	import org.apache.sling.discovery.PropertyProvider;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
+import org.apache.sling.discovery.PropertyProvider;
 
-	@Component
-	@Service(value = { PropertyProvider.class })
-	@Property(name = PropertyProvider.PROPERTY_PROPERTIES, 
-	          value = {"sample.value1", "sample.value2" })
-	public class SamplePropertyProvider implements PropertyProvider {
-	
-		public String getProperty(final String name) {
-			if ("sample.value1".equals(name)) {
-				return "foo";
-			} else if ("sample.value2".equals(name)) {
-				return "bar";
-			} else {
-				return null;
-			}
-		}
-	}
+@Component
+@Service(value = { PropertyProvider.class })
+@Property(name = PropertyProvider.PROPERTY_PROPERTIES,
+value = {"sample.value1", "sample.value2" })
+public class SamplePropertyProvider implements PropertyProvider {
+
+public String getProperty(final String name) {
+if ("sample.value1".equals(name)) {
+return "foo";
+} else if ("sample.value2".equals(name)) {
+return "bar";
+} else {
+return null;
+}
+}
+}
 
 ## Deployment and configuration
 
@@ -140,10 +137,10 @@ might choose explicit configuration via a central service etc.
 
 ## discovery.impl: Resource-based, OOTB Implementation
 
-The `discovery.impl` bundle is a resource-based, out of the box implementation of the `discovery.api` using standard Sling. 
+The `discovery.impl` bundle is a resource-based, out of the box implementation of the `discovery.api` using standard Sling.
 
 The discovery within a cluster is done by writing heartbeat information into the (common) repository (there's no other form
-of communication within a cluster). The establishment of a 
+of communication within a cluster). The establishment of a
 clusterview is done by analyzing these heartbeats, initiating a voting within the cluster (such that each instance can agree
 that it sees the same number of instances) and by concluding the voting by promoting it as the new "established" view.
 
@@ -154,7 +151,7 @@ The discovery of instances and clusters outside the local cluster requires expli
 
 Administrative note: All the information about the topology is stored at the following location in the repository:
 
-	/var/discovery/impl
+/var/discovery/impl
 
 #### /var/discovery/impl/clusterInstances/&lt;slingId&gt;
 
@@ -200,7 +197,7 @@ the following properties:
 This area is used for voting. Each instance can initiate a voting when it realizes that the live instances - denominated
 by those instances that have a not-yet-timed-out heartbeat property - does not match with the `establishedView`.
 
-Once a voting gets a yes vote by all instances it is promoted (moved) under `establishedView` by the initiating instance. 
+Once a voting gets a yes vote by all instances it is promoted (moved) under `establishedView` by the initiating instance.
 Each establishedView was once a voting, thus the structure is the same as described above.
 
 #### /var/discovery/impl/previousView
@@ -220,7 +217,7 @@ This is done by setting a corresponding `lastHeartbeat` property to the current 
 
 To avoid having each instance make it's own, perhaps differing conclusions as to which instance/heartbeat is dead or not,
 there is an explicit, unanimous voting mechanism that agrees upon a list of alive instances. This list of alive
-instances is called cluster view.  
+instances is called cluster view.
 
 * as soon as any instance notices a change in the list of active instances, it is free to calculate a new
 such list and start a voting in the cluster - each voting carries a unique votingId
@@ -234,15 +231,15 @@ passed on in a TopologyEvent to all registered listeners.
 ### pseudo-network partitioning aka split-brain
 
 `discovery.impl` requires the, eventually consistent, underlying repository to propagate changes within reasonable time:
-in less than the configured heartbeat timeout. If heartbeats for some reason are not becoming visible by peers in 
-the cluster within that time, `discovery.impl` will consider that peer instance as dead. At which point it will 
+in less than the configured heartbeat timeout. If heartbeats for some reason are not becoming visible by peers in
+the cluster within that time, `discovery.impl` will consider that peer instance as dead. At which point it will
 first send a TOPOLOGY_CHANGING event to all listeners to make them aware that something is changing in the topology,
 and then start a new voting. Once the voting concludes a TOPOLOGY_CHANGED event will follow.
 
-Given the voting is happening through the repository as well, one could imagine a situation where the repository delays 
+Given the voting is happening through the repository as well, one could imagine a situation where the repository delays
 can cause a topology to be "pseudo partitioned" into two or more parts, each one agreeing on a set of instances in that
 sub-cluster (one requirement for such a scenario being that the delays must be asymmetric, ie changes from a subset
-of instances propagate slow, while the remaining changes propagate fast - ie. two different sets of delays in the cluster). 
+of instances propagate slow, while the remaining changes propagate fast - ie. two different sets of delays in the cluster).
 Such a situation would only last as long as the repository delays are large (larger than
 the heartbeat timeouts). Exact cases where the repository experiences large delays depend of course on the
 repository configuration and deployment details, known cases include for example long running queries, large set
@@ -271,7 +268,7 @@ such that the delays are well under control and do not exceed the configured hea
 
 From a discovery API's point of view a cluster consists of all instances that are connected to the same repository.
 The above described built-in mechanism of storing a lastHeartbeat property into the (shared) repository, of voting on changes
-and creating an explicit establishedView results in automatic discovery within a cluster. There is therefore 
+and creating an explicit establishedView results in automatic discovery within a cluster. There is therefore
 no further configuration needed for discovering instances in the same cluster.
 
 However, for discovering multiple clusters such an automatic discovery is not possible and the clusters need
@@ -279,11 +276,11 @@ to be explicitly configured using (cross-cluster) topology connectors:
 
 A topology connector is a periodically issued HTTP PUT that announces the part of the topology known to the
 sending instance to the receiving instance and vica-verca the receiving instance announces its part of the
-topology to the sender in the response of the very same HTTP PUT. This way whatever other clusters are connected 
+topology to the sender in the response of the very same HTTP PUT. This way whatever other clusters are connected
 to sender or receiver will be made known to each other. Such a 'topology announcement' will be valid either until
 the same sender sends the announcement again (which it does periodically) - or until it times out (configurable).
-A topology connector is by definition always between clusters, never within the same cluster. Topology connectors 
-can be structured in an arbitrary way (chain, star, tree, etc) with the only important point to note here that 
+A topology connector is by definition always between clusters, never within the same cluster. Topology connectors
+can be structured in an arbitrary way (chain, star, tree, etc) with the only important point to note here that
 since changes in the topology propagate through these topology connectors they have a certain delay (namely
 the configured heartbeatInterval per hop).
 
@@ -298,47 +295,47 @@ A Felix WebConsole plugin at [/system/console/topology][2] provides a (read-only
 
 The following properties can be configured (at [/system/console/configMgr/org.apache.sling.discovery.impl.Config][1]):
 
-  * heartbeatInterval: the time in seconds between two heartbeats (both cluster-internal and for HTTP-connectors). Default
-   value is 15 seconds.
-   
-  * heartbeatTimeout: the time in seconds after which an instance is considered dead if no heartbeat was sent since. Default
-   value is 20 seconds.
-   
-  * topologyConnectorUrls: a list of connector URLs to which this instance should connect to. The list can contain multiple
-   instances of the same cluster (for fallback configurations). If the list is empty, no connector will be created.
-   The default relative URL is /libs/sling/topology/connector. Note that this URL is accessible without authentication -
-   to avoid having to configure administrative username/passwords in all instances. Instead, a whitelist approach is used
-   (see next item).
-   
-  * topologyConnectorWhitelist: As mentioned above, the path /libs/sling/topology/connector does not require authentication.
-   To assure that only trusted instances can connect to the topology, its hostname or IP address must be in a whitelist.
-   By default this whitelist only contains localhost and 127.0.0.1.
-   
-  * minEventDelay: To reduce the number of events sent during changes, there is a delay (in seconds) before the event is sent.
-   If additional changes happen during this delay, the change will be combined in one event.
-   
-  * leaderElectionRepositoryDescriptor: this is an advanced parameter. It denotes a repository descriptor that is evaluated
-   and taken into account for leader Election: the corresponding value of the descriptor is sorted by first.
+* heartbeatInterval: the time in seconds between two heartbeats (both cluster-internal and for HTTP-connectors). Default
+value is 15 seconds.
 
-  * hmacEnabled: If this is true, and sharedKey is set to a value on all Sling instances within the same topology, then messages are
-  validates using a signature of the content of the message based on the shared key. The signature and the digest of the content 
-  appear as http headers. When hmac message validation is enabled, whitelisting is disabled. This use useful where the topology
-  messages are transported through multiple reverse proxy layers or the topology is dynamic. The Hmac algorithm in use is HmacSHA256.
-  The JVM is expected to have a provider implementing this algorithm (The Standard JDKs do).
+* heartbeatTimeout: the time in seconds after which an instance is considered dead if no heartbeat was sent since. Default
+value is 20 seconds.
 
-  * sharedKey: If hmacEnabled is true, this must be set to a secret value, shared amongst all Sling instances that are members of the
-   same topology.
+* topologyConnectorUrls: a list of connector URLs to which this instance should connect to. The list can contain multiple
+instances of the same cluster (for fallback configurations). If the list is empty, no connector will be created.
+The default relative URL is /libs/sling/topology/connector. Note that this URL is accessible without authentication -
+to avoid having to configure administrative username/passwords in all instances. Instead, a whitelist approach is used
+(see next item).
 
-  * enableEncryption: If hmacEnabled is true, and sharedKey is set, setting this to true will encrypt the body of the message using 128 Bit
-    AES encryption. The encryption key is derived from the sharedKey using a 9 byte random salt, giving 2^^72 potential salt values.
+* topologyConnectorWhitelist: As mentioned above, the path /libs/sling/topology/connector does not require authentication.
+To assure that only trusted instances can connect to the topology, its hostname or IP address must be in a whitelist.
+By default this whitelist only contains localhost and 127.0.0.1.
 
-  * hmacSharedKeyTTL: The key used for the signatures is derived from the shared key. Each derived key has a lifetime before the next key 
-    is generated. This parameter sets the lifetime of each key in ms. The default is 4h. Messages sent using old keys will remain valid for 
-    2x the TTL, after which time the message will be ignored.
+* minEventDelay: To reduce the number of events sent during changes, there is a delay (in seconds) before the event is sent.
+If additional changes happen during this delay, the change will be combined in one event.
+
+* leaderElectionRepositoryDescriptor: this is an advanced parameter. It denotes a repository descriptor that is evaluated
+and taken into account for leader Election: the corresponding value of the descriptor is sorted by first.
+
+* hmacEnabled: If this is true, and sharedKey is set to a value on all Sling instances within the same topology, then messages are
+validates using a signature of the content of the message based on the shared key. The signature and the digest of the content
+appear as http headers. When hmac message validation is enabled, whitelisting is disabled. This use useful where the topology
+messages are transported through multiple reverse proxy layers or the topology is dynamic. The Hmac algorithm in use is HmacSHA256.
+The JVM is expected to have a provider implementing this algorithm (The Standard JDKs do).
+
+* sharedKey: If hmacEnabled is true, this must be set to a secret value, shared amongst all Sling instances that are members of the
+same topology.
+
+* enableEncryption: If hmacEnabled is true, and sharedKey is set, setting this to true will encrypt the body of the message using 128 Bit
+AES encryption. The encryption key is derived from the sharedKey using a 9 byte random salt, giving 2^^72 potential salt values.
+
+* hmacSharedKeyTTL: The key used for the signatures is derived from the shared key. Each derived key has a lifetime before the next key
+is generated. This parameter sets the lifetime of each key in ms. The default is 4h. Messages sent using old keys will remain valid for
+2x the TTL, after which time the message will be ignored.
 
 
-  [1]: http://localhost:8888/system/console/configMgr/org.apache.sling.discovery.impl.Config
-  [2]: http://localhost:8888/system/console/topology
+[1]: http://localhost:8888/system/console/configMgr/org.apache.sling.discovery.impl.Config
+[2]: http://localhost:8888/system/console/topology
 
 
 ## discovery.oak: Oak-based, OOTB-implementation
@@ -371,7 +368,7 @@ the current state of the cluster. It contains the following:
 * `inactive`: a list of nodes that are inactive
 * `me`: the id (number) of the local instance (which is always part of the active nodes)
 * `id`: the id (unique, persistent) of the cluster (which thus survives node/cluster restarts)
-* `seq`: a sequence number that is incremented upon each change in this descriptor (to be able to identify a change even if 
+* `seq`: a sequence number that is incremented upon each change in this descriptor (to be able to identify a change even if
 the other values are unchanged) and shared amongst all instances in the cluster, ie all instances see the same sequence number.
 This number can thus be used by upper layers to identify this particular incarnation of clusterview.
 * `final`: when this flag is `false` it indicates that the sequence number has changed (as well as eg `active` and `inactive`),
@@ -383,7 +380,7 @@ should wait until `final==true`, at which point they know oak has finished proce
 
 The `oak.discoverylite.clusterview` descriptor is exposed as a JCR repository descriptor and can be accessed like so:
 
-	getRepository().getDescriptor("oak.discoverylite.clusterview")
+getRepository().getDescriptor("oak.discoverylite.clusterview")
 
 which will return the json-formatted clusterview as described above.
 
@@ -394,7 +391,7 @@ It is merely an internal information exposed by oak and not standardized nor gua
 
 discovery.oak is a implementation of the discovery API that now makes use of this new discovery-lite descriptor in oak.
 It basically delegates the detection of the instances in the local cluster to discovery-lite. To do so, it periodically
-reads this descriptor (which is designed to be read at a high-frequency without problems) and triggers `TopologyEvents` 
+reads this descriptor (which is designed to be read at a high-frequency without problems) and triggers `TopologyEvents`
 when this descriptor changes.
 
 The advantage of using discovery-lite (which uses oak leases) instead of writing heartbeats into the repository

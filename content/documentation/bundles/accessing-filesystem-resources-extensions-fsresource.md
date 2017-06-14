@@ -1,10 +1,7 @@
-title=TODO title for accessing-filesystem-resources-extensions-fsresource.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Accessing File System Resources (org.apache.sling.fsresource)		
+type=page
 status=published
 ~~~~~~
-Title: Accessing File System Resources (org.apache.sling.fsresource)
 [TOC]
 
 
@@ -24,8 +21,8 @@ Currently two major versions are maintained - choose the correct version dependi
 
 Files and directories are mapped into the resource tree as regular `Resource` instances whose resource type depends on the actual nature of the mapped file system resource:
 
-   * Regular files are assigned the `nt:file` resource type
-   * Directories are assigned the `nt:folder` resource type
+* Regular files are assigned the `nt:file` resource type
+* Directories are assigned the `nt:folder` resource type
 
 Content stored in JSON or FileVault XML files are mapped with the resource type stored in the files. If a resource type is missing `nt:unstructured` is used as fallback.
 
@@ -34,9 +31,9 @@ Content stored in JSON or FileVault XML files are mapped with the resource type 
 
 File system resources extend from Sling's `AbstractResource` class and thus are adaptable to any type for which an `AdapterFactory` is registered supporting file system resources. In addition File system Resources support the following adapters natively:
 
-   * `java.io.File` -- The Java file object providing access to the file system file
-   * `java.net.URL` -- A valid `file://` URL to the file. This URL is derived from the `java.io.File` object by calling the `File.toURI().toURL()` sequence.
-   * `java.io.InputStream` -- If the `java.io.File` can be read from (as per `File.canRead()` an `InputStream` to read from the file is returned.
+* `java.io.File` -- The Java file object providing access to the file system file
+* `java.net.URL` -- A valid `file://` URL to the file. This URL is derived from the `java.io.File` object by calling the `File.toURI().toURL()` sequence.
+* `java.io.InputStream` -- If the `java.io.File` can be read from (as per `File.canRead()` an `InputStream` to read from the file is returned.
 
 
 
@@ -81,15 +78,15 @@ This mode is best use together with the [Maven Sling Plugin][maven-sling-plugin]
 
 Usage - deploy OSGi bundle from current maven project and register the appropriate OSGi configuration mappings:
 
-    $ mvn -Dsling.mountByFS=true sling:install
+$ mvn -Dsling.mountByFS=true sling:install
 
 Only register the appropriate mappings:
 
-    $ mvn sling:fsmount
+$ mvn sling:fsmount
 
 Remove the mappings:
 
-    $ mvn sling:fsunmount
+$ mvn sling:fsunmount
 
 Notes:
 
@@ -106,11 +103,11 @@ This mode is best use together with the [Maven Sling Plugin][maven-sling-plugin]
 
 Usage - register the appropriate mappings:
 
-    $ mvn sling:fsmount
+$ mvn sling:fsmount
 
 Remove the mappings:
 
-    $ mvn sling:fsunmount
+$ mvn sling:fsunmount
 
 Notes:
 

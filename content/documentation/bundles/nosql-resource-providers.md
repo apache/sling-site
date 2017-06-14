@@ -1,10 +1,7 @@
-title=TODO title for nosql-resource-providers.md 
-date=1900-01-01
-type=post
-tags=blog
+title=NoSQL Resource Providers (org.apache.sling.nosql)		
+type=page
 status=published
 ~~~~~~
-Title: NoSQL Resource Providers (org.apache.sling.nosql)
 [TOC]
 
 
@@ -34,11 +31,11 @@ Tested with MongoDB Server 3.0.6 and MongoDB Java Driver 3.1.1.
 
 Configuration example:
 
-    org.apache.sling.nosql.mongodb.resourceprovider.MongoDBNoSqlResourceProviderFactory.factory.config-default
-        provider.roots=["/"]
-        connectionString="localhost:27017"
-        database="sling"
-        collection="resources"
+org.apache.sling.nosql.mongodb.resourceprovider.MongoDBNoSqlResourceProviderFactory.factory.config-default
+provider.roots=["/"]
+connectionString="localhost:27017"
+database="sling"
+collection="resources"
 
 See Apache Felix OSGi console for detailed documentation of the parameters. All resource data is stored in one Collection of one MongoDB database. Each resource is stored as a document with the path stored in an "_id" property.
 
@@ -55,14 +52,14 @@ Tested with Couchbase Server 4.0.0 and Couchbase Java SDK 2.2.4. Please note: Co
 
 Configuration example:
 
-    org.apache.sling.nosql.couchbase.resourceprovider.CouchbaseNoSqlResourceProviderFactory.factory.config-default
-        provider.roots=["/"]
+org.apache.sling.nosql.couchbase.resourceprovider.CouchbaseNoSqlResourceProviderFactory.factory.config-default
+provider.roots=["/"]
 
-    org.apache.sling.nosql.couchbase.client.CouchbaseClient.factory.config-default
-        clientId="sling-resourceprovider-couchbase"
-        couchbaseHosts="localhost:8091"
-        bucketName="sling"
-        enabled=B"true"
+org.apache.sling.nosql.couchbase.client.CouchbaseClient.factory.config-default
+clientId="sling-resourceprovider-couchbase"
+couchbaseHosts="localhost:8091"
+bucketName="sling"
+enabled=B"true"
 
 See Apache Felix OSGi console for detailed documentation of the parameters. All resource data is stored in one Couchbase bucket. Each resource is stored as a document with the path as key.
 

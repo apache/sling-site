@@ -1,19 +1,16 @@
-title=TODO title for org-apache-sling-junit-bundles.md 
-date=1900-01-01
-type=post
-tags=blog
+title=JUnit server-side testing support bundles		
+type=page
 status=published
 ~~~~~~
-Title: JUnit server-side testing support bundles
 
-This is an overview of the Sling bundles that provide support for server-side JUnit tests. 
+This is an overview of the Sling bundles that provide support for server-side JUnit tests.
 
-The Maven modules below [`testing/samples`](https://svn.apache.org/repos/asf/sling/trunk/testing/samples) 
-provide different examples including HTTP-based and server-side teleported tests in a 
+The Maven modules below [`testing/samples`](https://svn.apache.org/repos/asf/sling/trunk/testing/samples)
+provide different examples including HTTP-based and server-side teleported tests in a
 bundle module, running against a full Sling instance setup in the same Maven module.
 
 ## org.apache.sling.junit.core: server-side JUnit tests support
-This bundle provides a `JUnitServlet` that runs JUnit tests found in bundles. 
+This bundle provides a `JUnitServlet` that runs JUnit tests found in bundles.
 
 <div class="warning">
 Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway.
@@ -27,12 +24,12 @@ To make tests available to that servlet, the bundle that contains them must poin
 with a `Sling-Test-Regexp` bundle header that defines a regular expression that matches
 the test class names, like for example:
 
-    Sling-Test-Regexp=com.example.*ServerSideTest
+Sling-Test-Regexp=com.example.*ServerSideTest
 
 ### The TeleporterRule
 
 The `TeleporterRule` supplied by this bundle (since V1.0.12) makes it easy to write such tests, as it takes care of
-all the mechanics of 
+all the mechanics of
 
 1. creating the test bundle including all necessary classes for execution
 1. adding the `Sling-Test-Regexp` header to the bundles manifest
@@ -43,29 +40,29 @@ all the mechanics of
 Most of these steps are done on the client-side by the org.apache.sling.junit.teleporter module (see below).
 
 Using this rule the server-side tests can be mixed with other tests in the source code if that's convenient, it just
-requires the `junit.core` and `junit.teleporter` modules described on this page to create such tests. 
+requires the `junit.core` and `junit.teleporter` modules described on this page to create such tests.
 
 Here's a basic example of a server-side test that accesses OSGi services:
 
-    public class BasicTeleporterTest {
-    
-        @Rule
-        public final TeleporterRule teleporter = TeleporterRule.forClass(getClass(), "Launchpad");
-        
-        @Test
-        public void testConfigAdmin() throws IOException {
-            final String pid = "TEST_" + getClass().getName() + UUID.randomUUID();
-            
-            final ConfigurationAdmin ca = teleporter.getService(ConfigurationAdmin.class);
-            assertNotNull("Teleporter should provide a ConfigurationAdmin", ca);
-            
-            final Configuration cfg = ca.getConfiguration(pid);
-            assertNotNull("Expecting to get a Configuration", cfg);
-            assertEquals("Expecting the correct pid", pid, cfg.getPid());
-        }
-    }
-    
-That's all there is to it, the `TeleporterRule` takes care of the rest.     
+public class BasicTeleporterTest {
+
+@Rule
+public final TeleporterRule teleporter = TeleporterRule.forClass(getClass(), "Launchpad");
+
+@Test
+public void testConfigAdmin() throws IOException {
+final String pid = "TEST_" + getClass().getName() + UUID.randomUUID();
+
+final ConfigurationAdmin ca = teleporter.getService(ConfigurationAdmin.class);
+assertNotNull("Teleporter should provide a ConfigurationAdmin", ca);
+
+final Configuration cfg = ca.getConfiguration(pid);
+assertNotNull("Expecting to get a Configuration", cfg);
+assertEquals("Expecting the correct pid", pid, cfg.getPid());
+}
+}
+
+That's all there is to it, the `TeleporterRule` takes care of the rest.
 
 The test bundle being build and deployed through this rule usually happens quickly as the temporary bundle is
 very small. Both the client-side and server-side parts of the test can be debugged easily
@@ -74,29 +71,29 @@ with the appropriate IDE settings.
 The `Teleporter.getService` method takes an optional OSGi LDAP filter for service
 selection, like for example:
 
-    final StringTransformer t = teleporter.getService(StringTransformer.class, "(mode=uppercase)");
+final StringTransformer t = teleporter.getService(StringTransformer.class, "(mode=uppercase)");
 
 The method waits for the service to be available or until the timeout elapsed ([SLING-6031](https://issues.apache.org/jira/browse/SLING-6031)).
 
 And starting with version 1.0.4 of the `org.apache.sling.junit.teleporter` bundle, you can specify
 resources to embed in the test bundle, as in this example:
 
-    @Rule
-    public final TeleporterRule teleporter = 
-      TeleporterRule.forClass(getClass(), "Launchpad")
-      .withResources("/foo/", "/some/other/resource.txt");
+@Rule
+public final TeleporterRule teleporter =
+TeleporterRule.forClass(getClass(), "Launchpad")
+.withResources("/foo/", "/some/other/resource.txt");
 
 which will embed all resources found under `/foo` as well as the `resource.txt` in the test
 bundle, making them available to the server-side tests.
 
 This teleporter mechanism is used in our integration tests, search for `TeleporterRule` in there
-for examples or look at the 
+for examples or look at the
 [`integrationtest.teleporter`]( https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/teleporter)
-package. 
+package.
 
-As I write this the teleporter mechanism is quite new, I suspect there might be some weird interactions 
+As I write this the teleporter mechanism is quite new, I suspect there might be some weird interactions
 between things like `@AfterClass`, custom test runners and this mechanism but it works well to a growing
-number of tests in our `launchpad/integration-tests` module. Moving to JUnit `Rules` as much as possible, 
+number of tests in our `launchpad/integration-tests` module. Moving to JUnit `Rules` as much as possible,
 and combining them using JUnit's `RuleChain`, should help work around such limitations if they arise.
 
 ### More details on the JUnitServlet
@@ -105,14 +102,14 @@ bundle that contains tests and a `Sling-Test-Regexp` bundle header that points t
 described above. Or use the `TeleporterRule` and set a breakpoint in the tests execution, when the test bundle in
 installed and listed by the test servlet.
 
-To list the available tests, open `/system/sling/junit/` in your browser. The servlet shows available tests and allows 
+To list the available tests, open `/system/sling/junit/` in your browser. The servlet shows available tests and allows
 you to execute them via a POST request.
 
-Adding a path allows you to select a specific subset of tests, as in 
+Adding a path allows you to select a specific subset of tests, as in
 `/system/sling/junit/org.apache.sling.junit.remote.html`
- 
- The JUnitServlet provides various output formats, including in particular JSON, see 
- `/system/sling/junit/.json` for example.
+
+The JUnitServlet provides various output formats, including in particular JSON, see
+`/system/sling/junit/.json` for example.
 
 ## org.apache.sling.junit.teleporter: client-side TeleporterRule support
 This module provides the `ClientSideTeleporter` which the `TeleporterRule` uses to package the server-side tests
@@ -124,8 +121,8 @@ This module is not a bundle, as it's used on the client only, as a dependency wh
 A `TeleporterRule.Customizer` is used to setup the `ClientSideTeleporter`. That customizer is instantiated dynamically
 based on a String passed to the `TeleporterRule.forClass` method as 2nd parameter. As an example from our `launchpad/integration-tests` module, this call
 
-    TeleporterRule.forClass(getClass(), "Launchpad:author");
-    
+TeleporterRule.forClass(getClass(), "Launchpad:author");
+
 causes the `TeleporterRule` to use the `org.apache.sling.junit.teleporter.customizers.LaunchpadCustomizer` class
 to setup the `ClientSideTeleporter`, and passes the "author" string to it as an option. Although our current `LaunchpadCustomizer`
 does not use this options string, it is meant to select a specific server (of family of servers) to run the tests on.
@@ -134,9 +131,9 @@ The options string can also use a full class name instead of the `Launchpad` sho
 of that string that follows the first colon is passed to the customizer as is.
 
 Using Strings for customization reduces the coupling with the `junit.core` bundle, as it does not need to know those
-classes which are used only on the client side when running tests. 
+classes which are used only on the client side when running tests.
 
-If `TeleporterRule.forClass(getClass())` is used (the method without an additional 2nd parameter) the default customizer is used ([SLING-5677](https://issues.apache.org/jira/browse/SLING-5677), since version 1.0.8). 
+If `TeleporterRule.forClass(getClass())` is used (the method without an additional 2nd parameter) the default customizer is used ([SLING-5677](https://issues.apache.org/jira/browse/SLING-5677), since version 1.0.8).
 
 The following customizers are currently used in Sling
 
@@ -174,7 +171,7 @@ Those should give you an overview on what can be done with a customizer and deci
 This bundle allows JUnit tests to run as [Sling Health Checks](/documentation/bundles/sling-health-check-tool.html),
 which can be useful when defining smoke tests for example, allowing them to be used both at build time and run time.
 
-See the `JUnitHealthCheck` class for details. 
+See the `JUnitHealthCheck` class for details.
 
 ## org.apache.sling.junit.scriptable: scriptable server-side tests
 This bundle allows Sling scripts to be executed from the `JUnitServlet` as JUnit tests, as follows:
@@ -185,32 +182,32 @@ This bundle allows Sling scripts to be executed from the `JUnitServlet` as JUnit
 
 Here's a minimal example that sets up and executes a scriptable test:
 
-    $ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
-    ...
-    $ echo TEST_PASSED > /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp
-    
+$ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
+...
+$ echo TEST_PASSED > /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp
+
 At this point, foo.test.txt is what the scriptable test framework will request, and that outputs just TEST_PASSED:
-    
-    $ curl -u admin:admin http://localhost:8080/apps/foo.test.txt
-    TEST_PASSED
-    
+
+$ curl -u admin:admin http://localhost:8080/apps/foo.test.txt
+TEST_PASSED
+
 And a POST to the JUnit servlet returns information on the test's execution:
 
-    curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json
-    [{
-        "INFO_TYPE": "test",
-        "description": "verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)",
-        "test_metadata": {
-          "test_execution_time_msec": 2
-        }
-      }
-    ]
+curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json
+[{
+"INFO_TYPE": "test",
+"description": "verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)",
+"test_metadata": {
+"test_execution_time_msec": 2
+}
+}
+]
 
 Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the
-same request again.      
+same request again.
 
 ## org.apache.sling.junit.remote: obsolete
 
 The `org.apache.sling.junit.remote` bundle provides utilities to run server-side JUnit tests,
 but using the newer `TeleporterRule` described above is much simpler. As a result, this bundle
-should only be needed for existing tests that were written using its mechanisms.   
+should only be needed for existing tests that were written using its mechanisms.

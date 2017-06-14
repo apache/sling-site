@@ -1,10 +1,7 @@
-title=TODO title for the-sling-launchpad.md 
-date=1900-01-01
-type=post
-tags=blog
+title=The Sling Launchpad		
+type=page
 status=published
 ~~~~~~
-Title: The Sling Launchpad
 
 [TOC]
 
@@ -37,10 +34,10 @@ The Java Standalone Application supports a number of command line options, which
 | `status` | -- | Check whether a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to check. Note, that the Sling application terminates after checking for the (remote) Sling status. |
 | `stop` | -- | Stop a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to stop. Note, that the Sling application tesrminates after stopping the (remote) Sling instance. |
 | `-j` | [ host ":" ] port |  The socket address to listen on for control connections (`start` or to use as the remote endpoint for the control connection (`status` and `stop`. If this parameter has no arguments or is not specified, the address defaults to any free port on localhost/127.0.0.1. If only the port is specified localhost/127.0.0.1 is used as the host part of the address. |
-| `-c` | slinghome | The directory in which Sling locates its initial configuration file `sling.properties` and where files of Sling itself such as the Apache Felix bundle archive or the JCR repository files are stored. This defaults to the `sling` folder in the current working directory. This is the value which is commonly refered to as `$\{sling.home}.`
-| `-i` | launchpadhome |  The launchpad directory. If not set, this is the same as `$\{sling.home}.` (since Sling Launchpad 2.4.0)  |
+| `-c` | slinghome | The directory in which Sling locates its initial configuration file `sling.properties` and where files of Sling itself such as the Apache Felix bundle archive or the JCR repository files are stored. This defaults to the `sling` folder in the current working directory. This is the value which is commonly refered to as `${sling.home}.`
+| `-i` | launchpadhome |  The launchpad directory. If not set, this is the same as `${sling.home}.` (since Sling Launchpad 2.4.0)  |
 | `-l` | loglevel | Sets the initial loglevel as an integer in the range 0 to 4 or as one of the well known level strings `ERROR`, `WARN`, `INFO`, or `DEBUG`. This option overwrites the `org.apache.sling.osg.log.level` setting the `sling.properties` file. The default is `INFO`. |
-| `-f` | logfile |  The log file to use or `-` to log to standard out. This option overwrites the `org.apache.sling.osg.log.file` setting in the `sling.properties` file. The default is `$\{sling.home}/logs/error.log`. |
+| `-f` | logfile |  The log file to use or `-` to log to standard out. This option overwrites the `org.apache.sling.osg.log.file` setting in the `sling.properties` file. The default is `${sling.home}/logs/error.log`. |
 | `-a` | address | The interfact to bind to (use 0.0.0.0 for any). This option overwrites the `org.apache.felix.http.host` setting in the `sling.properties` file and requires the embedded Http Service implementation to honor this property. (supported since Sling Launchpad 2.4.0) |
 | `-p` | port |  The port to listen (default 8080) to handle HTTP requests. This option overwrites the `org.osgi.service.http.port` setting in the `sling.properties` file. |
 | `-r` | path | The root servlet context path for the Http Service (default is /). This option overwrites the `org.apache.felix.http.context_path` setting in the `sling.properties` file and requires the embedded Http Service implementation to honor this property. (since Sling Launchpad 2.4.0) |
@@ -68,7 +65,7 @@ Currently supported commands are
 
 For the Whole Truth about this functionality see the [ControlListener class source code](https://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/app/ControlListener.java).
 
-The interface and port is configurable with the `-j` command line option. The actual address and port used are written to the `$\{sling.home}/conf/controlport` file. So technically the `-j` option is not required for the `status` and `stop` operations because the port information can be read from that file.
+The interface and port is configurable with the `-j` command line option. The actual address and port used are written to the `${sling.home}/conf/controlport` file. So technically the `-j` option is not required for the `status` and `stop` operations because the port information can be read from that file.
 
 Note that using a control connection for the Sling Standalone Application presents a potential security issue. For this reason the following defaults apply:
 
@@ -80,28 +77,28 @@ For additional security, do not allow the control port to be opened on an extern
 
 Here's an example session where a Sling Standalone Application is started with the control port active:
 
-    $ java -jar target/org.apache.sling.launchpad-9-SNAPSHOT.jar start
-    05.04.2016 11:50:45.003 *INFO * [main] Setting sling.home=sling (default)
-    05.04.2016 11:50:45.006 *INFO * [main] Starting Apache Sling in /foo/sling/launchpad/builder/sling
-	...
-    05.04.2016 11:50:45.012 *INFO * [Apache Sling Control Listener@/127.0.0.1:59239] Apache Sling Control Listener started
-	...
-	
+$ java -jar target/org.apache.sling.launchpad-9-SNAPSHOT.jar start
+05.04.2016 11:50:45.003 *INFO * [main] Setting sling.home=sling (default)
+05.04.2016 11:50:45.006 *INFO * [main] Starting Apache Sling in /foo/sling/launchpad/builder/sling
+...
+05.04.2016 11:50:45.012 *INFO * [Apache Sling Control Listener@/127.0.0.1:59239] Apache Sling Control Listener started
+...
+
 And stopped using its control port, from another terminal:
 
-	$ cat sling/conf/controlport 
-	127.0.0.1:59239
-	mdsryh1k5fpcgvm7suqnckxkr7fvluzv
-	
-	$ telnet 127.0.0.1 59239
-	Trying 127.0.0.1...
-	Connected to localhost.
-	Escape character is '^]'.
-	
-	mdsryh1k5fpcgvm7suqnckxkr7fvluzv stop
-	
-	OK
-	Connection closed by foreign host.
+$ cat sling/conf/controlport
+127.0.0.1:59239
+mdsryh1k5fpcgvm7suqnckxkr7fvluzv
+
+$ telnet 127.0.0.1 59239
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+
+mdsryh1k5fpcgvm7suqnckxkr7fvluzv stop
+
+OK
+Connection closed by foreign host.
 
 
 ### Shutdown Hook
@@ -149,7 +146,7 @@ The `sling.properties` file contains the initial setup of the Sling Application 
 One thing to note is, that the `sling.properties` file is a simple Java Properties file with support for property references. That is, the value of properties may refer other property values by means of the well known `${name}` notation. Such property references may even be nested as in
 
 
-    java.packages=${jre-${java.specification.version}}
+java.packages=${jre-${java.specification.version}}
 
 
 
@@ -167,7 +164,7 @@ The *Launchpad Base* projects creates the following artifacts, which are require
 * *App JAR* -- The secondary artifact with classifier *app* is a minimal Standalone Java Application which may be started by simply typing
 
 
-    $ java -jar org.apache.sling.launchpad.base-app.jar
+$ java -jar org.apache.sling.launchpad.base-app.jar
 
 
 * *Web App Archive* -- The secondary artifact with classifier *webapp* is a minimal Web Application, which may simply be deployed into your favirourite servlet container, provided it supports at least Servlet API 2.4.
@@ -182,7 +179,7 @@ The *Launchpad App* and *Launchpad WebApp* bundles are actually projects which j
 
 * Take the appropriate secondary artifact from the *Launchpad Base* project: *app* for the Standalone Java Application or *webapp* for the Web Application and unpack
 * Take the *Launchpad Base* primary artifact and place it under the name `org.apache.sling.launchpad.base.jar` into the `resources` folder
-* Copies the list of artifacts defined in the [Provisioning model](/documentation/development/slingstart.html) 
+* Copies the list of artifacts defined in the [Provisioning model](/documentation/development/slingstart.html)
 * Finally pack all together into a single big JAR or WAR file
 
 The artifacts can be configured to use different JCR repository implementations, based on the value of the `-Dsling.run.modes` property. The following run modes are available for the 8 version of the Sling Launchpad:

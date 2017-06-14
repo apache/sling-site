@@ -1,10 +1,7 @@
-title=TODO title for dependency-management.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Dependency Management		
+type=page
 status=published
 ~~~~~~
-Title: Dependency Management
 Excerpt: This page is about how we do and don't do dependency management in the Sling project.
 
 This page is about how we do and don't do dependency management in the Sling project.
@@ -35,9 +32,9 @@ As a consequence, I suggest we drop dependency management in the parent POM (alm
 
 The parent POM only does dependency management for build time dependencies and a very limited number of API dependencies used Sling wide. These dependencies are:
 
-   * All plugin dependencies. That is `pluginManagement` is still used. Maven plugins are actually build time dependencies and therefore have no influence on the actual deployment.
-   * Dependencies on commonly used testing environment helpers. Test helper classes are also build time dependencies used to run the unit and integration tests. As such, they may well be managed.
-   * Sling makes a small number of assumptions about the environment, which we codify in the dependency management: The minimum version number of the OSGi specificaiton used, the Servlet API version and the JCR API version.
+* All plugin dependencies. That is `pluginManagement` is still used. Maven plugins are actually build time dependencies and therefore have no influence on the actual deployment.
+* Dependencies on commonly used testing environment helpers. Test helper classes are also build time dependencies used to run the unit and integration tests. As such, they may well be managed.
+* Sling makes a small number of assumptions about the environment, which we codify in the dependency management: The minimum version number of the OSGi specificaiton used, the Servlet API version and the JCR API version.
 
 The `<dependencyManagement>` element currently contains the following managed dependencies:
 

@@ -1,18 +1,15 @@
-title=TODO title for repository-based-development.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Repository Based Development		
+type=page
 status=published
 ~~~~~~
-Title: Repository Based Development
 
 [TOC]
 
 # WebDAV Support
 
-WebDAV support in Sling is based on the [Simple WebDAV](http://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#Simple_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/webdav` project. This bundle provides WebDAV access to Sling's repository in two flavours: 
+WebDAV support in Sling is based on the [Simple WebDAV](http://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#Simple_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/webdav` project. This bundle provides WebDAV access to Sling's repository in two flavours:
 
-1. Access to all workspaces of the repository on a separate URI space -- by default rooted at `/dav` in the Sling context -- and 
+1. Access to all workspaces of the repository on a separate URI space -- by default rooted at `/dav` in the Sling context -- and
 2. access to the workspace used by Sling itself at the root of the Sling context.
 
 
@@ -23,17 +20,17 @@ Consider Sling be installed on a Servlet container in the `/sling` context on `s
 Please note that accessing the repository in the separate URI space is actually faster, since requests do not pass the Sling resource and script resolution framework but instead hit the Jackrabbit Simple WebDAV Servlet directly.
 
 
-## Separate URI Space WebDAV 
+## Separate URI Space WebDAV
 
 When accessing the repository through WebDAV in its separate URI Space, the URLs have the following generic structure:
 
-    <slingroot>/<prefix>/<workspace>/<item>
+<slingroot>/<prefix>/<workspace>/<item>
 
 
-   * `slingroot` is the URL of the Sling web application context. In the above example, this would `http://some.host.net:8080/sling`.
-   * `prefix` is the URL prefix to address the WebDAV servlet. By default this is set to `/dav` but may be configured to any valid path.
-   * `workspace` is the name of the workspace to be accessed through WebDAV.
-   * `item` is the path to the JCR Item to access.
+* `slingroot` is the URL of the Sling web application context. In the above example, this would `http://some.host.net:8080/sling`.
+* `prefix` is the URL prefix to address the WebDAV servlet. By default this is set to `/dav` but may be configured to any valid path.
+* `workspace` is the name of the workspace to be accessed through WebDAV.
+* `item` is the path to the JCR Item to access.
 
 If you access the WebDAV server at the prefix path -- e.g. `http://localhost:8080/dav` -- you will be redirected to the default workspace with a temporary redirect status 302. Some clients, such as the Linux *davfs*, do not like this redirection and must be configured to explicitly address the default workspace.
 

@@ -1,10 +1,7 @@
-title=TODO title for context-aware-configuration-spi.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Context-Aware Configuration - SPI		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Context-Aware Configuration - SPI
 
 [TOC]
 

@@ -1,10 +1,7 @@
-title=TODO title for sling-properties.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Well-known Sling Properties		
+type=page
 status=published
 ~~~~~~
-Title: Well-known Sling Properties
 
 This table lists properties which have known functionality in the OSGi and Sling frameworks.
 

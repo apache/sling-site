@@ -1,7 +1,5 @@
-title=TODO title for TODO.md 
-date=1900-01-01
-type=post
-tags=blog
+title=		
+type=page
 status=published
 ~~~~~~
 TODO: re-add apidocs

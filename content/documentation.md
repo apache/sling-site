@@ -1,10 +1,7 @@
-title=TODO title for documentation.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Documentation		
+type=page
 status=published
 ~~~~~~
-Title: Documentation
 
 [TOC]
 
@@ -12,14 +9,14 @@ Title: Documentation
 
 The documentation is split into different parts:
 
-   * [Getting Started](/documentation/getting-started.html), the right place to start!
-   * [The Sling Engine](/documentation/the-sling-engine.html), all about the heart of Sling
-   * [Development](/documentation/development.html), how do I get and develop with Sling
-   * [Bundles](/documentation/bundles.html), which bundle delivers which features to Sling
-   * [Tutorials & How-Tos](/documentation/tutorials-how-tos.html)
-   * [Wiki](http://cwiki.apache.org/SLING/)
-   * [Configuration](/documentation/configuration.html)
-   * [API Doc](http://sling.apache.org/apidocs/sling8/index.html)
+* [Getting Started](/documentation/getting-started.html), the right place to start!
+* [The Sling Engine](/documentation/the-sling-engine.html), all about the heart of Sling
+* [Development](/documentation/development.html), how do I get and develop with Sling
+* [Bundles](/documentation/bundles.html), which bundle delivers which features to Sling
+* [Tutorials & How-Tos](/documentation/tutorials-how-tos.html)
+* [Wiki](http://cwiki.apache.org/SLING/)
+* [Configuration](/documentation/configuration.html)
+* [API Doc](http://sling.apache.org/apidocs/sling8/index.html)
 
 
 # How you can contribute
@@ -68,30 +65,28 @@ of the site, such as automatic link generation.
 
 Start the file with a `Title:` line to define the page title and the first H1 tag:
 
-    Title: Page Title
-    
-    Here comes the content separated with a blank like from the
-    header ...
-    
+
+Here comes the content separated with a blank like from the
+header ...
+
 The last modification information from SVN (revision, committer, and
 date/time) is automatically added when the page is rendered
 
 Excerpts can be added to a page using the `Excerpt:` header:
 
-    Title: Page Title
-    Excerpt: Summary of the page for inclusion in other pages;
-       continuation of the excerpt must be indented
-       
-    Here comes the content separated with a blank like from the
-    header ...
+Excerpt: Summary of the page for inclusion in other pages;
+continuation of the excerpt must be indented
+
+Here comes the content separated with a blank like from the
+header ...
 
 Metadata from child pages can be referred to in the content with the
 Django variable reference notation using the child page name (without
 extension) as its container; e.g. for the child page named `childpage`:
 
-    :::django
-    {{ y|default:"{{" }} children.childpage.headers.excerpt }}
-    {{ y|default:"{{" }} children.childpage.headers.title }}
+:::django
+{{ y|default:"{{" }} children.childpage.headers.excerpt }}
+{{ y|default:"{{" }} children.childpage.headers.title }}
 
 Content Pages can contain Django templates of the form `{{ y|default:"{{" }}...}}` and `{{ y|default:"{%" }}...%}`.
 If so, the page content is evaluated as a Django template before running
@@ -107,41 +102,41 @@ Any page in the site can be referenced with refs.pagename returning properties:
 
 `.content`
 :    the raw page content
-       
+
 All pages in the children namespace are also available in the refs namespace
-    
+
 Some usefull hints:
 
 Printing title of another page "handler":
-       
-       :::django
-       {{ y|default:"{{" }} refs.handler.headers.title }}
+
+:::django
+{{ y|default:"{{" }} refs.handler.headers.title }}
 
 Printing excerpt of another page "handler":
-       
-       :::django
-       {{ y|default:"{{" }} refs.handler.headers.excerpt }}
-  
+
+:::django
+{{ y|default:"{{" }} refs.handler.headers.excerpt }}
+
 Linking to another page "handler":
-       
-       :::django
-       ({{ y|default:"{{" }} refs.handler.path }})
-       
+
+:::django
+({{ y|default:"{{" }} refs.handler.path }})
+
 Printing title as a link to another page "handler":
-       
-       :::django
-       [{{ y|default:"{{" }} refs.handler.headers.title }}]({{ y|default:"{{" }} refs.handler.path }})
-       
+
+:::django
+[{{ y|default:"{{" }} refs.handler.headers.title }}]({{ y|default:"{{" }} refs.handler.path }})
+
 Printing excerpt as a link to another page "handler":
-       
-       :::django
-       [{{ y|default:"{{" }} refs.handler.headers.excerpt }}]({{ y|default:"{{" }} refs.handler.path }})
-       
+
+:::django
+[{{ y|default:"{{" }} refs.handler.headers.excerpt }}]({{ y|default:"{{" }} refs.handler.path }})
+
 Print a bullet pointed child page list:
 
-       :::django
-       {{ y|default:"{%" }} for label, page in children %}* [{{ y|default:"{{" }} page.headers.title }}]({{ y|default:"{{" }} page.path }})
-       {{ y|default:"{%" }} endfor %}
+:::django
+{{ y|default:"{%" }} for label, page in children %}* [{{ y|default:"{{" }} page.headers.title }}]({{ y|default:"{{" }} page.path }})
+{{ y|default:"{%" }} endfor %}
 
 <div class="note">
 It is important to have the first part as a single line, otherwise
@@ -169,26 +164,23 @@ for the build tools to work.
 
 To prepare for site build, the Markdown daemon has to be started:
 
-    :::sh
-    $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
-    $ export PYTHONPATH="$PWD/tools/build"
-    $ python "$PWD/tools/build/markdownd.py"
+:::sh
+$ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
+$ export PYTHONPATH="$PWD/tools/build"
+$ python "$PWD/tools/build/markdownd.py"
 
 The `MARKDOWN_SOCKET` environment variables is also required by the `build_site.pl`
 and `build_file.pl` scripts to connect to the Markdown daemon.
 
 To build the complete site use the `build_site.pl` script:
 
-    :::sh
-    $ tools/build/build_site.pl --source-base $PWD/trunk \
-        --target-base $PWD/trunk/target
+:::sh
+$ tools/build/build_site.pl --source-base $PWD/trunk         --target-base $PWD/trunk/target
 
 To build a single page use the `build_file.pl` script:
 
-    :::sh
-    $ tools/build/build_site.pl --source-base $PWD/trunk \
-        --target-base $PWD/trunk/target \
-        --source content/documentation.mdtext
+:::sh
+$ tools/build/build_site.pl --source-base $PWD/trunk         --target-base $PWD/trunk/target         --source content/documentation.mdtext
 
 The argument to the `--source` parameter is relative to the `--source-base` folder.
 

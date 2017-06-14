@@ -1,10 +1,7 @@
-title=TODO title for project-license.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Project License		
+type=page
 status=published
 ~~~~~~
-Title: Project License
 
 As with all projects of the
 [Apache Software Foundation](http://apache.org),

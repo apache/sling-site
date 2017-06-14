@@ -1,22 +1,19 @@
-title=TODO title for featureflags.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Feature Flags		
+type=page
 status=published
 ~~~~~~
-Title: Feature Flags
 
 Feature Flags are used to select whether a particular feature is enabled or not. This allows to
 continuosly deploy new features of an application without making them globally available yet.
 
 Features may be enabled based on various contextual data:
 
-  * Time of Day
-  * Segmentation Data (gender, age, etc.), if available
-  * Request Parameter
-  * Request Header
-  * Cookie Value
-  * Static Configuration
+* Time of Day
+* Segmentation Data (gender, age, etc.), if available
+* Request Parameter
+* Request Header
+* Cookie Value
+* Static Configuration
 
 Feature flags can be provided by registering `org.apache.sling.featureflags.Feature` services.
 Alternatively feature flags can be provided by factory configuration with factory PID

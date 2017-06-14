@@ -1,19 +1,16 @@
-title=TODO title for authentication-framework.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Authentication - Framework		
+type=page
 status=published
 ~~~~~~
-Title: Authentication - Framework
 Excerpt: The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.
 
 The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.
 
 This support encompasses three parts:
 
-  * The `AuthenticationSupport` service provided by the `SlingAuthenticator` class. This service can be used by implementations of the OSGi `HttpContext` interface to delegate authentication.
-  * The `Authenticator` service also provided by the `SlingAuthenticator` class. This service may be used by Sling applications to help clients login and logout.
-  * The `AuthenticationHandler` service interface. These services may be implemented by extensions to support various ways for transporting credentials from clients to the Sling server.
+* The `AuthenticationSupport` service provided by the `SlingAuthenticator` class. This service can be used by implementations of the OSGi `HttpContext` interface to delegate authentication.
+* The `Authenticator` service also provided by the `SlingAuthenticator` class. This service may be used by Sling applications to help clients login and logout.
+* The `AuthenticationHandler` service interface. These services may be implemented by extensions to support various ways for transporting credentials from clients to the Sling server.
 
 This page describes how the `SlingAuthenticator` class provides the `AuthenticationSupport` and  `Authenticator` services. For a description of the `AuthenticationHandler` service interface and the interaction between the `SlingAuthenticator` and the `AuthenticationHandler` services refer to the [AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html) page.
 
@@ -48,7 +45,7 @@ Extracting the credentials and trying to login to the repository may yield the f
 | missing | anonymous forbidden | Select `AuthenticationHandler` and call `requestCredentials` method |
 
 <div class="note">
-    Only one <code>AuthenticationHandler</code> is able to provide credentials for a given request. If the credentials provided by the handler cannot be used to login to the repository, authentication fails and no further <code>AuthenticationHandler</code> is consulted.
+Only one <code>AuthenticationHandler</code> is able to provide credentials for a given request. If the credentials provided by the handler cannot be used to login to the repository, authentication fails and no further <code>AuthenticationHandler</code> is consulted.
 </div>
 
 
@@ -67,7 +64,7 @@ The `handleSecurity` method gets credentials from the `AuthenticationHandler` an
 **NOTE**: Do *NOT* use the `javax.jcr.Session` request attribute in your Sling applications. This attribute must be considered implementation specific to convey the JCR Session to the `SlingMainServlet`. In future versions of the Sling Auth Core bundle, this request attribute will not be present anymore. To get the JCR Session for the current request adapt the request's resource resolver to a JCR Session:
 
 
-    Session session = request.getResourceResolver().adaptTo(Session.class);
+Session session = request.getResourceResolver().adaptTo(Session.class);
 
 
 
@@ -85,13 +82,13 @@ The values set on the *Authentication Requirements* configuration property or th
 **Examples**
 
 * The `LoginServlet` contained in the Sling Auth Core bundle registers itself with the service registration property `sling.auth.requirements = "-/system/sling/login"` to ensure the servlet can be accessed without requiring authentication (checks for `slash` or `dot` or `end of string`). The following request urls would work then without authentication:
-    * /system/sling/login
-    * /system/sling/login.html
-    * /system/sling/login/somesuffix
-    
-  While the following request will still require authentication 
-  
-    * /system/sling/login-test 
+* /system/sling/login
+* /system/sling/login.html
+* /system/sling/login/somesuffix
+
+While the following request will still require authentication
+
+* /system/sling/login-test
 
 * An authentication handler may register itself with the service registration property `sling.auth.requirements = "-/apps/sample/loginform"` to ensure the login form can be rendered without requiring authentication.
 

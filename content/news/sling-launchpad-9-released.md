@@ -1,10 +1,7 @@
-title=TODO title for sling-launchpad-9-released.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Launchpad 9 released		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Launchpad 9 released
 
 Here are some of the more noteworthy things available in this release.
 
@@ -61,7 +58,7 @@ Streaming Upload Support
 The version of the Sling Engine shipped in the Launchpad now supports streaming uploads,
 for better I/O throughput. Streaming uploads are opt-in via setting the following HTTP Header:
 
-    Sling-UploadMode: stream
+Sling-UploadMode: stream
 
 Discovery: added Oak-based discovery implementation
 ---
@@ -83,7 +80,7 @@ Documentation available at [Service Authentication](/documentation/the-sling-eng
 Removed org.apache.sling.commons.json and org.json bundles
 ---
 
-Apache projects are no longer allowed, for legal reasons, to ship code which uses or links to the 
+Apache projects are no longer allowed, for legal reasons, to ship code which uses or links to the
 JSON.org Java implementation. As a consequence we have removed all code which references that
 API.
 

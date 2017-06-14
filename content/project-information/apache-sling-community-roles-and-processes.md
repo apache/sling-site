@@ -1,16 +1,13 @@
-title=TODO title for apache-sling-community-roles-and-processes.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Community Roles and Processes		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Community Roles and Processes
 
 The Community Roles and Processes are put in effect as of 13/May/2009. Updated 7/December/2009 to reflect Sling being a top level project.
 
 ## Roles
 
-There are different roles with which Sling community members may be associated: User, Contributor, Committer, and PMC (Project Management Committee) Member. These roles are assigned and assumed based on merit. 
+There are different roles with which Sling community members may be associated: User, Contributor, Committer, and PMC (Project Management Committee) Member. These roles are assigned and assumed based on merit.
 
 The User and Contributor roles are acquired by using the software and participating in the community, but the Committer and PMC member roles can only be granted by a PMC vote.
 

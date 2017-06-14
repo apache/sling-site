@@ -1,17 +1,14 @@
-title=TODO title for internationalization-support-i18n.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Internationalization Support (i18n)		
+type=page
 status=published
 ~~~~~~
-Title: Internationalization Support (i18n)
 
 Internationalization support in Sling consists of four methods in the `SlingHttpServletRequest` interface:
 
-   * `getLocale()` -- Returns the primary `Locale` for the current request. This method is inherited from the `javax.servlet.ServletRequest` interface.
-   * `getLocales()` -- Returns the `Locale` instances for the current request. This method is inherited from the `javax.servlet.ServletRequest` interface.
-   * `getResourceBundle(Locale)` -- Returns a `ResourceBundle` for the given `Locale`. This method is specific to Sling.
-   * `getResourceBundle(String, Locale)` -- Returns a `ResourceBundle` of a given base name for the given `Locale`. This method is specific to Sling.
+* `getLocale()` -- Returns the primary `Locale` for the current request. This method is inherited from the `javax.servlet.ServletRequest` interface.
+* `getLocales()` -- Returns the `Locale` instances for the current request. This method is inherited from the `javax.servlet.ServletRequest` interface.
+* `getResourceBundle(Locale)` -- Returns a `ResourceBundle` for the given `Locale`. This method is specific to Sling.
+* `getResourceBundle(String, Locale)` -- Returns a `ResourceBundle` of a given base name for the given `Locale`. This method is specific to Sling.
 
 
 These methods have a default implementation in the `org.apache.sling.core` bundle and an extended and extensible implementation in the `org.apache.sling.i18n` bundle.
@@ -21,10 +18,10 @@ These methods have a default implementation in the `org.apache.sling.core` bundl
 
 The default implementation of the above mentioned four methods in the Sling Engine bundle is contained in the bundle-private class `org.apache.sling.engine.impl.SlingHttpServletRequestImpl` which is the primary implementation of the `SlingHttpServletRequest` interface:
 
-   * `getLocale()` -- Returns the `Locale` from the request object of the servlet container in which Sling is running. As per the Servlet API specification, this is either the primary Locale of the `Accept-Language` request header or the server default locale.
-   * `getLocales()` -- Returns the `Enumeration` from the request object of the servlet container in which Sling is running. As per the Servlet API specification, this is either based on the `Accept-Language` request header or just the server default locale.
-   * `getResourceBundle(Locale)` -- Returns a `ResourceBundle` whose `getString(String key)` method returns the `key` as the message and whose `getKeys()` method returns an empty `Enumeration`.
-   * `getResourceBundle(String, Locale)` -- Returns a `ResourceBundle` whose `getString(String key)` method returns the `key` as the message and whose `getKeys()` method returns an empty `Enumeration`.
+* `getLocale()` -- Returns the `Locale` from the request object of the servlet container in which Sling is running. As per the Servlet API specification, this is either the primary Locale of the `Accept-Language` request header or the server default locale.
+* `getLocales()` -- Returns the `Enumeration` from the request object of the servlet container in which Sling is running. As per the Servlet API specification, this is either based on the `Accept-Language` request header or just the server default locale.
+* `getResourceBundle(Locale)` -- Returns a `ResourceBundle` whose `getString(String key)` method returns the `key` as the message and whose `getKeys()` method returns an empty `Enumeration`.
+* `getResourceBundle(String, Locale)` -- Returns a `ResourceBundle` whose `getString(String key)` method returns the `key` as the message and whose `getKeys()` method returns an empty `Enumeration`.
 
 
 NOTE: Unlike the default implementations of the `ResourceBundle` abstract class in the Java Runtime -- `PropertyResourceBundle` and `ListResourceBundle` -- the `ResourceBundle` returned by the default implementation of the `getResourceBundle(Locale)` and `getResourceBundle(String, Locale)` always returns a string message for any key, which is the key itself. This prevents throwing `MissingResourceException`.
@@ -35,9 +32,9 @@ NOTE: Unlike the default implementations of the `ResourceBundle` abstract class 
 
 The `org.apache.sling.i18n` Bundle implements a request level `Filter` providing extensible implementations of the above mentioned three methods. Extensibility is attained by defining two service interfaces:
 
-   * `LocaleResolver` -- The `LocaleResolver` interface defines a method which may be implemented by a service outside of the sling.i18n bundle. If no such service is registered the default behaviour is as described above for the sling.core bundle. The service described by this interface is used to implement the `getLocale()` and `getLocales()` method. 
+* `LocaleResolver` -- The `LocaleResolver` interface defines a method which may be implemented by a service outside of the sling.i18n bundle. If no such service is registered the default behaviour is as described above for the sling.core bundle. The service described by this interface is used to implement the `getLocale()` and `getLocales()` method.
 
-   * `ResourceBundleProvider` -- The `ResourceBundleProvider` interface defines two methods to acquire a `ResourceBundle` for any `Locale` and an optional base name. This service interface is not intended to be implemented outside of the sling.i18n bundle: A JCR Repository based implementation is contained in the sling.i18n bundle. The `ResourceBundleProvider` service is not only used within the sling.i18n bundle to implement the `SlingHttpServletRequest.getResourceBundle(Locale)` and  `SlingHttpServletRequest.getResourceBundle(String, Locale)` methods. The service may also be used by Sling applications to acquire `ResourceBundle` instances without having a request object by getting the service and calling its `getResourceBundle(Locale)` or `getResourceBundle(String, Locale)` method directly.
+* `ResourceBundleProvider` -- The `ResourceBundleProvider` interface defines two methods to acquire a `ResourceBundle` for any `Locale` and an optional base name. This service interface is not intended to be implemented outside of the sling.i18n bundle: A JCR Repository based implementation is contained in the sling.i18n bundle. The `ResourceBundleProvider` service is not only used within the sling.i18n bundle to implement the `SlingHttpServletRequest.getResourceBundle(Locale)` and  `SlingHttpServletRequest.getResourceBundle(String, Locale)` methods. The service may also be used by Sling applications to acquire `ResourceBundle` instances without having a request object by getting the service and calling its `getResourceBundle(Locale)` or `getResourceBundle(String, Locale)` method directly.
 
 
 
@@ -53,8 +50,8 @@ Two different types of storage formats are supported for the individual dictiona
 
 The (direct) child nodes of the `mix:language` node must have the `jcr:primaryType` set to `sling:MessageEntry` and must contain two special properties naming the key string and the message:
 
-   * `sling:key` -- The `sling:key` property is a string property being the key for which the node contains the message(s). This property is optional. If it is not set the key is determined by the name of this `sling:messageEntry` resource.
-   * `sling:message` -- The `sling:message` property represents the resource for the key.
+* `sling:key` -- The `sling:key` property is a string property being the key for which the node contains the message(s). This property is optional. If it is not set the key is determined by the name of this `sling:messageEntry` resource.
+* `sling:message` -- The `sling:message` property represents the resource for the key.
 
 It is only required that the message nodes are located below `mix:language` nodes. Such structures may also be scattered in the repository to allow storing message resources next to where they are most likely used, such as request scripts.
 
@@ -62,35 +59,35 @@ It is only required that the message nodes are located below `mix:language` node
 
 Content for dictionaries in this format might look like this:
 
-       /libs/languages
-               +-- English (nt:folder, mix:language)
-               |    +-- jcr:language = en
-               |    +-- m1 (sling:MessageEntry)
-               |    |    +-- sling:key = "msg001"
-               |    |    +-- sling:message = "This is a message"
-               |    +-- m2 (sling:MessageEntry)
-               |         +-- sling:key = "msg002"
-               |         +-- sling:message = "Another message"
-               +-- Deutsch (nt:folder, mix:language)
-                    +-- jcr:language = de
-                    +-- m1 (sling:MessageEntry)
-                    |    +-- sling:key = "msg001"
-                    |    +-- sling:message = "Das ist ein Text"
-                    +-- m2 (sling:MessageEntry)
-                         +-- sling:key = "msg002"
-                         +-- sling:message = "Ein anderer Text"
-    
-       /apps/myApp
-               +-- English (nt:folder, mix:language)
-               |    +-- jcr:language = en
-               |    +-- mx (sling:MessageEntry)
-               |         +-- sling:key = "msgXXX"
-               |         +-- sling:message = "An Application Text"
-               +-- Deutsch (nt:folder, mix:language)
-                    +-- jcr:language = de
-                    +-- mx (sling:MessageEntry)
-                         +-- sling:key = "msgXXX"
-                         +-- sling:message = "Ein Anwendungstext"
+/libs/languages
++-- English (nt:folder, mix:language)
+|    +-- jcr:language = en
+|    +-- m1 (sling:MessageEntry)
+|    |    +-- sling:key = "msg001"
+|    |    +-- sling:message = "This is a message"
+|    +-- m2 (sling:MessageEntry)
+|         +-- sling:key = "msg002"
+|         +-- sling:message = "Another message"
++-- Deutsch (nt:folder, mix:language)
++-- jcr:language = de
++-- m1 (sling:MessageEntry)
+|    +-- sling:key = "msg001"
+|    +-- sling:message = "Das ist ein Text"
++-- m2 (sling:MessageEntry)
++-- sling:key = "msg002"
++-- sling:message = "Ein anderer Text"
+
+/apps/myApp
++-- English (nt:folder, mix:language)
+|    +-- jcr:language = en
+|    +-- mx (sling:MessageEntry)
+|         +-- sling:key = "msgXXX"
+|         +-- sling:message = "An Application Text"
++-- Deutsch (nt:folder, mix:language)
++-- jcr:language = de
++-- mx (sling:MessageEntry)
++-- sling:key = "msgXXX"
++-- sling:message = "Ein Anwendungstext"
 
 This content defines two languages *en* and *de* with three messages *msg001*, *msg002* and *msgXXX* each. The names of the respective resources have no significance (in case the `sling:key` is set).
 
@@ -105,34 +102,34 @@ The parser will take any "key":"value" pair in the JSON file, including those in
 
 Content for this format might look like this:
 
-       /libs/languages
-               +-- english.json (nt:file, mix:language)
-               |    +-- jcr:language = en
-               |    +-- jcr:content (nt:resource)
-               |         + jcr:data (containing the actual JSON file)
-               +-- deutsch.json (nt:file, mix:language)
-                    +-- jcr:language = de
-                    +-- jcr:content (nt:resource)
-                        + jcr:data (containing the actual JSON file)
+/libs/languages
++-- english.json (nt:file, mix:language)
+|    +-- jcr:language = en
+|    +-- jcr:content (nt:resource)
+|         + jcr:data (containing the actual JSON file)
++-- deutsch.json (nt:file, mix:language)
++-- jcr:language = de
++-- jcr:content (nt:resource)
++ jcr:data (containing the actual JSON file)
 
 
 #### JCR Node Types supporting the JCR Repository based `ResourceBundleProvider`
 
 The sling.i18n bundle asserts the following node types:
 
-    [mix:language]
-        mixin
-      - jcr:language (string)
+[mix:language]
+mixin
+- jcr:language (string)
 
 
 The `mix:language` mixin node type allows setting the `jcr:language` property required by the `ResourceBundleProvider` implementation to identify the message `Locale`.
 
-    [sling:Message]
-        mixin
-      - sling:key (string)
-      - sling:message (undefined)
-    
-    [sling:MessageEntry] > nt:hierarchyNode, sling:Message  
+[sling:Message]
+mixin
+- sling:key (string)
+- sling:message (undefined)
+
+[sling:MessageEntry] > nt:hierarchyNode, sling:Message
 
 
 The `sling:Message` and `sling:MessageEntry` are helper node types. The latter must be used to create the nodes for the `sling:MessageEntry` based format.
@@ -154,9 +151,9 @@ The `sling:basename` property may be multi-valued, that is the messages of a `mi
 ### `ResourceBundle` hierarchies
 The dictionary entries for one `JcrResourceBundle` are always ordered like the resource resolver search paths, so usually
 
-   1. dictionary entries below `/apps`
-   2. dictionary entries below `/libs`
-   3. dictionary entries anywhere else (outside the search path)
+1. dictionary entries below `/apps`
+2. dictionary entries below `/libs`
+3. dictionary entries anywhere else (outside the search path)
 
 That means that the message for the same key in `/apps` overwrites the one in `/libs` (if both are for the same locale and base name). Within those categories the order is non-deterministic, so if there is more than one entry for the same key in `/apps/...` (for the same locale and base name), any of those entries may be used.
 

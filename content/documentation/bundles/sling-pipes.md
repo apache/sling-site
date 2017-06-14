@@ -1,10 +1,7 @@
-title=TODO title for sling-pipes.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Pipes		
+type=page
 status=published
 ~~~~~~
-Title: Sling Pipes
 
 tool for doing extract - transform - load operations through a resource tree configuration.
 
@@ -12,14 +9,14 @@ often one-shot data transformations need sample code to be written & executed. T
 
 ## What is a pipe
 
-             getOutputBinding
-                   ^
-                   |
-     getInput  +---+---+   getOutput
-               |       |
-          +----> Pipe  +---->
-               |       |
-               +-------+
+getOutputBinding
+^
+|
+getInput  +---+---+   getOutput
+|       |
++----> Pipe  +---->
+|       |
++-------+
 
 A sling pipe is essentially a sling resource stream:
 
@@ -32,14 +29,14 @@ At this moment, there are 3 types of pipes to consider:
 - "reader" pipes, that will just output a set of resource depending on the input
 - "writer" pipes, that write to the repository, depending on configuration and output
 - "container" pipes, that contains pipes, and whose job is to chain their execution : input is the input of their first pipe,
- output is the output of the last pipe it contains.
+output is the output of the last pipe it contains.
 
 A `Plumber` osgi service is provided to help getting & executing pipes.
 
 ## Registered Pipes
 a pipe configuration is a jcr node, with:
 
-- `sling:resourceType` property, which must be a pipe type registered by the plumber 
+- `sling:resourceType` property, which must be a pipe type registered by the plumber
 - `name` property, that will be used in bindings as an id, and will be the key for the output bindings (default value being a value map of the current output resource). Note that the node name will be used in case no name is provided.
 - `path` property, defines pipe's input. Note that property is not mandatory in case the pipe is streamed after another pipe, in which case previous pipe output's can be used as input.
 - `expr` property, expression through which the pipe will execute (depending on the type)
@@ -165,11 +162,11 @@ Following configurations are evaluated:
 - `expr`
 - name/value of each property of some pipes (write, remove)
 
-you can use name of previous pipes in the pipe container, or the special binding `path`, where `path.previousPipe` 
+you can use name of previous pipes in the pipe container, or the special binding `path`, where `path.previousPipe`
 is the path of the current resource of previous pipe named `previousPipe`
 
 global bindings can be set at pipe execution, external scripts can be added to the execution as well (see pipe
- configurations)
+configurations)
 
 ## How to execute a pipe
 for now it's possible to execute Pipes through GET (read) or POST (read/write) commands:
@@ -178,11 +175,11 @@ for now it's possible to execute Pipes through GET (read) or POST (read/write) c
 
 - either you'll need to create a slingPipes/plumber resource, say `etc/pipes` and then to execute
 
-    curl -u admin:admin -F "path=/etc/pipes/mySamplePipe" http://localhost:8080/etc/pipes.json
+curl -u admin:admin -F "path=/etc/pipes/mySamplePipe" http://localhost:8080/etc/pipes.json
 
 - either you execute the request directly on the pipe Path, e.g.
 
-    curl -u admin:admin http://localhost:8080/etc/pipes/mySamplePipe.json
+curl -u admin:admin http://localhost:8080/etc/pipes/mySamplePipe.json
 
 which will return you the path of the pipes that have been through the output of the configured pipe.
 
@@ -193,17 +190,17 @@ you can add as `bindings` parameter a json object of global bindings you want to
 e.g.
 
 
-    curl -u admin:admin -F "path=/etc/pipes/test" -F "bindings={testBinding:'foo'}" http://localhost:4502/etc/pipes.json
+curl -u admin:admin -F "path=/etc/pipes/test" -F "bindings={testBinding:'foo'}" http://localhost:4502/etc/pipes.json
 
 
 will returns something like
 
-    {"size":2, "items":["/one/output/resource", "another/one"]}
+{"size":2, "items":["/one/output/resource", "another/one"]}
 
 ### Request Parameter `writer`
 
 you can add as `writer` parameter a json object as a pattern to the result you want to have. The values of the json
-object are expressions and can reuse each pipe's subpipe binding. 
+object are expressions and can reuse each pipe's subpipe binding.
 Note
 this works only if the pipe called is a container
 pipe.
@@ -211,7 +208,7 @@ pipe.
 e.g.
 
 
-    curl -u admin:admin http://localhost:4502/etc/pipes/users.json?writer={"user":"${user.fullName}"}
+curl -u admin:admin http://localhost:4502/etc/pipes/users.json?writer={"user":"${user.fullName}"}
 
 will returns something similar to
 
@@ -228,133 +225,133 @@ default response is truncated to 10 items, if you need more (or less), you can m
 ### slingQuery | write
 this pipe parse all profile nodes, and
 
-    {
-      "sling:resourceType":"slingPipes/container",
-      "name":"Dummy User prefix Sample",
-      "jcr:description":"prefix all full names of profile with "Mr" or "Ms" depending on gender",
-      "conf":{
-        "profile": {
-            "sling:resourceType":"slingPipes/slingQuery",
-            "expr":"nt:unstructured#profile",
-            "path":"/home/users"
-        },
-        "writeFullName": {
-            "sling:resourceType":"slingPipes/write",
-            "conf": {
-                "fullName":"${(profile.gender === 'female' ? 'Ms ' + profile.fullName : 'Mr ' + profile.fullName)}",
-                "generatedBy":"slingPipes"
-            }
-        }
-      }
-    }
+{
+"sling:resourceType":"slingPipes/container",
+"name":"Dummy User prefix Sample",
+"jcr:description":"prefix all full names of profile with "Mr" or "Ms" depending on gender",
+"conf":{
+"profile": {
+"sling:resourceType":"slingPipes/slingQuery",
+"expr":"nt:unstructured#profile",
+"path":"/home/users"
+},
+"writeFullName": {
+"sling:resourceType":"slingPipes/write",
+"conf": {
+"fullName":"${(profile.gender === 'female' ? 'Ms ' + profile.fullName : 'Mr ' + profile.fullName)}",
+"generatedBy":"slingPipes"
+}
+}
+}
+}
 
 ### slingQuery | multiProperty | authorizable | write
-    {
-      "jcr:primaryType": "sling:Folder",
-      "jcr:description": "move badge<->user relation ship from badge MV property to a user MV property"
-      "name": "badges",
-      "sling:resourceType": "slingPipes/container",
-      "conf": {
-        "jcr:primaryType": "sling:OrderedFolder",
-        "badge": {
-          "jcr:primaryType": "sling:Folder",
-          "jcr:description": "outputs all badge component resources",
-          "expr": "[sling:resourceType=myApp/components/badge]",
-          "path": "/etc/badges/badges-admin/jcr:content",
-          "sling:resourceType": "slingPipes/slingQuery"
-          },
-        "profile": {
-          "jcr:primaryType": "sling:Folder",
-          "jcr:description": "retrieve all user ids from a mv property",
-          "path": "${path.badge}/profiles",
-          "sling:resourceType": "slingPipes/multiProperty"
-        },
-        "user": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "jcr:description": "outputs user resource",
-          "expr": "profile",
-          "sling:resourceType": "slingPipes/authorizable"
-        },
-        "write": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "jcr:descritption": "patches the badge path to the badges property of the user profile"
-          "path": "${path.user}/profile",
-          "sling:resourceType": "slingPipes/write",
-          "conf": {
-            "jcr:primaryType": "nt:unstructured",
-            "badges": "+[${path.badge}]"
-          }
-        }
-      }
-    }
+{
+"jcr:primaryType": "sling:Folder",
+"jcr:description": "move badge<->user relation ship from badge MV property to a user MV property"
+"name": "badges",
+"sling:resourceType": "slingPipes/container",
+"conf": {
+"jcr:primaryType": "sling:OrderedFolder",
+"badge": {
+"jcr:primaryType": "sling:Folder",
+"jcr:description": "outputs all badge component resources",
+"expr": "[sling:resourceType=myApp/components/badge]",
+"path": "/etc/badges/badges-admin/jcr:content",
+"sling:resourceType": "slingPipes/slingQuery"
+},
+"profile": {
+"jcr:primaryType": "sling:Folder",
+"jcr:description": "retrieve all user ids from a mv property",
+"path": "${path.badge}/profiles",
+"sling:resourceType": "slingPipes/multiProperty"
+},
+"user": {
+"jcr:primaryType": "sling:OrderedFolder",
+"jcr:description": "outputs user resource",
+"expr": "profile",
+"sling:resourceType": "slingPipes/authorizable"
+},
+"write": {
+"jcr:primaryType": "sling:OrderedFolder",
+"jcr:descritption": "patches the badge path to the badges property of the user profile"
+"path": "${path.user}/profile",
+"sling:resourceType": "slingPipes/write",
+"conf": {
+"jcr:primaryType": "nt:unstructured",
+"badges": "+[${path.badge}]"
+}
+}
+}
+}
 
 
 ### xpath | json | write
 this use case is for completing repository profiles with external system's data (that has an json api)
 
-    {
-      "jcr:primaryType": "nt:unstructured",
-      "jcr:description": "this pipe retrieves json info from an external system and writes them to the user profile, uses moment.js, it
-      distributes modified resources using publish distribution agent",
-      "sling:resourceType": "slingPipes/container",
-      "distribution.agent": "publish",
-      "additionalScripts": "/etc/source/moment.js",
-      "conf": {
-        "jcr:primaryType": "sling:OrderedFolder",
-        "profile": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "expr": "/jcr:root/home/users//element(profile,nt:unstructured)[@uid]",
-          "jcr:description": "query all user profile nodes",
-          "sling:resourceType": "slingPipes/xpath"
-        },
-        "json": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "expr": "${(profile.uid ? 'https://my.external.system.corp.com/profiles/' + profile.uid.substr(0,2) + '/' + profile.uid + '.json' : '')",
-          "jcr:description": "retrieves json information relative to the given profile, if the uid is not found, expr is empty: the pipe will do nothing",
-          "sling:resourceType": "slingPipes/json"
-        },
-        "write": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "path": "path.profile",
-          "jcr:description": "write json information to the profile node",
-          "sling:resourceType": "slingPipes/write",
-          "conf": {
-            "jcr:primaryType": "sling:OrderedFolder",
-            "background": "${json.opt('background')}",
-            "about": "${json.opt('about')}",
-            "birthday": "${(json.opt('birthday') ? moment(json.opt('birthday'), \"MMMM DD\").toDate() : '')}",
-            "mobile": "${json.opt('mobile')}"
-          }
-        }
-      }
-    }
+{
+"jcr:primaryType": "nt:unstructured",
+"jcr:description": "this pipe retrieves json info from an external system and writes them to the user profile, uses moment.js, it
+distributes modified resources using publish distribution agent",
+"sling:resourceType": "slingPipes/container",
+"distribution.agent": "publish",
+"additionalScripts": "/etc/source/moment.js",
+"conf": {
+"jcr:primaryType": "sling:OrderedFolder",
+"profile": {
+"jcr:primaryType": "sling:OrderedFolder",
+"expr": "/jcr:root/home/users//element(profile,nt:unstructured)[@uid]",
+"jcr:description": "query all user profile nodes",
+"sling:resourceType": "slingPipes/xpath"
+},
+"json": {
+"jcr:primaryType": "sling:OrderedFolder",
+"expr": "${(profile.uid ? 'https://my.external.system.corp.com/profiles/' + profile.uid.substr(0,2) + '/' + profile.uid + '.json' : '')",
+"jcr:description": "retrieves json information relative to the given profile, if the uid is not found, expr is empty: the pipe will do nothing",
+"sling:resourceType": "slingPipes/json"
+},
+"write": {
+"jcr:primaryType": "sling:OrderedFolder",
+"path": "path.profile",
+"jcr:description": "write json information to the profile node",
+"sling:resourceType": "slingPipes/write",
+"conf": {
+"jcr:primaryType": "sling:OrderedFolder",
+"background": "${json.opt('background')}",
+"about": "${json.opt('about')}",
+"birthday": "${(json.opt('birthday') ? moment(json.opt('birthday'), "MMMM DD").toDate() : '')}",
+"mobile": "${json.opt('mobile')}"
+}
+}
+}
+}
 
 ### xpath | parent | rm
 
-    {
-      "jcr:primaryType": "nt:unstructured",
-      "jcr:description": "this pipe removes user with bad property in their profile",
-      "sling:resourceType": "slingPipes/container",
-      "conf": {
-        "jcr:primaryType": "sling:OrderedFolder",
-        "profile": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "expr": "/jcr:root/home/users//element(profile,nt:unstructured)[@bad]",
-          "jcr:description": "query all user profile nodes with bad properties",
-          "sling:resourceType": "slingPipes/xpath"
-        },
-        "parent": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "jcr:description": "get the parent node (user node)",
-          "sling:resourceType": "slingPipes/parent"
-        },
-        "rm": {
-          "jcr:primaryType": "sling:OrderedFolder",
-          "jcr:description": "remove it",
-          "sling:resourceType": "slingPipes/rm",
-        }
-      }
-    }
+{
+"jcr:primaryType": "nt:unstructured",
+"jcr:description": "this pipe removes user with bad property in their profile",
+"sling:resourceType": "slingPipes/container",
+"conf": {
+"jcr:primaryType": "sling:OrderedFolder",
+"profile": {
+"jcr:primaryType": "sling:OrderedFolder",
+"expr": "/jcr:root/home/users//element(profile,nt:unstructured)[@bad]",
+"jcr:description": "query all user profile nodes with bad properties",
+"sling:resourceType": "slingPipes/xpath"
+},
+"parent": {
+"jcr:primaryType": "sling:OrderedFolder",
+"jcr:description": "get the parent node (user node)",
+"sling:resourceType": "slingPipes/parent"
+},
+"rm": {
+"jcr:primaryType": "sling:OrderedFolder",
+"jcr:description": "remove it",
+"sling:resourceType": "slingPipes/rm",
+}
+}
+}
 
 some other samples are in https://github.com/npeltier/sling-pipes/tree/master/src/test/
 

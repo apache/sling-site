@@ -1,17 +1,14 @@
-title=TODO title for sling-testing-tools.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Testing Tools		
+type=page
 status=published
 ~~~~~~
-Title: Sling Testing Tools
 
 <div class="warning">
 While this information is still valid, we recommend using the tools and techniques described
-in the newer "Junit Server-Side Tests Support" page instead, see link below. 
+in the newer "Junit Server-Side Tests Support" page instead, see link below.
 </div>
 
-As mentioned above, this is now replaced by the [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html) page. 
+As mentioned above, this is now replaced by the [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html) page.
 
 Sling provides a number of testing tools to support the following use cases:
 
@@ -42,7 +39,7 @@ Note that the JUnitServlet does not require authentication, so it would allow an
 For tighter integration with Sling, the alternate `SlingJUnitServlet` is registered with the `sling/junit/testing` resource type and `.junit` selector, if the bundle is running in a Sling system. Using this servlet instead of the plain JUnitServlet also allows Sling authentication to be used for running the tests, and the standard Sling request processing is used, including servlet filters for example.
 </div>
 
-To try the JUnitServlet interactively, install a bundle that contains tests registered via the `Sling-Test-Regexp=.*Test` bundle header. 
+To try the JUnitServlet interactively, install a bundle that contains tests registered via the `Sling-Test-Regexp=.*Test` bundle header.
 
 The JUnit core services use this regular expression to select which classes of the test bundle should be executed as JUnit tests.
 
@@ -58,23 +55,23 @@ The `@TestReference` annotation is used to inject OSGi services in tests that ar
 ## Curl examples
 Here's an example executing a few tests using curl:
 
-    $ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.sampletests.JUnit.json
-    [{
-        "INFO_TYPE": "test",
-        "description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit3Test)"
-      },{
-        "INFO_TYPE": "test",
-        "description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit4Test)"
-      },{
-        "INFO_TYPE": "test",
-        "description": "testRequiresBefore(org.apache.sling.testing.samples.sampletests.JUnit4Test)"
-      }
-    ]
+$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.sampletests.JUnit.json
+[{
+"INFO_TYPE": "test",
+"description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit3Test)"
+},{
+"INFO_TYPE": "test",
+"description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit4Test)"
+},{
+"INFO_TYPE": "test",
+"description": "testRequiresBefore(org.apache.sling.testing.samples.sampletests.JUnit4Test)"
+}
+]
 
 
 And another example with a test that fails:
 
-    $ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.failingtests.JUnit4FailingTest.json
+$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.failingtests.JUnit4FailingTest.json
 
 # Scriptable server-side tests
 If the [org.apache.sling.junit.scriptable](http://svn.apache.org/repos/asf/sling/trunk/testing/junit/scriptable) bundle is active in a Sling system, (in addition to the `org.apache.sling.junit.core` bundle), scriptable tests can be executed by the `JUnitServlet` according to the following rules:
@@ -87,29 +84,29 @@ The [ScriptableTestsTest](http://svn.apache.org/repos/asf/sling/trunk/testing/sa
 
 Here's a minimal example that sets up and executes a scriptable test:
 
-    $ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
-    ...
-    $ echo TEST_PASSED > /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp
-    
+$ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
+...
+$ echo TEST_PASSED > /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp
+
 At this point, foo.test.txt is what the scriptable test framework will request, and that outputs just TEST_PASSED:
-    
-    $ curl -u admin:admin http://localhost:8080/apps/foo.test.txt
-    TEST_PASSED
-    
+
+$ curl -u admin:admin http://localhost:8080/apps/foo.test.txt
+TEST_PASSED
+
 And a POST to the JUnit servlet returns information on the test's execution:
 
-    curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json
-    [{
-        "INFO_TYPE": "test",
-        "description": "verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)",
-        "test_metadata": {
-          "test_execution_time_msec": 2
-        }
-      }
-    ]
+curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json
+[{
+"INFO_TYPE": "test",
+"description": "verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)",
+"test_metadata": {
+"test_execution_time_msec": 2
+}
+}
+]
 
 Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the
-same request again.      
+same request again.
 
 # Integration tests example
 The [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests) module runs some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.
@@ -124,7 +121,7 @@ The following steps are executed in the `integration-test` phase of this module'
 
 1. A random port number for the Sling server is selected by the Maven build helper plugin, unless explicitely set (see pom.xml for such options).
 1. Additional bundles, defined in the module's pom, are downloaded from the Maven repository in the `target/sling/additional-bundles` folder.
-1. The first test that inherits from the [SlingTestBase](https://svn.apache.org/repos/asf/sling/trunk/testing/tools/src/main/java/org/apache/sling/testing/tools/sling/SlingTestBase.java) class causes the Sling runnable jar (defined as a dependency in the module's pom) to be started. 
+1. The first test that inherits from the [SlingTestBase](https://svn.apache.org/repos/asf/sling/trunk/testing/tools/src/main/java/org/apache/sling/testing/tools/sling/SlingTestBase.java) class causes the Sling runnable jar (defined as a dependency in the module's pom) to be started.
 1. The `SlingTestBase` class waits for the Sling server to be ready, based on URLs and expected responses defined in the pom.
 1. The `SlingTestBase` class installs and starts the bundles found in the `target/sling/additional-bundles` folder.
 1. The test can now either test Sling directly via its http interface, or use the JUnitServlet to execute server-side tests contributed by bundles or scripts, as described above.
@@ -135,8 +132,8 @@ If `-DkeepJarRunning` is used on the Maven command line, the Sling runnable jar 
 
 ## Running tests against existing server
 
-Instead of provisioning a completely new Sling server, the ITs can also be executed on an already existing server instance. For that the 
-`test-server-url` system property has to point to the existing server url. 
+Instead of provisioning a completely new Sling server, the ITs can also be executed on an already existing server instance. For that the
+`test-server-url` system property has to point to the existing server url.
 Additional bundles can still be deployed by using the `sling.additional.bundle.<num>` system property.
 
 Optionally, the additional bundles can be undeployed after the execution of the IT by setting `additional.bundles.uninstall` to `true`. (since Sling Testing Tools 1.0.12, [SLING-4819](https://issues.apache.org/jira/browse/SLING-4819))
@@ -161,8 +158,8 @@ The [ExampleRemoteTest](https://svn.apache.org/repos/asf/sling/trunk/testing/jun
 # Debugging ITs
 The JVM is usually forked twice during the execution of integration tests. The first time by the `maven-surefire-plugin` which executes the client-side (i.e. Maven-side) part of the tests. To debug this side the option `-Dmaven.surefire.debug` can be used which waits for a debugger to be attached on port 5005 before the (client-side) test is executed. More information is available in the [documentation of the maven-surefire-plugin](http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html).
 
-Then the `JarExecutor` is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable `jar.executor.vm.options` can be used to start that VM with debug options. All debug options are described at the [JPDA documentation](http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation). If running 
+Then the `JarExecutor` is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable `jar.executor.vm.options` can be used to start that VM with debug options. All debug options are described at the [JPDA documentation](http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation). If running
 
-    mvn test -Djar.executor.vm.options="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"
+mvn test -Djar.executor.vm.options="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"
 
 the server start is interrupted until a debugger is connected on port 8000.

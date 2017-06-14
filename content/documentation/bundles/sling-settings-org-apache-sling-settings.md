@@ -1,10 +1,7 @@
-title=TODO title for sling-settings-org-apache-sling-settings.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Settings and Run Modes (org.apache.sling.settings)		
+type=page
 status=published
 ~~~~~~
-Title: Sling Settings and Run Modes (org.apache.sling.settings)
 
 # Overview
 
@@ -35,7 +32,7 @@ The `sling.run.mode.options` property on the other hand is used at each startup,
 
 The value of the both these properties is a string which looks like:
 
-    red,green,blue|one|moon,mars
+red,green,blue|one|moon,mars
 
 where *comma-separated run modes form a group*. The individual groups are separated by a pipe character (`|`, which is not an OR operation, it's just as separator). A group defines a number of run modes which are **mutually exclusive**. It means once a group is defined, exactly one run mode will be active from that group.
 
@@ -45,16 +42,16 @@ The example from above consists out of 3 different groups
 2. `one`
 3. `moon,mars`
 
-The rules for determining the active run modes from the selected run mode (`sling.run.modes`) and the run mode options (`sling.run.mode.install.options` and `sling.run.mode.options`) are as follows : 
+The rules for determining the active run modes from the selected run mode (`sling.run.modes`) and the run mode options (`sling.run.mode.install.options` and `sling.run.mode.options`) are as follows :
 
-1. If none of the run modes in the options are selected, the first one from each group in the options is activated by default. 
+1. If none of the run modes in the options are selected, the first one from each group in the options is activated by default.
 1. If one is selected from a group in the options, this is active.
 1. If several are selected from one group in the options, the first one from the list of valid run modes is used.
 1. If the selected run mode is not mentioned in any of the option groups it is active
 
 Examples
 
-    sling.run.mode.options=a,b|c,d,e
+sling.run.mode.options=a,b|c,d,e
 
 User defined run modes (e.g. via property `sling.run.modes`) | Effectively active run modes
 --- | ---
@@ -71,14 +68,14 @@ Remember to look at the `RunModeImplTest` mentioned above for details, and feel 
 
 The `SlingSettings` service provides the Run Modes of the running Sling instance as in this example:
 
-    :::java
-    SlingSettings settings = ...get from BundleContext...
-    Set<String> currentRunModes = settings.getRunModes();
-    
-    Set<String> expectedRunModes = new HashSet<String>(){{ add("foo");add("wii"); }};
-    if(expectedRunModes.removeAll(currentRunModes)) {
-      // at least one of (foo,wii) run modes
-      // is active
-    }
-	
+:::java
+SlingSettings settings = ...get from BundleContext...
+Set<String> currentRunModes = settings.getRunModes();
+
+Set<String> expectedRunModes = new HashSet<String>(){{ add("foo");add("wii"); }};
+if(expectedRunModes.removeAll(currentRunModes)) {
+// at least one of (foo,wii) run modes
+// is active
+}
+
 Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.

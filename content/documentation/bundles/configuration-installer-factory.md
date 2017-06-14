@@ -1,31 +1,28 @@
-title=TODO title for configuration-installer-factory.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Configuration Installer Factory		
+type=page
 status=published
 ~~~~~~
-Title: Configuration Installer Factory
 
 The configuration installer factory provides support for configurations to the [OSGI installer](/documentation/bundles/osgi-installer.html). The provisioning of artifacts is handled by installer providers like the file installer or the JCR installer.
 
 
 ## Configurations
- 	 
+
 Configuration file names are related to the PID and factory PID. The structure of the file name is as follows:
- 	 
 
-    filename ::= <pid> ( '-' <subname> )? ('.cfg'|'.config')
 
- 	 
+filename ::= <pid> ( '-' <subname> )? ('.cfg'|'.config')
+
+
 If the form is `<pid>('.cfg'|'.config')`, the file contains the properties for a Managed Service. The `<pid>` is then the PID of the Managed Service. See the Configuration Admin service for details.
- 	 
-When a Managed Service Factory is used, the situation is different. The `<pid>` part then describes the PID of the Managed Service Factory. You can pick any `<subname>`, the installer will then create an instance for the factory for each unique name. For example:
- 	 
 
-    com.acme.xyz.cfg // configuration for Managed Service
-    // com.acme.xyz
-    com.acme.abc-default.cfg // Managed Service Factory,
-    // creates an instance for com.acme.abc
+When a Managed Service Factory is used, the situation is different. The `<pid>` part then describes the PID of the Managed Service Factory. You can pick any `<subname>`, the installer will then create an instance for the factory for each unique name. For example:
+
+
+com.acme.xyz.cfg // configuration for Managed Service
+// com.acme.xyz
+com.acme.abc-default.cfg // Managed Service Factory,
+// creates an instance for com.acme.abc
 
 
 If a configuration is modified, the file installer will write the configuration back to a file to ensure peristence across restarts (if `sling.fileinstall.writeback` is enabled).
@@ -33,16 +30,16 @@ If a configuration is modified, the file installer will write the configuration 
 ### Property Files (.cfg)
 
 Configuration files ending in '.cfg' are plain property files (`java.util.Property`). The format is simple:
- 	 
 
-    file ::= ( header | comment ) *
-    header ::= <header> ( ':' | '=' ) <value> ( '\<nl> <value> ) *
-    comment ::= '#' <any>
+
+file ::= ( header | comment ) *
+header ::= <header> ( ':' | '=' ) <value> ( '<nl> <value> ) *
+comment ::= '#' <any>
 
 Notice that this model only supports string properties. For example:
- 	 
-    # default port
-    ftp.port = 21
+
+# default port
+ftp.port = 21
 
 ### Configuration Files (.config)
 
@@ -52,17 +49,17 @@ The first line of such a file might start with a comment line (a line starting w
 
 The format is:
 
-    file ::= (comment) (header) *
-    comment ::= '#' <any>
-    header ::= prop '=' value
-    prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
-    symbolic-name ::= token { '.' token } 
-    token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' }
-    value ::= [ type ] ( '[' values ']' | '(' values ')' | simple ) 
-    values ::= simple { ',' simple } 
-    simple ::= '"' stringsimple '"'
-    type ::= <1-char type code>
-    stringsimple ::= <quoted string representation of the value where both '"' and '=' need to be escaped>
+file ::= (comment) (header) *
+comment ::= '#' <any>
+header ::= prop '=' value
+prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
+symbolic-name ::= token { '.' token }
+token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' }
+value ::= [ type ] ( '[' values ']' | '(' values ')' | simple )
+values ::= simple { ',' simple }
+simple ::= '"' stringsimple '"'
+type ::= <1-char type code>
+stringsimple ::= <quoted string representation of the value where both '"' and '=' need to be escaped>
 
 The quoted string format is equal to the definition from HTTP 1.1 ([RFC2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html)), except that both '"' and '=' need to be escaped.
 

@@ -1,10 +1,7 @@
-title=TODO title for filters.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Servlet Filter Support		
+type=page
 status=published
 ~~~~~~
-Title: Servlet Filter Support
 
 Sling supports filter processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface.
 
@@ -12,7 +9,7 @@ Sling supports filter processing by applying filter chains to the requests befor
 See <a href="https://issues.apache.org/jira/browse/SLING-1213">SLING-1213</a>,
 <a href="https://issues.apache.org/jira/browse/SLING-1734">SLING-1734</a>, and
 <a href="http://markmail.org/message/quxhm7d5s6u66crr">Registering filters with Sling</a>
- for more details. The 
+for more details. The
 <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/filters/NoPropertyFilter.java">NoPropertyFilter</a>
 from our integration tests shows an example Sling Filter.
 </div>
@@ -48,24 +45,24 @@ Note on `INCLUDE` and `FORWARD` with respect to JSP tags: These filters are also
 Filter processing is part of the Sling request processing, which may be sketched as follows:
 
 * *Request Level*:
-    * Authentication
-    * Resource Resolution
-    * Servlet/Script Resolution
-    * Request Level Filter Processing
+* Authentication
+* Resource Resolution
+* Servlet/Script Resolution
+* Request Level Filter Processing
 
 The first step of request processing is the *Request Level* processing which is concerned with resolving the resource, finding the appropriate servlet and calling into the request level filter chain. The next step is the *Component Level* processing, calling into the component level filters before finally calling the servlet or script:
 
 * *Component Level*:
-    * Component Level Filter Processing
-    * Call Servlet or Script
+* Component Level Filter Processing
+* Call Servlet or Script
 
 When a servlet or script is including or forwarding to another resource for processing through the `RequestDispatcher` (or any JSP tag or other language feature ultimately using a `RequestDispatcher`) the following *Dispatch* processing takes place:
 
 * *Dispatch*:
-    * Resolve the resource to dispatch to if not already defined when getting the `RequestDispatcher`
-    * Servlet/Script resolution
-    * Call include or forward filters depending on the kind of dispatch
-    * Call Servlet or Script
+* Resolve the resource to dispatch to if not already defined when getting the `RequestDispatcher`
+* Servlet/Script resolution
+* Call include or forward filters depending on the kind of dispatch
+* Call Servlet or Script
 
 As a consequence, request level filters will be called at most once during request processing (they may not be called at all if a filter earlier in the filter chain decides to terminate the request) while the component level, include, and forward filters may be called multiple times while processing a request.
 
@@ -75,42 +72,42 @@ Apart form the logs which tell you when filters are executed, two Sling plugins 
 ### Recent Requests plugin
 The request traces provided at `/system/console/requests` contain information about filter execution, as in this example:
 
-    0 (2010-09-08 15:22:38) TIMER_START{Request Processing}
-    ...
-    0 (2010-09-08 15:22:38) LOG Method=GET, PathInfo=/some/path.html
-    3 (2010-09-08 15:22:38) LOG Applying request filters
-    3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter
-    3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.portal.container.internal.request.PortalFilter
-    3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.rewriter.impl.RewriterFilter
-    3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.i18n.impl.I18NFilter
-    3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter
-    3 (2010-09-08 15:22:38) LOG Applying inner filters
-    3 (2010-09-08 15:22:38) TIMER_START{/some/script.jsp#0}
-    ...
-    8 (2010-09-08 15:22:38) TIMER_END{8,Request Processing} Request Processing
+0 (2010-09-08 15:22:38) TIMER_START{Request Processing}
+...
+0 (2010-09-08 15:22:38) LOG Method=GET, PathInfo=/some/path.html
+3 (2010-09-08 15:22:38) LOG Applying request filters
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.portal.container.internal.request.PortalFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.rewriter.impl.RewriterFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.i18n.impl.I18NFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter
+3 (2010-09-08 15:22:38) LOG Applying inner filters
+3 (2010-09-08 15:22:38) TIMER_START{/some/script.jsp#0}
+...
+8 (2010-09-08 15:22:38) TIMER_END{8,Request Processing} Request Processing
 
 ### Config Status plugin
 The configuration status page at `/system/console/config` includes the current list of active filters in its *Servlet Filters* category, as in this example:
 
-    Current Apache Sling Servlet Filter Configuration
-    
-    Request Filters:
-    -2147483648 : class org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter (2547)
-    -3000 : class org.apache.sling.portal.container.internal.request.PortalFilter (2562)
-    -2500 : class org.apache.sling.rewriter.impl.RewriterFilter (3365)
-    -700 : class org.apache.sling.i18n.impl.I18NFilter (2334)
-    0 : class org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter (2402)
-    
-    Error Filters:
-    ---
-    
-    Include Filters:
-    
-    Forward Filters:
-    1000 : class some.package.DebugFilter (2449)
-    
-    Component Filters:
-    -200 : class some.package.SomeComponentFilter (2583)
+Current Apache Sling Servlet Filter Configuration
+
+Request Filters:
+-2147483648 : class org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter (2547)
+-3000 : class org.apache.sling.portal.container.internal.request.PortalFilter (2562)
+-2500 : class org.apache.sling.rewriter.impl.RewriterFilter (3365)
+-700 : class org.apache.sling.i18n.impl.I18NFilter (2334)
+0 : class org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter (2402)
+
+Error Filters:
+---
+
+Include Filters:
+
+Forward Filters:
+1000 : class some.package.DebugFilter (2449)
+
+Component Filters:
+-200 : class some.package.SomeComponentFilter (2583)
 
 
 The first numbers on those lines are the filter priorities, and the last number in parentheses is the OSGi service ID.

@@ -1,10 +1,7 @@
-title=TODO title for authentication.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Authentication		
+type=page
 status=published
 ~~~~~~
-Title: Authentication
 Excerpt:  How requests are authenticated.
 
 
@@ -15,7 +12,7 @@ Let's look at generic request processing of Sling: Sling is linked into the outs
 This method is called by the OSGi HTTP Service implementation after the servlet has been selected to handle the request but before actually calling the servlet's `service` method.
 
 <a href="authentication.png" style="float:left;padding-right:5%">
-    <img src="authentication.png" title="Authentication Flow" alt="Authentication Flow" />
+<img src="authentication.png" title="Authentication Flow" alt="Authentication Flow" />
 </a>
 
 1. First the OSGi HTTP Service implementation is analyzing the request URL to find a match for a servlet or resource registered with the HTTP Service.
@@ -26,7 +23,7 @@ The important thing to note here is, that at the time the `handleSecurity` metho
 
 The following pages describe the full details of request authentication in Sling in full detail:
 
-* [Tasks](/documentation/the-sling-engine/authentication/authentication-tasks.html): {{ refs.authentication-tasks.headers.excerpt }} 
-* [Actors](/documentation/the-sling-engine/authentication/authentication-actors.html): {{ refs.authentication-actors.headers.excerpt }} 
-* [Framework](/documentation/the-sling-engine/authentication/authentication-framework.html): {{ refs.authentication-framework.headers.excerpt }} 
-* [AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html): {{ refs.authentication-authenticationhandler.headers.excerpt }} 
+* [Tasks](/documentation/the-sling-engine/authentication/authentication-tasks.html): {{ refs.authentication-tasks.headers.excerpt }}
+* [Actors](/documentation/the-sling-engine/authentication/authentication-actors.html): {{ refs.authentication-actors.headers.excerpt }}
+* [Framework](/documentation/the-sling-engine/authentication/authentication-framework.html): {{ refs.authentication-framework.headers.excerpt }}
+* [AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html): {{ refs.authentication-authenticationhandler.headers.excerpt }}
