@@ -13,6 +13,9 @@ Experimenting with JBake for the Apache Sling website
 * Implement the dynamic downloads page
 * Enumerate child pages in documentation/tutorials-how-tos.html
 * Tables are broken in project-information.html for example
+* Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references
+* Fix remaining `refs.` links
+* Remove or replace the `[TOC]` macro
 
 ## JBake notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
