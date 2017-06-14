@@ -16,5 +16,5 @@ Experimenting with JBake for the Apache Sling website
 
 ## JBake notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
-* Apparently uses https://github.com/sirthias/pegdown for Markdown 
+* Apparently uses https://github.com/sirthias/pegdown for Markdown, syntax info at https://github.com/sirthias/pegdown/blob/master/src/test/resources/MarkdownTest103/Markdown%20Documentation%20-%20Syntax.md
 * Groovy MarkupTemplateEngine examples at https://github.com/jbake-org/jbake-example-project-groovy-mt , docs for that engine at http://groovy-lang.org/templating.html#_simpletemplateengine
