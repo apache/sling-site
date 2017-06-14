@@ -10,12 +10,12 @@ link(rel:"stylesheet", href:"${config.site_contextPath}res/css/codehilite.css") 
 div(class:"title") {
   div(class:"logo") {
 	  a(href:"http://sling.apache.org") {
-	  	img(border:"0", alt="Apache Sling", src="${config.site_contextPath}res/logos/sling.svg")
+	  	img(border:"0", alt:"Apache Sling", src:"${config.site_contextPath}res/logos/sling.svg")
 	  }
   }
   div(class:"header") {
 	  a(href:"http://www.apache.org") {
-	  	img(border:"0", alt="Apache", src="${config.site_contextPath}res/logos/apache.png")
+	  	img(border:"0", alt:"Apache", src:"${config.site_contextPath}res/logos/apache.png")
 	  }
   }
 }
