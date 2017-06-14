@@ -6,80 +6,70 @@ status=published
 ~~~~~~
 Title: Bundles
 
-## TODO remove this section - experimenting with internal links
-
-[Content Loading (jcr.contentloader)](bundles/content-loading-jcr-contentloader.html)
-
-[Internationalization Support (i18n)](bundles/internationalization-support-i18n.html)
-
-[Internationalization Support 3 (i18n)]({config.site_contextPath}/documentation/bundles/internationalization-support-i18n.html)
-
-wiki style doesn't work yet? [[internationalization-support-i18n]]
-
 ## Content
 
-* [Content Loading (jcr.contentloader)]({{ refs.content-loading-jcr-contentloader.path }})
-* [Internationalization Support (i18n)]({{ refs.internationalization-support-i18n.path }})
-* [Manipulating Content - The SlingPostServlet (servlets.post)]({{ refs.manipulating-content-the-slingpostservlet-servlets-post.path }})
-* [Rendering Content - Default GET servlets (servlets.get)]({{ refs.rendering-content-default-get-servlets.path }})
-* [Validation]({{ refs.validation.path }})
-* [Repository Initialization]({{ refs.repository-initialization.path }})
+* [Content Loading (jcr.contentloader)](/documentation/bundles/content-loading-jcr-contentloader.html)
+* [Internationalization Support (i18n)](/documentation/bundles/internationalization-support-i18n.html)
+* [Manipulating Content - The SlingPostServlet (servlets.post)](/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html)
+* [Rendering Content - Default GET servlets (servlets.get)](/documentation/bundles/rendering-content-default-get-servlets.html)
+* [Validation](/documentation/bundles/validation.html)
+* [Repository Initialization](/documentation/bundles/repository-initialization.html)
 
 ## Resource Providers
 
-* [Accessing File System Resources (org.apache.sling.fsresource)]({{ refs.accessing-filesystem-resources-extensions-fsresource.path }})
-* [Bundle Resources (extensions.bundleresource)]({{ refs.bundle-resources-extensions-bundleresource.path }})
-* [NoSQL Resource Providers (org.apache.sling.nosql)]({{ refs.nosql-resource-providers.path }})
-* [Resource Merger (org.apache.sling.resourcemerger)]({{ refs.resource-merger.path }})
+* [Accessing File System Resources (org.apache.sling.fsresource)](/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html)
+* [Bundle Resources (extensions.bundleresource)](/documentation/bundles/bundle-resources-extensions-bundleresource.html)
+* [NoSQL Resource Providers (org.apache.sling.nosql)](/documentation/bundles/nosql-resource-providers.html)
+* [Resource Merger (org.apache.sling.resourcemerger)](/documentation/bundles/resource-merger.html)
 
 ## Users, Groups, Access, Permissions, ACLs on Resources
 
-* [Managing users and groups (jackrabbit.usermanager)]({{ refs.managing-users-and-groups-jackrabbit-usermanager.path }})
-* [Managing permissions (jackrabbit.accessmanager)]({{ refs.managing-permissions-jackrabbit-accessmanager.path }})
-* [Resource Access Security (resourceaccesssecurity)]({{ refs.resource-access-security.path }})
-* [Sling Oak Restrictions (sling-oak-restrictions)]({{ refs.sling-oak-restrictions.path }})
+* [Managing users and groups (jackrabbit.usermanager)](/documentation/bundles/managing-users-and-groups-jackrabbit-usermanager.html)
+* [Managing permissions (jackrabbit.accessmanager)](/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html)
+* [Resource Access Security (resourceaccesssecurity)](/documentation/bundles/resource-access-security.html)
+* [Sling Oak Restrictions (sling-oak-restrictions)](/documentation/bundles/sling-oak-restrictions.html)
 
 
 ## OSGi Installer
 The OSGi installer is a very flexible and powerful service to manage provisioning and updates of an OSGi system. It is independent of Sling and can be extended by several plugins.
 
-* [OSGi Installer]({{ refs.osgi-installer.path }})
-* [Configuration Installer Factory]({{ refs.configuration-installer-factory.path }})
-* [Subsystem Installer Factory]({{ refs.subsystem-installer-factory.path }})
-* [JCR Installer Provider]({{ refs.jcr-installer-provider.path }})
-* [File Installer Provider]({{ refs.file-installer-provider.path }})
+* [OSGi Installer](/documentation/bundles/osgi-installer.html)
+* [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)
+* [Subsystem Installer Factory](/documentation/bundles/subsystem-installer-factory.html)
+* [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html)
+* [File Installer Provider](/documentation/bundles/file-installer-provider.html)
 
 ## Development and Utilities
-* [Commons Thread Pools]({{ refs.apache-sling-commons-thread-pool.path }})
-* [Commons HTML Utilities]({{ refs.commons-html-utilities.path }})
-* [MIME Type Support (commons.mime and commons.contentdetection)]({{ refs.mime-type-support-commons-mime.path }})
-* [Scripting]({{ refs.scripting.path }})
-* [Sling Settings (org.apache.sling.settings)]({{ refs.sling-settings-org-apache-sling-settings.path }})
-* [Caching Services]({{ refs.caching-services.path }})
-* [Sling Models]({{ refs.models.path }})
-* [Sling Pax Exam Utilities]({{ refs.pax-exam-utils.path }})
-* [Sling Query Library]({{ refs.sling-query.path }})
-* [Junit Server-Side Tests Support]({{ refs.org-apache-sling-junit-bundles.path }})
-* [Sling Pipes]({{ refs.sling-pipes.path }})
-* [Sling Metrics]({{ refs.metrics.path }})
-* [Servlet Helpers]({{ refs.servlet-helpers.path }})
-* [Context-Aware Configuration]({{ refs.context-aware-configuration.path }})
+* [Commons Thread Pools](/documentation/bundles/apache-sling-commons-thread-pool.html)
+* [Commons HTML Utilities](/documentation/bundles/commons-html-utilities.html)
+* [MIME Type Support (commons.mime and commons.contentdetection)](/documentation/bundles/mime-type-support-commons-mime.html)
+* [Scripting](/documentation/bundles/scripting.html)
+* [Sling Settings (org.apache.sling.settings)](/documentation/bundles/sling-settings-org-apache-sling-settings.html)
+* [Caching Services](/documentation/bundles/caching-services.html)
+* [Sling Models](/documentation/bundles/models.html)
+* [Sling Pax Exam Utilities](/documentation/pax-exam-utils.html)
+* [Sling Query Library](/documentation/bundles/sling-query.html)
+* [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html)
+* [Sling Pipes](/documentation/bundles/sling-pipes.html)
+* [Sling Metrics](/documentation/bundles/metrics.html)
+* [Servlet Helpers](/documentation/bundles/servlet-helpers.html)
+* [Context-Aware Configuration](/documentation/bundles/context-aware-configuration/context-aware-configuration.html)
 
 ## Content Presentation and Rendering
-* [Scripting]({{ refs.scripting.path }}) (aka Templating)
-* [Output Rewriting Pipelines (org.apache.sling.rewriter)]({{ refs.output-rewriting-pipelines-org-apache-sling-rewriter.path }})
-* [XML Support]({{ refs.xml-support.path }})
-* [Sling Resource Editor]({{ refs.resource-editor.path }})
-* [Sling Dynamic Include (org.apache.sling.dynamic-include)]({{ refs.dynamic-includes.path }})
+* [Scripting](/documentation/bundles/scripting.html) (aka Templating)
+* [Output Rewriting Pipelines (org.apache.sling.rewriter)](/documentation/bundles/output-rewriting-pipelines-org-apache-sling-rewriter.html)
+* [XML Support](/documentation/bundles/xml-support.html)
+* [Sling Resource Editor](/documentation/bundles/resource-editor.html)
+* [Sling Dynamic Include (org.apache.sling.dynamic-include)](/documentation/bundles/dynamic-includes.html)
 
 ## Troubleshooting
-* [Request Processing Analyzer (org.apache.sling.reqanalyzer)]({{ refs.request-analysis.path }})
-* [Sling Health Check Tool]({{ refs.sling-health-check-tool.path }})
+* [Request Processing Analyzer (org.apache.sling.reqanalyzer)](/documentation/bundles/request-analysis.html)
+* [Sling Health Check Tool](/documentation/bundles/sling-health-check-tool.html)
 
 ## Misc
-* [Eventing and Job Handling]({{ refs.apache-sling-eventing-and-job-handling.path }})
-* [Scheduler Service (commons scheduler)]({{ refs.scheduler-service-commons-scheduler.path }})
-* [Web Console Extensions (org.apache.sling.extensions.webconsolebranding, org.apache.sling.extensions.webconsolesecurityprovider)]({{ refs.web-console-extensions.path }})
-* [Discovery API and its Implementations (discovery.api, discovery.impl)]({{ refs.discovery-api-and-impl.path }})
-* [Datasource Provider]({{ refs.datasource-providers.path }})
-* [Log Tracer]({{ refs.log-tracers.path }})
+* [Eventing and Job Handling](/documentation/bundles/apache-sling-eventing-and-job-handling.html)
+* [Scheduler Service (commons scheduler)](/documentation/bundles/scheduler-service-commons-scheduler.html)
+* [Web Console Extensions (org.apache.sling.extensions.webconsolebranding, org.apache.sling.extensions.webconsolesecurityprovider)](/documentation/bundles/web-console-extensions.html)
+* [Discovery API and its Implementations (discovery.api, discovery.impl)](/documentation/bundles/discovery-api-and-impl.html)
+* [Datasource Provider](/documentation/bundles/datasource-providers.html)
+* [Log Tracer](/documentation/bundles/log-tracers.html)
