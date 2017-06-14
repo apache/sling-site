@@ -16,6 +16,7 @@ Experimenting with JBake for the Apache Sling website
 * Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references
 * Fix remaining `refs.` links
 * Remove or replace the `[TOC]` macro
+* Resync the content with the current Sling website if needed, initially synced at r1798604
 
 ## JBake notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
