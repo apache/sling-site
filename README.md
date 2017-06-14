@@ -6,10 +6,13 @@ Experimenting with JBake for the Apache Sling website
 * Use the page template instead of post
 * Use tags in the page template and for navigation
 * Fix internal links like `refs.project-information.path` (how? not sure so far)
-* Left menu 
+* Left menu is not yellow as on the old site
 * Page header and footer, logo etc
 * Move images and other files to /assets and convert their links
 * Remove unused assets files and templates (copied from JBake Groovy sample)
+* Implement the dynamic downloads page
+* Enumerate child pages in documentation/tutorials-how-tos.html
+* Tables are broken in project-information.html for example
 
 ## JBake notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
