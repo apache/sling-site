@@ -62,7 +62,7 @@ The _ResourceBundle MessageResolver_ is configured to use the message's key as a
 
 # Sling Dialect
 
-Sling Scripting Thymeleaf comes with its own dialect using the `sling` prefix/namespace currently supporting the _include_ feature known from [Sling Scripting JSP Taglib]({{ refs.scripting-jsp.path }}).
+Sling Scripting Thymeleaf comes with its own dialect using the `sling` prefix/namespace currently supporting the _include_ feature known from [Sling Scripting JSP Taglib](/documentation/bundles/scripting/scripting-jsp.html).
 
 ## include
 
@@ -84,6 +84,6 @@ Sling Scripting Thymeleaf comes with its own dialect using the `sling` prefix/na
 
 # Sample
 
-The [Sling Fling Sample](http://svn.apache.org/repos/asf/sling/trunk/samples/fling/) is a sample using Sling Scripting Thymeleaf with [Sling Models]({{ refs.models.path }}) and [Sling Query]({{ refs.sling-query.path }}).
+The [Sling Fling Sample](http://svn.apache.org/repos/asf/sling/trunk/samples/fling/) is a sample using Sling Scripting Thymeleaf with [Sling Models](/documentation/bundles/models.html) and [Sling Query](/documentation/bundles/sling-query.html).
 
 ![Sling Fling Sample](sling-fling-sample.png)

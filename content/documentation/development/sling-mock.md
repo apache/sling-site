@@ -444,9 +444,9 @@ More examples:
 
 
 
-[osgi-mock]: {{ refs.osgi-mock.path }}
-[jcr-mock]: {{ refs.jcr-mock.path }}
-[resourceresolver-mock]: {{ refs.resourceresolver-mock.path }}
+[osgi-mock]: /documentation/development/osgi-mock.html
+[jcr-mock]: /documentation/development/jcr-mock.html
+[resourceresolver-mock]: /documentation/development/resourceresolver-mock.html
 [jcr-resource]: http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/resource
 [sling-commons-testing]: http://svn.apache.org/repos/asf/sling/trunk/bundles/commons/testing
 [mockito-testrunner]: http://mockito.github.io/mockito/docs/current/org/mockito/runners/MockitoJUnitRunner.html

@@ -8,7 +8,7 @@ Title: The Sling Launchpad
 
 [TOC]
 
-This tries to explain how exactly the Sling Launchpad works, what constitutes the Sling Launchpad and how you can use the Sling Launchpad to custom create you Sling launchers. For a view behind the scenes of the Sling Launchpad Base module (the actual launcher) you might want to refer to the [Embedding Sling]({{ refs.embedding-sling.path }}) page.
+This tries to explain how exactly the Sling Launchpad works, what constitutes the Sling Launchpad and how you can use the Sling Launchpad to custom create you Sling launchers. For a view behind the scenes of the Sling Launchpad Base module (the actual launcher) you might want to refer to the [Embedding Sling](/documentation/development/embedding-sling.html) page.
 
 
 ## Sling Home
@@ -182,7 +182,7 @@ The *Launchpad App* and *Launchpad WebApp* bundles are actually projects which j
 
 * Take the appropriate secondary artifact from the *Launchpad Base* project: *app* for the Standalone Java Application or *webapp* for the Web Application and unpack
 * Take the *Launchpad Base* primary artifact and place it under the name `org.apache.sling.launchpad.base.jar` into the `resources` folder
-* Copies the list of artifacts defined in the [Provisioning model]({{refs.slingstart.path}}) 
+* Copies the list of artifacts defined in the [Provisioning model](/documentation/development/slingstart.html) 
 * Finally pack all together into a single big JAR or WAR file
 
 The artifacts can be configured to use different JCR repository implementations, based on the value of the `-Dsling.run.modes` property. The following run modes are available for the 8 version of the Sling Launchpad:

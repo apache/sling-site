@@ -9,7 +9,7 @@ Title: Scheduler Service (commons scheduler)
 The scheduler is a service for scheduling other services/jobs (it uses the open source Quartz library). The scheduler can be used in two ways, by registering the job through the scheduler API and by leveraging the whiteboard pattern that is supported by the scheduler. In most cases the whiteboard pattern is preferred
 
 <div class="note">
-The notion of Job used in this context is a different one than the one used for <a href="{{ refs.apache-sling-eventing-and-job-handling.path }}">Sling Jobs</a>. The main difference is that a scheduler's job is not persisted.
+The notion of Job used in this context is a different one than the one used for <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a>. The main difference is that a scheduler's job is not persisted.
 </div>
 
 ## Examples of jobs that are scheduled by leveraging the whiteboard pattern 
@@ -89,7 +89,7 @@ or
 
     @Property(name="scheduler.runOn", value="SINGLE");
 
-Since in contrast to [Sling Jobs]({{ refs.apache-sling-eventing-and-job-handling.path }}) the scheduler queue is only held in memory, there will be no distribution of jobs. So if job '1' was scheduled on instance 'a' with the option to run on the leader only, but the leader is instance 'b', which hasn't the job in the queue, the job will never be executed by any instance!
+Since in contrast to [Sling Jobs](/documentation/bundles/apache-sling-eventing-and-job-handling.html) the scheduler queue is only held in memory, there will be no distribution of jobs. So if job '1' was scheduled on instance 'a' with the option to run on the leader only, but the leader is instance 'b', which hasn't the job in the queue, the job will never be executed by any instance!
 
 ## The Scheduler API
 

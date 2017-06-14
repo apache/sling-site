@@ -33,8 +33,8 @@ The value of `path` service registration property value triggering the call to a
 
 ### Implementations provided by Sling
 
-* [Form Based AuthenticationHandler]({{ refs.form-based-authenticationhandler.path }})
-* [OpenID AuthenticationHandler]({{ refs.openid-authenticationhandler.path }})
+* [Form Based AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html)
+* [OpenID AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.html)
 
 ### Sample implementations
 

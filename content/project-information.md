@@ -8,13 +8,13 @@ Title: Project Information
 
 This document provides an overview of the various documents and links that are part of this project's general information:
 
-* [Community Roles and Processes]({{ refs.apache-sling-community-roles-and-processes.path }})
-* [Project Team]({{ refs.project-team.path }})
+* [Community Roles and Processes](/project-information/apache-sling-community-roles-and-processes.html)
+* [Project Team](/project-information/project-team.html)
 * [Mailing Lists](#mailing-lists)
 * [Issue Tracking](#issue-tracking)
 * [Source Repository](#source-repository)
 * [Continuous Integration](#continuous-integration)
-* [Project License]({{ refs.project-license.path }})
+* [Project License](/project-information/project-license.html)
 * [Documentation Repository](#documentation-repository)
 
 

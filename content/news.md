@@ -6,7 +6,7 @@ status=published
 ~~~~~~
 Title: News
 
-* New Releases: [Apache Sling 9]({{refs.sling-launchpad-9-released.path}}), Apache Sling Launchpad Testing 9, Apache Sling Launchpad Testing WAR version 9, Apache Sling Launchpad Testing Fragment Bundle 2.0.12, Apache Sling Launchpad Testing Services 2.0.12, Apache Sling Launchpad Test Bundles 0.0.2, Apache Sling Launchpad Testing Services WAR 2.0.12, Apache Sling Integration Tests 1.0.4 ( June 12S , 2017 )
+* New Releases: [Apache Sling 9](/news/sling-launchpad-9-released.html), Apache Sling Launchpad Testing 9, Apache Sling Launchpad Testing WAR version 9, Apache Sling Launchpad Testing Fragment Bundle 2.0.12, Apache Sling Launchpad Testing Services 2.0.12, Apache Sling Launchpad Test Bundles 0.0.2, Apache Sling Launchpad Testing Services WAR 2.0.12, Apache Sling Integration Tests 1.0.4 ( June 12S , 2017 )
 * New Releases: Apache Sling JUnit Core 1.0.26, Testing Clients 1.1.0, JUnit Remote Test Runners 1.0.12, Tooling Support Install 1.0.4, and Tooling Support Source 1.0.4 (June 6th, 2017)
 * New Releases: Apache Sling Resource Inventory 1.0.8, Content Distribution Core 0.2.8, Testing Sling Mock 2.2.12, Log Tracer 1.0.4, and Commons Metrics 1.2.2 (June 6th, 2017)
 * New Releases: Apache Sling JCR Content Parser 1.2.2, JCR ContentLoader 2.2.4, File System Resource Provider 2.1.4, File System Resource Provider 1.4.4, Maven Sling Plugin 2.3.0 (June 2nd, 2017)
@@ -156,7 +156,7 @@ Title: News
 * New Release: Apache Sling Discovery Commons 1.0.12 (March 29th, 2016)
 * New Release: Apache Sling Scripting Sightly Engine 1.0.18 (March 18th, 2016)
 * New Release: Apache Maven Sling Plugin 2.1.8 (March 16th, 2016)
-* New Release: [Apache Sling IDE Tooling for Eclipse 1.1.0]({{refs.sling-ide-tooling-11-released.path}}) (March 14th, 2016)
+* New Release: [Apache Sling IDE Tooling for Eclipse 1.1.0](/news/sling-ide-tooling-11-released.html) (March 14th, 2016)
 * New Releases: Apache Sling Resource Resolver 1.4.8, Apache Sling JCR Resource 2.7.4, and Apache Sling Installer Core 3.6.8 (March 11th, 2016)
 * New Releases: Apache Sling Health Check Core 1.2.4, Apache Sling Health Checks Annotations 1.0.4, Apache Sling JCR Davex 1.3.2, and Apache Sling JCR Webdav 2.3.4 (March 8th, 2016)
 * New Release: Apache Sling Scripting Sightly Engine 1.0.16 (March 5th, 2016)
@@ -205,7 +205,7 @@ Title: News
 * New Releases: Apache Sling Launchpad Base 2.6.6, Apache Sling Event 3.7.6, Apache Sling Provisioning Model 1.4.0, and Apache Sling Maven Launchpad Plugin 2.3.4 (October 26th, 2015)
 * New Releases: Apache Sling Archetype Parent version 4, Apache Sling Bundle Archetype version 1.0.4, Apache Sling JCRInstall Bundle Archetype 1.0.4, Apache Sling Initial Content Archetype 1.0.4, Apache Sling Servlet Archetype 1.0.4, Apache Sling Slingstart Archetype 1.0.0 (October 19th, 2015)
 * New Release: Apache Sling Auth Core 1.3.12 (October 18th, 2015)
-* New Release: [Apache Sling 8]({{refs.sling-launchpad-8-released.path}}) (October 16th, 2015)
+* New Release: [Apache Sling 8](/news/sling-launchpad-8-released.html) (October 16th, 2015)
 * New Release: Apache Sling Maven Plugin for Supporting Bundle Development 2.1.2 (October 15th, 2015)
 * New Release: Apache Sling Auth Forms 1.0.8 (October 13, 2015)
 * New Releases: Apache Sling Scripting Sightly Engine 1.0.6, Apache Sling Scripting Sightly Models Use Provider 1.0.0, Apache Sling Scripting Sightly REPL 1.0.2, Apache Sling Scripting JavaScript 2.0.26, Apache Sling XSS Protection API 1.0.6 (October 12th, 2015)

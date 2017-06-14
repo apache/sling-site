@@ -14,11 +14,11 @@ I used this example in my [Rapid JCR application development with Apache Sling](
 
 ## Audience
 
-Although this is a simple sample, it requires some custom settings to work. If you're just starting with Sling, [Discover Sling in 15 minutes]({{ refs.discover-sling-in-15-minutes.path }}) might be a better choice.
+Although this is a simple sample, it requires some custom settings to work. If you're just starting with Sling, [Discover Sling in 15 minutes](/documentation/getting-started/discover-sling-in-15-minutes.html) might be a better choice.
 
 ## Step 0: Start, configure and login to Sling
 
-See [Getting and Building Sling]({{ refs.getting-and-building-sling.path }}) for how to start Sling. Start it on port 8888 for the below links to work.
+See [Getting and Building Sling](/documentation/development/getting-and-building-sling.html) for how to start Sling. Start it on port 8888 for the below links to work.
 
 For this sample we need the optional *org.apache.sling.samples.path-based.rtp* bundle, if it's not present in the [OSGi console](http://localhost:8888/system/console/bundles), install and start it. That bundle is not released yet so you might need to build it yourself, from its [source](http://svn.apache.org/repos/asf/sling/trunk/samples/path-based-rtp). The bundle must then appear in the [OSGI console's list of bundles](http://localhost:8888/system/console/bundles), with name = *org.apache.sling.samples.path-based.rtp* and status = *Active*.
 
@@ -157,7 +157,7 @@ To keep things simple, we'll refrain from adding ESP-based features at this poin
 
 ## That's the power of Sling
 
-The 46-line blog is a good example of the power of Sling. It leverages the [SlingPostServlet]({{ refs.manipulating-content-the-slingpostservlet-servlets-post.path }}), which handles POST requests in a form-friendly way, and the [`sling.js`](http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/post/src/main/resources/system/sling.js) client library, which provides high-level functionality on the client side.
+The 46-line blog is a good example of the power of Sling. It leverages the [SlingPostServlet](/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html), which handles POST requests in a form-friendly way, and the [`sling.js`](http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/post/src/main/resources/system/sling.js) client library, which provides high-level functionality on the client side.
 
 ///Footnotes Go Here///
 

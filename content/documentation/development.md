@@ -13,25 +13,25 @@ Welcome to the wonderful world of extending Sling. Refer to these pages to find 
 
 Look here for more information on developper support when your are using Sling to build your own applications.
 
-* [Getting and Building Sling]({{ refs.getting-and-building-sling.path }})
-* [Defining and Launching a Sling based Application]({{ refs.slingstart.path }})
-* [Embedding Sling]({{ refs.embedding-sling.path }})
-* [Logging]({{ refs.logging.path }})
-* [Client Request Logging]({{ refs.client-request-logging.path }})
-* [Monitoring Requests]({{ refs.monitoring-requests.path }})
-* [Repository Based Development]({{ refs.repository-based-development.path }})
-* [Sling IDE Tooling]({{ refs.ide-tooling.path }})
-* [Leveraging JSR-305 null annotations]({{ refs.jsr-305.path }})
+* [Getting and Building Sling](/documentation/development/getting-and-building-sling.html)
+* [Defining and Launching a Sling based Application](/documentation/development/slingstart.html)
+* [Embedding Sling](/documentation/development/embedding-sling.html)
+* [Logging](/documentation/development/logging.html)
+* [Client Request Logging](/documentation/development/client-request-logging.html)
+* [Monitoring Requests](/documentation/development/monitoring-requests.html)
+* [Repository Based Development](/documentation/development/repository-based-development.html)
+* [Sling IDE Tooling](/documentation/development/ide-tooling.html)
+* [Leveraging JSR-305 null annotations](/documentation/development/jsr-305.html)
 
 
 ## Testing Sling-based Applications
-* [Testing Sling-based Applications]({{ refs.testing-sling-based-applications.path }})
-* [Junit Server-Side Tests Support]({{ refs.org-apache-sling-junit-bundles.path }})
-* [Resource Resolver Mock]({{ refs.resourceresolver-mock.path }})
-* [Sling Mocks]({{ refs.sling-mock.path }})
-* [OSGi Mocks]({{ refs.osgi-mock.path }})
-* [JCR Mocks]({{ refs.jcr-mock.path }})
-* [Hamcrest integration]({{ refs.hamcrest.path }})
+* [Testing Sling-based Applications](/documentation/tutorials-how-tos/testing-sling-based-applications.html)
+* [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html)
+* [Resource Resolver Mock](/documentation/development/resourceresolver-mock.html)
+* [Sling Mocks](/documentation/development/sling-mock.html)
+* [OSGi Mocks](/documentation/development/osgi-mock.html)
+* [JCR Mocks](/documentation/development/jcr-mock.html)
+* [Hamcrest integration](/documentation/development/hamcrest.html)
 
 
 ## Maven Stuff
@@ -41,20 +41,20 @@ Sling is using Apache Maven 3 as its build system. Over time we have created a n
 * [Maven Sling Plugin](http://sling.apache.org/components/maven-sling-plugin/)
 * [HTL Maven Plugin](http://sling.apache.org/components/htl-maven-plugin/)
 * [SlingStart Maven Plugin](http://sling.apache.org/components/slingstart-maven-plugin/)
-* [Maven Launchpad Plugin]({{ refs.maven-launchpad-plugin.path }})
+* [Maven Launchpad Plugin](/documentation/development/maven-launchpad-plugin.html)
 * [JspC Maven Plugin](http://sling.apache.org/components/jspc-maven-plugin/)
-* [Maven Archetypes]({{ refs.maven-archetypes.path }})
-* [Maven Tips & Tricks]({{ refs.maventipsandtricks.path }})
+* [Maven Archetypes](/documentation/development/maven-archetypes.html)
+* [Maven Tips & Tricks](/documentation/development/maventipsandtricks.html)
 
 
 ## Sling Development
 
 Last but not least, here is some more information on how we ourselves are working on Sling
 
-* [Dependency Management]({{ refs.dependency-management.path }})
-* [Version Policy]({{ refs.version-policy.path }})
-* [Issue Tracker]({{ refs.issue-tracker.path }})
-* [Release Management]({{ refs.release-management.path }})
-* [Maven Usage]({{ refs.maven-usage.path }})
+* [Dependency Management](/documentation/development/dependency-management.html)
+* [Version Policy](/documentation/development/version-policy.html)
+* [Issue Tracker](/documentation/development/issue-tracker.html)
+* [Release Management](/documentation/development/release-management.html)
+* [Maven Usage](/documentation/development/maven-usage.html)
 * To run our integration tests suite see the [launchpad/testing module README](http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/README.txt) and the [launchpad/integration-tests README](http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/README.txt) for how to run individual integration tests. We use the [sling-IT](https://issues.apache.org/jira/issues/?jql=labels%20%3D%20sling-IT) label in JIRA for known issues with our integration tests.
 * A Sonar analysis is available on the [analysis.apache.org](https://analysis.apache.org/dashboard/index/org.apache.sling:sling-builder) server.

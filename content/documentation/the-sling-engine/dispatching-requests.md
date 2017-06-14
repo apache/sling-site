@@ -33,13 +33,13 @@ The following steps should give you an overview how a request is processed in Sl
     * Wraps the `HttpServletRequest` and the `HttpServletResponse` into the `SlingHttpServletRequest` and the `SlingHttpServletResponse`
     * Checks if Sling is ready for processing the request (checks at the moment for an existing ResourceResolverFactory service, a ServletResolver service and a MimeTypeService)
     * Create the ResourceResolver based on the Session (by default creates a `JcrResourceResolver2`)
-    * Locate the [Resource]({{ refs.resources.path }}) on the basis of the request by calling `ResourceResovler.resolve` through `RequestData.initResource` (see also [URL decomposition]({{ refs.url-decomposition.path }}))
-    * Locate the servlet or script (see [Servlets]({{ refs.servlets.path }})) by calling `ServletResolver.resolveServlet` through `RequestData.initServlet`
+    * Locate the [Resource](/documentation/the-sling-engine/resources.html) on the basis of the request by calling `ResourceResovler.resolve` through `RequestData.initResource` (see also [URL decomposition](/documentation/the-sling-engine/url-decomposition.html))
+    * Locate the servlet or script (see [Servlets](/documentation/the-sling-engine/servlets.html)) by calling `ServletResolver.resolveServlet` through `RequestData.initServlet`
 
-1. After this setup, the request level filters are called (the ones registered as `javax.servlet.Filter` with the property `filter.scope=request`, see [Filters]({{ refs.filters.path }}) for details).
+1. After this setup, the request level filters are called (the ones registered as `javax.servlet.Filter` with the property `filter.scope=request`, see [Filters](/documentation/the-sling-engine/filters.html) for details).
 If any called filter doesn't call `FilterChain.doFilter` at the end of the `Filter.doFilter` method request processing stops here.
 
-1. After having called all request level filters, the component level filters (registered with the property `filter.scope=component`, see [Filters]({{ refs.filters.path }}) for details) are called.
+1. After having called all request level filters, the component level filters (registered with the property `filter.scope=component`, see [Filters](/documentation/the-sling-engine/filters.html) for details) are called.
 
 1. After having called the component level filters, the request servlet or script is finally called to process the request.
 
@@ -53,7 +53,7 @@ If a servlet or script is including another resource for processing through the 
 
 1. The servlet or script to handle the resource is resolved calling the `ServletResolver.resolverServlet` method.
 
-1. The component level filters (registered with the property `filter.scope=component`) are called again (see [Filters]({{ refs.filters.path }}) for details).
+1. The component level filters (registered with the property `filter.scope=component`) are called again (see [Filters](/documentation/the-sling-engine/filters.html) for details).
 
 1. The servlet or script is called to process the request.
 

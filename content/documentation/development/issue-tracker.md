@@ -19,7 +19,7 @@ When creating a new issue, select the issue type based as follows:
 
 | Issue type     | Description |
 |--|--|
-|  *Bug*          |  Bug reports are used for cases where Sling fails not function as it should (as defined by some documentation). If you are not certain whether the issue you've found is actually a bug, please ask the [Sling mailing lists]({{ refs.project-information.path }}#mailing-lists) first for help. |
+|  *Bug*          |  Bug reports are used for cases where Sling fails not function as it should (as defined by some documentation). If you are not certain whether the issue you've found is actually a bug, please ask the [Sling mailing lists](/project-information.html#mailing-lists) first for help. |
 |  *New Feature*  |  Use a feature request when Sling does not have some functionality you need. |
 |  *Improvement*  |  Use an improvement request to suggest improvements to existing features. Typical improvement requests are about updating documentation, increasing stability and performance, simplifying the implementation, or other such changes that make Sling better without introducing new features or fixing existing bugs. |
 |  *Test*         |  Use this type when contributing test cases for existing features. Normally test cases should be contributed as a part of the original feature request or as regression tests associated with bug reports, but sometimes you just want to extend test coverage by introducing new test cases. This issue type is for such cases. |

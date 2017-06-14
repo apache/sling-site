@@ -46,9 +46,9 @@ New modules added: Validation, Context-Aware Configuration, Repository Initializ
 
 A number of new general-purpose modules have been added to the Sling Launchpad:
 
-* [Validation]({{refs.validation.path}})
-* [Context-Aware configuration]({{refs.context-aware-configuration.path}})
-* [Repository Initialization Language]({{refs.repository-initialization.path}})
+* [Validation](/documentation/bundles/validation.html)
+* [Context-Aware configuration](/documentation/bundles/context-aware-configuration/context-aware-configuration.html)
+* [Repository Initialization Language](/documentation/bundles/repository-initialization.html)
 
 Tooling: HTL Maven Plugin
 ---
@@ -78,7 +78,7 @@ administrative access to the repository via `loginAdministrative`. We have remov
 of `loginAdministrative` in the Sling code and replaced then with a service-based approach
 - `loginService`. We encourage you to do the same.
 
-Documentation available at [Service Authentication]({{refs.service-authentication.path}}).
+Documentation available at [Service Authentication](/documentation/the-sling-engine/service-authentication.html).
 
 Removed org.apache.sling.commons.json and org.json bundles
 ---

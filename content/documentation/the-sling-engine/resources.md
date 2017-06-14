@@ -75,7 +75,7 @@ The path mapping functionality may be used to hide internal resource organizatio
 
 The `map(String)` applies the path mapping algorithm in the reverse order. That is, first the path mappings are reversed and then any virtual mappings are checked. So, a path `/content/sample` might be mapped `/sample` to revers the `/content` prefixing. Or the main administrative page - say `/system/admin/main.html` \- may be mapped to the virtual URL `/`.
 
-More details on mappings can be found at [Mappings for Resource Resolution]({{ refs.mappings-for-resource-resolution.path }}).
+More details on mappings can be found at [Mappings for Resource Resolution](/documentation/the-sling-engine/mappings-for-resource-resolution.html).
 
 ### Relative Path Resolution
 
@@ -122,23 +122,23 @@ Resources may by provided by OSGi bundles. Providing bundles have a Bundle manif
 
 The `BundleResourceProvider` supporting bundle-based Resources provides directories as Resources of type `nt:folder` and files as Resources of type `nt:file`. This matches the default primary node types intended to be used for directories and files in JCR repositories. 
 
-For details see [Bundle Resource.]({{ refs.bundle-resources-extensions-bundleresource.path }})
+For details see [Bundle Resource.](/documentation/bundles/bundle-resources-extensions-bundleresource.html)
 
 ### Servlet Resources
 
-Servlet Resources are registered by the Servlet Resolver bundle for Servlets registered as OSGi services. See [Servlet Resolution]({{ refs.servlets.path }}) for information on how Servlet Resources are provided.
+Servlet Resources are registered by the Servlet Resolver bundle for Servlets registered as OSGi services. See [Servlet Resolution](/documentation/the-sling-engine/servlets.html) for information on how Servlet Resources are provided.
 
 ### File System Resources
 
 The Filesystem Resource Provider provides access to the operating system's filesystem through the Sling ResourceResolver. Multiple locations may be mapped into the resource tree by configuring the filesystem location and the resource tree root path for each location to be mapped. 
 
-For details see [File System Resources]({{ refs.accessing-filesystem-resources-extensions-fsresource.path }}).
+For details see [File System Resources](/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html).
 
 ### Merged Resources
 
 The merged resource provider exposes a view on merged resources from multiple locations.
 
-For details see [Resource Merger]({{ refs.resource-merger.path }}).
+For details see [Resource Merger](/documentation/bundles/resource-merger.html).
 
 ### Custom Resource providers
 Custom ResourceProvider services can be used to integrate your own custom resources in the Sling resource tree.
@@ -151,7 +151,7 @@ Sling now supports full CRUD functionality on Resources, without necessarily hav
 The advantage is that this works for any ResourceProvider that supports the required operations.
 
 See the testSimpleCRUD method in [WriteableResourcesTest][5] for a basic example of how that works.
-More details can be found at [Sling API CRUD Support]({{ refs.sling-api-crud-support.path }}).
+More details can be found at [Sling API CRUD Support](/documentation/the-sling-engine/sling-api-crud-support.html).
 
 ## Resource Observation
 
@@ -169,7 +169,7 @@ Resource events are sent out via the OSGi Event Admin. You can subscribe to thos
 
 ## Wrap/Decorate Resources
 
-The Sling API provides an easy way to wrap or decorate a resource before returning. Details see [Wrap or Decorate Resources]({{ refs.wrap-or-decorate-resources.path }}).
+The Sling API provides an easy way to wrap or decorate a resource before returning. Details see [Wrap or Decorate Resources](/documentation/the-sling-engine/wrap-or-decorate-resources.html).
 
 
   [1]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html "ResourceMetadata"

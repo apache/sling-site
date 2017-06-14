@@ -331,7 +331,7 @@ You can use the attribute `validation` on the Model annotation to call a validat
 
 In case the model is not instantiated an appropriate error message is logged (if `adaptTo()` is used) or an appropriate exception is thrown (if `ModelFactory.createModel()` is used).
 
-The only implementation for this Sling Models validation service is leveraging [Sling Validation]({{ refs.validation.path }}) and is located in the bundle [org.apache.sling.models.validation-impl](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/models/validation-impl/). Validation is only working on models which are adapted from either `Resource` or `SlingHttpServletRequest` and if the Sling Validation Bundle is deployed.
+The only implementation for this Sling Models validation service is leveraging [Sling Validation](/documentation/bundles/validation.html) and is located in the bundle [org.apache.sling.models.validation-impl](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/models/validation-impl/). Validation is only working on models which are adapted from either `Resource` or `SlingHttpServletRequest` and if the Sling Validation Bundle is deployed.
 
 # Custom Injectors
 

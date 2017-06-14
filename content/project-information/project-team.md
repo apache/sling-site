@@ -68,7 +68,7 @@ The following list of former committers and PMC members have chosen to go emerit
 | farra | **J Aaron Farr** | | Mentor |
 | jukka | **Jukka Zitting** | Adobe | Champion, Mentor |
 
-Committers with their names printed in bold face have also been members of the PMC (or PPMC during Sling incubation) as defined in [Apache Sling Community Roles and Processes]({{ refs.apache-sling-community-roles-and-processes.path }})
+Committers with their names printed in bold face have also been members of the PMC (or PPMC during Sling incubation) as defined in [Apache Sling Community Roles and Processes](/project-information/apache-sling-community-roles-and-processes.html)
 
 ## Emeritus PMC members
 

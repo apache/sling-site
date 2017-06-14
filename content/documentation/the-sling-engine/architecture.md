@@ -55,7 +55,7 @@ Traditional Web Application framework emply more or less elaborate methods to se
 
 Sling turns this processing around in that it places the data to act upon at the center and consequently uses the request URL to first resolve the data to process. This data is internally represented as an instance of the `Resource` interface. Based on this resource as well as the request method and more properties of the request URL a script or servlet is then selected to handle the request.
 
-See the [Servlets]({{ refs.servlets.path }}) page for more information.
+See the [Servlets](/documentation/the-sling-engine/servlets.html) page for more information.
 
 
 ## Resources
@@ -65,7 +65,7 @@ The Resource is one of the central parts of Sling. Extending from JCR's *Everyth
 
 Each resource has a path by which it is addressed in the resource tree, a resource type and some resource metadata (such as file size, last modification time). It is important to understand, that a `Resource` instance actually is only a handle to the actual data. By virtue of the `adaptTo(Class<Type>)` method, a resource may be coerced into another data type, which may then be used while processing the request. Examples of data types are `javax.jcr.Node` and `java.io.InputStream`.
 
-See the [Resources]({{ refs.resources.path }}) page for more information.
+See the [Resources](/documentation/the-sling-engine/resources.html) page for more information.
 
 
 ## Servlets and Scripts
@@ -94,8 +94,8 @@ The Sling Servlet is equally small as the Sling Application. It uses the Felix `
 
 As we have seen, Sling may be launched as a standalone Java Application or as a Web Application inside any compliant Servlet Container. To hide the differences of the launching mechanism, Sling internally registers a Servlet with an OSGi `HttpService`. Regardless of how Sling is launched, the Felix implementation of the OSGi `HttpService` specification is used. When Sling is launched as a standalone Java Application, Felix HttpService uses an embedded version of the Jetty servlet container. When Sling is launched as a Web Application, the Felix HttpService Bridge is used.
 
-Optionally, PAX Web's implementation of HttpService can be used when Sling is launched as a standalone Java Application. See the [Maven Launchpad Plugin]({{ refs.maven-launchpad-plugin.path }}) page for information on how to do this.
+Optionally, PAX Web's implementation of HttpService can be used when Sling is launched as a standalone Java Application. See the [Maven Launchpad Plugin](/documentation/development/maven-launchpad-plugin.html) page for information on how to do this.
 
-See [The Sling Launchpad]({{ refs.the-sling-launchpad.path }}) for more information.
+See [The Sling Launchpad](/documentation/the-sling-engine/the-sling-launchpad.html) for more information.
 
 

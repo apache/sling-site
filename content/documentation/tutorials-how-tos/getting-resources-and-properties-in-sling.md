@@ -98,4 +98,4 @@ Then, to access a specific String property called `propName`:
     String rule = properties.get(propName, (String) null);
 
 
-For more details about resources and how to access them in Sling, you can refer to the [Sling documentation about Resources]({{ refs.resources.path }}).
+For more details about resources and how to access them in Sling, you can refer to the [Sling documentation about Resources](/documentation/the-sling-engine/resources.html).

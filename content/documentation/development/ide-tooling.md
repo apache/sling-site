@@ -247,7 +247,7 @@ One often-occuring situation is that a Maven project using the maven-scr-plugin 
 
 ### How do I fix the error "Missing m2e incremental build support for generating the bundle manifest, component descriptions and metatype resources"?
 
-For further information on how to fix and configure the according maven plugins look at [Incremental Builds in Sling IDE tooling for Eclipse]({{ refs.ide-tooling-incremental-build.path }}).
+For further information on how to fix and configure the according maven plugins look at [Incremental Builds in Sling IDE tooling for Eclipse](/documentation/development/ide-tooling/ide-tooling-incremental-build.html).
 
 ## Known issues
 

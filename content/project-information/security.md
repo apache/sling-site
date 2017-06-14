@@ -23,7 +23,7 @@ Questions about:
 * obtaining further information on a published vulnerability
 * availability of patches and/or new releases
 
-should be addressed to our public users mailing list. Please see the [Project Information]({{ refs.project-information.path }}) page for details of how to subscribe.
+should be addressed to our public users mailing list. Please see the [Project Information](/project-information.html) page for details of how to subscribe.
 
 The private security mailing address is: security(at)sling.apache.org.
 

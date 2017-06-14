@@ -16,7 +16,7 @@ To use this validation framework the following bundles need to be deployed
 1. `org.apache.sling.validation.api`
 1. `org.apache.sling.validation.core`
 
-In addition a [service resolver mapping]({{ refs.service-authentication.path }}) needs to be configured for the service name `org.apache.sling.validation.core`. The bound service user needs to have at least read access to all resources within the resource resolver's search paths (usually `/apps` and `/libs`).
+In addition a [service resolver mapping](/documentation/the-sling-engine/service-authentication.html) needs to be configured for the service name `org.apache.sling.validation.core`. The bound service user needs to have at least read access to all resources within the resource resolver's search paths (usually `/apps` and `/libs`).
 
 # Basic Usage
 To validate a resource one first needs to get a `ValidationModel` and then validate the resource with that model. Both functionalities are provided by the `ValidationService` OSGi service:
@@ -64,7 +64,7 @@ The `ValidationResult` indicates whether a given `Resource` or `ValueMap` is val
 1. severity defined on the `Validator`
 1. the default severity (may be set through the OSGi configuration for PID `org.apache.sling.validation.impl.ValidationServiceImpl`, is 0 by default)
 
-You have to use a `ResourceBundle` ([Internationalization Support]({{ refs.internationalization-support-i18n.path }})) to resolve the message for a specific locale. By default Sling Validation comes only with English failure messages.
+You have to use a `ResourceBundle` ([Internationalization Support](/documentation/bundles/internationalization-support-i18n.html)) to resolve the message for a specific locale. By default Sling Validation comes only with English failure messages.
 
 # Validation Model Resources
 The `ValidationModel` is constructed from resources with the resourceType **sling/validation/model**. Those resources are considered validation model resources if they are located below the Sling ResourceResolver search paths (*/apps* and */libs*).
@@ -95,9 +95,9 @@ To overwrite some property or child from one of the super type models, just defi
 ## Precedence of Validation Models
 In case there are multiple validation models registered for the same resource type the one gets chosen which has the longest matching applicablePath. In case even that does not resolve to a single model the one in the first resource resolver's search path is chosen (models below `/apps` before the ones below `/libs`). If even that does not resolve to a single validation model any of the equally ranked models might be picked.
 
-# Usage in [Sling Models]({{ refs.models.path }})
+# Usage in [Sling Models](/documentation/bundles/models.html)
 ## Since Sling Models 1.2.0
-See [Sling Models validation]({{ refs.models.path }}#validation)
+See [Sling Models validation](/documentation/bundles/models.html#validation)
 
 ## Before Sling Models 1.2.0
 One needs to call the validate method within the PostConstruct method of the according Sling Model

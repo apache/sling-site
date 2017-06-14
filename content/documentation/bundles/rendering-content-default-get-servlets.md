@@ -70,7 +70,7 @@ The `RedirectServlet` handles the `sling:redirect` resource type, using the `sli
 resource to define the redirect target, and the `sling:status` property to define the HTTP status to use (default is 302).
 
 This is not to be confused with the `sling:redirect` property used under `/etc/map`, which is described in 
-[Mappings for Resource Resolution]({{ refs.mappings-for-resource-resolution.path }})
+[Mappings for Resource Resolution](/documentation/the-sling-engine/mappings-for-resource-resolution.html)
 
 ## SlingInfoServlet
 

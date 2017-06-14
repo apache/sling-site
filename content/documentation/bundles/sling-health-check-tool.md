@@ -146,7 +146,7 @@ Property    | Type     | Description
 hc.name     | String   | The name of the health check as shown in UI
 hc.tags     | String[] | List of tags: Both Felix Console Plugin and Health Check servlet support selecting relevant checks by providing a list of tags
 hc.mbean.name | String | Makes the HC result available via given MBean name. If not provided no MBean is created for that `HealthCheck`
-hc.async.cronExpression | String | Used to schedule the execution of a `HealthCheck` at regular intervals, using a cron expression as specified by the [Sling Scheduler]({{ refs.scheduler-service-commons-scheduler.path }}) module. 
+hc.async.cronExpression | String | Used to schedule the execution of a `HealthCheck` at regular intervals, using a cron expression as specified by the [Sling Scheduler](/documentation/bundles/scheduler-service-commons-scheduler.html) module. 
 hc.resultCacheTtlInMs | Long | Overrides the global default TTL as configured in health check executor for health check responses (since v1.2.6 of core)
 
 All service properties are optional.
@@ -213,7 +213,7 @@ The `org.apache.sling.hc.junit.bridge` bundle makes selected Health Checks avail
 It requires the `org.apache.sling.junit.core bundle` which provides the server-side JUnit tests infrastructure.
 
 The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them
-as part of integration testing, using the  [Sling Testing Tools]({{ refs.sling-testing-tools.path }})  
+as part of integration testing, using the  [Sling Testing Tools](/documentation/development/sling-testing-tools.html)  
 remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.
 
 To use this module, configure sets of tags at `/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider`

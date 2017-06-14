@@ -34,4 +34,4 @@ The version of Java targeted by a module can be declared by setting a property i
 
 ## Dependency management
 
-See [Dependency Management]({{ refs.dependency-management.path }})
+See [Dependency Management](/documentation/development/dependency-management.html)

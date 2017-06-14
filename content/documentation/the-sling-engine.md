@@ -8,29 +8,29 @@ Title: The Sling Engine
 
 ## General
 
-* [Architecture]({{ refs.architecture.path }})
-* [Authentication]({{ refs.authentication.path }})
-* [{{ refs.service-authentication.headers.title }}]({{ refs.service-authentication.path }})
+* [Architecture](/documentation/the-sling-engine/architecture.html)
+* [Authentication](/documentation/the-sling-engine/authentication.html)
+* [{{ refs.service-authentication.headers.title }}](/documentation/the-sling-engine/service-authentication.html)
 
 ## Request Handling
 
-* [Dispatching Requests]({{ refs.dispatching-requests.path }})
-* [URL decomposition]({{ refs.url-decomposition.path }})
-* [URL to Script Resolution]({{ refs.url-to-script-resolution.path }})
-* [Request Listeners]({{ refs.request-listeners.path }})
-* [Filters]({{ refs.filters.path }})
-* [Servlets and Scripts]({{ refs.servlets.path }})
-* [Errorhandling]({{ refs.errorhandling.path }})
-* [Request Parameters]({{ refs.request-parameters.path }})
+* [Dispatching Requests](/documentation/the-sling-engine/dispatching-requests.html)
+* [URL decomposition](/documentation/the-sling-engine/url-decomposition.html)
+* [URL to Script Resolution](/documentation/the-sling-engine/url-to-script-resolution.html)
+* [Request Listeners](/documentation/the-sling-engine/request-listeners.html)
+* [Filters](/documentation/the-sling-engine/filters.html)
+* [Servlets and Scripts](/documentation/the-sling-engine/servlets.html)
+* [Errorhandling](/documentation/the-sling-engine/errorhandling.html)
+* [Request Parameters](/documentation/the-sling-engine/request-parameters.html)
 
 ## Resources
 
-* [Resources]({{ refs.resources.path }})
-* [Sling API CRUD Support]({{ refs.sling-api-crud-support.path }})
-* [Wrap or Decorate Resources]({{ refs.wrap-or-decorate-resources.path }})
-* [Mappings for Resource Resolution]({{ refs.mappings-for-resource-resolution.path }})
+* [Resources](/documentation/the-sling-engine/resources.html)
+* [Sling API CRUD Support](/documentation/the-sling-engine/sling-api-crud-support.html)
+* [Wrap or Decorate Resources](/documentation/the-sling-engine/wrap-or-decorate-resources.html)
+* [Mappings for Resource Resolution](/documentation/the-sling-engine/mappings-for-resource-resolution.html)
 
 ## Misc
 
-* [Adapters]({{ refs.adapters.path }})
-* [{{ refs.featureflags.headers.title }}]({{ refs.featureflags.path }})
+* [Adapters](/documentation/the-sling-engine/adapters.html)
+* [{{ refs.featureflags.headers.title }}](/documentation/the-sling-engine/featureflags.html)

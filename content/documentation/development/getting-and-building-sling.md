@@ -60,7 +60,7 @@ This problem is caused by insufficient swap space. When running the integration 
 
 ## Configuring Maven
 
-See [MavenTipsAndTricks]({{ refs.maventipsandtricks.path }}).
+See [MavenTipsAndTricks](/documentation/development/maventipsandtricks.html).
 
 ## Getting the Sling Source
 
@@ -138,7 +138,7 @@ When starting Sling inside the `launchpad/builder` folder you should not use the
 Messages should now be printed to the console which is being used as the "log file";
  
 * the `-f` command line option is set to `-`, indicating the use of standard output as the log file. 
-* the `-c sling` command line option instructs Sling to use the `sling` directory in the current directory for its data store, which is the Apache Felix bundle archive, the Jackrabbit repository data and configuration. You may also specify another directory here, either a relative or absolute path name (See also [Configuration]({{ refs.configuration.path }}) for more information). 
+* the `-c sling` command line option instructs Sling to use the `sling` directory in the current directory for its data store, which is the Apache Felix bundle archive, the Jackrabbit repository data and configuration. You may also specify another directory here, either a relative or absolute path name (See also [Configuration](/documentation/configuration.html) for more information). 
 * Use the `-h` option to see the list of flags and options.
 
 After all messages have been printed you should be able to open the Sling Management Console by pointing your web browser at [http://localhost:8080/system/console](http://localhost:8080/system/console). You will be prompted for a user name and password. Enter `admin` for both the user name and the password (this may be set on the *Configuration* page later). From this console, you can manage the installed bundles, modify configuration objects, dump a configuration status and see some system information.

@@ -8,7 +8,7 @@ Title: Servlets and Scripts
 
 [TOC]
 
-See also [URL to Script Resolution]({{ refs.url-to-script-resolution.path }}) which explains how Sling maps URLs 
+See also [URL to Script Resolution](/documentation/the-sling-engine/url-to-script-resolution.html) which explains how Sling maps URLs 
 to a script or and servlet.
 
 ## Servlet Registration
@@ -193,4 +193,4 @@ While an opting servlet seems to be a nice way of picking the right servlet to p
 
 ## Error Handler Servlet(s) or Scripts
 
-Error handling support is described on the [Errorhandling]({{ refs.errorhandling.path }}) page.
+Error handling support is described on the [Errorhandling](/documentation/the-sling-engine/errorhandling.html) page.

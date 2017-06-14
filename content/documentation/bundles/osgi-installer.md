@@ -72,20 +72,20 @@ When an update of bundles is performed through the installer, by default the ins
 
 An installer factory provides support for a specific artifact type, like a configuration or a deployment package etc.
 
-* [Configuration Installer Factory]({{ refs.configuration-installer-factory.path }})
-* [Subsystem Installer Factory]({{ refs.subsystem-installer-factory.path }})
+* [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)
+* [Subsystem Installer Factory](/documentation/bundles/subsystem-installer-factory.html)
 
 ### Providers
 
 A provider provides artifacts, e.g. by scanning a directory or a database etc.
 
-* [File Installer Provider]({{ refs.file-installer-provider.path }})
-* [JCR Installer Provider]({{ refs.jcr-installer-provider.path }})
+* [File Installer Provider](/documentation/bundles/file-installer-provider.html)
+* [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html)
 
 ## Health Check
 
-The OSGi installer provides a [Sling Health Check]({{refs.sling-health-check-tool.path}}) which validates that the processed OSGi installer resources have the correct state ([SLING-5888](https://issues.apache.org/jira/browse/SLING-5888)).
-By default it will only check resources with a URL prefix `jcrinstall:/apps/`, so only the resources being provided through the [JCR Installer Provider]({{ refs.jcr-installer-provider.path }}) initially located below the repository resource `/apps/` are considered.
+The OSGi installer provides a [Sling Health Check](/documentation/bundles/sling-health-check-tool.html) which validates that the processed OSGi installer resources have the correct state ([SLING-5888](https://issues.apache.org/jira/browse/SLING-5888)).
+By default it will only check resources with a URL prefix `jcrinstall:/apps/`, so only the resources being provided through the [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html) initially located below the repository resource `/apps/` are considered.
 The health check will fail in the following cases:
 
 ### Bundles Installation Failure

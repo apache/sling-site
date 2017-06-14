@@ -12,19 +12,19 @@ Title: Documentation
 
 The documentation is split into different parts:
 
-   * [Getting Started]({{ refs.getting-started.path }}), the right place to start!
-   * [The Sling Engine]({{ refs.the-sling-engine.path }}), all about the heart of Sling
-   * [Development]({{ refs.development.path }}), how do I get and develop with Sling
-   * [Bundles]({{ refs.bundles.path }}), which bundle delivers which features to Sling
-   * [Tutorials & How-Tos]({{ refs.tutorials-how-tos.path }})
+   * [Getting Started](/documentation/getting-started.html), the right place to start!
+   * [The Sling Engine](/documentation/the-sling-engine.html), all about the heart of Sling
+   * [Development](/documentation/development.html), how do I get and develop with Sling
+   * [Bundles](/documentation/bundles.html), which bundle delivers which features to Sling
+   * [Tutorials & How-Tos](/documentation/tutorials-how-tos.html)
    * [Wiki](http://cwiki.apache.org/SLING/)
-   * [Configuration]({{ refs.configuration.path }})
+   * [Configuration](/documentation/configuration.html)
    * [API Doc](http://sling.apache.org/apidocs/sling8/index.html)
 
 
 # How you can contribute
 
-We're on the way to improve the documentation, but it's a long way. If you would like to contribute to the documentation you are very welcome. Please directly post your proposals to the [public wiki](http://cwiki.apache.org/SLING/) or post your suggestions to the [mailing list]({{ refs.project-information.path }}).
+We're on the way to improve the documentation, but it's a long way. If you would like to contribute to the documentation you are very welcome. Please directly post your proposals to the [public wiki](http://cwiki.apache.org/SLING/) or post your suggestions to the [mailing list](/project-information.html).
 
 
 # How the documentation is generated
@@ -195,7 +195,7 @@ The argument to the `--source` parameter is relative to the `--source-base` fold
 
 ## The Public Wiki
 
-The public wiki of Sling is available at [http://cwiki.apache.org/SLING](http://cwiki.apache.org/SLING) and is maintained in the Confluence space *SLING*. Everyone can create an account there. To gain edit rights please ask via the [mailing list]({{ refs.project-information.path }}). Any of the administrators listed in the [Space Overview](https://cwiki.apache.org/confluence/spaces/viewspacesummary.action?key=SLING&showAllAdmins=true) can give you access.
+The public wiki of Sling is available at [http://cwiki.apache.org/SLING](http://cwiki.apache.org/SLING) and is maintained in the Confluence space *SLING*. Everyone can create an account there. To gain edit rights please ask via the [mailing list](/project-information.html). Any of the administrators listed in the [Space Overview](https://cwiki.apache.org/confluence/spaces/viewspacesummary.action?key=SLING&showAllAdmins=true) can give you access.
 
 
 ## The JavaDoc
@@ -207,4 +207,4 @@ In addition every released bundle is released together with its JavaDoc (which i
 
 ## The Maven Plugin Documentation
 
-For the most important Maven Plugins the according Maven Sites (generated with the `maven-site-plugin`) are published at [http://sling.apache.org/components/](http://sling.apache.org/components/). The description on how to publish can be found at [Release Management]({{ refs.release-management.path }}).
+For the most important Maven Plugins the according Maven Sites (generated with the `maven-site-plugin`) are published at [http://sling.apache.org/components/](http://sling.apache.org/components/). The description on how to publish can be found at [Release Management](/documentation/development/release-management.html).

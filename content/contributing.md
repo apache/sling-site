@@ -6,7 +6,7 @@ status=published
 ~~~~~~
 Title: Contributing
 
-See [Project Information]({{ refs.project-information.path }}) for details about the tools mentioned below.
+See [Project Information](/project-information.html) for details about the tools mentioned below.
 
 Apache Sling is a volunteer effort, so there is always plenty of work that needs to be accomplished. If you want to help support Sling, this page is intended as a starting point for specific contribution ideas. To further understand how the Sling community operates, refer to the Community Roles and Processes document and/or join the mailing lists.
 

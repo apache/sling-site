@@ -30,7 +30,7 @@ Note that our utilities do not cleanup the repository between tests, so you must
 
 The next step is to use mock classes and services to simulate components that are needed for testing. This makes it possible to test OSGi service classes without an OSGi framework, or classes accessing the Sling or JCR API without a running Sling instance or JCR repository.
 
-The [Development]({{ refs.development.path }}) documentation page contains a section "Testing Sling-based Applications" lising all mock implementations available as part of the Apache Sling project.
+The [Development](/documentation/development.html) documentation page contains a section "Testing Sling-based Applications" lising all mock implementations available as part of the Apache Sling project.
 
 In other cases we use [jmock](http://www.jmock.org/) or [Mockito][1] to help create mock objects without having to write much code - such mocking libraries take care of the plumbing and allow you to write just the bits of code that matter (often with funny syntaxes). The tests of the [org.apache.sling.event](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/event/) bundle, for example, make extensive use of such mock services.
 
@@ -62,7 +62,7 @@ Such tests are obviously slower than plain unit tests and tests that use mocks. 
 
 ## Server-side JUnit tests
 
-The tools described on the [JUnit server-side testing support]({{ refs.org-apache-sling-junit-bundles.path }}) page allow for
+The tools described on the [JUnit server-side testing support](/documentation/bundles/org-apache-sling-junit-bundles.html) page allow for
 running JUnit tests on an live Sling instance, as part of the normal integration testing cycle. 
 
 ## HTTP-based integration tests

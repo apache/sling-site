@@ -81,4 +81,4 @@ This implementation only supports listing node types which are considered repres
 
 # Eclipse plugin for JCR
 
-see [Sling IDE Tooling]({{ refs.ide-tooling.path }})
+see [Sling IDE Tooling](/documentation/development/ide-tooling.html)

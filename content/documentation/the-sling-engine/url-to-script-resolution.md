@@ -10,11 +10,11 @@ Title: URL to Script Resolution
 
 This page explains how Sling maps URLs to a script or and servlet. 
 
-See also [Servlets and Scripts]({{ refs.servlets.path }}) which provides detailed info about how to register servlets.
+See also [Servlets and Scripts](/documentation/the-sling-engine/servlets.html) which provides detailed info about how to register servlets.
 
 First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the `sling:resourceType` property 
 which defines the resource type of that resource. Using this resource type (which is kind of a relative path, 
-eg. "myblog/comment"), scripts or servlets are looked up. For more details about how the initial resource is identified for a specific request URL look at [URL decomposition]({{refs.url-decomposition.path}}).
+eg. "myblog/comment"), scripts or servlets are looked up. For more details about how the initial resource is identified for a specific request URL look at [URL decomposition](/documentation/the-sling-engine/url-decomposition.html).
 
 Scripts and servlets are itself resources in Sling and thus have a resource path: this is either the location in the 
 JCR repository, the resource type in a servlet component configuration or the "virtual" bundle resource path 

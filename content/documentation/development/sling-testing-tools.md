@@ -11,7 +11,7 @@ While this information is still valid, we recommend using the tools and techniqu
 in the newer "Junit Server-Side Tests Support" page instead, see link below. 
 </div>
 
-As mentioned above, this is now replaced by the [Junit Server-Side Tests Support]({{ refs.org-apache-sling-junit-bundles.path }}) page. 
+As mentioned above, this is now replaced by the [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html) page. 
 
 Sling provides a number of testing tools to support the following use cases:
 
@@ -25,7 +25,7 @@ The [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/tr
 
 The main Sling integration tests at [launchpad/integration-tests](https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests) were created before this testing framework, and do not use it yet (as of March 2011). The new testing tools are simpler to use, but the "old" tests (all 400 of them as I write this) fulfill their validation role for testing Sling itself, there's no real need to modify them to use the new tools.
 
-See also [Testing Sling-based applications]({{ refs.testing-sling-based-applications.path }}) which discusses testing in general.
+See also [Testing Sling-based applications](/documentation/tutorials-how-tos/testing-sling-based-applications.html) which discusses testing in general.
 
 ## Required bundles
 These tools require a number of bundles on top of the standard Sling launchpad. See the [sample tests pom.xml](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/pom.xml)
@@ -116,7 +116,7 @@ The [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/tr
 
 This module's pom and Java code can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.
 
-Besides serving as examples, some of the tests in this module are used to validate the testing tools. They run as part of the full Sling [continuous integration]({{ refs.project-information.path }}) build, so they're guaranteed to be correct examples if that build is successful.
+Besides serving as examples, some of the tests in this module are used to validate the testing tools. They run as part of the full Sling [continuous integration](/project-information.html) build, so they're guaranteed to be correct examples if that build is successful.
 
 The sample uses the [testing/tools](http://svn.apache.org/repos/asf/sling/trunk/testing/tools) to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.
 

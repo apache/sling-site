@@ -19,8 +19,8 @@ The bundle provides the following features
 
 To get some hands on code, you can refer to the following tutorials:
 
-* [How to Manage Events in Sling]({{ refs.how-to-manage-events-in-sling.path }})
-* [Scheduler Service (commons scheduler)]({{ refs.scheduler-service-commons-scheduler.path }})
+* [How to Manage Events in Sling](/documentation/tutorials-how-tos/how-to-manage-events-in-sling.html)
+* [Scheduler Service (commons scheduler)](/documentation/bundles/scheduler-service-commons-scheduler.html)
 
 ## Jobs (Guarantee of Processing)
 
@@ -35,7 +35,7 @@ processing is finished but before this state is persisted. Therefore a job consu
 a job more than once. Of course, if there is no job consumer for a job, the job is never processed. However this
 is considered a deployment error.
 
-The Sling Jobs Processing adds some overhead, so in some cases it might be better to use just the [Commons Scheduler Service]({{ refs.scheduler-service-commons-scheduler.path }}) or the [Commons Thread Pool]({{ refs.apache-sling-commons-thread-pool.path }}) for asynchronous execution of code.
+The Sling Jobs Processing adds some overhead, so in some cases it might be better to use just the [Commons Scheduler Service](/documentation/bundles/scheduler-service-commons-scheduler.html) or the [Commons Thread Pool](/documentation/bundles/apache-sling-commons-thread-pool.html) for asynchronous execution of code.
 
 While older versions of the job handling were based on sending and receiving events through the OSGi event admin, newer versions provide enhanced support through special Java interface. This approach is preferred over the still supported but deprecated event admin way.
 
@@ -98,7 +98,7 @@ An example code for scheduling a job looks like this:
     }
 
 
-Internally the scheduled Jobs use the [Commons Scheduler Service]({{ refs.scheduler-service-commons-scheduler.path }}). But in addition they are persisted (by default below `/var/eventing/scheduled-jobs`) and survive therefore even server restarts. When the scheduled time is reached, the job is automatically added as regular Sling Job through the `JobManager`.
+Internally the scheduled Jobs use the [Commons Scheduler Service](/documentation/bundles/scheduler-service-commons-scheduler.html). But in addition they are persisted (by default below `/var/eventing/scheduled-jobs`) and survive therefore even server restarts. When the scheduled time is reached, the job is automatically added as regular Sling Job through the `JobManager`.
 
 
 ### Job Consumers

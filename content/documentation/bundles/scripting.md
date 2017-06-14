@@ -14,15 +14,15 @@ Sling Scripting allows the easy development and usage of different scripting (ak
 
 * Freemarker *
 * Groovy *
-* [HTL]({{ refs.scripting-htl.path }})
+* [HTL](/documentation/bundles/scripting/scripting-htl.html)
 * Java *
 * Javascript
-* [JSP]({{ refs.scripting-jsp.path }})
+* [JSP](/documentation/bundles/scripting/scripting-jsp.html)
 * JST *
 * Python *
 * Ruby *
 * Scala *
-* [Thymeleaf]({{ refs.scripting-thymeleaf.path }}) *
+* [Thymeleaf](/documentation/bundles/scripting/scripting-thymeleaf.html) *
 * Velocity *
 * XProc *
 

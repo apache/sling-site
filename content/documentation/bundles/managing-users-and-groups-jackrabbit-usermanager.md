@@ -6,15 +6,15 @@ status=published
 ~~~~~~
 Title: Managing users and groups (jackrabbit.usermanager)
 
-The `jackrabbit-usermanager` bundle delivers a REST interface to create, update and delete users and groups in the JCR. After installing the `jackrabbit-usermanager` bundle all REST services are exposed under the path `/system/userManager`. Its interface for modifing/creating authorizables is similar to the [SlingPostServlet]({{ refs.manipulating-content-the-slingpostservlet-servlets-post.path }}).
+The `jackrabbit-usermanager` bundle delivers a REST interface to create, update and delete users and groups in the JCR. After installing the `jackrabbit-usermanager` bundle all REST services are exposed under the path `/system/userManager`. Its interface for modifing/creating authorizables is similar to the [SlingPostServlet](/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html).
 
-For getting information about existing authorizables it provides all authorizables as Sling resources through its `AuthorizableResourceProvider` below `/system/userManager/user` and `/system/userManager/group`. Those resources can be exposed via the [Default GET Servlet]({{ refs.rendering-content-default-get-servlets.path }}).
+For getting information about existing authorizables it provides all authorizables as Sling resources through its `AuthorizableResourceProvider` below `/system/userManager/user` and `/system/userManager/group`. Those resources can be exposed via the [Default GET Servlet](/documentation/bundles/rendering-content-default-get-servlets.html).
 
 [TOC]
 
 ## List users
 
-To list existing users a GET request to the `/system/userManager/user` resource can be issued. Depending on the configuration of the [Default GET Servlet]({{ refs.rendering-content-default-get-servlets.path }})
+To list existing users a GET request to the `/system/userManager/user` resource can be issued. Depending on the configuration of the [Default GET Servlet](/documentation/bundles/rendering-content-default-get-servlets.html)
  and/or the availability of a Servlet or Script handling the `sling/users` resource type, a result may be delivered/
 
 Example with curl and the default JSON rendering:
@@ -34,7 +34,7 @@ Example with curl and the default JSON rendering:
 
 ## Get user
 *since version 2.0.8*
-The properties of a single user can be retrieved by sending a GET request to the user's resource at `/system/userManager/user/<username>` where `<username>` would be replaced with the name of the user.  Depending on the configuration of the [Default GET Servlet]({{ refs.rendering-content-default-get-servlets.path }}) and/or the availability of a Servlet or Script handling the `sling/user` resource type, a result may be delivered.
+The properties of a single user can be retrieved by sending a GET request to the user's resource at `/system/userManager/user/<username>` where `<username>` would be replaced with the name of the user.  Depending on the configuration of the [Default GET Servlet](/documentation/bundles/rendering-content-default-get-servlets.html) and/or the availability of a Servlet or Script handling the `sling/user` resource type, a result may be delivered.
 
 Example with curl and the default JSON rendering:
 
@@ -145,7 +145,7 @@ Example
 
 ## List groups
 
-To list existing groups a GET request to the `/system/userManager/group` resource can be sent. Depending on the configuration of the [Default GET Servlet]({{ refs.rendering-content-default-get-servlets.path }}) and/or the availability of a Servlet or Script handling the `sling/groups` resource type, a result may be delivered.
+To list existing groups a GET request to the `/system/userManager/group` resource can be sent. Depending on the configuration of the [Default GET Servlet](/documentation/bundles/rendering-content-default-get-servlets.html) and/or the availability of a Servlet or Script handling the `sling/groups` resource type, a result may be delivered.
 
 Example with curl and the default JSON rendering:
 
@@ -174,7 +174,7 @@ Example with curl and the default JSON rendering:
 
 ## Get group
 
-The properties of a single group can be retrieved by sending a GET request to the group's resource at `/system/userManager/group/groupname` where *groupname* would be replaced with the name of the group.  Depending on the configuration of the [Default GET Servlet]({{ refs.rendering-content-default-get-servlets.path }}) and/or the availability of a Servlet or Script handling the `sling/group` resource type, a result may be delivered.
+The properties of a single group can be retrieved by sending a GET request to the group's resource at `/system/userManager/group/groupname` where *groupname* would be replaced with the name of the group.  Depending on the configuration of the [Default GET Servlet](/documentation/bundles/rendering-content-default-get-servlets.html) and/or the availability of a Servlet or Script handling the `sling/group` resource type, a result may be delivered.
 
 Example with curl and the default JSON rendering:
 

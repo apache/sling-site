@@ -6,15 +6,15 @@ status=published
 ~~~~~~
 Title: JCR Installer Provider
 
-The JCR installer provider scans the JCR repository for artifacts and provides them to the [OSGI installer]({{ refs.osgi-installer.path }}).
+The JCR installer provider scans the JCR repository for artifacts and provides them to the [OSGI installer](/documentation/bundles/osgi-installer.html).
 
 ## Configuration and Scanning
 
 The JCR installer provider can be configured with weighted paths which are scanned. By default, the installer scans in */apps* and */libs* where artifacts found in */apps* get a higher priority. The installer does a deep scan and uses a regular expression to detect folders containing artifacts to be installed. By default, artifacts from within a folder named *install* are provided to the OSGi installer.
 
-If such an install folder contains a binary artifact (e.g. a bundle or a config file as described in [Configuration Installer Factory]({{refs.configuration-installer-factory.path}})) this is provided to the OSGi installer. 
+If such an install folder contains a binary artifact (e.g. a bundle or a config file as described in [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)) this is provided to the OSGi installer. 
 
-In addition every node of type *sling:OsgiConfig* is provided as a configuration to the installer. This has the advantage of leveraging the JCR structure better than binary files, but has the known limitations outlined in [SLING-4183](https://issues.apache.org/jira/browse/SLING-4183) and [SLING-2477](https://issues.apache.org/jira/browse/SLING-2477), therefore it is recommended to stick to one of the binary formats described in [Configuration Installer Factory]({{refs.configuration-installer-factory.path}}).
+In addition every node of type *sling:OsgiConfig* is provided as a configuration to the installer. This has the advantage of leveraging the JCR structure better than binary files, but has the known limitations outlined in [SLING-4183](https://issues.apache.org/jira/browse/SLING-4183) and [SLING-2477](https://issues.apache.org/jira/browse/SLING-2477), therefore it is recommended to stick to one of the binary formats described in [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html).
 
 The JCR installer provider does not check or scan the artifacts itself, the detection and installation is deferred to the OSGi installer.
 
@@ -28,7 +28,7 @@ Artifacts from folders with a run mode get a higher priority. For example by def
 
 The JCR installer supports writing back of configurations which are changed by some other ways, e.g by using the Apache Felix web console. If this is a new configuration which was not originally stored in the repository, a new configuration is stored under */apps/sling/install*. The highest search path is used together with a configurable folder (*sling/install* in this case).
 If a configuration is changed which already exists in the repository, then it depends where the original configuration is stored. If its under */libs* a new configuration at the same path under */apps* is created. Otherwise the configuration is directly modified.
-As JCR properties do not support all Java primitive types like Integer, the write back does not generate a node of type *sling:OsgiConfig* in the repository but a properties file as described in [Configuration Installer Factory]({{refs.configuration-installer-factory.path}}).
+As JCR properties do not support all Java primitive types like Integer, the write back does not generate a node of type *sling:OsgiConfig* in the repository but a properties file as described in [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html).
 
 Write back can be turned off by configuration.
 

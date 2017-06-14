@@ -26,7 +26,7 @@ The important thing to note here is, that at the time the `handleSecurity` metho
 
 The following pages describe the full details of request authentication in Sling in full detail:
 
-* [Tasks]({{ refs.authentication-tasks.path }}): {{ refs.authentication-tasks.headers.excerpt }} 
-* [Actors]({{ refs.authentication-actors.path }}): {{ refs.authentication-actors.headers.excerpt }} 
-* [Framework]({{ refs.authentication-framework.path }}): {{ refs.authentication-framework.headers.excerpt }} 
-* [AuthenticationHandler]({{ refs.authentication-authenticationhandler.path }}): {{ refs.authentication-authenticationhandler.headers.excerpt }} 
+* [Tasks](/documentation/the-sling-engine/authentication/authentication-tasks.html): {{ refs.authentication-tasks.headers.excerpt }} 
+* [Actors](/documentation/the-sling-engine/authentication/authentication-actors.html): {{ refs.authentication-actors.headers.excerpt }} 
+* [Framework](/documentation/the-sling-engine/authentication/authentication-framework.html): {{ refs.authentication-framework.headers.excerpt }} 
+* [AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html): {{ refs.authentication-authenticationhandler.headers.excerpt }} 

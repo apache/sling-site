@@ -15,7 +15,7 @@ This support encompasses three parts:
   * The `Authenticator` service also provided by the `SlingAuthenticator` class. This service may be used by Sling applications to help clients login and logout.
   * The `AuthenticationHandler` service interface. These services may be implemented by extensions to support various ways for transporting credentials from clients to the Sling server.
 
-This page describes how the `SlingAuthenticator` class provides the `AuthenticationSupport` and  `Authenticator` services. For a description of the `AuthenticationHandler` service interface and the interaction between the `SlingAuthenticator` and the `AuthenticationHandler` services refer to the [AuthenticationHandler]({{ refs.authentication-authenticationhandler.path }}) page.
+This page describes how the `SlingAuthenticator` class provides the `AuthenticationSupport` and  `Authenticator` services. For a description of the `AuthenticationHandler` service interface and the interaction between the `SlingAuthenticator` and the `AuthenticationHandler` services refer to the [AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html) page.
 
 The `SlingAuthenticator` class is an internal class of the `org.apache.sling.auth.core` bundle and implements the `Authenticator` and `AuthenticationSupport` services.
 

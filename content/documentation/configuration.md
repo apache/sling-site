@@ -172,8 +172,8 @@ The following table is a collection of well known property names from different 
 | `sling.home` | Defines the file system location where Project Sling will write copies of the initial configuration. This property should also be used to define other local file system locations such as the directory to use for the Apache Felix Bundle Cache (`${sling.home}/felix` by default). If this property is not set it defaults to `${user.dir}/sling`. |
 | `sling.home.url` | Contains the Sling directory set in the `sling.home` property as a valid URL. This property may be used in situations where the Sling directory is required as an URL. This property is automatically set by the Sling application and may not be modified by configuration files. |
 | `sling.ignoreSystemProperties` | Whether to overwrite any configuration properties with Java system properties or not. By default this property is set to `true` by the Sling Servlet but not set by the Sling main class. The reason to set this by default in the Sling Servlet is to not induce values from the environment, which may not be appropriate in the Web Application case. |
-| `obr.repository.url` | A comma-separated list of OSGi Bundle Repository URLs. See *sling.properties* on the page [the Sling Launchpad]({{ refs.the-sling-launchpad.path }}#slingproperties). |
-| `org.apache.sling.commons.log.*` | Properties providing initial configuration to the Sling Log Service. See *sling.properties* on the page [the Sling Launchpad]({{ refs.the-sling-launchpad.path }}#slingproperties). |
+| `obr.repository.url` | A comma-separated list of OSGi Bundle Repository URLs. See *sling.properties* on the page [the Sling Launchpad](/documentation/the-sling-engine/the-sling-launchpad.html#slingproperties). |
+| `org.apache.sling.commons.log.*` | Properties providing initial configuration to the Sling Log Service. See *sling.properties* on the page [the Sling Launchpad](/documentation/the-sling-engine/the-sling-launchpad.html#slingproperties). |
 
 
 

@@ -9,7 +9,7 @@ Title: Apache Sling - Bringing Back the Fun!
 **Apache Sling&trade;** is an innovative web framework that is intended to
 bring back the fun to web development.
 
-Discussions about Sling happen on our mailing lists, see the [Project Information]({{refs.project-information.path}})
+Discussions about Sling happen on our mailing lists, see the [Project Information](/project-information.html)
  page for more info.
 
 # Apache Sling in five bullets points
@@ -44,7 +44,7 @@ complex applications.
 </ul>
 
 
-Refer to the news [archive]({{ refs.news.path }}) for all news.
+Refer to the news [archive](/news.html) for all news.
 
 ## History
 
@@ -63,8 +63,8 @@ this:
 
 ## Getting started
 
-If you prefer doing rather than reading, please proceed to [Discover Sling in 15 minutes]({{refs.discover-sling-in-15-minutes.path}})
- or read through the recommended links in the [Getting Started]({{refs.getting-started.path}})
+If you prefer doing rather than reading, please proceed to [Discover Sling in 15 minutes](/documentation/getting-started/discover-sling-in-15-minutes.html)
+ or read through the recommended links in the [Getting Started](/documentation/getting-started.html)
  section, where you can quickly get started on your own instance of Sling.
 
 ## Use Cases for Sling

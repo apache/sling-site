@@ -18,7 +18,7 @@ The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in 
 * Supports Framework restart
 * Allows propagation of core setup functionality depending on the environment
 
-This page is about the internal details of the Sling Launchpad Base module. To get an outside overview of the Sling Launchpad you might want to refer to [The Sling Launchpad]({{ refs.the-sling-launchpad.path }}) page.
+This page is about the internal details of the Sling Launchpad Base module. To get an outside overview of the Sling Launchpad you might want to refer to [The Sling Launchpad](/documentation/the-sling-engine/the-sling-launchpad.html) page.
 
 # Structure
 

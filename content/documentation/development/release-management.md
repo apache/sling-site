@@ -142,7 +142,7 @@ From [Votes on Package Releases](http://www.apache.org/foundation/voting.html):
 > the individual serving as release manager. The specifics of the process may vary from 
 > project to project, but the 'minimum of three \+1 votes' rule is universal.
 
-The list of binding voters is available on the [Project Team]({{ refs.project-team.path }}) page.
+The list of binding voters is available on the [Project Team](/project-information/project-team.html) page.
 
 
 If the vote is successful, post the result to the dev list - for example:
@@ -195,7 +195,7 @@ If the vote passes:
 1. Push the release to Maven Central
 	1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging*. Find your closed staging repository and select it by checking the select box. Select the *Releases* repository from the drop-down list and click *Release* from the menu above.
 	1. Once the release is promoted click on *Repositories*, select the *Releases* repository and validate that your artifacts are all there.
-1. Update the news section on the website at [news]({{ refs.news.path }}).
+1. Update the news section on the website at [news](/news.html).
 1. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release.
 
 For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
@@ -214,7 +214,7 @@ Close all issues associated with the released version.
 ## Create an Announcement
 
 We usually do such announcements only for "important" releases, as opposed to small individual module
-releases which are just announced on our [news]({{ refs.news.path }}) page.
+releases which are just announced on our [news](/news.html) page.
 
     To: "Sling Developers List" <dev@sling.apache.org>, "Apache Announcements" <announce@apache.org>
     Subject: [ANN] Apache Sling ABC version X.Y.Z Released

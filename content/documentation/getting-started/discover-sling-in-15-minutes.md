@@ -25,7 +25,7 @@ Once you grok the basic examples of this page, we recommend studying the
 
 ## Prerequisites
 
-We'll start with the self-runnable jar from the Sling distribution, you only need a Java 7 JDK. Download the latest release from the Sling [Downloads](/downloads.cgi) page or by clicking this link: [org.apache.sling.launchpad-8.jar](http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8.jar). Alternatively you can deploy the [Sling Web application](http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8-webapp.war) into any decent Servlet Container such as Jetty or Tomcat or you can [build the current source yourself]({{ refs.getting-and-building-sling.path }}).
+We'll start with the self-runnable jar from the Sling distribution, you only need a Java 7 JDK. Download the latest release from the Sling [Downloads](/downloads.cgi) page or by clicking this link: [org.apache.sling.launchpad-8.jar](http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8.jar). Alternatively you can deploy the [Sling Web application](http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8-webapp.war) into any decent Servlet Container such as Jetty or Tomcat or you can [build the current source yourself](/documentation/development/getting-and-building-sling.html).
 
 To show the simplicity of the REST-style approach taken by Sling the examples below will be using [cURL](http://curl.haxx.se/). Any HTTP client would do, but cURL is the easiest to document in a reproducible way.
 
@@ -69,7 +69,7 @@ This returns the properties of the `/content/mynode` in JSON format as we have c
 
 The additional property `jcr:primaryType` is a special JCR property added by the content repository, indicating the JCR primary node type.
 
-*Monitoring requests: Sling provides a simple tool (an OSGi console plugin) to monitor HTTP requests, which helps understand how things work internally. See the [Monitoring Requests]({{ refs.monitoring-requests.path }}) page for details.*
+*Monitoring requests: Sling provides a simple tool (an OSGi console plugin) to monitor HTTP requests, which helps understand how things work internally. See the [Monitoring Requests](/documentation/development/monitoring-requests.html) page for details.*
 
 ## Render your content using server-side javascript (ESP)
 
@@ -109,7 +109,7 @@ create a local file *html.esp* and copy above content.
 
 The HTML rendering of your node, at [http://localhost:8080/content/mynode.html](http://localhost:8080/content/mynode.html), is now created by this ESP script. You should see the node's title alone as an &lt;h1&gt; element in that page.
 
-A script named *POST.esp* instead of *html.esp* would be called for a POST request, *DELETE.esp* for DELETE, *xml.esp* for a GET request with a *.xml* extension, etc. See [URL to Script Resolution]({{ refs.url-to-script-resolution.path }}) on the Sling wiki for more info.
+A script named *POST.esp* instead of *html.esp* would be called for a POST request, *DELETE.esp* for DELETE, *xml.esp* for a GET request with a *.xml* extension, etc. See [URL to Script Resolution](/documentation/the-sling-engine/url-to-script-resolution.html) on the Sling wiki for more info.
 
 Servlets can also be easily "wired" to handle specific resource types, extensions, etc., in the simplest case by using SCR annotations in the servlet source code. Servlets and scripts are interchangeable when it comes to processing Sling requests.
 
