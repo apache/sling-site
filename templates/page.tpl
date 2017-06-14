@@ -6,19 +6,11 @@ layout 'layout/main.tpl', true,
                 div(class:"small-12 columns"){
                     section(class:"wrap"){
                         header{
-                            h2("${content.title}")
-							p("TODO this is the page template")
-
-                            time(datetime:"${content.date.format('yyyy-MM-dd')}"){
-                                small("${content.date.format('dd.MM.yyyy')}")
-                            }
-                            hr()
+                            h1("${content.title}")
                         }
-
                         yieldUnescaped content.body
                     }
                 }
             }
 
         }
-
