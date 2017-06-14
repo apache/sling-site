@@ -6,6 +6,16 @@ status=published
 ~~~~~~
 Title: Bundles
 
+## TODO remove this section - experimenting with internal links
+
+[Content Loading (jcr.contentloader)](bundles/content-loading-jcr-contentloader.html)
+
+[Internationalization Support (i18n)](bundles/internationalization-support-i18n.html)
+
+[Internationalization Support 3 (i18n)]({config.site_contextPath}/documentation/bundles/internationalization-support-i18n.html)
+
+wiki style doesn't work yet? [[internationalization-support-i18n]]
+
 ## Content
 
 * [Content Loading (jcr.contentloader)]({{ refs.content-loading-jcr-contentloader.path }})
