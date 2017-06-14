@@ -4,6 +4,7 @@ Experimenting with JBake for the Apache Sling website
 ## TODO
 * Add proper front matter to all pages
 * Use the page template instead of post
+* Use tags in the page template and for navigation
 * Fix internal links like `refs.project-information.path` (how? not sure so far)
 * Left menu 
 * Page header and footer, logo etc
