@@ -1,7 +1,7 @@
 title=Repository Initializers and Repository Initialization Language
 date=2013-08-25
-type=post
-tags=blog
+type=page
+tags=repoinit,repository
 status=published
 ~~~~~~
 

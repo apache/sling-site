@@ -1,12 +1,21 @@
 meta(charset:"utf-8") newLine()
-meta(name:"viewport", content:"width=device-width, initial-scale=1.0") newLine()
+
 title("${config.blog_title}") newLine()
-link(rel:"stylesheet", href:"${config.site_contextPath}css/asciidoctor.css") newLine()
-link(rel:"stylesheet", href:"${config.site_contextPath}css/foundation.css") newLine()
-link(rel:"stylesheet", href:"${config.site_contextPath}css/social_foundicons.css") newLine()
-link(rel:"stylesheet", href:"${config.site_contextPath}css/prettify.css") newLine()
-link(rel:"stylesheet", href:"${config.site_contextPath}css/desert.css") newLine()
-link(rel:"stylesheet", href:"${config.site_contextPath}css/app.css") newLine()
-newLine()
-script(src:"${config.site_contextPath}js/vendor/modernizr.js"){} newLine()
-script(src:"${config.site_contextPath}js/app.js"){} newLine()
+
+// For now, try to reproduce the layout of the current website, to be able to compare pages
+
+link(rel:"stylesheet", href:"${config.site_contextPath}res/css/site.css") newLine()
+link(rel:"stylesheet", href:"${config.site_contextPath}res/css/codehilite.css") newLine()
+
+div(class:"title") {
+  div(class:"logo") {
+	  a(href:"http://sling.apache.org") {
+	  	img(border:"0", alt="Apache Sling", src="${config.site_contextPath}res/logos/sling.svg")
+	  }
+  }
+  div(class:"header") {
+	  a(href:"http://www.apache.org") {
+	  	img(border:"0", alt="Apache", src="${config.site_contextPath}res/logos/apache.png")
+	  }
+  }
+}

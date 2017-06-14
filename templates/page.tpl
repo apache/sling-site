@@ -7,6 +7,7 @@ layout 'layout/main.tpl', true,
                     section(class:"wrap"){
                         header{
                             h2("${content.title}")
+							p("TODO this is the page template")
 
                             time(datetime:"${content.date.format('yyyy-MM-dd')}"){
                                 small("${content.date.format('dd.MM.yyyy')}")
