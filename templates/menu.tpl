@@ -44,6 +44,7 @@ p(){}
 strong("Sponsorship") br()
 a(href:"http://www.apache.org/foundation/thanks.html", "Thanks") br()
 a(href:"http://www.apache.org/foundation/sponsorship.html", "Become a Sponsor") br()
+a(href:"https://donate.apache.org/", "Donate!") br()
 a(href:"http://www.apache.org/foundation/buy_stuff.html", "Buy Stuff") br()  
 
 p(){}
