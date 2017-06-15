@@ -1,5 +1,13 @@
 # sling-jbake
-Experimenting with JBake for the Apache Sling website
+Experimenting with JBake for the Apache Sling website.
+
+See also https://issues.apache.org/jira/browse/SLING-6955
+
+
+## How to build the site locally
+* Clone this repository
+* Run `./bake.sh`
+* Open http://localhost:8820/ and enjoy.
 
 ## TODO
 
@@ -17,9 +25,10 @@ Experimenting with JBake for the Apache Sling website
 ### Nice to have, maybe later
 * Left menu is not yellow as on the old site (we might refresh the overall style anyway)
 
-### Final validation etc
+### Final validation, activation etc.
 * Review all pages
 * Resync the content with the current Sling website if needed, initially synced at r1798604
+* Move the Git repository to apache.org, create an `asf-site` branch for the live content and ask infra to setup gitpubsub to activate it
 
 ### Done
 * Fix internal links like `refs.project-information.path` 
