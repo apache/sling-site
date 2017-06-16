@@ -1,17 +1,25 @@
 // ------------------------------------------------------------------------------------------------
+// Sling downloads page
+// http://www.apache.org/dev/release-download-pages.html explains how the apache.org mirrored
+// downloads page work. Basically, we provide a downloads.html page with a few placeholders
+// and a form to select the download mirrog, and a downloads.cgi page which wraps the apache.org
+// download logic CGI.
+// ------------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------------
 // Downloads template data
-// The template itself is found below
+// The page template itself is found below.
 // ------------------------------------------------------------------------------------------------
 def launchpadVersion="9"
 
 def slingIDETooling=[
-  "Sling IDE Tooling for Eclipse|1.1.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
+  "Sling IDE Tooling for Eclipse|eclipse|1.1.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[
   "Sling Standalone Application|A self-runnable Sling jar|org.apache.sling.launchpad|.jar|${launchpadVersion}",
-  "Sling Web Application|A ready-to run Sling webapp as a war file|org.apache.sling.launchpad|-webapp.war${launchpadVersion}",
-  "Sling Source Release|The released Sling source code|org.apache.sling.launchpad|-source-release.zip${launchpadVersion}",
+  "Sling Web Application|A ready-to run Sling webapp as a war file|org.apache.sling.launchpad|-webapp.war|${launchpadVersion}",
+  "Sling Source Release|The released Sling source code|org.apache.sling.launchpad|-source-release.zip|${launchpadVersion}",
 ]
 
 def mavenPlugins=[
@@ -231,7 +239,8 @@ def bundles=[
 // Utilities
 // ------------------------------------------------------------------------------------------------
 def downloadLink(label, artifact, version, suffix) {
-	def path = "sling/${artifact}-${version}${suffix}"
+	def sep = version ? "-" : ""
+	def path = "sling/${artifact}${sep}${version}${suffix}"
 	def digestsBase = "http://www.apache.org/dist/${path}"
 	
 	a(href:"[preferred]${path}", label)
@@ -244,7 +253,6 @@ def downloadLink(label, artifact, version, suffix) {
 
  // ------------------------------------------------------------------------------------------------
 // Downloads page layout
-// http://www.apache.org/dev/release-download-pages.html explains how this works
 // ------------------------------------------------------------------------------------------------
 layout 'layout/main.tpl', true,
         projects: projects,
@@ -273,10 +281,11 @@ layout 'layout/main.tpl', true,
 									tr() {
 										def data = line.split("\\|")
 										td(data[0])
-										td(data[2])
-										td(data[3])
+										td(data[4])
+										td(data[1])
+										var artifact = "${data[2]}-${data[4]}${data[3]}"
 										td(){ 
-											downloadLink("TODO_LABEL", "TODO_ARTIFACT", "TODO_VERSION", "TODO_SUFFIX") 
+											downloadLink(artifact, artifact, "", "")
 										}
 									}
 								}
@@ -298,10 +307,11 @@ layout 'layout/main.tpl', true,
 									tr() {
 										def data = line.split("\\|")
 										td(data[0])
-										td(data[1])
 										td(data[2])
+										td(data[3])
+										def artifact = "${data[1]}/${data[2]}"
 										td(){ 
-											downloadLink("TODO_LABEL", "TODO_ARTIFACT", "TODO_VERSION", "TODO_SUFFIX") 
+											downloadLink("Update site", artifact, "", "")
 										}
 									}
 								}
@@ -324,11 +334,13 @@ layout 'layout/main.tpl', true,
 										def data = line.split("\\|")
 										td(data[0])
 										td(data[2])
+										def artifact = data[1]
+										def version = data[2]
 										td(){ 
-											downloadLink("Bundle", "TODO_ARTIFACT", "TODO_VERSION", ".jar") 
+											downloadLink("Bundle", artifact, version, ".jar") 
 										}
 										td(){ 
-											downloadLink("Source ZIP", "TODO_ARTIFACT", "TODO_VERSION", "-source-release.zip") 
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
 										}
 									}
 								}
@@ -351,11 +363,13 @@ layout 'layout/main.tpl', true,
 										def data = line.split("\\|")
 										td(data[0])
 										td(data[2])
+										def artifact = data[1]
+										def version = data[2]
 										td(){ 
-											downloadLink("Maven Plugin", "TODO_ARTIFACT", "TODO_VERSION", ".jar") 
+											downloadLink("Maven Plugin", artifact, version, ".jar") 
 										}
 										td(){ 
-											downloadLink("Source ZIP", "TODO_ARTIFACT", "TODO_VERSION", "-source-release.zip") 
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
 										}
 									}
 								}
