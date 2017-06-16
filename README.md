@@ -16,6 +16,7 @@ See also https://issues.apache.org/jira/browse/SLING-6955
 * Enumerate child pages in documentation/tutorials-how-tos.html -> replace with a manually generated list? or use tags to mark and select that content.
 * Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references -> replace with copies of those titles and excerpts, or use tags to mark and select
 * Fix remaining `refs.` links -> those are probably broken anyway
+* The `#!java` macro is not supported -> convert to monospaced code
 
 ### Might be harder
 * Implement the dynamic downloads page (shouldn't be too hard but haven't looked in detail yet)
