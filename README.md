@@ -17,9 +17,9 @@ See also https://issues.apache.org/jira/browse/SLING-6955
 * Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references -> replace with copies of those titles and excerpts, or use tags to mark and select
 * Fix remaining `refs.` links -> those are probably broken anyway
 * The `#!java` macro is not supported -> convert to monospaced code
+* Finish the dynamic downloads page, links are still TODO + test with CGI script
 
 ### Might be harder
-* Implement the dynamic downloads page (shouldn't be too hard but haven't looked in detail yet)
 * Remove or replace the `[TOC]` macro (but we might do without it)
 
 ### Nice to have, maybe later
