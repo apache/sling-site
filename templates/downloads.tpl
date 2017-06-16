@@ -251,6 +251,17 @@ def downloadLink(label, artifact, version, suffix) {
 	yield ")"
 }
 
+def tableHead(String [] headers) {
+	thead() {
+		tr() {
+			headers.each { header ->
+				th(header)
+			}
+		}
+	}
+	
+}
+
  // ------------------------------------------------------------------------------------------------
 // Downloads page layout
 // ------------------------------------------------------------------------------------------------
@@ -268,14 +279,7 @@ layout 'layout/main.tpl', true,
 						
 						h2("Sling Application")
 						table(class:"table") {
-							thead() {
-								tr() {
-									th("Artifact")
-									th("Version")
-									th("Provides")
-									th("Package")
-								}
-							}
+							tableHead("Artifact", "Version", "Provides", "Package")
 							tbody() {
 								slingApplication.each { line -> 
 									tr() {
@@ -294,14 +298,7 @@ layout 'layout/main.tpl', true,
 						
 						h2("Sling IDE Tooling")
 						table(class:"table") {
-							thead() {
-								tr() {
-									th("Artifact")
-									th("Version")
-									th("Provides")
-									th("Update site")
-								}
-							}
+							tableHead("Artifact", "Version", "Provides", "Update Site")
 							tbody() {
 								slingIDETooling.each { line ->
 									tr() {
@@ -320,14 +317,7 @@ layout 'layout/main.tpl', true,
 						
 						h2("Sling Components")
 						table(class:"table") {
-							thead() {
-								tr() {
-									th("Artifact")
-									th("Version")
-									th("Binary")
-									th("Source")
-								}
-							}
+							tableHead("Artifact", "Version", "Binary", "Source")
 							tbody() {
 								bundles.each { line ->
 									tr() {
@@ -349,14 +339,7 @@ layout 'layout/main.tpl', true,
 						
 						h2("Maven Plugins")
 						table(class:"table") {
-							thead() {
-								tr() {
-									th("Artifact")
-									th("Version")
-									th("Binary")
-									th("Source")
-								}
-							}
+							tableHead("Artifact", "Version", "Binary", "Source")
 							tbody() {
 								mavenPlugins.each { line ->
 									tr() {
