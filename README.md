@@ -14,7 +14,6 @@ See also https://issues.apache.org/jira/browse/SLING-6955
 ### "Looks easy" (famous last words)
 * Move images and other files to /assets and convert their links
 * Enumerate child pages in documentation/tutorials-how-tos.html -> replace with a manually generated list? or use tags to mark and select that content.
-* Tables are broken in project-information.html for example -> replace with HTML tables copied from the current site? Looks like pegdown doesn't do tables.
 * Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references -> replace with copies of those titles and excerpts, or use tags to mark and select
 * Fix remaining `refs.` links -> those are probably broken anyway
 
@@ -34,9 +33,9 @@ See also https://issues.apache.org/jira/browse/SLING-6955
 * Fix internal links like `refs.project-information.path` 
 * Page header and footer, logo etc
 * Remove unused assets files and templates (copied from JBake Groovy sample)
-
+* Tables work now, needed the pegdown TABLES extension
 
 ## JBake notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
-* Apparently uses https://github.com/sirthias/pegdown for Markdown, syntax info at https://github.com/sirthias/pegdown/blob/master/src/test/resources/MarkdownTest103/Markdown%20Documentation%20-%20Syntax.md
+* Uses https://github.com/sirthias/pegdown for Markdown, syntax info at https://github.com/sirthias/pegdown/blob/master/src/test/resources/MarkdownTest103/Markdown%20Documentation%20-%20Syntax.md , extensions at http://www.decodified.com/pegdown/api/org/pegdown/Extensions.html
 * Groovy MarkupTemplateEngine examples at https://github.com/jbake-org/jbake-example-project-groovy-mt , docs for that engine at http://groovy-lang.org/templating.html#_simpletemplateengine
