@@ -1,8 +1,0 @@
-ErrorDocument 403 /errors/403.html
-ErrorDocument 404 /errors/404.html
-
-Redirect Permanent /downloads.html /downloads.cgi
-Redirect Permanent /media.html /
-Redirect Permanent /plugins.html /
-Redirect Permanent /documentation/the-sling-engine/eventing-and-jobs.html /documentation/bundles/apache-sling-eventing-and-job-handling.html
-Redirect Permanent /documentation/bundles/scripting/scripting-sightly.html /documentation/bundles/scripting/scripting-htl.html

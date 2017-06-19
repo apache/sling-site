@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<?xml-stylesheet type="text/xml" href="obr2html.xsl"?>
-<repository lastmodified="20090518144500" name="Apache Sling Master Repository">
-  <referral url="http://felix.apache.org/obr/releases.xml" depth="1" />
-  <referral url="http://incubator.apache.org/sling/obr/sling.xml" depth="1" />
-  <referral url="http://incubator.apache.org/sling/obr/thirdparty.xml" depth="1" />
-</repository>
