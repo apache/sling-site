@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Request Listeners</h1></header><p>Sling provides the possibility to "listen" to a request processed by the Sling Engine (<code>SlingMainServlet</code>). To get notified you implement the service interface <code>org.apache.sling.api.request.SlingRequestListener</code>.</p>
+<h1>!java</h1>
+<p>public interface SlingRequestListener {</p>
+<p>static final String SERVICE_NAME = "org.apache.sling.api.request.SlingRequestListener";</p>
+<p>/** * This method is called from the Sling application for every * <code>EventType</code> appearing during the dispatching of * a Sling request * * @param sre the object representing the event * * @see org.apache.sling.api.request.SlingRequestEvent.EventType */ public void onEvent( SlingRequestEvent sre ); }</p>
+<p>There are no special properties to set.</p>
+<h2>Supported types of events</h2>
+<p>At the moment you will get two different types of <code>SlingRequestEvent</code>:</p>
+<table>
+  <thead>
+    <tr>
+      <th>events types (<code>SlingRequestEvent.EventType</code>) </th>
+      <th>point in time </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EVENT_INIT </td>
+      <td>after entering the <code>service</code> method in <code>SlingMainServlet</code>. Note that this will be <strong>after</strong> the <code>handleSecurity</code> call. </td>
+    </tr>
+    <tr>
+      <td>EVENT_DESTROY </td>
+      <td>at the end of the <code>service</code> method in <code>SlingMainServlet</code> </td>
+    </tr>
+  </tbody>
+</table></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

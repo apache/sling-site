@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Errorhandling</h1></header><p>The Sling Engine includes support for handling uncaught <code>Throwable</code> as well as rendering custom HTTP status code pages. This is implemented by expecting a (single) <code>org.apache.sling.engine.servlets.ErrorHandler</code> service to which handling of uncaught <code>Throwable</code> and HTTP status responses are delegated.</p>
+<p>The Sling Servlet Resolver bundle implements this interface by providing an elaborate mechanism to find the correct error handling script or servlet using the same algorithms as are used to select the scripts or servlets to handle regular requests.</p>
+<p>This page provides more information on how error handler scripts are selected and what is provided out of the box.</p>
+<p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolver/errorhandler/ErrorHandlingTest.java">ErrorHandlingTest</a> in our integration tests suite provides working examples of various error handling scenarios.</p>
+<p>[TOC]</p>
+<h2>Resetting the Response</h2>
+<p>Errorhandler scripts and servlets are script with the current response. Before setting the status and writing to the response such handlers should do the following:</p>
+<ul>
+  <li>Check whether the response has been committed or not</li>
+  <li>If the response has not been committed:</li>
+  <li>Reset the response</li>
+  <li>Set the status code (use <code>HttpServletResponse.setStatus</code>)</li>
+  <li>Set the response content type and character encoding (provided text data is sent back)</li>
+  <li>If the response has already been committed:</li>
+  <li>Do not try to reset since this would cause an <code>IllegalStateException</code>. Also the writer may not be available.</li>
+  <li>The best that might be done in this case is just log a message at warning or error level along with information about the failure.</li>
+</ul>
+<h2>HTTP Status Codes</h2>
+<p>The Sling engine implements the <code>HttpServletResponse.sendError</code> methods by calling the <code>ErrorHandler.handleError(int status, String message, SlingHttpServletRequest request, SlingHttpServletResponse response)</code> method.</p>
+<p>The Servlet Resolver bundle implementation looks up a script to handle the status code as follows:</p>
+<ul>
+  <li>The status code is converted to a string and used as the request extension. Any request extensions, selectors or suffixes from the actual request are ignored.</li>
+  <li>The same resource type hierarchy is followed to find the script as for regular script resolution. The difference is that for error handler scripts <code>sling/servlet/errorhandler</code> is used as the implied base resource type (as opposed to <code>sling/servlet/default</code> for regular script resolution.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+  <li>An application provider my provide a default handler for the 404/NOT FOUND status. This script might be located in <code>/libs/sling/servlet/errorhandler/404.jsp</code>.</li>
+  <li>An programmer might provide a handler for the 403/FORBIDDEN status in <code>/apps/sling/servlet/errorhandler/403.esp</code>.</li>
+</ul>
+<h2>Uncaught Throwables</h2>
+<p>To handle uncaught Throwables the simple name (<code>Class.getSimpleName()</code>) of the <code>Throwable</code> class is used as request extension. Similarly to the Java try-catch clauses the class hierarchy is supported. That is to handle an uncaught <code>FileNotFoundException</code>, the names <code>FileNotFoundException</code>, <code>IOException</code>, <code>Exception</code>, <code>Throwable</code> are checked for a Servlet and the first one found is then used. Again, the Serlvet may be a Servlet registered as an OSGi service or may be a plain script stored in the JCR repository or provided through some custom Resource provider.</p>
+<p><strong>Example:</strong> To register a catch-all handler for any uncaught Throwables you might create a script <code>/apps/sling/servlet/errorhandler/Throwable.esp</code>.</p>
+<p><strong>Note:</strong> If no script or servlet to handle an uncaught <code>Throwable</code> is registered, the default handler kicks in, which sends back a 500/INTERNAL SERVER ERROR response containing the <code>Throwable</code> and the stack trace. This response is <strong>not</strong> handled by the HTTP Status Code handling described above because the response status is sent using <code>HttpServletResponse.setStatus(int, String)</code>. To prevent this default response you have to implement a catch-all handler for the <code>Throwable</code> class as shown in the example.</p>
+<h2>Default Handler</h2>
+<p>The Sling Servlet Resolver bundle provides a default error handler servlet which is used if the algorithms described above do not resolve to a handler script or servlet. The provided error handler servlet does the following:</p>
+<ul>
+  <li>Print a descriptive message, which is the <code>javax.servlet.error.message</code> request attribute by default</li>
+  <li>Print a stacktrace if the <code>javax.servlet.error.exception</code> is set</li>
+  <li>Dump the request progress tracker</li>
+</ul>
+<p>Starting with Sling Servlet Resolver version 2.0.10 the default error handler servlet is looked up using the string <code>default</code> as the request extension and the provided default servlet is registered as <code>&lt;prefix&gt;/sling/servlet/errorhandler/default.servlet</code> where <prefix> is the last entry in the resource resolver search path, <code>/libs</code> by default.</p>
+<p>Thus to overwrite the default error handler servlet provide a servlet or script for the <code>default</code> extension, for example <code>/apps/sling/servlet/errorhandler/default.groovy</code>.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Project Team</h1></header><p>A successful project requires many people to play many roles. Some members write code or documentation, while others are valuable as testers, submitting patches and suggestions.</p>
+<p>The team is comprised of Committers and Contributors. Committers have direct access to the source of a project and actively evolve the code-base. Contributors improve the project through submission of patches and suggestions to the Members. The number of Contributors to the project is unbounded. Get involved today. All contributions to the project are greatly appreciated.</p>
+<h2>Committers and PMC members</h2>
+<p>The following is a list of developers with commit privileges that have directly contributed to the project in one way or another.</p>
+<p>Committers marked with an asterisk (*) are also members of the Sling Project Management Commitee (<a href="http://www.apache.org/dev/pmc.html">PMC</a>) as defined in <a href="/project-information/apache-sling-community-roles-and-processes.html">Apache Sling Community Roles and Processes</a></p>
+<p>This page is currently maintained manually, the ASF's LDAP information is the ultimate reference.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Id </th>
+      <th>Name </th>
+      <th>Organization </th>
+      <th>Roles </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>aheimoz </td>
+      <td>Alison Heimoz </td>
+      <td>Adobe </td>
+      <td>Technical Writer </td>
+    </tr>
+    <tr>
+      <td>amitgupt </td>
+      <td>Amit Gupta </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>apopescu (*) </td>
+      <td>Alexandru Popescu </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>asanso (*) </td>
+      <td>Antonio Sanso </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>bdelacretaz (*) </td>
+      <td>Bertrand Delacretaz </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>clemens </td>
+      <td>Clemens Wyss </td>
+      <td>MySign AG </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>chetanm (*) </td>
+      <td>Chetan Mehrotra </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>clombart (*) </td>
+      <td>Christophe Lombart </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>cziegeler (*) </td>
+      <td>Carsten Ziegeler </td>
+      <td>Adobe </td>
+      <td>Chair, Java Developer </td>
+    </tr>
+    <tr>
+      <td>dklco (*) </td>
+      <td>Dan Klco </td>
+      <td>Six Dimensions </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>dulvac </td>
+      <td>Andrei Dulvac </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>fmeschbe (*) </td>
+      <td>Felix Meschberger </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>enorman </td>
+      <td>Eric Norman </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>gianugo (*) </td>
+      <td>Gianugo Rabellino </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ghenzler </td>
+      <td>Georg Henzler </td>
+      <td>Netcentric </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>jckautzmann </td>
+      <td>Jean-Christophe Kautzmann </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>jsedding </td>
+      <td>Julian Sedding </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>justin (*) </td>
+      <td>Justin Edelson </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>hannonpi (*) </td>
+      <td>Padraic Hannon </td>
+      <td>Edmunds Inc. </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>ieb (*) </td>
+      <td>Ian Boston </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>juanjo (*) </td>
+      <td>Juan José Vázquez Delgado </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>kwin (*) </td>
+      <td>Konrad Windszus </td>
+      <td>Netcentric </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>mduerig </td>
+      <td>Michael Dürig </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>mykee (*) </td>
+      <td>Mike Müller </td>
+      <td>MySign AG </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>npeltier </td>
+      <td>Nicolas Peltier </td>
+      <td> Adobe </td>
+      <td> Java Developer </td>
+    </tr>
+    <tr>
+      <td>olli (*) </td>
+      <td>Oliver Lietz </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>pauls (*) </td>
+      <td>Karl Pauls </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>radu (*) </td>
+      <td>Radu Cotescu </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>rombert (*) </td>
+      <td>Robert Munteanu </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>sboehme </td>
+      <td>Sandro Boehme </td>
+      <td>inovex GmbH </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>sseifert (*) </td>
+      <td>Stefan Seifert </td>
+      <td>pro!vision GmbH </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>stefanegli (*) </td>
+      <td>Stefan Egli </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>thecarlhall </td>
+      <td>Carl Hall </td>
+      <td>Hallway Technologies </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>tmaret </td>
+      <td>Timothee Maret </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>tommaso </td>
+      <td>Tommaso Teofili </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>tomekr </td>
+      <td>Tomek Rękawek </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>vramdal </td>
+      <td>Vidar Ramdal </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+    <tr>
+      <td>mpetria </td>
+      <td>Marius Petria </td>
+      <td>Adobe </td>
+      <td>Java Developer </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Emeritus Committers and PMC members</h2>
+<p>The following list of former committers and PMC members have chosen to go emeritus. We are still thankful for their help and guidance during earlier phases of the Sling project.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Id </th>
+      <th>Name </th>
+      <th>Organization </th>
+      <th>Roles </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>farra </td>
+      <td><strong>J Aaron Farr</strong> </td>
+      <td> </td>
+      <td>Mentor </td>
+    </tr>
+    <tr>
+      <td>jukka </td>
+      <td><strong>Jukka Zitting</strong> </td>
+      <td>Adobe </td>
+      <td>Champion, Mentor </td>
+    </tr>
+  </tbody>
+</table>
+<p>Committers with their names printed in bold face have also been members of the PMC (or PPMC during Sling incubation) as defined in <a href="/project-information/apache-sling-community-roles-and-processes.html">Apache Sling Community Roles and Processes</a></p>
+<h2>Emeritus PMC members</h2>
+<p>The following list of former PMC members have chosen to go emeritus as a PMC member but stay active as a committer. We are still thankful for their help and guidance.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Id </th>
+      <th>Name </th>
+      <th>Organization </th>
+      <th>Roles </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>vramdal </td>
+      <td>Vidar Ramdal </td>
+      <td> </td>
+      <td>Java Developer </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Special Thanks</h2>
+<p>Special thanks go to <strong>Chris Millar</strong> who provided the new Apache Sling Logo in 2017.</p>
+<p>The original Sling logo was created by Paul Walker in 2008 as part of the Google Highly Open Participation contest.</p>
+<h2>Contributors</h2>
+<p>There are no contributors listed for this project.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

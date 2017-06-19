@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Internationalization Support (i18n)</h1></header><p>Internationalization support in Sling consists of four methods in the <code>SlingHttpServletRequest</code> interface:</p>
+<ul>
+  <li><code>getLocale()</code> -- Returns the primary <code>Locale</code> for the current request. This method is inherited from the <code>javax.servlet.ServletRequest</code> interface.</li>
+  <li><code>getLocales()</code> -- Returns the <code>Locale</code> instances for the current request. This method is inherited from the <code>javax.servlet.ServletRequest</code> interface.</li>
+  <li><code>getResourceBundle(Locale)</code> -- Returns a <code>ResourceBundle</code> for the given <code>Locale</code>. This method is specific to Sling.</li>
+  <li><code>getResourceBundle(String, Locale)</code> -- Returns a <code>ResourceBundle</code> of a given base name for the given <code>Locale</code>. This method is specific to Sling.</li>
+</ul>
+<p>These methods have a default implementation in the <code>org.apache.sling.core</code> bundle and an extended and extensible implementation in the <code>org.apache.sling.i18n</code> bundle.</p>
+<h2>Default Implementation in the <code>org.apache.sling.engine</code> Bundle</h2>
+<p>The default implementation of the above mentioned four methods in the Sling Engine bundle is contained in the bundle-private class <code>org.apache.sling.engine.impl.SlingHttpServletRequestImpl</code> which is the primary implementation of the <code>SlingHttpServletRequest</code> interface:</p>
+<ul>
+  <li><code>getLocale()</code> -- Returns the <code>Locale</code> from the request object of the servlet container in which Sling is running. As per the Servlet API specification, this is either the primary Locale of the <code>Accept-Language</code> request header or the server default locale.</li>
+  <li><code>getLocales()</code> -- Returns the <code>Enumeration</code> from the request object of the servlet container in which Sling is running. As per the Servlet API specification, this is either based on the <code>Accept-Language</code> request header or just the server default locale.</li>
+  <li><code>getResourceBundle(Locale)</code> -- Returns a <code>ResourceBundle</code> whose <code>getString(String key)</code> method returns the <code>key</code> as the message and whose <code>getKeys()</code> method returns an empty <code>Enumeration</code>.</li>
+  <li><code>getResourceBundle(String, Locale)</code> -- Returns a <code>ResourceBundle</code> whose <code>getString(String key)</code> method returns the <code>key</code> as the message and whose <code>getKeys()</code> method returns an empty <code>Enumeration</code>.</li>
+</ul>
+<p>NOTE: Unlike the default implementations of the <code>ResourceBundle</code> abstract class in the Java Runtime -- <code>PropertyResourceBundle</code> and <code>ListResourceBundle</code> -- the <code>ResourceBundle</code> returned by the default implementation of the <code>getResourceBundle(Locale)</code> and <code>getResourceBundle(String, Locale)</code> always returns a string message for any key, which is the key itself. This prevents throwing <code>MissingResourceException</code>.</p>
+<h2>Extensible Implementation in the <code>org.apache.sling.i18n</code> Bundle</h2>
+<p>The <code>org.apache.sling.i18n</code> Bundle implements a request level <code>Filter</code> providing extensible implementations of the above mentioned three methods. Extensibility is attained by defining two service interfaces:</p>
+<ul>
+  <li>
+  <p><code>LocaleResolver</code> -- The <code>LocaleResolver</code> interface defines a method which may be implemented by a service outside of the sling.i18n bundle. If no such service is registered the default behaviour is as described above for the sling.core bundle. The service described by this interface is used to implement the <code>getLocale()</code> and <code>getLocales()</code> method.</p></li>
+  <li>
+  <p><code>ResourceBundleProvider</code> -- The <code>ResourceBundleProvider</code> interface defines two methods to acquire a <code>ResourceBundle</code> for any <code>Locale</code> and an optional base name. This service interface is not intended to be implemented outside of the sling.i18n bundle: A JCR Repository based implementation is contained in the sling.i18n bundle. The <code>ResourceBundleProvider</code> service is not only used within the sling.i18n bundle to implement the <code>SlingHttpServletRequest.getResourceBundle(Locale)</code> and <code>SlingHttpServletRequest.getResourceBundle(String, Locale)</code> methods. The service may also be used by Sling applications to acquire <code>ResourceBundle</code> instances without having a request object by getting the service and calling its <code>getResourceBundle(Locale)</code> or <code>getResourceBundle(String, Locale)</code> method directly.</p></li>
+</ul>
+<h3>JCR Repository based <code>ResourceBundleProvider</code></h3>
+<p>The sling.i18n Bundle provides the implementation of the <code>ResourceBundleProvider</code> interface, which may also be used outside of Sling requests for service tasks. This implementation gets the messages from a JCR Repository stored below nodes of the mixin node type <code>mix:language</code>. These language nodes have a <code>jcr:language</code> property naming the language of the resources. In the context of the JCR based <code>ResourceBundleProvider</code> this is of course expected to be the string value of respective <code>Locale</code>. The format may either be the format as described in <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString%28%29">Locale.toString</a> or as described in <a href="https://tools.ietf.org/html/bcp47">BCP 47</a>, while for the latter you may only provide ISO 3166-1 country codes (for the region) and ISO 639-1 alpha 2 language codes (for the language). Both formats are also accepted in lower-case.</p>
+<p>The exact location of these nodes is not relevant as the <code>ResourceBundleProvider</code> finds them by applying a JCR search.</p>
+<p>Two different types of storage formats are supported for the individual dictionaries</p>
+<h4><code>sling:MessageEntry</code> based</h4>
+<p>The (direct) child nodes of the <code>mix:language</code> node must have the <code>jcr:primaryType</code> set to <code>sling:MessageEntry</code> and must contain two special properties naming the key string and the message:</p>
+<ul>
+  <li><code>sling:key</code> -- The <code>sling:key</code> property is a string property being the key for which the node contains the message(s). This property is optional. If it is not set the key is determined by the name of this <code>sling:messageEntry</code> resource.</li>
+  <li><code>sling:message</code> -- The <code>sling:message</code> property represents the resource for the key.</li>
+</ul>
+<p>It is only required that the message nodes are located below <code>mix:language</code> nodes. Such structures may also be scattered in the repository to allow storing message resources next to where they are most likely used, such as request scripts.</p>
+<h5>Sample Resources</h5>
+<p>Content for dictionaries in this format might look like this:</p>
+<p>/libs/languages +-- English (nt:folder, mix:language) | +-- jcr:language = en | +-- m1 (sling:MessageEntry) | | +-- sling:key = "msg001" | | +-- sling:message = "This is a message" | +-- m2 (sling:MessageEntry) | +-- sling:key = "msg002" | +-- sling:message = "Another message" +-- Deutsch (nt:folder, mix:language) +-- jcr:language = de +-- m1 (sling:MessageEntry) | +-- sling:key = "msg001" | +-- sling:message = "Das ist ein Text" +-- m2 (sling:MessageEntry) +-- sling:key = "msg002" +-- sling:message = "Ein anderer Text"</p>
+<p>/apps/myApp +-- English (nt:folder, mix:language) | +-- jcr:language = en | +-- mx (sling:MessageEntry) | +-- sling:key = "msgXXX" | +-- sling:message = "An Application Text" +-- Deutsch (nt:folder, mix:language) +-- jcr:language = de +-- mx (sling:MessageEntry) +-- sling:key = "msgXXX" +-- sling:message = "Ein Anwendungstext"</p>
+<p>This content defines two languages <em>en</em> and <em>de</em> with three messages <em>msg001</em>, <em>msg002</em> and <em>msgXXX</em> each. The names of the respective resources have no significance (in case the <code>sling:key</code> is set).</p>
+<h4>JSON-file based</h4>
+<p>Since Version 2.4.2 the i18n bundle supports dictionaries in JSON-format (<a href="https://issues.apache.org/jira/browse/SLING-4543">SLING-4543</a>). Since loading such dictionaries is much faster than loading the ones based on <code>sling:MessageEntry</code>s this format should be used preferably. This format is assumed if the <code>mix:language</code> resource name is ending with the extension <code>.json</code>. The parser will take any "key":"value" pair in the JSON file, including those in nested objects or arrays. Normally, a dictionary will be just a single json object = hash map though.</p>
+<h5>Sample Resources</h5>
+<p>Content for this format might look like this:</p>
+<p>/libs/languages +-- english.json (nt:file, mix:language) | +-- jcr:language = en | +-- jcr:content (nt:resource) | + jcr:data (containing the actual JSON file) +-- deutsch.json (nt:file, mix:language) +-- jcr:language = de +-- jcr:content (nt:resource) + jcr:data (containing the actual JSON file)</p>
+<h4>JCR Node Types supporting the JCR Repository based <code>ResourceBundleProvider</code></h4>
+<p>The sling.i18n bundle asserts the following node types:</p>
+<p>[mix:language] mixin - jcr:language (string)</p>
+<p>The <code>mix:language</code> mixin node type allows setting the <code>jcr:language</code> property required by the <code>ResourceBundleProvider</code> implementation to identify the message <code>Locale</code>.</p>
+<p>[sling:Message] mixin - sling:key (string) - sling:message (undefined)</p>
+<p>[sling:MessageEntry] &gt; nt:hierarchyNode, sling:Message</p>
+<p>The <code>sling:Message</code> and <code>sling:MessageEntry</code> are helper node types. The latter must be used to create the nodes for the <code>sling:MessageEntry</code> based format.</p>
+<h3><code>ResourceBundle</code> with base names</h3>
+<p>Similar to standard Java <code>ResourceBundle</code> instances, Sling <code>ResourceBundle</code> instances may be created for base names through any of the <code>getResourceBundle(String, Locale)</code> methods. These methods use the base name parameter as a selector for the values of the <code>sling:basename</code> property of the <code>mix:language</code> nodes.</p>
+<p>The base name argument can take one three values:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Value </th>
+      <th><code>ResourceBundle</code> selection </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>null</code> </td>
+      <td>Selects messages of <code>mix:language</code> nodes ignoring the existence or absence of <code>sling:basename</code> properties </td>
+    </tr>
+    <tr>
+      <td>Empty String </td>
+      <td>Selects messages of <code>mix:language</code> nodes which have <code>sling:basename</code> properties, ignoring the actual values </td>
+    </tr>
+    <tr>
+      <td>Any other Value </td>
+      <td>Selects messages of <code>mix:language</code> nodes whose <code>sling:basename</code> properties has any value which matches the base name string </td>
+    </tr>
+  </tbody>
+</table>
+<p>The <code>sling:basename</code> property may be multi-valued, that is the messages of a <code>mix:language</code> nodes may belong to multiple base names and thus <code>ResourceBundle</code> instances.</p>
+<h3><code>ResourceBundle</code> hierarchies</h3>
+<p>The dictionary entries for one <code>JcrResourceBundle</code> are always ordered like the resource resolver search paths, so usually</p>
+<ol>
+  <li>dictionary entries below <code>/apps</code></li>
+  <li>dictionary entries below <code>/libs</code></li>
+  <li>dictionary entries anywhere else (outside the search path)</li>
+</ol>
+<p>That means that the message for the same key in <code>/apps</code> overwrites the one in <code>/libs</code> (if both are for the same locale and base name). Within those categories the order is non-deterministic, so if there is more than one entry for the same key in <code>/apps/...</code> (for the same locale and base name), any of those entries may be used.</p>
+<p>The resource bundles of the same base name with different locales also form a hierarchy. Each key is looked up recursively first in the current resource bundle and then in its parent resource bundle. The parent resource bundle is the one having the same base name but the parent locale.</p>
+<p>The locale hierarchy is ordered like this:</p>
+<ol>
+  <li><code>&lt;Language&gt; &lt;Country&gt; &lt;Variant&gt;</code></li>
+  <li><code>&lt;Language&gt; &lt;Country&gt;</code></li>
+  <li><code>&lt;Language&gt;</code></li>
+  <li><code>&lt;Default Locale&gt;</code>, usually <code>en</code></li>
+</ol>
+<p>So for the locale <code>de-DE-MAC</code> the fallback order would be</p>
+<ol>
+  <li><code>de-DE-MAC</code></li>
+  <li><code>de-DE</code></li>
+  <li><code>de</code></li>
+  <li><code>en</code></li>
+</ol>
+<p>In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale). The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

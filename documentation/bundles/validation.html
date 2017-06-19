@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Validation</h1></header><p>[TOC]</p>
+<p>Many Sling projects want to be able to validate both Resources and request parameters. Through the Sling Validation framework this is possible with the help of validation model resources which define validation rules for a certain resourceType.</p>
+<h1>Prerequisites</h1>
+<p>To use this validation framework the following bundles need to be deployed</p>
+<ol>
+  <li><code>org.apache.sling.validation.api</code></li>
+  <li><code>org.apache.sling.validation.core</code></li>
+</ol>
+<p>In addition a <a href="/documentation/the-sling-engine/service-authentication.html">service resolver mapping</a> needs to be configured for the service name <code>org.apache.sling.validation.core</code>. The bound service user needs to have at least read access to all resources within the resource resolver's search paths (usually <code>/apps</code> and <code>/libs</code>).</p>
+<h1>Basic Usage</h1>
+<p>To validate a resource one first needs to get a <code>ValidationModel</code> and then validate the resource with that model. Both functionalities are provided by the <code>ValidationService</code> OSGi service:</p>
+<p>::java try { ValidationModel validationModel = validationService.getValidationModel(resource, true); if (validationModel != null) { ValidationResult result = validationService.validate(resource, validationModel); if (!result.isValid()) { // give out validation messages from result.get } } } catch (IllegalStateException e) { // give out error message that the validation model is invalid! }</p>
+<p>Apart from that it is also possible to validate resources including all child resources having their own validation model (i.e. a merged view of the validation models is applied). The appropriate validation model is being looked up by getting the resource type for each node. Since by default the JCR will return the primary type in case there is no <code>sling:resourceType</code> property found on the node, either the 2nd parameter <code>enforceValidation</code> should be set to <code>false</code> or some resource types must be explicitly ignored by the given filter in the 3rd parameter <code>filter</code> to also properly support validation models which have children resources on their own.</p>
+<p>::java try { final Predicate ignoreResourceType1Predicate = new Predicate<Resource>() { @Override public boolean test(final Resource resource) { return !"resourcetype1".equals(resource.getResourceType()); } }; ValidationResult result = validationService.validateResourceRecursively(resource, false, ignoreResourceType1Predicate, false); if (!result.isValid()) { // give out validation messages from result.getFailureMessages() }</p>
+<p>} catch (IllegalStateException e) { // give out error message that an invalid validation model for at least one sub resource was found } catch (IllegalArgumentException e) { // one of the resource types is absolute or there was no validation model found for at least one sub resource }</p>
+<p>All methods to retrieve a validation model support a boolean parameter <code>considerResourceSuperTypeModels</code>. If this is set to true, the validation model is not only being looked up for exactly the given resource type but also for all its resource super types. The returned model is then a merged model of all found validation model along the resource type hierarchy.</p>
+<h2>ValidationResult</h2>
+<p>The <code>ValidationResult</code> indicates whether a given <code>Resource</code> or <code>ValueMap</code> is valid or invalid according to a given validation model. In the latter case it aggregates one or more <code>ValidationFailure</code>s. Each <code>ValidationFailure</code> is encapsulating an error message and a severity. The severity may be set on the following locations (where locations on top may overwrite severity from locations below):</p>
+<ol>
+  <li>validation model (per use case of a <code>Validator</code>)</li>
+  <li>severity defined on the <code>Validator</code></li>
+  <li>the default severity (may be set through the OSGi configuration for PID <code>org.apache.sling.validation.impl.ValidationServiceImpl</code>, is 0 by default)</li>
+</ol>
+<p>You have to use a <code>ResourceBundle</code> (<a href="/documentation/bundles/internationalization-support-i18n.html">Internationalization Support</a>) to resolve the message for a specific locale. By default Sling Validation comes only with English failure messages.</p>
+<h1>Validation Model Resources</h1>
+<p>The <code>ValidationModel</code> is constructed from resources with the resourceType <strong>sling/validation/model</strong>. Those resources are considered validation model resources if they are located below the Sling ResourceResolver search paths (*/apps* and <em>/libs</em>).</p>
+<p>The resources should have the following format:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property/Resource Name </th>
+      <th>Property or Resource </th>
+      <th>Type </th>
+      <th>Description </th>
+      <th>Mandatory </th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling:resourceType</code> </td>
+      <td>Property </td>
+      <td><code>String</code> </td>
+      <td>Always <code>sling/validation/model</code>, otherwise model will never be picked up by Sling Validation. </td>
+      <td>yes </td>
+      <td><code>sling/validation/model</code></td>
+    </tr>
+    <tr>
+      <td><code>validatingResourceType</code> </td>
+      <td>Property </td>
+      <td><code>String</code> </td>
+      <td>The resource type of the resource for which this validation model should be applied. Must always be relative to the resource resolver's search path (i.e. not start with a "/"). </td>
+      <td>yes </td>
+      <td><code>my/own/resourcetype</code></td>
+    </tr>
+    <tr>
+      <td><code>applicablePaths</code> </td>
+      <td>Property </td>
+      <td><code>String[]</code> </td>
+      <td>Path prefixes which restrict the validation model to resources which are below one of the given prefixes. No wildcards are supported. If not given, there is no path restriction. If there are multiple validation models registered for the same resource type the one with the longest matching applicablePath is chosen. </td>
+      <td>no </td>
+      <td><code>/content/mysite</code></td>
+    </tr>
+  </tbody>
+</table>
+<p><code>properties&lt;propertyName&gt;</code> | Resource | - | This resource ensures that the property with the name <code>&lt;propertyName&gt;</code> is there. The resource name has no longer a meaning if the property <code>nameRegex</code> is set on this node. | no | <code>false</code> <code>properties&lt;propertyName&gt;optional</code> | Property | <code>Boolean</code> | If <code>true</code> it is not an error if there is no property with the given <code>&lt;propertyName&gt;</code> or none matching the <code>nameRegex</code>. If not set or <code>false</code> the property must be there. | no | <code>false</code> <code>properties&lt;propertyName&gt;propertyMultiple</code> | Property | <code>Boolean</code> | If <code>true</code> only multivalue properties are allowed with the name <code>&lt;propertyName&gt;</code> or matching the <code>nameRegex</code>. If not set or <code>false</code>, multi- and single-value properties are accepted. | no | <code>false</code> <code>properties&lt;propertyName&gt;nameRegex</code> | Property | <code>String</code> | If set the <code>&lt;propertyName&gt;</code> has no longer a meaning. Rather all properties which match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. | no | <code>property[0-8]</code> <code>properties&lt;propertyName&gt;validators&lt;validatorId&gt;</code> | Resource | - | The <code>&lt;validatorId&gt;</code> must be the id of a validator. The id is given by the OSGi service property <code>validator.id</code> set in the validator. Each validators node might have arbitrarily many child resources (one per validator). | no | <code>false</code> <code>properties&lt;propertyName&gt;validators&lt;validatorId&gt;validatorArguments</code> | Property | <code>String[]</code> | The parametrization for the validator with the id <code>&lt;validatorId&gt;</code>. Each value must have the pattern <code>key=value</code>. The parametrization differs per validator. | no | <code>regex=^[a-z]*$</code> <code>properties&lt;propertyName&gt;validators&lt;validatorId&gt;severity</code> | Property | <code>Integer</code> | The severity which should be set on all emitted validation failures by this validator. | no | <code>0</code> <code>children&lt;resourceName&gt;</code> | Resource | - | This resource ensures that the resource with the name <code>&lt;resourceName&gt;</code> is there. The resource name has no longer a meaning if the property <code>nameRegex</code> is set on this node. | no | <code>child1</code> <code>children&lt;resourceName&gt;nameRegex</code> | Property | <code>String</code> | If set the <code>&lt;resourceName&gt;</code> has no longer a meaning. Rather all resources whose name match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. | no | <code>child[1-9]</code> <code>children&lt;resourceName&gt;optional</code> | Property | <code>Boolean</code> | If <code>true</code> it is not an error if there is no resource with the given <code>&lt;resourceName&gt;</code> or none matching the <code>nameRegex</code>. If not set or <code>false</code> the resource must be there. | no | <code>false</code> <code>children&lt;resourceName&gt;properties</code> | Resource | - | The properties can be configured on the child level in the same way as on the root level. | no | -</p>
+<h2>Validation Model Inheritance</h2>
+<p>Sling Validation optionally supports the inheritance of Sling Validation Models. This means not only the model for exactly the given resource type is considered, but also the models for all resource super types. To overwrite some property or child from one of the super type models, just define a property/child on the same level and with the same name in a model for a resource type which is more specific. That way the property/child on the super validation model is no longer effective.</p>
+<h2>Precedence of Validation Models</h2>
+<p>In case there are multiple validation models registered for the same resource type the one gets chosen which has the longest matching applicablePath. In case even that does not resolve to a single model the one in the first resource resolver's search path is chosen (models below <code>/apps</code> before the ones below <code>/libs</code>). If even that does not resolve to a single validation model any of the equally ranked models might be picked.</p>
+<h1>Usage in <a href="/documentation/bundles/models.html">Sling Models</a></h1>
+<h2>Since Sling Models 1.2.0</h2>
+<p>See <a href="/documentation/bundles/models.html#validation">Sling Models validation</a></p>
+<h2>Before Sling Models 1.2.0</h2>
+<p>One needs to call the validate method within the PostConstruct method of the according Sling Model</p>
+<p>::java @SlingObject protected Resource resource;</p>
+<p>@OSGiService protected ValidationService validation;</p>
+<p>@PostConstruct public void validate() { try { ValidationModel validationModel = validation.getValidationModel(resource); if (validationModel == null) { LOG.warn("No validation defined for resource '{}' with type '{}'", resource.getPath(), resource.getResourceType());</p>
+<p>} else { ValidationResult result = validation.validate(resource, validationModel); if (!result.isValid()) { // give out the validation result } } } catch (IllegalStateException e) { LOG.warn("Invalid validation model for resource '{}' with type '{}'", resource.getPath(), resource.getResourceType()); } }</p>
+<h1>Validators</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Validator ID </th>
+      <th>Description </th>
+      <th>Parameters </th>
+      <th>Since</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/validation/core/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> </td>
+      <td>Validates that a property value matches a given regular expression </td>
+      <td><code>regex</code>, mandatory parameter giving a regular expression according to the pattern described in <a href="http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">java.util.regex.Pattern</a>. Only if the property value matches this expression it is considered valid. </td>
+      <td>1.0.0</td>
+    </tr>
+  </tbody>
+</table>
+<h1>Writing Validators</h1>
+<p>To write a validator one needs to implement the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/validation/api/src/main/java/org/apache/sling/validation/spi/Validator.java"><code>org.apache.sling.validation.spi.Validator</code></a> interface in an OSGi service (look at <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/validation/core/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> for an example). That interface defines the method <code>validate</code>. That is called for each property which is bound to the validator through the validation model. Each validator needs to specify one type parameter which defines upon which classes the validator can act (usually <code>String</code>). Array types are also supported here. Collection types are not supported. If a property value cannot be converted to the requested type from the validator (through <code>ValueMap.get(name, type)</code>), validation will fail.</p>
+<p>In addition the OSGi service must expose a String property named <code>validation.id</code>. The value of this property should always start with the providing bundle's symbolic name. Only through this value the validator can be referenced from validation models. If multiple validators have the same <code>validation.id</code> value the one with the highest service ranking gets always chosen.</p>
+<p>A validator may also expose a service property named <code>validation.severity</code> with an Integer value. This defines the default severity of the Validator (which may be overwritten in the validation model).</p>
+<h1>References</h1>
+<ol>
+  <li><a href="http://www.slideshare.net/raducotescu/apache-sling-generic-validation-framework">Apache Sling Generic Validation Framework, adaptTo 2014</a></li>
+</ol></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

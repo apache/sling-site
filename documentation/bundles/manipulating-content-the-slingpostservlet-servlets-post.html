@@ -1,0 +1,832 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Manipulating Content - The SlingPostServlet (servlets.post)</h1></header><p>[TOC]</p>
+<h2>Multiple Ways to Modify Content</h2>
+<p>As always in life there is more than one way to do it. So to modify content in a JCR repository underlying Sling, you have multiple options, two of which are WebDAV and the Sling default POST Servlet also called the <em>SlingPostServlet</em>. This page is about how you can modify - create, modify, copy, move, delete, import - content through the <em>SlingPostServlet</em>. In addition it also explains how to extend the SlingPostServlet with new operations.</p>
+<p>What is Content anyway? In the following discussion, I use the terms <em>Content</em> and <em>Item</em> interchangeably. With <em>Content</em> I just mean some data to be stored in the JCR repository to be later used as the basis for some presentation. In this sense <em>Content</em> is a rather conceptual term. <em>Item</em> is the name of the parent interface of the JCR <em>Node</em> and <em>Property</em> interfaces. When speaking of <em>Items</em> we mean some actual data stored in the repository ignoring whether the data is actually stored as a <em>Node</em> with child nodes and properties or just a single <em>Property</em>.</p>
+<h2>Quickstart: Creating Content</h2>
+<p>To create content you simply send an HTTP POST request using the path of the node to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:</p>
+<form method="POST" action="http://host/some/new/content" enctype="multipart/form-data">
+<input type="text" name="title" value="" />
+<input type="text" name="text" value="" />
+</form>
+<p>This simple form will set the <code>title</code> and <code>text</code> properties on a node at <code>/some/new/content</code>. If this node does not exist it is just created otherwise the existing content would be modified.</p>
+<p>Similarly, you can do this using the <code>curl</code> command line tool:</p>
+<p>$ curl -Ftitle="some title text" -Ftext="some body text content" http://host/some/new/content</p>
+<p>You might want to use a specific JCR node type for a newly created node. This is possible by simply setting a <code>jcr:primaryType</code> property on the request, e.g.</p>
+<p>$ curl -F"jcr:primaryType=nt:unstructured" -Ftitle="some title text" -Ftext="some body text content" http://host/some/new/content</p>
+<p>Similarly, you may assign JCR mixin node types using the <code>jcr:mixinTypes</code> property and a Sling resource type using the <code>sling:resourceType</code> property. For example:</p>
+<p>$ curl -F"sling:resourceType=sling:sample" -Ftitle="some title text" -Ftext="some body text content" http://host/some/new/content</p>
+<h2>Preface: multipart/form-data POSTs</h2>
+<p>Sometimes you might want to have the content modifications applied in a certain order. This is particularly interesting if you use fields to create child nodes and if you want to stipulate a certain child node order based on the form fields.</p>
+<p>In this case, ensure you are submitting the POST request using <code>multipart/form-data</code> encoding. This preserves the order of parameter application according to the original HTML form. To this avail, ensure to always include the <code>enctype=&quot;multipart/form-data&quot;</code> attribute with the <code>&lt;form&gt;</code> tag.</p>
+<p>This support requires Sling Engine 2.1.0 and the Sling Default Post Servlet 2.0.6.</p>
+<h2>SlingPostServlet Operations</h2>
+<p>The SlingPostServlet is actually just a front-end to the actual operations. To select the actual operation to execute, the <code>:operation</code> request parameter is used. Out of the box, the SlingPostServlet supports the following operations:</p>
+<ul>
+  <li>property not set or empty -- Create new content or modify existing content</li>
+  <li><code>delete</code> -- Remove existing content</li>
+  <li><code>move</code> -- Move existing content to a new location</li>
+  <li><code>copy</code> -- Copy existing content to a new location</li>
+  <li><code>import</code> -- Import content structures from JSON/XML/Zip</li>
+  <li><code>nop</code> -- Explicitly requests to do nothing and just sets the response status</li>
+  <li><code>checkin</code> - Check in a versionable node</li>
+  <li><code>checkout</code> - Check out a versionable node</li>
+</ul>
+<p>All these operations always operate on the resource of the request as returned by <code>SlingHttpServletRequest.getResource()</code>. Some operations require additional parameters to be set to operate completely.</p>
+<p>Please note that operations are mutually exclusive. For a single POST request only one operation may be executed. Operations also only consume the request parameters as described below. Any excess parameters are silently ignored.</p>
+<div class="note">
+<b>Automated tests</b>:
+Note that the `launchpad/testing` module contains a number of <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/">integration tests</a> for the SlingPostServlet. Most of these tests are fairly readable, and can be used to find out more details about the servlet's behavior.
+</div>
+<div class="note">
+<b>Trailing star in the :applyTo parameter</b>:
+This applies to operations that use this parameter, since version 2.1.2 of the *org.apache.sling.servlets.post* bundle: If the last segment of the `:applyTo` value is '*' then the operation applies to all the children of the resolved parent resource. This can be used to act on all the children
+of a resource without having to specify the path of each individual child resource.
+</div>
+<h3>Content Creation or Modification</h3>
+<p>The simplest and most common use case, probably, is content creation and modification. We already saw an example above in the quickstart section. In this section we elaborate more on the concrete stuff.</p>
+<p>First, the request URL indicates the actual repository node to be handled. If the URL addresses an existing node, the request parameters just provide values for the properties to be set on the existing node.</p>
+<p>If the resource of the request is a synthetic resource, e.g. <code>NonExistingResource</code> or <code>StarResource</code>, a new item is created. The path (including name) of the item to be created is derived from the resource path:</p>
+<ul>
+  <li>If the resource path ends with a <code>/*</code> or <code>/</code> the name of the item is automatically created using a name creation algorithm taking into account various request parameters.</li>
+  <li>Otherwise the resource path is used as the path and name of the new item.</li>
+</ul>
+<p>In both cases the path may still include selectors and extensions, which are cut off the path before finding out, what to do.</p>
+<p>To illustrate this algorithm, lets look at some examples (and check the <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletCreateTest.java"><code>PostServletCreateTest</code></a> in case of doubt):</p>
+<table>
+  <thead>
+    <tr>
+      <th>Resource Path </th>
+      <th>Item path </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/content/new</code> </td>
+      <td><code>/content/new</code> </td>
+    </tr>
+    <tr>
+      <td><code>/content/new.html</code> </td>
+      <td><code>/content/new</code> </td>
+    </tr>
+    <tr>
+      <td><code>/content/new.print.a4.html</code> </td>
+      <td><code>/content/new</code> </td>
+    </tr>
+    <tr>
+      <td><code>/content/</code> </td>
+      <td><code>/content/xxx</code> where <code>xxx</code> is a generated name </td>
+    </tr>
+    <tr>
+      <td><code>/content/*</code></td>
+      <td><code>/content/xxx</code> where <code>xxx</code> is a generated name </td>
+    </tr>
+    <tr>
+      <td><code>/content/*.html</code></td>
+      <td><code>/content/xxx</code> where <code>xxx</code> is a generated name </td>
+    </tr>
+    <tr>
+      <td><code>/content/*.print.a4.html</code></td>
+      <td><code>/content/xxx</code> where <code>xxx</code> is a generated name </td>
+    </tr>
+  </tbody>
+</table>
+<h5>Setting Property Values</h5>
+<p>Setting property values is as simple as just adding a request parameter whose name is the name of the property to be set and whose value is the value to be assigned to the property. We already saw how to do this in the quick start examples above.</p>
+<p>Here is another example show a simple HTML form to create a new node with an automatically created name:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="text" name="title" />
+<input type="text" name="text" />
+<input type="Submit" />
+</form>
+<p>If this form is submitted with <em>title</em> and <em>This is some Text</em> as values for the <code>title</code> and <code>text</code> fields respectively, a new node is created at the path <code>/content/page/first</code> and the <code>title</code> and <code>text</code> properties set to the respective field values. If a node at <code>/content/page/first</code> already existed before submitting the form, the <code>title</code> and <code>text</code> properties are just updated to the new values from the form fields.</p>
+<p>If a parameter has multiple values, the respective property will be created as a multi-value property. So for example the command line:</p>
+<p>$ curl -Fmulti=one -Fmulti=two http://host/content/page</p>
+<p>Would assign the <code>/content/page/multi</code> property the value <em>[ "one", "two" ]</em>.</p>
+<p>This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.</p>
+<h5>Automatic property values: last modified and created by</h5>
+<p>To make it easier to set "last modified" and "created by" property values from POST requests, values are generated automatically for the following property names <em>if they are supplied with empty values in such a request</em>:</p>
+<ul>
+  <li>
+  <p><code>created</code> and <code>jcr:created</code> are set to the node creation time, as a Date value.</p></li>
+  <li>
+  <p><code>lastModified</code>, <code>jcr:lastModified</code> are set to the node modification time, as a Date value.</p></li>
+  <li>
+  <p><code>createdBy</code> and <code>jcr:createdBy</code> are set to the name of the user who created the node.</p></li>
+  <li>
+  <p><code>lastModifiedBy</code>, <code>jcr:lastModifiedBy</code> are set to the name of the user who modified the node.</p></li>
+</ul>
+<p>This is demonstrated by the <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingAutoPropertiesTest.java">SlingAutoPropertiesTest</a> which is part of our launchpad integration tests.</p>
+<h5>File Uploads</h5>
+<p>File uploads are typically done using the <code>&lt;input type=&quot;file&quot;&quot;/&gt;</code> element of an HTML form and ensuring the correct form encoding. The SlingPostServlet handles uploaded files specially, in that the file data is not simply written into a property, but a node is actually created with three properties:</p>
+<ul>
+  <li><code>jcr:data</code> -- The actual file contents</li>
+  <li><code>jcr:lastModified</code> -- The time stamp of processing the uploaded file</li>
+  <li><code>jcr:mimeType</code> -- The MIME type from the original file submission (if contained in the file body part) or derived from the original file name</li>
+</ul>
+<p>The name of the node is either taken from the parameter name or if the name is <code>*</code> from the name of the uploaded file.</p>
+<p>The primary node type of the uploaded file is selected using the following algorithm:</p>
+<ul>
+  <li>If a `@TypeHint suffixed parameter (see below for a description) is present check whether the value is a known non-mixin node type. If so, the node is created with this primary node type.</li>
+  <li>If a <code>@TypeHint</code> suffixed parameter is not present or the value does not denote an existing non-mixin node type, the node will be created as an <code>nt:file</code> node if the parent node is of type <code>nt:folder</code>. Otherwise the node will be created with primary node type <code>nt:resource</code>.</li>
+</ul>
+<p>If the node to be created is <code>nt:file</code>, the actual file data will really be stored in the <code>jcr:content</code> child node of the new <code>nt:file</code> node whose primary node type is then set as <code>nt:resource</code>.</p>
+<p>Example 1: Upload an image to a node named <code>image</code> below <code>/content/page</code>:</p>
+<form method="POST" action="/content/page" enctype="multipart/form-data">
+<input type="file" name="image" />
+<input type="Submit" />
+</form>
+<p>Example 2: Upload a file as a node of type <code>nt:file</code> below <code>/content/folder</code>:</p>
+<form method="POST" action="/content/page" enctype="multipart/form-data">
+<input type="file" name="*" />
+<input type="hidden" name="*@TypeHint" value="nt:file" />
+<input type="Submit" />
+</form>
+<p>Assuming the user selected a file named <code>myImage.jpg</code> the uploaded file would be stored in an <code>nt:file</code> node at <code>/content/folder/myImage.jpg</code>.</p>
+<h5>Date properties</h5>
+<p>Parameters providing date/time values to be stored in JCR properties of type <em>Date</em> require special handling. The problem is that there are a number of formats to represent such date/time values. To account for this open-ended list of formats, the Sling Post Servlet supports configurability of the process of parsing strings into <code>Calendar</code> objects.</p>
+<p>The Sling Post Servlet configuration property <code>servlet.post.dateFormats</code> takes a list of format strings which are used to setup <code>java.text.SimpleDateFormat</code> instances for parsing date/time string representations. A special format string <code>ISO8601</code> is supported to indicate the string to be parsed as a JCR standard string representation of a <em>Date</em> property. Only the latter supports storing the actual timezone offset. All the parsers leveraging <code>java.text.SimpleDateFormat</code> loose the given timezone and convert that just to the default timezone of the JRE (when creating the <code>Calendar</code> out of the <code>Date</code>, because <code>java.lang.Date</code> is not carrying any timezone information).</p>
+<p>The default list of configured date/time parse pattern is:</p>
+<ul>
+  <li>EEE MMM dd yyyy HH:mm:ss 'GMT'Z</li>
+  <li>ISO8601, using the org.apache.jackrabbit.util.ISO8601 parser (±YYYY-MM-DDThh:mm:ss.SSSTZD)</li>
+  <li>yyyy-MM-dd'T'HH:mm:ss.SSSZ</li>
+  <li>yyyy-MM-dd'T'HH:mm:ss</li>
+  <li>yyyy-MM-dd</li>
+  <li>dd.MM.yyyy HH:mm:ss</li>
+  <li>dd.MM.yyyy</li>
+</ul>
+<p>Any date/time string parameter supplied is subject to the patterns in the configured order. The first pattern accepting the string and parsing it into a <code>Date</code> -- and thus a <code>Calendar</code> -- object is used. Therefore this list is best ordered in a most-stringent to least-stringent order.</p>
+<h5>Omitting Some Parameters</h5>
+<p>There may be times that you have forms which contain a lot of fields which you do not want to actually store in content. Such forms usually are created using some client-side GUI library which uses the fields for its own purposes. To be able to easily differentiate between real content to be actually stored and such control parameters, you may prefix the names of the fields destined for content with a dot-slash (<code>./</code>).</p>
+<p>As soon as the SlingPostServlet encounters parameters prefixed with dot-slash, only those parameters are considered for content updates while all other parameters not prefixed are just ignored. In addition to dot-slash prefixed parameters, also parameters prefixed with dot-dot-slash (<code>../</code>) and slash (<code>/</code>) are considered in this situation.</p>
+<p>For example, the following form only uses the first two fields for content update and ignores the rest:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="text" name="./title" />
+<input type="text" name="../first/text" />
+<input type="hidden" name="control0" /><!-- ignored -->
+<input type="hidden" name="control1" /><!-- ignored -->
+<input type="Submit" />
+</form>
+<p>Because the SlingPostServlet encounters the <code>./title</code> parameter, only parameters prefixed with dot-slash, dot-dot-slash and slash are considered for content update. In this case this would <code>./title</code> and <code>../first/text</code> while <code>control0</code> and <code>control1</code> are not prefixed and thus ignored.</p>
+<p>Background: The name of the parameters used for content update are actually intended to be relative path names of the properties to modify. So in effect using the field name <code>text</code> is equivalent to <code>./text</code> -- dot-slash meaning relative to the current node identified by the <code>action</code> attribute value for <code>form</code> tag -- or <code>../first/text</code> if <code>first</code> is the name of the node to modify -- dot-dot-slash meaning relative to the parent node of the node identified by the <code>action</code> attribute value of the <code>form</code> tag.</p>
+<p>In addition to the mechanism explained here, the following parameters are also ignored:</p>
+<ul>
+  <li>Parameters whose name start with a colon (<code>:</code>) are always ignored by the SlingPostServlet with respect to content update. The reason is that the prefixing colon is intended as a marker for SlingPostServlet control parameters.</li>
+  <li>The <code>charset</code> request parameter is also never written back because this parameter is used to convey the character encoding used to transport the request parameters.</li>
+  <li>Request parameters matching a regular expression supplied with the <code>servlet.post.ignorePattern</code> configuration parameter are also ignored. By default this pattern is <code>j_.*</code> thus ignoring any request parameters with the prefix <code>j_</code> such as <code>j_username</code>. Those request parameters are generally used for authentication purposes and may hit the Sling POST Servlet in some situations.</li>
+</ul>
+<h5>Controlling Content Updates with <code>@</code> Suffixes</h5>
+<p>Generally just creating forms with parameters and their values suffices it completely. Sometimes, though, you want to have more control on how the parameter values are actually stored in the properties. For example, you want to set a property to a default value if the user did provide an actual value. Or you might want to store a parameter explicitly with a given data type, such as numeric, boolean etc.</p>
+<p>The SlingPostServlet provides such property control in the form of <code>@</code> suffixed parameters, which are now presented.</p>
+<p>The <code>@</code> suffixed parameters are not used on their own but always in conjunction with a plain parameter. The part of the parameter name before the <code>@</code> suffix is used in this case for correlation and must match exactly the name of the parameter to which the <code>@</code> suffixed parameter belongs.</p>
+<p>For example, the parameter <code>width@TypeHint</code> applies to the <code>width</code> parameter and the <code>./height@TypeHint</code> parameter applies to the <code>./height</code> parameter. As can be seen, the correlation between the parameters is a simple case-sensitive string comparison. That is the <code>widht@TypeHint</code> parameter would not apply to the <code>./width</code> even though both parameters address the same property but they do not have a string match.</p>
+<h6><code>@TypeHint</code></h6>
+<p>Parameters with the <code>@TypeHint</code> suffix may be used to force storing the named parameter in a property with the given type. The value of the <code>@TypeHint</code> parameter, if applied to a parameter for a property, is the JCR property type name. If the <code>@TypeHint</code> parameter is applied to a field upload parameter, the value is used to indicate the JCR primary node type for the node into which the uploaded file is stored.</p>
+<p>If the <code>@TypeHint</code> value ends with <code>[]</code>, it indicates a multi-value property. A multi-value property is usually auto-detected if there are multiple values for the property (i.e. request parameter). But if only a single value is present in the request, the desired property type needs to be explicitly defined as multi-value by stating <code>@TypeHint=&lt;type&gt;[]</code>.</p>
+<p>Example: The following form sets the numeric <code>width</code>, the boolean <code>checked</code>, and the multi-valued <code>hobbys</code> (with 3 values to enter) properties:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="text" name="width" />
+<input type="hidden" name="width@TypeHint" value="Long" />
+<input type="checkbox" name="checked" />
+<input type="hidden" name="checked@TypeHint" value="Boolean" />
+<input type="text" name="hobbys"/>
+<input type="text" name="hobbys"/>
+<input type="text" name="hobbys"/>
+<input type="hidden" name="hobbys@TypeHint" value="String[]" />
+<input type="Submit" />
+</form>
+<p>In real applications you would need some JavaScript that allows to add/remove values, ie. add/remove inputs with the name "hobbys". Or a pure JavaScript based form post would be used, that gathers the properties to update programmatically, but the additional parameter <code>hobbys@TypeHint=String[]</code> would be the same.</p>
+<p>The <code>@TypeHint</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values, only the first is actually used.</p>
+<p>For multi-value properties, see also the <code>@Patch</code> option.</p>
+<p>For more information on applying <code>@TypeHint</code> to a file upload parameter see the section on File Uploads above.</p>
+<h6><code>@DefaultValue</code></h6>
+<p>The <code>@DefaultValue</code> suffixed parameter may be provided to set a property to a default value should no value be provided in the actual parameters. Same as for normal parameters, the <code>@DefaultValue</code> parameter may have multiple values to create multi-valued properties.</p>
+<p>Example: Set the <code>text</code> property to a default value if the user does not provide one:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="text" name="text" />
+<input type="hidden" name="text@DefaultValue" value="--- Default Value ---" />
+<input type="Submit" />
+</form>
+<h6><code>@UseDefaultWhenMissing</code></h6>
+<p>As described above, <code>@DefaultValue</code> only takes effect if no value is provided for a particular parameter. However, in some cases, such as HTML checkboxes, this isn't sufficient because the parameter isn't submitted at all. To handle this scenario, you can use the <code>@UseDefaultWhenMissing</code> suffixed parameter.</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input name="queryIgnoreNoise" class="input" type="checkbox" value="true"/>
+<input type="hidden" name="queryIgnoreNoise@DefaultValue" value="false"/>
+<input type="hidden" name="queryIgnoreNoise@UseDefaultWhenMissing" value="true"/>
+</form>
+<h6><code>@IgnoreBlanks</code></h6>
+<p>Sometimes a form client will supply empty parameter values resulting in content being created or modified. For example submitting this form:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="hidden" name="stringProperty@TypeHint" value="String[]"/>
+<input type="text" name="stringProperty" value="foo"/>
+<input type="text" name="stringProperty" value="bar"/>
+<input type="text" name="stringProperty" value=""/>
+</form>
+<p>will result in multi-value String property being set to [ "foo", "bar", "" ]. Notice the blank value.</p>
+<p>Likewise submitting this form without a value entered:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="hidden" name="stringProperty@TypeHint" value="String"/>
+<input type="text" name="stringProperty" value=""/>
+</form>
+<p>will result in the single-value String property being set to an empty string.</p>
+<p>To overcome this situation the <code>@IgnoreBlanks</code> suffix may be used to consider parameters with an empty string value to be ignored during processing. That is such parameter values would be treated as if they would not be supplied.</p>
+<p>Adding</p>
+<input type="hidden" name="stringProperty@IgnoreBlanks" value="true"/>
+<p>to the above forms will cause the multi-value property be set to the two-element value [ "foo", "bar" ] and to not modify the property at all in the second single-value example.</p>
+<h6><code>@ValueFrom</code></h6>
+<p>In some situations, an HTML form with parameters may be reused to update content. But one or more form parameters may not comply with the names expected to be used for properties. In this case a parameter suffixed with <code>@ValueFrom</code> may be set containing the name of the parameter providing the actual data to be used.</p>
+<p>Example: To set the property <code>text</code> from a form element <code>supplied_text</code>, you might use the following form:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="text" name="supplied_text" />
+<input type="hidden" name="./text@ValueFrom" value="supplied_text" />
+<input type="Submit" />
+</form>
+<p>To prevent storing the additional parameters in the repository you might want to use the prefixing mechanism as shown in the example above, where the <code>@ValueFrom</code> parameter is prefixed and thus the <code>supplied_text</code> parameter is not used for property setting.</p>
+<p>The <code>@ValueFrom</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values it is ignored completely.</p>
+<p>The <code>@ValueFrom</code> suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters <code>text</code> and <code>text@ValueFrom</code> may have unexpected results.</p>
+<h6><code>@Delete</code></h6>
+<p>Sometimes it may be required to not set a property to a specific value but to just remove it while processing the content update request. One such situation is a property filled from one or more checkboxes in an HTML form. If none of the checkboxes are checked, no parameter is actually submitted for these checkboxes. Hence the SlingPostServlet will not touch this property and effectively leave it untouched, while the natural reaction would have been to remove the property.</p>
+<p>Here comes the <code>@Delete</code> suffixed parameter. This simply causes the indicated property be removed if it exists. If the property does not exist, nothing more happens. The actual value of the <code>@Delete</code> suffixed parameter does not care as long as the parameter is submitted.</p>
+<p>Example: To ensure the <code>color</code> property is actually removed if no color has been selected, you might use the following form:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="checkbox" name="color" value="red" />
+<input type="checkbox" name="color" value="green" />
+<input type="checkbox" name="color" value="blue" />
+<input type="hidden" name="color@Delete" value="delete text" /><!-- actual value is ignored -->
+<input type="Submit" />
+</form>
+<p>The <code>@Delete</code> suffixed parameter is also special in that there need not be a correlated parameter without a suffix. If both -- a parameters <code>text</code> and <code>text@Delete</code> are set, the <code>text</code> property is first deleted and then filled with the new content.</p>
+<p>The <code>@Delete</code> suffixed parameter in fact calls for a sub-operation, which is executed after the node addressed by the request URL is created (if needed) but before any other tasks of content creation and modification are done. Any item -- this may be a property or a node, actually -- addressed by the <code>@Delete</code> suffixed parameter is just removed if it exists. If the item does not exist, nothing happens.</p>
+<h6><code>@MoveFrom</code></h6>
+<p>Now, that your bright and shiny content management application has great Flash-based file upload feature you will want to be able to use the pre-uploaded files for your content with the same request as when you upload other content. For example you might have a node storing some text and an illustration you uploaded as an image file.</p>
+<p>To support this kind of functionality, the <code>@MoveFrom</code> suffixed parameter may be set to the repository path of the node to where you uploaded the image file.</p>
+<p>Example: Your Flash-based file upload stored the file on the server at <code>/tmp/upload/123</code>. You now want to store this file along with a title and a text in a newly created node. The following form will be your friend:</p>
+<!-- trailing slash generates a name for the new node -->
+<form method="POST" action="/content/page/" enctype="multipart/form-data">
+<input type="hidden" name="image@MoveFrom" value="/tmp/upload/123" />
+<input type="text" name="title" />
+<input type="text" name="text" />
+<input type="Submit" />
+</form>
+<p>If there exists no repository item at the indicated path, nothing is done. If the item indicated by the <code>@MoveFrom</code> suffixed parameter already exists, it is replaced by the item addressed by the parameter value -- unless of course there is no item at the named location.</p>
+<p>The <code>@MoveFrom</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values it is ignored completely.</p>
+<p>The <code>@MoveFrom</code> suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters <code>text</code> and <code>text@MoveFrom</code> may have unexpected results.</p>
+<p>The <code>@MoveFrom</code> suffixed parameter in fact calls for a sub-operation, which is executed after the <code>@Delete</code> sub operation but before any other tasks of content creation and modification are done.</p>
+<h6><code>@CopyFrom</code></h6>
+<p>Similar to the <code>@MoveFrom</code> suffix exists a <code>@CopyFrom</code> suffix. The latter works exactly the same as the former except that the item addressed by the parameter value is not moved but just copied.</p>
+<p>Example: Your Flash-based file upload stored the file on the server at <code>/tmp/upload/123</code>. You now want to store this file along with a title and a text in a newly created node. The following form may be your friend:</p>
+<!-- trailing slash generates a name for the new node -->
+<form method="POST" action="/content/page/" enctype="multipart/form-data">
+<input type="hidden" name="image@CopyFrom" value="/tmp/upload/123" />
+<input type="text" name="title" />
+<input type="text" name="text" />
+<input type="Submit" />
+</form>
+<p>If there exists no repository item at the indicated path, nothing is done. If the item indicated by the <code>@CopyFrom</code> suffixed parameter already exists, it is replaced by the item addressed by the parameter value -- unless of course there is no item at the named location.</p>
+<p>The <code>@CopyFrom</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values it is ignored completely.</p>
+<p>The <code>@CopyFrom</code> suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters <code>text</code> and <code>text@CopyFrom</code> may have unexpected results.</p>
+<p>The <code>@CopyFrom</code> suffixed parameter in fact calls for a sub-operation, which is executed after the <code>@MoveFrom</code> sub operation but before any other tasks of content creation and modification are done.</p>
+<h6><code>@Patch</code></h6>
+<p>When modifying multi-value properties, the <code>@Patch</code> suffix can be used to just add <code>+</code> or remove <code>-</code> individual values without overwriting the full array. This allows to change the array without knowing the current values.</p>
+<p>For example, imagine a multi-value string property that stores tags or keywords. To both add a tag "cool" and remove "boring" from the list:</p>
+<form method="POST" action="/content/page/first" enctype="multipart/form-data">
+<input type="hidden" name="tags@TypeHint" value="String[]" />
+<input type="hidden" name="tags@Patch"    value="true" />
+<input type="text"   name="tags"          value="+cool"/>
+<input type="text"   name="tags"          value="-boring"/>
+<input type="Submit" />
+</form>
+<p>The array will be treated like a set: when adding a value, it will only be added once if it does not exist yet; when removing a value, all occurrences of it will be removed. For values not affected by the add or remove operations, nothing changes. An existing array with duplicate entries will not automatically be converted into a set.</p>
+<p>The format for an individual parameter value is <code>&lt;operation&gt;&lt;value&gt;</code>. If there is no or no valid operation given, this value will be ignored.</p>
+<p>Operation <code>+</code> will add the <code>&lt;value&gt;</code> to the array if it is not part of it yet.</p>
+<p>Operation <code>-</code> will remove all occurrences of <code>&lt;value&gt;</code> from the array.</p>
+<p>The value of the <code>@Patch</code> suffixed parameter is irrelevant, it can be empty (example above uses <code>true</code> for clarity).</p>
+<p>All types should be supported via <code>@TypeHint</code>, but it needs to indicate a multi-value property, ending with <code>[]</code>.</p>
+<h5>Algorithm for Node Name Creation</h5>
+<p>If request is posted with an URL ending in slash <code>/</code> or slash-star <code>/*</code>, the SlingPostServlet derives a name for the node to be created upon the request applying the following algorithm:</p>
+<ol>
+  <li>If a <code>:name</code> parameter is supplied, the (first) value of this parameter is used unmodified as the name for the new node. If the name is illegally formed with respect to JCR name requirements, an exception will be thrown when trying to create the node. The assumption with the <code>:name</code> parameter is, that the caller knows what he (or she) is supplying and should get the exact result if possible.</li>
+  <li>Otherwise if a <code>:nameHint</code> parameter is supplied, the (first) value of this parameter is used to generate the node name. A name filtering is applied to this hint to ensure a valid JCR node name.</li>
+  <li>Otherwise a series of request parameters supplied to set content is inspected for a possible name. The list of the names of these parameter is configurable with the SlingPostServlet and defaults to <code>[ title, jcr:title, name, description, jcr:description, abstract ](</code> refs.-title-jcr-title-name-description-jcr-description-abstract.path <code>)</code>. The first request parameter with a non-empty value is used and filtered to get the valid JCR name.</li>
+  <li>Otherwise an ever increasing auto generated number is used. Filtering is also applied to this numeric name.</li>
+</ol>
+<p>The filtering algorithm to create a valid name of the hints from above steps (except the first) works as follows:</p>
+<ul>
+  <li>Convert the proposed name to all lower case.</li>
+  <li>Replace all characters not in the range [0..9a..z*] by a single underscore <code>_</code>.</li>
+  <li>If the name starts with a digit prepend an underscore. Technically names with leading digits are valid, but they present major issues when using such names in JCR XPath expressions. The algorithm takes care to not create names with two or more consecutive underscore characters.</li>
+  <li>Finally the name is cut to a configurable maximum length (default is 20 characters).</li>
+</ul>
+<p>For example the <code>:nameHint</code> value <em>A quick brown Fox ...</em> is filtered to become <em>a_quick_brown_fox_</em>.</p>
+<p>After generating and filtering the name it is further guaranteed that the name is unique: If a node of the same name as just generated from the algorithm already exists below the same parent node a numeric index is appended to the new node name to make it unique.</p>
+<h5>Response Status</h5>
+<p>The modification operation has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>An existing node has been updated with content </td>
+    </tr>
+    <tr>
+      <td>201/CREATED </td>
+      <td>A new node has been created and filled with content </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request </td>
+    </tr>
+  </tbody>
+</table>
+<h3>Content Removal</h3>
+<p>To remove existing content just address the item to be removed and set the <code>:operation</code> parameter to <code>delete</code>. For example the following command line removes the <code>/content/sample</code> page:</p>
+<p>$ curl -F":operation=delete" http://host/content/sample</p>
+<h5>Response Status</h5>
+<p>The delete operation has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>The resource (and all its descendants) has been removed </td>
+    </tr>
+    <tr>
+      <td>404/NOT FOUND </td>
+      <td>The request URL does not address an existing repository item </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request </td>
+    </tr>
+  </tbody>
+</table>
+<h5>Deleting Multiple Items</h5>
+<p>By using the <code>:applyTo</code> request parameter it is possible to remove multiple items in one single request. Deleting items in this way leaves you with less control, though. In addition, if a single item removal fails, no item at all is removed.</p>
+<p>When specifying the item(s) to be removed with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
+<p>To remove the <code>/content/page1</code> and <code>/content/page2</code> nodes, for example, you might use the following command line:</p>
+<p>$ curl -F":operation=delete" -F":applyTo=/content/page1" -F":applyTo=/content/page2" http://host/content/sample</p>
+<p>Using a trailing star in the :applyTo parameter (as mentioned before), you can remove all the children of the <code>/content</code> node, for example, as follows:</p>
+<p>$ curl -F":operation=delete" -F":applyTo=/content/*" http://host/content/sample</p>
+<p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored.</p>
+<h6>Response Status</h6>
+<p>The delete operation applied to multiple resources has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>All requested and existing resources have been removed </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request </td>
+    </tr>
+  </tbody>
+</table>
+<h3>Copying Content</h3>
+<p>To copy existing content to a new location, the <code>copy</code> operation is specified. This operation copies the item addressed by the request URL to a new location indicated by the <code>:dest</code> parameter. The <code>:dest</code> parameter is the absolute or relative path to which the resource is copied. If the path is relative it is assumed to be below the same parent as the request resource. If it is terminated with a <code>/</code> character the request resource is copied to an item of the same name under the destination path.</p>
+<p>To illustrate the <code>:dest</code> parameter handling, lets look at a few examples. All examples are based on addressing the <code>/content/sample</code> item:</p>
+<table>
+  <thead>
+    <tr>
+      <th><code>:dest</code> Parameter </th>
+      <th>Destination Absolute Path </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/content/newSample</code> </td>
+      <td><code>/content/newSample</code> </td>
+    </tr>
+    <tr>
+      <td><code>different/newSample</code> </td>
+      <td><code>/content/different/newSample</code> </td>
+    </tr>
+    <tr>
+      <td><code>/content/different/</code> </td>
+      <td><code>/content/different/sample</code> </td>
+    </tr>
+    <tr>
+      <td><code>different/</code> </td>
+      <td><code>/content/different/sample</code> </td>
+    </tr>
+  </tbody>
+</table>
+<p>If an item already exists at the location derived from the <code>:dest</code> parameter, the copy operation fails unless the <code>:replace</code> parameter is set to <code>true</code> (case is ignored when checking the parameter value).</p>
+<h5>Response Status</h5>
+<p>The copy operation has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>The node has been copied to the new location replacing an existing item at the destination </td>
+    </tr>
+    <tr>
+      <td>201/CREATED </td>
+      <td>The node has been copied to the new location creating a new item at the destination </td>
+    </tr>
+    <tr>
+      <td>404/NOT FOUND </td>
+      <td>The request URL does not address an existing repository item </td>
+    </tr>
+    <tr>
+      <td>412/PRECONDITION FAILED </td>
+      <td>An item already exists at the destination and the <code>:replace</code> parameter is not set to <code>true</code> </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request </td>
+    </tr>
+  </tbody>
+</table>
+<h5>Copying Multiple Items</h5>
+<p>By using the <code>:applyTo</code> request parameter it is possible to copy multiple items in one single request. Copying items in this way leaves you with less control, though. In addition, if a single item copy fails, no item at all is copied.</p>
+<p>When specifying the item(s) to be copied with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
+<p>To copy the <code>/content/page1</code> and <code>/content/page2</code> nodes to <code>/content/target</code>, for example, use:</p>
+<p>$ curl -F":operation=copy" -F":applyTo=/content/page1" -F":applyTo=/content/page2" -F":dest=/content/target/" http://host/content/sample</p>
+<p>Please note the trailing slash character (<code>/</code>) in the value of the <code>:dest</code> parameter. This is required for multi-item copy operations using the <code>:applyTo</code> parameter. The copied items are created below the node indicated by the <code>:dest</code>.</p>
+<p>Using a trailing star in the :applyTo parameter (as mentioned before), you can copy all the children of the <code>/content</code> node, for example, as follows:</p>
+<p>$ curl -F":operation=copy" -F":applyTo=/content/*" -F":dest=/content/target/" http://host/content/sample</p>
+<p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored. Any item already existing at the copy destination whose name is the same as the name of an item to be copied is silently overwritten with the source item.</p>
+<h6>Response Status</h6>
+<p>The copy operation applied to multiple resources has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>All requested and existing resources have been copied </td>
+    </tr>
+    <tr>
+      <td>412/PRECONDITION FAILED </td>
+      <td>The node indicated by the <code>:dest</code> parameter does not exist </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request. This status is also set if the <code>:dest</code> parameter value does not have a trailing slash character. </td>
+    </tr>
+  </tbody>
+</table>
+<h3>Moving Content</h3>
+<p>To move existing content to a new location, the <code>move</code> operation is specified. This operation moves the item addressed by the request URL to a new location indicated by the <code>:dest</code> parameter. The <code>:dest</code> parameter is the absolute or relative path to which the resource is moved. If the path is relative it is assumed to be below the same parent as the request resource. If it is terminated with a <code>/</code> character the request resource is moved to an item of the same name under the destination path.</p>
+<p>To illustrate the <code>:dest</code> parameter handling, lets look at a few examples. All examples are based on addressing the <code>/content/sample</code> item:</p>
+<table>
+  <thead>
+    <tr>
+      <th><code>:dest</code> Parameter </th>
+      <th>Destination Absolute Path </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/content/newSample</code> </td>
+      <td><code>/content/newSample</code> </td>
+    </tr>
+    <tr>
+      <td><code>different/newSample</code> </td>
+      <td><code>/content/different/newSample</code> </td>
+    </tr>
+    <tr>
+      <td><code>/content/different/</code> </td>
+      <td><code>/content/different/sample</code> </td>
+    </tr>
+    <tr>
+      <td><code>different/</code> </td>
+      <td><code>/content/different/sample</code> </td>
+    </tr>
+  </tbody>
+</table>
+<p>If an item already exists at the location derived from the <code>:dest</code> parameter, the move operation fails unless the <code>:replace</code> parameter is set to <code>true</code> (case is ignored when checking the parameter value).</p>
+<h5>Response Status</h5>
+<p>The move operation has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>The node has been moved to the new location replacing an existing item at the destination </td>
+    </tr>
+    <tr>
+      <td>201/CREATED </td>
+      <td>The node has been moved to the new location creating a new item at the destination </td>
+    </tr>
+    <tr>
+      <td>404/NOT FOUND </td>
+      <td>The request URL does not address an existing repository item </td>
+    </tr>
+    <tr>
+      <td>412/PRECONDITION FAILED </td>
+      <td>An item already exists at the destination and the <code>:replace</code> parameter is not set to <code>true</code> </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request </td>
+    </tr>
+  </tbody>
+</table>
+<h5>Moving Multiple Items</h5>
+<p>By using the <code>:applyTo</code> request parameter it is possible to move multiple items in one single request. Moving items in this way leaves you with less control, though. In addition, if a single item move fails, no item at all is moved.</p>
+<p>When specifying the item(s) to be moved with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
+<p>To for example move the <code>/content/page1</code> and <code>/content/page2</code> nodes to <code>/content/target</code>, you might use the following command line:</p>
+<p>$ curl -F":operation=move" -F":applyTo=/content/page1" -F":applyTo=/content/page2" -F":dest=/content/target/" http://host/content/sample</p>
+<p>Please note the trailing slash character (<code>/</code>) in the value of the <code>:dest</code> parameter. This is required for multi-item move operations using the <code>:applyTo</code> parameter. The moved items are created below the node indicated by the <code>:dest</code>.</p>
+<p>Using a trailing star in the :applyTo parameter (as mentioned before), you can move all the children of the <code>/content</code> node, for example, as follows:</p>
+<p>$ curl -F":operation=move" -F":applyTo=/content/*" -F":dest=/content/target/" http://host/content/sample</p>
+<p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored. Any item already existing at the move destination whose name is the same as the name of an item to be moved is silently overwritten with the source item.</p>
+<h6>Response Status</h6>
+<p>The move operation applied to multiple resources has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>All requested and existing resources have been moved </td>
+    </tr>
+    <tr>
+      <td>412/PRECONDITION FAILED </td>
+      <td>The node indicated by the <code>:dest</code> parameter does not exist </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request. This status is also set if the <code>:dest</code> parameter value does not have a trailing slash character. </td>
+    </tr>
+  </tbody>
+</table>
+<h3>Importing Content Structures</h3>
+<p>To import content structures just address the parent item to import into and set the <code>:operation</code> parameter to <code>import</code>.</p>
+<p>The optional name of the root node of the imported content may optionally be supplied using the <a href="#algorithm-for-node-name-creation">Algorithm for Node Name Creation</a>.</p>
+<p>Other parameters for the import operation:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter </th>
+      <th>Required </th>
+      <th>Default value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:contentType</code> </td>
+      <td><code>true</code> </td>
+      <td> </td>
+      <td>The <code>:contentType</code> value specifies the type of content being imported. Possible values are: xml, jcr.xml, json, jar, zip </td>
+    </tr>
+    <tr>
+      <td><code>:content</code> </td>
+      <td><code>false</code> </td>
+      <td> </td>
+      <td>The <code>:content</code> value specifies content string to import. The format of the import content is the same as is used by the jcr.contentloader bundle. This parameter is required if the :contentFile parameter is not supplied. </td>
+    </tr>
+    <tr>
+      <td><code>:contentFile</code> </td>
+      <td><code>false</code> </td>
+      <td> </td>
+      <td>The <code>:contentFile</code> value specifies a file uploaded for import. The format of the import content is the same as is used by the jcr.contentloader bundle. This parameter is required if the :content parameter is not supplied. </td>
+    </tr>
+    <tr>
+      <td><code>:checkin</code> </td>
+      <td><code>false</code> </td>
+      <td>false </td>
+      <td>The <code>:checkin</code> value specifies whether versionable nodes should be checked in during the import. </td>
+    </tr>
+    <tr>
+      <td><code>:autoCheckout</code> </td>
+      <td><code>false</code> </td>
+      <td>false </td>
+      <td>The <code>:autoCheckout</code> value specifies whether versionable nodes should be checked out when necessary during the import. </td>
+    </tr>
+    <tr>
+      <td><code>:replace</code> </td>
+      <td><code>false</code> </td>
+      <td>false </td>
+      <td>The <code>:replace</code> value specifies whether the import should replace any existing nodes at the same path. Note: When true, the existing nodes will be deleted and a new node is created in the same place. </td>
+    </tr>
+    <tr>
+      <td><code>:replaceProperties</code> </td>
+      <td><code>false</code> </td>
+      <td>false </td>
+      <td>The <code>:replaceProperties</code> value specifies whether the import should replace properties if they already exist. </td>
+    </tr>
+  </tbody>
+</table>
+<p>For example the following command line imports the <code>/content/sample</code> page:</p>
+<p>$ curl -F":operation=import" -F":contentType=json" -F":name=sample" -F':content={ "jcr:primaryType": "nt:unstructured", "propOne" : "propOneValue", "childOne" : { "childPropOne" : true } }' http://host/content</p>
+<p>For example the following command line imports the <code>/content/sample</code> page without the optional name parameter:</p>
+<p>$ curl -F":operation=import" -F":contentType=json" -F':content={ "sample" : {"propOne" : "propOneValue", "childOne" : { "childPropOne" : true } } }' http://host/content</p>
+<p>For example the following form imports the <code>/content/sample</code> page:</p>
+<form method="POST" action="/content" enctype="multipart/form-data">
+<input type="hidden" name=":operation" value="import" />
+<input type="hidden" name=":contentType" value="json" />
+<input type="hidden" name=":nameHint" value="sample" />
+
+<input type="text" name=":content" value="{ &quot;jcr:primaryType&quot; : &quot;nt:unstructured&quot; , &quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } }" />
+<input type="Submit" />
+</form>
+<p>For example the following form imports content from a file upload:</p>
+<form method="POST" action="/content" enctype="multipart/form-data">
+<input type="hidden" name=":operation" value="import" />
+<input type="hidden" name=":contentType" value="json" />
+<input type="hidden" name=":nameHint" value="sample" />
+
+<input type="file" name=":contentFile" />
+<input type="Submit" />
+</form>
+<h6>Response Status</h6>
+<p>The move operation applied to multiple resources has the following status responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>All requested content has been imported </td>
+    </tr>
+    <tr>
+      <td>404/NOT FOUND </td>
+      <td>The target parent node does not exist </td>
+    </tr>
+    <tr>
+      <td>412/PRECONDITION FAILED </td>
+      <td>One or more of the required parameters does not exist </td>
+    </tr>
+    <tr>
+      <td>500/INTERNAL SERVER ERROR </td>
+      <td>Some exception, for example a <code>RepositoryException</code>, occurred while processing the request. This status is also set if the ContentImporter service is missing. </td>
+    </tr>
+  </tbody>
+</table>
+<h3>Null Operation</h3>
+<p>Sometimes it is useful to explicitly request that nothing is to be done. The SlingPostServlet now provides such an operation under the name <code>nop</code>. Apart from doing nothing, the <code>nop</code> operations sets the response status to either the default <code>200/OK</code> or to any status requested by the <code>:nopstatus</code> request parameter.</p>
+<p>The <code>:nopstatus</code> request parameter must be an integral number in the range [ 100 .. 999 ]. If the parameter value cannot be parsed to an integer or the value is outside of this range, the default status <code>200/OK</code> is still set.</p>
+<h6>Response Status</h6>
+<p>The null operation sets a default status or the status requested by the <code>:nopstatus</code> request parameter.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200/OK </td>
+      <td>Default status set if <code>:nopstatus</code> parameter is not set or does not have a valid value </td>
+    </tr>
+    <tr>
+      <td>{:nopstatus} </td>
+      <td>The status as requested by the <code>:nopstatus</code> parameter </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Special Parameters</h2>
+<p>Some parameters have special significance for the complete processing of the SlingPostServlet or are used by multiple operations. This section summarizes these parameters:</p>
+<h3><code>:order</code></h3>
+<p>Child nodes may be ordered if the primary node type of their common parent node is defined as having orderable child nodes. To employ such ordering, the content creation/modification, move and copy operations support the <code>:order</code> parameter which apply child node ordering amongst its siblings of the target node.</p>
+<p>The <code>:order</code> parameter may have the following values:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>first</code> </td>
+      <td>Place the target node as the first amongst its siblings </td>
+    </tr>
+    <tr>
+      <td><code>last</code> </td>
+      <td>Place the target node as the last amongst its siblings </td>
+    </tr>
+    <tr>
+      <td><code>before *xyz*</code> </td>
+      <td>Place the target node immediately before the sibling whose name is <em>xyz</em> </td>
+    </tr>
+    <tr>
+      <td><code>after *xyz*</code> </td>
+      <td>Place the target node immediately after the sibling whose name is <em>xyz</em> </td>
+    </tr>
+    <tr>
+      <td>numeric </td>
+      <td>Place the target node at the indicated numeric place amongst its siblings where <em>0</em> is equivalent to <code>first</code> and <em>1</em> means the second place </td>
+    </tr>
+  </tbody>
+</table>
+<p>Note that simple content reordering can be requested without applying any other operations. This is easiest done by placing a request to the resource to be reordered and just setting the <code>:order</code> parameter. For example to order the <code>/content/sample/page5</code> resource above its sibling resource <code>/content/sample/other</code> a simple request</p>
+<p>$ curl -F":order=before other" http://host/content/sample/page5</p>
+<p>does the trick. To be redirected after the reodering, the <code>:redirect</code> parameter may optionally also be specified.</p>
+<h3><code>:redirect</code></h3>
+<p>Instructs the SlingPostServlet to redirect the client to the indicated location if the operation succeeds. That is the response status is set to <em>302/FOUND</em> and the <code>Location</code> header is set to the value of the <code>:redirect</code> parameter.</p>
+<h3><code>:status</code></h3>
+<p>By default the SlingPostServlet sets response status according to the status of the operation executed. In some cases, it may be desirable to not have the real status codes (e.g. 404 or 505) but a normal <em>200/OK</em> to trick the client browser into displaying the response content generated by the SlingPostServlet.</p>
+<p>To not send the actual response status back to the client, the <code>:status</code> request parameter should be set to <code>browser</code>. If this parameter is not set, is empty, is set to <code>standard</code> or to any other value, the actual status code is sent back to the client.</p>
+<h2>Response format</h2>
+<p>The SlingPostServlet produces a basic HTTP response body, listing the response status, what changes have been made, and other meta-data about the result of the POST request.</p>
+<p>The format of this response is either HTML or JSON (JSON support introduced with <a href="https://issues.apache.org/jira/browse/SLING-1336">SLING-1336</a>). SlingPostServlet determines which format to use by examining the Accept header of the incoming request. If the client has specified a preference for the media type "application/json", the JSON format is used, otherwise HTML is returned. The Accept header can be overridden (and simulated) by posting a :http-equiv-accept field, which should have the same format as the Accept header.</p>
+<p>Examples:</p>
+<ol>
+  <li>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,**/**;q=0.8</li>
+  <li>Accept: application/json,**/**;q=0.9</li>
+</ol>
+<p>In example #1, SlingPostServlet will return HTML, since the client has specified a preference for text/html. In example #2, SlingPostServlet will return JSON.</p>
+<p>See <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1">RFC 2616, section 14.1</a> for information on the HTTP Accept header.</p>
+<h2>Versionable Node Support</h2>
+<p>The modify (default), delete, move, and copy operations of the SlingPostServlet support JCR Versionable Nodes. By default, when a node needs to be checked out for a modification to occur, it will be checked out and any nodes the operation checks out will be checked in upon completion of the request. Newly created versionable nodes (or non-versionable nodes made versionable by adding the mix:versionable mixin) will be left in their default, checked out state.</p>
+<p>This default behavior can be modified either globally (i.e. for all requests) or on a per-request basis. The global behavior is changed through OSGi ConfigAdmin using these three properties of the PID <code>org.apache.sling.servlets.post.impl.SlingPostServlet</code>:</p>
+<ul>
+  <li><code>servlet.post.checkinNewVersionableNodes</code></li>
+  <li><code>servlet.post.autoCheckout</code></li>
+  <li><code>servlet.post.autoCheckin</code></li>
+</ul>
+<p><img src="2010-07-01_1036.png" /></p>
+<p>On a per-request basis, these request parameters can be used:</p>
+<ul>
+  <li><code>:checkinNewVersionableNodes</code></li>
+  <li><code>:autoCheckout</code></li>
+  <li><code>:autoCheckin</code></li>
+</ul>
+<p>Checkout and Check In changes will be reflected in the ChangeLog portion of the response.</p>
+<h2>Extending the SlingPostServlet</h2>
+<h3>Additional POST operations</h3>
+<p>OSGi services of the <code>org.apache.sling.servlets.post.PostOperation</code> type can be used to implement new POST operations.</p>
+<p>Such services must have a <code>sling.post.operation</code> service registration property set to the name of the operation. This name is used as the value of the <code>:operation</code> parameter of POST requests to select the extended operation.</p>
+<p>Before version 2.1.2 of the <em>org.apache.sling.servlets.post</em> bundle, such additional operations were implemented by the <code>org.apache.sling.servlets.post.SlingPostOperation</code> interface, which is now deprecated but still supported via a bridge. See <a href="https://issues.apache.org/jira/browse/SLING-1725">SLING-1725</a> for details and discussions about this change.</p>
+<p>Two examples (old and new style) of additional POST operations are found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/">test-services</a> module, with the corresponding test code in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/CustomPostOperationTest.java">integration-tests</a> module.</p>
+<h3>SlingPostProcessor</h3>
+<p>OSGi services of the <code>org.apache.sling.servlets.post.SlingPostOperation</code> type can be used to post process <code>PostOperation</code>s. They are called after the operation has performed its changes but before the changes are persisted (via commit). All registered SlingPostProcessors are always called in the reverse order of their service ranking (i.e. the one with the highest service ranking first).</p>
+<p>A <code>SlingPostProcessor</code> may perform additional changes or revert previous ones. It is important that the <code>SlingPostProcessor</code> does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method <code>process(SlingHttpServletRequest, List&lt;Modification&gt;)</code>.</p>
+<p>Two examples of SlingPostProcessors are found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/">test-services</a> module, with the corresponding test code in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest">integration-tests</a> module.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

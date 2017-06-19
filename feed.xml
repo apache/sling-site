@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Apache Sling on JBake</title>
+    <link href="http://localhost/"/>
+    <link rel="self" type="application/atom+xml" href="http://localhost/feed.xml"/>
+    <subtitle>Work in progress...</subtitle>
+    <updated>2017-06-19T14:35:51Z</updated>
+    <id>tag:localhost,2017:06</id>
+    
+</feed>

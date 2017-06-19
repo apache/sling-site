@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>URL decomposition</h1></header><p>[TOC]</p>
+<h1>Overview</h1>
+<p>During the <em>Resource Resolution</em> step, the client request URI (as being returned by [HttpServletRequest.getRequestURI()](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getRequestURI())) is decomposed into the following parts (in exactly this order):</p>
+<ol>
+  <li><strong>Resource Path</strong> - For existing resources the resource path is the longest match (also considering its <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">mappings</a>) pointing to a resource where the next character is either a dot (<code>.</code>) or it is the full request URI. Otherwise (for a path not matching any existing resource) the resource path ends at the <em>first dot (<code>.</code>)</em> in the request url. The exact logic for retrieving the resource path is implemented at <a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#resolve-javax.servlet.http.HttpServletRequest-java.lang.String-">ResourceResolver.resolve(HttpServletRequest,String)</a>. <em>It is impossible to tell from just looking at the request URI where the resource path part ends. You have to know the underlying resource structure to know how a URL is decomposed. You cannot safely assume that the resource path will always end at the first dot!</em>.</li>
+  <li><strong>Selectors</strong> - If the first character in the request URL after the resource path is a dot (<code>.</code>), the string after the dot up to but not including the last dot before the next slash character or the end of the request URL comprises the selectors. If the resource path spans the complete request URL no selectors exist. If only one dot follows the resource path before the end of the request URL or the next slash, also no selectors exist.</li>
+  <li><strong>Extension</strong> - The string after the last dot after the resource path in the request URL but before the end of the request URL or the next slash after the resource path in the request URL is the extension.</li>
+  <li><strong>Suffix</strong> - If the request URL contains a slash character after the resource path and optional selectors and extension, the path starting with the slash up to the end of the request URL is the suffix path. Otherwise, the suffix path is empty. Note, that after the resource path at least a dot must be in the URL to let Sling detect the suffix.</li>
+</ol>
+<p>Those decomposed parts can be accessed through the <code>RequestPathInfo</code> object, which is retrieved via <a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/SlingHttpServletRequest.html#getRequestPathInfo--">SlingHttpServletRequest.getPathInfo()</a>.</p>
+<p>There's a cheat sheet in Adobe's AEM documentation at <a href="https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html">https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html</a> available to get you familiar with the URL decomposition of Sling.</p>
+<h1>Examples</h1>
+<p>Assume there is a Resource at <code>/a/b</code>, which has no children.</p>
+<table>
+  <thead>
+    <tr>
+      <th>URI </th>
+      <th>Resource Path </th>
+      <th>Selectors </th>
+      <th>Extension </th>
+      <th>Suffix </th>
+      <th>Resource Found </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/a/b </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>null </td>
+      <td>null </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.html </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>html </td>
+      <td>null </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.html </td>
+      <td>/a/b </td>
+      <td>s1 </td>
+      <td>html </td>
+      <td>null </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.s2.html </td>
+      <td>/a/b </td>
+      <td>s1.s2 </td>
+      <td>html </td>
+      <td>null </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b/c/d </td>
+      <td>/a/b/c/d </td>
+      <td>null </td>
+      <td>null </td>
+      <td>null </td>
+      <td>no! </td>
+    </tr>
+    <tr>
+      <td>/a/c.html/s.txt </td>
+      <td>/a/c </td>
+      <td>null </td>
+      <td>html </td>
+      <td>/s.txt </td>
+      <td>no! </td>
+    </tr>
+    <tr>
+      <td>/a/b./c/d </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>null </td>
+      <td>/c/d </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.html/c/d </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>html </td>
+      <td>/c/d </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.html/c/d </td>
+      <td>/a/b </td>
+      <td>s1 </td>
+      <td>html </td>
+      <td>/c/d </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.s2.html/c/d </td>
+      <td>/a/b </td>
+      <td>s1.s2 </td>
+      <td>html </td>
+      <td>/c/d </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b/c/d.s.txt </td>
+      <td>/a/b/c/d </td>
+      <td>s </td>
+      <td>txt </td>
+      <td>null </td>
+      <td>no! </td>
+    </tr>
+    <tr>
+      <td>/a/b.html/c/d.s.txt </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>html </td>
+      <td>/c/d.s.txt </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.html/c/d.s.txt </td>
+      <td>/a/b </td>
+      <td>s1 </td>
+      <td>html </td>
+      <td>/c/d.s.txt </td>
+      <td>yes </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.s2.html/c/d.s.txt </td>
+      <td>/a/b </td>
+      <td>s1.s2 </td>
+      <td>html </td>
+      <td>/c/d.s.txt </td>
+      <td>yes </td>
+    </tr>
+  </tbody>
+</table>
+<h1>Automated Tests</h1>
+<p>The tests at</p>
+<ul>
+  <li><a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/resourceresolver/src/test/java/org/apache/sling/resourceresolver/impl/ResourceResolverImplTest.java">ResourceResolverImplTest</a> shows the split between resource path and the rest. Mostly in the method <code>testBasicAPIAssumptions</code>.</li>
+  <li><a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java">SlingRequestPathInfoTest</a> demonstrates the decomposition after the resource path part.</li>
+</ul>
+<p>Feel free to suggest additional tests that help clarify how this works!</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

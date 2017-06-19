@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Request Processing Analyzer (reqanalyzer)</h1></header><p>[TOC]</p>
+<h2>Introduction</h2>
+<p>Sling provides a helpful functionality to track progress of requests being processed: The <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/request/RequestProgressTracker.html">RequestProgressTracker</a> which is available through the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html#getRequestProgressTracker%28%29">SlingHttpServletRequest</a>.</p>
+<p>This tool provides mechanims to record states of request processing and a simple mechanism to time periods of processing. By default Sling itself uses this tool to track progress through Sling like script resolution and calling scripts.</p>
+<p>Scripts and servlets called during Sling's request processing may themselves use the <code>RequestProgressTracker</code> to log their own processing.</p>
+<p>Usually the data collected by the <code>RequestProgressTracker</code> is just dropped or it may be visible for a certain number of recent requests on the <em>Recent Requests</em> page of the Web Console. When doing load tests, though, this Web Console page is of limited use because a lot more requests are handled than can be displayed in the Web Console.</p>
+<p>This is where the <a href="http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/reqanalyzer">Request Processing Analyzer</a> comes in handy. When deployed as a bundle it registers as a request level servlet Filter with the Sling Main Servlet. Each request is logged in a special file (currently fixed at <code>${sling.home}/logs/requesttracker.txt</code>) with a header line provding core information on the request:</p>
+<ul>
+  <li>Start time stamp in ms since the Epoch</li>
+  <li>Request processing time in ms</li>
+  <li>Request Method</li>
+  <li>Request URL</li>
+  <li>Response content type (plus character encoding if available)</li>
+  <li>Response Status</li>
+</ul>
+<p>After that first line the complete data from the requests <code>RequestProgressTracker</code> is dumped.</p>
+<h2>Web Console Integration</h2>
+<p>The Request Processing Analyzer is available through the Web Console in the <em>Sling</em> category to</p>
+<ul>
+  <li>Download the <code>requesttracker.txt</code> file as a plain text or ZIP-ed file</li>
+  <li>Launch the Swing-based GUI to analyze the file</li>
+</ul>
+<p>The option to launch the Swing-based GUI is only available if the Sling application is not running in headless mode and if the Web Console is accessed on <em>localhost</em>, that is on the same host as the Sling instance is running.</p>
+<h2>Analyzing the <code>requesttracker.txt</code> file</h2>
+<p>To analyze the <code>requesttracker.txt</code> file the <em>Request Processing Analyzer</em> module can also be used as a standalone Java application. Just start the module using the <code>java</code> command:</p>
+<p>$ java -jar org.apache.sling.reqanalyzer-0.0.1-SNAPSHOT.jar requesttracker.txt</p>
+<p>The command supports two command line arguments:</p>
+<ol>
+  <li>The tracker file (required)</li>
+  <li>The number of requests to load and display from the file. This second option is optional and may be used to limit the request information loaded to the first requests in the file</li>
+</ol>
+<p>After starting and parsing the file, a window is opened showing the core request information in simple table. This table can be sorted by any of the columns by clicking on the column title.</p>
+<p><img src="requesttracker.png" alt="Recorded Requests" /></p>
+<p>Clicking on any row opens a second window displaying the detail request progress information as recorded before with the <code>RequestProgressTracker</code>.</p>
+<p><img src="requesttracker-details.png" alt="Details of a recorded Request" /></p>
+<p>The size, location, and the widths of the table columns are persisted with the Java Preferences API and thus when starting the application again, these settings are preserved.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

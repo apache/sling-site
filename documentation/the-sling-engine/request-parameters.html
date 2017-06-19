@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Request Parameter Handling in Sling</h1></header><p>Excerpt: Explains how Sling provides request parameters to the <code>Component</code>.</p>
+<h2>Servlet API</h2>
+<p>The Servlet API specification provides the following methods to access the parameters of a request</p>
+<table>
+  <thead>
+    <tr>
+      <th>Method </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HttpServletRequest.getQueryString()</code> </td>
+      <td>Returns the query part of the request URL </td>
+    </tr>
+    <tr>
+      <td><code>ServletRequest.getParameter(String)</code> </td>
+      <td>Returns the (first) named parameter </td>
+    </tr>
+    <tr>
+      <td><code>ServletRequest.getParameterValues(String)</code> </td>
+      <td>Returns all parameters of that name </td>
+    </tr>
+    <tr>
+      <td><code>ServletRequest.getParameterMap()</code> </td>
+      <td>Returns all parameters as a map of <code>String[]({{ refs..path }})</code> </td>
+    </tr>
+    <tr>
+      <td><code>ServletRequest.getParameterNames()</code> </td>
+      <td>Returns an enumeration of the names of the parameters </td>
+    </tr>
+    <tr>
+      <td><code>ServletRequest.getParts()</code> </td>
+      <td>Returns all parts of the multipart request (since v3.0) </td>
+    </tr>
+    <tr>
+      <td><code>ServletRequest.getPart(String)</code> </td>
+      <td>Returns the request part with that name in case of multipart requests (since v3.0) </td>
+    </tr>
+  </tbody>
+</table>
+<p>The actual encoding of the parameters is all but safe because the encoding of URLs is not very well defined and browsers do not set the character encoding when sending post data. Fortunately, they use the same character encoding for sending back form content as was used by the server to send the form.</p>
+<h2>Sling API</h2>
+<p>To overcome the restrictions and to provide uniform access to request parameters the Sling API in addition to the Servlet API methods to access parameters provides an abstraction of parameters which is applicable to all parameters sent by clients, the <code>RequestParameter</code> interface. Through this interface, each parameter may be analyzed for these topics:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Type </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Raw Content </td>
+      <td>Byte array and <code>InputStream</code> representation of the request parameter values. You will generally use the <code>InputStream</code> to handle uploaded files. </td>
+    </tr>
+    <tr>
+      <td>String Content </td>
+      <td>Access the values as strings is some given encoding (see below) or by requesting the conversion using an explicit encoding. </td>
+    </tr>
+    <tr>
+      <td>File Uploads </td>
+      <td>Find out whether a parameter is a file upload, get the size in bytes of the parameter value and client side file name as sent by the browser. </td>
+    </tr>
+  </tbody>
+</table>
+<p>To accomodate this new interface as well as to provide easy access in the traditional way the <code>SlingHttpServletRequest</code> interface adds following methods to the standard Servlet API parameter access methods:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Method </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>getRequestParameter(String)</code> </td>
+      <td>Returns the (first) named parameter as a <code>RequestParameter</code> instance </td>
+    </tr>
+    <tr>
+      <td><code>getRequestParameters(String)</code> </td>
+      <td>Returns the named parameter as an array of <code>RequestParameter</code> instances </td>
+    </tr>
+    <tr>
+      <td><code>getRequestParameterMap()</code> </td>
+      <td>Returns <code>RequestParameterMap</code> being a map of <code>RequestParameter</code> arrays indexed by parameter names </td>
+    </tr>
+  </tbody>
+</table>
+<p>All parameters are handled the same, that is all methods give access to the same parameters regardless of whether the parameters were transmitted in the request query, as part of form encoded data or as part of a <code>multipart/form-data</code> request.</p>
+<p>As of Sling Engine 2.1.0 the order or request parameters in the <code>getRequestParameterMap()</code>, <code>getParameterMap()</code>, and <code>getParameterNams()</code> is preserved as follows:</p>
+<ul>
+  <li>The first entries are the parameters reported by the servlet container. The order of these parameters amongst each other is not defined. The <code>SlingHttpServletRequest</code> provides them in the same order as provided by the servlet container.</li>
+  <li>After the servlet container provided parameters are parameters extracted from the request in case <code>multipart/form-data</code> POST requests. The order of these parameters is preserved as they are submitted in the request. This conforms to HTML 4.01 spec on forms submitted with multipart/form-data encoding: <em>A "multipart/form-data" message contains a series of parts, each representing a successful control. The parts are sent to the processing agent in the same order the corresponding controls appear in the document stream. Part boundaries should not occur in any of the data; how this is done lies outside the scope of this specification</em> (<a href="http://www.w3.org/TR/html401/interact/forms.html">17.13.4 Form content types</a>)</li>
+</ul>
+<p>Be warned: Only rely on request parameter ordering <code>multipart/form-data</code> POST requests without a query part in the request URL.</p>
+<h3>Effects of Sling on Servlet API parameter methods</h3>
+<p>From within Sling servlets/scripts you can no longer rely on the original semantics of the Servlet API methods for dealing with parameters as</p>
+<ul>
+  <li><code>ServletRequest.getParameter(String)</code></li>
+  <li><code>ServletRequest.getParameterValues(String)</code></li>
+  <li><code>ServletRequest.getParameterMap()</code></li>
+  <li><code>ServletRequest.getParameterNames()</code></li>
+  <li><code>ServletRequest.getParts()</code> and</li>
+  <li><code>ServletRequest.getPart(String)</code></li>
+</ul>
+<p>internally use the Sling parameter support (and therefore have the same implications on e.g. encoding). You should preferably use the Sling methods <code>getRequestParameter*</code> instead.</p>
+<p>Calling <code>ServletRequest.getInputStream()</code> is not supported, nor relying on some 3rd party libraries which are internally using that method like <a href="https://commons.apache.org/proper/commons-fileupload/">Apache Commons Fileupload</a>. This is because the Sling parameter support needs exclusive access to the request's input stream.</p>
+<h2>Character Encoding</h2>
+<p>Traditionally, the encoding of parameters, especially in text area input forms, has been a big issue. To solve this issue Sling introduces the following convention:</p>
+<ul>
+  <li>All forms should contain a hidden field of the name <code>_charset_</code> containing the actual encoding used to send the form from the server to the client</li>
+  <li>All forms should be sent with <em>UTF-8</em> character encoding</li>
+</ul>
+<p>The first rule is essential as it helps decoding the form input correctly. The second rule is not actually a very hard requirement but to enable support for all (or most) character sets used, using <em>UTF-8</em> is one of the best choices anyway.</p>
+<p>When Sling is now receiving a request and is asked for the parameters, the parameters are parsed in two phases: The first phase just parses the raw input data using an identity transformation of bytes to characters. This identity transformation happens to generate strings as the original data was generated with <code>ISO-8859-1</code> encoding. The second phase locates the <code>_charset_</code> parameter and fixes the character encodings of the parameters as follows:</p>
+<ul>
+  <li>All names of the parameters are re-encoded</li>
+  <li>The parameter values are re-encoded, unless the parameter value is an uploaded file. Actually the parameter (not the files of course) are internally as <code>byte[]({{ refs..path }})</code> where the conversion to a string is done on the fly (and yes, the conversion using the <code>_charset_</code> character encoding is of course cached for performance reasons)</li>
+  <li>If the parameter is an uploaded file, the file name is re-encoded on the fly when accessed</li>
+</ul>
+<div class="info">
+Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing.
+To enable this functionality set the <code>sling.default.parameter.encoding</code> parameter of the Sling Main Servlet (PID <code>org.apache.sling.engine.impl.SlingMainServlet</code>) configuration (for Sling Engine < 2.3.0) or the same parameter of the Sling Request Parameter Handling (PID <code>org.apache.sling.engine.parameters</code>) configuration (for Sling Engine >= 2.3.0 ) to the desired encoding, which of course must be supported by the actual Java Platform.
+</div></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

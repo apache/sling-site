@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>JCR Mocks</h1></header><p>Mock implementation of selected JCR APIs for easier testing. It stores all data in-memory in a HashMap to ensure instantly creating and destroying of the JCR repository.</p>
+<p>[TOC]</p>
+<h2>Maven Dependency</h2>
+<h1>!xml</h1>
+<p><dependency> <groupId>org.apache.sling</groupId> <artifactId>org.apache.sling.testing.jcr-mock</artifactId> </dependency></p>
+<p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p>
+<h2>Implemented mock features</h2>
+<p>The mock implementation supports:</p>
+<ul>
+  <li>Reading and writing all data (primitive values, arrays, binary data) via the JCR API</li>
+  <li>Creating any number of nodes and properties (stored in-memory in a hash map)</li>
+  <li>Register namespaces</li>
+  <li>Queries are supported by setting expected results for a given query</li>
+</ul>
+<p>The following features are <em>not supported</em>:</p>
+<ul>
+  <li>Node types are supported in the API, but their definitions and constraints are not applied</li>
+  <li>Versioning not supported</li>
+  <li>Transactions not supported</li>
+  <li>Observation events can be registered but are ignored</li>
+  <li>Access control always grants access</li>
+  <li>Exporting/Importing data via document and system views not supported</li>
+  <li>Workspace management methods not supported</li>
+</ul>
+<h2>Usage</h2>
+<h3>Getting JCR mock objects</h3>
+<p>The factory class <code>MockJcr</code> allows to instantiate the different mock implementations.</p>
+<p>Example:</p>
+<h1>!java</h1>
+<p>// get session Session session = MockJcr.newSession();</p>
+<p>// get repository Repository repository = MockJcr.newRepository();</p>
+<p>The repository is empty and contains only the root node. You can use the JCR API to read or write content.</p>
+<h3>Mocking queries</h3>
+<p>If you want to test code that contains a JCR query you can simulate a query execution and set the result to return during setting up your unit test.</p>
+<p>Example:</p>
+<h1>!java</h1>
+<p>// prepare mocked search result List<Node> resultNodes = ImmutableList.of(node1, node2, node3);</p>
+<p>// return this result for all queries MockJcr.setQueryResult(session, resultNodes);</p>
+<p>// return this result for a specific query MockJcr.setQueryResult(session, "your query statement", Query.JCR_SQL2, resultNodes);</p>
+<p>Alternatively you can use the <code>MockJcr.addQueryResultHandler</code> method to pass a callback object that allows you to return a query result after inspecting the given query object.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

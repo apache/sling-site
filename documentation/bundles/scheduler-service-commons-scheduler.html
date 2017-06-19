@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Scheduler Service (commons scheduler)</h1></header><p>The scheduler is a service for scheduling other services/jobs (it uses the open source Quartz library). The scheduler can be used in two ways, by registering the job through the scheduler API and by leveraging the whiteboard pattern that is supported by the scheduler. In most cases the whiteboard pattern is preferred</p>
+<div class="note">
+The notion of Job used in this context is a different one than the one used for <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a>. The main difference is that a scheduler's job is not persisted.
+</div>
+<h2>Examples of jobs that are scheduled by leveraging the whiteboard pattern</h2>
+<p>The following examples show you how to define and schedule a job by leveraging the whiteboard pattern.</p>
+<h3>Scheduling with a cron expression</h3>
+<p>The following job is executed every minute by setting <em>scheduler.expression</em> to the cron expression <em>"0 * * * * ?"</em>:</p>
+<p>package sling.docu.examples;</p>
+<p>import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.apache.felix.scr.annotations.Component; import org.apache.felix.scr.annotations.Service; import org.apache.felix.scr.annotations.Property;</p>
+<p>@Component @Service(value = Runnable.class) @Property( name = "scheduler.expression", value = "0 * * * * ?") public class ScheduledCronJob implements Runnable {</p>
+<p>/** Default log. */ protected final Logger log = LoggerFactory.getLogger(this.getClass());</p>
+<p>public void run() { log.info("Executing a cron job (job#1) through the whiteboard pattern"); } // }</p>
+<h3>Scheduling at periodic times</h3>
+<p>The following job is executed every ten seconds by setting <em>scheduler.period</em> to <em>10</em>:</p>
+<p>package sling.docu.examples;</p>
+<p>import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.apache.felix.scr.annotations.Component; import org.apache.felix.scr.annotations.Service; import org.apache.felix.scr.annotations.Property;</p>
+<p>@Component @Service(value = Runnable.class) @Property( name = "scheduler.period", longValue = 10) public class ScheduledPeriodicJob implements Runnable {</p>
+<p>/** Default log. */ protected final Logger log = LoggerFactory.getLogger(this.getClass());</p>
+<p>public void run() { log.info("Executing a perodic job (job#2) through the whiteboard pattern"); } // }</p>
+<h3>Preventing concurrent execution</h3>
+<p>By default, jobs can be concurrently executed. To prevent this, set the <em>scheduler.concurrent</em> property to <em>false</em>:</p>
+<p>@Property(name="scheduler.concurrent", boolValue=false)</p>
+<h3>Scheduling the job just once in a cluster</h3>
+<p>If the same code/same services is executed on multiple nodes within a cluster, the same job might be scheduled on each instance. If this is not desired, the job can either be bound to the leader of the topology or a single instance (which one this is, is not further defined):</p>
+<p>@Property(name="scheduler.runOn", value="LEADER");</p>
+<p>or</p>
+<p>@Property(name="scheduler.runOn", value="SINGLE");</p>
+<p>Since in contrast to <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a> the scheduler queue is only held in memory, there will be no distribution of jobs. So if job '1' was scheduled on instance 'a' with the option to run on the leader only, but the leader is instance 'b', which hasn't the job in the queue, the job will never be executed by any instance!</p>
+<h2>The Scheduler API</h2>
+<p>The scheduler has methods to execute jobs periodically, based on a cron expression or at a given time. For more details please refer to the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/commons/scheduler/Scheduler.html">javadocs</a>.</p>
+<h2>Examples of scheduled jobs registered through the scheduler API</h2>
+<p>The following examples show you how to define and schedule a job that is registered through the scheduler api.</p>
+<h3>Defining the job</h3>
+<p>The following code sample defines a <em>job</em> object that writes a message in the logs:</p>
+<p>final Runnable job = new Runnable() { public void run() { log.info("Executing the job"); } };</p>
+<h3>Scheduling with a cron expression</h3>
+<p>To execute the job as defined above at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday, you can use the <em>addJob()</em> method with the following parameters:</p>
+<p>String schedulingExpression = "0 15 10 ? * MON-FRI"; this.scheduler.addJob("myJob", job, null, schedulingExpression, true);</p>
+<p>Refer to http://www.docjar.com/docs/api/org/quartz/CronTrigger.html to define more scheduling expressions.</p>
+<h3>Scheduling at periodic times</h3>
+<p>To execute the job as defined above every 3 minutes (180 seconds), you can use the <em>addPeriodicJob()</em> method with the following parameters:</p>
+<p>long period = 3*60; //the period is expressed in seconds this.scheduler.addPeriodicJob("myJob", job, null, period, true);</p>
+<h3>Scheduling at a given time</h3>
+<p>To execute the job as defined above at a specific date (on January 10th 2020), you can use the <em>fireJobAt()</em> method with the following parameters:</p>
+<p>SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd"); String date = "2020/01/10"; java.util.Date fireDate = formatter.parse(date); this.scheduler.fireJobAt("myJob", job, null, fireDate);</p>
+<h3>A service scheduling the job based on 3 different kinds of scheduling</h3>
+<p>The code implementing a service that simultaneously executes the job based on 3 different kinds of scheduling can look as follows:</p>
+<p>package sling.docu.examples;</p>
+<p>import java.io.Serializable; import java.util.Date; import java.util.HashMap; import java.util.Map;</p>
+<p>import org.apache.sling.commons.scheduler.Scheduler; import org.osgi.service.component.ComponentContext; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.apache.felix.scr.annotations.Component; import org.apache.felix.scr.annotations.Reference;</p>
+<p>/** * This service executes scheduled jobs * */ @Component public class HelloWorldScheduledService {</p>
+<p>/** Default log. */ protected final Logger log = LoggerFactory.getLogger(this.getClass());</p>
+<p>/** The scheduler for rescheduling jobs. */ @Reference private Scheduler scheduler;</p>
+<p>protected void activate(ComponentContext componentContext) throws Exception { //case 1: with addJob() method: executes the job every minute String schedulingExpression = "0 * * * * ?"; String jobName1 = "case1"; Map&lt;String, Serializable&gt; config1 = new HashMap&lt;String, Serializable&gt;(); boolean canRunConcurrently = true; final Runnable job1 = new Runnable() { public void run() { log.info("Executing job1"); } }; try { this.scheduler.addJob(jobName1, job1, config1, schedulingExpression, canRunConcurrently); } catch (Exception e) { job1.run(); }</p>
+<p>//case 2: with addPeriodicJob(): executes the job every 3 minutes String jobName2 = "case2"; long period = 180; Map&lt;String, Serializable&gt; config2 = new HashMap&lt;String, Serializable&gt;(); final Runnable job2 = new Runnable() { public void run() { log.info("Executing job2"); } }; try { this.scheduler.addPeriodicJob(jobName2, job2, config2, period, canRunConcurrently); } catch (Exception e) { job2.run(); }</p>
+<p>//case 3: with fireJobAt(): executes the job at a specific date (date of deployment + delay of 30 seconds) String jobName3 = "case3"; final long delay = 30*1000; final Date fireDate = new Date(); fireDate.setTime(System.currentTimeMillis() + delay); Map&lt;String, Serializable&gt; config3 = new HashMap&lt;String, Serializable&gt;(); final Runnable job3 = new Runnable() { public void run() { log.info("Executing job3 at date: {} with a delay of: {} seconds", fireDate, delay/1000); } }; try { this.scheduler.fireJobAt(jobName3, job3, config3, fireDate); } catch (Exception e) { job3.run(); } }</p>
+<p>protected void deactivate(ComponentContext componentContext) { log.info("Deactivated, goodbye!"); }</p>
+<p>}</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

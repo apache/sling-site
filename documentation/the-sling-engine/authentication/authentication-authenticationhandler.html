@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Authentication - AuthenticationHandler</h1></header><p>Excerpt: The <code>AuthenticationHandler</code> interface defines the service API which may be implemented by authentication handlers registered as OSGi services.</p>
+<p>The <code>AuthenticationHandler</code> interface defines the service API which may be implemented by authentication handlers registered as OSGi services.</p>
+<p><code>AuthenticationHandler</code> services have a single required service registration property which is used to identify requests to which the <code>AuthenticationHandler</code> service is applicable:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>path</code> </td>
+      <td>One or more (array or vector) string values indicating the request URLs to which the <code>AuthenticationHandler</code> is applicable. </td>
+    </tr>
+    <tr>
+      <td><code>authtype</code> </td>
+      <td>The authentication type implemented by this handler. This is a string value property and should be the same as will be used as the authentication type of the <code>AuthenticationInfo</code> object provided by the <code>extractCredentials</code> method. If this property is set, the <code>requestCredentials</code> method of the authentication handler is only called if the <code>sling:authRequestLogin</code> request parameter is either not set or is set to the same value as the <code>authtype</code> of the handler. This property is optional. If not set, the <code>requestCredentials</code> method is always called regardless of the value of the <code>sling:authRequestLogin</code> request parameter. </td>
+    </tr>
+  </tbody>
+</table>
+<p>Each path may be an absolute URL, an URL with just the host/port and path or just a plain absolute path:</p>
+<table>
+  <thead>
+    <tr>
+      <th>URL part </th>
+      <th>Scheme </th>
+      <th>Host/Port </th>
+      <th>Path </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Absolute URL </td>
+      <td>must match </td>
+      <td>must match </td>
+      <td>request URL path is prefixed with the path </td>
+    </tr>
+    <tr>
+      <td>Host/Port with Path </td>
+      <td>ignored </td>
+      <td>must match </td>
+      <td>request URL path is prefixed with the path </td>
+    </tr>
+    <tr>
+      <td>Path </td>
+      <td>ignored </td>
+      <td>ignored </td>
+      <td>request URL path is prefixed with the path </td>
+    </tr>
+  </tbody>
+</table>
+<p>When looking for an <code>AuthenticationHandler</code> the authentication handler is selected whose path is the longest match on the request URL. If the service is registered with Scheme and Host/Port, these must exactly match for the service to be eligible. If multiple <code>AuthenticationHandler</code> services are registered with the same length matching path, the handler with the higher service ranking is selected[^ranking].</p>
+<p>[^ranking]: Service ranking is defined by the OSGi Core Specification as follows: <em>If multiple qualifying service interfaces exist, a service with the highest <code>service.ranking</code> number, or when equal to the lowest <code>service.id</code>, determines which service object is returned by the Framework</em>.</p>
+<p>The value of <code>path</code> service registration property value triggering the call to any of the <code>AuthenticationHandler</code> methods is available as the <code>path</code> request attribute (for the time of the method call only). If the service is registered with multiple path values, the value of the <code>path</code> request attribute may be used to implement specific handling.</p>
+<h3>Implementations provided by Sling</h3>
+<ul>
+  <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html">Form Based AuthenticationHandler</a></li>
+  <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.html">OpenID AuthenticationHandler</a></li>
+</ul>
+<h3>Sample implementations</h3>
+<h4>HTTP Basic Authentication Handler</h4>
+<ul>
+  <li><code>extractCredentials</code> -- Get user name and password from the <code>Authorization</code> HTTP header</li>
+  <li><code>requestCredentials</code> -- Send a 401/UNAUTHORIZED status with <code>WWW-Authenticate</code> response header setting the Realm</li>
+  <li><code>dropCredentials</code> -- Send a 401/UNAUTHORIZED status with <code>WWW-Authenticate</code> response header setting the Realm</li>
+</ul>
+<p>Interestingly the <code>dropCredentials</code> method is implemented in the same way as the <code>requestCredentials</code> method. The reason for this is, that HTTP Basic authentication does not have a notion of login and logout. Rather the request is accompanied with an <code>Authorization</code> header or not. The contents of this header is usually cached by the client browser. So logout is actually simulated by sending a 401/UNAUTHORIZED status thus causing the client browser to clear the cache and ask for user name and password.</p>
+<h4>Form Based Authentication Handler</h4>
+<ul>
+  <li><code>extractCredentials</code> -- Get user name and password with the help of a special cookie (note, that of course the cookie should not contain this data, but refer to it in an internal store of the authentication handler). If the cookie is not set, check for specific login parameters to setup the cookie.</li>
+  <li><code>requestCredentials</code> -- Send the login form for the user to provide the login parameters.</li>
+  <li><code>dropCredentials</code> -- Clear the authentication cookie and internal store.</li>
+</ul>
+<p>///Footnotes Go Here///</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

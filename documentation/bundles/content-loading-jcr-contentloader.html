@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Content Loading and Nodetype Support (jcr.contentloader)</h1></header><p>Apache Sling provides support for initial content loading into a repository and for registering node types. The <code>sling-jcr-contentloader</code> bundle provides loading of content from a bundle into the repository and the <code>sling-jcr-base</code> bundle provides node type registration.</p>
+<h2>Initial Content Loading</h2>
+<p>Bundles can provide initial content, which is loaded into the repository when the bundle has entered the <em>started</em> state. Such content is expected to be contained in the bundles accessible through the Bundle entry API methods. Content to be loaded is declared in the <code>Sling-Initial-Content</code> bundle manifest header. This header takes a comma-separated list of bundle entry paths. Each entry and all its child entries are accessed and entered into starting with the child entries of the listed entries.</p>
+<p>Adding this content preserves the paths of the entries as shown in this table, which assumes a <code>Sling-Initial-Content</code> header entry of <code>SLING-INF/content</code> (with no further directives):</p>
+<table>
+  <thead>
+    <tr>
+      <th>Source Entry Paths in Bundle </th>
+      <th>Target Repository Path </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SLING-INF/content/home</code> </td>
+      <td><code>/home</code> </td>
+    </tr>
+    <tr>
+      <td><code>SLING-INF/content/content/playground/en/home</code> </td>
+      <td><code>/content/playground/en/home</code> </td>
+    </tr>
+    <tr>
+      <td><code>SLING-INF/someothercontent/playground/en/home</code> </td>
+      <td>not installed at all, because not below the <code>Sling-Initial-Content</code> header entry </td>
+    </tr>
+  </tbody>
+</table>
+<p>Bundle entries are installed as follows:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Entry Type </th>
+      <th>Installation method </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Directory </td>
+      <td>Created as a node of type <code>sling:Folder</code> unless a content definition file of the same name exists in the same directory as the directory to be installed. Example: A directory <code>SLING-INF/content/dir</code> is installed as node <code>/dir</code> of type <code>nt:folder</code> unless a <code>SLING-INF/content/dir.xml</code> or <code>SLING-INF/content/dir.json</code> file exists which defines the content for the <code>/dir</code> node. </td>
+    </tr>
+    <tr>
+      <td>File </td>
+      <td>Unless the file is a content definition file (see below) an <code>nt:file</code> node is created for the file and an <code>nt:resource</code> node is created as its <code>jcr:content</code> child node to take the contents of the bundle file. The properties of the <code>nt:resource</code> node are set from file information as available. If a content definition file exists with the same name as the file plus <code>.json</code> or <code>.xml</code> these properties are set additionally on the imported file. See below for the content definition file specification. </td>
+    </tr>
+  </tbody>
+</table>
+<p>It is possible to modify the intial content loading default behaviour by using certain optional directives. Directives should be specified separated by semicolon. They are defined as follows:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Directive </th>
+      <th>Definition </th>
+      <th>Default value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>overwrite</code> </td>
+      <td><code>overwrite:=(true&#124;false)<code> </td>
+      <td><code>false</code> </td>
+      <td>The overwrite directive specifies if content nodes should be overwritten (at the target repository path, which is "/" by default) or just initially added. If this is true, existing nodes are deleted and a new node is created in the same place. This directive should be used together with the <code>path</code> directive to limit overwriting. </td>
+    </tr>
+    <tr>
+      <td><code>overwriteProperties</code> </td>
+      <td><code>overwriteProperties:=(true&#124;false)</code> </td>
+      <td><code>false</code> </td>
+      <td>The overwriteProperties directive specifying if content properties should be overwritten or just initially added (at the target repository path, which is "/" by default). This directive should be used together with the <code>path</code> directive to limit overwriting. </td>
+    </tr>
+    <tr>
+      <td><code>uninstall</code> </td>
+      <td><code>uninstall:=(true&#124;false)</code> </td>
+      <td>value from <code>overwrite</code> </td>
+      <td>The uninstall directive specifies if content should be uninstalled when bundle is unregistered. This value defaults to the value of the <code>overwrite</code> directive. </td>
+    </tr>
+    <tr>
+      <td><code>path</code> </td>
+      <td><code>path:=*/target/location*</code> </td>
+      <td><code>/</code> </td>
+      <td>The path directive specifies the target node where initial content will be loaded. If the path does not exist yet in the repository, it is created by the content loader. The intermediate nodes are of type <code>sling:Folder</code>. </td>
+    </tr>
+    <tr>
+      <td><code>checkin</code> </td>
+      <td><code>checkin:=(true&#124;false)</code> </td>
+      <td><code>false</code> </td>
+      <td>The checkin directive specifies whether versionable nodes should be checked in. </td>
+    </tr>
+    <tr>
+      <td><code>ignoreImportProviders</code> </td>
+      <td><code>ignoreImportProviders:=list of extensions</code> </td>
+      <td><code>empty</code> </td>
+      <td>This directive can be used to not run one of the configured extractors (see below). </td>
+    </tr>
+  </tbody>
+</table>
+<p>Examples of these directives within <code>Sling-Initial-Content</code> header entries:</p>
+<table>
+  <thead>
+    <tr>
+      <th><code>Sling-Initial-Content</code> header entry </th>
+      <th>Behaviour </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SLING-INF/content/home;overwrite:=true;path:=/home</code> </td>
+      <td>Overwrites already existing content in <em>/home</em> and uninstalls the content when the bundle is unregistered. </td>
+    </tr>
+    <tr>
+      <td><code>SLING-INF/content/home;overwriteProperties:=true;path:=/home</code> </td>
+      <td>Overwrites properties of existing content in <em>/home</em>. </td>
+    </tr>
+    <tr>
+      <td><code>SLING-INF/content/home;path:=/sites/sling_website</code> </td>
+      <td>This loads the content given in <em>SLING-INF/content/home</em> into <em>/sites/sling_website</em>. </td>
+    </tr>
+    <tr>
+      <td><code>SLING-INF/content/home;checkin:=true</code> </td>
+      <td>After content loading, versionable nodes are checked in. </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Loading initial content from bundles</h2>
+<p>Repository items to be loaded into the repository, when the bundle is first installed, may be defined in four ways:</p>
+<ol>
+  <li>Directories</li>
+  <li>Files</li>
+  <li>XML descriptor files</li>
+  <li>JSON descriptor files</li>
+</ol>
+<p>Depending on the bundle entry found in the location indicated by the Sling-Initial-Content bundle manifest header, nodes are created (and/or updated) as follows:</p>
+<h3>Directories</h3>
+<p>Unless a node with the name of the directory already exists or has been defined in an XML or JSON descriptor file (see below) a directory is created as a node with the primary node type "nt:folder" in the repository.</p>
+<h3>Files</h3>
+<p>Unless a node with the name of the file already exists or has been defined in an XML or JSON descriptor file (see below) a file is created as two nodes in the repository. The node bearing the name of the file itself is created with the primary node type "nt:file". Underneath this file node, a resource node with the primary node type "nt:resource" is created, which is set to the contents of the file.</p>
+<p>The MIME type is derived from the file name extension by first trying to resolve it from the Bundle entry URL. If this does not resolve to a MIME type, the Sling MIME type resolution service is used to try to find a mime type. If all fals, the MIME type is defaulted to "application/octet-stream".&nbsp;&nbsp;</p>
+<h3>XML Descriptor Files</h3>
+<p>Nodes, Properties and in fact complete subtrees may be described in XML files using either the JCR SystemView format, or the format described below. In either case, the file must have the .xml extension.</p>
+<p><node> <!--
+optional on top level, defaults to XML file name without .xml extension
+required for child nodes
+--> <name>xyz</name></p>
+<!--
+optional, defaults to nt:unstructured
+-->
+<p><primaryNodeType>nt:file</primaryNodeType></p>
+<!--
+optional mixin node type
+may be repeated for multiple mixin node types
+-->
+<p><mixinNodeType>mix:versionable</mixinNodeType> <mixinNodeType>mix:lockable</mixinNodeType></p>
+<!--
+Optional properties for the node. Each <property> element defines
+a single property of the node. The element may be repeated.
+-->
+<p><property> <!--
+required property name
+--> <name>prop</name></p>
+<!--
+value of the property.
+For multi-value properties, the values are defined by multiple
+<value> elements nested inside a <values> element instead of a
+single <value> element
+-->
+<p><value>property value as string</value></p>
+<!--
+Optional type of the property value, defaults to String.
+This must be one of the property type strings defined in the
+JCR PropertyType interface.
+-->
+<p><type>String</type> </property></p>
+<!--
+Additional child nodes. May be further nested.
+-->
+<p><node> .... </node> </node></p>
+<h4>Using a custom XML format</h4>
+<p>By writing an XSLT stylesheet file, you can use whatever XML format you prefer. The XML file references an XSLT stylesheet by using the xml-stylesheet processing instruction:</p>
+<p>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;?xml-stylesheet href="my-transform.xsl" type="text/xsl"?&gt; <!-- The path to my-transform.xsl is relative to this file --></p>
+<p><your_custom_root_node> <your_custom_element> ... </your_custom_element> ... </your_custom_root_node></p>
+<p>The my-transform.xsl file is then responsible for translating your format into one of the supported XML formats:</p>
+<p>&lt;xsl:stylesheet version="1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:rep="internal" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</p>
+<p>&lt;xsl:template match="your_custom_element"&gt; <node> ... </node> &lt;/xsl:template&gt; ... &lt;/xsl:stylesheet&gt;</p>
+<h3>JSON Descriptor Files</h3>
+<p>Nodes, Properties and in fact complete subtrees may be described in JSON files using the following skeleton structure (see <a href="http://www.json.org">http://www.json.org</a> or information on the syntax of JSON) :</p>
+<p>{ // child node name "nodename" : {</p>
+<p>// optional primary node type, default "nt:unstructured" "jcr:primaryType": "sling:ScriptedComponent",</p>
+<p>// optional mixin node types as array "jcr:mixinTypes": [ ],</p>
+<p>// additional properties as name value pairs. // Multi-value properties are defined as JSON array. // Property type is derived from the value</p>
+<p>// String value (default) "sling:contentClass": "com.day.sling.jcr.test.Test",</p>
+<p>// Multi-value String "sampleMulti": [ "v1", "v2" ],</p>
+<p>// Long value, single and multi "sampleStruct": 1, "sampleStructMulti": [ 1, 2, 3 ],</p>
+<p>// Date follows pattern yyyy-mm-ddTHH:MM:SS.sss±HH:MM "sampleDate": "2014-11-27T13:26:00.000+01:00",</p>
+<p>// JCR Node Reference with name prefix (removed to derive node name) "jcr:reference:sampleRef": "386b0f48-49c3-4c58-8735-ceee6bfc1933",</p>
+<p>// JCR Path with name prefix (removed to derive node name) "jcr:path:samplePath": "/content/data",</p>
+<p>// JCR Name with name prefix (removed to derive node name) "jcr:name:sampleName": "data",</p>
+<p>// URI with name prefix (removed to derive node name) "jcr:uri:sampleUri": "http://sling.apache.org/",</p>
+<p>// Child nodes are simple JSON objects "sling:scripts": { "jcr:primaryType": "sling:ScriptList", "sling:Script": { "jcr:primaryType": "sling:Script", "sling:name": "/test/content/jsp/start.jsp", "sling:type": "jsp", "sling:glob": "*" } } }</p>
+<h3>Extractors</h3>
+<p>By default, the <code>sling-jcr-contentloader</code> bundle tries to extract certain file types during content loading. These include <code>json</code>, <code>xml</code>, <code>zip</code>, and <code>jar</code> files. Therefore all available extractors are used for content processing. However if some files should be put into the repository unextracted, the <code>ignoreImportProviders</code> directive can be used with a comma separated list of extensions that should not be extracted, like <code>ignoreImportProviders:=&quot;jar,zip&quot;</code>. Please note that the value needs to be put into quotation marks if more than one value is used like in the example.</p>
+<h3>Workspace Targetting</h3>
+<p>By default, initial content will be loaded into the default workspace. To override this, add a <code>Sling-Initial-Content-Workspace</code> bundle manifest header to specify the workspace. Note that <em>all</em> content from a bundle will be loaded into the same workspace.</p>
+<h3>Example: Load i18n JSON files</h3>
+<p>The Sling Internationalization Support (i18n) supports providing JSON-filed based i18n files (see <a href="https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html#json-file-based">i18n documentation</a>). In this case the JSON file is not interpreted as content definition file, but is stored as binary file in the repository. Additionally a mixin <code>mix:language</code> and a property <code>jcr:language</code> with the language code has to be set on the file node.</p>
+<p>This is an example how such an i18n file can be loaded from an OSGi bundle with the Sling Content Loader.</p>
+<p>Within your bundle header you have to define a separate path for the i18n files where you have to explicitly disable the JSON provider:</p>
+<p><Sling-Initial-Content> SLING-INF/i18n;overwrite:=true;ignoreImportProviders:=json;path:=/apps/myapp/i18n </Sling-Initial-Content></p>
+<p>The folder <code>SLING-INF/i18n</code> from your bundles contains a pair of files for each language, e.g.:</p>
+<ul>
+  <li><code>en.json</code> - The JSON file containing the i18n keys</li>
+  <li><code>en.json.xml</code> - Additional content descriptor file setting the mixing and language property</li>
+</ul>
+<p>Example for the content descriptor:</p>
+<p>&lt;?xml version="1.0" encoding="UTF-8"?&gt; <node> <name>en.json</name> <mixinNodeType>mix:language</mixinNodeType> <property> <name>jcr:language</name> <value>en</value> <type>String</type> </property> </node></p>
+<h2>Declared Node Type Registration</h2>
+<p>The <code>sling-jcr-base</code> bundle provides low-level repository operations which are at the heart of the functionality of Sling: * <em>Node Type Definitions</em> - The class <code>org.apache.sling.content.jcr.base.NodeTypeLoader</code> provides methods to register custom node types with a repository given a repository session and a node type definition file in CND format. This class is also used by this bundle to register node types on behalf of other bundles.</p>
+<p>Bundles may list node type definition files in CND format in the <code>Sling-Nodetypes</code> bundle header. This header is a comma-separated list of resources in the respective bundle. Each resource is taken and fed to the <code>NodeTypeLoader</code> to define the node types.</p>
+<p>After a bundle has entered the <em>resolved</em> state, the node types listed in the <code>Sling-Nodetypes</code> bundle header are registered with the repository.</p>
+<p>Node types installed by this mechanism will never be removed again by the <code>sling-jcr-base</code> bundle.</p>
+<p>Starting with revision 911430, re-registration of existing node types is enabled by default. To disable this, add <code>;rereigster:=false</code> to the resource names for which re-registration should be disabled.</p>
+<div class="warning">
+Support for re-registration of node types is relatively limited. In Jackrabbit, for example, only "trivial" changes are allowed.
+</div>
+<h3>Automated tests</h3>
+<p>The initial content found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/content/src/main/resources/content/sling-test">sling-test folder of the launchpad initial content</a> is verified by the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java">InitialContentTest</a> when running the <em>launchpad/testing</em> integration tests.</p>
+<p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Configuration</h1></header><h2>Introduction</h2>
+<p>Configuration in Sling is aligned with respective support by the OSGi specification:</p>
+<ul>
+  <li>Framework and Java system properties are available through the <code>BundleContext.getProperty(String)</code> method. These properties are provided in Sling through the Sling launcher.</li>
+  <li>Bundle Header values are available through the <code>Bundle.getHeaders()</code> and <code>Bundle.getHeaders(String)</code> methods. These header values are set by the bundle developer in the <code>META-INF/MANIFEST.MF</code> file. In fact, all main manifest attributes are available through these methods.</li>
+  <li>Components managed by the Service Component Runtime and declared in component descriptor files listed in the <code>Service-Component</code> manifest header access configuration properties through the <code>ComponentContext.getProperties()</code> method. These properties have three sources:</li>
+</ul>
+<ol>
+  <li>Configuration specified specifically for factory components</li>
+  <li>Properties retrieved from the Configuration Admin Service</li>
+  <li>Properties set in the component descriptor</li>
+</ol>
+<ul>
+  <li>Configuration properties provided to <code>ManagedService</code> and <code>ManagedServiceFactory</code> instances by the Configuration Admin Service.</li>
+</ul>
+<p>For the discussion to follow we differentiate between initial configuration provided by Framework and system properties and managed configuration provided by the Configuration Admin Service.</p>
+<p>Components managed by the Service Component Runtime are generally configured (as listed above) through the descriptor properties and configuration set by Configuration Admin Service configuration. The descriptor property values may be seen as configuration default values set by the component developer, which may be overwritten by user configuration through the Configuration Admin Service. Components may but are not required to make use of Framework properties by accessing the <code>BundleContext</code> through the <code>ComponentContext</code> given to the <code>activate(ComponentContext)</code> method of the component.</p>
+<h2>Initial Configuration</h2>
+<p>The lifecycle of the OSGi framework implemented by an instance of the <code>org.apache.felix.framework.Felix</code> class is managed by the Sling launcher class <code>org.apache.sling.launcher.Sling</code>. This class is used by the standalone main class (<code>org.apache.sling.launcher.main.Main</code>) and the Sling Servlet (<code>org.apache.sling.launcher.servlet.SlingServlet</code>) to control the lifecycle.</p>
+<p>The Sling launcher is responsible to provide the Framework properties to the OSGi framework. The properties are prepared as a <code>java.util.Map&lt;String, String&gt;</code> instance as follows (later steps may overwrite properties defined in earlier steps) :</p>
+<ol>
+  <li>Load core properties from the embedded <code>sling.properties</code> file.</li>
+  <li>Resolve any property file inclusions. This is mainly used to resolve the correct JRE package definitions for the JRE version used.</li>
+  <li>Overwrite with any properties provided by the main class or the Sling Servlet.</li>
+  <li>Make sure the <code>sling.home</code> property is set defining a sensible default value if missing</li>
+  <li>Load the contents of the <code>${sling.home}/sling.properties</code> file</li>
+  <li>Overwrite properties with Java system properties. This step only considers system properties of the same names as properties already existing. That is, the system properties are not just copied into the properties here. Additionally this step my be omitted if the <code>sling.ignoreSystemProperties</code> property is set to <code>true</code>.</li>
+  <li>Resolve any property file inclusions. This may be used to provide more configurability depending on the integration.</li>
+  <li>Handle OSGi boot delegation support (see below).</li>
+  <li>Resolve property references of the form <code>${propName</code>}</li>
+  <li>For each property value starting with <code>ontext:/</code> do the following, assuming the value to be an URL with scheme <code>context:</code>:</li>
+</ol>
+<ul>
+  <li>Copy the application resource to <code>${sling.home</code>} preserving the URL path unless such a file already exists.</li>
+  <li>Replace the property value with the path to the newly created file. The path has the form <code>${sling.home}/relpath</code>.</li>
+</ul>
+<ol>
+  <li>Store the properties as <code>${sling.home}/sling.properties</code> to be re-used on next startup</li>
+  <li>Setup Bundle auto installation for the Felix Framework</li>
+</ol>
+<p>Using file system copies of the initial configuration and referred files, it is easy to modify this configuration without the need to unpack and repackage the web application archive.</p>
+<p>The only property really required is actually the <code>sling.home</code> property, which defines the file system location where runtime files will be placed. The default if this property is missing will be <em>sling</em> in the current working directory as defined the <code>user.dir</code> system property.</p>
+<h3>Standalone Application</h3>
+<p>When launching Sling as a standalone application the <code>sling-app.jar</code> file is used. This is an executable JAR File. The <code>sling.properties</code> file as well as the <code>sling_install.properties</code> and JRE specific properties files are located at the root of the JAR file hierarchy.</p>
+<p>The standalone application currently sets properties for the third step of the configuration setup to ensure the HTTP Servlet integration is using the Apache Felix <em>http.jetty</em> bundle. Additionally system properties may be set using the <code>-D</code> command line switch of the Java binary.</p>
+<p>In addition the following command line arguments are accepted:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Argument </th>
+      <th>Sling property </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-l loglevel</code> </td>
+      <td><code>org.apache.sling.osgi.log.level</code> </td>
+      <td>The initial loglevel (0..4, FATAL, ERROR, WARN, INFO, DEBUG) </td>
+    </tr>
+    <tr>
+      <td><code>-f logfile</code> </td>
+      <td><code>org.apache.sling.osgi.log.file</code> </td>
+      <td>The log file, "-" for stdout </td>
+    </tr>
+    <tr>
+      <td><code>-c slinghome</code> </td>
+      <td><code>sling.home</code> </td>
+      <td>the sling context directory </td>
+    </tr>
+  </tbody>
+</table>
+<p>| <code>-a address</code> | -- | the interfact to bind to (use 0.0.0.0 for any) (not supported yet) | | <code>-p port</code> | <code>org.osgi.service.http.port</code> | the port to listen to (default 8080) | | <code>-h</code> | -- | Prints a simple usage message and exits. |</p>
+<p>The standalone application exits with status code 0 (zero) if Sling terminates normally, that is if the OSGi framework is stopped or if just the usage note has been displayed. If any error occurrs during command line parsing, the cause is printed to the error output and the application exists with status code 1 (one). If the OSGi framework fails to start, the cause is printed to the error output and the application exists with status code 2.</p>
+<h3>Web Application</h3>
+<p>When launching Sling as a web application using the <code>sling-servlet.war</code> or any derived Web Application archive file, the <code>sling.properties</code> file is located in the <code>WEB-INF</code> folder along with the <code>sling_install.properties</code> and JRE specific properties files.</p>
+<p>The Sling Servlet uses the Servlet Context and Servlet <code>init-param</code> configurations to prepare the properties for the third step of the configuration setup.</p>
+<p>If the OSGi framework fails to startup for any reason a <code>javax.servlet.UnavailableException</code>.</p>
+<h3>Property File Inclusions</h3>
+<p>Twice in the configuration setup (second and seventh step) any property file inclusions will be handled. Property files may be included by defining one or more properties containing a comma-separated list of properties files to include. Property file inclusion looks at the <code>sling.include</code> property and any other property whose prefix is <code>sling.include.</code>. When such properties exist, the files listed in those properties are included.</p>
+<p>The order of handling the property file inclusion properties is defined as natural sort order of the actual property names. So the properties of the files listed in the <code>sling.include.first</code> property will be loaded before the files listed in the <code>sling.include.second</code> but after the files listed in the <code>sling.include.a</code> property.</p>
+<p>Any file which does not exist is silently ignored.</p>
+<p>The names of the files are resolved as follows:</p>
+<ol>
+  <li>If a resource exists at the same location as the initial <code>sling.properties</code> file packaged with the application, that resource is used</li>
+  <li>If the name is a relative file name, it is looked for in the <code>sling.home</code> directory</li>
+  <li>If the name is an absolute file name, it is used as is</li>
+</ol>
+<p><em>Example</em></p>
+<p>The packaged <code>sling.properties</code> file contains the following properties file inclusion setting:</p>
+<p>sling.include.jre = jre-${java.specification.version}.properties</p>
+<p>This is used to include the JRE package list to be made visible inside the OSGi framework.</p>
+<h3>OSGi Boot Delegation Support</h3>
+<p>Some packages may have to be shared between bundles in an OSGi framework and the rest of Java VM in which the framework has been launched. This is especially true for OSGi framework instances launched in embedding such as Servlet Containers. In the case of a Sling Application accessing a JCR Repository launched in a different Web Application, this mainly concerns an API packages as well as the JNDI Initial Factory package(s).</p>
+<p>To cope with this sharing issue, the OSGi core specification defines two properties, which may list packages to be used from the environment:</p>
+<ul>
+  <li><em><code>org.osgi.framework.system.packages</code></em> - This property lists package names which are added to the list of exported packages of the system bundle of the OSGi framework. These packages are used in the resolution process just as any package listed in an <code>Export-Package</code> bundle manifest header.</li>
+  <li><em><code>org.osgi.framework.bootdelegation</code></em> - This property lists packages, which are always used from the environment. As such, these packages will never be looked up in package wirings as are packages imported by listing them in the <code>Import-Package</code> bundle manifest header.</li>
+</ul>
+<p>Sometimes, especially in the Servlet Container case, it is important to use the shared classes from the container and not resolve using standard OSGi resolution. In such cases, the packages of these shared classes must be listed in the <code>org.osgi.framework.bootdelegation</code> property. Sling provides a mechanism to extend the default setting of the <code>org.osgi.framework.bootdelegation</code> property by adding properties prefixed with <code>sling.bootdelegation.</code>. The value of each of these prefixed properties is conditionally appended to the <code>org.osgi.framework.bootdelegation</code> property. <em>Conditionally</em> means, that the property name may contain the fully qualified name of a class, which is checked to see whether to add the property value or not.</p>
+<p><em>Examples</em></p>
+<table>
+  <thead>
+    <tr>
+      <th>Configuration </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.bootdelegation.simple = com.some.package</code> </td>
+      <td>This setting unconditionally adds the <code>com.some.package</code> package to the <code>org.osgi.framework.bootdelegation</code> property </td>
+    </tr>
+    <tr>
+      <td><code>sling.bootdelegation.class.com.some.other.Main = com.some.other</code> </td>
+      <td>This setting checks whether the <code>com.some.other.Main</code> class is known. If so, the <code>com.some.other</code> package is added to the <code>org.osgi.framework.bootdelegation</code> property. Otherwise the <code>com.some.other</code> package is not added - and therefore must be exported by a bundle if required for use inside the framework. </td>
+    </tr>
+  </tbody>
+</table>
+<p><em>Note</em> Even though packages listed in the <code>org.osgi.framework.bootdelegation</code> property will always be loaded from the environment, any bundles using these packages must still import them (through <code>Import-Package</code> or <code>DynamicImport-Package</code>) and the bundles must resolve for being usable.</p>
+<h3>OSGi System Packages Support</h3>
+<p>As listed in the above section on OSGi Boot Delegation Support, the <code>org.osgi.framework.system.packages</code> property may be used to extend the export list of the system bundle. Similar to the support for extending the boot delegation packages list, Sling supports extending the system packages list. The mechanism to extend the default setting of the <code>org.osgi.framework.system.packages</code> property by adding properties prefixed with <code>sling.system.packages.</code>. The value of each of these prefixed properties is conditionally appended to the <code>org.osgi.framework.system.packages</code> property. <em>Conditionally</em> means, that the property name may contain the fully qualified name of a class, which is checked to see whether to add the property value or not.</p>
+<p><em>Examples</em></p>
+<table>
+  <thead>
+    <tr>
+      <th>Configuration </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.system.packages.simple = com.some.package</code> </td>
+      <td>This setting unconditionally adds the <code>com.some.package</code> package to the <code>org.osgi.framework.system.packages</code> property </td>
+    </tr>
+    <tr>
+      <td><code>sling.system.packages.class.com.some.other.Main = com.some.other</code> </td>
+      <td>This setting checks whether the <code>com.some.other.Main</code> class is known. If so, the <code>com.some.other</code> package is added to the <code>org.osgi.framework.system.packages</code> property. Otherwise the <code>com.some.other</code> package is not added - and therefore must be exported by a bundle if required for use inside the framework. </td>
+    </tr>
+  </tbody>
+</table>
+<p><em>Note</em> Packages listed in the <code>org.osgi.framework.system.packages</code> required by any bundles must be imported by those bundles by listing them in the <code>Import-Package</code> or <code>DynamicImport-Package</code> manifest header.</p>
+<h2>Recommendations for property names</h2>
+<p>The following system property names are reserved:</p>
+<ul>
+  <li>Names starting with <code>org.osgi.</code> are reserved for OSGi defined Framework properties</li>
+  <li>Names starting with <code>org.apache.felix.</code> are reserved for the Felix Framework</li>
+  <li>Names starting with <code>sling.</code> and <code>org.apache.sling.</code> are reserved for Sling</li>
+</ul>
+<p>To prevent property name collisions, I suggest the following convention:</p>
+<ul>
+  <li>Use fully qualified property names for initial configuration through Framework properties</li>
+  <li>Use unqualified property names for configuration through the Configuration Admin Service</li>
+</ul>
+<h2>Well Known Properties</h2>
+<p>The following table is a collection of well known property names from different parts of Project Sling.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.home</code> </td>
+      <td>Defines the file system location where Project Sling will write copies of the initial configuration. This property should also be used to define other local file system locations such as the directory to use for the Apache Felix Bundle Cache (<code>${sling.home}/felix</code> by default). If this property is not set it defaults to <code>${user.dir}/sling</code>. </td>
+    </tr>
+    <tr>
+      <td><code>sling.home.url</code> </td>
+      <td>Contains the Sling directory set in the <code>sling.home</code> property as a valid URL. This property may be used in situations where the Sling directory is required as an URL. This property is automatically set by the Sling application and may not be modified by configuration files. </td>
+    </tr>
+    <tr>
+      <td><code>sling.ignoreSystemProperties</code> </td>
+      <td>Whether to overwrite any configuration properties with Java system properties or not. By default this property is set to <code>true</code> by the Sling Servlet but not set by the Sling main class. The reason to set this by default in the Sling Servlet is to not induce values from the environment, which may not be appropriate in the Web Application case. </td>
+    </tr>
+    <tr>
+      <td><code>obr.repository.url</code> </td>
+      <td>A comma-separated list of OSGi Bundle Repository URLs. See <em>sling.properties</em> on the page <a href="/documentation/the-sling-engine/the-sling-launchpad.html#slingproperties">the Sling Launchpad</a>. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.commons.log.*</code> </td>
+      <td>Properties providing initial configuration to the Sling Log Service. See <em>sling.properties</em> on the page <a href="/documentation/the-sling-engine/the-sling-launchpad.html#slingproperties">the Sling Launchpad</a>. </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Configuration Admin Service</h2>
+<p>Configuration of the system entities, such as services and components, by the system administrator is supported the Configuration Admin Service. The Configuration Admin Service acts as the center for the management of the configuration data, to which GUI-based tools will connect to retrieve and update configuration data. The Configuration Admin Service is responsible for persisting the configuration data and for providing configuration consumers with the configuration data. Specifically services registered with the <code>ManagedService</code> or <code>ManagedServiceFactory</code> interfaces are updated with the configuration upon updated. The Service Component Runtime on the other hand recognizes updated configuration and provides it to the managed components as defined in the OSGi Declarative Services Specification.</p>
+<p>By default the Configuration Admin Service is installed when Sling is started for the first time. This service is used by the Service Component Runtime launching the OSGi components declared in the bundles with configuration values. The Sling Management Console provides a simple GUI to manage these configuration elements on the 'Configuration' page.</p>
+<p>For more information on the Configuration Admin Service refer to the OSGi Configuration Admin Service Specification in the OSGi Service Platform Service Compendium book.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

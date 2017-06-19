@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Servlet Helpers</h1></header><p>The Sling Servlet Helpers bundle provides mock implementations of the <code>SlingHttpServletRequest</code>, <code>SlingHttpServletResponse</code> and related classes.</p>
+<p>Those mock implementations are meant to be used in tests and also with services like the <code>SlingRequestProcessor</code> when making requests to that service outside of an HTTP request processing context.</p>
+<p>See the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/servlet-helpers">automated tests</a> of the <code>servlet-helpers</code> module for more info.</p>
+<h2>Usage</h2>
+<h3>SlingHttpServletRequest</h3>
+<p>Example for preparing a sling request with custom request data:</p>
+<h1>!java</h1>
+<p>// prepare sling request MockSlingHttpServletRequest request = new MockSlingHttpServletRequest(resourceResolver);</p>
+<p>// simulate query string request.setQueryString("param1=aaa&amp;param2=bbb");</p>
+<p>// alternative - set query parameters as map request.setParameterMap(ImmutableMap.&lt;String,Object&gt;builder() .put("param1", "aaa") .put("param2", "bbb") .build());</p>
+<p>// set current resource request.setResource(resourceResolver.getResource("/content/sample"));</p>
+<p>// set sling request path info properties MockRequestPathInfo requestPathInfo = (MockRequestPathInfo)request.getRequestPathInfo(); requestPathInfo.setSelectorString("selector1.selector2"); requestPathInfo.setExtension("html");</p>
+<p>// set method request.setMethod(HttpConstants.METHOD_POST);</p>
+<p>// set attributes request.setAttribute("attr1", "value1");</p>
+<p>// set headers request.addHeader("header1", "value1");</p>
+<p>// set cookies request.addCookie(new Cookie("cookie1", "value1"));</p>
+<h3>SlingHttpServletResponse</h3>
+<p>Example for preparing a sling response which can collect the data that was written to it:</p>
+<h1>!java</h1>
+<p>// prepare sling response MockSlingHttpServletResponse response = new MockSlingHttpServletResponse();</p>
+<p>// execute the code that writes to the response...</p>
+<p>// validate status code assertEquals(HttpServletResponse.SC_OK, response.getStatus());</p>
+<p>// validate content type and content length assertEquals("text/plain;charset=UTF-8", response.getContentType()); assertEquals(CharEncoding.UTF_8, response.getCharacterEncoding()); assertEquals(55, response.getContentLength());</p>
+<p>// validate headers assertTrue(response.containsHeader("header1")); assertEquals("5", response.getHeader("header2"));</p>
+<p>// validate response body as string assertEquals(TEST_CONTENT, response.getOutputAsString());</p>
+<p>// validate response body as binary data assertArrayEquals(TEST_DATA, response.getOutput());</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

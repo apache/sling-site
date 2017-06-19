@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Installing and Upgrading Bundles</h1></header><p>Excerpt: Explains how to install, upgrade and uninstall Bundles using the Sling Management console.</p>
+<div class="note">
+We recommend to use the Apache Felix Web Console. The documentation below describes the old Sling Management Console, which isn't in use any more. Please refer to the documentation of the <a href="http://felix.apache.org/site/apache-felix-web-console.html">Apache Felix Web Console</a>.
+</div>
+<p>OSGi bundles installed in the OSGi framework, which is provided by Sling, may be upgraded or removed and new bundles may be installed by using the Sling Management Console. This page is about using the Sling Management Console for those tasks.</p>
+<p>Basically, you have two choices to install and upgrade bundles: Upload the bundle files or install them from a Bundle Repository.</p>
+<h2>Sling Management Console</h2>
+<p>The Sling Management Console is installed by default when Sling is running and may be reached at on the page <code>/system/console</code> in the Sling Context by default. For example if you installed the Sling Web Application in the <code>/sample</code> context of the Servlet Container running at <code>http://somehost:4402</code>, you would access the Sling Management Console at <code>http://somehost:4402/sample/system/console</code>.</p>
+<p>You will be prompted for a user name and password to access the Sling Management Console. This password is preset to be <em>admin</em> for the user name and <em>admin</em> for the password.</p>
+<p>NB: Both the username and password and the location of the Sling Management Console inside the Web Application Context is configurable in the <em>Sling Management Console</em> configuration on the <em>Configuration</em> page.</p>
+<h2>Installing and upgrading bundles by Upload</h2>
+<p>To install a new bundle or upgrade an already installed bundle, go to the <em>Bundles</em> page in the Sling Management Console. At the top and the bottom of the page you have a form to specify and upload a bundle as a file :</p>
+<ul>
+  <li>Select the bundle file to upload</li>
+  <li>Click the <em>Start</em> checkbox, if you want to start the bundle after installation. If the bundle is upgraded, this checkbox is ignored.</li>
+  <li>Specify the start level of the bundle in the <em>Start Level</em> field. This must be a number higher than 0 and is ignored for bundles, which are already installed. Most of the time, you will use the default value.</li>
+  <li>Click the <em>Install or Update</em> button</li>
+</ul>
+<p>After clicking the button, the bundle file will be uploaded. If a bundle with the same bundle symbolic name is already installed, the respective bundle will be updated with the new bundle file. Otherwise the bundle file will be installed as a new bundle and its start level is set as defined. Additionally the bundle will optionally be started.</p>
+<p>After having updated a bundle, you should also refresh the packages by clicking on the <em>Refresh Packages</em> button. The reson for this is, that the old version of the bundle is still used by other bundles even after upgrading to a new version. Only when the packages are refreshed any users of the bundle will be relinked to use the new bundle version. As this might be a somewhat lengthy operation, which also stops and restarts using bundles, this operation has to be executed explicitly.</p>
+<p>Also, if you plan to upgrade multiple bundles, you may wish to upgrade all bundles before repackaging the using bundles.</p>
+<h2>Installing and upgrading bundles from the Bundle Repository</h2>
+<p>The OSGi Bundle Repository is a repository of bundles, from which Sling may download and install or upgrade bundles very easily. Unlike the installation of bundles by file upload, the OSGi Bundle Repository has the functionality to resolve and dependencies of bundles to be installed.</p>
+<p>Say you wish to install bundle <em>X</em> which depends on packages provided by bundle <em>Y</em>. When uploading bundle <em>X</em> as a file it will not resolve, that is Sling (the OSGi framework actually) is not able to ensure proper operation of bundle <em>X</em> and thus prevents the bundle from being started and used. You will have to manually upload bundle <em>Y</em> yourself. When using the OSGi Bundle Repository, you just select bundle <em>X</em> for installation and the bundle repository will find out, that bundle <em>Y</em> is also required and will automatically download and install it along with bundle <em>X</em>.</p>
+<h3>The Bundle Repository page</h3>
+<p>Installation or update of bundles may be done on the <em>Bundle Repository</em> page of the Sling Management Console. In the upper part of the page, you will see a list (usually just a single entry) of OSGi Bundle Repositories known to Sling. In the lower part of the list you see the bundles available from these repositories. To install or update bundles, just check the respective button and click on the <em>Deploy Selected</em> or <em>Deploy and Start Selected</em> button at the bottom of the page depending on whether you want to start the bundle(s) after installation or not.</p>
+<p>See below for more information on OSGi Bundle Repository management.</p>
+<h3>The Bundles page</h3>
+<p>You may also want to upgrade already installed bundles from the <em>Bundles</em> page of the Sling Management Console. For each bundle listed in this page, there is an <em>Upgrade</em> button. If there is an upgrade to the installed bundle available in the OSGi Bundle Repository, the button is enabled and clicking on the button will upgrade the respective bundle. If no upgrade is available from the OSGi Bundle Repository, this button is disabled.</p>
+<h3>Managing OSGi Bundle Repositories</h3>
+<p>Currently management of known OSGi Bundle Repositories is very simple. If a configured bundle repository is not available on startup, it will be marked as being inactive. If you know the repository is now available, you may click on the <em>Refresh</em> button, to activate it. Similarly, the contents of the repository may be modified by for example adding new bundles or updating bundles in the repository, these changes will be made known to Sling by clicking the <em>Refresh</em> button.</p>
+<p>There exists no GUI functionality yet to add a new repository to the list of known repositories. Instead you may submit a request with parameters <code>action</code> whose value must be <code>refreshOBR</code> and <code>repository</code> whose value must be the URL to the repository descriptor file generally called <code>repository.xml</code>.</p>
+<p>For example, if you run Sling on <code>http://localhost:7402/sample</code> with default location of the Sling Management Console, the following request would add a repository at <code>/tmp/repo/repository.xml</code> in the filesystem:</p>
+<p>:::html http://localhost:7402/sample/system/console/bundlerepo?action=refreshOBR&amp;repository=file:///tmp/repo/repository.xml</p>
+<p>Note: Only use <code>file:</code> URLs if you know Sling has access to the named file !</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

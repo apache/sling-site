@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>File Installer Provider</h1></header><p>The file installer provider scans configured directories and provides the found artifacts (files) to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>. The functionality is very similar to Apache Felix FileInstall, with the major difference that this service implements just the task of scanning a file directory. All the management logic is implemented in the OSGi installer and support of various artifact types like bundles, configurations or custom formats is implemented by plugins for the OSGi installer.</p>
+<h2>Setup</h2>
+<p>The file installer can be configured with these framework (system) properties:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.fileinstall.dir</code></td>
+      <td> </td>
+      <td>The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts</td>
+    </tr>
+    <tr>
+      <td><code>sling.fileinstall.interval</code></td>
+      <td>5000 ms</td>
+      <td>Number of milliseconds between 2 polls of the directory</td>
+    </tr>
+    <tr>
+      <td><code>sling.fileinstall.writeback</code></td>
+      <td>true</td>
+      <td>If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system.</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Bundles</h2>
+<p>Bundles are supported by the OSGi installer. If a bundle jar is added to a scanned directory, this bundle is installed. If the file is updated/changed, the bundle is updated. If the file is removed, the bundle gets removed. Of course, these are the simple rules. The actual action depends by the overall state of the system and is controlled by the OSGi installer. For example if already the same bundle with a higher version is installed, when a bundle is dropped into the install folder, the OSGi installer will perform no operation.</p>
+<p>Start levels are supported as well by creating a directory with the name of the start level within the scan directory and putting the bundles within this directory. For example, if the <code>install</code> folder is scanned, the bundle <code>install/3/mybundle.jar</code> will be installed with start level 3. Without such a directory the default start level is used.</p>
+<h2>Configurations</h2>
+<p>Configurations are handled by the <a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a>. The different formats are described there.</p>
+<h2>Custom Artifacts</h2>
+<p>Custom artifacts are handled by the OSGi installer depending on the installed plugins. Have a look at the OSGi installer and its plugins for more information.</p>
+<h2>Runmode Support</h2>
+<p>The file installer supports run modes for installing artifacts (added with <a href="https://issues.apache.org/jira/browse/SLING-4478">SLING-4478</a>). Within the scanned directory, a folder prefixed with "install." and followed by one or more run modes (separated by ".") will only be considered if all the respective run modes are active. For example artifacts below a folder named <code>install.a1.dev</code> are only taken into account if the run modes <code>a1</code> and <code>dev</code> are both active.</p>
+<p>You can even combine start level and run mode support. Just pay attention that the run mode foldername must be set on a direct child folder of <code>sling.fileinstall.dir</code> while the start level must be set directly on the parent folder of the artifact you want to install. E.g. <code>&lt;sling.fileinstall.dir&gt;/install.a1.dev/3/mybundle.jar</code> will only be considered if both run modes <code>a1</code> and <code>dev</code> are set. If this is the case then the according artifact will be installed in start level 3.</p>
+<h1>Project Info</h1>
+<ul>
+  <li>File installer provider (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/file">org.apache.sling.installer.provider.file</a>)</li>
+</ul></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

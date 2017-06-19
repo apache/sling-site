@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Content Distribution (org.apache.sling.distribution)</h1></header><p>[TOC]</p>
+<h2>Introduction</h2>
+<p>The Sling Content Distribution (SCD) module allows one to distribute Sling resources between different Sling instances. The API works at path level and the distribution agents basically enable distribution of specific paths between instances. There are several main usecases in which SCD can help. Typically the distribution is done from one or more source instances to one or more target instances.</p>
+<h2>Distribution usecases</h2>
+<p>Some of the usecases have sample configuration in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/sample/src/main/resources/SLING-CONTENT/libs/sling/distribution">Distribution Sample Module</a> and are tested in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/it">Distribution ITs Module</a>.</p>
+<h3>Forward distribution</h3>
+<p>A forward distribution setup allows one to transfer content from a source instance to a farm of target instances. That is done by pushing the content from source to target.</p>
+<h4>Setup overview</h4>
+<ul>
+  <li>one source instance</li>
+  <li>one distribution agent connected to importer endpoints for all target instances.</li>
+  <li>N target instances</li>
+  <li>one distribution importer on each target instance used to import packages into the local instance.</li>
+</ul>
+<h4>Sample configuration</h4>
+<ul>
+  <li>on source instance: one forward agent</li>
+</ul>
+<p>org.apache.sling.distribution.agent.impl.ForwardDistributionAgentFactory-publish.json name="publish" packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default"]</p>
+<ul>
+  <li>on target instance: one local importer</li>
+</ul>
+<p>org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default name="default"</p>
+<h3>Reverse distribution</h3>
+<p>A reverse distribution setup allows one to transfer content from a farm of source instances to a target instance. That is done by pulling the content from source instances into the target instance.</p>
+<h4>Setup overview</h4>
+<ul>
+  <li>one target instance</li>
+  <li>one distribution agent connected to exporter endpoints for all target instances.</li>
+  <li>N source instances</li>
+  <li>one distribution (queue) agent on each source instance; changes from the source instances are placed in the queues of these agents.</li>
+  <li>one distribution exporter on each source instance that exports packages from the queue agent.</li>
+</ul>
+<h4>Sample configuration</h4>
+<ul>
+  <li>on target instance: one reverse agent</li>
+</ul>
+<p>org.apache.sling.distribution.agent.impl.ReverseDistributionAgentFactory-reverse.json name="reverse" packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse"]</p>
+<ul>
+  <li>on source instance: one queue agent and one exporter for that agent</li>
+</ul>
+<p>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json name="reverse"</p>
+<p>org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse name="reverse" agent.target="(name=reverse)"</p>
+<h3>Sync distribution</h3>
+<p>A sync distribution setup allows one to synchronize content in a farm of instances. That is done by using a coordinator instance (typically an author instance) that pulls content from all instances in a farm and pushes it back to all.</p>
+<h4>Setup overview:</h4>
+<ul>
+  <li>one coordinator instance</li>
+  <li>one distribution agent connected to exporter/importer endpoints for all farm instances.</li>
+  <li>N farm instances</li>
+  <li>one distribution (queue) agent on each farm instance; changes from these instances are placed in the queues of the queue agents.</li>
+  <li>one distribution exporter on each farm instance that exports packages from the queue agent.</li>
+  <li>one distribution importer on each farm instance used to import packages into the local instance.</li>
+</ul>
+<h4>Sample configuration</h4>
+<ul>
+  <li>on coordinator instance: one sync agent</li>
+</ul>
+<p>org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-sync.json name="sync" packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse", "http://localhost:4504/libs/sling/distribution/services/exporters/reverse"] packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default", "http://localhost:4504/libs/sling/distribution/services/importers/default"]</p>
+<ul>
+  <li>on each farm instance: one local exporter and one local importer</li>
+</ul>
+<p>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json name="reverse"</p>
+<p>org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse name="reverse" agent.target="(name=reverse)"</p>
+<p>org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default name="reverse" agent.target="(name=reverse)"</p>
+<h3>Multidatacenter sync distribution</h3>
+<p>A multidatacenter sync distribution setup allows one to synchronize content in a farm of publish instances across datacenters. This a variation of sync distribution but using a coordinator in each datacenter.</p>
+<h4>Setup overview</h4>
+<ul>
+  <li>one coordinator instance in each datacenter</li>
+  <li>one distribution agent for intra-datacenter synchronization. Like a regular sync agent it connects to all farm instances in its datacenter and syncronizes them. In addition to a regular sync agent it keeps the packages also in dedicated queues for the other DCs, so that the coordinators from the other DCs can pull the updates.</li>
+  <li>one distribution exporter for each queue dedicated for the remote DCs. The inter-dc coordinators from the other DCs will connect to these exporter endpoints.</li>
+  <li>one distribution agent for inter-datacenter synchronization; it conntects to the dedicated queues exposed by intra-dc coordinators from the other datacenters.</li>
+  <li>N farm instances in each datacenter</li>
+  <li>one distribution (queue) agent on each farm instance; changes from these instances are placed in the queues of the queue agents.</li>
+  <li>one distribution exporter on each farm instance that exports packages from the queue agent.</li>
+  <li>one distribution importer on each farm instance used to import packages into the local instance.</li>
+</ul>
+<h4>Sample configuration</h4>
+<ul>
+  <li>on coordinator instance: one intradcsync agent with two exporters for the other dcs, and one interdcsync agent that connects to remote exporters.</li>
+</ul>
+<p>org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-intradcsync name="intradcsync" packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse", "http://localhost:4504/libs/sling/distribution/services/exporters/reverse"] packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default", "http://localhost:4504/libs/sling/distribution/services/importers/default"] passiveQueues=["dc2queue", "dc3queue"]</p>
+<p>org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-dc2queue name="dc2queue" agent.target="(name=intradcsync)" queue="dc2queue"</p>
+<p>org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-dc3queue name="dc3queue" agent.target="(name=intradcsync)" queue="dc3queue"</p>
+<p>org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-interdcsync name="interdcsync" packageExporter.endpoints=["http://localhost:5502/libs/sling/distribution/services/exporters/dc1queue", "http://localhost:6502/libs/sling/distribution/services/exporters/dc1queue"] packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default", "http://localhost:4504/libs/sling/distribution/services/importers/default"]</p>
+<ul>
+  <li>on each farm instance: one local exporter and one local importer</li>
+</ul>
+<p>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json name="reverse"</p>
+<p>org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse name="reverse" agent.target="(name=reverse)"</p>
+<p>org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default name="default"</p>
+<h2>Additional options</h2>
+<h3>How to trigger distribution over HTTP?</h3>
+<h3>How to configure binary-less distribution?</h3>
+<h3>How to configure priority paths?</h3>
+<h3>How to configure error queues?</h3></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

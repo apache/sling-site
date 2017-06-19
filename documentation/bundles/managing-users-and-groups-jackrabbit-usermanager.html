@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Managing users and groups (jackrabbit.usermanager)</h1></header><p>The <code>jackrabbit-usermanager</code> bundle delivers a REST interface to create, update and delete users and groups in the JCR. After installing the <code>jackrabbit-usermanager</code> bundle all REST services are exposed under the path <code>/system/userManager</code>. Its interface for modifing/creating authorizables is similar to the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">SlingPostServlet</a>.</p>
+<p>For getting information about existing authorizables it provides all authorizables as Sling resources through its <code>AuthorizableResourceProvider</code> below <code>/system/userManager/user</code> and <code>/system/userManager/group</code>. Those resources can be exposed via the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a>.</p>
+<p>[TOC]</p>
+<h2>List users</h2>
+<p>To list existing users a GET request to the <code>/system/userManager/user</code> resource can be issued. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a> and/or the availability of a Servlet or Script handling the <code>sling/users</code> resource type, a result may be delivered/</p>
+<p>Example with curl and the default JSON rendering:</p>
+<p>$ curl http://localhost:8080/system/userManager/user.tidy.1.json { "admin": { "memberOf": [], "declaredMemberOf": [] }, "anonymous": { "memberOf": [], "declaredMemberOf": [] } }</p>
+<h2>Get user</h2>
+<p><em>since version 2.0.8</em> The properties of a single user can be retrieved by sending a GET request to the user's resource at <code>/system/userManager/user/&lt;username&gt;</code> where <code>&lt;username&gt;</code> would be replaced with the name of the user. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a> and/or the availability of a Servlet or Script handling the <code>sling/user</code> resource type, a result may be delivered.</p>
+<p>Example with curl and the default JSON rendering:</p>
+<p>$ curl http://localhost:8080/system/userManager/user/admin.tidy.1.json { "memberOf": [], "declaredMemberOf": [] }</p>
+<p>If a non-existing user is requested a <code>404/NOT FOUND</code> status is sent back.</p>
+<h2>Create user</h2>
+<p>To create a new user POST a request to <code>/system/userManager/user.create.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Name </th>
+      <th>Required </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:name</code> </td>
+      <td>yes </td>
+      <td>The name of the new user</td>
+    </tr>
+    <tr>
+      <td><code>pwd</code> </td>
+      <td>yes </td>
+      <td>The password of the new user</td>
+    </tr>
+    <tr>
+      <td><code>pwdConfirm</code> </td>
+      <td>yes </td>
+      <td>The password of the new user (must be equal to the value of <code>pwd</code>)</td>
+    </tr>
+    <tr>
+      <td><code>&lt;anyproperty&gt;</code> </td>
+      <td>no </td>
+      <td>Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status Code </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200 </td>
+      <td>Success, a redirect is sent to the users resource locator with HTML (or JSON) describing status.</td>
+    </tr>
+    <tr>
+      <td>500 </td>
+      <td>Failure, including user already exists. HTML (or JSON) explains failure.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Example with curl:</p>
+<p>curl -F:name=myuser -Fpwd=password -FpwdConfirm=password -Fanyproperty1=value1 http://localhost:8080/system/userManager/user.create.html</p>
+<h2>Update user</h2>
+<p>To update an existing user POST a request to <code>/system/userManager/user/username.update.&lt;html or json&gt;</code>. You can NOT update the username or the password (see Change Password below) only the additional properties are updateable through this URL. The following parameters are available:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Name </th>
+      <th>Required </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:disabled</code> </td>
+      <td>no </td>
+      <td>(since version 2.1.1) If <code>true</code> disables the user to block further login attempts. If <code>false</code> enables a disabled user.</td>
+    </tr>
+    <tr>
+      <td><code>:disabledReason</code> </td>
+      <td>no </td>
+      <td>Specifies the reason why a user has been disabled.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;anyproperty&gt;</code> </td>
+      <td>no </td>
+      <td>Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td>
+    </tr>
+    <tr>
+      <td><code>&lt;anyproperty&gt;@Delete</code> </td>
+      <td>no </td>
+      <td>Properties with @Delete at the end of the name will be deleted in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status Code </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200 </td>
+      <td>Success, a redirect is sent to the users resource locator with HTML (or JSON) describing status.</td>
+    </tr>
+    <tr>
+      <td>404 </td>
+      <td>User was not found.</td>
+    </tr>
+    <tr>
+      <td>500 </td>
+      <td>Any other failure. HTML (or JSON) explains failure.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Example</p>
+<p>curl -Fanyproperty1@Delete -Fproperty2=value2 http://localhost:8080/system/userManager/user/myuser.update.html</p>
+<h2>Change password</h2>
+<p>To change a password of an existing user POST a request to <code>/system/userManager/user/username.changePassword.&lt;html or json&gt;</code>. NOTE: since version 2.1.1, the oldPwd is optional if the current user is a user administrator. The following parameters are available:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Name </th>
+      <th>Required </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>oldPwd</code> </td>
+      <td>yes </td>
+      <td>Old password.</td>
+    </tr>
+    <tr>
+      <td><code>newPwd</code> </td>
+      <td>yes </td>
+      <td>New password.</td>
+    </tr>
+    <tr>
+      <td><code>newPwdConfirm</code> </td>
+      <td>yes </td>
+      <td>New password (must be equal to the value of <code>newPwd</code>).</td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status Code </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200 </td>
+      <td>Success, no body.</td>
+    </tr>
+    <tr>
+      <td>404 </td>
+      <td>User was not found.</td>
+    </tr>
+    <tr>
+      <td>500 </td>
+      <td>Any other failure. HTML (or JSON) explains failure.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Example</p>
+<p>curl -FoldPwd=oldpassword -FnewPwd=newpassword -FnewPwdConfirm=newpassword http://localhost:8080/system/userManager/user/myuser.changePassword.html</p>
+<h2>Delete user</h2>
+<p>To delete an existing user POST a request to <code>/system/userManager/user/username.delete.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Name </th>
+      <th>Required </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:applyTo</code> </td>
+      <td>no </td>
+      <td>An array of relative resource references to users to be deleted. If this parameter is present, the username from the URL is ignored and all listed users are removed.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status Code </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200 </td>
+      <td>Success, no body.</td>
+    </tr>
+    <tr>
+      <td>404 </td>
+      <td>User(s) was/were not found.</td>
+    </tr>
+    <tr>
+      <td>500 </td>
+      <td>Any other failure. HTML (or JSON) explains failure.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Example</p>
+<p>curl -Fgo=1 http://localhost:8080/system/userManager/user/myuser.delete.html</p>
+<h2>List groups</h2>
+<p>To list existing groups a GET request to the <code>/system/userManager/group</code> resource can be sent. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a> and/or the availability of a Servlet or Script handling the <code>sling/groups</code> resource type, a result may be delivered.</p>
+<p>Example with curl and the default JSON rendering:</p>
+<p>$ curl http://localhost:8080/system/userManager/group.tidy.1.json { "UserAdmin": { "members": [], "declaredMembers": [], "memberOf": [], "declaredMemberOf": [] }, "GroupAdmin": { "members": [], "declaredMembers": [], "memberOf": [], "declaredMemberOf": [] }, "administrators": { "members": [], "declaredMembers": [], "memberOf": [], "declaredMemberOf": [] } }</p>
+<h2>Get group</h2>
+<p>The properties of a single group can be retrieved by sending a GET request to the group's resource at <code>/system/userManager/group/groupname</code> where <em>groupname</em> would be replaced with the name of the group. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a> and/or the availability of a Servlet or Script handling the <code>sling/group</code> resource type, a result may be delivered.</p>
+<p>Example with curl and the default JSON rendering:</p>
+<p>$ curl http://localhost:8080/system/userManager/group/administrators.tidy.1.json { "members": [], "declaredMembers": [], "memberOf": [], "declaredMemberOf": [] }</p>
+<p>If a non-existing group is requested a 404/NOT FOUND status is sent back.</p>
+<h2>Create group</h2>
+<p>To create a new group POST a request to <code>/system/userManager/group.create.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Name </th>
+      <th>Required </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:name</code> </td>
+      <td>yes </td>
+      <td>The name of the new group</td>
+    </tr>
+    <tr>
+      <td><code>&lt;anyproperty&gt;</code> </td>
+      <td>no </td>
+      <td>Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status Code </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200 </td>
+      <td>Success, a redirect is sent to the group resource locator with HTML (or JSON) describing status</td>
+    </tr>
+    <tr>
+      <td>500 </td>
+      <td>Failure including group already exists. HTML (or JSON) explains failure.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Example with curl:</p>
+<p>curl -F:name=mygroup -Fanyproperty1=value1 http://localhost:8080/system/userManager/group.create.html</p>
+<h2>Update group</h2>
+<p>To update an existing group POST a request to <code>/system/userManager/group/groupname.update.&lt;html or json&gt;</code>. You can NOT update the name of the group only the additional properties are updateable. The following parameters are available:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Name </th>
+      <th>Required </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:member</code> </td>
+      <td>no </td>
+      <td>user(s) (name or URI) to add to the group as a member. Can also be an array of users.</td>
+    </tr>
+    <tr>
+      <td><code>:member@Delete</code> </td>
+      <td>no </td>
+      <td>user(s) (name or URI) to remove from the group. Can also be an array of users.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;anyproperty&gt;</code> </td>
+      <td>no </td>
+      <td>Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td>
+    </tr>
+    <tr>
+      <td><code>&lt;anyproperty&gt;@Delete</code> </td>
+      <td>no </td>
+      <td>Properties with @Delete at the end of the name will be deleted in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status Code </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200 </td>
+      <td>Success, a redirect is sent to the group resource locator with HTML (or JSON) describing status.</td>
+    </tr>
+    <tr>
+      <td>404 </td>
+      <td>Group was not found.</td>
+    </tr>
+    <tr>
+      <td>500 </td>
+      <td>Any other failure. HTML (or JSON) explains failure.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Example</p>
+<p>curl -Fanyproperty1@Delete -Fproperty2=value2 -F ":member=/system/userManager/user/myuser" http://localhost:8080/system/userManager/group/mygroup.update.html</p>
+<h2>Delete group</h2>
+<p>To delete an existing group POST a request to <code>/system/userManager/group/groupname.delete.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Name </th>
+      <th>Required </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:applyTo</code> </td>
+      <td>no </td>
+      <td>An array of relative resource references to groups to be deleted. If this parameter is present, the name of the group from the URL is ignored and all listed groups are removed.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Status Code </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200 </td>
+      <td>Success, sent with no body.</td>
+    </tr>
+    <tr>
+      <td>404 </td>
+      <td>Group(s) was/were not found.</td>
+    </tr>
+    <tr>
+      <td>500 </td>
+      <td>Any other failure. HTML (or JSON) explains failure.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Example</p>
+<p>curl -Fgo=1 http://localhost:8080/system/userManager/group/mygroup.delete.html</p>
+<h2>Automated Tests</h2>
+<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/accessManager/">launchpad/testing</a> module contains test classes for various operations of the <code>jackrabbit-usermanager</code>. Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various operations, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know!</p>
+<h2>Permissions checking from scripts</h2>
+<p><em>Since Version 2.0.6</em></p>
+<p>When developing scripts that will perform user or group updates, you may want to know what actions the current user is provisioned to do. This information can be used to conditionally render parts of your page differently based on the user rights.</p>
+<p>The jackrabbit.usermanager bundle provides a service (AuthorizablePrivilegesInfo) you can utilize to do help with this permission checking.</p>
+<p>The AuthorizablePrivilegesInfo provides methods for checking the following actions</p>
+<table>
+  <thead>
+    <tr>
+      <th>Method </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>canAddUser(jcrSession)</code> </td>
+      <td>Checks if the current user may add new users </td>
+    </tr>
+    <tr>
+      <td><code>canAddGroup(jcrSession)</code> </td>
+      <td>Checks if the current user may add new groups </td>
+    </tr>
+    <tr>
+      <td><code>canUpdateProperties(jcrSession, principalId)</code> </td>
+      <td>Checks if the current user may update the properties of the specified principal </td>
+    </tr>
+    <tr>
+      <td><code>canRemove(jcrSession, principalId)</code> </td>
+      <td>Checks if the current user may remove the specified user or group </td>
+    </tr>
+    <tr>
+      <td><code>canUpdateGroupMembers(jcrSession, groupId)</code> </td>
+      <td>Checks if the current user may modify the membership of the specified group </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example:</p>
+<p>&lt;% // lookup the service var privilegesInfo = sling.getService(Packages.org.apache.sling.jackrabbit.usermanager.AuthorizablePrivilegesInfo);</p>
+<p>if (privilegesInfo.canAddUser(currentSession)) { //TODO: render the UI that allows the user to add a user here }</p>
+<p>if (privilegesInfo.canAddGroup(currentSession)) { //TODO: render the UI that allows the user to add a group here }</p>
+<p>if (privilegesInfo.canUpdateProperties(currentSession, "someUserId")) { //TODO: render the UI that allows the user to update the properties of the user here }</p>
+<p>if (privilegesInfo.canRemove(currentSession, "someUserId")) { //TODO: render the UI that allows the user to remove the user here }</p>
+<p>if (privilegesInfo.canUpdateGroupMembers(currentSession, "GroupName")) { //TODO: draw your UI that allows the user to update the group memebership here } %&gt;</p>
+<h2>Sample User Interface Implementation</h2>
+<p><em>Since Version 2.1.1</em></p>
+<p>A sample implementation of ui pages for user/group management is provided @ <a href="http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/">http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/</a>.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

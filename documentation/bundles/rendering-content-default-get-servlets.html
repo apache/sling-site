@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Rendering Content - Default GET Servlets</h1></header><p>[TOC]</p>
+<div class="note">
+Not all features of the <b>org.apache.sling.servlets.get</b> bundle are described below - this
+page needs more work.
+</div>
+<h1>Default GET and HEAD servlets</h1>
+<p>Sling provides a number of default GET and HEAD servlets, in the <code>org.apache.sling.servlets.get</code> bundle.</p>
+<p>This provides useful functionality out of the box: JSON rendering of content for example, usually does not require custom code.</p>
+<p>This page provides an overview of these default servlets.</p>
+<p>Currently, only the <code>DefaultGetServlet</code> has configuration parameters. Those are found at <code>/system/console/configMgr/org.apache.sling.servlets.get.DefaultGetServlet</code> on a standard Sling setup, and should be self-explaining. One common use is to disable some of the default renderings listed below, as they might not be useful or desired on production systems.</p>
+<h1>Default renderings</h1>
+<h2>Default JSON rendering</h2>
+<p>Adding a .json extension to a request triggers the default Sling GET servlet in JSON mode, unless a more specific servlet or script is provided for the current resource.</p>
+<p>This servlet currently supports the following selectors:</p>
+<ul>
+  <li><code>.tidy</code> causes the JSON output to be formatted</li>
+  <li><code>.harray</code> causes child nodes to be output as arrays instead of objects, to preserve their order (requires <code>org.apache.sling.servlets.get</code> V2.1.10)</li>
+  <li>A numeric value or <code>.infinity</code> as the last selector selects the desired recursion level</li>
+</ul>
+<p>Note that the number of elements is limited by a configurable value, see the <code>DefaultGetServlet</code> configuration for more info.</p>
+<h2>Default HTML rendering</h2>
+<p>In a similar way, adding a <code>.html</code> extension to a request triggers the default Sling GET servlet in HTML mode. That rendering just dumps the current node values in a readable way, but it's only really useful for troubleshooting.</p>
+<h2>Default text rendering</h2>
+<p>A basic text rendering is also provided if the request has a <code>.txt</code> extension, unless more specific servlets or scripts are provided.</p>
+<h2>Default XML rendering</h2>
+<p>Adding a <code>.xml</code> extension triggers the default XML rendering, once again unless a more specific script or servlet is registered for the current resource.</p>
+<p>That XML rendering currently uses the JCR "document view" export functionality directly, so it only supports rendering resources that are backed by JCR nodes.</p>
+<h2>StreamRendererServlet</h2>
+<p>Whenever the request carries the extension <code>.res</code> or no extension at all, the resource's input stream is spooled to the servlet response (leveraging <code>Resource.adaptTo(InputStream.class)</code>). This servlet supports conditional requests (<a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>) evaluating the resource's modification date from <code>Resource.getResourceMetadata().getModificationTime()</code> and range requests (<a href="https://tools.ietf.org/html/rfc7233">RFC 7233</a>).</p>
+<h2>RedirectServlet</h2>
+<p>The <code>RedirectServlet</code> handles the <code>sling:redirect</code> resource type, using the <code>sling:target</code> property of the resource to define the redirect target, and the <code>sling:status</code> property to define the HTTP status to use (default is 302).</p>
+<p>This is not to be confused with the <code>sling:redirect</code> property used under <code>/etc/map</code>, which is described in <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></p>
+<h2>SlingInfoServlet</h2>
+<p>The <code>SlingInfoServlet</code> provides info on the current JCR session, for requests that map to JCR nodes.</p>
+<p>It is available at <code>/system/sling/info.sessionInfo</code> by default, and supports <code>.json</code> and <code>.txt</code> extensions.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

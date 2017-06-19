@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling - Bringing Back the Fun!</h1></header><p><strong>Apache Sling&trade;</strong> is an innovative web framework that is intended to bring back the fun to web development.</p>
+<p>Discussions about Sling happen on our mailing lists, see the <a href="/project-information.html">Project Information</a> page for more info.</p>
+<h1>Apache Sling in five bullets points</h1>
+<ul>
+  <li>REST based web framework</li>
+  <li>Content-driven, using a JCR content repository</li>
+  <li>Powered by OSGi</li>
+  <li>Scripting inside, multiple languages (JSP, server-side javascript, Scala, etc.)</li>
+  <li>Apache Open Source project</li>
+</ul>
+<h1>Apache Sling in a hundred words</h1>
+<p>Apache Sling is a web framework that uses a <a href="http://en.wikipedia.org/wiki/JSR-170">Java Content Repository</a>, such as <a href="http://jackrabbit.apache.org/">Apache Jackrabbit</a>, to store and manage content.</p>
+<p>Sling applications use either scripts or Java servlets, selected based on simple name conventions, to process HTTP requests in a RESTful way.</p>
+<p>The embedded <a href="http://felix.apache.org/">Apache Felix</a> OSGi framework and console provide a dynamic runtime environment, where code and content bundles can be loaded, unloaded and reconfigured at runtime.</p>
+<p>As the first web framework dedicated to <a href="http://jcp.org/en/jsr/detail?id=170">JSR-170</a> Java Content Repositories, Sling makes it very simple to implement simple applications, while providing an enterprise-level framework for more complex applications.</p>
+<h2>News</h2>
+<ul id="newsExcerpt">
+</ul>
+<p>Refer to the news <a href="/news.html">archive</a> for all news.</p>
+<h2>History</h2>
+<p>Sling started as an internal project at <a href="http://www.day.com">Day Software</a> , and entered the Apache Incubator in September 2007. As of June, 17th, 2009 Apache Sling is a top level project of the Apache Software Foundation.</p>
+<p>The name "Sling" has been proposed by Roy Fielding who explained it like this:</p>
+<blockquote>
+  <p>[The name is] Biblical in nature. The story of David: the weapon he uses to slay the giant Goliath is a sling. Hence, our David's [David Nuescheler, CTO of Day Software] favorite weapon.</p>
+  <p>It is also the simplest device for delivering content very fast.</p>
+</blockquote>
+<h2>Getting started</h2>
+<p>If you prefer doing rather than reading, please proceed to <a href="/documentation/getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a> or read through the recommended links in the <a href="/documentation/getting-started.html">Getting Started</a> section, where you can quickly get started on your own instance of Sling.</p>
+<h2>Use Cases for Sling</h2>
+<h4>Wiki</h4>
+<p>Day built a Wiki system on Sling. Each Wiki page is a node (with optional child nodes) in the repository. As a page is requested, the respective node is accessed and through the applying Component is rendered.</p>
+<p>Thanks to the JCR Mapping and the resolution of the Component from the mapped Content, the system does not care for what actual node is addressed as long as there is a Content mapping and a Component capable of handling the Content.</p>
+<p>Thus in the tradition of REST, the attachement of a Wiki page, which happens to be in a node nested below the wiki page node is easily accessed using the URL of the wiki page attaching the relative path of the attachement ode. The system resolves the URL to the attachement Content and just calls the attachement's Component to spool the attachement.</p>
+<h4>Digital Asset Management</h4>
+<p>Day has implemented a Digital Asset Management (DAM) Application based on Sling. Thanks to the flexibility of the Content/Component combo as well as the service registration/access functionality offered by OSGi, extending DAM for new content type is merely a matter of implementing one or two interfaces and registering the respective service(s).</p>
+<p>Again, the managed assets may be easily spooled by directly accessing them.</p>
+<h4>Web Content Management</h4>
+<p>Last but not least, Sling offers itself very well to implementing a Web Content Management system. Thanks to the flexibility of rendering the output - remember: the system does not care what to render, as long as the URL resolves to a Content object for which a Component exists, which is called to render the Content - providing support for Web Content authors (not PHP programmers but users out in the field) to build pages to their likings can easily be done.</p>
+<h2>References</h2>
+<h4>Apache Jackrabbit</h4>
+<p>The main purpose of Sling is to develop a content-centric Web Application framework for Java Content Repository (JCR) based data stores. Sling is implemented - with the notable exception of JCR Node Type management - purely in terms of the JCR API and as such may use any JCR compliant repository. The default implementation for <a href="http://jackrabbit.apache.org">Apache Jackrabbit</a> is provided out of the box.</p>
+<h4>OSGi</h4>
+<p>Sling is implemented as a series of <a href="http://www.osgi.org">OSGi</a> Bundles and makes extensive use of the OSGi functionality, such as lifecycle management and the service layer. In addition, Sling requires several OSGi compendium services to be available, such as the Log Service, Http Service, Configuration Admin Service, Metatype Service, and Declarative Services.</p>
+<h4>Apache Felix</h4>
+<p>While Sling does not require a specific OSGi framework implementation to run in, Sling is being developed using <a href="http://felix.apache.org">Apache Felix</a> as the OSGi framework implementation. It has not been tested yet, but it is expected that Sling also operates perfectly inside other OSGi frameworks such as <a href="http://www.eclipse.org/equinox">Equinox</a> and <a href="http://www.knopflerfish.org">Knopflerfish</a>.</p>
+<script src="/res/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$.get("/news.html", function(news) {
+var $newsExcerpt = $(news).find('li').slice(0,5);
+$('#newsExcerpt').append($newsExcerpt);
+});
+});
+</script></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

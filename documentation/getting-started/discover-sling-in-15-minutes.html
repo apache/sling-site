@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Discover Sling in 15 minutes</h1></header><p>The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded JCR content repository and web server, a selection of Sling components, documentation and examples. The Launchpad makes it easy to get started with Sling and to develop script-based applications.</p>
+<p>This page will help you get started with the Launchpad. Fifteen minutes should be enough to get an overview of what Sling does.</p>
+<p>While simple to run and understand, the Launchpad is a full-featured instance of Sling, an example configuration that we have created with the most common modules and configurations. The full functionality of Sling is available by loading additional Sling (or custom) OSGi bundles as needed, using the Launchpad's web-based OSGi management console.</p>
+<p>[TOC]</p>
+<h2>See Also</h2>
+<p>More Sling samples can be found under <a href="http://svn.apache.org/repos/asf/sling/trunk/samples/">http://svn.apache.org/repos/asf/sling/trunk/samples/</a></p>
+<p>Once you grok the basic examples of this page, we recommend studying the <em>slingbucks</em> and <em>espblog</em> samples. Both have README files with more info.</p>
+<h2>Prerequisites</h2>
+<p>We'll start with the self-runnable jar from the Sling distribution, you only need a Java 7 JDK. Download the latest release from the Sling <a href="/downloads.cgi">Downloads</a> page or by clicking this link: <a href="http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8.jar">org.apache.sling.launchpad-8.jar</a>. Alternatively you can deploy the <a href="http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8-webapp.war">Sling Web application</a> into any decent Servlet Container such as Jetty or Tomcat or you can <a href="/documentation/development/getting-and-building-sling.html">build the current source yourself</a>.</p>
+<p>To show the simplicity of the REST-style approach taken by Sling the examples below will be using <a href="http://curl.haxx.se/">cURL</a>. Any HTTP client would do, but cURL is the easiest to document in a reproducible way.</p>
+<p>A WebDAV client makes editing server-side scripts much more convenient, but to make our examples easy to reproduce, we're using cURL below to create and update files in the JCR repository, via the Sling WebDAV server.</p>
+<h2>Start the Launchpad</h2>
+<p>After downloading the Sling Launchpad self-runnable jar just start it as follows:</p>
+<p>$ java -jar org.apache.sling.launchpad-8.jar</p>
+<p>This starts the Sling embedded Web Server on port 8080 and writes application files into the <code>sling</code> folder found in the current working directory.</p>
+<p>Once started, look at <a href="http://localhost:8080/system/console/bundles">http://localhost:8080/system/console/bundles</a> with your browser. Use <em>admin</em> with password <em>admin</em> if Sling asks you for a login. Sling then displays the <em>Felix Web Management Console</em> page.</p>
+<p>On the bundles page, all bundles should be marked <em>Active</em>. They're all <a href="http://www.osgi.org/">OSGi</a> bundles powered by <a href="http://felix.apache.org">Apache Felix</a>, but that doesn't really matter to us right now.</p>
+<p><em>Log files: If things go wrong, have a look at the <code>sling/logs/error.log</code> log file - that's where Sling writes any error messages.</em></p>
+<h2>Create some content</h2>
+<p>Until we have ready-to-test forms, you can create content with cURL, or you can create an HTML form that posts to the specified URL.</p>
+<p>To create a content node (nodes are a <a href="http://jackrabbit.apache.org/">JCR</a> concept, a unit of storage) with cURL, use:</p>
+<p>curl -u admin:admin -F"sling:resourceType=foo/bar" -F"title=some title" http://localhost:8080/content/mynode</p>
+<p>The resulting node can be seen at <a href="http://localhost:8080/content/mynode.html.path">http://localhost:8080/content/mynode.html</a>, or as json format under <a href="http://localhost:8080/content/mynode.json">http://localhost:8080/content/mynode.json</a>. Lets try with cURL:</p>
+<p>$ curl http://localhost:8080/content/mynode.json</p>
+<p>This returns the properties of the <code>/content/mynode</code> in JSON format as we have created it above.</p>
+<p>{"title":"some title","sling:resourceType":"foo/bar","jcr:primaryType":"nt:unstructured"}</p>
+<p>The additional property <code>jcr:primaryType</code> is a special JCR property added by the content repository, indicating the JCR primary node type.</p>
+<p><em>Monitoring requests: Sling provides a simple tool (an OSGi console plugin) to monitor HTTP requests, which helps understand how things work internally. See the <a href="/documentation/development/monitoring-requests.html">Monitoring Requests</a> page for details.</em></p>
+<h2>Render your content using server-side javascript (ESP)</h2>
+<p>Sling uses scripts or servlets to render and process content.</p>
+<p>Several scripting languages are available as additional Sling modules (packaged as OSGi <em>bundles</em> that can be installed via the Sling management console), but the launchpad currently includes the ESP (server-side ECMAscript), JSP (Java Server Pages), and Groovy language modules by default.</p>
+<p>To select a script, Sling uses the node's <em>sling:resourceType</em> property, if it is set.</p>
+<p>That is the case in our example, so the following script will be used by Sling to render the node in HTML, if the script is found at <em>/apps/foo/bar/html.esp</em> in the repository.</p>
+<html>
+<body>
+<h1><%= currentNode.title %></h1>
+</body>
+</html>
+<p>To select the script, Sling:</p>
+<ul>
+  <li>looks under <em>/apps</em></li>
+  <li>and appends the <em>sling:resourceType</em> value of our node ( which is <em>foo/bar</em> )</li>
+  <li>and appends <em>html.esp</em>, as the extension of our URL is <em>html</em> and the language of our script is <em>esp</em>.</li>
+</ul>
+<p>Store this script under <em>/apps/foo/bar/html.esp</em>, either using a WebDAV client (connected to <a href="http://admin:admin@localhost:8080/">http://admin:admin@localhost:8080/</a>), or using cURL as shown here, after creating the <em>html.esp</em> script in the current directory on your system:</p>
+<p>curl -X MKCOL -u admin:admin http://localhost:8080/apps/foo curl -X MKCOL -u admin:admin http://localhost:8080/apps/foo/bar</p>
+<p>create a local file <em>html.esp</em> and copy above content.</p>
+<p>curl -u admin:admin -T html.esp http://localhost:8080/apps/foo/bar/html.esp</p>
+<p>The HTML rendering of your node, at <a href="http://localhost:8080/content/mynode.html">http://localhost:8080/content/mynode.html</a>, is now created by this ESP script. You should see the node's title alone as an &lt;h1&gt; element in that page.</p>
+<p>A script named <em>POST.esp</em> instead of <em>html.esp</em> would be called for a POST request, <em>DELETE.esp</em> for DELETE, <em>xml.esp</em> for a GET request with a <em>.xml</em> extension, etc. See <a href="/documentation/the-sling-engine/url-to-script-resolution.html">URL to Script Resolution</a> on the Sling wiki for more info.</p>
+<p>Servlets can also be easily "wired" to handle specific resource types, extensions, etc., in the simplest case by using SCR annotations in the servlet source code. Servlets and scripts are interchangeable when it comes to processing Sling requests.</p>
+<h2>What next?</h2>
+<p>These simple examples show how Sling uses scripts to work with JCR data, based on <em>sling:resourceType</em> or node types.</p>
+<p>There's much more to Sling of course - you'll find some additional simple examples below, as well as above in the <em>see also</em> section.</p>
+<h2>Additional examples</h2>
+<h3>Let Sling generate the path of a newly created node.</h3>
+<p>To create a node with a unique path at a given location, end the URL of the POST request with <em>/</em>.</p>
+<p>In this case, the Sling response redirects to the URL of the created node.</p>
+<p>Start by creating a new <em>/blog</em> folder:</p>
+<p>curl -X POST -u admin:admin "http://localhost:8080/content/blog"</p>
+<p>And create a node with a Sling-generated name under it:</p>
+<p>curl -D - -u admin:admin -F"title=Adventures with Sling" "http://localhost:8080/content/blog/"</p>
+<p>Using cURL's <em>-D</em> option shows the full HTTP response, which includes a <em>Location</em> header to indicate where the new node was created:</p>
+<p>Location: /blog/adventures_with_slin</p>
+<p>The actual node name might not be <em>adventures_with_slin</em> - depending on existing content in your repository, Sling will find a unique name for this new node, based on several well-know property values like title, description, etc. which are used for this if provided.</p>
+<p>So, in our case, our new node can be displayed in HTML via the <a href="http://localhost:8080/blog/adventures*with*slin.html">http://localhost:8080/blog/adventures_with_slin.html</a> URL.</p>
+<p>Note that we didn't set a <em>sling:resourceType</em> property on our node, so if you want to render that node with a script, you'll have to store the script under <em>/apps/nt/unstructured/html.esp</em>.</p>
+<h3>Add a page header with sling.include</h3>
+<p>The <em>sling.include</em> function can be called from scripts to include the rendered result of another node.</p>
+<p>In this example, we create a node at <em>/content/header</em>, rendered with a logo using an <em>html.esp</em> script, then use that header at the top of the <em>html.esp</em> script that we created previously for the <em>foo/bar</em> resource type.</p>
+<p>Start by checking that <a href="http://localhost:8080/content/mynode.html">http://localhost:8080/content/mynode.html</a> is rendered using the <em>html.esp</em> script created above.</p>
+<p>Create this script and name it <em>header.esp</em>:</p>
+<div>
+<p style="color:blue;">
+<img src="/images/sling.jpg" align="right"/>
+<%= currentNode.headline %>
+</p>
+</div>
+<p>Upload it so that it is used to render resources having <em>sling:resourceType=foo/header</em>:</p>
+<p>curl -X MKCOL -u admin:admin http://localhost:8080/apps/foo/header/ curl -u admin:admin -T header.esp http://localhost:8080/apps/foo/header/html.esp</p>
+<p>Create the header node:</p>
+<p>curl -u admin:admin -F"sling:resourceType=foo/header" -F"headline=Hello, Sling world" http://localhost:8080/content/header</p>
+<p>Upload the logo that the script uses (using sling.jpg or another logo in the current directory):</p>
+<p>curl -X MKCOL -u admin:admin http://localhost:8080/images/ curl -u admin:admin -T sling.jpg http://localhost:8080/images/sling.jpg</p>
+<p>And check that the header is rendered with the logo at <a href="http://localhost:8080/content/header.html">http://localhost:8080/content/header.html</a>.</p>
+<p>Now, update the html.esp script that we created for our first example above, to include the header:</p>
+<html>
+<body>
+<div id="header">
+<% sling.include("/content/header"); %>
+</div>
+<h1><%= currentNode.title %></h1>
+</body>
+</html>
+<p>And upload it again to replace the previous version:</p>
+<p>curl -u admin:admin -T html.esp http://localhost:8080/apps/foo/bar/html.esp</p>
+<p>The <a href="http://localhost:8080/content/mynode.html">http://localhost:8080/content/mynode.html</a>, once refreshed, now shows the blue headline and logo, and this layout also applies to any node created with <em>sling:resourceType=foo/bar</em>.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Well-known Sling Properties</h1></header><p>This table lists properties which have known functionality in the OSGi and Sling frameworks.</p>
+<p>With the exception of the Sling setup properties (<code>sling.home</code>, <code>sling.launchpad</code>, and <code>sling.properties</code>) all properties can be set on the command line using the <code>-D</code> command line option or in the <code>sling.properties</code> file. Properties defined on the command line or in the <code>web.xml</code> file always overwrite properties in the <code>sling.properties</code> file.</p>
+<p>[TOC]</p>
+<h2>Sling Setup Properties</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Default Value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.home</code> </td>
+      <td><code>sling</code> </td>
+      <td>Path to the main Sling Directory; relative path is resolved against current working directory as defined in the <code>user.dir</code> system property. Can also be set with the <code>-c</code> command line option. </td>
+      <td>Launchpad </td>
+    </tr>
+    <tr>
+      <td><code>sling.launchpad</code> </td>
+      <td><code>${sling.home}</code> </td>
+      <td>Location for the Sling launchpad JAR file and the startup folder containing bundles to be installed by the Bootstrap Installer. Can also be set with the <code>-i</code> command line option. </td>
+      <td>Launchpad </td>
+    </tr>
+    <tr>
+      <td><code>sling.properties</code> </td>
+      <td><code>${sling.home}/sling.properties</code> </td>
+      <td>Path to the <code>sling.properties</code> file; relative path is resolved against <code>${sling.home}</code> </td>
+      <td>Launchpad </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Server Control Port Properties</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Default Value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.control.socket</code> </td>
+      <td><code>127.0.0.1:0</code> </td>
+      <td>Specification of the control port. Can also be set with the <code>-j</code> command line option. This property is only used by the Standalone Sling Application. </td>
+      <td>Launchpad </td>
+    </tr>
+  </tbody>
+</table>
+<p>| <code>sling.control.action</code> | -- | Action to execute. This is the same as specifying <code>start</code>, <code>status</code>, or <code>stop</code> on the command line. This property is only used by the Standalone Sling Application. | Launchpad |</p>
+<h2>Logging Configuration</h2>
+<p>Logging configuration defined by these properties sets up initial configuration for the Sling Commons Log bundle. This configuration is used as long as there is no configuration from the Configuration Admin Service for the service PID <code>org.apache.sling.commons.log.LogManager</code>.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Default Value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>org.apache.sling.commons.log.level</code> </td>
+      <td><code>INFO</code> </td>
+      <td>Sets the initial logging level of the root logger. This may be any of the defined logging levels <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, or <code>ERROR</code>. This property can also be set with the <code>-l</code> command line option. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.commons.log.file</code> </td>
+      <td><code>${sling.home}/logs/error.log</code> </td>
+      <td>Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to System.out. This property can also be set with the <code>-f</code> command line option. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.commons.log.file.number</code> </td>
+      <td><code>5</code> </td>
+      <td>The number of rotated files to keep. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.commons.log.file.size</code> </td>
+      <td><code>&#39;.&#39;yyyy-MM-dd</code> </td>
+      <td>Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section <a href="http://sling.apache.org/site/logging.html#Logging-LogFileRotation">Log File Rotation</a> for full details on log file rotation. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.commons.log.pattern</code> </td>
+      <td><code>{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* [{2}] {3} {5}</code> </td>
+      <td>The MessageFormat pattern to use for formatting log messages with the root logger. </td>
+    </tr>
+    <tr>
+      <td>org.apache.sling.commons.log.julenabled </td>
+      <td><code>false</code> </td>
+      <td>Enables the java.util.logging support. </td>
+    </tr>
+  </tbody>
+</table>
+<p>See <a href="http://sling.apache.org/site/logging.html">Logging</a> for full information on configuring the Sling Logging system.</p>
+<h2>Http Service Properties</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Default Value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>org.apache.felix.http.context_path</code> </td>
+      <td><code>/</code> </td>
+      <td>The servlet context path for the Http Service of the embedded servlet container. This property requires support by the Http Service bundle. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.felix.http.host</code> </td>
+      <td><code>0.0.0.0</code> </td>
+      <td>The host interface to bind the HTTP Server to. This property requires support by the Http Service bundle. </td>
+    </tr>
+    <tr>
+      <td><code>org.osgi.service.http.port</code> </td>
+      <td>8080 </td>
+      <td>The port to listen on for HTTP requests. This property requires support by the Http Service bundle. </td>
+    </tr>
+  </tbody>
+</table></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

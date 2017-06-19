@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Jackrabbit Persistence</h1></header><p>Out-of-the-box the embedded Jackrabbit repository used by Sling (the Embedded Jackrabbit Repository bundle) uses Derby to persist the JCR nodes and properties. For some applications or environments it may be required or required to replace Derby with another backing store such as PostgreSQL or Oracle.</p>
+<p>This page is based on the journey of Tony Giaccone to get Sling running with a PostgreSQL based Jackrabbit instance.</p>
+<h2>Management Summary</h2>
+<p>To replace Derby as the persistence manager for Jackrabbit the following steps are required:</p>
+<ol>
+  <li>Provide a JDBC driver for your database as an OSGi bundle</li>
+  <li>Reconfigure Jackrabbit to use your database</li>
+  <li>(Re-) Start the Embedded Jackrabbit bundle</li>
+</ol>
+<p>When you are not using the Derby persistence manager, you may safely remove the Derby bundle from your Sling instance.</p>
+<h2>JDBC Driver</h2>
+<p>The hardest thing to do is probably getting the JDBC driver for your database. One option is to look at the bundles provided by Spring Source in their repository at <a href="http://www.springsource.com/repository/">http://www.springsource.com/repository/</a>.</p>
+<p>Another option is to create the bundle on your own using Peter Kriens' <a href="http://bnd.bndtools.org/">bnd Tool</a>:</p>
+<ol>
+  <li>Get the JDBC driver for your database from the driver provider</li>
+  <li>Wrap the JDBC driver library into an OSGi bundle:</li>
+</ol>
+<p>:::sh</p>
+<h1>Example for PostgreSQL JDBC 3 driver 8.4-701</h1>
+<p>$ java -jar bnd.jar wrap postgresql-8.4-701.jdbc3.jar $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar</p>
+<ol>
+  <li>Deploy the driver to your local Maven 2 Repository (Required if adding the JDBC driver to a Maven build, e.g. using the Sling Launchpad Plugin)</li>
+</ol>
+<p>:::sh $ mvn install:install-file -DgroupId=postgresql -DartifactId=postgresql -Dversion=8.4.701.jdbc3 -Dpackaging=jar -Dfile=postgresql-8.4-701.jdbc3-bnd.jar</p>
+<p>Tony reports no success with the Spring Source bundle, whily the bnd approach worked for the PostgreSQL JDBC driver.</p>
+<h2>Replace Derby in a running Sling Instance</h2>
+<p>To replace Derby in a running Sling instance follow these steps (e.g. through the Web Console at <code>/system/console</code>):</p>
+<ol>
+  <li>Uninstall the Apache Derby bundle</li>
+  <li>Install the JDBC bundle prepared in the first step</li>
+  <li>Stop the Jackrabbit Embedded Repository bundle This needs to be reconfigured and restarted anyway. So lets just stop it to prevent failures in the next step.</li>
+  <li>Refresh the packages (click the <em>Refresh Packages</em> button)</li>
+</ol>
+<p>Alternatively, you may wish to stop Sling after uninstalling Derby and installing the JDBC bundle. Technically, this is not required, though.</p>
+<h2>Reconfiguring Jackrabbit</h2>
+<p>To actually use a persistence manager other than the default (Derby) persistence manager, you have to configure Jackrabbit to use it. Create a <code>repository.xml</code> file in the <code>sling/jackrabbit</code> folder before starting Sling for the first time. If the repository was already started, you can also modify the existing file.</p>
+<p>To prepare a repository.xml file before first startup, use the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/jackrabbit-server/src/main/resources/repository.xml"><code>repository.xml</code></a> as a template and modify it by replacing the <code>&lt;PersistenceManager&gt;</code> elements to refer to the selected persistence manager.</p>
+<p>If the file already exists, you can modifiy this existing file and there is no need to get the original from the SVN repository.</p>
+<p>For example to use PostgreSQL instead of Derby modify the <code>&lt;PersistenceManager&gt;</code> elements as follows:</p>
+<p>:::xml <Repository> ... <Workspace name="${wsp.name}"> ... <PersistenceManager class="org.apache.jackrabbit.core.persistence.bundle.PostgreSQLPersistenceManager"> <param name="driver" value="org.postgresql.Driver"/> <param name="url" value="jdbc:postgresql://localhost:5432/YOUR_DB_NAME_HERE"/> <param name="schema" value="postgresql"/> <param name="user" value="YOUR_USER_HERE"/> <param name="password" value="YOUR_PASSWORD_HERE"/> <param name="schemaObjectPrefix" value="jcr_${wsp.name}_"/> <param name="externalBLOBs" value="false"/> </PersistenceManager> ... </Workspace></p>
+<p><Versioning rootPath="${rep.home}/version"> ... <PersistenceManager class="org.apache.jackrabbit.core.persistence.bundle.PostgreSQLPersistenceManager"> <param name="driver" value="org.postgresql.Driver"/> <param name="url" value="jdbc:postgresql://localhost:5432/YOUR_DB_NAME_HERE"/> <param name="schema" value="postgresql"/> <param name="user" value="YOUR_USER_HERE"/> <param name="password" value="YOUR_PASSWORD_HERE"/> <param name="schemaObjectPrefix" value="version_"/> <param name="externalBLOBs" value="false"/> </PersistenceManager> </Versioning> ... </Repository></p>
+<p>Modify the <code>url</code>, <code>user</code>, and <code>password</code> parameters to match your database setup.</p>
+<p>If you reconfigure Jackrabbit to use the new persistence manager, the existing repository data in the <code>sling/jackrabbit</code> directory, except the <code>repository.xml</code> file, of course, should now be removed.</p>
+<p>Finally either start Sling or start the Jackrabbit Embedded Repository bundle.</p>
+<h2>Credits</h2>
+<p>This description is based on Tony Giaccone's description <a href="http://markmail.org/message/wlbfrukmjjsl33hh">Swapping Postgres for Derby</a> sent to the Sling Users mailing list.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

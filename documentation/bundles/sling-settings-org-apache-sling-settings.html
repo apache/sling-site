@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Settings and Run Modes (org.apache.sling.settings)</h1></header><h1>Overview</h1>
+<p>The Sling Settings Bundle exposes the <code>SlingSettingsService</code> which allows access to the following information pertinent to a Sling instance:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Method </th>
+      <th>Bundle Context Property </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+</table>
+<p>| <code>String getSlingId()</code> | --- | A unique identifier of the running Sling instance. This value is created when Sling is first started and may be used to identify the instance, for example if multiple Sling instances are running on top of a Jackrabbit Repository Cluster | | <code>String getSlingHomePath()</code> | <code>sling.home</code> | The absolute filesystem path to the directory where Sling stores all its content | | <code>URL getSlingHome()</code> | <code>sling.home.url</code> | The Sling Home path as an <code>java.net.URL</code> instance | | <code>Set&lt;String&gt; getRunModes()</code> | <code>sling.run.modes</code> | The active Run Modes of the running Sling instance |</p>
+<p>The new Sling Settings Bundle replaces the former [Run Modes (org.apache.sling.runmode)]({{ refs.run-modes-org-apache-sling-runmode.path }}) Bundle and the <code>SlingSettingsService</code> previously provided by the Sling Engine bundle, as it also implements the run modes logic.</p>
+<h2>Selecting the active run modes</h2>
+<p>The run modes are selected based on the <code>sling.run.modes</code> property (the "selection property"), specified in the Sling settings file or as a command-line parameter (which takes precedence), out of the valid run modes defined by the properties described below. The value is a String which contains a list of comma-separated run modes. If a run mode is given here which is not contained in any group of valid run modes (given in <code>sling.run.mode.install.options</code> or <code>sling.run.mode.options</code>) it is always active, on the other hand run modes which are contained in any of the predefined groups may be modified/removed (see below for the details).</p>
+<p>Using <code>-Dsling.run.modes=foo,bar</code> on the JVM command-line, for example, activates the <em>foo</em> and <em>bar</em> run modes if that combination is valid.</p>
+<p>The absolute truth about run modes definition and selection is found in the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/settings/src/test/java/org/apache/sling/settings/impl/RunModeImplTest.java">RunModeImplTest</a> which should be self-explaining.</p>
+<h2>Defining valid run modes</h2>
+<p>Since <a href="https://issues.apache.org/jira/browse/SLING-2662">SLING-2662</a> the valid run modes are defined by the <code>sling.run.mode.options</code> and <code>sling.run.mode.install.options</code> configuration properties, usually defined in the <code>sling.properties</code> file or in the provisioning model of a Sling Launchpad instance.</p>
+<p>The <code>sling.run.mode.install.options</code> property is only used on the first startup on the Sling instance and the run modes that it defines cannot be changed later.</p>
+<p>The <code>sling.run.mode.options</code> property on the other hand is used at each startup, so the run modes that it defines can be changed between executions of a given Sling instance.</p>
+<p>The value of the both these properties is a string which looks like:</p>
+<p>red,green,blue|one|moon,mars</p>
+<p>where <em>comma-separated run modes form a group</em>. The individual groups are separated by a pipe character (<code>|</code>, which is not an OR operation, it's just as separator). A group defines a number of run modes which are <strong>mutually exclusive</strong>. It means once a group is defined, exactly one run mode will be active from that group.</p>
+<p>The example from above consists out of 3 different groups</p>
+<ol>
+  <li><code>red,green,blue</code></li>
+  <li><code>one</code></li>
+  <li><code>moon,mars</code></li>
+</ol>
+<p>The rules for determining the active run modes from the selected run mode (<code>sling.run.modes</code>) and the run mode options (<code>sling.run.mode.install.options</code> and <code>sling.run.mode.options</code>) are as follows :</p>
+<ol>
+  <li>If none of the run modes in the options are selected, the first one from each group in the options is activated by default.</li>
+  <li>If one is selected from a group in the options, this is active.</li>
+  <li>If several are selected from one group in the options, the first one from the list of valid run modes is used.</li>
+  <li>If the selected run mode is not mentioned in any of the option groups it is active</li>
+</ol>
+<p>Examples</p>
+<p>sling.run.mode.options=a,b|c,d,e</p>
+<table>
+  <thead>
+    <tr>
+      <th>User defined run modes (e.g. via property <code>sling.run.modes</code>) </th>
+      <th>Effectively active run modes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>(none) </td>
+      <td><code>a,c</code></td>
+    </tr>
+    <tr>
+      <td><code>a</code> </td>
+      <td><code>a,c</code></td>
+    </tr>
+    <tr>
+      <td><code>b</code> </td>
+      <td><code>b,c</code></td>
+    </tr>
+    <tr>
+      <td><code>a,b</code> </td>
+      <td><code>a,c</code></td>
+    </tr>
+    <tr>
+      <td><code>a,d</code> </td>
+      <td><code>a,d</code></td>
+    </tr>
+    <tr>
+      <td><code>a,e,f</code> </td>
+      <td><code>a,e</code></td>
+    </tr>
+  </tbody>
+</table>
+<p>Remember to look at the <code>RunModeImplTest</code> mentioned above for details, and feel free to enhance it with useful examples.</p>
+<h3>Getting the Run Modes of the Sling instance</h3>
+<p>The <code>SlingSettings</code> service provides the Run Modes of the running Sling instance as in this example:</p>
+<p>:::java SlingSettings settings = ...get from BundleContext... Set<String> currentRunModes = settings.getRunModes();</p>
+<p>Set<String> expectedRunModes = new HashSet<String>(){{ add("foo");add("wii"); }}; if(expectedRunModes.removeAll(currentRunModes)) { // at least one of (foo,wii) run modes // is active }</p>
+<p>Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

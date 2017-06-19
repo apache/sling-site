@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling Context-Aware Configuration - Override</h1></header><p>[TOC]</p>
+<h1>About</h1>
+<p>Using overrides it is possible to override context-aware configuration values globally or for specific content paths (and their subtrees) within an instance. If an override is active the Configuration API returns the overridden values instead of the values from the configuration resources.</p>
+<p>An example use case is to overwrite the Site URLs on your staging system which has a copy of the configuration content of the production system installed.</p>
+<p>Via the <a href="http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html">SPI</a> you can add your own override providers - but in most cases the built-in ones described in this page are sufficient. All override providers use the same override syntax.</p>
+<h1>Override syntax</h1>
+<p>Generally an override consists of one single line. Syntax examples:</p>
+<p>{configName}/{propertyName}={propertyJsonValue} {configName}={propertyJsonObject} [{contextPath}]{configName}/{propertyName}={propertyJsonValue} [{contextPath}]{configName}={propertyJsonObject}</p>
+<p>The different parts:</p>
+<ul>
+  <li><code>{configName}</code> - Configuration name - can be a relative path with sub-resources</li>
+  <li><code>{propertyName}</code> - Property name</li>
+  <li><code>{propertyJsonValue}</code> - Property value in JSON value syntax.</li>
+  <li><code>{propertyJsonObject}</code> - If the property name is missing a JSON object can be defined containing all properties as key-value pairs.</li>
+  <li><code>{contextPath}</code> - If the context path is missing, the override is applied to all context path. If it is defined (enclosed in brackets), the override is applied only to this content path and it's subtree.</li>
+</ul>
+<p>When the syntax <code>{configName}/{propertyName}={propertyJsonValue}</code> is used, only this specific property is overwritten leaving all other properties in the configuration resource untouched. When the syntax <code>{configName}={propertyJsonObject}</code> is used, all configuration properties in the configuration resources are replaced with the set from the JSON object.</p>
+<p>Override string examples with real values:</p>
+<p>my-config/property1="value 1" my-config/sub1/property1="value 1" my-config/property1=["value 1","value 2"] my-config/property1=123 x.y.z.MyConfig={"prop1"="value1","prop2"=[1,2,3],"prop3"=true,"prop4"=1.23} [/content/region1]my-config/property1="value 1" [/content/region1]my-config/sub1={"prop1":"value 1"}</p>
+<p>If multiple statements are defined affecting the same content path, configuration name and property name, they overwrite each other. That means the override string defined last wins.</p>
+<h1>Built-in override providers</h1>
+<h2>Override via system properties</h2>
+<p>Allows to define configuration property overrides from system environment properties.</p>
+<p>The parameters are defined when starting the JVM using the -D command line parameter. Each parameter contains an override string. All parameter names have to be prefixed with the string <code>sling.caconfig.override.</code>.</p>
+<p>Example:</p>
+<p>-Dsling.caconfig.override.my-config/sub1/property1=123 -D"sling.caconfig.override.my-config/property1=["value 1","value 2"]" -D"sling.caconfig.override.[/content/region1]x.y.z.MyConfig={"prop1"="value1","prop2"=[1,2,3],"prop3"=true,"prop4"=1.23}"</p>
+<p>This provider is not active by default, it has to be activated via OSGi configuration ("Apache Sling Context-Aware System Property Configuration Override Provider").</p>
+<h2>Override via OSGi configuration</h2>
+<p>Allows to define configuration property overrides from OSGi configuration.</p>
+<p>You can provide multiple providers using a factory configuration ("Apache Sling Context-Aware OSGi Configuration Override Provider"), each of them provides list of override strings.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

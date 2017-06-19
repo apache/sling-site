@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Service Authentication</h1></header><p>Excerpt: Introduce new service level authentication to replace <code>loginAdministrative</code></p>
+<p>[TOC]</p>
+<h2>Problem</h2>
+<p>To access the data storage in the Resource Tree and/or the JCR Repository authentication is required to properly setup access control and guard sensitive data from unauthorized access. For regular request processing this authentication step is handled by the Sling <a href="/documentation/the-sling-engine/authentication.html">{{ refs.authentication.headers.title }}</a> subsystem.</p>
+<p>On the other hand there are also some background tasks to be executed with access to the resources. Such tasks cannot in general be configured with user names and passwords: Neither hard coding the passwords in the code nor having the passwords in &ndash; more or less &ndash; plain text in some configuration is considered good practice.</p>
+<p>To solve this problem for services to identify themselves and authenticate with special users properly configured to support those services.</p>
+<p>The solution presented here serves the following goals:</p>
+<ul>
+  <li>Prevent over-use and abuse of administrative ResourceResolvers and/ro JCR Sessions</li>
+  <li>Allow services access to ResourceResolvers and/or JCR Sessions without requiring to hard-code or configure passwords</li>
+  <li>Allow services to use <em>service users</em> which have been specially configured for service level access (as is usually done on unixish systems)</li>
+  <li>Allow administrators to configure the assignment of service users to services</li>
+</ul>
+<h2>Concept</h2>
+<p>A <em>Service</em> is a piece or collection of functionality. Examples of services are the Sling queuing system, Tenant Administration, or some Message Transfer System. Each service is identified by a unique <em>Service Name</em>. Since a service will be implemented in an OSGi bundle (or a collection of OSGi bundles), services are named by the bundles providing them.</p>
+<p>A Service may be comprised of multiple parts, so each part of the service may be further identified by a <em>Subservice Name</em>. This Subservice Name is optional, though. Examples of <em>Subservice Name</em> are names for subsystems in a Message Transfer System such as accepting messages, queueing messages, delivering messages.</p>
+<p>Ultimately, the combination of the <em>Service Name</em> and <em>Subservice Name</em> defines the <em>Service ID</em>. It is the <em>Service ID</em> which is finally mapped to a Resource Resolver and/or JCR Repository user ID for authentication.</p>
+<p>Thus the actual service identification (service ID) is defined as:</p>
+<h1>!text</h1>
+<p>service-id = service-name [ ":" subservice-name ] .</p>
+<p>The <code>service-name</code> is the symbolic name of the bundle providing the service.</p>
+<h3>Example: Tenant Administration</h3>
+<p>Tenant Administration mostly deals with creating and managing groups and some other user administration tasks. Instead of just using an administrative session for Tenant administration this feature could define itself as being the <code>tenant-admin</code> service and leverage a properly configured Tenant Administration account.</p>
+<h3>Example: Mail Transfer System</h3>
+<p>Consider a Mail Transfer System which may be comprised of the following sub systems:</p>
+<ul>
+  <li>Accepting mail for processing &mdash; for example the SMTP server daemon</li>
+  <li>Queing and processing the messages</li>
+  <li>Delivering messages to mailboxes</li>
+</ul>
+<p>You could conceive that all these functions serve different purposes and thus should have different access rights to the repository to persist messages while they are being processed.</p>
+<p>Using the Service Authentication framework, the Mail Transfer System would be consituting the <code>mta</code> service. The sub systems would be called <code>smtp</code>, <code>queue</code>, and <code>deliver</code>.</p>
+<p>Thus the SMTP server daemon would be represented by a user for the <code>mta:smtp</code> Service. queueing with <code>mta:queue</code>, and delivery with <code>mta:deliver</code>.</p>
+<h2>Implementation</h2>
+<p>The implementation in Sling of the <em>Service Authentication</em> concept described above consists of three parts:</p>
+<h3><code>ServiceUserMapper</code></h3>
+<p>The first part is a new OSGi Service <code>ServiceUserMapper</code>. The <code>ServiceUserMapper</code> service allows for mapping <em>Service IDs</em> comprised of the <em>Service Names</em> defined by the providing bundles and optional <em>Subservice Name</em> to ResourceResolver and/or JCR Repository user IDs. This mapping is configurable such that system administrators are in full control of assigning users to services.</p>
+<p>The <code>ServiceUserMapper</code> defines the following API:</p>
+<h1>!java</h1>
+<p>String getServiceUserID(Bundle bundle, String subServiceName);</p>
+<p>The implementation uses two fallbacks in case no mapping can be found for the given subServiceName</p>
+<ol>
+  <li>Use user mapping for the serviceName only (not considering subServiceName)</li>
+  <li>Use default user (if one is configured).</li>
+</ol>
+<p>In addition a service named <code>ServiceUserMapped</code> is registered for each bundle and subservice name for which a service user mapping is configured (<a href="https://issues.apache.org/jira/browse/SLING-4312">SLING-4312</a>). By explicitly defining a (static) reference towards <code>ServiceUserMapped</code> one can defer starting the service until that service user mapping is available.</p>
+<h3><code>ResourceResolverFactory</code></h3>
+<p>The second part is support for service access to the Resource Tree. To this avail, the <code>ResourceResolverFactory</code> service is enhanced with a new factory method</p>
+<h1>!java</h1>
+<p>ResourceResolver getServiceResourceResolver(Map&lt;String, Object&gt; authenticationInfo) throws LoginException;</p>
+<p>This method allows for access to the resource tree for services where the service bundle is the bundle actually using the <code>ResourceResolverFactory</code> service. The optional Subservice Name may be provided as an entry in the <code>authenticationInfo</code> map.</p>
+<p>In addition to having new API on the <code>ResourceResolverFactory</code> service to be used by services, the <code>ResourceProviderFactory</code> service is updated with support for Service Authentication: Now new API is required, though but additional properties are defined to convey the service to authenticate for.</p>
+<p>The default implementation leverages <code>ServiceUserMapper.getServiceUserID()</code> to resolve the right user id and throws a <code>LoginException</code> in case no mapping has been setup (and none of the fallbacks returned a user id != <code>null</code> either).</p>
+<h3><code>SlingRepository</code></h3>
+<p>The third part is an extension to the <code>SlingRepository</code>service interface to support JCR Repository access for services:</p>
+<h1>!java</h1>
+<p>Session loginService(String subServiceName, String workspace) throws LoginException, RepositoryException;</p>
+<p>This method allows for access to the JCR Repository for services where the service bundle is the bundle actually using the <code>SlingRepository</code> service. The additional Subservice Name may be provided with the <code>subServiceName</code> parameter.</p>
+<h2>Configuration</h2>
+<h3>Service User Mappings</h3>
+<p>For each service/subservice name combination an according mapping needs to be provided. The mapping binds a service name/subservice name to a JCR system user. This is configured through an OSGi configuration for the factory configuration with PID <code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended</code> <a href="https://issues.apache.org/jira/browse/SLING-3578">SLING-3578</a>. There you can set one configuration property named <code>user.mapping</code> getting a String array as value where each entry must stick to the following format:</p>
+<p><service-name>[:<subservice-name>]=<authorizable id of a JCR system user>]</p>
+<p>The according user must exist at the point in time where <code>ResourceResolverFactory.getServiceResourceResolver(...)</code> or <code>SlingRepository.loginService(...)</code> is called. If you rely on one of those methods in your <code>activate</code> method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service <code>ServiceUserMapped</code> (<a href="https://issues.apache.org/jira/browse/SLING-4312">SLING-4312</a>), optionally with a target filter on property <code>subServiceName</code> (in case such a subservice name is used). The service <code>ServiceUserMapped</code> does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components. However this waits only for the mapping configuration to be available, it does not wait for the service user itself to be available.</p>
+<p>Example OSGi DS Component</p>
+<p>:::java @Component( reference = { // this waits with the activation of this component until a service user mapping with the service name = current bundle's id and the sub service name 'my-subservice-name' is available. // you can leave out "target" if the sub service name is not used. // Please note that this only waits for the mapping to be available, it does not wait for the service user itself to be available! @Reference(name ="scriptsServiceUser", target="(subServiceName=my-subservice-name)", service=ServiceUserMapped.class) } ) class MyComponent { }</p>
+<p>There is a default mapping applied if no OSGi configuration is available for the mapping. The default is: "serviceuser--" + bundleId [ + "--" + subservice-name]. Please note, that these default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work.</p>
+<h2>Deprecation of administrative authentication</h2>
+<p>Originally the <code>ResourceResolverFactory.getAdministrativeResourceResolver</code> and <code>SlingRepository.loginAdministrative</code> methods have been defined to provide access to the resource tree and JCR Repository. These methods proved to be inappropriate because they allow for much too broad access.</p>
+<p>Consequently these methods are being deprecated and will be removed in future releases of the service implementations.</p>
+<p>The following methods are deprecated:</p>
+<ul>
+  <li><code>ResourceResolverFactory.getAdministrativeResourceResolver</code></li>
+  <li><code>ResourceProviderFactory.getAdministrativeResourceProvider</code></li>
+  <li><code>SlingRepository.loginAdministrative</code></li>
+</ul>
+<p>The implementations we have in Sling's bundle will remain implemented in the near future. But there will be a configuration switch to disable support for these methods: If the method is disabled, a <code>LoginException</code> is always thrown from these methods. The JavaDoc of the methods is extended with this information.</p>
+<h3>Whitelisting bundles for administrative login</h3>
+<p>In order to be able to manage few (hopefully legit) uses of the above deprecated methods, a whitelisting mechanism was introduced with <a href="https://issues.apache.org/jira/browse/SLING-5135">SLING-5153</a> (*JCR Base 2.4.2*).</p>
+<p>The recommended way to whitelist a bundle for administrative login is via a <em>whitelist fragment configuration</em>. It can be created as an OSGi factory configuration with the factoryPID <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment</code>. E.g. a typical configuration file might be called <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment-myapp.config</code> and could look as follows:</p>
+<p>whitelist.name="myapp" whitelist.bundles=[ "com.myapp.core", "com.myapp.commons" ]</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Type </th>
+      <th>Default </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>whitelist.name</code> </td>
+      <td>String </td>
+      <td><code>[unnamed]</code> </td>
+      <td>Purely informational property that allows easy identification of different fragments. </td>
+    </tr>
+    <tr>
+      <td><code>whitelist.bundles</code> </td>
+      <td>String[] </td>
+      <td>[] </td>
+      <td>An array of bundle symbolic names that should be allowed to make use of the administrative login functionality. </td>
+    </tr>
+  </tbody>
+</table>
+<p>All configured whitelist fragments are taken into account. This makes it easy to separate whitelists for different application layers and purposes.</p>
+<p>For example, some Sling bundles need to be whitelisted, which could be done in a whitelist fragment named <code>sling</code>. In addition <code>myapp</code> adds a whitelist fragment called <code>myapp</code>. For integration tests and additional whitelist fragment <code>myapp-integration-testing</code> may be added.</p>
+<p>Furthermore, there is a global configuration with PID <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist</code>, which should only be used in exceptional cases. It has a switch to turn administrative login on globally (<code>whitelist.bypass</code>) and it allows supplying a regular expression to whitelist matching bundle symbolic names (<code>whitelist.bundles.regexp</code>).</p>
+<p>The regular expression is most useful for running PaxExam based tests, where bundle symbolic names follow a set pattern but have randomly generated parts.</p>
+<p>Example: to whitelist all bundles generated by PaxExam a configuration file named <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.config</code> might look as follows:</p>
+<p>whitelist.bypass=B"false" whitelist.bundles.regexp="^PAXEXAM.*$"</p>
+<p>The configuration PID is <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist</code>. It supports the following configuration properties.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Type </th>
+      <th>Default </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>whitelist.bypass</code> </td>
+      <td>Boolean </td>
+      <td>false </td>
+      <td>Allow all bundles to use administrative login. This is <strong>NOT</strong> recommended for production and warnings will be logged. </td>
+    </tr>
+    <tr>
+      <td><code>whitelist.bundles.regexp</code> </td>
+      <td>String </td>
+      <td>"" </td>
+      <td>A regular expression that whitelists all matching bundle symbolic names. This is <strong>NOT</strong> recommended for production and warnings will be logged. </td>
+    </tr>
+  </tbody>
+</table></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

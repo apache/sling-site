@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling IDE Tooling 1.1 released</h1></header><p>Here are some of the more noteworthy things available in this release.</p>
+<p>Sightly support ==</p>
+<p>Sightly support has been added through an additional, optional, feature named <em>Sling IDE Tools - Sightly Integration</em>.</p>
+<p>This feature provides the following enhancements:</p>
+<ul>
+  <li>auto-completion of tag named and attributes names in the HTML Editor</li>
+  <li>wizards for creating new Sightly scripts and Use Classes ( Java and Javascript )</li>
+  <li>Sightly-aware validation for HTML files</li>
+</ul>
+<p><img src="../documentation/development/ide-tooling/sightly-editor.png" alt="Sightly Editor" /></p>
+<p>These enhancements are enabled once the Sightly facet is added to a project. This is done automatically when converting a project to content project, but can also be done manually via the project properties, under the <em>Project Facets</em> page.</p>
+<p>Automatic configuration of debug classpath based on the bundles deployed on the server ==</p>
+<p>When first connecting to a Sling instance, the IDE tooling tries to bind all the sources associated with the bundles deployed on the server and retrieves the associated source artifacts using Maven. Therefore, the debug classpath is as close as possible to sources used to build the bundles deployed on the server.</p>
+<p><img src="../documentation/development/ide-tooling/debug.png" alt="Debugging" /></p>
+<p>Since a first source bundle resolution can potentially take a long time, this behaviour can be disabled from the server configuration page.</p>
+<p>Maven configurator for content-package projects ==</p>
+<p>Maven projects configured using the <code>com.day.jcr.vault:content-package-maven-plugin</code> are now automatically configured as content projects, removing the need to manually add the needed facets after importing them into Eclipse for the first time.</p>
+<p>Other minor improvements ==</p>
+<ul>
+  <li>Keyboard shortcuts now work in the content navigator</li>
+  <li>When creating a new server in the project creation wizard, sensible defaults are filled in</li>
+  <li>When connecting to a server, all support bundles are automatically installed</li>
+</ul></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

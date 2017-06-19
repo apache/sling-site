@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Maven Launchpad Plugin</h1></header><p>translation_pending: true</p>
+<div class="note">
+This page is out of sync with the latest maven-launchpad-plugin features and settings. For now,
+refer to the source code and the launchpad/builder and launchpad/testing modules for more information.
+</div>
+<p>The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi applications. It supports the following runtime scenarios:</p>
+<ul>
+  <li>A WAR file suitable for running in a JavaEE servlet container.</li>
+  <li>A standalone Java application, with HTTP support from the Felix HttpService implementation</li>
+  <li>Inside Apache Karaf</li>
+</ul>
+<p>In addition, the Maven Launchpad Plugin supports the publishing of an application descriptor, in the form of a <em>bundle list</em>, as a Maven artifact. This descriptor can then be used by downstream application builders as the basis for other applications. In Sling, this is embodied by two Maven projects:</p>
+<ul>
+  <li><a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/builder">org.apache.sling.launchpad</a> - produces an application descriptor.</li>
+  <li><a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/">org.apache.sling.launchpad.testing</a> - uses the application descriptor from <code>org.apache.sling.launchpad</code> and adds two bundles.</li>
+</ul>
+<p>Maven Launchpad Plugin provides the following goals:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Goals </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>launchpad:prepare-package </td>
+      <td>Create the file system structure required by Sling's Launchpad framework. </td>
+    </tr>
+    <tr>
+      <td>launchpad:attach-bundle-list </td>
+      <td>Attach the bundle list descriptor to the current project as a Maven artifact. </td>
+    </tr>
+    <tr>
+      <td>launchpad:create-karaf-descriptor </td>
+      <td>Create an Apache Karaf Feature descriptor. </td>
+    </tr>
+    <tr>
+      <td>launchpad:create-bundle-jar </td>
+      <td>Create a JAR file containing the bundles in a Launchpad-structured JAR file. </td>
+    </tr>
+    <tr>
+      <td>launchpad:check-bundle-list-for-snapshots </td>
+      <td>Validate that the bundle list does not contain any SNAPSHOT versions. </td>
+    </tr>
+    <tr>
+      <td>launchpad:run </td>
+      <td>Run a Launchpad application. </td>
+    </tr>
+    <tr>
+      <td>launchpad:start </td>
+      <td>Start a Launchpad application. </td>
+    </tr>
+    <tr>
+      <td>launchpad:stop </td>
+      <td>Stop a Launchpad application. </td>
+    </tr>
+    <tr>
+      <td>launchpad:output-bundle-list </td>
+      <td>Output the bundle list to the console as XML. (added in version 2.0.8) </td>
+    </tr>
+  </tbody>
+</table>
+<h3>General Configuration</h3>
+<p>In general, the bulk of the configuration of the Maven Launchpad Plugin is concerned with setting up the bundle list which all of the goals will use. This bundle list is created using the following steps:</p>
+<ol>
+  <li>If <code>includeDefaultBundles</code> is <code>true</code> (the default), the default bundle list is loaded. By default, this is <code>org.apache.sling.launchpad:org.apache.sling.launchpad:RELEASE:xml:bundlelist</code>, but can be overridden by setting the <code>defaultBundleList</code> plugin parameter.</li>
+  <li>If <code>includeDefaultBundles</code> is <code>false</code>, an empty list is created.</li>
+  <li>If the bundle list file exists (by default, at <code>src/main/bundles/list.xml</code>), the bundles defined in it are added to the bundle list.</li>
+  <li>If the <code>additionalBundles</code> plugin parameter is defined, those bundles are added to the bundle list.</li>
+  <li>If the <code>bundleExclusions</code> plugin parameter is defined, those bundles are removed from the bundle list.</li>
+</ol>
+<p>When a bundle is added to the bundle list, if a bundle with the same groupId, artifactId, type, and classifier is already in the bundle list, the version of the existing bundle is modified. However, the start level of a bundle is never changed once that bundle is added to the bundle list.</p>
+<p>The plugin may also contribute bundles to (or remove bundles from) the bundle list as it sees fit.</p>
+<h3>Framework Configuration</h3>
+<p>For the <code>run</code> and <code>start</code> goals, the plugin will look for a file named <code>src/test/config/sling.properties</code>. If this file is present, it will be filtered using standard Maven filtering and used to populate the OSGi framework properties. This can be used, for example, to specify a <code>repository.xml</code> file to be used during development:</p>
+<p>sling.repository.config.file.url=${basedir}/src/test/config/repository.xml</p>
+<h2>Bundle List Files</h2>
+<p>The bundle list file uses a simple XML syntax representing a list of bundles organized into start levels:</p>
+<p>&lt;?xml version="1.0"?&gt; <bundles> <startLevel level="0"> <bundle> <groupId>commons-io</groupId> <artifactId>commons-io</artifactId> <version>1.4</version> </bundle> <bundle> <groupId>commons-collections</groupId> <artifactId>commons-collections</artifactId> <version>3.2.1</version> </bundle> </startLevel></p>
+<p><startLevel level="10"> <bundle> <groupId>org.apache.felix</groupId> <artifactId>org.apache.felix.eventadmin</artifactId> <version>1.0.0</version> </bundle> </startLevel></p>
+<p><startLevel level="15"> <bundle> <groupId>org.apache.sling</groupId> <artifactId>org.apache.sling.jcr.api</artifactId> <version>2.0.2-incubator</version> </bundle> </startLevel> </bundles></p>
+<p>Within each <code>bundle</code> element, <code>type</code> and <code>classifier</code> are also supported.</p>
+<p>The Http Service support can not be configured using the bundle list, but only using the <code>jarWebSupport</code> parameter, since it is specific to whether the Sling Launchpad is built as a java application (in which case the Jetty-based Http Service is used) or a web application (in which case the Http Service bridge is used).</p>
+<h2>Artifact Definition</h2>
+<p>The <code>defaultBundleList</code>, <code>jarWebSupport</code>, <code>additionalBundles</code>, and <code>bundleExclusions</code> parameters are configured with artifact definitions. This is done using a syntax similar to Maven dependency elements:</p>
+<p><configuration> ... <jarWebSupport> <groupId>GROUP_ID</groupId> <artifactId>ARTIFACT_ID</artifactId> <version>VERSION</version> <!-- type and classifier can also be specified if needed --> </jarWebSupport> ... </configuration></p>
+<p>For example, to use Pax Web instead of Felix HttpService as the HttpService provider, use the following:</p>
+<p><configuration> ... <jarWebSupport> <groupId>org.ops4j.pax.web</groupId> <artifactId>pax-web-service</artifactId> <version>RELEASE</version> <!-- type and classifier can also be specified if needed --> </jarWebSupport> ... </configuration></p>
+<p>In the case of <code>additionalBundles</code> and <code>bundleExclusions</code>, these are arrays of definitions, so an intermediate <code>bundle</code> element is necessary:</p>
+<p><configuration> ... <additionalBundles> <bundle> <groupId>GROUP_ID</groupId> <artifactId>ARTIFACT_ID</artifactId> <version>VERSION</version> <!-- type and classifier can also be specified if needed --> </bundle> </additionalBundles> ... </configuration></p>
+<p>By default, bundles are added to start level 0. To change, this use the <code>startLevel</code> element within each additional bundle definition.</p>
+<h2>Integration Testing</h2>
+<p>For integration testing examples, see <code>/samples/inplace-integration-test</code> and <code>launchpad/testing</code> in the Sling source tree.</p>
+<h2>Bundle List Rewriting</h2>
+<p>The Maven Launchpad Plugin supports the use of rules to rewrite the bundle list. These rules are executed by the <a href="http://www.jboss.org/drools">Drools</a> rule engine. Typically, this is used along with Maven profiles. For example, Sling's testing project includes a profile called <code>test-reactor-sling-bundles</code>. When activated, this profile runs a Drools rule file which scans the project list from the Maven reactor and modifies the version number for bundles which were contained within the reactor.</p>
+<p>In order for rules to interact with the Maven build, the following global variables are made available:</p>
+<ul>
+  <li><code>mavenSession</code> - an instance of <code>org.apache.maven.execution.MavenSession</code>.</li>
+  <li><code>mavenProject</code> - an instance of <code>org.apache.maven.project.MavenProject</code>.</li>
+</ul></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Incremental Builds in Sling IDE tooling for Eclipse</h1></header><p>[TOC]</p>
+<h2>Overview</h2>
+<p>The Sling IDE Tooling relies on the <a href="https://wiki.eclipse.org/M2E_compatible_maven_plugins">m2e incremental build support</a> for the generation of the bundle's manifest, the component descriptions as well as the metatype resources (the latter two being generated through OSGi 6 <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">component annotations</a> and <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/metatype/annotations/package-summary.html">metatype annotations</a> or through <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html">Apache Felix SCR annotations</a>). That means whenever at least one java class is touched and the auto-build in Eclipse is enabled the annotations on that class should be reevaluated. This may lead to a modification of the bundle's manifest and/or generation/modification of service description XMLs and/or Metatype resource files. Depending on which maven plugins you use you must adjust their configuration accordingly to properly support incremental builds.</p>
+<h2>Manifest Generation</h2>
+<h3>maven-bundle-plugin</h3>
+<p>The <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin</a> is based on the <a href="http://bnd.bndtools.org/">bnd library</a>. It uses bnd to generate the bundle's manifest.</p>
+<h4>maven-bundle-plugin prior to version 3.2.0</h4>
+<p>This version needs <a href="https://github.com/tesla/m2eclipse-tycho">m2eclipse-tycho</a> (an Eclipse plugin) to generate the manifest and service descriptions during the incremental build. This plugin can be installed through the Maven Discovery feature of m2e.</p>
+<h4>maven-bundle-plugin since version 3.2.0</h4>
+<p>Natively supports incremental builds for the <code>manifest</code> goal (<a href="https://issues.apache.org/jira/browse/FELIX-4009">FELIX-4009</a>) which needs to be explicitly configured as outlined in the <a href="http://felix.apache.org/documentation/faqs/apache-felix-bundle-plugin-faq.html#use-scr-metadata-generated-by-bnd-in-unit-tests">maven-bundle-plugin FAQ</a>. m2e-tycho is incompatible with that version, because it leads to errors like <code>Duplicate bundle executions found. Please remove any explicitly defined bundle executions in your pom.xml.</code> and <code>Duplicate manifest executions found. Please remove any explicitly defined manifest executions in your pom.xml.</code> (compare with <a href="https://github.com/tesla/m2eclipse-tycho/issues/31">issue 31</a>). Therefore uninstall m2eclipse-tycho if you want to use newer versions of the <code>maven-bundle-plugin</code>.</p>
+<h3>bnd-maven-plugin</h3>
+<p>The <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin</a> is developed from the bnd team and is based on bnd as well. It is versioned in parallel with bnd and bndtools. It natively supports incremental builds since version 3.1.0 (<a href="https://github.com/bndtools/bnd/issues/1180">issue 1180</a>).</p>
+<h2>Service Description and Metatype Resources</h2>
+<p>OSGi component and metatype annotations (for OSGi 6) are natively supported through bnd (and therefore automatically generated through both maven-bundle-plugin and bnd-maven-plugin). You don't need to configure anything explicitly since version 3.0.0 of bnd (<a href="https://github.com/bndtools/bnd/issues/1041">issue 1041</a>).</p>
+<p>The maven-bundle-plugin can be optionally coupled with the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.html">maven-scr-plugin</a>. Both maven-bundle-plugin as well as bnd-maven-plugin can be optionally coupled with the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.html">scr-bnd-plugin</a>. Both approaches can be used to generate components descriptions and metatype resources out of the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html">Felix SCR annotations</a>. The recommended way for new projects though is to rely on OSGi 6 annotations. However if you need to rely on Felix SCR annotations though it is recommended to rather use the scr-bnd-plugin over the maven-scr-plugin, as the former is nicely integrated into bnd and therefore means less overhead during the build.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

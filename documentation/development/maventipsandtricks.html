@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>MavenTipsAndTricks</h1></header><p>translation_pending: true</p>
+<p>Here's our collection of tips and tricks for building Sling with <a href="http://maven.apache.org">Maven</a>.</p>
+<h1>Maven local repository</h1>
+<p>The first time you run a Maven build, or when Maven needs additional build components, it downloads plugins and dependencies under its <em>local repository</em> folder on your computer. By default, this folder is named <em>.m2/repository</em> in your home directory.</p>
+<p>Maven uses this repository as a cache for artifacts that it might need for future builds, which means that the first Sling build usually takes much longer than usual, as Maven needs to download many tools and dependencies into its local repository while the build progresses.</p>
+<p>The build might fail if one of those downloads fails, in that case it might be worth retrying the build, to check if that was just a temporary connection problem, or if there's a more serious error.</p>
+<p>In some cases, the local Maven repository might get corrupted - if your build fails on a computer and works on another one, clearing the local repository before restarting the build might be worth trying.</p>
+<h1>Maven settings</h1>
+<h2>Ignore your local settings</h2>
+<p>To make sure you're getting the same results as we are when building Sling, it is recommend to ignore any local settings.</p>
+<p>On unixish platforms, using</p>
+<p>mvn -s /dev/null ...</p>
+<p>does the trick.</p>
+<div class="note">
+Does anyone have a similar command-line option that works under Windows?
+</div>
+<p>#</p>
+<h1>MAVEN_OPTS</h1>
+<p>The MAVEN_OPTS environment variable defines options for the JVM that executes Maven.</p>
+<p>Set it according to your platform, i.e. <code>export MAVEN*OPTS=...</code> on unixish systems or <code>set MAVEN*OPTS=...</code> on Windows.</p>
+<h2>Increase JVM memory if needed</h2>
+<p>If getting an OutOfMemoryException when running mvn, try setting</p>
+<p>MAVEN_OPTS="-Xmx256M -XX:MaxPermSize=256m"</p>
+<p>to allocate 256MB of RAM to Maven.</p>
+<h2>Debugging code launched by Maven</h2>
+<p>To run the Sling launchpad webapp in debug mode from Maven, for example, use something like</p>
+<p>MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n"</p>
+<p>And then connect to port 30303 with a remote JVM debugger (most IDEs do this).</p>
+<h2>Avoid spaces in Maven repository and workspace paths</h2>
+<p>Some Maven plugins do not like spaces in paths. It is better to avoid putting your Maven repository, or your code, under paths like <em>Documents and Settings</em>, for example.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+<meta charset="utf-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div>        
+    </head><body>
+<div class="menu">
+            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Oak Restrictions</h1></header><p>[TOC]</p>
+<h2>Introduction</h2>
+<p>Oak introduced plugability of restrictions as described in <a href="https://jackrabbit.apache.org/oak/docs/security/authorization/restriction.html#Pluggability">Oak Restriction Management</a>. The bundle sling-oak-restrictions provides additional restrictions that generally make sense for sling applications. Currently sling restrictions for exact resource type match and resource type match including all descendants are supplied.</p>
+<p><strong>Important:</strong> Using the sling restrictions (as well as standard oak restrictions) is not as performant as simple path based ACE entries without any restrictions. Permission setups should always mostly work with path based ACEs and only use ACEs with restrictions for special cases.</p>
+<h2>Restriction sling:resourceTypes</h2>
+<p>This restriction allows to match against a sling resource type of a node and works much like the oak standard restriction <code>rep:ntNames</code>. Only resources that have one of the supplied resource types are matched, child and parent resources with other resource types are not matched.</p>
+<p>The following example allows <code>myAuthorizable</code> to write to all nodes that have either resource type <code>myproj/comp1</code> or <code>myproj/comp2</code>:</p>
+<ul>
+  <li>/content/myprj/mynode</li>
+  <li>rep:policy (rep:ACL)</li>
+  <li>allow (rep:GrantACE)</li>
+  <li>principalName (String) = "myAuthorizable"</li>
+  <li>rep:privileges (Name[]) = "rep:write"</li>
+  <li>rep:restrictions (rep:Restrictions)</li>
+  <li>sling:resourceTypes (String[]) = [myproj/comp1,myproj/comp2]</li>
+</ul>
+<p>Assuming the following structure</p>
+<ul>
+  <li>/content/myprj</li>
+  <li>sling:resourceType (String) = "myproj/siteroot"</li>
+  <li>mynode</li>
+  <li>sling:resourceType (String) = "myproj/comp1"</li>
+  <li>mysubnode</li>
+  <li>sling:resourceType (String) = "myproj/comp3"</li>
+</ul>
+<p>the rule from above will match <code>/content/myprj/mynode</code> and not <code>/content/myprj</code> (parent) nor <code>/content/myprj/mynode/mysubnode</code> (child).</p>
+<p>Naturally (as with any oak restrictions), the rule is limited to its base path. In case the node <code>/content/myprj/othernode</code> is of resource type <code>myproj/comp1</code>, it will still not match.</p>
+<h2>Restriction sling:resourceTypesWithDescendants</h2>
+<p>This restriction matches against resource types in the same way as <a href="#restriction-slingresourcetypes">sling:resourceTypes</a>, except that it will also match all descendants of a matched node.</p>
+<p>The following example allows <code>myAuthorizable</code> to write to all nodes that have either resource type <code>myproj/comp1</code> or <code>myproj/comp2</code> <strong>or are a child of a node, that has one of these resource types</strong>:</p>
+<ul>
+  <li>/content/myprj/mynode</li>
+  <li>rep:policy (rep:ACL)</li>
+  <li>allow (rep:GrantACE)</li>
+  <li>principalName (String) = "myAuthorizable"</li>
+  <li>rep:privileges (Name[]) = "rep:write"</li>
+  <li>rep:restrictions (rep:Restrictions)</li>
+  <li>sling:resourceTypesWithDescendants (String[]) = [myproj/comp1,myproj/comp2]</li>
+</ul>
+<p>Assuming the structure example as mentioned in <a href="#restriction-slingresourcetypes">sling:resourceTypes</a>, the rule from above will match <code>/content/myprj/mynode</code> and <code>/content/myprj/mynode/mysubnode</code> (and any other subnodes of <code>/content/myprj/mynode</code> with arbitrary resource types), but not <code>/content/myprj</code>.</p>
+<h2>Advanced Path Matching</h2>
+<p>Both <a href="#restriction-slingresourcetypes">sling:resourceTypes</a> and <a href="#restriction-slingresourcetypeswithdescendants">sling:resourceTypesWithDescendants</a> support advanced path matching by using <code>resourcetype@path</code>. That way instead of checking the resource type of the current node, the resource type of node at the relative path is checked. For instance this is useful for the case where page content is stored in a <code>jcr:content</code> subnode of a hierarchy, the permission however is required to become effective on the parent node of <code>jcr:content</code>.</p>
+<p>The following example allows <code>myAuthorizable</code> to write to all nodes that have a subnode <code>jcr:content</code> with resource type <code>myproj/comp1</code> or <code>myproj/comp2</code> including their descendants:</p>
+<ul>
+  <li>/content/myprj/mynode</li>
+  <li>rep:policy (rep:ACL)</li>
+  <li>allow (rep:GrantACE)</li>
+  <li>principalName (String) = "myAuthorizable"</li>
+  <li>rep:privileges (Name[]) = "rep:write"</li>
+  <li>rep:restrictions (rep:Restrictions)</li>
+  <li>sling:resourceTypesWithDescendants (String[]) = [myproj/comp1@jcr:content,myproj/comp2@jcr:content]</li>
+</ul>
+<p>Assuming the following structure</p>
+<ul>
+  <li>/content/myprj</li>
+  <li>jcr:content</li>
+  <li>sling:resourceType (String) = "myproj/siteroot"</li>
+  <li>mynode1</li>
+  <li>jcr:content</li>
+  <li>sling:resourceType (String) = "myproj/comp1"</li>
+  <li>mysubnode1</li>
+  <li>jcr:content</li>
+  <li>sling:resourceType (String) = "myproj/comp3"</li>
+  <li>contentsubnode1</li>
+  <li>sling:resourceType (String) = "myproj/comp4"</li>
+  <li>contentsubnode2</li>
+  <li>sling:resourceType (String) = "myproj/comp5"</li>
+  <li>mysubnode2</li>
+  <li>jcr:content</li>
+  <li>sling:resourceType (String) = "myproj/comp3"</li>
+  <li>mynode2</li>
+  <li>jcr:content</li>
+  <li>sling:resourceType (String) = "myproj/comp7"</li>
+</ul>
+<p>the rule from above will match</p>
+<ul>
+  <li><code>/content/myprj/mynode1</code> (because of the <code>@jcr:content</code> part of <code>myproj/comp1@jcr:content</code>)</li>
+  <li><code>/content/myprj/mynode1/jcr:content</code> (it will check for <code>/content/myprj/mynode1/jcr:content/jcr:content</code> that does not exist, but since the parent <code>/content/myprj/mynode1</code> is already a match this matches because of <code>sling:resourceTypesWithDescendants</code>)</li>
+  <li><code>/content/myprj/mynode1/contentsubnode1</code> (because of <code>sling:resourceTypesWithDescendants</code>)</li>
+  <li><code>/content/myprj/mynode1/contentsubnode1</code> (because of <code>sling:resourceTypesWithDescendants</code>)</li>
+</ul>
+<p>and not match</p>
+<ul>
+  <li><code>/content/myprj</code></li>
+  <li><code>/content/myprj/mynode2</code></li>
+</ul></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>
