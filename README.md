@@ -20,10 +20,8 @@ See also https://issues.apache.org/jira/browse/SLING-6955
 * Finish the dynamic downloads page, links are still TODO + test with CGI script
 * sitemap page is missing
 
-### Might be harder
-* Remove or replace the `[TOC]` macro (but we might do without it)
-
-### Nice to have, maybe later
+### Nice to have
+* JBake 2.5.x does not support the `[TOC]` macro but apparently that will be available once JBake moves to https://github.com/vsch/flexmark-java , probably in its next version. We might wait for that and just mark the TOCs as unsupported for now.
 * Left menu is not yellow as on the old site (we might refresh the overall style anyway)
 
 ### Final validation, activation etc.
