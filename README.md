@@ -3,6 +3,12 @@ Experimenting with JBake for the Apache Sling website.
 
 See also https://issues.apache.org/jira/browse/SLING-6955
 
+## How to publish the website
+Build the site as described below, and sync the ./output folder to the asf-site branch 
+of this Git repository. The ASF's gitpubsub mechanism then synchronizes that content
+on the http://sling.apache.org website.
+
+TODO gitpubsub is not active so far, I will request a test setup to start with.
 
 ## How to build the site locally
 * Clone this repository
