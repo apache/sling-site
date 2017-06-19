@@ -18,6 +18,7 @@ See also https://issues.apache.org/jira/browse/SLING-6955
 * Fix remaining `refs.` links -> those are probably broken anyway
 * The `#!java` macro is not supported -> convert to monospaced code
 * Finish the dynamic downloads page, links are still TODO + test with CGI script
+* sitemap page is missing
 
 ### Might be harder
 * Remove or replace the `[TOC]` macro (but we might do without it)
