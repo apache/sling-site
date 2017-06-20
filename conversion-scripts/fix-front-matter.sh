@@ -13,7 +13,9 @@ ${MARKER}
 EOFM
 }
 
-cat $TMPFILE | while read line
+# keep initial whitespace
+IFS=''
+cat $TMPFILE | while read -r line
 do
 	if [[ $COPYING -eq 1 ]]
 	then

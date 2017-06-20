@@ -1,10 +1,7 @@
-title=TODO title for adapters.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Adapters		
+type=page
 status=published
 ~~~~~~
-Title: Adapters
 
 [TOC]
 

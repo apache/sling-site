@@ -1,11 +1,8 @@
-title=TODO title for media.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Media		
+type=page
 status=published
 ~~~~~~
 translation_pending: true
-Title: Media
 
 This page holds all media required for the Apache Sling website. The media are attachments and can be addressed using the following URL: http://cwiki.apache.org/SLINGxSITE/media.data/ (followed by the actual name of the attachment).
 

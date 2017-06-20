@@ -1,10 +1,7 @@
-title=TODO title for architecture.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Architecture		
+type=page
 status=published
 ~~~~~~
-Title: Architecture
 
 The following is a short list of high-lights of Sling:
 

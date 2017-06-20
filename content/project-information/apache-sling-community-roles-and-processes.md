@@ -1,10 +1,7 @@
-title=TODO title for apache-sling-community-roles-and-processes.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Community Roles and Processes		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Community Roles and Processes
 
 The Community Roles and Processes are put in effect as of 13/May/2009. Updated 7/December/2009 to reflect Sling being a top level project.
 

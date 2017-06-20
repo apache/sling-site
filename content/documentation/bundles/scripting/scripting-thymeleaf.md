@@ -1,10 +1,7 @@
-title=TODO title for scripting-thymeleaf.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Scripting Thymeleaf		
+type=page
 status=published
 ~~~~~~
-Title: Sling Scripting Thymeleaf
 
 Sling Scripting Thymeleaf is the scripting engine for [_Thymeleaf_](http://www.thymeleaf.org) (3.0) templates.
 

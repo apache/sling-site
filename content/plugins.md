@@ -1,11 +1,8 @@
-title=TODO title for plugins.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Plugins		
+type=page
 status=published
 ~~~~~~
 translation_pending: true
-Title: Plugins
 
 These pages present the various Maven Plugins of Sling:
 

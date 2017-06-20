@@ -1,10 +1,7 @@
-title=TODO title for datasource-providers.md 
-date=1900-01-01
-type=post
-tags=blog
+title=DataSource Provider		
+type=page
 status=published
 ~~~~~~
-Title: DataSource Provider
 
 DataSource provider bundle supports creation of `DataSource` instance and registering them with
 the OSGi service registry. Application using the DataSource just obtains it from OSGi while

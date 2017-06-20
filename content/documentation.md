@@ -1,10 +1,7 @@
-title=TODO title for documentation.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Documentation		
+type=page
 status=published
 ~~~~~~
-Title: Documentation
 
 [TOC]
 

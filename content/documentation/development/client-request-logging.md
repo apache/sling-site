@@ -1,10 +1,7 @@
-title=TODO title for client-request-logging.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Client Request Logging		
+type=page
 status=published
 ~~~~~~
-Title: Client Request Logging
 
 Sling provides extensive support to log various information at the before and after processing client requests. Out of the box, there are two loggers configured to write traditional `access.log` and `request.log` files. In addition more logging can be configured by providing OSGi Configuration Admin configuration.
 

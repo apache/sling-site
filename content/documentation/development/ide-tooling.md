@@ -1,10 +1,7 @@
-title=TODO title for ide-tooling.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling IDE tooling for Eclipse User Guide		
+type=page
 status=published
 ~~~~~~
-Title: Sling IDE tooling for Eclipse User Guide
 
 [TOC]
 

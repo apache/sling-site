@@ -1,10 +1,7 @@
-title=TODO title for the-sling-launchpad.md 
-date=1900-01-01
-type=post
-tags=blog
+title=The Sling Launchpad		
+type=page
 status=published
 ~~~~~~
-Title: The Sling Launchpad
 
 [TOC]
 

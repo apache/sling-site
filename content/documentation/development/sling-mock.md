@@ -1,10 +1,7 @@
-title=TODO title for sling-mock.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Mocks		
+type=page
 status=published
 ~~~~~~
-Title: Sling Mocks
 
 Mock implementation of selected Sling APIs for easier testing.
 

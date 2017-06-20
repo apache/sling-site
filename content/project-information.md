@@ -1,10 +1,7 @@
-title=TODO title for project-information.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Project Information		
+type=page
 status=published
 ~~~~~~
-Title: Project Information
 
 This document provides an overview of the various documents and links that are part of this project's general information:
 

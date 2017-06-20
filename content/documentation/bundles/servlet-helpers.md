@@ -1,10 +1,7 @@
-title=TODO title for servlet-helpers.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Servlet Helpers		
+type=page
 status=published
 ~~~~~~
-Title: Sling Servlet Helpers
 
 The Sling Servlet Helpers bundle provides mock implementations of the
 `SlingHttpServletRequest`, `SlingHttpServletResponse` and related classes.

@@ -1,10 +1,7 @@
-title=TODO title for osgi-mock.md 
-date=1900-01-01
-type=post
-tags=blog
+title=OSGi Mocks		
+type=page
 status=published
 ~~~~~~
-Title: OSGi Mocks
 
 Mock implementation of selected OSGi APIs for easier testing.
 

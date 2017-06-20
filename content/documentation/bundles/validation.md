@@ -1,10 +1,7 @@
-title=TODO title for validation.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Validation		
+type=page
 status=published
 ~~~~~~
-Title: Sling Validation
 
 [TOC]
 

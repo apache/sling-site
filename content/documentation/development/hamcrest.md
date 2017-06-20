@@ -1,10 +1,7 @@
-title=TODO title for hamcrest.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Hamcrest Integration		
+type=page
 status=published
 ~~~~~~
-Title: Hamcrest Integration
 
 Deeper integration with the [Hamcrest matcher library](http://hamcrest.org/).
 

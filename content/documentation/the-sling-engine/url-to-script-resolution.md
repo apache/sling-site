@@ -1,10 +1,7 @@
-title=TODO title for url-to-script-resolution.md 
-date=1900-01-01
-type=post
-tags=blog
+title=URL to Script Resolution		
+type=page
 status=published
 ~~~~~~
-Title: URL to Script Resolution
 
 [TOC]
 

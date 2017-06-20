@@ -1,10 +1,7 @@
-title=TODO title for content-distribution.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Content Distribution (org.apache.sling.distribution)		
+type=page
 status=published
 ~~~~~~
-Title: Content Distribution (org.apache.sling.distribution)
 [TOC]
 
 

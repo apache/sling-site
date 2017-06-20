@@ -1,10 +1,7 @@
-title=TODO title for issue-tracker.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Issue Tracker		
+type=page
 status=published
 ~~~~~~
-Title: Issue Tracker
 
 Apache Sling uses Jira for tracking bug reports and requests for improvements, new features, and other changes.
 

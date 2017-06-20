@@ -1,10 +1,7 @@
-title=TODO title for scripting-htl.md 
-date=1900-01-01
-type=post
-tags=blog
+title=HTL Scripting Engine		
+type=page
 status=published
 ~~~~~~
-Title: HTL Scripting Engine
 
 The Apache Sling HTL Scripting Engine, [formerly known as Sightly](https://issues.apache.org/jira/browse/SLING-6028), is the reference implementation of the [HTML Template Language](https://github.com/Adobe-Marketing-Cloud/htl-spec).
 

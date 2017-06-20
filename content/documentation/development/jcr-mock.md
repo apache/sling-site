@@ -1,10 +1,7 @@
-title=TODO title for jcr-mock.md 
-date=1900-01-01
-type=post
-tags=blog
+title=JCR Mocks		
+type=page
 status=published
 ~~~~~~
-Title: JCR Mocks
 
 Mock implementation of selected JCR APIs for easier testing. It stores all data in-memory in a HashMap to ensure instantly creating and destroying of the JCR repository.
 

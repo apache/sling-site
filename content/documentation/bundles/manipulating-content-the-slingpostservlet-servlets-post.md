@@ -1,10 +1,7 @@
-title=TODO title for manipulating-content-the-slingpostservlet-servlets-post.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Manipulating Content - The SlingPostServlet (servlets.post)		
+type=page
 status=published
 ~~~~~~
-Title: Manipulating Content - The SlingPostServlet (servlets.post)
 
 [TOC]
 

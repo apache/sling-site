@@ -1,11 +1,8 @@
-title=TODO title for guides.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Guides		
+type=page
 status=published
 ~~~~~~
 translation_pending: true
-Title: Guides
 
 These pages contain further information in a more informal way.
 

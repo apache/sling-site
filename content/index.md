@@ -1,10 +1,7 @@
-title=TODO title for index.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling - Bringing Back the Fun!		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling - Bringing Back the Fun!
 
 **Apache Sling&trade;** is an innovative web framework that is intended to
 bring back the fun to web development.

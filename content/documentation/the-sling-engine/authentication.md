@@ -1,10 +1,7 @@
-title=TODO title for authentication.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Authentication		
+type=page
 status=published
 ~~~~~~
-Title: Authentication
 Excerpt:  How requests are authenticated.
 
 

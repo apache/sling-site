@@ -1,10 +1,7 @@
-title=TODO title for log-tracers.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Log Tracer		
+type=page
 status=published
 ~~~~~~
-Title: Log Tracer
 
 [Log Tracer][SLING-4739] provides support for enabling the logs for specific category at specific 
 level and only for specific request. It provides a very fine level of control via config provided

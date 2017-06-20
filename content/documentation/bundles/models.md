@@ -1,10 +1,7 @@
-title=TODO title for models.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Models		
+type=page
 status=published
 ~~~~~~
-Title: Sling Models
 
 [TOC]
 

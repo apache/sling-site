@@ -1,10 +1,7 @@
-title=TODO title for resource-merger.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Resource Merger (org.apache.sling.resourcemerger)		
+type=page
 status=published
 ~~~~~~
-Title: Resource Merger (org.apache.sling.resourcemerger)
 [TOC]
 
 

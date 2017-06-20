@@ -1,10 +1,7 @@
-title=TODO title for servlets.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Servlets and Scripts		
+type=page
 status=published
 ~~~~~~
-Title: Servlets and Scripts
 
 [TOC]
 

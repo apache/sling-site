@@ -1,10 +1,7 @@
-title=TODO title for wrap-or-decorate-resources.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Wrap or Decorate Resources		
+type=page
 status=published
 ~~~~~~
-Title: Wrap or Decorate Resources
 
 ## Introduction
 

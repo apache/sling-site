@@ -1,10 +1,7 @@
-title=TODO title for discovery-api-and-impl.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Discovery API and its implementations		
+type=page
 status=published
 ~~~~~~
-Title: Discovery API and its implementations
 
 In many situations a particular Sling-based deployment consists of several Sling instances:
 typically a number of instances would form a `cluster` that share a common content repository - 

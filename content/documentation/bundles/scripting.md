@@ -1,10 +1,7 @@
-title=TODO title for scripting.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Scripting		
+type=page
 status=published
 ~~~~~~
-Title: Sling Scripting
 
 [TOC]
 

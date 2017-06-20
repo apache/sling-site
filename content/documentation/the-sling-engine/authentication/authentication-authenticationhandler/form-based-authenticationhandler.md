@@ -1,10 +1,7 @@
-title=TODO title for form-based-authenticationhandler.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Form Based AuthenticationHandler		
+type=page
 status=published
 ~~~~~~
-Title: Form Based AuthenticationHandler
 
 [TOC]
 

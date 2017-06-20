@@ -1,10 +1,7 @@
-title=TODO title for mappings-for-resource-resolution.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Mappings for Resource Resolution		
+type=page
 status=published
 ~~~~~~
-Title: Mappings for Resource Resolution
 
 [TOC]
 

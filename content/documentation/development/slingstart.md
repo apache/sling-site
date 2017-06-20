@@ -1,10 +1,7 @@
-title=TODO title for slingstart.md 
-date=1900-01-01
-type=post
-tags=blog
+title=The Apache Sling Provisioning Model and Apache SlingStart		
+type=page
 status=published
 ~~~~~~
-Title: The Apache Sling Provisioning Model and Apache SlingStart
 
 [TOC]
 

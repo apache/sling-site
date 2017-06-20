@@ -1,7 +1,6 @@
-title=Downloads
-type=downloads
+title=		
+type=page
 status=published
-comment=the download data (bundle version etc) is found in the downloads template
 ~~~~~~
 
 To get the latest development release of Apache Sling, you can check out the Source Code and Getting and Building Sling yourself. Otherwise, the releases below are available for download. To install, just download and extract. The PGP keys at [[https://people.apache.org/keys/group/sling.asc]] can be used to verify the integrity of the release archives.
@@ -34,4 +33,3 @@ please reload this page by [downloads.cgi](clicking here)
 [end]
 </select>
 <input type="submit" value="Change"></input>
-</form>

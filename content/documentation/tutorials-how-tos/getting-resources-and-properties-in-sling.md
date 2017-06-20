@@ -1,10 +1,7 @@
-title=TODO title for getting-resources-and-properties-in-sling.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Getting Resources and Properties in Sling		
+type=page
 status=published
 ~~~~~~
-Title: Getting Resources and Properties in Sling
 
 
 The Resource is one of the central parts of Sling. Extending from JCR's Everything is Content, Sling assumes Everthing is a Resource. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigm of the REST architecture.

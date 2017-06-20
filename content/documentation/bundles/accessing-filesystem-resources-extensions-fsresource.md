@@ -1,10 +1,7 @@
-title=TODO title for accessing-filesystem-resources-extensions-fsresource.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Accessing File System Resources (org.apache.sling.fsresource)		
+type=page
 status=published
 ~~~~~~
-Title: Accessing File System Resources (org.apache.sling.fsresource)
 [TOC]
 
 

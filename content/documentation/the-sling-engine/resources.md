@@ -1,10 +1,7 @@
-title=TODO title for resources.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Resources		
+type=page
 status=published
 ~~~~~~
-Title: Resources
 
 [TOC]
 

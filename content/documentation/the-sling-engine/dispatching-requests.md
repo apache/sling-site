@@ -1,10 +1,7 @@
-title=TODO title for dispatching-requests.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Dispatching Requests		
+type=page
 status=published
 ~~~~~~
-Title: Dispatching Requests
 
 ## Main process
 

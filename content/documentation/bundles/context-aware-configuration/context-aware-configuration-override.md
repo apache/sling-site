@@ -1,10 +1,7 @@
-title=TODO title for context-aware-configuration-override.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Context-Aware Configuration - Override		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Context-Aware Configuration - Override
 
 [TOC]
 

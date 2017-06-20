@@ -1,10 +1,7 @@
-title=TODO title for dynamic-includes.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Dynamic Include		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Dynamic Include
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information

@@ -1,10 +1,7 @@
-title=TODO title for jcr-installer-provider.md 
-date=1900-01-01
-type=post
-tags=blog
+title=JCR Installer Provider		
+type=page
 status=published
 ~~~~~~
-Title: JCR Installer Provider
 
 The JCR installer provider scans the JCR repository for artifacts and provides them to the [OSGI installer](/documentation/bundles/osgi-installer.html).
 

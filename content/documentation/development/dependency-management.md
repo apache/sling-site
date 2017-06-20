@@ -1,10 +1,7 @@
-title=TODO title for dependency-management.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Dependency Management		
+type=page
 status=published
 ~~~~~~
-Title: Dependency Management
 Excerpt: This page is about how we do and don't do dependency management in the Sling project.
 
 This page is about how we do and don't do dependency management in the Sling project.

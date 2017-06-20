@@ -1,10 +1,7 @@
-title=TODO title for ide-tooling-incremental-build.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Incremental Builds in Sling IDE tooling for Eclipse		
+type=page
 status=published
 ~~~~~~
-Title: Incremental Builds in Sling IDE tooling for Eclipse
 
 [TOC]
 

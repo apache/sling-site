@@ -1,10 +1,7 @@
-title=TODO title for logging.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Logging		
+type=page
 status=published
 ~~~~~~
-Title: Logging
 
 <div class="note">
 This document is for 3.x release of Sling Commons Log components. Refer to

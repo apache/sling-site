@@ -1,10 +1,7 @@
-title=TODO title for bundle-resources-extensions-bundleresource.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Bundle Resources (extensions.bundleresource)		
+type=page
 status=published
 ~~~~~~
-Title: Bundle Resources (extensions.bundleresource)
 
 [TOC]
 

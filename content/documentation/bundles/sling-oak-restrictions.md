@@ -1,10 +1,7 @@
-title=TODO title for sling-oak-restrictions.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Oak Restrictions		
+type=page
 status=published
 ~~~~~~
-Title: Sling Oak Restrictions
 [TOC]
 
 

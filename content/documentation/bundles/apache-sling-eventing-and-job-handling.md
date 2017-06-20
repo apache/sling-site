@@ -1,10 +1,7 @@
-title=TODO title for apache-sling-eventing-and-job-handling.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Eventing and Job Handling		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Eventing and Job Handling
 
 
 ## Overview

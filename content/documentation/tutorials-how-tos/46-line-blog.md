@@ -1,10 +1,7 @@
-title=TODO title for 46-line-blog.md 
-date=1900-01-01
-type=post
-tags=blog
+title=46 Line Blog		
+type=page
 status=published
 ~~~~~~
-Title: 46 Line Blog
 
 This tutorial is based on the first *Sling Gems* on dev.day.com: The [Sling gems: a blog in 46 lines of code](http://dev.day.com/microsling/content/blogs/main/sling-46-lines-blog.html). It has slightly been adapted to fit here.
 

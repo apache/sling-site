@@ -1,10 +1,7 @@
-title=TODO title for osgi-installer.md 
-date=1900-01-01
-type=post
-tags=blog
+title=OSGi Installer		
+type=page
 status=published
 ~~~~~~
-Title: OSGi Installer
 
 # Overview
 

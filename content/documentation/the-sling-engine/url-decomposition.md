@@ -1,10 +1,7 @@
-title=TODO title for url-decomposition.md 
-date=1900-01-01
-type=post
-tags=blog
+title=URL decomposition		
+type=page
 status=published
 ~~~~~~
-Title: URL decomposition
 
 [TOC]
 

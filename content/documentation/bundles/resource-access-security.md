@@ -1,10 +1,7 @@
-title=TODO title for resource-access-security.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Resource Access Security		
+type=page
 status=published
 ~~~~~~
-Title: Resource Access Security
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information

@@ -1,10 +1,7 @@
-title=TODO title for request-analysis.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Request Processing Analyzer (reqanalyzer)		
+type=page
 status=published
 ~~~~~~
-Title: Request Processing Analyzer (reqanalyzer)
 
 [TOC]
 

@@ -1,10 +1,7 @@
-title=TODO title for org-apache-sling-junit-bundles.md 
-date=1900-01-01
-type=post
-tags=blog
+title=JUnit server-side testing support bundles		
+type=page
 status=published
 ~~~~~~
-Title: JUnit server-side testing support bundles
 
 This is an overview of the Sling bundles that provide support for server-side JUnit tests. 
 

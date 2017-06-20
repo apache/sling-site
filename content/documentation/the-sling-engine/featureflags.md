@@ -1,10 +1,7 @@
-title=TODO title for featureflags.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Feature Flags		
+type=page
 status=published
 ~~~~~~
-Title: Feature Flags
 
 Feature Flags are used to select whether a particular feature is enabled or not. This allows to
 continuosly deploy new features of an application without making them globally available yet.

@@ -1,10 +1,7 @@
-title=TODO title for metrics.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Metrics		
+type=page
 status=published
 ~~~~~~
-Title: Sling Metrics
 
 Sling Metrics bundle provides integration with [Dropwizard Metrics][1] library
 which provides a toolkit to capture runtime performance statistics in your 

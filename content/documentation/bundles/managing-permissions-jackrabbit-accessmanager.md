@@ -1,10 +1,7 @@
-title=TODO title for managing-permissions-jackrabbit-accessmanager.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Managing permissions (jackrabbit.accessmanager)		
+type=page
 status=published
 ~~~~~~
-Title: Managing permissions (jackrabbit.accessmanager)
 
 
 The `jackrabbit-accessmanager` bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the `jackrabbit-accessmanager` bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like `modifyAce`, `acl` and `deleteAce`.

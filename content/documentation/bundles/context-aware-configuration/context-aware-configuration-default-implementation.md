@@ -1,10 +1,7 @@
-title=TODO title for context-aware-configuration-default-implementation.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Context-Aware Configuration - Default Implementation		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Context-Aware Configuration - Default Implementation
 
 [TOC]
 

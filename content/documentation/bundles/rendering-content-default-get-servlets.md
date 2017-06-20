@@ -1,10 +1,7 @@
-title=TODO title for rendering-content-default-get-servlets.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Rendering Content - Default GET Servlets		
+type=page
 status=published
 ~~~~~~
-Title: Rendering Content - Default GET Servlets
 
 [TOC]
 

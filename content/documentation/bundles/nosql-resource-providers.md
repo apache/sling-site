@@ -1,10 +1,7 @@
-title=TODO title for nosql-resource-providers.md 
-date=1900-01-01
-type=post
-tags=blog
+title=NoSQL Resource Providers (org.apache.sling.nosql)		
+type=page
 status=published
 ~~~~~~
-Title: NoSQL Resource Providers (org.apache.sling.nosql)
 [TOC]
 
 

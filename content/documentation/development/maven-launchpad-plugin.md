@@ -1,11 +1,8 @@
-title=TODO title for maven-launchpad-plugin.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Maven Launchpad Plugin		
+type=page
 status=published
 ~~~~~~
 translation_pending: true
-Title: Maven Launchpad Plugin
 
 <div class="note">
 This page is out of sync with the latest maven-launchpad-plugin features and settings. For now,

@@ -1,10 +1,7 @@
-title=TODO title for sling-query.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Query		
+type=page
 status=published
 ~~~~~~
-Title: Sling Query
 
 SlingQuery is a Sling resource tree traversal tool inspired by the [jQuery](http://api.jquery.com/category/traversing/tree-traversal/) JavaScript API.
 

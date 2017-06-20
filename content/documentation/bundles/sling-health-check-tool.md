@@ -1,10 +1,7 @@
-title=TODO title for sling-health-check-tool.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Health Check Tools		
+type=page
 status=published
 ~~~~~~
-Title: Sling Health Check Tools
 
 Based on simple `HealthCheck` OSGi services, the Sling Health Check Tools ("hc" in short form) are used to 
 check the health of live Sling systems, based on inputs like JMX MBean attribute values, OSGi framework 

@@ -1,10 +1,7 @@
-title=TODO title for internationalization-support-i18n.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Internationalization Support (i18n)		
+type=page
 status=published
 ~~~~~~
-Title: Internationalization Support (i18n)
 
 Internationalization support in Sling consists of four methods in the `SlingHttpServletRequest` interface:
 

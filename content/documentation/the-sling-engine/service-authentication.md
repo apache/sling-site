@@ -1,10 +1,7 @@
-title=TODO title for service-authentication.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Service Authentication		
+type=page
 status=published
 ~~~~~~
-Title: Service Authentication
 Excerpt: Introduce new service level authentication to replace `loginAdministrative`
 
 [TOC]

@@ -1,10 +1,7 @@
-title=TODO title for links.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Links		
+type=page
 status=published
 ~~~~~~
-Title: Links
 
 Here are some links to other resources
 

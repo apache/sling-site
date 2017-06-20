@@ -1,10 +1,7 @@
-title=TODO title for sling-launchpad-8-released.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Apache Sling Launchpad 8 released		
+type=page
 status=published
 ~~~~~~
-Title: Apache Sling Launchpad 8 released
 
 Here are some of the more noteworthy things available in this release.
 

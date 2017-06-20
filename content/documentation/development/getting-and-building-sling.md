@@ -1,10 +1,7 @@
-title=TODO title for getting-and-building-sling.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Getting and Building Sling		
+type=page
 status=published
 ~~~~~~
-Title: Getting and Building Sling
 Excerpt: A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.
 
 A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.

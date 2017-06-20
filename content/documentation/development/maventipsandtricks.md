@@ -1,11 +1,8 @@
-title=TODO title for maventipsandtricks.md 
-date=1900-01-01
-type=post
-tags=blog
+title=MavenTipsAndTricks		
+type=page
 status=published
 ~~~~~~
 translation_pending: true
-Title: MavenTipsAndTricks
 
 Here's our collection of tips and tricks for building Sling with [Maven](http://maven.apache.org).
 

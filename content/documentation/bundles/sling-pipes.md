@@ -1,10 +1,7 @@
-title=TODO title for sling-pipes.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Pipes		
+type=page
 status=published
 ~~~~~~
-Title: Sling Pipes
 
 tool for doing extract - transform - load operations through a resource tree configuration.
 

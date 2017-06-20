@@ -1,10 +1,7 @@
-title=TODO title for sling-testing-tools.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Testing Tools		
+type=page
 status=published
 ~~~~~~
-Title: Sling Testing Tools
 
 <div class="warning">
 While this information is still valid, we recommend using the tools and techniques described

@@ -1,10 +1,7 @@
-title=TODO title for sling-api-crud-support.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling API CRUD Support		
+type=page
 status=published
 ~~~~~~
-Title: Sling API CRUD Support
 
 [TOC]
 

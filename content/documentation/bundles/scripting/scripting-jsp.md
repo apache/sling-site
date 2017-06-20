@@ -1,10 +1,7 @@
-title=TODO title for scripting-jsp.md 
-date=1900-01-01
-type=post
-tags=blog
+title=JSP Scripting Engine		
+type=page
 status=published
 ~~~~~~
-Title: JSP Scripting Engine
 
 The Apache Sling JSP Scripting Engine is implemented by the [`org.apache.sling.scripting.jsp`](https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp)
  bundle, based on the Jasper 2 JSP engine.

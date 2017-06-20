@@ -1,10 +1,7 @@
-title=TODO title for resource-editor.md 
-date=1900-01-01
-type=post
-tags=blog
+title=The Apache Sling Resource Editor		
+type=page
 status=published
 ~~~~~~
-Title: The Apache Sling Resource Editor
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file
            distributed with this work for additional information

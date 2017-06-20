@@ -1,10 +1,7 @@
-title=TODO title for repository-based-development.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Repository Based Development		
+type=page
 status=published
 ~~~~~~
-Title: Repository Based Development
 
 [TOC]
 

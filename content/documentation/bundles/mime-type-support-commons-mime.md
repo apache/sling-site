@@ -1,10 +1,7 @@
-title=TODO title for mime-type-support-commons-mime.md 
-date=1900-01-01
-type=post
-tags=blog
+title=MIME Type Support (commons.mime and commons.contentdetection)		
+type=page
 status=published
 ~~~~~~
-Title: MIME Type Support (commons.mime and commons.contentdetection)
 
 Support for MIME type mappings is generally a problematic issue. On the one hand applications have to take care to stay up to date with their mappings on the other hands in web applications it is tedious to maintain the mappings. Apache Sling takes a very user and deployment friendly approadch to this problem which is described in detail on this page.
 

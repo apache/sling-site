@@ -1,10 +1,7 @@
-title=TODO title for request-parameters.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Request Parameter Handling in Sling		
+type=page
 status=published
 ~~~~~~
-Title: Request Parameter Handling in Sling
 Excerpt: Explains how Sling provides request parameters to the `Component`.
 
 ## Servlet API

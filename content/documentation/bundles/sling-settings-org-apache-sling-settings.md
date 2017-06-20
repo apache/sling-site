@@ -1,10 +1,7 @@
-title=TODO title for sling-settings-org-apache-sling-settings.md 
-date=1900-01-01
-type=post
-tags=blog
+title=Sling Settings and Run Modes (org.apache.sling.settings)		
+type=page
 status=published
 ~~~~~~
-Title: Sling Settings and Run Modes (org.apache.sling.settings)
 
 # Overview
 
