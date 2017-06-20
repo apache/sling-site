@@ -16,7 +16,7 @@ This feature provides the following enhancements:
 * wizards for creating new Sightly scripts and Use Classes ( Java and Javascript )
 * Sightly-aware validation for HTML files
 
-![Sightly Editor](../documentation/development/ide-tooling/sightly-editor.png)
+![Sightly Editor](/documentation/development/ide-tooling/sightly-editor.png)
 
 These enhancements are enabled once the Sightly facet is added to a project. This is done automatically when converting a project to content project, but can also be done manually via the project properties, under the _Project Facets_ page.
 
@@ -25,7 +25,7 @@ Automatic configuration of debug classpath based on the bundles deployed on the 
 
 When first connecting to a Sling instance, the IDE tooling tries to bind all the sources associated with the bundles deployed on the server and retrieves the associated source artifacts using Maven. Therefore, the debug classpath is as close as possible to sources used to build the bundles deployed on the server.
 
-![Debugging](../documentation/development/ide-tooling/debug.png)
+![Debugging](/documentation/development/ide-tooling/debug.png)
 
 Since a first source bundle resolution can potentially take a long time, this behaviour can be disabled from the server configuration page.
 
