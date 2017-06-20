@@ -1,7 +1,10 @@
-title=Errorhandling		
-type=page
+title=TODO title for errorhandling.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Errorhandling
 
 The Sling Engine includes support for handling uncaught `Throwable` as well as rendering custom HTTP status code pages. This is implemented by expecting a (single) `org.apache.sling.engine.servlets.ErrorHandler` service to which handling of uncaught `Throwable` and HTTP status responses are delegated.
 
@@ -9,7 +12,7 @@ The Sling Servlet Resolver bundle implements this interface by providing an elab
 
 This page provides more information on how error handler scripts are selected and what is provided out of the box.
 
-The [ErrorHandlingTest][1] in our integration tests suite provides
+The [ErrorHandlingTest][1] in our integration tests suite provides 
 working examples of various error handling scenarios.
 
 [TOC]
@@ -21,12 +24,12 @@ the status and writing to the response such handlers should do the following:
 
 * Check whether the response has been committed or not
 * If the response has not been committed:
-* Reset the response
-* Set the status code (use `HttpServletResponse.setStatus`)
-* Set the response content type and character encoding (provided text data is sent back)
+    * Reset the response
+    * Set the status code (use `HttpServletResponse.setStatus`)
+    * Set the response content type and character encoding (provided text data is sent back)
 * If the response has already been committed:
-* Do not try to reset since this would cause an `IllegalStateException`. Also the writer may not be available.
-* The best that might be done in this case is just log a message at warning or error level along with information about the failure.
+    * Do not try to reset since this would cause an `IllegalStateException`. Also the writer may not be available.
+    * The best that might be done in this case is just log a message at warning or error level along with information about the failure.
 
 
 ## HTTP Status Codes
@@ -35,13 +38,13 @@ The Sling engine implements the `HttpServletResponse.sendError` methods by calli
 
 The Servlet Resolver bundle implementation looks up a script to handle the status code as follows:
 
-* The status code is converted to a string and used as the request extension. Any request extensions, selectors or suffixes from the actual request are ignored.
-* The same resource type hierarchy is followed to find the script as for regular script resolution. The difference is that for error handler scripts `sling/servlet/errorhandler` is used as the implied base resource type (as opposed to `sling/servlet/default` for regular script resolution.
+  * The status code is converted to a string and used as the request extension. Any request extensions, selectors or suffixes from the actual request are ignored.
+  * The same resource type hierarchy is followed to find the script as for regular script resolution. The difference is that for error handler scripts `sling/servlet/errorhandler` is used as the implied base resource type (as opposed to `sling/servlet/default` for regular script resolution.
 
 **Examples:**
 
-* An application provider my provide a default handler for the 404/NOT FOUND status. This script might be located in `/libs/sling/servlet/errorhandler/404.jsp`.
-* An programmer might provide a handler for the 403/FORBIDDEN status in `/apps/sling/servlet/errorhandler/403.esp`.
+  * An application provider my provide a default handler for the 404/NOT FOUND status. This script might be located in `/libs/sling/servlet/errorhandler/404.jsp`.
+  * An programmer might provide a handler for the 403/FORBIDDEN status in `/apps/sling/servlet/errorhandler/403.esp`.
 
 
 ## Uncaught Throwables
@@ -57,13 +60,13 @@ To register a catch-all handler for any uncaught Throwables you might create a s
 
 The Sling Servlet Resolver bundle provides a default error handler servlet which is used if the algorithms described above do not resolve to a handler script or servlet. The provided error handler servlet does the following:
 
-* Print a descriptive message, which is the `javax.servlet.error.message` request attribute by default
-* Print a stacktrace if the `javax.servlet.error.exception` is set
-* Dump the request progress tracker
+  * Print a descriptive message, which is the `javax.servlet.error.message` request attribute by default
+  * Print a stacktrace if the `javax.servlet.error.exception` is set
+  * Dump the request progress tracker
 
 Starting with Sling Servlet Resolver version 2.0.10 the default error handler servlet is looked up using the string `default` as the request extension and the provided default servlet is registered as `<prefix>/sling/servlet/errorhandler/default.servlet` where <prefix> is the last entry in the resource resolver search path, `/libs` by default.
 
 Thus to overwrite the default error handler servlet provide a servlet or script for the `default` extension, for example `/apps/sling/servlet/errorhandler/default.groovy`.
 
 
-[1]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolver/errorhandler/ErrorHandlingTest.java
+  [1]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolver/errorhandler/ErrorHandlingTest.java

@@ -1,8 +1,11 @@
-title=MavenTipsAndTricks		
-type=page
+title=TODO title for maventipsandtricks.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
 translation_pending: true
+Title: MavenTipsAndTricks
 
 Here's our collection of tips and tricks for building Sling with [Maven](http://maven.apache.org).
 
@@ -24,7 +27,7 @@ To make sure you're getting the same results as we are when building Sling, it i
 On unixish platforms, using
 
 
-mvn -s /dev/null ...
+    mvn -s /dev/null ...
 
 
 does the trick.
@@ -33,7 +36,7 @@ does the trick.
 Does anyone have a similar command-line option that works under Windows?
 </div>
 
-#
+# 
 # MAVEN_OPTS
 The MAVEN_OPTS environment variable defines options for the JVM that executes Maven.
 
@@ -43,7 +46,7 @@ Set it according to your platform, i.e. `export MAVEN*OPTS=...` on unixish syste
 If getting an OutOfMemoryException when running mvn, try setting
 
 
-MAVEN_OPTS="-Xmx256M -XX:MaxPermSize=256m"
+    MAVEN_OPTS="-Xmx256M -XX:MaxPermSize=256m"
 
 
 to allocate 256MB of RAM to Maven.
@@ -52,7 +55,7 @@ to allocate 256MB of RAM to Maven.
 To run the Sling launchpad webapp in debug mode from Maven, for example, use something like
 
 
-MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n"
+    MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n"
 
 
 And then connect to port 30303 with a remote JVM debugger (most IDEs do this).

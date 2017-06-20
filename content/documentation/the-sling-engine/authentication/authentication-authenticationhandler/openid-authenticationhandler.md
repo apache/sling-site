@@ -1,7 +1,10 @@
-title=OpenID AuthenticationHandler		
-type=page
+title=TODO title for openid-authenticationhandler.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: OpenID AuthenticationHandler
 
 [TOC]
 

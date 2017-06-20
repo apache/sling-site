@@ -1,7 +1,10 @@
-title=Apache Sling Context-Aware Configuration		
-type=page
+title=TODO title for context-aware-configuration.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Apache Sling Context-Aware Configuration
 
 [TOC]
 
@@ -41,15 +44,15 @@ The service for getting the configuration resources is called the ConfigurationR
 For example to get a configuration resource for a content resource at /content/mysite/page1, you would get a reference to the OSGi service
 `org.apache.sling.caconfig.resource.ConfigurationResourceResolver` and write:
 
-#!java
-Resource contentResource = resourceResolver.getResource("/content/mysite/page1");
+    #!java
+    Resource contentResource = resourceResolver.getResource("/content/mysite/page1");
 
-Resource configResource = configurationResourceResolver.getResource(contentResource, "my-bucket", "my-config");
+    Resource configResource = configurationResourceResolver.getResource(contentResource, "my-bucket", "my-config");
 
 Or if you have several configuration resources of the same type and you need all of them:
 
-#!java
-Collection<Resource> configResources = configurationResourceResolver.getResourceCollection(contentResource, "my-bucket", "my-config");
+    #!java
+    Collection<Resource> configResources = configurationResourceResolver.getResourceCollection(contentResource, "my-bucket", "my-config");
 
 The ConfigurationResourceResolver has a concept of "buckets" (2nd parameter in the method signatures) that allows to separate different types of configuration resources into different resource hierarchies, so you have a separate "namespaces" for the named configuration resources. For example one bucket for workflow definitions, one bucket for template definitions, one for key/value-pairs.
 
@@ -68,15 +71,15 @@ named and the service to get them is the ConfigurationResolver. You can get a re
 `org.apache.sling.caconfig.ConfigurationResolver` - it has a single method to get a ConfigurationBuilder.
 Alternatively you can directly adapt your content resource directly to the ConfigurationBuilder interface and get the configuration:
 
-#!java
-Resource contentResource = resourceResolver.getResource("/content/mysite/page1");
+    #!java
+    Resource contentResource = resourceResolver.getResource("/content/mysite/page1");
 
-MyConfig config = contentResource.adaptTo(ConfigurationBuilder.class).as(MyConfig.class);
-
+    MyConfig config = contentResource.adaptTo(ConfigurationBuilder.class).as(MyConfig.class);
+    
 Or if you want to get a list of configurations:
 
-#!java
-Collection<MyConfig> configs = contentResource.adaptTo(ConfigurationBuilder.class).asCollection(MyConfig.class);
+    #!java
+    Collection<MyConfig> configs = contentResource.adaptTo(ConfigurationBuilder.class).asCollection(MyConfig.class);
 
 The ConfigurationBuilder also supports getting the configurations as ValueMap or by adapting the configuration resources e.g. to a Sling Model. In this case you have to specify a configuration name which is otherwise derived automatically from the annotation class.
 
@@ -101,22 +104,22 @@ the applications/libraries you use, or you can define your own annotation classe
 
 The annotation class may look like this:
 
-#!java
-@Configuration(label="My Configuration", description="Describe me")
-public @interface MyConfig {
+    #!java
+  	@Configuration(label="My Configuration", description="Describe me")
+  	public @interface MyConfig {
+  	
+  	    @Property(label="Parameter #1", description="Describe me")
+  	    String param1();
+  	    
+  	    @Property(label="Parameter with Default value", description="Describe me")
+  	    String paramWithDefault() default "defValue";
+  	    
+  	    @Property(label="Integer parameter", description="Describe me")
+  	    int intParam();
+  	    
+  	}
 
-@Property(label="Parameter #1", description="Describe me")
-String param1();
-
-@Property(label="Parameter with Default value", description="Describe me")
-String paramWithDefault() default "defValue";
-
-@Property(label="Integer parameter", description="Describe me")
-int intParam();
-
-}
-
-The `@Configuration` annotation is mandatory. All properties on the `@Configuration` annotation and the `@Property` annotations are optional - they provide additional metadata for tooling e.g. configuration editors.
+The `@Configuration` annotation is mandatory. All properties on the `@Configuration` annotation and the `@Property` annotations are optional - they provide additional metadata for tooling e.g. configuration editors. 
 
 By default the annotation class name is used as configuration name, which is also the recommended option. If you want to use an arbitrary configuration name you can specify it via a `name` property on the `@Configuration` annotation.
 
@@ -124,9 +127,9 @@ You may specify custom properties (via `property` string array) for the configur
 
 If you provide your own configuration annotation classes in your bundle, you have to export them and list all class names in a bundle header named `Sling-ContextAware-Configuration-Classes` - example:
 
-Sling-ContextAware-Configuration-Classes: x.y.z.MyConfig, x.y.z.MyConfig2
+    Sling-ContextAware-Configuration-Classes: x.y.z.MyConfig, x.y.z.MyConfig2
 
-To automate this you can use the Context-Aware Configuration bnd plugin (see next chapter).
+To automate this you can use the Context-Aware Configuration bnd plugin (see next chapter). 	
 
 
 # Accessing configuration from HTL/Sightly templates
@@ -135,23 +138,23 @@ Context-Aware configuration contains a Scripting Binding Values provider with au
 
 Example for accessing a property of a singleton configuration (with a config name `x.y.z.ConfigSample`):
 
-#!html
-<dl>
-<dt>stringParam:</dt>
-<dd>${caconfig['x.y.z.ConfigSample'].stringParam}</dd>
-</dl>
+  	#!html
+  	<dl>
+  		<dt>stringParam:</dt>
+  		<dd>${caconfig['x.y.z.ConfigSample'].stringParam}</dd>
+  	</dl>
 
 Example for accessing a property of a configuration list (with a config name `x.y.z.ConfigSampleList`):
 
-#!html
-<ul data-sly-list.item="${caconfig['x.y.z.ConfigSampleList']}">
-<li>stringParam: ${item.stringParam}</li>
-</ul>
+  	#!html
+  	<ul data-sly-list.item="${caconfig['x.y.z.ConfigSampleList']}">
+  		<li>stringParam: ${item.stringParam}</li>
+  	</ul>
 
 If you want to access nested configurations you have to use a slash "/" as separator in the property name. Example:
 
-#!html
-${caconfig['x.y.z.ConfigSample']['nestedConfig/stringParam']}
+    #!html
+    ${caconfig['x.y.z.ConfigSample']['nestedConfig/stringParam']}
 
 
 # Context-Aware Configuration bnd plugin
@@ -160,25 +163,25 @@ A [bnd](http://bnd.bndtools.org/) plugin is provided that scans the classpath of
 
 Example configuration:
 
-#!xml
-<plugin>
-<groupId>org.apache.felix</groupId>
-<artifactId>maven-bundle-plugin</artifactId>
-<extensions>true</extensions>
-<configuration>
-<instructions>
-<!-- Generate bundle header containing all configuration annotation classes -->
-<_plugin>org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin</_plugin>
-</instructions>
-</configuration>
-<dependencies>
-<dependency>
-<groupId>org.apache.sling</groupId>
-<artifactId>org.apache.sling.caconfig.bnd-plugin</artifactId>
-<version>1.0.2</version>
-</dependency>
-</dependencies>
-</plugin>
+    #!xml
+    <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+            <instructions>
+                <!-- Generate bundle header containing all configuration annotation classes -->
+                <_plugin>org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin</_plugin>
+            </instructions>
+        </configuration>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.caconfig.bnd-plugin</artifactId>
+                <version>1.0.2</version>
+            </dependency>
+        </dependencies>
+    </plugin>
 
 
 # Unit Tests with Context-Aware Configuration
@@ -187,29 +190,29 @@ When your code depends on Sling Context-Aware Configuration and you want to writ
 
 Example for setting up the unit test context rule:
 
-#!java
-import static org.apache.sling.testing.mock.caconfig.ContextPlugins.CACONFIG;
+	#!java
+	import static org.apache.sling.testing.mock.caconfig.ContextPlugins.CACONFIG;
 
-public class MyTest {
+	public class MyTest {
 
-@Rule
-public SlingContext context = new SlingContextBuilder().plugin(CACONFIG).build();
+		@Rule
+		public SlingContext context = new SlingContextBuilder().plugin(CACONFIG).build();
 
-@Before
-public void setUp() {
-// register configuration annotation class
-MockContextAwareConfig.registerAnnotationClasses(context, SimpleConfig.class);
-}
-...
+		@Before
+		public void setUp() {
+			// register configuration annotation class
+			MockContextAwareConfig.registerAnnotationClasses(context, SimpleConfig.class);
+		}
+	...
 
 In you project define a test dependency (additionally the sling-mock dependency is required):
 
-#!xml
-<dependency>
-<groupId>org.apache.sling</groupId>
-<artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
-<scope>test</scope>
-</dependency>
+  	#!xml
+  	<dependency>
+  		<groupId>org.apache.sling</groupId>
+  		<artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
+  		<scope>test</scope>
+  	</dependency>
 
 Full example: [Apache Sling Context-Aware Configuration Mock Plugin Test](https://github.com/apache/sling/blob/trunk/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java)
 
@@ -248,7 +251,7 @@ Whenever configuration data is read or written from the configuration resources 
 * [Context-Aware Configuration - SPI][spi]
 * [Context-Aware Configuration - Override][override]
 * [Sling Context-Aware Configuration - Talk from adaptTo() 2016](https://adapt.to/2016/en/schedule/sling-context-aware-configuration.html)
-
+ 
 
 [default-impl]: http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html
 [spi]: http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html

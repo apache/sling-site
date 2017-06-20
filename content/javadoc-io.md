@@ -1,7 +1,10 @@
-title=Sling API docs at javadoc.io		
-type=page
+title=TODO title for javadoc-io.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Sling API docs at javadoc.io
 
 [javadocs.io](http://www.javadoc.io/) provides archived javadocs for all Sling modules (and actually
 for all open source software hosted at Maven Central).

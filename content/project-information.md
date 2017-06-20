@@ -1,7 +1,10 @@
-title=Project Information		
-type=page
+title=TODO title for project-information.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Project Information
 
 This document provides an overview of the various documents and links that are part of this project's general information:
 
@@ -44,7 +47,7 @@ This project uses Subversion to manage its source code. Instructions on Subversi
 The following is a link to the online source repository.
 
 
-http://svn.apache.org/viewvc/sling/trunk
+    http://svn.apache.org/viewvc/sling/trunk
 
 
 ### Anonymous access
@@ -52,7 +55,7 @@ http://svn.apache.org/viewvc/sling/trunk
 The source can be checked out anonymously from SVN with this command:
 
 
-$ svn checkout http://svn.apache.org/repos/asf/sling/trunk sling
+    $ svn checkout http://svn.apache.org/repos/asf/sling/trunk sling
 
 
 ### Developer access
@@ -60,13 +63,13 @@ $ svn checkout http://svn.apache.org/repos/asf/sling/trunk sling
 Everyone can access the Subversion repository via HTTPS, but Committers must checkout the Subversion repository via HTTPS.
 
 
-$ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
+    $ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
 
 
 To commit changes to the repository, execute the following command to commit your changes (svn will prompt you for your password)
 
 
-$ svn commit --username your-username -m "A message"
+    $ svn commit --username your-username -m "A message"
 
 
 ### Access from behind a firewall
@@ -74,21 +77,21 @@ $ svn commit --username your-username -m "A message"
 For those users who are stuck behind a corporate firewall which is blocking http access to the Subversion repository, you can try to access it via the developer connection:
 
 
-$ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
+    $ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
 
 
 ### Access through a proxy
 
-The Subversion client can go through a proxy, if you configure it to do so. First, edit your "servers" configuration file to indicate which proxy to use. The files location depends on your operating system. On Linux or Unix it is located in the directory "~/.subversion". On Windows it is in "%APPDATA%Subversion". (Try "echo %APPDATA%", note this is a hidden directory.)
+The Subversion client can go through a proxy, if you configure it to do so. First, edit your "servers" configuration file to indicate which proxy to use. The files location depends on your operating system. On Linux or Unix it is located in the directory "~/.subversion". On Windows it is in "%APPDATA%\Subversion". (Try "echo %APPDATA%", note this is a hidden directory.)
 
 There are comments in the file explaining what to do. If you don't have that file, get the latest Subversion client and run any command; this will cause the configuration directory and template files to be created.
 
 Example : Edit the 'servers' file and add something like :
 
 
-[global]
-http-proxy-host = your.proxy.name
-http-proxy-port = 3128
+    [global]
+    http-proxy-host = your.proxy.name
+    http-proxy-port = 3128
 
 
 ## Continuous Integration

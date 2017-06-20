@@ -1,7 +1,10 @@
-title=MIME Type Support (commons.mime and commons.contentdetection)		
-type=page
+title=TODO title for mime-type-support-commons-mime.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: MIME Type Support (commons.mime and commons.contentdetection)
 
 Support for MIME type mappings is generally a problematic issue. On the one hand applications have to take care to stay up to date with their mappings on the other hands in web applications it is tedious to maintain the mappings. Apache Sling takes a very user and deployment friendly approadch to this problem which is described in detail on this page.
 
@@ -32,7 +35,7 @@ Two more methods allow to programmatically add MIME type mappings:
 
 ## The Sling ContentAwareMimeTypeService
 
-For content-based mime type detection (as opposed to filename-based detection), the `org.apache.sling.commons.contentdetection` bundle
+For content-based mime type detection (as opposed to filename-based detection), the `org.apache.sling.commons.contentdetection` bundle 
 provides the `ContentAwareMimeTypeService`, which takes an `InputStream` that's analyzed to detect its mime type, using Apache Tika
 by default:
 
@@ -72,7 +75,7 @@ The file format for MIME type mapping files is rather simple:
 * The files are assumed to be encoded with the *ISO-8859-1* (aka Latin 1) character encoding
 * The files consist of lines defining mappings where each line is terminated with either or both of a carriage return (CR, 0x0c) and line feed character (LF, 0x0a). There is no line continuation support *-la shell scripts or Java properties files.
 * Empty lines and lines starting with a hash sign (`#`) are ignored
-* Data lines consist of space (any whitespace matching the `s` regular expression) separated values. The first value is the MIME type name and the remaining values defining mappings to file name extensions. The first listed file name extension is considered the *default mapping* and is returned by the `MimeTypeService.getExtension(String)` method. Entry lines consisting of just a mime type but no extensions are also (currently) ignored.
+* Data lines consist of space (any whitespace matching the `\s` regular expression) separated values. The first value is the MIME type name and the remaining values defining mappings to file name extensions. The first listed file name extension is considered the *default mapping* and is returned by the `MimeTypeService.getExtension(String)` method. Entry lines consisting of just a mime type but no extensions are also (currently) ignored.
 
 THe data line format described here also applies to configuration provided by the values of the `mime.types` property of the MIME type service configuration. The file format description applies to all `META-INF/mime.types` files provided by the bundles as well as input streams supplied to the `MimeTypeService.registerMimeType(InputStream)` method.
 

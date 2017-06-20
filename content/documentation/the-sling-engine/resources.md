@@ -1,7 +1,10 @@
-title=Resources		
-type=page
+title=TODO title for resources.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Resources
 
 [TOC]
 
@@ -59,18 +62,18 @@ As has been said, the absolute path mapping methods `resolve(HttpServletRequest,
 
 The general algorithm of the two methods is as follows:
 
-1. Call `HttpServletRequest.getScheme(), .getServerName(), getServerPort` to get an absolute path out of the request URL: [scheme]({{ refs.scheme.path }})/[host].[port][path] (`resolve(HttpServletRequest, String)` method only, which)
+1. Call `HttpServletRequest.getScheme(), .getServerName(), getServerPort` to get an absolute path out of the request URL: \[scheme\]({{ refs.scheme.path }})/\[host\].\[port\]\[path\] (`resolve(HttpServletRequest, String)` method only, which)
 1. Check whether any virtual path matches the absolute path. If such a match exists, the next step is entered with the match.
 1. Apply a list of mappings in order to create a mapped path. The first mapped path resolving to a Resource is assumed success and the Resource found is returned.
-1. If no mapping created a mapped path addressing an existing Resource, the method fails and returns a `NonExistingResource` (for the
-`resolve(String)` and `resolve(HttpServletRequest,String)`) or null (for the `getResource(String path)`
+1. If no mapping created a mapped path addressing an existing Resource, the method fails and returns a `NonExistingResource` (for the  
+`resolve(String)` and `resolve(HttpServletRequest,String)`) or null (for the `getResource(String path)` 
 and `getResource(Resource base, String path)` methods).
 
 The virtual path mapping may be used to create shortcut URLs for otherwise long and complicated URLs. An example of such an URL might be the main administrative page of a CMS system. So, administrators may access the root of the web application and directed to the main administrative page.
 
 The path mapping functionality may be used to hide internal resource organization from the request URL space. For example to better control the structure of your repository, you might decide to store all accessible data inside a `/content` subtree. To hide this fact from the users, a mapping may be defined to prefix all incoming paths with `/content` to get at the actual Resource.
 
-The `map(String)` applies the path mapping algorithm in the reverse order. That is, first the path mappings are reversed and then any virtual mappings are checked. So, a path `/content/sample` might be mapped `/sample` to revers the `/content` prefixing. Or the main administrative page - say `/system/admin/main.html` - may be mapped to the virtual URL `/`.
+The `map(String)` applies the path mapping algorithm in the reverse order. That is, first the path mappings are reversed and then any virtual mappings are checked. So, a path `/content/sample` might be mapped `/sample` to revers the `/content` prefixing. Or the main administrative page - say `/system/admin/main.html` \- may be mapped to the virtual URL `/`.
 
 More details on mappings can be found at [Mappings for Resource Resolution](/documentation/the-sling-engine/mappings-for-resource-resolution.html).
 
@@ -117,7 +120,7 @@ JCR-based Resources are provided with the default `JcrResourceProvider`. This Re
 
 Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header `Sling-Bundle-Resources` containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).
 
-The `BundleResourceProvider` supporting bundle-based Resources provides directories as Resources of type `nt:folder` and files as Resources of type `nt:file`. This matches the default primary node types intended to be used for directories and files in JCR repositories.
+The `BundleResourceProvider` supporting bundle-based Resources provides directories as Resources of type `nt:folder` and files as Resources of type `nt:file`. This matches the default primary node types intended to be used for directories and files in JCR repositories. 
 
 For details see [Bundle Resource.](/documentation/bundles/bundle-resources-extensions-bundleresource.html)
 
@@ -127,7 +130,7 @@ Servlet Resources are registered by the Servlet Resolver bundle for Servlets reg
 
 ### File System Resources
 
-The Filesystem Resource Provider provides access to the operating system's filesystem through the Sling ResourceResolver. Multiple locations may be mapped into the resource tree by configuring the filesystem location and the resource tree root path for each location to be mapped.
+The Filesystem Resource Provider provides access to the operating system's filesystem through the Sling ResourceResolver. Multiple locations may be mapped into the resource tree by configuring the filesystem location and the resource tree root path for each location to be mapped. 
 
 For details see [File System Resources](/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html).
 
@@ -169,12 +172,12 @@ Resource events are sent out via the OSGi Event Admin. You can subscribe to thos
 The Sling API provides an easy way to wrap or decorate a resource before returning. Details see [Wrap or Decorate Resources](/documentation/the-sling-engine/wrap-or-decorate-resources.html).
 
 
-[1]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html "ResourceMetadata"
-[2]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html "Resource"
-[3]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html "AbstractResource"
-[4]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/resourceprovider/
-[5]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/serversidetests/WriteableResourcesTest.java
-[6]: https://svn.apache.org/repos/asf/sling/trunk/bundles/api/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java
-[7]: https://svn.apache.org/repos/asf/sling/trunk/bundles/api/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java
-[8]: https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html
-[9]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html
+  [1]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html "ResourceMetadata"
+  [2]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html "Resource"
+  [3]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html "AbstractResource"
+  [4]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/resourceprovider/
+  [5]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/serversidetests/WriteableResourcesTest.java
+  [6]: https://svn.apache.org/repos/asf/sling/trunk/bundles/api/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java
+  [7]: https://svn.apache.org/repos/asf/sling/trunk/bundles/api/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java
+  [8]: https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html
+  [9]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html

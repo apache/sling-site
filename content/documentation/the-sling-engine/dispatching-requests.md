@@ -1,7 +1,10 @@
-title=Dispatching Requests		
-type=page
+title=TODO title for dispatching-requests.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Dispatching Requests
 
 ## Main process
 
@@ -15,23 +18,23 @@ The following steps should give you an overview how a request is processed in Sl
 
 1. OSGi HttpService calls `handleSecurity` of the HttpContext associated with the servlet/resource. In case of Sling this calls into SlingMainServlet.handleSecurity and then into SlingAuthenticator.authenticate
 
-1. SlingAuthenticator selects an authentication handler for the request and forwards the authenticate call. On success a `javax.jcr.Session` is created, the request attributes required by the HTTP Service spec are set (like `org.osgi.service.http.authentication.remote.user` and `org.osgi.service.http.authentication.type`and also the `javax.jcr.Session` which is used later is set in the request attributes.
-On success, continue with step 5.
+    1. SlingAuthenticator selects an authentication handler for the request and forwards the authenticate call. On success a `javax.jcr.Session` is created, the request attributes required by the HTTP Service spec are set (like `org.osgi.service.http.authentication.remote.user` and `org.osgi.service.http.authentication.type`and also the `javax.jcr.Session` which is used later is set in the request attributes.
+    On success, continue with step 5.
 
-1. If authentication fails either an anonymous session is acquired (if anonymous is allowed per configuration) or the login method is called.
-If anonymous is allowed, continue with step 5.
+    1. If authentication fails either an anonymous session is acquired (if anonymous is allowed per configuration) or the login method is called.
+    If anonymous is allowed, continue with step 5.
 
-1. The login method selects an AuthenticationHandler and forwards the login call to the AuthenticationHandler.requestAuthentication method to cause the client to authenticate. Request processing stops here (`SlingMainServlet.handleSecurity` returns false).
+    1. The login method selects an AuthenticationHandler and forwards the login call to the AuthenticationHandler.requestAuthentication method to cause the client to authenticate. Request processing stops here (`SlingMainServlet.handleSecurity` returns false).
 
 1. After getting a response the HttpService either terminates the request (if authentication failed and `SlingMainServlet.handleSecurity` returned false) or continues by either spooling the resource or in the case of Sling calling the `SlingMainServlet.service` method.
 
 1. The `SlingMainServlet.service` method is the entry point into the Sling proper. This method sets up the request:
 
-* Wraps the `HttpServletRequest` and the `HttpServletResponse` into the `SlingHttpServletRequest` and the `SlingHttpServletResponse`
-* Checks if Sling is ready for processing the request (checks at the moment for an existing ResourceResolverFactory service, a ServletResolver service and a MimeTypeService)
-* Create the ResourceResolver based on the Session (by default creates a `JcrResourceResolver2`)
-* Locate the [Resource](/documentation/the-sling-engine/resources.html) on the basis of the request by calling `ResourceResovler.resolve` through `RequestData.initResource` (see also [URL decomposition](/documentation/the-sling-engine/url-decomposition.html))
-* Locate the servlet or script (see [Servlets](/documentation/the-sling-engine/servlets.html)) by calling `ServletResolver.resolveServlet` through `RequestData.initServlet`
+    * Wraps the `HttpServletRequest` and the `HttpServletResponse` into the `SlingHttpServletRequest` and the `SlingHttpServletResponse`
+    * Checks if Sling is ready for processing the request (checks at the moment for an existing ResourceResolverFactory service, a ServletResolver service and a MimeTypeService)
+    * Create the ResourceResolver based on the Session (by default creates a `JcrResourceResolver2`)
+    * Locate the [Resource](/documentation/the-sling-engine/resources.html) on the basis of the request by calling `ResourceResovler.resolve` through `RequestData.initResource` (see also [URL decomposition](/documentation/the-sling-engine/url-decomposition.html))
+    * Locate the servlet or script (see [Servlets](/documentation/the-sling-engine/servlets.html)) by calling `ServletResolver.resolveServlet` through `RequestData.initServlet`
 
 1. After this setup, the request level filters are called (the ones registered as `javax.servlet.Filter` with the property `filter.scope=request`, see [Filters](/documentation/the-sling-engine/filters.html) for details).
 If any called filter doesn't call `FilterChain.doFilter` at the end of the `Filter.doFilter` method request processing stops here.

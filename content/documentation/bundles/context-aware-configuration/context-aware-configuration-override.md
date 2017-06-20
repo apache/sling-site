@@ -1,7 +1,10 @@
-title=Apache Sling Context-Aware Configuration - Override		
-type=page
+title=TODO title for context-aware-configuration-override.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Apache Sling Context-Aware Configuration - Override
 
 [TOC]
 
@@ -19,10 +22,10 @@ Via the [SPI](http://sling.apache.org/documentation/bundles/context-aware-config
 
 Generally an override consists of one single line. Syntax examples:
 
-{configName}/{propertyName}={propertyJsonValue}
-{configName}={propertyJsonObject}
-[{contextPath}]{configName}/{propertyName}={propertyJsonValue}
-[{contextPath}]{configName}={propertyJsonObject}
+    {configName}/{propertyName}={propertyJsonValue}
+    {configName}={propertyJsonObject}
+    [{contextPath}]{configName}/{propertyName}={propertyJsonValue}
+    [{contextPath}]{configName}={propertyJsonObject}
 
 The different parts:
 
@@ -36,17 +39,17 @@ When the syntax `{configName}/{propertyName}={propertyJsonValue}` is used, only 
 
 Override string examples with real values:
 
-my-config/property1="value 1"
-my-config/sub1/property1="value 1"
-my-config/property1=["value 1","value 2"]
-my-config/property1=123
-x.y.z.MyConfig={"prop1"="value1","prop2"=[1,2,3],"prop3"=true,"prop4"=1.23}
-[/content/region1]my-config/property1="value 1"
-[/content/region1]my-config/sub1={"prop1":"value 1"}
+    my-config/property1="value 1"
+    my-config/sub1/property1="value 1"
+    my-config/property1=["value 1","value 2"]
+    my-config/property1=123
+    x.y.z.MyConfig={"prop1"="value1","prop2"=[1,2,3],"prop3"=true,"prop4"=1.23}
+    [/content/region1]my-config/property1="value 1"
+    [/content/region1]my-config/sub1={"prop1":"value 1"}
 
 If multiple statements are defined affecting the same content path, configuration name and property name, they overwrite each other. That means the override string defined last wins.
 
-
+    
 # Built-in override providers
 
 ## Override via system properties
@@ -57,9 +60,9 @@ The parameters are defined when starting the JVM using the -D command line param
 
 Example:
 
--Dsling.caconfig.override.my-config/sub1/property1=123
--D"sling.caconfig.override.my-config/property1=["value 1","value 2"]"
--D"sling.caconfig.override.[/content/region1]x.y.z.MyConfig={"prop1"="value1","prop2"=[1,2,3],"prop3"=true,"prop4"=1.23}"
+    -Dsling.caconfig.override.my-config/sub1/property1=123
+    -D"sling.caconfig.override.my-config/property1=[\"value 1\",\"value 2\"]"
+    -D"sling.caconfig.override.[/content/region1]x.y.z.MyConfig={\"prop1\"=\"value1\",\"prop2\"=[1,2,3],\"prop3\"=true,\"prop4\"=1.23}"
 
 This provider is not active by default, it has to be activated via OSGi configuration ("Apache Sling Context-Aware System Property Configuration Override Provider").
 

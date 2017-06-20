@@ -1,7 +1,10 @@
-title=Site conversion in progress - excuse our mess...		
-type=page
+title=TODO title for site-conversion.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Site conversion in progress - excuse our mess...
 
 The Sling website was recently converted to use the Apache CMS for content management,
 and we still have to check a number of pages for correct conversion.

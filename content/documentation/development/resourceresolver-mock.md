@@ -1,7 +1,10 @@
-title=Resource Resolver Mock		
-type=page
+title=TODO title for resourceresolver-mock.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Resource Resolver Mock
 
 Mock for the resource resolver / factory for easier testing. It uses an in-memory map for storing the resource data, and supports reading, writing and a certain level of transaction and eventing support.
 
@@ -10,11 +13,11 @@ Mock for the resource resolver / factory for easier testing. It uses an in-memor
 
 ## Maven Dependency
 
-#!xml
-<dependency>
-<groupId>org.apache.sling</groupId>
-<artifactId>org.apache.sling.testing.resourceresolver-mock</artifactId>
-</dependency>
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.resourceresolver-mock</artifactId>
+    </dependency>
 
 See latest version on the [downloads page](/downloads.cgi).
 
@@ -42,9 +45,9 @@ The following features are *not supported*:
 
 To create a mocked resource resolver:
 
-#!java
-MockResourceResolverFactory factory = new MockResourceResolverFactory();
-ResourceResolver resolver = factory.getResourceResolver(null);
+    #!java
+    MockResourceResolverFactory factory = new MockResourceResolverFactory();
+    ResourceResolver resolver = factory.getResourceResolver(null);
 
 With the resolver you can use all Sling Resource features including reading and writing data using the Sling API.
 

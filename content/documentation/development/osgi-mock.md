@@ -1,7 +1,10 @@
-title=OSGi Mocks		
-type=page
+title=TODO title for osgi-mock.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: OSGi Mocks
 
 Mock implementation of selected OSGi APIs for easier testing.
 
@@ -10,11 +13,11 @@ Mock implementation of selected OSGi APIs for easier testing.
 
 ## Maven Dependency
 
-#!xml
-<dependency>
-<groupId>org.apache.sling</groupId>
-<artifactId>org.apache.sling.testing.osgi-mock</artifactId>
-</dependency>
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.osgi-mock</artifactId>
+    </dependency>
 
 See latest version on the [downloads page](/downloads.cgi).
 
@@ -50,30 +53,30 @@ Since osgi-mock 2.0.0:
 ### OSGi Context JUnit Rule
 
 The OSGi mock context can be injected into a JUnit test using a custom JUnit rule named `OsgiContext`.
-This rules takes care of all initialization and cleanup tasks required to make sure all unit tests can run
+This rules takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
 independently (and in parallel, if required).
 
 Example:
 
-#!java
-public class ExampleTest {
+    #!java
+    public class ExampleTest {
 
-@Rule
-public final OsgiContext context = new OsgiContext();
+      @Rule
+      public final OsgiContext context = new OsgiContext();
 
-@Test
-public void testSomething() {
+      @Test
+      public void testSomething() {
 
-// register and activate service with configuration
-MyService service1 = context.registerInjectActivateService(new MyService(),
-"prop1", "value1");
+        // register and activate service with configuration
+        MyService service1 = context.registerInjectActivateService(new MyService(),
+            "prop1", "value1");
 
-// get service instance
-OtherService service2 = context.getService(OtherService.class);
+        // get service instance
+        OtherService service2 = context.getService(OtherService.class);
 
-}
+      }
 
-}
+    }
 
 It is possible to combine such a unit test with a `@RunWith` annotation e.g. for
 [Mockito JUnit Runner][mockito-testrunner].
@@ -94,23 +97,23 @@ The factory class `MockOsgi` allows to instantiate the different mock implementa
 
 Example:
 
-#!java
-// get bundle context
-BundleContext bundleContext = MockOsgi.newBundleContext();
+    #!java
+    // get bundle context
+    BundleContext bundleContext = MockOsgi.newBundleContext();
 
-// get component context with configuration
-BundleContext bundleContext = MockOsgi.newComponentContext(properties,
-"prop1", "value1");
+    // get component context with configuration
+    BundleContext bundleContext = MockOsgi.newComponentContext(properties,
+        "prop1", "value1");
 
 It is possible to simulate registering of OSGi services (backed by a simple hash map internally):
 
-#!java
-// register service
-bundleContext.registerService(MyClass.class, myService, properties);
+    #!java
+    // register service
+    bundleContext.registerService(MyClass.class, myService, properties);
 
-// get service instance
-ServiceReference ref = bundleContext.getServiceReference(MyClass.class.getName());
-MyClass service = bundleContext.getService(ref);
+    // get service instance
+    ServiceReference ref = bundleContext.getServiceReference(MyClass.class.getName());
+    MyClass service = bundleContext.getService(ref);
 
 
 ### Activation and Dependency Injection
@@ -120,27 +123,27 @@ tries to to its best to execute all as expected for an OSGi environment.
 
 Example:
 
-#!java
-// get bundle context
-BundleContext bundleContext = MockOsgi.newBundleContext();
+    #!java
+    // get bundle context
+    BundleContext bundleContext = MockOsgi.newBundleContext();
 
-// create service instance manually
-MyService service = new MyService();
+    // create service instance manually
+    MyService service = new MyService();
 
-// inject dependencies
-MockOsgi.injectServices(service, bundleContext);
+    // inject dependencies
+    MockOsgi.injectServices(service, bundleContext);
 
-// activate service
-MockOsgi.activate(service, props);
+    // activate service
+    MockOsgi.activate(service, props);
 
-// operate with service...
+    // operate with service...
 
-// deactivate service
-MockOsgi.deactivate(service);
+    // deactivate service
+    MockOsgi.deactivate(service);
 
 Please note:
 
-* You should ensure that you register you services in the correct order of their dependency chain.
+* You should ensure that you register you services in the correct order of their dependency chain. 
 Only dynamic references will be handled automatically independent of registration order.
 * The injectServices, activate and deactivate Methods can only work properly when the SCR XML metadata files
 are preset in the classpath at `/OSGI-INF`. They are generated automatically by the Maven SCR plugin, but might be
@@ -154,13 +157,13 @@ If you want to provide your own configuration to an OSGi service that you do not
 
 Example:
 
-#!java
+    #!java
 
-ConfigurationAdmin configAdmin = context.getService(ConfigurationAdmin.class);
-Configuration myServiceConfig = configAdmin.getConfiguration(MY_SERVICE_PID);
-Dictionary<String, Object> props = new Hashtable<String, Object>();
-props.put("prop1", "value1");
-myServiceConfig.update(props);
+    ConfigurationAdmin configAdmin = context.getService(ConfigurationAdmin.class);
+    Configuration myServiceConfig = configAdmin.getConfiguration(MY_SERVICE_PID);
+    Dictionary<String, Object> props = new Hashtable<String, Object>();
+    props.put("prop1", "value1");
+    myServiceConfig.update(props);
 
 
 ### Context Plugins
@@ -171,11 +174,11 @@ To define a plugin implement the `org.apache.sling.testing.mock.osgi.context.Con
 
 To use a plugin in your unit test class, use the `OsgiContextBuilder` class instead of directly instantiating the `OsgiContext`class. This allows you in a fluent style to configure more options, with the `plugin(...)` method you can add one or more plugins.
 
-Example:
+Example: 
 
-#!java
-@Rule
-public OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
+    #!java
+    @Rule
+    public OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
 
 More examples:
 

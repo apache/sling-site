@@ -1,7 +1,10 @@
-title=Apache Sling Eventing and Job Handling		
-type=page
+title=TODO title for apache-sling-eventing-and-job-handling.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Apache Sling Eventing and Job Handling
 
 
 ## Overview
@@ -25,9 +28,9 @@ In general, the eventing mechanism (OSGi EventAdmin) has no knowledge about the 
 
 On the other hand, there are use cases where the guarantee of processing is a must and usually this comes with the requirement of processing exactly once. Typical examples are sending notification emails (or sms), post processing of content (like thumbnail generation of images or documents), workflow steps etc.
 
-The Sling Event Support adds the notion of a job. A job is a special event that has to be processed exactly once.
+The Sling Event Support adds the notion of a job. A job is a special event that has to be processed exactly once. 
 To be precise, the processing guarantee is at least once. However, the time window for a single job where exactly
-once can't be guaranteed is very small. It happens if the instance which processes a job crashes after the job
+once can't be guaranteed is very small. It happens if the instance which processes a job crashes after the job 
 processing is finished but before this state is persisted. Therefore a job consumer should be prepared to process
 a job more than once. Of course, if there is no job consumer for a job, the job is never processed. However this
 is considered a deployment error.
@@ -38,26 +41,26 @@ While older versions of the job handling were based on sending and receiving eve
 
 A job consists of two parts, the job topic describing the nature of the job and the payload which is a key value map of serializable objects. A client can initiate a job by calling the *JobManager.addJob* method:
 
-import org.apache.sling.jobs.JobManager;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
-import java.util.Map;
-import java.util.HashMap;
-
-@Component
-public class MyComponent {
-
-@Reference
-private JobManager jobManager;
-
-public void startJob() {
-final Map<String, Object> props = new HashMap<String, Object>();
-props.put("item1", "/something");
-props.put("count", 5);
-
-jobManager.addJob("my/special/jobtopic", props);
-}
-}
+        import org.apache.sling.jobs.JobManager;
+        import org.apache.felix.scr.annotations.Component;
+        import org.apache.felix.scr.annotations.Reference;
+        import java.util.Map;
+        import java.util.HashMap;
+        
+        @Component
+        public class MyComponent {
+        
+            @Reference
+            private JobManager jobManager;
+            
+            public void startJob() {
+                final Map<String, Object> props = new HashMap<String, Object>();
+                props.put("item1", "/something");
+                props.put("count", 5);
+                
+                jobManager.addJob("my/special/jobtopic", props);
+            }        
+        }
 
 The job topic follows the conventions for the topic of an OSGi event. All objects in the payload must be serializable and publically available (exported by a bundle). This is required as the job is persisted and unmarshalled before processing.
 
@@ -74,25 +77,25 @@ Scheduled Jobs are put in the queue at a specific time (optionally periodically)
 
 An example code for scheduling a job looks like this:
 
-import org.apache.sling.jobs.JobManager;
-import org.apache.sling.event.jobs.JobBuilder.ScheduleBuilder;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
+    import org.apache.sling.jobs.JobManager;
+    import org.apache.sling.event.jobs.JobBuilder.ScheduleBuilder;
+    import org.apache.felix.scr.annotations.Component;
+    import org.apache.felix.scr.annotations.Reference;
 
-@Component
-public class MyComponent {
+    @Component
+    public class MyComponent {
 
-@Reference
-private JobManager jobManager;
+        @Reference
+        private JobManager jobManager;
 
-public void startScheduledJob() {
-ScheduleBuilder scheduleBuilder = jobManager.startJob("my/special/jobtopic").schedule();
-scheduleBuilder.daily(0,0); // execute daily at midnight
-if (scheduleBuilder.add() == null) {
-// something went wrong here, use scheduleBuilder.add(List<String>) instead to get further information about the error
-}
-}
-}
+        public void startScheduledJob() {
+            ScheduleBuilder scheduleBuilder = jobManager.startJob("my/special/jobtopic").schedule();
+            scheduleBuilder.daily(0,0); // execute daily at midnight
+            if (scheduleBuilder.add() == null) {
+                // something went wrong here, use scheduleBuilder.add(List<String>) instead to get further information about the error
+            }
+        }
+    }
 
 
 Internally the scheduled Jobs use the [Commons Scheduler Service](/documentation/bundles/scheduler-service-commons-scheduler.html). But in addition they are persisted (by default below `/var/eventing/scheduled-jobs`) and survive therefore even server restarts. When the scheduled time is reached, the job is automatically added as regular Sling Job through the `JobManager`.
@@ -102,21 +105,21 @@ Internally the scheduled Jobs use the [Commons Scheduler Service](/documentation
 
 A job consumer is a service consuming and processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
-import org.apache.sling.event.jobs.Job;
-import org.apache.sling.event.jobs.consumer.JobConsumer;
+        import org.apache.felix.scr.annotations.Component;
+        import org.apache.felix.scr.annotations.Service;
+        import org.apache.sling.event.jobs.Job;
+        import org.apache.sling.event.jobs.consumer.JobConsumer;
 
-@Component
-@Service(value={JobConsumer.class})
-@Property(name=JobConsumer.PROPERTY_TOPICS, value="my/special/jobtopic",)
-public class MyJobConsumer implements JobConsumer {
+        @Component
+        @Service(value={JobConsumer.class})
+        @Property(name=JobConsumer.PROPERTY_TOPICS, value="my/special/jobtopic",)
+        public class MyJobConsumer implements JobConsumer {
 
-public JobResult process(final Job job) {
-// process the job and return the result
-return JobResult.OK;
-}
-}
+            public JobResult process(final Job job) {
+                // process the job and return the result
+                return JobResult.OK;
+            }
+        }
 
 The *Job* interface allows to query the topic, the payload and additional information about the current job. The consumer can either return *JobResult.OK* indicating that the job has been processed, *JobResult.FAILED* indicating the processing failed, but can be retried or *JobResult.CANCEL* the processing has failed permanently.
 
@@ -176,7 +179,7 @@ If a user action results in the creation of a job, the thread processing the use
 
 If an observation event or any other OSGi event results in the creation of a job, special care needs to be taken in a clustered installation to avoid the job is created on all cluster instances. The easiest way to avoid this, is to use the topology api and make sure the job is only created on the leader instance.
 
-
+  
 ## Distributed Events
 
 In addition to the job handling, the Sling Event support adds handling for distributed events. A distributed event is an OSGi event which is sent across JVM boundaries to a different VM. A potential use case is to broadcast information in a clustered environment.

@@ -1,7 +1,10 @@
-title=Contributing		
-type=page
+title=TODO title for contributing.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Contributing
 
 See [Project Information](/project-information.html) for details about the tools mentioned below.
 

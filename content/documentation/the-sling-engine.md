@@ -1,7 +1,10 @@
-title=The Sling Engine		
-type=page
+title=TODO title for the-sling-engine.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: The Sling Engine
 
 ## General
 

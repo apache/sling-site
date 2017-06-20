@@ -1,7 +1,10 @@
-title=Form Based AuthenticationHandler		
-type=page
+title=TODO title for form-based-authenticationhandler.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Form Based AuthenticationHandler
 
 [TOC]
 
@@ -74,15 +77,15 @@ The Form Based Authentication Handler contains a [default form servlet](http://s
 After the successful authentication of the user in phase 1, the authentication state is stored in a Cookie or an HTTP Session. The stored value is a security token with the following contents:
 
 
-HmacSHA1(securetoken, <securetokennumber><expirytime>@<userID>)@<securetokennumber><expirytime>@<userID>
+    HmacSHA1(securetoken, <securetokennumber><expirytime>@<userID>)@<securetokennumber><expirytime>@<userID>
 
 
 The `securetoken` and `securetokennumber` are related in that an table of secure tokens is maintained where the `securetoken` is an entry in the table and the `securetokennumber` is the index in of the token in the table.
 
 The secure tokens are refreshed periodically causing the authentication state stored in the Cookie or the HTTP Session to be updated peridocally. This periodic update has two advantages:
 
-* Login sessions time out after some period of inactivity: If a request is handled for an authentication state whose expiry time has passed, the request is considered unauthenticated.
-* If a Cookie would be stolen or an HTTP Session be hijacked, the authentication state expires within a reasonable amount of time to try to prevent stealing the authentication.
+  * Login sessions time out after some period of inactivity: If a request is handled for an authentication state whose expiry time has passed, the request is considered unauthenticated.
+  * If a Cookie would be stolen or an HTTP Session be hijacked, the authentication state expires within a reasonable amount of time to try to prevent stealing the authentication.
 
 The authentication state may be transmitted with a Cookie which is configured as follows:
 

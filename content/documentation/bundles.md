@@ -1,7 +1,10 @@
-title=Bundles		
-type=page
+title=TODO title for bundles.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Bundles
 
 ## Content
 

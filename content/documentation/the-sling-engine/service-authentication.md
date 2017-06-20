@@ -1,7 +1,10 @@
-title=Service Authentication		
-type=page
+title=TODO title for service-authentication.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Service Authentication
 Excerpt: Introduce new service level authentication to replace `loginAdministrative`
 
 [TOC]
@@ -55,8 +58,8 @@ a Resource Resolver and/or JCR Repository user ID for authentication.
 
 Thus the actual service identification (service ID) is defined as:
 
-#!text
-service-id = service-name [ ":" subservice-name ] .
+    #!text
+    service-id = service-name [ ":" subservice-name ] .
 
 The `service-name` is the symbolic name of the bundle providing the service.
 
@@ -87,7 +90,7 @@ would be consituting the `mta` service. The sub systems would be called
 `smtp`, `queue`, and `deliver`.
 
 Thus the SMTP server daemon would be represented by a user for the
-`mta:smtp` Service.  queueing with `mta:queue`, and delivery with `mta:deliver`.
+`mta:smtp` Service.  queueing with `mta:queue`, and delivery with `mta:deliver`.  
 
 
 ## Implementation
@@ -105,9 +108,9 @@ such that system administrators are in full control of assigning users to servic
 
 The `ServiceUserMapper` defines the following API:
 
-#!java
-String getServiceUserID(Bundle bundle, String subServiceName);
-
+    #!java
+    String getServiceUserID(Bundle bundle, String subServiceName);
+    
 The implementation uses two fallbacks in case no mapping can be found for the given subServiceName
 
 1. Use user mapping for the serviceName only (not considering subServiceName)
@@ -121,10 +124,10 @@ The second part is support for service access to the Resource Tree. To this
 avail, the `ResourceResolverFactory` service is enhanced with a new factory
 method
 
-#!java
-ResourceResolver getServiceResourceResolver(Map<String, Object> authenticationInfo)
-throws LoginException;
-
+    #!java
+    ResourceResolver getServiceResourceResolver(Map<String, Object> authenticationInfo)
+        throws LoginException;
+    
 This method allows for access to the resource tree for services where the
 service bundle is the bundle actually using the `ResourceResolverFactory`
 service. The optional Subservice Name may be provided as an entry
@@ -143,9 +146,9 @@ The default implementation leverages `ServiceUserMapper.getServiceUserID()` to r
 The third part is an extension to the `SlingRepository`service interface
 to support JCR Repository access for services:
 
-#!java
-Session loginService(String subServiceName, String workspace)
-throws LoginException, RepositoryException;
+    #!java
+    Session loginService(String subServiceName, String workspace)
+        throws LoginException, RepositoryException;
 
 This method allows for access to the JCR Repository for services where the
 service bundle is the bundle actually using the `SlingRepository`
@@ -159,23 +162,23 @@ service. The additional Subservice Name may be provided with the
 For each service/subservice name combination an according mapping needs to be provided. The mapping binds a service name/subservice name to a JCR system user.
 This is configured through an OSGi configuration for the factory configuration with PID `org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended` [SLING-3578](https://issues.apache.org/jira/browse/SLING-3578). There you can set one configuration property named `user.mapping` getting a String array as value where each entry must stick to the following format:
 
-<service-name>[:<subservice-name>]=<authorizable id of a JCR system user>]
+    <service-name>[:<subservice-name>]=<authorizable id of a JCR system user>]
 
 The according user must exist at the point in time where `ResourceResolverFactory.getServiceResourceResolver(...)` or `SlingRepository.loginService(...)` is called. If you rely on one of those methods in your `activate` method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service `ServiceUserMapped` ([SLING-4312](https://issues.apache.org/jira/browse/SLING-4312)), optionally with a target filter on property `subServiceName` (in case such a subservice name is used). The service `ServiceUserMapped` does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components. However this waits only for the mapping configuration to be available, it does not wait for the service user itself to be available.
 
 Example OSGi DS Component
 
-:::java
-@Component(
-reference = {
-// this waits with the activation of this component until a service user mapping with the service name = current bundle's id and the sub service name 'my-subservice-name' is available.
-// you can leave out "target" if the sub service name is not used.
-// Please note that this only waits for the mapping to be available, it does not wait for the service user itself to be available!
-@Reference(name ="scriptsServiceUser", target="(subServiceName=my-subservice-name)", service=ServiceUserMapped.class)
-}
-)
-class MyComponent {
-}
+    :::java
+    @Component(
+        reference = {
+            // this waits with the activation of this component until a service user mapping with the service name = current bundle's id and the sub service name 'my-subservice-name' is available.
+            // you can leave out "target" if the sub service name is not used.
+            // Please note that this only waits for the mapping to be available, it does not wait for the service user itself to be available!
+            @Reference(name ="scriptsServiceUser", target="(subServiceName=my-subservice-name)", service=ServiceUserMapped.class)
+        }
+    )
+    class MyComponent {
+    }
 
 There is a default mapping applied if no OSGi configuration is available for the mapping. The default is: "serviceuser--" + bundleId [ + "--" + subservice-name]. Please note, that these default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work.
 
@@ -195,7 +198,7 @@ The following methods are deprecated:
 * `ResourceProviderFactory.getAdministrativeResourceProvider`
 * `SlingRepository.loginAdministrative`
 
-The implementations we have in Sling's bundle will remain implemented
+The implementations we have in Sling's bundle will remain implemented 
 in the near future. But there will be a configuration switch to disable
 support for these methods: If the method is disabled, a `LoginException`
 is always thrown from these methods. The JavaDoc of the methods is
@@ -211,15 +214,15 @@ _whitelist fragment configuration_. It can be created as an OSGi factory
 configuration with the factoryPID `org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment`.
 E.g. a typical configuration file might be called
 `org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment-myapp.config`
-and could look as follows:
+and could look as follows: 
+    
+    whitelist.name="myapp"
+    whitelist.bundles=[
+        "com.myapp.core",
+        "com.myapp.commons"
+    ]
 
-whitelist.name="myapp"
-whitelist.bundles=[
-"com.myapp.core",
-"com.myapp.commons"
-]
-
-| Property            | Type     | Default     | Description |
+| Property            | Type     | Default     | Description | 
 |---------------------|----------|-------------|-------------|
 | `whitelist.name`    | String   | `[unnamed]` | Purely informational property that allows easy identification of different fragments. |
 | `whitelist.bundles` | String[] | []          | An array of bundle symbolic names that should be allowed to make use of the administrative login functionality. |
@@ -243,13 +246,13 @@ bundle symbolic names follow a set pattern but have randomly generated parts.
 
 Example: to whitelist all bundles generated by PaxExam a configuration file named `org.apache.sling.jcr.base.internal.LoginAdminWhitelist.config` might look as follows:
 
-whitelist.bypass=B"false"
-whitelist.bundles.regexp="^PAXEXAM.*$"
-
+    whitelist.bypass=B"false"
+    whitelist.bundles.regexp="^PAXEXAM.*$"
+ 
 The configuration PID is `org.apache.sling.jcr.base.internal.LoginAdminWhitelist`.
 It supports the following configuration properties.
-
-| Property                   | Type     | Default     | Description |
+ 
+| Property                   | Type     | Default     | Description | 
 |----------------------------|----------|-------------|-------------|
 | `whitelist.bypass`         | Boolean  | false       | Allow all bundles to use administrative login. This is __NOT__ recommended for production and warnings will be logged. |
 | `whitelist.bundles.regexp` | String   | ""          | A regular expression that whitelists all matching bundle symbolic names. This is __NOT__ recommended for production and warnings will be logged. |

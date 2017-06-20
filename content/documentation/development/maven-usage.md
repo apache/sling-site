@@ -1,7 +1,10 @@
-title=Maven Usage		
-type=page
+title=TODO title for maven-usage.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Maven Usage
 
 Apache Sling uses Maven as a build tool. This page documents some of the choices that we made when using Maven.
 
@@ -11,13 +14,13 @@ We separate the reactor POM from the parent POM. While the reactor POM functions
 
 The reference to the parent POM is usually set to a released version since we don't deploy it as a SNAPSHOT during the build process. That reference must also contain an empty parentPath element, otherwise recent version of Maven will try to find it in the local filesystem, disregarding the version if the groupId and artifactId match. An example of how to reference the parent POM is
 
-#!xml
-<parent>
-<groupId>org.apache.sling</groupId>
-<artifactId>sling</artifactId>
-<version>$VERSION</version>
-<relativePath/>
-</parent>
+    #!xml
+    <parent>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>sling</artifactId>
+        <version>$VERSION</version>
+        <relativePath/>
+    </parent>
 
 Where `$VERSION` is replaced by the latest parent POM version.
 

@@ -1,7 +1,10 @@
-title=Apache Sling Context-Aware Configuration - Default Implementation		
-type=page
+title=TODO title for context-aware-configuration-default-implementation.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Apache Sling Context-Aware Configuration - Default Implementation
 
 [TOC]
 
@@ -52,13 +55,13 @@ So the basic rules are:
 
 Example for the resource structure for a configuration resource at `/conf/mysite`:
 
-/conf
-/mysite
-/sling:configs
-/x.y.z.MyConfig
-@prop1 = 'value1'
-@prop2 = 123
-@prop3= true
+    /conf
+        /mysite
+            /sling:configs
+                /x.y.z.MyConfig
+                  @prop1 = 'value1'
+                  @prop2 = 123
+                  @prop3= true
 
 Explanation:
 
@@ -68,7 +71,7 @@ Explanation:
 * It is possible to use deeper hierarchies below `sling:configs` as well.
 * Nested configurations are supported as well. This can be mapped to annotation classes referencing other annotation classes.
 
-
+                          
 # Resource inheritance
 
 We distinguish between:

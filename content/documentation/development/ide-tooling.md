@@ -1,7 +1,10 @@
-title=Sling IDE tooling for Eclipse User Guide		
-type=page
+title=TODO title for ide-tooling.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Sling IDE tooling for Eclipse User Guide
 
 [TOC]
 
@@ -21,7 +24,7 @@ The links to the latest update site, including a permanent URL which stays up to
 
 The update sites are provided as a convenience for users that do not wish to build the project themselves. Building the project only requires a recent Maven installation. The project can be checked out, either [from trunk for the latest development version](https://svn.apache.org/repos/asf/sling/trunk/tooling/ide/) or [from a tag for released versions](https://svn.apache.org/repos/asf/sling/tags/), where the tags names have the format sling-ide-tooling-$VERSION. Once you have obtained the source code, it is enough to run
 
-mvn package
+	mvn package
 
 and you will find a p2 update site in p2update/target/repository .
 

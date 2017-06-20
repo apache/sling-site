@@ -1,7 +1,10 @@
-title=Security		
-type=page
+title=TODO title for security.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Security
 
 # Reporting New Security Problems with Apache Sling
 

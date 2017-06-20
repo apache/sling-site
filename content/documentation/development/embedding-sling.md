@@ -1,15 +1,18 @@
-title=Embedding Sling		
-type=page
+title=TODO title for embedding-sling.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
 translation_pending: true
+Title: Embedding Sling
 
 The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the [Sling Launchpad Base project](http://svn.apache.org/repos/asf/sling/trunk/launchpad/base). This project has the following features:
 
 * Builds three artifacts:
-* A standalone Java Application with the artifact qualifier *app*; e.g. `org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-app.jar`
-* A Web Application with the artifact qualifier *webapp*; e.g `org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-wepabb.war`
-* The primary artifact without an artifact qualifier; e.g. `org.apache.sling.launchpad.base-2.3.1-SNAPSHOT.jar`
+    * A standalone Java Application with the artifact qualifier *app*; e.g. `org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-app.jar`
+    * A Web Application with the artifact qualifier *webapp*; e.g `org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-wepabb.war`
+    * The primary artifact without an artifact qualifier; e.g. `org.apache.sling.launchpad.base-2.3.1-SNAPSHOT.jar`
 * Embeds the OSGi Framework (Apache Felix) in the primary artifact
 * Encapsulates the OSGi Framework in its own `URLClassLoader`
 * Supports Framework restart

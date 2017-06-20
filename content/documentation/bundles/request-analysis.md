@@ -1,7 +1,10 @@
-title=Request Processing Analyzer (reqanalyzer)		
-type=page
+title=TODO title for request-analysis.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Request Processing Analyzer (reqanalyzer)
 
 [TOC]
 
@@ -44,7 +47,7 @@ that is on the same host as the Sling instance is running.
 
 To analyze the `requesttracker.txt` file the *Request Processing Analyzer* module can also be used as a standalone Java application. Just start the module using the `java` command:
 
-$ java -jar org.apache.sling.reqanalyzer-0.0.1-SNAPSHOT.jar requesttracker.txt
+    $ java -jar org.apache.sling.reqanalyzer-0.0.1-SNAPSHOT.jar requesttracker.txt
 
 The command supports two command line arguments:
 

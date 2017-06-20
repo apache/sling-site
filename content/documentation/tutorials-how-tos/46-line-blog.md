@@ -1,7 +1,10 @@
-title=46 Line Blog		
-type=page
+title=TODO title for 46-line-blog.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: 46 Line Blog
 
 This tutorial is based on the first *Sling Gems* on dev.day.com: The [Sling gems: a blog in 46 lines of code](http://dev.day.com/microsling/content/blogs/main/sling-46-lines-blog.html). It has slightly been adapted to fit here.
 
@@ -25,77 +28,78 @@ Then, login using <http://localhost:8888/?sling:authRequestLogin=1> which should
 
 The easiest way to create content in Sling is to use an HTTP POST request, let's use a simple HTML form:
 
-<html>
-<body>
-<h1>Sling microblog</h1>
+    <html>
+      <body>
+        <h1>Sling microblog</h1>
+      
+        <div>
+          <form method="POST">
+            Title:<br/>
+            <input type="text" name="title" style="width:100%"/>
+            
+            <br/>Text:<br/>
+            <textarea style="width:100%" name="text"></textarea>
+            
+            <br/>
+            <input type="submit" value="save"/>
+            <input type="hidden" name=":redirect" value="*.html"/>
 
-<div>
-<form method="POST">
-<input type="text" name="title" style="width:100%"/>
+            <!-- used by Sling when decoding request parameters -->
+            <input type="hidden" name="_charset_" value="UTF-8"/>
+          </form>
+        </div>
+      
+        <!-- code of step 2 comes here -->
+      </body>
+    </html>
 
-<br/>Text:<br/>
-<textarea style="width:100%" name="text"></textarea>
-
-<br/>
-<input type="submit" value="save"/>
-<input type="hidden" name=":redirect" value="*.html"/>
-
-<!-- used by Sling when decoding request parameters -->
-<input type="hidden" name="_charset_" value="UTF-8"/>
-</form>
-</div>
-
-<!-- code of step 2 comes here -->
-</body>
-</html>
-
-
+     
 That's two input fields, a submit button and a hidden field that tells Sling what to do after the POST (in this case: redirect to the html view of the node that was just created).
-
+    
 To test the form, start Sling and save the above script as {{/apps/blog/blog.esp}} [^esp]  in the Sling repository - a WebDAV mount is the easiest way to do that. Browsing to <http://localhost:8888/content/blog/*.html> [^port] should display the above form.
 
 [^esp]: ESP is Sling's server-side javascript language
 [^port]: This assumes your instance of Sling is running on port 8888. If that's not the case, adjust the example URLs accordingly.
 
 Input some data (using "foo" for the title, for the sake of our examples below), save the form, and Sling should display the form again, using the URL of the node that was just created.
-
+    
 <div class="note">
 If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to add or modify item_ it means that you are not logged in as user _admin_. See instructions above for logging in.
 </div>
-
+    
 At this point you're probably looking at an empty form with an URL ending in _foo_, if you used that for the title. Or _foo_0_ or _foo_1_ if other _foo_s already existed. Don't worry about not seeing your content, we'll fix that right away.
-
-
+    
+    
 ## Step 2: Where's my content?
-
+    
 To verify that our content has been created, we can have a look at the JSON data at <http://localhost:8888/content/blog/foo.tidy.json>, which should display our new node's values:
-
-
-{
-"jcr:primaryType": "nt:unstructured",
-"text": "This is the foo text",
-"title": "foo"
-}
+    
+    
+    {
+      "jcr:primaryType": "nt:unstructured",
+      "text": "This is the foo text",
+      "title": "foo"
+    }
 
 
 That's reassuring, but what we really want is for these values to be displayed on the editing form for our post.
 
 Thanks to the *sling.js* client library, we just need to add a `Sling.wizard()` call to our form to display those values. Let's first add a `<head>` element to our form to load the *sling.js* library, before the existing `<body>` of course:
+ 
+    <head>
+      <script src="/system/sling.js"></script>
+    </head>
 
-<head>
-<script src="/system/sling.js"></script>
-</head>
-
-
+     
 And add the `Sling.wizard()` after the form, where we had the _code of step 2 comes here_ comment:
+    
+    <!-- code of step 2 comes here -->
+    <script>Sling.wizard();</script>
 
-<!-- code of step 2 comes here -->
-<script>Sling.wizard();</script>
-
-
+ 
 Reloading the form at `http://localhost:8888/content/blog/*.html` and creating a new post should now redirect to an editable version of the post, with the form fields correctly initialized.
 
-We can now create and edit posts; let's add some navigation, using more of the *sling.js* functionality.
+We can now create and edit posts; let's add some navigation, using more of the *sling.js* functionality. 
 
 ## Step 3: Navigation
 
@@ -103,42 +107,42 @@ The *sling.js* library provides utilities to access and manipulate content. For 
 
 Add the following code to your script, after the `Sling.wizard()` call that was added in step 2:
 
-<h3>Navigation</h3>
-<ul>
-<li><em><a href="/content/blog/*.html">[Create new post]</a></em></li>
-<script>
-var posts = Sling.getContent("/content/blog", 2);
-for(var i in posts) {
-document.write("<li>"
-+ "<a href='/content/blog/" + i + ".html'>"
-+ posts[i].title
-+ "</a></li>");
-}
-</script>
-</ul>
-
-
-The first link to `/content/blog/*` brings us back to our content creating form, which is nothing else than the editing form reading empty values and posting to the "magic star" URL.
-
+    <h3>Navigation</h3>
+    <ul>
+        <li><em><a href="/content/blog/*.html">[Create new post]</a></em></li>
+        <script>
+          var posts = Sling.getContent("/content/blog", 2);
+          for(var i in posts) {
+            document.write("<li>"
+              + "<a href='/content/blog/" + i + ".html'>"    
+              + posts[i].title
+              + "</a></li>");
+          }
+        </script>
+    </ul>
+    
+     
+The first link to `/content/blog/*` brings us back to our content creating form, which is nothing else than the editing form reading empty values and posting to the "magic star" URL. 
+    
 The rest of the javascript runs client-side, as it is not embedded in `<% %>` code markers, calls the `sling.getContent` method to get two levels of node data below `/content/blog`, and displays links to nodes that it finds.
-
+    
 That's a basic navigation, of course, in a real blog we'd need some paging and contextualization to cope with large numbers of posts.
-
+    
 Nevertheless, with this addition our ESP script allows us to create, edit and navigate blog posts - not bad for 46 lines of code, including comments, whitespace and output formatting.
-
-
+    
+     
 ## Step 4: Data first, structure later
-
+    
 You might have heard this mantra, which we apply in many areas of Sling.
-
+    
 In this case, adding a new field to our blog posts could not be easier: just add an input field to the form, and Sling will do the rest.
-
+    
 Adding this inside our script's `<form>` element, for example:
+    
+    <br/>Author:<br/>
+    <input type="author" name="author" style="width:100%"/>
 
-<br/>Author:<br/>
-<input type="author" name="author" style="width:100%"/>
-
-
+ 
 Allows us to add an author name to our blog posts. No need to define anything at the repository level, as Sling is using it in unstructured mode in this case, and no need to migrate existing data, the author field of existing posts will simply be empty.
 
 

@@ -1,7 +1,10 @@
-title=DataSource Provider		
-type=page
+title=TODO title for datasource-providers.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: DataSource Provider
 
 DataSource provider bundle supports creation of `DataSource` instance and registering them with
 the OSGi service registry. Application using the DataSource just obtains it from OSGi while
@@ -30,7 +33,7 @@ the name of the JDBC driver's implementation of java.sql.Driver. For example, to
 driver to connect to a Apache Derby database, the META-INF/services/java.sql.Driver file would
 contain the following entry:
 
-org.apache.derby.jdbc.EmbeddedDriver
+    org.apache.derby.jdbc.EmbeddedDriver
 
 Sling DataSource Provider bundles maintains a `DriverRegistry` which contains mapping of Driver
 bundle to Driver class supported by it. With this feature there is no need to wrap the Driver
@@ -58,15 +61,15 @@ converted to OSGi bundles. For them we can use the [Bnd Wrap][2] command.
 
 For example to convert the Postgres driver jar follow the steps below
 
-$ wget https://github.com/bndtools/bnd/releases/download/2.3.0.REL/biz.aQute.bnd-2.3.0.jar -O bnd.jar
-$ wget http://jdbc.postgresql.org/download/postgresql-9.3-1101.jdbc41.jar
-$ cat > bnd.bnd <<EOT
-Bundle-Version: 9.3.1101
-Bundle-SymbolicName: org.postgresql
-Export-Package: org.postgresql
-Include-Resource: @postgresql-9.3-1101.jdbc41.jar
-EOT
-$ java -jar bnd.jar bnd.bnd
+    $ wget https://github.com/bndtools/bnd/releases/download/2.3.0.REL/biz.aQute.bnd-2.3.0.jar -O bnd.jar
+    $ wget http://jdbc.postgresql.org/download/postgresql-9.3-1101.jdbc41.jar
+    $ cat > bnd.bnd <<EOT
+    Bundle-Version: 9.3.1101
+    Bundle-SymbolicName: org.postgresql
+    Export-Package: org.postgresql
+    Include-Resource: @postgresql-9.3-1101.jdbc41.jar
+    EOT
+    $ java -jar bnd.jar bnd.bnd
 
 In the steps above we
 
@@ -97,26 +100,26 @@ OSGi config.
 
 Following snippet demonstrates accessing the DataSource named `foo` via DS annotation
 
-::java
-import javax.sql.DataSource;
-import org.apache.felix.scr.annotations.Reference;
+    ::java
+    import javax.sql.DataSource;
+    import org.apache.felix.scr.annotations.Reference;
 
-public class DSExample {
+    public class DSExample {
 
-@Reference(target = "(&(objectclass=javax.sql.DataSource)(datasource.name=foo))")
-private DataSource dataSource;
-}
+        @Reference(target = "(&(objectclass=javax.sql.DataSource)(datasource.name=foo))")
+        private DataSource dataSource;
+    }
 
 ## Installation
 
 Download the bundle from [here][3] or use following Maven dependency
 
-::xml
-<dependency>
-<groupId>org.apache.sling</groupId>
-<artifactId>org.apache.sling.datasource</artifactId>
-<version>1.0.0</version>
-</dependency>
+    ::xml
+    <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.datasource</artifactId>
+        <version>1.0.0</version>
+    </dependency>
 
 [1]: http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html
 [2]: http://bnd.bndtools.org/chapters/390-wrapping.html

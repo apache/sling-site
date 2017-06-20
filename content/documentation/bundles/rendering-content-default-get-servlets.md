@@ -1,7 +1,10 @@
-title=Rendering Content - Default GET Servlets		
-type=page
+title=TODO title for rendering-content-default-get-servlets.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Rendering Content - Default GET Servlets
 
 [TOC]
 
@@ -22,19 +25,19 @@ This page provides an overview of these default servlets.
 Currently, only the `DefaultGetServlet` has configuration parameters. Those are found at
 `/system/console/configMgr/org.apache.sling.servlets.get.DefaultGetServlet` on a standard Sling setup,
 and should be self-explaining. One common use is to disable some of the default renderings listed below,
-as they might not be useful or desired on production systems.
+as they might not be useful or desired on production systems. 
 
 # Default renderings
 
 ## Default JSON rendering
-Adding a .json extension to a request triggers the default Sling GET servlet in JSON mode, unless a
+Adding a .json extension to a request triggers the default Sling GET servlet in JSON mode, unless a 
 more specific servlet or script is provided for the current resource.
 
 This servlet currently supports the following selectors:
 
-* `.tidy` causes the JSON output to be formatted
-* `.harray` causes child nodes to be output as arrays instead of objects, to preserve their order (requires `org.apache.sling.servlets.get` V2.1.10)
-* A numeric value or `.infinity` as the last selector selects the desired recursion level
+  * `.tidy` causes the JSON output to be formatted
+  * `.harray` causes child nodes to be output as arrays instead of objects, to preserve their order (requires `org.apache.sling.servlets.get` V2.1.10)
+  * A numeric value or `.infinity` as the last selector selects the desired recursion level 
 
 Note that the number of elements is limited by a configurable value, see the `DefaultGetServlet` configuration for more info.
 
@@ -66,11 +69,11 @@ Whenever the request carries the extension `.res` or no extension at all, the re
 The `RedirectServlet` handles the `sling:redirect` resource type, using the `sling:target` property of the
 resource to define the redirect target, and the `sling:status` property to define the HTTP status to use (default is 302).
 
-This is not to be confused with the `sling:redirect` property used under `/etc/map`, which is described in
+This is not to be confused with the `sling:redirect` property used under `/etc/map`, which is described in 
 [Mappings for Resource Resolution](/documentation/the-sling-engine/mappings-for-resource-resolution.html)
 
 ## SlingInfoServlet
 
 The `SlingInfoServlet` provides info on the current JCR session, for requests that map to JCR nodes.
 
-It is available at `/system/sling/info.sessionInfo` by default, and supports `.json` and `.txt` extensions.
+It is available at `/system/sling/info.sessionInfo` by default, and supports `.json` and `.txt` extensions. 

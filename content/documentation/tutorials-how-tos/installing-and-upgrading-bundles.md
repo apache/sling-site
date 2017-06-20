@@ -1,7 +1,10 @@
-title=Installing and Upgrading Bundles		
-type=page
+title=TODO title for installing-and-upgrading-bundles.md 
+date=1900-01-01
+type=post
+tags=blog
 status=published
 ~~~~~~
+Title: Installing and Upgrading Bundles
 Excerpt: Explains how to install, upgrade and uninstall Bundles using the Sling Management console.
 
 <div class="note">
@@ -70,7 +73,7 @@ There exists no GUI functionality yet to add a new repository to the list of kno
 
 For example, if you run Sling on `http://localhost:7402/sample` with default location of the Sling Management Console, the following request would add a repository at `/tmp/repo/repository.xml` in the filesystem:
 
-:::html
-http://localhost:7402/sample/system/console/bundlerepo?action=refreshOBR&repository=file:///tmp/repo/repository.xml
+    :::html
+    http://localhost:7402/sample/system/console/bundlerepo?action=refreshOBR&repository=file:///tmp/repo/repository.xml
 
 Note: Only use `file:` URLs if you know Sling has access to the named file !
