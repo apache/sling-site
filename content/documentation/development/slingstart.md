@@ -299,16 +299,16 @@ The server itself is configured within an element `server` below the configurati
 
 Name | Type | Description | Default Value | Mandatory
 ---- | ---- | ----------- | ------------- | ---------
-port     | String | The port on which the server is listening for HTTP requests. Arbitrary if not set. | - | no
-id       | String | The instance id for this server. If not set the id is automatically generated from the run modes and the port. | - | no
-runmode  | String | The comma-separated list of [run modes](/documentation/bundles/sling-settings-org-apache-sling-settings.html#run-modes) to be set for this server. Those will be set in addition to the ones being defined by the underlying model. | - | no
-contextPath | String | The context path. If not set then Sling is deployed in the root context. | - | no
-controlPort | String | The TCP [control port](/documentation/the-sling-engine/the-sling-launchpad.html#control-port) on which the server is listening for control commands. Arbitrary if not set. | - | no
+port     | String | The port on which the server is listening for HTTP requests. Arbitrary if not set. | (-) | no
+id       | String | The instance id for this server. If not set the id is automatically generated from the run modes and the port. | (-) | no
+runmode  | String | The comma-separated list of [run modes](/documentation/bundles/sling-settings-org-apache-sling-settings.html#run-modes) to be set for this server. Those will be set in addition to the ones being defined by the underlying model. | (-) | no
+contextPath | String | The context path. If not set then Sling is deployed in the root context. | (-) | no
+controlPort | String | The TCP [control port](/documentation/the-sling-engine/the-sling-launchpad.html#control-port) on which the server is listening for control commands. Arbitrary if not set. | (-) | no
 instances | int | The number of instances which should be created from this server element. In this case the configuration acts as template. The port and controlPort for all servers being generated from this configuration are random (except for the first server). | 1 | no
-folder | String | The folder from where to start Sling. If not set is a folder in the project's build directory named like the `id`. | - | no
+folder | String | The folder from where to start Sling. If not set is a folder in the project's build directory named like the `id`. | (-) | no
 vmOpts | String | The JVM options to use. | `-Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true` | no
-opts | String | Additional application options. | - | no
-debug | String | See below for an explanation. | - | no
+opts | String | Additional application options. | (-) | no
+debug | String | See below for an explanation. | (-) | no
 stdOutFile | String | The relative filename of the file which receives both the standard output (stdout) and standard error (stderr) of the server processes. If null or empty string the server process inherits stdout from the parent process (i.e. the Maven process). The given filename must be relative to the working directory of the according server. This was added with [SLING-6545](https://issues.apache.org/jira/browse/SLING-6545). | null | no
 
 ### Debugging
