@@ -22,8 +22,8 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 * Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references -> replace with copies of those titles and excerpts, or use tags to mark and select
 * Fix remaining `refs.` links -> those are probably broken anyway
 * The `#!java` macro is not supported -> convert to monospaced code
-* Finish the dynamic downloads page, links are still TODO + test with CGI script
-* sitemap page is missing
+* Test the downloads.cgi page, requires an apache.org setup (INFRA-14390)
+* Create sitemap page
 
 ### Nice to have
 * JBake 2.5.x does not support the `[TOC]` macro but apparently that will be available once JBake moves to https://github.com/vsch/flexmark-java , probably in its next version. We might wait for that and just mark the TOCs as unsupported for now.
@@ -32,7 +32,6 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 ### Final validation, activation etc.
 * Review all pages
 * Resync the content with the current Sling website if needed, initially synced at r1798604
-* Move the Git repository to apache.org, create an `asf-site` branch for the live content and ask infra to setup gitpubsub to activate it
 
 ### Done
 * Fix internal links like `refs.project-information.path` 

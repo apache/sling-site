@@ -287,7 +287,7 @@ layout 'layout/main.tpl', true,
 										td(data[0])
 										td(data[4])
 										td(data[1])
-										var artifact = "${data[2]}-${data[4]}${data[3]}"
+										def artifact = "${data[2]}-${data[4]}${data[3]}"
 										td(){ 
 											downloadLink(artifact, artifact, "", "")
 										}

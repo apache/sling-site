@@ -1,5 +1,5 @@
-title=		
-type=page
+title=Downloads
+type=downloads
 status=published
 ~~~~~~
 
