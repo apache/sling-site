@@ -5,6 +5,7 @@ title("${config.blog_title}") newLine()
 // For now, try to reproduce the layout of the current website, to be able to compare pages
 
 link(rel:"stylesheet", href:"${config.site_contextPath}res/css/site.css") newLine()
+link(rel:"icon", href:"${config.site_contextPath}res/favicon.ico") newLine()
 
 div(class:"title") {
   div(class:"logo") {
