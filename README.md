@@ -33,6 +33,15 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 * Review all pages
 * Resync the content with the current Sling website if needed, initially synced at r1798604
 
+## Broken tables
+The current pegdown parser has troubles with table cells containing special characters.
+
+The following pages still have problems with that:
+
+* http://localhost:8820/documentation/the-sling-engine/the-sling-launchpad.html
+* http://localhost:8820/documentation/bundles/sling-settings-org-apache-sling-settings.html
+* http://localhost:8820/documentation/bundles/web-console-extensions.html
+
 ### Done
 * Fix internal links like `refs.project-information.path` 
 * Page header and footer, logo etc
