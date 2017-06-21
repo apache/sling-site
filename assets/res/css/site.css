@@ -271,3 +271,8 @@ pre {
     padding: 0.5em
     width: 100%;
 }
+
+.draft {
+    color:blue;
+    text-align:center;
+}
