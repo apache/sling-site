@@ -2,36 +2,35 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Configuration</h1></header><h2>Introduction</h2>
 <p>Configuration in Sling is aligned with respective support by the OSGi specification:</p>
 <ul>
   <li>Framework and Java system properties are available through the <code>BundleContext.getProperty(String)</code> method. These properties are provided in Sling through the Sling launcher.</li>
   <li>Bundle Header values are available through the <code>Bundle.getHeaders()</code> and <code>Bundle.getHeaders(String)</code> methods. These header values are set by the bundle developer in the <code>META-INF/MANIFEST.MF</code> file. In fact, all main manifest attributes are available through these methods.</li>
-  <li>Components managed by the Service Component Runtime and declared in component descriptor files listed in the <code>Service-Component</code> manifest header access configuration properties through the <code>ComponentContext.getProperties()</code> method. These properties have three sources:</li>
-</ul>
-<ol>
-  <li>Configuration specified specifically for factory components</li>
-  <li>Properties retrieved from the Configuration Admin Service</li>
-  <li>Properties set in the component descriptor</li>
-</ol>
-<ul>
+  <li>Components managed by the Service Component Runtime and declared in component descriptor files listed in the <code>Service-Component</code> manifest header access configuration properties through the <code>ComponentContext.getProperties()</code> method. These properties have three sources:
+    <ol>
+      <li>Configuration specified specifically for factory components</li>
+      <li>Properties retrieved from the Configuration Admin Service</li>
+      <li>Properties set in the component descriptor</li>
+    </ol>
+  </li>
   <li>Configuration properties provided to <code>ManagedService</code> and <code>ManagedServiceFactory</code> instances by the Configuration Admin Service.</li>
 </ul>
 <p>For the discussion to follow we differentiate between initial configuration provided by Framework and system properties and managed configuration provided by the Configuration Admin Service.</p>
@@ -49,13 +48,12 @@
   <li>Resolve any property file inclusions. This may be used to provide more configurability depending on the integration.</li>
   <li>Handle OSGi boot delegation support (see below).</li>
   <li>Resolve property references of the form <code>${propName</code>}</li>
-  <li>For each property value starting with <code>ontext:/</code> do the following, assuming the value to be an URL with scheme <code>context:</code>:</li>
-</ol>
-<ul>
-  <li>Copy the application resource to <code>${sling.home</code>} preserving the URL path unless such a file already exists.</li>
-  <li>Replace the property value with the path to the newly created file. The path has the form <code>${sling.home}/relpath</code>.</li>
-</ul>
-<ol>
+  <li>For each property value starting with <code>ontext:/</code> do the following, assuming the value to be an URL with scheme <code>context:</code>:
+    <ul>
+      <li>Copy the application resource to <code>${sling.home</code>} preserving the URL path unless such a file already exists.</li>
+      <li>Replace the property value with the path to the newly created file. The path has the form <code>${sling.home}/relpath</code>.</li>
+    </ul>
+  </li>
   <li>Store the properties as <code>${sling.home}/sling.properties</code> to be re-used on next startup</li>
   <li>Setup Bundle auto installation for the Felix Framework</li>
 </ol>
@@ -109,7 +107,8 @@
 </ol>
 <p><em>Example</em></p>
 <p>The packaged <code>sling.properties</code> file contains the following properties file inclusion setting:</p>
-<p>sling.include.jre = jre-${java.specification.version}.properties</p>
+<pre><code>sling.include.jre = jre-${java.specification.version}.properties
+</code></pre>
 <p>This is used to include the JRE package list to be made visible inside the OSGi framework.</p>
 <h3>OSGi Boot Delegation Support</h3>
 <p>Some packages may have to be shared between bundles in an OSGi framework and the rest of Java VM in which the framework has been launched. This is especially true for OSGi framework instances launched in embedding such as Servlet Containers. In the case of a Sling Application accessing a JCR Repository launched in a different Web Application, this mainly concerns an API packages as well as the JNDI Initial Factory package(s).</p>

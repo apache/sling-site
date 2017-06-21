@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling API CRUD Support</h1></header><p>[TOC]</p>
 <h2>Apache Sling API Support</h2>
@@ -36,67 +36,105 @@
 <h3>Updating a Property</h3>
 <p>Update /myresource, setting the title and body:</p>
 <p><strong>Sling Post Servlet</strong></p>
-<form action="/myresource" method="POST">
-<input type="text" name="title">
-<textarea name="body">
-</form>
+<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;title&quot;&gt;
+  &lt;textarea name=&quot;body&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<p>Resource myResource = resourceResolver.getResource("/myresource"); ModifiableValueMap properties = myNode.adaptTo(ModifiableValueMap.class); properties.put("title", {TITLE}); properties.put("body", {BODY}); resourceResolver.commit();</p>
+<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+ModifiableValueMap properties = myNode.adaptTo(ModifiableValueMap.class);
+properties.put(&quot;title&quot;, {TITLE});
+properties.put(&quot;body&quot;, {BODY});
+resourceResolver.commit();
+</code></pre>
 <h3>Create New Resource</h3>
 <p>Create a new resource below /myresource</p>
 <p><strong>Sling Post Servlet</strong></p>
-<form action="/myresource/" method="POST">
-<input type="text" name="dummy">
-</form>
+<pre><code>&lt;form action=&quot;/myresource/&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;dummy&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<p>Resource myResource = resourceResolver.getResource("/myresource"); Map&lt;String,Object&gt; properties = new HashMap&lt;String,Object&gt;(); properties.put("jcr:primaryType", "nt:unstructured"); properties.put("sling:resourceType", "myapp/components/mytype"); Resource dummy = resourceResolver.create(myResource, "dummy", properties); resourceResolver.commit();</p>
+<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+Map&lt;String,Object&gt; properties = new HashMap&lt;String,Object&gt;();
+properties.put(&quot;jcr:primaryType&quot;, &quot;nt:unstructured&quot;);
+properties.put(&quot;sling:resourceType&quot;, &quot;myapp/components/mytype&quot;);
+Resource dummy = resourceResolver.create(myResource, &quot;dummy&quot;, properties);
+resourceResolver.commit();
+</code></pre>
 <h3>Remove a Property</h3>
 <p>Remove the property title</p>
 <p><strong>Sling Post Servlet</strong></p>
-<form action="/myresource" method="POST">
-<input type="hidden" name="title@Delete">
-</form>
+<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;title@Delete&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<p>Resource myResource = resourceResolver.getResource("/myresource"); ModifiableValueMap properties = myResource.adaptTo(ModifiableValueMap.class); properties.remove("title"); resourceResolver.commit();</p>
+<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+ModifiableValueMap properties = myResource.adaptTo(ModifiableValueMap.class);
+properties.remove(&quot;title&quot;);
+resourceResolver.commit();
+</code></pre>
 <h3>Copy a Resource</h3>
 <p>Copy the resource /myresource to /myresource2</p>
 <p><strong>Sling Post Servlet</strong></p>
-<form action="/myresource" method="POST">
-<input type="hidden" name=":operation" value="copy">
-<input type="hidden" name=":dest" value="/myresource2">
-<input type="hidden" name=":replace" value="true">
-</form>
+<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;copy&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;:dest&quot; value=&quot;/myresource2&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;:replace&quot; value=&quot;true&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<p>Map&lt;String,Object&gt; properties = myResource.adaptTo(ValueMap.class); Resource myResource2 = resourceResolver.create(null, "myresource2", properties); resourceResolver.commit();</p>
+<pre><code>Map&lt;String,Object&gt; properties = myResource.adaptTo(ValueMap.class);
+Resource myResource2 = resourceResolver.create(null, &quot;myresource2&quot;, properties);
+resourceResolver.commit();
+</code></pre>
 <h3>Move a Resource</h3>
 <p>Move the resource /myresource2 to /myresource3</p>
 <p><strong>Sling Post Servlet</strong></p>
-<form action="/myresource2" method="POST">
-<input type="hidden" name=":operation" value="move">
-<input type="hidden" name=":dest" value="/myresource3">
-</form>
+<pre><code>&lt;form action=&quot;/myresource2&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;move&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;:dest&quot; value=&quot;/myresource3&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<p>Resource myResource2 = resourceResolver.getResource("/myresource2"); Map&lt;String,Object&gt; properties = myResource2.adaptTo(ValueMap.class); Resource myResource3 = resourceResolver.create(null, "myresource3", properties); resourceResolver.delete(myResource2); resourceResolver.commit();</p>
+<pre><code>Resource myResource2 = resourceResolver.getResource(&quot;/myresource2&quot;);
+Map&lt;String,Object&gt; properties = myResource2.adaptTo(ValueMap.class);
+Resource myResource3 = resourceResolver.create(null, &quot;myresource3&quot;, properties);
+resourceResolver.delete(myResource2);
+resourceResolver.commit();
+</code></pre>
 <h3>Setting non-String Value</h3>
 <p>Set the property date to a particular date</p>
 <p><strong>Sling Post Servlet</strong></p>
-<form action="/myresource3" method="POST">
-<input type="text" name="date" value="2008-06-13T18:55:00">
-<input type="hidden" name="date@TypeHint" value="Date">
-</form>
+<pre><code>&lt;form action=&quot;/myresource3&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;date&quot; value=&quot;2008-06-13T18:55:00&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;date@TypeHint&quot; value=&quot;Date&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<p>Resource myResource3 = resourceResolver.getResource("/myresource3"); Calendar calendar = [SOME_DATE]; ModifiableValueMap properties = myResource3.adaptTo(ModifiableValueMap.class); properties.put("date", calendar); resourceResolver.commit();</p>
+<pre><code>Resource myResource3 = resourceResolver.getResource(&quot;/myresource3&quot;);
+Calendar calendar = [SOME_DATE];
+ModifiableValueMap properties = myResource3.adaptTo(ModifiableValueMap.class);
+properties.put(&quot;date&quot;, calendar);
+resourceResolver.commit();
+</code></pre>
 <h3>Delete a Resource</h3>
 <p>Delete the resource /myresource</p>
 <p><strong>Sling Post Servlet</strong></p>
-<form action="/myresource" method="POST">
-<input type="hidden" name=":operation" value="delete">
-</form>
+<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;delete&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<p>Resource myResource = resourceResolver.getResource("/myresource"); resourceResolver.delete(myResource); resourceResolver.commit();</p>
+<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+resourceResolver.delete(myResource);
+resourceResolver.commit();
+</code></pre>
 <h2>Value Class Support</h2>
 <div class="info">
-Please note, this information is specific to the Sling JCR Resource implementation provided by the Apache Sling project.  Other implementations may have different value class support.
+	Please note, this information is specific to the Sling JCR Resource implementation provided by the Apache Sling project.  Other implementations may have different value class support.  
 </div>
 <p>The Classes implementing the following types are supported directly when setting properties:</p>
 <ul>

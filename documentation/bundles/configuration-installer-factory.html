@@ -2,42 +2,62 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Configuration Installer Factory</h1></header><p>The configuration installer factory provides support for configurations to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>. The provisioning of artifacts is handled by installer providers like the file installer or the JCR installer.</p>
 <h2>Configurations</h2>
 <p>Configuration file names are related to the PID and factory PID. The structure of the file name is as follows:</p>
-<p>filename ::= <pid> ( '-' <subname> )? ('.cfg'|'.config')</p>
+<pre><code>filename ::= &lt;pid&gt; ( &#39;-&#39; &lt;subname&gt; )? (&#39;.cfg&#39;|&#39;.config&#39;)
+</code></pre>
 <p>If the form is <code>&lt;pid&gt;(&#39;.cfg&#39;|&#39;.config&#39;)</code>, the file contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p>
 <p>When a Managed Service Factory is used, the situation is different. The <code>&lt;pid&gt;</code> part then describes the PID of the Managed Service Factory. You can pick any <code>&lt;subname&gt;</code>, the installer will then create an instance for the factory for each unique name. For example:</p>
-<p>com.acme.xyz.cfg // configuration for Managed Service // com.acme.xyz com.acme.abc-default.cfg // Managed Service Factory, // creates an instance for com.acme.abc</p>
+<pre><code>com.acme.xyz.cfg // configuration for Managed Service
+// com.acme.xyz
+com.acme.abc-default.cfg // Managed Service Factory,
+// creates an instance for com.acme.abc
+</code></pre>
 <p>If a configuration is modified, the file installer will write the configuration back to a file to ensure peristence across restarts (if <code>sling.fileinstall.writeback</code> is enabled).</p>
 <h3>Property Files (.cfg)</h3>
 <p>Configuration files ending in '.cfg' are plain property files (<code>java.util.Property</code>). The format is simple:</p>
-<p>file ::= ( header | comment ) * header ::= <header> ( ':' | '=' ) <value> ( '<nl> <value> ) * comment ::= '#' <any></p>
+<pre><code>file ::= ( header | comment ) *
+header ::= &lt;header&gt; ( &#39;:&#39; | &#39;=&#39; ) &lt;value&gt; ( &#39;\&lt;nl&gt; &lt;value&gt; ) *
+comment ::= &#39;#&#39; &lt;any&gt;
+</code></pre>
 <p>Notice that this model only supports string properties. For example:</p>
-<h1>default port</h1>
-<p>ftp.port = 21</p>
+<pre><code># default port
+ftp.port = 21
+</code></pre>
 <h3>Configuration Files (.config)</h3>
 <p>Configuration files ending in '.config' use the format of the Apache Felix ConfigAdmin implementation. It allows to specify the type and cardinality of a configuration property and is not limited to string values.</p>
 <p>The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.</p>
 <p>The format is:</p>
-<p>file ::= (comment) (header) * comment ::= '#' <any> header ::= prop '=' value prop ::= symbolic-name // 1.4.2 of OSGi Core Specification symbolic-name ::= token { '.' token } token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' } value ::= [ type ] ( '[' values ']' | '(' values ')' | simple ) values ::= simple { ',' simple } simple ::= '"' stringsimple '"' type ::= <1-char type code> stringsimple ::= &lt;quoted string representation of the value where both '"' and '=' need to be escaped&gt;</p>
+<pre><code>file ::= (comment) (header) *
+comment ::= &#39;#&#39; &lt;any&gt;
+header ::= prop &#39;=&#39; value
+prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
+symbolic-name ::= token { &#39;.&#39; token } 
+token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | &#39;_&#39; | &#39;-&#39; }
+value ::= [ type ] ( &#39;[&#39; values &#39;]&#39; | &#39;(&#39; values &#39;)&#39; | simple ) 
+values ::= simple { &#39;,&#39; simple } 
+simple ::= &#39;&quot;&#39; stringsimple &#39;&quot;&#39;
+type ::= &lt;1-char type code&gt;
+stringsimple ::= &lt;quoted string representation of the value where both &#39;&quot;&#39; and &#39;=&#39; need to be escaped&gt;
+</code></pre>
 <p>The quoted string format is equal to the definition from HTTP 1.1 (<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html">RFC2616</a>), except that both '"' and '=' need to be escaped.</p>
 <p>The 1 character type code is one of:</p>
 <ul>

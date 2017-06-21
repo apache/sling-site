@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Request Parameter Handling in Sling</h1></header><p>Excerpt: Explains how Sling provides request parameters to the <code>Component</code>.</p>
 <h2>Servlet API</h2>
@@ -60,7 +60,7 @@
     </tr>
   </tbody>
 </table>
-<p>The actual encoding of the parameters is all but safe because the encoding of URLs is not very well defined and browsers do not set the character encoding when sending post data. Fortunately, they use the same character encoding for sending back form content as was used by the server to send the form.</p>
+<p>The actual encoding of the parameters is all but safe because the encoding of URLs is not very well defined and browsers do not set the character encoding when sending post data. Fortunately, they use the same character encoding for sending back form content as was used by the server to send the form. </p>
 <h2>Sling API</h2>
 <p>To overcome the restrictions and to provide uniform access to request parameters the Sling API in addition to the Servlet API methods to access parameters provides an abstraction of parameters which is applicable to all parameters sent by clients, the <code>RequestParameter</code> interface. Through this interface, each parameter may be analyzed for these topics:</p>
 <table>
@@ -141,7 +141,7 @@
   <li>If the parameter is an uploaded file, the file name is re-encoded on the fly when accessed</li>
 </ul>
 <div class="info">
-Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing.
+Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing. 
 To enable this functionality set the <code>sling.default.parameter.encoding</code> parameter of the Sling Main Servlet (PID <code>org.apache.sling.engine.impl.SlingMainServlet</code>) configuration (for Sling Engine < 2.3.0) or the same parameter of the Sling Request Parameter Handling (PID <code>org.apache.sling.engine.parameters</code>) configuration (for Sling Engine >= 2.3.0 ) to the desired encoding, which of course must be supported by the actual Java Platform.
 </div></section></div></div>            
 <div class="footer">

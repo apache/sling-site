@@ -2,45 +2,61 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Log Tracer</h1></header><p><a href="https://issues.apache.org/jira/browse/SLING-4739">Log Tracer</a> provides support for enabling the logs for specific category at specific level and only for specific request. It provides a very fine level of control via config provided as part of HTTP request around how the logging should be performed for given category.</p>
 <p>This is specially useful for those parts of the system which are involved in every request. For such parts enabling the log at global level would flood the logs and create lots of noise. Using Tracer one can enable log for that request which is required to be probed.</p>
 <p>For e.g. determining what nodes are written for a given POST request can be simply done by including an extra request parameters.</p>
-<p>curl -D - -u admin:admin -d "./jcr:content/jcr:title=Summer Collection" -d ":name=summer-collection" -d "./jcr:primaryType=sling:Folder" -d "./jcr:content/jcr:primaryType=nt:unstructured" -d "tracers=oak-writes" http://localhost:4502/content/dam/</p>
+<pre><code>curl -D - -u admin:admin \
+ -d &quot;./jcr:content/jcr:title=Summer Collection&quot; \
+ -d &quot;:name=summer-collection&quot; \
+ -d &quot;./jcr:primaryType=sling:Folder&quot; \
+ -d &quot;./jcr:content/jcr:primaryType=nt:unstructured&quot; \
+ -d &quot;tracers=oak-writes&quot; \
+ http://localhost:4502/content/dam/
+</code></pre>
 <h2>Configuration</h2>
 <p><img src="/documentation/bundles/tracer-config.png" alt="Tracer Config" /></p>
 <p><strong>Note that by default Tracer would not be enabled and you would need to save the OSGi config to get it activated</strong></p>
 <p>Tracer support two ways to enable logging.</p>
 <h3>Tracer Sets</h3>
 <p>Tracer sets are collection of predefined logging categories matching specific area of an application. These can for now be configured as part of OSGi config</p>
-<p>oak-query : org.apache.jackrabbit.oak.query.QueryEngineImpl;level=debug auth : org.apache.sling.auth;level=trace,org.apache.jackrabbit.oak.security</p>
+<pre><code>oak-query : org.apache.jackrabbit.oak.query.QueryEngineImpl;level=debug
+auth : org.apache.sling.auth;level=trace,org.apache.jackrabbit.oak.security
+</code></pre>
 <p>The config is of following format</p>
-<p>< set name > : <tracer config></p>
+<pre><code>&lt; set name &gt; : &lt;tracer config&gt;
+</code></pre>
 <p>Where the config is of following format</p>
-<p>tracerConfig := loggerConfig ( ',' loggerConfig) * loggerConfig := loggerName (; attributes)* attributes := attributeName '=' attributeValue</p>
+<pre><code>tracerConfig := loggerConfig ( &#39;,&#39; loggerConfig) *
+loggerConfig := loggerName (; attributes)*
+attributes := attributeName &#39;=&#39; attributeValue
+</code></pre>
 <p>Currently following attributes are support</p>
 <ul>
   <li><code>level</code> - Either of TRACE, DEBUG, INFO, WARN, ERROR</li>
-  <li><code>caller</code> - Used to dump stacktrace of caller. It can have following value (_since 1.0.0_, <a href="https://issues.apache.org/jira/browse/SLING-5505">SLING-5505</a>)</li>
-  <li><code>true</code> - Complete call stack for that logger would be included</li>
-  <li><code>&lt;depth&gt;</code> - Call stack upto depth (integer) would be included e.g. caller=5</li>
-  <li><code>caller-exclude-filter</code> - (optional) - '|' separated package prefixes which should not be included in the output. e.g. <em>org.apache.jackrabbit.oak.query.QueryImpl;caller=28;caller-exclude-filter="org.eclipse|org.felix"</em> this would exclude eclipse and felix packages from the resulting stack</li>
+  <li><code>caller</code> - Used to dump stacktrace of caller. It can have following value (_since 1.0.0_, <a href="https://issues.apache.org/jira/browse/SLING-5505">SLING-5505</a>)
+    <ul>
+      <li><code>true</code> - Complete call stack for that logger would be included</li>
+      <li><code>&lt;depth&gt;</code> - Call stack upto depth (integer) would be included e.g. caller=5</li>
+    </ul>
+  </li>
+  <li><code>caller-exclude-filter</code> - (optional) - '|' separated package prefixes which should not be  included in the output. e.g. <em>org.apache.jackrabbit.oak.query.QueryImpl;caller=28;caller-exclude-filter="org.eclipse|org.felix"</em>  this would exclude eclipse and felix packages from the resulting stack</li>
 </ul>
 <h3>Performance Impact</h3>
 <p>Tracer makes use of <a href="http://logback.qos.ch/manual/filters.html#TurboFilter">Logback TuboFilter</a> to intercept the logging calls and only enable them for those which are enabled via tracer config for the request. The filter is only registered for the duration of that request hence would avoid adding the cost for normal run.</p>
@@ -51,9 +67,14 @@
 <p>Sling provides support for recording recent requests which can be accessed via <a href="https://sling.apache.org/documentation/development/monitoring-requests.html">Recent Requests Plugin</a>. It would list down the list of recent request and then on clicking them you can see the logs showed on the UI.</p>
 <p>The logging there is done via <a href="https://sling.apache.org/apidocs/sling5/org/apache/sling/api/request/RequestProgressTracker.html">RequestProgressTracker</a> (<a href="http://dev.day.com/content/ddc/blog/2008/06/requestprogresstracker.html">intro</a>). By default recent request plugin gets overflown as it captures request even for css, js files. To avoid that you can modify the config as part of <em>Sling Main Servlet</em> config</p>
 <p><img src="/documentation/bundles/sling-main-servlet-config.png" alt="Sling Main Servlet Config" /></p>
-<p>Using a regex like <code>^.*.(?!jpg$|png$|js$|css$|woff$)[^.]+$</code> would avoid noise</p>
+<p>Using a regex like <code>^.*\.(?!jpg$|png$|js$|css$|woff$)[^.]+$</code> would avoid noise</p>
 <p>With that you can see log entries like below at http://localhost:8080/system/console/requests?index=xxx</p>
-<p>132 (2015-05-11 17:39:55) LOG [JCR] Query SELECT * FROM [granite:InboxItem] AS s where status='ACTIVE' ORDER BY s.startTime DESC 134 (2015-05-11 17:39:55) TIMER_END{53,/libs/cq/gui/components/endor/badge/badge.jsp#18} ... 1316 (2015-05-11 17:39:56) LOG JCR Query Count 3 1320 (2015-05-11 17:39:56) TIMER_END{1320,Request Processing} Request Processing</p>
+<pre><code>132 (2015-05-11 17:39:55) LOG [JCR]  Query SELECT * FROM [granite:InboxItem] AS s where  status=&#39;ACTIVE&#39; ORDER BY s.startTime DESC
+134 (2015-05-11 17:39:55) TIMER_END{53,/libs/cq/gui/components/endor/badge/badge.jsp#18}
+...
+1316 (2015-05-11 17:39:56) LOG JCR Query Count 3
+1320 (2015-05-11 17:39:56) TIMER_END{1320,Request Processing} Request Processing
+</code></pre>
 <h3>Server Logs</h3>
 <p>Further the logs also go to normal server side logs. By default they would go to the error.log. If you have routed the logs of specific categories to different files then normal Logback logging rules would apply</p>
 <h2>Usage</h2>
@@ -66,13 +87,29 @@
 <p>Param names</p>
 <ul>
   <li><code>tracers</code> - Tracer set names</li>
-  <li><code>tracerConfig</code> - Tracer config like org.apache.sling.auth;level=trace`</li>
+  <li><code>tracerConfig</code> - Tracer config like org.apache.sling.auth;level=trace`
+    <p>curl -u admin:admin http://localhost:4802/projects.html?tracerConfig=org.apache.sling</p>
+  </li>
 </ul>
-<p>curl -u admin:admin http://localhost:4802/projects.html?tracerConfig=org.apache.sling</p>
 <p>Above request would turn on debug level logging (default level for tracer) for <code>org.apache.sling</code> category.</p>
-<p>curl -D - -u admin:admin -d "./jcr:content/jcr:title=Summer Collection" -d ":name=summer-collection" -d "./jcr:primaryType=sling:Folder" -d "./jcr:content/jcr:primaryType=nt:unstructured" -d "tracers=oak-writes" http://localhost:4502/content/dam/</p>
-<p>Above request would create a folder in Assets and for that we have enabled the <code>oak-writes</code> tracer. This would result in following output</p>
-<p>2015-05-11 17:30:42,840 INFO admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] c.a.acs.acs-aem-tools-bundle - Service [4858] ServiceEvent REGISTERED 2015-05-11 17:30:42,846 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection] 2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection/jcr:content] 2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Setting property [/content/dam/summer-collection/jcr:content/jcr:title] 2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 2015-05-11 17:30:42,856 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] save</p>
+<pre><code>curl -D - -u admin:admin \
+ -d &quot;./jcr:content/jcr:title=Summer Collection&quot; \
+ -d &quot;:name=summer-collection&quot; \
+ -d &quot;./jcr:primaryType=sling:Folder&quot; \
+ -d &quot;./jcr:content/jcr:primaryType=nt:unstructured&quot; \
+ -d &quot;tracers=oak-writes&quot; \
+ http://localhost:4502/content/dam/
+</code></pre>
+<p>Above request would create a folder in Assets and for that we have enabled the <code>oak-writes</code> tracer. This would result in following output </p>
+<pre><code>2015-05-11 17:30:42,840 INFO  admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] c.a.acs.acs-aem-tools-bundle - Service [4858] ServiceEvent REGISTERED 
+2015-05-11 17:30:42,846 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection] 
+2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
+2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection/jcr:content] 
+2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Setting property [/content/dam/summer-collection/jcr:content/jcr:title] 
+2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
+2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
+2015-05-11 17:30:42,856 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] save 
+</code></pre>
 <h3>Request Headers</h3>
 <p>Some request like initial authentication processing does not involve Sling MainServlet and hence for those request logging cannot be done to RequestProgressTracker. Instead we can just get logs enabled and route them to normal logging on server side. For that you need to use HTTP header</p>
 <ul>
@@ -80,27 +117,88 @@
   <li><code>Sling-Tracer-Config</code> - Tracer config</li>
 </ul>
 <p>So to enable authentication related logging following request can be sent</p>
-<p>curl -D - -d "j_username=admin" -d "j_password=admin" -d "j_validate=true" -H "Sling-Tracer-Config : org.apache.sling.auth;level=trace,org.apache.jackrabbit.oak.security;level=trace" http://localhost:8080/libs/content/login.html/j_security_check</p>
+<pre><code>curl -D - -d &quot;j_username=admin&quot; \
+    -d &quot;j_password=admin&quot; \
+    -d &quot;j_validate=true&quot;  \
+    -H &quot;Sling-Tracer-Config : org.apache.sling.auth;level=trace,org.apache.jackrabbit.oak.security;level=trace&quot; \
+    http://localhost:8080/libs/content/login.html/j_security_check
+</code></pre>
 <p>This would result in following server side logs</p>
-<p>2015-05-11 17:34:56,531 INFO NA [qtp1395423247-193] c.a.acs.acs-aem-tools-bundle - Service [4859] ServiceEvent REGISTERED 2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.s.a.c.i.SlingAuthenticator - doHandleSecurity: Trying to get a session for null 2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding Credentials to shared state. 2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding login name to shared state.</p>
+<pre><code>2015-05-11 17:34:56,531 INFO  NA [qtp1395423247-193] c.a.acs.acs-aem-tools-bundle - Service [4859] ServiceEvent REGISTERED 
+2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.s.a.c.i.SlingAuthenticator - doHandleSecurity: Trying to get a session for null 
+2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 
+2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 
+2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding Credentials to shared state. 
+2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding login name to shared state. 
+</code></pre>
 <h2>Tracer Recording</h2>
 <p><em>Since 1.0.0 <a href="https://issues.apache.org/jira/browse/SLING-5459">SLING-5459</a></em></p>
 <p>Apart from routing the logs to the server logs they can also be stored in memory and accessed in json form from Felix Web Console. By default support for recording is disabled and it needs to be explicitly enabled via OSGi config</p>
 <p>Recording features works as explained below</p>
 <ol>
-  <li>Client sends an HTTP request with header <code>Sling-Tracer-Record</code>​ set to <code>true</code></li>
+  <li>
+    <p>Client sends an HTTP request with header <code>Sling-Tracer-Record</code>​ set to <code>true</code></p>
+    <pre><code>curl -D - -u admin:admin \
+  -H &quot;Sling-Tracer-Record : true&quot; \
+ -d &quot;./jcr:content/jcr:title=Summer Collection&quot; \
+ -d &quot;:name=summer-collection&quot; \
+ -d &quot;./jcr:primaryType=sling:Folder&quot; \
+ -d &quot;./jcr:content/jcr:primaryType=nt:unstructured&quot; \
+ -d &quot;tracers=oak-writes&quot; \
+ http://localhost:4802/content/dam/
+</code></pre>
+  </li>
+  <li>
+    <p>Server includes a request id as part of <code>Sling-Tracer-Request-Id</code> response headers </p>
+    <pre><code>HTTP/1.1 201 Created
+Date: Wed, 27 Jan 2016 07:30:22 GMT
+Sling-Tracer-Request-Id: 9b5b01f6-f269-47c3-a889-2dc8d4d7938f
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Location: /content/dam/summer-collection
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+</code></pre>
+  </li>
+  <li>
+    <p>The logs in json format can then be fetched from server at <code>/system/console/tracer</code> like  http://localhost:8080/system/console/tracer/9b5b01f6-f269-47c3-a889-2dc8d4d7938f.json. </p>
+    <pre><code>curl -s -D - -H &quot;Sling-Tracer-Record : true&quot; -H &quot;Sling-Tracers : oak-query&quot; \
+-H &quot;Sling-Tracer-Config : org.apache.jackrabbit.oak.query&quot; \
+-u admin:admin http://localhost:4512/assets.html/content/dam -o /dev/null
+</code></pre>
+    <p>Below is a json output for GET request</p>
+    <pre><code>:::javascript
+{
+  &quot;method&quot;: &quot;GET&quot;,
+  &quot;time&quot;: 15140,
+  &quot;timestamp&quot;: 1461574009024,
+  &quot;requestProgressLogs&quot;: [
+    &quot;0 TIMER_START{Request Processing}&quot;,
+    &quot;0 COMMENT timer_end format is {&lt;elapsed msec&gt;,&lt;timer name&gt;} &lt;optional message&gt;&quot;,
+    ...
+  ],
+  &quot;queries&quot;: [{
+    &quot;query&quot;: &quot;/jcr:root/etc/workflow/instances//element(*,app:Workflow)[@status=&#39;RUNNING&#39;] order by @startTime descending&quot;,
+    &quot;plan&quot;: &quot;[app:Workflow] as [a] /* property status = RUNNING where ([a].[status] = &#39;RUNNING&#39;) and (isdescendantnode([a], [/etc/workflow/instances])) */&quot;,
+    &quot;caller&quot;: &quot;com.example.WorkflowManager.getWorkflowInstances(WorkflowManager.java:902)&quot;
+  }
+  ],
+  &quot;logs&quot;: [{
+    &quot;timestamp&quot;: 1461574022401,
+    &quot;level&quot;: &quot;DEBUG&quot;,
+    &quot;logger&quot;: &quot;org.apache.jackrabbit.oak.query.QueryEngineImpl&quot;,
+    &quot;message&quot;: &quot;Parsing xpath statement: /jcr:root/etc/workflow/instances//element(*,cq:Workflow)[@status=&#39;RUNNING&#39;] order by @startTime descending&quot;,
+    &quot;params&quot;: [
+      &quot;xpath&quot;,
+      &quot;/jcr:root/etc/workflow/instances//element(*,cq:Workflow)[@status=&#39;RUNNING&#39;] order by @startTime descending&quot;
+    ]
+  }
+    ...
+  ]
+}
+</code></pre>
+  </li>
 </ol>
-<p>curl -D - -u admin:admin -H "Sling-Tracer-Record : true" -d "./jcr:content/jcr:title=Summer Collection" -d ":name=summer-collection" -d "./jcr:primaryType=sling:Folder" -d "./jcr:content/jcr:primaryType=nt:unstructured" -d "tracers=oak-writes" http://localhost:4802/content/dam/</p>
-<ol>
-  <li>Server includes a request id as part of <code>Sling-Tracer-Request-Id</code> response headers</li>
-</ol>
-<p>HTTP/1.1 201 Created Date: Wed, 27 Jan 2016 07:30:22 GMT Sling-Tracer-Request-Id: 9b5b01f6-f269-47c3-a889-2dc8d4d7938f X-Content-Type-Options: nosniff X-Frame-Options: SAMEORIGIN Location: /content/dam/summer-collection Content-Type: text/html; charset=UTF-8 Transfer-Encoding: chunked</p>
-<ol>
-  <li>The logs in json format can then be fetched from server at <code>/system/console/tracer</code> like http://localhost:8080/system/console/tracer/9b5b01f6-f269-47c3-a889-2dc8d4d7938f.json.</li>
-</ol>
-<p>curl -s -D - -H "Sling-Tracer-Record : true" -H "Sling-Tracers : oak-query" -H "Sling-Tracer-Config : org.apache.jackrabbit.oak.query" -u admin:admin http://localhost:4512/assets.html/content/dam -o /dev/null</p>
-<p>Below is a json output for GET request</p>
-<p>:::javascript { "method": "GET", "time": 15140, "timestamp": 1461574009024, "requestProgressLogs": [ "0 TIMER_START{Request Processing}", "0 COMMENT timer_end format is {<elapsed msec>,<timer name>} <optional message>", ... ], "queries": [{ "query": "/jcr:root/etc/workflow/instances//element(*,app:Workflow)[@status='RUNNING'] order by @startTime descending", "plan": "[app:Workflow] as [a] /* property status = RUNNING where ([a].[status] = 'RUNNING') and (isdescendantnode([a], [/etc/workflow/instances])) */", "caller": "com.example.WorkflowManager.getWorkflowInstances(WorkflowManager.java:902)" } ], "logs": [{ "timestamp": 1461574022401, "level": "DEBUG", "logger": "org.apache.jackrabbit.oak.query.QueryEngineImpl", "message": "Parsing xpath statement: /jcr:root/etc/workflow/instances//element(*,cq:Workflow)[@status='RUNNING'] order by @startTime descending", "params": [ "xpath", "/jcr:root/etc/workflow/instances//element(*,cq:Workflow)[@status='RUNNING'] order by @startTime descending" ] } ... ] }</p>
 <p>JSON output consist of following sections</p>
 <ol>
   <li><code>method</code> - Request method</li>
@@ -113,7 +211,13 @@
 <p>The recordings are held in memory for 15 mins (per default setting) and can be seen listed at http://localhost:8080/system/console/tracer. Look into the OSGi config for more config options around this.</p>
 <h2>Installation</h2>
 <p>Download the bundle from <a href="http://sling.apache.org/downloads.cgi">here</a> or use following Maven dependency</p>
-<p>::xml <dependency> <groupId>org.apache.sling</groupId> <artifactId>org.apache.sling.tracer</artifactId> <version>1.0.0</version> </dependency></p></section></div></div>            
+<pre><code>::xml
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+    &lt;artifactId&gt;org.apache.sling.tracer&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></section></div></div>            
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -2,29 +2,29 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Servlet Filter Support</h1></header><p>Sling supports filter processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type <code>javax.servlet.Filter</code> which of course means that the services implement this interface.</p>
 <div class="note">
 See <a href="https://issues.apache.org/jira/browse/SLING-1213">SLING-1213</a>,
 <a href="https://issues.apache.org/jira/browse/SLING-1734">SLING-1734</a>, and
 <a href="http://markmail.org/message/quxhm7d5s6u66crr">Registering filters with Sling</a>
-for more details. The
+ for more details. The 
 <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/filters/NoPropertyFilter.java">NoPropertyFilter</a>
 from our integration tests shows an example Sling Filter.
 </div>
@@ -98,40 +98,76 @@ from our integration tests shows an example Sling Filter.
 <h2>Filter Processing</h2>
 <p>Filter processing is part of the Sling request processing, which may be sketched as follows:</p>
 <ul>
-  <li><em>Request Level</em>:</li>
-  <li>Authentication</li>
-  <li>Resource Resolution</li>
-  <li>Servlet/Script Resolution</li>
-  <li>Request Level Filter Processing</li>
+  <li><em>Request Level</em>:
+    <ul>
+      <li>Authentication</li>
+      <li>Resource Resolution</li>
+      <li>Servlet/Script Resolution</li>
+      <li>Request Level Filter Processing</li>
+    </ul>
+  </li>
 </ul>
 <p>The first step of request processing is the <em>Request Level</em> processing which is concerned with resolving the resource, finding the appropriate servlet and calling into the request level filter chain. The next step is the <em>Component Level</em> processing, calling into the component level filters before finally calling the servlet or script:</p>
 <ul>
-  <li><em>Component Level</em>:</li>
-  <li>Component Level Filter Processing</li>
-  <li>Call Servlet or Script</li>
+  <li><em>Component Level</em>:
+    <ul>
+      <li>Component Level Filter Processing</li>
+      <li>Call Servlet or Script</li>
+    </ul>
+  </li>
 </ul>
 <p>When a servlet or script is including or forwarding to another resource for processing through the <code>RequestDispatcher</code> (or any JSP tag or other language feature ultimately using a <code>RequestDispatcher</code>) the following <em>Dispatch</em> processing takes place:</p>
 <ul>
-  <li><em>Dispatch</em>:</li>
-  <li>Resolve the resource to dispatch to if not already defined when getting the <code>RequestDispatcher</code></li>
-  <li>Servlet/Script resolution</li>
-  <li>Call include or forward filters depending on the kind of dispatch</li>
-  <li>Call Servlet or Script</li>
+  <li><em>Dispatch</em>:
+    <ul>
+      <li>Resolve the resource to dispatch to if not already defined when getting the <code>RequestDispatcher</code></li>
+      <li>Servlet/Script resolution</li>
+      <li>Call include or forward filters depending on the kind of dispatch</li>
+      <li>Call Servlet or Script</li>
+    </ul>
+  </li>
 </ul>
 <p>As a consequence, request level filters will be called at most once during request processing (they may not be called at all if a filter earlier in the filter chain decides to terminate the request) while the component level, include, and forward filters may be called multiple times while processing a request.</p>
 <h2>Troubleshooting</h2>
 <p>Apart form the logs which tell you when filters are executed, two Sling plugins provide information about filters in the OSGi console.</p>
 <h3>Recent Requests plugin</h3>
 <p>The request traces provided at <code>/system/console/requests</code> contain information about filter execution, as in this example:</p>
-<p>0 (2010-09-08 15:22:38) TIMER_START{Request Processing} ... 0 (2010-09-08 15:22:38) LOG Method=GET, PathInfo=/some/path.html 3 (2010-09-08 15:22:38) LOG Applying request filters 3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter 3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.portal.container.internal.request.PortalFilter 3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.rewriter.impl.RewriterFilter 3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.i18n.impl.I18NFilter 3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter 3 (2010-09-08 15:22:38) LOG Applying inner filters 3 (2010-09-08 15:22:38) TIMER_START{/some/script.jsp#0} ... 8 (2010-09-08 15:22:38) TIMER_END{8,Request Processing} Request Processing</p>
+<pre><code>0 (2010-09-08 15:22:38) TIMER_START{Request Processing}
+...
+0 (2010-09-08 15:22:38) LOG Method=GET, PathInfo=/some/path.html
+3 (2010-09-08 15:22:38) LOG Applying request filters
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.portal.container.internal.request.PortalFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.rewriter.impl.RewriterFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.i18n.impl.I18NFilter
+3 (2010-09-08 15:22:38) LOG Calling filter: org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter
+3 (2010-09-08 15:22:38) LOG Applying inner filters
+3 (2010-09-08 15:22:38) TIMER_START{/some/script.jsp#0}
+...
+8 (2010-09-08 15:22:38) TIMER_END{8,Request Processing} Request Processing
+</code></pre>
 <h3>Config Status plugin</h3>
 <p>The configuration status page at <code>/system/console/config</code> includes the current list of active filters in its <em>Servlet Filters</em> category, as in this example:</p>
-<p>Current Apache Sling Servlet Filter Configuration</p>
-<p>Request Filters: -2147483648 : class org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter (2547) -3000 : class org.apache.sling.portal.container.internal.request.PortalFilter (2562) -2500 : class org.apache.sling.rewriter.impl.RewriterFilter (3365) -700 : class org.apache.sling.i18n.impl.I18NFilter (2334) 0 : class org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter (2402)</p>
-<h2>Error Filters:</h2>
-<p>Include Filters:</p>
-<p>Forward Filters: 1000 : class some.package.DebugFilter (2449)</p>
-<p>Component Filters: -200 : class some.package.SomeComponentFilter (2583)</p>
+<pre><code>Current Apache Sling Servlet Filter Configuration
+
+Request Filters:
+-2147483648 : class org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter (2547)
+-3000 : class org.apache.sling.portal.container.internal.request.PortalFilter (2562)
+-2500 : class org.apache.sling.rewriter.impl.RewriterFilter (3365)
+-700 : class org.apache.sling.i18n.impl.I18NFilter (2334)
+0 : class org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter (2402)
+
+Error Filters:
+---
+
+Include Filters:
+
+Forward Filters:
+1000 : class some.package.DebugFilter (2449)
+
+Component Filters:
+-200 : class some.package.SomeComponentFilter (2583)
+</code></pre>
 <p>The first numbers on those lines are the filter priorities, and the last number in parentheses is the OSGi service ID.</p>
 <h2>Support in Sling Engine 2.1.0</h2>
 <p>Up to and including Sling Engine 2.1.0 support for Servlet Filters has been as follows:</p>

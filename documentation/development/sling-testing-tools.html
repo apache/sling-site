@@ -2,28 +2,28 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Testing Tools</h1></header><div class="warning">
 While this information is still valid, we recommend using the tools and techniques described
-in the newer "Junit Server-Side Tests Support" page instead, see link below.
+in the newer "Junit Server-Side Tests Support" page instead, see link below. 
 </div>
-<p>As mentioned above, this is now replaced by the <a href="/documentation/bundles/org-apache-sling-junit-bundles.html">Junit Server-Side Tests Support</a> page.</p>
+<p>As mentioned above, this is now replaced by the <a href="/documentation/bundles/org-apache-sling-junit-bundles.html">Junit Server-Side Tests Support</a> page. </p>
 <p>Sling provides a number of testing tools to support the following use cases:</p>
 <ul>
   <li>Run JUnit tests contributed by OSGi bundles in an OSGi system. This does not require Sling and should work in other OSGi environments.</li>
@@ -44,7 +44,7 @@ Note that the JUnitServlet does not require authentication, so it would allow an
 <div class="note">
 For tighter integration with Sling, the alternate `SlingJUnitServlet` is registered with the `sling/junit/testing` resource type and `.junit` selector, if the bundle is running in a Sling system. Using this servlet instead of the plain JUnitServlet also allows Sling authentication to be used for running the tests, and the standard Sling request processing is used, including servlet filters for example.
 </div>
-<p>To try the JUnitServlet interactively, install a bundle that contains tests registered via the <code>Sling-Test-Regexp=.*Test</code> bundle header.</p>
+<p>To try the JUnitServlet interactively, install a bundle that contains tests registered via the <code>Sling-Test-Regexp=.*Test</code> bundle header. </p>
 <p>The JUnit core services use this regular expression to select which classes of the test bundle should be executed as JUnit tests.</p>
 <p>To list the available tests, open http://localhost:8080/system/sling/junit/ . The servlet shows available tests, and allows you to execute them via a POST request.</p>
 <p>Adding a path allows you to select a specific subset of tests, as in http://localhost:8080/system/sling/junit/org.apache.sling.junit.remote.html - the example integration tests described below use this to selectively execute server-side tests. The JUnitServlet provides various output formats, including in particular JSON, see http://localhost:8080/system/sling/junit/.json for example.</p>
@@ -53,9 +53,22 @@ For tighter integration with Sling, the alternate `SlingJUnitServlet` is registe
 <p>The <code>@TestReference</code> annotation is used to inject OSGi services in tests that are executed server side.The <code>BundleContext</code> can also be injected in this way.</p>
 <h2>Curl examples</h2>
 <p>Here's an example executing a few tests using curl:</p>
-<p>$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.sampletests.JUnit.json [{ "INFO_TYPE": "test", "description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit3Test)" },{ "INFO_TYPE": "test", "description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit4Test)" },{ "INFO_TYPE": "test", "description": "testRequiresBefore(org.apache.sling.testing.samples.sampletests.JUnit4Test)" } ]</p>
+<pre><code>$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.sampletests.JUnit.json
+[{
+    &quot;INFO_TYPE&quot;: &quot;test&quot;,
+    &quot;description&quot;: &quot;testPasses(org.apache.sling.testing.samples.sampletests.JUnit3Test)&quot;
+  },{
+    &quot;INFO_TYPE&quot;: &quot;test&quot;,
+    &quot;description&quot;: &quot;testPasses(org.apache.sling.testing.samples.sampletests.JUnit4Test)&quot;
+  },{
+    &quot;INFO_TYPE&quot;: &quot;test&quot;,
+    &quot;description&quot;: &quot;testRequiresBefore(org.apache.sling.testing.samples.sampletests.JUnit4Test)&quot;
+  }
+]
+</code></pre>
 <p>And another example with a test that fails:</p>
-<p>$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.failingtests.JUnit4FailingTest.json</p>
+<pre><code>$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.failingtests.JUnit4FailingTest.json
+</code></pre>
 <h1>Scriptable server-side tests</h1>
 <p>If the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/scriptable">org.apache.sling.junit.scriptable</a> bundle is active in a Sling system, (in addition to the <code>org.apache.sling.junit.core</code> bundle), scriptable tests can be executed by the <code>JUnitServlet</code> according to the following rules:</p>
 <ul>
@@ -65,12 +78,26 @@ For tighter integration with Sling, the alternate `SlingJUnitServlet` is registe
 </ul>
 <p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/scriptable/ScriptableTestsTest.java">ScriptableTestsTest</a> class, from the integration test samples module described below, sets up such a test node and its accompanying script, and calls the JUnitServlet to execute the test. It can be used as a detailed example of how this works.</p>
 <p>Here's a minimal example that sets up and executes a scriptable test:</p>
-<p>$ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo ... $ echo TEST_PASSED &gt; /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp</p>
+<pre><code>$ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
+...
+$ echo TEST_PASSED &gt; /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp
+</code></pre>
 <p>At this point, foo.test.txt is what the scriptable test framework will request, and that outputs just TEST_PASSED:</p>
-<p>$ curl -u admin:admin http://localhost:8080/apps/foo.test.txt TEST_PASSED</p>
+<pre><code>$ curl -u admin:admin http://localhost:8080/apps/foo.test.txt
+TEST_PASSED
+</code></pre>
 <p>And a POST to the JUnit servlet returns information on the test's execution:</p>
-<p>curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json [{ "INFO_TYPE": "test", "description": "verifyContent<a href="org.apache.sling.junit.scriptable.TestAllPaths">0</a>", "test_metadata": { "test_execution_time_msec": 2 } } ]</p>
-<p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again.</p>
+<pre><code>curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json
+[{
+    &quot;INFO_TYPE&quot;: &quot;test&quot;,
+    &quot;description&quot;: &quot;verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)&quot;,
+    &quot;test_metadata&quot;: {
+      &quot;test_execution_time_msec&quot;: 2
+    }
+  }
+]
+</code></pre>
+<p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again. </p>
 <h1>Integration tests example</h1>
 <p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests">testing/samples/integration-tests</a> module runs some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.</p>
 <p>This module's pom and Java code can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.</p>
@@ -102,8 +129,9 @@ For tighter integration with Sling, the alternate `SlingJUnitServlet` is registe
 <p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/exported/ExampleRemoteTest.java">ExampleRemoteTest</a> class demonstrates this. To run it from your IDE, set the <code>sling.remote.test.url</code> in the IDE to the URL of the JUnitServlet, like http://localhost:8080/system/sling/junit for example.</p>
 <h1>Debugging ITs</h1>
 <p>The JVM is usually forked twice during the execution of integration tests. The first time by the <code>maven-surefire-plugin</code> which executes the client-side (i.e. Maven-side) part of the tests. To debug this side the option <code>-Dmaven.surefire.debug</code> can be used which waits for a debugger to be attached on port 5005 before the (client-side) test is executed. More information is available in the <a href="http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html">documentation of the maven-surefire-plugin</a>.</p>
-<p>Then the <code>JarExecutor</code> is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable <code>jar.executor.vm.options</code> can be used to start that VM with debug options. All debug options are described at the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JPDA documentation</a>. If running</p>
-<p>mvn test -Djar.executor.vm.options="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"</p>
+<p>Then the <code>JarExecutor</code> is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable <code>jar.executor.vm.options</code> can be used to start that VM with debug options. All debug options are described at the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JPDA documentation</a>. If running </p>
+<pre><code>mvn test -Djar.executor.vm.options=&quot;-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000&quot;
+</code></pre>
 <p>the server start is interrupted until a debugger is connected on port 8000.</p></section></div></div>            
 <div class="footer">
                 <div class="timestamp">

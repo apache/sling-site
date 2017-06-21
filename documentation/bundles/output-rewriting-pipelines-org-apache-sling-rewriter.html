@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Output Rewriting Pipelines (org.apache.sling.rewriter)</h1></header><p>The Apache Sling Rewriter is a module for rewriting the output generated by a usual Sling rendering process. Some possible use cases include rewriting or checking all links in an HTML page, manipulating the HTML page, or using the generated output as the base for further transformation. An example of further transformation is to use XSLT to transform rendered XML to some output format like HTML or XSL:FO for generating PDF.</p>
 <p>For supporting these use cases, the rewriter uses the concept for a processor. The processor is a component that is injected through a servlet filter into the response. By implementing the <em>Processor</em> interface one is able to rewrite the whole response in one go. A more convenient way of processing the output is by using a so called pipeline; the Apache Sling rewriter basically uses the same concept as the famous Apache Cocoon: an XML based pipeline for further post processing of the output. The pipeline is based on SAX events.</p>
@@ -26,7 +26,7 @@
 <p>As the pipeline is based on SAX events, there needs to be a component that generates these events and sends them through the pipeline. By default the Sling rendering scripts write to an output stream, so there is a need to parse this output and generate the SAX events.</p>
 <p>The first component in the pipeline generating the initial SAX events is called a generator. The generator gets the output from Sling, generates SAX events (XML), and streams these events into the pipeline. The counterpart of the generator is the serializer which builds the end of the pipeline. The serializer collects all incomming SAX events, transforms them into the required response by writing into output stream of the response.</p>
 <p>Between the generator and the serializer so called transformers can be placed in a chain. A transformer receives SAX events from the previous component in the pipeline and sends SAX events to the next component in the pipeline. A transformer can remove events, change events, add events or just pass on the events.</p>
-<p>Sling contains a default pipeline which is executed for all HTML responses: it starts with an HTML generator, parsing the HTML output and sending events into the pipeline. An HTML serializer collects all events and serializes the output.</p>
+<p>Sling contains a default pipeline which is executed for all HTML responses: it starts with an HTML generator, parsing the HTML output and sending events into the pipeline. An HTML serializer collects all events and serializes the output. </p>
 <p>The pipelines can be configured in the repository as a child node of <em>/apps/APPNAME/config/rewriter</em> (or <em>/libs/APPNAME/config/rewriter</em>). (In fact the configured search paths of the resource resolver are observed.) Each node can have the following properties:</p>
 <ul>
   <li>generatorType - the type of the generator (required)</li>
@@ -47,19 +47,32 @@
 <p>The default pipeline is configured for the <em>text/html</em> mime type and the <em>html</em> extensions and consists of the <em>html-generator</em> as the generator, and the <em>html-serializer</em> for generating the final response. As the HTML generated by Sling is not required to be valid XHTML, the HTML parser is using an HTML parser to create valid SAX events. In order to perform this, the generator needs to buffer the whole response first.</p>
 <h2>Implementing Pipeline Components</h2>
 <p>Each pipeline component type has a corresponding Java interface (Generator, Transformer, and Serializer) together with a factory interface (GeneratorFactory, TransformerFactory, and SerializerFactory). When implementing such a component, both interfaces need to be implemented. The factory has only one method which creates a new instance of that type for the current request. The factory has to be registered as a service. For example if you're using the Maven SCR plugin, it looks like this:</p>
-<p>::java @scr.component metatype="no" @scr.service interface="TransformerFactory" @scr.property value="pipeline.type" value="validator"</p>
+<pre><code>::java
+@scr.component metatype=&quot;no&quot; 
+@scr.service interface=&quot;TransformerFactory&quot;
+@scr.property value=&quot;pipeline.type&quot; value=&quot;validator&quot;
+</code></pre>
 <p>The factory needs to implement the according interface and should be registered as a service for this factory interface (this is a plain service and not a factory service in the OSGi sense). Each factory gets a unique name through the <em>pipeline.type</em> property. The pipeline configuration in the repository just references this unique name (like validator).</p>
 <h2>Extending the Pipeline</h2>
 <p>With the possibilities from above, it is possible to define new pipelines and add custom components to the pipeline. However, in some cases it is required to just add a custom transformer to the existing pipeline. Therefore the rewriting can be configured with pre and post transformers that are simply added to each configured pipeline. This allows a more flexible way of customizing the pipeline without changing/adding a configuration in the repository.</p>
 <p>The approach here is nearly the same. A transformer factory needs to be implemented, but instead of giving this factory a unique name, this factory is marked as a global factory:</p>
-<p>::java @scr.component metatype="no" @scr.service interface="TransformerFactory" @scr.property name="pipeline.mode" value="global" @scr.property name="service.ranking" value="RANKING" type="Integer"</p>
+<pre><code>::java
+@scr.component metatype=&quot;no&quot;
+@scr.service interface=&quot;TransformerFactory&quot;
+@scr.property name=&quot;pipeline.mode&quot; value=&quot;global&quot;
+@scr.property name=&quot;service.ranking&quot; value=&quot;RANKING&quot; type=&quot;Integer&quot;
+</code></pre>
 <p><em>RANKING</em> is an integer value (don't forget the type attribute otherwise the ranking is interpreted as zero!) specifying where to add the transformer in the pipeline. If the value is less than zero the transformer is added at the beginning of the pipeline right after the generator. If the ranking is equal or higher as zero, the transformer is added at the end of the pipeline before the serializer.</p>
 <p>The <em>TransformerFactory</em> interface has just one method which returns a new transformer instance. If you plan to use other services in your transformer you might declare the references on the factory and pass in the instances into the newly created transformer.</p>
 <p>Since the transformer carries information about the current response it is not advisable to reuse the same transformer instance among multiple calls of <code>TransformerFactory.createTransformer</code>.</p>
 <h2>Implementing a Processor</h2>
 <p>A processor must conform to the Java interface <em>org.apache.sling.rewriter.Processor</em>. It gets initializd (method <em>init</em>) with the <em>ProcessingContext</em>. This context contains all necessary information for the current request (especially the output writer to write the rewritten content to). The <em>getWriter</em> method should return a writer where the output is written to. When the output is written or an error occured <em>finished</em> is called.</p>
 <p>Like the pipeline components a processor is generated by a factory which has to be registered as a service factory, like this:</p>
-<p>::java @scr.component metatype="no" @scr.service interface="ProcessorFactory" @scr.property value="pipeline.type" value="uniqueName"</p>
+<pre><code>::java
+@scr.component metatype=&quot;no&quot; 
+@scr.service interface=&quot;ProcessorFactory&quot;
+@scr.property value=&quot;pipeline.type&quot; value=&quot;uniqueName&quot;
+</code></pre>
 <h2>Configuring a Processor</h2>
 <p>The processors can be configured in the repository as a child node of <em>/apps/APPNAME/config/rewriter</em> (or libs or any configured search path). Each node can have the following properties:</p>
 <ul>

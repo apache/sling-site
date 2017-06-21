@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Manipulating Content - The SlingPostServlet (servlets.post)</h1></header><p>[TOC]</p>
 <h2>Multiple Ways to Modify Content</h2>
@@ -25,17 +25,23 @@
 <p>What is Content anyway? In the following discussion, I use the terms <em>Content</em> and <em>Item</em> interchangeably. With <em>Content</em> I just mean some data to be stored in the JCR repository to be later used as the basis for some presentation. In this sense <em>Content</em> is a rather conceptual term. <em>Item</em> is the name of the parent interface of the JCR <em>Node</em> and <em>Property</em> interfaces. When speaking of <em>Items</em> we mean some actual data stored in the repository ignoring whether the data is actually stored as a <em>Node</em> with child nodes and properties or just a single <em>Property</em>.</p>
 <h2>Quickstart: Creating Content</h2>
 <p>To create content you simply send an HTTP POST request using the path of the node to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:</p>
-<form method="POST" action="http://host/some/new/content" enctype="multipart/form-data">
-<input type="text" name="title" value="" />
-<input type="text" name="text" value="" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;http://host/some/new/content&quot; enctype=&quot;multipart/form-data&quot;&gt;
+   &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;&quot; /&gt;
+   &lt;input type=&quot;text&quot; name=&quot;text&quot; value=&quot;&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>This simple form will set the <code>title</code> and <code>text</code> properties on a node at <code>/some/new/content</code>. If this node does not exist it is just created otherwise the existing content would be modified.</p>
 <p>Similarly, you can do this using the <code>curl</code> command line tool:</p>
-<p>$ curl -Ftitle="some title text" -Ftext="some body text content" http://host/some/new/content</p>
+<pre><code>$ curl -Ftitle=&quot;some title text&quot; -Ftext=&quot;some body text content&quot; http://host/some/new/content
+</code></pre>
 <p>You might want to use a specific JCR node type for a newly created node. This is possible by simply setting a <code>jcr:primaryType</code> property on the request, e.g.</p>
-<p>$ curl -F"jcr:primaryType=nt:unstructured" -Ftitle="some title text" -Ftext="some body text content" http://host/some/new/content</p>
+<pre><code>$ curl -F&quot;jcr:primaryType=nt:unstructured&quot; -Ftitle=&quot;some title text&quot; \    
+    -Ftext=&quot;some body text content&quot; http://host/some/new/content
+</code></pre>
 <p>Similarly, you may assign JCR mixin node types using the <code>jcr:mixinTypes</code> property and a Sling resource type using the <code>sling:resourceType</code> property. For example:</p>
-<p>$ curl -F"sling:resourceType=sling:sample" -Ftitle="some title text" -Ftext="some body text content" http://host/some/new/content</p>
+<pre><code>$ curl -F&quot;sling:resourceType=sling:sample&quot; -Ftitle=&quot;some title text&quot; \    
+    -Ftext=&quot;some body text content&quot; http://host/some/new/content
+</code></pre>
 <h2>Preface: multipart/form-data POSTs</h2>
 <p>Sometimes you might want to have the content modifications applied in a certain order. This is particularly interesting if you use fields to create child nodes and if you want to stipulate a certain child node order based on the form fields.</p>
 <p>In this case, ensure you are submitting the POST request using <code>multipart/form-data</code> encoding. This preserves the order of parameter application according to the original HTML form. To this avail, ensure to always include the <code>enctype=&quot;multipart/form-data&quot;</code> attribute with the <code>&lt;form&gt;</code> tag.</p>
@@ -60,7 +66,7 @@ Note that the `launchpad/testing` module contains a number of <a href="http://sv
 </div>
 <div class="note">
 <b>Trailing star in the :applyTo parameter</b>:
-This applies to operations that use this parameter, since version 2.1.2 of the *org.apache.sling.servlets.post* bundle: If the last segment of the `:applyTo` value is '*' then the operation applies to all the children of the resolved parent resource. This can be used to act on all the children
+This applies to operations that use this parameter, since version 2.1.2 of the *org.apache.sling.servlets.post* bundle: If the last segment of the `:applyTo` value is '*' then the operation applies to all the children of the resolved parent resource. This can be used to act on all the children 
 of a resource without having to specify the path of each individual child resource.
 </div>
 <h3>Content Creation or Modification</h3>
@@ -114,14 +120,16 @@ of a resource without having to specify the path of each individual child resour
 <h5>Setting Property Values</h5>
 <p>Setting property values is as simple as just adding a request parameter whose name is the name of the property to be set and whose value is the value to be assigned to the property. We already saw how to do this in the quick start examples above.</p>
 <p>Here is another example show a simple HTML form to create a new node with an automatically created name:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="text" name="title" />
-<input type="text" name="text" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;title&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;text&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>If this form is submitted with <em>title</em> and <em>This is some Text</em> as values for the <code>title</code> and <code>text</code> fields respectively, a new node is created at the path <code>/content/page/first</code> and the <code>title</code> and <code>text</code> properties set to the respective field values. If a node at <code>/content/page/first</code> already existed before submitting the form, the <code>title</code> and <code>text</code> properties are just updated to the new values from the form fields.</p>
 <p>If a parameter has multiple values, the respective property will be created as a multi-value property. So for example the command line:</p>
-<p>$ curl -Fmulti=one -Fmulti=two http://host/content/page</p>
+<pre><code>$ curl -Fmulti=one -Fmulti=two http://host/content/page
+</code></pre>
 <p>Would assign the <code>/content/page/multi</code> property the value <em>[ "one", "two" ]</em>.</p>
 <p>This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.</p>
 <h5>Automatic property values: last modified and created by</h5>
@@ -152,16 +160,18 @@ of a resource without having to specify the path of each individual child resour
 </ul>
 <p>If the node to be created is <code>nt:file</code>, the actual file data will really be stored in the <code>jcr:content</code> child node of the new <code>nt:file</code> node whose primary node type is then set as <code>nt:resource</code>.</p>
 <p>Example 1: Upload an image to a node named <code>image</code> below <code>/content/page</code>:</p>
-<form method="POST" action="/content/page" enctype="multipart/form-data">
-<input type="file" name="image" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;file&quot; name=&quot;image&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>Example 2: Upload a file as a node of type <code>nt:file</code> below <code>/content/folder</code>:</p>
-<form method="POST" action="/content/page" enctype="multipart/form-data">
-<input type="file" name="*" />
-<input type="hidden" name="*@TypeHint" value="nt:file" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;file&quot; name=&quot;*&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;*@TypeHint&quot; value=&quot;nt:file&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>Assuming the user selected a file named <code>myImage.jpg</code> the uploaded file would be stored in an <code>nt:file</code> node at <code>/content/folder/myImage.jpg</code>.</p>
 <h5>Date properties</h5>
 <p>Parameters providing date/time values to be stored in JCR properties of type <em>Date</em> require special handling. The problem is that there are a number of formats to represent such date/time values. To account for this open-ended list of formats, the Sling Post Servlet supports configurability of the process of parsing strings into <code>Calendar</code> objects.</p>
@@ -181,13 +191,14 @@ of a resource without having to specify the path of each individual child resour
 <p>There may be times that you have forms which contain a lot of fields which you do not want to actually store in content. Such forms usually are created using some client-side GUI library which uses the fields for its own purposes. To be able to easily differentiate between real content to be actually stored and such control parameters, you may prefix the names of the fields destined for content with a dot-slash (<code>./</code>).</p>
 <p>As soon as the SlingPostServlet encounters parameters prefixed with dot-slash, only those parameters are considered for content updates while all other parameters not prefixed are just ignored. In addition to dot-slash prefixed parameters, also parameters prefixed with dot-dot-slash (<code>../</code>) and slash (<code>/</code>) are considered in this situation.</p>
 <p>For example, the following form only uses the first two fields for content update and ignores the rest:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="text" name="./title" />
-<input type="text" name="../first/text" />
-<input type="hidden" name="control0" /><!-- ignored -->
-<input type="hidden" name="control1" /><!-- ignored -->
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;./title&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;../first/text&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;control0&quot; /&gt;&lt;!-- ignored --&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;control1&quot; /&gt;&lt;!-- ignored --&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>Because the SlingPostServlet encounters the <code>./title</code> parameter, only parameters prefixed with dot-slash, dot-dot-slash and slash are considered for content update. In this case this would <code>./title</code> and <code>../first/text</code> while <code>control0</code> and <code>control1</code> are not prefixed and thus ignored.</p>
 <p>Background: The name of the parameters used for content update are actually intended to be relative path names of the properties to modify. So in effect using the field name <code>text</code> is equivalent to <code>./text</code> -- dot-slash meaning relative to the current node identified by the <code>action</code> attribute value for <code>form</code> tag -- or <code>../first/text</code> if <code>first</code> is the name of the node to modify -- dot-dot-slash meaning relative to the parent node of the node identified by the <code>action</code> attribute value of the <code>form</code> tag.</p>
 <p>In addition to the mechanism explained here, the following parameters are also ignored:</p>
@@ -205,17 +216,18 @@ of a resource without having to specify the path of each individual child resour
 <p>Parameters with the <code>@TypeHint</code> suffix may be used to force storing the named parameter in a property with the given type. The value of the <code>@TypeHint</code> parameter, if applied to a parameter for a property, is the JCR property type name. If the <code>@TypeHint</code> parameter is applied to a field upload parameter, the value is used to indicate the JCR primary node type for the node into which the uploaded file is stored.</p>
 <p>If the <code>@TypeHint</code> value ends with <code>[]</code>, it indicates a multi-value property. A multi-value property is usually auto-detected if there are multiple values for the property (i.e. request parameter). But if only a single value is present in the request, the desired property type needs to be explicitly defined as multi-value by stating <code>@TypeHint=&lt;type&gt;[]</code>.</p>
 <p>Example: The following form sets the numeric <code>width</code>, the boolean <code>checked</code>, and the multi-valued <code>hobbys</code> (with 3 values to enter) properties:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="text" name="width" />
-<input type="hidden" name="width@TypeHint" value="Long" />
-<input type="checkbox" name="checked" />
-<input type="hidden" name="checked@TypeHint" value="Boolean" />
-<input type="text" name="hobbys"/>
-<input type="text" name="hobbys"/>
-<input type="text" name="hobbys"/>
-<input type="hidden" name="hobbys@TypeHint" value="String[]" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;width&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;width@TypeHint&quot; value=&quot;Long&quot; /&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;checked&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;checked@TypeHint&quot; value=&quot;Boolean&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;hobbys&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;hobbys&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;hobbys&quot;/&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;hobbys@TypeHint&quot; value=&quot;String[]&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>In real applications you would need some JavaScript that allows to add/remove values, ie. add/remove inputs with the name "hobbys". Or a pure JavaScript based form post would be used, that gathers the properties to update programmatically, but the additional parameter <code>hobbys@TypeHint=String[]</code> would be the same.</p>
 <p>The <code>@TypeHint</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values, only the first is actually used.</p>
 <p>For multi-value properties, see also the <code>@Patch</code> option.</p>
@@ -223,45 +235,51 @@ of a resource without having to specify the path of each individual child resour
 <h6><code>@DefaultValue</code></h6>
 <p>The <code>@DefaultValue</code> suffixed parameter may be provided to set a property to a default value should no value be provided in the actual parameters. Same as for normal parameters, the <code>@DefaultValue</code> parameter may have multiple values to create multi-valued properties.</p>
 <p>Example: Set the <code>text</code> property to a default value if the user does not provide one:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="text" name="text" />
-<input type="hidden" name="text@DefaultValue" value="--- Default Value ---" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;text&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;text@DefaultValue&quot; value=&quot;--- Default Value ---&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <h6><code>@UseDefaultWhenMissing</code></h6>
 <p>As described above, <code>@DefaultValue</code> only takes effect if no value is provided for a particular parameter. However, in some cases, such as HTML checkboxes, this isn't sufficient because the parameter isn't submitted at all. To handle this scenario, you can use the <code>@UseDefaultWhenMissing</code> suffixed parameter.</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input name="queryIgnoreNoise" class="input" type="checkbox" value="true"/>
-<input type="hidden" name="queryIgnoreNoise@DefaultValue" value="false"/>
-<input type="hidden" name="queryIgnoreNoise@UseDefaultWhenMissing" value="true"/>
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input name=&quot;queryIgnoreNoise&quot; class=&quot;input&quot; type=&quot;checkbox&quot; value=&quot;true&quot;/&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;queryIgnoreNoise@DefaultValue&quot; value=&quot;false&quot;/&gt; 
+    &lt;input type=&quot;hidden&quot; name=&quot;queryIgnoreNoise@UseDefaultWhenMissing&quot; value=&quot;true&quot;/&gt;
+&lt;/form&gt;
+</code></pre>
 <h6><code>@IgnoreBlanks</code></h6>
 <p>Sometimes a form client will supply empty parameter values resulting in content being created or modified. For example submitting this form:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="hidden" name="stringProperty@TypeHint" value="String[]"/>
-<input type="text" name="stringProperty" value="foo"/>
-<input type="text" name="stringProperty" value="bar"/>
-<input type="text" name="stringProperty" value=""/>
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;stringProperty@TypeHint&quot; value=&quot;String[]&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stringProperty&quot; value=&quot;foo&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stringProperty&quot; value=&quot;bar&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stringProperty&quot; value=&quot;&quot;/&gt;
+&lt;/form&gt;
+</code></pre>
 <p>will result in multi-value String property being set to [ "foo", "bar", "" ]. Notice the blank value.</p>
 <p>Likewise submitting this form without a value entered:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="hidden" name="stringProperty@TypeHint" value="String"/>
-<input type="text" name="stringProperty" value=""/>
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;stringProperty@TypeHint&quot; value=&quot;String&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stringProperty&quot; value=&quot;&quot;/&gt;
+&lt;/form&gt;
+</code></pre>
 <p>will result in the single-value String property being set to an empty string.</p>
 <p>To overcome this situation the <code>@IgnoreBlanks</code> suffix may be used to consider parameters with an empty string value to be ignored during processing. That is such parameter values would be treated as if they would not be supplied.</p>
 <p>Adding</p>
-<input type="hidden" name="stringProperty@IgnoreBlanks" value="true"/>
+<pre><code>&lt;input type=&quot;hidden&quot; name=&quot;stringProperty@IgnoreBlanks&quot; value=&quot;true&quot;/&gt;
+</code></pre>
 <p>to the above forms will cause the multi-value property be set to the two-element value [ "foo", "bar" ] and to not modify the property at all in the second single-value example.</p>
 <h6><code>@ValueFrom</code></h6>
 <p>In some situations, an HTML form with parameters may be reused to update content. But one or more form parameters may not comply with the names expected to be used for properties. In this case a parameter suffixed with <code>@ValueFrom</code> may be set containing the name of the parameter providing the actual data to be used.</p>
 <p>Example: To set the property <code>text</code> from a form element <code>supplied_text</code>, you might use the following form:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="text" name="supplied_text" />
-<input type="hidden" name="./text@ValueFrom" value="supplied_text" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;supplied_text&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;./text@ValueFrom&quot; value=&quot;supplied_text&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>To prevent storing the additional parameters in the repository you might want to use the prefixing mechanism as shown in the example above, where the <code>@ValueFrom</code> parameter is prefixed and thus the <code>supplied_text</code> parameter is not used for property setting.</p>
 <p>The <code>@ValueFrom</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values it is ignored completely.</p>
 <p>The <code>@ValueFrom</code> suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters <code>text</code> and <code>text@ValueFrom</code> may have unexpected results.</p>
@@ -269,26 +287,28 @@ of a resource without having to specify the path of each individual child resour
 <p>Sometimes it may be required to not set a property to a specific value but to just remove it while processing the content update request. One such situation is a property filled from one or more checkboxes in an HTML form. If none of the checkboxes are checked, no parameter is actually submitted for these checkboxes. Hence the SlingPostServlet will not touch this property and effectively leave it untouched, while the natural reaction would have been to remove the property.</p>
 <p>Here comes the <code>@Delete</code> suffixed parameter. This simply causes the indicated property be removed if it exists. If the property does not exist, nothing more happens. The actual value of the <code>@Delete</code> suffixed parameter does not care as long as the parameter is submitted.</p>
 <p>Example: To ensure the <code>color</code> property is actually removed if no color has been selected, you might use the following form:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="checkbox" name="color" value="red" />
-<input type="checkbox" name="color" value="green" />
-<input type="checkbox" name="color" value="blue" />
-<input type="hidden" name="color@Delete" value="delete text" /><!-- actual value is ignored -->
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;color&quot; value=&quot;red&quot; /&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;color&quot; value=&quot;green&quot; /&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;color&quot; value=&quot;blue&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;color@Delete&quot; value=&quot;delete text&quot; /&gt;&lt;!-- actual value is ignored --&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>The <code>@Delete</code> suffixed parameter is also special in that there need not be a correlated parameter without a suffix. If both -- a parameters <code>text</code> and <code>text@Delete</code> are set, the <code>text</code> property is first deleted and then filled with the new content.</p>
 <p>The <code>@Delete</code> suffixed parameter in fact calls for a sub-operation, which is executed after the node addressed by the request URL is created (if needed) but before any other tasks of content creation and modification are done. Any item -- this may be a property or a node, actually -- addressed by the <code>@Delete</code> suffixed parameter is just removed if it exists. If the item does not exist, nothing happens.</p>
 <h6><code>@MoveFrom</code></h6>
 <p>Now, that your bright and shiny content management application has great Flash-based file upload feature you will want to be able to use the pre-uploaded files for your content with the same request as when you upload other content. For example you might have a node storing some text and an illustration you uploaded as an image file.</p>
 <p>To support this kind of functionality, the <code>@MoveFrom</code> suffixed parameter may be set to the repository path of the node to where you uploaded the image file.</p>
 <p>Example: Your Flash-based file upload stored the file on the server at <code>/tmp/upload/123</code>. You now want to store this file along with a title and a text in a newly created node. The following form will be your friend:</p>
-<!-- trailing slash generates a name for the new node -->
-<form method="POST" action="/content/page/" enctype="multipart/form-data">
-<input type="hidden" name="image@MoveFrom" value="/tmp/upload/123" />
-<input type="text" name="title" />
-<input type="text" name="text" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;!-- trailing slash generates a name for the new node --&gt;
+&lt;form method=&quot;POST&quot; action=&quot;/content/page/&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;image@MoveFrom&quot; value=&quot;/tmp/upload/123&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;title&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;text&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>If there exists no repository item at the indicated path, nothing is done. If the item indicated by the <code>@MoveFrom</code> suffixed parameter already exists, it is replaced by the item addressed by the parameter value -- unless of course there is no item at the named location.</p>
 <p>The <code>@MoveFrom</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values it is ignored completely.</p>
 <p>The <code>@MoveFrom</code> suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters <code>text</code> and <code>text@MoveFrom</code> may have unexpected results.</p>
@@ -296,13 +316,14 @@ of a resource without having to specify the path of each individual child resour
 <h6><code>@CopyFrom</code></h6>
 <p>Similar to the <code>@MoveFrom</code> suffix exists a <code>@CopyFrom</code> suffix. The latter works exactly the same as the former except that the item addressed by the parameter value is not moved but just copied.</p>
 <p>Example: Your Flash-based file upload stored the file on the server at <code>/tmp/upload/123</code>. You now want to store this file along with a title and a text in a newly created node. The following form may be your friend:</p>
-<!-- trailing slash generates a name for the new node -->
-<form method="POST" action="/content/page/" enctype="multipart/form-data">
-<input type="hidden" name="image@CopyFrom" value="/tmp/upload/123" />
-<input type="text" name="title" />
-<input type="text" name="text" />
-<input type="Submit" />
-</form>
+<pre><code>&lt;!-- trailing slash generates a name for the new node --&gt;
+&lt;form method=&quot;POST&quot; action=&quot;/content/page/&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;image@CopyFrom&quot; value=&quot;/tmp/upload/123&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;title&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;text&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>If there exists no repository item at the indicated path, nothing is done. If the item indicated by the <code>@CopyFrom</code> suffixed parameter already exists, it is replaced by the item addressed by the parameter value -- unless of course there is no item at the named location.</p>
 <p>The <code>@CopyFrom</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values it is ignored completely.</p>
 <p>The <code>@CopyFrom</code> suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters <code>text</code> and <code>text@CopyFrom</code> may have unexpected results.</p>
@@ -310,13 +331,14 @@ of a resource without having to specify the path of each individual child resour
 <h6><code>@Patch</code></h6>
 <p>When modifying multi-value properties, the <code>@Patch</code> suffix can be used to just add <code>+</code> or remove <code>-</code> individual values without overwriting the full array. This allows to change the array without knowing the current values.</p>
 <p>For example, imagine a multi-value string property that stores tags or keywords. To both add a tag "cool" and remove "boring" from the list:</p>
-<form method="POST" action="/content/page/first" enctype="multipart/form-data">
-<input type="hidden" name="tags@TypeHint" value="String[]" />
-<input type="hidden" name="tags@Patch"    value="true" />
-<input type="text"   name="tags"          value="+cool"/>
-<input type="text"   name="tags"          value="-boring"/>
-<input type="Submit" />
-</form>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;tags@TypeHint&quot; value=&quot;String[]&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;tags@Patch&quot;    value=&quot;true&quot; /&gt;
+    &lt;input type=&quot;text&quot;   name=&quot;tags&quot;          value=&quot;+cool&quot;/&gt;
+    &lt;input type=&quot;text&quot;   name=&quot;tags&quot;          value=&quot;-boring&quot;/&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>The array will be treated like a set: when adding a value, it will only be added once if it does not exist yet; when removing a value, all occurrences of it will be removed. For values not affected by the add or remove operations, nothing changes. An existing array with duplicate entries will not automatically be converted into a set.</p>
 <p>The format for an individual parameter value is <code>&lt;operation&gt;&lt;value&gt;</code>. If there is no or no valid operation given, this value will be ignored.</p>
 <p>Operation <code>+</code> will add the <code>&lt;value&gt;</code> to the array if it is not part of it yet.</p>
@@ -366,7 +388,8 @@ of a resource without having to specify the path of each individual child resour
 </table>
 <h3>Content Removal</h3>
 <p>To remove existing content just address the item to be removed and set the <code>:operation</code> parameter to <code>delete</code>. For example the following command line removes the <code>/content/sample</code> page:</p>
-<p>$ curl -F":operation=delete" http://host/content/sample</p>
+<pre><code>$ curl -F&quot;:operation=delete&quot; http://host/content/sample
+</code></pre>
 <h5>Response Status</h5>
 <p>The delete operation has the following status responses:</p>
 <table>
@@ -395,9 +418,12 @@ of a resource without having to specify the path of each individual child resour
 <p>By using the <code>:applyTo</code> request parameter it is possible to remove multiple items in one single request. Deleting items in this way leaves you with less control, though. In addition, if a single item removal fails, no item at all is removed.</p>
 <p>When specifying the item(s) to be removed with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
 <p>To remove the <code>/content/page1</code> and <code>/content/page2</code> nodes, for example, you might use the following command line:</p>
-<p>$ curl -F":operation=delete" -F":applyTo=/content/page1" -F":applyTo=/content/page2" http://host/content/sample</p>
+<pre><code>$ curl -F&quot;:operation=delete&quot; -F&quot;:applyTo=/content/page1&quot; \    
+    -F&quot;:applyTo=/content/page2&quot; http://host/content/sample
+</code></pre>
 <p>Using a trailing star in the :applyTo parameter (as mentioned before), you can remove all the children of the <code>/content</code> node, for example, as follows:</p>
-<p>$ curl -F":operation=delete" -F":applyTo=/content/*" http://host/content/sample</p>
+<pre><code>$ curl -F&quot;:operation=delete&quot; -F&quot;:applyTo=/content/*&quot; http://host/content/sample
+</code></pre>
 <p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored.</p>
 <h6>Response Status</h6>
 <p>The delete operation applied to multiple resources has the following status responses:</p>
@@ -485,10 +511,14 @@ of a resource without having to specify the path of each individual child resour
 <p>By using the <code>:applyTo</code> request parameter it is possible to copy multiple items in one single request. Copying items in this way leaves you with less control, though. In addition, if a single item copy fails, no item at all is copied.</p>
 <p>When specifying the item(s) to be copied with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
 <p>To copy the <code>/content/page1</code> and <code>/content/page2</code> nodes to <code>/content/target</code>, for example, use:</p>
-<p>$ curl -F":operation=copy" -F":applyTo=/content/page1" -F":applyTo=/content/page2" -F":dest=/content/target/" http://host/content/sample</p>
+<pre><code>$ curl -F&quot;:operation=copy&quot; -F&quot;:applyTo=/content/page1&quot; -F&quot;:applyTo=/content/page2&quot; \    
+    -F&quot;:dest=/content/target/&quot; http://host/content/sample
+</code></pre>
 <p>Please note the trailing slash character (<code>/</code>) in the value of the <code>:dest</code> parameter. This is required for multi-item copy operations using the <code>:applyTo</code> parameter. The copied items are created below the node indicated by the <code>:dest</code>.</p>
 <p>Using a trailing star in the :applyTo parameter (as mentioned before), you can copy all the children of the <code>/content</code> node, for example, as follows:</p>
-<p>$ curl -F":operation=copy" -F":applyTo=/content/*" -F":dest=/content/target/" http://host/content/sample</p>
+<pre><code>$ curl -F&quot;:operation=copy&quot; -F&quot;:applyTo=/content/*&quot; -F&quot;:dest=/content/target/&quot; \    
+    http://host/content/sample
+</code></pre>
 <p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored. Any item already existing at the copy destination whose name is the same as the name of an item to be copied is silently overwritten with the source item.</p>
 <h6>Response Status</h6>
 <p>The copy operation applied to multiple resources has the following status responses:</p>
@@ -580,10 +610,14 @@ of a resource without having to specify the path of each individual child resour
 <p>By using the <code>:applyTo</code> request parameter it is possible to move multiple items in one single request. Moving items in this way leaves you with less control, though. In addition, if a single item move fails, no item at all is moved.</p>
 <p>When specifying the item(s) to be moved with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
 <p>To for example move the <code>/content/page1</code> and <code>/content/page2</code> nodes to <code>/content/target</code>, you might use the following command line:</p>
-<p>$ curl -F":operation=move" -F":applyTo=/content/page1" -F":applyTo=/content/page2" -F":dest=/content/target/" http://host/content/sample</p>
+<pre><code>$ curl -F&quot;:operation=move&quot; -F&quot;:applyTo=/content/page1&quot; -F&quot;:applyTo=/content/page2&quot; \    
+     -F&quot;:dest=/content/target/&quot; http://host/content/sample
+</code></pre>
 <p>Please note the trailing slash character (<code>/</code>) in the value of the <code>:dest</code> parameter. This is required for multi-item move operations using the <code>:applyTo</code> parameter. The moved items are created below the node indicated by the <code>:dest</code>.</p>
 <p>Using a trailing star in the :applyTo parameter (as mentioned before), you can move all the children of the <code>/content</code> node, for example, as follows:</p>
-<p>$ curl -F":operation=move" -F":applyTo=/content/*" -F":dest=/content/target/" http://host/content/sample</p>
+<pre><code>$ curl -F&quot;:operation=move&quot; -F&quot;:applyTo=/content/*&quot; -F&quot;:dest=/content/target/&quot; \    
+    http://host/content/sample
+</code></pre>
 <p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored. Any item already existing at the move destination whose name is the same as the name of an item to be moved is silently overwritten with the source item.</p>
 <h6>Response Status</h6>
 <p>The move operation applied to multiple resources has the following status responses:</p>
@@ -610,7 +644,7 @@ of a resource without having to specify the path of each individual child resour
   </tbody>
 </table>
 <h3>Importing Content Structures</h3>
-<p>To import content structures just address the parent item to import into and set the <code>:operation</code> parameter to <code>import</code>.</p>
+<p>To import content structures just address the parent item to import into and set the <code>:operation</code> parameter to <code>import</code>. </p>
 <p>The optional name of the root node of the imported content may optionally be supplied using the <a href="#algorithm-for-node-name-creation">Algorithm for Node Name Creation</a>.</p>
 <p>Other parameters for the import operation:</p>
 <table>
@@ -668,27 +702,35 @@ of a resource without having to specify the path of each individual child resour
   </tbody>
 </table>
 <p>For example the following command line imports the <code>/content/sample</code> page:</p>
-<p>$ curl -F":operation=import" -F":contentType=json" -F":name=sample" -F':content={ "jcr:primaryType": "nt:unstructured", "propOne" : "propOneValue", "childOne" : { "childPropOne" : true } }' http://host/content</p>
+<pre><code>$ curl -F&quot;:operation=import&quot; -F&quot;:contentType=json&quot; -F&quot;:name=sample&quot; \    
+   -F&#39;:content={ &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;, &quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } }&#39; \    
+   http://host/content
+</code></pre>
 <p>For example the following command line imports the <code>/content/sample</code> page without the optional name parameter:</p>
-<p>$ curl -F":operation=import" -F":contentType=json" -F':content={ "sample" : {"propOne" : "propOneValue", "childOne" : { "childPropOne" : true } } }' http://host/content</p>
+<pre><code>$ curl -F&quot;:operation=import&quot; -F&quot;:contentType=json&quot;
+   -F&#39;:content={ &quot;sample&quot; : {&quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } } }&#39; \    
+   http://host/content
+</code></pre>
 <p>For example the following form imports the <code>/content/sample</code> page:</p>
-<form method="POST" action="/content" enctype="multipart/form-data">
-<input type="hidden" name=":operation" value="import" />
-<input type="hidden" name=":contentType" value="json" />
-<input type="hidden" name=":nameHint" value="sample" />
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;import&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;:contentType&quot; value=&quot;json&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;:nameHint&quot; value=&quot;sample&quot; /&gt;
 
-<input type="text" name=":content" value="{ &quot;jcr:primaryType&quot; : &quot;nt:unstructured&quot; , &quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } }" />
-<input type="Submit" />
-</form>
+    &lt;input type=&quot;text&quot; name=&quot;:content&quot; value=&quot;{ &amp;quot;jcr:primaryType&amp;quot; : &amp;quot;nt:unstructured&amp;quot; , &amp;quot;propOne&amp;quot; : &amp;quot;propOneValue&amp;quot;, &amp;quot;childOne&amp;quot; : { &amp;quot;childPropOne&amp;quot; : true } }&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <p>For example the following form imports content from a file upload:</p>
-<form method="POST" action="/content" enctype="multipart/form-data">
-<input type="hidden" name=":operation" value="import" />
-<input type="hidden" name=":contentType" value="json" />
-<input type="hidden" name=":nameHint" value="sample" />
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;import&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;:contentType&quot; value=&quot;json&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;:nameHint&quot; value=&quot;sample&quot; /&gt;
 
-<input type="file" name=":contentFile" />
-<input type="Submit" />
-</form>
+    &lt;input type=&quot;file&quot; name=&quot;:contentFile&quot; /&gt;
+    &lt;input type=&quot;Submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
 <h6>Response Status</h6>
 <p>The move operation applied to multiple resources has the following status responses:</p>
 <table>
@@ -776,7 +818,8 @@ of a resource without having to specify the path of each individual child resour
   </tbody>
 </table>
 <p>Note that simple content reordering can be requested without applying any other operations. This is easiest done by placing a request to the resource to be reordered and just setting the <code>:order</code> parameter. For example to order the <code>/content/sample/page5</code> resource above its sibling resource <code>/content/sample/other</code> a simple request</p>
-<p>$ curl -F":order=before other" http://host/content/sample/page5</p>
+<pre><code>$ curl -F&quot;:order=before other&quot; http://host/content/sample/page5
+</code></pre>
 <p>does the trick. To be redirected after the reodering, the <code>:redirect</code> parameter may optionally also be specified.</p>
 <h3><code>:redirect</code></h3>
 <p>Instructs the SlingPostServlet to redirect the client to the indicated location if the operation succeeds. That is the response status is set to <em>302/FOUND</em> and the <code>Location</code> header is set to the value of the <code>:redirect</code> parameter.</p>

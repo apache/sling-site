@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>The Apache Sling Provisioning Model and Apache SlingStart</h1></header><p>[TOC]</p>
 <p>The Apache Sling provisioning model is a model to describe OSGi based application. It can also be used to define a partial application aka feature (or subsystem in OSGi terms).</p>
@@ -47,11 +47,17 @@
 <p>Each run mode has start levels. These start levels correspond to OSGi start levels. The default start level has the level 0 and should be used for all non bundle artifacts. If a non bundle artifact is configured with a start level, it's still provisioned, however the start level information might not have any meaning. As usually the provisioned artifacts are bundles and as start levels are pretty handy, this was conscious design decision in order to keep the model files small.</p>
 <h3>Artifacts</h3>
 <p>An artifact is defined by Maven coordinates, that is group id, artifact id and version. Type and classifier can be specified, too. Type defaults to "jar". Although the maven way of referring to an artifact is used, the model is in no way tied to Maven and can be used with any tooling. For a plain jar the text definition for an artifact is:</p>
-<p>groupId/artifactId/version org.apache.sling/api/2.8.0</p>
+<pre><code>            groupId/artifactId/version
+            org.apache.sling/api/2.8.0
+</code></pre>
 <p>If you want to specify the type, it's appended after the version:</p>
-<p>groupId/artifactId/version/type org.apache.sling/api/2.8.0/jar</p>
+<pre><code>            groupId/artifactId/version/type
+            org.apache.sling/api/2.8.0/jar
+</code></pre>
 <p>If you want to specify the classifier, it gets appended after the type:</p>
-<p>groupId/artifactId/version/type/classifier org.apache.sling/api/2.8.0/jar/test</p>
+<pre><code>            groupId/artifactId/version/type/classifier
+            org.apache.sling/api/2.8.0/jar/test
+</code></pre>
 <h3>Configurations</h3>
 <p>A configuration has a pid, or a factory pid and an alias and of course the properties of the configuration object.</p>
 <p>Special configurations can be marked with a leading ":" of the pid. Special configurations are not added to the OSGi config admin. There are some predefined special configurations</p>
@@ -61,11 +67,16 @@
 </ul>
 <h4>Bootstrap Command File</h4>
 <p>The bootstrap configuration is a text block consisting of uninstall directives. This block is only executed on the first startup.</p>
-<p>[feature name=:launchpad]</p>
-<p>[configurations]</p>
-<h1>uninstall obsolete bundles which are neither not required anymore or are</h1>
-<h1>replaced with new bundles</h1>
-<p>:bootstrap uninstall org.apache.sling.fragment.activation 1.2 uninstall org.apache.sling.installer.api [1.0,2.0) uninstall org.apache.sling.tests</p>
+<pre><code>[feature name=:launchpad]
+
+[configurations]
+   # uninstall obsolete bundles which are neither not required anymore or are
+   # replaced with new bundles
+:bootstrap
+  uninstall org.apache.sling.fragment.activation 1.2
+  uninstall org.apache.sling.installer.api [1.0,2.0)
+  uninstall org.apache.sling.tests
+</code></pre>
 <p>Each uninstall directive starts with the text "uninstall" followed by the bundle symbolic name. A version range can be specified as well. If no version information is specified, the bundle with that symbolic name is uninstalled on startup. If a version is specified, the bundle is only uninstalled if it's installed with the exact same version. If a range is specified, the bundle is only uninstalled, if the version is within that range.</p>
 <h3>Settings</h3>
 <p>Settings are key value pairs that are added to the framework properties. For now, only settings for the run modes :boot, :base, :standalone, or :webapp are supported.</p>
@@ -77,32 +88,67 @@
 </ul>
 <h2>Model Files</h2>
 <p>The model comes also with a textual description language:</p>
-<p>[feature name=my-feature]
-[variables] eventadmin.version=1.0.0 metatype.version=1.2.0</p>
-<p>[artifacts] org.apache.sling/eventadmin/${eventadmin.version} org.apache.sling/metatype/${metatype.version} org.apache.sling/coordinator/3.0.0</p>
-<p>[configurations] org.apache.sling.eventadmin useQueue=true ignoreTopics=["myTopic"]</p>
+<pre><code>[feature name=my-feature]
+    [variables]
+        eventadmin.version=1.0.0
+        metatype.version=1.2.0
+
+    [artifacts]
+       org.apache.sling/eventadmin/${eventadmin.version}
+       org.apache.sling/metatype/${metatype.version}
+       org.apache.sling/coordinator/3.0.0
+
+    [configurations]
+       org.apache.sling.eventadmin
+          useQueue=true
+          ignoreTopics=[&quot;myTopic&quot;]
+</code></pre>
 <p>A configuration for a run mode looks like this:</p>
-<p>[feature name=my-feature]
-[variables] eventadmin.version=1.0.0 metatype.version=1.2.0</p>
-<p>[artifacts runModes=mymode] org.apache.sling/metatype/${metatype.version}</p>
-<p>[artifacts startLevel=5 runModes=mymode] org.apache.sling/eventadmin/${eventadmin.version}</p>
-<p>[configurations runModes=mymode] org.apache.sling.eventadmin useQueue=true ignoreTopics=["myTopic"]</p>
+<pre><code>[feature name=my-feature]
+    [variables]
+        eventadmin.version=1.0.0
+        metatype.version=1.2.0
+
+    [artifacts runModes=mymode]
+       org.apache.sling/metatype/${metatype.version}
+
+    [artifacts startLevel=5 runModes=mymode]
+       org.apache.sling/eventadmin/${eventadmin.version}
+
+    [configurations runModes=mymode]
+       org.apache.sling.eventadmin
+          useQueue=true
+          ignoreTopics=[&quot;myTopic&quot;]
+</code></pre>
 <h3>Comments</h3>
 <p>Each object in the model can be annotated with comments. A comment is a line starting with a '#'. Leading spaces are ignored.</p>
 <h3>Configurations in the Model file</h3>
 <p>Configuration names are related to the PID and factory PID. The structure of the name is as follows:</p>
-<p>name ::= <pid> ( '-' <subname> )</p>
+<pre><code>name ::= &lt;pid&gt; ( &#39;-&#39; &lt;subname&gt; )
+</code></pre>
 <p>If the form is just <code>&lt;pid&gt;</code>, the configuration contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p>
 <p>When a Managed Service Factory is used, the situation is different. The <code>&lt;pid&gt;</code> part then describes the PID of the Managed Service Factory. You can pick any <code>&lt;subname&gt;</code> which is used as a unique alias. For example:</p>
-<h1>Configuration for Managed Service com.acme.xyz</h1>
-<p>com.acme.xyz //</p>
-<h1>Managed Service Factory, creates an instance for com.acme.abc</h1>
-<p>com.acme.abc-default</p>
+<pre><code># Configuration for Managed Service com.acme.xyz
+com.acme.xyz // 
+# Managed Service Factory, creates an instance for com.acme.abc
+com.acme.abc-default
+</code></pre>
 <h3>Default Configuration Format</h3>
 <p>Configurations use by default the format of the Apache Felix ConfigAdmin implementation. It allows to specify the type and cardinality of a configuration property and is not limited to string values.</p>
 <p>The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.</p>
 <p>The format is:</p>
-<p>file ::= (comment) (header) * comment ::= '#' <any> header ::= prop '=' value prop ::= symbolic-name // 1.4.2 of OSGi Core Specification symbolic-name ::= token { '.' token } token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' } value ::= [ type ] ( '[' values ']' | '(' values ')' | simple ) values ::= simple { ',' simple } simple ::= '"' stringsimple '"' type ::= <1-char type code> stringsimple ::= <quoted string representation of the value> (see below)</p>
+<pre><code>file ::= (comment) (header) *
+comment ::= &#39;#&#39; &lt;any&gt;
+header ::= prop &#39;=&#39; value
+prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
+symbolic-name ::= token { &#39;.&#39; token } 
+token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | &#39;_&#39; | &#39;-&#39; }
+value ::= [ type ] ( &#39;[&#39; values &#39;]&#39; | &#39;(&#39; values &#39;)&#39; | simple ) 
+values ::= simple { &#39;,&#39; simple } 
+simple ::= &#39;&quot;&#39; stringsimple &#39;&quot;&#39;
+type ::= &lt;1-char type code&gt;
+stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
+</code></pre>
 <p>The 1 character type code is one of:</p>
 <ul>
   <li>'T' : simple string</li>
@@ -118,7 +164,9 @@
 <p>Apart from the escaping of the usual characters like the quotes, double quotes, backslash etc. the equals sign and spaces need to be escaped as well!</p>
 <h3>Configurations Defined through Properties</h3>
 <p>While the default configuration form is very powerful, it might also sometimes be a little bit too heavy to specify a configuration. For these usage cases, the configuration can be described as properties:</p>
-<p>com.acme.xyz [format=properties] ftp.port = 21</p>
+<pre><code>com.acme.xyz [format=properties]     
+    ftp.port = 21
+</code></pre>
 <p>Notice that this definition only supports string properties. Therefore the service consuming the configuration needs to be able to adapt a string value to the correct type.</p>
 <h2>Slingstart and Slingfeature projects</h2>
 <p>The <code>slingstart-maven-plugin</code> introduces two new packaging types:</p>
@@ -127,38 +175,63 @@
   <li><code>slingfeature</code> : This type requires a model at src/main/provisioning. It reads all text files in that directory and merges them in alphabetical order and creates a merged model which is the final artifact of this project.</li>
 </ul>
 <p>A model can reference other slingstart or slingfeature artifacts. When such an artifact is reference, the type needs to be specified, for example:</p>
-<p>[artifacts] org.apache.sling/org.apache.sling.launchpad/8-SNAPSHOT/slingstart org.apache.sling/org.apache.sling.launchpad.test-bundles/0.0.1-SNAPSHOT/slingfeature</p>
+<pre><code>[artifacts]
+    org.apache.sling/org.apache.sling.launchpad/8-SNAPSHOT/slingstart
+    org.apache.sling/org.apache.sling.launchpad.test-bundles/0.0.1-SNAPSHOT/slingfeature
+</code></pre>
 <p>The resulting model is a merged model, starting with the dependencies and then merging in the current model.</p>
 <p>By default the Maven classpath is extended by the dependencies of the merged model. This behaviour can be disabled though via setting the parameter <code>disableExtendingMavenClasspath</code> to <code>true</code> (<a href="https://issues.apache.org/jira/browse/SLING-6541">SLING-6541</a>).</p>
 <h2>Model Merging</h2>
-<p>If two or more models are supplied, they are merged feature by feature, each feature being treated as a separate unit.</p>
-<p>Within a feature each run mode is treated separately as well.</p>
+<p>If two or more models are supplied, they are merged feature by feature, each feature being treated as a separate unit. </p>
+<p>Within a feature each run mode is treated separately as well. </p>
 <p>Within a run mode, a model can overwrite definitions from the base model. For example, it can define a different configuration or a different version and/or start level for an artifact.</p>
 <p>The supplied models are ordered alphanumercally by their filenames for merging.</p>
 <h3>Removing and Changing of Artifacts</h3>
 <p>In addition, it can also remove artifacts and configurations. For this the special runmode :remove needs to be used together with all run modes the artifact or configuration is currently in.</p>
 <p>Let's look at an example base model</p>
-<p>[artifacts] my/special/artifact/1.0.0 commons/library/1.0.0</p>
-<p>[artifacts runModes=test] another/one/2.1.0</p>
+<pre><code>[artifacts]
+    my/special/artifact/1.0.0
+    commons/library/1.0.0
+
+[artifacts runModes=test]
+    another/one/2.1.0
+</code></pre>
 <p>Another model wants to use the above model as it's base but:</p>
 <ul>
   <li>Change the version of the commons library to 1.1.0 and move it to a different start level.</li>
   <li>Remove the "special artifact"</li>
   <li>Remove the "another one"</li>
 </ul>
-<p>The changing model would mention the above as one artifact and in addition have: [artifacts startLevel=5] commons/library/1.1.0</p>
-<p>[artifacts runModes=:remove] my/special/artifact/0.0.0</p>
-<p>[artifacts runModes=:remove,test] another/one/0.0.0</p>
+<p>The changing model would mention the above as one artifact and in addition have:  [artifacts startLevel=5]  commons/library/1.1.0</p>
+<pre><code>[artifacts runModes=:remove]
+    my/special/artifact/0.0.0
+
+[artifacts runModes=:remove,test]
+    another/one/0.0.0
+</code></pre>
 <p>Note that the version for removal does not play a role, it's not compared for an exact match. But please keep in mind that the remove directive needs to be specified in the same feature and run mode as the original.</p>
 <h3>Removing and Changing of Configurations</h3>
 <p>Configurations can be removed in the same way by just specifying their PID in the :remove run mode. This is the base model:</p>
-<p>[configurations] my.special.configuration.b foo="bar" another.special.configuration.a x="y"</p>
+<pre><code>[configurations]
+    my.special.configuration.b
+      foo=&quot;bar&quot;
+    another.special.configuration.a
+      x=&quot;y&quot;
+</code></pre>
 <p>When this model is merged with the following model, the resulting model has a different configuration for my.special.configuration.b and no configuration for another.special.configuration.a:</p>
-<p>[configurations] my.special.configuration.b a="b"</p>
-<p>[configurations runModes=:remove] another.special.configuration.a</p>
-<p>By default if a model inherits from another and uses the same configuration pid, the configuration is overwritten! In the above example, the configuration my.special.configuration.b contains a single property named "a".</p>
+<pre><code>[configurations]
+    my.special.configuration.b
+      a=&quot;b&quot;
+
+[configurations runModes=:remove]
+    another.special.configuration.a
+</code></pre>
+<p>By default if a model inherits from another and uses the same configuration pid, the configuration is overwritten! In the above example, the configuration my.special.configuration.b contains a single property named "a". </p>
 <p>It is also possible to merge configurations:</p>
-<p>[configurations] my.special.configuration.b [mode=merge] a="b"</p>
+<pre><code>[configurations]
+    my.special.configuration.b [mode=merge]
+      a=&quot;b&quot;
+</code></pre>
 <p>When the merge directive is used, the configurations are merged and the properties are applied as a delta to the base configuration. Therefore the configuration my.special.configuration.b will have two properties "a" and "foo".</p>
 <p>If a merged configuration redefines a property that already exists, it overwrites it, so the last configuration supplied in a merge wins.</p>
 <h2>Starting a server</h2>
@@ -180,8 +253,86 @@
       <th>Mandatory</th>
     </tr>
   </thead>
+  <tbody>
+    <tr>
+      <td>port </td>
+      <td>String </td>
+      <td>The port on which the server is listening for HTTP requests. Arbitrary if not set. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>id </td>
+      <td>String </td>
+      <td>The instance id for this server. If not set the id is automatically generated from the run modes and the port. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>runmode </td>
+      <td>String </td>
+      <td>The comma-separated list of <a href="/documentation/bundles/sling-settings-org-apache-sling-settings.html#run-modes">run modes</a> to be set for this server. Those will be set in addition to the ones being defined by the underlying model. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>contextPath </td>
+      <td>String </td>
+      <td>The context path. If not set then Sling is deployed in the root context. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>controlPort </td>
+      <td>String </td>
+      <td>The TCP <a href="/documentation/the-sling-engine/the-sling-launchpad.html#control-port">control port</a> on which the server is listening for control commands. Arbitrary if not set. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>instances </td>
+      <td>int </td>
+      <td>The number of instances which should be created from this server element. In this case the configuration acts as template. The port and controlPort for all servers being generated from this configuration are random (except for the first server). </td>
+      <td>1 </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>folder </td>
+      <td>String </td>
+      <td>The folder from where to start Sling. If not set is a folder in the project's build directory named like the <code>id</code>. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>vmOpts </td>
+      <td>String </td>
+      <td>The JVM options to use. </td>
+      <td><code>-Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true</code> </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>opts </td>
+      <td>String </td>
+      <td>Additional application options. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>debug </td>
+      <td>String </td>
+      <td>See below for an explanation. </td>
+      <td>(-) </td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>stdOutFile </td>
+      <td>String </td>
+      <td>The relative filename of the file which receives both the standard output (stdout) and standard error (stderr) of the server processes. If null or empty string the server process inherits stdout from the parent process (i.e. the Maven process). The given filename must be relative to the working directory of the according server. This was added with <a href="https://issues.apache.org/jira/browse/SLING-6545">SLING-6545</a>. </td>
+      <td>null </td>
+      <td>no</td>
+    </tr>
+  </tbody>
 </table>
-<p>port | String | The port on which the server is listening for HTTP requests. Arbitrary if not set. | - | no id | String | The instance id for this server. If not set the id is automatically generated from the run modes and the port. | - | no runmode | String | The comma-separated list of <a href="/documentation/bundles/sling-settings-org-apache-sling-settings.html#run-modes">run modes</a> to be set for this server. Those will be set in addition to the ones being defined by the underlying model. | - | no contextPath | String | The context path. If not set then Sling is deployed in the root context. | - | no controlPort | String | The TCP <a href="/documentation/the-sling-engine/the-sling-launchpad.html#control-port">control port</a> on which the server is listening for control commands. Arbitrary if not set. | - | no instances | int | The number of instances which should be created from this server element. In this case the configuration acts as template. The port and controlPort for all servers being generated from this configuration are random (except for the first server). | 1 | no folder | String | The folder from where to start Sling. If not set is a folder in the project's build directory named like the <code>id</code>. | - | no vmOpts | String | The JVM options to use. | <code>-Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true</code> | no opts | String | Additional application options. | - | no debug | String | See below for an explanation. | - | no stdOutFile | String | The relative filename of the file which receives both the standard output (stdout) and standard error (stderr) of the server processes. If null or empty string the server process inherits stdout from the parent process (i.e. the Maven process). The given filename must be relative to the working directory of the according server. This was added with <a href="https://issues.apache.org/jira/browse/SLING-6545">SLING-6545</a>. | null | no</p>
 <h3>Debugging</h3>
 <p>Since version 1.2.0 of this plugin it is possible to easily start a Sling server in debug mode (<a href="https://issues.apache.org/jira/browse/SLING-4677">SLING-4677</a>). For that you either configure the property <code>debug</code> inside you server configuration in the pom.xml accordingly or by using the parameter <code>Dlaunchpad.debug</code>. Both values can either be <code>true</code> (in which case the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JDWP options</a> <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000</code> are appended to the VM options) or just some arbitrary string defining debugging options. In case both are used the parameter <code>Dlaunchpad.debug</code> takes precedence.</p>
 <h2>Stopping a server</h2>
@@ -191,7 +342,20 @@
 <p>The provisioning model supports two formats to define configurations, properties and the format of the Apache Felix ConfigAdmin implementation.</p>
 <p>Starting with version 1.2.0 of the provisioning model and version 1.2.0 of the slingstart-maven-plugin, the implementation uses the latest format from Apache Felix, version 1.8.6 (or higher) of the ConfigAdmin. This requires you to use version 3.6.6 (or higher) of the OSGi installer core bundle to handle these configurations.</p>
 <p>If you want to stick with the old format from config admin, you can configure the maven plugin as follows:</p>
-<p><plugin> <groupId>org.apache.sling</groupId> <artifactId>slingstart-maven-plugin</artifactId> <extensions>true</extensions> <version>1.3.4</version> <dependencies> <dependency> <groupId>org.apache.felix</groupId> <artifactId>org.apache.felix.configadmin</artifactId> <version>1.8.4</version> </dependency> </dependencies> </plugin></p></section></div></div>            
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+    &lt;artifactId&gt;slingstart-maven-plugin&lt;/artifactId&gt;
+    &lt;extensions&gt;true&lt;/extensions&gt;
+    &lt;version&gt;1.3.4&lt;/version&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+            &lt;artifactId&gt;org.apache.felix.configadmin&lt;/artifactId&gt;
+            &lt;version&gt;1.8.4&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;
+</code></pre></section></div></div>            
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Version Policy</h1></header><p>Excerpt: This page is about how we assign versions to exported packages and bundles and defines when to increase which part of the version number.</p>
 <p>This page is about how we assign versions to exported packages and bundles and defines when to increase which part of the version number.</p>
@@ -67,7 +67,13 @@ Please note that this page is currently in draft stage and still being discussed
 <h3>Future</h3>
 <p>The newest versions of the bnd library also support an <code>@Export</code> annotation in the <code>package-info.java</code> pseudo class file. This pseudo class is supported starting with Java 5 to take package level annotations (like the <code>@Export</code> annotation) and as a replacement of the <code>package-info.html</code> file.</p>
 <p>Using this syntax something like the following would be easily possible:</p>
-<p>/** * This is the Package Level JavaDoc */ @Export(version = "1.0") package org.apache.sling.api.auth; import aQute.bnd.annotation.Export;</p>
+<pre><code>/**
+ * This is the Package Level JavaDoc
+ */
+@Export(version = &quot;1.0&quot;)
+package org.apache.sling.api.auth;
+import aQute.bnd.annotation.Export;
+</code></pre>
 <p>See <a href="http://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>
 <h2>Version Number Syntax</h2>
 <p>As a small reminder, this is how a version number is constructed: In OSGi version numbers are composed of four (4) segments: three integers and one string named <em>major</em>._minor_._micro_._qualifier_.</p>
@@ -203,11 +209,13 @@ Please note that this page is currently in draft stage and still being discussed
   <li>If such a lower bound exists, the upper bound is exclusive the next major version number.</li>
 </ul>
 <p>For example if importing the <code>api</code> package exported at version 1.2.3, the <code>Import-Package</code> statement is generated as</p>
-<p>Import-Package: api;version=[1.2.3,2.0.0)</p>
+<pre><code>Import-Package: api;version=[1.2.3,2.0.0)
+</code></pre>
 <p>This default works well for consumers of the API, since according to above definitions an API is guaranteed to not contain breakages if the major version number is not increased.</p>
 <p>For bundles implementing the API, this default does not work well, since from their point of view an <em>externally visible</em> change in fact constitutes a breakage, because the implementation is not complete. So if a bundle implements a package a manually crafted import version should be defined which includes the export version of the defining bundle but excludes the next minor version.</p>
 <p>For example implementing the <code>api</code> package exported at version 1.2.3, would require the following manually created <code>Import-Package</code> statement:</p>
-<p>Import-Package: api;version=[1.2.3,1.3.0)</p>
+<pre><code>Import-Package: api;version=[1.2.3,1.3.0)
+</code></pre>
 <p>This allows for the implementation to work correctly with bug fixed package exports but as soon as there are any <em>externally visible</em> changes, the implementation bundle has to be adapted -- even if this just means increasing the upper version bound in the <code>Import-Package</code> statement thus guaranteeing compliance (again).</p>
 <h3>Future</h3>
 <p>Recent versions of the bnd library support automatic differentiation between <em>use</em> and <em>implementation</em> of API and to set the import version ranges accordingly. See <a href="http://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>

@@ -2,53 +2,69 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>URL to Script Resolution</h1></header><p>[TOC]</p>
-<p>This page explains how Sling maps URLs to a script or and servlet.</p>
+<p>This page explains how Sling maps URLs to a script or and servlet. </p>
 <p>See also <a href="/documentation/the-sling-engine/servlets.html">Servlets and Scripts</a> which provides detailed info about how to register servlets.</p>
 <p>First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the <code>sling:resourceType</code> property which defines the resource type of that resource. Using this resource type (which is kind of a relative path, eg. "myblog/comment"), scripts or servlets are looked up. For more details about how the initial resource is identified for a specific request URL look at <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>.</p>
-<p>Scripts and servlets are itself resources in Sling and thus have a resource path: this is either the location in the JCR repository, the resource type in a servlet component configuration or the "virtual" bundle resource path (if a script is provided inside a bundle without being installed into the JCR repository).</p>
+<p>Scripts and servlets are itself resources in Sling and thus have a resource path: this is either the location in the JCR repository, the resource type in a servlet component configuration or the "virtual" bundle resource path (if a script is provided inside a bundle without being installed into the JCR repository). </p>
 <p>For the whole Truth about script resolution, see the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/resolver/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java">ScriptSelectionTest</a> class. If you see interesting cases that are not covered there, please let us know via the Sling users mailing list.</p>
-<p>TODO: explain super types, servlet path mappings, node type resource types (<code>my:type -&gt; my/type</code>)</p>
+<p>TODO: explain super types, servlet path mappings, node type resource types (<code>my:type -&gt; my/type</code>) </p>
 <h2>Fundamental: Scripts and Servlets are equal</h2>
-<p>In the following discussion, I will write about scripts. This will always include servlets as well. In fact, internally, Sling only handles with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script.</p>
+<p>In the following discussion, I will write about scripts. This will always include servlets as well. In fact, internally, Sling only handles with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script. </p>
 <h2>Base: Resource Type Inheritance</h2>
-<p>While not exactly part of our discussion, resource type inheritance as implemented for <a href="https://issues.apache.org/jira/browse/SLING-278">SLING-278</a> plays a vital role in script resolution.</p>
-<p>Each resource type may have a resource super type, which may be defined in various ways. One example is having a <code>sling:resourceSuperType</code> property in the node addressed by the resource type. See <a href="http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html">http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html</a> and <a href="http://issues.apache.org/jira/browse/SLING-278">SLING-278</a> for more details.</p>
-<p>If a resource type has no explicit resource super type, the resource super type is assumed to be "sling/servlet/default". That is the resource type used for default script selection is also acting as a basic resource type much like java.lang.Object does for other types in the Java language.</p>
+<p>While not exactly part of our discussion, resource type inheritance as implemented for <a href="https://issues.apache.org/jira/browse/SLING-278">SLING-278</a> plays a vital role in script resolution. </p>
+<p>Each resource type may have a resource super type, which may be defined in various ways. One example is having a <code>sling:resourceSuperType</code> property in the node addressed by the resource type. See <a href="http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html">http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html</a> and <a href="http://issues.apache.org/jira/browse/SLING-278">SLING-278</a> for more details. </p>
+<p>If a resource type has no explicit resource super type, the resource super type is assumed to be "sling/servlet/default". That is the resource type used for default script selection is also acting as a basic resource type much like java.lang.Object does for other types in the Java language. </p>
 <h2>Script Locations</h2>
-<p>Scripts are looked up in a series of locations defined by the ResourceResolver.getSearchPath() and the resource type (and resource super types) of the requested resource:</p>
-<p>{scriptPathPrefix}/{resourceTypePath}</p>
-<p>The pseudo code for iterating the locations would be something like:</p>
-<p>var type = resource.getResourceType(); while (type != null) { for (String root: resourceResolver.getSearchPath()) { String path = root + type.toPath(); findScriptsIn(path); }</p>
-<p>if (type == defaultServlet) { type = null; } else { type = getResourceSuperType(type); if (type == null) { type = defaultServlet; } } }</p>
+<p>Scripts are looked up in a series of locations defined by the ResourceResolver.getSearchPath() and the resource type (and resource super types) of the requested resource: </p>
+<pre><code>{scriptPathPrefix}/{resourceTypePath} 
+</code></pre>
+<p>The pseudo code for iterating the locations would be something like: </p>
+<pre><code>var type = resource.getResourceType(); 
+while (type != null) { 
+    for (String root: resourceResolver.getSearchPath()) { 
+        String path = root + type.toPath(); 
+        findScriptsIn(path); 
+    } 
+
+    if (type == defaultServlet) { 
+        type = null; 
+    } else { 
+        type = getResourceSuperType(type); 
+        if (type == null) { 
+            type = defaultServlet; 
+        } 
+    } 
+} 
+</code></pre>
 <h2>All requests are NOT equal</h2>
-<p>GET and HEAD request methods are treated differently than the other request methods. Only for GET and HEAD requests will the request selectors and extension be considered for script selection. For other requests the servlet or script name (without the script extension) must exactly match the request method.</p>
-<p>That is for a PUT request, the script must be PUT.esp or PUT.jsp. For a GET request with a request extension of html, the script name may be html.esp or GET.esp.</p>
+<p>GET and HEAD request methods are treated differently than the other request methods. Only for GET and HEAD requests will the request selectors and extension be considered for script selection. For other requests the servlet or script name (without the script extension) must exactly match the request method. </p>
+<p>That is for a PUT request, the script must be PUT.esp or PUT.jsp. For a GET request with a request extension of html, the script name may be html.esp or GET.esp. </p>
 <h2>Scripts for GET requests</h2>
-<p>Apart for supporting scripts named after the request method, scripts handling GET and HEAD requests may be named differently for Sling to support a more elaborate processing order.</p>
-<p>Depending on whether request selectors are considered, a script may have two forms:</p>
+<p>Apart for supporting scripts named after the request method, scripts handling GET and HEAD requests may be named differently for Sling to support a more elaborate processing order. </p>
+<p>Depending on whether request selectors are considered, a script may have two forms: </p>
 <ul>
   <li>a. Ignoring request selectors (e.g. there are none in the request URI) <code>{resourceTypeLabel}.{requestExtension}.{scriptExtension}</code></li>
   <li>b. Handling request selectors <code>{selectorStringPath}.{requestExtension}.{scriptExtension}</code></li>
 </ul>
-<p>The constituents of these script names are as follows:</p>
+<p>The constituents of these script names are as follows: </p>
 <ul>
   <li><code>{resourceTypeLabel}</code> - The last path segment of the path created from the resource type. This part is optional if the <code>{requestExtension}</code> is used in the script name. The resource type might either be set via the <code>sling:resourceType</code> property on the accessed node or if that property is not there its primary node type (property <code>jcr:primaryType</code>) is taken as fallback.</li>
   <li><code>{requestExtension}</code> - The request extension. This part may be ommitted if the request extension is "html", otherwise this part is required. If this part is ommitted, the <code>{resourceTypeLabel}</code> is required in the case of ignoring the selectors.</li>
@@ -56,14 +72,14 @@
   <li><code>{selectorStringPath}</code> - The selector string converted to a path, along the lines of <code>selectorString.replace(&#39;.&#39;, &#39;/&#39;)</code>. If less selectors are specified in the script name than given in the request, the script will only be taken into consideration if the given selectors are the <strong>first</strong> selectors in the request. This means <em>sel1/sel2.html.jsp</em> will be a candidate for the request url <em>/content/test.sel1.sel2.sel3.html</em> but not for <em>/content/test.sel3.sel1.sel2.html</em>. So the order of selectors is relevant!</li>
 </ul>
 <h2>Priority</h2>
-<p>The rules for script path priorization is defined as follows:</p>
+<p>The rules for script path priorization is defined as follows: </p>
 <ul>
   <li>The more request selectors are matched, the better</li>
   <li>A script including the request extension matches better than one without a request extension (for html only)</li>
   <li>A script found earlier matches better than a script found later in the processing order. This means, that script closer to the original resource type in the resource type hierarchy is considered earlier.</li>
 </ul>
 <h2>Examples</h2>
-<p>Let's consider the following script paths for a request of a resource whose resource type is <code>slingsample</code> and the request selectors are <em>print.a4</em> and the request extension is <em>html</em>:</p>
+<p>Let's consider the following script paths for a request of a resource whose resource type is <code>sling\sample</code> and the request selectors are <em>print.a4</em> and the request extension is <em>html</em>: </p>
 <ul>
   <li>(0) GET.esp</li>
   <li>(1) sample.esp</li>

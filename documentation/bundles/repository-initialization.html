@@ -2,29 +2,32 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1></h1></header><p>The <code>SlingRepositoryInitializer</code> mechanism allows for running code before the <code>SlingRepository</code> service is registered.</p>
 <p>This is useful for initialization and content migration purposes.</p>
 <p>Please be aware of potential clustering and coordination issues when using this mechanism, if your environment lets several Sling instances access the same content repository you'll need to implement a synchronization mechanism for such operations.</p>
 <h2>SlingRepositoryInitializer</h2>
 <p>The <code>SlingRepositoryInitializer</code> is a very simple service interface, available from version 2.4.0 of the <code>org.apache.sling.jcr.api</code> and <code>org.apache.sling.jcr.base</code> bundles.</p>
-<p>public interface SlingRepositoryInitializer { public void processRepository(SlingRepository repo) throws Exception; }</p>
+<pre><code>public interface SlingRepositoryInitializer {
+    public void processRepository(SlingRepository repo) throws Exception;
+}
+</code></pre>
 <p>Services that implement this interface are called when setting up the JCR-based <code>SlingRepository</code> service, before registering it as an OSGi service.</p>
 <p>They are called in increasing order of their <code>service.ranking</code> service property, which needs to be an <code>Integer</code> as usual.</p>
 <p>If any of them throws an Exception, the <code>SlingRepository</code> service is not registered.</p>
@@ -32,39 +35,77 @@
 <p>The <code>org.apache.sling.repoinit.parser</code> implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as well as registering JCR namespaces and node types.</p>
 <p>The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the <code>RepoInitGrammar.jjt</code> file in that module, and the automated tests provide a number of <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/repoinit/parser/src/test/resources/testcases">test cases</a> which demonstrate various features.</p>
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
-<p>Here's a current example from the test cases mentioned above, that uses all language features as of version 1.0.2 of the parser module.</p>
+<p>Here's a current example from the test cases mentioned above, that uses all language features as of version 1.0.2 of the parser module. </p>
 <p>The language is self-explaining but please refer to the actual test cases for details that are guaranteed to be up to date, assuming the tests pass.</p>
-<p>create service user user1, u-ser_2 set ACL on /libs,/apps allow jcr:read for user1,u-ser_2</p>
-<p>deny jcr:write for u-ser_2 deny jcr:lockManagement for user1 remove jcr:understand,some:other for u3 end</p>
-<p>create service user bob_the_service</p>
-<p>set ACL on /tmp allow some:otherPrivilege for bob_the_service end</p>
-<h1>Nodetypes inside the path apply to just that path element</h1>
-<p>create path /content/example.com(sling:Folder)</p>
-<h1>A nodetype in front is used as the default for all path elements</h1>
-<p>create path (nt:unstructured) /var</p>
-<p>set ACL for alice, bob,fred</p>
-<h1>remove is currently not supported by the jcr.repoinit module</h1>
-<p>remove * on / allow jcr:read on /content,/var deny jcr:write on /content/example.com deny jcr:all on / nodetypes example:Page end</p>
-<p>set ACL for restrictions_examples deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2) allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2) allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*) end</p>
-<h1>register namespace requires</h1>
-<h1>o.a.s.repoinit.parser 1.0.4</h1>
-<h1>and o.a.s.jcr.repoinit 1.0.2</h1>
-<p>register namespace ( NSprefix ) uri:someURI/v1.42</p>
-<h1>register nodetypes in CND format</h1>
-<h1>(same bundle requirements as register namespaces)</h1>
-<p>#</p>
-<h1>The optional &lt;&lt; markers are used when embedding</h1>
-<h1>this in a Sling provisioning model, to avoid syntax errors</h1>
-<p>#</p>
-<h1>The CND instructions are passed as is to the JCR</h1>
-<h1>modules, so the full CND syntax is supported.</h1>
-<p># register nodetypes &lt;&lt;=== &lt;&lt; &lt;slingevent='http://sling.apache.org/jcr/event/1.0'&gt; &lt;&lt; &lt;&lt; [slingevent:Event] &gt; nt:unstructured, nt:hierarchyNode &lt;&lt; - slingevent:topic (string) &lt;&lt; - slingevent:properties (binary) ===&gt;&gt;</p>
-<p>create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a88ce31a08826899d54ef7183998b5</p>
-<p>create service user the-last-one</p>
+<pre><code>create service user user1, u-ser_2
+set ACL on /libs,/apps
+    allow jcr:read for user1,u-ser_2
+
+    deny jcr:write for u-ser_2
+    deny jcr:lockManagement for user1
+    remove jcr:understand,some:other for u3
+end
+
+create service user bob_the_service
+
+set ACL on /tmp
+    allow some:otherPrivilege for bob_the_service
+end
+
+# Nodetypes inside the path apply to just that path element
+create path /content/example.com(sling:Folder)
+
+# A nodetype in front is used as the default for all path elements
+create path (nt:unstructured) /var
+
+set ACL for alice, bob,fred
+    # remove is currently not supported by the jcr.repoinit module
+    remove * on / 
+    allow jcr:read on /content,/var
+    deny jcr:write on /content/example.com
+    deny jcr:all on / nodetypes example:Page
+end
+
+set ACL for restrictions_examples
+    deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
+    allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+    allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+end
+
+# register namespace requires 
+# o.a.s.repoinit.parser 1.0.4
+# and o.a.s.jcr.repoinit 1.0.2
+register namespace ( NSprefix ) uri:someURI/v1.42
+
+# register nodetypes in CND format
+# (same bundle requirements as register namespaces)
+#
+# The optional &lt;&lt; markers are used when embedding
+# this in a Sling provisioning model, to avoid syntax errors
+#
+# The CND instructions are passed as is to the JCR
+# modules, so the full CND syntax is supported.
+#
+register nodetypes
+&lt;&lt;===
+&lt;&lt;  &lt;slingevent=&#39;http://sling.apache.org/jcr/event/1.0&#39;&gt;
+&lt;&lt;
+&lt;&lt;  [slingevent:Event] &gt; nt:unstructured, nt:hierarchyNode
+&lt;&lt;    - slingevent:topic (string)
+&lt;&lt;    - slingevent:properties (binary)
+===&gt;&gt;
+
+create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a88ce31a08826899d54ef7183998b5
+
+create service user the-last-one
+</code></pre>
 <h2>Providing repoinit statements from the Sling provisioning model or other URLs</h2>
 <p>All bundles required for this feature need to be active before the <code>SlingRepository</code> service starts.</p>
 <p>From version 1.0.2 of the <code>org.apache.sling.jcr.repoinit</code> bundle, the <code>o.a.s.jcr.repoinit.RepositoryInitializer</code> component uses an OSGi configuration as shown in this example to define where to read repoinit statements:</p>
-<p>org.apache.sling.jcr.repoinit.impl.RepositoryInitializer references=["model:context:/resources/provisioning/model.txt","model@repoinitTwo:context:/resources/provisioning/model.txt"]</p>
+<pre><code>org.apache.sling.jcr.repoinit.impl.RepositoryInitializer
+  references=[&quot;model:context:/resources/provisioning/model.txt&quot;,&quot;model@repoinitTwo:context:/resources/provisioning/model.txt&quot;]
+</code></pre>
 <p>This example defines two <em>references</em> to URLs that supply repoinit statements. Their syntax is described below.</p>
 <p>By default the <code>RepositoryInitializer</code> uses the first URL shown in the above example, which points to the provisioning model that's embedded by default in the Sling Launchpad runnable jar.</p>
 <p>Note that previous versions of the <code>org.apache.sling.jcr.repoinit</code> bundle used different configuration parameters. From version 1.0.2 on, warnings are logged if those old parameters (_text.url,text.format,model.section.name_) are used.</p>
@@ -72,16 +113,21 @@
 <p>The <code>slingstart-maven-plugin</code>, from V1.4.2 on, allows for embedding so-called "additional sections" in the Sling provisioning model by starting their name with a colon.</p>
 <p>At runtime this requires the <code>org.apache.sling.provisioning.model</code> bundle, version 1.4.2 or later.</p>
 <p>The <code>o.a.s.jcr.repoinit</code> bundle can use this feature to execute <code>repoinit</code> statements provided by Sling provisioning models, as in this provisioning model example fragment:</p>
-<p>[:repoinit] create path /repoinit/provisioningModelTest</p>
-<p>create service user provisioningModelUser</p>
+<pre><code>[:repoinit]
+create path /repoinit/provisioningModelTest
+
+create service user provisioningModelUser
+</code></pre>
 <p>To read repoinit statements from such an additional provisioning model section, the <code>RepositoryInitializer</code> configuration shown above uses references like</p>
-<p>model@repoinitTwo:context:/resources/provisioning/model.txt</p>
+<pre><code>model@repoinitTwo:context:/resources/provisioning/model.txt
+</code></pre>
 <p>Where <em>model</em> means "use the provisioning model format", <em>repoinitTwo</em> is the name of the additional section to read statements from in the provisioning model (without the leading colon) and <em>context:/resources/...</em> is the URL to use to retrieve the provisioning model.</p>
 <p>In this example the URL uses the <em>context</em> scheme defined by the Sling Launchpad, but any scheme can be used provided a suitable URL handler is active.</p>
 <p>The section name in that reference is optional and defaults to <em>repoinit</em>. If it's not specified the <code>@</code> should be omitted as well.</p>
 <h3>References to URLs providing raw repoinit statements</h3>
 <p>Using a <code>RepositoryInitializer</code> reference like in this example, with the <em>raw</em> prefix, means that its content is passed as is to the repoinit parser:</p>
-<p>raw:classpath://some-repoinit-file.txt</p>
+<pre><code>raw:classpath://some-repoinit-file.txt
+</code></pre>
 <p>Which points to a <code>classpath:</code> URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.</p></section></div></div>            
 <div class="footer">
                 <div class="timestamp">

@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Dispatching Requests</h1></header><h2>Main process</h2>
 <p>The following steps should give you an overview how a request is processed in Sling. Details can be found under provided links.</p>
@@ -29,26 +29,28 @@
   <li>
   <p>OSGi HttpService looks for responsible registered Servlet or resource (see 102.4 of the OSGi compendium)</p></li>
   <li>
-  <p>OSGi HttpService calls <code>handleSecurity</code> of the HttpContext associated with the servlet/resource. In case of Sling this calls into SlingMainServlet.handleSecurity and then into SlingAuthenticator.authenticate</p></li>
-  <li>
-  <p>SlingAuthenticator selects an authentication handler for the request and forwards the authenticate call. On success a <code>javax.jcr.Session</code> is created, the request attributes required by the HTTP Service spec are set (like <code>org.osgi.service.http.authentication.remote.user</code> and <code>org.osgi.service.http.authentication.type</code>and also the <code>javax.jcr.Session</code> which is used later is set in the request attributes. On success, continue with step 5.</p></li>
-  <li>
-  <p>If authentication fails either an anonymous session is acquired (if anonymous is allowed per configuration) or the login method is called. If anonymous is allowed, continue with step 5.</p></li>
-  <li>
-  <p>The login method selects an AuthenticationHandler and forwards the login call to the AuthenticationHandler.requestAuthentication method to cause the client to authenticate. Request processing stops here (<code>SlingMainServlet.handleSecurity</code> returns false).</p></li>
+    <p>OSGi HttpService calls <code>handleSecurity</code> of the HttpContext associated with the servlet/resource. In case of Sling this calls into SlingMainServlet.handleSecurity and then into SlingAuthenticator.authenticate</p>
+    <ol>
+      <li>
+      <p>SlingAuthenticator selects an authentication handler for the request and forwards the authenticate call. On success a <code>javax.jcr.Session</code> is created, the request attributes required by the HTTP Service spec are set (like <code>org.osgi.service.http.authentication.remote.user</code> and <code>org.osgi.service.http.authentication.type</code>and also the <code>javax.jcr.Session</code> which is used later is set in the request attributes. On success, continue with step 5.</p></li>
+      <li>
+      <p>If authentication fails either an anonymous session is acquired (if anonymous is allowed per configuration) or the login method is called. If anonymous is allowed, continue with step 5.</p></li>
+      <li>
+      <p>The login method selects an AuthenticationHandler and forwards the login call to the AuthenticationHandler.requestAuthentication method to cause the client to authenticate. Request processing stops here (<code>SlingMainServlet.handleSecurity</code> returns false).</p></li>
+    </ol>
+  </li>
   <li>
   <p>After getting a response the HttpService either terminates the request (if authentication failed and <code>SlingMainServlet.handleSecurity</code> returned false) or continues by either spooling the resource or in the case of Sling calling the <code>SlingMainServlet.service</code> method.</p></li>
   <li>
-  <p>The <code>SlingMainServlet.service</code> method is the entry point into the Sling proper. This method sets up the request:</p></li>
-</ol>
-<ul>
-  <li>Wraps the <code>HttpServletRequest</code> and the <code>HttpServletResponse</code> into the <code>SlingHttpServletRequest</code> and the <code>SlingHttpServletResponse</code></li>
-  <li>Checks if Sling is ready for processing the request (checks at the moment for an existing ResourceResolverFactory service, a ServletResolver service and a MimeTypeService)</li>
-  <li>Create the ResourceResolver based on the Session (by default creates a <code>JcrResourceResolver2</code>)</li>
-  <li>Locate the <a href="/documentation/the-sling-engine/resources.html">Resource</a> on the basis of the request by calling <code>ResourceResovler.resolve</code> through <code>RequestData.initResource</code> (see also <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>)</li>
-  <li>Locate the servlet or script (see <a href="/documentation/the-sling-engine/servlets.html">Servlets</a>) by calling <code>ServletResolver.resolveServlet</code> through <code>RequestData.initServlet</code></li>
-</ul>
-<ol>
+    <p>The <code>SlingMainServlet.service</code> method is the entry point into the Sling proper. This method sets up the request:</p>
+    <ul>
+      <li>Wraps the <code>HttpServletRequest</code> and the <code>HttpServletResponse</code> into the <code>SlingHttpServletRequest</code> and the <code>SlingHttpServletResponse</code></li>
+      <li>Checks if Sling is ready for processing the request (checks at the moment for an existing ResourceResolverFactory service, a ServletResolver service and a MimeTypeService)</li>
+      <li>Create the ResourceResolver based on the Session (by default creates a <code>JcrResourceResolver2</code>)</li>
+      <li>Locate the <a href="/documentation/the-sling-engine/resources.html">Resource</a> on the basis of the request by calling <code>ResourceResovler.resolve</code> through <code>RequestData.initResource</code> (see also <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>)</li>
+      <li>Locate the servlet or script (see <a href="/documentation/the-sling-engine/servlets.html">Servlets</a>) by calling <code>ServletResolver.resolveServlet</code> through <code>RequestData.initServlet</code></li>
+    </ul>
+  </li>
   <li>
   <p>After this setup, the request level filters are called (the ones registered as <code>javax.servlet.Filter</code> with the property <code>filter.scope=request</code>, see <a href="/documentation/the-sling-engine/filters.html">Filters</a> for details). If any called filter doesn't call <code>FilterChain.doFilter</code> at the end of the <code>Filter.doFilter</code> method request processing stops here.</p></li>
   <li>

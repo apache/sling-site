@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>The Sling Launchpad</h1></header><p>[TOC]</p>
 <p>This tries to explain how exactly the Sling Launchpad works, what constitutes the Sling Launchpad and how you can use the Sling Launchpad to custom create you Sling launchers. For a view behind the scenes of the Sling Launchpad Base module (the actual launcher) you might want to refer to the <a href="/documentation/development/embedding-sling.html">Embedding Sling</a> page.</p>
@@ -44,7 +44,7 @@
     </tr>
   </thead>
 </table>
-<p>| <code>start</code> | -- | Open a TCP/IP server socket when starting Sling. Uses option <code>-j</code> to define the local socket address. | | <code>status</code> | -- | Check whether a (remote) Sling application is running. Uses option <code>-j</code> to define the address of the Sling instance to check. Note, that the Sling application terminates after checking for the (remote) Sling status. | | <code>stop</code> | -- | Stop a (remote) Sling application is running. Uses option <code>-j</code> to define the address of the Sling instance to stop. Note, that the Sling application tesrminates after stopping the (remote) Sling instance. | | <code>-j</code> | [ host ":" ] port | The socket address to listen on for control connections (<code>start</code> or to use as the remote endpoint for the control connection (<code>status</code> and <code>stop</code>. If this parameter has no arguments or is not specified, the address defaults to any free port on localhost/127.0.0.1. If only the port is specified localhost/127.0.0.1 is used as the host part of the address. | | <code>-c</code> | slinghome | The directory in which Sling locates its initial configuration file <code>sling.properties</code> and where files of Sling itself such as the Apache Felix bundle archive or the JCR repository files are stored. This defaults to the <code>sling</code> folder in the current working directory. This is the value which is commonly refered to as <code>${sling.home}.</code> | <code>-i</code> | launchpadhome | The launchpad directory. If not set, this is the same as <code>${sling.home}.</code> (since Sling Launchpad 2.4.0) | | <code>-l</code> | loglevel | Sets the initial loglevel as an integer in the range 0 to 4 or as one of the well known level strings <code>ERROR</code>, <code>WARN</code>, <code>INFO</code>, or <code>DEBUG</code>. This option overwrites the <code>org.apache.sling.osg.log.level</code> setting the <code>sling.properties</code> file. The default is <code>INFO</code>. | | <code>-f</code> | logfile | The log file to use or <code>-</code> to log to standard out. This option overwrites the <code>org.apache.sling.osg.log.file</code> setting in the <code>sling.properties</code> file. The default is <code>${sling.home}/logs/error.log</code>. | | <code>-a</code> | address | The interfact to bind to (use 0.0.0.0 for any). This option overwrites the <code>org.apache.felix.http.host</code> setting in the <code>sling.properties</code> file and requires the embedded Http Service implementation to honor this property. (supported since Sling Launchpad 2.4.0) | | <code>-p</code> | port | The port to listen (default 8080) to handle HTTP requests. This option overwrites the <code>org.osgi.service.http.port</code> setting in the <code>sling.properties</code> file. | | <code>-r</code> | path | The root servlet context path for the Http Service (default is /). This option overwrites the <code>org.apache.felix.http.context_path</code> setting in the <code>sling.properties</code> file and requires the embedded Http Service implementation to honor this property. (since Sling Launchpad 2.4.0) | | <code>-D</code> | n=v | Sets the property <code>n</code> to the value <code>v</code>. This option can be added repeatedly setting additional properties. Any property set in this manner overwrites same named properties in the <code>sling.properties</code> file. (since Sling Launchpad 2.4.0) | | <code>-n</code> | -- | Don't install the shutdown hook. See <a href="#shutdown-hook">Shutdown Hook</a> below. (since Sling Launchpad 2.5.2) | | <code>-h</code> | -- | Prints a simple usage message listing all available command line options. |</p>
+<p>| <code>start</code> | -- | Open a TCP/IP server socket when starting Sling. Uses option <code>-j</code> to define the local socket address. | | <code>status</code> | -- | Check whether a (remote) Sling application is running. Uses option <code>-j</code> to define the address of the Sling instance to check. Note, that the Sling application terminates after checking for the (remote) Sling status. | | <code>stop</code> | -- | Stop a (remote) Sling application is running. Uses option <code>-j</code> to define the address of the Sling instance to stop. Note, that the Sling application tesrminates after stopping the (remote) Sling instance. | | <code>-j</code> | [ host ":" ] port | The socket address to listen on for control connections (<code>start</code> or to use as the remote endpoint for the control connection (<code>status</code> and <code>stop</code>. If this parameter has no arguments or is not specified, the address defaults to any free port on localhost/127.0.0.1. If only the port is specified localhost/127.0.0.1 is used as the host part of the address. | | <code>-c</code> | slinghome | The directory in which Sling locates its initial configuration file <code>sling.properties</code> and where files of Sling itself such as the Apache Felix bundle archive or the JCR repository files are stored. This defaults to the <code>sling</code> folder in the current working directory. This is the value which is commonly refered to as <code>$\{sling.home}.</code> | <code>-i</code> | launchpadhome | The launchpad directory. If not set, this is the same as <code>$\{sling.home}.</code> (since Sling Launchpad 2.4.0) | | <code>-l</code> | loglevel | Sets the initial loglevel as an integer in the range 0 to 4 or as one of the well known level strings <code>ERROR</code>, <code>WARN</code>, <code>INFO</code>, or <code>DEBUG</code>. This option overwrites the <code>org.apache.sling.osg.log.level</code> setting the <code>sling.properties</code> file. The default is <code>INFO</code>. | | <code>-f</code> | logfile | The log file to use or <code>-</code> to log to standard out. This option overwrites the <code>org.apache.sling.osg.log.file</code> setting in the <code>sling.properties</code> file. The default is <code>$\{sling.home}/logs/error.log</code>. | | <code>-a</code> | address | The interfact to bind to (use 0.0.0.0 for any). This option overwrites the <code>org.apache.felix.http.host</code> setting in the <code>sling.properties</code> file and requires the embedded Http Service implementation to honor this property. (supported since Sling Launchpad 2.4.0) | | <code>-p</code> | port | The port to listen (default 8080) to handle HTTP requests. This option overwrites the <code>org.osgi.service.http.port</code> setting in the <code>sling.properties</code> file. | | <code>-r</code> | path | The root servlet context path for the Http Service (default is /). This option overwrites the <code>org.apache.felix.http.context_path</code> setting in the <code>sling.properties</code> file and requires the embedded Http Service implementation to honor this property. (since Sling Launchpad 2.4.0) | | <code>-D</code> | n=v | Sets the property <code>n</code> to the value <code>v</code>. This option can be added repeatedly setting additional properties. Any property set in this manner overwrites same named properties in the <code>sling.properties</code> file. (since Sling Launchpad 2.4.0) | | <code>-n</code> | -- | Don't install the shutdown hook. See <a href="#shutdown-hook">Shutdown Hook</a> below. (since Sling Launchpad 2.5.2) | | <code>-h</code> | -- | Prints a simple usage message listing all available command line options. |</p>
 <p>The Sling Standalone application looks for a definition of the <code>sling.home</code> setting in the following locations in order of precendence:</p>
 <ol>
   <li>The <code>-c</code> command line option</li>
@@ -61,7 +61,7 @@
   <li><code>threads</code> to get a thread dump</li>
 </ul>
 <p>For the Whole Truth about this functionality see the <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/app/ControlListener.java">ControlListener class source code</a>.</p>
-<p>The interface and port is configurable with the <code>-j</code> command line option. The actual address and port used are written to the <code>${sling.home}/conf/controlport</code> file. So technically the <code>-j</code> option is not required for the <code>status</code> and <code>stop</code> operations because the port information can be read from that file.</p>
+<p>The interface and port is configurable with the <code>-j</code> command line option. The actual address and port used are written to the <code>$\{sling.home}/conf/controlport</code> file. So technically the <code>-j</code> option is not required for the <code>status</code> and <code>stop</code> operations because the port information can be read from that file.</p>
 <p>Note that using a control connection for the Sling Standalone Application presents a potential security issue. For this reason the following defaults apply:</p>
 <ul>
   <li>The server side socket for a running Sling Standalone Application is not created by default, but only if the application is started with the <code>start</code> command line option.</li>
@@ -70,12 +70,28 @@
 </ul>
 <p>For additional security, do not allow the control port to be opened on an externally visible network interface and strictly restrict access to the Sling installation folder (<code>${sling.home}</code>).</p>
 <p>Here's an example session where a Sling Standalone Application is started with the control port active:</p>
-<p>$ java -jar target/org.apache.sling.launchpad-9-SNAPSHOT.jar start 05.04.2016 11:50:45.003 *INFO * [main] Setting sling.home=sling (default) 05.04.2016 11:50:45.006 *INFO * [main] Starting Apache Sling in /foo/sling/launchpad/builder/sling ... 05.04.2016 11:50:45.012 *INFO * [Apache Sling Control Listener@/127.0.0.1:59239] Apache Sling Control Listener started ...</p>
+<pre><code>$ java -jar target/org.apache.sling.launchpad-9-SNAPSHOT.jar start
+05.04.2016 11:50:45.003 *INFO * [main] Setting sling.home=sling (default)
+05.04.2016 11:50:45.006 *INFO * [main] Starting Apache Sling in /foo/sling/launchpad/builder/sling
+...
+05.04.2016 11:50:45.012 *INFO * [Apache Sling Control Listener@/127.0.0.1:59239] Apache Sling Control Listener started
+...
+</code></pre>
 <p>And stopped using its control port, from another terminal:</p>
-<p>$ cat sling/conf/controlport 127.0.0.1:59239 mdsryh1k5fpcgvm7suqnckxkr7fvluzv</p>
-<p>$ telnet 127.0.0.1 59239 Trying 127.0.0.1... Connected to localhost. Escape character is '^]'.</p>
-<p>mdsryh1k5fpcgvm7suqnckxkr7fvluzv stop</p>
-<p>OK Connection closed by foreign host.</p>
+<pre><code>$ cat sling/conf/controlport 
+127.0.0.1:59239
+mdsryh1k5fpcgvm7suqnckxkr7fvluzv
+
+$ telnet 127.0.0.1 59239
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is &#39;^]&#39;.
+
+mdsryh1k5fpcgvm7suqnckxkr7fvluzv stop
+
+OK
+Connection closed by foreign host.
+</code></pre>
 <h3>Shutdown Hook</h3>
 <p>By default the Sling Launchpad standalone application installs a Shutdown Hook with the Java Runtime to make sure the framework is properly terminated in case of a Java termination. In some situations or setups you want to control shutdown of Sling yourselves, so Sling supports a command line option <code>-n</code> to prevent the installation of a shutdown hook.</p>
 <p>Apart from the command line option, the <code>sling.shutdown.hook</code> system property is also supported: If this property is set to <code>true</code> or is not set at all the shutdown hook is installed as expected. If the property is set to anything other than <code>true</code>, e.g. <code>false</code>, the shutdown hook is not installed.</p>
@@ -133,7 +149,8 @@
 <h2>sling.properties</h2>
 <p>The <code>sling.properties</code> file contains the initial setup of the Sling Application and the OSGi framework. Some of the parameters are required and should not be modified without a very good reason. Some parameters may be freely modified to your needs. Please see the inlined comment in the <code>sling.properties</code> file installed when Sling is first started.</p>
 <p>One thing to note is, that the <code>sling.properties</code> file is a simple Java Properties file with support for property references. That is, the value of properties may refer other property values by means of the well known <code>${name}</code> notation. Such property references may even be nested as in</p>
-<p>java.packages=${jre-${java.specification.version}}</p>
+<pre><code>java.packages=${jre-${java.specification.version}}
+</code></pre>
 <h2>Components</h2>
 <p>The Sling Launchapd consists of <em>Launchbad Base</em> project and three additional projects which ultimately create a Standalone Java Application and a Web Appliction with standard parts of Sling.</p>
 <h3>Launchpad Base</h3>
@@ -142,10 +159,9 @@
   <li>
   <p><em>Launcher JAR</em> -- The primary artifact of the Base project contains the actual support to launch the Apache Felix OSGi Framework and install bundles, which are packaged with the application. It also contains the Apache Felix Framework together with the OSGi R4.1 Core and Compendium libraries as well as the Equinox HttpService bridge and the Servlet API.</p></li>
   <li>
-  <p><em>App JAR</em> -- The secondary artifact with classifier <em>app</em> is a minimal Standalone Java Application which may be started by simply typing</p></li>
-</ul>
-<p>$ java -jar org.apache.sling.launchpad.base-app.jar</p>
-<ul>
+    <p><em>App JAR</em> -- The secondary artifact with classifier <em>app</em> is a minimal Standalone Java Application which may be started by simply typing</p>
+    <p>$ java -jar org.apache.sling.launchpad.base-app.jar</p>
+  </li>
   <li>
   <p><em>Web App Archive</em> -- The secondary artifact with classifier <em>webapp</em> is a minimal Web Application, which may simply be deployed into your favirourite servlet container, provided it supports at least Servlet API 2.4.</p></li>
   <li>

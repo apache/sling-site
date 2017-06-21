@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Documentation</h1></header><p>[TOC]</p>
 <h1>Overview</h1>
@@ -62,13 +62,25 @@ shown any more.
 <p>The site is managed with the <a href="https://www.apache.org/dev/cms.html">Apache CMS</a> where the source is kept in SVN at <a href="https://svn.apache.org/repos/asf/sling/site/trunk/content">https://svn.apache.org/repos/asf/sling/site/trunk/content</a>.</p>
 <p>This section lists some Apache Sling features to help with the maintenance of the site, such as automatic link generation.</p>
 <p>Start the file with a <code>Title:</code> line to define the page title and the first H1 tag:</p>
-<p>Here comes the content separated with a blank like from the header ...</p>
+<pre><code>Title: Page Title
+
+Here comes the content separated with a blank like from the
+header ...
+</code></pre>
 <p>The last modification information from SVN (revision, committer, and date/time) is automatically added when the page is rendered</p>
 <p>Excerpts can be added to a page using the <code>Excerpt:</code> header:</p>
-<p>Excerpt: Summary of the page for inclusion in other pages; continuation of the excerpt must be indented</p>
-<p>Here comes the content separated with a blank like from the header ...</p>
+<pre><code>Title: Page Title
+Excerpt: Summary of the page for inclusion in other pages;
+   continuation of the excerpt must be indented
+
+Here comes the content separated with a blank like from the
+header ...
+</code></pre>
 <p>Metadata from child pages can be referred to in the content with the Django variable reference notation using the child page name (without extension) as its container; e.g. for the child page named <code>childpage</code>:</p>
-<p>:::django {{ y|default:"{{" }} children.childpage.headers.excerpt }} {{ y|default:"{{" }} children.childpage.headers.title }}</p>
+<pre><code>:::django
+{{ y|default:&quot;{{&quot; }} children.childpage.headers.excerpt }}
+{{ y|default:&quot;{{&quot; }} children.childpage.headers.title }}
+</code></pre>
 <p>Content Pages can contain Django templates of the form <code>{{ y|default:&quot;{{&quot; }}...}}</code> and <code>{{ y|default:&quot;{%&quot; }}...%}</code>. If so, the page content is evaluated as a Django template before running it through the page template.</p>
 <p>Any page in the site can be referenced with refs.pagename returning properties:</p>
 <p><code>.path</code> : the absolute path of the page on the site</p>
@@ -77,17 +89,30 @@ shown any more.
 <p>All pages in the children namespace are also available in the refs namespace</p>
 <p>Some usefull hints:</p>
 <p>Printing title of another page "handler":</p>
-<p>:::django {{ y|default:"{{" }} refs.handler.headers.title }}</p>
+<pre><code>   :::django
+   {{ y|default:&quot;{{&quot; }} refs.handler.headers.title }}
+</code></pre>
 <p>Printing excerpt of another page "handler":</p>
-<p>:::django {{ y|default:"{{" }} refs.handler.headers.excerpt }}</p>
+<pre><code>   :::django
+   {{ y|default:&quot;{{&quot; }} refs.handler.headers.excerpt }}
+</code></pre>
 <p>Linking to another page "handler":</p>
-<p>:::django ({{ y|default:"{{" }} refs.handler.path }})</p>
+<pre><code>   :::django
+   ({{ y|default:&quot;{{&quot; }} refs.handler.path }})
+</code></pre>
 <p>Printing title as a link to another page "handler":</p>
-<p>:::django [{{ y|default:"{{" }} refs.handler.headers.title }}]({{ y|default:"{{" }} refs.handler.path }})</p>
+<pre><code>   :::django
+   [{{ y|default:&quot;{{&quot; }} refs.handler.headers.title }}]({{ y|default:&quot;{{&quot; }} refs.handler.path }})
+</code></pre>
 <p>Printing excerpt as a link to another page "handler":</p>
-<p>:::django [{{ y|default:"{{" }} refs.handler.headers.excerpt }}]({{ y|default:"{{" }} refs.handler.path }})</p>
+<pre><code>   :::django
+   [{{ y|default:&quot;{{&quot; }} refs.handler.headers.excerpt }}]({{ y|default:&quot;{{&quot; }} refs.handler.path }})
+</code></pre>
 <p>Print a bullet pointed child page list:</p>
-<p>:::django {{ y|default:"{%" }} for label, page in children %}* [{{ y|default:"{{" }} page.headers.title }}]({{ y|default:"{{" }} page.path }}) {{ y|default:"{%" }} endfor %}</p>
+<pre><code>   :::django
+   {{ y|default:&quot;{%&quot; }} for label, page in children %}* [{{ y|default:&quot;{{&quot; }} page.headers.title }}]({{ y|default:&quot;{{&quot; }} page.path }})
+   {{ y|default:&quot;{%&quot; }} endfor %}
+</code></pre>
 <div class="note">
 It is important to have the first part as a single line, otherwise
 the Django/Markdown combo will create a list for each entry.
@@ -98,12 +123,23 @@ the Django/Markdown combo will create a list for each entry.
 <p>When commiting changes to pages into SVN the pages are automatically generated in <a href="http://sling.staging.apache.org">the staging site</a>.</p>
 <p>To manually generate the site or single pages the <a href="http://svn.apache.org/repos/asf/felix/site">site</a> can be checked out from SVN. In addition Perl and Python must be installed for the build tools to work.</p>
 <p>To prepare for site build, the Markdown daemon has to be started:</p>
-<p>:::sh $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket" $ export PYTHONPATH="$PWD/tools/build" $ python "$PWD/tools/build/markdownd.py"</p>
+<pre><code>:::sh
+$ export MARKDOWN_SOCKET=&quot;$PWD/tools/build/../markdown.socket&quot;
+$ export PYTHONPATH=&quot;$PWD/tools/build&quot;
+$ python &quot;$PWD/tools/build/markdownd.py&quot;
+</code></pre>
 <p>The <code>MARKDOWN_SOCKET</code> environment variables is also required by the <code>build_site.pl</code> and <code>build_file.pl</code> scripts to connect to the Markdown daemon.</p>
 <p>To build the complete site use the <code>build_site.pl</code> script:</p>
-<p>:::sh $ tools/build/build_site.pl --source-base $PWD/trunk --target-base $PWD/trunk/target</p>
+<pre><code>:::sh
+$ tools/build/build_site.pl --source-base $PWD/trunk \
+    --target-base $PWD/trunk/target
+</code></pre>
 <p>To build a single page use the <code>build_file.pl</code> script:</p>
-<p>:::sh $ tools/build/build_site.pl --source-base $PWD/trunk --target-base $PWD/trunk/target --source content/documentation.mdtext</p>
+<pre><code>:::sh
+$ tools/build/build_site.pl --source-base $PWD/trunk \
+    --target-base $PWD/trunk/target \
+    --source content/documentation.mdtext
+</code></pre>
 <p>The argument to the <code>--source</code> parameter is relative to the <code>--source-base</code> folder.</p>
 <h2>The Public Wiki</h2>
 <p>The public wiki of Sling is available at <a href="http://cwiki.apache.org/SLING">http://cwiki.apache.org/SLING</a> and is maintained in the Confluence space <em>SLING</em>. Everyone can create an account there. To gain edit rights please ask via the <a href="/project-information.html">mailing list</a>. Any of the administrators listed in the <a href="https://cwiki.apache.org/confluence/spaces/viewspacesummary.action?key=SLING&showAllAdmins=true">Space Overview</a> can give you access.</p>

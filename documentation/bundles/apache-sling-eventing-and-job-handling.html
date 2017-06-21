@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling Eventing and Job Handling</h1></header><h2>Overview</h2>
 <p>The Apache Sling Event Support bundle adds additional features to the OSGi Event Admin and for distributed event processing.</p>
@@ -39,11 +39,27 @@
 <p>The Sling Jobs Processing adds some overhead, so in some cases it might be better to use just the <a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Commons Scheduler Service</a> or the <a href="/documentation/bundles/apache-sling-commons-thread-pool.html">Commons Thread Pool</a> for asynchronous execution of code.</p>
 <p>While older versions of the job handling were based on sending and receiving events through the OSGi event admin, newer versions provide enhanced support through special Java interface. This approach is preferred over the still supported but deprecated event admin way.</p>
 <p>A job consists of two parts, the job topic describing the nature of the job and the payload which is a key value map of serializable objects. A client can initiate a job by calling the <em>JobManager.addJob</em> method:</p>
-<p>import org.apache.sling.jobs.JobManager; import org.apache.felix.scr.annotations.Component; import org.apache.felix.scr.annotations.Reference; import java.util.Map; import java.util.HashMap;</p>
-<p>@Component public class MyComponent {</p>
-<p>@Reference private JobManager jobManager;</p>
-<p>public void startJob() { final Map&lt;String, Object&gt; props = new HashMap&lt;String, Object&gt;(); props.put("item1", "/something"); props.put("count", 5);</p>
-<p>jobManager.addJob("my/special/jobtopic", props); } }</p>
+<pre><code>    import org.apache.sling.jobs.JobManager;
+    import org.apache.felix.scr.annotations.Component;
+    import org.apache.felix.scr.annotations.Reference;
+    import java.util.Map;
+    import java.util.HashMap;
+
+    @Component
+    public class MyComponent {
+
+        @Reference
+        private JobManager jobManager;
+
+        public void startJob() {
+            final Map&lt;String, Object&gt; props = new HashMap&lt;String, Object&gt;();
+            props.put(&quot;item1&quot;, &quot;/something&quot;);
+            props.put(&quot;count&quot;, 5);
+
+            jobManager.addJob(&quot;my/special/jobtopic&quot;, props);
+        }        
+    }
+</code></pre>
 <p>The job topic follows the conventions for the topic of an OSGi event. All objects in the payload must be serializable and publically available (exported by a bundle). This is required as the job is persisted and unmarshalled before processing.</p>
 <p>As soon as the method returns from the job manager, the job is persisted and the job manager ensures that this job will be processed exactly once.</p>
 <h3>JobBuilder</h3>
@@ -51,16 +67,45 @@
 <h3>Scheduled Jobs</h3>
 <p>Scheduled Jobs are put in the queue at a specific time (optionally periodically). For that the <code>ScheduleBuilder</code> must be used which is retrieved via <code>JobBuilder.schedule()</code>.</p>
 <p>An example code for scheduling a job looks like this:</p>
-<p>import org.apache.sling.jobs.JobManager; import org.apache.sling.event.jobs.JobBuilder.ScheduleBuilder; import org.apache.felix.scr.annotations.Component; import org.apache.felix.scr.annotations.Reference;</p>
-<p>@Component public class MyComponent {</p>
-<p>@Reference private JobManager jobManager;</p>
-<p>public void startScheduledJob() { ScheduleBuilder scheduleBuilder = jobManager.startJob("my/special/jobtopic").schedule(); scheduleBuilder.daily(0,0); // execute daily at midnight if (scheduleBuilder.add() == null) { // something went wrong here, use scheduleBuilder.add(List<String>) instead to get further information about the error } } }</p>
+<pre><code>import org.apache.sling.jobs.JobManager;
+import org.apache.sling.event.jobs.JobBuilder.ScheduleBuilder;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Reference;
+
+@Component
+public class MyComponent {
+
+    @Reference
+    private JobManager jobManager;
+
+    public void startScheduledJob() {
+        ScheduleBuilder scheduleBuilder = jobManager.startJob(&quot;my/special/jobtopic&quot;).schedule();
+        scheduleBuilder.daily(0,0); // execute daily at midnight
+        if (scheduleBuilder.add() == null) {
+            // something went wrong here, use scheduleBuilder.add(List&lt;String&gt;) instead to get further information about the error
+        }
+    }
+}
+</code></pre>
 <p>Internally the scheduled Jobs use the <a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Commons Scheduler Service</a>. But in addition they are persisted (by default below <code>/var/eventing/scheduled-jobs</code>) and survive therefore even server restarts. When the scheduled time is reached, the job is automatically added as regular Sling Job through the <code>JobManager</code>.</p>
 <h3>Job Consumers</h3>
 <p>A job consumer is a service consuming and processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:</p>
-<p>import org.apache.felix.scr.annotations.Component; import org.apache.felix.scr.annotations.Service; import org.apache.sling.event.jobs.Job; import org.apache.sling.event.jobs.consumer.JobConsumer;</p>
-<p>@Component @Service(value={JobConsumer.class}) @Property(name=JobConsumer.PROPERTY_TOPICS, value="my/special/jobtopic",) public class MyJobConsumer implements JobConsumer {</p>
-<p>public JobResult process(final Job job) { // process the job and return the result return JobResult.OK; } }</p>
+<pre><code>    import org.apache.felix.scr.annotations.Component;
+    import org.apache.felix.scr.annotations.Service;
+    import org.apache.sling.event.jobs.Job;
+    import org.apache.sling.event.jobs.consumer.JobConsumer;
+
+    @Component
+    @Service(value={JobConsumer.class})
+    @Property(name=JobConsumer.PROPERTY_TOPICS, value=&quot;my/special/jobtopic&quot;,)
+    public class MyJobConsumer implements JobConsumer {
+
+        public JobResult process(final Job job) {
+            // process the job and return the result
+            return JobResult.OK;
+        }
+    }
+</code></pre>
 <p>The <em>Job</em> interface allows to query the topic, the payload and additional information about the current job. The consumer can either return <em>JobResult.OK</em> indicating that the job has been processed, <em>JobResult.FAILED</em> indicating the processing failed, but can be retried or <em>JobResult.CANCEL</em> the processing has failed permanently.</p>
 <h3>Job Handling</h3>
 <p>New jobs are first persisted in the resource tree (for failover etc.), then the job is distributed to an instance responsible for processing the job and on that instance the job is put into a processing queue. There are different types of queues defining how the jobs are processed (one after the other, in parallel etc.).</p>

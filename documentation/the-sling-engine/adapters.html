@@ -2,38 +2,74 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Adapters</h1></header><p>[TOC]</p>
 <p>The <code>Resource</code> and <code>ResourceResolver</code> interfaces are defined with a method <code>adaptTo</code>, which adapts the object to other classes. Using this mechanism the JCR session of the resource resolver calling the <code>adaptTo</code> method with the <code>javax.jcr.Session</code> class object. Likewise the JCR node on which a resource is based can be retrieved by calling the <code>Resource.adaptTo</code> method with the <code>javax.jcr.Node</code> class object.</p>
 <p>To use resources as scripts, the <code>Resource.adaptTo</code> method must support being called with the <code>org.apache.sling.api.script.SlingScript</code> class object. But of course, we do not want to integrate the script manager with the resource resolver. To enable adapting objects to classes which are not foreseen by the original implementation, a factory mechanism is used. This way, the script manager can provide an adapter factory to adapt <code>Resource</code> to <code>SlingScript</code> objects.</p>
 <h1>Adaptable</h1>
 <p>The <code>Adaptable</code> interface defines the API to be implemented by a class providing adaptability to another class. The single method defined by this interface is</p>
-<p>/** * Adapts the adaptable to another type. * <p> * Please not that it is explicitly left as an implementation detail whether * each call to this method with the same <code>type</code> yields the same * object or a new object on each call. * <p> * Implementations of this method should document their adapted types as * well as their behaviour with respect to returning newly created or not * instance on each call. * * @param <AdapterType> The generic type to which this resource is adapted * to * @param type The Class object of the target type, such as * <code>javax.jcr.Node.class</code> or * <code>java.io.File.class</code> * @return The adapter target or <code>null</code> if the resource cannot * adapt to the requested type */ <AdapterType> AdapterType adaptTo(Class<AdapterType> type);</p>
+<pre><code>/**
+ * Adapts the adaptable to another type.
+ * &lt;p&gt;
+ * Please not that it is explicitly left as an implementation detail whether
+ * each call to this method with the same &lt;code&gt;type&lt;/code&gt; yields the same
+ * object or a new object on each call.
+ * &lt;p&gt;
+ * Implementations of this method should document their adapted types as
+ * well as their behaviour with respect to returning newly created or not
+ * instance on each call.
+ *
+ * @param &lt;AdapterType&gt; The generic type to which this resource is adapted
+ *            to
+ * @param type The Class object of the target type, such as
+ *            &lt;code&gt;javax.jcr.Node.class&lt;/code&gt; or
+ *            &lt;code&gt;java.io.File.class&lt;/code&gt;
+ * @return The adapter target or &lt;code&gt;null&lt;/code&gt; if the resource cannot
+ *         adapt to the requested type
+ */
+&lt;AdapterType&gt; AdapterType adaptTo(Class&lt;AdapterType&gt; type);
+</code></pre>
 <p>This method is called to get a view of the same object in terms of another class. Examples of implementations of this method are the Sling <code>ResourceResolver</code> implementation providing adapting to a JCR session and the Sling JCR based <code>Resource</code> implementation providing adapting to a JCR node.</p>
 <h1>Listing Adaptation Possibilities</h1>
 <p>The Web Console Plugin at <code>/system/console/adapters</code> and at <code>/system/console/status-adapters</code> can be used to list all existing adaptables in the system with their according adapter classes.</p>
 <p>The web console plugin evaluates metadata being provided by any <code>AdapterFactory</code> services as well as metadata being provided through the file <code>SLING-INF/adapters.json</code></p>
 <h1>Implementing Adaptable</h1>
 <p>Each adaptable should derive from <code>SlingAdaptable</code> to automatically profit from all according <code>AdapterFactories</code> registered in the system. In case the <code>adaptTo(...)</code> method is being overwritten an according <code>SLING-INF/adapters.json</code> should be included in the providing bundle listing all adaptation possibilities. While this file is not strictly necessary for the actual adaptation to work, it provides useful information to the Web Console plugin. Otherwise developers will not know which adaptations are supported. The format of this JSON file looks like this (<a href="https://issues.apache.org/jira/browse/SLING-2295">SLING-2295</a>):</p>
-<p>{ <fully qualified class name of adaptable> : { <condition> : &lt;fully qualified class name of adapter, may be a JSON array&gt; } }</p>
+<pre><code>{ 
+  &lt;fully qualified class name of adaptable&gt; : {
+    &lt;condition&gt; :  &lt;fully qualified class name of adapter, may be a JSON array&gt;
+  }
+}
+</code></pre>
 <p>For example</p>
-<p>{ "org.apache.sling.api.resource.Resource" : { "If the adaptable is a AuthorizableResource." : [ "java.util.Map", "org.apache.sling.api.resource.ValueMap", "org.apache.jackrabbit.api.security.user.Authorizable" ], "If the resource is an AuthorizableResource and represents a JCR User" : "org.apache.jackrabbit.api.security.user.User", "If the resource is an AuthorizableResource and represents a JCR Group" : "org.apache.jackrabbit.api.security.user.Group" } }</p>
+<pre><code>{
+  &quot;org.apache.sling.api.resource.Resource&quot; : {
+    &quot;If the adaptable is a AuthorizableResource.&quot; : [
+      &quot;java.util.Map&quot;,
+      &quot;org.apache.sling.api.resource.ValueMap&quot;,
+      &quot;org.apache.jackrabbit.api.security.user.Authorizable&quot;
+    ],
+    &quot;If the resource is an AuthorizableResource and represents a JCR User&quot; : &quot;org.apache.jackrabbit.api.security.user.User&quot;,
+    &quot;If the resource is an AuthorizableResource and represents a JCR Group&quot; : &quot;org.apache.jackrabbit.api.security.user.Group&quot;
+  }
+}
+</code></pre>
 <p>Instead of manually creating that JSON file, the annotations from the module <a href="https://svn.apache.org/viewvc/sling/trunk/tooling/maven/adapter-annotations/">adapter-annotations</a> can be used together with the goal <code>generate-adapter-metadata</code> from the <a href="http://sling.apache.org/components/maven-sling-plugin/generate-adapter-metadata-mojo.html">Maven Sling Plugin</a> to generate it automatically (<a href="https://issues.apache.org/jira/browse/SLING-2313">SLING-2313</a>).</p>
 <h1>Extending Adapters</h1>
 <p>Sometimes an <code>Adaptable</code> implementation cannot foresee future uses and requirements. To cope with such extensibility requirements two interfaces and an abstract base class are defined:</p>
@@ -44,13 +80,55 @@
 </ul>
 <h2>AdapterFactory</h2>
 <p>The <code>AdapterFactory</code> interface defines the service interface and API for factories supporting extensible adapters for <code>SlingAdaptable</code> objects. The interface has a single method:</p>
-<p>/** * Adapt the given object to the adaptable type. The adaptable object is * guaranteed to be an instance of one of the classes listed in the * {@link #ADAPTABLE_CLASSES} services registration property. The type * parameter is one of the classes listed in the {@link #ADAPTER_CLASSES} * service registration properties. * <p> * This method may return <code>null</code> if the adaptable object cannot * be adapted to the adapter (target) type for any reason. In this case, the * implementation should log a message to the log facility noting the cause * for not being able to adapt. * <p> * Note that the <code>adaptable</code> object is not required to implement * the <code>Adaptable</code> interface, though most of the time this method * is called by means of calling the {@link Adaptable#adaptTo(Class)} * method. * * @param <AdapterType> The generic type of the adapter (target) type. * @param adaptable The object to adapt to the adapter type. * @param type The type to which the object is to be adapted. * @return The adapted object or <code>null</code> if this factory instance * cannot adapt the object. */ <AdapterType> AdapterType getAdapter(Object adaptable, Class<AdapterType> type);</p>
+<pre><code>/**
+ * Adapt the given object to the adaptable type. The adaptable object is
+ * guaranteed to be an instance of one of the classes listed in the
+ * {@link #ADAPTABLE_CLASSES} services registration property. The type
+ * parameter is one of the classes listed in the {@link #ADAPTER_CLASSES}
+ * service registration properties.
+ * &lt;p&gt;
+ * This method may return &lt;code&gt;null&lt;/code&gt; if the adaptable object cannot
+ * be adapted to the adapter (target) type for any reason. In this case, the
+ * implementation should log a message to the log facility noting the cause
+ * for not being able to adapt.
+ * &lt;p&gt;
+ * Note that the &lt;code&gt;adaptable&lt;/code&gt; object is not required to implement
+ * the &lt;code&gt;Adaptable&lt;/code&gt; interface, though most of the time this method
+ * is called by means of calling the {@link Adaptable#adaptTo(Class)}
+ * method.
+ *
+ * @param &lt;AdapterType&gt; The generic type of the adapter (target) type.
+ * @param adaptable The object to adapt to the adapter type.
+ * @param type The type to which the object is to be adapted.
+ * @return The adapted object or &lt;code&gt;null&lt;/code&gt; if this factory instance
+ *         cannot adapt the object.
+ */
+&lt;AdapterType&gt; AdapterType getAdapter(Object adaptable,
+        Class&lt;AdapterType&gt; type);
+</code></pre>
 <p>Implementations of this interface are registered as OSGi services providing two lists: The list of classes which may be adapted (property named <code>adaptables</code>) and the list of classes to which the adapted class may be adapted (property named <code>adapters</code>). A good example of an Class implementing <code>AdapterFactory</code> is the <code>SlingScriptAdapterFactory</code>. In addition a property named <code>adapter.condition</code> can be provided which is supposed to contain a string value explaining under which circumstances the adaption will work (if there are any restrictions). This is evaluated by the Web Console Plugin.</p>
 <p><code>AdapterFactory</code> services are gathered by a <code>AdapterManager</code> implementation for use by consumers. Consumers should not care for <code>AdapterFactory</code> services.</p>
 <h2>AdapterManager</h2>
 <p>The <code>AdapterManager</code> is defines the service interface for the generalized and extensible use of <code>AdapterFactory</code> services. Thus the adapter manager may be retrieved from the service registry to try to adapt whatever object that needs to be adapted - provided appropriate adapters exist.</p>
 <p>The <code>AdapterManager</code> interface is defined as follows:</p>
-<p>/** * Returns an adapter object of the requested <code>AdapterType</code> for * the given <code>adaptable</code> object. * <p> * The <code>adaptable</code> object may be any non-<code>null</code> object * and is not required to implement the <code>Adaptable</code> interface. * * @param <AdapterType> The generic type of the adapter (target) type. * @param adaptable The object to adapt to the adapter type. * @param type The type to which the object is to be adapted. * @return The adapted object or <code>null</code> if no factory exists to * adapt the <code>adaptable</code> to the <code>AdapterType</code> * or if the <code>adaptable</code> cannot be adapted for any other * reason. */ <AdapterType> AdapterType getAdapter(Object adaptable, Class<AdapterType> type);</p>
+<pre><code>/**
+ * Returns an adapter object of the requested &lt;code&gt;AdapterType&lt;/code&gt; for
+ * the given &lt;code&gt;adaptable&lt;/code&gt; object.
+ * &lt;p&gt;
+ * The &lt;code&gt;adaptable&lt;/code&gt; object may be any non-&lt;code&gt;null&lt;/code&gt; object
+ * and is not required to implement the &lt;code&gt;Adaptable&lt;/code&gt; interface.
+ *
+ * @param &lt;AdapterType&gt; The generic type of the adapter (target) type.
+ * @param adaptable The object to adapt to the adapter type.
+ * @param type The type to which the object is to be adapted.
+ * @return The adapted object or &lt;code&gt;null&lt;/code&gt; if no factory exists to
+ *         adapt the &lt;code&gt;adaptable&lt;/code&gt; to the &lt;code&gt;AdapterType&lt;/code&gt;
+ *         or if the &lt;code&gt;adaptable&lt;/code&gt; cannot be adapted for any other
+ *         reason.
+ */
+&lt;AdapterType&gt; AdapterType getAdapter(Object adaptable,
+        Class&lt;AdapterType&gt; type);
+</code></pre>
 <p>Any object can theoretically be adapted to any class even if it does not implement the <code>Adaptable</code> interface, if an <code>AdapterFactory</code> service delivers a <code>getAdapter()</code> method which adapts an object to another one. To check if there's any existing <code>AdapterFactory</code> which can adapt a given object to another one the <code>AdapterManager</code> service with its <code>getAdapter()</code> method does the job. So the <code>Adaptable</code> interface merely is an indicator that the object provides built-in support for being adapted.</p>
 <h2>SlingAdaptable</h2>
 <p>The <code>SlingAdaptable</code> class is an implementation of the <code>Adaptable</code> interface which provides built-in support to call the <code>AdapterManager</code> to provide an adapter from the <code>Adaptable</code> object to the requested class.</p>

@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Client Request Logging</h1></header><p>Sling provides extensive support to log various information at the before and after processing client requests. Out of the box, there are two loggers configured to write traditional <code>access.log</code> and <code>request.log</code> files. In addition more logging can be configured by providing OSGi Configuration Admin configuration.</p>
 <h2>Traditional access.log and request.log Files</h2>
@@ -37,7 +37,7 @@
       <td>Request Log Name </td>
       <td><code>request.log.output</code> </td>
       <td>logs/request.log </td>
-      <td>Name of the destination for the request log. The request log logs the entry and exit of each request into and out of the system together with the entry time, exit time, time to process the request, a request counter as well as the final status code and response content type. In terms of Request Logger Service formats, request entry is logged with the format <code>%t [%R] -&gt; %m %U%q %H</code> and request exit is logged with the format <code>%{end}t [%R] &lt;- %s %{Content-Type}o %Dms</code> (See <a href="#log-format-specification">Log Format Specification</a> below for the specification of the format). </td>
+      <td>Name of the destination for the request log. The request log logs the entry and exit of each request into and out of the system together with the entry time, exit time, time to process the request, a request counter as well as the final status code and response content type. In terms of Request Logger Service formats, request entry is logged with the format <code>%t \[%R\] \-&gt; %m %U%q %H</code> and request exit is logged with the format <code>%\{end}t \[%R] &lt;\- %s %\{Content-Type}o %Dms</code> (See <a href="#log-format-specification">Log Format Specification</a> below for the specification of the format). </td>
     </tr>
     <tr>
       <td>Request Log Type </td>
@@ -55,7 +55,7 @@
       <td>Access Log Name </td>
       <td><code>access.log.output</code> </td>
       <td>logs/access.log </td>
-      <td>Name of the destination for the access log. The access log writes an entry for each request as the request terminates using the NCSA extended/combined log format. In terms of Request Logger Service formats the access log is written with the format <code>%h %l %u %t &quot;%r&quot; %&gt;s %b &quot;%{Referer}i&quot; &quot;%{User-Agent}i&quot;</code> (See <a href="#log-format-specification">Log Format Specification</a> below for the specification of the format). </td>
+      <td>Name of the destination for the access log. The access log writes an entry for each request as the request terminates using the NCSA extended/combined log format. In terms of Request Logger Service formats the access log is written with the format <code>%h %l %u %t &quot;%r&quot; %&gt;s %b &quot;%\{Referer}i&quot; &quot;%\{User-Agent}i&quot;</code> (See <a href="#log-format-specification">Log Format Specification</a> below for the specification of the format). </td>
     </tr>
     <tr>
       <td>Access Log Type </td>
@@ -171,7 +171,7 @@
       <td>Size of response in bytes, excluding HTTP headers. In CLF format, i.e. a '-' rather than a 0 when no bytes are sent. </td>
     </tr>
     <tr>
-      <td><code>%{Foobar}C</code> </td>
+      <td><code>%\{Foobar}C</code> </td>
       <td>The contents of cookie Foobar in the request sent to the server. </td>
     </tr>
     <tr>
@@ -179,7 +179,7 @@
       <td>The time taken to serve the request, in milliseconds. Please note that this deviates from the Apache httpd format. </td>
     </tr>
     <tr>
-      <td><code>%{FOOBAR}e</code> </td>
+      <td><code>%\{FOOBAR}e</code> </td>
       <td>Not supported in Sling; prints nothing. </td>
     </tr>
     <tr>
@@ -195,7 +195,7 @@
       <td>The request protocol </td>
     </tr>
     <tr>
-      <td><code>%{Foobar}i</code> </td>
+      <td><code>%\{Foobar}i</code> </td>
       <td>The contents of Foobar: header line(s) in the request sent to the server. </td>
     </tr>
     <tr>
@@ -211,11 +211,11 @@
       <td>The request method </td>
     </tr>
     <tr>
-      <td><code>%{Foobar}n</code> </td>
+      <td><code>%\{Foobar}n</code> </td>
       <td>Not supported in Sling; prints nothing. </td>
     </tr>
     <tr>
-      <td><code>%{Foobar}o</code> </td>
+      <td><code>%\{Foobar}o</code> </td>
       <td>The contents of Foobar: header line(s) in the reply. </td>
     </tr>
     <tr>
@@ -223,7 +223,7 @@
       <td>The canonical port of the server serving the request </td>
     </tr>
     <tr>
-      <td><code>%{format}p</code> </td>
+      <td><code>%\{format}p</code> </td>
       <td>The canonical port of the server serving the request or the server's actual port or the client's actual port. Valid formats are canonical, local, or remote. </td>
     </tr>
     <tr>
@@ -231,7 +231,7 @@
       <td>The <em>name of the thread</em> ~~process ID of the child~~ that serviced the request. </td>
     </tr>
     <tr>
-      <td><code>%{format}P</code> </td>
+      <td><code>%\{format}P</code> </td>
       <td>Same as <code>%P</code>; the <code>format</code> parameter is ignored. </td>
     </tr>
     <tr>
@@ -255,7 +255,7 @@
       <td>Time the request was received (standard english format) </td>
     </tr>
     <tr>
-      <td><code>%{format}t</code> </td>
+      <td><code>%\{format}t</code> </td>
       <td>Same as <code>%t</code>; the <code>format</code> parameter is ignored unless it is the literal value <em>end</em> indicating to use the time of request terminating (instead of the time of request receipt). </td>
     </tr>
     <tr>
@@ -296,20 +296,19 @@
 <p>Particular items can be restricted to print only for responses with specific HTTP status codes by placing a comma-separated list of status codes immediately following the "%". For example, "%400,501{User-agent}i" logs User-agent on 400 errors and 501 errors only. For other status codes, the literal string "-" will be logged. The status code list may be preceded by a "!" to indicate negation: "%!200,304,302{Referer}i" logs Referer on all requests that do not return one of the three specified codes.</p>
 <p>The Apache httpd modifiers "&lt;" and "&gt;" are not supported by Sling and currently ignored.</p>
 <p><strong>Some Notes</strong></p>
-<p>For security reasons non-printable and other special characters in %C, %i and %o are escaped using uhhhh sequences, where hhhh stands for the hexadecimal representation of the character's unicode value. Exceptions from this rule are " and , which are escaped by prepending a backslash, and all whitespace characters, which are written in their Java-style notation (n, t, etc).</p>
+<p>For security reasons non-printable and other special characters in %C, %i and %o are escaped using \uhhhh sequences, where hhhh stands for the hexadecimal representation of the character's unicode value. Exceptions from this rule are " and \, which are escaped by prepending a backslash, and all whitespace characters, which are written in their Java-style notation (\n, \t, etc).</p>
 <h4>Rotating Logger Files</h4>
 <p>If you want to write the request (and access) logging information into a rotated file, you should configure as follows:</p>
 <ol>
   <li>Configure the Log Type to be a <em>Logger Name</em> and some usefull Logger name. For example <code>clientlog.request</code>.</li>
-  <li>Create an <em>Apache Sling Logging Logger Configuration</em> for this Logger name according to [Logging Configuration]({{ refs.logging-logger-configuration.path }}) with the following setup:</li>
-</ol>
-<ul>
-  <li>Allow message at INFO (Information) level to be logged which is the level used by the request loggers</li>
-  <li>Define the appropriate log file name, for example <code>logs/client.request.log</code></li>
-  <li>Use only <code>{5</code>} as the message format because request logger messages are generally already fully formated with required timestamp etc.</li>
-  <li>Add any Logger names used for the client request log configuration, <code>clientlog.request</code> in the example above, to the Logger field. By clicking on the <code>+</code> (plus) button you may add more than a single logger name whose messages are written to this file.</li>
-</ul>
-<ol>
+  <li>Create an <em>Apache Sling Logging Logger Configuration</em> for this Logger name according to [Logging Configuration]({{ refs.logging-logger-configuration.path }}) with the following setup:
+    <ul>
+      <li>Allow message at INFO (Information) level to be logged which is the level used by the request loggers</li>
+      <li>Define the appropriate log file name, for example <code>logs/client.request.log</code></li>
+      <li>Use only <code>\{5</code>} as the message format because request logger messages are generally already fully formated with required timestamp etc.</li>
+      <li>Add any Logger names used for the client request log configuration, <code>clientlog.request</code> in the example above, to the Logger field. By clicking on the <code>+</code> (plus) button you may add more than a single logger name whose messages are written to this file.</li>
+    </ul>
+  </li>
   <li>Optionally, you may create an <em>Apache Sling Logging Writer Configuration</em> for the log file defined in the previous step to better control rotation setup. See [Log Writer Configuration]({{ refs.logging-log-writer-configuration.path }}) for full details.</li>
 </ol></section></div></div>            
 <div class="footer">

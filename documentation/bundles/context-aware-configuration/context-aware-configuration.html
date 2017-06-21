@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling Context-Aware Configuration</h1></header><p>[TOC]</p>
 <h1>About</h1>
@@ -41,23 +41,29 @@
   <li>getting all child resources of a named configuration resource.</li>
 </ul>
 <p>For example to get a configuration resource for a content resource at /content/mysite/page1, you would get a reference to the OSGi service <code>org.apache.sling.caconfig.resource.ConfigurationResourceResolver</code> and write:</p>
-<h1>!java</h1>
-<p>Resource contentResource = resourceResolver.getResource("/content/mysite/page1");</p>
-<p>Resource configResource = configurationResourceResolver.getResource(contentResource, "my-bucket", "my-config");</p>
+<pre><code>#!java
+Resource contentResource = resourceResolver.getResource(&quot;/content/mysite/page1&quot;);
+
+Resource configResource = configurationResourceResolver.getResource(contentResource, &quot;my-bucket&quot;, &quot;my-config&quot;);
+</code></pre>
 <p>Or if you have several configuration resources of the same type and you need all of them:</p>
-<h1>!java</h1>
-<p>Collection<Resource> configResources = configurationResourceResolver.getResourceCollection(contentResource, "my-bucket", "my-config");</p>
+<pre><code>#!java
+Collection&lt;Resource&gt; configResources = configurationResourceResolver.getResourceCollection(contentResource, &quot;my-bucket&quot;, &quot;my-config&quot;);
+</code></pre>
 <p>The ConfigurationResourceResolver has a concept of "buckets" (2nd parameter in the method signatures) that allows to separate different types of configuration resources into different resource hierarchies, so you have a separate "namespaces" for the named configuration resources. For example one bucket for workflow definitions, one bucket for template definitions, one for key/value-pairs.</p>
 <p>The configuration name (3rd parameter) defines which configuration you are interested in. The name can be a relative path as well (e.g. <code>&quot;sub1/my-config&quot;</code>).</p>
 <h2>Context-Aware Configurations</h2>
 <p>While context-aware resources give you pure resources and your application code can decide what to do with it, the most common use case is some configuration. A configuration is usually described by an annotation class (like Declarative Services does for component configurations). These are typed configuration objects and the context-aware configuration support automatically converts resources into the wanted configuration type.</p>
 <p>Context-aware configurations are built on top of context-aware resources. The same concept is used: configurations are named and the service to get them is the ConfigurationResolver. You can get a reference to the OSGi service <code>org.apache.sling.caconfig.ConfigurationResolver</code> - it has a single method to get a ConfigurationBuilder. Alternatively you can directly adapt your content resource directly to the ConfigurationBuilder interface and get the configuration:</p>
-<h1>!java</h1>
-<p>Resource contentResource = resourceResolver.getResource("/content/mysite/page1");</p>
-<p>MyConfig config = contentResource.adaptTo(ConfigurationBuilder.class).as(MyConfig.class);</p>
+<pre><code>#!java
+Resource contentResource = resourceResolver.getResource(&quot;/content/mysite/page1&quot;);
+
+MyConfig config = contentResource.adaptTo(ConfigurationBuilder.class).as(MyConfig.class);
+</code></pre>
 <p>Or if you want to get a list of configurations:</p>
-<h1>!java</h1>
-<p>Collection<MyConfig> configs = contentResource.adaptTo(ConfigurationBuilder.class).asCollection(MyConfig.class);</p>
+<pre><code>#!java
+Collection&lt;MyConfig&gt; configs = contentResource.adaptTo(ConfigurationBuilder.class).asCollection(MyConfig.class);
+</code></pre>
 <p>The ConfigurationBuilder also supports getting the configurations as ValueMap or by adapting the configuration resources e.g. to a Sling Model. In this case you have to specify a configuration name which is otherwise derived automatically from the annotation class.</p>
 <p>Internally the ConfigurationResolver used the ConfigurationResourceResolver to get the configuration resources. It uses always the bucket name <code>sling:configs</code>.</p>
 <h1>Contexts and configuration references</h1>
@@ -68,48 +74,73 @@
 <h1>Describe configurations via annotation classes</h1>
 <p>You need an annotation class for each configuration you want to read via the ConfigurationBuilder. The annotation classes may be provided by the applications/libraries you use, or you can define your own annotation classes for your application.</p>
 <p>The annotation class may look like this:</p>
-<h1>!java</h1>
-<p>@Configuration(label="My Configuration", description="Describe me") public @interface MyConfig {</p>
-<p>@Property(label="Parameter #1", description="Describe me") String param1();</p>
-<p>@Property(label="Parameter with Default value", description="Describe me") String paramWithDefault() default "defValue";</p>
-<p>@Property(label="Integer parameter", description="Describe me") int intParam();</p>
-<p>}</p>
-<p>The <code>@Configuration</code> annotation is mandatory. All properties on the <code>@Configuration</code> annotation and the <code>@Property</code> annotations are optional - they provide additional metadata for tooling e.g. configuration editors.</p>
+<pre><code>#!java
+</code></pre>
+<p> @Configuration(label="My Configuration", description="Describe me")  public @interface MyConfig {</p>
+<p> @Property(label="Parameter #1", description="Describe me")  String param1();</p>
+<p> @Property(label="Parameter with Default value", description="Describe me")  String paramWithDefault() default "defValue";</p>
+<p> @Property(label="Integer parameter", description="Describe me")  int intParam();</p>
+<p> }</p>
+<p>The <code>@Configuration</code> annotation is mandatory. All properties on the <code>@Configuration</code> annotation and the <code>@Property</code> annotations are optional - they provide additional metadata for tooling e.g. configuration editors. </p>
 <p>By default the annotation class name is used as configuration name, which is also the recommended option. If you want to use an arbitrary configuration name you can specify it via a <code>name</code> property on the <code>@Configuration</code> annotation.</p>
 <p>You may specify custom properties (via <code>property</code> string array) for the configuration class or each properties. They are not used by the Sling Context-Aware configuration implementation, but may be used by additional tooling to manage the configurations.</p>
 <p>If you provide your own configuration annotation classes in your bundle, you have to export them and list all class names in a bundle header named <code>Sling-ContextAware-Configuration-Classes</code> - example:</p>
-<p>Sling-ContextAware-Configuration-Classes: x.y.z.MyConfig, x.y.z.MyConfig2</p>
-<p>To automate this you can use the Context-Aware Configuration bnd plugin (see next chapter).</p>
+<pre><code>Sling-ContextAware-Configuration-Classes: x.y.z.MyConfig, x.y.z.MyConfig2
+</code></pre>
+<p>To automate this you can use the Context-Aware Configuration bnd plugin (see next chapter). </p>
 <h1>Accessing configuration from HTL/Sightly templates</h1>
 <p>Context-Aware configuration contains a Scripting Binding Values provider with automatically registeres a <code>caconfig</code> variable in your HTL/Sightly scripts to directly access context-aware configurations. It supports both singleton configurations and configuration lists. Please note that configuration lists are only supported when configuration metadata is present (e.g. via an annotation class).</p>
 <p>Example for accessing a property of a singleton configuration (with a config name <code>x.y.z.ConfigSample</code>):</p>
-<h1>!html</h1>
-<dl>
-<dt>stringParam:</dt>
-<dd>${caconfig['x.y.z.ConfigSample'].stringParam}</dd>
-</dl>
+<p> #!html  <dl>  <dt>stringParam:</dt>  <dd>${caconfig['x.y.z.ConfigSample'].stringParam}</dd>  </dl></p>
 <p>Example for accessing a property of a configuration list (with a config name <code>x.y.z.ConfigSampleList</code>):</p>
-<h1>!html</h1>
-<p>&lt;ul data-sly-list.item="${caconfig['x.y.z.ConfigSampleList']}"&gt; <li>stringParam: ${item.stringParam}</li> </ul></p>
+<p> #!html  &lt;ul data-sly-list.item="${caconfig['x.y.z.ConfigSampleList']}"&gt;  <li>stringParam: ${item.stringParam}</li>  </ul></p>
 <p>If you want to access nested configurations you have to use a slash "/" as separator in the property name. Example:</p>
-<h1>!html</h1>
-<p>${caconfig['x.y.z.ConfigSample']['nestedConfig/stringParam']}</p>
+<pre><code>#!html
+${caconfig[&#39;x.y.z.ConfigSample&#39;][&#39;nestedConfig/stringParam&#39;]}
+</code></pre>
 <h1>Context-Aware Configuration bnd plugin</h1>
 <p>A <a href="http://bnd.bndtools.org/">bnd</a> plugin is provided that scans the classpath of a bundle Maven project at build time and automatically generates a <code>Sling-ContextAware-Configuration-Classes</code> bundle header for all annotation classes annotated with <code>@Configuration</code>. It can be used by both <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin</a> and <a href="https://github.com/bndtools/bnd/tree/master/maven">bnd-maven-plugin</a>, as both use the bnd library internally.</p>
 <p>Example configuration:</p>
-<h1>!xml</h1>
-<p><plugin> <groupId>org.apache.felix</groupId> <artifactId>maven-bundle-plugin</artifactId> <extensions>true</extensions> <configuration> <instructions> <!-- Generate bundle header containing all configuration annotation classes --> &lt;_plugin&gt;org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin&lt;/_plugin&gt; </instructions> </configuration> <dependencies> <dependency> <groupId>org.apache.sling</groupId> <artifactId>org.apache.sling.caconfig.bnd-plugin</artifactId> <version>1.0.2</version> </dependency> </dependencies> </plugin></p>
+<pre><code>#!xml
+&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+    &lt;extensions&gt;true&lt;/extensions&gt;
+    &lt;configuration&gt;
+        &lt;instructions&gt;
+            &lt;!-- Generate bundle header containing all configuration annotation classes --&gt;
+            &lt;_plugin&gt;org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin&lt;/_plugin&gt;
+        &lt;/instructions&gt;
+    &lt;/configuration&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+            &lt;artifactId&gt;org.apache.sling.caconfig.bnd-plugin&lt;/artifactId&gt;
+            &lt;version&gt;1.0.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;
+</code></pre>
 <h1>Unit Tests with Context-Aware Configuration</h1>
 <p>When your code depends on Sling Context-Aware Configuration and you want to write Sling Mocks-based unit tests running against the Context-Aware configuration implementation you have to register the proper OSGi services to use them. To make this easier, a "Apache Sling Context-Aware Configuration Mock Plugin" is provided which does this job for you.</p>
 <p>Example for setting up the unit test context rule:</p>
-<h1>!java</h1>
-<p>import static org.apache.sling.testing.mock.caconfig.ContextPlugins.CACONFIG;</p>
-<p>public class MyTest {</p>
-<p>@Rule public SlingContext context = new SlingContextBuilder().plugin(CACONFIG).build();</p>
-<p>@Before public void setUp() { // register configuration annotation class MockContextAwareConfig.registerAnnotationClasses(context, SimpleConfig.class); } ...</p>
+<pre><code>#!java
+import static org.apache.sling.testing.mock.caconfig.ContextPlugins.CACONFIG;
+
+public class MyTest {
+
+    @Rule
+    public SlingContext context = new SlingContextBuilder().plugin(CACONFIG).build();
+
+    @Before
+    public void setUp() {
+       // register configuration annotation class
+       MockContextAwareConfig.registerAnnotationClasses(context, SimpleConfig.class);
+    }
+...
+</code></pre>
 <p>In you project define a test dependency (additionally the sling-mock dependency is required):</p>
-<h1>!xml</h1>
-<p><dependency> <groupId>org.apache.sling</groupId> <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId> <scope>test</scope> </dependency></p>
+<p> #!xml  <dependency>  <groupId>org.apache.sling</groupId>  <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>  <scope>test</scope>  </dependency></p>
 <p>Full example: <a href="https://github.com/apache/sling/blob/trunk/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java">Apache Sling Context-Aware Configuration Mock Plugin Test</a></p>
 <h1>Customizing the configuration lookup</h1>
 <p>The Context-Aware Configuration implementation provides a set of Service Provider Interfaces (SPI) that allows you to overlay, enhance or replace the default implementation and adapt it to your needs.</p>

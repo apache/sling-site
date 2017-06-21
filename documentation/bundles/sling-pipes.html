@@ -2,27 +2,35 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Pipes</h1></header><p>tool for doing extract - transform - load operations through a resource tree configuration.</p>
 <p>often one-shot data transformations need sample code to be written &amp; executed. This tiny tool set intends to provide ability to do such transformations with proven &amp; reusable blocks called pipes, streaming resources from one to the other.</p>
 <h2>What is a pipe</h2>
-<p>getOutputBinding ^ | getInput +---+---+ getOutput | | +----&gt; Pipe +----&gt; | | +-------+</p>
+<pre><code>         getOutputBinding
+               ^
+               |
+ getInput  +---+---+   getOutput
+           |       |
+      +----&gt; Pipe  +----&gt;
+           |       |
+           +-------+
+</code></pre>
 <p>A sling pipe is essentially a sling resource stream:</p>
 <ul>
   <li>it provides an output as a sling resource iterator</li>
@@ -33,7 +41,7 @@
 <ul>
   <li>"reader" pipes, that will just output a set of resource depending on the input</li>
   <li>"writer" pipes, that write to the repository, depending on configuration and output</li>
-  <li>"container" pipes, that contains pipes, and whose job is to chain their execution : input is the input of their first pipe, output is the output of the last pipe it contains.</li>
+  <li>"container" pipes, that contains pipes, and whose job is to chain their execution : input is the input of their first pipe,  output is the output of the last pipe it contains.</li>
 </ul>
 <p>A <code>Plumber</code> osgi service is provided to help getting &amp; executing pipes.</p>
 <h2>Registered Pipes</h2>
@@ -150,29 +158,34 @@
   <li>name/value of each property of some pipes (write, remove)</li>
 </ul>
 <p>you can use name of previous pipes in the pipe container, or the special binding <code>path</code>, where <code>path.previousPipe</code> is the path of the current resource of previous pipe named <code>previousPipe</code></p>
-<p>global bindings can be set at pipe execution, external scripts can be added to the execution as well (see pipe configurations)</p>
+<p>global bindings can be set at pipe execution, external scripts can be added to the execution as well (see pipe  configurations)</p>
 <h2>How to execute a pipe</h2>
 <p>for now it's possible to execute Pipes through GET (read) or POST (read/write) commands:</p>
 <h3>Request Path</h3>
 <ul>
-  <li>either you'll need to create a slingPipes/plumber resource, say <code>etc/pipes</code> and then to execute</li>
+  <li>
+    <p>either you'll need to create a slingPipes/plumber resource, say <code>etc/pipes</code> and then to execute</p>
+    <p>curl -u admin:admin -F "path=/etc/pipes/mySamplePipe" http://localhost:8080/etc/pipes.json</p>
+  </li>
+  <li>
+    <p>either you execute the request directly on the pipe Path, e.g.</p>
+    <p>curl -u admin:admin http://localhost:8080/etc/pipes/mySamplePipe.json</p>
+  </li>
 </ul>
-<p>curl -u admin:admin -F "path=/etc/pipes/mySamplePipe" http://localhost:8080/etc/pipes.json</p>
-<ul>
-  <li>either you execute the request directly on the pipe Path, e.g.</li>
-</ul>
-<p>curl -u admin:admin http://localhost:8080/etc/pipes/mySamplePipe.json</p>
 <p>which will return you the path of the pipes that have been through the output of the configured pipe.</p>
 <h3>Request Parameter <code>binding</code></h3>
 <p>you can add as <code>bindings</code> parameter a json object of global bindings you want to add for the execution of the pipe</p>
 <p>e.g.</p>
-<p>curl -u admin:admin -F "path=/etc/pipes/test" -F "bindings={testBinding:'foo'}" http://localhost:4502/etc/pipes.json</p>
+<pre><code>curl -u admin:admin -F &quot;path=/etc/pipes/test&quot; -F &quot;bindings={testBinding:&#39;foo&#39;}&quot; http://localhost:4502/etc/pipes.json
+</code></pre>
 <p>will returns something like</p>
-<p>{"size":2, "items":["/one/output/resource", "another/one"]}</p>
+<pre><code>{&quot;size&quot;:2, &quot;items&quot;:[&quot;/one/output/resource&quot;, &quot;another/one&quot;]}
+</code></pre>
 <h3>Request Parameter <code>writer</code></h3>
 <p>you can add as <code>writer</code> parameter a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. Note this works only if the pipe called is a container pipe.</p>
 <p>e.g.</p>
-<p>curl -u admin:admin http://localhost:4502/etc/pipes/users.json?writer={"user":"${user.fullName}"}</p>
+<pre><code>curl -u admin:admin http://localhost:4502/etc/pipes/users.json?writer={&quot;user&quot;:&quot;${user.fullName}&quot;}
+</code></pre>
 <p>will returns something similar to</p>
 <p>{"size":2, "items":[{'user':'John Smith','path':'/home/users/q/q123jk1UAZS'},{'user':'John Doe','path':'/home/users/q/q153jk1UAZS'}]}</p>
 <h3>Request Parameter <code>dryRun</code></h3>
@@ -182,14 +195,131 @@
 <h2>sample configurations</h2>
 <h3>slingQuery | write</h3>
 <p>this pipe parse all profile nodes, and</p>
-<p>{ "sling:resourceType":"slingPipes/container", "name":"Dummy User prefix Sample", "jcr:description":"prefix all full names of profile with "Mr" or "Ms" depending on gender", "conf":{ "profile": { "sling:resourceType":"slingPipes/slingQuery", "expr":"nt:unstructured#profile", "path":"/home/users" }, "writeFullName": { "sling:resourceType":"slingPipes/write", "conf": { "fullName":"${(profile.gender === 'female' ? 'Ms ' + profile.fullName : 'Mr ' + profile.fullName)}", "generatedBy":"slingPipes" } } } }</p>
+<pre><code>{
+  &quot;sling:resourceType&quot;:&quot;slingPipes/container&quot;,
+  &quot;name&quot;:&quot;Dummy User prefix Sample&quot;,
+  &quot;jcr:description&quot;:&quot;prefix all full names of profile with &quot;Mr&quot; or &quot;Ms&quot; depending on gender&quot;,
+  &quot;conf&quot;:{
+    &quot;profile&quot;: {
+        &quot;sling:resourceType&quot;:&quot;slingPipes/slingQuery&quot;,
+        &quot;expr&quot;:&quot;nt:unstructured#profile&quot;,
+        &quot;path&quot;:&quot;/home/users&quot;
+    },
+    &quot;writeFullName&quot;: {
+        &quot;sling:resourceType&quot;:&quot;slingPipes/write&quot;,
+        &quot;conf&quot;: {
+            &quot;fullName&quot;:&quot;${(profile.gender === &#39;female&#39; ? &#39;Ms &#39; + profile.fullName : &#39;Mr &#39; + profile.fullName)}&quot;,
+            &quot;generatedBy&quot;:&quot;slingPipes&quot;
+        }
+    }
+  }
+}
+</code></pre>
 <h3>slingQuery | multiProperty | authorizable | write</h3>
-<p>{ "jcr:primaryType": "sling:Folder", "jcr:description": "move badge&lt;-&gt;user relation ship from badge MV property to a user MV property" "name": "badges", "sling:resourceType": "slingPipes/container", "conf": { "jcr:primaryType": "sling:OrderedFolder", "badge": { "jcr:primaryType": "sling:Folder", "jcr:description": "outputs all badge component resources", "expr": "[sling:resourceType=myApp/components/badge]", "path": "/etc/badges/badges-admin/jcr:content", "sling:resourceType": "slingPipes/slingQuery" }, "profile": { "jcr:primaryType": "sling:Folder", "jcr:description": "retrieve all user ids from a mv property", "path": "${path.badge}/profiles", "sling:resourceType": "slingPipes/multiProperty" }, "user": { "jcr:primaryType": "sling:OrderedFolder", "jcr:description": "outputs user resource", "expr": "profile", "sling:resourceType": "slingPipes/authorizable" }, "write": { "jcr:primaryType": "sling:OrderedFolder", "jcr:descritption": "patches the badge path to the badges property of the user profile" "path": "${path.user}/profile", "sling:resourceType": "slingPipes/write", "conf": { "jcr:primaryType": "nt:unstructured", "badges": "+[${path.badge}]" } } } }</p>
+<pre><code>{
+  &quot;jcr:primaryType&quot;: &quot;sling:Folder&quot;,
+  &quot;jcr:description&quot;: &quot;move badge&lt;-&gt;user relation ship from badge MV property to a user MV property&quot;
+  &quot;name&quot;: &quot;badges&quot;,
+  &quot;sling:resourceType&quot;: &quot;slingPipes/container&quot;,
+  &quot;conf&quot;: {
+    &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+    &quot;badge&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:Folder&quot;,
+      &quot;jcr:description&quot;: &quot;outputs all badge component resources&quot;,
+      &quot;expr&quot;: &quot;[sling:resourceType=myApp/components/badge]&quot;,
+      &quot;path&quot;: &quot;/etc/badges/badges-admin/jcr:content&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/slingQuery&quot;
+      },
+    &quot;profile&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:Folder&quot;,
+      &quot;jcr:description&quot;: &quot;retrieve all user ids from a mv property&quot;,
+      &quot;path&quot;: &quot;${path.badge}/profiles&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/multiProperty&quot;
+    },
+    &quot;user&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;jcr:description&quot;: &quot;outputs user resource&quot;,
+      &quot;expr&quot;: &quot;profile&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/authorizable&quot;
+    },
+    &quot;write&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;jcr:descritption&quot;: &quot;patches the badge path to the badges property of the user profile&quot;
+      &quot;path&quot;: &quot;${path.user}/profile&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/write&quot;,
+      &quot;conf&quot;: {
+        &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+        &quot;badges&quot;: &quot;+[${path.badge}]&quot;
+      }
+    }
+  }
+}
+</code></pre>
 <h3>xpath | json | write</h3>
 <p>this use case is for completing repository profiles with external system's data (that has an json api)</p>
-<p>{ "jcr:primaryType": "nt:unstructured", "jcr:description": "this pipe retrieves json info from an external system and writes them to the user profile, uses moment.js, it distributes modified resources using publish distribution agent", "sling:resourceType": "slingPipes/container", "distribution.agent": "publish", "additionalScripts": "/etc/source/moment.js", "conf": { "jcr:primaryType": "sling:OrderedFolder", "profile": { "jcr:primaryType": "sling:OrderedFolder", "expr": "/jcr:root/home/users//element(profile,nt:unstructured)[@uid]", "jcr:description": "query all user profile nodes", "sling:resourceType": "slingPipes/xpath" }, "json": { "jcr:primaryType": "sling:OrderedFolder", "expr": "${(profile.uid ? 'https://my.external.system.corp.com/profiles/' + profile.uid.substr(0,2) + '/' + profile.uid + '.json' : '')", "jcr:description": "retrieves json information relative to the given profile, if the uid is not found, expr is empty: the pipe will do nothing", "sling:resourceType": "slingPipes/json" }, "write": { "jcr:primaryType": "sling:OrderedFolder", "path": "path.profile", "jcr:description": "write json information to the profile node", "sling:resourceType": "slingPipes/write", "conf": { "jcr:primaryType": "sling:OrderedFolder", "background": "${json.opt('background')}", "about": "${json.opt('about')}", "birthday": "${(json.opt('birthday') ? moment(json.opt('birthday'), "MMMM DD").toDate() : '')}", "mobile": "${json.opt('mobile')}" } } } }</p>
+<pre><code>{
+  &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+  &quot;jcr:description&quot;: &quot;this pipe retrieves json info from an external system and writes them to the user profile, uses moment.js, it
+  distributes modified resources using publish distribution agent&quot;,
+  &quot;sling:resourceType&quot;: &quot;slingPipes/container&quot;,
+  &quot;distribution.agent&quot;: &quot;publish&quot;,
+  &quot;additionalScripts&quot;: &quot;/etc/source/moment.js&quot;,
+  &quot;conf&quot;: {
+    &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+    &quot;profile&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;expr&quot;: &quot;/jcr:root/home/users//element(profile,nt:unstructured)[@uid]&quot;,
+      &quot;jcr:description&quot;: &quot;query all user profile nodes&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/xpath&quot;
+    },
+    &quot;json&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;expr&quot;: &quot;${(profile.uid ? &#39;https://my.external.system.corp.com/profiles/&#39; + profile.uid.substr(0,2) + &#39;/&#39; + profile.uid + &#39;.json&#39; : &#39;&#39;)&quot;,
+      &quot;jcr:description&quot;: &quot;retrieves json information relative to the given profile, if the uid is not found, expr is empty: the pipe will do nothing&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/json&quot;
+    },
+    &quot;write&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;path&quot;: &quot;path.profile&quot;,
+      &quot;jcr:description&quot;: &quot;write json information to the profile node&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/write&quot;,
+      &quot;conf&quot;: {
+        &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+        &quot;background&quot;: &quot;${json.opt(&#39;background&#39;)}&quot;,
+        &quot;about&quot;: &quot;${json.opt(&#39;about&#39;)}&quot;,
+        &quot;birthday&quot;: &quot;${(json.opt(&#39;birthday&#39;) ? moment(json.opt(&#39;birthday&#39;), \&quot;MMMM DD\&quot;).toDate() : &#39;&#39;)}&quot;,
+        &quot;mobile&quot;: &quot;${json.opt(&#39;mobile&#39;)}&quot;
+      }
+    }
+  }
+}
+</code></pre>
 <h3>xpath | parent | rm</h3>
-<p>{ "jcr:primaryType": "nt:unstructured", "jcr:description": "this pipe removes user with bad property in their profile", "sling:resourceType": "slingPipes/container", "conf": { "jcr:primaryType": "sling:OrderedFolder", "profile": { "jcr:primaryType": "sling:OrderedFolder", "expr": "/jcr:root/home/users//element(profile,nt:unstructured)[@bad]", "jcr:description": "query all user profile nodes with bad properties", "sling:resourceType": "slingPipes/xpath" }, "parent": { "jcr:primaryType": "sling:OrderedFolder", "jcr:description": "get the parent node (user node)", "sling:resourceType": "slingPipes/parent" }, "rm": { "jcr:primaryType": "sling:OrderedFolder", "jcr:description": "remove it", "sling:resourceType": "slingPipes/rm", } } }</p>
+<pre><code>{
+  &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+  &quot;jcr:description&quot;: &quot;this pipe removes user with bad property in their profile&quot;,
+  &quot;sling:resourceType&quot;: &quot;slingPipes/container&quot;,
+  &quot;conf&quot;: {
+    &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+    &quot;profile&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;expr&quot;: &quot;/jcr:root/home/users//element(profile,nt:unstructured)[@bad]&quot;,
+      &quot;jcr:description&quot;: &quot;query all user profile nodes with bad properties&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/xpath&quot;
+    },
+    &quot;parent&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;jcr:description&quot;: &quot;get the parent node (user node)&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/parent&quot;
+    },
+    &quot;rm&quot;: {
+      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
+      &quot;jcr:description&quot;: &quot;remove it&quot;,
+      &quot;sling:resourceType&quot;: &quot;slingPipes/rm&quot;,
+    }
+  }
+}
+</code></pre>
 <p>some other samples are in https://github.com/npeltier/sling-pipes/tree/master/src/test/</p>
 <h1>Compatibility</h1>
 <p>For running this tool on a sling instance you need:</p>

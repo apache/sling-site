@@ -2,22 +2,22 @@
     <head>
 <meta charset="utf-8"/>
         <title>Apache Sling on JBake</title>
-        <link rel="stylesheet" href="/res/css/site.css"/>
-        <link rel="stylesheet" href="/res/css/codehilite.css"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
         <div class="title">
             <div class="logo">
                 <a href="http://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
                 </a>
             </div><div class="header">
                 <a href="http://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
         </div>        
     </head><body>
 <div class="menu">
-            <strong><a href="/documentation.html">Documentation</a></strong><br/><a href="/documentation/getting-started.html">Getting Started</a><br/><a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/documentation/development.html">Development</a><br/><a href="/documentation/bundles.html">Bundles</a><br/><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/apidocs/sling9/index.html">Sling 9</a><br/><a href="/apidocs/sling8/index.html">Sling 8</a><br/><a href="/apidocs/sling7/index.html">Sling 7</a><br/><a href="/apidocs/sling6/index.html">Sling 6</a><br/><a href="/apidocs/sling5/index.html">Sling 5</a><br/><a href="/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/contributing.html">Contributing</a><br/><a href="/news.html">News</a><br/><a href="/links.html">Links</a><br/><a href="/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/sitemap.html">Site Map</a></strong>
+            <strong><a href="/ng/documentation.html">Documentation</a></strong><br/><a href="/ng/documentation/getting-started.html">Getting Started</a><br/><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/><a href="/ng/documentation/development.html">Development</a><br/><a href="/ng/documentation/bundles.html">Bundles</a><br/><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/><a href="/ng/documentation/configuration.html">Configuration</a><p></p><a href="http://s.apache.org/sling.wiki">Wiki</a><br/><a href="http://s.apache.org/sling.faq">FAQ</a><br/><p></p><strong>API Docs</strong><br/><a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/><a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/><a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/><a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/><a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/><a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/><p></p><strong>Project info</strong><br/><a href="/ng/downloads.cgi">Downloads</a><br/><a href="http://www.apache.org/licenses/">License</a><br/><a href="/ng/contributing.html">Contributing</a><br/><a href="/ng/news.html">News</a><br/><a href="/ng/links.html">Links</a><br/><a href="/ng/project-information.html">Project Information</a><br/><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/><a href="http://ci.apache.org/builders/sling-trunk">Build Server</a><br/><a href="/ng/project-information/security.html">Security</a><br/><p></p><strong>Source</strong><br/><a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/><a href="git://git.apache.org/sling.git">Git</a><br/><a href="https://github.com/apache/sling">Github Mirror</a><br/><p></p><strong>Sponsorship</strong><br/><a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/><a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/><a href="https://donate.apache.org/">Donate!</a><br/><a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/><p></p><strong><a href="/ng/sitemap.html">Site Map</a></strong>
         </div>        <div class="main">
 <div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Internationalization Support (i18n)</h1></header><p>Internationalization support in Sling consists of four methods in the <code>SlingHttpServletRequest</code> interface:</p>
 <ul>
@@ -57,20 +57,65 @@
 <p>It is only required that the message nodes are located below <code>mix:language</code> nodes. Such structures may also be scattered in the repository to allow storing message resources next to where they are most likely used, such as request scripts.</p>
 <h5>Sample Resources</h5>
 <p>Content for dictionaries in this format might look like this:</p>
-<p>/libs/languages +-- English (nt:folder, mix:language) | +-- jcr:language = en | +-- m1 (sling:MessageEntry) | | +-- sling:key = "msg001" | | +-- sling:message = "This is a message" | +-- m2 (sling:MessageEntry) | +-- sling:key = "msg002" | +-- sling:message = "Another message" +-- Deutsch (nt:folder, mix:language) +-- jcr:language = de +-- m1 (sling:MessageEntry) | +-- sling:key = "msg001" | +-- sling:message = "Das ist ein Text" +-- m2 (sling:MessageEntry) +-- sling:key = "msg002" +-- sling:message = "Ein anderer Text"</p>
-<p>/apps/myApp +-- English (nt:folder, mix:language) | +-- jcr:language = en | +-- mx (sling:MessageEntry) | +-- sling:key = "msgXXX" | +-- sling:message = "An Application Text" +-- Deutsch (nt:folder, mix:language) +-- jcr:language = de +-- mx (sling:MessageEntry) +-- sling:key = "msgXXX" +-- sling:message = "Ein Anwendungstext"</p>
+<pre><code>   /libs/languages
+           +-- English (nt:folder, mix:language)
+           |    +-- jcr:language = en
+           |    +-- m1 (sling:MessageEntry)
+           |    |    +-- sling:key = &quot;msg001&quot;
+           |    |    +-- sling:message = &quot;This is a message&quot;
+           |    +-- m2 (sling:MessageEntry)
+           |         +-- sling:key = &quot;msg002&quot;
+           |         +-- sling:message = &quot;Another message&quot;
+           +-- Deutsch (nt:folder, mix:language)
+                +-- jcr:language = de
+                +-- m1 (sling:MessageEntry)
+                |    +-- sling:key = &quot;msg001&quot;
+                |    +-- sling:message = &quot;Das ist ein Text&quot;
+                +-- m2 (sling:MessageEntry)
+                     +-- sling:key = &quot;msg002&quot;
+                     +-- sling:message = &quot;Ein anderer Text&quot;
+
+   /apps/myApp
+           +-- English (nt:folder, mix:language)
+           |    +-- jcr:language = en
+           |    +-- mx (sling:MessageEntry)
+           |         +-- sling:key = &quot;msgXXX&quot;
+           |         +-- sling:message = &quot;An Application Text&quot;
+           +-- Deutsch (nt:folder, mix:language)
+                +-- jcr:language = de
+                +-- mx (sling:MessageEntry)
+                     +-- sling:key = &quot;msgXXX&quot;
+                     +-- sling:message = &quot;Ein Anwendungstext&quot;
+</code></pre>
 <p>This content defines two languages <em>en</em> and <em>de</em> with three messages <em>msg001</em>, <em>msg002</em> and <em>msgXXX</em> each. The names of the respective resources have no significance (in case the <code>sling:key</code> is set).</p>
 <h4>JSON-file based</h4>
 <p>Since Version 2.4.2 the i18n bundle supports dictionaries in JSON-format (<a href="https://issues.apache.org/jira/browse/SLING-4543">SLING-4543</a>). Since loading such dictionaries is much faster than loading the ones based on <code>sling:MessageEntry</code>s this format should be used preferably. This format is assumed if the <code>mix:language</code> resource name is ending with the extension <code>.json</code>. The parser will take any "key":"value" pair in the JSON file, including those in nested objects or arrays. Normally, a dictionary will be just a single json object = hash map though.</p>
 <h5>Sample Resources</h5>
 <p>Content for this format might look like this:</p>
-<p>/libs/languages +-- english.json (nt:file, mix:language) | +-- jcr:language = en | +-- jcr:content (nt:resource) | + jcr:data (containing the actual JSON file) +-- deutsch.json (nt:file, mix:language) +-- jcr:language = de +-- jcr:content (nt:resource) + jcr:data (containing the actual JSON file)</p>
+<pre><code>   /libs/languages
+           +-- english.json (nt:file, mix:language)
+           |    +-- jcr:language = en
+           |    +-- jcr:content (nt:resource)
+           |         + jcr:data (containing the actual JSON file)
+           +-- deutsch.json (nt:file, mix:language)
+                +-- jcr:language = de
+                +-- jcr:content (nt:resource)
+                    + jcr:data (containing the actual JSON file)
+</code></pre>
 <h4>JCR Node Types supporting the JCR Repository based <code>ResourceBundleProvider</code></h4>
 <p>The sling.i18n bundle asserts the following node types:</p>
-<p>[mix:language] mixin - jcr:language (string)</p>
+<pre><code>[mix:language]
+    mixin
+  - jcr:language (string)
+</code></pre>
 <p>The <code>mix:language</code> mixin node type allows setting the <code>jcr:language</code> property required by the <code>ResourceBundleProvider</code> implementation to identify the message <code>Locale</code>.</p>
-<p>[sling:Message] mixin - sling:key (string) - sling:message (undefined)</p>
-<p>[sling:MessageEntry] &gt; nt:hierarchyNode, sling:Message</p>
+<pre><code>[sling:Message]
+    mixin
+  - sling:key (string)
+  - sling:message (undefined)
+
+[sling:MessageEntry] &gt; nt:hierarchyNode, sling:Message  
+</code></pre>
 <p>The <code>sling:Message</code> and <code>sling:MessageEntry</code> are helper node types. The latter must be used to create the nodes for the <code>sling:MessageEntry</code> based format.</p>
 <h3><code>ResourceBundle</code> with base names</h3>
 <p>Similar to standard Java <code>ResourceBundle</code> instances, Sling <code>ResourceBundle</code> instances may be created for base names through any of the <code>getResourceBundle(String, Locale)</code> methods. These methods use the base name parameter as a selector for the values of the <code>sling:basename</code> property of the <code>mix:language</code> nodes.</p>
