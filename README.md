@@ -24,6 +24,7 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 * The `#!java` macro is not supported -> convert to monospaced code
 * Test the downloads.cgi page, requires an apache.org setup (INFRA-14390)
 * Create sitemap page
+* Activate all the required links checked by https://whimsy.apache.org/site/
 
 ### Nice to have
 * JBake 2.5.x does not support the `[TOC]` macro but apparently that will be available once JBake moves to https://github.com/vsch/flexmark-java , probably in its next version. We might wait for that and just mark the TOCs as unsupported for now.
