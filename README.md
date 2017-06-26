@@ -19,10 +19,7 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 
 ### "Looks easy" (famous last words)
 * Enumerate child pages in documentation/tutorials-how-tos.html -> replace with a manually generated list? or use tags to mark and select that content.
-* Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references -> replace with copies of those titles and excerpts, or use tags to mark and select
-* Fix remaining `refs.` links -> those are probably broken anyway
 * The `#!java` macro is not supported -> convert to monospaced code
-* Test the downloads.cgi page, requires an apache.org setup (INFRA-14390)
 * Create sitemap page
 * Activate all the required links checked by https://whimsy.apache.org/site/
 
@@ -49,6 +46,9 @@ The following pages still have problems with that:
 * Remove unused assets files and templates (copied from JBake Groovy sample)
 * Tables work now, needed the pegdown TABLES extension
 * Move images and other files to /assets and convert their links
+* Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references -> replace with copies of those titles and excerpts, or use tags to mark and select
+* Fix remaining `refs.` links -> those are probably broken anyway
+* Test the downloads.cgi page, requires an apache.org setup (INFRA-14390) -> done at https://sling.apache.org/ng/downloads.cgi
 
 ## JBake and other techn notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
