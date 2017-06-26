@@ -12,7 +12,7 @@ To access the data storage in the Resource Tree and/or the JCR Repository
 authentication is required to properly setup access control and guard
 sensitive data from unauthorized access. For regular request processing
 this authentication step is handled by the Sling
-[{{ refs.authentication.headers.title }}](/documentation/the-sling-engine/authentication.html)
+[Authentication](/documentation/the-sling-engine/authentication.html)
 subsystem.
 
 On the other hand there are also some background tasks to be executed

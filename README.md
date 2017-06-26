@@ -50,8 +50,18 @@ The following pages still have problems with that:
 * Tables work now, needed the pegdown TABLES extension
 * Move images and other files to /assets and convert their links
 
-## JBake notes
+## JBake and other techn notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
 * Uses https://github.com/sirthias/pegdown for Markdown, syntax info at https://github.com/sirthias/pegdown/blob/master/src/test/resources/MarkdownTest103/Markdown%20Documentation%20-%20Syntax.md , extensions at http://www.decodified.com/pegdown/api/org/pegdown/Extensions.html
 * Groovy MarkupTemplateEngine examples at https://github.com/jbake-org/jbake-example-project-groovy-mt , docs for that engine at http://groovy-lang.org/templating.html#_simpletemplateengine
 * Other Apache projects using JBake include at least Tamaya and OpenNLP and the Incubator is apparently also switching to it.
+
+## Useful scripts and commands
+To find broken links use 
+
+    wget --spider -r -nd -nv -l 5 http://localhost:8820/ 2>&1 | grep -B1 'broken link'
+
+To find leftover `refs.` in pages use
+
+    wget -r -nv -l 5 http://localhost:8820/
+    find localhost\:8820/ -type f | xargs grep -l 'refs\.'

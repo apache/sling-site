@@ -59,7 +59,7 @@ As has been said, the absolute path mapping methods `resolve(HttpServletRequest,
 
 The general algorithm of the two methods is as follows:
 
-1. Call `HttpServletRequest.getScheme(), .getServerName(), getServerPort` to get an absolute path out of the request URL: \[scheme\]({{ refs.scheme.path }})/\[host\].\[port\]\[path\] (`resolve(HttpServletRequest, String)` method only, which)
+1. Call `HttpServletRequest.getScheme(), .getServerName(), getServerPort` to get an absolute path out of the request URL: \[scheme\]/\[host\].\[port\]\[path\] (`resolve(HttpServletRequest, String)` method only, which)
 1. Check whether any virtual path matches the absolute path. If such a match exists, the next step is entered with the match.
 1. Apply a list of mappings in order to create a mapped path. The first mapped path resolving to a Resource is assumed success and the Resource found is returned.
 1. If no mapping created a mapped path addressing an existing Resource, the method fails and returns a `NonExistingResource` (for the  

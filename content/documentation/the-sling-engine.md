@@ -7,7 +7,7 @@ status=published
 
 * [Architecture](/documentation/the-sling-engine/architecture.html)
 * [Authentication](/documentation/the-sling-engine/authentication.html)
-* [{{ refs.service-authentication.headers.title }}](/documentation/the-sling-engine/service-authentication.html)
+* [Service Authentication](/documentation/the-sling-engine/service-authentication.html)
 
 ## Request Handling
 
@@ -30,4 +30,4 @@ status=published
 ## Misc
 
 * [Adapters](/documentation/the-sling-engine/adapters.html)
-* [{{ refs.featureflags.headers.title }}](/documentation/the-sling-engine/featureflags.html)
+* [Feature Flags](/documentation/the-sling-engine/featureflags.html)

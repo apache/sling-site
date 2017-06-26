@@ -111,9 +111,9 @@ For security reasons non-printable and other special characters in %C, %i and %o
 If you want to write the request (and access) logging information into a rotated file, you should configure as follows:
 
 1. Configure the Log Type to be a *Logger Name* and some usefull Logger name. For example `clientlog.request`.
-1. Create an *Apache Sling Logging Logger Configuration* for this Logger name according to [Logging Configuration]({{ refs.logging-logger-configuration.path }}) with the following setup:
+1. Create an *Apache Sling Logging Logger Configuration* for this Logger name, with the following setup:
     * Allow message at INFO (Information) level to be logged which is the level used by the request loggers
     * Define the appropriate log file name, for example `logs/client.request.log`
     * Use only `\{5`} as the message format because request logger messages are generally already fully formated with required timestamp etc.
     * Add any Logger names used for the client request log configuration, `clientlog.request` in the example above, to the Logger field. By clicking on the `+` (plus) button you may add more than a single logger name whose messages are written to this file.
-1. Optionally, you may create an *Apache Sling Logging Writer Configuration* for the log file defined in the previous step to better control rotation setup. See [Log Writer Configuration]({{ refs.logging-log-writer-configuration.path }}) for full details.
+1. Optionally, you may create an *Apache Sling Logging Writer Configuration* for the log file defined in the previous step to better control rotation setup. See the corresponding docs for full details.

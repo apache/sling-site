@@ -1,4 +1,4 @@
-title=How to Manage Job in Sling		
+title=How to Manage Jobs in Sling		
 type=page
 status=published
 ~~~~~~
@@ -7,7 +7,7 @@ Apache Sling supports the execution of jobs with the guarantee of processing the
 
 For more details please refer to the following resources:
 
-* [Eventing, Jobs and Scheduling section]({{ refs.eventing-and-jobs.path }}) to get detailed information on the eventing mechanisms in Sling.
+* [Eventing and Job Handling](/documentation/bundles/apache-sling-eventing-and-job-handling.html) to get detailed information on the eventing mechanisms in Sling.
 * Package [org.osgi.service.event](http://www.osgi.org/javadoc/r4v42/org/osgi/service/event/package-summary.html) of the OSGI API.
 * Package [org.apache.sling.event](/apidocs/sling6/org/apache/sling/event/package-summary.html) of the Sling API.
 

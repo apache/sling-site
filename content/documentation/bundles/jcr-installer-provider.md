@@ -38,9 +38,10 @@ Here's a quick walkthrough of the JCR installer functionality.
 
 ## Installation
 Start the Sling [launchpad/app](http://svn.apache.org/repos/asf/sling/trunk/launchpad/app) and make sure that the following bundles are present and started:
-* [RunMode service]({{ refs.run-modes-org-apache-sling-runmode.path }})
-* OSGi installer service ([org.apache.sling.installer.core](http://svn.apache.org/repos/asf/sling/trunk/installer/core))
-* JCR installer provider ([org.apache.sling.installer.provider.jcr](http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr))
+
+ * [Sling Settings](sling-settings-org-apache-sling-settings.html)
+ * OSGi installer service ([org.apache.sling.installer.core](http://svn.apache.org/repos/asf/sling/trunk/installer/core))
+ * JCR installer provider ([org.apache.sling.installer.provider.jcr](http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr))
 
 To watch the logs produced by these modules, you can filter `sling/logs/error.log` using `egrep 'jcrinstall|osgi.installer'`.
 

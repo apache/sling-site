@@ -70,7 +70,7 @@ The standalone Java Application makes use of three classes:
 | MainDelegate | This class is loaded by the `Loader` from the `LauncherClassLoader` to actually complete the initial setup before creating the `Sling` class to start the framework. |
 | ControlListener | This class is used by the `Main` class to open a server socket to be able to start and stop Sling as a server. This class allows for starting (opening the server socket), status check (connecting to the socket asking for status), and shutdown (connecting to the socket asking for shutdown). |
 
-At the moment these classes are not directly suitable to be embedded in an existing application (or custom application launcher framework) unless that embedding prepares command line arguments in a `String[]({{ refs..path }})` and calls the `Main.main` method. To allow for custom embeddings or extensions, the work distributions between the three classes should be refactored.
+At the moment these classes are not directly suitable to be embedded in an existing application (or custom application launcher framework) unless that embedding prepares command line arguments in a `String[]` and calls the `Main.main` method. To allow for custom embeddings or extensions, the work distributions between the three classes should be refactored.
 
 ### Embedding the Standalone Java Application
 
@@ -105,7 +105,7 @@ The `sling.control.action` takes either of three values:
 
 #### Conversion of Commandline Arguments to Properties
 
-When calling the Main class through the JVM startup the `Main.main(String[]({{ refs..path }}) args)` methods is called which reads the command line arguments and converts them into a `Map<String, String>` suitable for the constructore as follows:
+When calling the Main class through the JVM startup the `Main.main(String[] args)` methods is called which reads the command line arguments and converts them into a `Map<String, String>` suitable for the constructore as follows:
 
 | Command Line Argument | Properties Entry |
 |--|--|

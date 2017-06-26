@@ -13,7 +13,7 @@ The Servlet API specification provides the following methods to access the param
 | `HttpServletRequest.getQueryString()` | Returns the query part of the request URL |
 | `ServletRequest.getParameter(String)` | Returns the (first) named parameter |
 | `ServletRequest.getParameterValues(String)` | Returns all parameters of that name |
-| `ServletRequest.getParameterMap()` | Returns all parameters as a map of `String[]({{ refs..path }})` |
+| `ServletRequest.getParameterMap()` | Returns all parameters as a map of `String[]` |
 | `ServletRequest.getParameterNames()` | Returns an enumeration of the names of the parameters |
 | `ServletRequest.getParts()` | Returns all parts of the multipart request (since v3.0) |
 | `ServletRequest.getPart(String)` | Returns the request part with that name in case of multipart requests (since v3.0) |
@@ -75,7 +75,7 @@ The first rule is essential as it helps decoding the form input correctly. The s
 When Sling is now receiving a request and is asked for the parameters, the parameters are parsed in two phases: The first phase just parses the raw input data using an identity transformation of bytes to characters. This identity transformation happens to generate strings as the original data was generated with `ISO-8859-1` encoding. The second phase locates the `_charset_` parameter and fixes the character encodings of the parameters as follows:
 
    * All names of the parameters are re-encoded
-   * The parameter values are re-encoded, unless the parameter value is an uploaded file. Actually the parameter (not the files of course) are internally as `byte[]({{ refs..path }})` where the conversion to a string is done on the fly (and yes, the conversion using the `_charset_` character encoding is of course cached for performance reasons)
+   * The parameter values are re-encoded, unless the parameter value is an uploaded file. Actually the parameter (not the files of course) are internally as `byte[]` where the conversion to a string is done on the fly (and yes, the conversion using the `_charset_` character encoding is of course cached for performance reasons)
    * If the parameter is an uploaded file, the file name is re-encoded on the fly when accessed
 
 <div class="info">

@@ -476,7 +476,7 @@ If request is posted with an URL ending in slash `/` or slash-star `/*`, the Sli
 
 1. If a `:name` parameter is supplied, the (first) value of this parameter is used unmodified as the name for the new node. If the name is illegally formed with respect to JCR name requirements, an exception will be thrown when trying to create the node. The assumption with the `:name` parameter is, that the caller knows what he (or she) is supplying and should get the exact result if possible.
 1. Otherwise if a `:nameHint` parameter is supplied, the (first) value of this parameter is used to generate the node name. A name filtering is applied to this hint to ensure a valid JCR node name.
-1. Otherwise a series of request parameters supplied to set content is inspected for a possible name. The list of the names of these parameter is configurable with the SlingPostServlet and defaults to `[ title, jcr:title, name, description, jcr:description, abstract ](` refs.-title-jcr-title-name-description-jcr-description-abstract.path `)`. The first request parameter with a non-empty value is used and filtered to get the valid JCR name.
+1. Otherwise a series of request parameters supplied to set content is inspected for a possible name. The list of the names of these parameter is configurable with the SlingPostServlet and defaults to `title, jcr:title, name, description, jcr:description, abstract`. The first request parameter with a non-empty value is used and filtered to get the valid JCR name.
 1. Otherwise an ever increasing auto generated number is used. Filtering is also applied to this numeric name.
 
 

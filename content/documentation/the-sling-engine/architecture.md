@@ -43,9 +43,6 @@ Based on the OSGi Framework specification, the Compendium Services specification
 
 The Sling API is an extension to the Servlet API which provides more functionality to interact with the Sling framework and also to extend Sling itself and to implement Sling applications.
 
-See the [Sling API]({{ refs.sling-api.path }}) page for more information.
-
-
 ## Request Processing
 
 Traditional Web Application framework emply more or less elaborate methods to select a Servlet or Controller based on the request URL, which in turn tries to load some data (usually from a database) to act upon and finally to render the result somehow.
@@ -77,7 +74,7 @@ Besides scripting languages, such as ECMAScript, Groovy, JSP, Sling also support
 
 As a result of mapping servlets into the resource tree and the possibility to adapt resource to an adaptor data type, scripts and servlets may be handled completely transparently: The servlet resolver just looks for a resource matching the resource type and adapts the resource found to `javax.jcr.Servlet`. If the resource happens to be provided by a servlet resource provider, the adapter is of course the servlet itself. If the resource happens to be a script, the adapter is a servlet facade which internally calls the script language implementation to evaluate the script.
 
-See the [Servlet Resolution]({{ refs.servlet-resolution.path }}) page for more information.
+See the [Servlet Resolution](/documentation/the-sling-engine/servlets.html) page for more information.
 
 
 

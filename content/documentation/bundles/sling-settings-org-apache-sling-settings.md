@@ -14,7 +14,7 @@ The Sling Settings Bundle exposes the `SlingSettingsService` which allows access
 | `URL getSlingHome()` | `sling.home.url` | The Sling Home path as an `java.net.URL` instance |
 | `Set<String> getRunModes()` | `sling.run.modes` | The active Run Modes of the running Sling instance |
 
-The new Sling Settings Bundle replaces the former [Run Modes (org.apache.sling.runmode)]({{ refs.run-modes-org-apache-sling-runmode.path }}) Bundle and the `SlingSettingsService` previously provided by the Sling Engine bundle, as it also implements the run modes logic.
+The new Sling Settings Bundle replaces the former `org.apache.sling.runmode` bundle and the `SlingSettingsService` previously provided by the Sling Engine bundle, as it also implements the run modes logic.
 
 ## Selecting the active run modes
 The run modes are selected based on the `sling.run.modes` property (the "selection property"), specified in the Sling settings file or as a command-line parameter (which takes precedence), out of the valid run modes defined by the properties described below. The value is a String which contains a list of comma-separated run modes. If a run mode is given here which is not contained in any group of valid run modes (given in `sling.run.mode.install.options` or `sling.run.mode.options`) it is always active, on the other hand run modes which are contained in any of the predefined groups may be modified/removed (see below for the details).

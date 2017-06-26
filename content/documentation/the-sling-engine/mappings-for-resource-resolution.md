@@ -11,7 +11,7 @@ status=published
 ### Properties
 
 The mapping of request URLs to resources is mainly configured in a configuration tree which is (by default) located below `/etc/map`. The actual location can be configured with the `resource.resolver.map.location` property of the `org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl` configuration.
-That way you can even make it [run mode specific](/documentation/bundles/sling-settings-org-apache-sling-settings.html) by having a unique path per [run mode specific OSGi configuration]({{ refs./jcr-installer-provider.path }}).
+That way you can even make it run mode specific, by taking advantage of the Sling OSGi Installer's run mode awareness.
 
 
 When dealing with the new resource resolution we have a number of properties influencing the process:

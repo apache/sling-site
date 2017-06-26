@@ -23,7 +23,7 @@ The important thing to note here is, that at the time the `handleSecurity` metho
 
 The following pages describe the full details of request authentication in Sling in full detail:
 
-* [Tasks](/documentation/the-sling-engine/authentication/authentication-tasks.html): {{ refs.authentication-tasks.headers.excerpt }} 
-* [Actors](/documentation/the-sling-engine/authentication/authentication-actors.html): {{ refs.authentication-actors.headers.excerpt }} 
-* [Framework](/documentation/the-sling-engine/authentication/authentication-framework.html): {{ refs.authentication-framework.headers.excerpt }} 
-* [AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html): {{ refs.authentication-authenticationhandler.headers.excerpt }} 
+* [Tasks](/documentation/the-sling-engine/authentication/authentication-tasks.html): Authentication tasks 
+* [Actors](/documentation/the-sling-engine/authentication/authentication-actors.html): Authentication actors and process
+* [Framework](/documentation/the-sling-engine/authentication/authentication-framework.html): Authentication Framework, Auth Core bundle etc.
+* [AuthenticationHandler](/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html): Authentication Handler service API.
