@@ -5,8 +5,7 @@ status=published
 
 We're on the way to update the documentation to make it more easy to get in touch with Sling. At the moment we can give you the following starting points:
 
-{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
-{% endfor %}
+* [Discover Sling in 15 minutes](getting-started/discover-sling-in-15-minutes.html)
 
 ## Where to head from here
 
