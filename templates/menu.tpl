@@ -35,7 +35,6 @@ div(class:"menu"){
 		a(href:"${config.site_contextPath}links.html", "Links") br() newLine()
 		a(href:"${config.site_contextPath}project-information.html", "Project Information") br() newLine()
 		a(href:"https://issues.apache.org/jira/browse/SLING", "Issue Tracker") br() newLine()
-		a(href:"http://ci.apache.org/builders/sling-trunk", "Build Server") br() newLine()
 		a(href:"${config.site_contextPath}project-information/security.html", "Security") br() newLine() 
 	}
 
