@@ -38,7 +38,8 @@ We'll have a script for that, but for now the following works:
     mv ./output /tmp
     git checkout asf-site
     rsync -r /tmp/output/* .
-    git commit -a -m "Updating live site"
+    git commit ... # do what's needed!
+    git push origin asf-site
     
     # content should appear at https://sling.apache.org/ng/ (for now) soone
 
