@@ -18,9 +18,7 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 ## TODO
 
 ### "Looks easy" (famous last words)
-* Enumerate child pages in documentation/tutorials-how-tos.html -> replace with a manually generated list? or use tags to mark and select that content.
 * The `#!java` macro is not supported -> convert to monospaced code
-* Create sitemap page
 * Activate all the required links checked by https://whimsy.apache.org/site/
 
 ### Nice to have
@@ -30,15 +28,7 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 ### Final validation, activation etc.
 * Review all pages
 * Resync the content with the current Sling website if needed, initially synced at r1798604
-
-## Broken tables
-The current pegdown parser has troubles with table cells containing special characters.
-
-The following pages still have problems with that:
-
-* http://localhost:8820/documentation/the-sling-engine/the-sling-launchpad.html
-* http://localhost:8820/documentation/bundles/sling-settings-org-apache-sling-settings.html
-* http://localhost:8820/documentation/bundles/web-console-extensions.html
+* Breadcrumbs. In http://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html for example, provide `Home :: Documentation :: Bundles` links.
 
 ### Done
 * Fix internal links like `refs.project-information.path` 
@@ -49,6 +39,9 @@ The following pages still have problems with that:
 * Fix references like `refs.authentication-tasks.headers.excerpt` as well as `.title` references -> replace with copies of those titles and excerpts, or use tags to mark and select
 * Fix remaining `refs.` links -> those are probably broken anyway
 * Test the downloads.cgi page, requires an apache.org setup (INFRA-14390) -> done at https://sling.apache.org/ng/downloads.cgi
+* Fix broken tables: the current pegdown parser has troubles with table cells containing special characters, tables containing a single dash for example need to be converted to `(-)` as a workaround.
+* Enumerate child pages in documentation/tutorials-how-tos.html and smilar pages -> replaced with a manually generated list.
+* Sitemap page
 
 ## JBake and other techn notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
