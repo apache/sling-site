@@ -1,1 +1,6 @@
-curl -s http://sling.apache.org/sitemap.html | grep 'a href' | cut -d'"' -f2 | while read f; do open http://localhost:8820$f 
+export BASE="http://localhost:8820"
+
+find content -type f | sort | sed 's/\.md$/\.html/' | sed 's/^content//' | while read f
+do
+	open $BASE$f
+done
