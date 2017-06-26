@@ -8,22 +8,51 @@ Build the site as described below, and sync the ./output folder to the asf-site 
 of this Git repository. The ASF's gitpubsub mechanism then synchronizes that content
 on the http://sling.apache.org website.
 
-TODO gitpubsub is not active so far, I will request a test setup to start with.
+gitpubsub is active at https://sling.apache.org/ng/ for testing but as pages now contain some absolute links, navigation might lead back to the existing site (https://issues.apache.org/jira/browse/INFRA-14390)
 
 ## How to build the site locally
 * Clone this repository
 * Run `./bake.sh`
 * Open http://localhost:8820/ and enjoy.
 
+## Publishing on the live website
+The live content is synced from the `asf-site` branch of this repository. To publish, generate the content and sync the `output` folder at the root of that branch.
+
+We'll have a script for that, but for now the following works:
+
+    ./bake.sh
+    
+    # verify locally staged content at http://localhost:8820/
+    
+    # if ok, commit your changes to the master branch
+    
+	# if ok, set these values in jbake.properties
+	# and generate again
+	# (temporary, while testing on sling.apache.org/ng)
+	site.host=http://sling.apache.org	
+	site.contextPath=/ng/
+
+    ./bake.sh
+    
+    git checkout -- jbake.properties
+    mv ./output /tmp
+    git checkout asf-site
+    rsync -R /tmp/output/* .
+    git commit -a -m "Updating live site"
+    
+    # content should appear at https://sling.apache.org/ng/ (for now) soone
+
 ## TODO
 
-### "Looks easy" (famous last words)
-* The `#!java` macro is not supported -> convert to monospaced code
+### Remaining fixes as of July 26th, 2017
+* HTML page title is "Apache Sling on JBake", should be the page title.
+
+### apache.org requirements
 * Activate all the required links checked by https://whimsy.apache.org/site/
 
 ### Nice to have
 * JBake 2.5.x does not support the `[TOC]` macro but apparently that will be available once JBake moves to https://github.com/vsch/flexmark-java , probably in its next version. We might wait for that and just mark the TOCs as unsupported for now.
-* Left menu is not yellow as on the old site (we might refresh the overall style anyway)
+* The `#!xml` and `#!java` code higlighting macros are not supported. I have left them in place for future automatic translation, once we reactivate code highlighting (using https://highlightjs.org/ maybe?)
 
 ### Final validation, activation etc.
 * Review all pages
@@ -42,6 +71,7 @@ TODO gitpubsub is not active so far, I will request a test setup to start with.
 * Fix broken tables: the current pegdown parser has troubles with table cells containing special characters, tables containing a single dash for example need to be converted to `(-)` as a workaround.
 * Enumerate child pages in documentation/tutorials-how-tos.html and smilar pages -> replaced with a manually generated list.
 * Sitemap page
+* Left menu layout is now correct
 
 ## JBake and other techn notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
