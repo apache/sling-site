@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        
+    </head>    <body>
+<div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><h1 class="draft">DRAFT 2017 WEBSITE - SLING-6955</h1><div class="menu">
+            <p>
+                <strong><a href="/ng/documentation.html">Documentation</a></strong><br/>
+                <a href="/ng/documentation/getting-started.html">Getting Started</a><br/>
+                <a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/>
+                <a href="/ng/documentation/development.html">Development</a><br/>
+                <a href="/ng/documentation/bundles.html">Bundles</a><br/>
+                <a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/>
+                <a href="/ng/documentation/configuration.html">Configuration</a>
+            </p><p>
+                <a href="http://s.apache.org/sling.wiki">Wiki</a><br/>
+                <a href="http://s.apache.org/sling.faq">FAQ</a><br/>
+                
+            </p><p>
+                <strong>API Docs</strong><br/>
+                <a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/>
+                <a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/>
+                <a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/>
+                <a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/>
+                <a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/>
+                <a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/>
+                
+            </p><p>
+                <strong>Project info</strong><br/>
+                <a href="/ng/downloads.cgi">Downloads</a><br/>
+                <a href="http://www.apache.org/licenses/">License</a><br/>
+                <a href="/ng/contributing.html">Contributing</a><br/>
+                <a href="/ng/news.html">News</a><br/>
+                <a href="/ng/links.html">Links</a><br/>
+                <a href="/ng/project-information.html">Project Information</a><br/>
+                <a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/>
+                <a href="/ng/project-information/security.html">Security</a><br/>
+                
+            </p><p>
+                <strong>Source</strong><br/>
+                <a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/>
+                <a href="git://git.apache.org/sling.git">Git</a><br/>
+                <a href="https://github.com/apache/sling">Github Mirror</a><br/>
+                
+            </p><p>
+                <strong>Sponsorship</strong><br/>
+                <a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/>
+                <a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/>
+                <a href="https://donate.apache.org/">Donate!</a><br/>
+                <a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/>
+                
+            </p><p>
+                <strong><a href="/ng/sitemap.html">Site Map</a></strong>
+            </p>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Groovy Support</h1></header><p>After meeting Paul King of the Groovy Team at Apache Con US 08 in New Orleans, I set out to take a stab at SLING-315 again to add Groovy support to Sling. It turned out, that the current Groovy 1.6 branch already contains the required setup to build the <code>groovy-all.jar</code> as an OSGi Bundle, which is directly usable with Sling by just installing that bundle.</p>
+<p>Currently the Groovy team is working hard towards the 1.6 release and many things are in flux, which is really great.</p>
+<p>So, on 11. Dec. 2008 Paul King of the Groovy Team has deployed a [first RC1 Snapshot of Groovy 1.6]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.6-RC-1-SNAPSHOT/groovy-all-1.6-RC-1-20081211.113737-1.jar.path }}) which contains all the required OSGi bundle manifest headers as well das the JSR-233 <code>ScriptEngine</code> to use the <code>groovy-all.jar</code> unmodified with Sling. So just go ahead, grab the Groovy-All 1.6 RC 1 SNAPSHOT deploy it into your Sling instance and enjoy the fun of Groovy.</p>
+<p>If you want to be on verge of development, you might want to go for Groovy 1.7: The second SNAPSHOT of beta-1 also contains the required headers and classes and may as well be used unmodified in Sling. You may download it here: <code>[groovy-all-1.7-beta-1-20081210.120632-2.jar]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.7-beta-1-SNAPSHOT/groovy-all-1.7-beta-1-20081210.120632-2.jar.path }})</code>.</p>
+<p>To deploy the bundle go to the Bundles page, for example at http://localhost:8888/system/console/bundles of the Apache Felix Web Console select the bundle file to upload, check the <em>Start</em> check box and click <em>Install or Update</em> button.</p>
+<p>You may check, whether the Groovy ScriptEngine has been "accepted" by Sling, by going to the Script Engines page of the Apache Felix Web Console. You should see the entry for Groovy there, somthing like this:</p>
+<pre><code>Groovy Scripting Engine, 2.0
+  Language      Groovy,
+  Extensions    groovy
+  MIME Types    application/x-groovy
+  Names         groovy, Groovy
+</code></pre>
+<h2>Testing</h2>
+<p>To test create a simple Groovy script, for example</p>
+<pre><code>response.setContentType(&quot;text/plain&quot;);
+response.setCharacterEncoding(&quot;UTF-8&quot;);
+
+println &quot;Hello World !&quot;
+println &quot;This is Groovy Speaking&quot;
+println &quot;You requested the Resource ${resource} (yes, this is a GString)&quot;
+</code></pre>
+<p>and upload it to the repository as <code>/apps/nt/folder/GET.groovy</code> using your favourite WebDAV client or use curl to upload the file (assuming Sling is running on localhost:8888) :</p>
+<pre><code>$ curl -u admin:admin -FGET.groovy=@GET.groovy -F../../nt/jcr:primaryType=sling:Folder http:host:8888/apps/nt/folder
+</code></pre>
+<p>To test it create a <code>/sample</code> <code>nt:Folder</code> node using your favourite WebDAV client or use curl again:</p>
+<pre><code>$ curl -u admin:admin -Fjcr:primaryType=nt:folder http://localhost:8888/
+</code></pre>
+<p>Finally, request the <code>/sample</code> node using your favourite Browser or use curl again:</p>
+<pre><code>$ curl http://localhost:8888/sample
+Hello World !
+This is Groovy Speaking
+You requested Resource JcrNodeResource, type=nt:folder, path=/sample (yes, this is a GString)
+</code></pre>
+<h2>References</h2>
+<ul>
+  <li>[SLING-315]({{ refs.https://issues.apache.org/jira/browse/SLING-315.path }}) -- The initial Sling issue proposing the addition of a Groovy ScriptEngine to Sling.</li>
+  <li>[Groovy Support in Apache Sling]({{ refs.http://markmail.org/message/7sqscr5y2mbk6jko.path }}) -- A short thread on turning the Groovy <code>groovy-all.jar</code> into an OSGi Bundle.</li>
+  <li>[Groovy in Apache Sling]({{ refs.http://markmail.org/message/47n2ow2jlo553jvk.path }}) -- Thread on adding the <code>DynamicImport-Package</code> header to the Groovy bundle manifest.</li>
+</ul></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        
+    </head>    <body>
+<div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><h1 class="draft">DRAFT 2017 WEBSITE - SLING-6955</h1><div class="menu">
+            <p>
+                <strong><a href="/ng/documentation.html">Documentation</a></strong><br/>
+                <a href="/ng/documentation/getting-started.html">Getting Started</a><br/>
+                <a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/>
+                <a href="/ng/documentation/development.html">Development</a><br/>
+                <a href="/ng/documentation/bundles.html">Bundles</a><br/>
+                <a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/>
+                <a href="/ng/documentation/configuration.html">Configuration</a>
+            </p><p>
+                <a href="http://s.apache.org/sling.wiki">Wiki</a><br/>
+                <a href="http://s.apache.org/sling.faq">FAQ</a><br/>
+                
+            </p><p>
+                <strong>API Docs</strong><br/>
+                <a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/>
+                <a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/>
+                <a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/>
+                <a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/>
+                <a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/>
+                <a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/>
+                
+            </p><p>
+                <strong>Project info</strong><br/>
+                <a href="/ng/downloads.cgi">Downloads</a><br/>
+                <a href="http://www.apache.org/licenses/">License</a><br/>
+                <a href="/ng/contributing.html">Contributing</a><br/>
+                <a href="/ng/news.html">News</a><br/>
+                <a href="/ng/links.html">Links</a><br/>
+                <a href="/ng/project-information.html">Project Information</a><br/>
+                <a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/>
+                <a href="/ng/project-information/security.html">Security</a><br/>
+                
+            </p><p>
+                <strong>Source</strong><br/>
+                <a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/>
+                <a href="git://git.apache.org/sling.git">Git</a><br/>
+                <a href="https://github.com/apache/sling">Github Mirror</a><br/>
+                
+            </p><p>
+                <strong>Sponsorship</strong><br/>
+                <a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/>
+                <a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/>
+                <a href="https://donate.apache.org/">Donate!</a><br/>
+                <a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/>
+                
+            </p><p>
+                <strong><a href="/ng/sitemap.html">Site Map</a></strong>
+            </p>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>XSLT Processing Pipeline</h1></header><p>In the <em>Apache Sling Scripting W3C XML Processing Support</em> bundle, Juanjo Vàzquez has implemented XSLT processing support for Sling as another new scripting engine, based on the <a href="http://cocoon.apache.org/3.0/">Cocoon 3 pipeline engine</a>.</p>
+<h2>Intro</h2>
+<p>An XML pipeline specifies a sequence of operations to be performed on zero or more XML documents. There are a number of advantages to using pipelines above all in terms of separation of concerns. On the other hand, we talk about XSLT processing if the operations in a pipeline are performed executing or applying XSLT stylesheets.</p>
+<p>XSLT processing support is implemented in Sling as an scripting engine bundle named <em>Apache Sling Scripting W3C XML Processing Support</em>. This bundle is based on the <a href="http://cocoon.apache.org/3.0/">Cocoon 3 pipeline engine</a> and uses the <a href="http://www.w3.org/TR/xproc/">W3C XProc language</a> in order to specify pipelines to be processed.</p>
+<p>For the time being, XProc is partially implemented and it is not clear that Sling must support all W3C recomendation yet. This could depend of concrete user requirements or use cases.</p>
+<p>The source code is found in the <a href="http://svn.apache.org/repos/asf/incubator/sling/trunk/contrib/scripting/xproc">contrib/scripting/xproc</a> module.</p>
+<h2>How to Install</h2>
+<p>Install the <code>org.apache.sling.scripting.xproc</code> bundle in order to work with XProc. You can achieve this either building it from <code>contrib/scripting/xproc</code> folder in the Sling trunk or by downloading it from the Apache Snapshot repository here: <a href="http://people.apache.org/repo/m2-snapshot-repository/org/apache/sling/org.apache.sling.scripting.xproc/2.0.0-incubator-SNAPSHOT/org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar">org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar</a>.</p>
+<p>To deploy the bundle go to the bundles page of Apache Felix Web Console (http://localhost:8888/system/console/bundles), select the bundle file to upload, check the Start check box and click Install or Update button.</p>
+<p>In order to check whether XProc scripting engine has been installed, go to the Script Engines page of the Apache Felix Web Console and see the entry for XProc there:</p>
+<pre><code>Apache Sling Scripting W3C XML Processing Support, 2.0.0-incubator-SNAPSHOT
+    Language     XMLProc, 1.0
+    Extensions   xpl
+    MIME Types   application/xml
+    Names    XProc, xml processing, xml pipeline processor 
+</code></pre>
+<h2>How it works</h2>
+<p>As explained above, the bundle is able to perform a sequence of XSLT transforms on an XML document just as is expressed in a pipeline definition. A pipeline definition is a file with an xpl extension that follows the <a href="http://www.w3.org/TR/xproc/">W3C XProc grammar</a>. Only <code>p:xslt</code> steps are supported at the moment.</p>
+<p>For the XML input of pipeline, the processing uses a Cocoon generator named <code>SlingGenerator</code> that tries to resolve the requested resource as (in order of preference):</p>
+<ul>
+  <li>a static XML file</li>
+  <li>a dynamically generated XML</li>
+  <li>the underlying node's export document view</li>
+</ul>
+<h2>Samples</h2>
+<p>Let's see some samples in order to understand the processing behaviour.</p>
+<ol>
+  <li>
+    <p>Create some content</p>
+    <pre><code>#!bash
+$ curl -u admin:admin -F sling:resourceType=xproc -F title=&quot;some title&quot; \
+-F text=&quot;And some text&quot; http://localhost:8888/foo
+</code></pre>
+  </li>
+  <li>
+    <p>Use WebDAV or curl to create a pipeline script at <code>/apps/xproc/xproc.xpl</code> :</p>
+    <pre><code>#!xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;p:pipeline xmlns:p=&quot;http://www.w3.org/ns/xproc&quot;&gt;
+
+  &lt;p:xslt&gt;
+    &lt;p:input port=&quot;stylesheet&quot;&gt;
+      &lt;p:document href=&quot;/apps/xproc/one.xsl&quot;/&gt;
+    &lt;/p:input&gt;
+  &lt;/p:xslt&gt;
+
+  &lt;p:xslt&gt;
+    &lt;p:input port=&quot;stylesheet&quot;&gt;
+      &lt;p:document href=&quot;/apps/xproc/two.xsl&quot;/&gt;
+    &lt;/p:input&gt;
+  &lt;/p:xslt&gt;
+
+&lt;/p:pipeline&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Store the XSLT transforms in the repository:</p>
+    <p><strong><code>/apps/xproc/one.xsl</code></strong></p>
+    <pre><code>#!xml
+&lt;xsl:stylesheet version=&quot;1.0&quot;
+    xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+
+    &lt;xsl:template match=&quot;/&quot;&gt;
+      &lt;one&gt;
+        &lt;xsl:copy-of select=&quot;.&quot;/&gt;
+      &lt;/one&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+    <p><strong><code>/apps/xproc/two.xsl</code></strong></p>
+    <pre><code>#!xml
+&lt;xsl:stylesheet version=&quot;1.0&quot;
+    xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+
+    &lt;xsl:template match=&quot;/&quot;&gt;
+      &lt;two&gt;
+        &lt;xsl:copy-of select=&quot;.&quot;/&gt;
+      &lt;/two&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Request foo.html to execute the pipeline:</p>
+    <pre><code>#!bash
+$ curl http://admin:admin@localhost:8888/foo.html
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;two&gt;
+  &lt;one&gt;
+    &lt;foo ...sling:resourceType=&quot;xproc&quot; text=&quot;And some text&quot; title=&quot;some title&quot;/&gt;
+  &lt;/one&gt;
+&lt;/two&gt;
+</code></pre>
+    <p>In this case, the node's document view has been the pipeline's source.</p>
+  </li>
+  <li>
+    <p>Now, store a static XML in the repository at <code>/foo.xml</code>:</p>
+    <pre><code>#!xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;foo&gt;
+    &lt;content&gt;
+       foo: static content
+    &lt;/content&gt;
+&lt;/foo&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Again, request foo.html to execute the pipeline:</p>
+    <pre><code>#!bash
+$ curl http://admin:admin@localhost:8888/foo.html
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;two&gt;
+  &lt;one&gt;
+    &lt;foo&gt;
+        &lt;content&gt;
+          foo: static content
+        &lt;/content&gt;
+    &lt;/foo&gt;
+  &lt;/one&gt;
+&lt;/two&gt;
+</code></pre>
+    <p>This time the pipeline's source has been a static XML file.</p>
+  </li>
+  <li>
+    <p>Store a script in the repository at <code>/apps/xproc/xproc.xml.esp</code></p>
+    <pre><code>#!xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;foo&gt;
+    &lt;content&gt;
+       foo: dynamic content
+    &lt;/content&gt;
+&lt;/foo&gt;
+</code></pre>
+  </li>
+  <li>
+  <p>Delete the previously created static xml file <code>/foo.xml</code>.</p></li>
+  <li>
+    <p>Request foo.html to execute the pipeline:</p>
+    <pre><code>#!bash
+$ curl http://admin:admin@localhost:8888/foo.html
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;two&gt;
+  &lt;one&gt;
+    &lt;foo&gt;
+        &lt;content&gt;
+          foo: dynamic content
+        &lt;/content&gt;
+    &lt;/foo&gt;
+  &lt;/one&gt;
+&lt;/two&gt;
+</code></pre>
+    <p>This time the pipeline's source has been a dinamically generated XML.</p>
+  </li>
+</ol>
+<h2>References</h2>
+<ul>
+  <li><a href="http://cocoon.apache.org//3.0/">Cocoon 3 pipeline engine</a></li>
+  <li><a href="http://www.w3.org/TR/xproc/">W3C XProc language</a></li>
+  <li><a href="https://issues.apache.org/jira/browse/SLING-893">SLING-893</a></li>
+  <li><a href="http://markmail.org/thread/33h5nhk5e3mswrue">Mail list discussion</a></li>
+</ul></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

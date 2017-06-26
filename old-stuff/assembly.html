@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling on JBake</title>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        
+    </head>    <body>
+<div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><h1 class="draft">DRAFT 2017 WEBSITE - SLING-6955</h1><div class="menu">
+            <p>
+                <strong><a href="/ng/documentation.html">Documentation</a></strong><br/>
+                <a href="/ng/documentation/getting-started.html">Getting Started</a><br/>
+                <a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/>
+                <a href="/ng/documentation/development.html">Development</a><br/>
+                <a href="/ng/documentation/bundles.html">Bundles</a><br/>
+                <a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/>
+                <a href="/ng/documentation/configuration.html">Configuration</a>
+            </p><p>
+                <a href="http://s.apache.org/sling.wiki">Wiki</a><br/>
+                <a href="http://s.apache.org/sling.faq">FAQ</a><br/>
+                
+            </p><p>
+                <strong>API Docs</strong><br/>
+                <a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/>
+                <a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/>
+                <a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/>
+                <a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/>
+                <a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/>
+                <a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/>
+                
+            </p><p>
+                <strong>Project info</strong><br/>
+                <a href="/ng/downloads.cgi">Downloads</a><br/>
+                <a href="http://www.apache.org/licenses/">License</a><br/>
+                <a href="/ng/contributing.html">Contributing</a><br/>
+                <a href="/ng/news.html">News</a><br/>
+                <a href="/ng/links.html">Links</a><br/>
+                <a href="/ng/project-information.html">Project Information</a><br/>
+                <a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/>
+                <a href="/ng/project-information/security.html">Security</a><br/>
+                
+            </p><p>
+                <strong>Source</strong><br/>
+                <a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/>
+                <a href="git://git.apache.org/sling.git">Git</a><br/>
+                <a href="https://github.com/apache/sling">Github Mirror</a><br/>
+                
+            </p><p>
+                <strong>Sponsorship</strong><br/>
+                <a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/>
+                <a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/>
+                <a href="https://donate.apache.org/">Donate!</a><br/>
+                <a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/>
+                
+            </p><p>
+                <strong><a href="/ng/sitemap.html">Site Map</a></strong>
+            </p>
+        </div>        <div class="main">
+<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Assembly</h1></header><p>The Assembly concept grew out of a need to bundle together a set of OSGi Bundles to deploy applications. The concept has been developped before the OSGi Deployment Package Service Specification has been published in the Release 4.1 Compendium Services Specification. It will have to be discussed whether the Assembly concept is dropped in favor of the Deplyoment Package Service.</p>
+<h2>Introduction</h2>
+<p>This chapter discusses the units of deployment as well as the units of functionality. The following contents is based on the Module and Service specifications of the OSGi Service Platform Core Specification, Release 4 but enhances functionality for ease of use and in terms of best practices.</p>
+<p>The term <em>Units of Deployment</em> describes the idea of packaging up functionality implemented by Java Classes into modules, so called <em>Bundles</em>. For bigger and more complicated applications the fine grained modularity of <em>Bundles</em> may be to complicated, so this chapter proposes an extension called <em>Assembly</em>. The goal of the <em>Assembly</em> specification presented below is to provide functionality to delivery a collection of bundles belonging together.</p>
+<p>The term <em>Units of Functionality</em> describes the idea of providing services implemented by Java Classes, so called <em>Services</em>. A <em>Service</em> is an abstraction and does not actually prescribe the implementation of specific interfaces. Instead the OSGi specification states how functionality may be provided to clients by registering objects implementing interfaces defining the functionality in terms of a Java API.</p>
+<h2>Bundles</h2>
+<p>The core unit of deployment is the <em>Bundle</em>. The OSGi core specification defines a <em>Bundle</em> to be a Java Archive (JAR) file whose manifest - the <code>META-INF/MANIFEST.MF</code> file - contains specific headers identifying the bundle. Most manifest headers are optional with defined default values - only the <code>Bundle-SymbolicName</code> header is actually required and the <code>Bundle-ManifestVersion</code> header should be set to <code>2</code> to identify the bundle to be a R4 bundle. Other information defined in the manifest is the bundle version, the list of packages exported - provided to other bundles - and imported - used and required to be provided by other bundles. See chapter <em>3.2.1 Bundle Manifest Header</em> of the OSGi Service Platform Core Specification for a complete list of the defined bundle manifest headers.</p>
+<p>Bundles may be installed, updated , started, stopped and removed in an OSGi framework individually.</p>
+<h2>Assemblies</h2>
+<p>For the deployment of bigger systems, the number of bundles may increase very quickly. To ease the management of products consisting of multiple bundles, this chapter introduces the <em>Assembly</em>. An Assembly is simply a collection of bundles deployed together. An Assembly - like a Bundle - is a JAR file whose manifest contains specific headers. In fact, an Assembly is just a standard bundle, with additional functionality.</p>
+<p>Assemblies are managed by the <em>Assembly Manager</em> which itself is a bundle installed into the framework.</p>
+<h3>Assembly manifest headers</h3>
+<p>As an Assembly is a standard Bundle, all the defined Bundle manifest headers may be specified. In addition, for the <em>Assembly Manager</em> to recognize an assembly and for the OSGi Bundle Repository to support dependency resolution, the following manifest headers are defined. All headers are optional with documented default values except where noted.</p>
+<ul>
+  <li><strong>Assembly-Bundles</strong> - The list of bundles contained in this assembly. See below for the definition of the syntax of this header. This header is required. The presence of this headers identifies an Assembly to the <em>Assembly Manager</em>.</li>
+  <li><strong>Assembly-BundleRepository</strong> - A comma-separated list of URLs pointing to OSGi Bundle Repository descriptors. These bundle repositories will be used to install bundles listed in the <code>Assembly-Bundles</code> header. This header is optional with not default value.</li>
+</ul>
+<h3>Assembly Lifecycle</h3>
+<p>An Assembly, like all bundles, may be in any of the defined bundle states:</p>
+<ul>
+  <li><strong>Installed</strong> - The Assembly bundle has been installed into the system but not yet resolved. The <em>Assembly Manager</em> will try to install all bundles listed in the <code>Assembly-Bundles</code> header. The start levels of the bundles will be set according to the <code>startlevel</code> parameter. The bundles will not be started. If installation of one or more of the bundles fails, <em>Assembly Manager</em> logs an error message.</li>
+  <li><strong>Resolved</strong> - The Assembly bundle is resolved, that is all imported packages are wired into the framework. The <em>Assembly Manager</em> does not handle this state change, rather the installed bundles will be resolved by the framework either automatically after installation or when started later.</li>
+  <li><strong>Started</strong> - The Assembly bundle has been started by calling the <code>Bundle.start()</code> method. The <em>Assembly Manager</em> will start all newly installed and resolved bundles. Depending on the start level set on the bundle(s) and the current system start level, the bundles will only be permanently marked to start while actually starting the bundles may be delayed until the system enters the respective start level. If any bundle fails to start, an error message is logged.</li>
+  <li><strong>Stopped</strong> - The Assembly bundle has been stopped by calling the <code>Bundle.stop()</code> method. All bundles belong to the Assembly and linked to the Assembly are also stopped.</li>
+  <li><strong>Unresolved</strong> - The Assembly bundle has been unresolved by the system for any reason, possibly any missing dependencies. Assembly bundles entering this state are ignored by the <em>Assembly Manager</em>.</li>
+  <li><strong>Uninstalled</strong> - The Assembly bundle is being uninstalled by calling the <code>Bundle.uninstall()</code> method. The <em>Assembly Manager</em> will (try to) uninstall all bundles listed in the <code>Assembly-Bundles</code> header.</li>
+  <li><strong>Updated</strong> - The Assembly bundle will update all bundles installed previously according to the <code>Assembly-Bundles</code> header. If this header omits any bundle listed in the previous bundle version, the respective bundle is uninstalled from the system. If a bundle is already installed with the correct version, the installed bundle is not touched (It may though be uninstalled together with the Assembly Bundle if the Assembly Bundle is uninstalled).</li>
+</ul>
+<h3>Bundles referenced by multiple Assembly Bundles</h3>
+<p>It is conceivable, that bundles are listed in the <code>Assembly-Bundles</code> header of more than one Assembly Bundle. If this is the case, the following collision resolution takes place:</p>
+<ul>
+  <li>If the version of the bundle installed by the first Assembly bundle handled matches the version specification of any later Assembly Bundle, the installed bundle is not touched. Otherwise, if the later Assembly Bundle lists a version specification, which is acceptable for the first Assembly Bundle, the installed bundle is updated to the required version. If the version specifications may not be matched one way or the other, the later Assembly Bundle fails to install.</li>
+  <li>If the bundle is installed with a defined start level, the later Assembly Bundle will not overwrite the already set start level. If the start level has not been set yet it is set to the specified start level.</li>
+  <li>Bundles installed through Assembly Bundles remain installed as long as there is at least one Assembly Bundle listing the bundle in the <code>Assembly-Bundles</code> header. As soon as there is no referring Assembly Bundle anymore, the bundle is uninstalled.</li>
+  <li>Bundles not referred to by any Assembly Bundle are ignored by the <em>Assembly Manager</em>.</li>
+  <li>Bundles installed through the <em>Assembly Manager</em> may be updated and/or uninstalled independently from their defining Assembly Bundle. If a bundle has been installed it will be reinstalled the next time the Assembly Bundle enters the <em>installed</em> state. If a bundle has been updated, it is not touched by the <em>Assembly Manager</em> as long as the updated version matches the version specification of the Assembly Bundle.</li>
+</ul>
+<h3>Bundle Installation</h3>
+<p>When an Assembly is installed into the framework, the <em>Assembly Manager</em> checks to see whether the Assembly needs to be deployed. This is done by checking the bundles listed in the <code>Assembly-Bundles</code> header whether they are installed or not. All bundles not installed will be installed and started if requested so.</p>
+<p>The following BNF defines the syntax =Assembly-Bundles= header value:</p>
+<pre><code>Assembly-Bundles = Bundle { &quot;,&quot; Bundle } .
+Bundle = Symbolic-Name { &quot;;&quot; Parameter } .
+Symbolic-Name = // The Bundle symbolic name 
+Parameter = ParameterName &quot;=&quot; ParameterValue .
+</code></pre>
+<p>To control the selection and installation of bundles, the following parameters may be used:</p>
+<ul>
+  <li><strong>version</strong> - The version of the bundle to install. This is a version range specification as per chapter 3.2.5 Version Ranges of the OSGi core specification. When this parameter is declared as a single version - eg. <em>1.2.3</em> - it is interpreted as the version range <em>[1.2.3,&infin;)</em>. The default value is <em>[0.0.0,&infin;)</em> to install the most recent version of the bundle available.</li>
+  <li><strong>startlevel</strong> - The start level to set for the bundle. This may be any positive integer value. Default value is undefined to use the current initial bundle start level of the framework.</li>
+  <li><strong>entry</strong> - The path of the Assembly Bundle entry providing the data to be installed.</li>
+  <li><strong>linked</strong> - Defines whether the bundle should be started and stopped together with the Assembly to which the bundle belongs. Default value is <code>true</code>.</li>
+</ul>
+<p>If resolving the bundles results in more bundles to be downloaded from the bundle repository to resolve the dependency, these bundles are always automatically started and assigned a startlevel which is smaller than the smallest startlevel of any of the bundles listed.</p>
+<h3>Bundle Location</h3>
+<p>Generally bundles to be installed with an Assembly Bundle are retrieved from an OSGi Bundle Repository. The <code>Assembly-BundleRepository</code> header may list additional URLs which will be temporarily used to resovle the bundles. Otherwise the system default bundle repositories will be used only.</p>
+<p>If a bundle is defined in the <code>Assembly-Bundles</code> header with an <code>entry</code> parameter, the respective entry is first looked for in the Assembly Bundle. If the entry exists, it is used as the bundle source to install. If no <code>entry</code> parameter is present for a declared bundle or the entry is missing, the OSGi Bundle Repository is used.</p>
+<p>Restrictions when packaging bundles with the Assembly:</p>
+<ul>
+  <li><strong>Dependency Resolution</strong> - Any missing dependencies of the bundles to be installed will not be resolved. That is, if the bundles fail to resolve, the Assembly fails to install.</li>
+  <li><strong><code>version</code> Parameter</strong> - The <code>version</code> parameter of the bundle installation declaration is ignored because any JAR file whose name matches the bundle symbolic name to be installed, is installed.</li>
+</ul>
+<p>If the <code>Assembly-BundleRepository</code> header contains a comma-separated list of URL to OSGi Bundle Repository descriptors and the OSGi Bundle Repository Service is available in the framework, the bundles declared in the <code>Assembly-Bundles</code> header are resolved through the OSGi Bundle Repository Service using the URL from the <code>Assembly-BundleRepository</code> header.</p>
+<p>If the bundles declare any dependencies, which may not be resolved by bundles already installed in the framework or by any of the bundles to be installed, the OSGi Bundle Repository is used to try to resolve these missing dependencies. If this resolution succeeds, installation of the Assembly succeeds. Any bundles not declared in the Assembly but installed due to this dependency resolution will not be assumed to belong to the Assembly. Hence, these bundles will not be uninstalled (or updated) if the Assembly is uninstalled (or updated).</p>
+<ul>
+  <li><strong>Example</strong> - Assume the <code>Assembly-Bundles</code> header is set to <code>org.apache.sling.sample1;entry=path.jar,org.apache.sling.sample2</code>. The bundle <code>org.apache.sling.sample1</code> is then installed from the Assembly Bundle entry <code>path.jar</code>, while the bundle <code>org.apache.sling.sample2</code> is resolved in the OSGi Bundle Repository.</li>
+</ul>
+<h2>Best Practices</h2>
+<h3>Size of Bundles</h3>
+<p>There is no fixed formula to calculate the best size for a bundle: It all depends on the contents and the intentions of the bundle and its programmer. The following list provides some hints:</p>
+<ul>
+  <li>For ease of development follow the idea of <em>One Bundle - One Project</em></li>
+  <li>Don't pack too much into a bundle but do not pack a single class into a bundle (unless you have a very good reason of course :-) )</li>
+  <li>Do not mix and match everything into a bundle. Rather bundle things together which belong together, for example create separate bundles for a HTTP Client implementation and DB support classes</li>
+  <li>Use similar heuristics to decide on the contents of a bundle as you would for the contents of a plain old JAR file.</li>
+</ul>
+<h3>Nomen est Omen</h3>
+<p>The symbolic name of a bundle should reflect its contents. A bundle should generally only contain a single subtree in the virtual package tree. The symbolic name of the bundle should be the root package contained within. For example, consider a bundle containing the packages <code>org.apache.sling.sample</code>, <code>org.apache.sling.sample.impl</code>, <code>org.apache.sling.more</code>. The bundle would the be named <code>org.apache.sling.sample</code>.</p></section></div></div>            
+<div class="footer">
+                <div class="timestamp">
+                    TODO display revision number here
+                </div><div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>
