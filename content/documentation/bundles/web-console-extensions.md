@@ -31,7 +31,7 @@ The Security Provider is configured with the configuration PID `org.apache.sling
 | Property | Type | Default Value | Description
 |--|--|--|
 | `users` | `String`, `String[]` or `Vector<String>` | admin | The list of users granted access to the Web Console |
-| `groups`| `String`, `String[]` or `Vector<String>` | --- | The list of groups whose (direct or indirect) members are granted access to the Web Console |
+| `groups`| `String`, `String[]` or `Vector<String>` | (---) | The list of groups whose (direct or indirect) members are granted access to the Web Console |
 
 Note, that while the default value explicitly grants the *admin* user to access the Web Console it is suggested that system administrators define a special group and assign users with Web Console access to this group.
 

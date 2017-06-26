@@ -30,9 +30,9 @@ The Java Standalone Application supports a number of command line options, which
 
 | Option | Argument | Description |
 |--|--|--|
-| `start` | -- | Open a TCP/IP server socket when starting Sling. Uses option `-j` to define the local socket address. |
-| `status` | -- | Check whether a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to check. Note, that the Sling application terminates after checking for the (remote) Sling status. |
-| `stop` | -- | Stop a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to stop. Note, that the Sling application tesrminates after stopping the (remote) Sling instance. |
+| `start` | (-) | Open a TCP/IP server socket when starting Sling. Uses option `-j` to define the local socket address. |
+| `status` | (-) | Check whether a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to check. Note, that the Sling application terminates after checking for the (remote) Sling status. |
+| `stop` | (-) | Stop a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to stop. Note, that the Sling application tesrminates after stopping the (remote) Sling instance. |
 | `-j` | [ host ":" ] port |  The socket address to listen on for control connections (`start` or to use as the remote endpoint for the control connection (`status` and `stop`. If this parameter has no arguments or is not specified, the address defaults to any free port on localhost/127.0.0.1. If only the port is specified localhost/127.0.0.1 is used as the host part of the address. |
 | `-c` | slinghome | The directory in which Sling locates its initial configuration file `sling.properties` and where files of Sling itself such as the Apache Felix bundle archive or the JCR repository files are stored. This defaults to the `sling` folder in the current working directory. This is the value which is commonly refered to as `$\{sling.home}.`
 | `-i` | launchpadhome |  The launchpad directory. If not set, this is the same as `$\{sling.home}.` (since Sling Launchpad 2.4.0)  |
@@ -42,8 +42,8 @@ The Java Standalone Application supports a number of command line options, which
 | `-p` | port |  The port to listen (default 8080) to handle HTTP requests. This option overwrites the `org.osgi.service.http.port` setting in the `sling.properties` file. |
 | `-r` | path | The root servlet context path for the Http Service (default is /). This option overwrites the `org.apache.felix.http.context_path` setting in the `sling.properties` file and requires the embedded Http Service implementation to honor this property. (since Sling Launchpad 2.4.0) |
 | `-D` | n=v | Sets the property `n` to the value `v`. This option can be added repeatedly setting additional properties. Any property set in this manner overwrites same named properties in the `sling.properties` file. (since Sling Launchpad 2.4.0) |
-| `-n` | -- | Don't install the shutdown hook. See [Shutdown Hook](#shutdown-hook) below. (since Sling Launchpad 2.5.2) |
-| `-h` | -- | Prints a simple usage message listing all available command line options. |
+| `-n` | (-) | Don't install the shutdown hook. See [Shutdown Hook](#shutdown-hook) below. (since Sling Launchpad 2.5.2) |
+| `-h` | (-) | Prints a simple usage message listing all available command line options. |
 
 The Sling Standalone application looks for a definition of the `sling.home` setting in the following locations in order of precendence:
 
