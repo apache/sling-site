@@ -37,7 +37,7 @@ We'll have a script for that, but for now the following works:
     git checkout -- jbake.properties
     mv ./output /tmp
     git checkout asf-site
-    rsync -R /tmp/output/* .
+    rsync -r /tmp/output/* .
     git commit -a -m "Updating live site"
     
     # content should appear at https://sling.apache.org/ng/ (for now) soone
