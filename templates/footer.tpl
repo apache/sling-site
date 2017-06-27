@@ -1,6 +1,8 @@
 div(class:"footer") {
 	div(class:"timestamp") {
-		yield "TODO display revision number here"
+		if(content && content.date) {
+			yield lastmod("${content.date.format('yyyy-MM-dd HH:mm:ss')}")
+		}
 	}
 	div(class:"trademarkFooter") {
 		yield "Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project "
