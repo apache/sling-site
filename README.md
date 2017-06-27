@@ -45,9 +45,6 @@ We'll have a script for that, but for now the following works:
 
 ## TODO
 
-### Remaining fixes as of July 26th, 2017
-* HTML page title is "Apache Sling on JBake", should be the page title.
-
 ### apache.org requirements
 * Activate all the required links checked by https://whimsy.apache.org/site/
 
