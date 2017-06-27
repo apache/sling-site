@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Apache Sling Eventing and Job Handling</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling Eventing and Job Handling</h1></header><h2>Overview</h2>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Apache Sling Eventing and Job Handling
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2>Overview</h2>
 <p>The Apache Sling Event Support bundle adds additional features to the OSGi Event Admin and for distributed event processing.</p>
 <p>The bundle provides the following features</p>
 <ul>
@@ -233,7 +235,7 @@ public class MyComponent {
 <p>The (local) event admin is the service distributing events locally. The Sling Distributing Event Handler is a registered event handler that is listening for events to be distributed. It distributes the events to remote application notes, Sling's resource tree is used for distribution. The distributing event handler writes the events into the resource tree, the distributing event handlers on other application nodes get notified through observation and then distribute the read events locally.</p>
 <p>As mentioned above, the client sending an event has to mark an event to be distributed in a cluster by setting the <em>event.distribute</em> in the event properties (through <em>EventUtil</em>). This distribution mechanism has the advantage that the application nodes do not need to know each other and the distribution mechanism is independent from the used event admin implementation.</p>
 <h2>Sending Scheduled Events</h2>
-<p>Scheduled events are OSGi events that have been created by the environemnt. They are generated on each application node of the cluster through an own scheduler instance. Sending these events works the same as sending events based on JCR events (see above).</p></section></div></div>            
+<p>Scheduled events are OSGi events that have been created by the environemnt. They are generated on each application node of the cluster through an own scheduler instance. Sending these events works the same as sending events based on JCR events (see above).</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Web Console Extensions</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,11 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Web Console Extensions</h1></header><p>The Apache Sling project provides two extensions to the <a href="http://felix.apache.org/site/apache-felix-web-console.html">Apache Felix Web Console</a> (in addition to a number of plugins, of course):</p>
-<p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Web Console Extensions
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The Apache Sling project provides two extensions to the <a href="http://felix.apache.org/site/apache-felix-web-console.html">Apache Felix Web Console</a> (in addition to a number of plugins, of course):</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Branding (org.apache.sling.extensions.webconsolebranding)</h2>
 <p>The Apache Sling Web Console Branding provided by Apache Sling is currently just for the product logo displayed in the upper right corner of the Web Console and some titles and strings.</p>
 <p>This bundle will attach as a fragment bundle to the Apache Felix Web Console bundle. To enable it after installation into a running system, you might have to refresh the package imports of the Apache Felix Web Console bundle. If you install using the Apache Felix Web Console bundle installation functionality, this will be taken care of by the Web Console.</p>
@@ -107,7 +110,7 @@
 </table>
 <p>Note, that while the default value explicitly grants the <em>admin</em> user to access the Web Console it is suggested that system administrators define a special group and assign users with Web Console access to this group.</p>
 <h3>Authentication Handling</h3>
-<p>As long as the web console security provider bundle is not activate and has not installed one of the above mentioned services, the default authentication of the web console is used. Once the bundle is active and a JCR repository service is available, the repository is used for authentication as explained above. But still the login form of the web console is used which is usually basic authentication. Once startup is finished and a Sling authentication service is available as well, the security provider replaces the JCR repository based auth provider with a Sling based auth provider. Both authenticate against the JCR repository, however the Sling based one using Sling to render the login form. Therefore, this provider is not registered until startup is finished</p></section></div></div>            
+<p>As long as the web console security provider bundle is not activate and has not installed one of the above mentioned services, the default authentication of the web console is used. Once the bundle is active and a JCR repository service is available, the repository is used for authentication as explained above. But still the login form of the web console is used which is usually basic authentication. Once startup is finished and a Sling authentication service is available as well, the security provider replaces the JCR repository based auth provider with a Sling based auth provider. Both authenticate against the JCR repository, however the Sling based one using Sling to render the login form. Therefore, this provider is not registered until startup is finished</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

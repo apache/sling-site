@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Sling Oak Restrictions</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Oak Restrictions</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Sling Oak Restrictions
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Introduction</h2>
 <p>Oak introduced plugability of restrictions as described in <a href="https://jackrabbit.apache.org/oak/docs/security/authorization/restriction.html#Pluggability">Oak Restriction Management</a>. The bundle sling-oak-restrictions provides additional restrictions that generally make sense for sling applications. Currently sling restrictions for exact resource type match and resource type match including all descendants are supplied.</p>
 <p><strong>Important:</strong> Using the sling restrictions (as well as standard oak restrictions) is not as performant as simple path based ACE entries without any restrictions. Permission setups should always mostly work with path based ACEs and only use ACEs with restrictions for special cases. </p>
@@ -146,7 +149,7 @@
 <ul>
   <li><code>/content/myprj</code></li>
   <li><code>/content/myprj/mynode2</code></li>
-</ul></section></div></div>            
+</ul></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Content Loading and Nodetype Support (jcr.contentloader)</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Content Loading and Nodetype Support (jcr.contentloader)</h1></header><p>Apache Sling provides support for initial content loading into a repository and for registering node types. The <code>sling-jcr-contentloader</code> bundle provides loading of content from a bundle into the repository and the <code>sling-jcr-base</code> bundle provides node type registration.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Content Loading and Nodetype Support (jcr.contentloader)
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Apache Sling provides support for initial content loading into a repository and for registering node types. The <code>sling-jcr-contentloader</code> bundle provides loading of content from a bundle into the repository and the <code>sling-jcr-base</code> bundle provides node type registration.</p>
 <h2>Initial Content Loading</h2>
 <p>Bundles can provide initial content, which is loaded into the repository when the bundle has entered the <em>started</em> state. Such content is expected to be contained in the bundles accessible through the Bundle entry API methods. Content to be loaded is declared in the <code>Sling-Initial-Content</code> bundle manifest header. This header takes a comma-separated list of bundle entry paths. Each entry and all its child entries are accessed and entered into starting with the child entries of the listed entries.</p>
 <p>Adding this content preserves the paths of the entries as shown in this table, which assumes a <code>Sling-Initial-Content</code> header entry of <code>SLING-INF/content</code> (with no further directives):</p>
@@ -374,7 +376,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 </div>
 <h3>Automated tests</h3>
 <p>The initial content found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/content/src/main/resources/content/sling-test">sling-test folder of the launchpad initial content</a> is verified by the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java">InitialContentTest</a> when running the <em>launchpad/testing</em> integration tests.</p>
-<p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p></section></div></div>            
+<p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

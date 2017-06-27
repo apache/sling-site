@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: URL decomposition</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>URL decomposition</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                URL decomposition
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h1>Overview</h1>
 <p>During the <em>Resource Resolution</em> step, the client request URI (as being returned by [HttpServletRequest.getRequestURI()](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getRequestURI())) is decomposed into the following parts (in exactly this order):</p>
 <ol>
@@ -211,7 +214,7 @@
   <li><a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/resourceresolver/src/test/java/org/apache/sling/resourceresolver/impl/ResourceResolverImplTest.java">ResourceResolverImplTest</a> shows the split between resource path and the rest. Mostly in the method <code>testBasicAPIAssumptions</code>.</li>
   <li><a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java">SlingRequestPathInfoTest</a> demonstrates the decomposition after the resource path part.</li>
 </ul>
-<p>Feel free to suggest additional tests that help clarify how this works!</p></section></div></div>            
+<p>Feel free to suggest additional tests that help clarify how this works!</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

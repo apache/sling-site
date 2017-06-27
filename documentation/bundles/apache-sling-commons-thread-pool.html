@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Apache Sling Commons Thread Pool</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,10 +66,12 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling Commons Thread Pool</h1></header><p>The Apache Sling Commons Thread Pool bundle provides a thread pool services. All thread pools are managed by the <code>org.apache.sling.commons.threads.ThreadPoolManager</code>. This service can be used to get a thread pool.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Apache Sling Commons Thread Pool
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The Apache Sling Commons Thread Pool bundle provides a thread pool services. All thread pools are managed by the <code>org.apache.sling.commons.threads.ThreadPoolManager</code>. This service can be used to get a thread pool.</p>
 <p>Thread pools are managed by name - there is a default thread pool and custom thread pools can be generated on demand using a unique name.</p>
 <p>The thread pools are actually wrappers around the thread pool support (executer) from the Java library. The advantage of using this thread pool service is, that the pools can be configured and managed through OSGi configurations. In addition the bundle contains a plugin for the Apache Felix Web Console.</p>
-<p>When using the <code>ThreadPoolMananger</code> it is important to release a thread pool using the manager after it has been used.</p></section></div></div>            
+<p>When using the <code>ThreadPoolMananger</code> it is important to release a thread pool using the manager after it has been used.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

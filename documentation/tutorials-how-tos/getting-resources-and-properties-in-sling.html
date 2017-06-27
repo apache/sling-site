@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Getting Resources and Properties in Sling</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Getting Resources and Properties in Sling</h1></header><p>The Resource is one of the central parts of Sling. Extending from JCR's Everything is Content, Sling assumes Everthing is a Resource. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigm of the REST architecture.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Getting Resources and Properties in Sling
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The Resource is one of the central parts of Sling. Extending from JCR's Everything is Content, Sling assumes Everthing is a Resource. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigm of the REST architecture.</p>
 <p>In this article we will explore a few ways to programmatically map a resource path (String) to a resource object (Resource) and its properties in Sling, from within an OSGI service, a servlet and a JSP.</p>
 <p>The whole game consists in first getting a <code>ResourceResolver</code> and then getting the <code>Resource</code> itself.</p>
 <h2>Within an OSGI Service/Compoment</h2>
@@ -131,7 +133,7 @@ ValueMap properties = ResourceUtil.getValueMap(res);
 <pre><code>#!java
 String rule = properties.get(propName, (String) null);
 </code></pre>
-<p>For more details about resources and how to access them in Sling, you can refer to the <a href="/documentation/the-sling-engine/resources.html">Sling documentation about Resources</a>.</p></section></div></div>            
+<p>For more details about resources and how to access them in Sling, you can refer to the <a href="/documentation/the-sling-engine/resources.html">Sling documentation about Resources</a>.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

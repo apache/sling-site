@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Form Based AuthenticationHandler</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Form Based AuthenticationHandler</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine/authentication.html">Authentication</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">Authentication - AuthenticationHandler</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Form Based AuthenticationHandler
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <p>The Form Based AuthenticationHandler has two authentication phases: The first phase is presenting a login form to the user and passing the entered user name and password to the server. The second phase is storing successful authentication in a Cookie or an HTTP Session.</p>
 <p>The implementation of the Form Based Authentication Handler follows the guidelines of the Servlet API 2.4 specification for <em>Form Based Authentication</em> in section SRV.12.5.3. Specifically the following requirements are implemented:</p>
 <ul>
@@ -214,7 +217,7 @@
   <li>User name and password are transmitted in plain text in the initial form submission.</li>
   <li>The Cookie used to provide the authentication state or the HTTP Session ID may be stolen.</li>
 </ol>
-<p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>            
+<p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

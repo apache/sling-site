@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Client Request Logging</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Client Request Logging</h1></header><p>Sling provides extensive support to log various information at the before and after processing client requests. Out of the box, there are two loggers configured to write traditional <code>access.log</code> and <code>request.log</code> files. In addition more logging can be configured by providing OSGi Configuration Admin configuration.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Client Request Logging
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling provides extensive support to log various information at the before and after processing client requests. Out of the box, there are two loggers configured to write traditional <code>access.log</code> and <code>request.log</code> files. In addition more logging can be configured by providing OSGi Configuration Admin configuration.</p>
 <h2>Traditional access.log and request.log Files</h2>
 <p>In the Web Console configure the <em>Apache Sling Request Logger</em> (PID=<code>org.apache.sling.engine.impl.log.RequestLogger</code>) configuration.</p>
 <p>In the Sling Web Console locate the Configuration page (<code>/system/console/configMgr</code>) and click on the pencil (edit) symbol on the <em>Apache Sling Request Logger</em> line. This opens a dialog to enter the configuration whose properties can be configured as follows:</p>
@@ -357,7 +359,7 @@
     </ul>
   </li>
   <li>Optionally, you may create an <em>Apache Sling Logging Writer Configuration</em> for the log file defined in the previous step to better control rotation setup. See the corresponding docs for full details.</li>
-</ol></section></div></div>            
+</ol></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

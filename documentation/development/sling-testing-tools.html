@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Sling Testing Tools</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Testing Tools</h1></header><div class="warning">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development/sling.html">Maven Sling Plugin</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Sling Testing Tools
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><div class="warning">
 While this information is still valid, we recommend using the tools and techniques described
 in the newer "Junit Server-Side Tests Support" page instead, see link below. 
 </div>
@@ -179,7 +181,7 @@ TEST_PASSED
 <p>Then the <code>JarExecutor</code> is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable <code>jar.executor.vm.options</code> can be used to start that VM with debug options. All debug options are described at the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JPDA documentation</a>. If running </p>
 <pre><code>mvn test -Djar.executor.vm.options=&quot;-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000&quot;
 </code></pre>
-<p>the server start is interrupted until a debugger is connected on port 8000.</p></section></div></div>            
+<p>the server start is interrupted until a debugger is connected on port 8000.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

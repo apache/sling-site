@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Logging</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,11 +66,14 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Logging</h1></header><div class="note">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Logging
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
 This document is for the new (November 2013) 4.x release of the Sling Commons Log components. Refer to
 <a href="http://sling.apache.org/documentation/legacy/logging.html">Logging 3.x</a> for older versions.
 </div>
-<p>[TOC]</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Introduction</h2>
 <p>Logging in Sling is supported by the <code>org.apache.sling.commons.log</code> bundle, which is one of the first bundles installed and started by the Sling Launcher. This bundle along with other bundles manages the Sling Logging and provides the following features:</p>
 <ul>
@@ -582,7 +585,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 <h5>Q. How to start Sling with an external logback.xml file</h5>
 <p>You need to specify the location of logback.xml via <code>org.apache.sling.commons.log.configurationFile</code></p>
 <pre><code>    java -jar org.apache.sling.launchpad-XXX-standalone.jar -Dorg.apache.sling.commons.log.configurationFile=/path/to/logback
-</code></pre></section></div></div>            
+</code></pre></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

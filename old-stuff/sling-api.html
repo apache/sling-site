@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Sling API</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling API</h1></header><div class="note">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Sling API
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
 The contents of this page is being created at the moment. It contains incomplete and partially wrong information as the text is adapted from the contents of the [Component API]({{ refs.component-api.path }}) documentation page.
 </div>
 <h2>Introduction</h2>
@@ -344,7 +346,7 @@ The [SlingRequestPathInfoTest]({{ refs.http://svn.apache.org/repos/asf/sling/tru
 <ul>
   <li>If the Component Framework decides to not handle the error itself, the exception must be forwarded to the servlet container as a <code>ComponentException</code> wrapping the original exception as its root cause.</li>
 </ul>
-<p>This specification does not define, how error handlers are configured and used if the Component Framework provides error handling support. Likewise the Component Framework may or may not implement support to handle calls to the <code>ComponentResponse.sendError</code> method. The Component Framework may also use its own error handling also for errors resulting from request processing failures, for example if authentication is required or if the request URL cannot be resolved to a Content object.</p></section></div></div>            
+<p>This specification does not define, how error handlers are configured and used if the Component Framework provides error handling support. Likewise the Component Framework may or may not implement support to handle calls to the <code>ComponentResponse.sendError</code> method. The Component Framework may also use its own error handling also for errors resulting from request processing failures, for example if authentication is required or if the request URL cannot be resolved to a Content object.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

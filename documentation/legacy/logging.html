@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Logging</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Logging</h1></header><div class="note">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Logging
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
 This document is for 3.x release of Sling Commons Log components. Refer to
 <a href="http://sling.apache.org/documentation/development/logging.html">Logging</a> for documentation related
 to newer version.
@@ -247,7 +249,7 @@ to newer version.
 <p>Note that Scheduled Rotation ignores the <code>org.apache.sling.commons.log.file.number</code> property since the old log files are not numbered but "dated".</p>
 <h3>Size Rotation</h3>
 <p>Log file rotation by size is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a plain number or a number plus a size multiplier. The size multiplier may be any of <code>K</code>, <code>KB</code>, <code>M</code>, <code>MB</code>, <code>G</code>, or <code>GB</code> where the case is ignored and the meaning is probably obvious.</p>
-<p>When using Size Rotation, the <code>org.apache.sling.commons.log.file.number</code> defines the number of old log file generations to keep. For example to keep 5 old log files indexed by 0 through 4, set the <code>org.apache.sling.commons.log.file.number</code> to <code>5</code> (which happens to be the default).</p></section></div></div>            
+<p>When using Size Rotation, the <code>org.apache.sling.commons.log.file.number</code> defines the number of old log file generations to keep. For example to keep 5 old log files indexed by 0 through 4, set the <code>org.apache.sling.commons.log.file.number</code> to <code>5</code> (which happens to be the default).</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

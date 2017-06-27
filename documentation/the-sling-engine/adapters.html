@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Adapters</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Adapters</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Adapters
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <p>The <code>Resource</code> and <code>ResourceResolver</code> interfaces are defined with a method <code>adaptTo</code>, which adapts the object to other classes. Using this mechanism the JCR session of the resource resolver calling the <code>adaptTo</code> method with the <code>javax.jcr.Session</code> class object. Likewise the JCR node on which a resource is based can be retrieved by calling the <code>Resource.adaptTo</code> method with the <code>javax.jcr.Node</code> class object.</p>
 <p>To use resources as scripts, the <code>Resource.adaptTo</code> method must support being called with the <code>org.apache.sling.api.script.SlingScript</code> class object. But of course, we do not want to integrate the script manager with the resource resolver. To enable adapting objects to classes which are not foreseen by the original implementation, a factory mechanism is used. This way, the script manager can provide an adapter factory to adapt <code>Resource</code> to <code>SlingScript</code> objects.</p>
 <h1>Adaptable</h1>
@@ -179,7 +182,7 @@
 <p>Any object can theoretically be adapted to any class even if it does not implement the <code>Adaptable</code> interface, if an <code>AdapterFactory</code> service delivers a <code>getAdapter()</code> method which adapts an object to another one. To check if there's any existing <code>AdapterFactory</code> which can adapt a given object to another one the <code>AdapterManager</code> service with its <code>getAdapter()</code> method does the job. So the <code>Adaptable</code> interface merely is an indicator that the object provides built-in support for being adapted.</p>
 <h2>SlingAdaptable</h2>
 <p>The <code>SlingAdaptable</code> class is an implementation of the <code>Adaptable</code> interface which provides built-in support to call the <code>AdapterManager</code> to provide an adapter from the <code>Adaptable</code> object to the requested class.</p>
-<p>An example of extending the <code>SlingAdaptable</code> class will be the Sling JCR based <code>Resource</code> implementation. This way, such a resource may be adapted to a <code>SlingScript</code> by means of an appropriately programmed <code>AdapterFactory</code> (see below).</p></section></div></div>            
+<p>An example of extending the <code>SlingAdaptable</code> class will be the Sling JCR based <code>Resource</code> implementation. This way, such a resource may be adapted to a <code>SlingScript</code> by means of an appropriately programmed <code>AdapterFactory</code> (see below).</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Installing and Upgrading Bundles</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Installing and Upgrading Bundles</h1></header><p>Excerpt: Explains how to install, upgrade and uninstall Bundles using the Sling Management console.</p>
-<div class="note">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Installing and Upgrading Bundles
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
 We recommend to use the Apache Felix Web Console. The documentation below describes the old Sling Management Console, which isn't in use any more. Please refer to the documentation of the <a href="http://felix.apache.org/site/apache-felix-web-console.html">Apache Felix Web Console</a>.
 </div>
 <p>OSGi bundles installed in the OSGi framework, which is provided by Sling, may be upgraded or removed and new bundles may be installed by using the Sling Management Console. This page is about using the Sling Management Console for those tasks.</p>
@@ -99,10 +100,9 @@ We recommend to use the Apache Felix Web Console. The documentation below descri
 <p>Currently management of known OSGi Bundle Repositories is very simple. If a configured bundle repository is not available on startup, it will be marked as being inactive. If you know the repository is now available, you may click on the <em>Refresh</em> button, to activate it. Similarly, the contents of the repository may be modified by for example adding new bundles or updating bundles in the repository, these changes will be made known to Sling by clicking the <em>Refresh</em> button.</p>
 <p>There exists no GUI functionality yet to add a new repository to the list of known repositories. Instead you may submit a request with parameters <code>action</code> whose value must be <code>refreshOBR</code> and <code>repository</code> whose value must be the URL to the repository descriptor file generally called <code>repository.xml</code>.</p>
 <p>For example, if you run Sling on <code>http://localhost:7402/sample</code> with default location of the Sling Management Console, the following request would add a repository at <code>/tmp/repo/repository.xml</code> in the filesystem:</p>
-<pre><code>:::html
-http://localhost:7402/sample/system/console/bundlerepo?action=refreshOBR&amp;repository=file:///tmp/repo/repository.xml
+<pre><code>http://localhost:7402/sample/system/console/bundlerepo?action=refreshOBR&amp;repository=file:///tmp/repo/repository.xml
 </code></pre>
-<p>Note: Only use <code>file:</code> URLs if you know Sling has access to the named file !</p></section></div></div>            
+<p>Note: Only use <code>file:</code> URLs if you know Sling has access to the named file !</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

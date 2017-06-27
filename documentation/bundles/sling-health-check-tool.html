@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Sling Health Check Tools</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Sling Health Check Tools</h1></header><p>Based on simple <code>HealthCheck</code> OSGi services, the Sling Health Check Tools ("hc" in short form) are used to check the health of live Sling systems, based on inputs like JMX MBean attribute values, OSGi framework information, Sling requests status, etc.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Sling Health Check Tools
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Based on simple <code>HealthCheck</code> OSGi services, the Sling Health Check Tools ("hc" in short form) are used to check the health of live Sling systems, based on inputs like JMX MBean attribute values, OSGi framework information, Sling requests status, etc.</p>
 <p>Health checks are easily extensible either by configuring the supplied default <code>HealthCheck</code> services, or by implementing your own <code>HealthCheck</code> services to cater for project specific requirements.</p>
 <p>However for simple setups, the out of the box health checks are often sufficient. <a href="#executing-health-checks">Executing Health Checks</a> is a good starting point to run existing checks and to get familiar with how health checks work.</p>
 <p>See also:</p>
@@ -272,7 +274,7 @@ servletPath = /system/health
 <p>It requires the <code>org.apache.sling.junit.core bundle</code> which provides the server-side JUnit tests infrastructure.</p>
 <p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br/>remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
 <p>To use this module, configure sets of tags at <code>/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider</code> using the standard <code>includeThisTag,-omitThatTag</code> syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html to run the corresponding Health Checks.</p>
-<p>To run the Health Check tests at build time, see the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests">testing/samples/integration-tests</a> sample module.</p></section></div></div>            
+<p>To run the Health Check tests at build time, see the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests">testing/samples/integration-tests</a> sample module.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

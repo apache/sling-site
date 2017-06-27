@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: XSLT Processing Pipeline</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>XSLT Processing Pipeline</h1></header><p>In the <em>Apache Sling Scripting W3C XML Processing Support</em> bundle, Juanjo Vàzquez has implemented XSLT processing support for Sling as another new scripting engine, based on the <a href="http://cocoon.apache.org/3.0/">Cocoon 3 pipeline engine</a>.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;<a href="/ng/old-stuff/scriptengineintegration.html">Integrating Scripting Languages</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                XSLT Processing Pipeline
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>In the <em>Apache Sling Scripting W3C XML Processing Support</em> bundle, Juanjo Vàzquez has implemented XSLT processing support for Sling as another new scripting engine, based on the <a href="http://cocoon.apache.org/3.0/">Cocoon 3 pipeline engine</a>.</p>
 <h2>Intro</h2>
 <p>An XML pipeline specifies a sequence of operations to be performed on zero or more XML documents. There are a number of advantages to using pipelines above all in terms of separation of concerns. On the other hand, we talk about XSLT processing if the operations in a pipeline are performed executing or applying XSLT stylesheets.</p>
 <p>XSLT processing support is implemented in Sling as an scripting engine bundle named <em>Apache Sling Scripting W3C XML Processing Support</em>. This bundle is based on the <a href="http://cocoon.apache.org/3.0/">Cocoon 3 pipeline engine</a> and uses the <a href="http://www.w3.org/TR/xproc/">W3C XProc language</a> in order to specify pipelines to be processed.</p>
@@ -231,7 +233,7 @@ $ curl http://admin:admin@localhost:8888/foo.html
   <li><a href="http://www.w3.org/TR/xproc/">W3C XProc language</a></li>
   <li><a href="https://issues.apache.org/jira/browse/SLING-893">SLING-893</a></li>
   <li><a href="http://markmail.org/thread/33h5nhk5e3mswrue">Mail list discussion</a></li>
-</ul></section></div></div>            
+</ul></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

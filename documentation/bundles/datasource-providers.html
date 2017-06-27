@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: DataSource Provider</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,11 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>DataSource Provider</h1></header><p>DataSource provider bundle supports creation of <code>DataSource</code> instance and registering them with the OSGi service registry. Application using the DataSource just obtains it from OSGi while an administrator can configure the DataSource via Felix WebConsole configuration UI.</p>
-<p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                DataSource Provider
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>DataSource provider bundle supports creation of <code>DataSource</code> instance and registering them with the OSGi service registry. Application using the DataSource just obtains it from OSGi while an administrator can configure the DataSource via Felix WebConsole configuration UI.</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Pooled Connection DataSource Provider</h2>
 <p>This bundle enables creating and configuring JDBC DataSource in OSGi environment based on OSGi configuration. It uses <a href="http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html">Tomcat JDBC Pool</a> as the JDBC Connection Pool provider.</p>
 <ol>
@@ -140,7 +143,7 @@ public class DSExample {
     &lt;artifactId&gt;org.apache.sling.datasource&lt;/artifactId&gt;
     &lt;version&gt;1.0.0&lt;/version&gt;
 &lt;/dependency&gt;
-</code></pre></section></div></div>            
+</code></pre></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

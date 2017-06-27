@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Internationalization Support (i18n)</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Internationalization Support (i18n)</h1></header><p>Internationalization support in Sling consists of four methods in the <code>SlingHttpServletRequest</code> interface:</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Internationalization Support (i18n)
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Internationalization support in Sling consists of four methods in the <code>SlingHttpServletRequest</code> interface:</p>
 <ul>
   <li><code>getLocale()</code> -- Returns the primary <code>Locale</code> for the current request. This method is inherited from the <code>javax.servlet.ServletRequest</code> interface.</li>
   <li><code>getLocales()</code> -- Returns the <code>Locale</code> instances for the current request. This method is inherited from the <code>javax.servlet.ServletRequest</code> interface.</li>
@@ -213,7 +215,7 @@
   <li><code>de</code></li>
   <li><code>en</code></li>
 </ol>
-<p>In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale). The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.</p></section></div></div>            
+<p>In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale). The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

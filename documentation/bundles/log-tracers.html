@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Log Tracer</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Log Tracer</h1></header><p><a href="https://issues.apache.org/jira/browse/SLING-4739">Log Tracer</a> provides support for enabling the logs for specific category at specific level and only for specific request. It provides a very fine level of control via config provided as part of HTTP request around how the logging should be performed for given category.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Log Tracer
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><a href="https://issues.apache.org/jira/browse/SLING-4739">Log Tracer</a> provides support for enabling the logs for specific category at specific level and only for specific request. It provides a very fine level of control via config provided as part of HTTP request around how the logging should be performed for given category.</p>
 <p>This is specially useful for those parts of the system which are involved in every request. For such parts enabling the log at global level would flood the logs and create lots of noise. Using Tracer one can enable log for that request which is required to be probed.</p>
 <p>For e.g. determining what nodes are written for a given POST request can be simply done by including an extra request parameters.</p>
 <pre><code>curl -D - -u admin:admin \
@@ -264,7 +266,7 @@ Transfer-Encoding: chunked
     &lt;artifactId&gt;org.apache.sling.tracer&lt;/artifactId&gt;
     &lt;version&gt;1.0.0&lt;/version&gt;
 &lt;/dependency&gt;
-</code></pre></section></div></div>            
+</code></pre></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

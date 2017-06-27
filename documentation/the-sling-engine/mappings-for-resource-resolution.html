@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Mappings for Resource Resolution</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Mappings for Resource Resolution</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Mappings for Resource Resolution
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Configuration</h2>
 <h3>Properties</h3>
 <p>The mapping of request URLs to resources is mainly configured in a configuration tree which is (by default) located below <code>/etc/map</code>. The actual location can be configured with the <code>resource.resolver.map.location</code> property of the <code>org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl</code> configuration. That way you can even make it run mode specific, by taking advantage of the Sling OSGi Installer's run mode awareness.</p>
@@ -287,7 +290,7 @@ for (String segment: segments) {
   <li>start Apache Sling (this might take few minutes, depending on how many vanity path entries are present)</li>
 </ul>
 <h2>Debugging Issues</h2>
-<p>Use the Felix Web Console Plugin provided at <code>/system/console/jcrresolver</code> to inspect both the mapping and the resolver map entries. Also you can check what either <code>ResourceResolver.map(...)</code> or <code>ResourceResolver.resolve(...)</code> would return for a given URL/path.</p></section></div></div>            
+<p>Use the Felix Web Console Plugin provided at <code>/system/console/jcrresolver</code> to inspect both the mapping and the resolver map entries. Also you can check what either <code>ResourceResolver.map(...)</code> or <code>ResourceResolver.resolve(...)</code> would return for a given URL/path.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

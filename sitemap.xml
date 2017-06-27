@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: null</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,41 +66,29 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="sitemap"><section class="wrap"><header><h1>null</h1></header><ul><li><a href="/ng/documentation/the-sling-engine/the-sling-launchpad.html">The Sling Launchpad</a></li>
-                        <li><a href="/ng/documentation/bundles/sling-settings-org-apache-sling-settings.html">Sling Settings and Run Modes (org.apache.sling.settings)</a></li>
-                        <li><a href="/ng/documentation/bundles/web-console-extensions.html">Web Console Extensions</a></li>
-                        <li><a href="/ng/old-stuff/assembly.html">Assembly</a></li>
-                        <li><a href="/ng/old-stuff/launch-sling.html">Launch Sling</a></li>
-                        <li><a href="/ng/old-stuff/request-processing.html">Request Processing</a></li>
-                        <li><a href="/ng/old-stuff/run-modes-org-apache-sling-runmode.html">Run Modes</a></li>
-                        <li><a href="/ng/old-stuff/scriptengineintegration/groovy-support.html">Groovy Support</a></li>
-                        <li><a href="/ng/old-stuff/scriptengineintegration/xslt-processing-pipeline.html">XSLT Processing Pipeline</a></li>
-                        <li><a href="/ng/old-stuff/scriptengineintegration.html">Integrating Scripting Languages</a></li>
-                        <li><a href="/ng/old-stuff/servlet-resolution.html">Servlet Resolution</a></li>
-                        <li><a href="/ng/old-stuff/sling-api.html">Sling API</a></li>
-                        <li><a href="/ng/old-stuff.html">Old Stuff</a></li>
-                        <li><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li>
-                        <li><a href="/ng/documentation/getting-started.html">Getting Started</a></li>
-                        <li><a href="/ng/guides.html">Guides (retired)</a></li>
-                        <li><a href="/ng/documentation.html">Documentation</a></li>
-                        <li><a href="/ng/documentation/tutorials-how-tos/how-to-manage-events-in-sling.html">How to Manage Jobs in Sling</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a></li>
+            <breadcrumbs/><h1>
+                null
+            </h1><div class="sitemap"><section class="wrap"><header><h1>null</h1></header><ul><li><a href="/ng/news.html">News</a></li>
+                        <li><a href="/ng/documentation/tutorials-how-tos/installing-and-upgrading-bundles.html">Installing and Upgrading Bundles</a></li>
+                        <li><a href="/ng/documentation/bundles/discovery-api-and-impl.html">Discovery API and its implementations</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/service-authentication.html">Service Authentication</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/resources.html">Resources</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/request-parameters.html">Request Parameter Handling in Sling</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/filters.html">Servlet Filter Support</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/authentication.html">Authentication</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/architecture.html">Architecture</a></li>
-                        <li><a href="/ng/documentation/legacy/logging.html">Logging</a></li>
-                        <li><a href="/ng/documentation/development/logging.html">Logging</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-tasks.html">Authentication - Tasks</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-framework.html">Authentication - Framework</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">Authentication - AuthenticationHandler</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-actors.html">Authentication - Actors</a></li>
+                        <li><a href="/ng/documentation/development/version-policy.html">Version Policy</a></li>
+                        <li><a href="/ng/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a></li>
+                        <li><a href="/ng/documentation/development/dependency-management.html">Dependency Management</a></li>
+                        <li><a href="/ng/documentation/bundles/xml-support.html">XML support</a></li>
+                        <li><a href="/ng/documentation/development/maventipsandtricks.html">MavenTipsAndTricks</a></li>
+                        <li><a href="/ng/media.html">Media</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/default-mapping-and-rendering.html">Default Mapping and Rendering</a></li>
+                        <li><a href="/ng/documentation/development/maven-launchpad-plugin.html">Maven Launchpad Plugin</a></li>
+                        <li><a href="/ng/documentation/development/maven-archetypes.html">Maven Archetypes</a></li>
                         <li><a href="/ng/documentation/development/embedding-sling.html">Embedding Sling</a></li>
-                        <li><a href="/ng/documentation/development/client-request-logging.html">Client Request Logging</a></li>
-                        <li><a href="/ng/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">Manipulating Content - The SlingPostServlet (servlets.post)</a></li>
-                        <li><a href="/ng/documentation/bundles/jcr-installer-provider.html">JCR Installer Provider</a></li>
                         <li><a href="/ng/contributing.html">Contributing</a></li>
-                        <li><a href="/ng/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html">Accessing File System Resources (org.apache.sling.fsresource)</a></li>
-                        <li><a href="/ng/documentation/bundles/apache-sling-commons-thread-pool.html">Apache Sling Commons Thread Pool</a></li>
                         <li><a href="/ng/documentation/bundles/apache-sling-eventing-and-job-handling.html">Apache Sling Eventing and Job Handling</a></li>
                         <li><a href="/ng/documentation/bundles/bundle-resources-extensions-bundleresource.html">Bundle Resources (extensions.bundleresource)</a></li>
                         <li><a href="/ng/documentation/bundles/caching-services.html">Sling Caching Services</a></li>
@@ -113,13 +101,14 @@
                         <li><a href="/ng/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html">Apache Sling Context-Aware Configuration - SPI</a></li>
                         <li><a href="/ng/documentation/bundles/context-aware-configuration/context-aware-configuration.html">Apache Sling Context-Aware Configuration</a></li>
                         <li><a href="/ng/documentation/bundles/datasource-providers.html">DataSource Provider</a></li>
-                        <li><a href="/ng/documentation/bundles/discovery-api-and-impl.html">Discovery API and its implementations</a></li>
                         <li><a href="/ng/documentation/bundles/dynamic-includes.html">Apache Sling Dynamic Include</a></li>
                         <li><a href="/ng/documentation/bundles/file-installer-provider.html">File Installer Provider</a></li>
                         <li><a href="/ng/documentation/bundles/internationalization-support-i18n.html">Internationalization Support (i18n)</a></li>
+                        <li><a href="/ng/documentation/bundles/jcr-installer-provider.html">JCR Installer Provider</a></li>
                         <li><a href="/ng/documentation/bundles/log-tracers.html">Log Tracer</a></li>
                         <li><a href="/ng/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html">Managing permissions (jackrabbit.accessmanager)</a></li>
                         <li><a href="/ng/documentation/bundles/managing-users-and-groups-jackrabbit-usermanager.html">Managing users and groups (jackrabbit.usermanager)</a></li>
+                        <li><a href="/ng/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">Manipulating Content - The SlingPostServlet (servlets.post)</a></li>
                         <li><a href="/ng/documentation/bundles/metrics.html">Sling Metrics</a></li>
                         <li><a href="/ng/documentation/bundles/mime-type-support-commons-mime.html">MIME Type Support (commons.mime and commons.contentdetection)</a></li>
                         <li><a href="/ng/documentation/bundles/models.html">Sling Models</a></li>
@@ -143,13 +132,12 @@
                         <li><a href="/ng/documentation/bundles/sling-oak-restrictions.html">Sling Oak Restrictions</a></li>
                         <li><a href="/ng/documentation/bundles/sling-pipes.html">Sling Pipes</a></li>
                         <li><a href="/ng/documentation/bundles/sling-query.html">Sling Query</a></li>
+                        <li><a href="/ng/documentation/bundles/sling-settings-org-apache-sling-settings.html">Sling Settings and Run Modes (org.apache.sling.settings)</a></li>
                         <li><a href="/ng/documentation/bundles/subsystem-installer-factory.html">Subsystems Installer Factory</a></li>
                         <li><a href="/ng/documentation/bundles/validation.html">Sling Validation</a></li>
-                        <li><a href="/ng/documentation/bundles/xml-support.html">XML support</a></li>
-                        <li><a href="/ng/documentation/bundles.html">Bundles</a></li>
+                        <li><a href="/ng/documentation/bundles/web-console-extensions.html">Web Console Extensions</a></li>
                         <li><a href="/ng/documentation/configuration.html">Configuration</a></li>
-                        <li><a href="/ng/documentation/development/dependency-management.html">Dependency Management</a></li>
-                        <li><a href="/ng/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a></li>
+                        <li><a href="/ng/documentation/development/client-request-logging.html">Client Request Logging</a></li>
                         <li><a href="/ng/documentation/development/hamcrest.html">Hamcrest Integration</a></li>
                         <li><a href="/ng/documentation/development/htl-maven-plugin.html">HTL Maven Plugin</a></li>
                         <li><a href="/ng/documentation/development/ide-tooling/ide-tooling-incremental-build.html">Incremental Builds in Sling IDE tooling for Eclipse</a></li>
@@ -158,10 +146,8 @@
                         <li><a href="/ng/documentation/development/jcr-mock.html">JCR Mocks</a></li>
                         <li><a href="/ng/documentation/development/jspc.html">HTL Maven Plugin</a></li>
                         <li><a href="/ng/documentation/development/jsr-305.html">Leveraging JSR-305 null annotations to prevent NullPointerExceptions</a></li>
-                        <li><a href="/ng/documentation/development/maven-archetypes.html">Maven Archetypes</a></li>
-                        <li><a href="/ng/documentation/development/maven-launchpad-plugin.html">Maven Launchpad Plugin</a></li>
+                        <li><a href="/ng/documentation/development/logging.html">Logging</a></li>
                         <li><a href="/ng/documentation/development/maven-usage.html">Maven Usage</a></li>
-                        <li><a href="/ng/documentation/development/maventipsandtricks.html">MavenTipsAndTricks</a></li>
                         <li><a href="/ng/documentation/development/monitoring-requests.html">Monitoring Requests</a></li>
                         <li><a href="/ng/documentation/development/osgi-mock.html">OSGi Mocks</a></li>
                         <li><a href="/ng/documentation/development/release-management.html">Release Management</a></li>
@@ -171,50 +157,66 @@
                         <li><a href="/ng/documentation/development/sling-testing-tools.html">Sling Testing Tools</a></li>
                         <li><a href="/ng/documentation/development/sling.html">Maven Sling Plugin</a></li>
                         <li><a href="/ng/documentation/development/slingstart.html">The Apache Sling Provisioning Model and Apache SlingStart</a></li>
-                        <li><a href="/ng/documentation/development/version-policy.html">Version Policy</a></li>
                         <li><a href="/ng/documentation/development.html">Development</a></li>
                         <li><a href="/ng/documentation/getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a></li>
+                        <li><a href="/ng/documentation/getting-started.html">Getting Started</a></li>
+                        <li><a href="/ng/documentation/legacy/logging.html">Logging</a></li>
                         <li><a href="/ng/documentation/pax-exam-utils.html">Sling Pax Exam Utilities</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/adapters.html">Adapters</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-actors.html">Authentication - Actors</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/architecture.html">Architecture</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html">Form Based AuthenticationHandler</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.html">OpenID AuthenticationHandler</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">Authentication - AuthenticationHandler</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-framework.html">Authentication - Framework</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/authentication/authentication-tasks.html">Authentication - Tasks</a></li>
-                        <li><a href="/ng/documentation/the-sling-engine/default-mapping-and-rendering.html">Default Mapping and Rendering</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/dispatching-requests.html">Dispatching Requests</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/errorhandling.html">Errorhandling</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/featureflags.html">Feature Flags</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/filters.html">Servlet Filter Support</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/request-listeners.html">Request Listeners</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/resources.html">Resources</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/servlets.html">Servlets and Scripts</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/sling-api-crud-support.html">Sling API CRUD Support</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/sling-properties.html">Well-known Sling Properties</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine/the-sling-launchpad.html">The Sling Launchpad</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/url-to-script-resolution.html">URL to Script Resolution</a></li>
                         <li><a href="/ng/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a></li>
+                        <li><a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a></li>
                         <li><a href="/ng/documentation/tutorials-how-tos/46-line-blog.html">46 Line Blog</a></li>
                         <li><a href="/ng/documentation/tutorials-how-tos/getting-resources-and-properties-in-sling.html">Getting Resources and Properties in Sling</a></li>
-                        <li><a href="/ng/documentation/tutorials-how-tos/installing-and-upgrading-bundles.html">Installing and Upgrading Bundles</a></li>
+                        <li><a href="/ng/documentation/tutorials-how-tos/how-to-manage-events-in-sling.html">How to Manage Jobs in Sling</a></li>
                         <li><a href="/ng/documentation/tutorials-how-tos/jackrabbit-persistence.html">Jackrabbit Persistence</a></li>
                         <li><a href="/ng/documentation/tutorials-how-tos/testing-sling-based-applications.html">Testing Sling-based applications</a></li>
-                        <li><a href="/ng/index.html">Apache Sling - Bringing Back the Fun!</a></li>
+                        <li><a href="/ng/guides.html">Guides (retired)</a></li>
                         <li><a href="/ng/javadoc-io.html">Sling API docs at javadoc.io</a></li>
                         <li><a href="/ng/links.html">Links</a></li>
-                        <li><a href="/ng/media.html">Media</a></li>
-                        <li><a href="/ng/news/sling-ide-tooling-11-released.html">Apache Sling IDE Tooling 1.1 released</a></li>
-                        <li><a href="/ng/news/sling-launchpad-8-released.html">Apache Sling Launchpad 8 released</a></li>
-                        <li><a href="/ng/news/sling-launchpad-9-released.html">Apache Sling Launchpad 9 released</a></li>
-                        <li><a href="/ng/news.html">News</a></li>
+                        <li><a href="/ng/old-stuff/assembly.html">Assembly</a></li>
+                        <li><a href="/ng/old-stuff/launch-sling.html">Launch Sling</a></li>
+                        <li><a href="/ng/old-stuff/request-processing.html">Request Processing</a></li>
+                        <li><a href="/ng/old-stuff/run-modes-org-apache-sling-runmode.html">Run Modes</a></li>
+                        <li><a href="/ng/old-stuff/scriptengineintegration/groovy-support.html">Groovy Support</a></li>
+                        <li><a href="/ng/old-stuff/scriptengineintegration/xslt-processing-pipeline.html">XSLT Processing Pipeline</a></li>
+                        <li><a href="/ng/old-stuff/scriptengineintegration.html">Integrating Scripting Languages</a></li>
+                        <li><a href="/ng/old-stuff/servlet-resolution.html">Servlet Resolution</a></li>
+                        <li><a href="/ng/old-stuff/sling-api.html">Sling API</a></li>
+                        <li><a href="/ng/old-stuff.html">Old Stuff</a></li>
                         <li><a href="/ng/project-information/apache-sling-community-roles-and-processes.html">Apache Sling Community Roles and Processes</a></li>
                         <li><a href="/ng/project-information/project-license.html">Project License</a></li>
                         <li><a href="/ng/project-information/project-team.html">Project Team</a></li>
                         <li><a href="/ng/project-information/security.html">Security</a></li>
                         <li><a href="/ng/project-information.html">Project Information</a></li>
                         <li><a href="/ng/site-conversion.html">Site conversion in progress - excuse our mess...</a></li>
+                        <li><a href="/ng/documentation/bundles.html">Bundles</a></li>
+                        <li><a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li>
+                        <li><a href="/ng/documentation.html">Documentation</a></li>
+                        <li><a href="/ng/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html">Accessing File System Resources (org.apache.sling.fsresource)</a></li>
+                        <li><a href="/ng/documentation/bundles/apache-sling-commons-thread-pool.html">Apache Sling Commons Thread Pool</a></li>
+                        <li><a href="/ng/index.html">Apache Sling - Bringing Back the Fun!</a></li>
+                        <li><a href="/ng/news/sling-ide-tooling-11-released.html">Apache Sling IDE Tooling 1.1 released</a></li>
+                        <li><a href="/ng/news/sling-launchpad-8-released.html">Apache Sling Launchpad 8 released</a></li>
+                        <li><a href="/ng/news/sling-launchpad-9-released.html">Apache Sling Launchpad 9 released</a></li>
                         <li><a href="/ng/sitemap.html">Sitemap</a></li>
                         <li><a href="/ng/downloads.html">Downloads</a></li>
-                    </ul></section></div>            
+                    </ul></section></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

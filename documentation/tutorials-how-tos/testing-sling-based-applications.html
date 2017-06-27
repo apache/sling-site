@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Testing Sling-based applications</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,9 +66,12 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Testing Sling-based applications</h1></header><p>Automated testing of OSGi components and services can be challenging, as many of them depend on other services that must be present or simulated for testing.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Testing Sling-based applications
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Automated testing of OSGi components and services can be challenging, as many of them depend on other services that must be present or simulated for testing.</p>
 <p>This page describes the various approaches that we use to test Sling itself, and introduces a number of tools that can help testing OSGi and HTTP-based applications.</p>
-<p>[TOC]</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Unit tests</h2>
 <p>When possible, unit tests are obviously the fastest executing ones, and it's easy to keep them close to the code that they're testing. </p>
 <p>We have quite a lot of those in Sling, the older use the JUnit3 TestCase base class, and later ones use JUnit4 annotations. Mixing both approaches is possible, there's no need to rewrite existing tests.</p>
@@ -133,7 +136,7 @@ public class MySimpleIT {
 } 
 </code></pre>
 <h2>Summary</h2>
-<p>Combining the above testing techniques has worked well for us in creating and testing Sling. Being able to test things at different levels of integration has proved an efficient way to get good test coverage without having to write too much boring test code.</p></section></div></div>            
+<p>Combining the above testing techniques has worked well for us in creating and testing Sling. Being able to test things at different levels of integration has proved an efficient way to get good test coverage without having to write too much boring test code.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

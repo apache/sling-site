@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: JUnit server-side testing support bundles</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>JUnit server-side testing support bundles</h1></header><p>This is an overview of the Sling bundles that provide support for server-side JUnit tests. </p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                JUnit server-side testing support bundles
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>This is an overview of the Sling bundles that provide support for server-side JUnit tests. </p>
 <p>The Maven modules below <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/samples"><code>testing/samples</code></a> provide different examples including HTTP-based and server-side teleported tests in a bundle module, running against a full Sling instance setup in the same Maven module.</p>
 <h2>org.apache.sling.junit.core: server-side JUnit tests support</h2>
 <p>This bundle provides a <code>JUnitServlet</code> that runs JUnit tests found in bundles. </p>
@@ -291,7 +293,7 @@ TEST_PASSED
 </code></pre>
 <p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again. </p>
 <h2>org.apache.sling.junit.remote: obsolete</h2>
-<p>The <code>org.apache.sling.junit.remote</code> bundle provides utilities to run server-side JUnit tests, but using the newer <code>TeleporterRule</code> described above is much simpler. As a result, this bundle should only be needed for existing tests that were written using its mechanisms. </p></section></div></div>            
+<p>The <code>org.apache.sling.junit.remote</code> bundle provides utilities to run server-side JUnit tests, but using the newer <code>TeleporterRule</code> described above is much simpler. As a result, this bundle should only be needed for existing tests that were written using its mechanisms. </p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

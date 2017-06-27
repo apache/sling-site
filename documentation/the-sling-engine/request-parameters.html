@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Request Parameter Handling in Sling</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Request Parameter Handling in Sling</h1></header><p>Excerpt: Explains how Sling provides request parameters to the <code>Component</code>.</p>
-<h2>Servlet API</h2>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Request Parameter Handling in Sling
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2>Servlet API</h2>
 <p>The Servlet API specification provides the following methods to access the parameters of a request</p>
 <table>
   <thead>
@@ -190,7 +191,7 @@
 <div class="info">
 Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing. 
 To enable this functionality set the <code>sling.default.parameter.encoding</code> parameter of the Sling Main Servlet (PID <code>org.apache.sling.engine.impl.SlingMainServlet</code>) configuration (for Sling Engine < 2.3.0) or the same parameter of the Sling Request Parameter Handling (PID <code>org.apache.sling.engine.parameters</code>) configuration (for Sling Engine >= 2.3.0 ) to the desired encoding, which of course must be supported by the actual Java Platform.
-</div></section></div></div>            
+</div></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Authentication - Framework</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Authentication - Framework</h1></header><p>Excerpt: The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.</p>
-<p>The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine/authentication.html">Authentication</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Authentication - Framework
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.</p>
 <p>This support encompasses three parts:</p>
 <ul>
   <li>The <code>AuthenticationSupport</code> service provided by the <code>SlingAuthenticator</code> class. This service can be used by implementations of the OSGi <code>HttpContext</code> interface to delegate authentication.</li>
@@ -220,7 +221,7 @@
   <li>Select one or more <code>AuthenticationHandler</code> for the request according to the request URL's scheme and authorization part.</li>
   <li>Call the <code>dropCredentials</code> method of each authentication handler, where the order of handler call is defined by the length of the registered path: handlers registered with longer paths are called before handlers with shorter paths. The goal is to call the handlers in order from longest request path match to shortest match. Handlers not matching the request path at all are not called.</li>
 </ol>
-<p>Unlike for the <code>login</code> method in the <code>logout</code> method case all <code>AuthenticationHandler</code> services selected in the first step are called. If none can be selected or none can actually handle the <code>dropCredentials</code> request, the <code>logout</code> silently returns.</p></section></div></div>            
+<p>Unlike for the <code>login</code> method in the <code>logout</code> method case all <code>AuthenticationHandler</code> services selected in the first step are called. If none can be selected or none can actually handle the <code>dropCredentials</code> request, the <code>logout</code> silently returns.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

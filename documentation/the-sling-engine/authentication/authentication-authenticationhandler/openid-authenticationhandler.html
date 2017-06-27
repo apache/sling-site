@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: OpenID AuthenticationHandler</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>OpenID AuthenticationHandler</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine/authentication.html">Authentication</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">Authentication - AuthenticationHandler</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                OpenID AuthenticationHandler
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <p>The OpenID Authentication Handler supports authentication of request users using the <a href="http://www.openid.net">OpenID</a> authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.</p>
 <p>Since generally an OpenID identity is an URL and URLs may not be used as JCR user names, an association mechanism is used by the OpenID authentication handler to associate an OpenID identity with an existing JCR user: The OpenID identity URL is set as the value of a JCR user property. When a user authenticates with his OpenID identity the matching user searched for by looking for a match in this property.</p>
 <p><em>NOTE:</em> This association currently only works with Jackrabbit (or Jackrabbit based repositories) because user management is not part of the JCR 2 specification and the OpenID authentication handler uses the Jackrabbit <code>UserManager</code> to find users by a user property value.</p>
@@ -174,7 +177,7 @@
   <li>The Cookie used to provide the authentication state or the HTTP Session ID may be stolen.</li>
   <li>When using the <code>trusted_credentials_attribute</code> mechanism, any intruder knowing the attribute name may log into the repository as any existing JCR user. The better option is to be based on the <code>LoginModulePlugin</code> mechanism.</li>
 </ol>
-<p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>            
+<p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

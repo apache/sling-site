@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Getting and Building Sling</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Getting and Building Sling</h1></header><p>Excerpt: A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.</p>
-<p>A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Getting and Building Sling
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.</p>
 <p>Note that you don't <em>have</em> to build Sling yourself, if you don't need the bleeding-edge stuff you can get prebuilt binaries from the <a href="/downloads.cgi">Downloads</a> page. But those, especially the launchpad runnable jar, are not released often and can be outdated. In case of doubt, build it yourself as shown below or ask on the Sling users mailing list.</p>
 <p>Rather than performing a full build of Sling, which can take 5-10 minutes on a recent computer once your local Maven repository is up to date, it's recommended to build only the launchpad and the modules you're interested in.</p>
 <h2>tl:dr - Short form build + run instructions</h2>
@@ -254,7 +255,7 @@ $ mvn clean install sling:install
   <li>To create the bundle jar and install it, just use the command line "mvn clean install" in the project directory</li>
   <li>If you have a running Sling app you can install the bundle from the command line with "mvn -P autoInstallBundle clean install -Dsling.url=http://localhost:8080/system/console"</li>
 </ul>
-<p>If adding dependencies to the poms, run mvn eclipse:eclipse again and refresh the project in Eclipse. Debugging works as described above.</p></section></div></div>            
+<p>If adding dependencies to the poms, run mvn eclipse:eclipse again and refresh the project in Eclipse. Debugging works as described above.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

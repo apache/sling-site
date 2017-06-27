@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: MavenTipsAndTricks</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>MavenTipsAndTricks</h1></header><p>translation_pending: true</p>
-<p>Here's our collection of tips and tricks for building Sling with <a href="http://maven.apache.org">Maven</a>.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                MavenTipsAndTricks
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Here's our collection of tips and tricks for building Sling with <a href="http://maven.apache.org">Maven</a>.</p>
 <h1>Maven local repository</h1>
 <p>The first time you run a Maven build, or when Maven needs additional build components, it downloads plugins and dependencies under its <em>local repository</em> folder on your computer. By default, this folder is named <em>.m2/repository</em> in your home directory.</p>
 <p>Maven uses this repository as a cache for artifacts that it might need for future builds, which means that the first Sling build usually takes much longer than usual, as Maven needs to download many tools and dependencies into its local repository while the build progresses.</p>
@@ -83,7 +84,6 @@
 <div class="note">
 Does anyone have a similar command-line option that works under Windows?
 </div>
-<p># </p>
 <h1>MAVEN_OPTS</h1>
 <p>The MAVEN_OPTS environment variable defines options for the JVM that executes Maven.</p>
 <p>Set it according to your platform, i.e. <code>export MAVEN*OPTS=...</code> on unixish systems or <code>set MAVEN*OPTS=...</code> on Windows.</p>
@@ -98,7 +98,7 @@ Does anyone have a similar command-line option that works under Windows?
 </code></pre>
 <p>And then connect to port 30303 with a remote JVM debugger (most IDEs do this).</p>
 <h2>Avoid spaces in Maven repository and workspace paths</h2>
-<p>Some Maven plugins do not like spaces in paths. It is better to avoid putting your Maven repository, or your code, under paths like <em>Documents and Settings</em>, for example.</p></section></div></div>            
+<p>Some Maven plugins do not like spaces in paths. It is better to avoid putting your Maven repository, or your code, under paths like <em>Documents and Settings</em>, for example.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

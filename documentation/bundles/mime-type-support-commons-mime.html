@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: MIME Type Support (commons.mime and commons.contentdetection)</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,11 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>MIME Type Support (commons.mime and commons.contentdetection)</h1></header><p>Support for MIME type mappings is generally a problematic issue. On the one hand applications have to take care to stay up to date with their mappings on the other hands in web applications it is tedious to maintain the mappings. Apache Sling takes a very user and deployment friendly approadch to this problem which is described in detail on this page.</p>
-<p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                MIME Type Support (commons.mime and commons.contentdetection)
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Support for MIME type mappings is generally a problematic issue. On the one hand applications have to take care to stay up to date with their mappings on the other hands in web applications it is tedious to maintain the mappings. Apache Sling takes a very user and deployment friendly approadch to this problem which is described in detail on this page.</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Servlet API Support</h2>
 <p>The Servlet API specification provides a limited support for MIME type mappings :</p>
 <ul>
@@ -128,7 +131,7 @@
 <p>THe data line format described here also applies to configuration provided by the values of the <code>mime.types</code> property of the MIME type service configuration. The file format description applies to all <code>META-INF/mime.types</code> files provided by the bundles as well as input streams supplied to the <code>MimeTypeService.registerMimeType(InputStream)</code> method.</p>
 <h2>Web Console Plugin</h2>
 <p>The Apache Sling MIME type mapping support bundle implements a plugin for the Apache Felix Web Console which may be consulted to investigate the current contents of the MIME type mapping tables.</p>
-<p><img src="/documentation/bundles/mimetypes.png" alt="Mime Types Web Console Plugin" /></p></section></div></div>            
+<p><img src="/documentation/bundles/mimetypes.png" alt="Mime Types Web Console Plugin" /></p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

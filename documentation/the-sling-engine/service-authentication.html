@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Service Authentication</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Service Authentication</h1></header><p>Excerpt: Introduce new service level authentication to replace <code>loginAdministrative</code></p>
-<p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Service Authentication
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Problem</h2>
 <p>To access the data storage in the Resource Tree and/or the JCR Repository authentication is required to properly setup access control and guard sensitive data from unauthorized access. For regular request processing this authentication step is handled by the Sling <a href="/documentation/the-sling-engine/authentication.html">Authentication</a> subsystem.</p>
 <p>On the other hand there are also some background tasks to be executed with access to the resources. Such tasks cannot in general be configured with user names and passwords: Neither hard coding the passwords in the code nor having the passwords in &ndash; more or less &ndash; plain text in some configuration is considered good practice.</p>
@@ -225,7 +227,7 @@ whitelist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
       <td>A regular expression that whitelists all matching bundle symbolic names. This is <strong>NOT</strong> recommended for production and warnings will be logged. </td>
     </tr>
   </tbody>
-</table></section></div></div>            
+</table></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

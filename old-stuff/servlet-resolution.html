@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Servlet Resolution</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,12 +66,15 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Servlet Resolution</h1></header><div class="warning">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Servlet Resolution
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><div class="warning">
 Please note that the description on this page is out of sync with the most recent developments going on as part of implementing issue [SLING-387]({{ refs.https://issues.apache.org/jira/browse/SLING-387.path }}). See the links to integration tests at the end of this page for the Current Truth.
 
 Please see the new [Servlets]({{ refs.servlets.path }}) page.
 </div>
-<p>[TOC]</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Servlets are Resources</h2>
 <p>As explained on the [Resources]({{ refs.resources.path }}) page, the Resource is the central data abstraction of Sling. In this contexts, Servlets are of course also povided as Resources. As such Servlets may be enumerated by iterating the Resource tree and Servlets may be retrieved through the <code>ResourceResolver</code>.</p>
 <p>To show a Servlet inside the Resource tree, the <code>sling/servlet-resolver</code> project provides a <code>ServletResourceProvider</code> implementing the <code>ResourceProvider</code> interface. For each Servlet registered as an OSGi service with one or more defined service reference properties a <code>ServletResourceProvider</code> instance is registered.</p>
@@ -219,7 +222,7 @@ Servlet findScriptFor(path) {
 <h2>Integration tests</h2>
 <p>A set of simple example servlets is available in the [launchpad/test-services module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/test-services.path }}). </p>
 <p>Integration tests in the [launchpad/testing module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution.path }}) verify that these examples are correct.</p>
-<p>Contributions to these tests and examples are welcome, of course!</p></section></div></div>            
+<p>Contributions to these tests and examples are welcome, of course!</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

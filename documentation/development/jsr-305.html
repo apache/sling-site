@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Leveraging JSR-305 null annotations to prevent NullPointerExceptions</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Leveraging JSR-305 null annotations to prevent NullPointerExceptions</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Leveraging JSR-305 null annotations to prevent NullPointerExceptions
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h1>Introduction</h1>
 <p>The Sling API forces developers to sometimes check for <code>null</code> return values. Most prominently this is the case for <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/adapter/Adaptable.html#adaptTo-java.lang.Class-"><code>Adaptable.adaptTo</code></a> and <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceResolver.html#getResource-java.lang.String-"><code>ResourceResolver.getResource</code></a>. This is often forgotten, which may lead to <code>NullPointerException</code>s. Sling API 2.9.0 introduced the JSR-305 annotations (<a href="https://issues.apache.org/jira/browse/SLING-4377">SLING-4377</a>) which allow tools to check automatically for missing null checks in the code.</p>
 <h1>Annotations</h1>
@@ -149,7 +152,7 @@
 <p>A complete list of visitors class names in Findbugs can be found in the <a href="https://code.google.com/p/findbugs/source/browse/#git%2Ffindbugs%2Fsrc%2Fjava%2Fedu%2Fumd%2Fcs%2Ffindbugs%2Fdetect%253Fstate%253Dclosed">sourcecode</a>. The according <a href="http://findbugs.sourceforge.net/bugDescriptions.html">bug patterns</a> have an identifier (in parenthesis) for which you can search in the according Java classes, in case you want to extend the checks.</p>
 <p>Findbugs is also integrated in <a href="http://docs.sonarqube.org/display/SONAR/Findbugs+Plugin">SonarQube</a> but for SonarQube you should now rather use the native Java plugin (look at <a href="#use-with-sonarqube">Use with SonarQube</a>).</p>
 <h1>Use with SonarQube</h1>
-<p>At least rule <a href="https://sonarqube.com/coding_rules#rule_key=squid%3AS2259">squid:S2259</a> in SonarQube supports JSR-305 annotations as well for null checks.</p></section></div></div>            
+<p>At least rule <a href="https://sonarqube.com/coding_rules#rule_key=squid%3AS2259">squid:S2259</a> in SonarQube supports JSR-305 annotations as well for null checks.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

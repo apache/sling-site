@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Jackrabbit Persistence</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Jackrabbit Persistence</h1></header><p>Out-of-the-box the embedded Jackrabbit repository used by Sling (the Embedded Jackrabbit Repository bundle) uses Derby to persist the JCR nodes and properties. For some applications or environments it may be required or required to replace Derby with another backing store such as PostgreSQL or Oracle.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Jackrabbit Persistence
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Out-of-the-box the embedded Jackrabbit repository used by Sling (the Embedded Jackrabbit Repository bundle) uses Derby to persist the JCR nodes and properties. For some applications or environments it may be required or required to replace Derby with another backing store such as PostgreSQL or Oracle.</p>
 <p>This page is based on the journey of Tony Giaccone to get Sling running with a PostgreSQL based Jackrabbit instance.</p>
 <h2>Management Summary</h2>
 <p>To replace Derby as the persistence manager for Jackrabbit the following steps are required:</p>
@@ -148,7 +150,7 @@ $ mvn install:install-file \
 <p>If you reconfigure Jackrabbit to use the new persistence manager, the existing repository data in the <code>sling/jackrabbit</code> directory, except the <code>repository.xml</code> file, of course, should now be removed.</p>
 <p>Finally either start Sling or start the Jackrabbit Embedded Repository bundle.</p>
 <h2>Credits</h2>
-<p>This description is based on Tony Giaccone's description <a href="http://markmail.org/message/wlbfrukmjjsl33hh">Swapping Postgres for Derby</a> sent to the Sling Users mailing list.</p></section></div></div>            
+<p>This description is based on Tony Giaccone's description <a href="http://markmail.org/message/wlbfrukmjjsl33hh">Swapping Postgres for Derby</a> sent to the Sling Users mailing list.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

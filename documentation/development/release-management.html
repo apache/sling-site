@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Release Management</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,9 +66,12 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Release Management</h1></header><p>Sling releases (and SNAPSHOTS) are deployed to the <a href="http://repository.apache.org">Nexus repository</a> instead of the traditional deployment via the Maven 2 mirrors source on <code>people.apache.org</code>. This makes the release process much leaner and simpler. In addtion we can benefit from the Apache Parent POM 6, which has most of the release profile setup built-in.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Release Management
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling releases (and SNAPSHOTS) are deployed to the <a href="http://repository.apache.org">Nexus repository</a> instead of the traditional deployment via the Maven 2 mirrors source on <code>people.apache.org</code>. This makes the release process much leaner and simpler. In addtion we can benefit from the Apache Parent POM 6, which has most of the release profile setup built-in.</p>
 <p>Most of the hard work of preparing and deploying the release is done by Maven.</p>
-<p>[TOC]</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Prerequisites</h2>
 <ul>
   <li>To prepare or perform a release you <em>MUST BE</em> at least be an Apache Sling Committer.</li>
@@ -503,7 +506,7 @@ $ rm the_module-version.jar the_module-version.pom
   <li>
   <p>Check the results at <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a></p></li>
 </ol>
-<p>For background information about this process see the <a href="http://maven.apache.org/developers/website/deploy-component-reference-documentation.html">Maven components reference documentation</a>.</p></section></div></div>            
+<p>For background information about this process see the <a href="http://maven.apache.org/developers/website/deploy-component-reference-documentation.html">Maven components reference documentation</a>.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

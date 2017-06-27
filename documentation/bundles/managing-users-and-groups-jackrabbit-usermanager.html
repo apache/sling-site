@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Managing users and groups (jackrabbit.usermanager)</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,9 +66,12 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Managing users and groups (jackrabbit.usermanager)</h1></header><p>The <code>jackrabbit-usermanager</code> bundle delivers a REST interface to create, update and delete users and groups in the JCR. After installing the <code>jackrabbit-usermanager</code> bundle all REST services are exposed under the path <code>/system/userManager</code>. Its interface for modifing/creating authorizables is similar to the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">SlingPostServlet</a>.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Managing users and groups (jackrabbit.usermanager)
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>jackrabbit-usermanager</code> bundle delivers a REST interface to create, update and delete users and groups in the JCR. After installing the <code>jackrabbit-usermanager</code> bundle all REST services are exposed under the path <code>/system/userManager</code>. Its interface for modifing/creating authorizables is similar to the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">SlingPostServlet</a>.</p>
 <p>For getting information about existing authorizables it provides all authorizables as Sling resources through its <code>AuthorizableResourceProvider</code> below <code>/system/userManager/user</code> and <code>/system/userManager/group</code>. Those resources can be exposed via the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a>.</p>
-<p>[TOC]</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>List users</h2>
 <p>To list existing users a GET request to the <code>/system/userManager/user</code> resource can be issued. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a>  and/or the availability of a Servlet or Script handling the <code>sling/users</code> resource type, a result may be delivered/</p>
 <p>Example with curl and the default JSON rendering:</p>
@@ -561,7 +564,7 @@
 </code></pre>
 <h2>Sample User Interface Implementation</h2>
 <p><em>Since Version 2.1.1</em></p>
-<p>A sample implementation of ui pages for user/group management is provided @ <a href="http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/">http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/</a>.</p></section></div></div>            
+<p>A sample implementation of ui pages for user/group management is provided @ <a href="http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/">http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/</a>.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Request Processing</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Request Processing</h1></header><div class="note">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Request Processing
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
 2008-02-13: this page is *out of sync* with the current codebase, needs to be reviewed and updated.
 </div>
 <p>One of the core problems towards understanding how Sling works is knowing how a Client Request is processed by Sling. This page describes the flow of processing requests inside Sling.</p>
@@ -169,7 +171,7 @@ if (navigation == null) {
 RequestDispatcher rd = request.getRequestDispatcher(navigation);
 rd.include(request, response);
 </code></pre>
-<p>This could for example be used to fall back to a default navigation setup while providing for specialized navigation configuration in an optional <code>navigation</code> child node.</p></section></div></div>            
+<p>This could for example be used to fall back to a default navigation setup while providing for specialized navigation configuration in an optional <code>navigation</code> child node.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

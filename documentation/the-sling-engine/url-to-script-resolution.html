@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: URL to Script Resolution</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>URL to Script Resolution</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                URL to Script Resolution
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <p>This page explains how Sling maps URLs to a script or and servlet. </p>
 <p>See also <a href="/documentation/the-sling-engine/servlets.html">Servlets and Scripts</a> which provides detailed info about how to register servlets.</p>
 <p>First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the <code>sling:resourceType</code> property which defines the resource type of that resource. Using this resource type (which is kind of a relative path, eg. "myblog/comment"), scripts or servlets are looked up. For more details about how the initial resource is identified for a specific request URL look at <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>.</p>
@@ -138,7 +141,7 @@ while (type != null) {
   <li>(7) a4.html.esp</li>
   <li>(8) a4/print.html.esp</li>
 </ul>
-<p>The priority of script selection would be (starting with the best one): (6) - (4) - (5) - (3) - (2) - (1) - (0). Note that (4) is a better match than (5) because it matches more selectors even though (5) has an extension match where (4) does not. (7) is not a candidate because it does not include the first selector (print) and (8) is not a candidate because it has the wrong order of selectors.</p></section></div></div>            
+<p>The priority of script selection would be (starting with the best one): (6) - (4) - (5) - (3) - (2) - (1) - (0). Note that (4) is a better match than (5) because it matches more selectors even though (5) has an extension match where (4) does not. (7) is not a candidate because it does not include the first selector (print) and (8) is not a candidate because it has the wrong order of selectors.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Accessing File System Resources (org.apache.sling.fsresource)</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Accessing File System Resources (org.apache.sling.fsresource)</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Accessing File System Resources (org.apache.sling.fsresource)
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Introduction</h2>
 <p>The Apache Sling File System Resource Provider provides access to the operating system's file system through the Sling <code>ResourceResolver</code>. Multiple locations may be mapped into the resource tree by configuring the file system location and the resource tree root path for each location to be mapped. The provider supports mapping folders and files as binaries, and content structures stored in JSON files or FileVault XML format.</p>
 <p>To activate this feature, install the <code>org.apache.sling.fsresource</code> bundle. You can get it from the Sling downloads page or from <a href="https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.apache.sling%22%20AND%20a%3A%22org.apache.sling.fsresource%22">Maven Central</a>.</p>
@@ -183,7 +186,7 @@
   <li>The content of .content.xml files is cached in-memory until it changes.</li>
   <li>Resource events are sent when file oder folder changes are detected. When a JSON or jcr.xml file is changed resource events are sent for each resource contained in this file.</li>
   <li>Content excluded by the filter definition is not mounted by the resource provider, if a resource of the relevant path is requested the resource provider falls back to the parent resource provider (e.g. JCR repository).</li>
-</ul></section></div></div>            
+</ul></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Authentication - Actors</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Authentication - Actors</h1></header><p>Excerpt: The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.</p>
-<p>The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine/authentication.html">Authentication</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Authentication - Actors
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.</p>
 <h2>OSGi Http Service Specification</h2>
 <p>The main support for authentication is defined by the OSGi Http Service specification. This specification defines how an OSGi application can register servlets and resources to build web applications. As part of the servlet and/or resource registration a <code>HttpContext</code> may be provided, which allows for additional support.</p>
 <p>The main method of interest to the authentication process is the <code>handleSecurity</code> method. This is called by the OSGi Http Service implementation before the registered servlet is called. Its intent is to authenticate the request and to provide authentication information for the request object: the authentication type and the remote user name.</p>
@@ -106,7 +107,7 @@
 <p>Sling Applications should never directly use any knowledge of any authentication handler or directly call into an authentication handler. This will certainly break the application and cause unexpected behaviour.</p>
 <div class="info">
 If you want to know whether a request is authenticated or not, you can inspect the result of the <code>HttpServletRequest.getAuthType</code> method: If this method returns <code>null</code> the request is not authenticated.
-</div></section></div></div>            
+</div></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

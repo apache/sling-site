@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: The Sling Launchpad</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>The Sling Launchpad</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                The Sling Launchpad
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <p>This tries to explain how exactly the Sling Launchpad works, what constitutes the Sling Launchpad and how you can use the Sling Launchpad to custom create you Sling launchers. For a view behind the scenes of the Sling Launchpad Base module (the actual launcher) you might want to refer to the <a href="/documentation/development/embedding-sling.html">Embedding Sling</a> page.</p>
 <h2>Sling Home</h2>
 <p>Since Sling requires some space on the filesystem to store various files Sling has to know where this filesystem space is located.</p>
@@ -299,7 +302,7 @@ Connection closed by foreign host.
   <li><code>oak</code>: configures and starts up an Apache Jackrabbit Oak repository implementation with a SegmentNodeStore ( TarMK ) implementation</li>
   <li><code>oak,oak_mongo</code>: configures and starts up an Apache Jackrabbit Oak repository implementation with a DocumentNodeStore implementation connected to a MongoDB database. The default configuration points to a MongoDB instance at mongodb://localhost:27017 and a database named sling.</li>
 </ul>
-<p>That's it. The resulting artifact may be directly used to launch the Standalone Java Application or may directly be deployed into any Servlet API 3.0 (or later) compliant servlet container.</p></section></div></div>            
+<p>That's it. The resulting artifact may be directly used to launch the Standalone Java Application or may directly be deployed into any Servlet API 3.0 (or later) compliant servlet container.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

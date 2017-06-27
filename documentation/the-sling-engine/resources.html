@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Resources</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Resources</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Resources
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>What is a Resource</h2>
 <p>The Resource is one of the central parts of Sling. Extending from JCR's <em>Everything is Content</em>, Sling assumes <em>Everthing is a Resource</em>. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigma of the REST architecture.</p>
 <h3>Resource Properties</h3>
@@ -216,7 +219,7 @@
 <h3>OSGi Event Admin</h3>
 <p>Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html"><code>org.osgi.service.event.EventHandler</code></a>. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html"><code>org.apache.sling.api.SlingConstants</code></a> starting with the prefix <code>TOPIC_</code>.</p>
 <h2>Wrap/Decorate Resources</h2>
-<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>            
+<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

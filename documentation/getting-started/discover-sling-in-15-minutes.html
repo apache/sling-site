@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Discover Sling in 15 minutes</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,10 +66,13 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Discover Sling in 15 minutes</h1></header><p>The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded JCR content repository and web server, a selection of Sling components, documentation and examples. The Launchpad makes it easy to get started with Sling and to develop script-based applications.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/getting-started.html">Getting Started</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Discover Sling in 15 minutes
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded JCR content repository and web server, a selection of Sling components, documentation and examples. The Launchpad makes it easy to get started with Sling and to develop script-based applications.</p>
 <p>This page will help you get started with the Launchpad. Fifteen minutes should be enough to get an overview of what Sling does.</p>
 <p>While simple to run and understand, the Launchpad is a full-featured instance of Sling, an example configuration that we have created with the most common modules and configurations. The full functionality of Sling is available by loading additional Sling (or custom) OSGi bundles as needed, using the Launchpad's web-based OSGi management console.</p>
-<p>[TOC]</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>See Also</h2>
 <p>More Sling samples can be found under <a href="http://svn.apache.org/repos/asf/sling/trunk/samples/">http://svn.apache.org/repos/asf/sling/trunk/samples/</a></p>
 <p>Once you grok the basic examples of this page, we recommend studying the <em>slingbucks</em> and <em>espblog</em> samples. Both have README files with more info.</p>
@@ -181,7 +184,7 @@ curl -u admin:admin -T sling.jpg http://localhost:8080/images/sling.jpg
 <p>And upload it again to replace the previous version:</p>
 <pre><code>curl -u admin:admin -T html.esp http://localhost:8080/apps/foo/bar/html.esp
 </code></pre>
-<p>The <a href="http://localhost:8080/content/mynode.html">http://localhost:8080/content/mynode.html</a>, once refreshed, now shows the blue headline and logo, and this layout also applies to any node created with <em>sling:resourceType=foo/bar</em>.</p></section></div></div>            
+<p>The <a href="http://localhost:8080/content/mynode.html">http://localhost:8080/content/mynode.html</a>, once refreshed, now shows the blue headline and logo, and this layout also applies to any node created with <em>sling:resourceType=foo/bar</em>.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Wrap or Decorate Resources</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Wrap or Decorate Resources</h1></header><h2>Introduction</h2>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Wrap or Decorate Resources
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2>Introduction</h2>
 <p>The Sling API provides an easy way to wrap or decorate a resource before returning. Use cases for this could for example be * overwrite resource type/resource super type (for example based on the resource path) * add metadata</p>
 <p>## </p>
 <p>To add a resource decorator just register one or more services which implement the interface <code>ResourceDecorator</code></p>
@@ -87,7 +89,7 @@ public Resource decorate(Resource resource, HttpServletRequest request) {
     return this.decorate(resource);
 }
 </code></pre>
-<p>And use some other mechanism (e.g. a <code>ThreadLocal</code>) to obtain the current request if necessary.</p></section></div></div>            
+<p>And use some other mechanism (e.g. a <code>ThreadLocal</code>) to obtain the current request if necessary.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

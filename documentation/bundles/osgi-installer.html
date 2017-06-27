@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: OSGi Installer</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>OSGi Installer</h1></header><h1>Overview</h1>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                OSGi Installer
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h1>Overview</h1>
 <p>The OSGi installer is a central service for handling installs, updates and uninstall of "artifacts". By default, the installer supports bundles and has an extension for handling configurations for the OSGi configuration admin.</p>
 <p><img src="/documentation/bundles/Slide14.jpg" alt="Apache Sling OSGI Installer Diagram" /></p>
 <p>The OSGi installer itself is "just" the central service managing the tasks and states of the artifacts. The artifacts can be provided through various providers, e.g. through a file system provider reading artifacts from configured directories or the jcr provider reading artifacts from a JCR repository.</p>
@@ -114,7 +116,7 @@
 <h3>Bundles Installation Failure</h3>
 <p>The checked bundle was not installed because it has been installed in a newer version through some other means (e.g. manually through the Felix Web Console or by another provider. For further details please review the OSGi Installer console at <code>/system/console/osgi-installer</code> and check for all bundles with the given symbolic name (=OSGi installers resource id) and the according URL.</p>
 <h3>Configuration Installation Failure</h3>
-<p>The checked configuration was not installed because it has either been overwritten manually in the Felix Web Console or is installed by some non-checked provider (which has a higher priority). To revert manually overwritten configurations just go to <code>/system/console/configMgr</code> and delete the according configuration. That way the OSGi installer should automatically create a new configuration for the same PID based on the configuration provided by some provider with the highest prio. In case another non-checked provider has provided already a configuration you can see from where it has been installed by looking at the OSGi Installer console at <code>/system/console/osgi-installer</code> and look for all configurations with the given PID.</p></section></div></div>            
+<p>The checked configuration was not installed because it has either been overwritten manually in the Felix Web Console or is installed by some non-checked provider (which has a higher priority). To revert manually overwritten configurations just go to <code>/system/console/configMgr</code> and delete the according configuration. That way the OSGi installer should automatically create a new configuration for the same PID based on the configuration provided by some provider with the highest prio. In case another non-checked provider has provided already a configuration you can see from where it has been installed by looking at the OSGi Installer console at <code>/system/console/osgi-installer</code> and look for all configurations with the given PID.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

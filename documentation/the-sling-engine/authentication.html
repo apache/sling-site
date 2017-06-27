@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Authentication</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,8 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Authentication</h1></header><p>Excerpt: How requests are authenticated.</p>
-<p>This section describes the framework provided by Sling to authenticate HTTP requests.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Authentication
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>This section describes the framework provided by Sling to authenticate HTTP requests.</p>
 <p>Let's look at generic request processing of Sling: Sling is linked into the outside world by registering the Sling Main Servlet &ndash; implemented by the <code>SlingMainServlet</code> class in the Sling Engine bundle &ndash; with an OSGi <code>HttpService</code>. This registration is accompanyied with an implementation instance of the OSGi <code>HttpContext</code> interface, which defines a method to authenticate requests: <code>handleSecurity</code>.</p>
 <p>This method is called by the OSGi HTTP Service implementation after the servlet has been selected to handle the request but before actually calling the servlet's <code>service</code> method.</p>
 <a href="authentication.png" style="float:left;padding-right:5%">
@@ -85,7 +86,7 @@
   <li><a href="/documentation/the-sling-engine/authentication/authentication-actors.html">Actors</a>: Authentication actors and process</li>
   <li><a href="/documentation/the-sling-engine/authentication/authentication-framework.html">Framework</a>: Authentication Framework, Auth Core bundle etc.</li>
   <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">AuthenticationHandler</a>: Authentication Handler service API.</li>
-</ul></section></div></div>            
+</ul></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

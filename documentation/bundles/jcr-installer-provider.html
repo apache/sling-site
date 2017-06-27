@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: JCR Installer Provider</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>JCR Installer Provider</h1></header><p>The JCR installer provider scans the JCR repository for artifacts and provides them to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                JCR Installer Provider
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The JCR installer provider scans the JCR repository for artifacts and provides them to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>.</p>
 <h2>Configuration and Scanning</h2>
 <p>The JCR installer provider can be configured with weighted paths which are scanned. By default, the installer scans in <em>/apps</em> and <em>/libs</em> where artifacts found in <em>/apps</em> get a higher priority. The installer does a deep scan and uses a regular expression to detect folders containing artifacts to be installed. By default, artifacts from within a folder named <em>install</em> are provided to the OSGi installer.</p>
 <p>If such an install folder contains a binary artifact (e.g. a bundle or a config file as described in <a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a>) this is provided to the OSGi installer. </p>
@@ -163,7 +165,7 @@ curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
 <h1>Project Info</h1>
 <ul>
   <li>JCR installer provider (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr">org.apache.sling.installer.provider.jcr</a>)</li>
-</ul></section></div></div>            
+</ul></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

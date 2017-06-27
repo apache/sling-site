@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Discovery API and its implementations</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,9 +66,12 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Discovery API and its implementations</h1></header><p>In many situations a particular Sling-based deployment consists of several Sling instances: typically a number of instances would form a <code>cluster</code> that share a common content repository - in other situations, or additionally, instances might be loosely coupled, each with their own repository.</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Discovery API and its implementations
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>In many situations a particular Sling-based deployment consists of several Sling instances: typically a number of instances would form a <code>cluster</code> that share a common content repository - in other situations, or additionally, instances might be loosely coupled, each with their own repository.</p>
 <p>The <code>discovery-api</code> bundle introduces an abstraction for such scenarios called <code>topology</code>. It provides access to the current topology, allows to be informed of any changes in the topology (such as joining or leaving instances) and contains a simple property exchange mechanism, e.g. to allow building communication services on top of it.</p>
-<p>[TOC]</p>
+<p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h2>Discovery Entities</h2>
 <p>The Discovery API defines the following entities</p>
 <h3>Instance, InstanceDescription</h3>
@@ -267,7 +270,7 @@ public class SamplePropertyProvider implements PropertyProvider {
 <h4>discovery.commons</h4>
 <p>This is a bundle usable by any implementation of discovery and contains very basic, implementation-independent functionality</p>
 <h4>discovery.base</h4>
-<p>This is the base bundle solely used by discovery.impl and discovery.oak and contains exactly the mentioned properties and announcement handling.</p></section></div></div>            
+<p>This is the base bundle solely used by discovery.impl and discovery.oak and contains exactly the mentioned properties and announcement handling.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

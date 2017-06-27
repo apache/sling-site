@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Apache Sling Context-Aware Configuration - Override</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,10 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Apache Sling Context-Aware Configuration - Override</h1></header><p>[TOC]</p>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles/context-aware-configuration/context-aware-configuration.html">Apache Sling Context-Aware Configuration</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Apache Sling Context-Aware Configuration - Override
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
 <h1>About</h1>
 <p>Using overrides it is possible to override context-aware configuration values globally or for specific content paths (and their subtrees) within an instance. If an override is active the Configuration API returns the overridden values instead of the values from the configuration resources.</p>
 <p>An example use case is to overwrite the Site URLs on your staging system which has a copy of the configuration content of the production system installed.</p>
@@ -109,7 +112,7 @@ x.y.z.MyConfig={&quot;prop1&quot;=&quot;value1&quot;,&quot;prop2&quot;=[1,2,3],&
 <p>This provider is not active by default, it has to be activated via OSGi configuration ("Apache Sling Context-Aware System Property Configuration Override Provider").</p>
 <h2>Override via OSGi configuration</h2>
 <p>Allows to define configuration property overrides from OSGi configuration.</p>
-<p>You can provide multiple providers using a factory configuration ("Apache Sling Context-Aware OSGi Configuration Override Provider"), each of them provides list of override strings.</p></section></div></div>            
+<p>You can provide multiple providers using a factory configuration ("Apache Sling Context-Aware OSGi Configuration Override Provider"), each of them provides list of override strings.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling on JBake</title>
+        <title>Apache Sling :: Configuration</title>
         <link rel="icon" href="/ng/res/favicon.ico"/>
         <link rel="stylesheet" href="/ng/res/css/site.css"/>
         
@@ -66,7 +66,9 @@
                 <strong><a href="/ng/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="row"><div class="small-12 columns"><section class="wrap"><header><h1>Configuration</h1></header><h2>Introduction</h2>
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Configuration
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2>Introduction</h2>
 <p>Configuration in Sling is aligned with respective support by the OSGi specification:</p>
 <ul>
   <li>Framework and Java system properties are available through the <code>BundleContext.getProperty(String)</code> method. These properties are provided in Sling through the Sling launcher.</li>
@@ -254,7 +256,7 @@
 <h2>Configuration Admin Service</h2>
 <p>Configuration of the system entities, such as services and components, by the system administrator is supported the Configuration Admin Service. The Configuration Admin Service acts as the center for the management of the configuration data, to which GUI-based tools will connect to retrieve and update configuration data. The Configuration Admin Service is responsible for persisting the configuration data and for providing configuration consumers with the configuration data. Specifically services registered with the <code>ManagedService</code> or <code>ManagedServiceFactory</code> interfaces are updated with the configuration upon updated. The Service Component Runtime on the other hand recognizes updated configuration and provides it to the managed components as defined in the OSGi Declarative Services Specification.</p>
 <p>By default the Configuration Admin Service is installed when Sling is started for the first time. This service is used by the Service Component Runtime launching the OSGi components declared in the bundles with configuration values. The Sling Management Console provides a simple GUI to manage these configuration elements on the 'Configuration' page.</p>
-<p>For more information on the Configuration Admin Service refer to the OSGi Configuration Admin Service Specification in the OSGi Service Platform Service Compendium book.</p></section></div></div>            
+<p>For more information on the Configuration Admin Service refer to the OSGi Configuration Admin Service Specification in the OSGi Service Platform Service Compendium book.</p></section></div></div>
 <div class="footer">
                 <div class="timestamp">
                     TODO display revision number here
