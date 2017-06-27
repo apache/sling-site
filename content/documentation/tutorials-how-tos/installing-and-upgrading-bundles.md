@@ -70,7 +70,6 @@ There exists no GUI functionality yet to add a new repository to the list of kno
 
 For example, if you run Sling on `http://localhost:7402/sample` with default location of the Sling Management Console, the following request would add a repository at `/tmp/repo/repository.xml` in the filesystem:
 
-    :::html
     http://localhost:7402/sample/system/console/bundlerepo?action=refreshOBR&repository=file:///tmp/repo/repository.xml
 
 Note: Only use `file:` URLs if you know Sling has access to the named file !
