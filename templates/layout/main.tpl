@@ -8,9 +8,12 @@ html(lang:'en'){
         include template: 'menu.tpl'
 
 		div(class:"main") {
-                        h1 {
-                          yield "${ content ? content.title : "<MISSING CONTENT OBJECT??>" }"
-                        }
+			breadcrumbs()
+			
+			h1 {
+            	yield "${ content ? content.title : "<MISSING CONTENT OBJECT??>" }"
+			}
+			
 			bodyContents()
 
 			newLine()
