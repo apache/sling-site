@@ -2,7 +2,6 @@ title=Maven Launchpad Plugin
 type=page
 status=published
 ~~~~~~
-translation_pending: true
 
 <div class="note">
 This page is out of sync with the latest maven-launchpad-plugin features and settings. For now,

@@ -2,7 +2,6 @@ title=Maven Archetypes
 type=page
 status=published
 ~~~~~~
-translation_pending: true
 
 Sling includes four Maven archetypes to quick start development. See [http://maven.apache.org/archetype/maven-archetype-plugin/](http://maven.apache.org/archetype/maven-archetype-plugin/) for general information on using Maven archetypes. The Maven groupId for all Sling archetypes is `org.apache.sling`.
 
