@@ -1,8 +1,8 @@
 title=Dependency Management		
 type=page
 status=published
+excerpt=This page is about how we do and don't do dependency management in the Sling project.
 ~~~~~~
-Excerpt: This page is about how we do and don't do dependency management in the Sling project.
 
 This page is about how we do and don't do dependency management in the Sling project.
 

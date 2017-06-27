@@ -1,8 +1,8 @@
 title=Authentication		
 type=page
 status=published
+excerpt=How requests are authenticated.
 ~~~~~~
-Excerpt:  How requests are authenticated.
 
 
 This section describes the framework provided by Sling to authenticate HTTP requests.

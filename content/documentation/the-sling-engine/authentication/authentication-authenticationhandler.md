@@ -1,8 +1,8 @@
 title=Authentication - AuthenticationHandler		
 type=page
 status=published
+excerpt=The `AuthenticationHandler` interface defines the service API which may be implemented by authentication handlers registered as OSGi services.
 ~~~~~~
-Excerpt: The `AuthenticationHandler` interface defines the service API which may be implemented by authentication handlers registered as OSGi services.
 
 The `AuthenticationHandler` interface defines the service API which may be implemented by authentication handlers registered as OSGi services.
 

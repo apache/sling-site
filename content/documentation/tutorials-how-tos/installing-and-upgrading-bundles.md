@@ -1,8 +1,8 @@
 title=Installing and Upgrading Bundles		
 type=page
 status=published
+excerpt=Explains how to install, upgrade and uninstall Bundles using the Sling Management console.
 ~~~~~~
-Excerpt: Explains how to install, upgrade and uninstall Bundles using the Sling Management console.
 
 <div class="note">
 We recommend to use the Apache Felix Web Console. The documentation below describes the old Sling Management Console, which isn't in use any more. Please refer to the documentation of the <a href="http://felix.apache.org/site/apache-felix-web-console.html">Apache Felix Web Console</a>.

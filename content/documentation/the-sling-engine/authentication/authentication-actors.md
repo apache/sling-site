@@ -1,8 +1,8 @@
 title=Authentication - Actors		
 type=page
 status=published
+excerpt=The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.
 ~~~~~~
-Excerpt: The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.
 
 The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.
 

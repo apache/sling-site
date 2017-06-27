@@ -1,8 +1,8 @@
 title=Service Authentication		
 type=page
 status=published
+excerpt=Introduce new service level authentication to replace `loginAdministrative`
 ~~~~~~
-Excerpt: Introduce new service level authentication to replace `loginAdministrative`
 
 [TOC]
 

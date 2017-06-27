@@ -1,8 +1,8 @@
 title=XML support		
 type=page
 status=published
+excerpt=XML mechanisms supported by Sling
 ~~~~~~
-Excerpt: XML mechanisms supported by Sling
 
 Out of the box, Sling provides no special bundles for XML. However, Sling supports multiple mechanisms and libraries. The ones we have validated with integration tests are:
 
