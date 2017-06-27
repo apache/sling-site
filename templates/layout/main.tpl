@@ -9,7 +9,7 @@ html(lang:'en'){
 
 		div(class:"main") {
                         h1 {
-                          yield content.title
+                          yield "${ content ? content.title : "<MISSING CONTENT OBJECT??>" }"
                         }
 			bodyContents()
 
