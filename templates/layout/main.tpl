@@ -8,6 +8,9 @@ html(lang:'en'){
         include template: 'menu.tpl'
 
 		div(class:"main") {
+                        h1 {
+                          yield content.title
+                        }
 			bodyContents()
 
 			newLine()
