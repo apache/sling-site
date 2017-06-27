@@ -32,7 +32,6 @@ does the trick.
 Does anyone have a similar command-line option that works under Windows?
 </div>
 
-# 
 # MAVEN_OPTS
 The MAVEN_OPTS environment variable defines options for the JVM that executes Maven.
 
