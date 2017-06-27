@@ -58,7 +58,6 @@ We'll have a script for that, but for now the following works:
 ### Final validation, activation etc.
 * Review all pages
 * Resync the content with the current Sling website if needed, initially synced at r1798604
-* Breadcrumbs. In http://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html for example, provide `Home :: Documentation :: Bundles` links.
 
 ### Done
 * Fix internal links like `refs.project-information.path` 
@@ -73,6 +72,7 @@ We'll have a script for that, but for now the following works:
 * Enumerate child pages in documentation/tutorials-how-tos.html and smilar pages -> replaced with a manually generated list.
 * Sitemap page
 * Left menu layout is now correct
+* Breadcrumbs are back.
 
 ## JBake and other techn notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
