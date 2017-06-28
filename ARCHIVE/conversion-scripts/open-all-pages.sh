@@ -1,6 +1,8 @@
+export SRC="src/main/jbake/content"
+export PAT=".*jbake.*content"
 export BASE="http://localhost:8820"
 
-find content -type f | sort | sed 's/\.md$/\.html/' | sed 's/^content//' | while read f
+find $SRC -type f | sort | sed 's/\.md$/\.html/' | sed "s/${PAT}//" | while read f
 do
-	open $BASE$f
+    open $BASE$f
 done
