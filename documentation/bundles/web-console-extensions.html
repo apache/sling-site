@@ -112,9 +112,7 @@
 <h3>Authentication Handling</h3>
 <p>As long as the web console security provider bundle is not activate and has not installed one of the above mentioned services, the default authentication of the web console is used. Once the bundle is active and a JCR repository service is available, the repository is used for authentication as explained above. But still the login form of the web console is used which is usually basic authentication. Once startup is finished and a Sling authentication service is available as well, the security provider replaces the JCR repository based auth provider with a Sling based auth provider. Both authenticate against the JCR repository, however the Sling based one using Sling to render the login form. Therefore, this provider is not registered until startup is finished</p></section></div></div>
 <div class="footer">
-                <div class="timestamp">
-                    <lastmod>2017-06-27 19:33:27</lastmod>
-                </div><div class="trademarkFooter">
+                <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </div>
             </div>            

@@ -68,8 +68,7 @@
         </div>        <div class="main">
             <breadcrumbs/><h1>
                 null
-            </h1><div class="sitemap"><section class="wrap"><header><h1>null</h1></header><ul><li><a href="/ng/news.html">News</a></li>
-                        <li><a href="/ng/contributing.html">Contributing</a></li>
+            </h1><div class="sitemap"><section class="wrap"><ul><li><a href="/ng/contributing.html">Contributing</a></li>
                         <li><a href="/ng/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html">Accessing File System Resources (org.apache.sling.fsresource)</a></li>
                         <li><a href="/ng/documentation/bundles/apache-sling-commons-thread-pool.html">Apache Sling Commons Thread Pool</a></li>
                         <li><a href="/ng/documentation/bundles/apache-sling-eventing-and-job-handling.html">Apache Sling Eventing and Job Handling</a></li>
@@ -198,6 +197,7 @@
                         <li><a href="/ng/news/sling-ide-tooling-11-released.html">Apache Sling IDE Tooling 1.1 released</a></li>
                         <li><a href="/ng/news/sling-launchpad-8-released.html">Apache Sling Launchpad 8 released</a></li>
                         <li><a href="/ng/news/sling-launchpad-9-released.html">Apache Sling Launchpad 9 released</a></li>
+                        <li><a href="/ng/news.html">News</a></li>
                         <li><a href="/ng/old-stuff/assembly.html">Assembly</a></li>
                         <li><a href="/ng/old-stuff/launch-sling.html">Launch Sling</a></li>
                         <li><a href="/ng/old-stuff/request-processing.html">Request Processing</a></li>
@@ -218,9 +218,7 @@
                         <li><a href="/ng/downloads.html">Downloads</a></li>
                     </ul></section></div>
 <div class="footer">
-                <div class="timestamp">
-                    
-                </div><div class="trademarkFooter">
+                <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </div>
             </div>            
