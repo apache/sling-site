@@ -1,7 +1,11 @@
 def processContent(str) {
 	// Temporarily disable the TOC macro, replace with a comment
 	def replacement ='<!-- TODO reactivate TOC once JBake moves to flexmark-java -->\n'
-	return str.replaceAll('\\[TOC\\]', replacement)
+	str = str.replaceAll('\\[TOC\\]', replacement)
+
+	// Temporarily disable the syntax markers (of which there are two flavors, for some reason)
+	str = str.replaceAll('(::|#\\!)(java|jsp|xml|sh|javascript) *\\n', '<!-- TODO syntax marker ($1$2) disabled -->')
+	return str
 }
 
 // Is parent an ancestor of child?
