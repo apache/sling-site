@@ -72,7 +72,7 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Request Parameter Handling in Sling
-            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2>Servlet API</h2>
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#servlet-api" name="servlet-api">Servlet API</a></h2>
 <p>The Servlet API specification provides the following methods to access the parameters of a request</p>
 <table>
   <thead>
@@ -113,7 +113,7 @@
   </tbody>
 </table>
 <p>The actual encoding of the parameters is all but safe because the encoding of URLs is not very well defined and browsers do not set the character encoding when sending post data. Fortunately, they use the same character encoding for sending back form content as was used by the server to send the form. </p>
-<h2>Sling API</h2>
+<h2><a href="#sling-api" name="sling-api">Sling API</a></h2>
 <p>To overcome the restrictions and to provide uniform access to request parameters the Sling API in addition to the Servlet API methods to access parameters provides an abstraction of parameters which is applicable to all parameters sent by clients, the <code>RequestParameter</code> interface. Through this interface, each parameter may be analyzed for these topics:</p>
 <table>
   <thead>
@@ -167,7 +167,7 @@
   <li>After the servlet container provided parameters are parameters extracted from the request in case <code>multipart/form-data</code> POST requests. The order of these parameters is preserved as they are submitted in the request. This conforms to HTML 4.01 spec on forms submitted with multipart/form-data encoding: <em>A "multipart/form-data" message contains a series of parts, each representing a successful control. The parts are sent to the processing agent in the same order the corresponding controls appear in the document stream. Part boundaries should not occur in any of the data; how this is done lies outside the scope of this specification</em> (<a href="http://www.w3.org/TR/html401/interact/forms.html">17.13.4 Form content types</a>)</li>
 </ul>
 <p>Be warned: Only rely on request parameter ordering <code>multipart/form-data</code> POST requests without a query part in the request URL.</p>
-<h3>Effects of Sling on Servlet API parameter methods</h3>
+<h3><a href="#effects-of-sling-on-servlet-api-parameter-methods" name="effects-of-sling-on-servlet-api-parameter-methods">Effects of Sling on Servlet API parameter methods</a></h3>
 <p>From within Sling servlets/scripts you can no longer rely on the original semantics of the Servlet API methods for dealing with parameters as</p>
 <ul>
   <li><code>ServletRequest.getParameter(String)</code></li>
@@ -179,7 +179,7 @@
 </ul>
 <p>internally use the Sling parameter support (and therefore have the same implications on e.g. encoding). You should preferably use the Sling methods <code>getRequestParameter*</code> instead.</p>
 <p>Calling <code>ServletRequest.getInputStream()</code> is not supported, nor relying on some 3rd party libraries which are internally using that method like <a href="https://commons.apache.org/proper/commons-fileupload/">Apache Commons Fileupload</a>. This is because the Sling parameter support needs exclusive access to the request's input stream.</p>
-<h2>Character Encoding</h2>
+<h2><a href="#character-encoding" name="character-encoding">Character Encoding</a></h2>
 <p>Traditionally, the encoding of parameters, especially in text area input forms, has been a big issue. To solve this issue Sling introduces the following convention:</p>
 <ul>
   <li>All forms should contain a hidden field of the name <code>_charset_</code> containing the actual encoding used to send the form from the server to the client</li>

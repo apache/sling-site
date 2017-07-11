@@ -74,7 +74,7 @@
                 Service Authentication
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Problem</h2>
+<h2><a href="#problem" name="problem">Problem</a></h2>
 <p>To access the data storage in the Resource Tree and/or the JCR Repository authentication is required to properly setup access control and guard sensitive data from unauthorized access. For regular request processing this authentication step is handled by the Sling <a href="/documentation/the-sling-engine/authentication.html">Authentication</a> subsystem.</p>
 <p>On the other hand there are also some background tasks to be executed with access to the resources. Such tasks cannot in general be configured with user names and passwords: Neither hard coding the passwords in the code nor having the passwords in &ndash; more or less &ndash; plain text in some configuration is considered good practice.</p>
 <p>To solve this problem for services to identify themselves and authenticate with special users properly configured to support those services.</p>
@@ -85,7 +85,7 @@
   <li>Allow services to use <em>service users</em> which have been specially configured for service level access (as is usually done on unixish systems)</li>
   <li>Allow administrators to configure the assignment of service users to services</li>
 </ul>
-<h2>Concept</h2>
+<h2><a href="#concept" name="concept">Concept</a></h2>
 <p>A <em>Service</em> is a piece or collection of functionality. Examples of services are the Sling queuing system, Tenant Administration, or some Message Transfer System. Each service is identified by a unique <em>Service Name</em>. Since a service will be implemented in an OSGi bundle (or a collection of OSGi bundles), services are named by the bundles providing them.</p>
 <p>A Service may be comprised of multiple parts, so each part of the service may be further identified by a <em>Subservice Name</em>. This Subservice Name is optional, though. Examples of <em>Subservice Name</em> are names for subsystems in a Message Transfer System such as accepting messages, queueing messages, delivering messages.</p>
 <p>Ultimately, the combination of the <em>Service Name</em> and <em>Subservice Name</em> defines the <em>Service ID</em>. It is the <em>Service ID</em> which is finally mapped to a Resource Resolver and/or JCR Repository user ID for authentication.</p>
@@ -94,9 +94,9 @@
 service-id = service-name [ &quot;:&quot; subservice-name ] .
 </code></pre>
 <p>The <code>service-name</code> is the symbolic name of the bundle providing the service.</p>
-<h3>Example: Tenant Administration</h3>
+<h3><a href="#example-tenant-administration" name="example-tenant-administration">Example: Tenant Administration</a></h3>
 <p>Tenant Administration mostly deals with creating and managing groups and some other user administration tasks. Instead of just using an administrative session for Tenant administration this feature could define itself as being the <code>tenant-admin</code> service and leverage a properly configured Tenant Administration account.</p>
-<h3>Example: Mail Transfer System</h3>
+<h3><a href="#example-mail-transfer-system" name="example-mail-transfer-system">Example: Mail Transfer System</a></h3>
 <p>Consider a Mail Transfer System which may be comprised of the following sub systems:</p>
 <ul>
   <li>Accepting mail for processing &mdash; for example the SMTP server daemon</li>
@@ -106,13 +106,12 @@ service-id = service-name [ &quot;:&quot; subservice-name ] .
 <p>You could conceive that all these functions serve different purposes and thus should have different access rights to the repository to persist messages while they are being processed.</p>
 <p>Using the Service Authentication framework, the Mail Transfer System would be consituting the <code>mta</code> service. The sub systems would be called <code>smtp</code>, <code>queue</code>, and <code>deliver</code>.</p>
 <p>Thus the SMTP server daemon would be represented by a user for the <code>mta:smtp</code> Service. queueing with <code>mta:queue</code>, and delivery with <code>mta:deliver</code>. </p>
-<h2>Implementation</h2>
+<h2><a href="#implementation" name="implementation">Implementation</a></h2>
 <p>The implementation in Sling of the <em>Service Authentication</em> concept described above consists of three parts:</p>
-<h3><code>ServiceUserMapper</code></h3>
+<h3><a href="#serviceusermapper" name="serviceusermapper">ServiceUserMapper</a></h3>
 <p>The first part is a new OSGi Service <code>ServiceUserMapper</code>. The <code>ServiceUserMapper</code> service allows for mapping <em>Service IDs</em> comprised of the <em>Service Names</em> defined by the providing bundles and optional <em>Subservice Name</em> to ResourceResolver and/or JCR Repository user IDs. This mapping is configurable such that system administrators are in full control of assigning users to services.</p>
 <p>The <code>ServiceUserMapper</code> defines the following API:</p>
-<pre><code>#!java
-String getServiceUserID(Bundle bundle, String subServiceName);
+<pre><code><!-- TODO syntax marker (#!java) disabled -->String getServiceUserID(Bundle bundle, String subServiceName);
 </code></pre>
 <p>The implementation uses two fallbacks in case no mapping can be found for the given subServiceName</p>
 <ol>
@@ -120,31 +119,28 @@ String getServiceUserID(Bundle bundle, String subServiceName);
   <li>Use default user (if one is configured).</li>
 </ol>
 <p>In addition a service named <code>ServiceUserMapped</code> is registered for each bundle and subservice name for which a service user mapping is configured (<a href="https://issues.apache.org/jira/browse/SLING-4312">SLING-4312</a>). By explicitly defining a (static) reference towards <code>ServiceUserMapped</code> one can defer starting the service until that service user mapping is available.</p>
-<h3><code>ResourceResolverFactory</code></h3>
+<h3><a href="#resourceresolverfactory" name="resourceresolverfactory">ResourceResolverFactory</a></h3>
 <p>The second part is support for service access to the Resource Tree. To this avail, the <code>ResourceResolverFactory</code> service is enhanced with a new factory method</p>
-<pre><code>#!java
-ResourceResolver getServiceResourceResolver(Map&lt;String, Object&gt; authenticationInfo)
+<pre><code><!-- TODO syntax marker (#!java) disabled -->ResourceResolver getServiceResourceResolver(Map&lt;String, Object&gt; authenticationInfo)
     throws LoginException;
 </code></pre>
 <p>This method allows for access to the resource tree for services where the service bundle is the bundle actually using the <code>ResourceResolverFactory</code> service. The optional Subservice Name may be provided as an entry in the <code>authenticationInfo</code> map.</p>
 <p>In addition to having new API on the <code>ResourceResolverFactory</code> service to be used by services, the <code>ResourceProviderFactory</code> service is updated with support for Service Authentication: Now new API is required, though but additional properties are defined to convey the service to authenticate for.</p>
 <p>The default implementation leverages <code>ServiceUserMapper.getServiceUserID()</code> to resolve the right user id and throws a <code>LoginException</code> in case no mapping has been setup (and none of the fallbacks returned a user id != <code>null</code> either).</p>
-<h3><code>SlingRepository</code></h3>
+<h3><a href="#slingrepository" name="slingrepository">SlingRepository</a></h3>
 <p>The third part is an extension to the <code>SlingRepository</code>service interface to support JCR Repository access for services:</p>
-<pre><code>#!java
-Session loginService(String subServiceName, String workspace)
+<pre><code><!-- TODO syntax marker (#!java) disabled -->Session loginService(String subServiceName, String workspace)
     throws LoginException, RepositoryException;
 </code></pre>
 <p>This method allows for access to the JCR Repository for services where the service bundle is the bundle actually using the <code>SlingRepository</code> service. The additional Subservice Name may be provided with the <code>subServiceName</code> parameter.</p>
-<h2>Configuration</h2>
-<h3>Service User Mappings</h3>
+<h2><a href="#configuration" name="configuration">Configuration</a></h2>
+<h3><a href="#service-user-mappings" name="service-user-mappings">Service User Mappings</a></h3>
 <p>For each service/subservice name combination an according mapping needs to be provided. The mapping binds a service name/subservice name to a JCR system user. This is configured through an OSGi configuration for the factory configuration with PID <code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended</code> <a href="https://issues.apache.org/jira/browse/SLING-3578">SLING-3578</a>. There you can set one configuration property named <code>user.mapping</code> getting a String array as value where each entry must stick to the following format:</p>
 <pre><code>&lt;service-name&gt;[:&lt;subservice-name&gt;]=&lt;authorizable id of a JCR system user&gt;]
 </code></pre>
 <p>The according user must exist at the point in time where <code>ResourceResolverFactory.getServiceResourceResolver(...)</code> or <code>SlingRepository.loginService(...)</code> is called. If you rely on one of those methods in your <code>activate</code> method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service <code>ServiceUserMapped</code> (<a href="https://issues.apache.org/jira/browse/SLING-4312">SLING-4312</a>), optionally with a target filter on property <code>subServiceName</code> (in case such a subservice name is used). The service <code>ServiceUserMapped</code> does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components. However this waits only for the mapping configuration to be available, it does not wait for the service user itself to be available.</p>
 <p>Example OSGi DS Component</p>
-<pre><code>:::java
-@Component(
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->@Component(
     reference = {
         // this waits with the activation of this component until a service user mapping with the service name = current bundle&#39;s id and the sub service name &#39;my-subservice-name&#39; is available.
         // you can leave out &quot;target&quot; if the sub service name is not used.
@@ -156,7 +152,7 @@ class MyComponent {
 }
 </code></pre>
 <p>There is a default mapping applied if no OSGi configuration is available for the mapping. The default is: "serviceuser--" + bundleId [ + "--" + subservice-name]. Please note, that these default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work.</p>
-<h2>Deprecation of administrative authentication</h2>
+<h2><a href="#deprecation-of-administrative-authentication" name="deprecation-of-administrative-authentication">Deprecation of administrative authentication</a></h2>
 <p>Originally the <code>ResourceResolverFactory.getAdministrativeResourceResolver</code> and <code>SlingRepository.loginAdministrative</code> methods have been defined to provide access to the resource tree and JCR Repository. These methods proved to be inappropriate because they allow for much too broad access.</p>
 <p>Consequently these methods are being deprecated and will be removed in future releases of the service implementations.</p>
 <p>The following methods are deprecated:</p>
@@ -166,7 +162,7 @@ class MyComponent {
   <li><code>SlingRepository.loginAdministrative</code></li>
 </ul>
 <p>The implementations we have in Sling's bundle will remain implemented in the near future. But there will be a configuration switch to disable support for these methods: If the method is disabled, a <code>LoginException</code> is always thrown from these methods. The JavaDoc of the methods is extended with this information.</p>
-<h3>Whitelisting bundles for administrative login</h3>
+<h3><a href="#whitelisting-bundles-for-administrative-login" name="whitelisting-bundles-for-administrative-login">Whitelisting bundles for administrative login</a></h3>
 <p>In order to be able to manage few (hopefully legit) uses of the above deprecated methods, a whitelisting mechanism was introduced with <a href="https://issues.apache.org/jira/browse/SLING-5135">SLING-5153</a> (*JCR Base 2.4.2*).</p>
 <p>The recommended way to whitelist a bundle for administrative login is via a <em>whitelist fragment configuration</em>. It can be created as an OSGi factory configuration with the factoryPID <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment</code>. E.g. a typical configuration file might be called <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment-myapp.config</code> and could look as follows: </p>
 <pre><code>whitelist.name=&quot;myapp&quot;

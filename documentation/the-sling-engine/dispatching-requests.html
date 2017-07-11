@@ -72,7 +72,7 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Dispatching Requests
-            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2>Main process</h2>
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#main-process" name="main-process">Main process</a></h2>
 <p>The following steps should give you an overview how a request is processed in Sling. Details can be found under provided links.</p>
 <ol>
   <li>
@@ -111,7 +111,7 @@
   <li>
   <p>After having called the component level filters, the request servlet or script is finally called to process the request.</p></li>
 </ol>
-<h2>Include/Forward</h2>
+<h2><a href="#include-forward" name="include-forward">Include/Forward</a></h2>
 <p>If a servlet or script is including another resource for processing through the <code>RequestDispatcher.include</code> or <code>RequestDispatcher.forward</code> (or any JSP or feature of another scripting language which relies on one of this two methods) the following processing takes place:</p>
 <ol>
   <li>
@@ -126,7 +126,7 @@
   <p>The servlet or script is called to process the request.</p></li>
 </ol>
 <p>Note that these steps are processed for every include or forward call.</p>
-<h2>Included Request Attributes</h2>
+<h2><a href="#included-request-attributes" name="included-request-attributes">Included Request Attributes</a></h2>
 <p>When servlet or script is called as a result of <code>RequestDispatcher.include</code> the following request attributes are set:</p>
 <table>
   <thead>

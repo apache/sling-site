@@ -74,13 +74,13 @@
                 Content Distribution (org.apache.sling.distribution)
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Introduction</h2>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>The Sling Content Distribution (SCD) module allows one to distribute Sling resources between different Sling instances. The API works at path level and the distribution agents basically enable distribution of specific paths between instances. There are several main usecases in which SCD can help. Typically the distribution is done from one or more source instances to one or more target instances.</p>
-<h2>Distribution usecases</h2>
+<h2><a href="#distribution-usecases" name="distribution-usecases">Distribution usecases</a></h2>
 <p>Some of the usecases have sample configuration in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/sample/src/main/resources/SLING-CONTENT/libs/sling/distribution">Distribution Sample Module</a> and are tested in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/it">Distribution ITs Module</a>.</p>
-<h3>Forward distribution</h3>
+<h3><a href="#forward-distribution" name="forward-distribution">Forward distribution</a></h3>
 <p>A forward distribution setup allows one to transfer content from a source instance to a farm of target instances. That is done by pushing the content from source to target.</p>
-<h4>Setup overview</h4>
+<h4><a href="#setup-overview" name="setup-overview">Setup overview</a></h4>
 <ul>
   <li>one source instance
     <ul>
@@ -93,7 +93,7 @@
     </ul>
   </li>
 </ul>
-<h4>Sample configuration</h4>
+<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
 <ul>
   <li>
     <p>on source instance: one forward agent</p>
@@ -109,9 +109,9 @@
 </code></pre>
   </li>
 </ul>
-<h3>Reverse distribution</h3>
+<h3><a href="#reverse-distribution" name="reverse-distribution">Reverse distribution</a></h3>
 <p>A reverse distribution setup allows one to transfer content from a farm of source instances to a target instance. That is done by pulling the content from source instances into the target instance.</p>
-<h4>Setup overview</h4>
+<h4><a href="#setup-overview" name="setup-overview">Setup overview</a></h4>
 <ul>
   <li>one target instance
     <ul>
@@ -125,7 +125,7 @@
     </ul>
   </li>
 </ul>
-<h4>Sample configuration</h4>
+<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
 <ul>
   <li>
     <p>on target instance: one reverse agent</p>
@@ -145,9 +145,9 @@ org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageEx
 </code></pre>
   </li>
 </ul>
-<h3>Sync distribution</h3>
+<h3><a href="#sync-distribution" name="sync-distribution">Sync distribution</a></h3>
 <p>A sync distribution setup allows one to synchronize content in a farm of instances. That is done by using a coordinator instance (typically an author instance) that pulls content from all instances in a farm and pushes it back to all.</p>
-<h4>Setup overview:</h4>
+<h4><a href="#setup-overview-" name="setup-overview-">Setup overview:</a></h4>
 <ul>
   <li>one coordinator instance
     <ul>
@@ -162,7 +162,7 @@ org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageEx
     </ul>
   </li>
 </ul>
-<h4>Sample configuration</h4>
+<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
 <ul>
   <li>
     <p>on coordinator instance: one sync agent</p>
@@ -187,9 +187,9 @@ org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageIm
 </code></pre>
   </li>
 </ul>
-<h3>Multidatacenter sync distribution</h3>
+<h3><a href="#multidatacenter-sync-distribution" name="multidatacenter-sync-distribution">Multidatacenter sync distribution</a></h3>
 <p>A multidatacenter sync distribution setup allows one to synchronize content in a farm of publish instances across datacenters. This a variation of sync distribution but using a coordinator in each datacenter.</p>
-<h4>Setup overview</h4>
+<h4><a href="#setup-overview" name="setup-overview">Setup overview</a></h4>
 <ul>
   <li>one coordinator instance in each datacenter
     <ul>
@@ -206,7 +206,7 @@ org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageIm
     </ul>
   </li>
 </ul>
-<h4>Sample configuration</h4>
+<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
 <ul>
   <li>
     <p>on coordinator instance: one intradcsync agent with two exporters for the other dcs, and one interdcsync agent that connects to remote exporters.</p>
@@ -246,11 +246,11 @@ org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageIm
 </code></pre>
   </li>
 </ul>
-<h2>Additional options</h2>
-<h3>How to trigger distribution over HTTP?</h3>
-<h3>How to configure binary-less distribution?</h3>
-<h3>How to configure priority paths?</h3>
-<h3>How to configure error queues?</h3></section></div></div>
+<h2><a href="#additional-options" name="additional-options">Additional options</a></h2>
+<h3><a href="#how-to-trigger-distribution-over-http-" name="how-to-trigger-distribution-over-http-">How to trigger distribution over HTTP?</a></h3>
+<h3><a href="#how-to-configure-binary-less-distribution-" name="how-to-configure-binary-less-distribution-">How to configure binary-less distribution?</a></h3>
+<h3><a href="#how-to-configure-priority-paths-" name="how-to-configure-priority-paths-">How to configure priority paths?</a></h3>
+<h3><a href="#how-to-configure-error-queues-" name="how-to-configure-error-queues-">How to configure error queues?</a></h3></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

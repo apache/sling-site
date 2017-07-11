@@ -74,7 +74,7 @@
                 URL decomposition
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h1>Overview</h1>
+<h1><a href="#overview" name="overview">Overview</a></h1>
 <p>During the <em>Resource Resolution</em> step, the client request URI (as being returned by [HttpServletRequest.getRequestURI()](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getRequestURI())) is decomposed into the following parts (in exactly this order):</p>
 <ol>
   <li><strong>Resource Path</strong> - For existing resources the resource path is the longest match (also considering its <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">mappings</a>) pointing to a resource where the next character is either a dot (<code>.</code>) or it is the full request URI. Otherwise (for a path not matching any existing resource) the resource path ends at the <em>first dot (<code>.</code>)</em> in the request url. The exact logic for retrieving the resource path is implemented at <a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#resolve-javax.servlet.http.HttpServletRequest-java.lang.String-">ResourceResolver.resolve(HttpServletRequest,String)</a>. <em>It is impossible to tell from just looking at the request URI where the resource path part ends. You have to know the underlying resource structure to know how a URL is decomposed. You cannot safely assume that the resource path will always end at the first dot!</em>.</li>
@@ -84,7 +84,7 @@
 </ol>
 <p>Those decomposed parts can be accessed through the <code>RequestPathInfo</code> object, which is retrieved via <a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/SlingHttpServletRequest.html#getRequestPathInfo--">SlingHttpServletRequest.getPathInfo()</a>.</p>
 <p>There's a cheat sheet in Adobe's AEM documentation at <a href="https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html">https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html</a> available to get you familiar with the URL decomposition of Sling.</p>
-<h1>Examples</h1>
+<h1><a href="#examples" name="examples">Examples</a></h1>
 <p>Assume there is a Resource at <code>/a/b</code>, which has no children.</p>
 <table>
   <thead>
@@ -212,7 +212,7 @@
     </tr>
   </tbody>
 </table>
-<h1>Automated Tests</h1>
+<h1><a href="#automated-tests" name="automated-tests">Automated Tests</a></h1>
 <p>The tests at</p>
 <ul>
   <li><a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/resourceresolver/src/test/java/org/apache/sling/resourceresolver/impl/ResourceResolverImplTest.java">ResourceResolverImplTest</a> shows the split between resource path and the rest. Mostly in the method <code>testBasicAPIAssumptions</code>.</li>

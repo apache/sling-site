@@ -83,7 +83,7 @@
   <li><a href="/project-information/project-license.html">Project License</a></li>
   <li><a href="#documentation-repository">Documentation Repository</a></li>
 </ul>
-<h2>Mailing Lists</h2>
+<h2><a href="#mailing-lists" name="mailing-lists">Mailing Lists</a></h2>
 <p>These are the mailing lists that have been established for this project. For each list, there is a subscribe, unsubscribe, and an archive link.</p>
 <p>The Sling Users List is the preferred way of getting help with Sling. However, you can also <a href="http://stackoverflow.com/questions/ask?tags=sling">Ask a Sling question on StackOverflow</a> if you prefer.</p>
 <table>
@@ -124,31 +124,31 @@
     </tr>
   </tbody>
 </table>
-<h2>Issue Tracking</h2>
+<h2><a href="#issue-tracking" name="issue-tracking">Issue Tracking</a></h2>
 <p>This project uses JIRA a J2EE-based, issue tracking and project management application. Issues, bugs, and feature requests should be submitted to the following issue tracking system for this project.</p>
 <p>The issue tracker can be found at <a href="http://issues.apache.org/jira/browse/SLING">http://issues.apache.org/jira/browse/SLING</a></p>
-<h2>Source Repository</h2>
+<h2><a href="#source-repository" name="source-repository">Source Repository</a></h2>
 <p>This project uses Subversion to manage its source code. Instructions on Subversion use can be found at <a href="http://svnbook.red-bean.com/">http://svnbook.red-bean.com/</a>.</p>
-<h3>Web Access</h3>
+<h3><a href="#web-access" name="web-access">Web Access</a></h3>
 <p>The following is a link to the online source repository.</p>
 <pre><code>http://svn.apache.org/viewvc/sling/trunk
 </code></pre>
-<h3>Anonymous access</h3>
+<h3><a href="#anonymous-access" name="anonymous-access">Anonymous access</a></h3>
 <p>The source can be checked out anonymously from SVN with this command:</p>
 <pre><code>$ svn checkout http://svn.apache.org/repos/asf/sling/trunk sling
 </code></pre>
-<h3>Developer access</h3>
+<h3><a href="#developer-access" name="developer-access">Developer access</a></h3>
 <p>Everyone can access the Subversion repository via HTTPS, but Committers must checkout the Subversion repository via HTTPS.</p>
 <pre><code>$ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
 </code></pre>
 <p>To commit changes to the repository, execute the following command to commit your changes (svn will prompt you for your password)</p>
 <pre><code>$ svn commit --username your-username -m &quot;A message&quot;
 </code></pre>
-<h3>Access from behind a firewall</h3>
+<h3><a href="#access-from-behind-a-firewall" name="access-from-behind-a-firewall">Access from behind a firewall</a></h3>
 <p>For those users who are stuck behind a corporate firewall which is blocking http access to the Subversion repository, you can try to access it via the developer connection:</p>
 <pre><code>$ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
 </code></pre>
-<h3>Access through a proxy</h3>
+<h3><a href="#access-through-a-proxy" name="access-through-a-proxy">Access through a proxy</a></h3>
 <p>The Subversion client can go through a proxy, if you configure it to do so. First, edit your "servers" configuration file to indicate which proxy to use. The files location depends on your operating system. On Linux or Unix it is located in the directory "~/.subversion". On Windows it is in "%APPDATA%\Subversion". (Try "echo %APPDATA%", note this is a hidden directory.)</p>
 <p>There are comments in the file explaining what to do. If you don't have that file, get the latest Subversion client and run any command; this will cause the configuration directory and template files to be created.</p>
 <p>Example : Edit the 'servers' file and add something like :</p>
@@ -156,7 +156,7 @@
 http-proxy-host = your.proxy.name
 http-proxy-port = 3128
 </code></pre>
-<h2>Continuous Integration</h2>
+<h2><a href="#continuous-integration" name="continuous-integration">Continuous Integration</a></h2>
 <p>Sling builds run automatically on the <a href="https://builds.apache.org/">ASF's Jenkins instance</a>, triggered by commits.</p>
 <p>We maintain multiple build jobs, typically one or two per module. These are grouped into two views:</p>
 <ul>
@@ -164,9 +164,9 @@ http-proxy-port = 3128
   <li><a href="https://builds.apache.org/view/S-Z/view/Sling-Dashboard/">Sling-Dashboard</a>, which holds all Sling jobs needing attention, such as failed jobs.</li>
 </ul>
 <p>More documentation regarding the Jenkins setup is available as wiki links from the views mentioned above.</p>
-<h2>Documentation Repository</h2>
+<h2><a href="#documentation-repository" name="documentation-repository">Documentation Repository</a></h2>
 <p>The documentation website, in fact the very page that you are reading right now, is located at <a href="https://cms.apache.org/sling/">The ASF Content Management System’s Sling project</a>. You can contribute without being an official project committer.</p>
-<h3>Save your changes as an SVN patch:</h3>
+<h3><a href="#save-your-changes-as-an-svn-patch-" name="save-your-changes-as-an-svn-patch-">Save your changes as an SVN patch:</a></h3>
 <ol>
   <li>Log in as username <em>anonymous</em> and leave the password blank.</li>
   <li>Click <em>Get sling Working Copy</em> to check out a local branch through the browser.</li>
@@ -176,14 +176,14 @@ http-proxy-port = 3128
   <li>Click <em>submit</em>.</li>
   <li>Click <em>Diff</em>, then <em>Download Diff</em> and save the SVN patch to your computer.</li>
 </ol>
-<h3>Submit your changes:</h3>
+<h3><a href="#submit-your-changes-" name="submit-your-changes-">Submit your changes:</a></h3>
 <ol>
   <li>Navigate to the <a href="https://issues.apache.org/jira/browse/SLING">Jira issue tracker</a>.</li>
   <li>Create an account and/or login.</li>
   <li>Create a ticket, enter a description and choose <em>Documentation</em> for <em>Components</em>.</li>
   <li>Select the ticket, click <em>more</em>, select <em>attach files</em> and attach your SVN patch.</li>
 </ol>
-<h3>Further resources:</h3>
+<h3><a href="#further-resources-" name="further-resources-">Further resources:</a></h3>
 <ol>
   <li>Read the <a href="http://www.apache.org/dev/cmsref#non-committer">ASF CMS reference for non-committers</a>.</li>
   <li>Watch a <a href="http://s.apache.org/cms-anonymous-tutorial">video tutorial by Rob Weir for anonymous users</a>.</li>

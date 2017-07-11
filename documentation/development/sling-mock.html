@@ -75,9 +75,8 @@
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Mock implementation of selected Sling APIs for easier testing.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Maven Dependency</h2>
-<pre><code>#!xml
-&lt;dependency&gt;
+<h2><a href="#maven-dependency" name="maven-dependency">Maven Dependency</a></h2>
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.sling-mock&lt;/artifactId&gt;
 &lt;/dependency&gt;
@@ -88,7 +87,7 @@
   <li>sling-mock 1.x: compatible with older Sling versions from 2014 (Sling API 2.4 and above)</li>
   <li>sling-mock 2.x: compatible with Sling versions from 2016 (Sling API 2.11 and above)</li>
 </ul>
-<h2>Implemented mock features</h2>
+<h2><a href="#implemented-mock-features" name="implemented-mock-features">Implemented mock features</a></h2>
 <p>The mock implementation supports:</p>
 <ul>
   <li><code>ResourceResolver</code> implementation for reading and writing resource data using the Sling Resource API
@@ -121,7 +120,7 @@
     </ul>
   </li>
 </ul>
-<h3>Additional features</h3>
+<h3><a href="#additional-features" name="additional-features">Additional features</a></h3>
 <p>Additional features provided:</p>
 <ul>
   <li><code>SlingContext</code> JUnit Rule for easily setting up a Sling Mock environment in your JUnit test cases</li>
@@ -132,12 +131,11 @@
   </li>
   <li><code>ContentBuilder</code> and <code>ResourceBuilder</code> make it easier to create resources and properties as test fixture</li>
 </ul>
-<h2>Usage</h2>
-<h3>Sling Context JUnit Rule</h3>
+<h2><a href="#usage" name="usage">Usage</a></h2>
+<h3><a href="#sling-context-junit-rule" name="sling-context-junit-rule">Sling Context JUnit Rule</a></h3>
 <p>The Sling mock context can be injected into a JUnit test using a custom JUnit rule named <code>SlingContext</code>. This rules takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p>
 <p>Example:</p>
-<pre><code>#!java
-public class ExampleTest {
+<pre><code><!-- TODO syntax marker (#!java) disabled -->public class ExampleTest {
 
   @Rule
   public final SlingContext context = new SlingContext();
@@ -166,10 +164,9 @@ public class ExampleTest {
   <li>Registering adapter factories</li>
   <li>Accessing ContentLoader, and ContentBuilder and ResourceBuilder</li>
 </ul>
-<h3>Choosing Resource Resolver Mock Type</h3>
+<h3><a href="#choosing-resource-resolver-mock-type" name="choosing-resource-resolver-mock-type">Choosing Resource Resolver Mock Type</a></h3>
 <p>The Sling mock context supports different resource resolver types. Example:</p>
-<pre><code>#!java
-public class ExampleTest {
+<pre><code><!-- TODO syntax marker (#!java) disabled -->public class ExampleTest {
 
   @Rule
   public final SlingContext context = new SlingContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
@@ -177,7 +174,7 @@ public class ExampleTest {
 }
 </code></pre>
 <p>Different resource resolver mock types are supported with pros and cons, see next chapter for details.</p>
-<h3>Resource Resolver Types</h3>
+<h3><a href="#resource-resolver-types" name="resource-resolver-types">Resource Resolver Types</a></h3>
 <p>The Sling Mocks resource resolver implementation supports different "types" of adapters for the mocks. Depending on the type an underlying JCR repository is used or not, and the data is stored in-memory or in a real repository.</p>
 <p>Resource resolver types currently supported:</p>
 <p><strong>RESOURCERESOLVER_MOCK (default)</strong></p>
@@ -210,8 +207,7 @@ public class ExampleTest {
   <li>Lucene indexing is not included, thus fulltext search queries will return no result</li>
 </ul>
 <p>To use this type you have to declare an additional dependency in your test project:</p>
-<pre><code>#!xml
-&lt;dependency&gt;
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.sling-mock-oak&lt;/artifactId&gt;
   &lt;scope&gt;test&lt;/scope&gt;
@@ -227,8 +223,7 @@ public class ExampleTest {
   <li>Node types defined in OSGi bundle header 'Sling-Nodetypes' found in MANIFEST.MF files in the classpath are registered automatically.</li>
 </ul>
 <p>To use this type you have to declare an additional dependency in your test project:</p>
-<pre><code>#!xml
-&lt;dependency&gt;
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.sling-mock-jackrabbit&lt;/artifactId&gt;
   &lt;scope&gt;test&lt;/scope&gt;
@@ -240,21 +235,19 @@ public class ExampleTest {
   <li>The repository is not cleared for each unit test, so make sure to use a unique node path for each unit test. You may use the <code>uniquePath()</code> helper object of the SlingContext rule for this.</li>
   <li>The <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/commons/testing">sling/commons/testing</a> dependency introduces a lot of further dependencies from  jackrabbit and others, be careful that they do not conflict and are imported in the right order in your test project</li>
 </ul>
-<h3>Sling Resource Resolver</h3>
+<h3><a href="#sling-resource-resolver" name="sling-resource-resolver">Sling Resource Resolver</a></h3>
 <p>Example:</p>
-<pre><code>#!java
-// get a resource resolver
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// get a resource resolver
 ResourceResolver resolver = MockSling.newResourceResolver();
 
 // get a resource resolver backed by a specific repository type
 ResourceResolver resolver = MockSling.newResourceResolver(ResourceResolverType.JCR_MOCK);
 </code></pre>
 <p>If you use the <code>SlingContext</code> JUnit rule you case just use <code>context.resourceResolver()</code>.</p>
-<h3>Adapter Factories</h3>
+<h3><a href="#adapter-factories" name="adapter-factories">Adapter Factories</a></h3>
 <p>You can register your own or existing adapter factories to support adaptions e.g. for classes extending <code>SlingAdaptable</code>.</p>
 <p>Example:</p>
-<pre><code>#!java
-// register adapter factory
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// register adapter factory
 BundleContext bundleContext = MockOsgi.newBundleContext();
 MockSling.setAdapterManagerBundleContext(bundleContext);
 bundleContext.registerService(myAdapterFactory);
@@ -267,10 +260,9 @@ MockSling.clearAdapterManagerBundleContext();
 </code></pre>
 <p>Make sure you clean up the adapter manager bundle association after running the unit test otherwise it can interfere with the following tests. If you use the <code>SlingContext</code> JUnit rule this is done automatically for you.</p>
 <p>If you use the <code>SlingContext</code> JUnit rule you case just use <code>context.registerService()</code>.</p>
-<h3>SlingScriptHelper</h3>
+<h3><a href="#slingscripthelper" name="slingscripthelper">SlingScriptHelper</a></h3>
 <p>Example:</p>
-<pre><code>#!java
-// get script helper
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// get script helper
 SlingScriptHelper scriptHelper = MockSling.newSlingScriptHelper();
 
 // get request
@@ -281,10 +273,9 @@ MyService object = scriptHelper.getService(MyService.class);
 </code></pre>
 <p>To support getting OSGi services you have to register them via the <code>BundleContext</code> interface of the <a href="/documentation/development/jcr-mock.html">JCR Mocks</a> before. You can use an alternative factory method for the <code>SlingScriptHelper</code> providing existing instances of request, response and bundle context. </p>
 <p>If you use the <code>SlingContext</code> JUnit rule you case just use <code>context.slingScriptHelper()</code>.</p>
-<h3>SlingHttpServletRequest</h3>
+<h3><a href="#slinghttpservletrequest" name="slinghttpservletrequest">SlingHttpServletRequest</a></h3>
 <p>Example for preparing a sling request with custom request data:</p>
-<pre><code>#!java
-// prepare sling request
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling request
 ResourceResolver resourceResolver = MockSling.newResourceResolver();
 MockSlingHttpServletRequest request = new MockSlingHttpServletRequest(resourceResolver);
 
@@ -317,10 +308,9 @@ request.addHeader(&quot;header1&quot;, &quot;value1&quot;);
 // set cookies
 request.addCookie(new Cookie(&quot;cookie1&quot;, &quot;value1&quot;));
 </code></pre>
-<h3>SlingHttpServletResponse</h3>
+<h3><a href="#slinghttpservletresponse" name="slinghttpservletresponse">SlingHttpServletResponse</a></h3>
 <p>Example for preparing a sling response which can collect the data that was written to it:</p>
-<pre><code>#!java
-// prepare sling response
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling response
 MockSlingHttpServletResponse response = new MockSlingHttpServletResponse();
 
 // execute your unit test code that writes to the response...
@@ -343,7 +333,7 @@ assertEquals(TEST_CONTENT, response.getOutputAsString());
 // validate response body as binary data
 assertArrayEquals(TEST_DATA, response.getOutput());
 </code></pre>
-<h3>Import resource data from JSON file in classpath</h3>
+<h3><a href="#import-resource-data-from-json-file-in-classpath" name="import-resource-data-from-json-file-in-classpath">Import resource data from JSON file in classpath</a></h3>
 <p>With the <code>ContentLoader</code> it is possible to import structured resource and property data from a JSON file stored in the classpath beneath the unit tests. This data can be used as text fixture for unit tests.</p>
 <p>Example JSON data:</p>
 <pre><code>#!json
@@ -369,18 +359,16 @@ assertArrayEquals(TEST_DATA, response.getOutput());
 }
 </code></pre>
 <p>Example code to import the JSON data:</p>
-<pre><code>#!java
-context.load().json(&quot;/sample-data.json&quot;, &quot;/content/sample/en&quot;);
+<pre><code><!-- TODO syntax marker (#!java) disabled -->context.load().json(&quot;/sample-data.json&quot;, &quot;/content/sample/en&quot;);
 </code></pre>
 <p>This codes creates a new resource at <code>/content/sample/en</code> (and - if not existent - the parent resources) and imports the JSON data to this node. It can be accessed using the Sling Resource or JCR API afterwards.</p>
-<h3>Import binary data from file in classpath</h3>
+<h3><a href="#import-binary-data-from-file-in-classpath" name="import-binary-data-from-file-in-classpath">Import binary data from file in classpath</a></h3>
 <p>With the <code>ContentLoader</code> it is possible to import a binary file stored in the classpath beneath the unit tests. The data is stored using a nt:file/nt:resource or nt:resource node type. </p>
 <p>Example code to import a binary file:</p>
-<pre><code>#!java
-context.load().binaryFile(&quot;/sample-file.gif&quot;, &quot;/content/binary/sample-file.gif&quot;);
+<pre><code><!-- TODO syntax marker (#!java) disabled -->context.load().binaryFile(&quot;/sample-file.gif&quot;, &quot;/content/binary/sample-file.gif&quot;);
 </code></pre>
 <p>This codes creates a new resource at <code>/content/binary/sample-file.gif</code> (and - if not existent - the parent resources) and imports the binary data to a jcr:content subnode.</p>
-<h3>Building content</h3>
+<h3><a href="#building-content" name="building-content">Building content</a></h3>
 <p>Sling Mocks provides two alterantives for quickly building test content in the repository with as few code as possible. Sling Mocks provides two alternatives. Both are quite similar in their results, but follow different API concepts. You can choose whatever matches your needs and mix them as well.</p>
 <ul>
   <li><code>ContentBuilder</code>: Part of Sling Mocks since its first release. If you need a references to each created resource this is the easiest way.</li>
@@ -389,15 +377,13 @@ context.load().binaryFile(&quot;/sample-file.gif&quot;, &quot;/content/binary/sa
 <h4>Building content using <code>ContentBuilder</code></h4>
 <p>The entry point for the <code>ContentBuilder</code> is the <code>create()</code> method on the Sling context.</p>
 <p>Example:</p>
-<pre><code>#!java
-context.create().resource(&quot;/content/test1&quot;, ImmutableMap.&lt;String, Object&gt;builder()
+<pre><code><!-- TODO syntax marker (#!java) disabled -->context.create().resource(&quot;/content/test1&quot;, ImmutableMap.&lt;String, Object&gt;builder()
         .put(&quot;prop1&quot;, &quot;value1&quot;)
         .put(&quot;prop2&quot;, &quot;value2&quot;)
         .build());
 </code></pre>
 <p>Simplified syntax without using a map:</p>
-<pre><code>#!java
-context.create().resource(&quot;/content/test1&quot;,
+<pre><code><!-- TODO syntax marker (#!java) disabled -->context.create().resource(&quot;/content/test1&quot;,
         &quot;prop1&quot;, &quot;value1&quot;,
         &quot;prop2&quot;, &quot;value2&quot;);
 </code></pre>
@@ -405,21 +391,19 @@ context.create().resource(&quot;/content/test1&quot;,
 <h4>Building content using <code>ResourceBuilder</code></h4>
 <p>The entry point for the <code>ResourceBuilder</code> is the <code>build()</code> method on the Sling context.</p>
 <p>Example:</p>
-<pre><code>#!java
-context.build().resource(&quot;/content/test1&quot;)
+<pre><code><!-- TODO syntax marker (#!java) disabled -->context.build().resource(&quot;/content/test1&quot;)
         .siblingsMode()
         .resource(&quot;test1.1&quot;, &quot;stringParam&quot;, &quot;configValue1.1&quot;)
         .resource(&quot;test1.2&quot;, &quot;stringParam&quot;, &quot;configValue1.2&quot;)
         .resource(&quot;test1.2&quot;, &quot;stringParam&quot;, &quot;configValue1.3&quot;);
 </code></pre>
 <p>See JavaDocs of the class <code>org.apache.sling.resourcebuilder.api.ResourceBuilder</code> for a detailed documentation.</p>
-<h3>Context Plugins</h3>
+<h3><a href="#context-plugins" name="context-plugins">Context Plugins</a></h3>
 <p>Sling Mocks supports "Context Plugins" that hook into the lifecycle of each test run and can prepare test setup before or after the other setUp actions, and execute test tear down code before or after the other tearDown action.</p>
 <p>To define a plugin implement the <code>org.apache.sling.testing.mock.osgi.context.ContextPlugin&lt;SlingContextImpl&gt;</code> interface. For convenience it is recommended to extend the abstract class <code>org.apache.sling.testing.mock.osgi.context.AbstractContextPlugin&lt;SlingContextImpl&gt;</code>. These plugins can be used with Sling Mock context, but also with context instances deriving from it like AEM Mocks. In most cases you would just override the <code>afterSetUp</code> method. In this method you can register additional OSGi services or do other preparation work. It is recommended to define a constant pointing to a singleton of a plugin instance for using it.</p>
 <p>To use a plugin in your unit test class, use the <code>SlingContextBuilder</code> class instead of directly instantiating the <code>SlingContext</code>class. This allows you in a fluent style to configure more options, with the <code>plugin(...)</code> method you can add one or more plugins.</p>
 <p>Example: </p>
-<pre><code>#!java
-@Rule
+<pre><code><!-- TODO syntax marker (#!java) disabled -->@Rule
 public SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build();
 </code></pre>
 <p>More examples:</p>

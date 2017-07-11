@@ -75,13 +75,13 @@
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>This tutorial is based on the first <em>Sling Gems</em> on dev.day.com: The <a href="http://dev.day.com/microsling/content/blogs/main/sling-46-lines-blog.html">Sling gems: a blog in 46 lines of code</a>. It has slightly been adapted to fit here.</p>
 <p>In this tutorial, the SlingPostServlet and the sling.js library are brought together using 46 (no kidding: <em>fourty-six</em>) lines of code to create a simple blog (or let's say <em>bloggish</em>) application.</p>
 <p>I used this example in my <a href="http://www.slideshare.net/bdelacretaz/rapid-jcr-applications-development-with-sling-1196003">Rapid JCR application development with Apache Sling</a> presentation at ApacheCon US 09 in Oakland (slides will be available soon), and I think it's a good testimony to the power and simplicity of Sling.</p>
-<h2>Audience</h2>
+<h2><a href="#audience" name="audience">Audience</a></h2>
 <p>Although this is a simple sample, it requires some custom settings to work. If you're just starting with Sling, <a href="/documentation/getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a> might be a better choice.</p>
-<h2>Step 0: Start, configure and login to Sling</h2>
+<h2><a href="#step-0-start-configure-and-login-to-sling" name="step-0-start-configure-and-login-to-sling">Step 0: Start, configure and login to Sling</a></h2>
 <p>See <a href="/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a> for how to start Sling. Start it on port 8888 for the below links to work.</p>
 <p>For this sample we need the optional <em>org.apache.sling.samples.path-based.rtp</em> bundle, if it's not present in the <a href="http://localhost:8888/system/console/bundles">OSGi console</a>, install and start it. That bundle is not released yet so you might need to build it yourself, from its <a href="http://svn.apache.org/repos/asf/sling/trunk/samples/path-based-rtp">source</a>. The bundle must then appear in the <a href="http://localhost:8888/system/console/bundles">OSGI console's list of bundles</a>, with name = <em>org.apache.sling.samples.path-based.rtp</em> and status = <em>Active</em>.</p>
 <p>Then, login using <a href="http://localhost:8888/?sling:authRequestLogin=1">http://localhost:8888/?sling:authRequestLogin=1</a> which should prompt you for a username and password, use <em>admin</em> and <em>admin</em>. Once that's done, <a href="http://localhost:8888/index.html">http://localhost:8888/index.html</a> should say <em>You are currently logged in as user <em>admin</em> to workspace <em>default</em></em>.</p>
-<h2>Step 1: Creating content</h2>
+<h2><a href="#step-1-creating-content" name="step-1-creating-content">Step 1: Creating content</a></h2>
 <p>The easiest way to create content in Sling is to use an HTTP POST request, let's use a simple HTML form:</p>
 <pre><code>&lt;html&gt;
   &lt;body&gt;
@@ -116,7 +116,7 @@
 If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to add or modify item_ it means that you are not logged in as user _admin_. See instructions above for logging in.
 </div>
 <p>At this point you're probably looking at an empty form with an URL ending in <em>foo</em>, if you used that for the title. Or <em>foo_0</em> or <em>foo_1</em> if other _foo_s already existed. Don't worry about not seeing your content, we'll fix that right away.</p>
-<h2>Step 2: Where's my content?</h2>
+<h2><a href="#step-2-where-s-my-content-" name="step-2-where-s-my-content-">Step 2: Where's my content?</a></h2>
 <p>To verify that our content has been created, we can have a look at the JSON data at <a href="http://localhost:8888/content/blog/foo.tidy.json">http://localhost:8888/content/blog/foo.tidy.json</a>, which should display our new node's values:</p>
 <pre><code>{
   &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
@@ -136,7 +136,7 @@ If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to a
 </code></pre>
 <p>Reloading the form at <code>http://localhost:8888/content/blog/*.html</code> and creating a new post should now redirect to an editable version of the post, with the form fields correctly initialized.</p>
 <p>We can now create and edit posts; let's add some navigation, using more of the <em>sling.js</em> functionality. </p>
-<h2>Step 3: Navigation</h2>
+<h2><a href="#step-3-navigation" name="step-3-navigation">Step 3: Navigation</a></h2>
 <p>The <em>sling.js</em> library provides utilities to access and manipulate content. For our blog, we'll use the <code>getContent(path)</code> method to list the siblings of the current node.</p>
 <p>Add the following code to your script, after the <code>Sling.wizard()</code> call that was added in step 2:</p>
 <pre><code>&lt;h3&gt;Navigation&lt;/h3&gt;
@@ -157,7 +157,7 @@ If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to a
 <p>The rest of the javascript runs client-side, as it is not embedded in <code>&lt;% %&gt;</code> code markers, calls the <code>sling.getContent</code> method to get two levels of node data below <code>/content/blog</code>, and displays links to nodes that it finds.</p>
 <p>That's a basic navigation, of course, in a real blog we'd need some paging and contextualization to cope with large numbers of posts.</p>
 <p>Nevertheless, with this addition our ESP script allows us to create, edit and navigate blog posts - not bad for 46 lines of code, including comments, whitespace and output formatting.</p>
-<h2>Step 4: Data first, structure later</h2>
+<h2><a href="#step-4-data-first-structure-later" name="step-4-data-first-structure-later">Step 4: Data first, structure later</a></h2>
 <p>You might have heard this mantra, which we apply in many areas of Sling.</p>
 <p>In this case, adding a new field to our blog posts could not be easier: just add an input field to the form, and Sling will do the rest.</p>
 <p>Adding this inside our script's <code>&lt;form&gt;</code> element, for example:</p>
@@ -169,7 +169,7 @@ If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to a
 <p>Now wait...we said we were going to create an ESP script, but our "application" is just static HTML and some client javascript at this point.</p>
 <p>That's correct - as we are using only Sling client-facing features at this point (HTTP POST and <code>sling.js</code>), we do not necessarily need to use ESP code.</p>
 <p>To keep things simple, we'll refrain from adding ESP-based features at this point, but you can of course use any ESP code in the <em>blog.esp</em> "script".</p>
-<h2>That's the power of Sling</h2>
+<h2><a href="#that-s-the-power-of-sling" name="that-s-the-power-of-sling">That's the power of Sling</a></h2>
 <p>The 46-line blog is a good example of the power of Sling. It leverages the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">SlingPostServlet</a>, which handles POST requests in a form-friendly way, and the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/post/src/main/resources/system/sling.js"><code>sling.js</code></a> client library, which provides high-level functionality on the client side.</p>
 <p>///Footnotes Go Here///</p></section></div></div>
 <div class="footer">

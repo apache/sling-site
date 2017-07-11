@@ -79,7 +79,7 @@ Please see the new [Servlets]({{ refs.servlets.path }}) page.
 </div>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Servlets are Resources</h2>
+<h2><a href="#servlets-are-resources" name="servlets-are-resources">Servlets are Resources</a></h2>
 <p>As explained on the [Resources]({{ refs.resources.path }}) page, the Resource is the central data abstraction of Sling. In this contexts, Servlets are of course also povided as Resources. As such Servlets may be enumerated by iterating the Resource tree and Servlets may be retrieved through the <code>ResourceResolver</code>.</p>
 <p>To show a Servlet inside the Resource tree, the <code>sling/servlet-resolver</code> project provides a <code>ServletResourceProvider</code> implementing the <code>ResourceProvider</code> interface. For each Servlet registered as an OSGi service with one or more defined service reference properties a <code>ServletResourceProvider</code> instance is registered.</p>
 <p>The following service reference properties are defined for Servlets defined as OSGi services of type <code>javax.servlet.Servlet</code>:</p>
@@ -124,7 +124,7 @@ Please see the new [Servlets]({{ refs.servlets.path }}) page.
   <li>Otherwise a Resource provider is registered for the Servlet for each permutation resource types, selectors, extensions and methods.</li>
 </ol>
 <p>Each path to be used for registration -- either from the <code>sling.servlet.paths</code> property or constructed from the other <code>sling.servlet.*</code> properties -- must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the <code>sling.servlet.prefix</code> service registration property. If this property is not set, the first entry in the <code>ResourceResolver</code> search path for the <code>ResourceResolver.getResource(String)</code> method is used as the prefix. If this entry cannot be derived, a simpe slash -- <code>/</code> -- is used as the prefix.</p>
-<h3>Example: Registration by Path</h3>
+<h3><a href="#example-registration-by-path" name="example-registration-by-path">Example: Registration by Path</a></h3>
 <pre><code>sling.servlet.paths = [ &quot;/libs/sling/sample/html&quot;, &quot;/libs/sling/sample/txt&quot; ]
 sling.servlet.resourceTypes = [ &quot;sling/unused&quot; ]
 sling.servlet.selectors = [ &quot;img&quot; ]
@@ -136,7 +136,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
   <li><code>/libs/sling/sample/txt</code></li>
 </ul>
 <p>The registration properties <code>sling.servlet.resourceTypes</code>, <code>sling.servlet.selectors</code> and <code>sling.servlet.extensions</code> are ignored because the <code>sling.servlet.paths</code> property is set.</p>
-<h3>Example: Registration by Resource Type etc.</h3>
+<h3><a href="#example-registration-by-resource-type-etc-" name="example-registration-by-resource-type-etc-">Example: Registration by Resource Type etc.</a></h3>
 <pre><code>sling.servlet.resourceTypes = [ &quot;sling/unused&quot; ]
 sling.servlet.selectors = [ &quot;img&quot;, &quot;tab&quot; ]
 sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot; ]
@@ -151,12 +151,12 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
   <li><code>*prefix*/sling/unused/tab/json</code></li>
 </ul>
 <p>As explained the script is registered for each permutation of the resource types, selectors and extension. See above For an explanation of how <code>*prefix*</code> is defined.</p>
-<h2>Scripts are Servlets</h2>
+<h2><a href="#scripts-are-servlets" name="scripts-are-servlets">Scripts are Servlets</a></h2>
 <p>The Sling API defines a <code>SlingScript</code> interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the <code>scripting/resolver</code> bundle in the <code>DefaultSlingScript</code> class which also implements the <code>javax.servlet.Servlet</code>.</p>
 <p>To further simplify the access to scripts from the Resource tree, the <code>scripting/resolver</code> bundle registers an <code>AdapterFactory</code> to adapt Resources to Scripts and Servlets. In fact the adapter factory returns instances of the <code>DefaultSlingScript</code> class for both Scripts and Servlets.</p>
 <p>This functionality is used by the <code>ServletResolver.resolveServlet</code> implementation in the <code>sling/servlet-resolver</code> bundle: This implementation just looks up any Resource in the resource tree according its lookup algorithm (see below). The first matching Resource adapting to a <code>javax.servlet.Servlet</code> is used for processing the resource.</p>
 <p>So from the perspective of the Servlet resolver, scripts and servlets are handled exactly the same.</p>
-<h2>Resolution Process</h2>
+<h2><a href="#resolution-process" name="resolution-process">Resolution Process</a></h2>
 <p>The Servlet Resolution Process four elements of a <code>SlingHttpServletRequest</code>:</p>
 <ol>
   <li>The <em>resource type</em> as retrieved through <code>request.getResource().getResourceType()</code>. Because the resource type may be a node type such as <em>nt:file</em>, the resource type is mangled into a path by replacing any colons contained to forward slashs. Also, any backslashes contained are replaced to forward slashes. This should give a relative path. Of course a resource type may also be set to an absolute path. See below.</li>
@@ -208,7 +208,7 @@ Servlet findScriptFor(path) {
     // extension, such as .js, .jsp, etc.
 }
 </code></pre>
-<h2>Default Servlet(s)</h2>
+<h2><a href="#default-servlet-s-" name="default-servlet-s-">Default Servlet(s)</a></h2>
 <p>As explained in the Resolution Process section above, a default Servlet is selected if no servlet for the current resource type can be found. To make the provisioning of a default Servlet as versatile as provisioning per resource type Servlets (or scripts), the default Servlet is selected with just a special resource type <code>sling/servlet/default</code>.</p>
 <p>The actual Servlet or Script called as the default Servlet is resolved exactly the same way as for any resource type. That is, also for the default Servlet selection, the request selectors and extension or method are considered. Also, the Servlet may be a Servlet registered as an OSGi service and provided through a Servlet Resource provider or it may be a Script stored in the repository or provided by the bundle.</p>
 <p>Finally, if not even a registered default Servlet may be resolved for the request, because none has been registered, the <code>sling/servlet-resolve</code> bundle provides a fall back <code>DefaultServlet</code> with the following functionality:</p>
@@ -217,13 +217,13 @@ Servlet findScriptFor(path) {
   <li>Otherwise if the object has an OCM mapping, the properties of the mapped object are printed.</li>
   <li>Otherwise just the path of the Resource is printed.</li>
 </ul>
-<h2>Error Handler Servlet(s)</h2>
+<h2><a href="#error-handler-servlet-s-" name="error-handler-servlet-s-">Error Handler Servlet(s)</a></h2>
 <p>The <code>sling/servlet-resolver</code> project also provides an implementation of the Sling Core <code>ErrorHandler</code> interface, which applies the same Servlet resolution process as used for normal request processing. Error handler Servlets and Scripts are looked up with the predefined resource <code>sling/servlet/errorhandler</code> and an error specific name:</p>
 <ul>
   <li><em>HTTP Status Code Handling</em>: To handle HTTP status code as used by the <code>HttpServletResponse.sendError</code> methods, status code is used as the Servlet name. For example to provide a handler for status code 404 (NOT*FOUND), you could create a script <code>prefix/sling/servlet/errorhandler/404.esp</code> or for a status code 500 (INTERNAL*SERVER_ERRROR), you might want to register a Servlet at <code>prefix/sling/servlet/errorhandler/500</code>.</li>
   <li><em>Throwable Handling</em>: To handle uncaught <code>Throwables</code> the simple name of the <code>Throwable</code> class is used as the Servlet name. Similarly to the Java <code>try-catch</code> clauses the class hierarchy is supported. That is to handle an uncaught <code>FileNotFoundException</code>, the names <code>FileNotFoundException</code>, <code>IOException</code>, <code>Exception</code>, <code>Throwable</code> are checked for a Servlet and the first one found is then used. Again, the Serlvet may be a Servlet registered as an OSGi service or may be a plain script stored in the JCR repository or provided through some custom Resource provider.</li>
 </ul>
-<h2>Integration tests</h2>
+<h2><a href="#integration-tests" name="integration-tests">Integration tests</a></h2>
 <p>A set of simple example servlets is available in the [launchpad/test-services module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/test-services.path }}). </p>
 <p>Integration tests in the [launchpad/testing module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution.path }}) verify that these examples are correct.</p>
 <p>Contributions to these tests and examples are welcome, of course!</p></section></div></div>

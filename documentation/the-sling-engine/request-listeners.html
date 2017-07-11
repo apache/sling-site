@@ -73,8 +73,7 @@
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Request Listeners
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling provides the possibility to "listen" to a request processed by the Sling Engine (<code>SlingMainServlet</code>). To get notified you implement the service interface <code>org.apache.sling.api.request.SlingRequestListener</code>.</p>
-<pre><code>#!java
-public interface SlingRequestListener {
+<pre><code><!-- TODO syntax marker (#!java) disabled -->public interface SlingRequestListener {
 
     static final String SERVICE_NAME = &quot;org.apache.sling.api.request.SlingRequestListener&quot;;    
 
@@ -91,7 +90,7 @@ public interface SlingRequestListener {
 }
 </code></pre>
 <p>There are no special properties to set. </p>
-<h2>Supported types of events</h2>
+<h2><a href="#supported-types-of-events" name="supported-types-of-events">Supported types of events</a></h2>
 <p>At the moment you will get two different types of <code>SlingRequestEvent</code>:</p>
 <table>
   <thead>

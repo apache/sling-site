@@ -74,11 +74,11 @@
                 Apache Sling Context-Aware Configuration - Override
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h1>About</h1>
+<h1><a href="#about" name="about">About</a></h1>
 <p>Using overrides it is possible to override context-aware configuration values globally or for specific content paths (and their subtrees) within an instance. If an override is active the Configuration API returns the overridden values instead of the values from the configuration resources.</p>
 <p>An example use case is to overwrite the Site URLs on your staging system which has a copy of the configuration content of the production system installed.</p>
 <p>Via the <a href="http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html">SPI</a> you can add your own override providers - but in most cases the built-in ones described in this page are sufficient. All override providers use the same override syntax.</p>
-<h1>Override syntax</h1>
+<h1><a href="#override-syntax" name="override-syntax">Override syntax</a></h1>
 <p>Generally an override consists of one single line. Syntax examples:</p>
 <pre><code>{configName}/{propertyName}={propertyJsonValue}
 {configName}={propertyJsonObject}
@@ -104,8 +104,8 @@ x.y.z.MyConfig={&quot;prop1&quot;=&quot;value1&quot;,&quot;prop2&quot;=[1,2,3],&
 [/content/region1]my-config/sub1={&quot;prop1&quot;:&quot;value 1&quot;}
 </code></pre>
 <p>If multiple statements are defined affecting the same content path, configuration name and property name, they overwrite each other. That means the override string defined last wins.</p>
-<h1>Built-in override providers</h1>
-<h2>Override via system properties</h2>
+<h1><a href="#built-in-override-providers" name="built-in-override-providers">Built-in override providers</a></h1>
+<h2><a href="#override-via-system-properties" name="override-via-system-properties">Override via system properties</a></h2>
 <p>Allows to define configuration property overrides from system environment properties.</p>
 <p>The parameters are defined when starting the JVM using the -D command line parameter. Each parameter contains an override string. All parameter names have to be prefixed with the string <code>sling.caconfig.override.</code>.</p>
 <p>Example:</p>
@@ -114,7 +114,7 @@ x.y.z.MyConfig={&quot;prop1&quot;=&quot;value1&quot;,&quot;prop2&quot;=[1,2,3],&
 -D&quot;sling.caconfig.override.[/content/region1]x.y.z.MyConfig={\&quot;prop1\&quot;=\&quot;value1\&quot;,\&quot;prop2\&quot;=[1,2,3],\&quot;prop3\&quot;=true,\&quot;prop4\&quot;=1.23}&quot;
 </code></pre>
 <p>This provider is not active by default, it has to be activated via OSGi configuration ("Apache Sling Context-Aware System Property Configuration Override Provider").</p>
-<h2>Override via OSGi configuration</h2>
+<h2><a href="#override-via-osgi-configuration" name="override-via-osgi-configuration">Override via OSGi configuration</a></h2>
 <p>Allows to define configuration property overrides from OSGi configuration.</p>
 <p>You can provide multiple providers using a factory configuration ("Apache Sling Context-Aware OSGi Configuration Override Provider"), each of them provides list of override strings.</p></section></div></div>
 <div class="footer">

@@ -74,16 +74,16 @@
                 Repository Based Development
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h1>WebDAV Support</h1>
+<h1><a href="#webdav-support" name="webdav-support">WebDAV Support</a></h1>
 <p>WebDAV support in Sling is based on the <a href="http://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#Simple_Webdav_Server">Simple WebDAV</a> implementation of Apache Jackrabbit which is integrated in the <code>jcr/webdav</code> project. This bundle provides WebDAV access to Sling's repository in two flavours: </p>
 <ol>
   <li>Access to all workspaces of the repository on a separate URI space -- by default rooted at <code>/dav</code> in the Sling context -- and</li>
   <li>access to the workspace used by Sling itself at the root of the Sling context.</li>
 </ol>
-<h2>Example</h2>
+<h2><a href="#example" name="example">Example</a></h2>
 <p>Consider Sling be installed on a Servlet container in the <code>/sling</code> context on <code>some.host.net:8080</code>. Here you would access the Sling workspace by directing your WebDAV client to the URL <code>http://some.host.net:8080/sling</code>. To access the <code>sample</code> workspace, which is not used by Sling itself, you would direct your WebDAV client to the URL <code>http://some.host.net:8080/sling/dav/sample</code>.</p>
 <p>Please note that accessing the repository in the separate URI space is actually faster, since requests do not pass the Sling resource and script resolution framework but instead hit the Jackrabbit Simple WebDAV Servlet directly.</p>
-<h2>Separate URI Space WebDAV</h2>
+<h2><a href="#separate-uri-space-webdav" name="separate-uri-space-webdav">Separate URI Space WebDAV</a></h2>
 <p>When accessing the repository through WebDAV in its separate URI Space, the URLs have the following generic structure:</p>
 <pre><code>&lt;slingroot&gt;/&lt;prefix&gt;/&lt;workspace&gt;/&lt;item&gt;
 </code></pre>
@@ -94,7 +94,7 @@
   <li><code>item</code> is the path to the JCR Item to access.</li>
 </ul>
 <p>If you access the WebDAV server at the prefix path -- e.g. <code>http://localhost:8080/dav</code> -- you will be redirected to the default workspace with a temporary redirect status 302. Some clients, such as the Linux <em>davfs</em>, do not like this redirection and must be configured to explicitly address the default workspace.</p>
-<h2>Configuration</h2>
+<h2><a href="#configuration" name="configuration">Configuration</a></h2>
 <p>The Jackrabbit Simple WebDAV support in Sling has the following configuration options:</p>
 <table>
   <thead>
@@ -128,19 +128,19 @@
   </tbody>
 </table>
 <p>Filter Node Types | -- | Nodetype names to be used to filter child nodes. A child node can be filtered if the declaring nodetype of its definition is one of the nodetype names specified in the nodetypes Element. E.g. defining rep:root as filtered nodetype would result in <code>jcr:system</code> being hidden but no other child node of the root node, since those are defined by the nodetype nt:unstructered. The default is empty. Do not modify this setting unless you know exactly what you are doing. Filter URIs | -- | A list of namespace URIs indicating JCR items filtered from being reported as collection members or properties. The default list is empty. Do not modify this setting unless you know exactly what you are doing. Collection Primary Type | <code>sling:Folder</code> | The JCR Primary Node Type to assign to nodes created to reflect WebDAV collections. You may name any primary node type here, provided it allows the creation of nodex of this type and the defined Non-Collection Primary Type below it. Non-Collection Primary Type | <code>nt:file</code> | The JCR Primary Node Type to assign to nodes created to reflect WebDAV non-collection resources. You may name any primary node type here, provided the node type is allowed to be created below nodes of the type defined for the Collection Primary Type and that a child node with the name <code>jcr:content</code> may be created below the non-collection resource whose type is defined by the Content Primary Type. Content Primary Type | <code>nt:resource</code> | The JCR Primary Node Type to assign to the jcr:content child node of a WebDAV non-collection resource. You may name any primary node type here, provided the node type is allowed to be created as the jcr:content child node of the node type defined by the Non-Collection Primary Type. In addition the node type must allow at least the following properties: jcr:data (binary), jcr:lastModified (date), and jcr:mimeType (string).</p>
-<h2>Advanced Technical Details</h2>
+<h2><a href="#advanced-technical-details" name="advanced-technical-details">Advanced Technical Details</a></h2>
 <p>Since the Jackrabbit Simple WebDAV Servlet is originally configured using an XML configuration file, which provides a great deal of flexibility, the integration into Sling had to assume some simplifications, of which some of the above parameters are part:</p>
-<h3>IOManager</h3>
+<h3><a href="#iomanager" name="iomanager">IOManager</a></h3>
 <p>This implementation uses the standard <code>org.apache.jackrabbit.server.io.IOManagerImpl</code> class and adds the <code>org.apache.jackrabbit.server.io.DirListingExportHandler</code> and <code>org.apache.jackrabbit.server.io.DefaultHandler</code> IO handlers as its only handlers. The <code>DefaultHandler</code> is configured from the three node types listed as configuration parameters above (collection, non-collection, and content primary node types).</p>
-<h3>PropertyManager</h3>
+<h3><a href="#propertymanager" name="propertymanager">PropertyManager</a></h3>
 <p>This implementation uses the standard <code>org.apache.jackrabbit.server.io.PropertyManagerImpl</code> and adds the same <code>DirListingExportHandler</code> and <code>DefaultHanlder</code> instances as its own handlers as are used by the IO Manager.</p>
-<h3>ItemFilter</h3>
+<h3><a href="#itemfilter" name="itemfilter">ItemFilter</a></h3>
 <p>This implementation uses the standard <code>org.apache.jackrabbit.webdav.simple.DefaultItemFilter</code> implementation as its item filter and configures the filter with the namespace prefixes and URIs as well as the node types configured as parameters.</p>
-<h3>Collection Node Types</h3>
+<h3><a href="#collection-node-types" name="collection-node-types">Collection Node Types</a></h3>
 <p>This implementation only supports listing node types which are considered representing non-collection resources. All nodes which are instances of any of the configured node types are considered non-collection resources. All other nodes are considere collection resources.</p>
-<h1>DavEx Support</h1>
+<h1><a href="#davex-support" name="davex-support">DavEx Support</a></h1>
 <p><a href="https://wiki.apache.org/jackrabbit/RemoteAccess">DavEx</a> (WebDAV with JCR Extensions) allows to remotely access a JCR repository. Sling provides support based on the <a href="http://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#JCR_Webdav_Server">JCR WebDAV Server</a> implementation of Apache Jackrabbit which is integrated in the <code>jcr/davex</code> project. By default the server listens on request urls starting with <code>/server</code>.</p>
-<h1>Eclipse plugin for JCR</h1>
+<h1><a href="#eclipse-plugin-for-jcr" name="eclipse-plugin-for-jcr">Eclipse plugin for JCR</a></h1>
 <p>see <a href="/documentation/development/ide-tooling.html">Sling IDE Tooling</a></p></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">

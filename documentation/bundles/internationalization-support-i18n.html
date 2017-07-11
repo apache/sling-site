@@ -108,7 +108,7 @@
   <li><code>sling:message</code> -- The <code>sling:message</code> property represents the resource for the key.</li>
 </ul>
 <p>It is only required that the message nodes are located below <code>mix:language</code> nodes. Such structures may also be scattered in the repository to allow storing message resources next to where they are most likely used, such as request scripts.</p>
-<h5>Sample Resources</h5>
+<h5><a href="#sample-resources" name="sample-resources">Sample Resources</a></h5>
 <p>Content for dictionaries in this format might look like this:</p>
 <pre><code>   /libs/languages
            +-- English (nt:folder, mix:language)
@@ -141,9 +141,9 @@
                      +-- sling:message = &quot;Ein Anwendungstext&quot;
 </code></pre>
 <p>This content defines two languages <em>en</em> and <em>de</em> with three messages <em>msg001</em>, <em>msg002</em> and <em>msgXXX</em> each. The names of the respective resources have no significance (in case the <code>sling:key</code> is set).</p>
-<h4>JSON-file based</h4>
+<h4><a href="#json-file-based" name="json-file-based">JSON-file based</a></h4>
 <p>Since Version 2.4.2 the i18n bundle supports dictionaries in JSON-format (<a href="https://issues.apache.org/jira/browse/SLING-4543">SLING-4543</a>). Since loading such dictionaries is much faster than loading the ones based on <code>sling:MessageEntry</code>s this format should be used preferably. This format is assumed if the <code>mix:language</code> resource name is ending with the extension <code>.json</code>. The parser will take any "key":"value" pair in the JSON file, including those in nested objects or arrays. Normally, a dictionary will be just a single json object = hash map though.</p>
-<h5>Sample Resources</h5>
+<h5><a href="#sample-resources" name="sample-resources">Sample Resources</a></h5>
 <p>Content for this format might look like this:</p>
 <pre><code>   /libs/languages
            +-- english.json (nt:file, mix:language)

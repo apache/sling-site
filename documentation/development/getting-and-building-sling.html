@@ -75,7 +75,7 @@
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.</p>
 <p>Note that you don't <em>have</em> to build Sling yourself, if you don't need the bleeding-edge stuff you can get prebuilt binaries from the <a href="/downloads.cgi">Downloads</a> page. But those, especially the launchpad runnable jar, are not released often and can be outdated. In case of doubt, build it yourself as shown below or ask on the Sling users mailing list.</p>
 <p>Rather than performing a full build of Sling, which can take 5-10 minutes on a recent computer once your local Maven repository is up to date, it's recommended to build only the launchpad and the modules you're interested in.</p>
-<h2>tl:dr - Short form build + run instructions</h2>
+<h2><a href="#tl-dr-short-form-build-run-instructions" name="tl-dr-short-form-build-run-instructions">tl:dr - Short form build + run instructions</a></h2>
 <p>If you already have the required svn (or Git, see below) client, JDK and Maven installed, here's the short form recipe:</p>
 <pre><code>$ svn co http://svn.apache.org/repos/asf/sling/trunk sling 
 $ cd sling  # you are now in the Sling SVN checkout
@@ -85,7 +85,7 @@ $ export DBG=&quot;-Xmx384M -agentlib:jdwp...&quot; # (see below)
 $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
 </code></pre>
 <p>With this, Sling should be running at http://localhost:8080 with remote debugging active as per the $DBG variable.</p>
-<h2>Prerequisites</h2>
+<h2><a href="#prerequisites" name="prerequisites">Prerequisites</a></h2>
 <p>Before you begin, you need to have the following tools installed on your system:</p>
 <ul>
   <li>Java 7 or higher</li>
@@ -97,9 +97,9 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
   <li>M2Eclipse plugin for Eclipse (sonatype) -&gt; <a href="http://m2eclipse.sonatype.org/installing-m2eclipse.html">instructions</a></li>
   <li><a href="http://www.polarion.com/products/svn/subversive.php">Subversive plugin</a> or <a href="http://subclipse.tigris.org">Subclipse-plugin</a> for Eclipse</li>
 </ul>
-<h2>Environment Setup</h2>
+<h2><a href="#environment-setup" name="environment-setup">Environment Setup</a></h2>
 <p>The full build process requires quite a lot of resources, so you may run into limits. The following hints should show you what to setup before building Sling.</p>
-<h3>Environment Variable Space</h3>
+<h3><a href="#environment-variable-space" name="environment-variable-space">Environment Variable Space</a></h3>
 <ul>
   <li><em>Problem</em> - Build aborts when trying to launch the integration tests with the message
     <p>[INFO] Error while executing forked tests.; nested exception is org.apache.maven.surefire.booter.shade.org.codehaus.plexus.util.cli.CommandLineException: Error setting up environmental variables</p>
@@ -111,10 +111,10 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
   <li><em>Platform</em> - OpenSolaris</li>
   <li><em>Fix</em> - If this issue persists you will need to check your system requirements and configuration with regard to swap, before taking action - if necessary.</li>
 </ul>
-<h2>Configuring Maven</h2>
+<h2><a href="#configuring-maven" name="configuring-maven">Configuring Maven</a></h2>
 <p>See <a href="/documentation/development/maventipsandtricks.html">MavenTipsAndTricks</a>.</p>
-<h2>Getting the Sling Source</h2>
-<h3>From the Apache Sling Subversion repository</h3>
+<h2><a href="#getting-the-sling-source" name="getting-the-sling-source">Getting the Sling Source</a></h2>
+<h3><a href="#from-the-apache-sling-subversion-repository" name="from-the-apache-sling-subversion-repository">From the Apache Sling Subversion repository</a></h3>
 <ol>
   <li>
   <p>Install an svn client if needed.</p></li>
@@ -123,7 +123,7 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
     <p>$ svn checkout http://svn.apache.org/repos/asf/sling/trunk sling</p>
   </li>
 </ol>
-<h3>From the Sling GitHub mirror</h3>
+<h3><a href="#from-the-sling-github-mirror" name="from-the-sling-github-mirror">From the Sling GitHub mirror</a></h3>
 <ol>
   <li>
   <p>Install a Git client if needed</p></li>
@@ -132,11 +132,11 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
     <p>$ git clone https://github.com/apache/sling.git</p>
   </li>
 </ol>
-<h3>With Eclipse Subversive or Subclipse</h3>
+<h3><a href="#with-eclipse-subversive-or-subclipse" name="with-eclipse-subversive-or-subclipse">With Eclipse Subversive or Subclipse</a></h3>
 <p>First note how simple the above SVN instructions are...but if you <em>really</em> want to do this, read on.</p>
 <p>If you use the Subversive plugin make sure you have installed the "Subversive Integration for M2Eclipse Project" which can be found under the following Eclipse update site: <a href="http://community.polarion.com/projects/subversive/download/integrations/update-site/">http://community.polarion.com/projects/subversive/download/integrations/update-site/</a>.</p>
 <p>Also, make sure that you have installed either the "Maven SCM handler for Subclipse" or the "Maven SCM handler for Subversive".</p>
-<h4>Create a new workspace</h4>
+<h4><a href="#create-a-new-workspace" name="create-a-new-workspace">Create a new workspace</a></h4>
 <p>It's best to create a new workspace for the sling project:</p>
 <ol>
   <li>List item</li>
@@ -148,7 +148,7 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
   <li>Expand the "Deprecated and restricted API" and change "Forbidden references (access rules)" from "Error" to "Warning"</li>
   <li>Click OK</li>
 </ol>
-<h4>Checkout the Sling source</h4>
+<h4><a href="#checkout-the-sling-source" name="checkout-the-sling-source">Checkout the Sling source</a></h4>
 <ol>
   <li>Menu: File-&gt;Import</li>
   <li>In the Import wizard select Maven-&gt;"Check out Maven Projects from SCM"</li>
@@ -163,9 +163,9 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
   <li>A couple of changes will be displayed</li>
   <li>Click OK</li>
 </ol>
-<h2>Building Sling</h2>
+<h2><a href="#building-sling" name="building-sling">Building Sling</a></h2>
 <p>Note that while it's possible to build the full Sling reactor, using the pom.xml file in the root of the SVN checkout, this should rarely be needed and it's almost always too slow to consider. Instead, it's recommended to build the Sling launchpad and the module you're working on at the moment.</p>
-<h3>With the Maven command line tool</h3>
+<h3><a href="#with-the-maven-command-line-tool" name="with-the-maven-command-line-tool">With the Maven command line tool</a></h3>
 <ol>
   <li>Enter the directory, then do a build and local install of the launchpad (below are unix/linux commands, slightly different under windows)
     <pre><code>$ cd sling
@@ -199,7 +199,7 @@ $ mvn clean install sling:install
   <li>the bundle is installed in the local repository so future builds of the launchpad module will pick it up ( <code>install</code> goal )</li>
   <li>the bundle is deployed in the running launchpad instance ( <code>sling:install</code> goal )</li>
 </ul>
-<h3>With M2Eclipse</h3>
+<h3><a href="#with-m2eclipse" name="with-m2eclipse">With M2Eclipse</a></h3>
 <ol>
   <li>Make sure you're in the Java perspective (Menu: Window-&gt;Open Perspective)</li>
   <li>Menu: Run-&gt;Run Configurations...</li>
@@ -212,7 +212,7 @@ $ mvn clean install sling:install
   <li>Click Apply</li>
   <li>Click Run</li>
 </ol>
-<h3>Alternative setup in Eclipse without M2Eclipse plugin</h3>
+<h3><a href="#alternative-setup-in-eclipse-without-m2eclipse-plugin" name="alternative-setup-in-eclipse-without-m2eclipse-plugin">Alternative setup in Eclipse without M2Eclipse plugin</a></h3>
 <p>In the case that you do not want to use the M2Eclipse plugin there's another setup that lets you have the automatic build turned on:</p>
 <ol>
   <li>Checkout the whole sling trunk (with subversive or the subclipse plugin) from SVN to a single project</li>
@@ -222,8 +222,8 @@ $ mvn clean install sling:install
 </ol>
 <p>If you use "mvn clean install" to build Sling be sure you have set MAVEN_OPTS to "-Xmx384m -XX:PermSize=256m" otherwise you will probably get OutOfmemory errors.</p>
 <p>Congratulations ! You should now have a running Sling instance, that you can start playing around with.</p>
-<h2>Further Tips and Tricks</h2>
-<h3>Debug Sling in Eclipse</h3>
+<h2><a href="#further-tips-and-tricks" name="further-tips-and-tricks">Further Tips and Tricks</a></h2>
+<h3><a href="#debug-sling-in-eclipse" name="debug-sling-in-eclipse">Debug Sling in Eclipse</a></h3>
 <p>You can use remote debugging to debug Sling in Eclipse, here's a little How-To</p>
 <ol>
   <li>
@@ -244,12 +244,12 @@ $ mvn clean install sling:install
   <li>Click "Debug"</li>
 </ol>
 <p>Now you should be able to set breakpoints, evaluate properties, and so on as usual.</p>
-<h3>Debug Maven Tests in Eclipse</h3>
+<h3><a href="#debug-maven-tests-in-eclipse" name="debug-maven-tests-in-eclipse">Debug Maven Tests in Eclipse</a></h3>
 <p>In the same way as you can debug the sling app, you are also able to debug a maven test. Just run the maven tests like this</p>
 <pre><code>mvn -Dmaven.surefire.debug test
 </code></pre>
 <p>The tests will automatically pause and await a remote debugger on port 5005. You can then attach to the running tests using Eclipse. You can setup a "Remote Java Application" launch configuration via the menu command "Run" &gt; "Open Debug Dialog..." (see above). For more information on this see the <a href="http://maven.apache.org/plugins/maven-surefire-plugin/examples/debugging.html">Maven Surefire Docu</a>.</p>
-<h3>Simple way to develop new bundle in Eclipse for Sling</h3>
+<h3><a href="#simple-way-to-develop-new-bundle-in-eclipse-for-sling" name="simple-way-to-develop-new-bundle-in-eclipse-for-sling">Simple way to develop new bundle in Eclipse for Sling</a></h3>
 <p>The easiest way that I found is to create a new folder in the existing Eclipse workspace. After that you can follow these steps:</p>
 <ul>
   <li>Start by copying and adapting an existing Sling pom.xml (eg. the pom.xml from the espblog sample)</li>

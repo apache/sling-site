@@ -80,13 +80,13 @@
 <p>Scripts and servlets are itself resources in Sling and thus have a resource path: this is either the location in the JCR repository, the resource type in a servlet component configuration or the "virtual" bundle resource path (if a script is provided inside a bundle without being installed into the JCR repository). </p>
 <p>For the whole Truth about script resolution, see the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/resolver/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java">ScriptSelectionTest</a> class. If you see interesting cases that are not covered there, please let us know via the Sling users mailing list.</p>
 <p>TODO: explain super types, servlet path mappings, node type resource types (<code>my:type -&gt; my/type</code>) </p>
-<h2>Fundamental: Scripts and Servlets are equal</h2>
+<h2><a href="#fundamental-scripts-and-servlets-are-equal" name="fundamental-scripts-and-servlets-are-equal">Fundamental: Scripts and Servlets are equal</a></h2>
 <p>In the following discussion, I will write about scripts. This will always include servlets as well. In fact, internally, Sling only handles with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script. </p>
-<h2>Base: Resource Type Inheritance</h2>
+<h2><a href="#base-resource-type-inheritance" name="base-resource-type-inheritance">Base: Resource Type Inheritance</a></h2>
 <p>While not exactly part of our discussion, resource type inheritance as implemented for <a href="https://issues.apache.org/jira/browse/SLING-278">SLING-278</a> plays a vital role in script resolution. </p>
 <p>Each resource type may have a resource super type, which may be defined in various ways. One example is having a <code>sling:resourceSuperType</code> property in the node addressed by the resource type. See <a href="http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html">http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html</a> and <a href="http://issues.apache.org/jira/browse/SLING-278">SLING-278</a> for more details. </p>
 <p>If a resource type has no explicit resource super type, the resource super type is assumed to be "sling/servlet/default". That is the resource type used for default script selection is also acting as a basic resource type much like java.lang.Object does for other types in the Java language. </p>
-<h2>Script Locations</h2>
+<h2><a href="#script-locations" name="script-locations">Script Locations</a></h2>
 <p>Scripts are looked up in a series of locations defined by the ResourceResolver.getSearchPath() and the resource type (and resource super types) of the requested resource: </p>
 <pre><code>{scriptPathPrefix}/{resourceTypePath} 
 </code></pre>
@@ -108,10 +108,10 @@ while (type != null) {
     } 
 } 
 </code></pre>
-<h2>All requests are NOT equal</h2>
+<h2><a href="#all-requests-are-not-equal" name="all-requests-are-not-equal">All requests are NOT equal</a></h2>
 <p>GET and HEAD request methods are treated differently than the other request methods. Only for GET and HEAD requests will the request selectors and extension be considered for script selection. For other requests the servlet or script name (without the script extension) must exactly match the request method. </p>
 <p>That is for a PUT request, the script must be PUT.esp or PUT.jsp. For a GET request with a request extension of html, the script name may be html.esp or GET.esp. </p>
-<h2>Scripts for GET requests</h2>
+<h2><a href="#scripts-for-get-requests" name="scripts-for-get-requests">Scripts for GET requests</a></h2>
 <p>Apart for supporting scripts named after the request method, scripts handling GET and HEAD requests may be named differently for Sling to support a more elaborate processing order. </p>
 <p>Depending on whether request selectors are considered, a script may have two forms: </p>
 <ul>
@@ -125,14 +125,14 @@ while (type != null) {
   <li><code>{scriptExtension}</code> - The extension, e.g. "esp" or "jsp", identifying the scripting langauage used.</li>
   <li><code>{selectorStringPath}</code> - The selector string converted to a path, along the lines of <code>selectorString.replace(&#39;.&#39;, &#39;/&#39;)</code>. If less selectors are specified in the script name than given in the request, the script will only be taken into consideration if the given selectors are the <strong>first</strong> selectors in the request. This means <em>sel1/sel2.html.jsp</em> will be a candidate for the request url <em>/content/test.sel1.sel2.sel3.html</em> but not for <em>/content/test.sel3.sel1.sel2.html</em>. So the order of selectors is relevant!</li>
 </ul>
-<h2>Priority</h2>
+<h2><a href="#priority" name="priority">Priority</a></h2>
 <p>The rules for script path priorization is defined as follows: </p>
 <ul>
   <li>The more request selectors are matched, the better</li>
   <li>A script including the request extension matches better than one without a request extension (for html only)</li>
   <li>A script found earlier matches better than a script found later in the processing order. This means, that script closer to the original resource type in the resource type hierarchy is considered earlier.</li>
 </ul>
-<h2>Examples</h2>
+<h2><a href="#examples" name="examples">Examples</a></h2>
 <p>Let's consider the following script paths for a request of a resource whose resource type is <code>sling\sample</code> and the request selectors are <em>print.a4</em> and the request extension is <em>html</em>: </p>
 <ul>
   <li>(0) GET.esp</li>

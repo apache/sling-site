@@ -75,15 +75,14 @@
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Mock implementation of selected JCR APIs for easier testing. It stores all data in-memory in a HashMap to ensure instantly creating and destroying of the JCR repository.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Maven Dependency</h2>
-<pre><code>#!xml
-&lt;dependency&gt;
+<h2><a href="#maven-dependency" name="maven-dependency">Maven Dependency</a></h2>
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.jcr-mock&lt;/artifactId&gt;
 &lt;/dependency&gt;
 </code></pre>
 <p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p>
-<h2>Implemented mock features</h2>
+<h2><a href="#implemented-mock-features" name="implemented-mock-features">Implemented mock features</a></h2>
 <p>The mock implementation supports:</p>
 <ul>
   <li>Reading and writing all data (primitive values, arrays, binary data) via the JCR API</li>
@@ -101,23 +100,21 @@
   <li>Exporting/Importing data via document and system views not supported</li>
   <li>Workspace management methods not supported</li>
 </ul>
-<h2>Usage</h2>
-<h3>Getting JCR mock objects</h3>
+<h2><a href="#usage" name="usage">Usage</a></h2>
+<h3><a href="#getting-jcr-mock-objects" name="getting-jcr-mock-objects">Getting JCR mock objects</a></h3>
 <p>The factory class <code>MockJcr</code> allows to instantiate the different mock implementations.</p>
 <p>Example:</p>
-<pre><code>#!java
-// get session
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// get session
 Session session = MockJcr.newSession();
 
 // get repository
 Repository repository = MockJcr.newRepository();
 </code></pre>
 <p>The repository is empty and contains only the root node. You can use the JCR API to read or write content.</p>
-<h3>Mocking queries</h3>
+<h3><a href="#mocking-queries" name="mocking-queries">Mocking queries</a></h3>
 <p>If you want to test code that contains a JCR query you can simulate a query execution and set the result to return during setting up your unit test.</p>
 <p>Example:</p>
-<pre><code>#!java
-// prepare mocked search result
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare mocked search result
 List&lt;Node&gt; resultNodes = ImmutableList.of(node1, node2, node3);
 
 // return this result for all queries

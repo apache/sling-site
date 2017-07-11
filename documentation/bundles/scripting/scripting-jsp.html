@@ -75,13 +75,13 @@
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The Apache Sling JSP Scripting Engine is implemented by the <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp"><code>org.apache.sling.scripting.jsp</code></a>  bundle, based on the Jasper 2 JSP engine.</p>
 <p>On top of that Apache Sling also provides its own JSP Taglib, implemented by the  <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp-taglib"><code>org.apache.sling.scripting.jsp.taglib</code></a> bundle.</p>
 <p>The Sling Scripting JSP Taglib supports the use of Sling as an application in JSP pages. The Sling Taglib provides the  ability to invoke JSP scripts, include Resources and interact with the Sling Repository, all with JSP tags and  <a href="http://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html">Expression Language (EL)</a> functions.</p>
-<h2>Use</h2>
+<h2><a href="#use" name="use">Use</a></h2>
 <p>Using the Sling Taglib in a JSP page is as simple as including the Taglib include in your JSP, with the correct URI for the version of the Sling Taglib installed.</p>
 <pre><code>&lt;%@taglib prefix=&quot;sling&quot; uri=&quot;http://sling.apache.org/taglibs/sling&quot; %&gt;
 </code></pre>
 <p>Generally, the prefix to use is <code>sling</code>. Often applications include a global JSP file which includes the Sling Taglib and sets up all of the application variables and methods.</p>
 <p>The Sling Taglib does not attempt to reproduce the functionality of other Tag Libraries, such as <a href="http://www.oracle.com/technetwork/java/index-jsp-135995.html">JSTL</a>; additional Tag Libraries may be required to fully leverage the Sling Taglib.</p>
-<h2>Taglib Versions</h2>
+<h2><a href="#taglib-versions" name="taglib-versions">Taglib Versions</a></h2>
 <p>There have been a number of releases of the Sling Taglibs, including versions with different URIs.</p>
 <table>
   <thead>
@@ -115,9 +115,9 @@
   </tbody>
 </table>
 <p>All releases from 1.3 onward are expected to use the URI <code>http://sling.apache.org/taglibs/sling</code> to ensure ease of upgrading to newer versions of the Taglib.</p>
-<h2>Expression Language Functions</h2>
+<h2><a href="#expression-language-functions" name="expression-language-functions">Expression Language Functions</a></h2>
 <p>The Sling Taglib includes a number of Expression Language Functions which can be used to access the repository.</p>
-<h3>adaptTo</h3>
+<h3><a href="#adaptto" name="adaptto">adaptTo</a></h3>
 <p>Adapts an Adaptable to another class.</p>
 <ul>
   <li>Returns: <code>java.lang.Object</code></li>
@@ -132,7 +132,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;c:set var=&quot;myProperties&quot; value=&quot;${sling:adaptTo(resource,&#39;org.apache.sling.api.resource.ValueMap&#39;)}&quot; /&gt;
 </code></pre>
-<h3>encode</h3>
+<h3><a href="#encode" name="encode">encode</a></h3>
 <p>Writes properly Cross Site Scripting (XSS) encoded text to the response using the OWASP ESAPI. Supports a number of encoding modes.</p>
 <ul>
   <li>Returns: <code>java.util.String</code> - An encoded text</li>
@@ -147,7 +147,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>${sling:encode(&#39;&lt;script&gt;alert(&quot;Bad Stuff!&quot;);&lt;/script&gt;&#39;,&#39;HTML&#39;)}
 </code></pre>
-<h3>findResources</h3>
+<h3><a href="#findresources" name="findresources">findResources</a></h3>
 <p>Searches for resources using the given query formulated in the given language.</p>
 <ul>
   <li>Returns: <code>java.util.Iterator</code> - An Iterator of Resource objects matching the query.</li>
@@ -165,7 +165,7 @@
     &lt;li&gt;${found.path}&lt;/li&gt;
 &lt;/c:forEach&gt;
 </code></pre>
-<h3>getRelativeResource</h3>
+<h3><a href="#getrelativeresource" name="getrelativeresource">getRelativeResource</a></h3>
 <p>Gets the resource at the relative path to the provided resource.</p>
 <ul>
   <li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The resource at the relative path.</li>
@@ -180,7 +180,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getRelativeResource(resource,&#39;jcr:content&#39;)}&quot; /&gt;
 </code></pre>
-<h3>getResource</h3>
+<h3><a href="#getresource" name="getresource">getResource</a></h3>
 <p>Method allow for the retrieval of resources.</p>
 <ul>
   <li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The resource at the path.</li>
@@ -195,7 +195,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getResource(resourceResolver,&#39;/content&#39;)}&quot; /&gt;
 </code></pre>
-<h3>getValue</h3>
+<h3><a href="#getvalue" name="getvalue">getValue</a></h3>
 <p>Gets the value of the specified key from the ValueMap and either coerses the value into the specified type or uses the specified type as a default depending on the parameter passed in.</p>
 <p>If the third parameter is a class, the resulting value will be coersed into the class, otherwise, the third parameter is used as the default when retrieving the value from the <code>ValueMap</code>.</p>
 <ul>
@@ -212,7 +212,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getValue(properties,&#39;jcr:title&#39;,resource.name)}&quot; /&gt;
 </code></pre>
-<h3>listChildren</h3>
+<h3><a href="#listchildren" name="listchildren">listChildren</a></h3>
 <p>Method for allowing the invocation of the Sling Resource listChildren method.</p>
 <ul>
   <li>Returns: <code>java.util.Iterator</code> - The children of the resource.</li>
@@ -228,9 +228,9 @@
     &lt;li&gt;${child.path}&lt;/li&gt;
 &lt;/c:forEach&gt;
 </code></pre>
-<h2>Tags</h2>
+<h2><a href="#tags" name="tags">Tags</a></h2>
 <p>The Sling Taglib includes a number of Tags which can be used to access the repository, handle the inclusion of scripts and manage requests.</p>
-<h3>adaptTo</h3>
+<h3><a href="#adaptto" name="adaptto">adaptTo</a></h3>
 <p>Adapts adaptables to objects of other types.</p>
 <ul>
   <li>Attributes
@@ -245,7 +245,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:adaptTo adaptable=&quot;${resource}&quot; adaptTo=&quot;org.apache.sling.api.resource.ValueMap&quot; var=&quot;myProps&quot; /&gt;
 </code></pre>
-<h3>call</h3>
+<h3><a href="#call" name="call">call</a></h3>
 <p>Execute a script.</p>
 <ul>
   <li>Attributes
@@ -260,7 +260,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:call script=&quot;myscript.jsp&quot; /&gt;
 </code></pre>
-<h3>defineObjects</h3>
+<h3><a href="#defineobjects" name="defineobjects">defineObjects</a></h3>
 <p>Defines regularly used scripting variables. By default the following scripting variables are defined through this tag:</p>
 <ul>
   <li><strong>slingRequest</strong>, SlingHttpServletRequest object, providing access to the HTTP request header information - extends the standard HttpServletRequest - and provides access to Sling-specific things like resource, path info, selector, etc.</li>
@@ -290,7 +290,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:defineObjects /&gt;
 </code></pre>
-<h3>encode</h3>
+<h3><a href="#encode" name="encode">encode</a></h3>
 <p>Writes properly Cross Site Scripting (XSS) encoded text to the response using the OWASP ESAPI. Supports a number of encoding modes.</p>
 <ul>
   <li>Attributes:
@@ -305,7 +305,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:encode value=&quot;&lt;script&gt;alert(&#39;Bad Stuff!&#39;);&lt;/script&gt;&quot; mode=&quot;HTML&quot; /&gt;
 </code></pre>
-<h3>eval</h3>
+<h3><a href="#eval" name="eval">eval</a></h3>
 <p>Evaluates a script invocation and includes the result in the current page.</p>
 <ul>
   <li>Attributes
@@ -322,7 +322,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:eval script=&quot;myscript.jsp&quot; /&gt;
 </code></pre>
-<h3>findResources</h3>
+<h3><a href="#findresources" name="findresources">findResources</a></h3>
 <p>Tag for searching for resources using the given query formulated in the given language.</p>
 <ul>
   <li>Attributes
@@ -337,7 +337,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:findResources query=&quot;/jcr:root//*[jcr:contains(., &#39;Sling&#39;)] order by @jcr:score&quot; language=&quot;xpath&quot; var=&quot;resources&quot; /&gt;
 </code></pre>
-<h3>forward</h3>
+<h3><a href="#forward" name="forward">forward</a></h3>
 <p>Forwards a request to a resource rendering the current page</p>
 <ul>
   <li>Attributes
@@ -355,7 +355,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:forward path=&quot;/content/aresource&quot; resourceType=&quot;myapp/components/display&quot; /&gt;
 </code></pre>
-<h3>getProperty</h3>
+<h3><a href="#getproperty" name="getproperty">getProperty</a></h3>
 <p>Retrieves the value from the ValueMap, allowing for a default value or coercing the return value.</p>
 <ul>
   <li>Attributes
@@ -372,7 +372,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getProperties properties=&quot;${properties}&quot; key=&quot;jcr:title&quot; defaultValue=&quot;${resource.name}&quot; var=&quot;title&quot; /&gt;
 </code></pre>
-<h3>getResource</h3>
+<h3><a href="#getresource" name="getresource">getResource</a></h3>
 <p>Retrieves resources based on either an absolute path or a relative path and a base resource.</p>
 <ul>
   <li>Attributes
@@ -389,7 +389,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getResource base=&quot;${resource}&quot; path=&quot;jcr:content&quot; var=&quot;content&quot; /&gt;
 </code></pre>
-<h3>include</h3>
+<h3><a href="#include" name="include">include</a></h3>
 <p>Includes a resource rendering into the current page.</p>
 <ul>
   <li>Attributes
@@ -410,7 +410,7 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:include path=&quot;/content/aresource&quot; resourceType=&quot;myapp/components/display&quot; /&gt;
 </code></pre>
-<h3>listChildren</h3>
+<h3><a href="#listchildren" name="listchildren">listChildren</a></h3>
 <p>Lists the children of a Sling Resource.</p>
 <ul>
   <li>Attributes

@@ -116,7 +116,7 @@ from our integration tests shows an example Sling Filter.
     </tr>
   </tbody>
 </table>
-<h2>Filter Chains</h2>
+<h2><a href="#filter-chains" name="filter-chains">Filter Chains</a></h2>
 <p>Sling maintains five filter chains: request level, component level, include filters, forward filters and error filters. Except for the component level filter these filter chains correspond to the filter <code>&lt;dispatcher&gt;</code> configurations as defined for Servlet API 2.5 web applications (see section SRV.6.2.5 Filters and the RequestDispatcher).</p>
 <p>The following table summarizes when each of the filter chains is called and what value must be defined in the <code>sling.filter.scope</code> property to have a filter added to the respective chain:</p>
 <table>
@@ -156,7 +156,7 @@ from our integration tests shows an example Sling Filter.
   </tbody>
 </table>
 <p>Note on <code>INCLUDE</code> and <code>FORWARD</code> with respect to JSP tags: These filters are also called if the respective including (e.g. <code>&lt;jsp:include&gt;</code> or <code>&lt;sling:include&gt;</code>) or forwarding (e.g. <code>&lt;jsp:forward&gt;</code> or <code>&lt;sling:forward&gt;</code>) ultimately calls the <code>RequestDispatcher</code>.</p>
-<h2>Filter Processing</h2>
+<h2><a href="#filter-processing" name="filter-processing">Filter Processing</a></h2>
 <p>Filter processing is part of the Sling request processing, which may be sketched as follows:</p>
 <ul>
   <li><em>Request Level</em>:
@@ -189,9 +189,9 @@ from our integration tests shows an example Sling Filter.
   </li>
 </ul>
 <p>As a consequence, request level filters will be called at most once during request processing (they may not be called at all if a filter earlier in the filter chain decides to terminate the request) while the component level, include, and forward filters may be called multiple times while processing a request.</p>
-<h2>Troubleshooting</h2>
+<h2><a href="#troubleshooting" name="troubleshooting">Troubleshooting</a></h2>
 <p>Apart form the logs which tell you when filters are executed, two Sling plugins provide information about filters in the OSGi console.</p>
-<h3>Recent Requests plugin</h3>
+<h3><a href="#recent-requests-plugin" name="recent-requests-plugin">Recent Requests plugin</a></h3>
 <p>The request traces provided at <code>/system/console/requests</code> contain information about filter execution, as in this example:</p>
 <pre><code>0 (2010-09-08 15:22:38) TIMER_START{Request Processing}
 ...
@@ -207,7 +207,7 @@ from our integration tests shows an example Sling Filter.
 ...
 8 (2010-09-08 15:22:38) TIMER_END{8,Request Processing} Request Processing
 </code></pre>
-<h3>Config Status plugin</h3>
+<h3><a href="#config-status-plugin" name="config-status-plugin">Config Status plugin</a></h3>
 <p>The configuration status page at <code>/system/console/config</code> includes the current list of active filters in its <em>Servlet Filters</em> category, as in this example:</p>
 <pre><code>Current Apache Sling Servlet Filter Configuration
 
@@ -230,7 +230,7 @@ Component Filters:
 -200 : class some.package.SomeComponentFilter (2583)
 </code></pre>
 <p>The first numbers on those lines are the filter priorities, and the last number in parentheses is the OSGi service ID.</p>
-<h2>Support in Sling Engine 2.1.0</h2>
+<h2><a href="#support-in-sling-engine-2-1-0" name="support-in-sling-engine-2-1-0">Support in Sling Engine 2.1.0</a></h2>
 <p>Up to and including Sling Engine 2.1.0 support for Servlet Filters has been as follows:</p>
 <ul>
   <li>Any <code>javax.servlet.Filter</code> service is accepted as a filter for Sling unless the <code>pattern</code> property used by the <a href="http://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard">Apache Felix HttpService whiteboard support</a> is set in the service registration properties.</li>

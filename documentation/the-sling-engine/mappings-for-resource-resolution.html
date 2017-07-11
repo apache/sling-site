@@ -74,8 +74,8 @@
                 Mappings for Resource Resolution
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Configuration</h2>
-<h3>Properties</h3>
+<h2><a href="#configuration" name="configuration">Configuration</a></h2>
+<h3><a href="#properties" name="properties">Properties</a></h3>
 <p>The mapping of request URLs to resources is mainly configured in a configuration tree which is (by default) located below <code>/etc/map</code>. The actual location can be configured with the <code>resource.resolver.map.location</code> property of the <code>org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl</code> configuration. That way you can even make it run mode specific, by taking advantage of the Sling OSGi Installer's run mode awareness.</p>
 <p>When dealing with the new resource resolution we have a number of properties influencing the process:</p>
 <ul>
@@ -93,7 +93,7 @@
   <li>An ACE with allow <code>jcr:read</code> in <code>/content</code> for <code>testuser</code></li>
 </ul>
 <p>If the <code>sling:alias</code> property (e.g. <code>myalias</code>) is set directly in <code>/content</code>, the User <code>testuser</code> will not be able to address the resource <code>/content</code> in an URL as <code>/myalias</code>. Instead if the <code>sling:alias</code> property is set in any resource under <code>/content</code> (e.g. <code>/content/visitors</code>) the <code>sling:alias</code> feature will work as usual.</p>
-<h3>Node Types</h3>
+<h3><a href="#node-types" name="node-types">Node Types</a></h3>
 <p>To ease with the definition of redirects and aliases, the following node types are defined:</p>
 <ul>
   <li><code>sling:ResourceAlias</code> &ndash; This mixin node type defines the <code>sling:alias</code> property and may be attached to any node, which does not otherwise allow setting a property named <code>sling:alias</code></li>
@@ -101,15 +101,15 @@
   <li><code>sling:Mapping</code> &ndash; Primary node type which may be used to easily construct entries in the <code>/etc/map</code> tree. The node type extends the <code>sling:MappingSpec</code> mixin node type to allow setting the required matching and redirection. In addition the <code>sling:Resource</code> mixin node type is extended to allow setting a resource type and the <code>nt:hierarchyNode</code> node type is extended to allow locating nodes of this node type below <code>nt:folder</code> nodes.</li>
 </ul>
 <p>Note, that these node types only help setting the properties. The implementation itself only cares for the properties and their values and not for any of these node types.</p>
-<h2>Namespace Mangling</h2>
+<h2><a href="#namespace-mangling" name="namespace-mangling">Namespace Mangling</a></h2>
 <p>There are systems accessing Sling, which have a hard time handling URLs containing colons &ndash; <code>:</code> &ndash; in the path part correctly. Since URLs produced and supported by Sling may contain colons because JCR Item based resources may be namespaced (e.g. <code>jcr:content</code>), a special namespace mangling feature is built into the <code>ResourceResolver.resolve</code> and <code>ResourceResolver(map)</code> methods.</p>
 <p>Namespace mangling operates such, that any namespace prefix identified in resource path to be mapped as an URL in the <code>map</code> methods is modified such that the prefix is enclosed in underscores and the colon removed.</p>
 <p><em>Example</em>: The path <code>/content/*a*sample/jcr:content/jcr:data.png</code> is modified by namespace mangling in the <code>map</code> method to get at <code>/content/*a*sample/*jcr*content/*jcr*data.png</code>.</p>
 <p>Conversely the <code>resolve</code> methods must undo such namespace mangling to get back at the resource path. This is simple done by modifying any path such that segments starting with an underscore enclosed prefix are changed by removing the underscores and adding a colon after the prefix. There is one catch, tough: Due to the way the SlingPostServlets automatically generates names, there may be cases where the actual name would be matching this mechanism. Therefore only prefixes are modified which are actually namespace prefixes.</p>
 <p><em>Example</em>: The path <code>/content/*a*sample/*jcr*content/*jcr*data.png{*</code>} <em>is modified by namespace mangling in the</em> <code>{*}resolve{*</code>} <em>method to get</em> <code>*/content/*a*sample/jcr:content/jcr:data.png{*}{</code>}*. The prefix* <code>*\*a{*}{</code>}<code>{</code>} is not modified because there is no registered namespace with prefix <code>a</code>. On the other hand the prefix <code>{*}jcr{*</code>} is modified because there is of course a registered namespace with prefix <code>jcr</code>.</p>
-<h2>Root Level Mappings</h2>
+<h2><a href="#root-level-mappings" name="root-level-mappings">Root Level Mappings</a></h2>
 <p>Root Level Mappings apply to the request at large including the scheme, host, port and uri path. To accomplish this a path is constructed from the request lik this <code>{scheme}/{host}.{port}/{uri_path}</code>. This string is then matched against mapping entries below <code>/etc/map</code> which are structured in the content analogously. The longest matching entry string is used and the replacement, that is the redirection property, is applied.</p>
-<h3>Mapping Entry Specification</h3>
+<h3><a href="#mapping-entry-specification" name="mapping-entry-specification">Mapping Entry Specification</a></h3>
 <p>Each entry in the mapping table is a regular expression, which is constructed from the resource path below <code>/etc/map</code>. If any resource along the path has a <code>sling:match</code> property, the respective value is used in the corresponding segment instead of the resource name. Only resources either having a <code>sling:redirect</code> or <code>sling:internalRedirect</code> property are used as table entries. Other resources in the tree are just used to build the mapping structure.</p>
 <p><em>Example</em></p>
 <p>Consider the following content</p>
@@ -190,11 +190,10 @@
     </tr>
   </tbody>
 </table>
-<h3>Regular Expression Matching</h3>
+<h3><a href="#regular-expression-matching" name="regular-expression-matching">Regular Expression Matching</a></h3>
 <p>As said above the mapping entries are regular expressions which are matched against path. As such these regular expressions may also contain capturing groups as shown in the example above: <code>http/localhost\.\d*/(stories)</code>. After matching the path against the regular expression, the replacement pattern is applied which allows references back to the capturing groups.</p>
 <p>To illustrate the matching and replacement is applied according to the following pseudo code:</p>
-<pre><code>#!java
-String path = request.getScheme + &quot;/&quot; + request.getServerName()
+<pre><code><!-- TODO syntax marker (#!java) disabled -->String path = request.getScheme + &quot;/&quot; + request.getServerName()
         + &quot;.&quot; + request.getServerPort() + &quot;/&quot; + request.getPathInfo();
 String result = null;
 for (MapEntry entry: mapEntries) {
@@ -210,7 +209,7 @@ for (MapEntry entry: mapEntries) {
 </code></pre>
 <p>At the end of the loop, <code>result</code> contains the mapped path or <code>null</code> if no entry matches the request <code>path</code>.</p>
 <p><strong>NOTE:</strong> Since the entries in the <code>/etc/map</code> are also used to reverse map any resource paths to URLs, using regular expressions with wildcards in the Root Level Mappings prevent the respective entries from being used for reverse mappings. Therefor, it is strongly recommended to not use regular expression matching, unless you have a strong need.</p>
-<h4>Regular Expressions for Reverse Mappings</h4>
+<h4><a href="#regular-expressions-for-reverse-mappings" name="regular-expressions-for-reverse-mappings">Regular Expressions for Reverse Mappings</a></h4>
 <p>By default using regular expressions with wildcards will prevent to use the mapping entry for reverse mappings (see above). </p>
 <p>There is one exception though: If there is a <code>sling:internalRedirect</code> property containing a regular expression the map entry will be <em>exclusively used for reverse mappings</em> (i.e. used only for <code>ResourceResolver.map(...)</code>) (see also <a href="https://issues.apache.org/jira/browse/SLING-2560">SLING-2560</a>). The same resource may carry a <code>sling:match</code> property with wildcards and groups referring to the groups being defined in the <code>sling:internalRedirect</code> property. </p>
 <p>This example </p>
@@ -235,18 +234,17 @@ for (MapEntry entry: mapEntries) {
     </tr>
   </tbody>
 </table>
-<h3>Redirection Values</h3>
+<h3><a href="#redirection-values" name="redirection-values">Redirection Values</a></h3>
 <p>The result of matching the request path and getting the redirection is either a path into the resource tree or another URL. If the result is an URL, it is converted into a path again and matched against the mapping entries. This may be taking place repeatedly until an absolute or relative path into the resource tree results.</p>
 <p>The following pseudo code summarizes this behaviour:</p>
-<pre><code>#!java
-String path = ....;
+<pre><code><!-- TODO syntax marker (#!java) disabled -->String path = ....;
 String result = path;
 do {
     result = applyMapEntries(result);
 } while (isURL(result));
 </code></pre>
 <p>As soon as the result of applying the map entries is an absolute or relative path (or no more map entries match), Root Level Mapping terminates and the next step in resource resolution, resource tree access, takes place.</p>
-<h2>Resource Tree Access</h2>
+<h2><a href="#resource-tree-access" name="resource-tree-access">Resource Tree Access</a></h2>
 <p>The result of Root Level Mapping is an absolute or relative path to a resource. If the path is relative &ndash; e.g. <code>myproject/docroot/sample.gif</code> &ndash; the resource resolver search path (<code>ResourceResolver.getSearchPath()</code> is used to build absolute paths and resolve the resource. In this case the first resource found is used. If the result of Root Level Mapping is an absolute path, the path is used as is.</p>
 <p>Accessing the resource tree after applying the Root Level Mappings has four options:</p>
 <ul>
@@ -255,11 +253,10 @@ do {
   <li>Drill down the resource tree starting from the root, optionally using the search path until a resource is found.</li>
   <li>If no resource can be resolved, a Missing Resource is returned.</li>
 </ul>
-<h3>Drilling Down the Resource Tree</h3>
+<h3><a href="#drilling-down-the-resource-tree" name="drilling-down-the-resource-tree">Drilling Down the Resource Tree</a></h3>
 <p>Drilling down the resource tree starts at the root and for each segment in the path checks whether a child resource of the given name exists or not. If not, a child resource is looked up, which has a <code>sling:alias</code> property whose value matches the given name. If neither exists, the search is terminated and the resource cannot be resolved.</p>
 <p>The following pseudo code shows this algorithm assuming the path is absolute:</p>
-<pre><code>#!java
-String path = ...; // the absolute path
+<pre><code><!-- TODO syntax marker (#!java) disabled -->String path = ...; // the absolute path
 Resource current = getResource(&quot;/&quot;);
 String[] segments = path.split(&quot;/&quot;);
 for (String segment: segments) {
@@ -283,7 +280,7 @@ for (String segment: segments) {
     }
 }
 </code></pre>
-<h2>Rebuild The Vanity Bloom Filter</h2>
+<h2><a href="#rebuild-the-vanity-bloom-filter" name="rebuild-the-vanity-bloom-filter">Rebuild The Vanity Bloom Filter</a></h2>
 <p><a href="https://issues.apache.org/jira/browse/SLING-4216">SLING-4216</a> introduced the usage of a bloom filter in order to resolve long startup time with many vanityPath entries. The bloom filter is handled automatically by the Sling framework. In some cases though, as changing the maximum number of vanity bloom filter bytes, a rebuild of the vanity bloom filter is needed.</p>
 <p>In order to rebuild vanity bloom filter:</p>
 <ul>
@@ -293,7 +290,7 @@ for (String segment: segments) {
   <li>delete the vanityBloomFilter.txt file</li>
   <li>start Apache Sling (this might take few minutes, depending on how many vanity path entries are present)</li>
 </ul>
-<h2>Debugging Issues</h2>
+<h2><a href="#debugging-issues" name="debugging-issues">Debugging Issues</a></h2>
 <p>Use the Felix Web Console Plugin provided at <code>/system/console/jcrresolver</code> to inspect both the mapping and the resolver map entries. Also you can check what either <code>ResourceResolver.map(...)</code> or <code>ResourceResolver.resolve(...)</code> would return for a given URL/path.</p></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">

@@ -73,12 +73,12 @@
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;<a href="/ng/old-stuff/scriptengineintegration.html">Integrating Scripting Languages</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 XSLT Processing Pipeline
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>In the <em>Apache Sling Scripting W3C XML Processing Support</em> bundle, Juanjo Vàzquez has implemented XSLT processing support for Sling as another new scripting engine, based on the <a href="http://cocoon.apache.org/3.0/">Cocoon 3 pipeline engine</a>.</p>
-<h2>Intro</h2>
+<h2><a href="#intro" name="intro">Intro</a></h2>
 <p>An XML pipeline specifies a sequence of operations to be performed on zero or more XML documents. There are a number of advantages to using pipelines above all in terms of separation of concerns. On the other hand, we talk about XSLT processing if the operations in a pipeline are performed executing or applying XSLT stylesheets.</p>
 <p>XSLT processing support is implemented in Sling as an scripting engine bundle named <em>Apache Sling Scripting W3C XML Processing Support</em>. This bundle is based on the <a href="http://cocoon.apache.org/3.0/">Cocoon 3 pipeline engine</a> and uses the <a href="http://www.w3.org/TR/xproc/">W3C XProc language</a> in order to specify pipelines to be processed.</p>
 <p>For the time being, XProc is partially implemented and it is not clear that Sling must support all W3C recomendation yet. This could depend of concrete user requirements or use cases.</p>
 <p>The source code is found in the <a href="http://svn.apache.org/repos/asf/incubator/sling/trunk/contrib/scripting/xproc">contrib/scripting/xproc</a> module.</p>
-<h2>How to Install</h2>
+<h2><a href="#how-to-install" name="how-to-install">How to Install</a></h2>
 <p>Install the <code>org.apache.sling.scripting.xproc</code> bundle in order to work with XProc. You can achieve this either building it from <code>contrib/scripting/xproc</code> folder in the Sling trunk or by downloading it from the Apache Snapshot repository here: <a href="http://people.apache.org/repo/m2-snapshot-repository/org/apache/sling/org.apache.sling.scripting.xproc/2.0.0-incubator-SNAPSHOT/org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar">org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar</a>.</p>
 <p>To deploy the bundle go to the bundles page of Apache Felix Web Console (http://localhost:8888/system/console/bundles), select the bundle file to upload, check the Start check box and click Install or Update button.</p>
 <p>In order to check whether XProc scripting engine has been installed, go to the Script Engines page of the Apache Felix Web Console and see the entry for XProc there:</p>
@@ -88,7 +88,7 @@
     MIME Types   application/xml
     Names    XProc, xml processing, xml pipeline processor 
 </code></pre>
-<h2>How it works</h2>
+<h2><a href="#how-it-works" name="how-it-works">How it works</a></h2>
 <p>As explained above, the bundle is able to perform a sequence of XSLT transforms on an XML document just as is expressed in a pipeline definition. A pipeline definition is a file with an xpl extension that follows the <a href="http://www.w3.org/TR/xproc/">W3C XProc grammar</a>. Only <code>p:xslt</code> steps are supported at the moment.</p>
 <p>For the XML input of pipeline, the processing uses a Cocoon generator named <code>SlingGenerator</code> that tries to resolve the requested resource as (in order of preference):</p>
 <ul>
@@ -96,7 +96,7 @@
   <li>a dynamically generated XML</li>
   <li>the underlying node's export document view</li>
 </ul>
-<h2>Samples</h2>
+<h2><a href="#samples" name="samples">Samples</a></h2>
 <p>Let's see some samples in order to understand the processing behaviour.</p>
 <ol>
   <li>
@@ -108,8 +108,7 @@ $ curl -u admin:admin -F sling:resourceType=xproc -F title=&quot;some title&quot
   </li>
   <li>
     <p>Use WebDAV or curl to create a pipeline script at <code>/apps/xproc/xproc.xpl</code> :</p>
-    <pre><code>#!xml
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;p:pipeline xmlns:p=&quot;http://www.w3.org/ns/xproc&quot;&gt;
 
   &lt;p:xslt&gt;
@@ -130,8 +129,7 @@ $ curl -u admin:admin -F sling:resourceType=xproc -F title=&quot;some title&quot
   <li>
     <p>Store the XSLT transforms in the repository:</p>
     <p><strong><code>/apps/xproc/one.xsl</code></strong></p>
-    <pre><code>#!xml
-&lt;xsl:stylesheet version=&quot;1.0&quot;
+    <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;xsl:stylesheet version=&quot;1.0&quot;
     xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
 
     &lt;xsl:template match=&quot;/&quot;&gt;
@@ -143,8 +141,7 @@ $ curl -u admin:admin -F sling:resourceType=xproc -F title=&quot;some title&quot
 &lt;/xsl:stylesheet&gt;
 </code></pre>
     <p><strong><code>/apps/xproc/two.xsl</code></strong></p>
-    <pre><code>#!xml
-&lt;xsl:stylesheet version=&quot;1.0&quot;
+    <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;xsl:stylesheet version=&quot;1.0&quot;
     xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
 
     &lt;xsl:template match=&quot;/&quot;&gt;
@@ -172,8 +169,7 @@ $ curl http://admin:admin@localhost:8888/foo.html
   </li>
   <li>
     <p>Now, store a static XML in the repository at <code>/foo.xml</code>:</p>
-    <pre><code>#!xml
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;foo&gt;
     &lt;content&gt;
        foo: static content
@@ -201,8 +197,7 @@ $ curl http://admin:admin@localhost:8888/foo.html
   </li>
   <li>
     <p>Store a script in the repository at <code>/apps/xproc/xproc.xml.esp</code></p>
-    <pre><code>#!xml
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;foo&gt;
     &lt;content&gt;
        foo: dynamic content
@@ -231,7 +226,7 @@ $ curl http://admin:admin@localhost:8888/foo.html
     <p>This time the pipeline's source has been a dinamically generated XML.</p>
   </li>
 </ol>
-<h2>References</h2>
+<h2><a href="#references" name="references">References</a></h2>
 <ul>
   <li><a href="http://cocoon.apache.org//3.0/">Cocoon 3 pipeline engine</a></li>
   <li><a href="http://www.w3.org/TR/xproc/">W3C XProc language</a></li>

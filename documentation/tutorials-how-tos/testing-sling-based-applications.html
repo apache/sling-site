@@ -76,22 +76,21 @@
 <p>This page describes the various approaches that we use to test Sling itself, and introduces a number of tools that can help testing OSGi and HTTP-based applications.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Unit tests</h2>
+<h2><a href="#unit-tests" name="unit-tests">Unit tests</a></h2>
 <p>When possible, unit tests are obviously the fastest executing ones, and it's easy to keep them close to the code that they're testing. </p>
 <p>We have quite a lot of those in Sling, the older use the JUnit3 TestCase base class, and later ones use JUnit4 annotations. Mixing both approaches is possible, there's no need to rewrite existing tests.</p>
-<h2>Tests that use a JCR repository</h2>
+<h2><a href="#tests-that-use-a-jcr-repository" name="tests-that-use-a-jcr-repository">Tests that use a JCR repository</a></h2>
 <p>Utility classes from our <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/commons/testing">commons/testing</a> module make it easy to get a real JCR repository for testing. That's a bit slower than pure unit tests, of course, but this only adds 1-2 seconds to the execution of a test suite.</p>
 <p>The <code>RepositoryProviderTest</code> in that module uses this technique to get a JCR repository.</p>
 <p>Note that our utilities do not cleanup the repository between tests, so you must be careful about test isolation, for example by using unique paths for each test.</p>
-<h2>Mock classes and services</h2>
+<h2><a href="#mock-classes-and-services" name="mock-classes-and-services">Mock classes and services</a></h2>
 <p>The next step is to use mock classes and services to simulate components that are needed for testing. This makes it possible to test OSGi service classes without an OSGi framework, or classes accessing the Sling or JCR API without a running Sling instance or JCR repository.</p>
 <p>The <a href="/documentation/development.html">Development</a> documentation page contains a section "Testing Sling-based Applications" lising all mock implementations available as part of the Apache Sling project.</p>
 <p>In other cases we use <a href="http://www.jmock.org/">jmock</a> or <a href="https://code.google.com/p/mockito/">Mockito</a> to help create mock objects without having to write much code - such mocking libraries take care of the plumbing and allow you to write just the bits of code that matter (often with funny syntaxes). The tests of the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/event/">org.apache.sling.event</a> bundle, for example, make extensive use of such mock services.</p>
 <p>The problem with mocks is that it can become hard to make sure you're actually testing something, and not just "mocking mocks". At a certain level of complexity, it becomes quicker and clearer to actually start an OSGi framework for automated tests.</p>
-<h3>Side note: injecting services in private fields</h3>
+<h3><a href="#side-note-injecting-services-in-private-fields" name="side-note-injecting-services-in-private-fields">Side note: injecting services in private fields</a></h3>
 <p>To inject (real or fake) services in others for testing, without having to create getters and setters just for this, you could use a reflection-based trick, as in the below example. Utilities such as the <a href="http://junit-addons.sourceforge.net/junitx/util/PrivateAccessor.html">PrivateAccessor</a> from <a href="http://junit-addons.sourceforge.net/">junit-addons</a> make that simpler.</p>
-<pre><code>#!java
-// set resource resolver factory
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// set resource resolver factory
 // in a ServletResolver object which has a private resourceResolverFactory field
 
 ServletResolver servletResolver = ....
@@ -100,29 +99,27 @@ final java.lang.reflect.Field resolverField = resolverClass.getDeclaredField(&qu
 resolverField.setAccessible(true);
 resolverField.set(servletResolver, factory);
 </code></pre>
-<h2>Pax Exam</h2>
+<h2><a href="#pax-exam" name="pax-exam">Pax Exam</a></h2>
 <p><a href="http://team.ops4j.org/wiki/display/paxexam/Pax+Exam">Pax Exam</a> allows you to easily start an OSGi framework during execution of a JUnit test suite.</p>
 <p>We currently use it for our <a href="https://svn.apache.org/repos/asf/sling/trunk/installer/it">Sling installer integration tests</a> for example. As parts of the installer interact directly with the OSGi framework, it felt safer to test it in a realistic situation rather than mock everything.</p>
 <p>Such tests are obviously slower than plain unit tests and tests that use mocks. Our installer integration tests, using Pax Exam, take about a minute to execute on a 2010 macbook pro.</p>
-<h2>Server-side JUnit tests</h2>
+<h2><a href="#server-side-junit-tests" name="server-side-junit-tests">Server-side JUnit tests</a></h2>
 <p>The tools described on the <a href="/documentation/bundles/org-apache-sling-junit-bundles.html">JUnit server-side testing support</a> page allow for running JUnit tests on an live Sling instance, as part of the normal integration testing cycle. </p>
-<h2>HTTP-based integration tests</h2>
+<h2><a href="#http-based-integration-tests" name="http-based-integration-tests">HTTP-based integration tests</a></h2>
 <p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/rules">Sling HTTP Testing Rules</a> allow writing integration tests easily. They are primarily meant to be used for tests that use http against a Sling instance and make use of the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/http/clients">org.apache.sling.testing.clients</a> which offer a simple, immutable and extendable way of working with specialized testing clients.</p>
 <p>The JUnit rules incorporate boiler-plate logic that is shared in tests and take the modern approach of using rules rather than inheritance. The <code>SlingRule</code> (for methods) or <code>SlingClassRule</code> (for test classes) are base rules, chaining other rules like <code>TestTimeoutRule</code>, <code>TestDescriptionRule</code>, <code>FilterRule</code>. The <code>SlingInstanceRule</code> extends that and starts a Sling instance if needed and also allows instantiating a <code>SlingClient</code> pointing to the instance and automatically configure the base url, credentials, etc.</p>
 <h3><a name="starting"></a> Starting an Integration Test</h3>
 <p>Starting an integration is very simple out of the box, but is very extendable, both by combining or configuring the junit rules and by using the versatile <code>SlingClient</code> (which can be extended or adapted by calling <code>adaptTo(MyClient.class)</code> without losing the client configuration)</p>
 <p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/rules/README.md">README</a> provides more detail, as do <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/rules/src/test/java">the tests</a>. The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/http/clients">Sling HTTP Testing Clients</a> provide simple explanations, and unit tests.</p>
-<h4>Maven Dependency</h4>
-<pre><code>#!xml 
-&lt;dependency&gt;
+<h4><a href="#maven-dependency" name="maven-dependency">Maven Dependency</a></h4>
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
     &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
     &lt;artifactId&gt;org.apache.sling.testing.rules&lt;/artifactId&gt;
     &lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;        
 &lt;/dependency&gt;
 </code></pre>
-<h4>Simple Example using SlingInstanceRule</h4>
-<pre><code>#!java   
-public class MySimpleIT {
+<h4><a href="#simple-example-using-slinginstancerule" name="simple-example-using-slinginstancerule">Simple Example using SlingInstanceRule</a></h4>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->public class MySimpleIT {
 
     @ClassRule
     public static SlingInstanceRule instanceRule = new SlingInstanceRule();
@@ -139,7 +136,7 @@ public class MySimpleIT {
     }            
 } 
 </code></pre>
-<h2>Summary</h2>
+<h2><a href="#summary" name="summary">Summary</a></h2>
 <p>Combining the above testing techniques has worked well for us in creating and testing Sling. Being able to test things at different levels of integration has proved an efficient way to get good test coverage without having to write too much boring test code.</p></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">

@@ -73,7 +73,7 @@
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Content Loading and Nodetype Support (jcr.contentloader)
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Apache Sling provides support for initial content loading into a repository and for registering node types. The <code>sling-jcr-contentloader</code> bundle provides loading of content from a bundle into the repository and the <code>sling-jcr-base</code> bundle provides node type registration.</p>
-<h2>Initial Content Loading</h2>
+<h2><a href="#initial-content-loading" name="initial-content-loading">Initial Content Loading</a></h2>
 <p>Bundles can provide initial content, which is loaded into the repository when the bundle has entered the <em>started</em> state. Such content is expected to be contained in the bundles accessible through the Bundle entry API methods. Content to be loaded is declared in the <code>Sling-Initial-Content</code> bundle manifest header. This header takes a comma-separated list of bundle entry paths. Each entry and all its child entries are accessed and entered into starting with the child entries of the listed entries.</p>
 <p>Adding this content preserves the paths of the entries as shown in this table, which assumes a <code>Sling-Initial-Content</code> header entry of <code>SLING-INF/content</code> (with no further directives):</p>
 <table>
@@ -193,7 +193,7 @@
     </tr>
   </tbody>
 </table>
-<h2>Loading initial content from bundles</h2>
+<h2><a href="#loading-initial-content-from-bundles" name="loading-initial-content-from-bundles">Loading initial content from bundles</a></h2>
 <p>Repository items to be loaded into the repository, when the bundle is first installed, may be defined in four ways:</p>
 <ol>
   <li>Directories</li>
@@ -202,12 +202,12 @@
   <li>JSON descriptor files</li>
 </ol>
 <p>Depending on the bundle entry found in the location indicated by the Sling-Initial-Content bundle manifest header, nodes are created (and/or updated) as follows:</p>
-<h3>Directories</h3>
+<h3><a href="#directories" name="directories">Directories</a></h3>
 <p>Unless a node with the name of the directory already exists or has been defined in an XML or JSON descriptor file (see below) a directory is created as a node with the primary node type "nt:folder" in the repository.</p>
-<h3>Files</h3>
+<h3><a href="#files" name="files">Files</a></h3>
 <p>Unless a node with the name of the file already exists or has been defined in an XML or JSON descriptor file (see below) a file is created as two nodes in the repository. The node bearing the name of the file itself is created with the primary node type "nt:file". Underneath this file node, a resource node with the primary node type "nt:resource" is created, which is set to the contents of the file.</p>
 <p>The MIME type is derived from the file name extension by first trying to resolve it from the Bundle entry URL. If this does not resolve to a MIME type, the Sling MIME type resolution service is used to try to find a mime type. If all fals, the MIME type is defaulted to "application/octet-stream".&nbsp;&nbsp;</p>
-<h3>XML Descriptor Files</h3>
+<h3><a href="#xml-descriptor-files" name="xml-descriptor-files">XML Descriptor Files</a></h3>
 <p>Nodes, Properties and in fact complete subtrees may be described in XML files using either the JCR SystemView format, or the format described below. In either case, the file must have the .xml extension.</p>
 <pre><code>&lt;node&gt;
     &lt;!--
@@ -262,7 +262,7 @@
     &lt;/node&gt;
 &lt;/node&gt;
 </code></pre>
-<h4>Using a custom XML format</h4>
+<h4><a href="#using-a-custom-xml-format" name="using-a-custom-xml-format">Using a custom XML format</a></h4>
 <p>By writing an XSLT stylesheet file, you can use whatever XML format you prefer. The XML file references an XSLT stylesheet by using the xml-stylesheet processing instruction: </p>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;?xml-stylesheet href=&quot;my-transform.xsl&quot; type=&quot;text/xsl&quot;?&gt; &lt;!-- The path to my-transform.xsl is relative to this file --&gt;
@@ -287,7 +287,7 @@
   ...
 &lt;/xsl:stylesheet&gt;
 </code></pre>
-<h3>JSON Descriptor Files</h3>
+<h3><a href="#json-descriptor-files" name="json-descriptor-files">JSON Descriptor Files</a></h3>
 <p>Nodes, Properties and in fact complete subtrees may be described in JSON files using the following skeleton structure (see <a href="http://www.json.org">http://www.json.org</a> or information on the syntax of JSON) :</p>
 <pre><code>{
     // child node name
@@ -340,11 +340,11 @@
         }
 }
 </code></pre>
-<h3>Extractors</h3>
+<h3><a href="#extractors" name="extractors">Extractors</a></h3>
 <p>By default, the <code>sling-jcr-contentloader</code> bundle tries to extract certain file types during content loading. These include <code>json</code>, <code>xml</code>, <code>zip</code>, and <code>jar</code> files. Therefore all available extractors are used for content processing. However if some files should be put into the repository unextracted, the <code>ignoreImportProviders</code> directive can be used with a comma separated list of extensions that should not be extracted, like <code>ignoreImportProviders:=&quot;jar,zip&quot;</code>. Please note that the value needs to be put into quotation marks if more than one value is used like in the example.</p>
-<h3>Workspace Targetting</h3>
+<h3><a href="#workspace-targetting" name="workspace-targetting">Workspace Targetting</a></h3>
 <p>By default, initial content will be loaded into the default workspace. To override this, add a <code>Sling-Initial-Content-Workspace</code> bundle manifest header to specify the workspace. Note that <em>all</em> content from a bundle will be loaded into the same workspace. </p>
-<h3>Example: Load i18n JSON files</h3>
+<h3><a href="#example-load-i18n-json-files" name="example-load-i18n-json-files">Example: Load i18n JSON files</a></h3>
 <p>The Sling Internationalization Support (i18n) supports providing JSON-filed based i18n files (see <a href="https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html#json-file-based">i18n documentation</a>). In this case the JSON file is not interpreted as content definition file, but is stored as binary file in the repository. Additionally a mixin <code>mix:language</code> and a property <code>jcr:language</code> with the language code has to be set on the file node.</p>
 <p>This is an example how such an i18n file can be loaded from an OSGi bundle with the Sling Content Loader.</p>
 <p>Within your bundle header you have to define a separate path for the i18n files where you have to explicitly disable the JSON provider:</p>
@@ -369,7 +369,7 @@
     &lt;/property&gt;
 &lt;/node&gt;
 </code></pre>
-<h2>Declared Node Type Registration</h2>
+<h2><a href="#declared-node-type-registration" name="declared-node-type-registration">Declared Node Type Registration</a></h2>
 <p>The <code>sling-jcr-base</code> bundle provides low-level repository operations which are at the heart of the functionality of Sling: * <em>Node Type Definitions</em> - The class <code>org.apache.sling.content.jcr.base.NodeTypeLoader</code> provides methods to register custom node types with a repository given a repository session and a node type definition file in CND format. This class is also used by this bundle to register node types on behalf of other bundles.</p>
 <p>Bundles may list node type definition files in CND format in the <code>Sling-Nodetypes</code> bundle header. This header is a comma-separated list of resources in the respective bundle. Each resource is taken and fed to the <code>NodeTypeLoader</code> to define the node types.</p>
 <p>After a bundle has entered the <em>resolved</em> state, the node types listed in the <code>Sling-Nodetypes</code> bundle header are registered with the repository.</p>
@@ -378,7 +378,7 @@
 <div class="warning">
 Support for re-registration of node types is relatively limited. In Jackrabbit, for example, only "trivial" changes are allowed.
 </div>
-<h3>Automated tests</h3>
+<h3><a href="#automated-tests" name="automated-tests">Automated tests</a></h3>
 <p>The initial content found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/content/src/main/resources/content/sling-test">sling-test folder of the launchpad initial content</a> is verified by the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java">InitialContentTest</a> when running the <em>launchpad/testing</em> integration tests.</p>
 <p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p></section></div></div>
 <div class="footer">

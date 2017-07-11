@@ -74,7 +74,7 @@
                 Request Processing Analyzer (reqanalyzer)
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Introduction</h2>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>Sling provides a helpful functionality to track progress of requests being processed: The <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/request/RequestProgressTracker.html">RequestProgressTracker</a> which is available through the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html#getRequestProgressTracker%28%29">SlingHttpServletRequest</a>.</p>
 <p>This tool provides mechanims to record states of request processing and a simple mechanism to time periods of processing. By default Sling itself uses this tool to track progress through Sling like script resolution and calling scripts.</p>
 <p>Scripts and servlets called during Sling's request processing may themselves use the <code>RequestProgressTracker</code> to log their own processing.</p>
@@ -89,7 +89,7 @@
   <li>Response Status</li>
 </ul>
 <p>After that first line the complete data from the requests <code>RequestProgressTracker</code> is dumped.</p>
-<h2>Web Console Integration</h2>
+<h2><a href="#web-console-integration" name="web-console-integration">Web Console Integration</a></h2>
 <p>The Request Processing Analyzer is available through the Web Console in the <em>Sling</em> category to</p>
 <ul>
   <li>Download the <code>requesttracker.txt</code> file as a plain text or ZIP-ed file</li>

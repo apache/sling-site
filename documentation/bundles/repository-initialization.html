@@ -75,7 +75,7 @@
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>SlingRepositoryInitializer</code> mechanism allows for running code before the <code>SlingRepository</code> service is registered.</p>
 <p>This is useful for initialization and content migration purposes.</p>
 <p>Please be aware of potential clustering and coordination issues when using this mechanism, if your environment lets several Sling instances access the same content repository you'll need to implement a synchronization mechanism for such operations.</p>
-<h2>SlingRepositoryInitializer</h2>
+<h2><a href="#slingrepositoryinitializer" name="slingrepositoryinitializer">SlingRepositoryInitializer</a></h2>
 <p>The <code>SlingRepositoryInitializer</code> is a very simple service interface, available from version 2.4.0 of the <code>org.apache.sling.jcr.api</code> and <code>org.apache.sling.jcr.base</code> bundles.</p>
 <pre><code>public interface SlingRepositoryInitializer {
     public void processRepository(SlingRepository repo) throws Exception;
@@ -84,7 +84,7 @@
 <p>Services that implement this interface are called when setting up the JCR-based <code>SlingRepository</code> service, before registering it as an OSGi service.</p>
 <p>They are called in increasing order of their <code>service.ranking</code> service property, which needs to be an <code>Integer</code> as usual.</p>
 <p>If any of them throws an Exception, the <code>SlingRepository</code> service is not registered.</p>
-<h2>The 'repoinit' Repository Initialization Language</h2>
+<h2><a href="#the-repoinit-repository-initialization-language" name="the-repoinit-repository-initialization-language">The 'repoinit' Repository Initialization Language</a></h2>
 <p>The <code>org.apache.sling.repoinit.parser</code> implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as well as registering JCR namespaces and node types.</p>
 <p>The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the <code>RepoInitGrammar.jjt</code> file in that module, and the automated tests provide a number of <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/repoinit/parser/src/test/resources/testcases">test cases</a> which demonstrate various features.</p>
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
@@ -153,7 +153,7 @@ create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a
 
 create service user the-last-one
 </code></pre>
-<h2>Providing repoinit statements from the Sling provisioning model or other URLs</h2>
+<h2><a href="#providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls" name="providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls">Providing repoinit statements from the Sling provisioning model or other URLs</a></h2>
 <p>All bundles required for this feature need to be active before the <code>SlingRepository</code> service starts.</p>
 <p>From version 1.0.2 of the <code>org.apache.sling.jcr.repoinit</code> bundle, the <code>o.a.s.jcr.repoinit.RepositoryInitializer</code> component uses an OSGi configuration as shown in this example to define where to read repoinit statements:</p>
 <pre><code>org.apache.sling.jcr.repoinit.impl.RepositoryInitializer
@@ -162,7 +162,7 @@ create service user the-last-one
 <p>This example defines two <em>references</em> to URLs that supply repoinit statements. Their syntax is described below.</p>
 <p>By default the <code>RepositoryInitializer</code> uses the first URL shown in the above example, which points to the provisioning model that's embedded by default in the Sling Launchpad runnable jar.</p>
 <p>Note that previous versions of the <code>org.apache.sling.jcr.repoinit</code> bundle used different configuration parameters. From version 1.0.2 on, warnings are logged if those old parameters (_text.url,text.format,model.section.name_) are used.</p>
-<h3>References to Sling Provisioning Model additional sections</h3>
+<h3><a href="#references-to-sling-provisioning-model-additional-sections" name="references-to-sling-provisioning-model-additional-sections">References to Sling Provisioning Model additional sections</a></h3>
 <p>The <code>slingstart-maven-plugin</code>, from V1.4.2 on, allows for embedding so-called "additional sections" in the Sling provisioning model by starting their name with a colon.</p>
 <p>At runtime this requires the <code>org.apache.sling.provisioning.model</code> bundle, version 1.4.2 or later.</p>
 <p>The <code>o.a.s.jcr.repoinit</code> bundle can use this feature to execute <code>repoinit</code> statements provided by Sling provisioning models, as in this provisioning model example fragment:</p>
@@ -177,7 +177,7 @@ create service user provisioningModelUser
 <p>Where <em>model</em> means "use the provisioning model format", <em>repoinitTwo</em> is the name of the additional section to read statements from in the provisioning model (without the leading colon) and <em>context:/resources/...</em> is the URL to use to retrieve the provisioning model.</p>
 <p>In this example the URL uses the <em>context</em> scheme defined by the Sling Launchpad, but any scheme can be used provided a suitable URL handler is active.</p>
 <p>The section name in that reference is optional and defaults to <em>repoinit</em>. If it's not specified the <code>@</code> should be omitted as well.</p>
-<h3>References to URLs providing raw repoinit statements</h3>
+<h3><a href="#references-to-urls-providing-raw-repoinit-statements" name="references-to-urls-providing-raw-repoinit-statements">References to URLs providing raw repoinit statements</a></h3>
 <p>Using a <code>RepositoryInitializer</code> reference like in this example, with the <em>raw</em> prefix, means that its content is passed as is to the repoinit parser:</p>
 <pre><code>raw:classpath://some-repoinit-file.txt
 </code></pre>

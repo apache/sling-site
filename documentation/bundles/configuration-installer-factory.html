@@ -73,7 +73,7 @@
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Configuration Installer Factory
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The configuration installer factory provides support for configurations to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>. The provisioning of artifacts is handled by installer providers like the file installer or the JCR installer.</p>
-<h2>Configurations</h2>
+<h2><a href="#configurations" name="configurations">Configurations</a></h2>
 <p>Configuration file names are related to the PID and factory PID. The structure of the file name is as follows:</p>
 <pre><code>filename ::= &lt;pid&gt; ( &#39;-&#39; &lt;subname&gt; )? (&#39;.cfg&#39;|&#39;.config&#39;)
 </code></pre>
@@ -85,7 +85,7 @@ com.acme.abc-default.cfg // Managed Service Factory,
 // creates an instance for com.acme.abc
 </code></pre>
 <p>If a configuration is modified, the file installer will write the configuration back to a file to ensure peristence across restarts (if <code>sling.fileinstall.writeback</code> is enabled).</p>
-<h3>Property Files (.cfg)</h3>
+<h3><a href="#property-files-cfg-" name="property-files-cfg-">Property Files (.cfg)</a></h3>
 <p>Configuration files ending in '.cfg' are plain property files (<code>java.util.Property</code>). The format is simple:</p>
 <pre><code>file ::= ( header | comment ) *
 header ::= &lt;header&gt; ( &#39;:&#39; | &#39;=&#39; ) &lt;value&gt; ( &#39;\&lt;nl&gt; &lt;value&gt; ) *
@@ -95,7 +95,7 @@ comment ::= &#39;#&#39; &lt;any&gt;
 <pre><code># default port
 ftp.port = 21
 </code></pre>
-<h3>Configuration Files (.config)</h3>
+<h3><a href="#configuration-files-config-" name="configuration-files-config-">Configuration Files (.config)</a></h3>
 <p>Configuration files ending in '.config' use the format of the Apache Felix ConfigAdmin implementation. It allows to specify the type and cardinality of a configuration property and is not limited to string values.</p>
 <p>The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.</p>
 <p>The format is:</p>
@@ -125,7 +125,7 @@ stringsimple ::= &lt;quoted string representation of the value where both &#39;&
   <li>'B' : Boolean</li>
 </ul>
 <p>A number of such .config files exist in the Sling codebase and can be used as examples.</p>
-<h1>Project Info</h1>
+<h1><a href="#project-info" name="project-info">Project Info</a></h1>
 <ul>
   <li>Configuration installer factory (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/factories/configuration">org.apache.sling.installer.factory.configuration</a>)</li>
 </ul></section></div></div>

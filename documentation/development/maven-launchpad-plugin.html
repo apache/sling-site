@@ -134,7 +134,7 @@ refer to the source code and the launchpad/builder and launchpad/testing modules
     </tr>
   </tbody>
 </table>
-<h3>General Configuration</h3>
+<h3><a href="#general-configuration" name="general-configuration">General Configuration</a></h3>
 <p>In general, the bulk of the configuration of the Maven Launchpad Plugin is concerned with setting up the bundle list which all of the goals will use. This bundle list is created using the following steps:</p>
 <ol>
   <li>If <code>includeDefaultBundles</code> is <code>true</code> (the default), the default bundle list is loaded. By default, this is <code>org.apache.sling.launchpad:org.apache.sling.launchpad:RELEASE:xml:bundlelist</code>, but can be overridden by setting the <code>defaultBundleList</code> plugin parameter.</li>
@@ -145,11 +145,11 @@ refer to the source code and the launchpad/builder and launchpad/testing modules
 </ol>
 <p>When a bundle is added to the bundle list, if a bundle with the same groupId, artifactId, type, and classifier is already in the bundle list, the version of the existing bundle is modified. However, the start level of a bundle is never changed once that bundle is added to the bundle list.</p>
 <p>The plugin may also contribute bundles to (or remove bundles from) the bundle list as it sees fit.</p>
-<h3>Framework Configuration</h3>
+<h3><a href="#framework-configuration" name="framework-configuration">Framework Configuration</a></h3>
 <p>For the <code>run</code> and <code>start</code> goals, the plugin will look for a file named <code>src/test/config/sling.properties</code>. If this file is present, it will be filtered using standard Maven filtering and used to populate the OSGi framework properties. This can be used, for example, to specify a <code>repository.xml</code> file to be used during development:</p>
 <pre><code>sling.repository.config.file.url=${basedir}/src/test/config/repository.xml
 </code></pre>
-<h2>Bundle List Files</h2>
+<h2><a href="#bundle-list-files" name="bundle-list-files">Bundle List Files</a></h2>
 <p>The bundle list file uses a simple XML syntax representing a list of bundles organized into start levels:</p>
 <pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;bundles&gt;
@@ -185,7 +185,7 @@ refer to the source code and the launchpad/builder and launchpad/testing modules
 </code></pre>
 <p>Within each <code>bundle</code> element, <code>type</code> and <code>classifier</code> are also supported.</p>
 <p>The Http Service support can not be configured using the bundle list, but only using the <code>jarWebSupport</code> parameter, since it is specific to whether the Sling Launchpad is built as a java application (in which case the Jetty-based Http Service is used) or a web application (in which case the Http Service bridge is used).</p>
-<h2>Artifact Definition</h2>
+<h2><a href="#artifact-definition" name="artifact-definition">Artifact Definition</a></h2>
 <p>The <code>defaultBundleList</code>, <code>jarWebSupport</code>, <code>additionalBundles</code>, and <code>bundleExclusions</code> parameters are configured with artifact definitions. This is done using a syntax similar to Maven dependency elements:</p>
 <pre><code>&lt;configuration&gt;
 ...
@@ -225,9 +225,9 @@ refer to the source code and the launchpad/builder and launchpad/testing modules
 &lt;/configuration&gt;
 </code></pre>
 <p>By default, bundles are added to start level 0. To change, this use the <code>startLevel</code> element within each additional bundle definition.</p>
-<h2>Integration Testing</h2>
+<h2><a href="#integration-testing" name="integration-testing">Integration Testing</a></h2>
 <p>For integration testing examples, see <code>/samples/inplace-integration-test</code> and <code>launchpad/testing</code> in the Sling source tree.</p>
-<h2>Bundle List Rewriting</h2>
+<h2><a href="#bundle-list-rewriting" name="bundle-list-rewriting">Bundle List Rewriting</a></h2>
 <p>The Maven Launchpad Plugin supports the use of rules to rewrite the bundle list. These rules are executed by the <a href="http://www.jboss.org/drools">Drools</a> rule engine. Typically, this is used along with Maven profiles. For example, Sling's testing project includes a profile called <code>test-reactor-sling-bundles</code>. When activated, this profile runs a Drools rule file which scans the project list from the Maven reactor and modifies the version number for bundles which were contained within the reactor.</p>
 <p>In order for rules to interact with the Maven build, the following global variables are made available:</p>
 <ul>

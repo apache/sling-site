@@ -73,22 +73,22 @@
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 JCR Installer Provider
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The JCR installer provider scans the JCR repository for artifacts and provides them to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>.</p>
-<h2>Configuration and Scanning</h2>
+<h2><a href="#configuration-and-scanning" name="configuration-and-scanning">Configuration and Scanning</a></h2>
 <p>The JCR installer provider can be configured with weighted paths which are scanned. By default, the installer scans in <em>/apps</em> and <em>/libs</em> where artifacts found in <em>/apps</em> get a higher priority. The installer does a deep scan and uses a regular expression to detect folders containing artifacts to be installed. By default, artifacts from within a folder named <em>install</em> are provided to the OSGi installer.</p>
 <p>If such an install folder contains a binary artifact (e.g. a bundle or a config file as described in <a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a>) this is provided to the OSGi installer. </p>
 <p>In addition every node of type <em>sling:OsgiConfig</em> is provided as a configuration to the installer. This has the advantage of leveraging the JCR structure better than binary files, but has the known limitations outlined in <a href="https://issues.apache.org/jira/browse/SLING-4183">SLING-4183</a> and <a href="https://issues.apache.org/jira/browse/SLING-2477">SLING-2477</a>, therefore it is recommended to stick to one of the binary formats described in <a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a>.</p>
 <p>The JCR installer provider does not check or scan the artifacts itself, the detection and installation is deferred to the OSGi installer.</p>
-<h3>Runmode Support</h3>
+<h3><a href="#runmode-support" name="runmode-support">Runmode Support</a></h3>
 <p>The JCR installer supports run modes for installing artifacts. By default folders named <em>install</em> are checked for artifacts. If Apache Sling is started with one (or more run modes), all folders named <em>install.[RUNMODE]</em> are scanned as well. To be precise, the folder name can be followed by any number of run modes separated by comma. For example, if started with run modes <em>dev</em>, <em>a1</em>, and <em>public</em>, folders like <em>install.dev</em>, <em>install.a1</em>, <em>install.public</em> are searched as well as <em>install.dev.a1</em>, or <em>install.a1.dev</em>.</p>
 <p>Artifacts from folders with a run mode get a higher priority. For example by default, an <em>install</em> folder underneath <em>/libs</em> gets the priority <em>50</em>. For each run mode in the folder name, this priority is increased by <em>1</em>, so <em>install.dev</em> has <em>51</em> and <em>install.a1.dev</em> is <em>52</em>.</p>
-<h2>Write Back Support</h2>
+<h2><a href="#write-back-support" name="write-back-support">Write Back Support</a></h2>
 <p>The JCR installer supports writing back of configurations which are changed by some other ways, e.g by using the Apache Felix web console. If this is a new configuration which was not originally stored in the repository, a new configuration is stored under <em>/apps/sling/install</em>. The highest search path is used together with a configurable folder (*sling/install* in this case). If a configuration is changed which already exists in the repository, then it depends where the original configuration is stored. If its under <em>/libs</em> a new configuration at the same path under <em>/apps</em> is created. Otherwise the configuration is directly modified. As JCR properties do not support all Java primitive types like Integer, the write back does not generate a node of type <em>sling:OsgiConfig</em> in the repository but a properties file as described in <a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a>.</p>
 <p>Write back can be turned off by configuration.</p>
-<h3>Start Level Support</h3>
+<h3><a href="#start-level-support" name="start-level-support">Start Level Support</a></h3>
 <p>If the parent folder of a bundle has a name which is a number, this is used as the start level (when installing the bundle for the first time, compare with <a href="https://issues.apache.org/jira/browse/SLING-2011">SLING-2011</a>). So e.g. a bundle in the path <code>/libs/sling/install/15/somebundle.jar</code> is having the start level <strong>15</strong>. </p>
-<h1>Example</h1>
+<h1><a href="#example" name="example">Example</a></h1>
 <p>Here's a quick walkthrough of the JCR installer functionality.</p>
-<h2>Installation</h2>
+<h2><a href="#installation" name="installation">Installation</a></h2>
 <p>Start the Sling <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/app">launchpad/app</a> and make sure that the following bundles are present and started:</p>
 <ul>
   <li><a href="sling-settings-org-apache-sling-settings.html">Sling Settings</a></li>
@@ -96,7 +96,7 @@
   <li>JCR installer provider (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr">org.apache.sling.installer.provider.jcr</a>)</li>
 </ul>
 <p>To watch the logs produced by these modules, you can filter <code>sling/logs/error.log</code> using <code>egrep &#39;jcrinstall|osgi.installer&#39;</code>.</p>
-<h2>Install and remove a bundle</h2>
+<h2><a href="#install-and-remove-a-bundle" name="install-and-remove-a-bundle">Install and remove a bundle</a></h2>
 <p>We'll use the <a href="http://www.knopflerfish.org/releases/2.0.5/jars/desktop_awt/desktop_awt_all-2.0.0.jar">Knopflerfish Desktop</a> bundle for this example, it is convenient as it displays a graphical user interface when started.</p>
 <p>We use <code>curl</code> to create content, to make it easy to reproduce the example by copying and pasting the <code>curl</code> commands. Any other way to create content in the repository will work, of course.</p>
 <p>By default, JCRInstall picks up bundles found in folders named <em>install</em> under <code>/libs</code> and <code>/apps</code>, so we start by creating such a folder:</p>
@@ -113,7 +113,7 @@ curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
   http://admin:admin@localhost:8888/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
 </code></pre>
 <p>Should cause the <em>Knopflerfish Desktop</em> window to disappear as the bundle is uninstalled.</p>
-<h2>Install, modify and remove a configuration</h2>
+<h2><a href="#install-modify-and-remove-a-configuration" name="install-modify-and-remove-a-configuration">Install, modify and remove a configuration</a></h2>
 <p>JCRInstall installs OSGi configurations from nodes having the <em>sling:OsgiConfig</em> node type, found in folders named <em>install</em> under the installation roots (/apps and /libs).</p>
 <p>Let's try this feature by creating a configuration with two properties:</p>
 <pre><code>curl \
@@ -159,14 +159,14 @@ curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
 </code></pre>
 <p>And verify that the corresponding configuration is gone in the console page (after 1-2 seconds, like for all other JCRInstall operations).</p>
 <p>A node named like <code>o.a.s.foo.bar-a</code> uses <em>o.a.s.foo.bar</em> as its factory PID creating a configuration with an automatically generated PID. The value of <em>a</em> is stored as an alias in the OSGi installer to correlate the configuration object with the repository node.</p>
-<h1>Automated Tests</h1>
+<h1><a href="#automated-tests" name="automated-tests">Automated Tests</a></h1>
 <p>The following modules contain lots of automated tests (under <code>src/test</code>, as usual):</p>
 <ul>
   <li>OSGi installer integration tests (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/it">org.apache.sling.installer.it</a>)</li>
   <li>JCR installer service (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr">org.apache.sling.installer.providers.jcr</a>)</li>
 </ul>
 <p>Many of these tests are fairly readable, and can be used to find out in more detail how these modules work.</p>
-<h1>Project Info</h1>
+<h1><a href="#project-info" name="project-info">Project Info</a></h1>
 <ul>
   <li>JCR installer provider (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr">org.apache.sling.installer.provider.jcr</a>)</li>
 </ul></section></div></div>

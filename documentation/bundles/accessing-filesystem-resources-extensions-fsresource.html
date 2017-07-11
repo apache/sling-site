@@ -74,7 +74,7 @@
                 Accessing File System Resources (org.apache.sling.fsresource)
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Introduction</h2>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>The Apache Sling File System Resource Provider provides access to the operating system's file system through the Sling <code>ResourceResolver</code>. Multiple locations may be mapped into the resource tree by configuring the file system location and the resource tree root path for each location to be mapped. The provider supports mapping folders and files as binaries, and content structures stored in JSON files or FileVault XML format.</p>
 <p>To activate this feature, install the <code>org.apache.sling.fsresource</code> bundle. You can get it from the Sling downloads page or from <a href="https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.apache.sling%22%20AND%20a%3A%22org.apache.sling.fsresource%22">Maven Central</a>.</p>
 <p>Currently two major versions are maintained - choose the correct version depending on your Sling environment:</p>
@@ -82,21 +82,21 @@
   <li>fsresource 2.x (<a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/fsresource/">trunk</a>): compatible with Apache Sling API 2.11 and Apache Sling Resource Resolver 1.5.18 or above.</li>
   <li>fsresource 1.x (<a href="https://svn.apache.org/repos/asf/sling/branches/fsresource-1.x/">branch</a>): compatible with Apache Sling API 2.4 and Apache Sling Resource Resolver 1.1.0 or above.</li>
 </ul>
-<h2>Resource Types</h2>
+<h2><a href="#resource-types" name="resource-types">Resource Types</a></h2>
 <p>Files and directories are mapped into the resource tree as regular <code>Resource</code> instances whose resource type depends on the actual nature of the mapped file system resource:</p>
 <ul>
   <li>Regular files are assigned the <code>nt:file</code> resource type</li>
   <li>Directories are assigned the <code>nt:folder</code> resource type</li>
 </ul>
 <p>Content stored in JSON or FileVault XML files are mapped with the resource type stored in the files. If a resource type is missing <code>nt:unstructured</code> is used as fallback.</p>
-<h2>Adapters</h2>
+<h2><a href="#adapters" name="adapters">Adapters</a></h2>
 <p>File system resources extend from Sling's <code>AbstractResource</code> class and thus are adaptable to any type for which an <code>AdapterFactory</code> is registered supporting file system resources. In addition File system Resources support the following adapters natively:</p>
 <ul>
   <li><code>java.io.File</code> -- The Java file object providing access to the file system file</li>
   <li><code>java.net.URL</code> -- A valid <code>file://</code> URL to the file. This URL is derived from the <code>java.io.File</code> object by calling the <code>File.toURI().toURL()</code> sequence.</li>
   <li><code>java.io.InputStream</code> -- If the <code>java.io.File</code> can be read from (as per <code>File.canRead()</code> an <code>InputStream</code> to read from the file is returned.</li>
 </ul>
-<h2>Configuration</h2>
+<h2><a href="#configuration" name="configuration">Configuration</a></h2>
 <p>The File System Resource Provider is configured with OSGi Configuration Admin factory configurtions whose factory PID is <code>org.apache.sling.fsprovider.internal.FsResourceProvider</code>. Configuration can be managed using the OSGi Configuration Admin API, through the Web Console or by any other means supporting Configuration Admin configurations. Each configuration "mounts" a specific file system path into the resource hierarchy.</p>
 <p>Which files are mounted depends on the 'File system layout' configuration parameter:</p>
 <ul>

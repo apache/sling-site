@@ -81,7 +81,7 @@
 </ul>
 <p>This page describes how the <code>SlingAuthenticator</code> class provides the <code>AuthenticationSupport</code> and <code>Authenticator</code> services. For a description of the <code>AuthenticationHandler</code> service interface and the interaction between the <code>SlingAuthenticator</code> and the <code>AuthenticationHandler</code> services refer to the <a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">AuthenticationHandler</a> page.</p>
 <p>The <code>SlingAuthenticator</code> class is an internal class of the <code>org.apache.sling.auth.core</code> bundle and implements the <code>Authenticator</code> and <code>AuthenticationSupport</code> services.</p>
-<h2>AuthenticationSupport</h2>
+<h2><a href="#authenticationsupport" name="authenticationsupport">AuthenticationSupport</a></h2>
 <p>The <code>AuthenticationSupport</code> service interface defines a single method: <code>handleSecurity</code>. This method is intended to be called by the <code>handleSecurity</code> method of any <code>HttpContext</code> implementation wishing to make use of the Sling Authentication Framework.</p>
 <p>The Sling Authenticator implementation selects an <code>AuthenticationHandler</code> service appropriate for the request and calls the <code>AuthenticationHandler.extractCredentials</code> method to extract the credentials from the request. If no credentials could be extracted, the Sling Authenticator either admits the request as an anonymous request or requests authentication from the client by calling its own <code>login</code> method.</p>
 <p>The implementation follows this algorithm:</p>
@@ -130,7 +130,7 @@
 <div class="note">
     Only one <code>AuthenticationHandler</code> is able to provide credentials for a given request. If the credentials provided by the handler cannot be used to login to the repository, authentication fails and no further <code>AuthenticationHandler</code> is consulted.
 </div>
-<h4>Request Attributes on Successful Login</h4>
+<h4><a href="#request-attributes-on-successful-login" name="request-attributes-on-successful-login">Request Attributes on Successful Login</a></h4>
 <p>The <code>handleSecurity</code> method gets credentials from the <code>AuthenticationHandler</code> and logs into the JCR repository using those credentials. If the login is successful, the <code>SlingAuthenticator</code> sets the following request attributes:</p>
 <table>
   <thead>
@@ -165,7 +165,7 @@
 <p><strong>NOTE</strong>: Do <em>NOT</em> use the <code>javax.jcr.Session</code> request attribute in your Sling applications. This attribute must be considered implementation specific to convey the JCR Session to the <code>SlingMainServlet</code>. In future versions of the Sling Auth Core bundle, this request attribute will not be present anymore. To get the JCR Session for the current request adapt the request's resource resolver to a JCR Session:</p>
 <pre><code>Session session = request.getResourceResolver().adaptTo(Session.class);
 </code></pre>
-<h4>Anonymous Login</h4>
+<h4><a href="#anonymous-login" name="anonymous-login">Anonymous Login</a></h4>
 <p>The <code>SlingAuthenticator</code> provides high level of control with respect to allowing anonymous requests or requiring authentication up front:</p>
 <ul>
   <li>Global setting of whether anonymous requests are allowed or not. This is the boolean value of the <em>Allow Anonymous Access</em> (<code>auth.annonymous</code>) property of the <code>SlingAuthenticator</code> configuration. This property is supported for backwards compatibility and defaults to <code>true</code> (allowing anonymous access). Setting it to <code>true</code> is a shortcut for setting <code>sling.auth.requirements</code> to <code>-/</code>.</li>
@@ -189,7 +189,7 @@
 <ul>
   <li>An authentication handler may register itself with the service registration property <code>sling.auth.requirements = &quot;-/apps/sample/loginform&quot;</code> to ensure the login form can be rendered without requiring authentication.</li>
 </ul>
-<h2>Authenticator implementation</h2>
+<h2><a href="#authenticator-implementation" name="authenticator-implementation">Authenticator implementation</a></h2>
 <p>The implementation of the <code>Authenticator</code> interface is similar for both methods:</p>
 <p><strong><code>login</code></strong></p>
 <ol>

@@ -73,14 +73,14 @@
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/the-sling-engine/authentication.html">Authentication</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Authentication - Tasks
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Authentication of HTTP Requests is generally a two-step process: First the credentials must be extracted from the request and second the credentials must be validated. In the case of Sling this means acquiring a JCR Session.</p>
-<h2>Extract Credentials from the Request</h2>
+<h2><a href="#extract-credentials-from-the-request" name="extract-credentials-from-the-request">Extract Credentials from the Request</a></h2>
 <ul>
   <li>Implemented and controlled by the Sling Auth Core bundle</li>
   <li>Takes <code>HttpServletRequest</code></li>
   <li>Provides credentials for futher processing (basically JCR <code>Credentials</code> and Workspace name)</li>
   <li>Extensible with the help of <code>AuthenticationHandler</code> services</li>
 </ul>
-<h2>Login to the JCR Repository</h2>
+<h2><a href="#login-to-the-jcr-repository" name="login-to-the-jcr-repository">Login to the JCR Repository</a></h2>
 <ul>
   <li>Implemented and controlled by the JCR Repository</li>
   <li>Takes JCR <code>Credentials</code> and Workspace name</li>

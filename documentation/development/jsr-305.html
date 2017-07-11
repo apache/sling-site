@@ -74,9 +74,9 @@
                 Leveraging JSR-305 null annotations to prevent NullPointerExceptions
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h1>Introduction</h1>
+<h1><a href="#introduction" name="introduction">Introduction</a></h1>
 <p>The Sling API forces developers to sometimes check for <code>null</code> return values. Most prominently this is the case for <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/adapter/Adaptable.html#adaptTo-java.lang.Class-"><code>Adaptable.adaptTo</code></a> and <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceResolver.html#getResource-java.lang.String-"><code>ResourceResolver.getResource</code></a>. This is often forgotten, which may lead to <code>NullPointerException</code>s. Sling API 2.9.0 introduced the JSR-305 annotations (<a href="https://issues.apache.org/jira/browse/SLING-4377">SLING-4377</a>) which allow tools to check automatically for missing null checks in the code.</p>
-<h1>Annotations</h1>
+<h1><a href="#annotations" name="annotations">Annotations</a></h1>
 <p>The annotations used within Sling are based on the <a href="https://jcp.org/en/jsr/detail?id=305">JSR-305</a> which is dormant since 2012. Nevertheless those annotations are understood by most of the tools and used by other Apache Projects like Apache Oak <a href="https://issues.apache.org/jira/browse/OAK-37">OAK-37</a>.</p>
 <p>Due to the fact that Eclipse and FindBugs are interpreting annotations differently (<a href="https://sourceforge.net/p/findbugs/bugs/1355/">Findbugs-1355</a>). Sling only uses the following two different annotations which are supported by both tools:</p>
 <ol>
@@ -85,7 +85,7 @@
 </ol>
 <p>Annotations which support setting the default null semantics of return values and or parameters on a package level cannot be leveraged for that reason.</p>
 <p>The annotations have a retention policy of <code>runtime</code>, therefore bundles using these automatically have a <code>Import-Package</code> header listing <code>javax.annotation</code>. That package is by default exported by the system bundle (as this package is also part of the <a href="https://docs.oracle.com/javase/7/docs/api/javax/annotation/package-summary.html">JRE</a>). To be able to resolve the bundle through this exported package from the system bundle you should use the <code>com.google.code.findbugs:jsr305</code> artifact in version 3.0.0 as that exports the package <code>javax.annotation</code> in no specific version. Newer versions use version directives which automatically restrict the version range for the generated <code>Import-Package</code> header to <code>[3,4)</code> <a href="https://github.com/amaembo/jsr-305/issues/31">which usually cannot be resolved at run time</a>.</p>
-<h1>Use With Eclipse</h1>
+<h1><a href="#use-with-eclipse" name="use-with-eclipse">Use With Eclipse</a></h1>
 <p>Eclipse since Juno supports <a href="http://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcompiler%2Fref-preferences-errors-warnings.htm&anchor=null_analysis">null analysis based on any annotations</a>. Those need to be enabled in <em>Preferences-&gt;Java-&gt;Compiler-&gt;Errors/Warnings</em> via <strong>Enable annoation-based null analysis</strong>. Also the annotations need to be configured. For Sling/JSR 305 those are</p>
 <ul>
   <li><code>javax.annotation.CheckForNull</code> as <strong>'Nullable' annotation</strong> (primary annotation)</li>
@@ -95,11 +95,10 @@
 <p>Unfortunately Eclipse cannot infer information about fields which are for sure either null or not null (reasoning is available in <a href="https://wiki.eclipse.org/JDT_Core/Null_Analysis/Options#Risks_of_flow_analysis_for_fields">https://wiki.eclipse.org/JDT_Core/Null_Analysis/Options#Risks_of_flow_analysis_for_fields</a> and <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247564">Eclipse Bug 247564</a>). This also affecs constants (static final fields) or enums which are known to be non null, but still Eclipse will emit a warning like <em>The expression of type 'String' needs unchecked conversion to conform to '@Nonnull String'</em>. The only known workaround is to disable the <strong>"Unchecked conversion from non-annotated type to @NonNull type"</strong> or to annotate also the field with <code>@Nonnull</code>.</p>
 <p>More information are available at <a href="https://wiki.eclipse.org/JDT_Core/Null_Analysis">https://wiki.eclipse.org/JDT_Core/Null_Analysis</a>.</p>
 <p>Since Eclipse 4.5 (Mars) <strong>external annotations</strong> are supported as well (i.e. annotations maintained outside of the source code of the libraries, e.g. for the JRE, Apache Commons Lang). There are some external annotations being mainted at <a href="http://www.lastnpe.org/">lastnpe.org</a> and <a href="https://github.com/tracecompass/tracecompass/tree/master/common/org.eclipse.tracecompass.common.core/annotations">TraceCompass</a>. There is no official repository yet though (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=449653">Eclipse Bug 449653</a>). <a href="http://www.lastnpe.org/">Lastnpe.org</a> provides also an m2e extension to ease setting up the classpaths with external annotations from within your pom.xml.</p>
-<h1>Use With Maven</h1>
-<h2>Leveraging Eclipse JDT Compiler (recommended)</h2>
+<h1><a href="#use-with-maven" name="use-with-maven">Use With Maven</a></h1>
+<h2><a href="#leveraging-eclipse-jdt-compiler-recommended-" name="leveraging-eclipse-jdt-compiler-recommended-">Leveraging Eclipse JDT Compiler (recommended)</a></h2>
 <p>You can use Eclipse JDT also in Maven (with null analysis enabled) for the regular compilation. That way it will give out the same warnings/errors as Eclipse and will also consider external annotations. JDT in its most recent version is provided by the <code>tycho-compiler-plugin</code> which can be hooked up with the <code>maven-compiler-plugin</code>. The full list of options for JDT is described in <a href="http://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_batch_compiler.htm">here</a>. This method was presented by Michael Vorburger in his presentation <a href="https://www.slideshare.net/mikervorburger/the-end-of-the-world-as-we-know-it-aka-your-last-nullpointerexception-1b-bugs/14">The end of the world as we know it</a>.</p>
-<pre><code>::xml
-&lt;plugin&gt;
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;plugin&gt;
   &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
   &lt;version&gt;3.5.1&lt;/version&gt;
   &lt;configuration&gt;
@@ -124,10 +123,9 @@
   &lt;/dependencies&gt;
 &lt;/plugin&gt;
 </code></pre>
-<h2>Leveraging FindBugs</h2>
+<h2><a href="#leveraging-findbugs" name="leveraging-findbugs">Leveraging FindBugs</a></h2>
 <p>You can also let Maven automatically run FindBugs to execute those checks via the <strong>findbugs-maven-plugin</strong>. For that just add the following plugin to your <code>pom.xml</code></p>
-<pre><code>::xml
-&lt;plugin&gt;
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;plugin&gt;
   &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
   &lt;artifactId&gt;findbugs-maven-plugin&lt;/artifactId&gt;
   &lt;version&gt;3.0.0&lt;/version&gt;
@@ -145,7 +143,7 @@
 &lt;/plugin&gt;
 </code></pre>
 <p>The results are often very imprecise (<a href="http://jira.codehaus.org/browse/MFINDBUGS-208">MFINDBUGS-208</a>), especially when it comes to line numbers, therefore it is best to start the Findbugs GUI in case of errors found by this plugin via <code>mvn findbugs:gui</code>.</p>
-<h1>Use With FindBugs</h1>
+<h1><a href="#use-with-findbugs" name="use-with-findbugs">Use With FindBugs</a></h1>
 <p>FindBugs evaluates the JSR-305 annotations by default. You can restrict the rules to only the ones which check for those annotations, which are</p>
 <ul>
   <li>InconsistentAnnotations</li>
@@ -155,7 +153,7 @@
 </ul>
 <p>A complete list of visitors class names in Findbugs can be found in the <a href="https://code.google.com/p/findbugs/source/browse/#git%2Ffindbugs%2Fsrc%2Fjava%2Fedu%2Fumd%2Fcs%2Ffindbugs%2Fdetect%253Fstate%253Dclosed">sourcecode</a>. The according <a href="http://findbugs.sourceforge.net/bugDescriptions.html">bug patterns</a> have an identifier (in parenthesis) for which you can search in the according Java classes, in case you want to extend the checks.</p>
 <p>Findbugs is also integrated in <a href="http://docs.sonarqube.org/display/SONAR/Findbugs+Plugin">SonarQube</a> but for SonarQube you should now rather use the native Java plugin (look at <a href="#use-with-sonarqube">Use with SonarQube</a>).</p>
-<h1>Use with SonarQube</h1>
+<h1><a href="#use-with-sonarqube" name="use-with-sonarqube">Use with SonarQube</a></h1>
 <p>At least rule <a href="https://sonarqube.com/coding_rules#rule_key=squid%3AS2259">squid:S2259</a> in SonarQube supports JSR-305 annotations as well for null checks.</p></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">

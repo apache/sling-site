@@ -74,21 +74,21 @@
                 Bundle Resources (extensions.bundleresource)
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Introduction</h2>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>The Bundle Resource Provider provides access to files/directories included in an OSGi bundle through the Sling <code>ResourceResolver</code>. </p>
-<h2>Resource Types</h2>
+<h2><a href="#resource-types" name="resource-types">Resource Types</a></h2>
 <p>Files and directories are mapped into the resource tree as regular <code>Resource</code> instances whose resource type depends on the actual nature of the mapped resource:</p>
 <ul>
   <li>Regular files are assigned the <code>nt:file</code> resource type</li>
   <li>Directories are assigned the <code>nt:folder</code> resource type</li>
 </ul>
-<h2>Adapters</h2>
+<h2><a href="#adapters" name="adapters">Adapters</a></h2>
 <p>Filesystem resources extend from Sling's <code>AbstractResource</code> class and thus are adaptable to any type for which an <code>AdapterFactory</code> is registered supporting bundle resources. In addition <code>BundleResource</code> support the following adapters natively:</p>
 <ul>
   <li><code>java.net.URL</code> -- A valid <code>bundle://</code> URL to the resource in the bundle.</li>
   <li><code>java.io.InputStream</code> -- An <code>InputStream</code> to read file contents. Doesn't apply to folders.</li>
 </ul>
-<h2>Configuration</h2>
+<h2><a href="#configuration" name="configuration">Configuration</a></h2>
 <p>Providing bundles have a Bundle manifest header <code>Sling-Bundle-Resources</code> containing a list of absolute paths provided by the bundle. The paths are separated by comma or whitespace (SP, TAB, VTAB, CR, LF). </p>
 <p>Example (manifest.mf):</p>
 <pre><code>...

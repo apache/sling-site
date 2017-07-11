@@ -76,7 +76,7 @@
 <p>For getting information about existing authorizables it provides all authorizables as Sling resources through its <code>AuthorizableResourceProvider</code> below <code>/system/userManager/user</code> and <code>/system/userManager/group</code>. Those resources can be exposed via the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a>.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>List users</h2>
+<h2><a href="#list-users" name="list-users">List users</a></h2>
 <p>To list existing users a GET request to the <code>/system/userManager/user</code> resource can be issued. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a>  and/or the availability of a Servlet or Script handling the <code>sling/users</code> resource type, a result may be delivered/</p>
 <p>Example with curl and the default JSON rendering:</p>
 <pre><code>$ curl http://localhost:8080/system/userManager/user.tidy.1.json
@@ -91,7 +91,7 @@
   }
 }
 </code></pre>
-<h2>Get user</h2>
+<h2><a href="#get-user" name="get-user">Get user</a></h2>
 <p><em>since version 2.0.8</em> The properties of a single user can be retrieved by sending a GET request to the user's resource at <code>/system/userManager/user/&lt;username&gt;</code> where <code>&lt;username&gt;</code> would be replaced with the name of the user. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a> and/or the availability of a Servlet or Script handling the <code>sling/user</code> resource type, a result may be delivered.</p>
 <p>Example with curl and the default JSON rendering:</p>
 <pre><code>$ curl http://localhost:8080/system/userManager/user/admin.tidy.1.json
@@ -101,7 +101,7 @@
 }
 </code></pre>
 <p>If a non-existing user is requested a <code>404/NOT FOUND</code> status is sent back.</p>
-<h2>Create user</h2>
+<h2><a href="#create-user" name="create-user">Create user</a></h2>
 <p>To create a new user POST a request to <code>/system/userManager/user.create.&lt;html or json&gt;</code>. The following parameters are available:</p>
 <table>
   <thead>
@@ -157,7 +157,7 @@
 <pre><code>curl -F:name=myuser -Fpwd=password -FpwdConfirm=password -Fanyproperty1=value1 \
     http://localhost:8080/system/userManager/user.create.html
 </code></pre>
-<h2>Update user</h2>
+<h2><a href="#update-user" name="update-user">Update user</a></h2>
 <p>To update an existing user POST a request to <code>/system/userManager/user/username.update.&lt;html or json&gt;</code>. You can NOT update the username or the password (see Change Password below) only the additional properties are updateable through this URL. The following parameters are available:</p>
 <table>
   <thead>
@@ -217,7 +217,7 @@
 <pre><code>curl -Fanyproperty1@Delete -Fproperty2=value2 \
     http://localhost:8080/system/userManager/user/myuser.update.html
 </code></pre>
-<h2>Change password</h2>
+<h2><a href="#change-password" name="change-password">Change password</a></h2>
 <p>To change a password of an existing user POST a request to <code>/system/userManager/user/username.changePassword.&lt;html or json&gt;</code>. NOTE: since version 2.1.1, the oldPwd is optional if the current user is a user administrator. The following parameters are available:</p>
 <table>
   <thead>
@@ -272,7 +272,7 @@
 <pre><code>curl -FoldPwd=oldpassword -FnewPwd=newpassword -FnewPwdConfirm=newpassword \
     http://localhost:8080/system/userManager/user/myuser.changePassword.html
 </code></pre>
-<h2>Delete user</h2>
+<h2><a href="#delete-user" name="delete-user">Delete user</a></h2>
 <p>To delete an existing user POST a request to <code>/system/userManager/user/username.delete.&lt;html or json&gt;</code>. The following parameters are available:</p>
 <table>
   <thead>
@@ -316,7 +316,7 @@
 <p>Example</p>
 <pre><code>curl -Fgo=1 http://localhost:8080/system/userManager/user/myuser.delete.html
 </code></pre>
-<h2>List groups</h2>
+<h2><a href="#list-groups" name="list-groups">List groups</a></h2>
 <p>To list existing groups a GET request to the <code>/system/userManager/group</code> resource can be sent. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a> and/or the availability of a Servlet or Script handling the <code>sling/groups</code> resource type, a result may be delivered.</p>
 <p>Example with curl and the default JSON rendering:</p>
 <pre><code>$ curl http://localhost:8080/system/userManager/group.tidy.1.json
@@ -341,7 +341,7 @@
 }
 }
 </code></pre>
-<h2>Get group</h2>
+<h2><a href="#get-group" name="get-group">Get group</a></h2>
 <p>The properties of a single group can be retrieved by sending a GET request to the group's resource at <code>/system/userManager/group/groupname</code> where <em>groupname</em> would be replaced with the name of the group. Depending on the configuration of the <a href="/documentation/bundles/rendering-content-default-get-servlets.html">Default GET Servlet</a> and/or the availability of a Servlet or Script handling the <code>sling/group</code> resource type, a result may be delivered.</p>
 <p>Example with curl and the default JSON rendering:</p>
 <pre><code>$ curl http://localhost:8080/system/userManager/group/administrators.tidy.1.json
@@ -353,7 +353,7 @@
 }
 </code></pre>
 <p>If a non-existing group is requested a 404/NOT FOUND status is sent back.</p>
-<h2>Create group</h2>
+<h2><a href="#create-group" name="create-group">Create group</a></h2>
 <p>To create a new group POST a request to <code>/system/userManager/group.create.&lt;html or json&gt;</code>. The following parameters are available:</p>
 <table>
   <thead>
@@ -399,7 +399,7 @@
 <pre><code>curl -F:name=mygroup -Fanyproperty1=value1 \
     http://localhost:8080/system/userManager/group.create.html
 </code></pre>
-<h2>Update group</h2>
+<h2><a href="#update-group" name="update-group">Update group</a></h2>
 <p>To update an existing group POST a request to <code>/system/userManager/group/groupname.update.&lt;html or json&gt;</code>. You can NOT update the name of the group only the additional properties are updateable. The following parameters are available:</p>
 <table>
   <thead>
@@ -459,7 +459,7 @@
 <pre><code>curl -Fanyproperty1@Delete -Fproperty2=value2 -F &quot;:member=/system/userManager/user/myuser&quot; \
     http://localhost:8080/system/userManager/group/mygroup.update.html
 </code></pre>
-<h2>Delete group</h2>
+<h2><a href="#delete-group" name="delete-group">Delete group</a></h2>
 <p>To delete an existing group POST a request to <code>/system/userManager/group/groupname.delete.&lt;html or json&gt;</code>. The following parameters are available:</p>
 <table>
   <thead>
@@ -503,9 +503,9 @@
 <p>Example</p>
 <pre><code>curl -Fgo=1 http://localhost:8080/system/userManager/group/mygroup.delete.html
 </code></pre>
-<h2>Automated Tests</h2>
+<h2><a href="#automated-tests" name="automated-tests">Automated Tests</a></h2>
 <p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/accessManager/">launchpad/testing</a> module contains test classes for various operations of the <code>jackrabbit-usermanager</code>. Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various operations, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know!</p>
-<h2>Permissions checking from scripts</h2>
+<h2><a href="#permissions-checking-from-scripts" name="permissions-checking-from-scripts">Permissions checking from scripts</a></h2>
 <p><em>Since Version 2.0.6</em></p>
 <p>When developing scripts that will perform user or group updates, you may want to know what actions the current user is provisioned to do. This information can be used to conditionally render parts of your page differently based on the user rights.</p>
 <p>The jackrabbit.usermanager bundle provides a service (AuthorizablePrivilegesInfo) you can utilize to do help with this permission checking.</p>
@@ -566,7 +566,7 @@
     }
 %&gt;
 </code></pre>
-<h2>Sample User Interface Implementation</h2>
+<h2><a href="#sample-user-interface-implementation" name="sample-user-interface-implementation">Sample User Interface Implementation</a></h2>
 <p><em>Since Version 2.1.1</em></p>
 <p>A sample implementation of ui pages for user/group management is provided @ <a href="http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/">http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/</a>.</p></section></div></div>
 <div class="footer">

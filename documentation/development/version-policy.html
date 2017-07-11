@@ -78,7 +78,7 @@ Please note that this page is currently in draft stage and still being discussed
 </div>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Introduction</h2>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>In comments to <a href="https://issues.apache.org/jira/browse/SLING-2944">SLING-1176</a> Ian Boston wrote:</p>
 <blockquote>
   <p>The exports in bundle/api/pom.xml look like they might become problematic from a support point of view, although we probably can't avoid this. [...] [The problem is the] manual maintenance of the version numbers. (not a big problem but needs to be done)</p>
@@ -91,11 +91,11 @@ Please note that this page is currently in draft stage and still being discussed
   <li>Sling Bundles</li>
   <li>Package Exports</li>
 </ol>
-<h3>Big Sling Releases</h3>
+<h3><a href="#big-sling-releases" name="big-sling-releases">Big Sling Releases</a></h3>
 <p>For <em>Big Sling Releases</em> we already have an ample solution in that we just use a single number increased from release to release. Just remember that a <em>Big Sling Release</em> is a convenience release of existing released Sling bundles.</p>
-<h3>Sling Bundles</h3>
+<h3><a href="#sling-bundles" name="sling-bundles">Sling Bundles</a></h3>
 <p>For <em>Sling Bundles</em> version numbers are just defined as the <code>&lt;version&gt;</code> element of the bundle's POM. The only restriction here is, that we decided to use even numbers for releases and odd numbers for SNAPSHOTs. Whether and when which version part is increased is not explicitly defined yet.</p>
-<h3>Package Exports</h3>
+<h3><a href="#package-exports" name="package-exports">Package Exports</a></h3>
 <p>For <em>Package Exports</em> the situation is more problematic since there are a number of places to set exported package version number:</p>
 <ul>
   <li>In a <code>packageinfo</code> file inside the package (picked up by the Maven Bundle Plugin to set the export version)</li>
@@ -117,7 +117,7 @@ Please note that this page is currently in draft stage and still being discussed
 <p>But this would require defining the class source locations as resource location in the POM (at least for <code>packageinfo</code>) files.</p>
 <p>I am not sure ....</p>
 <p>This has not been discussed at large, but I would assume, that the POM is still the correct place to take note of the version of the exported packages.</p>
-<h3>Future</h3>
+<h3><a href="#future" name="future">Future</a></h3>
 <p>The newest versions of the bnd library also support an <code>@Export</code> annotation in the <code>package-info.java</code> pseudo class file. This pseudo class is supported starting with Java 5 to take package level annotations (like the <code>@Export</code> annotation) and as a replacement of the <code>package-info.html</code> file.</p>
 <p>Using this syntax something like the following would be easily possible:</p>
 <pre><code>/**
@@ -128,7 +128,7 @@ package org.apache.sling.api.auth;
 import aQute.bnd.annotation.Export;
 </code></pre>
 <p>See <a href="http://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>
-<h2>Version Number Syntax</h2>
+<h2><a href="#version-number-syntax" name="version-number-syntax">Version Number Syntax</a></h2>
 <p>As a small reminder, this is how a version number is constructed: In OSGi version numbers are composed of four (4) segments: three integers and one string named <em>major</em>._minor_._micro_._qualifier_.</p>
 <p>Each segment captures a different intent:</p>
 <ul>
@@ -137,7 +137,7 @@ import aQute.bnd.annotation.Export;
   <li>the micro segment indicates bug fixes</li>
   <li>the qualifier segment is not generally used but may be used to convey more information about a particular build, such as a build time or a SVN revision number.</li>
 </ul>
-<h2>Evolution of Exported Package Versions</h2>
+<h2><a href="#evolution-of-exported-package-versions" name="evolution-of-exported-package-versions">Evolution of Exported Package Versions</a></h2>
 <p>Version numbers of exported packages evolve independently from each other. Depending on the changes applied, the micro, minor, or major segement is increased. Whenever the major segment is increased, the minor and micro segments are reset to zero. Whenever the minor segment is increased, the micro segment is reset to zero.</p>
 <p>Segments are increased according to the above listing.</p>
 <p>This requires committers to think well about changes they apply to exported packages:</p>
@@ -147,7 +147,7 @@ import aQute.bnd.annotation.Export;
   <li>Fixing a bug in an exported class just requires a minor version increase.</li>
 </ul>
 <p>JavaDoc updates generally do not constitute a reason to evolve the version number. The exception is that if the JavaDoc update is caused by a API limitation, it might be conceivable to increase the version number of the exported package. A decision on this will have to be taken on a case-by-case basis.</p>
-<h2>Evolution of Bundle Versions</h2>
+<h2><a href="#evolution-of-bundle-versions" name="evolution-of-bundle-versions">Evolution of Bundle Versions</a></h2>
 <p>Version numbers of bundles evolve depending on the evolution of the exported packages but also depending on the evolution of the private code, which is not exported.</p>
 <p>As a rule of thumb, the following reasons apply for increasing the segments of bundle version numbers:</p>
 <ul>
@@ -156,8 +156,8 @@ import aQute.bnd.annotation.Export;
   <li>Increasing the micro version number of any of the exported packages or bug fixes.</li>
 </ul>
 <p>Note, that this definition does not require the bundle and epxorted package version numbers to be synchronized in any way. While doing so might help in a first or second step, over time it will become close to impossible to keep the versions in sync. So rather than trying to keep the versions in sync, we should make sure, we increase the versions correctly.</p>
-<h2>Examples</h2>
-<h3>Pure API Bundle</h3>
+<h2><a href="#examples" name="examples">Examples</a></h2>
+<h3><a href="#pure-api-bundle" name="pure-api-bundle">Pure API Bundle</a></h3>
 <p>An example of an almost <em>Pure API Bundle</em> is the Sling API bundle. This bundle exports 9 packages. Some are really stable -- e.g. the <code>org.apache.sling.api</code> package or the <code>org.apache.sling.wrappers</code> package -- and some are being worked on at the moment -- e.g. the <code>org.apache.sling.resource</code> package.</p>
 <p>To not break existing users of the unmodified packages, the exported versions of these packages must not be increased.</p>
 <p>To signal to users of evolving packages, that there might be new and interesting functionality, the version number must be increased according to above definition. This also conveys to the implementor(s) of the API, that they have to take some action.</p>
@@ -204,7 +204,7 @@ import aQute.bnd.annotation.Export;
     </tr>
   </tbody>
 </table>
-<h3>Implementation Bundle providing API</h3>
+<h3><a href="#implementation-bundle-providing-api" name="implementation-bundle-providing-api">Implementation Bundle providing API</a></h3>
 <p>An example of such a hybrid bundle is the Sling Engine bundle. This bundle exports two packages themselves defining API and contains a number of internal packages which actually implement parts of the Sling API.</p>
 <p>A hypothetical evolution of version numbers shown on one exported package and the bundle version might be as follows</p>
 <table>
@@ -253,9 +253,9 @@ import aQute.bnd.annotation.Export;
     </tr>
   </tbody>
 </table>
-<h3>Pure Implementation Bundle</h3>
+<h3><a href="#pure-implementation-bundle" name="pure-implementation-bundle">Pure Implementation Bundle</a></h3>
 <p>For Pure Implementation Bundles only the bundle version numbers are maintained because there is no exported package whose version number needs to be managed. This makes the decision process of version number evolution very simple.</p>
-<h2>Importing Packages</h2>
+<h2><a href="#importing-packages" name="importing-packages">Importing Packages</a></h2>
 <p>When importing packages a version number will automatically be generated by the Maven Bundle Plugin as follows:</p>
 <ul>
   <li>If the providing package exports a package with an explicit version number, that exact version number will be used as the lower bound</li>
@@ -270,9 +270,9 @@ import aQute.bnd.annotation.Export;
 <pre><code>Import-Package: api;version=[1.2.3,1.3.0)
 </code></pre>
 <p>This allows for the implementation to work correctly with bug fixed package exports but as soon as there are any <em>externally visible</em> changes, the implementation bundle has to be adapted -- even if this just means increasing the upper version bound in the <code>Import-Package</code> statement thus guaranteeing compliance (again).</p>
-<h3>Future</h3>
+<h3><a href="#future" name="future">Future</a></h3>
 <p>Recent versions of the bnd library support automatic differentiation between <em>use</em> and <em>implementation</em> of API and to set the import version ranges accordingly. See <a href="http://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>
-<h2>References</h2>
+<h2><a href="#references" name="references">References</a></h2>
 <ul>
   <li><a href="http://markmail.org/thread/zshobgjwtqrncajt">Version Numbers</a> -- The mail thread discussing version numbering</li>
   <li><a href="http://blog.meschberger.ch/2009/10/on-version-numbers.html">On Version Numbers</a> -- Blog about version numbers</li>

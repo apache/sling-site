@@ -87,7 +87,7 @@
   <li>Allows propagation of core setup functionality depending on the environment</li>
 </ul>
 <p>This page is about the internal details of the Sling Launchpad Base module. To get an outside overview of the Sling Launchpad you might want to refer to <a href="/documentation/the-sling-engine/the-sling-launchpad.html">The Sling Launchpad</a> page.</p>
-<h1>Structure</h1>
+<h1><a href="#structure" name="structure">Structure</a></h1>
 <p>The Launcher is based on three parts:</p>
 <ol>
   <li>The external part which is for example the standalone Java application's main class or the servlet deployed into the servlet container</li>
@@ -99,7 +99,7 @@
   <li>The <code>Launcher</code> interface is implemented by a class in the internal part which is loaded through the bridge class loader. This interface allows setting, starting and stopping of the framework.</li>
   <li>The <code>Notifiable</code> interface is implemented by a class in the external part which instance is handed to the <code>Launcher</code> instance. This interface allows the internal part to communicate back to the external part, most notably to indicate that the framework has been stopped from within or that the framework has been updated and must be restarted.</li>
 </ul>
-<h1>The Bridging Part</h1>
+<h1><a href="#the-bridging-part" name="the-bridging-part">The Bridging Part</a></h1>
 <p>The bridging part is provided in the <code>org.apache.sling.launchpad.base.shared</code> package:</p>
 <table>
   <thead>
@@ -131,7 +131,7 @@
     </tr>
   </tbody>
 </table>
-<h1>The Internal Part</h1>
+<h1><a href="#the-internal-part" name="the-internal-part">The Internal Part</a></h1>
 <p>The main class from the internal class directly used is <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/base/impl/Sling.java"><code>Sling</code></a> which instantiated to start the OSGi Framework. This class is responsible for setting up the environment to finally start the OSGi Framework:</p>
 <ul>
   <li>Read the <code>sling.properties</code> file</li>
@@ -139,9 +139,9 @@
   <li>Execute the bootstrap installations, updates and uninstallations</li>
 </ul>
 <p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/base/impl/SlingFelix.java"><code>SlingFelix</code></a> class extends the Apache Felix <code>Felix</code> class which is the actual OSGi framework implementation. We extend the class to be able to notify the <code>Notifiable</code> implementation and update the OSGi framework from within the OSGi framework by updating the system bundle.</p>
-<h2>The External Part</h2>
+<h2><a href="#the-external-part" name="the-external-part">The External Part</a></h2>
 <p>The external part is comprised of a main class started from the environment -- main class of the Java applicaction or the servlet deployed in the servlet container -- and a corresponding delegate class located inside of the launchpad base library. This delegate class is instantiated by the <code>Loader</code> loading from the <code>LauncherClassLoader</code>.</p>
-<h3>Standalone Java Application</h3>
+<h3><a href="#standalone-java-application" name="standalone-java-application">Standalone Java Application</a></h3>
 <p>The standalone Java Application makes use of three classes:</p>
 <table>
   <thead>
@@ -166,7 +166,7 @@
   </tbody>
 </table>
 <p>At the moment these classes are not directly suitable to be embedded in an existing application (or custom application launcher framework) unless that embedding prepares command line arguments in a <code>String[]</code> and calls the <code>Main.main</code> method. To allow for custom embeddings or extensions, the work distributions between the three classes should be refactored.</p>
-<h3>Embedding the Standalone Java Application</h3>
+<h3><a href="#embedding-the-standalone-java-application" name="embedding-the-standalone-java-application">Embedding the Standalone Java Application</a></h3>
 <div class="info">
 This work is being done as part of [SLING-2225](https://issues.apache.org/jira/browse/SLING-2225) and will be officially available with the Sling Launchpad Base release 2.4.0. If you want to use the embedding before the release, you have to checkout the source from [SVN|http://svn.apache.org/repos/asf/sling/trunk/launchpad/base] and build yourself.
 </div>
@@ -197,7 +197,7 @@ This work is being done as part of [SLING-2225](https://issues.apache.org/jira/b
     </tr>
   </tbody>
 </table>
-<h4>External Control of the Sling Application</h4>
+<h4><a href="#external-control-of-the-sling-application" name="external-control-of-the-sling-application">External Control of the Sling Application</a></h4>
 <p>By using control actions, the Sling Launcher may open or connect to a control port to communicate. The <code>doControlAction()</code> method together with the <code>sling.control.action</code> and <code>sling.control.socket</code> properties is able to setup this communication.</p>
 <p>The <code>sling.control.socket</code> is either a normal port number, in which case the connection is opened on the <code>localhost</code> interface (usually 127.0.0.1). Otheriwse, it may also be a value of the form <em>host:port</em> where <em>host</em> is the name or IP address of the interface to connect to and port is the port number. For security reasons it is suggested to not use an interface which is available remotely. So the default of <code>localhost</code> is usually the best choice.</p>
 <p>The <code>sling.control.action</code> takes either of three values:</p>
@@ -223,7 +223,7 @@ This work is being done as part of [SLING-2225](https://issues.apache.org/jira/b
     </tr>
   </tbody>
 </table>
-<h4>Conversion of Commandline Arguments to Properties</h4>
+<h4><a href="#conversion-of-commandline-arguments-to-properties" name="conversion-of-commandline-arguments-to-properties">Conversion of Commandline Arguments to Properties</a></h4>
 <p>When calling the Main class through the JVM startup the <code>Main.main(String[] args)</code> methods is called which reads the command line arguments and converts them into a <code>Map&lt;String, String&gt;</code> suitable for the constructore as follows:</p>
 <table>
   <thead>
@@ -275,7 +275,7 @@ This work is being done as part of [SLING-2225](https://issues.apache.org/jira/b
     </tr>
   </tbody>
 </table>
-<h3>Web Application</h3>
+<h3><a href="#web-application" name="web-application">Web Application</a></h3>
 <p>The web application makes use of 5 classes:</p>
 <table>
   <thead>

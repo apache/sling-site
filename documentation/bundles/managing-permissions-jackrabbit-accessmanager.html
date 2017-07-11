@@ -74,7 +74,7 @@
                 Managing permissions (jackrabbit.accessmanager)
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>jackrabbit-accessmanager</code> bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the <code>jackrabbit-accessmanager</code> bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like <code>modifyAce</code>, <code>acl</code> and <code>deleteAce</code>. <!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Privileges</h2>
+<h2><a href="#privileges" name="privileges">Privileges</a></h2>
 <table>
   <thead>
     <tr>
@@ -141,7 +141,7 @@
     </tr>
   </tbody>
 </table>
-<h2>Add or modify permissions</h2>
+<h2><a href="#add-or-modify-permissions" name="add-or-modify-permissions">Add or modify permissions</a></h2>
 <p>To modify the permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.modifyAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
 <ul>
   <li><em>numeric</em> - Place the target ACE at the specified numeric index. |</li>
@@ -149,18 +149,18 @@
 <p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. | Example with curl:</p>
 <pre><code>curl -FprincipalId=myuser -Fprivilege@jcr:read=granted http://localhost:8080/test/node.modifyAce.html
 </code></pre>
-<h2>Delete permissions</h2>
+<h2><a href="#delete-permissions" name="delete-permissions">Delete permissions</a></h2>
 <p>To delete permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.deleteAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
 <p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. | Example with curl:</p>
 <pre><code>curl -F:applyTo=myuser http://localhost:8080/test/node.deleteAce.html
 </code></pre>
-<h2>Get permissions</h2>
-<h3>Bound Permissions</h3>
+<h2><a href="#get-permissions" name="get-permissions">Get permissions</a></h2>
+<h3><a href="#bound-permissions" name="bound-permissions">Bound Permissions</a></h3>
 <p>To get the permissions bound to a particular node in a json format for a node send a GET request to <code>/&lt;path-to-the-node&gt;.acl.json</code>. </p>
 <p>Example:</p>
 <pre><code>http://localhost:8080/test/node.acl.json
 </code></pre>
-<h3>Effective Permissions</h3>
+<h3><a href="#effective-permissions" name="effective-permissions">Effective Permissions</a></h3>
 <p>To get the permissions which are effective for a particular node in a json format for a node send a GET request to <code>/&lt;path-to-the-node&gt;.eacl.json</code>. </p>
 <p>Example:</p>
 <pre><code>http://localhost:8080/test/node.eacl.json
@@ -168,7 +168,7 @@
 <div class="note">
 See section 16.3 of the JCR 2.0 specification for an explanation of the difference between bound and effective policies.
 </div>
-<h2>Sample User Interface Implementation</h2>
+<h2><a href="#sample-user-interface-implementation" name="sample-user-interface-implementation">Sample User Interface Implementation</a></h2>
 <p><em>Since Version 2.1.1</em></p>
 <p>A sample implementation of ui pages for permissions management is provided @ http://svn.apache.org/viewvc/sling/trunk/samples/accessmanager-ui/</p></section></div></div>
 <div class="footer">

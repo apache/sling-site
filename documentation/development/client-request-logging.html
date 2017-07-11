@@ -73,7 +73,7 @@
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Client Request Logging
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling provides extensive support to log various information at the before and after processing client requests. Out of the box, there are two loggers configured to write traditional <code>access.log</code> and <code>request.log</code> files. In addition more logging can be configured by providing OSGi Configuration Admin configuration.</p>
-<h2>Traditional access.log and request.log Files</h2>
+<h2><a href="#traditional-access-log-and-request-log-files" name="traditional-access-log-and-request-log-files">Traditional access.log and request.log Files</a></h2>
 <p>In the Web Console configure the <em>Apache Sling Request Logger</em> (PID=<code>org.apache.sling.engine.impl.log.RequestLogger</code>) configuration.</p>
 <p>In the Sling Web Console locate the Configuration page (<code>/system/console/configMgr</code>) and click on the pencil (edit) symbol on the <em>Apache Sling Request Logger</em> line. This opens a dialog to enter the configuration whose properties can be configured as follows:</p>
 <table>
@@ -124,7 +124,7 @@
     </tr>
   </tbody>
 </table>
-<h4>Log Output</h4>
+<h4><a href="#log-output" name="log-output">Log Output</a></h4>
 <p>Output of client request logging is defined by the Logger Type and and Logger Name where the use of the Logger Name property value depends on the Logger Type:</p>
 <table>
   <thead>
@@ -153,7 +153,7 @@
   </tbody>
 </table>
 <p><strong>Note:</strong> If logging to a file, this file is not rotated and/or limited by size. To get log file rotation use the <em>Logger Name</em> logging type. See <a href="#rotating-logger-files">Rotating Logger Files</a> below for information on how logging information can be written to rotated and/or size limited files.</p>
-<h3>Additional per-request Loggers</h3>
+<h3><a href="#additional-per-request-loggers" name="additional-per-request-loggers">Additional per-request Loggers</a></h3>
 <p>In the Web Console create <em>Apache Sling Customizable Request Data Logger</em> (Factory PID=<code>org.apache.sling.engine.impl.log.RequestLoggerService</code>) configuration.</p>
 <p>In the Sling Web Console locate the Configuration page (<code>/system/console/configMgr</code>) and click on the <code>+</code> (plus) symbol on the <em>Apache Sling Customizable Request Data Logger</em> line. This opens a dialog to enter the configuration whose properties can be configured as follows:</p>
 <table>
@@ -192,7 +192,7 @@
     </tr>
   </tbody>
 </table>
-<h4>Log Format Specification</h4>
+<h4><a href="#log-format-specification" name="log-format-specification">Log Format Specification</a></h4>
 <p>The log format specification generally follows the <a href="http://httpd.apache.org/docs/current/mod/mod_log_config.html">definition of the <code>format</code> argument for the <code>LogFormat</code> and <code>CustomLog</code> directives of Apache httpd</a>. Please see the below table for details and exceptions.</p>
 <p>The characteristics of the request itself are logged by placing "%" directives in the format string, which are replaced in the log file by the values as follows:</p>
 <table>
@@ -350,7 +350,7 @@
 <p>The Apache httpd modifiers "&lt;" and "&gt;" are not supported by Sling and currently ignored.</p>
 <p><strong>Some Notes</strong></p>
 <p>For security reasons non-printable and other special characters in %C, %i and %o are escaped using \uhhhh sequences, where hhhh stands for the hexadecimal representation of the character's unicode value. Exceptions from this rule are " and \, which are escaped by prepending a backslash, and all whitespace characters, which are written in their Java-style notation (\n, \t, etc).</p>
-<h4>Rotating Logger Files</h4>
+<h4><a href="#rotating-logger-files" name="rotating-logger-files">Rotating Logger Files</a></h4>
 <p>If you want to write the request (and access) logging information into a rotated file, you should configure as follows:</p>
 <ol>
   <li>Configure the Log Type to be a <em>Logger Name</em> and some usefull Logger name. For example <code>clientlog.request</code>.</li>

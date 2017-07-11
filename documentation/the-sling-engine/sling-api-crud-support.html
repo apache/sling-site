@@ -74,7 +74,7 @@
                 Sling API CRUD Support
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2>Apache Sling API Support</h2>
+<h2><a href="#apache-sling-api-support" name="apache-sling-api-support">Apache Sling API Support</a></h2>
 <p>As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD) features. CRUD support is provided by the addition of the following methods to the ResourceResolver:</p>
 <ul>
   <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#delete-org.apache.sling.api.resource.Resource-">void delete(Resource resource) throws PersistenceException</a></li>
@@ -85,9 +85,9 @@
   <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#refresh--">void refresh()</a></li>
 </ul>
 <p>Which provide the ability to create and delete resources as well as the addition of the ModifiableValueMap interface which is similar to the ValueMap interface, but allows for updating properties on a resource.</p>
-<h2>Comparing Sling API CRUD to Sling Post Servlet</h2>
+<h2><a href="#comparing-sling-api-crud-to-sling-post-servlet" name="comparing-sling-api-crud-to-sling-post-servlet">Comparing Sling API CRUD to Sling Post Servlet</a></h2>
 <p>Here are some examples of common operations performed using the Sling Post Servlet and Sling API CRUD support. Note, the examples are derived from the <a href="http://dev.day.com/content/ddc/blog/2008/07/cheatsheet/_jcr_content/images/cheatsheet/back.png">SlingPostServlet Cheatsheet</a>.</p>
-<h3>Updating a Property</h3>
+<h3><a href="#updating-a-property" name="updating-a-property">Updating a Property</a></h3>
 <p>Update /myresource, setting the title and body:</p>
 <p><strong>Sling Post Servlet</strong></p>
 <pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
@@ -102,7 +102,7 @@ properties.put(&quot;title&quot;, {TITLE});
 properties.put(&quot;body&quot;, {BODY});
 resourceResolver.commit();
 </code></pre>
-<h3>Create New Resource</h3>
+<h3><a href="#create-new-resource" name="create-new-resource">Create New Resource</a></h3>
 <p>Create a new resource below /myresource</p>
 <p><strong>Sling Post Servlet</strong></p>
 <pre><code>&lt;form action=&quot;/myresource/&quot; method=&quot;POST&quot;&gt;
@@ -117,7 +117,7 @@ properties.put(&quot;sling:resourceType&quot;, &quot;myapp/components/mytype&quo
 Resource dummy = resourceResolver.create(myResource, &quot;dummy&quot;, properties);
 resourceResolver.commit();
 </code></pre>
-<h3>Remove a Property</h3>
+<h3><a href="#remove-a-property" name="remove-a-property">Remove a Property</a></h3>
 <p>Remove the property title</p>
 <p><strong>Sling Post Servlet</strong></p>
 <pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
@@ -130,7 +130,7 @@ ModifiableValueMap properties = myResource.adaptTo(ModifiableValueMap.class);
 properties.remove(&quot;title&quot;);
 resourceResolver.commit();
 </code></pre>
-<h3>Copy a Resource</h3>
+<h3><a href="#copy-a-resource" name="copy-a-resource">Copy a Resource</a></h3>
 <p>Copy the resource /myresource to /myresource2</p>
 <p><strong>Sling Post Servlet</strong></p>
 <pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
@@ -144,7 +144,7 @@ resourceResolver.commit();
 Resource myResource2 = resourceResolver.create(null, &quot;myresource2&quot;, properties);
 resourceResolver.commit();
 </code></pre>
-<h3>Move a Resource</h3>
+<h3><a href="#move-a-resource" name="move-a-resource">Move a Resource</a></h3>
 <p>Move the resource /myresource2 to /myresource3</p>
 <p><strong>Sling Post Servlet</strong></p>
 <pre><code>&lt;form action=&quot;/myresource2&quot; method=&quot;POST&quot;&gt;
@@ -159,7 +159,7 @@ Resource myResource3 = resourceResolver.create(null, &quot;myresource3&quot;, pr
 resourceResolver.delete(myResource2);
 resourceResolver.commit();
 </code></pre>
-<h3>Setting non-String Value</h3>
+<h3><a href="#setting-non-string-value" name="setting-non-string-value">Setting non-String Value</a></h3>
 <p>Set the property date to a particular date</p>
 <p><strong>Sling Post Servlet</strong></p>
 <pre><code>&lt;form action=&quot;/myresource3&quot; method=&quot;POST&quot;&gt;
@@ -174,7 +174,7 @@ ModifiableValueMap properties = myResource3.adaptTo(ModifiableValueMap.class);
 properties.put(&quot;date&quot;, calendar);
 resourceResolver.commit();
 </code></pre>
-<h3>Delete a Resource</h3>
+<h3><a href="#delete-a-resource" name="delete-a-resource">Delete a Resource</a></h3>
 <p>Delete the resource /myresource</p>
 <p><strong>Sling Post Servlet</strong></p>
 <pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
@@ -186,7 +186,7 @@ resourceResolver.commit();
 resourceResolver.delete(myResource);
 resourceResolver.commit();
 </code></pre>
-<h2>Value Class Support</h2>
+<h2><a href="#value-class-support" name="value-class-support">Value Class Support</a></h2>
 <div class="info">
 	Please note, this information is specific to the Sling JCR Resource implementation provided by the Apache Sling project.  Other implementations may have different value class support.  
 </div>

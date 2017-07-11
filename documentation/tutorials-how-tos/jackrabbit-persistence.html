@@ -74,7 +74,7 @@
                 Jackrabbit Persistence
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>Out-of-the-box the embedded Jackrabbit repository used by Sling (the Embedded Jackrabbit Repository bundle) uses Derby to persist the JCR nodes and properties. For some applications or environments it may be required or required to replace Derby with another backing store such as PostgreSQL or Oracle.</p>
 <p>This page is based on the journey of Tony Giaccone to get Sling running with a PostgreSQL based Jackrabbit instance.</p>
-<h2>Management Summary</h2>
+<h2><a href="#management-summary" name="management-summary">Management Summary</a></h2>
 <p>To replace Derby as the persistence manager for Jackrabbit the following steps are required:</p>
 <ol>
   <li>Provide a JDBC driver for your database as an OSGi bundle</li>
@@ -82,29 +82,27 @@
   <li>(Re-) Start the Embedded Jackrabbit bundle</li>
 </ol>
 <p>When you are not using the Derby persistence manager, you may safely remove the Derby bundle from your Sling instance.</p>
-<h2>JDBC Driver</h2>
+<h2><a href="#jdbc-driver" name="jdbc-driver">JDBC Driver</a></h2>
 <p>The hardest thing to do is probably getting the JDBC driver for your database. One option is to look at the bundles provided by Spring Source in their repository at <a href="http://www.springsource.com/repository/">http://www.springsource.com/repository/</a>.</p>
 <p>Another option is to create the bundle on your own using Peter Kriens' <a href="http://bnd.bndtools.org/">bnd Tool</a>:</p>
 <ol>
   <li>Get the JDBC driver for your database from the driver provider</li>
   <li>Wrap the JDBC driver library into an OSGi bundle:
-    <pre><code>:::sh
-# Example for PostgreSQL JDBC 3 driver 8.4-701
+    <pre><code>:<!-- TODO syntax marker (::sh) disabled --># Example for PostgreSQL JDBC 3 driver 8.4-701
 $ java -jar bnd.jar wrap postgresql-8.4-701.jdbc3.jar
 $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar
 </code></pre>
   </li>
   <li>
     <p>Deploy the driver to your local Maven 2 Repository (Required if adding the JDBC driver to a Maven build, e.g. using the Sling Launchpad Plugin)</p>
-    <pre><code>:::sh
-$ mvn install:install-file \  
+    <pre><code>:<!-- TODO syntax marker (::sh) disabled -->$ mvn install:install-file \  
     -DgroupId=postgresql -DartifactId=postgresql -Dversion=8.4.701.jdbc3 \  
     -Dpackaging=jar -Dfile=postgresql-8.4-701.jdbc3-bnd.jar
 </code></pre>
   </li>
 </ol>
 <p>Tony reports no success with the Spring Source bundle, whily the bnd approach worked for the PostgreSQL JDBC driver.</p>
-<h2>Replace Derby in a running Sling Instance</h2>
+<h2><a href="#replace-derby-in-a-running-sling-instance" name="replace-derby-in-a-running-sling-instance">Replace Derby in a running Sling Instance</a></h2>
 <p>To replace Derby in a running Sling instance follow these steps (e.g. through the Web Console at <code>/system/console</code>):</p>
 <ol>
   <li>Uninstall the Apache Derby bundle</li>
@@ -113,13 +111,12 @@ $ mvn install:install-file \
   <li>Refresh the packages (click the <em>Refresh Packages</em> button)</li>
 </ol>
 <p>Alternatively, you may wish to stop Sling after uninstalling Derby and installing the JDBC bundle. Technically, this is not required, though.</p>
-<h2>Reconfiguring Jackrabbit</h2>
+<h2><a href="#reconfiguring-jackrabbit" name="reconfiguring-jackrabbit">Reconfiguring Jackrabbit</a></h2>
 <p>To actually use a persistence manager other than the default (Derby) persistence manager, you have to configure Jackrabbit to use it. Create a <code>repository.xml</code> file in the <code>sling/jackrabbit</code> folder before starting Sling for the first time. If the repository was already started, you can also modify the existing file.</p>
 <p>To prepare a repository.xml file before first startup, use the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/jackrabbit-server/src/main/resources/repository.xml"><code>repository.xml</code></a> as a template and modify it by replacing the <code>&lt;PersistenceManager&gt;</code> elements to refer to the selected persistence manager.</p>
 <p>If the file already exists, you can modifiy this existing file and there is no need to get the original from the SVN repository.</p>
 <p>For example to use PostgreSQL instead of Derby modify the <code>&lt;PersistenceManager&gt;</code> elements as follows:</p>
-<pre><code>:::xml
-&lt;Repository&gt;
+<pre><code>:<!-- TODO syntax marker (::xml) disabled -->&lt;Repository&gt;
     ...
     &lt;Workspace name=&quot;${wsp.name}&quot;&gt;
         ...
@@ -153,7 +150,7 @@ $ mvn install:install-file \
 <p>Modify the <code>url</code>, <code>user</code>, and <code>password</code> parameters to match your database setup.</p>
 <p>If you reconfigure Jackrabbit to use the new persistence manager, the existing repository data in the <code>sling/jackrabbit</code> directory, except the <code>repository.xml</code> file, of course, should now be removed.</p>
 <p>Finally either start Sling or start the Jackrabbit Embedded Repository bundle.</p>
-<h2>Credits</h2>
+<h2><a href="#credits" name="credits">Credits</a></h2>
 <p>This description is based on Tony Giaccone's description <a href="http://markmail.org/message/wlbfrukmjjsl33hh">Swapping Postgres for Derby</a> sent to the Sling Users mailing list.</p></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">

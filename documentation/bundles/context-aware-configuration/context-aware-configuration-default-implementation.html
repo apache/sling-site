@@ -74,15 +74,15 @@
                 Apache Sling Context-Aware Configuration - Default Implementation
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h1>About</h1>
+<h1><a href="#about" name="about">About</a></h1>
 <p>By default the 'default implementation' us used by the Context-Aware Configuration concerning lookup and persistence of configuration data, resource and property inheritance and context path detection. Using the <a href="http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html">SPI</a> it is possible to overlay, extend or replace this functionality.</p>
 <p>This page documents the details of the default implementation.</p>
-<h1>Repository paths</h1>
+<h1><a href="#repository-paths" name="repository-paths">Repository paths</a></h1>
 <p>By default all configuration data is stored in <code>/conf</code>. Fallback paths are <code>/conf/global</code>, <code>/apps/conf</code>and <code>/libs/conf</code>.</p>
 <p>The paths are configurable in the service configuration.</p>
-<h1>Context paths</h1>
+<h1><a href="#context-paths" name="context-paths">Context paths</a></h1>
 <p>The content resource hierarchy is defined by setting <code>sling:configRef</code> properties. Each resource that has a <code>sling:configRef</code> property set defines the root resource of a context, the whole subtree is the context. Within the subtree further nested contexts can be defined.</p>
-<h1>Configuration resource resolving</h1>
+<h1><a href="#configuration-resource-resolving" name="configuration-resource-resolving">Configuration resource resolving</a></h1>
 <p>This illustration shows an example for configuration resource lookup:</p>
 <p><img src="config-resource-lookup.png" alt="Configuration resource lookup" /></p>
 <p>If you get the context-aware configuration via the API for any resource below <code>/content/tenant1/region1/site1</code> it is looked up in this path in this order:</p>
@@ -102,7 +102,7 @@
   <li>Go further up in the content resource tree for parent contexts, and check their configuration resources as well (they may reference completely different location below <code>/conf</code>)</li>
   <li>Check the fallback paths</li>
 </ul>
-<h1>Configuration persistence</h1>
+<h1><a href="#configuration-persistence" name="configuration-persistence">Configuration persistence</a></h1>
 <p>Example for the resource structure for a configuration resource at <code>/conf/mysite</code>:</p>
 <pre><code>/conf
     /mysite
@@ -120,7 +120,7 @@
   <li>It is possible to use deeper hierarchies below <code>sling:configs</code> as well.</li>
   <li>Nested configurations are supported as well. This can be mapped to annotation classes referencing other annotation classes.</li>
 </ul>
-<h1>Resource inheritance</h1>
+<h1><a href="#resource-inheritance" name="resource-inheritance">Resource inheritance</a></h1>
 <p>We distinguish between:</p>
 <ul>
   <li>Singleton resources: Configuration resources looked up by the <code>get</code>/<code>as</code> method variants</li>
@@ -133,7 +133,7 @@
 <p>Example for resource inheritance:</p>
 <p><img src="resource-inheritance.png" alt="Resource inheritance" /></p>
 <p>The result of this example is: <strong>C, A, B</strong>. It would by just <strong>C</strong> if the <code>sling:configCollectionInherit</code> is not set.</p>
-<h1>Property inheritance</h1>
+<h1><a href="#property-inheritance" name="property-inheritance">Property inheritance</a></h1>
 <p>By default, no property inheritance takes place. That means only the properties that are stored in the configuration resource are mapped to the annotation class or returned as value map, regardless whether singleton or collection resources are returned, or if resource collection inheritance is enabled or not.</p>
 <p>By defining a property <code>sling:configPropertyInherit</code> on the configuration resource, property merging is enabled between the current configuration resource and the next resource with the same name (singleton or resource collection item) in the configuration resource lookup order. That means that all properties that are not defined on the current configuration resource are inherited from the next resources and a merged value map is used for the configuration mapping.</p>
 <p>By setting the property <code>sling:configPropertyInherit</code> on multiple configuration resources that are part of the lookup order it is possible to form deeper inheritance chains following the same rules.</p></section></div></div>

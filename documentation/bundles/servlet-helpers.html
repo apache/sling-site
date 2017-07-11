@@ -75,11 +75,10 @@
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Servlet Helpers bundle provides mock implementations of the <code>SlingHttpServletRequest</code>, <code>SlingHttpServletResponse</code> and related classes.</p>
 <p>Those mock implementations are meant to be used in tests and also with services like the <code>SlingRequestProcessor</code> when making requests to that service outside of an HTTP request processing context.</p>
 <p>See the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/servlet-helpers">automated tests</a> of the <code>servlet-helpers</code> module for more info.</p>
-<h2>Usage</h2>
-<h3>SlingHttpServletRequest</h3>
+<h2><a href="#usage" name="usage">Usage</a></h2>
+<h3><a href="#slinghttpservletrequest" name="slinghttpservletrequest">SlingHttpServletRequest</a></h3>
 <p>Example for preparing a sling request with custom request data:</p>
-<pre><code>#!java
-// prepare sling request
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling request
 MockSlingHttpServletRequest request = new MockSlingHttpServletRequest(resourceResolver);
 
 // simulate query string
@@ -111,10 +110,9 @@ request.addHeader(&quot;header1&quot;, &quot;value1&quot;);
 // set cookies
 request.addCookie(new Cookie(&quot;cookie1&quot;, &quot;value1&quot;));
 </code></pre>
-<h3>SlingHttpServletResponse</h3>
+<h3><a href="#slinghttpservletresponse" name="slinghttpservletresponse">SlingHttpServletResponse</a></h3>
 <p>Example for preparing a sling response which can collect the data that was written to it:</p>
-<pre><code>#!java
-// prepare sling response
+<pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling response
 MockSlingHttpServletResponse response = new MockSlingHttpServletResponse();
 
 // execute the code that writes to the response...

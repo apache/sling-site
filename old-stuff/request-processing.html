@@ -76,7 +76,7 @@
 2008-02-13: this page is *out of sync* with the current codebase, needs to be reviewed and updated.
 </div>
 <p>One of the core problems towards understanding how Sling works is knowing how a Client Request is processed by Sling. This page describes the flow of processing requests inside Sling.</p>
-<h2>Core Request Processing</h2>
+<h2><a href="#core-request-processing" name="core-request-processing">Core Request Processing</a></h2>
 <p>The HTTP request enters Sling in the <code>org.apache.sling.core.ComponentRequestHandlerImpl.service(ServletRequest req, ServletResponse res)</code> method as the <code>ComponentRequestHandlerImpl</code> is registered as the Servlet handling HTTP requests. This method sets up the initial <code>ComponentRequest</code> and <code>ComponentResponse</code> objects and hands the request over to the first <code>ComponentFilterChain</code>. This first filter chain calls all <code>ComponentFilter</code> instances registered as request level filters. After processing all filters in the request level filter chain, the request is handed over to the second <code>ComponentFilterChain</code> which calls all <code>ComponentFilter</code> instances registered as component level filters. At the end of the second filter chain the <code>service</code> method of the actual <code>Component</code> to which the request resolved is called.</p>
 <p>As the component is now processing the request, it may decide to dispatch the request to some other content such as for example a paragraph system or navigation component. To do this, the component will call the <code>RequestDispatcher.include</code> method. If the request dispatcher dispatches to a <code>Content</code> object Sling will hand the dispatch request over to the component level filter chain, which at the end will call the <code>service</code> method for the <code>Content</code> object to dispatched to. This process may be repeated at the component's discretion only limited by processing resources such as available memory.</p>
 <p>As can be seen Sling itself is absed on the Component API <code>ComponentFilter</code> mechanism. As such Sling provides and uses the following filters in the Sling Core bundle:</p>
@@ -97,7 +97,7 @@
   <li>Resolve the component ID returned by the <code>Content.getComponentId()</code> method into a <code>Component</code> object. Of course it is an error, if the component ID cannot be mapped into a <code>Component</code> object.</li>
 </ol>
 <p>After resolving the <code>Component</code> object default component filter chain terminates and control is handed over to the <code>service</code> method of the <code>Component</code> object resolved in the last step. At the discretion of the component request dispatchers may now be acquired to render other <code>Content</code> objects. In this case the component level filter chain is simply kicked of again resulting in the <code>service</code> method of another <code>Component</code> being called. And so forth.</p>
-<h2>Resolving Content</h2>
+<h2><a href="#resolving-content" name="resolving-content">Resolving Content</a></h2>
 <p>As we have seen, the last step in the request level filter chain is the resolution of the request URL into a <code>Content</code> object. The URL Mapper Filter implementing this resolution uses an instance of the <code>org.apache.sling.content.ContentMapper</code> interface which is acquired by calling the <code>org.apache.sling.content.jcr.JcrContentManagerFactory</code> with the repository session acquired by the authentication filter.</p>
 <p>The URL Mapper filter then tries to apply fixed mappings from request URL to destination paths to support shortcut URLs. For example the root path <code>/</code> may be mapped into the default landing page at <code>/default/home</code>. The list of such mappings is configurable through the Configuration Admin Service.</p>
 <p>Next the URL Mapper tries to apply prefix matching patterns. A list of patterns is iterated checking whether the prefix applies and, if so, replacing the prefix with another prefix and trying to resolve the result. This functionality enables relocation of a subtree of the repository. For example, all requests whose prefix is <code>/here</code> might be remapped with the new prefix <code>/content/there</code>. The result of this remapping is then resolved.</p>
@@ -107,10 +107,10 @@
   <li><em>Vanity URLs</em> - Map the request URL according to the <code>Host</code> request header.</li>
   <li><em>Dynamic Mapping</em> - Add support for a set of variables in path and/or prefix mapping. For example, a prefix mapping may contain the string <code>/content/$\{lang}/$\{user</code>} resulting in resolving a prefix according to the language of the current locale and the name of the authenticated used.</li>
 </ul>
-<h2>Registering Components</h2>
+<h2><a href="#registering-components" name="registering-components">Registering Components</a></h2>
 <p>The last step of the component level filter chain is resolving the <code>Component</code> from the component ID of the <code>Content</code> object. Sling implements this resolution by making use of the OSGi service registry. That is, each component is to be registered as a service with the name <code>org.apache.sling.component.Component</code>. The <code>ComponentResolverFilter</code> is listening for these components and registers them internally in a map indexed by the IDs of the component as returned by the <code>Component.getId()</code> method.</p>
 <p>When a component has to be resolved, the component ID returned by the <code>Content</code> object is simply looked up in the component map. If found, that component is used. Otherwise a fall back algorithm is applied which is described on the [Default Content Mapping and Request Rendering]({{ refs.default-mapping-and-rendering.path }}) page.</p>
-<h2>Reqistering Filters</h2>
+<h2><a href="#reqistering-filters" name="reqistering-filters">Reqistering Filters</a></h2>
 <p>Just as <code>Component</code> instances used by Sling are expected to be registered as OSGi services, the <code>ComponentFilter</code>s to be used have to be registered as services under the name <code>org.apache.sling.component.ComponentFilter</code>. Sling picks up all registered component filters and adds them to the respective filter chains.</p>
 <p>Service properties set upon registration of the filter define the chain to which the filter belongs and the order in which the filters should be processed:</p>
 <table>
@@ -131,7 +131,7 @@
     </tr>
   </tbody>
 </table>
-<h2>Content is a Java Object</h2>
+<h2><a href="#content-is-a-java-object" name="content-is-a-java-object">Content is a Java Object</a></h2>
 <p>It is crucial to understand that <code>Content</code> is an interface and the request processor of Sling does not actually care, how the <code>Content</code> instance comes to live as long as the is such an object and there is a <code>Component</code> instance capable of servicing the <code>Content</code> object.</p>
 <p>By default Sling uses the <em>URL Mapper</em> to resolve the request URL into a <code>Content</code> object. When a <code>Component</code> is tasked with servicing a <code>Content</code> object it usually uses the <code>ComponentRequestDispatcher</code> to ask Sling to service another content object generally identified by a (relative or absolute) path to a JCR Repository Node from which the <code>Content</code> object is loaded.</p>
 <p>But instead of having Sling resolve a path into a <code>Content</code> object the component may just as well create a <code>Content</code> object and hand it over to the <code>ComponentRequestDispatcher</code> for service. Consider a request which is handled by a <code>PageComponent</code>. This component has to draw a navigation tree somewhere in the response. So the component could of course insist on having a <code>navigation</code> child node to dispatch rendering to as follows:</p>

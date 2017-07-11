@@ -74,7 +74,7 @@
                 Sling Pipes
             </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>tool for doing extract - transform - load operations through a resource tree configuration.</p>
 <p>often one-shot data transformations need sample code to be written &amp; executed. This tiny tool set intends to provide ability to do such transformations with proven &amp; reusable blocks called pipes, streaming resources from one to the other.</p>
-<h2>What is a pipe</h2>
+<h2><a href="#what-is-a-pipe" name="what-is-a-pipe">What is a pipe</a></h2>
 <pre><code>         getOutputBinding
                ^
                |
@@ -97,7 +97,7 @@
   <li>"container" pipes, that contains pipes, and whose job is to chain their execution : input is the input of their first pipe,  output is the output of the last pipe it contains.</li>
 </ul>
 <p>A <code>Plumber</code> osgi service is provided to help getting &amp; executing pipes.</p>
-<h2>Registered Pipes</h2>
+<h2><a href="#registered-pipes" name="registered-pipes">Registered Pipes</a></h2>
 <p>a pipe configuration is a jcr node, with:</p>
 <ul>
   <li><code>sling:resourceType</code> property, which must be a pipe type registered by the plumber</li>
@@ -108,43 +108,43 @@
   <li><code>additionalScripts</code> is a multi value property to declare scripts that can be reused in expressions</li>
   <li><code>conf</code> optional child node that contains addition configuration of the pipe (depending on the type)</li>
 </ul>
-<h3>readers</h3>
-<h4>Base pipe</h4>
+<h3><a href="#readers" name="readers">readers</a></h3>
+<h4><a href="#base-pipe" name="base-pipe">Base pipe</a></h4>
 <p>rather dummy pipe, outputs what is in input (so what is configured in path). Handy for doing some test mostly, and giving basic functionalities to others that inherit from it</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/base</code></li>
 </ul>
-<h4>SlingQuery Pipe</h4>
+<h4><a href="#slingquery-pipe" name="slingquery-pipe">SlingQuery Pipe</a></h4>
 <p>executes $(getInput()).children(expression)</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
   <li><code>expr</code> mandatory property, contains slingQuery expression through which getInput()'s children will be computed to getOutput()</li>
 </ul>
-<h4>JsonPipe</h4>
+<h4><a href="#jsonpipe" name="jsonpipe">JsonPipe</a></h4>
 <p>feeds bindings with remote json</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
   <li><code>expr</code> mandatory property contains url that will be called, the json be sent to the output bindings, getOutput = getInput. An empty url or a failing url will block the pipe at that given place.</li>
 </ul>
-<h4>MultiPropertyPipe</h4>
+<h4><a href="#multipropertypipe" name="multipropertypipe">MultiPropertyPipe</a></h4>
 <p>iterates through values of input multi value property and write them to bindings</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/multiProperty</code></li>
   <li><code>path</code> should be the path of a mv property</li>
 </ul>
-<h4>XPathPipe</h4>
+<h4><a href="#xpathpipe" name="xpathpipe">XPathPipe</a></h4>
 <p>retrieve resources resulting of an xpath query</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/xpath</code></li>
   <li><code>expr</code> should be a valid xpath query</li>
 </ul>
-<h3>JsonPipe</h3>
+<h3><a href="#jsonpipe" name="jsonpipe">JsonPipe</a></h3>
 <p>feeds bindings with remote json</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
   <li><code>expr</code> mandatory property contains url that will be called, the json be sent to the output bindings, getOutput = getInput. An empty url or a failing url will block the pipe at that given place.</li>
 </ul>
-<h4>AuthorizablePipe</h4>
+<h4><a href="#authorizablepipe" name="authorizablepipe">AuthorizablePipe</a></h4>
 <p>retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression), from the input path, output the found authorizable's resource</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/authorizable</code></li>
@@ -154,55 +154,55 @@
   <li><code>addToGroup</code> (expression) add found authorizable to instanciated group (in that case, considered as a write pipe)</li>
   <li><code>bindMembers</code> (boolean) if found authorizable is a group, bind the members (in that case, considered as a write pipe)</li>
 </ul>
-<h4>ParentPipe</h4>
+<h4><a href="#parentpipe" name="parentpipe">ParentPipe</a></h4>
 <p>outputs the parent resource of input resource - <code>sling:resourceType</code> is <code>slingPipes/parent</code></p>
-<h4>FilterPipe</h4>
+<h4><a href="#filterpipe" name="filterpipe">FilterPipe</a></h4>
 <p>outputs the input resource if its matches its configuration</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/filter</code></li>
   <li><code>conf</code> node tree that will be tested against the current input of the pipe, each <code>/conf/sub@prop=value</code> will triggers a test on <code>./sub@prop</code> property of the current input, testing if its value matches <code>value</code> regex. If the special <code>slingPipesFilter_noChildren=${true}</code> property is there with the value instantiated as a true boolean, then filter will pass if corresponding node has no children.</li>
   <li><code>slingPipesFilter_not=&#39;true&#39;</code> inverts the expected result of the filter</li>
 </ul>
-<h3>containers</h3>
-<h4>Container Pipe</h4>
+<h3><a href="#containers" name="containers">containers</a></h3>
+<h4><a href="#container-pipe" name="container-pipe">Container Pipe</a></h4>
 <p>assemble a sequence of pipes</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/container</code></li>
   <li><code>conf</code> node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)</li>
 </ul>
-<h4>ReferencePipe</h4>
+<h4><a href="#referencepipe" name="referencepipe">ReferencePipe</a></h4>
 <p>execute the pipe referenced in path property</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/reference</code></li>
   <li><code>path</code> path of the referenced pipe</li>
 </ul>
-<h3>writers</h3>
-<h4>Write Pipe</h4>
+<h3><a href="#writers" name="writers">writers</a></h3>
+<h4><a href="#write-pipe" name="write-pipe">Write Pipe</a></h4>
 <p>writes given nodes &amp; properties to current input</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/write</code></li>
   <li><code>conf</code> node tree that will be copied to the current input of the pipe, each property's names and value will be written to the input resource. Input resource will be outputed. Note that properties that will be evaluated (in an expression) as <code>null</code> for a given input resource will be removed from it. E.g. <code>./conf/some/node@prop=${null}</code> will add <code>./conf/some/node</code> structure if not in current input resource, but remove its <code>prop</code> property if any).</li>
 </ul>
-<h3>MovePipe</h3>
+<h3><a href="#movepipe" name="movepipe">MovePipe</a></h3>
 <p>JCR move of current input to target path (can be a node or a property)</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/mv</code></li>
   <li><code>expr</code> target path, note that parent path must exists</li>
 </ul>
-<h4>RemovePipe</h4>
+<h4><a href="#removepipe" name="removepipe">RemovePipe</a></h4>
 <p>removes the input resource, returns the parent, regardless of the resource being a node, or a property</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/rm</code></li>
   <li><code>conf</code> node tree that will be used to filter relative properties &amp; subtrees to the current resource to remove. A subnode is considered to be removed if it has no property configured, nore any child.</li>
 </ul>
-<h4>PathPipe</h4>
+<h4><a href="#pathpipe" name="pathpipe">PathPipe</a></h4>
 <p>get or create path given in expression</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/path</code></li>
   <li><code>nodeType</code> node type of the intermediate nodes to create</li>
   <li><code>autosave</code> should save at each creation (will make things slow, but sometimes you don't have choice)</li>
 </ul>
-<h2>Making configuration dynamic with pipe bindings</h2>
+<h2><a href="#making-configuration-dynamic-with-pipe-bindings" name="making-configuration-dynamic-with-pipe-bindings">Making configuration dynamic with pipe bindings</a></h2>
 <p>in order to make things interesting, most of the configurations are javascript template strings, hence valid js expressions reusing bindings (from configuration, or other pipes).</p>
 <p>Following configurations are evaluated:</p>
 <ul>
@@ -212,9 +212,9 @@
 </ul>
 <p>you can use name of previous pipes in the pipe container, or the special binding <code>path</code>, where <code>path.previousPipe</code> is the path of the current resource of previous pipe named <code>previousPipe</code></p>
 <p>global bindings can be set at pipe execution, external scripts can be added to the execution as well (see pipe  configurations)</p>
-<h2>How to execute a pipe</h2>
+<h2><a href="#how-to-execute-a-pipe" name="how-to-execute-a-pipe">How to execute a pipe</a></h2>
 <p>for now it's possible to execute Pipes through GET (read) or POST (read/write) commands:</p>
-<h3>Request Path</h3>
+<h3><a href="#request-path" name="request-path">Request Path</a></h3>
 <ul>
   <li>
     <p>either you'll need to create a slingPipes/plumber resource, say <code>etc/pipes</code> and then to execute</p>
@@ -245,7 +245,7 @@
 <p>if parameter dryRun is set to true, and the executed pipe is supposed to modify content, it will log (at best it can) the change it <em>would</em> have done, without doing anything</p>
 <h3>Request Parameter <code>size</code></h3>
 <p>default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter</p>
-<h2>sample configurations</h2>
+<h2><a href="#sample-configurations" name="sample-configurations">sample configurations</a></h2>
 <h3>slingQuery | write</h3>
 <p>this pipe parse all profile nodes, and</p>
 <pre><code>{
@@ -374,7 +374,7 @@
 }
 </code></pre>
 <p>some other samples are in https://github.com/npeltier/sling-pipes/tree/master/src/test/</p>
-<h1>Compatibility</h1>
+<h1><a href="#compatibility" name="compatibility">Compatibility</a></h1>
 <p>For running this tool on a sling instance you need:</p>
 <ul>
   <li>java 8 (Nashorn is used for expression)</li>

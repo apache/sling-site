@@ -80,7 +80,7 @@
   <li>Package <a href="/apidocs/sling6/org/apache/sling/event/package-summary.html">org.apache.sling.event</a> of the Sling API.</li>
 </ul>
 <p>This page drives you through the implementation of two services that rely on the Sling job mechanism. The services implement the following use case: whenever a file is uploaded to a temporary location in your web application, the file is moved to a specific location according to its MIME type.</p>
-<h2>Introduction</h2>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>You will now implement the logic to listen to files posted to <em>/tmp/dropbox</em> and to move them to the appropriate locations depending on the MIME type:</p>
 <ul>
   <li>images (.png) are moved to <strong>/dropbox/images/</strong></li>
@@ -98,26 +98,23 @@
   <li>Processes the former jobs</li>
   <li>Moves the file according to its extension.</li>
 </ul>
-<h2>Listening to OSGI Events</h2>
+<h2><a href="#listening-to-osgi-events" name="listening-to-osgi-events">Listening to OSGI Events</a></h2>
 <p>To listen to OSGi events in Sling you just need to register an <strong>org.osgi.service.event.EventHandler</strong> service with an <strong>event.topics</strong> property that describes which event topics the handler is interested in.</p>
 <p>To listen to a Sling <strong>resource added</strong> events, for example, you'll set the <em>event.topics</em> property to <strong>org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED</strong> in the class annotations:</p>
-<pre><code> :::java
- @Property(name=org.osgi.service.event.EventConstants.EVENT_TOPIC,
+<pre><code> :<!-- TODO syntax marker (::java) disabled --> @Property(name=org.osgi.service.event.EventConstants.EVENT_TOPIC,
     value=org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED)
 </code></pre>
 <p>The javadocs of the TOPIC_ constants in the <a href="/apidocs/sling6/org/apache/sling/api/SlingConstants.html">org.apache.sling.api.SlingConstants</a> class lists and explains the available event topics available in Sling.</p>
-<h2>Starting a job</h2>
+<h2><a href="#starting-a-job" name="starting-a-job">Starting a job</a></h2>
 <p>To start a job, the <em>JobManager</em> service can be used. It needs a job topic and a payload. In our case we define our dropbox job topic and give the resource path as the payload:</p>
-<pre><code>:::java
-    final String resourcePath = ...; // path to the resource to handle
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->    final String resourcePath = ...; // path to the resource to handle
     final Map&lt;String, Object&gt; payload = new HashMap&lt;String, Object&gt;();
     payload.put(&quot;resourcePath&quot;, resourcePath);
     // start job
     this.jobManager.addJob(JOB_TOPIC, payload);
 </code></pre>
 <p>To receive the resource event, the service needs to implement the <strong>org.osgi.service.event.EventHandler</strong> interface and register it as an EventHandler service:</p>
-<pre><code>:::java
-@Component(immediate=true) // immediate should only be used in rare cases (see below)
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->@Component(immediate=true) // immediate should only be used in rare cases (see below)
 @Service(value=EventHandler.class)
 public class DropBoxService implements EventHandler {
     ...
@@ -125,13 +122,11 @@ public class DropBoxService implements EventHandler {
 </code></pre>
 <p>Usually a service should be lazy and therefore not declare itself to be immediate (in the Component annotation). However as this service is an event handler and might receive a lot of events even concurrently, it is advised to set the immediate flag to true on the component. Otherwise our event handler would be created and destroyed with every event coming in.</p>
 <p>To start the job we need a reference to the JobManager:</p>
-<pre><code>:::java
-@Reference
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->@Reference
 private JobManager jobManager;
 </code></pre>
 <p>The job topic for dropbox job events needs to be defined:</p>
-<pre><code>:::java
-/** The job topic for dropbox job events. */
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->/** The job topic for dropbox job events. */
 public static final String JOB_TOPIC = &quot;com/sling/eventing/dropbox/job&quot;;
 </code></pre>
 <p>The <strong>org.osgi.service.event.EventHandler#handleEvent(Event event)</strong> method needs to be implemented:</p>
@@ -150,8 +145,7 @@ public static final String JOB_TOPIC = &quot;com/sling/eventing/dropbox/job&quot
   </li>
 </ul>
 <p>For example:</p>
-<pre><code>:::java
-public void handleEvent(final Event event) {
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->public void handleEvent(final Event event) {
     // get the resource event information
     final String propPath = (String) event.getProperty(SlingConstants.PROPERTY_PATH);
     final String propResType = (String) event.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE);
@@ -168,16 +162,14 @@ public void handleEvent(final Event event) {
 }
 </code></pre>
 <p>The complete code for the <strong>DropBoxService</strong> service is available <a href="DropBoxService.java">here</a>.</p>
-<h2>Consuming Job Events</h2>
+<h2><a href="#consuming-job-events" name="consuming-job-events">Consuming Job Events</a></h2>
 <p>Now that you have implemented a service that starts a job when a file is uploaded to <strong>/tmp/dropbox</strong>, you will implement the service <strong>DropBoxEventHandler</strong> that processes those jobs and moves the files to a location according to their MIME types.</p>
 <p>To process to the job that have been defined before the property <strong>job.topics</strong> needs to be set to <strong>DropBoxService.JOB_TOPIC</strong> in the class annotations:</p>
-<pre><code>:::java
-@Property(name=&quot;job.topics&quot;,
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->@Property(name=&quot;job.topics&quot;,
     value=DropBoxService.JOB_TOPIC)
 </code></pre>
 <p>In addition the service needs to implement the <strong>org.apache.sling.event.jobs.consumer.JobConsumer</strong> interface:</p>
-<pre><code>:::java
-public class DropBoxEventHandler implements JobConsumer {
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->public class DropBoxEventHandler implements JobConsumer {
 </code></pre>
 <p>Some class fields need to be defined:</p>
 <ul>
@@ -186,8 +178,7 @@ public class DropBoxEventHandler implements JobConsumer {
   <li>The destination paths of the files.</li>
 </ul>
 <p>For example:</p>
-<pre><code>:::java
-/** Default log. */
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->/** Default log. */
 protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 @Reference
@@ -207,8 +198,7 @@ private final static String OTHER_PATH = &quot;/dropbox/other/&quot;;
   <li>The file is moved to the new location by using a JCR session (as the Sling Resource API doesn't support move atm)</li>
 </ul>
 <p>or in Java Code:</p>
-<pre><code>:::java
-public JobResult process(final Job job) {
+<pre><code>:<!-- TODO syntax marker (::java) disabled -->public JobResult process(final Job job) {
     ResourceResolver adminResolver = null;
     try {
         adminResolver = resolverFactory.getAdministrativeResourceResolver(null);
