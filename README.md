@@ -72,7 +72,7 @@ We'll have a script for that, but for now the following works:
 * Breadcrumbs are back.
 * The `#!xml` and `#!java` code higlighting macros are not supported, for now they are replaced by HTML comments.
 
-## JBake and other techn notes
+## JBake and other technotes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
 * Uses https://github.com/sirthias/pegdown for Markdown, syntax info at https://github.com/sirthias/pegdown/blob/master/src/test/resources/MarkdownTest103/Markdown%20Documentation%20-%20Syntax.md , extensions at http://www.decodified.com/pegdown/api/org/pegdown/Extensions.html
 * Groovy MarkupTemplateEngine examples at https://github.com/jbake-org/jbake-example-project-groovy-mt , docs for that engine at http://groovy-lang.org/templating.html#_simpletemplateengine
@@ -87,3 +87,7 @@ To find leftover `refs.` in pages use
 
     wget -r -nv -l 5 http://localhost:8820/
     find localhost\:8820/ -type f | xargs grep -l 'refs\.'
+
+To diff the generated HTML, ignoring housekeeping stuff use
+
+    git diff -U0 | grep -v lastmod | grep -v '^---' | grep -v '^+++' | grep -v '^diff' | grep -v '^index' | grep -v '@@'
