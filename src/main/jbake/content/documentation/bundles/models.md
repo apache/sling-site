@@ -316,7 +316,9 @@ Constructor injection is supported for the adaptable itself. For example:
     }
 
 ## Sling Validation (since 1.2.0)
-<a name="validation">*See also [SLING-4161](https://issues.apache.org/jira/browse/SLING-4161)*</a>
+<a name="validation" />
+*See also [SLING-4161](https://issues.apache.org/jira/browse/SLING-4161)*
+
 
 You can use the attribute `validation` on the Model annotation to call a validation service on the resource being used by the Sling model. That attribute supports three different values:
 
