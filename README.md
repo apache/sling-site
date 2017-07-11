@@ -50,7 +50,7 @@ We'll have a script for that, but for now the following works:
 
 ### Nice to have
 * JBake 2.5.x does not support the `[TOC]` macro but apparently that will be available once JBake moves to https://github.com/vsch/flexmark-java , probably in its next version. We might wait for that and just mark the TOCs as unsupported for now.
-* The `#!xml` and `#!java` code higlighting macros are not supported. I have left them in place for future automatic translation, once we reactivate code highlighting (using https://highlightjs.org/ maybe?)
+* The "last changed by" information at the bottom right side of pages is missing, it was quite useful.
 
 ### Final validation, activation etc.
 * Review all pages
@@ -70,6 +70,7 @@ We'll have a script for that, but for now the following works:
 * Sitemap page
 * Left menu layout is now correct
 * Breadcrumbs are back.
+* The `#!xml` and `#!java` code higlighting macros are not supported, for now they are replaced by HTML comments.
 
 ## JBake and other techn notes
 * Currently using 2.5.1, see under `/bin`, docs at http://jbake.org/docs/2.5.1
