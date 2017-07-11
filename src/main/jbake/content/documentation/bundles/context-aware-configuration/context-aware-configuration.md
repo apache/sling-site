@@ -102,19 +102,18 @@ the applications/libraries you use, or you can define your own annotation classe
 The annotation class may look like this:
 
     #!java
-  	@Configuration(label="My Configuration", description="Describe me")
-  	public @interface MyConfig {
-  	
-  	    @Property(label="Parameter #1", description="Describe me")
-  	    String param1();
-  	    
-  	    @Property(label="Parameter with Default value", description="Describe me")
-  	    String paramWithDefault() default "defValue";
-  	    
-  	    @Property(label="Integer parameter", description="Describe me")
-  	    int intParam();
-  	    
-  	}
+    @Configuration(label="My Configuration", description="Describe me")
+    public @interface MyConfig {
+      	
+        @Property(label="Parameter #1", description="Describe me")
+        String param1();
+        
+        @Property(label="Parameter with Default value", description="Describe me")
+        String paramWithDefault() default "defValue";
+        
+        @Property(label="Integer parameter", description="Describe me")
+        int intParam();
+    }
 
 The `@Configuration` annotation is mandatory. All properties on the `@Configuration` annotation and the `@Property` annotations are optional - they provide additional metadata for tooling e.g. configuration editors. 
 
@@ -135,18 +134,18 @@ Context-Aware configuration contains a Scripting Binding Values provider with au
 
 Example for accessing a property of a singleton configuration (with a config name `x.y.z.ConfigSample`):
 
-  	#!html
-  	<dl>
-  		<dt>stringParam:</dt>
-  		<dd>${caconfig['x.y.z.ConfigSample'].stringParam}</dd>
-  	</dl>
+    #!html
+    <dl>
+        <dt>stringParam:</dt>
+        <dd>${caconfig['x.y.z.ConfigSample'].stringParam}</dd>
+    </dl>
 
 Example for accessing a property of a configuration list (with a config name `x.y.z.ConfigSampleList`):
 
-  	#!html
-  	<ul data-sly-list.item="${caconfig['x.y.z.ConfigSampleList']}">
-  		<li>stringParam: ${item.stringParam}</li>
-  	</ul>
+    #!html
+    <ul data-sly-list.item="${caconfig['x.y.z.ConfigSampleList']}">
+        <li>stringParam: ${item.stringParam}</li>
+    </ul>
 
 If you want to access nested configurations you have to use a slash "/" as separator in the property name. Example:
 
