@@ -4,7 +4,7 @@ def processContent(str) {
 	str = str.replaceAll('\\[TOC\\]', replacement)
 
 	// Temporarily disable the syntax markers (of which there are two flavors, for some reason)
-	str = str.replaceAll('(::|#\\!)(java|jsp|xml|sh|javascript) *\\n', '<!-- TODO syntax marker ($1$2) disabled -->')
+	str = str.replaceAll('(::|#\\!)(java|jsp|xml|sh|javascript|html) *\\n', '<!-- TODO syntax marker ($1$2) disabled -->')
 	return str
 }
 
