@@ -29,6 +29,11 @@ h2 {
     padding-top: 0.45em;
 }
 
+h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited {
+	color:black;
+	text-decoration:none;
+}
+
 h3 {
     font-size: 150%
 }
