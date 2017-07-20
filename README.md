@@ -49,7 +49,7 @@ We'll have a script for that, but for now the following works:
 * Activate all the required links checked by https://whimsy.apache.org/site/
 
 ### Nice to have
-* JBake 2.5.x does not support the `[TOC]` macro but apparently that will be available once JBake moves to https://github.com/vsch/flexmark-java , probably in its next version. We might wait for that and just mark the TOCs as unsupported for now.
+* JBake 2.5.x does not support the `[TOC]` macro but apparently that will be available once JBake moves to https://github.com/vsch/flexmark-java , probably in its next version as per [#376](https://github.com/jbake-org/jbake/pull/376). We might wait for that and just mark the TOCs as unsupported for now.
 * The "last changed by" information at the bottom right side of pages is missing, it was quite useful.
 
 ### Final validation, activation etc.
