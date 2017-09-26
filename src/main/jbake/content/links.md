@@ -35,12 +35,12 @@ The following screencasts demonstrate Day Software's CRX quickstart product, pow
 
 ## From ApacheCon EU 08
 
-   * [ApacheCon EU 08 Fast Feather Track Presentation on Sling](/res/docs/ApacheConEU08_FFT_Sling.pdf)
-   * [JCR Meetup Presentation on Sling Architecture](/res/docs/ApacheConEU08_JCR_Meetup_Sling_Architecture.pdf)
+   * [ApacheCon EU 08 Fast Feather Track Presentation on Sling](/docs/ApacheConEU08_FFT_Sling.pdf)
+   * [JCR Meetup Presentation on Sling Architecture](/docs/ApacheConEU08_JCR_Meetup_Sling_Architecture.pdf)
 
 ## From ApacheCon US 07
 
-   * [ApacheCon US 07 Fast Feather Track Presentation on Sling](/res/docs/ApacheConUS07_FFT_Sling.pdf)
+   * [ApacheCon US 07 Fast Feather Track Presentation on Sling](/docs/ApacheConUS07_FFT_Sling.pdf)
    * [Feathercast On Day 4 with an interview on Sling with Felix](http://feathercast.org/?p=59)
 
 ## Technology used by Sling
