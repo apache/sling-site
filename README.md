@@ -3,45 +3,33 @@ Experimenting with JBake for the Apache Sling website.
 
 See also https://issues.apache.org/jira/browse/SLING-6955
 
-## How to publish the website
-Build the site as described below, and sync the `target/sling-site-*` folder to the asf-site branch 
-of this Git repository. The ASF's gitpubsub mechanism then synchronizes that content
-on the http://sling.apache.org website.
-
-gitpubsub is active at https://sling.apache.org/ng/ for testing but as pages now contain some absolute links, navigation might lead back to the existing site (https://issues.apache.org/jira/browse/INFRA-14390)
-
 ## How to build the site locally  
 Clone this repository, run the below Maven command, http://localhost:8820/ and enjoy.
 
     mvn clean package jbake:inline -Djbake.port=8820 -Djbake.listenAddress=0.0.0.0
 
-## Publishing on the live website
-The live content is synced from the `asf-site` branch of this repository. To publish, generate the content and sync the output folder at the root of that branch.
+## How to publish the website
+Build the site using `mvn clean package` after changing the JBake settings using this patch:
 
-We'll have a script for that, but for now the following works:
+(TODO: automate this using Maven resource rewriting or something similar.)
 
-    ./bake.sh
-    
-    # verify locally staged content at http://localhost:8820/
-    
-    # if ok, commit your changes to the master branch
-    
-	# if ok, set these values in jbake.properties
-	# and generate again
-	# (temporary, while testing on sling.apache.org/ng)
-	site.host=http://sling.apache.org	
-	site.contextPath=/ng/
-
-    ./bake.sh
-    
-    git checkout -- jbake.properties
-    mv .target/sling-site-0.1-SNAPSHOT /tmp/output
-    git checkout asf-site
-    rsync -r /tmp/output/* .
-    git commit ... # do what's needed!
-    git push origin asf-site
-    
-    # content should appear at https://sling.apache.org/ng/ (for now) soone
+    diff --git a/src/main/jbake/jbake.properties b/src/main/jbake/jbake.properties
+    index 3f7121e..df175e6 100644
+    --- a/src/main/jbake/jbake.properties
+    +++ b/src/main/jbake/jbake.properties
+    @@ -1,6 +1,6 @@
+     feed.id=localhost
+    -site.host=http://localhost
+    -site.contextPath=/
+    +site.host=http://sling.apache.org      
+    +site.contextPath=/ng/
+     foundation.version=5.5.1
+     blog.title=Apache Sling
+     blog.subtitle=Work in progress...
+	 
+and then sync the `target/sling-site-*` folder to the `asf-site` branch
+of this Git repository. The ASF's gitpubsub mechanism then synchronizes that content
+on the http://sling.apache.org website, usually within a few seconds.
 
 ## TODO
 
