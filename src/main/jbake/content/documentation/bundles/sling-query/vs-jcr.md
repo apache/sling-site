@@ -11,10 +11,10 @@ As a rule of thumb - if you have a complex Java loop reading resource children o
 
 | Description                                           | JCR query | SlingQuery |
 | ------------------------------------------------------|-----------|------------|
-| You have a complex logic using Sling Resource API     | -         | Yes!       |
-| You want to find resource ancestor                    | -         | Yes!       |
-| You want to find all descendants with given attribute | Yes!      | -          |
-| You want to find all descendants of given type        | Yes!      | -          |
-| You'd like to get ordered results                     | Yes!      | -          |
+| You have a complex logic using Sling Resource API     | (-)       | Yes!       |
+| You want to find resource ancestor                    | (-)       | Yes!       |
+| You want to find all descendants with given attribute | Yes!      | (-)        |
+| You want to find all descendants of given type        | Yes!      | (-)        |
+| You'd like to get ordered results                     | Yes!      | (-)        |
 
 [1] - Actually, the `find()` operation uses QUERY strategy by default, which means that the selector string is transformed to a SQL2 query. However, the transformation process is very naïve and simply skips all conditions that can't be easily transformed to SQL2 (eg. selector `[jcr:content/jcr:title=some title]` won't be transformed as it contains some subresource reference). The result of this query is then filtere manually. See [searchStrategy](methods.html#searchstrategystrategy) for more details.
