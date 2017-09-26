@@ -217,6 +217,12 @@ Nodes, Properties and in fact complete subtrees may be described in JSON files u
 
 By default, the `sling-jcr-contentloader` bundle tries to extract certain file types during content loading. These include `json`, `xml`, `zip`, and `jar` files. Therefore all available extractors are used for content processing. However if some files should be put into the repository unextracted, the `ignoreImportProviders` directive can be used with a comma separated list of extensions that should not be extracted, like `ignoreImportProviders:="jar,zip"`. Please note that the value needs to be put into quotation marks if more than one value is used like in the example.
 
+### File name escaping
+
+When the node name you want to import with the JCR ContentLoader contains characters that are not allowed in typical file systems (e.g. a ":" is not allowed on windows file systems), you can URL-encode the file name. It uses the [Java URLDecoder](https://docs.oracle.com/javase/8/docs/api/java/net/URLDecoder.html) internally.
+
+Example: `jcr%3Acontent.txt` will be loaded into a node named `jcr:content.txt`.
+
 ### Workspace Targetting
 
 By default, initial content will be loaded into the default workspace. To override this, add a `Sling-Initial-Content-Workspace` bundle manifest header to specify the workspace. Note that *all* content from a bundle will be loaded into the same workspace. 
@@ -276,6 +282,35 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 The initial content found in the [sling-test folder of the launchpad initial content](http://svn.apache.org/repos/asf/sling/trunk/launchpad/content/src/main/resources/content/sling-test) is verified by the [InitialContentTest](http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java) when running the *launchpad/testing* integration tests.
 
 Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.
+
+
+## ACLs and Principals
+
+By adding a `security:acl` object to a content node definition in JSON you can define an ACL for this node. For each array entry in this example an ACE is added. Example:
+
+    {
+        "security:acl": [
+            { "principal": "TestGroup1", "granted": ["jcr:read","jcr:write"] },
+            { "principal": "TestUser1", "granted": ["jcr:read"], "denied": ["jcr:write"] }
+        ]
+    }
+
+If ACLs already exist on the node you can add an `order` property to each array entry controlling the position where the new ACE is inserted into the list of existing ACEs. Possible values for this property:
+
+* **first**: Place the target ACE as the first amongst its siblings
+* **last**: Place the target ACE as the last amongst its siblings
+* **before xyz**: Place the target ACE immediately before the sibling whose name is xyz
+* **after xyz**: Place the target ACE immediately after the sibling whose name is xyz
+* **numeric**: Place the target ACE at the specified index
+
+You can also add new principals (users or groups) to the repository by adding a `security:principals` object. This is not related to any specific path/node, so you can add this JSON fragment anywhere. Example for creating one use and one group:
+
+    {
+        "security:principals": [
+            { "name": "TestUser1", "password": "mypassword", "extraProp1": "extraProp1Value" },
+            { "name": "TestGroup1", "isgroup": "true", "members": ["TestUser1"], "extraProp1": "extraProp1Value" }
+        ]
+    }
 
 
 [i18n-json-file-based]: https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html#json-file-based

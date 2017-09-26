@@ -69,6 +69,7 @@ First prepare your POMs for release:
         ...
 
     * If you experience an error during deployment like a HTTP 401 check your settings for the required server entries as outlined in the *Prerequisites*
+    * Depending on the OS & the gpg version you have, you might hit https://issues.apache.org/jira/browse/MGPG-59, in which case you need, before maven command, to run `gpg --use-agent --armor --detach-sign --output $(mktemp) pom.xml`
     * Make sure the generated artifacts respect the Apache release [rules](http://www.apache.org/dev/release.html): NOTICE and LICENSE files should be present in the META-INF directory within the jar. For \-sources artifacts, be sure that your POM does not use the maven-source-plugin:2.0.3 which is broken. The recommended version at this time is 2.0.4
     * You should verify the deployment under the [snapshot](https://repository.apache.org/content/groups/snapshots/org/apache/sling) repository on Apache
 
@@ -188,6 +189,7 @@ If the vote passes:
 1. Push the release to [https://dist.apache.org/repos/dist/release/sling/](https://dist.apache.org/repos/dist/release/sling/). This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you.
 	1. Commit the released artifacts to [https://dist.apache.org/repos/dist/release/sling/](https://dist.apache.org/repos/dist/release/sling/) which is replicated to [http://www.apache.org/dist/sling/](http://www.apache.org/dist/sling/) quickly via svnpubsub. Hint: use svn import to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check&#95;staged&#95;release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file \*.asc.\*).
         * Make sure to *not* change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!
+        * Following the SVN commit you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports.
     1. Delete the old release artifacts from that same dist.apache.org svn folder (the dist directory is archived)
 1. Push the release to Maven Central
 	1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging*. Find your closed staging repository and select it by checking the select box. Select the *Releases* repository from the drop-down list and click *Release* from the menu above.
@@ -206,6 +208,11 @@ Also create a new version X.Y.Z+2, if that hasn't already been done.
 And keep the versions sorted, so when adding a new version moved it down to just above the previous versions.
 
 Close all issues associated with the released version.
+
+## Update the Sling Launchpad
+
+If the bundle was already included in the Sling Launchpad or if it a new release that should be included
+add it with the release version in the provisioning model under `launchpad/builder/src/main/provisioning`.
 
 
 ## Create an Announcement

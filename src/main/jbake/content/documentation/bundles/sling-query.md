@@ -35,8 +35,8 @@ SlingQuery is inspired by the jQuery framework. jQuery is the source of method n
 
 ## Features
 
-* useful [operations](https://github.com/Cognifide/Sling-Query/wiki/Method-list) to traverse the resource tree,
-* flexible [filtering syntax](https://github.com/Cognifide/Sling-Query/wiki/Selector-syntax),
+* useful [operations]({{ refs.methods.path }}) to traverse the resource tree,
+* flexible [filtering syntax]({{ refs.selectors.path }}),
 * lazy evaluation of the query result,
 * `SlingQuery` object is immutable (thread-safe),
 * fluent, friendly, jQuery-like API.
@@ -53,14 +53,13 @@ Add following Maven dependency to your `pom.xml`:
 
 ## Documentation
 
-* [CIRCUIT 2014 presentation](http://cognifide.github.io/Sling-Query/circuit2014/)
-* [Basic ideas](https://github.com/Cognifide/Sling-Query/wiki/Basic-ideas)
-* [Method list](https://github.com/Cognifide/Sling-Query/wiki/Method-list)
-* [Selector syntax](https://github.com/Cognifide/Sling-Query/wiki/Selector-syntax)
-	* [Operator list](https://github.com/Cognifide/Sling-Query/wiki/Operator-list)
-	* [Modifier list](https://github.com/Cognifide/Sling-Query/wiki/Modifier-list)
-	* [Hierarchy operator list](https://github.com/Cognifide/Sling-Query/wiki/Hierarchy-operator-list)
-* [Examples](https://github.com/Cognifide/Sling-Query/wiki/Examples)
+* [Basic ideas]({{ refs.basic-ideas.path }})
+* [Method list]({{ refs.methods.path }})
+* [Selector syntax]({{ refs.selectors.path }})
+      * [Operator list]({{ refs.operators.path }})
+      * [Modifier list]({{ refs.modifiers.path }})
+      * [Hierarchy operator list]({{ refs.hierarchy-operators.path }})
+* [Examples]({{ refs.examples.path }})
 
 ## External resources
 

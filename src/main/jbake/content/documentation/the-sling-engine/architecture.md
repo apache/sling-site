@@ -16,7 +16,7 @@ The following sections elaborate on each of these highlights.
 
 ## OSGi
 
-[OSGi](http://www.osgi.org) is a consortium that has developed a specification to build modular and extensible applications. This offers [various benefits](http://www.osgi.org/About/WhyOSGi). We deal mainly with two parts of the specifications: The Core Specification, which defines the OSGi Framework and Core Services, and the Compendium Services Specification, which defines a host of services that extend the functionality of the OSGi Framework.
+[OSGi](http://www.osgi.org) is a consortium that has developed a specification to build modular and extensible applications. This offers [various benefits](https://www.osgi.org/developer/benefits-of-using-osgi/). We deal mainly with two parts of the specifications: The Core Specification, which defines the OSGi Framework and Core Services, and the Compendium Services Specification, which defines a host of services that extend the functionality of the OSGi Framework.
 
 ### OSGi Framework
 

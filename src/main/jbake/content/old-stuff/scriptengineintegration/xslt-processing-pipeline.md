@@ -19,7 +19,7 @@ The source code is found in the [contrib/scripting/xproc](http://svn.apache.org/
 
 Install the `org.apache.sling.scripting.xproc` bundle in order to work with XProc. You can achieve this either building it from `contrib/scripting/xproc` folder in the Sling trunk or by downloading it from the Apache Snapshot repository here: [org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar](http://people.apache.org/repo/m2-snapshot-repository/org/apache/sling/org.apache.sling.scripting.xproc/2.0.0-incubator-SNAPSHOT/org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar).
 
-To deploy the bundle go to the bundles page of Apache Felix Web Console (http://localhost:8888/system/console/bundles), select the bundle file to upload, check the Start check box and click Install or Update button.
+To deploy the bundle go to the bundles page of Apache Felix Web Console (http://localhost:8080/system/console/bundles), select the bundle file to upload, check the Start check box and click Install or Update button.
 
 In order to check whether XProc scripting engine has been installed, go to the Script Engines page of the Apache Felix Web Console and see the entry for XProc there:
 
@@ -49,7 +49,7 @@ Let's see some samples in order to understand the processing behaviour.
 
         #!bash
         $ curl -u admin:admin -F sling:resourceType=xproc -F title="some title" \
-        -F text="And some text" http://localhost:8888/foo
+        -F text="And some text" http://localhost:8080/foo
 
 2. Use WebDAV or curl to create a pipeline script at `/apps/xproc/xproc.xpl` :
 
@@ -104,7 +104,7 @@ Let's see some samples in order to understand the processing behaviour.
 4. Request foo.html to execute the pipeline:
 
         #!bash
-        $ curl http://admin:admin@localhost:8888/foo.html
+        $ curl http://admin:admin@localhost:8080/foo.html
         
         <?xml version="1.0" encoding="UTF-8"?>
         <two>
@@ -129,7 +129,7 @@ Let's see some samples in order to understand the processing behaviour.
 6. Again, request foo.html to execute the pipeline:
 
         #!bash
-        $ curl http://admin:admin@localhost:8888/foo.html
+        $ curl http://admin:admin@localhost:8080/foo.html
         
         <?xml version="1.0" encoding="UTF-8"?>
         <two>
@@ -160,7 +160,7 @@ Let's see some samples in order to understand the processing behaviour.
 9. Request foo.html to execute the pipeline:
 
         #!bash
-        $ curl http://admin:admin@localhost:8888/foo.html
+        $ curl http://admin:admin@localhost:8080/foo.html
         
         <?xml version="1.0" encoding="UTF-8"?>
         <two>

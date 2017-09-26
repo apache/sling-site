@@ -54,15 +54,15 @@ We use `curl` to create content, to make it easy to reproduce the example by cop
 By default, JCRInstall picks up bundles found in folders named *install* under `/libs` and `/apps`, so we start by creating such a folder:
 
 
-    curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest
-    curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
+    curl -X MKCOL  http://admin:admin@localhost:8080/apps/jcrtest
+    curl -X MKCOL  http://admin:admin@localhost:8080/apps/jcrtest/install
 
 
 And we copy the bundle to install in that folder (a backslash in command lines means *continued on next line*):
 
 
     curl -T desktop_awt_all-2.0.0.jar \
-      http://admin:admin@localhost:8888/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
+      http://admin:admin@localhost:8080/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
 
 
 That's it. After 2-3 seconds, the bundle should be picked up by JCRInstall, installed and started. If this works you'll see a small *Knopflerfish Desktop* window on your desktop, and Sling's OSGi console can of course be used to check the details.
@@ -71,7 +71,7 @@ Removing the bundle from the repository will cause it to be uninstalled, so:
 
 
     curl -X DELETE \
-      http://admin:admin@localhost:8888/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
+      http://admin:admin@localhost:8080/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
 
 
 Should cause the *Knopflerfish Desktop* window to disappear as the bundle is uninstalled.
@@ -86,13 +86,13 @@ Let's try this feature by creating a configuration with two properties:
     curl \
       -F "jcr:primaryType=sling:OsgiConfig" \
       -F foo=bar -F works=yes \
-      http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid
+      http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid
 
 
 And verify the contents of our config node:
 
     curl \
-      http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid.json
+      http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid.json
 
 
 Which should display something like
@@ -102,7 +102,7 @@ Which should display something like
     "jcr:primaryType":"sling:OsgiConfig","works":"yes"}
 
 
-At this point, JCRInstall should have picked up our new config and installed it. The logs would confirm that, but we can also use the OSGi console's config status page (http://localhost:8888/system/console/config) to check it. That page should now contain:
+At this point, JCRInstall should have picked up our new config and installed it. The logs would confirm that, but we can also use the OSGi console's config status page (http://localhost:8080/system/console/config) to check it. That page should now contain:
 
 
     PID=some.config.pid
@@ -120,7 +120,7 @@ Let's try modifying the configuration parameters:
 
     curl \
       -F works=updated -F even=more \
-      http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid
+      http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid
 
 
 And check the changes in the console page:
@@ -139,7 +139,7 @@ We can now delete the configuration node:
 
 
     curl -X DELETE \
-      http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid
+      http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid
 
 
 And verify that the corresponding configuration is gone in the console page (after 1-2 seconds, like for all other JCRInstall operations).

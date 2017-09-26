@@ -54,6 +54,15 @@ The language is self-explaining but please refer to the actual test cases for de
 
     # Nodetypes inside the path apply to just that path element
     create path /content/example.com(sling:Folder)
+
+    # Nodetypes and mixins applied to just a path element
+    # Specifying mixins require
+    # o.a.s.repoinit.parser 1.2.0 and
+    # o.a.s.jcr.repoinit 1.2.0
+    create path /content/example.com(sling:Folder mixin mix:referenceable,mix:shareable)
+
+    # Mixins applied to just a path element
+    create path /content/example.com(mixin mix:referenceable)
 	
 	# A nodetype in front is used as the default for all path elements
     create path (nt:unstructured) /var
@@ -72,6 +81,14 @@ The language is self-explaining but please refer to the actual test cases for de
 	    allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
 	    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
 	end
+
+	# Set repository level ACL
+	# Setting repository level ACL require
+    # o.a.s.repoinit.parser 1.2.0 and
+    # o.a.s.jcr.repoinit 1.2.0
+    set repository ACL for alice,bob
+        allow jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement
+    end
 	
 	# register namespace requires 
 	# o.a.s.repoinit.parser 1.0.4
@@ -97,6 +114,10 @@ The language is self-explaining but please refer to the actual test cases for de
 	===>>
 
     create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a88ce31a08826899d54ef7183998b5
+
+    # disable service user
+    create service user deprecated_service_user
+    disable service user deprecated_service_user : "Disabled user to make an example"
 
     create service user the-last-one
 

@@ -111,9 +111,11 @@ The `ServiceUserMapper` defines the following API:
 The implementation uses two fallbacks in case no mapping can be found for the given subServiceName
 
 1. Use user mapping for the serviceName only (not considering subServiceName)
-1. Use default user (if one is configured).
+1. Use default user (if one is configured in the OSGi configuration for PID `	org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl`).
+1. Use default mapping (if it is enabled in the OSGi configuration for PID `	org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl`) which looks up a user with id `serviceuser--<bundleId>[--<subservice-name>]` (since Service User Mapper 1.3.0, [SLING-6227](https://issues.apache.org/jira/browse/SLING-6772)).
 
-In addition a service named `ServiceUserMapped` is registered for each bundle and subservice name for which a service user mapping is configured ([SLING-4312](https://issues.apache.org/jira/browse/SLING-4312)). By explicitly defining a (static) reference towards `ServiceUserMapped` one can defer starting the service until that service user mapping is available.
+In addition a service named `ServiceUserMapped` is registered for each bundle and subservice name for which a service user mapping is explicitly configured ([SLING-4312](https://issues.apache.org/jira/browse/SLING-4312)).  By explicitly defining a (static) reference towards `ServiceUserMapped` one can defer starting the service until that service user mapping is available.
+Please note, that the two last default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work.
 
 ### `ResourceResolverFactory`
 
@@ -157,11 +159,11 @@ service. The additional Subservice Name may be provided with the
 ### Service User Mappings
 
 For each service/subservice name combination an according mapping needs to be provided. The mapping binds a service name/subservice name to a JCR system user.
-This is configured through an OSGi configuration for the factory configuration with PID `org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended` [SLING-3578](https://issues.apache.org/jira/browse/SLING-3578). There you can set one configuration property named `user.mapping` getting a String array as value where each entry must stick to the following format:
+This is configured through an OSGi configuration for the factory configuration with PID `org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended` (added in [SLING-3578](https://issues.apache.org/jira/browse/SLING-3578)). There you can set one configuration property named `user.mapping` getting a String array as value where each entry must stick to the following format:
 
-    <service-name>[:<subservice-name>]=<authorizable id of a JCR system user>]
+    <service-name>[:<subservice-name>]=<authorizable id of a JCR system user>
 
-The according user must exist at the point in time where `ResourceResolverFactory.getServiceResourceResolver(...)` or `SlingRepository.loginService(...)` is called. If you rely on one of those methods in your `activate` method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service `ServiceUserMapped` ([SLING-4312](https://issues.apache.org/jira/browse/SLING-4312)), optionally with a target filter on property `subServiceName` (in case such a subservice name is used). The service `ServiceUserMapped` does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components. However this waits only for the mapping configuration to be available, it does not wait for the service user itself to be available.
+The according user must exist at the point in time where `ResourceResolverFactory.getServiceResourceResolver(...)` or `SlingRepository.loginService(...)` is called. If you rely on one of those methods in your `activate` method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service `ServiceUserMapped` (see Section `ServiceUserMapper` above), optionally with a target filter on property `subServiceName` (in case such a subservice name is used). The service `ServiceUserMapped` does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components. However this waits only for the mapping configuration to be available, it does not wait for the service user itself to be available.
 
 Example OSGi DS Component
 
@@ -176,8 +178,6 @@ Example OSGi DS Component
     )
     class MyComponent {
     }
-
-There is a default mapping applied if no OSGi configuration is available for the mapping. The default is: "serviceuser--" + bundleId [ + "--" + subservice-name]. Please note, that these default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work.
 
 ## Deprecation of administrative authentication
 

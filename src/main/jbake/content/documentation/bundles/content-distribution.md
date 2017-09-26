@@ -36,6 +36,13 @@ A forward distribution setup allows one to transfer content from a source instan
         org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default
             name="default"
 
+#### Trigger forward distribution
+
+Forward distribution can be triggered by sending a `POST` HTTP request to the agent resource on the source instance with the parameter `action=ADD` and parameters `path=<resourcePath>`.
+
+The example below distributes the path `/content/sample1`
+
+    $ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d 'action=ADD' -d 'path=/content/sample1'
 
 ### Reverse distribution
 
@@ -66,6 +73,13 @@ A reverse distribution setup allows one to transfer content from a farm of sourc
             agent.target="(name=reverse)"
             
             
+#### Trigger reverse distribution
+
+Reverse distribution can be triggered by sending a `POST` HTTP request to the agent resource on the target instance with the parameter `action=PULL`.
+
+The example below adds the the path `/content/sample1` and then reverse distribute it.
+
+    $ curl -v -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/publish -d 'action=PULL' -d 'path=/content/sample1'
 
 ### Sync distribution
 
@@ -164,11 +178,42 @@ A multidatacenter sync distribution setup allows one to synchronize content in a
 
 ## Additional options
 
-### How to trigger distribution over HTTP?
-
 ### How to configure binary-less distribution?
 
-### How to configure priority paths?
+Binary-less distribution is supported for deployments over a shared data store and involving agents that leverage the
+Vault based Distribution package exporter (Factory PID:
+org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory) package builder.
 
-### How to configure error queues?
+With binary-less mode enabled, the content packages distributed contain references to binaries rather than
+the actual binaries.
 
+SCD does not explicitly deal with binary references. Instead, it configures Apache Jackrabbit FileVault
+export options in order to assemble/import binary references.
+
+Upon import, if a referenced binary is not visible on the destination instance, SCD will retry distributing the content package
+after a delay has elapsed.
+
+Binary-less is configured by setting the 'useReferences' to true on the VaultDistributionPackageBuilderFactory.
+
+### How to configure priority queue?
+
+SCD agents allow to prioritize the distribution of content depending on its path.
+This feature improves the delays in use cases where a subset of the content to be distributed must meet tighter delay
+than the remaining one (e.g. news flash).
+
+Each agent can be configured with one or more priority queues.
+
+In order to setup the priority queues, configure the 'priorityQueues' agent property by providing the queuePrefix and path regular expression.
+
+### How to configure retry strategy?
+
+The agent behaviour upon failed distribution request can be configured via the Retry Strategy 'retry.strategy' and
+'retry.attempts' properties.
+
+With the 'none' strategy, an agent will retry distributing an item forever, blocking the queue until the distribution succeeds.
+The 'none' strategy guarantees the distribution order but may block the queue until someone resolves the situation.
+
+With the 'errorQueue' strategy, an agent will automatically create an additional error queue. The agent will
+retry up to 'retry.attempts' attempts then move the failed item to the error queue. The error queue is passive and allow
+to keep track of the failed distribution item for post analysis.
+The 'errorQueue' strategy does not guarantee the distribution order, but it guarantee that the queue is stuck for a bounded number of retries.

@@ -334,8 +334,8 @@ The following properties can be configured (at [/system/console/configMgr/org.ap
     2x the TTL, after which time the message will be ignored.
 
 
-  [1]: http://localhost:8888/system/console/configMgr/org.apache.sling.discovery.impl.Config
-  [2]: http://localhost:8888/system/console/topology
+  [1]: http://localhost:8080/system/console/configMgr/org.apache.sling.discovery.impl.Config
+  [2]: http://localhost:8080/system/console/topology
 
 
 ## discovery.oak: Oak-based, OOTB-implementation

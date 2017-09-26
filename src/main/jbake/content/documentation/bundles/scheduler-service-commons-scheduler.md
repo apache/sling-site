@@ -13,9 +13,11 @@ The notion of Job used in this context is a different one than the one used for 
 
 The following examples show you how to define and schedule a job by leveraging the whiteboard pattern.
 
-### Scheduling with a cron expression 
+### Scheduling with a cron expression
 
-The following job is executed every minute by setting *scheduler.expression* to the cron expression *"0 * * * * ?"*:
+The cron expression format is described in the [Quartz Cron Documentation](http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html#format) and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute). 
+
+The following job is executed every minute by setting *scheduler.expression* to the cron expression `0 * * * * ?`:
 
 
     package sling.docu.examples;

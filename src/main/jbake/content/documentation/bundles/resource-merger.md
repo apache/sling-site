@@ -36,27 +36,27 @@ Property Name | Type | Description
 sling:hideProperties | String[] | Hides the properties with the given names. `*` hides all properties (since version 1.3.2 the wildcard only affects underlying properties and no longer local ones, see also [SLING-5468](https://issues.apache.org/jira/browse/SLING-5468)).
 sling:hideChildren| String[] | Hides the child resources with the given names. `*` hides all child resources (since version 1.3.2 the wildcard only affects underlying child resources and no longer local ones, see also [SLING-5468](https://issues.apache.org/jira/browse/SLING-5468)). If one value starts with `!` this is a negation (which means the property with the given value should not be hidden). Since by default nothing is hidden the negation is only useful if you specify multiple values for this property. E.g. giving the values `[!child1,*]` hides all children except for the one with the name `child1`. If you have a resource name starting with `!` you must escape it with an additional `!` in front if you want to reference it in `sling:hideChildren`, e.g. `!!child1` means that the resource with the name `!child1` should be hidden.
 sling:hideResource | Boolean | If `true` then the resource with the name which contains this property should not be exposed!
-sling:orderBefore | String | Contains the name of the preceeding sibling resource. This is influencing the order of resources when calling e.g. `Resource.listChildren()` or `Resource.getChildren()` on the merged resource. This is only necessary if the default resource order is not sufficient (see below).
+sling:orderBefore | String | Contains the name of the preceding sibling resource. This is influencing the order of resources when calling e.g. `Resource.listChildren()` or `Resource.getChildren()` on the merged resource. This is only necessary if the default child resource order is not sufficient (see below).
 
 # Child Resource Order
 
 For a merged resource the order of its child resources is the following:
-First the ones from the base resource, then the ones from the overlaying resources. The children only defined by the topmost resource come last.
+First the ones from the underlying resource, then the ones from the overlying resources.
 
-In case the same child is defined in more than one resource, its position is taken from the highest overlaying resource (since version 1.3.2, see also [SLING-4915](https://issues.apache.org/jira/browse/SLING-4915)).
+In case the same child is defined in more than one resource, its position is taken from the highest overlaying resource (since version 1.3.2, see also [SLING-4915](https://issues.apache.org/jira/browse/SLING-4915), for some more examples for more complicated merges look at [SLING-6956](https://issues.apache.org/jira/browse/SLING-6956)).
 For example:
     
     base/
     	+--child1
-    	+--child2
     	+--child3
+    	+--child5
     	
     overlay/
-        +--child4
     	+--child2
     	+--child3
+    	+--child4
     	
-    resulting order: child1, child4, child2, child3
+    resulting order: child1, child5, child2, child3, child4
 
 You can overwrite that behaviour by leveraging the `sling:orderBefore` property.
 

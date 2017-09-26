@@ -255,17 +255,36 @@ The `@PostConstruct` annotation can be used to add methods which are invoked upo
 
 `@PostConstruct` methods in a super class will be invoked first.
 
+Since Sling Models Implementation 1.4.6, `@PostConstruct` methods may return a `false` boolean value in which case the model creation will fail without logging any exception
+(a message will be logged at the `DEBUG` level).
+
 ## Via 
-If the injection should be based on a JavaBean property of the adaptable, you can indicate this using the `@Via` annotation:
+In some cases, a different object should be used as the adaptable instead of the original adaptable. This can be done
+using the `@Via` annotation. By default, this can be done using a JavaBean property of the adaptable:
 
 	::java
 	@Model(adaptables=SlingHttpServletRequest.class)
 	public interface MyModel {
 	 
-	    // will return request.getResource().adaptTo(ValueMap.class).get("propertyName", String.class)
+	    // will return request.getResource().getValueMap().get("propertyName", String.class)
 	    @Inject @Via("resource")
 	    String getPropertyName();
 	} 
+
+
+A different strategy can be used to define the adaptable by specifying a `type` attribute:
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public interface MyModel {
+
+		// will return resource.getChild("jcr:content").getValueMap().get("propertyName", String.class)
+        @Inject @Via(value = "jcr:content", type = ChildResource.class)
+        String getPropertyName();
+
+    }
+
+See the [Via Types](#via-types-since-api-134implementation-140) section below for details on the included types for `@Via`.
 
 ## Source
 If there is ambiguity where a given injection could be handled by more than one injector, the `@Source` annotation can be used to define which injector is responsible:
@@ -361,7 +380,7 @@ Injectors are invoked in order of their service ranking, from lowest to highest.
 :   methods to call upon model option creation (only for model classes)
 
 `@Via`
-:   use a JavaBean property of the adaptable as the source of the injection
+:   change the adaptable as the source of the injection
 
 `@Default`
 :   set default values for a field or method
@@ -522,3 +541,26 @@ If you want to generate a bundle header compliant with Sling Models < 1.3.4 (i.e
             <_plugin>org.apache.sling.bnd.models.ModelsScannerPlugin;generatePackagesHeader=true</_plugin>
         </instructions>
     </configuration>
+
+# Via Types (Since API 1.3.4/Implementation 1.4.0)
+ 
+As discussed in the [Via](#via) section above, it is possible to select a different adaptable than the original value using the `@Via` annotation. The following standard types are provided (all types are in the package `org.apache.sling.models.annotations.via`)
+
+`@Via` type value             | Description
+----------------------------- | ------------------------------ 
+`BeanProperty`  (default)     | Uses a JavaBean property from the adaptable.
+`ChildResource`               | Uses a child resource from the adaptable, assuming the adaptable is a `Resource`.
+`ForcedResourceType`          | Creates a wrapped resource with the provided resource type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
+`ResourceSuperType`           | Creates a wrapped resource with the resource type set to the adaptable's resource super type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
+
+## Custom Via Type
+
+Defining your own type for the `@Via` annotation is a two step process. The first step is to create a marker class implementing the `@ViaProviderType` annotation. This class can be entirely empty, e.g.
+
+    ::java
+    public class MyCustomProviderType implements ViaProviderType {}
+
+The second step is to create an OSGi service implementing the `ViaProvider` interface. This interface defines two methods:
+
+* `getType()` should return the marker class. 
+* `getAdaptable()` should return the new adaptable or `ViaProvider.ORIGINAL` to indicate that the original adaptable should be used.
