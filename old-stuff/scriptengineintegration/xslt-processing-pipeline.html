@@ -80,7 +80,7 @@
 <p>The source code is found in the <a href="http://svn.apache.org/repos/asf/incubator/sling/trunk/contrib/scripting/xproc">contrib/scripting/xproc</a> module.</p>
 <h2><a href="#how-to-install" name="how-to-install">How to Install</a></h2>
 <p>Install the <code>org.apache.sling.scripting.xproc</code> bundle in order to work with XProc. You can achieve this either building it from <code>contrib/scripting/xproc</code> folder in the Sling trunk or by downloading it from the Apache Snapshot repository here: <a href="http://people.apache.org/repo/m2-snapshot-repository/org/apache/sling/org.apache.sling.scripting.xproc/2.0.0-incubator-SNAPSHOT/org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar">org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar</a>.</p>
-<p>To deploy the bundle go to the bundles page of Apache Felix Web Console (http://localhost:8888/system/console/bundles), select the bundle file to upload, check the Start check box and click Install or Update button.</p>
+<p>To deploy the bundle go to the bundles page of Apache Felix Web Console (http://localhost:8080/system/console/bundles), select the bundle file to upload, check the Start check box and click Install or Update button.</p>
 <p>In order to check whether XProc scripting engine has been installed, go to the Script Engines page of the Apache Felix Web Console and see the entry for XProc there:</p>
 <pre><code>Apache Sling Scripting W3C XML Processing Support, 2.0.0-incubator-SNAPSHOT
     Language     XMLProc, 1.0
@@ -103,7 +103,7 @@
     <p>Create some content</p>
     <pre><code>#!bash
 $ curl -u admin:admin -F sling:resourceType=xproc -F title=&quot;some title&quot; \
--F text=&quot;And some text&quot; http://localhost:8888/foo
+-F text=&quot;And some text&quot; http://localhost:8080/foo
 </code></pre>
   </li>
   <li>
@@ -156,7 +156,7 @@ $ curl -u admin:admin -F sling:resourceType=xproc -F title=&quot;some title&quot
   <li>
     <p>Request foo.html to execute the pipeline:</p>
     <pre><code>#!bash
-$ curl http://admin:admin@localhost:8888/foo.html
+$ curl http://admin:admin@localhost:8080/foo.html
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;two&gt;
@@ -180,7 +180,7 @@ $ curl http://admin:admin@localhost:8888/foo.html
   <li>
     <p>Again, request foo.html to execute the pipeline:</p>
     <pre><code>#!bash
-$ curl http://admin:admin@localhost:8888/foo.html
+$ curl http://admin:admin@localhost:8080/foo.html
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;two&gt;
@@ -210,7 +210,7 @@ $ curl http://admin:admin@localhost:8888/foo.html
   <li>
     <p>Request foo.html to execute the pipeline:</p>
     <pre><code>#!bash
-$ curl http://admin:admin@localhost:8888/foo.html
+$ curl http://admin:admin@localhost:8080/foo.html
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;two&gt;

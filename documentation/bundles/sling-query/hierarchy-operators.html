@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling :: Hierarchy operators</title>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        
+    </head>    <body>
+<div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><h1 class="draft">DRAFT 2017 WEBSITE - SLING-6955</h1><div class="menu">
+            <p>
+                <strong><a href="/ng/documentation.html">Documentation</a></strong><br/>
+                <a href="/ng/documentation/getting-started.html">Getting Started</a><br/>
+                <a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/>
+                <a href="/ng/documentation/development.html">Development</a><br/>
+                <a href="/ng/documentation/bundles.html">Bundles</a><br/>
+                <a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/>
+                <a href="/ng/documentation/configuration.html">Configuration</a>
+            </p><p>
+                <a href="http://s.apache.org/sling.wiki">Wiki</a><br/>
+                <a href="http://s.apache.org/sling.faq">FAQ</a><br/>
+                
+            </p><p>
+                <strong>API Docs</strong><br/>
+                <a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/>
+                <a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/>
+                <a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/>
+                <a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/>
+                <a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/>
+                <a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/>
+                
+            </p><p>
+                <strong>Project info</strong><br/>
+                <a href="/ng/downloads.cgi">Downloads</a><br/>
+                <a href="http://www.apache.org/licenses/">License</a><br/>
+                <a href="/ng/contributing.html">Contributing</a><br/>
+                <a href="/ng/news.html">News</a><br/>
+                <a href="/ng/links.html">Links</a><br/>
+                <a href="/ng/project-information.html">Project Information</a><br/>
+                <a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/>
+                <a href="/ng/project-information/security.html">Security</a><br/>
+                
+            </p><p>
+                <strong>Source</strong><br/>
+                <a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/>
+                <a href="git://git.apache.org/sling.git">Git</a><br/>
+                <a href="https://github.com/apache/sling">Github Mirror</a><br/>
+                
+            </p><p>
+                <strong>Sponsorship</strong><br/>
+                <a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/>
+                <a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/>
+                <a href="https://donate.apache.org/">Donate!</a><br/>
+                <a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/>
+                
+            </p><p>
+                <strong><a href="/ng/sitemap.html">Site Map</a></strong>
+            </p>
+        </div>        <div class="main">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles/sling-query.html">Sling Query</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Hierarchy operators
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h3>Child operator (<code>parent &gt; child</code>)</h3>
+<p>Select all direct child resources specified by <code>child</code> of resources specified by <code>parent</code></p>
+<pre><code>// find all richtext components placed directly into parsys resources
+$(resource).find(&#39;foundation/components/parsys &gt; foundation/components/richtext&#39;)
+// alternative version
+$(resource).find(&#39;foundation/components/parsys&#39;).children(&#39;foundation/components/richtext&#39;)
+</code></pre>
+<h3>Descendant operator (<code>ancestor descendant</code>)</h3>
+<p>Select all resources that are <code>descendant</code>s of a given <code>ancestor</code></p>
+<pre><code>// find all resources containing `someAttribute` on the `cq:Page`s being direct children of the resource
+$(resource).children(&#39;cq:Page [someAttribute]&#39;)
+// alternative version
+$(resource).children(&#39;cq:Page&#39;).find(&#39;[someAttribute]&#39;)
+</code></pre>
+<h3>Next adjacent operator (<code>prev + next</code>)</h3>
+<p>Selects all next resources matching <code>next</code> that are immediately preceded by a sibling <code>prev</code></p>
+<pre><code>// find next sibling of the cq:Page containing the resource
+$(resource).closest(&#39;cq:Page + cq:Page&#39;)
+// alternative version
+$(resource).closest(&#39;cq:Page&#39;).next(&#39;cq:Page&#39;)
+</code></pre>
+<h3>Next siblings operator (<code>prev ~ next</code>)</h3>
+<p>Selects all sibling resources that follow after the <code>prev</code> element, have the same parent, and match the filtering <code>siblings</code> selector</p>
+<pre><code>// find all next siblings of the cq:Page containing the resource
+$(resource).closest(&#39;cq:Page ~ cq:Page&#39;)
+// alternative version
+$(resource).closest(&#39;cq:Page&#39;).nextAll(&#39;cq:Page&#39;)
+</code></pre></section></div></div>
+<div class="footer">
+                <div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

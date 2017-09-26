@@ -78,9 +78,9 @@
 <h2><a href="#audience" name="audience">Audience</a></h2>
 <p>Although this is a simple sample, it requires some custom settings to work. If you're just starting with Sling, <a href="/documentation/getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a> might be a better choice.</p>
 <h2><a href="#step-0-start-configure-and-login-to-sling" name="step-0-start-configure-and-login-to-sling">Step 0: Start, configure and login to Sling</a></h2>
-<p>See <a href="/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a> for how to start Sling. Start it on port 8888 for the below links to work.</p>
-<p>For this sample we need the optional <em>org.apache.sling.samples.path-based.rtp</em> bundle, if it's not present in the <a href="http://localhost:8888/system/console/bundles">OSGi console</a>, install and start it. That bundle is not released yet so you might need to build it yourself, from its <a href="http://svn.apache.org/repos/asf/sling/trunk/samples/path-based-rtp">source</a>. The bundle must then appear in the <a href="http://localhost:8888/system/console/bundles">OSGI console's list of bundles</a>, with name = <em>org.apache.sling.samples.path-based.rtp</em> and status = <em>Active</em>.</p>
-<p>Then, login using <a href="http://localhost:8888/?sling:authRequestLogin=1">http://localhost:8888/?sling:authRequestLogin=1</a> which should prompt you for a username and password, use <em>admin</em> and <em>admin</em>. Once that's done, <a href="http://localhost:8888/index.html">http://localhost:8888/index.html</a> should say <em>You are currently logged in as user <em>admin</em> to workspace <em>default</em></em>.</p>
+<p>See <a href="/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a> for how to start Sling. Start it on port 8080 for the below links to work.</p>
+<p>For this sample we need the optional <em>org.apache.sling.samples.path-based.rtp</em> bundle, if it's not present in the <a href="http://localhost:8080/system/console/bundles">OSGi console</a>, install and start it. That bundle is not released yet so you might need to build it yourself, from its <a href="http://svn.apache.org/repos/asf/sling/trunk/samples/path-based-rtp">source</a>. The bundle must then appear in the <a href="http://localhost:8080/system/console/bundles">OSGI console's list of bundles</a>, with name = <em>org.apache.sling.samples.path-based.rtp</em> and status = <em>Active</em>.</p>
+<p>Then, login using <a href="http://localhost:8080/?sling:authRequestLogin=1">http://localhost:8080/?sling:authRequestLogin=1</a> which should prompt you for a username and password, use <em>admin</em> and <em>admin</em>. Once that's done, <a href="http://localhost:8080/index.html">http://localhost:8080/index.html</a> should say <em>You are currently logged in as user <em>admin</em> to workspace <em>default</em></em>.</p>
 <h2><a href="#step-1-creating-content" name="step-1-creating-content">Step 1: Creating content</a></h2>
 <p>The easiest way to create content in Sling is to use an HTTP POST request, let's use a simple HTML form:</p>
 <pre><code>&lt;html&gt;
@@ -109,15 +109,15 @@
 &lt;/html&gt;
 </code></pre>
 <p>That's two input fields, a submit button and a hidden field that tells Sling what to do after the POST (in this case: redirect to the html view of the node that was just created).</p>
-<p>To test the form, start Sling and save the above script as {{/apps/blog/blog.esp}} [^esp] in the Sling repository - a WebDAV mount is the easiest way to do that. Browsing to <a href="http://localhost:8888/content/blog/*.html">http://localhost:8888/content/blog/*.html</a> [^port] should display the above form.</p>
-<p>[^esp]: ESP is Sling's server-side javascript language [^port]: This assumes your instance of Sling is running on port 8888. If that's not the case, adjust the example URLs accordingly.</p>
+<p>To test the form, start Sling and save the above script as {{/apps/blog/blog.esp}} [^esp] in the Sling repository - a WebDAV mount is the easiest way to do that. Browsing to <a href="http://localhost:8080/content/blog/*.html">http://localhost:8080/content/blog/*.html</a> [^port] should display the above form.</p>
+<p>[^esp]: ESP is Sling's server-side javascript language [^port]: This assumes your instance of Sling is running on port 8080. If that's not the case, adjust the example URLs accordingly.</p>
 <p>Input some data (using "foo" for the title, for the sake of our examples below), save the form, and Sling should display the form again, using the URL of the node that was just created.</p>
 <div class="note">
 If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to add or modify item_ it means that you are not logged in as user _admin_. See instructions above for logging in.
 </div>
 <p>At this point you're probably looking at an empty form with an URL ending in <em>foo</em>, if you used that for the title. Or <em>foo_0</em> or <em>foo_1</em> if other _foo_s already existed. Don't worry about not seeing your content, we'll fix that right away.</p>
 <h2><a href="#step-2-where-s-my-content-" name="step-2-where-s-my-content-">Step 2: Where's my content?</a></h2>
-<p>To verify that our content has been created, we can have a look at the JSON data at <a href="http://localhost:8888/content/blog/foo.tidy.json">http://localhost:8888/content/blog/foo.tidy.json</a>, which should display our new node's values:</p>
+<p>To verify that our content has been created, we can have a look at the JSON data at <a href="http://localhost:8080/content/blog/foo.tidy.json">http://localhost:8080/content/blog/foo.tidy.json</a>, which should display our new node's values:</p>
 <pre><code>{
   &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
   &quot;text&quot;: &quot;This is the foo text&quot;,
@@ -134,7 +134,7 @@ If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to a
 <pre><code>&lt;!-- code of step 2 comes here --&gt;
 &lt;script&gt;Sling.wizard();&lt;/script&gt;
 </code></pre>
-<p>Reloading the form at <code>http://localhost:8888/content/blog/*.html</code> and creating a new post should now redirect to an editable version of the post, with the form fields correctly initialized.</p>
+<p>Reloading the form at <code>http://localhost:8080/content/blog/*.html</code> and creating a new post should now redirect to an editable version of the post, with the form fields correctly initialized.</p>
 <p>We can now create and edit posts; let's add some navigation, using more of the <em>sling.js</em> functionality. </p>
 <h2><a href="#step-3-navigation" name="step-3-navigation">Step 3: Navigation</a></h2>
 <p>The <em>sling.js</em> library provides utilities to access and manipulate content. For our blog, we'll use the <code>getContent(path)</code> method to list the siblings of the current node.</p>

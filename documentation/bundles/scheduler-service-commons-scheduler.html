@@ -79,7 +79,8 @@ The notion of Job used in this context is a different one than the one used for 
 <h2><a href="#examples-of-jobs-that-are-scheduled-by-leveraging-the-whiteboard-pattern" name="examples-of-jobs-that-are-scheduled-by-leveraging-the-whiteboard-pattern">Examples of jobs that are scheduled by leveraging the whiteboard pattern</a></h2>
 <p>The following examples show you how to define and schedule a job by leveraging the whiteboard pattern.</p>
 <h3><a href="#scheduling-with-a-cron-expression" name="scheduling-with-a-cron-expression">Scheduling with a cron expression</a></h3>
-<p>The following job is executed every minute by setting <em>scheduler.expression</em> to the cron expression <em>"0 * * * * ?"</em>:</p>
+<p>The cron expression format is described in the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html#format">Quartz Cron Documentation</a> and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute). </p>
+<p>The following job is executed every minute by setting <em>scheduler.expression</em> to the cron expression <code>0 * * * * ?</code>:</p>
 <pre><code>package sling.docu.examples;
 
 import org.slf4j.Logger;

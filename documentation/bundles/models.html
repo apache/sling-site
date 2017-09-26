@@ -269,16 +269,28 @@ public class MyModel {
 }
 </code></pre>
 <p><code>@PostConstruct</code> methods in a super class will be invoked first.</p>
+<p>Since Sling Models Implementation 1.4.6, <code>@PostConstruct</code> methods may return a <code>false</code> boolean value in which case the model creation will fail without logging any exception (a message will be logged at the <code>DEBUG</code> level).</p>
 <h2><a href="#via" name="via">Via</a></h2>
-<p>If the injection should be based on a JavaBean property of the adaptable, you can indicate this using the <code>@Via</code> annotation:</p>
+<p>In some cases, a different object should be used as the adaptable instead of the original adaptable. This can be done using the <code>@Via</code> annotation. By default, this can be done using a JavaBean property of the adaptable:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=SlingHttpServletRequest.class)
 public interface MyModel {
 
-    // will return request.getResource().adaptTo(ValueMap.class).get(&quot;propertyName&quot;, String.class)
+    // will return request.getResource().getValueMap().get(&quot;propertyName&quot;, String.class)
     @Inject @Via(&quot;resource&quot;)
     String getPropertyName();
 } 
 </code></pre>
+<p>A different strategy can be used to define the adaptable by specifying a <code>type</code> attribute:</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
+public interface MyModel {
+
+    // will return resource.getChild(&quot;jcr:content&quot;).getValueMap().get(&quot;propertyName&quot;, String.class)
+    @Inject @Via(value = &quot;jcr:content&quot;, type = ChildResource.class)
+    String getPropertyName();
+
+}
+</code></pre>
+<p>See the <a href="#via-types-since-api-134implementation-140">Via Types</a> section below for details on the included types for <code>@Via</code>.</p>
 <h2><a href="#source" name="source">Source</a></h2>
 <p>If there is ambiguity where a given injection could be handled by more than one injector, the <code>@Source</code> annotation can be used to define which injector is responsible:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=SlingHttpServletRequest.class)
@@ -371,7 +383,7 @@ public class MyModel {
 <p><code>@Source</code> : explictly tie an injected field or method to a particular injector (by name). Can also be on other annotations.</p>
 <p><code>@Filter</code> : an OSGi service filter</p>
 <p><code>@PostConstruct</code> : methods to call upon model option creation (only for model classes)</p>
-<p><code>@Via</code> : use a JavaBean property of the adaptable as the source of the injection</p>
+<p><code>@Via</code> : change the adaptable as the source of the injection</p>
 <p><code>@Default</code> : set default values for a field or method</p>
 <p><code>@Path</code> : only used together with the resource-path injector to specify the path of a resource</p>
 <p><code>@Exporters</code>/<code>@Exporter</code>/<code>@ExporterOptions</code>/<code>@ExporterOption</code> : See Exporter Framework section below</p>
@@ -613,7 +625,44 @@ public class MyModel implements MyService {
         &lt;_plugin&gt;org.apache.sling.bnd.models.ModelsScannerPlugin;generatePackagesHeader=true&lt;/_plugin&gt;
     &lt;/instructions&gt;
 &lt;/configuration&gt;
-</code></pre></section></div></div>
+</code></pre>
+<h1><a href="#via-types-since-api-1-3-4-implementation-1-4-0-" name="via-types-since-api-1-3-4-implementation-1-4-0-">Via Types (Since API 1.3.4/Implementation 1.4.0)</a></h1>
+<p>As discussed in the <a href="#via">Via</a> section above, it is possible to select a different adaptable than the original value using the <code>@Via</code> annotation. The following standard types are provided (all types are in the package <code>org.apache.sling.models.annotations.via</code>)</p>
+<table>
+  <thead>
+    <tr>
+      <th><code>@Via</code> type value </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>BeanProperty</code> (default) </td>
+      <td>Uses a JavaBean property from the adaptable.</td>
+    </tr>
+    <tr>
+      <td><code>ChildResource</code> </td>
+      <td>Uses a child resource from the adaptable, assuming the adaptable is a <code>Resource</code>.</td>
+    </tr>
+    <tr>
+      <td><code>ForcedResourceType</code> </td>
+      <td>Creates a wrapped resource with the provided resource type. If the adaptable is a <code>SlingHttpServletRequest</code>, a wrapped request is created as well to contain the wrapped resource.</td>
+    </tr>
+    <tr>
+      <td><code>ResourceSuperType</code> </td>
+      <td>Creates a wrapped resource with the resource type set to the adaptable's resource super type. If the adaptable is a <code>SlingHttpServletRequest</code>, a wrapped request is created as well to contain the wrapped resource.</td>
+    </tr>
+  </tbody>
+</table>
+<h2><a href="#custom-via-type" name="custom-via-type">Custom Via Type</a></h2>
+<p>Defining your own type for the <code>@Via</code> annotation is a two step process. The first step is to create a marker class implementing the <code>@ViaProviderType</code> annotation. This class can be entirely empty, e.g.</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->public class MyCustomProviderType implements ViaProviderType {}
+</code></pre>
+<p>The second step is to create an OSGi service implementing the <code>ViaProvider</code> interface. This interface defines two methods:</p>
+<ul>
+  <li><code>getType()</code> should return the marker class.</li>
+  <li><code>getAdaptable()</code> should return the new adaptable or <code>ViaProvider.ORIGINAL</code> to indicate that the original adaptable should be used.</li>
+</ul></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

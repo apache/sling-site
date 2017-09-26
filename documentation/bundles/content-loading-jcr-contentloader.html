@@ -342,6 +342,9 @@
 </code></pre>
 <h3><a href="#extractors" name="extractors">Extractors</a></h3>
 <p>By default, the <code>sling-jcr-contentloader</code> bundle tries to extract certain file types during content loading. These include <code>json</code>, <code>xml</code>, <code>zip</code>, and <code>jar</code> files. Therefore all available extractors are used for content processing. However if some files should be put into the repository unextracted, the <code>ignoreImportProviders</code> directive can be used with a comma separated list of extensions that should not be extracted, like <code>ignoreImportProviders:=&quot;jar,zip&quot;</code>. Please note that the value needs to be put into quotation marks if more than one value is used like in the example.</p>
+<h3><a href="#file-name-escaping" name="file-name-escaping">File name escaping</a></h3>
+<p>When the node name you want to import with the JCR ContentLoader contains characters that are not allowed in typical file systems (e.g. a ":" is not allowed on windows file systems), you can URL-encode the file name. It uses the <a href="https://docs.oracle.com/javase/8/docs/api/java/net/URLDecoder.html">Java URLDecoder</a> internally.</p>
+<p>Example: <code>jcr%3Acontent.txt</code> will be loaded into a node named <code>jcr:content.txt</code>.</p>
 <h3><a href="#workspace-targetting" name="workspace-targetting">Workspace Targetting</a></h3>
 <p>By default, initial content will be loaded into the default workspace. To override this, add a <code>Sling-Initial-Content-Workspace</code> bundle manifest header to specify the workspace. Note that <em>all</em> content from a bundle will be loaded into the same workspace. </p>
 <h3><a href="#example-load-i18n-json-files" name="example-load-i18n-json-files">Example: Load i18n JSON files</a></h3>
@@ -380,7 +383,32 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 </div>
 <h3><a href="#automated-tests" name="automated-tests">Automated tests</a></h3>
 <p>The initial content found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/content/src/main/resources/content/sling-test">sling-test folder of the launchpad initial content</a> is verified by the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java">InitialContentTest</a> when running the <em>launchpad/testing</em> integration tests.</p>
-<p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p></section></div></div>
+<p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p>
+<h2><a href="#acls-and-principals" name="acls-and-principals">ACLs and Principals</a></h2>
+<p>By adding a <code>security:acl</code> object to a content node definition in JSON you can define an ACL for this node. For each array entry in this example an ACE is added. Example:</p>
+<pre><code>{
+    &quot;security:acl&quot;: [
+        { &quot;principal&quot;: &quot;TestGroup1&quot;, &quot;granted&quot;: [&quot;jcr:read&quot;,&quot;jcr:write&quot;] },
+        { &quot;principal&quot;: &quot;TestUser1&quot;, &quot;granted&quot;: [&quot;jcr:read&quot;], &quot;denied&quot;: [&quot;jcr:write&quot;] }
+    ]
+}
+</code></pre>
+<p>If ACLs already exist on the node you can add an <code>order</code> property to each array entry controlling the position where the new ACE is inserted into the list of existing ACEs. Possible values for this property:</p>
+<ul>
+  <li><strong>first</strong>: Place the target ACE as the first amongst its siblings</li>
+  <li><strong>last</strong>: Place the target ACE as the last amongst its siblings</li>
+  <li><strong>before xyz</strong>: Place the target ACE immediately before the sibling whose name is xyz</li>
+  <li><strong>after xyz</strong>: Place the target ACE immediately after the sibling whose name is xyz</li>
+  <li><strong>numeric</strong>: Place the target ACE at the specified index</li>
+</ul>
+<p>You can also add new principals (users or groups) to the repository by adding a <code>security:principals</code> object. This is not related to any specific path/node, so you can add this JSON fragment anywhere. Example for creating one use and one group:</p>
+<pre><code>{
+    &quot;security:principals&quot;: [
+        { &quot;name&quot;: &quot;TestUser1&quot;, &quot;password&quot;: &quot;mypassword&quot;, &quot;extraProp1&quot;: &quot;extraProp1Value&quot; },
+        { &quot;name&quot;: &quot;TestGroup1&quot;, &quot;isgroup&quot;: &quot;true&quot;, &quot;members&quot;: [&quot;TestUser1&quot;], &quot;extraProp1&quot;: &quot;extraProp1Value&quot; }
+    ]
+}
+</code></pre></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling :: Basic Ideas</title>
+        <link rel="icon" href="/ng/res/favicon.ico"/>
+        <link rel="stylesheet" href="/ng/res/css/site.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        
+    </head>    <body>
+<div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/ng/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><h1 class="draft">DRAFT 2017 WEBSITE - SLING-6955</h1><div class="menu">
+            <p>
+                <strong><a href="/ng/documentation.html">Documentation</a></strong><br/>
+                <a href="/ng/documentation/getting-started.html">Getting Started</a><br/>
+                <a href="/ng/documentation/the-sling-engine.html">The Sling Engine</a><br/>
+                <a href="/ng/documentation/development.html">Development</a><br/>
+                <a href="/ng/documentation/bundles.html">Bundles</a><br/>
+                <a href="/ng/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/>
+                <a href="/ng/documentation/configuration.html">Configuration</a>
+            </p><p>
+                <a href="http://s.apache.org/sling.wiki">Wiki</a><br/>
+                <a href="http://s.apache.org/sling.faq">FAQ</a><br/>
+                
+            </p><p>
+                <strong>API Docs</strong><br/>
+                <a href="/ng/apidocs/sling9/index.html">Sling 9</a><br/>
+                <a href="/ng/apidocs/sling8/index.html">Sling 8</a><br/>
+                <a href="/ng/apidocs/sling7/index.html">Sling 7</a><br/>
+                <a href="/ng/apidocs/sling6/index.html">Sling 6</a><br/>
+                <a href="/ng/apidocs/sling5/index.html">Sling 5</a><br/>
+                <a href="/ng/javadoc-io.html">Archive at javadoc.io</a><br/>
+                
+            </p><p>
+                <strong>Project info</strong><br/>
+                <a href="/ng/downloads.cgi">Downloads</a><br/>
+                <a href="http://www.apache.org/licenses/">License</a><br/>
+                <a href="/ng/contributing.html">Contributing</a><br/>
+                <a href="/ng/news.html">News</a><br/>
+                <a href="/ng/links.html">Links</a><br/>
+                <a href="/ng/project-information.html">Project Information</a><br/>
+                <a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/>
+                <a href="/ng/project-information/security.html">Security</a><br/>
+                
+            </p><p>
+                <strong>Source</strong><br/>
+                <a href="http://svn.apache.org/viewvc/sling/trunk">Subversion</a><br/>
+                <a href="git://git.apache.org/sling.git">Git</a><br/>
+                <a href="https://github.com/apache/sling">Github Mirror</a><br/>
+                
+            </p><p>
+                <strong>Sponsorship</strong><br/>
+                <a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/>
+                <a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/>
+                <a href="https://donate.apache.org/">Donate!</a><br/>
+                <a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/>
+                
+            </p><p>
+                <strong><a href="/ng/sitemap.html">Site Map</a></strong>
+            </p>
+        </div>        <div class="main">
+<div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles/sling-query.html">Sling Query</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+                Basic Ideas
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#collections" name="collections">Collections</a></h3>
+<p><code>SlingQuery</code> class represents a collection of resources. Basic collection can be created explicitly via a dollar method:</p>
+<pre><code>$(resource1, resource2, resource3)
+</code></pre>
+<p>Above method creates a new <code>SlingQuery</code> object that consists of 3 resources. This object implements <code>Iterable&lt;Resource&gt;</code> interface, so can be used in foreach statements directly:</p>
+<pre><code>for (Resource resource in $(...)) { }
+</code></pre>
+<h3><a href="#operations" name="operations">Operations</a></h3>
+<p><code>SlingQuery</code> class defines a number of methods which can be used to transform current collection into a new one. Following code:</p>
+<pre><code>$(resource1, resource2).parent()
+</code></pre>
+<p>will replace each resource with its direct parent. If some resource is a repository root, it will be skipped. Some methods replace each resource with another resource (eg. <code>parent()</code> or <code>closest()</code>). Other methods can replace each resource with a set of resources:</p>
+<pre><code>$(resource1, resource2).children();
+</code></pre>
+<p>Resulting object will contain direct children of both <code>resource1</code> and <code>resource2</code> objects. There are also methods that doesn't add any new resources, but removes existing:</p>
+<pre><code>$(resource1, resource2).first();
+</code></pre>
+<p>Methods can be chained to create more complex query. Eg. following code will return last direct child of the <code>resource</code>:</p>
+<pre><code>$(resource).children().last();
+</code></pre>
+<h4><a href="#laziness" name="laziness">Laziness</a></h4>
+<p>All operations are lazy (except <code>prev()</code> and sometimes <code>not()</code>). It means that <code>SlingQuery</code> won't read any resources until it's actually necessary. Example:</p>
+<pre><code>$(resource).children().children().first();
+</code></pre>
+<p><code>children().children()</code> construction reads all grand-children of the given resource. However, the last method limits the output to the first found resource. As a result, <code>SlingQuery</code> won't iterate over all children and grand-children, but it will simply take the first child of the <code>resource</code> and return its first child.</p>
+<h4><a href="#immutability" name="immutability">Immutability</a></h4>
+<p><code>SlingQuery</code> object is immutable and each operation creates a new one. We can "freeze" some collection before performing more operations on it:</p>
+<pre><code>SlingQuery children = $(resource).children();
+SlingQuery firstChild = children.first();
+for (Resource child : children) { /* will display all children */ }
+for (Resource child : firstChild) { /* will display the first child */ }
+</code></pre>
+<h3><a href="#selectors" name="selectors">Selectors</a></h3>
+<p>Some operations may take an additional string selector parameter that defines a filtering. Selector could be used to define resource type, resource attributes and additional modifiers. Example selector could look like this:</p>
+<pre><code>&quot;cq:Page&quot;
+</code></pre>
+<p>It will match all resources with the given resource type. Example:</p>
+<pre><code>$(resource).children(&quot;cq:Page&quot;)
+</code></pre>
+<p>will return only children with <code>cq:Page</code> resource type. You could also filter these resources defining any number of attributes in the square brackets:</p>
+<pre><code>$(resource).children(&quot;cq:Page[jcr:title=Some title][jcr:description=Some desc]&quot;)
+</code></pre>
+<p>And finally, you could add some modifiers at the end:</p>
+<pre><code>$(resource).children(&quot;cq:Page[jcr:content/cq:template=my/template]:even&quot;)
+</code></pre>
+<p>Above resources will find <code>cq:Page</code> children of the resource, using template <code>my/template</code> and return not all of them, but only those with even indices (eg. if matching children of the <code>resource</code> are <code>page_0</code>, <code>page_1</code> and <code>page_2</code>, only the first and the last will be returned).</p>
+<p>All parts of the selector are optional. In fact, an empty string (<code>&quot;&quot;</code>) is a valid selector, accepting all resources. However, the defined order (resource type, attributes in square brackets and modifiers) has to be followed. Example selectors:</p>
+<pre><code>&quot;foundation/components/richtext&quot; // resource type
+&quot;foundation/components/richtext:first&quot; // resource type with modifier
+&quot;[property=value][property2=value2]&quot; // two attributes
+&quot;:even&quot; // modifier
+&quot;:even:not(:first)&quot; // two modifiers, the second one is nested
+</code></pre></section></div></div>
+<div class="footer">
+                <div class="trademarkFooter">
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </div>
+            </div>            
+            
+        </div>
+    </body>
+</html>

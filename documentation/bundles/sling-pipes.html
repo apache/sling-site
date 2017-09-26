@@ -72,10 +72,11 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Sling Pipes
-            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>tool for doing extract - transform - load operations through a resource tree configuration.</p>
+            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p>tool set for doing extract - transform - load operations by chaining proven code bits.</p>
 <p>often one-shot data transformations need sample code to be written &amp; executed. This tiny tool set intends to provide ability to do such transformations with proven &amp; reusable blocks called pipes, streaming resources from one to the other.</p>
 <h2><a href="#what-is-a-pipe" name="what-is-a-pipe">What is a pipe</a></h2>
 <pre><code>         getOutputBinding
+
                ^
                |
  getInput  +---+---+   getOutput
@@ -86,19 +87,19 @@
 </code></pre>
 <p>A sling pipe is essentially a sling resource stream:</p>
 <ul>
-  <li>it provides an output as a sling resource iterator</li>
-  <li>it gets its input either from a configured path, either, if its chained (see container pipes below), from another pipe's output</li>
-  <li>each pipe can have additional dynamic inputs using other's bindings, and outputing its own bindings</li>
+  <li>it provides an output as a sling resource iterator,</li>
+  <li>it gets its input either from a configured path, either from former pipe's output,</li>
+  <li>each pipe can have contextual inputs using any other pipe's bindings, and outputting its own bindings</li>
 </ul>
 <p>At this moment, there are 3 types of pipes to consider:</p>
 <ul>
   <li>"reader" pipes, that will just output a set of resource depending on the input</li>
-  <li>"writer" pipes, that write to the repository, depending on configuration and output</li>
+  <li>"writer" pipes, that modify the repository, depending on configuration and input</li>
   <li>"container" pipes, that contains pipes, and whose job is to chain their execution : input is the input of their first pipe,  output is the output of the last pipe it contains.</li>
 </ul>
-<p>A <code>Plumber</code> osgi service is provided to help getting &amp; executing pipes.</p>
-<h2><a href="#registered-pipes" name="registered-pipes">Registered Pipes</a></h2>
-<p>a pipe configuration is a jcr node, with:</p>
+<p>A <code>Plumber</code> osgi service is provided to help getting, building &amp; executing pipes.</p>
+<h2>How to configure &amp; execute a pipe</h2>
+<p>A pipe configuration is ultimately a jcr node, with properties (varying a lot depending on the pipe type):</p>
 <ul>
   <li><code>sling:resourceType</code> property, which must be a pipe type registered by the plumber</li>
   <li><code>name</code> property, that will be used in bindings as an id, and will be the key for the output bindings (default value being a value map of the current output resource). Note that the node name will be used in case no name is provided.</li>
@@ -108,43 +109,118 @@
   <li><code>additionalScripts</code> is a multi value property to declare scripts that can be reused in expressions</li>
   <li><code>conf</code> optional child node that contains addition configuration of the pipe (depending on the type)</li>
 </ul>
+<p>This configuration can be generated quickly through Pipe Builder API.</p>
+<p>Once configuration is done, it's possible to execute Pipes </p>
+<ul>
+  <li>through plain java, with configured pipe resource as parameter,</li>
+  <li>through PipeBuilder API,</li>
+  <li>through HTTP API with GET (read) or POST (read/write) methods against configured pipe resource</li>
+</ul>
+<h3><a href="#pipe-builder-api" name="pipe-builder-api">Pipe Builder API</a></h3>
+<p>Plumber can provider a PipeBuilder with <code>newPipe(ResourceResolver resolver)</code> API, that gives a fluent API to quickly configure and run pipes. e.g. </p>
+<pre><code>plumber.newPipe(resolver).xpath(&#39;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;).rm().run();
+</code></pre>
+<p>will search for resource of type <code>to/delete</code> and remove them.</p>
+<p>PipeBuilder basically will automatically configure a container pipe, chaining pipes you can configure  with a fluent API:</p>
+<ul>
+  <li><code>pipe(type)</code> generate a new subpipe,</li>
+  <li><code>with(Object...)</code> add to actual subpipe configuration node key/value configurations,</li>
+  <li><code>expr(String)</code> add an expression configuration</li>
+  <li><code>path(String)</code> add an input path,</li>
+  <li><code>name(String)</code> specify a name (there would be a default one, named 'one', 'two', ... depending on the position otherwise),</li>
+  <li><code>conf(Object...)</code> add an extra configuration node with key/value properties/values</li>
+</ul>
+<p>note that that configuration part has shortcuts for some pipes. Typically, above sample is a shorter equivalent of </p>
+<pre><code>plumber.newPipe(resolver).pipe(&#39;slingPipes/xpath&#39;).expr(&#39;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;).pipe(&#39;slingPipes/rm&#39;).run();
+</code></pre>
+<p>when available, shortcuts will be specified next to each pipe type documentation.</p>
+<p>Once you are happy with the pipe you have created, you can terminate the builder with following command:</p>
+<ul>
+  <li><code>build()</code> will build the pipe under /var/pipes/... (random node under timed base path),</li>
+  <li><code>run(bindings)</code> will build the pipe, and run it with additional <code>bindings</code>,</li>
+  <li><code>runAsync(bindings)</code> will do the same, but asynchronously,</li>
+  <li><code>run()</code> will build &amp; run synchronously the pipe, with no bindings.</li>
+</ul>
+<h3><a href="#http-api" name="http-api">HTTP API</a></h3>
+<h5><a href="#request-path" name="request-path">Request Path</a></h5>
+<ul>
+  <li>
+    <p>either you'll need to create a slingPipes/plumber resource, say <code>etc/pipes</code> and then to execute</p>
+    <p>curl -u admin:admin -F "path=/etc/pipes/mySamplePipe" http://localhost:8080/etc/pipes.json</p>
+  </li>
+  <li>
+    <p>either you execute the request directly on the pipe Path, e.g.</p>
+    <p>curl -u admin:admin http://localhost:8080/etc/pipes/mySamplePipe.json</p>
+  </li>
+</ul>
+<p>which will return you the path of the resources that have been through the output of the configured pipe.</p>
+<p>In the eventuality of a long execution (synchronous or asynchronous), you can retrieve the status of a pipe, by executing</p>
+<pre><code>GET /etc/pipes/mySamplePipe.status.json
+</code></pre>
+<h5>Request Parameter <code>binding</code></h5>
+<p>you can add as <code>bindings</code> parameter a json object of global bindings you want to add for the execution of the pipe</p>
+<p>e.g.</p>
+<pre><code>curl -u admin:admin -F &quot;path=/etc/pipes/test&quot; -F &quot;bindings={testBinding:&#39;foo&#39;}&quot; http://localhost:4502/etc/pipes.json
+</code></pre>
+<p>will returns something like</p>
+<pre><code>{&quot;size&quot;:2, &quot;items&quot;:[&quot;/one/output/resource&quot;, &quot;another/one&quot;]}
+</code></pre>
+<h5>Request Parameter <code>writer</code></h5>
+<p>you can configure output of your servlet, with <code>writer</code> parameter, a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. </p>
+<p>e.g.</p>
+<pre><code>curl -u admin:admin http://localhost:4502/etc/pipes/users.json?writer={&quot;user&quot;:&quot;${user.fullName}&quot;}
+</code></pre>
+<p>will returns something similar to</p>
+<pre><code>{&quot;size&quot;:2, &quot;items&quot;:[{&#39;user&#39;:&#39;John Smith&#39;,&#39;path&#39;:&#39;/home/users/q/q123jk1UAZS&#39;},{&#39;user&#39;:&#39;John Doe&#39;,&#39;path&#39;:&#39;/home/users/q/q153jk1UAZS&#39;}]}
+</code></pre>
+<h5>Request Parameter <code>dryRun</code></h5>
+<p>if parameter dryRun is set to true, and the executed pipe is supposed to modify content, it will log (at best it can) the change it <em>would</em> have done, without doing anything</p>
+<h5>Request Parameter <code>size</code></h5>
+<p>default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter</p>
+<h5>Request Parameter <code>async</code></h5>
+<p>allow asynchronous execution of the given type. This is advised in case you plan your pipe execution to last longer than the session of your HTTP client. If used, the returned value will be id of the created sling Job. In that case you can monitor the pipes path with <code>status</code> selector as described above until it has the value <code>finished</code>.</p>
+<h2><a href="#registered-pipes" name="registered-pipes">Registered Pipes</a></h2>
 <h3><a href="#readers" name="readers">readers</a></h3>
-<h4><a href="#base-pipe" name="base-pipe">Base pipe</a></h4>
-<p>rather dummy pipe, outputs what is in input (so what is configured in path). Handy for doing some test mostly, and giving basic functionalities to others that inherit from it</p>
+<h5>Base pipe <code>echo(path)</code></h5>
+<p>outputs what is in input (so what is configured in path)</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/base</code></li>
 </ul>
-<h4><a href="#slingquery-pipe" name="slingquery-pipe">SlingQuery Pipe</a></h4>
+<h5>SlingQuery Pipe (<code>$(expr)</code>)</h5>
 <p>executes $(getInput()).children(expression)</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
   <li><code>expr</code> mandatory property, contains slingQuery expression through which getInput()'s children will be computed to getOutput()</li>
 </ul>
-<h4><a href="#jsonpipe" name="jsonpipe">JsonPipe</a></h4>
-<p>feeds bindings with remote json</p>
-<ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
-  <li><code>expr</code> mandatory property contains url that will be called, the json be sent to the output bindings, getOutput = getInput. An empty url or a failing url will block the pipe at that given place.</li>
-</ul>
-<h4><a href="#multipropertypipe" name="multipropertypipe">MultiPropertyPipe</a></h4>
+<h5><a href="#multipropertypipe" name="multipropertypipe">MultiPropertyPipe</a></h5>
 <p>iterates through values of input multi value property and write them to bindings</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/multiProperty</code></li>
   <li><code>path</code> should be the path of a mv property</li>
 </ul>
-<h4><a href="#xpathpipe" name="xpathpipe">XPathPipe</a></h4>
+<h5>XPathPipe (<code>xpath(expr)</code>)</h5>
 <p>retrieve resources resulting of an xpath query</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/xpath</code></li>
   <li><code>expr</code> should be a valid xpath query</li>
 </ul>
-<h3><a href="#jsonpipe" name="jsonpipe">JsonPipe</a></h3>
+<h5>TraversePipe (<code>traverse()</code>)</h5>
+<p>traverse current input resource's tree, outputing, as resources, either the node of the tree, either its properties</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/traverse</code>,</li>
+  <li><code>breadthFirst</code> the tree visit will be done deep first, unless this flag is set to true,</li>
+  <li><code>depth</code> max depth the visit should go to,</li>
+  <li><code>properties</code> is a flag mentioning the pipe should traverse node's property,</li>
+  <li><code>nameGlobs</code> filters the property that should get outputed</li>
+</ul>
+<h5>JsonPipe (<code>json(expr)</code>)</h5>
 <p>feeds bindings with remote json</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
   <li><code>expr</code> mandatory property contains url that will be called, the json be sent to the output bindings, getOutput = getInput. An empty url or a failing url will block the pipe at that given place.</li>
 </ul>
-<h4><a href="#authorizablepipe" name="authorizablepipe">AuthorizablePipe</a></h4>
+<p>In case the json is an array, the pipe will loop over the array elements, and output each one in the binding. Output resource remains each time the input one.</p>
+<h5>AuthorizablePipe (<code>auth(conf)</code>)</h5>
 <p>retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression), from the input path, output the found authorizable's resource</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/authorizable</code></li>
@@ -154,48 +230,61 @@
   <li><code>addToGroup</code> (expression) add found authorizable to instanciated group (in that case, considered as a write pipe)</li>
   <li><code>bindMembers</code> (boolean) if found authorizable is a group, bind the members (in that case, considered as a write pipe)</li>
 </ul>
-<h4><a href="#parentpipe" name="parentpipe">ParentPipe</a></h4>
-<p>outputs the parent resource of input resource - <code>sling:resourceType</code> is <code>slingPipes/parent</code></p>
-<h4><a href="#filterpipe" name="filterpipe">FilterPipe</a></h4>
+<h5>ParentPipe (<code>parent()</code>)</h5>
+<p>outputs the parent resource of input resource</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/parent</code></li>
+</ul>
+<h5>FilterPipe (<code>grep(conf)</code>)</h5>
 <p>outputs the input resource if its matches its configuration</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/filter</code></li>
   <li><code>conf</code> node tree that will be tested against the current input of the pipe, each <code>/conf/sub@prop=value</code> will triggers a test on <code>./sub@prop</code> property of the current input, testing if its value matches <code>value</code> regex. If the special <code>slingPipesFilter_noChildren=${true}</code> property is there with the value instantiated as a true boolean, then filter will pass if corresponding node has no children.</li>
+  <li><code>slingPipesFilter_test=&#39;${...}&#39;</code> evaluates the property value, and filters out the stream if the expression is not a boolean or false</li>
   <li><code>slingPipesFilter_not=&#39;true&#39;</code> inverts the expected result of the filter</li>
 </ul>
+<p>as an example,</p>
+<pre><code>echo(&#39;/content/foo&#39;).grep(&#39;foo&#39;,&#39;bar&#39;,&#39;slingPipesFilter_not&#39;,true).run()
+</code></pre>
+<p>will either return <code>/content/foo</code> either nothing depending on it not containing <code>@foo=bar</code></p>
+<pre><code>echo(&#39;content/foo&#39;).name(&#39;FOO&#39;).grep(&#39;slingPipesFilter_test&#39;,&#39;${FOO.foo == &quot;bar&quot;}&#39;).run()
+</code></pre>
+<p>is an equivalent</p>
 <h3><a href="#containers" name="containers">containers</a></h3>
-<h4><a href="#container-pipe" name="container-pipe">Container Pipe</a></h4>
+<h5><a href="#container-pipe" name="container-pipe">Container Pipe</a></h5>
 <p>assemble a sequence of pipes</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/container</code></li>
   <li><code>conf</code> node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)</li>
 </ul>
-<h4><a href="#referencepipe" name="referencepipe">ReferencePipe</a></h4>
+<p>Note that pipe builder api automatically creates one for you to chain the subpipe you are configuring</p>
+<h5><a href="#referencepipe" name="referencepipe">ReferencePipe</a></h5>
 <p>execute the pipe referenced in path property</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/reference</code></li>
   <li><code>path</code> path of the referenced pipe</li>
 </ul>
 <h3><a href="#writers" name="writers">writers</a></h3>
-<h4><a href="#write-pipe" name="write-pipe">Write Pipe</a></h4>
+<h5>Write Pipe (<code>write(conf)</code>)</h5>
 <p>writes given nodes &amp; properties to current input</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/write</code></li>
   <li><code>conf</code> node tree that will be copied to the current input of the pipe, each property's names and value will be written to the input resource. Input resource will be outputed. Note that properties that will be evaluated (in an expression) as <code>null</code> for a given input resource will be removed from it. E.g. <code>./conf/some/node@prop=${null}</code> will add <code>./conf/some/node</code> structure if not in current input resource, but remove its <code>prop</code> property if any).</li>
 </ul>
-<h3><a href="#movepipe" name="movepipe">MovePipe</a></h3>
+<p>e.g. <code>echo(&#39;/content/foo&#39;).write(&#39;foo&#39;,&#39;bar&#39;).run()</code> will write <code>@foo=bar</code> in <code>/content/foo</code></p>
+<h5>MovePipe (<code>mv(expr)</code>)</h5>
 <p>JCR move of current input to target path (can be a node or a property)</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/mv</code></li>
-  <li><code>expr</code> target path, note that parent path must exists</li>
+  <li><code>expr</code> full target path, note that parent path must exists</li>
 </ul>
-<h4><a href="#removepipe" name="removepipe">RemovePipe</a></h4>
+<h5>RemovePipe (<code>rm()</code>)</h5>
 <p>removes the input resource, returns the parent, regardless of the resource being a node, or a property</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/rm</code></li>
   <li><code>conf</code> node tree that will be used to filter relative properties &amp; subtrees to the current resource to remove. A subnode is considered to be removed if it has no property configured, nore any child.</li>
 </ul>
-<h4><a href="#pathpipe" name="pathpipe">PathPipe</a></h4>
+<h5>PathPipe (<code>mkdir(expr)</code>)</h5>
 <p>get or create path given in expression</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/path</code></li>
@@ -212,167 +301,49 @@
 </ul>
 <p>you can use name of previous pipes in the pipe container, or the special binding <code>path</code>, where <code>path.previousPipe</code> is the path of the current resource of previous pipe named <code>previousPipe</code></p>
 <p>global bindings can be set at pipe execution, external scripts can be added to the execution as well (see pipe  configurations)</p>
-<h2><a href="#how-to-execute-a-pipe" name="how-to-execute-a-pipe">How to execute a pipe</a></h2>
-<p>for now it's possible to execute Pipes through GET (read) or POST (read/write) commands:</p>
-<h3><a href="#request-path" name="request-path">Request Path</a></h3>
+<h2><a href="#sample-configurations" name="sample-configurations">sample configurations</a></h2>
+<h5>slingQuery | write</h5>
+<p>write repository user prefix Ms/Mr depending on gender</p>
+<pre><code>  plumber.newPipe(resolver).xpath(&#39;/jcr:root/home/users//element(*,rep:Users)&#39;)
+  .$(&#39;nt:unstructured#profile&#39;)
+  .write(&quot;fullName&quot;,&quot;${(profile.gender === &#39;female&#39; ? &#39;Ms &#39; + profile.fullName : &#39;Mr &#39; + profile.fullName)}&quot;)
+  .run()
+</code></pre>
+<h5>slingQuery | multiProperty | authorizable | write</h5>
+<p>move badge&lt;-&gt;user relation ship from badge-&gt;users MV property to a user-&gt;badges MV property</p>
+<pre><code> plumber.newPipe(resolver).echo(&#39;/etc/badges/jcr:content/par&#39;)
+ .$(&#39;[sling:resourceType=myApp/components/badge]&#39;).name(&#39;badge&#39;)
+ .pipe(&#39;slingPipes/multiProperty&#39;).path(&#39;${path.badge}/profiles&#39;).name(&#39;profile&#39;)
+ .auth(&#39;${profile}&#39;).name(&#39;user&#39;)
+ .echo(&#39;${path.user}/profile&#39;)
+ .write(&#39;badges&#39;,&#39;+[${path.badge}]&#39;)
+ .run()
+</code></pre>
+<h5>echo | $ | $ | echo | json | write</h5>
+<p>this use case is for completing repository website with external system's data (that has an json api), it does </p>
 <ul>
-  <li>
-    <p>either you'll need to create a slingPipes/plumber resource, say <code>etc/pipes</code> and then to execute</p>
-    <p>curl -u admin:admin -F "path=/etc/pipes/mySamplePipe" http://localhost:8080/etc/pipes.json</p>
-  </li>
-  <li>
-    <p>either you execute the request directly on the pipe Path, e.g.</p>
-    <p>curl -u admin:admin http://localhost:8080/etc/pipes/mySamplePipe.json</p>
+  <li>loop over "my:Page" country/language tree under <code>/content/mySite</code>,</li>
+  <li>fetch json with contextual parameter that must be in upper case,</li>
+  <li>and write part of the returned json in the current resource.</li>
+</ul>
+<p>This pipe is run asynchronously in case the execution takes long.</p>
+<pre><code>plumber.newPipe(resolver)
+ .echo(&quot;/content/mySite&quot;)
+ .$(&#39;my:Page&#39;)
+ .$(&#39;my:Page&#39;).name(&quot;localePage&quot;)
+ .echo(&#39;${path.localePage}/jcr:content&#39;).name(&quot;content&quot;)
+ .json(&#39;https://www.external.com/api/${content.country.toUpperCase()}.json.name(&#39;api&#39;)
+ .write(&#39;cachedValue&#39;,&#39;${api.remoteJsonValueWeWant}&#39;)
+ .runAsync(null)
+</code></pre>
+<h5>xpath | parent | rm</h5>
+<ul>
+  <li>query all user profile nodes with bad properties,</li>
+  <li>get the parent node (user node)</li>
+  <li>remove it
+    <p>plumber.newPipe(resolver) .xpath("/jcr:root/home/users//element(profile,nt:unstructured)[@bad]") .parent().rm().run()</p>
   </li>
 </ul>
-<p>which will return you the path of the pipes that have been through the output of the configured pipe.</p>
-<h3>Request Parameter <code>binding</code></h3>
-<p>you can add as <code>bindings</code> parameter a json object of global bindings you want to add for the execution of the pipe</p>
-<p>e.g.</p>
-<pre><code>curl -u admin:admin -F &quot;path=/etc/pipes/test&quot; -F &quot;bindings={testBinding:&#39;foo&#39;}&quot; http://localhost:4502/etc/pipes.json
-</code></pre>
-<p>will returns something like</p>
-<pre><code>{&quot;size&quot;:2, &quot;items&quot;:[&quot;/one/output/resource&quot;, &quot;another/one&quot;]}
-</code></pre>
-<h3>Request Parameter <code>writer</code></h3>
-<p>you can add as <code>writer</code> parameter a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. Note this works only if the pipe called is a container pipe.</p>
-<p>e.g.</p>
-<pre><code>curl -u admin:admin http://localhost:4502/etc/pipes/users.json?writer={&quot;user&quot;:&quot;${user.fullName}&quot;}
-</code></pre>
-<p>will returns something similar to</p>
-<p>{"size":2, "items":[{'user':'John Smith','path':'/home/users/q/q123jk1UAZS'},{'user':'John Doe','path':'/home/users/q/q153jk1UAZS'}]}</p>
-<h3>Request Parameter <code>dryRun</code></h3>
-<p>if parameter dryRun is set to true, and the executed pipe is supposed to modify content, it will log (at best it can) the change it <em>would</em> have done, without doing anything</p>
-<h3>Request Parameter <code>size</code></h3>
-<p>default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter</p>
-<h2><a href="#sample-configurations" name="sample-configurations">sample configurations</a></h2>
-<h3>slingQuery | write</h3>
-<p>this pipe parse all profile nodes, and</p>
-<pre><code>{
-  &quot;sling:resourceType&quot;:&quot;slingPipes/container&quot;,
-  &quot;name&quot;:&quot;Dummy User prefix Sample&quot;,
-  &quot;jcr:description&quot;:&quot;prefix all full names of profile with &quot;Mr&quot; or &quot;Ms&quot; depending on gender&quot;,
-  &quot;conf&quot;:{
-    &quot;profile&quot;: {
-        &quot;sling:resourceType&quot;:&quot;slingPipes/slingQuery&quot;,
-        &quot;expr&quot;:&quot;nt:unstructured#profile&quot;,
-        &quot;path&quot;:&quot;/home/users&quot;
-    },
-    &quot;writeFullName&quot;: {
-        &quot;sling:resourceType&quot;:&quot;slingPipes/write&quot;,
-        &quot;conf&quot;: {
-            &quot;fullName&quot;:&quot;${(profile.gender === &#39;female&#39; ? &#39;Ms &#39; + profile.fullName : &#39;Mr &#39; + profile.fullName)}&quot;,
-            &quot;generatedBy&quot;:&quot;slingPipes&quot;
-        }
-    }
-  }
-}
-</code></pre>
-<h3>slingQuery | multiProperty | authorizable | write</h3>
-<pre><code>{
-  &quot;jcr:primaryType&quot;: &quot;sling:Folder&quot;,
-  &quot;jcr:description&quot;: &quot;move badge&lt;-&gt;user relation ship from badge MV property to a user MV property&quot;
-  &quot;name&quot;: &quot;badges&quot;,
-  &quot;sling:resourceType&quot;: &quot;slingPipes/container&quot;,
-  &quot;conf&quot;: {
-    &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-    &quot;badge&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:Folder&quot;,
-      &quot;jcr:description&quot;: &quot;outputs all badge component resources&quot;,
-      &quot;expr&quot;: &quot;[sling:resourceType=myApp/components/badge]&quot;,
-      &quot;path&quot;: &quot;/etc/badges/badges-admin/jcr:content&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/slingQuery&quot;
-      },
-    &quot;profile&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:Folder&quot;,
-      &quot;jcr:description&quot;: &quot;retrieve all user ids from a mv property&quot;,
-      &quot;path&quot;: &quot;${path.badge}/profiles&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/multiProperty&quot;
-    },
-    &quot;user&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;jcr:description&quot;: &quot;outputs user resource&quot;,
-      &quot;expr&quot;: &quot;profile&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/authorizable&quot;
-    },
-    &quot;write&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;jcr:descritption&quot;: &quot;patches the badge path to the badges property of the user profile&quot;
-      &quot;path&quot;: &quot;${path.user}/profile&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/write&quot;,
-      &quot;conf&quot;: {
-        &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
-        &quot;badges&quot;: &quot;+[${path.badge}]&quot;
-      }
-    }
-  }
-}
-</code></pre>
-<h3>xpath | json | write</h3>
-<p>this use case is for completing repository profiles with external system's data (that has an json api)</p>
-<pre><code>{
-  &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
-  &quot;jcr:description&quot;: &quot;this pipe retrieves json info from an external system and writes them to the user profile, uses moment.js, it
-  distributes modified resources using publish distribution agent&quot;,
-  &quot;sling:resourceType&quot;: &quot;slingPipes/container&quot;,
-  &quot;distribution.agent&quot;: &quot;publish&quot;,
-  &quot;additionalScripts&quot;: &quot;/etc/source/moment.js&quot;,
-  &quot;conf&quot;: {
-    &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-    &quot;profile&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;expr&quot;: &quot;/jcr:root/home/users//element(profile,nt:unstructured)[@uid]&quot;,
-      &quot;jcr:description&quot;: &quot;query all user profile nodes&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/xpath&quot;
-    },
-    &quot;json&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;expr&quot;: &quot;${(profile.uid ? &#39;https://my.external.system.corp.com/profiles/&#39; + profile.uid.substr(0,2) + &#39;/&#39; + profile.uid + &#39;.json&#39; : &#39;&#39;)&quot;,
-      &quot;jcr:description&quot;: &quot;retrieves json information relative to the given profile, if the uid is not found, expr is empty: the pipe will do nothing&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/json&quot;
-    },
-    &quot;write&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;path&quot;: &quot;path.profile&quot;,
-      &quot;jcr:description&quot;: &quot;write json information to the profile node&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/write&quot;,
-      &quot;conf&quot;: {
-        &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-        &quot;background&quot;: &quot;${json.opt(&#39;background&#39;)}&quot;,
-        &quot;about&quot;: &quot;${json.opt(&#39;about&#39;)}&quot;,
-        &quot;birthday&quot;: &quot;${(json.opt(&#39;birthday&#39;) ? moment(json.opt(&#39;birthday&#39;), \&quot;MMMM DD\&quot;).toDate() : &#39;&#39;)}&quot;,
-        &quot;mobile&quot;: &quot;${json.opt(&#39;mobile&#39;)}&quot;
-      }
-    }
-  }
-}
-</code></pre>
-<h3>xpath | parent | rm</h3>
-<pre><code>{
-  &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
-  &quot;jcr:description&quot;: &quot;this pipe removes user with bad property in their profile&quot;,
-  &quot;sling:resourceType&quot;: &quot;slingPipes/container&quot;,
-  &quot;conf&quot;: {
-    &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-    &quot;profile&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;expr&quot;: &quot;/jcr:root/home/users//element(profile,nt:unstructured)[@bad]&quot;,
-      &quot;jcr:description&quot;: &quot;query all user profile nodes with bad properties&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/xpath&quot;
-    },
-    &quot;parent&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;jcr:description&quot;: &quot;get the parent node (user node)&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/parent&quot;
-    },
-    &quot;rm&quot;: {
-      &quot;jcr:primaryType&quot;: &quot;sling:OrderedFolder&quot;,
-      &quot;jcr:description&quot;: &quot;remove it&quot;,
-      &quot;sling:resourceType&quot;: &quot;slingPipes/rm&quot;,
-    }
-  }
-}
-</code></pre>
 <p>some other samples are in https://github.com/npeltier/sling-pipes/tree/master/src/test/</p>
 <h1><a href="#compatibility" name="compatibility">Compatibility</a></h1>
 <p>For running this tool on a sling instance you need:</p>

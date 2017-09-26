@@ -124,6 +124,7 @@
 </code></pre>
     <ul>
       <li>If you experience an error during deployment like a HTTP 401 check your settings for the required server entries as outlined in the <em>Prerequisites</em></li>
+      <li>Depending on the OS &amp; the gpg version you have, you might hit https://issues.apache.org/jira/browse/MGPG-59, in which case you need, before maven command, to run <code>gpg --use-agent --armor --detach-sign --output $(mktemp) pom.xml</code></li>
       <li>Make sure the generated artifacts respect the Apache release <a href="http://www.apache.org/dev/release.html">rules</a>: NOTICE and LICENSE files should be present in the META-INF directory within the jar. For -sources artifacts, be sure that your POM does not use the maven-source-plugin:2.0.3 which is broken. The recommended version at this time is 2.0.4</li>
       <li>You should verify the deployment under the <a href="https://repository.apache.org/content/groups/snapshots/org/apache/sling">snapshot</a> repository on Apache</li>
     </ul>
@@ -236,6 +237,7 @@ promote the artifacts to the central Maven repository.
       <li>Commit the released artifacts to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a> which is replicated to <a href="http://www.apache.org/dist/sling/">http://www.apache.org/dist/sling/</a> quickly via svnpubsub. Hint: use svn import to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check&#95;staged&#95;release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file *.asc.*).
         <ul>
           <li>Make sure to <em>not</em> change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!</li>
+          <li>Following the SVN commit you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports.</li>
         </ul>
       </li>
       <li>Delete the old release artifacts from that same dist.apache.org svn folder (the dist directory is archived)</li>
@@ -256,6 +258,8 @@ promote the artifacts to the central Maven repository.
 <p>Also create a new version X.Y.Z+2, if that hasn't already been done.</p>
 <p>And keep the versions sorted, so when adding a new version moved it down to just above the previous versions.</p>
 <p>Close all issues associated with the released version.</p>
+<h2><a href="#update-the-sling-launchpad" name="update-the-sling-launchpad">Update the Sling Launchpad</a></h2>
+<p>If the bundle was already included in the Sling Launchpad or if it a new release that should be included add it with the release version in the provisioning model under <code>launchpad/builder/src/main/provisioning</code>.</p>
 <h2><a href="#create-an-announcement" name="create-an-announcement">Create an Announcement</a></h2>
 <p>We usually do such announcements only for "important" releases, as opposed to small individual module releases which are just announced on our <a href="/news.html">news</a> page.</p>
 <pre><code>To: &quot;Sling Developers List&quot; &lt;dev@sling.apache.org&gt;, &quot;Apache Announcements&quot; &lt;announce@apache.org&gt;

@@ -100,17 +100,17 @@
 <p>We'll use the <a href="http://www.knopflerfish.org/releases/2.0.5/jars/desktop_awt/desktop_awt_all-2.0.0.jar">Knopflerfish Desktop</a> bundle for this example, it is convenient as it displays a graphical user interface when started.</p>
 <p>We use <code>curl</code> to create content, to make it easy to reproduce the example by copying and pasting the <code>curl</code> commands. Any other way to create content in the repository will work, of course.</p>
 <p>By default, JCRInstall picks up bundles found in folders named <em>install</em> under <code>/libs</code> and <code>/apps</code>, so we start by creating such a folder:</p>
-<pre><code>curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest
-curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
+<pre><code>curl -X MKCOL  http://admin:admin@localhost:8080/apps/jcrtest
+curl -X MKCOL  http://admin:admin@localhost:8080/apps/jcrtest/install
 </code></pre>
 <p>And we copy the bundle to install in that folder (a backslash in command lines means <em>continued on next line</em>):</p>
 <pre><code>curl -T desktop_awt_all-2.0.0.jar \
-  http://admin:admin@localhost:8888/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
+  http://admin:admin@localhost:8080/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
 </code></pre>
 <p>That's it. After 2-3 seconds, the bundle should be picked up by JCRInstall, installed and started. If this works you'll see a small <em>Knopflerfish Desktop</em> window on your desktop, and Sling's OSGi console can of course be used to check the details.</p>
 <p>Removing the bundle from the repository will cause it to be uninstalled, so:</p>
 <pre><code>curl -X DELETE \
-  http://admin:admin@localhost:8888/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
+  http://admin:admin@localhost:8080/apps/jcrtest/install/desktop_awt_all-2.0.0.jar
 </code></pre>
 <p>Should cause the <em>Knopflerfish Desktop</em> window to disappear as the bundle is uninstalled.</p>
 <h2><a href="#install-modify-and-remove-a-configuration" name="install-modify-and-remove-a-configuration">Install, modify and remove a configuration</a></h2>
@@ -119,18 +119,18 @@ curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
 <pre><code>curl \
   -F &quot;jcr:primaryType=sling:OsgiConfig&quot; \
   -F foo=bar -F works=yes \
-  http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid
+  http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid
 </code></pre>
 <p>And verify the contents of our config node:</p>
 <pre><code>curl \
-  http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid.json
+  http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid.json
 </code></pre>
 <p>Which should display something like</p>
 <pre><code>{&quot;foo&quot;:&quot;bar&quot;,
 &quot;jcr:created&quot;:&quot;Wed Aug 26 2009 17:06:40GMT+0200&quot;,
 &quot;jcr:primaryType&quot;:&quot;sling:OsgiConfig&quot;,&quot;works&quot;:&quot;yes&quot;}
 </code></pre>
-<p>At this point, JCRInstall should have picked up our new config and installed it. The logs would confirm that, but we can also use the OSGi console's config status page (http://localhost:8888/system/console/config) to check it. That page should now contain:</p>
+<p>At this point, JCRInstall should have picked up our new config and installed it. The logs would confirm that, but we can also use the OSGi console's config status page (http://localhost:8080/system/console/config) to check it. That page should now contain:</p>
 <pre><code>PID=some.config.pid
   BundleLocation=Unbound
   _jcr_config_path=jcrinstall:/apps/jcrtest/install/some.config.pid
@@ -142,7 +142,7 @@ curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
 <p>Let's try modifying the configuration parameters:</p>
 <pre><code>curl \
   -F works=updated -F even=more \
-  http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid
+  http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid
 </code></pre>
 <p>And check the changes in the console page:</p>
 <pre><code>PID=some.config.pid
@@ -155,7 +155,7 @@ curl -X MKCOL  http://admin:admin@localhost:8888/apps/jcrtest/install
 </code></pre>
 <p>We can now delete the configuration node:</p>
 <pre><code>curl -X DELETE \
-  http://admin:admin@localhost:8888/apps/jcrtest/install/some.config.pid
+  http://admin:admin@localhost:8080/apps/jcrtest/install/some.config.pid
 </code></pre>
 <p>And verify that the corresponding configuration is gone in the console page (after 1-2 seconds, like for all other JCRInstall operations).</p>
 <p>A node named like <code>o.a.s.foo.bar-a</code> uses <em>o.a.s.foo.bar</em> as its factory PID creating a configuration with an automatically generated PID. The value of <em>a</em> is stored as an alias in the OSGi installer to correlate the configuration object with the repository node.</p>

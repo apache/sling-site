@@ -109,6 +109,11 @@
 </code></pre>
   </li>
 </ul>
+<h4><a href="#trigger-forward-distribution" name="trigger-forward-distribution">Trigger forward distribution</a></h4>
+<p>Forward distribution can be triggered by sending a <code>POST</code> HTTP request to the agent resource on the source instance with the parameter <code>action=ADD</code> and parameters <code>path=&lt;resourcePath&gt;</code>.</p>
+<p>The example below distributes the path <code>/content/sample1</code></p>
+<pre><code>$ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d &#39;action=ADD&#39; -d &#39;path=/content/sample1&#39;
+</code></pre>
 <h3><a href="#reverse-distribution" name="reverse-distribution">Reverse distribution</a></h3>
 <p>A reverse distribution setup allows one to transfer content from a farm of source instances to a target instance. That is done by pulling the content from source instances into the target instance.</p>
 <h4><a href="#setup-overview" name="setup-overview">Setup overview</a></h4>
@@ -145,6 +150,11 @@ org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageEx
 </code></pre>
   </li>
 </ul>
+<h4><a href="#trigger-reverse-distribution" name="trigger-reverse-distribution">Trigger reverse distribution</a></h4>
+<p>Reverse distribution can be triggered by sending a <code>POST</code> HTTP request to the agent resource on the target instance with the parameter <code>action=PULL</code>.</p>
+<p>The example below adds the the path <code>/content/sample1</code> and then reverse distribute it.</p>
+<pre><code>$ curl -v -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/publish -d &#39;action=PULL&#39; -d &#39;path=/content/sample1&#39;
+</code></pre>
 <h3><a href="#sync-distribution" name="sync-distribution">Sync distribution</a></h3>
 <p>A sync distribution setup allows one to synchronize content in a farm of instances. That is done by using a coordinator instance (typically an author instance) that pulls content from all instances in a farm and pushes it back to all.</p>
 <h4><a href="#setup-overview-" name="setup-overview-">Setup overview:</a></h4>
@@ -247,10 +257,20 @@ org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageIm
   </li>
 </ul>
 <h2><a href="#additional-options" name="additional-options">Additional options</a></h2>
-<h3><a href="#how-to-trigger-distribution-over-http-" name="how-to-trigger-distribution-over-http-">How to trigger distribution over HTTP?</a></h3>
 <h3><a href="#how-to-configure-binary-less-distribution-" name="how-to-configure-binary-less-distribution-">How to configure binary-less distribution?</a></h3>
-<h3><a href="#how-to-configure-priority-paths-" name="how-to-configure-priority-paths-">How to configure priority paths?</a></h3>
-<h3><a href="#how-to-configure-error-queues-" name="how-to-configure-error-queues-">How to configure error queues?</a></h3></section></div></div>
+<p>Binary-less distribution is supported for deployments over a shared data store and involving agents that leverage the Vault based Distribution package exporter (Factory PID: org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory) package builder.</p>
+<p>With binary-less mode enabled, the content packages distributed contain references to binaries rather than the actual binaries.</p>
+<p>SCD does not explicitly deal with binary references. Instead, it configures Apache Jackrabbit FileVault export options in order to assemble/import binary references.</p>
+<p>Upon import, if a referenced binary is not visible on the destination instance, SCD will retry distributing the content package after a delay has elapsed.</p>
+<p>Binary-less is configured by setting the 'useReferences' to true on the VaultDistributionPackageBuilderFactory.</p>
+<h3><a href="#how-to-configure-priority-queue-" name="how-to-configure-priority-queue-">How to configure priority queue?</a></h3>
+<p>SCD agents allow to prioritize the distribution of content depending on its path. This feature improves the delays in use cases where a subset of the content to be distributed must meet tighter delay than the remaining one (e.g. news flash).</p>
+<p>Each agent can be configured with one or more priority queues.</p>
+<p>In order to setup the priority queues, configure the 'priorityQueues' agent property by providing the queuePrefix and path regular expression.</p>
+<h3><a href="#how-to-configure-retry-strategy-" name="how-to-configure-retry-strategy-">How to configure retry strategy?</a></h3>
+<p>The agent behaviour upon failed distribution request can be configured via the Retry Strategy 'retry.strategy' and 'retry.attempts' properties.</p>
+<p>With the 'none' strategy, an agent will retry distributing an item forever, blocking the queue until the distribution succeeds. The 'none' strategy guarantees the distribution order but may block the queue until someone resolves the situation.</p>
+<p>With the 'errorQueue' strategy, an agent will automatically create an additional error queue. The agent will retry up to 'retry.attempts' attempts then move the failed item to the error queue. The error queue is passive and allow to keep track of the failed distribution item for post analysis. The 'errorQueue' strategy does not guarantee the distribution order, but it guarantee that the queue is stuck for a bounded number of retries.</p></section></div></div>
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
