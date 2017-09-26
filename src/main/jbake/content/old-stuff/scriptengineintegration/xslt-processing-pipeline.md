@@ -17,7 +17,7 @@ The source code is found in the [contrib/scripting/xproc](http://svn.apache.org/
 
 ## How to Install
 
-Install the `org.apache.sling.scripting.xproc` bundle in order to work with XProc. You can achieve this either building it from `contrib/scripting/xproc` folder in the Sling trunk or by downloading it from the Apache Snapshot repository here: [org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar](http://people.apache.org/repo/m2-snapshot-repository/org/apache/sling/org.apache.sling.scripting.xproc/2.0.0-incubator-SNAPSHOT/org.apache.sling.scripting.xproc-2.0.0-incubator-20090403.114403-1.jar).
+Install the `org.apache.sling.scripting.xproc` bundle in order to work with XProc. 
 
 To deploy the bundle go to the bundles page of Apache Felix Web Console (http://localhost:8080/system/console/bundles), select the bundle file to upload, check the Start check box and click Install or Update button.
 

@@ -329,7 +329,7 @@ Once the release has passed, the following must be done:
 1. update the news page and the download pages
 1. update the Eclipse Marketplace listing
 
-## Appendix A: Create and Add your key to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc)
+## Appendix A: Create and Add your key to people.apache.org
 
 Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:
 
