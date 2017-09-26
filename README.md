@@ -42,7 +42,7 @@ on the http://sling.apache.org website, usually within a few seconds.
 
 ### Final validation, activation etc.
 * Review all pages
-* Resync the content with the current Sling website if needed, initially synced at r1798604
+* Resync the content with the current Sling website if needed, initially synced at r1798604 and later (September 26th, 2017) resynced to svn revision 1809724
 
 ### Done
 * Fix internal links like `refs.project-information.path` 
