@@ -1,4 +1,7 @@
-Title: Selectors
+title=Selectors
+type=page
+status=published
+~~~~~~
 
 Selector string are something between filters and content descriptors. Selector can filter resources by their [type](#resource-type), [name](#resource-name), [attributes](#attributes) and [additional modifiers](#modifiers). They can be also [chained together](#joining-selectors) to describe more sophisticated hierarchy structure or [combined with comma](#combining-selectors).
 

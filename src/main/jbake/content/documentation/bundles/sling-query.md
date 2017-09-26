@@ -35,8 +35,8 @@ SlingQuery is inspired by the jQuery framework. jQuery is the source of method n
 
 ## Features
 
-* useful [operations]({{ refs.methods.path }}) to traverse the resource tree,
-* flexible [filtering syntax]({{ refs.selectors.path }}),
+* useful [operations](/documentation/bundles/sling-query/methods.html) to traverse the resource tree,
+* flexible [filtering syntax](/documentation/bundles/sling-query/selectors.html),
 * lazy evaluation of the query result,
 * `SlingQuery` object is immutable (thread-safe),
 * fluent, friendly, jQuery-like API.
@@ -53,13 +53,14 @@ Add following Maven dependency to your `pom.xml`:
 
 ## Documentation
 
-* [Basic ideas]({{ refs.basic-ideas.path }})
-* [Method list]({{ refs.methods.path }})
-* [Selector syntax]({{ refs.selectors.path }})
-      * [Operator list]({{ refs.operators.path }})
-      * [Modifier list]({{ refs.modifiers.path }})
-      * [Hierarchy operator list]({{ refs.hierarchy-operators.path }})
-* [Examples]({{ refs.examples.path }})
+* [Basic ideas](/documentation/bundles/sling-query/basic-ideas.html)
+* [Method list](/documentation/bundles/sling-query/methods.html)
+* [Selector syntax](/documentation/bundles/sling-query/selectors.html)
+      * [Operator list](/documentation/bundles/sling-query/hierarchy-operators.html)
+      * [Modifier list](/documentation/bundles/sling-query/modifiers.html)
+      * [Hierarchy operator list](/documentation/bundles/sling-query/operators.html)
+* [Sling Query vs. JCR](/documentation/bundles/sling-query/vs-jcr.html)
+* [Examples](/documentation/bundles/sling-query/examples.html)
 
 ## External resources
 

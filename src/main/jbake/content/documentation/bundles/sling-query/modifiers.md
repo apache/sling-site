@@ -1,4 +1,7 @@
-Title: Modifiers
+title=Modifiers
+type=page
+status=published
+~~~~~~
 
 ### `:eq(index)`
 

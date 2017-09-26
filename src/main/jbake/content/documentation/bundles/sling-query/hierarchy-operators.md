@@ -1,4 +1,7 @@
-Title: Hierarchy operators
+title=Hierarchy operators
+type=page
+status=published
+~~~~~~
 
 ### Child operator (`parent > child`)
 

@@ -1,4 +1,7 @@
-Title: Method list
+title=Method list
+type=page
+status=published
+~~~~~~
 
 ### `$(Resource... resources)`
 

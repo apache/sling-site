@@ -1,4 +1,7 @@
-Title: Basic ideas
+title=Basic Ideas
+type=page
+status=published
+~~~~~~
 
 ### Collections
 

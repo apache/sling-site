@@ -1,4 +1,7 @@
-Title: Operators
+title=Operators
+type=page
+status=published
+~~~~~~
 
 ### Contains `[name*=value]`
 
