@@ -20,7 +20,7 @@
                     <img border="0" alt="Apache" src="/ng/res/logos/apache.png"/>
                 </a>
             </div>
-        </div><h1 class="draft">DRAFT 2017 WEBSITE - SLING-6955</h1><div class="menu">
+        </div><div class="draft">DRAFT 2017 WEBSITE - SLING-6955</div><div class="menu">
             <p>
                 <strong><a href="/ng/documentation.html">Documentation</a></strong><br/>
                 <a href="/ng/documentation/getting-started.html">Getting Started</a><br/>
@@ -72,7 +72,7 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/ng/">Home</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/ng/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1>
                 Log Tracer
-            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><p><a href="https://issues.apache.org/jira/browse/SLING-4739">Log Tracer</a> provides support for enabling the logs for specific category at specific level and only for specific request. It provides a very fine level of control via config provided as part of HTTP request around how the logging should be performed for given category.</p>
+            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p><a href="https://issues.apache.org/jira/browse/SLING-4739">Log Tracer</a> provides support for enabling the logs for specific category at specific level and only for specific request. It provides a very fine level of control via config provided as part of HTTP request around how the logging should be performed for given category.</p>
 <p>This is specially useful for those parts of the system which are involved in every request. For such parts enabling the log at global level would flood the logs and create lots of noise. Using Tracer one can enable log for that request which is required to be probed.</p>
 <p>For e.g. determining what nodes are written for a given POST request can be simply done by including an extra request parameters.</p>
 <pre><code>curl -D - -u admin:admin \
