@@ -10,4 +10,4 @@ div(class:"title") {
 	  }
   }
 }
-h1(class:"draft") { yield "DRAFT 2017 WEBSITE - SLING-6955" }
+div(class:"draft") { yield "DRAFT 2017 WEBSITE - SLING-6955" }

@@ -12,6 +12,11 @@ h1,h2,h3,h4,h5,h6 {
     line-height: 100%;
 }
 
+.tocHeading {
+	font-size:120%;
+	font-weight:bold;
+}
+
 h1 {
     font-size: 200%;
     font-weight: bold;
@@ -278,6 +283,8 @@ pre {
 }
 
 .draft {
+	font-size:150%;
+	font-weight:bold;
     color:blue;
     text-align:center;
 }

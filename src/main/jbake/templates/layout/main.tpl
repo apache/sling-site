@@ -14,6 +14,7 @@ html(lang:'en'){
             	yield "${ content ? content.title : "<MISSING CONTENT OBJECT??>" }"
 			}
 			
+			tableOfContents()
 			bodyContents()
 
 			newLine()

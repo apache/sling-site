@@ -137,7 +137,7 @@ is expected that Sling also operates perfectly inside other OSGi frameworks
 such as [Equinox](http://www.eclipse.org/equinox) and [Knopflerfish](http://www.knopflerfish.org).
 
 
-<script src="/res/jquery.js" type="text/javascript"></script>
+<script src="/res/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
         $(document).ready(function() {
             $.get("/news.html", function(news) {
