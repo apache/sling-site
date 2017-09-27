@@ -8,7 +8,7 @@ Clone this repository, run the below Maven command, http://localhost:8820/ and e
 
     mvn clean package jbake:inline -Djbake.port=8820 -Djbake.listenAddress=0.0.0.0
 
-## How to publish the website
+## How to publish the website
 Build the site using `mvn clean package` after changing the JBake settings using this patch:
 
 (TODO: automate this using Maven resource rewriting or something similar.)
