@@ -9,26 +9,10 @@ Clone this repository, run the below Maven command, http://localhost:8820/ and e
     mvn clean package jbake:inline -Djbake.port=8820 -Djbake.listenAddress=0.0.0.0
 
 ## How to publish the website
-Build the site using `mvn clean package` after changing the JBake settings using this patch:
+Build the site using `mvn clean package` and then sync the `target/sling-site-*` folder to the `asf-site` branch
+of this Git repository, commit and push that branch.
 
-(TODO: automate this using Maven resource rewriting or something similar.)
-
-    diff --git a/src/main/jbake/jbake.properties b/src/main/jbake/jbake.properties
-    index 3f7121e..df175e6 100644
-    --- a/src/main/jbake/jbake.properties
-    +++ b/src/main/jbake/jbake.properties
-    @@ -1,6 +1,6 @@
-     feed.id=localhost
-    -site.host=http://localhost
-    -site.contextPath=/
-    +site.host=http://sling.apache.org      
-    +site.contextPath=/ng/
-     foundation.version=5.5.1
-     blog.title=Apache Sling
-     blog.subtitle=Work in progress...
-	 
-and then sync the `target/sling-site-*` folder to the `asf-site` branch
-of this Git repository. The ASF's gitpubsub mechanism then synchronizes that content
+The ASF's gitpubsub mechanism then synchronizes that content
 on the http://sling.apache.org website, usually within a few seconds.
 
 ## TODO
