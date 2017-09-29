@@ -1,17 +1,17 @@
 # Apache Sling Website
-This repository contains the content of the http://sling.apache.org/ , which moved in September 2017 from
-the Apache CMS to this JBake-generated website.
+This repository contains the content of the http://sling.apache.org/ website, which moved in September 2017 from
+the Apache CMS to this JBake-generated site.
 
 ## How to build and stage the site locally  
-Clone this repository, run the below Maven command, http://localhost:8820/ and enjoy.
+Clone this repository, run the below Maven command, open http://localhost:8820/ and enjoy.
 
     mvn clean package jbake:inline -Djbake.port=8820 -Djbake.listenAddress=0.0.0.0
 	
 This allows	you to experiment with your changes before eventually publishing them.
 
 ## How to publish the website
-Build the site using `mvn clean package` and then sync the `target/sling-site-*` folder to the `asf-site` branch
-of this Git repository, commit and push that branch.
+Clone this repository, build the site using `mvn clean package` and then sync the `target/sling-site-*` 
+folder to the `asf-site` branch of this Git repository, commit and push that branch.
 
 The ASF's gitpubsub mechanism then synchronizes that content to http://sling.apache.org , usually within a few seconds.
 
