@@ -70,9 +70,9 @@
                 <strong><a href="/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1>
+<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 MavenTipsAndTricks
-            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>Here's our collection of tips and tricks for building Sling with <a href="http://maven.apache.org">Maven</a>.</p>
+            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>Here's our collection of tips and tricks for building Sling with <a href="http://maven.apache.org">Maven</a>.</p>
 <h1><a href="#maven-local-repository" name="maven-local-repository">Maven local repository</a></h1>
 <p>The first time you run a Maven build, or when Maven needs additional build components, it downloads plugins and dependencies under its <em>local repository</em> folder on your computer. By default, this folder is named <em>.m2/repository</em> in your home directory.</p>
 <p>Maven uses this repository as a cache for artifacts that it might need for future builds, which means that the first Sling build usually takes much longer than usual, as Maven needs to download many tools and dependencies into its local repository while the build progresses.</p>
