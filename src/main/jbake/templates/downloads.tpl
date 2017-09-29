@@ -254,6 +254,7 @@ def downloadLink(label, artifact, version, suffix) {
 	yield ", "
 	a(href:"${digestsBase}.md5", "md5")
 	yield ")"
+	newLine()
 }
 
 def tableHead(String [] headers) {
