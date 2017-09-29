@@ -7,8 +7,6 @@ tags=community
 **Apache Sling&trade;** is an innovative web framework that is intended to
 bring back the fun to web development.
 
-Discussions about Sling happen on our mailing lists, see the [Project Information](/project-information.html)
- page for more info.
 
 # Apache Sling in four bullets points
 
@@ -17,27 +15,29 @@ Discussions about Sling happen on our mailing lists, see the [Project Informatio
 * Modular design
 * Scripting inside
 
-## Getting started
+# Getting started
 
 If you prefer doing rather than reading, please proceed to the [Getting Started](/documentation/getting-started.html)
  section, where you can quickly get started on your own instance of Sling.
 
+Discussions about Sling happen on our mailing lists, see the [Project Information](/project-information.html)
+ page for more info.
+
 # Apache Sling in a hundred words
 
-Apache Sling is a web framework that uses a [Java Content Repository](http://en.wikipedia.org/wiki/JSR-170), such as [Apache Jackrabbit](http://jackrabbit.apache.org/), to store and manage content.
+Apache Sling is a web framework that uses a resource oriented architecture. The content is
+ stored in a hierarchical resource tree which is mapped to the URL space of the web 
+ application.
 
 Sling applications use either scripts or Java servlets, selected based on
 simple name conventions, to process HTTP requests in a RESTful way.
 
-The embedded [Apache Felix](http://felix.apache.org/)
- OSGi framework and console provide a dynamic runtime environment, where
-code and content bundles can be loaded, unloaded and reconfigured at
-runtime.
+The runtime environment is modular and dynamic allowing to select only the required modules
+ to run your Sling application. This provides a flexible extension mechanism where modules
+ easily can be loaded, unloaded and reconfigured
 
-As the first web framework dedicated to [JSR-170](http://jcp.org/en/jsr/detail?id=170)
- Java Content Repositories, Sling makes it very simple to implement simple
-applications, while providing an enterprise-level framework for more
-complex applications. 
+Sling makes it very simple to implement simple applications, while providing an 
+ enterprise-level framework for more complex applications. 
 
 ## News
 
