@@ -10,14 +10,17 @@ bring back the fun to web development.
 Discussions about Sling happen on our mailing lists, see the [Project Information](/project-information.html)
  page for more info.
 
-# Apache Sling in five bullets points
+# Apache Sling in four bullets points
 
-* REST based web framework
-* Content-driven, using a JCR content repository
-* Powered by OSGi
-* Scripting inside, multiple languages (JSP, server-side javascript, Scala,
-etc.)
-* Apache Open Source project
+* ReST based web framework
+* Content-driven, using a hierarchical content tree
+* Modular design
+* Scripting inside
+
+## Getting started
+
+If you prefer doing rather than reading, please proceed to the [Getting Started](/documentation/getting-started.html)
+ section, where you can quickly get started on your own instance of Sling.
 
 # Apache Sling in a hundred words
 
@@ -58,12 +61,6 @@ this:
 > \[David Nuescheler, CTO of Day Software\] favorite weapon.
 
 > It is also the simplest device for delivering content very fast.
-
-## Getting started
-
-If you prefer doing rather than reading, please proceed to [Discover Sling in 15 minutes](/documentation/getting-started/discover-sling-in-15-minutes.html)
- or read through the recommended links in the [Getting Started](/documentation/getting-started.html)
- section, where you can quickly get started on your own instance of Sling.
 
 ## Use Cases for Sling
 
