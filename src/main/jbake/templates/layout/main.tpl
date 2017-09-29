@@ -10,10 +10,13 @@ html(lang:'en'){
 		div(class:"main") {
 			breadcrumbs()
 			
-			h1(class:"pagetitle") {
-            	yield "${ content ? content.title : "<MISSING CONTENT OBJECT??>" }"
+			if(content && content.title) {
+				h1(class:"pagetitle") {
+					yield "${ content.title }"
+				}
 			}
 			
+			tags()
 			tableOfContents()
 			bodyContents()
 
