@@ -1,6 +1,7 @@
 title=XSLT Processing Pipeline
 type=page
 status=published
+tags=xslt,postprocessing
 ~~~~~~
 
 In the *Apache Sling Scripting W3C XML Processing Support* bundle, Juanjo Vàzquez has implemented XSLT processing support for Sling as another new scripting engine, based on the [Cocoon 3 pipeline engine](http://cocoon.apache.org/3.0/).

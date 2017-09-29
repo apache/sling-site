@@ -1,6 +1,7 @@
 title=Sling Servlet Helpers		
 type=page
 status=published
+tags=servlets
 ~~~~~~
 
 The Sling Servlet Helpers bundle provides mock implementations of the

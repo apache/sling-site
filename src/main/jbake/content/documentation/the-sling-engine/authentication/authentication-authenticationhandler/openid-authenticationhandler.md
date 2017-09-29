@@ -1,6 +1,7 @@
 title=OpenID AuthenticationHandler		
 type=page
 status=published
+tags=core,authentication,openid
 ~~~~~~
 
 [TOC]

@@ -1,6 +1,7 @@
 title=Feature Flags		
 type=page
 status=published
+tags=core,featureflags
 ~~~~~~
 
 Feature Flags are used to select whether a particular feature is enabled or not. This allows to

@@ -1,6 +1,7 @@
 title=URL decomposition		
 type=page
 status=published
+tags=core,urls
 ~~~~~~
 
 [TOC]

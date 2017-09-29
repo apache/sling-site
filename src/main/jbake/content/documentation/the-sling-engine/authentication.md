@@ -2,6 +2,7 @@ title=Authentication
 type=page
 status=published
 excerpt=How requests are authenticated.
+tags=core,authentication
 ~~~~~~
 
 

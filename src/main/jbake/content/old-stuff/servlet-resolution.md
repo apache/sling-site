@@ -1,6 +1,7 @@
 title=Servlet Resolution
 type=page
 status=published
+tags=servlets,servletresolver
 ~~~~~~
 <div class="warning">
 Please note that the description on this page is out of sync with the most recent developments going on as part of implementing issue [SLING-387]({{ refs.https://issues.apache.org/jira/browse/SLING-387.path }}). See the links to integration tests at the end of this page for the Current Truth.

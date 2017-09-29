@@ -1,6 +1,7 @@
 title=Rendering Content - Default GET Servlets		
 type=page
 status=published
+tags=servlets
 ~~~~~~
 
 [TOC]

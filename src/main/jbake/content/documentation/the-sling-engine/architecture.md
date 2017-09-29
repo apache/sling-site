@@ -1,9 +1,10 @@
 title=Architecture		
 type=page
 status=published
+tags=core
 ~~~~~~
 
-The following is a short list of high-lights of Sling:
+The following is a short list of highlights of Sling:
 
 * **[OSGi](#osgi)** &mdash; The Sling application is built as a series of OSGi bundles and makes heavy use of a number of OSGi core and compendium services.
 * **[Sling API](#sling-api)** &mdash; To implement content based Web applications with Sling, an API has been defined, this extends the Servlet API and provides more functionality to work on the content.

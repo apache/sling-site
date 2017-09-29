@@ -1,6 +1,7 @@
 title=Mappings for Resource Resolution		
 type=page
 status=published
+tags=core,resources,resourcemappings
 ~~~~~~
 
 [TOC]

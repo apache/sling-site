@@ -1,6 +1,7 @@
 title=Servlet Filter Support		
 type=page
 status=published
+tags=core,servlets
 ~~~~~~
 
 Sling supports filter processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface.

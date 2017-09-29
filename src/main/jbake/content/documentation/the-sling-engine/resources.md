@@ -1,6 +1,7 @@
 title=Resources		
 type=page
 status=published
+tags=core,resources
 ~~~~~~
 
 [TOC]

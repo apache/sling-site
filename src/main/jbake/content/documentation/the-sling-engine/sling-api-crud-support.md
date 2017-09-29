@@ -1,6 +1,7 @@
 title=Sling API CRUD Support		
 type=page
 status=published
+tags=api,core
 ~~~~~~
 
 [TOC]

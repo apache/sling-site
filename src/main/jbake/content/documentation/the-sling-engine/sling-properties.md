@@ -1,6 +1,7 @@
 title=Well-known Sling Properties		
 type=page
 status=published
+tags=core,configuration
 ~~~~~~
 
 This table lists properties which have known functionality in the OSGi and Sling frameworks.
