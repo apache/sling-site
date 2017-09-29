@@ -10,7 +10,7 @@ html(lang:'en'){
 		div(class:"main") {
 			breadcrumbs()
 			
-			h1 {
+			h1(class:"pagetitle") {
             	yield "${ content ? content.title : "<MISSING CONTENT OBJECT??>" }"
 			}
 			

@@ -46,7 +46,7 @@ layout 'layout/main.tpl', true,
 			div(id:"generatedToC") {}
 			yieldUnescaped "<script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script>"
 			yieldUnescaped "<script src='/res/tocjs-1-1-2.js' type='text/javascript'></script>"
-			yieldUnescaped "<script type='text/javascript'>\$(document).ready(function() { \$('#generatedToC').toc({'selector':'h2,h3'}); } );</script>"
+			yieldUnescaped "<script type='text/javascript'>\$(document).ready(function() { \$('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>"
 		},
         bodyContents: contents {
             div(class:"row"){
