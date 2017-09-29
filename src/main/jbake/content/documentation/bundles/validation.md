@@ -68,22 +68,22 @@ The `ValidationModel` is constructed from resources with the resourceType **slin
  
 The resources should have the following format:
 
-Property/Resource Name      | Property or Resource |  Type   |  Description   |  Mandatory   |  Example 
+Property/Resource Name      | Property or Resource |  Type   |  Description   |  Mandatory   |  Example Value
 -------------------- | ------- | -------------- | -------------| --------- | ------
 `sling:resourceType` | Property | `String` | Always `sling/validation/model`, otherwise model will never be picked up by Sling Validation. | yes | `sling/validation/model`
 `validatingResourceType` | Property | `String` | The resource type of the resource for which this validation model should be applied. Must always be relative to the resource resolver's search path (i.e. not start with a "/"). | yes | `my/own/resourcetype` 
-`applicablePaths` | Property |  `String[]` | Path prefixes which restrict the validation model to resources which are below one of the given prefixes. No wildcards are supported. If not given, there is no path restriction. If there are multiple validation models registered for the same resource type the one with the longest matching applicablePath is chosen. | no | `/content/mysite`
-`properties\<propertyName>` | Resource | - | This resource ensures that the property with the name `<propertyName>` is there. The resource name has no longer a meaning if the property `nameRegex` is set on this node. | no | `false`
-`properties\<propertyName>\optional` | Property | `Boolean` | If `true` it is not an error if there is no property with the given `<propertyName>` or none matching the  `nameRegex`. If not set or `false` the property must be there.  | no | `false`
-`properties\<propertyName>\propertyMultiple` | Property | `Boolean` | If `true` only multivalue properties are allowed with the name `<propertyName>` or matching the `nameRegex`. If not set or `false`, multi- and single-value properties are accepted.  | no | `false`
+`applicablePaths` | Property | `String[]` | Path prefixes which restrict the validation model to resources which are below one of the given prefixes. No wildcards are supported. If not given, there is no path restriction. If there are multiple validation models registered for the same resource type the one with the longest matching applicablePath is chosen. | no | `/content/mysite` 
+`properties\<propertyName>` | Resource | n/a | This resource ensures that the property with the name `<propertyName>` is there. The resource name has no longer a meaning if the property `nameRegex` is set on this node. | no | n/a 
+`properties\<propertyName>\optional` | Property | `Boolean` | If `true` it is not an error if there is no property with the given `<propertyName>` or none matching the `nameRegex`. If not set or `false` the property must be there. | no | `false` 
+`properties\<propertyName>\propertyMultiple` | Property | `Boolean` | If `true` only multivalue properties are allowed with the name `<propertyName>` or matching the `nameRegex`. If not set or `false`, multi- and single-value properties are accepted. | no | `false`
 `properties\<propertyName>\nameRegex` | Property | `String` | If set the `<propertyName>` has no longer a meaning. Rather all properties which match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. | no | `property[0-8]`  
-`properties\<propertyName>\validators\<validatorId>` | Resource | - | The `<validatorId>` must be the id of a validator. The id is given by the OSGi service property `validator.id` set in the validator. Each validators node might have arbitrarily many child resources (one per validator).  | no | `false`  
+`properties\<propertyName>\validators\<validatorId>` | Resource | n/a | The `<validatorId>` must be the id of a validator. The id is given by the OSGi service property `validator.id` set in the validator. Each validators node might have arbitrarily many child resources (one per validator).  | no |  n/a 
 `properties\<propertyName>\validators\<validatorId>\validatorArguments` | Property | `String[]` | The parametrization for the validator with the id  `<validatorId>`. Each value must have the pattern `key=value`. The parametrization differs per validator. | no | `regex=^[a-z]*$`
 `properties\<propertyName>\validators\<validatorId>\severity` | Property | `Integer` | The severity which should be set on all emitted validation failures by this validator. | no | `0` 
-`children\<resourceName>` | Resource | - | This resource ensures that the resource with the name `<resourceName>` is there. The resource name has no longer a meaning if the property `nameRegex` is set on this node. | no | `child1`
+`children\<resourceName>` | Resource | n/a | This resource ensures that the resource with the name `<resourceName>` is there. The resource name has no longer a meaning if the property `nameRegex` is set on this node. | no | n/a
 `children\<resourceName>\nameRegex` | Property | `String` | If set the `<resourceName>` has no longer a meaning. Rather all resources whose name match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. | no | `child[1-9]`
 `children\<resourceName>\optional` | Property | `Boolean` | If `true` it is not an error if there is no resource with the given `<resourceName>` or none matching the  `nameRegex`. If not set or `false` the resource must be there. | no | `false`
-`children\<resourceName>\properties` | Resource | - | The properties can be configured on the child level in the same way as on the root level. | no | -
+`children\<resourceName>\properties` | Resource | n/a | The properties can be configured on the child level in the same way as on the root level. | no | n/a
 
 ## Validation Model Inheritance
 Sling Validation optionally supports the inheritance of Sling Validation Models. This means not only the model for exactly the given resource type is considered, but also the models for all resource super types.
