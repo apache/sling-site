@@ -1,6 +1,8 @@
 # sling-jbake
 Experimenting with JBake for the Apache Sling website.
 
+TODO does commit to github work?
+
 See also https://issues.apache.org/jira/browse/SLING-6955
 
 ## How to build the site locally  
