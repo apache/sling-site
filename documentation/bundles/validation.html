@@ -72,7 +72,7 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Sling Validation
-            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+            </h1><div class="tags"><a href="/tags/validation.html" class="label">validation</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <p>Many Sling projects want to be able to validate both Resources and request parameters. Through the Sling Validation framework this is possible with the help of validation model resources which define validation rules for a certain resourceType.</p>
 <h1><a href="#prerequisites" name="prerequisites">Prerequisites</a></h1>
@@ -135,7 +135,7 @@
       <th>Type </th>
       <th>Description </th>
       <th>Mandatory </th>
-      <th>Example</th>
+      <th>Example Value</th>
     </tr>
   </thead>
   <tbody>
@@ -163,9 +163,96 @@
       <td>no </td>
       <td><code>/content/mysite</code></td>
     </tr>
+    <tr>
+      <td><code>properties\&lt;propertyName&gt;</code> </td>
+      <td>Resource </td>
+      <td>n/a </td>
+      <td>This resource ensures that the property with the name <code>&lt;propertyName&gt;</code> is there. The resource name has no longer a meaning if the property <code>nameRegex</code> is set on this node. </td>
+      <td>no </td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>properties\&lt;propertyName&gt;\optional</code> </td>
+      <td>Property </td>
+      <td><code>Boolean</code> </td>
+      <td>If <code>true</code> it is not an error if there is no property with the given <code>&lt;propertyName&gt;</code> or none matching the <code>nameRegex</code>. If not set or <code>false</code> the property must be there. </td>
+      <td>no </td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>properties\&lt;propertyName&gt;\propertyMultiple</code> </td>
+      <td>Property </td>
+      <td><code>Boolean</code> </td>
+      <td>If <code>true</code> only multivalue properties are allowed with the name <code>&lt;propertyName&gt;</code> or matching the <code>nameRegex</code>. If not set or <code>false</code>, multi- and single-value properties are accepted. </td>
+      <td>no </td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>properties\&lt;propertyName&gt;\nameRegex</code> </td>
+      <td>Property </td>
+      <td><code>String</code> </td>
+      <td>If set the <code>&lt;propertyName&gt;</code> has no longer a meaning. Rather all properties which match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. </td>
+      <td>no </td>
+      <td><code>property[0-8]</code></td>
+    </tr>
+    <tr>
+      <td><code>properties\&lt;propertyName&gt;\validators\&lt;validatorId&gt;</code> </td>
+      <td>Resource </td>
+      <td>n/a </td>
+      <td>The <code>&lt;validatorId&gt;</code> must be the id of a validator. The id is given by the OSGi service property <code>validator.id</code> set in the validator. Each validators node might have arbitrarily many child resources (one per validator). </td>
+      <td>no </td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>properties\&lt;propertyName&gt;\validators\&lt;validatorId&gt;\validatorArguments</code> </td>
+      <td>Property </td>
+      <td><code>String[]</code> </td>
+      <td>The parametrization for the validator with the id <code>&lt;validatorId&gt;</code>. Each value must have the pattern <code>key=value</code>. The parametrization differs per validator. </td>
+      <td>no </td>
+      <td><code>regex=^[a-z]*$</code></td>
+    </tr>
+    <tr>
+      <td><code>properties\&lt;propertyName&gt;\validators\&lt;validatorId&gt;\severity</code> </td>
+      <td>Property </td>
+      <td><code>Integer</code> </td>
+      <td>The severity which should be set on all emitted validation failures by this validator. </td>
+      <td>no </td>
+      <td><code>0</code></td>
+    </tr>
+    <tr>
+      <td><code>children\&lt;resourceName&gt;</code> </td>
+      <td>Resource </td>
+      <td>n/a </td>
+      <td>This resource ensures that the resource with the name <code>&lt;resourceName&gt;</code> is there. The resource name has no longer a meaning if the property <code>nameRegex</code> is set on this node. </td>
+      <td>no </td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>children\&lt;resourceName&gt;\nameRegex</code> </td>
+      <td>Property </td>
+      <td><code>String</code> </td>
+      <td>If set the <code>&lt;resourceName&gt;</code> has no longer a meaning. Rather all resources whose name match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. </td>
+      <td>no </td>
+      <td><code>child[1-9]</code></td>
+    </tr>
+    <tr>
+      <td><code>children\&lt;resourceName&gt;\optional</code> </td>
+      <td>Property </td>
+      <td><code>Boolean</code> </td>
+      <td>If <code>true</code> it is not an error if there is no resource with the given <code>&lt;resourceName&gt;</code> or none matching the <code>nameRegex</code>. If not set or <code>false</code> the resource must be there. </td>
+      <td>no </td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>children\&lt;resourceName&gt;\properties</code> </td>
+      <td>Resource </td>
+      <td>n/a </td>
+      <td>The properties can be configured on the child level in the same way as on the root level. </td>
+      <td>no </td>
+      <td>n/a</td>
+    </tr>
   </tbody>
 </table>
-<p><code>properties\&lt;propertyName&gt;</code> | Resource | - | This resource ensures that the property with the name <code>&lt;propertyName&gt;</code> is there. The resource name has no longer a meaning if the property <code>nameRegex</code> is set on this node. | no | <code>false</code> <code>properties\&lt;propertyName&gt;\optional</code> | Property | <code>Boolean</code> | If <code>true</code> it is not an error if there is no property with the given <code>&lt;propertyName&gt;</code> or none matching the <code>nameRegex</code>. If not set or <code>false</code> the property must be there. | no | <code>false</code> <code>properties\&lt;propertyName&gt;\propertyMultiple</code> | Property | <code>Boolean</code> | If <code>true</code> only multivalue properties are allowed with the name <code>&lt;propertyName&gt;</code> or matching the <code>nameRegex</code>. If not set or <code>false</code>, multi- and single-value properties are accepted. | no | <code>false</code> <code>properties\&lt;propertyName&gt;\nameRegex</code> | Property | <code>String</code> | If set the <code>&lt;propertyName&gt;</code> has no longer a meaning. Rather all properties which match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. | no | <code>property[0-8]</code><br/><code>properties\&lt;propertyName&gt;\validators\&lt;validatorId&gt;</code> | Resource | - | The <code>&lt;validatorId&gt;</code> must be the id of a validator. The id is given by the OSGi service property <code>validator.id</code> set in the validator. Each validators node might have arbitrarily many child resources (one per validator). | no | <code>false</code><br/><code>properties\&lt;propertyName&gt;\validators\&lt;validatorId&gt;\validatorArguments</code> | Property | <code>String[]</code> | The parametrization for the validator with the id <code>&lt;validatorId&gt;</code>. Each value must have the pattern <code>key=value</code>. The parametrization differs per validator. | no | <code>regex=^[a-z]*$</code> <code>properties\&lt;propertyName&gt;\validators\&lt;validatorId&gt;\severity</code> | Property | <code>Integer</code> | The severity which should be set on all emitted validation failures by this validator. | no | <code>0</code> <code>children\&lt;resourceName&gt;</code> | Resource | - | This resource ensures that the resource with the name <code>&lt;resourceName&gt;</code> is there. The resource name has no longer a meaning if the property <code>nameRegex</code> is set on this node. | no | <code>child1</code> <code>children\&lt;resourceName&gt;\nameRegex</code> | Property | <code>String</code> | If set the <code>&lt;resourceName&gt;</code> has no longer a meaning. Rather all resources whose name match the given regular expression are considered. At least one match is required, otherwise the validated resource/valuemap is considered invalid. | no | <code>child[1-9]</code> <code>children\&lt;resourceName&gt;\optional</code> | Property | <code>Boolean</code> | If <code>true</code> it is not an error if there is no resource with the given <code>&lt;resourceName&gt;</code> or none matching the <code>nameRegex</code>. If not set or <code>false</code> the resource must be there. | no | <code>false</code> <code>children\&lt;resourceName&gt;\properties</code> | Resource | - | The properties can be configured on the child level in the same way as on the root level. | no | -</p>
 <h2><a href="#validation-model-inheritance" name="validation-model-inheritance">Validation Model Inheritance</a></h2>
 <p>Sling Validation optionally supports the inheritance of Sling Validation Models. This means not only the model for exactly the given resource type is considered, but also the models for all resource super types. To overwrite some property or child from one of the super type models, just define a property/child on the same level and with the same name in a model for a resource type which is more specific. That way the property/child on the super validation model is no longer effective.</p>
 <h2><a href="#precedence-of-validation-models" name="precedence-of-validation-models">Precedence of Validation Models</a></h2>

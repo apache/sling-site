@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling :: </title>
+        <title>Apache Sling :: Repository Initalization</title>
         <link rel="icon" href="/res/favicon.ico"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
@@ -71,8 +71,8 @@
             </p>
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
-                
-            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>SlingRepositoryInitializer</code> mechanism allows for running code before the <code>SlingRepository</code> service is registered.</p>
+                Repository Initalization
+            </h1><div class="tags"><a href="/tags/repoinit.html" class="label">repoinit</a> <a href="/tags/jcr.html" class="label">jcr</a> <a href="/tags/repository.html" class="label">repository</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>SlingRepositoryInitializer</code> mechanism allows for running code before the <code>SlingRepository</code> service is registered.</p>
 <p>This is useful for initialization and content migration purposes.</p>
 <p>Please be aware of potential clustering and coordination issues when using this mechanism, if your environment lets several Sling instances access the same content repository you'll need to implement a synchronization mechanism for such operations.</p>
 <h2><a href="#slingrepositoryinitializer" name="slingrepositoryinitializer">SlingRepositoryInitializer</a></h2>
