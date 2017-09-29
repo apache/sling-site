@@ -1,6 +1,7 @@
 title=Modifiers
 type=page
 status=published
+tags=slingquery
 ~~~~~~
 
 ### `:eq(index)`

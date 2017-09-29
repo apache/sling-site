@@ -1,6 +1,7 @@
 title=DataSource Provider		
 type=page
 status=published
+tags=databases
 ~~~~~~
 
 DataSource provider bundle supports creation of `DataSource` instance and registering them with

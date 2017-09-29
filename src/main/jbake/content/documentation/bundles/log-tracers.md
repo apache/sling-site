@@ -1,6 +1,7 @@
 title=Log Tracer		
 type=page
 status=published
+tags=logging
 ~~~~~~
 
 [Log Tracer][SLING-4739] provides support for enabling the logs for specific category at specific 

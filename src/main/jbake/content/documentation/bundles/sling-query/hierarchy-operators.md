@@ -1,6 +1,7 @@
 title=Hierarchy operators
 type=page
 status=published
+tags=slingquery
 ~~~~~~
 
 ### Child operator (`parent > child`)

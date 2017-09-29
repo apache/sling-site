@@ -1,6 +1,7 @@
 title=Apache Sling - Bringing Back the Fun!		
 type=page
 status=published
+tags=community
 ~~~~~~
 
 **Apache Sling&trade;** is an innovative web framework that is intended to

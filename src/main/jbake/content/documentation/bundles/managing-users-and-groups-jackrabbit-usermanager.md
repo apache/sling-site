@@ -1,6 +1,7 @@
 title=Managing users and groups (jackrabbit.usermanager)		
 type=page
 status=published
+tags=security
 ~~~~~~
 
 The `jackrabbit-usermanager` bundle delivers a REST interface to create, update and delete users and groups in the JCR. After installing the `jackrabbit-usermanager` bundle all REST services are exposed under the path `/system/userManager`. Its interface for modifing/creating authorizables is similar to the [SlingPostServlet](/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html).

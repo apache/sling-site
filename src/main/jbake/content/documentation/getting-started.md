@@ -1,6 +1,7 @@
 title=Getting Started		
 type=page
 status=published
+tags=tutorials
 ~~~~~~
 
 We're on the way to update the documentation to make it more easy to get in touch with Sling. At the moment we can give you the following starting points:

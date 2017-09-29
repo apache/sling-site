@@ -1,6 +1,7 @@
 title=Project Team		
 type=page
 status=published
+tags=community,pmc
 ~~~~~~
 
 A successful project requires many people to play many roles. Some members write code or documentation, while others are valuable as testers, submitting patches and suggestions.

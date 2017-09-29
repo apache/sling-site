@@ -1,6 +1,7 @@
 title=Maven Usage		
 type=page
 status=published
+tags=development,maven
 ~~~~~~
 
 Apache Sling uses Maven as a build tool. This page documents some of the choices that we made when using Maven.

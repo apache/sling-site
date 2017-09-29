@@ -1,6 +1,7 @@
 title=Operators
 type=page
 status=published
+tags=slingquery
 ~~~~~~
 
 ### Contains `[name*=value]`

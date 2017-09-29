@@ -2,6 +2,7 @@ title=Getting and Building Sling
 type=page
 status=published
 excerpt=A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.
+tags=development
 ~~~~~~
 
 A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.

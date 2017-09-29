@@ -1,6 +1,7 @@
 title=Apache Sling Dynamic Include		
 type=page
 status=published
+tags=publishing
 ~~~~~~
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file

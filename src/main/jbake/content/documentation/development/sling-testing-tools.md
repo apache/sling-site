@@ -1,6 +1,7 @@
 title=Sling Testing Tools		
 type=page
 status=published
+tags=development,testing
 ~~~~~~
 
 <div class="warning">

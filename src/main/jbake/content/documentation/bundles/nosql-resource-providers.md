@@ -1,6 +1,7 @@
 title=NoSQL Resource Providers (org.apache.sling.nosql)		
 type=page
 status=published
+tags=resourceproviders,nosql
 ~~~~~~
 [TOC]
 

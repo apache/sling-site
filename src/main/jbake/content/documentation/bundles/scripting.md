@@ -1,6 +1,7 @@
 title=Sling Scripting		
 type=page
 status=published
+tags=scripts
 ~~~~~~
 
 [TOC]

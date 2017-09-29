@@ -1,6 +1,7 @@
 title=Web Console Extensions		
 type=page
 status=published
+tags=webconsole,operations
 ~~~~~~
 
 The Apache Sling project provides two extensions to the [Apache Felix Web Console](http://felix.apache.org/site/apache-felix-web-console.html) (in addition to a number of plugins, of course):

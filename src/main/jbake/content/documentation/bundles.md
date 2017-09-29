@@ -1,6 +1,7 @@
 title=Bundles		
 type=page
 status=published
+tags=bundles,modules
 ~~~~~~
 
 ## Content

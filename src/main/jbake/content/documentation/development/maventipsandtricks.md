@@ -1,6 +1,7 @@
 title=MavenTipsAndTricks		
 type=page
 status=published
+tags=development,maven
 ~~~~~~
 
 Here's our collection of tips and tricks for building Sling with [Maven](http://maven.apache.org).

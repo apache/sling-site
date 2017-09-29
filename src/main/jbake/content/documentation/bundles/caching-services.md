@@ -1,6 +1,7 @@
 title=Sling Caching Services		
 type=page
 status=published
+tags=caching
 ~~~~~~
 
 Caching services are available as a contribution at [https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/cache](https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/cache)

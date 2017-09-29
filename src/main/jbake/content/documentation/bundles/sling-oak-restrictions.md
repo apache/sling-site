@@ -1,6 +1,7 @@
 title=Sling Oak Restrictions		
 type=page
 status=published
+tags=oak,jcr,security
 ~~~~~~
 [TOC]
 

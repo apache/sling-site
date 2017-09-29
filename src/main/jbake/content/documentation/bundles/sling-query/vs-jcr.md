@@ -1,6 +1,7 @@
 title=Sling Query vs JCR
 type=page
 status=published
+tags=slingquery
 ~~~~~~
 
 Sling Query is not meant to replace JCR queries (XPath, JCR-SQL, JCR-SQL2). It doesn't use indexes and generally in queries traversing large subtrees (like `/` or `/content` or `/content/mysite/en`) it'll be much slower than well written JCR query.

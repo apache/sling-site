@@ -1,6 +1,7 @@
 title=How to Manage Jobs in Sling		
 type=page
 status=published
+tags=jobs
 ~~~~~~
 
 Apache Sling supports the execution of jobs with the guarantee of processing the job at least once. This can be seen as an extensions of the OSGi event admin, although jobs are not started or processed by OSGi events leveraging the OSGi event admin.

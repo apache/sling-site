@@ -1,6 +1,7 @@
 title=Sling API docs at javadoc.io		
 type=page
 status=published
+tags=api,documentation
 ~~~~~~
 
 [javadocs.io](http://www.javadoc.io/) provides archived javadocs for all Sling modules (and actually

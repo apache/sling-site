@@ -1,6 +1,7 @@
 title=Sling Models		
 type=page
 status=published
+tags=models
 ~~~~~~
 
 [TOC]

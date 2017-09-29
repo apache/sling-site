@@ -1,6 +1,7 @@
 title=Hamcrest Integration		
 type=page
 status=published
+tags=development
 ~~~~~~
 
 Deeper integration with the [Hamcrest matcher library](http://hamcrest.org/).

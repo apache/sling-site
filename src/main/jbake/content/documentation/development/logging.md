@@ -1,6 +1,7 @@
 title=Logging		
 type=page
 status=published
+tags=logging,operations
 ~~~~~~
 
 <div class="note">

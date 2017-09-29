@@ -1,6 +1,7 @@
 title=Basic Ideas
 type=page
 status=published
+tags=slingquery
 ~~~~~~
 
 ### Collections

@@ -1,6 +1,7 @@
 title=Managing permissions (jackrabbit.accessmanager)		
 type=page
 status=published
+tags=security
 ~~~~~~
 
 

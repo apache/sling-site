@@ -1,6 +1,7 @@
 title=Maven Launchpad Plugin		
 type=page
 status=published
+tags=development,maven
 ~~~~~~
 
 <div class="note">

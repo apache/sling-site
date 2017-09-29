@@ -1,6 +1,7 @@
 title=Documentation		
 type=page
 status=published
+tags=documentation,community,pmc
 ~~~~~~
 
 [TOC]

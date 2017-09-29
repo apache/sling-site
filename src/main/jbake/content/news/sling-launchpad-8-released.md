@@ -1,6 +1,7 @@
 title=Apache Sling Launchpad 8 released		
 type=page
 status=published
+tags=launchpad
 ~~~~~~
 
 Here are some of the more noteworthy things available in this release.

@@ -1,6 +1,7 @@
 title=Scheduler Service (commons scheduler)		
 type=page
 status=published
+tags=scheduling
 ~~~~~~
 
 The scheduler is a service for scheduling other services/jobs (it uses the open source Quartz library). The scheduler can be used in two ways, by registering the job through the scheduler API and by leveraging the whiteboard pattern that is supported by the scheduler. In most cases the whiteboard pattern is preferred

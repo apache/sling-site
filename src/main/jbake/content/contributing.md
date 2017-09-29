@@ -1,6 +1,7 @@
 title=Contributing		
 type=page
 status=published
+tags=community
 ~~~~~~
 
 See [Project Information](/project-information.html) for details about the tools mentioned below.

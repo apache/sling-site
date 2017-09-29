@@ -1,6 +1,7 @@
 title=Resource Access Security		
 type=page
 status=published
+tags=security
 ~~~~~~
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file

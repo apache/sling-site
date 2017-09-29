@@ -1,6 +1,7 @@
 title=Content Distribution (org.apache.sling.distribution)		
 type=page
 status=published
+tags=contentdistribution
 ~~~~~~
 [TOC]
 

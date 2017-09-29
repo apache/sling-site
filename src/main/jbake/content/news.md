@@ -1,6 +1,7 @@
 title=News		
 type=page
 status=published
+tags=news
 ~~~~~~
 
 * New Releases: Apache Sling Scripting Core implementation 2.0.48, Apache Event Support 4.2.8, Apache Sling SlingStart Maven Plugin 1.7.10, Apache Sling JUnit Tests Teleporter 1.0.16, Apache Sling Testing Utilities 2.1.2 (September 29th, 2017)

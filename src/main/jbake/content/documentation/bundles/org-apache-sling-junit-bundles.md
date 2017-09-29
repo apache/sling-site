@@ -1,6 +1,7 @@
 title=JUnit server-side testing support bundles		
 type=page
 status=published
+tags=testing
 ~~~~~~
 
 This is an overview of the Sling bundles that provide support for server-side JUnit tests. 

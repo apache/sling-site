@@ -1,6 +1,7 @@
 title=Apache Sling Commons Thread Pool		
 type=page
 status=published
+tags=core,threads
 ~~~~~~
 
 The Apache Sling Commons Thread Pool bundle provides a thread pool services. All thread pools are managed by the `org.apache.sling.commons.threads.ThreadPoolManager`. This service can be used to get a thread pool.
