@@ -72,14 +72,24 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Getting Started
-            </h1><div class="tags"><a href="/tags/tutorials.html" class="label">tutorials</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>We're on the way to update the documentation to make it more easy to get in touch with Sling. At the moment we can give you the following starting points:</p>
-<ul>
-  <li><a href="getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a></li>
-</ul>
-<h2><a href="#where-to-head-from-here" name="where-to-head-from-here">Where to head from here</a></h2>
-<p>We recommend you read through following topics to get as fast as possible into Sling: </p>
+            </h1><div class="tags"><a href="/tags/tutorials.html" class="label">tutorials</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><h1><a href="#run-apache-sling" name="run-apache-sling">Run Apache Sling</a></h1>
+<h2><a href="#sling-docker-image" name="sling-docker-image">Sling Docker Image</a></h2>
+<p>The easiest way to get Apache Sling running is to use Docker. If you don't have Docker installed  you can skip to the next section.</p>
+<p>We maintain a docker image of our latest release at <a href="https://hub.docker.com/r/apachesling/sling">Apache Sling Docker Image</a>.</p>
+<p>The simplest command to launch Sling is:</p>
+<pre><code>docker run -p 8080:8080 apachesling/sling
+</code></pre>
+<p>This will start the latest Apache Sling distribution and you can access Sling at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<h2><a href="#sling-download" name="sling-download">Sling Download</a></h2>
+<p>The other option is to download the latest released Apache Sling standalone application from our  <a href="/downloads.cgi">Downloads</a> section. Once you have downloaded the application make sure that you have  Java 8 or later installed and run Sling with (replace the N with the latest version number before  executing the command):</p>
+<pre><code>java -jar org.apache.sling.launchpad-N.jar
+</code></pre>
+<p>Again, once this is started have a look at http://localhost:8080](http://localhost:8080).</p>
+<h1><a href="#where-to-head-from-here" name="where-to-head-from-here">Where to head from here</a></h1>
+<p>We're on the way to update the documentation to make it more easy to get in touch with Sling. We recommend you read through following topics to get as fast as possible into Sling: </p>
 <ul>
   <li><a href="/documentation/development/getting-and-building-sling.html">Getting and building Sling</a></li>
+  <li><a href="getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a></li>
   <li><a href="/documentation/the-sling-engine/architecture.html">Architecture</a></li>
   <li><a href="/documentation/the-sling-engine/dispatching-requests.html">Dispatching Requests</a></li>
   <li><a href="/documentation/the-sling-engine/resources.html">Resources</a></li>

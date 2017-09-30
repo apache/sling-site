@@ -88,8 +88,8 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
 <h2><a href="#prerequisites" name="prerequisites">Prerequisites</a></h2>
 <p>Before you begin, you need to have the following tools installed on your system:</p>
 <ul>
-  <li>Java 7 or higher</li>
-  <li><a href="http://maven.apache.org">Maven</a> 3.0.4 or later; enforced by the Sling parent pom</li>
+  <li>Java 8 or higher</li>
+  <li><a href="http://maven.apache.org">Maven</a> 3.3.9 or later; enforced by the Sling parent pom</li>
 </ul>
 <p>If you want to set up Eclipse (not required to build Sling) you'll also need the following installed:</p>
 <ul>
@@ -227,8 +227,8 @@ $ mvn clean install sling:install
 <p>You can use remote debugging to debug Sling in Eclipse, here's a little How-To</p>
 <ol>
   <li>
-    <p>start Sling from the command line with</p>
-    <p>java -Xmx384M -agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n -jar org.apache.sling.launchpad.app-6-SNAPSHOT.jar</p>
+    <p>start Sling from the command line with (replace N with the actual version before running the command)</p>
+    <p>java -Xmx384M -agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n -jar org.apache.sling.launchpad-N.jar</p>
   </li>
   <li>
   <p>Open Menu Run-&gt; Debug configurations</p></li>
