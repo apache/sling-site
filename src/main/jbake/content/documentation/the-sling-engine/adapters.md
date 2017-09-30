@@ -1,6 +1,7 @@
 title=Adapters		
 type=page
 status=published
+tags=core,adaptTo
 ~~~~~~
 
 [TOC]

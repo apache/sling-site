@@ -1,6 +1,7 @@
 title=Sling Settings and Run Modes (org.apache.sling.settings)		
 type=page
 status=published
+tags=configuration,runmodes
 ~~~~~~
 
 # Overview

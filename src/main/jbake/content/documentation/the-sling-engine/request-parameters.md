@@ -2,6 +2,7 @@ title=Request Parameter Handling in Sling
 type=page
 status=published
 excerpt=Explains how Sling provides request parameters to the `Component`.
+tags=core,requests
 ~~~~~~
 
 ## Servlet API

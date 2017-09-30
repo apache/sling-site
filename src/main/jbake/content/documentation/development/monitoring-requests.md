@@ -1,6 +1,7 @@
 title=Monitoring Requests		
 type=page
 status=published
+tags=operations,requests
 ~~~~~~
 
 Sling provides a simple OSGi console plugin to monitor recent requests. This is quite useful when debugging and to understand how things work, though it's obviously not a replacement for full-blown HTTP trafic monitoring tools.

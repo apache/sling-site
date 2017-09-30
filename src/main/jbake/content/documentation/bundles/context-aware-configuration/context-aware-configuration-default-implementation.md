@@ -1,6 +1,7 @@
 title=Apache Sling Context-Aware Configuration - Default Implementation		
 type=page
 status=published
+tags=configuration
 ~~~~~~
 
 [TOC]

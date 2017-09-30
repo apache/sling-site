@@ -1,6 +1,7 @@
 title=Sling Scripting Thymeleaf		
 type=page
 status=published
+tags=scripts,thymeleaf
 ~~~~~~
 
 Sling Scripting Thymeleaf is the scripting engine for [_Thymeleaf_](http://www.thymeleaf.org) (3.0) templates.

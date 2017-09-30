@@ -1,6 +1,7 @@
 title=Assembly
 type=page
 status=published
+tags=development,osgi,obsolete
 ~~~~~~
 The Assembly concept grew out of a need to bundle together a set of OSGi Bundles to deploy applications. The concept has been developped before the OSGi Deployment Package Service Specification has been published in the Release 4.1 Compendium Services Specification. It will have to be discussed whether the Assembly concept is dropped in favor of the Deplyoment Package Service.
 

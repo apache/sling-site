@@ -1,6 +1,7 @@
 title=Apache Sling Eventing and Job Handling		
 type=page
 status=published
+tags=core,events
 ~~~~~~
 
 

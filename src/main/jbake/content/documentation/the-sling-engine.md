@@ -1,6 +1,7 @@
 title=The Sling Engine		
 type=page
 status=published
+tags=core
 ~~~~~~
 
 ## General

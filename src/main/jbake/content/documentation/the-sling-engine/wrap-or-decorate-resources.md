@@ -1,6 +1,7 @@
 title=Wrap or Decorate Resources		
 type=page
 status=published
+tags=resources
 ~~~~~~
 
 ## Introduction

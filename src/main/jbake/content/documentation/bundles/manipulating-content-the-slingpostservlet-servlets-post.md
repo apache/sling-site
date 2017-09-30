@@ -1,6 +1,7 @@
 title=Manipulating Content - The SlingPostServlet (servlets.post)		
 type=page
 status=published
+tags=servlets,postservlet
 ~~~~~~
 
 [TOC]

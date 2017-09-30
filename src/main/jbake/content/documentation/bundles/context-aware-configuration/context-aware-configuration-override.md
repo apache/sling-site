@@ -1,6 +1,7 @@
 title=Apache Sling Context-Aware Configuration - Override		
 type=page
 status=published
+tags=configuration
 ~~~~~~
 
 [TOC]

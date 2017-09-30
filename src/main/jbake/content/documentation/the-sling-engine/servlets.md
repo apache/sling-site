@@ -1,6 +1,7 @@
 title=Servlets and Scripts		
 type=page
 status=published
+tags=servlets,core
 ~~~~~~
 
 [TOC]

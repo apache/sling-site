@@ -1,6 +1,7 @@
 title=Links		
 type=page
 status=published
+tags=community,pmc
 ~~~~~~
 
 Here are some links to other resources

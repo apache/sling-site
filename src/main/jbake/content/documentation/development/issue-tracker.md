@@ -1,6 +1,7 @@
 title=Issue Tracker		
 type=page
 status=published
+tags=development,community
 ~~~~~~
 
 Apache Sling uses Jira for tracking bug reports and requests for improvements, new features, and other changes.

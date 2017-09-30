@@ -1,6 +1,7 @@
 title=Embedding Sling		
 type=page
 status=published
+tags=launchpad,embedding
 ~~~~~~
 
 The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the [Sling Launchpad Base project](http://svn.apache.org/repos/asf/sling/trunk/launchpad/base). This project has the following features:

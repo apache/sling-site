@@ -1,6 +1,7 @@
 title=Bundle Resources (extensions.bundleresource)		
 type=page
 status=published
+tags=resources,bundles
 ~~~~~~
 
 [TOC]

@@ -1,6 +1,7 @@
 title=The Apache Sling Provisioning Model and Apache SlingStart		
 type=page
 status=published
+tags=slingstart,maven,launchers
 ~~~~~~
 
 [TOC]

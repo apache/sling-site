@@ -2,6 +2,7 @@ title=Authentication - Framework
 type=page
 status=published
 excerpt=The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.
+tags=core,authentication
 ~~~~~~
 
 The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.

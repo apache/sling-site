@@ -1,6 +1,7 @@
 title=Tutorials & How-Tos		
 type=page
 status=published
+tags=tutorials
 ~~~~~~
 
  * [46 Line Blog](tutorials-how-tos/46-line-blog.html)

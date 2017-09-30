@@ -1,6 +1,7 @@
 title=Sling Metrics		
 type=page
 status=published
+tags=metrics
 ~~~~~~
 
 Sling Metrics bundle provides integration with [Dropwizard Metrics][1] library

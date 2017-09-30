@@ -1,6 +1,7 @@
 title=Groovy Support
 type=page
 status=published
+tags=scripts,groovy
 ~~~~~~
 
 After meeting Paul King of the Groovy Team at Apache Con US 08 in New Orleans, I set out to take a stab at SLING-315 again to add Groovy support to Sling. It turned out, that the current Groovy 1.6 branch already contains the required setup to build the `groovy-all.jar` as an OSGi Bundle, which is directly usable with Sling by just installing that bundle.

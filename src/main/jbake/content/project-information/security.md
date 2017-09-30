@@ -1,6 +1,7 @@
 title=Security		
 type=page
 status=published
+tags=security,pmc
 ~~~~~~
 
 # Reporting New Security Problems with Apache Sling

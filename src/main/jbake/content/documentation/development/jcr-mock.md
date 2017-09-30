@@ -1,6 +1,7 @@
 title=JCR Mocks		
 type=page
 status=published
+tags=development,testing,mocks
 ~~~~~~
 
 Mock implementation of selected JCR APIs for easier testing. It stores all data in-memory in a HashMap to ensure instantly creating and destroying of the JCR repository.

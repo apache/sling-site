@@ -1,6 +1,7 @@
 title=Sling Pax Exam Utilities		
 type=page
 status=published
+tags=development,testing
 ~~~~~~
 
 Utilities to help testing Sling components with Pax Exam are available at

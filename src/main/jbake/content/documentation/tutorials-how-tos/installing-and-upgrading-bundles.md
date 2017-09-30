@@ -2,6 +2,7 @@ title=Installing and Upgrading Bundles
 type=page
 status=published
 excerpt=Explains how to install, upgrade and uninstall Bundles using the Sling Management console.
+tags=operations,bundles
 ~~~~~~
 
 <div class="note">

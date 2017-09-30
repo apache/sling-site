@@ -1,6 +1,7 @@
 title=Dispatching Requests		
 type=page
 status=published
+tags=core,requests
 ~~~~~~
 
 ## Main process

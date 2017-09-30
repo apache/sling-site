@@ -1,6 +1,7 @@
 title=JCR Installer Provider		
 type=page
 status=published
+tags=installer
 ~~~~~~
 
 The JCR installer provider scans the JCR repository for artifacts and provides them to the [OSGI installer](/documentation/bundles/osgi-installer.html).

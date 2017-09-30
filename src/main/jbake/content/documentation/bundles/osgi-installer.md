@@ -1,6 +1,7 @@
 title=OSGi Installer		
 type=page
 status=published
+tags=installer
 ~~~~~~
 
 # Overview

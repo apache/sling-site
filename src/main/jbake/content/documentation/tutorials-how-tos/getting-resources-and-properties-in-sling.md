@@ -1,6 +1,7 @@
 title=Getting Resources and Properties in Sling		
 type=page
 status=published
+tags=resources
 ~~~~~~
 
 

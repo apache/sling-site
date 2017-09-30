@@ -1,6 +1,7 @@
 title=Repository Based Development		
 type=page
 status=published
+tags=development,repository
 ~~~~~~
 
 [TOC]

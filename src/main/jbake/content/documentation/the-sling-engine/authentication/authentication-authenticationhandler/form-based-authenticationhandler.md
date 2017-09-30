@@ -1,6 +1,7 @@
 title=Form Based AuthenticationHandler		
 type=page
 status=published
+tags=core,authentication,formauth
 ~~~~~~
 
 [TOC]

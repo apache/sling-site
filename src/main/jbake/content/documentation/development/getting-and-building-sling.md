@@ -2,6 +2,7 @@ title=Getting and Building Sling
 type=page
 status=published
 excerpt=A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.
+tags=development
 ~~~~~~
 
 A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.
@@ -29,8 +30,8 @@ With this, Sling should be running at http://localhost:8080 with remote debuggin
 
 Before you begin, you need to have the following tools installed on your system:
 
-* Java 7 or higher
-* [Maven](http://maven.apache.org) 3.0.4 or later; enforced by the Sling parent pom
+* Java 8 or higher
+* [Maven](http://maven.apache.org) 3.3.9 or later; enforced by the Sling parent pom
 
 If you want to set up Eclipse (not required to build Sling) you'll also need the following installed:
 
@@ -186,9 +187,9 @@ Congratulations \! You should now have a running Sling instance, that you can st
 
 You can use remote debugging to debug Sling in Eclipse, here's a little How-To
 
-1. start Sling from the command line with
-
-    java -Xmx384M -agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n -jar org.apache.sling.launchpad.app-6-SNAPSHOT.jar
+1. start Sling from the command line with (replace N with the actual version before running the command)
+ 
+    java -Xmx384M -agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n -jar org.apache.sling.launchpad-N.jar
 
 1. Open Menu Run-> Debug configurations
 1. Right-click on "Remote Java Applications"

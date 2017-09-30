@@ -1,6 +1,7 @@
 title=Project License		
 type=page
 status=published
+tags=community,pmc
 ~~~~~~
 
 As with all projects of the

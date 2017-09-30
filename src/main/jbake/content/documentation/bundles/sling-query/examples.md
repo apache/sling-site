@@ -1,6 +1,7 @@
 title=Examples
 type=page
 status=published
+tags=slingquery
 ~~~~~~
 
 Get containing page (like [PageManager#getContainingPage](https://docs.adobe.com/docs/en/aem/6-3/develop/ref/javadoc/com/day/cq/wcm/api/PageManager.html#getContainingPage(org.apache.sling.api.resource.Resource)))

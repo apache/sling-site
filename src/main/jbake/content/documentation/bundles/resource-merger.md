@@ -1,6 +1,7 @@
 title=Resource Merger (org.apache.sling.resourcemerger)		
 type=page
 status=published
+tags=resources
 ~~~~~~
 [TOC]
 

@@ -1,6 +1,7 @@
 title=Sling Health Check Tools		
 type=page
 status=published
+tags=healthchecks,operations
 ~~~~~~
 
 Based on simple `HealthCheck` OSGi services, the Sling Health Check Tools ("hc" in short form) are used to 

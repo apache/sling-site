@@ -40,6 +40,18 @@ layout 'layout/main.tpl', true,
 				}
 			}
 		},
+		tags : contents {
+			div(class:"tags") {
+				if(content.tags) {
+					content.tags.each { tag -> 
+                        a(href:"${config.site_contextPath}tags/${tag.replace(' ', '-')}.html", class:"label"){
+                            yield tag
+                        }
+						yield " "
+					}
+				}
+			}
+		},
 		tableOfContents : contents {
 			// Temporary (?) ToC generation, until we get markdown support for that
 			// using https://github.com/nghuuphuoc/tocjs

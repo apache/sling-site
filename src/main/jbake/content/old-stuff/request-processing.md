@@ -1,6 +1,7 @@
 title=Request Processing
 type=page
 status=published
+tags=core,requests
 ~~~~~~
 
 <div class="note">

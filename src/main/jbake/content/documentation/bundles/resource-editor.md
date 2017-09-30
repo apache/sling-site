@@ -1,6 +1,7 @@
 title=The Apache Sling Resource Editor		
 type=page
 status=published
+tags=editors
 ~~~~~~
 Notice:    Licensed to the Apache Software Foundation (ASF) under one
            or more contributor license agreements.  See the NOTICE file

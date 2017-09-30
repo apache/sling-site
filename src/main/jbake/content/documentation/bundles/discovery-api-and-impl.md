@@ -1,6 +1,7 @@
 title=Discovery API and its implementations		
 type=page
 status=published
+tags=discovery
 ~~~~~~
 
 In many situations a particular Sling-based deployment consists of several Sling instances:

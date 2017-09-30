@@ -1,6 +1,7 @@
 title=Run Modes
 type=page
 status=published
+tags=runmodes,configuration
 ~~~~~~
 
 <div markdown="1" class="note">

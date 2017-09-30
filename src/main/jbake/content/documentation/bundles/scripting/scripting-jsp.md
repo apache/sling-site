@@ -1,6 +1,7 @@
 title=JSP Scripting Engine		
 type=page
 status=published
+tags=scripts,jsp
 ~~~~~~
 
 The Apache Sling JSP Scripting Engine is implemented by the [`org.apache.sling.scripting.jsp`](https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp)

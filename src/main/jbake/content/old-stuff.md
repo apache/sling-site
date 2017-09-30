@@ -1,6 +1,7 @@
 title=Old Stuff		
 type=page
 status=published
+tags=obsolete
 ~~~~~~
 
 TODO: this page points to old content that's most probably obsolete.

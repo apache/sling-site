@@ -1,6 +1,7 @@
 title=Site conversion in progress - excuse our mess...		
 type=page
 status=published
+tags=obsolete
 ~~~~~~
 
 The Sling website was recently converted to use the Apache CMS for content management,

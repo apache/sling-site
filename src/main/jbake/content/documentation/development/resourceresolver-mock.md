@@ -1,6 +1,7 @@
 title=Resource Resolver Mock		
 type=page
 status=published
+tags=resources,resourceresolver
 ~~~~~~
 
 Mock for the resource resolver / factory for easier testing. It uses an in-memory map for storing the resource data, and supports reading, writing and a certain level of transaction and eventing support.

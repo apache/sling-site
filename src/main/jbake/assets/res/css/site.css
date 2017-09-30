@@ -292,3 +292,26 @@ pre {
 .footer {
     padding-top: 1em; 
 }
+
+.badge {
+    border-radius: 2px;
+    background-color: #EEE;
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+	margin-left: 3px;
+}
+
+.tags {
+	font-size:80%;
+}
+
+.tags a {
+    background-color: #EEE;
+	padding: 0.5em;
+	text-decoration: none;
+}
+
+.taglink {
+	margin-left:2em;
+}

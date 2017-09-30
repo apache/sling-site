@@ -1,6 +1,7 @@
 title=Apache Sling IDE Tooling 1.1 released		
 type=page
 status=published
+tags=ide,eclipse
 ~~~~~~
 
 Here are some of the more noteworthy things available in this release.

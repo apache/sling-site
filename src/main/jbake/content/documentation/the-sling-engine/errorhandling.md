@@ -1,6 +1,7 @@
 title=Errorhandling		
 type=page
 status=published
+tags=core,errorhandling
 ~~~~~~
 
 The Sling Engine includes support for handling uncaught `Throwable` as well as rendering custom HTTP status code pages. This is implemented by expecting a (single) `org.apache.sling.engine.servlets.ErrorHandler` service to which handling of uncaught `Throwable` and HTTP status responses are delegated.

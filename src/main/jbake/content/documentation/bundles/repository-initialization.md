@@ -1,6 +1,7 @@
-title=		
+title=Repository Initalization
 type=page
 status=published
+tags=repoinit,jcr,repository
 ~~~~~~
 
 The `SlingRepositoryInitializer` mechanism allows for running code before the `SlingRepository` service is registered.

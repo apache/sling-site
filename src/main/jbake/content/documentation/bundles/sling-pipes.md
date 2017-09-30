@@ -1,6 +1,7 @@
 title=Sling Pipes		
 type=page
 status=published
+tags=pipes
 ~~~~~~
 
 tool set for doing extract - transform - load operations by chaining proven code bits.

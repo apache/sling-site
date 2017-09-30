@@ -1,6 +1,7 @@
 title=Internationalization Support (i18n)		
 type=page
 status=published
+tags=i18n
 ~~~~~~
 
 Internationalization support in Sling consists of four methods in the `SlingHttpServletRequest` interface:

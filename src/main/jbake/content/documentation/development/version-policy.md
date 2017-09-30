@@ -2,6 +2,7 @@ title=Version Policy
 type=page
 status=published
 excerpt=This page is about how we assign versions to exported packages and bundles and defines when to increase which part of the version number.
+tags=development,pmc
 ~~~~~~
 
 This page is about how we assign versions to exported packages and bundles and defines when to increase which part of the version number.

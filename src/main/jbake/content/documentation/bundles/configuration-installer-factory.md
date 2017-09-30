@@ -1,6 +1,7 @@
 title=Configuration Installer Factory		
 type=page
 status=published
+tags=installer
 ~~~~~~
 
 The configuration installer factory provides support for configurations to the [OSGI installer](/documentation/bundles/osgi-installer.html). The provisioning of artifacts is handled by installer providers like the file installer or the JCR installer.

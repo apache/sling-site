@@ -1,6 +1,7 @@
 title=Incremental Builds in Sling IDE tooling for Eclipse		
 type=page
 status=published
+tags=development,eclipse
 ~~~~~~
 
 [TOC]

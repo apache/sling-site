@@ -1,6 +1,7 @@
 title=OSGi Mocks		
 type=page
 status=published
+tags=development,testing,mocks,osgi
 ~~~~~~
 
 Mock implementation of selected OSGi APIs for easier testing.

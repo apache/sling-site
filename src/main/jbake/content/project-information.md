@@ -1,6 +1,7 @@
 title=Project Information		
 type=page
 status=published
+tags=mailinglists,issuetracker,sourcecode
 ~~~~~~
 
 This document provides an overview of the various documents and links that are part of this project's general information:

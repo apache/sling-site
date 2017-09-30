@@ -1,17 +1,45 @@
 title=Getting Started		
 type=page
 status=published
+tags=tutorials
 ~~~~~~
 
-We're on the way to update the documentation to make it more easy to get in touch with Sling. At the moment we can give you the following starting points:
+# Run Apache Sling
 
-* [Discover Sling in 15 minutes](getting-started/discover-sling-in-15-minutes.html)
+## Sling Docker Image
 
-## Where to head from here
+The easiest way to get Apache Sling running is to use Docker. If you don't have Docker installed
+ you can skip to the next section.
 
+We maintain a docker image of our latest release at [Apache Sling Docker Image](https://hub.docker.com/r/apachesling/sling).
+ 
+The simplest command to launch Sling is:
+
+
+    docker run -p 8080:8080 apachesling/sling
+
+This will start the latest Apache Sling distribution and you can access Sling at [http://localhost:8080](http://localhost:8080).
+
+## Sling Download
+
+The other option is to download the latest released Apache Sling standalone application from our
+ [Downloads](/downloads.cgi) section. Once you have downloaded the application make sure that you have
+ Java 8 or later installed and run Sling with (replace the N with the latest version number before
+ executing the command):
+ 
+    
+    java -jar org.apache.sling.launchpad-N.jar
+    
+Again, once this is started have a look at http://localhost:8080](http://localhost:8080).
+
+
+# Where to head from here
+
+We're on the way to update the documentation to make it more easy to get in touch with Sling.
 We recommend you read through following topics to get as fast as possible into Sling: 
 
 * [Getting and building Sling](/documentation/development/getting-and-building-sling.html)
+* [Discover Sling in 15 minutes](getting-started/discover-sling-in-15-minutes.html)
 * [Architecture](/documentation/the-sling-engine/architecture.html)
 * [Dispatching Requests](/documentation/the-sling-engine/dispatching-requests.html)
 * [Resources](/documentation/the-sling-engine/resources.html)

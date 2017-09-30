@@ -1,6 +1,7 @@
 title=Integrating Scripting Languages
 type=page
 status=published
+tags=core,scripts
 ~~~~~~
 
 This page should be extended with more concrete and detailed information. For now, we have the following information:

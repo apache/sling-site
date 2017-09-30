@@ -1,6 +1,7 @@
 title=Sling Mocks		
 type=page
 status=published
+tags=development,mocks
 ~~~~~~
 
 Mock implementation of selected Sling APIs for easier testing.

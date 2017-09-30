@@ -1,6 +1,7 @@
 title=Accessing File System Resources (org.apache.sling.fsresource)		
 type=page
 status=published
+tags=resources,resourceproviders
 ~~~~~~
 [TOC]
 

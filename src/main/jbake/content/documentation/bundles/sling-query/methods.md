@@ -1,6 +1,7 @@
 title=Method list
 type=page
 status=published
+tags=slingquery
 ~~~~~~
 
 ### `$(Resource... resources)`

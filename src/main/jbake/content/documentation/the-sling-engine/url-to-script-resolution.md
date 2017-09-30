@@ -1,6 +1,7 @@
 title=URL to Script Resolution		
 type=page
 status=published
+tags=core,scriptresolver,urls
 ~~~~~~
 
 [TOC]

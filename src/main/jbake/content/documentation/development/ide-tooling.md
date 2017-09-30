@@ -1,6 +1,7 @@
 title=Sling IDE tooling for Eclipse User Guide		
 type=page
 status=published
+tags=development,eclipse
 ~~~~~~
 
 [TOC]

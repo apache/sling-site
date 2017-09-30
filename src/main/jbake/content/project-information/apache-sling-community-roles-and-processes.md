@@ -1,6 +1,7 @@
 title=Apache Sling Community Roles and Processes		
 type=page
 status=published
+tags=community,pmc
 ~~~~~~
 
 The Community Roles and Processes are put in effect as of 13/May/2009. Updated 7/December/2009 to reflect Sling being a top level project.

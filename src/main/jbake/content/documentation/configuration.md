@@ -1,6 +1,7 @@
 title=Configuration		
 type=page
 status=published
+tags=configuration
 ~~~~~~
 
 

@@ -1,6 +1,7 @@
 title=Sling API
 type=page
 status=published
+tags=api,core
 ~~~~~~
 
 <div class="note">
