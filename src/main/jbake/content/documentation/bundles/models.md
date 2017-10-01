@@ -543,6 +543,52 @@ If you want to generate a bundle header compliant with Sling Models < 1.3.4 (i.e
         </instructions>
     </configuration>
 
+# Caching
+
+By default, Sling Models do not do any caching of the adaptation result and every request for a model class will
+result in a new instance of the model class. However, there are two notable cases when the adaptation result can be cached. The first case is when the adaptable extends the `SlingAdaptable` base class. Most significantly, this is the case for many `Resource` adaptables as `AbstractResource` extends `SlingAdaptable`.  `SlingAdaptable` implements a caching mechanism such that multiple invocations of `adaptTo()` will return the same object. For example:
+
+    ::java
+    // assume that resource is an instance of some subclass of AbstractResource
+    ModelClass object1 = resource.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = resource.adaptTo(ModelClass.class); // SlingAdaptable returns the cached instance
+    assert object1 == object2;
+
+While this is true for `AbstractResource` subclasses, it is notably **not** the case for `SlingHttpServletRequest` as this class does not extend `SlingAdaptable`. So:
+
+    ::java
+    // assume that request is some SlingHttpServletRequest object
+    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = request.adaptTo(ModelClass.class); // creates another new instance of ModelClass
+    assert object1 != object2;
+
+Since API version 1.3.4, Sling Models *can* cache an adaptation result, regardless of the adaptable by specifying `cache = true` on the `@Model` annotation.
+
+
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class ModelClass {}
+
+    ...
+
+    // assume that request is some SlingHttpServletRequest object
+    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = request.adaptTo(ModelClass.class); // Sling Models returns the cached instance
+    assert object1 == object2;
+
+When `cache = true` is specified, the adaptation result is cached regardless of how the adaptation is done:
+
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class ModelClass {}
+
+    ...
+
+    // assume that request is some SlingHttpServletRequest object
+    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = modelFactory.createModel(request, ModelClass.class); // Sling Models returns the cached instance
+    assert object1 == object2;
+
 # Via Types (Since API 1.3.4/Implementation 1.4.0)
  
 As discussed in the [Via](#via) section above, it is possible to select a different adaptable than the original value using the `@Via` annotation. The following standard types are provided (all types are in the package `org.apache.sling.models.annotations.via`)
