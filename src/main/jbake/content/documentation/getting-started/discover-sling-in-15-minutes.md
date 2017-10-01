@@ -4,11 +4,16 @@ status=published
 tags=tutorials
 ~~~~~~
 
-The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded JCR content repository and web server, a selection of Sling components, documentation and examples. The Launchpad makes it easy to get started with Sling and to develop script-based applications.
+The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded content 
+ repository, a web server, a selection of Sling modules, documentation and examples. The
+  Launchpad makes it easy to get started with Sling and to develop script-based applications.
 
-This page will help you get started with the Launchpad. Fifteen minutes should be enough to get an overview of what Sling does.
+This page will help you get started with the Launchpad. Fifteen minutes should be enough 
+ to get an overview of what Sling does.
 
-While simple to run and understand, the Launchpad is a full-featured instance of Sling, an example configuration that we have created with the most common modules and configurations. The full functionality of Sling is available by loading additional Sling (or custom) OSGi bundles as needed, using the Launchpad's web-based OSGi management console.
+While simple to run and understand, the Launchpad is a full-featured instance of Sling, 
+ an example configuration that we have created with the most common modules and configurations. 
+ The full functionality of Sling is available by loading additional Sling modules as needed.
 
 [TOC]
 
@@ -23,24 +28,23 @@ Once you grok the basic examples of this page, we recommend studying the
 
 ## Prerequisites
 
-We'll start with the self-runnable jar from the Sling distribution, you only need a Java 7 JDK. Download the latest release from the Sling [Downloads](/downloads.cgi) page or by clicking this link: [org.apache.sling.launchpad-8.jar](http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8.jar). Alternatively you can deploy the [Sling Web application](http://www.apache.org/dyn/closer.lua/sling/org.apache.sling.launchpad-8-webapp.war) into any decent Servlet Container such as Jetty or Tomcat or you can [build the current source yourself](/documentation/development/getting-and-building-sling.html).
+You'll need a running Sling application. If you haven't started Sling yet, have a look at
+ the [Getting Started](/documentation/getting-started.html) page on how to run Sling. If
+ you follow the instructions on that page, you should have Sling running on port 8080. If
+ you choose a different port, replace the port 8080 in the examples below with your port.
+ 
 
-To show the simplicity of the REST-style approach taken by Sling the examples below will be using [cURL](http://curl.haxx.se/). Any HTTP client would do, but cURL is the easiest to document in a reproducible way.
-
-A WebDAV client makes editing server-side scripts much more convenient, but to make our examples easy to reproduce, we're using cURL below to create and update files in the JCR repository, via the Sling WebDAV server.
-
-
-## Start the Launchpad
-
-After downloading the Sling Launchpad self-runnable jar just start it as follows:
-
-
-    $ java -jar org.apache.sling.launchpad-8.jar
+To show the simplicity of the REST-style approach taken by Sling the examples below will be 
+ using [cURL](http://curl.haxx.se/). Any HTTP client would do, but cURL is the easiest to 
+ document in a reproducible way.
 
 
-This starts the Sling embedded Web Server on port 8080 and writes application files into the `sling` folder found in the current working directory.
 
-Once started, look at [http://localhost:8080/system/console/bundles](http://localhost:8080/system/console/bundles) with your browser. Use *admin* with password *admin* if Sling asks you for a login. Sling then displays the *Felix Web Management Console* page.
+## Getting Started
+
+Once started, look at [http://localhost:8080/system/console/bundles](http://localhost:8080/system/console/bundles) 
+ with your browser. Use *admin* with password *admin* if Sling asks you for a login.
+ Sling then displays the *Felix Web Management Console* page.
 
 
 On the bundles page, all bundles should be marked *Active*. They're all [OSGi](http://www.osgi.org/) bundles powered by [Apache Felix](http://felix.apache.org), but that doesn't really matter to us right now.

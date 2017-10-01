@@ -27,7 +27,7 @@ div(class:"menu"){
 	}
 
 	p(){
-		strong("Project info") br() newLine()
+		strong("Project Info") br() newLine()
 		a(href:"${config.site_contextPath}downloads.cgi", "Downloads") br() newLine()
 		a(href:"http://www.apache.org/licenses/", "License") br() newLine()
 		a(href:"${config.site_contextPath}contributing.html", "Contributing") br() newLine()

@@ -4,7 +4,10 @@ status=published
 tags=tutorials
 ~~~~~~
 
-# Run Apache Sling
+# Run the Sling Application
+
+There are different ways to get Apache Sling running. You can either use Docker, download a
+ distribution or build it from source.
 
 ## Sling Docker Image
 
@@ -18,7 +21,7 @@ The simplest command to launch Sling is:
 
     docker run -p 8080:8080 apachesling/sling
 
-This will start the latest Apache Sling distribution and you can access Sling at [http://localhost:8080](http://localhost:8080).
+This will start the latest Apache Sling distribution.
 
 ## Sling Download
 
@@ -30,7 +33,11 @@ The other option is to download the latest released Apache Sling standalone appl
     
     java -jar org.apache.sling.launchpad-N.jar
     
-Again, once this is started have a look at http://localhost:8080](http://localhost:8080).
+# Explore Sling
+
+Once Sling is started, you can access Sling at [http://localhost:8080](http://localhost:8080).
+ Starting Sling might take some seconds, so if you get an error in your browser that some
+ service is missing, simply reload the page a little bit later.
 
 
 # Where to head from here
