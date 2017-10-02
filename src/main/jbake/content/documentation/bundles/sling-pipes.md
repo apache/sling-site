@@ -145,6 +145,7 @@ In that case you can monitor the pipes path with `status` selector as described 
 ## Registered Pipes
 
 ### readers
+those are pipes that will spit out resources, without modifying them
 
 ##### Base pipe `echo(path)`
 outputs what is in input (so what is configured in path)
@@ -178,19 +179,10 @@ traverse current input resource's tree, outputing, as resources, either the node
 - `properties` is a flag mentioning the pipe should traverse node's property,
 - `nameGlobs` filters the property that should get outputed
 
-##### JsonPipe (`json(expr)`)
-feeds bindings with remote json
-
-- `sling:resourceType` is `slingPipes/json`
-- `expr` mandatory property contains url that will be called, the json be sent to the output bindings, getOutput = getInput.
-An empty url or a failing url will block the pipe at that given place.
-
-In case the json is an array, the pipe will loop over
-the array elements, and output each one in the binding. Output resource remains each time the input one.
-
 ##### AuthorizablePipe (`auth(conf)`)
 retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression),
 from the input path, output the found authorizable's resource
+caution this pipe **can modify content** in case additional configuration is added (see below)
 
 - `sling:resourceType` is `slingPipes/authorizable`
 - `expr` should be an authorizable id, or void (but then input should be an authorizable)
@@ -226,6 +218,46 @@ not containing `@foo=bar`
 
 is an equivalent
 
+
+### InputStream reader pipes
+
+those are specific reader pipes, that read information an input stream from defined in expr configuration,
+that can be:
+
+- a remote located file (starting with http),
+- a file located in the repository (existing file stored in the repository),
+- a file passed as request parameter with `pipes_inputFile` as parameter name (in that case, expr can be empty)
+- direct data stream in the expression
+
+##### JsonPipe (`json(expr)`)
+feeds bindings with json stream
+
+- `sling:resourceType` is `slingPipes/json`
+- `expr` see above
+- `valuePath` json path like expression that defines where the json value we care about is. E.g. `$.items[2]` considers root is an object and that we want the 3rd item of items array, located at `items` key of the root object.
+
+In case the json value is an array, the pipe will loop over
+the array elements, and output each one in the binding. 
+Output resource remains each time the input one.
+
+    json('{items:[{val:1},{val:2},{val:3}]}').with('valuePath','$.items').name('demo')
+    mkdir('/content/${demo.val}.run()
+
+should create a tree of 3 resources /content/1, /content/2 and /content/3
+
+##### CsvPipe (`csv(expr)`)
+feeds bindings with csv stream
+
+- `sling:resourceType` is `slingPipes/csv`
+- `expr` see above
+- `separator` separator character, default being comma `,`
+
+    json('idx,val\n1,1\n2,2\n3,3').name('demo')
+    .mkdir('/content/${demo.val}.run()
+
+should create a tree of 3 resources /content/1, /content/2 and /content/3
+
+
 ### containers
 ##### Container Pipe
 assemble a sequence of pipes
@@ -236,9 +268,15 @@ assemble a sequence of pipes
 Note that pipe builder api automatically creates one for you to chain the subpipe you are configuring
 
 ##### ReferencePipe
-execute the pipe referenced in path property
+executes the pipe referenced in path property
 
 - `sling:resourceType` is `slingPipes/reference`
+- `path` path of the referenced pipe
+
+##### NotPipe
+executes the pipe referenced in path property, passes input only if referenced pipe doesn't return any resource
+
+- `sling:resourceType` is `slingPipes/not`
 - `path` path of the referenced pipe
 
 ### writers
