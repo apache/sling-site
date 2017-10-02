@@ -27,6 +27,29 @@ def getSortedParents(content, published_content) {
 	return result
 }
 
+def exec(cmd, defaultText) {
+	try {
+ 	    def p = cmd.execute()
+	    p.waitFor()
+  	    return p.text
+	} catch(Exception e) {
+		return defaultText
+	}
+}
+
+def getRevisionInfo(filename) {
+    def lastCommit = "444eb637ff1ddcf11a0f37f02dd4b3fe89eb149f"
+	def gitCmd = 'git log -1 --format=%h####%ad####%an####%s ' + filename
+	def defaultText = "0####0000####<MISSING>####<MISSING>"
+	def gitInfo = exec(gitCmd, defaultText).split("####")
+	return [
+		lastCommit : gitInfo[0],
+		date : gitInfo[1],
+		author : gitInfo[2],
+		comment : gitInfo[3]
+	]
+}
+
 layout 'layout/main.tpl', true,
         projects: projects,
 		breadcrumbs : contents {
@@ -68,4 +91,17 @@ layout 'layout/main.tpl', true,
                     }
                 }
             }
-        }
+        },
+		lastModified: contents {
+			div(class:"revisionInfo") {
+				def info = getRevisionInfo(content.file);
+				yield "Last modified by "
+				span(class:"author") { yield info.author }
+				yield " on "
+				a(href:"${config.sling_lastCommitBaseUrl}${info.lastCommit}") {
+				    yield info.date
+				}
+				yield " : "
+				span(class:"comment") { yield info.comment }
+			}
+		}

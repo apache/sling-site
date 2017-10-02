@@ -19,6 +19,7 @@ html(lang:'en'){
 			tags()
 			tableOfContents()
 			bodyContents()
+			lastModified()
 
 			newLine()
 			include template: 'footer.tpl'
