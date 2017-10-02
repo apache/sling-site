@@ -41,7 +41,6 @@ Here's a rough list of things that need to be done after the 2017 migration to g
 We'll use jira tickets for more specific things, this is more an overview.
 
 * Activate all the required links that https://whimsy.apache.org/site/ checks
-* The "last changed by" information at the bottom right side of pages is missing, it was quite useful. The format is like `Rev. 1692085 by rombert on Tue, 21 Jul 2015 11:04:15 +0000`
 
 ## JBake and other technotes
 * Currently using 2.5.1 via the `jbake-maven-plugin`, see under `/bin`, docs at http://jbake.org/docs/2.5.1
