@@ -4,6 +4,7 @@ status=published
 tags=news
 ~~~~~~
 
+* New Release: Apache Sling Thread Support 3.2.10 (October 2nd, 2017)
 * New Releases: Apache Sling Scripting Core implementation 2.0.48, Apache Event Support 4.2.8, Apache Sling SlingStart Maven Plugin 1.7.10, Apache Sling JUnit Tests Teleporter 1.0.16, Apache Sling Testing Utilities 2.1.2 (September 29th, 2017)
 * New Release: Apache Sling Pipes 1.1.0 (September 24th, 2017)
 * New Release: Apache Sling Maven Sling Plugin 2.3.2 (September 23th, 2017)
