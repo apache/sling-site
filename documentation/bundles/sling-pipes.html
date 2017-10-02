@@ -181,6 +181,7 @@
 <p>allow asynchronous execution of the given type. This is advised in case you plan your pipe execution to last longer than the session of your HTTP client. If used, the returned value will be id of the created sling Job. In that case you can monitor the pipes path with <code>status</code> selector as described above until it has the value <code>finished</code>.</p>
 <h2><a href="#registered-pipes" name="registered-pipes">Registered Pipes</a></h2>
 <h3><a href="#readers" name="readers">readers</a></h3>
+<p>those are pipes that will spit out resources, without modifying them</p>
 <h5>Base pipe <code>echo(path)</code></h5>
 <p>outputs what is in input (so what is configured in path)</p>
 <ul>
@@ -213,15 +214,8 @@
   <li><code>properties</code> is a flag mentioning the pipe should traverse node's property,</li>
   <li><code>nameGlobs</code> filters the property that should get outputed</li>
 </ul>
-<h5>JsonPipe (<code>json(expr)</code>)</h5>
-<p>feeds bindings with remote json</p>
-<ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
-  <li><code>expr</code> mandatory property contains url that will be called, the json be sent to the output bindings, getOutput = getInput. An empty url or a failing url will block the pipe at that given place.</li>
-</ul>
-<p>In case the json is an array, the pipe will loop over the array elements, and output each one in the binding. Output resource remains each time the input one.</p>
 <h5>AuthorizablePipe (<code>auth(conf)</code>)</h5>
-<p>retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression), from the input path, output the found authorizable's resource</p>
+<p>retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression), from the input path, output the found authorizable's resource caution this pipe <strong>can modify content</strong> in case additional configuration is added (see below)</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/authorizable</code></li>
   <li><code>expr</code> should be an authorizable id, or void (but then input should be an authorizable)</li>
@@ -250,6 +244,36 @@
 <pre><code>echo(&#39;content/foo&#39;).name(&#39;FOO&#39;).grep(&#39;slingPipesFilter_test&#39;,&#39;${FOO.foo == &quot;bar&quot;}&#39;).run()
 </code></pre>
 <p>is an equivalent</p>
+<h3><a href="#inputstream-reader-pipes" name="inputstream-reader-pipes">InputStream reader pipes</a></h3>
+<p>those are specific reader pipes, that read information an input stream from defined in expr configuration, that can be:</p>
+<ul>
+  <li>a remote located file (starting with http),</li>
+  <li>a file located in the repository (existing file stored in the repository),</li>
+  <li>a file passed as request parameter with <code>pipes_inputFile</code> as parameter name (in that case, expr can be empty)</li>
+  <li>direct data stream in the expression</li>
+</ul>
+<h5>JsonPipe (<code>json(expr)</code>)</h5>
+<p>feeds bindings with json stream</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
+  <li><code>expr</code> see above</li>
+  <li><code>valuePath</code> json path like expression that defines where the json value we care about is. E.g. <code>$.items[2]</code> considers root is an object and that we want the 3rd item of items array, located at <code>items</code> key of the root object.</li>
+</ul>
+<p>In case the json value is an array, the pipe will loop over the array elements, and output each one in the binding. Output resource remains each time the input one.</p>
+<pre><code>json(&#39;{items:[{val:1},{val:2},{val:3}]}&#39;).with(&#39;valuePath&#39;,&#39;$.items&#39;).name(&#39;demo&#39;)
+mkdir(&#39;/content/${demo.val}.run()
+</code></pre>
+<p>should create a tree of 3 resources /content/1, /content/2 and /content/3</p>
+<h5>CsvPipe (<code>csv(expr)</code>)</h5>
+<p>feeds bindings with csv stream</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/csv</code></li>
+  <li><code>expr</code> see above</li>
+  <li><code>separator</code> separator character, default being comma <code>,</code>
+    <p>json('idx,val\n1,1\n2,2\n3,3').name('demo') .mkdir('/content/${demo.val}.run()</p>
+  </li>
+</ul>
+<p>should create a tree of 3 resources /content/1, /content/2 and /content/3</p>
 <h3><a href="#containers" name="containers">containers</a></h3>
 <h5><a href="#container-pipe" name="container-pipe">Container Pipe</a></h5>
 <p>assemble a sequence of pipes</p>
@@ -259,9 +283,15 @@
 </ul>
 <p>Note that pipe builder api automatically creates one for you to chain the subpipe you are configuring</p>
 <h5><a href="#referencepipe" name="referencepipe">ReferencePipe</a></h5>
-<p>execute the pipe referenced in path property</p>
+<p>executes the pipe referenced in path property</p>
 <ul>
   <li><code>sling:resourceType</code> is <code>slingPipes/reference</code></li>
+  <li><code>path</code> path of the referenced pipe</li>
+</ul>
+<h5><a href="#notpipe" name="notpipe">NotPipe</a></h5>
+<p>executes the pipe referenced in path property, passes input only if referenced pipe doesn't return any resource</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/not</code></li>
   <li><code>path</code> path of the referenced pipe</li>
 </ul>
 <h3><a href="#writers" name="writers">writers</a></h3>
