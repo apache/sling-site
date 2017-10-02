@@ -19,9 +19,11 @@ We maintain a docker image of our latest release at [Apache Sling Docker Image](
 The simplest command to launch Sling is:
 
 
-    docker run -p 8080:8080 apachesling/sling
+    docker run -p 8080:8080 -v /tmp/sling:/opt/sling/sling apachesling/sling
 
-This will start the latest Apache Sling distribution.
+This will start the latest Apache Sling distribution and mount the Sling directory to */tmp/sling*
+ on your machine. Make sure that your docker configuration allows this or change to a different
+ directory.
 
 ## Sling Download
 
@@ -32,13 +34,18 @@ The other option is to download the latest released Apache Sling standalone appl
  
     
     java -jar org.apache.sling.launchpad-N.jar
-    
+
+Starting the Sling application creates the Sling directory name *sling* in the same directory
+ from where you started the above command.
+ 
 # Explore Sling
 
 Once Sling is started, you can access Sling at [http://localhost:8080](http://localhost:8080).
  Starting Sling might take some seconds, so if you get an error in your browser that some
  service is missing, simply reload the page a little bit later.
 
+The Sling directory contains a directory *logs*. This directory contains all the log files
+ created by Sling. The main log file is called *error.log*.
 
 # Where to head from here
 
