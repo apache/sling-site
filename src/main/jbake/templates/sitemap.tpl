@@ -5,7 +5,7 @@ layout 'layout/main.tpl', true,
             div(class:"sitemap"){
                 section(class:"wrap"){
 					ul {
-						published_content.each {content ->
+						published_content.sort({ e -> e.title }).each {content ->
 							li {
 								a (href:"${config.site_contextPath}${content.uri}") {
 									yield content.title

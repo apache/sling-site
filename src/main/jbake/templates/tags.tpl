@@ -27,7 +27,7 @@ layout 'layout/main.tpl', true,
                         div(class:"taglinks"){
                             div(class:"small-12 columns"){
 								h2("Tagged with '${tag}'")
-                                all_content.each { p ->
+                                all_content.sort({p -> p.title}).each { p ->
                                     if ( p.status == 'published' && p.tags && p.tags.contains(tag) ) {
                                         div(class:"taglink"){
                                             a(href:"${config.site_contextPath}${p.uri}"){
