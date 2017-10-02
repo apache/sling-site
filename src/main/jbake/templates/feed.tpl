@@ -13,7 +13,7 @@ feed(xmlns:"http://www.w3.org/2005/Atom"){
     newLine()
     id("tag:${config.feed_id},${published_date.format('yyyy:MM')}")
     newLine()
-    published_posts.each {post ->
+    all_content.sort({ p -> p.title} ).each {post ->
         entry{
           title("${post.title}")
           newLine()
