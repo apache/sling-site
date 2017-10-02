@@ -70,7 +70,9 @@
                 <strong><a href="/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-            <breadcrumbs/><tags/><tableOfContents/><div class="sitemap"><section class="wrap"><ul><li><a href="/documentation/tutorials-how-tos/46-line-blog.html">46 Line Blog</a></li>
+            <breadcrumbs/><tags/>
+            <tableOfContents/>
+<div class="sitemap"><section class="wrap"><ul><li><a href="/documentation/tutorials-how-tos/46-line-blog.html">46 Line Blog</a></li>
                         <li><a href="/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html">Accessing File System Resources (org.apache.sling.fsresource)</a></li>
                         <li><a href="/documentation/the-sling-engine/adapters.html">Adapters</a></li>
                         <li><a href="/index.html">Apache Sling - Bringing Back the Fun!</a></li>
@@ -226,7 +228,8 @@
                         <li><a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a></li>
                         <li><a href="/documentation/bundles/xml-support.html">XML support</a></li>
                         <li><a href="/old-stuff/scriptengineintegration/xslt-processing-pipeline.html">XSLT Processing Pipeline</a></li>
-                    </ul></section></div>
+                    </ul></section></div>            
+            <lastModified/>
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

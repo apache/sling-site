@@ -72,7 +72,9 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Request Processing
-            </h1><div class="tags"><a href="/tags/core.html" class="label">core</a> <a href="/tags/requests.html" class="label">requests</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
+            </h1><div class="tags"><a href="/tags/core.html" class="label">core</a> <a href="/tags/requests.html" class="label">requests</a> </div>
+<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
 2008-02-13: this page is *out of sync* with the current codebase, needs to be reviewed and updated.
 </div>
 <p>One of the core problems towards understanding how Sling works is knowing how a Client Request is processed by Sling. This page describes the flow of processing requests inside Sling.</p>
@@ -175,7 +177,9 @@ if (navigation == null) {
 RequestDispatcher rd = request.getRequestDispatcher(navigation);
 rd.include(request, response);
 </code></pre>
-<p>This could for example be used to fall back to a default navigation setup while providing for specialized navigation configuration in an optional <code>navigation</code> child node.</p></section></div></div>
+<p>This could for example be used to fall back to a default navigation setup while providing for specialized navigation configuration in an optional <code>navigation</code> child node.</p></section></div></div>            
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/ab134cc">Fri Sep 29 15:57:01 2017 +0200</a> : <span class="comment">Quick pass at adding tags to all pages - probably needs refining
+</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

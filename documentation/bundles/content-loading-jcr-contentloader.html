@@ -72,7 +72,9 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Content Loading and Nodetype Support (jcr.contentloader)
-            </h1><div class="tags"><a href="/tags/contentloading.html" class="label">contentloading</a> <a href="/tags/nodetypes.html" class="label">nodetypes</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>Apache Sling provides support for initial content loading into a repository and for registering node types. The <code>sling-jcr-contentloader</code> bundle provides loading of content from a bundle into the repository and the <code>sling-jcr-base</code> bundle provides node type registration.</p>
+            </h1><div class="tags"><a href="/tags/contentloading.html" class="label">contentloading</a> <a href="/tags/nodetypes.html" class="label">nodetypes</a> </div>
+<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Apache Sling provides support for initial content loading into a repository and for registering node types. The <code>sling-jcr-contentloader</code> bundle provides loading of content from a bundle into the repository and the <code>sling-jcr-base</code> bundle provides node type registration.</p>
 <h2><a href="#initial-content-loading" name="initial-content-loading">Initial Content Loading</a></h2>
 <p>Bundles can provide initial content, which is loaded into the repository when the bundle has entered the <em>started</em> state. Such content is expected to be contained in the bundles accessible through the Bundle entry API methods. Content to be loaded is declared in the <code>Sling-Initial-Content</code> bundle manifest header. This header takes a comma-separated list of bundle entry paths. Each entry and all its child entries are accessed and entered into starting with the child entries of the listed entries.</p>
 <p>Adding this content preserves the paths of the entries as shown in this table, which assumes a <code>Sling-Initial-Content</code> header entry of <code>SLING-INF/content</code> (with no further directives):</p>
@@ -408,7 +410,9 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
         { &quot;name&quot;: &quot;TestGroup1&quot;, &quot;isgroup&quot;: &quot;true&quot;, &quot;members&quot;: [&quot;TestUser1&quot;], &quot;extraProp1&quot;: &quot;extraProp1Value&quot; }
     ]
 }
-</code></pre></section></div></div>
+</code></pre></section></div></div>            
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/ab134cc">Fri Sep 29 15:57:01 2017 +0200</a> : <span class="comment">Quick pass at adding tags to all pages - probably needs refining
+</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

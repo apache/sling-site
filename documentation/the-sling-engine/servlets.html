@@ -72,7 +72,9 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Servlets and Scripts
-            </h1><div class="tags"><a href="/tags/servlets.html" class="label">servlets</a> <a href="/tags/core.html" class="label">core</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+            </h1><div class="tags"><a href="/tags/servlets.html" class="label">servlets</a> <a href="/tags/core.html" class="label">core</a> </div>
+<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <p>See also <a href="/documentation/the-sling-engine/url-to-script-resolution.html">URL to Script Resolution</a> which explains how Sling maps URLs to a script or and servlet.</p>
 <h2><a href="#servlet-registration" name="servlet-registration">Servlet Registration</a></h2>
@@ -230,7 +232,9 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
 <p>In this case, the servlet is only selected for processing the current request if its <code>accept</code> method returns true.</p>
 <p>While an opting servlet seems to be a nice way of picking the right servlet to process the request, the use of an opting servlet is not recommended: the main reason is that it complicates the request processing, makes it less transparent what is going on during a request and prevents optimizations like caching the script resolution in an optimal manner. The other static options are usually sufficient for all use cases.</p>
 <h2><a href="#error-handler-servlet-s-or-scripts" name="error-handler-servlet-s-or-scripts">Error Handler Servlet(s) or Scripts</a></h2>
-<p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p></section></div></div>
+<p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p></section></div></div>            
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/3d5fdfe">Fri Sep 29 15:36:08 2017 +0200</a> : <span class="comment">First shot at adding some tags
+</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

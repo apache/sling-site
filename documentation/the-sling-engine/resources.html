@@ -72,7 +72,9 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Resources
-            </h1><div class="tags"><a href="/tags/core.html" class="label">core</a> <a href="/tags/resources.html" class="label">resources</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+            </h1><div class="tags"><a href="/tags/core.html" class="label">core</a> <a href="/tags/resources.html" class="label">resources</a> </div>
+<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#what-is-a-resource" name="what-is-a-resource">What is a Resource</a></h2>
 <p>The Resource is one of the central parts of Sling. Extending from JCR's <em>Everything is Content</em>, Sling assumes <em>Everthing is a Resource</em>. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigma of the REST architecture.</p>
@@ -223,7 +225,9 @@
 <h3><a href="#osgi-event-admin" name="osgi-event-admin">OSGi Event Admin</a></h3>
 <p>Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html"><code>org.osgi.service.event.EventHandler</code></a>. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html"><code>org.apache.sling.api.SlingConstants</code></a> starting with the prefix <code>TOPIC_</code>.</p>
 <h2><a href="#wrap-decorate-resources" name="wrap-decorate-resources">Wrap/Decorate Resources</a></h2>
-<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>
+<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>            
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/3d5fdfe">Fri Sep 29 15:36:08 2017 +0200</a> : <span class="comment">First shot at adding some tags
+</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

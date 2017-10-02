@@ -315,3 +315,9 @@ pre {
 .taglink {
 	margin-left:2em;
 }
+
+.revisionInfo {
+	text-align:right;
+	font-size:80%;
+	font-style:italic;
+}

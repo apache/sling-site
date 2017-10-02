@@ -72,7 +72,9 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Sling Query
-            </h1><div class="tags"><a href="/tags/slingquery.html" class="label">slingquery</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>SlingQuery is a Sling resource tree traversal tool inspired by the <a href="http://api.jquery.com/category/traversing/tree-traversal/">jQuery</a> JavaScript API.</p>
+            </h1><div class="tags"><a href="/tags/slingquery.html" class="label">slingquery</a> </div>
+<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>SlingQuery is a Sling resource tree traversal tool inspired by the <a href="http://api.jquery.com/category/traversing/tree-traversal/">jQuery</a> JavaScript API.</p>
 <h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>The recommended way to find resources in the Sling repository is using tree-traversal methods, like <code>listChildren()</code> and <code>getParent()</code> rather than JCR queries. The latter are great for listing resources with given properties, but we can't leverage the repository tree structure with such queries. On the other hand, using tree-traversal method is quite verbose. Consider following code that takes an resource and returns its first ancestor, being <code>cq:Page</code>, with given <code>jcr:content/cq:template</code> attribute:</p>
 <pre><code>Resource resource = ...;
@@ -130,7 +132,9 @@ $(resource).closest(&quot;cq:Page[jcr:content/cq:template=my/template]&quot;)
 <ul>
   <li>See the <a href="http://sling.apache.org/">Apache Sling website</a> for the Sling reference documentation. Apache Sling, Apache and Sling are trademarks of the <a href="http://apache.org">Apache Software Foundation</a>.</li>
   <li>Method names, selector syntax and some parts of documentation are inspired by the <a href="http://jquery.com/">jQuery</a> library.</li>
-</ul></section></div></div>
+</ul></section></div></div>            
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/ab134cc">Fri Sep 29 15:57:01 2017 +0200</a> : <span class="comment">Quick pass at adding tags to all pages - probably needs refining
+</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

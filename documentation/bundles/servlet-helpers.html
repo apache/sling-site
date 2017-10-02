@@ -72,7 +72,9 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Sling Servlet Helpers
-            </h1><div class="tags"><a href="/tags/servlets.html" class="label">servlets</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Servlet Helpers bundle provides mock implementations of the <code>SlingHttpServletRequest</code>, <code>SlingHttpServletResponse</code> and related classes.</p>
+            </h1><div class="tags"><a href="/tags/servlets.html" class="label">servlets</a> </div>
+<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Servlet Helpers bundle provides mock implementations of the <code>SlingHttpServletRequest</code>, <code>SlingHttpServletResponse</code> and related classes.</p>
 <p>Those mock implementations are meant to be used in tests and also with services like the <code>SlingRequestProcessor</code> when making requests to that service outside of an HTTP request processing context.</p>
 <p>See the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/servlet-helpers">automated tests</a> of the <code>servlet-helpers</code> module for more info.</p>
 <h2><a href="#usage" name="usage">Usage</a></h2>
@@ -134,7 +136,9 @@ assertEquals(TEST_CONTENT, response.getOutputAsString());
 
 // validate response body as binary data
 assertArrayEquals(TEST_DATA, response.getOutput());
-</code></pre></section></div></div>
+</code></pre></section></div></div>            
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/3d5fdfe">Fri Sep 29 15:36:08 2017 +0200</a> : <span class="comment">First shot at adding some tags
+</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

@@ -72,7 +72,9 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/the-sling-engine.html">The Sling Engine</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 URL decomposition
-            </h1><div class="tags"><a href="/tags/core.html" class="label">core</a> <a href="/tags/urls.html" class="label">urls</a> </div><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script><div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+            </h1><div class="tags"><a href="/tags/core.html" class="label">core</a> <a href="/tags/urls.html" class="label">urls</a> </div>
+<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h1><a href="#overview" name="overview">Overview</a></h1>
 <p>During the <em>Resource Resolution</em> step, the client request URI (as being returned by [HttpServletRequest.getRequestURI()](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getRequestURI())) is decomposed into the following parts (in exactly this order):</p>
@@ -218,7 +220,9 @@
   <li><a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/resourceresolver/src/test/java/org/apache/sling/resourceresolver/impl/ResourceResolverImplTest.java">ResourceResolverImplTest</a> shows the split between resource path and the rest. Mostly in the method <code>testBasicAPIAssumptions</code>.</li>
   <li><a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java">SlingRequestPathInfoTest</a> demonstrates the decomposition after the resource path part.</li>
 </ul>
-<p>Feel free to suggest additional tests that help clarify how this works!</p></section></div></div>
+<p>Feel free to suggest additional tests that help clarify how this works!</p></section></div></div>            
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/3d5fdfe">Fri Sep 29 15:36:08 2017 +0200</a> : <span class="comment">First shot at adding some tags
+</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
