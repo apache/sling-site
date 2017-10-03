@@ -1,10 +1,26 @@
-def processContent(str) {
+def expandVariables(str, config) {
+    def pageVariables = [
+        sling_tagline : config.blog_subtitle
+    ]
+
+	// Use a closure to avoid exception on missing variable
+	str = str.replaceAll(/\$\{(\w+)\}/) { key -> pageVariables[key[1]] ?: "MISSING_PAGE_VARIABLE:${key[0]}" }
+}
+
+def processBody(content, config) {
+	def str = content.body
+
 	// Temporarily disable the TOC macro, replace with a comment
 	def replacement ='<!-- TODO reactivate TOC once JBake moves to flexmark-java -->\n'
 	str = str.replaceAll('\\[TOC\\]', replacement)
 
 	// Temporarily disable the syntax markers (of which there are two flavors, for some reason)
 	str = str.replaceAll('(::|#\\!)(java|jsp|xml|sh|javascript|html) *\\n', '<!-- TODO syntax marker ($1$2) disabled -->')
+
+	// Optionally expand variables
+	if(content.expandVariables) {
+		str = expandVariables(str, config)
+	}
 	return str
 }
 
@@ -87,7 +103,7 @@ layout 'layout/main.tpl', true,
             div(class:"row"){
                 div(class:"small-12 columns"){
                     section(class:"wrap"){
-                        yieldUnescaped processContent(content.body)
+                        yieldUnescaped processBody(content, config)
                     }
                 }
             }
