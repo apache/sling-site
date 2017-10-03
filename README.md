@@ -35,6 +35,13 @@ The ASF's gitpubsub mechanism then synchronizes that content to http://sling.apa
 
 It would be nice to automate this in a Jenkins build...patches welcome!
 
+## Variables in page content
+Adding `expandVariables=true` to a page's front matter enables simple variables replacement, see the `pageVariables` map in
+templates code for which variables are supported or to add more variables. A pattern like `${sling_tagline}` in page content
+is replaced by the `sling_tagline` variable if it exists, otherwise a MISSING_PAGE_VARIABLE marker is output.
+
+Please use a `sling.` prefix for new site-related variables in `jbake.properties`, to differentiate from JBake built-in variables.
+
 ## TODO
 Here's a rough list of things that need to be done after the 2017 migration to gitpubsub.
 
