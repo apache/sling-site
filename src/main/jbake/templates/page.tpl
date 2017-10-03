@@ -18,7 +18,7 @@ def processBody(content, config) {
 	str = str.replaceAll('(::|#\\!)(java|jsp|xml|sh|javascript|html) *\\n', '<!-- TODO syntax marker ($1$2) disabled -->')
 
 	// Optionally expand variables
-	if(content.expandVariables) {
+	if("true".equals(content.expandVariables)) {
 		str = expandVariables(str, config)
 	}
 	return str
