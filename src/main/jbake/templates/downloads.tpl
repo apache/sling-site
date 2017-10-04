@@ -211,7 +211,7 @@ def bundles=[
   "Servlets Resolver|org.apache.sling.servlets.resolver|2.4.14",
   "Settings|org.apache.sling.settings|1.3.8",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0",
-  "Sling Query|org.apache.sling.query|3.0.0",
+  "Sling Query|org.apache.sling.query|4.0.0",
   "Superimposing Resource Provider|org.apache.sling.superimposing|0.2.0",
   "System Bundle Extension: Activation API|org.apache.sling.fragment.activation|1.0.2",
   "System Bundle Extension: WS APIs|org.apache.sling.fragment.ws|1.0.2",
