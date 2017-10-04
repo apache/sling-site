@@ -1,6 +1,9 @@
 def expandVariables(str, config) {
     def pageVariables = [
-        sling_tagline : config.blog_subtitle
+        sling_tagline : config.blog_subtitle,
+        sling_minJavaVersion : "8",
+        sling_minMavenVersion : "3.5.0",
+        sling_releaseVersion : "9"
     ]
 
 	// Use a closure to avoid exception on missing variable

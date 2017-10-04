@@ -2,6 +2,7 @@ title=Getting Started
 type=page
 status=published
 tags=tutorials
+expandVariables=true
 ~~~~~~
 
 # Run the Sling Application
@@ -29,11 +30,10 @@ This will start the latest Apache Sling distribution and mount the Sling directo
 
 The other option is to download the latest released Apache Sling standalone application from our
  [Downloads](/downloads.cgi) section. Once you have downloaded the application make sure that you have
- Java 8 or later installed and run Sling with (replace the N with the latest version number before
- executing the command):
+ Java ${sling_minJavaVersion} or later installed and run Sling with:
  
     
-    java -jar org.apache.sling.launchpad-N.jar
+    java -jar org.apache.sling.launchpad-${sling_releaseVersion}.jar
 
 Starting the Sling application creates the Sling directory name *sling* in the same directory
  from where you started the above command.
