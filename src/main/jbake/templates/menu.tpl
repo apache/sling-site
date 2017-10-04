@@ -30,11 +30,12 @@ div(class:"menu"){
 		strong("Project Info") br() newLine()
 		a(href:"${config.site_contextPath}downloads.cgi", "Downloads") br() newLine()
 		a(href:"http://www.apache.org/licenses/", "License") br() newLine()
-		a(href:"${config.site_contextPath}contributing.html", "Contributing") br() newLine()
 		a(href:"${config.site_contextPath}news.html", "News") br() newLine()
-		a(href:"${config.site_contextPath}links.html", "Links") br() newLine()
-		a(href:"${config.site_contextPath}project-information.html", "Project Information") br() newLine()
+		a(href:"${config.site_contextPath}releases.html", "Releases") br() newLine()
 		a(href:"https://issues.apache.org/jira/browse/SLING", "Issue Tracker") br() newLine()
+		a(href:"${config.site_contextPath}links.html", "Links") br() newLine()
+		a(href:"${config.site_contextPath}contributing.html", "Contributing") br() newLine()
+		a(href:"${config.site_contextPath}project-information.html", "Project Information") br() newLine()
 		a(href:"${config.site_contextPath}project-information/security.html", "Security") br() newLine() 
 	}
 
