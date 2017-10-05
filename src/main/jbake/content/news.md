@@ -3,6 +3,7 @@ type=page
 status=published
 tags=news
 ~~~~~~
+* The [adaptTo() 2017 conference](https://adapt.to/2017/en.html) took place in Berlin. (September 25-27, 2017). 
 * Released [Apache Sling 9](/news/sling-launchpad-9-released.html) (June 12th, 2017)
 * Released [Apache Sling IDE Tooling for Eclipse 1.1.0](/news/sling-ide-tooling-11-released.html) (March 14th, 2016)
 * Released [Apache Sling 8](/news/sling-launchpad-8-released.html) (October 16th, 2015)
