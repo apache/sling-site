@@ -46,11 +46,12 @@
                 <strong>Project Info</strong><br/>
                 <a href="/downloads.cgi">Downloads</a><br/>
                 <a href="http://www.apache.org/licenses/">License</a><br/>
-                <a href="/contributing.html">Contributing</a><br/>
                 <a href="/news.html">News</a><br/>
-                <a href="/links.html">Links</a><br/>
-                <a href="/project-information.html">Project Information</a><br/>
+                <a href="/releases.html">Releases</a><br/>
                 <a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/>
+                <a href="/links.html">Links</a><br/>
+                <a href="/contributing.html">Contributing</a><br/>
+                <a href="/project-information.html">Project Information</a><br/>
                 <a href="/project-information/security.html">Security</a><br/>
                 
             </p><p>
@@ -72,8 +73,7 @@
         </div>        <div class="main">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
                 Release Management
-            </h1><div class="tags"><a href="/tags/development.html" class="label">development</a> <a href="/tags/pmc.html" class="label">pmc</a> </div>
-<div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>            
+            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling releases (and SNAPSHOTS) are deployed to the <a href="http://repository.apache.org">Nexus repository</a> instead of the traditional deployment via the Maven 2 mirrors source on <code>people.apache.org</code>. This makes the release process much leaner and simpler. In addtion we can benefit from the Apache Parent POM 6, which has most of the release profile setup built-in.</p>
 <p>Most of the hard work of preparing and deploying the release is done by Maven.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
@@ -251,8 +251,9 @@ promote the artifacts to the central Maven repository.
       <li>Once the release is promoted click on <em>Repositories</em>, select the <em>Releases</em> repository and validate that your artifacts are all there.</li>
     </ol>
   </li>
-  <li>Update the news section on the website at <a href="/news.html">news</a>.</li>
+  <li>Update the releases section on the website at <a href="/releases.html">releases</a>.</li>
   <li>Update the download page on the website at <a href="/downloads.cgi">downloads</a> to point to the new release.</li>
+  <li>If you think that this release is worth a news entry, update the website at <a href="/news.html">news</a></li>
 </ol>
 <p>For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.</p>
 <h2><a href="#update-jira" name="update-jira">Update JIRA</a></h2>
@@ -517,8 +518,8 @@ $ rm the_module-version.jar the_module-version.pom
   <p>Check the results at <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a></p></li>
 </ol>
 <p>For background information about this process see the <a href="http://maven.apache.org/developers/website/deploy-component-reference-documentation.html">Maven components reference documentation</a>.</p></section></div></div>            
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <a href="https://github.com/apache/sling-site/commit/ab134cc">Fri Sep 29 15:57:01 2017 +0200</a> : <span class="comment">Quick pass at adding tags to all pages - probably needs refining
-</span></div>            
+<div class="tags"><a href="/tags/development.html" class="label">development</a> <a href="/tags/pmc.html" class="label">pmc</a> </div>            
+<div class="revisionInfo">Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Wed Oct 4 15:59:45 2017 +0200</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
