@@ -117,10 +117,6 @@ layout 'layout/main.tpl', true,
 				yield "Last modified by "
 				span(class:"author") { yield info.author }
 				yield " on "
-				a(href:"${config.sling_lastCommitBaseUrl}${info.lastCommit}") {
-				    yield info.date
-				}
-				yield " : "
-				span(class:"comment") { yield info.comment }
+				span(class:"comment") { yield info.date }
 			}
 		}
