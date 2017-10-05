@@ -2,6 +2,3 @@
 output
 cache
 target
-# IDE settings
-.*
-!.gitignore
