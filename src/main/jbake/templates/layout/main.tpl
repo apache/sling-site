@@ -16,11 +16,11 @@ html(lang:'en'){
 				}
 			}
 			
-			tags()
-			newLine()
 			tableOfContents()
 			newLine()
 			bodyContents()
+			newLine()
+			tags()
 			newLine()
 			lastModified()
 
