@@ -31,7 +31,7 @@ Clone this repository and run the below commands or equivalent:
 	git commit -a -m "<put something clever here>"
 	git push origin asf-site
 
-The ASF's gitpubsub mechanism then synchronizes that content to http://sling.apache.org , usually within a few seconds.
+The [ASF's gitpubsub mechanism](https://blogs.apache.org/infra/entry/git_based_websites_available) then synchronizes that content to http://sling.apache.org , usually within a few seconds.
 
 It would be nice to automate this in a Jenkins build...patches welcome!
 
