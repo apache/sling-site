@@ -104,7 +104,7 @@
         <version>1.1</version>
         <extensions>true</extensions>
         <configuration>
-            <content>target/${artifactId}-${version}</content>
+            <content>target/${project.artifactId}-${project.version}</content>
             <checkinComment>Automatic publish of sling site</checkinComment>
             <pubScmUrl>scm:git:https://git-wip-us.apache.org/repos/asf/sling-site.git</pubScmUrl>
             <scmBranch>asf-site-staging</scmBranch>
@@ -113,11 +113,7 @@
     </plugins>
   </build>
 
-    <!-- TODO
-        - removed files: res/css/codehilite.css, README.md, .gitignore (needed?)
-        - many line endings changed
-    -->
-    <profiles>
+   <profiles>
         <profile>
             <id>publish-site</id>
             <build>
@@ -132,6 +128,30 @@
                                 <goals>
                                     <goal>publish-scm</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>run-site</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jbake</groupId>
+                        <artifactId>jbake-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>run-site</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>inline</goal>
+                                </goals>
+                                <configuration>
+                                    <port>8820</port>
+                                    <listenAddress>0.0.0.0</listenAddress>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
