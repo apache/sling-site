@@ -2,6 +2,7 @@ title=Releases
 type=page
 status=published
 tags=news
+tableOfContents=false
 ~~~~~~
 # All Releases from the Apache Sling Project
 

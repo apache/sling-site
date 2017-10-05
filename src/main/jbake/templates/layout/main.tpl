@@ -16,8 +16,10 @@ html(lang:'en'){
 				}
 			}
 			
-			tableOfContents()
-			newLine()
+            if (content && !"false".equals(content.tableOfContents)) {
+			    tableOfContents()
+			    newLine()
+		    }
 			bodyContents()
 			newLine()
 			tags()
