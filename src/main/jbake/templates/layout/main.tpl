@@ -8,7 +8,12 @@ html(lang:'en'){
         include template: 'menu.tpl'
 
 		div(class:"main") {
-			breadcrumbs()
+            div(class:"pagenav") {
+                breadcrumbs()
+                newLine()
+                tags()
+                newLine()
+            }
 			
 			if(content && content.title) {
 				h1(class:"pagetitle") {
@@ -21,8 +26,6 @@ html(lang:'en'){
 			    newLine()
 		    }
 			bodyContents()
-			newLine()
-			tags()
 			newLine()
 
             div(class:"footer") {

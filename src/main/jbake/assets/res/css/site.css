@@ -245,11 +245,6 @@ td {
 	padding: 5px 5px 5px 28px;
 }
 
-/** Breadcrump at the top of each page */
-.breadcrump {
-    font-size: 80%;
-}
-
 /** Last modification information at the botton of each page */
 .timestamp {
     margin-top: 30px;
@@ -301,13 +296,24 @@ pre {
 	margin-left: 3px;
 }
 
+.pagenav {
+    overflow:hidden
+    font-size: 70%;
+    clear:both;
+    padding-bottom:1em;
+}
+
+.breadcrumbs {
+    float:left;
+}
+
 .tags {
-	font-size:80%;
+    float:right;
 }
 
 .tags a {
     background-color: #EEE;
-	padding: 0.5em;
+	padding: 0.2em;
 	text-decoration: none;
 }
 
