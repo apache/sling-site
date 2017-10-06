@@ -257,8 +257,7 @@ td {
     text-align: right;
 }
 
-/** Trademark text at the bottom of each page */
-.trademarkFooter {
+.footer {
     font-size: 80%;
     font-style: italic;
     margin-top: 10px;
