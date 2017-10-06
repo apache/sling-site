@@ -27,7 +27,7 @@ Discussions about Sling happen on our mailing lists, see our
 
 ## News
 
-Here are our most recent news, there are more in our [news archive](/news.html).
+Here are our most recent news, there are more in our [news archive](/news.html). A more detailed overview over all Sling module releases can be found in [Releases](/releases.html).
 
 <ul id="newsExcerpt">
 </ul>
