@@ -2,6 +2,7 @@ title=News
 type=page
 status=published
 tags=news
+tableOfContents=false
 ~~~~~~
 * The [adaptTo() 2017 conference](https://adapt.to/2017/en.html) took place in Berlin. (September 25-27, 2017). 
 * Released [Apache Sling 9](/news/sling-launchpad-9-released.html) (June 12th, 2017)
@@ -20,3 +21,18 @@ tags=news
 * Mailing lists moved to dev(a)sling.apache.org and commits(a)sling.apache.org (June 29, 2009)
 * SVN moved to http://svn.apache.org/repos/asf/sling (June 18, 2009)
 * Apache Sling has graduated into a top level project! (June 17, 2009)
+
+# History
+
+Sling started as an internal project at [Day Software](http://www.day.com)
+, and entered the Apache Incubator in September 2007. As of June, 17th,
+2009 Apache Sling is a top level project of the Apache Software Foundation.
+
+The name "Sling" has been proposed by Roy Fielding who explained it like
+this:
+
+> \[The name is\] Biblical in nature.  The story of David: the weapon he
+> uses to slay the giant Goliath is a sling.  Hence, our David's
+> \[David Nuescheler, CTO of Day Software\] favorite weapon.
+
+> It is also the simplest device for delivering content very fast.

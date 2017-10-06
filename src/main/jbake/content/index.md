@@ -46,21 +46,6 @@ Sling makes it very simple to implement simple applications, while providing an
 
 Refer to the news [archive](/news.html) for all news.
 
-## History
-
-Sling started as an internal project at [Day Software](http://www.day.com)
-, and entered the Apache Incubator in September 2007. As of June, 17th,
-2009 Apache Sling is a top level project of the Apache Software Foundation.
-
-The name "Sling" has been proposed by Roy Fielding who explained it like
-this:
-
-> \[The name is\] Biblical in nature.  The story of David: the weapon he
-> uses to slay the giant Goliath is a sling.  Hence, our David's
-> \[David Nuescheler, CTO of Day Software\] favorite weapon.
-
-> It is also the simplest device for delivering content very fast.
-
 ## Use Cases for Sling
 
 #### Wiki
