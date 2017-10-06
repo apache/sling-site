@@ -24,10 +24,11 @@ html(lang:'en'){
 			newLine()
 			tags()
 			newLine()
-			lastModified()
 
-			newLine()
-			include template: 'footer.tpl'
+            div(class:"footer") {
+                lastModified()
+                include template: 'footer.tpl'
+            }
 			newLine()
         }
     }
