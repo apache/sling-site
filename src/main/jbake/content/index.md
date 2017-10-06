@@ -46,48 +46,6 @@ Sling makes it very simple to implement simple applications, while providing an
 
 Refer to the news [archive](/news.html) for all news.
 
-## Use Cases for Sling
-
-#### Wiki
-
-Day built a Wiki system on Sling. Each Wiki page is a node (with optional
-child nodes) in the repository. As a page is requested, the respective node
-is accessed and through the applying Component is rendered.
-
-Thanks to the JCR Mapping and the resolution of the Component from the
-mapped Content, the system does not care for what actual node is addressed
-as long as there is a Content mapping and a Component capable of handling
-the Content.
-
-Thus in the tradition of REST, the attachement of a Wiki page, which
-happens to be in a node nested below the wiki page node is easily accessed
-using the URL of the wiki page attaching the relative path of the
-attachement  ode. The system resolves the URL to the attachement Content
-and just calls the attachement's Component to spool the attachement.
-
-
-
-#### Digital Asset Management
-
-Day has implemented a Digital Asset Management (DAM) Application based on
-Sling. Thanks to the flexibility of the Content/Component combo as well as
-the service registration/access functionality offered by OSGi, extending
-DAM for new content type is merely a matter of implementing one or two
-interfaces and registering the respective service(s).
-
-Again, the managed assets may be easily spooled by directly accessing them.
-
-
-#### Web Content Management
-
-Last but not least, Sling offers itself very well to implementing a Web
-Content Management system. Thanks to the flexibility of rendering the
-output - remember: the system does not care what to render, as long as the
-URL resolves to a Content object for which a Component exists, which is
-called to render the Content - providing support for Web Content authors
-(not PHP programmers but users out in the field) to build pages to their
-likings can easily be done.
-
 
 ## References
 
