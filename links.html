@@ -114,14 +114,16 @@
   <li><a href="http://feathercast.org/?p=59">Feathercast On Day 4 with an interview on Sling with Felix</a></li>
 </ul>
 <h2><a href="#technology-used-by-sling" name="technology-used-by-sling">Technology used by Sling</a></h2>
-<ul>
-  <li><a href="http://jackrabbit.apache.org">Apache Jackrabbit</a> - The reference implementation of the Content Repository for Java (JCR) Specification. This implementation is used in Sling as the primary repository.</li>
-  <li><a href="http://www.jcp.org/en/jsr/detail?id=170">JSR 170: Content Repository for Java{tm} technology API</a> - The specification of the repository API.</li>
-  <li><a href="http://felix.apache.org">Apache Felix</a> - The OSGi Framework implementation we use in Sling.</li>
-  <li><a href="http://www.osgi.org">The OSGi Alliance</a> - The OSGi Alliance is the specification body defining the OSGi Core and Compendium Services. These specifications are at the center of making Sling possible.</li>
-</ul></section></div></div>            
+<h3><a href="#jsr-170-content-repository-for-java-tm-technology-api" name="jsr-170-content-repository-for-java-tm-technology-api">JSR 170 - Content Repository for Java{tm} technology API</a></h3>
+<p>The specification of the repository API: <a href="http://www.jcp.org/en/jsr/detail?id=170">JSR 170: Content Repository for Java{tm} technology API</a>.</p>
+<h3><a href="#apache-jackrabbit" name="apache-jackrabbit">Apache Jackrabbit</a></h3>
+<p>The main purpose of Sling is to develop a content-centric Web Application  framework for Java Content Repository (JCR) based data stores. Sling is  implemented - with the notable exception of JCR Node Type management -  purely in terms of the JCR API and as such may use any JCR compliant  repository. The default implementation for <a href="http://jackrabbit.apache.org">Apache Jackrabbit</a>  is provided out of the box. This is also the reference implementation  of the Content Repository for Java (JCR) Specification.</p>
+<h3><a href="#the-osgi-alliance" name="the-osgi-alliance">The OSGi Alliance</a></h3>
+<p><a href="http://www.osgi.org">The OSGi Alliance</a> is the specification body defining the OSGi specifications,  namely the Core, Compendium, Enterprise and IoT specifications. These specifications are at the  center of making Sling possible. Sling is implemented as a series of OSGi modules (called bundles)  and makes extensive use of the OSGi functionality, such as lifecycle management and the service  layer. In addition, Sling requires several OSGi compendium services to be available, such as the  Log Service, Http Service, Configuration Admin Service, Metatype Service, and  Declarative Services.</p>
+<h3><a href="#apache-felix" name="apache-felix">Apache Felix</a></h3>
+<p>While Sling does not require a specific OSGi framework implementation to  run in, Sling is being developed using <a href="http://felix.apache.org">Apache Felix</a>  as the OSGi framework implementation. It has not been tested yet, but it  is expected that Sling also operates perfectly inside other OSGi frameworks  such as <a href="http://www.eclipse.org/equinox">Equinox</a> and <a href="http://www.knopflerfish.org">Knopflerfish</a>.</p></section></div></div>            
 <div class="tags"><a href="/tags/community.html" class="label">community</a> <a href="/tags/pmc.html" class="label">pmc</a> </div>            
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>            
+<div class="revisionInfo">Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Fri Oct 6 08:20:39 2017 +0200</span></div>            
 <div class="footer">
                 <div class="trademarkFooter">
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
