@@ -4,7 +4,7 @@ status=published
 tags=news
 tableOfContents=false
 ~~~~~~
-# All Releases from the Apache Sling Project
+This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## October 2017
 
