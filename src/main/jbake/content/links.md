@@ -46,7 +46,34 @@ The following screencasts demonstrate Day Software's CRX quickstart product, pow
 
 ## Technology used by Sling
 
-   * [Apache Jackrabbit](http://jackrabbit.apache.org) - The reference implementation of the Content Repository for Java (JCR) Specification. This implementation is used in Sling as the primary repository.
-   * [JSR 170: Content Repository for Java{tm} technology API](http://www.jcp.org/en/jsr/detail?id=170) - The specification of the repository API.
-   * [Apache Felix](http://felix.apache.org) - The OSGi Framework implementation we use in Sling.
-   * [The OSGi Alliance](http://www.osgi.org) - The OSGi Alliance is the specification body defining the OSGi Core and Compendium Services. These specifications are at the center of making Sling possible.
+### JSR 170 - Content Repository for Java{tm} technology API
+
+The specification of the repository API: [JSR 170: Content Repository for Java{tm} technology API](http://www.jcp.org/en/jsr/detail?id=170).
+
+### Apache Jackrabbit
+
+The main purpose of Sling is to develop a content-centric Web Application
+ framework for Java Content Repository (JCR) based data stores. Sling is
+ implemented - with the notable exception of JCR Node Type management -
+ purely in terms of the JCR API and as such may use any JCR compliant
+ repository. The default implementation for [Apache Jackrabbit](http://jackrabbit.apache.org)
+ is provided out of the box. This is also the reference implementation
+ of the Content Repository for Java (JCR) Specification.
+ 
+### The OSGi Alliance
+
+[The OSGi Alliance](http://www.osgi.org) is the specification body defining the OSGi specifications,
+ namely the Core, Compendium, Enterprise and IoT specifications. These specifications are at the
+ center of making Sling possible. Sling is implemented as a series of OSGi modules (called bundles)
+ and makes extensive use of the OSGi functionality, such as lifecycle management and the service 
+ layer. In addition, Sling requires several OSGi compendium services to be available, such as the 
+ Log Service, Http Service, Configuration Admin Service, Metatype Service, and
+ Declarative Services.
+
+### Apache Felix
+
+While Sling does not require a specific OSGi framework implementation to
+ run in, Sling is being developed using [Apache Felix](http://felix.apache.org)
+ as the OSGi framework implementation. It has not been tested yet, but it
+ is expected that Sling also operates perfectly inside other OSGi frameworks
+ such as [Equinox](http://www.eclipse.org/equinox) and [Knopflerfish](http://www.knopflerfish.org).
