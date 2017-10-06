@@ -71,7 +71,11 @@
                 <strong><a href="/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
+            <div class="pagenav">
+<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/old-stuff.html">Old Stuff</a>&nbsp;&raquo;&nbsp;</div>                
+<div class="tags"><a href="/tags/development.html" class="label">development</a> <a href="/tags/osgi.html" class="label">osgi</a> <a href="/tags/obsolete.html" class="label">obsolete</a> </div>                
+                
+            </div><h1 class="pagetitle">
                 Assembly
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p>The Assembly concept grew out of a need to bundle together a set of OSGi Bundles to deploy applications. The concept has been developped before the OSGi Deployment Package Service Specification has been published in the Release 4.1 Compendium Services Specification. It will have to be discussed whether the Assembly concept is dropped in favor of the Deplyoment Package Service.</p>
@@ -151,7 +155,6 @@ Parameter = ParameterName &quot;=&quot; ParameterValue .
 </ul>
 <h3><a href="#nomen-est-omen" name="nomen-est-omen">Nomen est Omen</a></h3>
 <p>The symbolic name of a bundle should reflect its contents. A bundle should generally only contain a single subtree in the virtual package tree. The symbolic name of the bundle should be the root package contained within. For example, consider a bundle containing the packages <code>org.apache.sling.sample</code>, <code>org.apache.sling.sample.impl</code>, <code>org.apache.sling.more</code>. The bundle would the be named <code>org.apache.sling.sample</code>.</p></section></div></div>            
-<div class="tags"><a href="/tags/development.html" class="label">development</a> <a href="/tags/osgi.html" class="label">osgi</a> <a href="/tags/obsolete.html" class="label">obsolete</a> </div>            
             <div class="footer">
 <div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

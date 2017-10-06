@@ -71,7 +71,11 @@
                 <strong><a href="/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
+            <div class="pagenav">
+<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>                
+<div class="tags"><a href="/tags/resources.html" class="label">resources</a> <a href="/tags/resourceresolver.html" class="label">resourceresolver</a> </div>                
+                
+            </div><h1 class="pagetitle">
                 Resource Resolver Mock
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p>Mock for the resource resolver / factory for easier testing. It uses an in-memory map for storing the resource data, and supports reading, writing and a certain level of transaction and eventing support.</p>
@@ -106,7 +110,6 @@ ResourceResolver resolver = factory.getResourceResolver(null);
 </code></pre>
 <p>With the resolver you can use all Sling Resource features including reading and writing data using the Sling API.</p>
 <p>You cannot do any operations that require the JCR API because no JCR is underlying and adapting to JCR objects will just return null.</p></section></div></div>            
-<div class="tags"><a href="/tags/resources.html" class="label">resources</a> <a href="/tags/resourceresolver.html" class="label">resourceresolver</a> </div>            
             <div class="footer">
 <div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

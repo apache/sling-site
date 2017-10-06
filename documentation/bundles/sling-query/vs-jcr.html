@@ -71,7 +71,11 @@
                 <strong><a href="/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles/sling-query.html">Sling Query</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
+            <div class="pagenav">
+<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles/sling-query.html">Sling Query</a>&nbsp;&raquo;&nbsp;</div>                
+<div class="tags"><a href="/tags/slingquery.html" class="label">slingquery</a> </div>                
+                
+            </div><h1 class="pagetitle">
                 Sling Query vs JCR
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling Query is not meant to replace JCR queries (XPath, JCR-SQL, JCR-SQL2). It doesn't use indexes and generally in queries traversing large subtrees (like <code>/</code> or <code>/content</code> or <code>/content/mysite/en</code>) it'll be much slower than well written JCR query.</p>
@@ -114,7 +118,6 @@
   </tbody>
 </table>
 <p>[1] - Actually, the <code>find()</code> operation uses QUERY strategy by default, which means that the selector string is transformed to a SQL2 query. However, the transformation process is very naïve and simply skips all conditions that can't be easily transformed to SQL2 (eg. selector <code>[jcr:content/jcr:title=some title]</code> won't be transformed as it contains some subresource reference). The result of this query is then filtere manually. See <a href="methods.html#searchstrategystrategy">searchStrategy</a> for more details.</p></section></div></div>            
-<div class="tags"><a href="/tags/slingquery.html" class="label">slingquery</a> </div>            
             <div class="footer">
 <div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.

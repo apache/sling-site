@@ -71,7 +71,11 @@
                 <strong><a href="/sitemap.html">Site Map</a></strong>
             </p>
         </div>        <div class="main">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>            <h1 class="pagetitle">
+            <div class="pagenav">
+<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>                
+<div class="tags"><a href="/tags/healthchecks.html" class="label">healthchecks</a> <a href="/tags/operations.html" class="label">operations</a> </div>                
+                
+            </div><h1 class="pagetitle">
                 Sling Health Check Tools
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p>Based on simple <code>HealthCheck</code> OSGi services, the Sling Health Check Tools ("hc" in short form) are used to check the health of live Sling systems, based on inputs like JMX MBean attribute values, OSGi framework information, Sling requests status, etc.</p>
@@ -281,7 +285,6 @@ servletPath = /system/health
 <p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br/>remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
 <p>To use this module, configure sets of tags at <code>/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider</code> using the standard <code>includeThisTag,-omitThatTag</code> syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html to run the corresponding Health Checks.</p>
 <p>To run the Health Check tests at build time, see the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests">testing/samples/integration-tests</a> sample module.</p></section></div></div>            
-<div class="tags"><a href="/tags/healthchecks.html" class="label">healthchecks</a> <a href="/tags/operations.html" class="label">operations</a> </div>            
             <div class="footer">
 <div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
