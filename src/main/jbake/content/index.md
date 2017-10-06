@@ -5,47 +5,32 @@ tags=community
 expandVariables=true
 ~~~~~~
 
-**Apache Sling&trade;** - ${sling_tagline}
+Apache Sling&trade; is a ${sling_tagline}.
 
-# Apache Sling in four bullets points
+In a nutshell, Sling maps HTTP request URLs to content resources based on the
+request's path, extension and selectors. Using convention over
+configuration, requests are processed by scripts and
+servlets, dynamically selected based on the current resource. This fosters
+meaningful URLs and resource driven request processing, while the
+modular nature of Sling allows for specialized server instances that
+include only what is needed.
 
-* ReST based web framework
-* Content-driven, using a hierarchical content tree
-* Modular design
-* Scripting inside
+Sling serves as basis for a variety of applications ranging from
+blogging engines all the way to enterprise content management
+systems.
 
-# Getting started
+Our [Getting Started](/documentation/getting-started.html) page will help you
+start playing with Sling.
 
-If you prefer doing rather than reading, please proceed to the [Getting Started](/documentation/getting-started.html)
- section, where you can quickly get started on your own instance of Sling.
-
-Discussions about Sling happen on our mailing lists, see the [Project Information](/project-information.html)
- page for more info.
-
-# Apache Sling in a hundred words
-
-Apache Sling is a web framework that uses a resource oriented architecture. The content is
- stored in a hierarchical resource tree which is mapped to the URL space of the web 
- application.
-
-Sling applications use either scripts or Java servlets, selected based on
-simple name conventions, to process HTTP requests in a RESTful way.
-
-The runtime environment is modular and dynamic allowing to select only the required modules
- to run your Sling application. This provides a flexible extension mechanism where modules
- easily can be loaded, unloaded and reconfigured
-
-Sling makes it very simple to implement simple applications, while providing an 
- enterprise-level framework for more complex applications. 
+Discussions about Sling happen on our mailing lists, see our 
+[Project Information](/project-information.html) page for more info.
 
 ## News
 
+Here are our most recent news, there are more in our [news archive](/news.html).
+
 <ul id="newsExcerpt">
 </ul>
-
-
-Refer to the news [archive](/news.html) for all news.
-
 
 <script src="/res/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
