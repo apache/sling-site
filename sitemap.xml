@@ -122,6 +122,7 @@
                         <li><a href="/documentation/bundles/sling-query/examples.html">Examples</a></li>
                         <li><a href="/documentation/the-sling-engine/featureflags.html">Feature Flags</a></li>
                         <li><a href="/documentation/bundles/file-installer-provider.html">File Installer Provider</a></li>
+                        <li><a href="/errors/403.html">Forbidden (403)</a></li>
                         <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html">Form Based AuthenticationHandler</a></li>
                         <li><a href="/documentation/tutorials-how-tos/getting-resources-and-properties-in-sling.html">Getting Resources and Properties in Sling</a></li>
                         <li><a href="/documentation/getting-started.html">Getting Started</a></li>
@@ -148,8 +149,8 @@
                         <li><a href="/documentation/development/jsr-305.html">Leveraging JSR-305 null annotations to prevent NullPointerExceptions</a></li>
                         <li><a href="/links.html">Links</a></li>
                         <li><a href="/documentation/bundles/log-tracers.html">Log Tracer</a></li>
-                        <li><a href="/documentation/development/logging.html">Logging</a></li>
                         <li><a href="/documentation/legacy/logging.html">Logging</a></li>
+                        <li><a href="/documentation/development/logging.html">Logging</a></li>
                         <li><a href="/documentation/bundles/mime-type-support-commons-mime.html">MIME Type Support (commons.mime and commons.contentdetection)</a></li>
                         <li><a href="/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html">Managing permissions (jackrabbit.accessmanager)</a></li>
                         <li><a href="/documentation/bundles/managing-users-and-groups-jackrabbit-usermanager.html">Managing users and groups (jackrabbit.usermanager)</a></li>
@@ -172,6 +173,7 @@
                         <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.html">OpenID AuthenticationHandler</a></li>
                         <li><a href="/documentation/bundles/sling-query/operators.html">Operators</a></li>
                         <li><a href="/documentation/bundles/output-rewriting-pipelines-org-apache-sling-rewriter.html">Output Rewriting Pipelines (org.apache.sling.rewriter)</a></li>
+                        <li><a href="/errors/404.html">Page Not Found</a></li>
                         <li><a href="/project-information.html">Project Information</a></li>
                         <li><a href="/project-information/project-license.html">Project License</a></li>
                         <li><a href="/project-information/project-team.html">Project Team</a></li>
