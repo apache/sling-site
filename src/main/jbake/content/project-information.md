@@ -40,6 +40,8 @@ The issue tracker can be found at [http://issues.apache.org/jira/browse/SLING](h
 
 This project uses Subversion to manage its source code. Instructions on Subversion use can be found at [http://svnbook.red-bean.com/](http://svnbook.red-bean.com/).
 
+We are migration to a Git setup, stay tuned for updates.
+
 ### Web Access
 
 The following is a link to the online source repository.
