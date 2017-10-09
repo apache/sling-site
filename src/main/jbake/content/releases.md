@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2017
 
+* Apache Sling Context-Aware Configuration Impl 1.4.6 (9th)
 * Query 4.0.0 (4th)
 * Thread Support 3.2.10 (2nd)
 
