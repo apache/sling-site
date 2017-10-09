@@ -38,7 +38,8 @@ This page is about how this documentation is maintained and who is allowed to do
 
 
 ## The Sling Website
-TODO this page needs to be adapted to the JBake site generation mechanisms.
+
+The website is built from a dedicated repository as described [Project Information](/project-information.html#documentation-repository).
 
 
 ## The Public Wiki
