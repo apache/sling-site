@@ -106,7 +106,7 @@
         <configuration>
             <content>target/${project.artifactId}-${project.version}</content>
             <checkinComment>Automatic publish of sling site</checkinComment>
-            <pubScmUrl>scm:git:https://github.com/apache/sling-site.git</pubScmUrl>
+            <pubScmUrl>scm:git:https://gitbox.apache.org/repos/asf/sling-site.git</pubScmUrl>
             <scmBranch>asf-site</scmBranch>
         </configuration>
       </plugin>
