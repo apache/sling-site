@@ -16,7 +16,7 @@ Clone this repository and run the below commands or equivalent:
 	mvn clean package
 
     # deploy the site
-    mvn clean package -Ppublish-site
+    mvn clean package -Ppublish-site -Dmsg="<describe your changes>"
 
 The [ASF's gitpubsub mechanism](https://blogs.apache.org/infra/entry/git_based_websites_available) then synchronizes that content to http://sling.apache.org , usually within a few seconds.
 
