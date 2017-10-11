@@ -5,3 +5,4 @@ target
 # IDE settings
 .*
 !.gitignore
+.DS_Store
