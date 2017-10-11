@@ -1,3 +1,6 @@
+# Set UTF-8 for text/plain and text/html
+AddDefaultCharset utf-8
+
 # Error pages
 ErrorDocument 403 /errors/403.html
 ErrorDocument 404 /errors/404.html
