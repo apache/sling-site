@@ -1,5 +1,5 @@
 head {
-	meta("http-equiv":"Content-Type", content:"text/html;charset=UTF-8") newLine()
+	meta("charset":"UTF-8") newLine()
 	title("${config.blog_title} :: ${content.title}") newLine()
 
 	// For now, try to reproduce the layout of the current website, to be able to compare pages
