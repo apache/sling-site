@@ -159,11 +159,12 @@ To be notified whenever certain resources or their properties have been modified
 
 *This API is only available since Sling API 2.11.0 ([SLING-4751](https://issues.apache.org/jira/browse/SLING-4751)).*
 
-Register an OSGi service for [`org.apache.sling.api.resource.observation.ResourceChangeListener`][6] or [`org.apache.sling.api.resource.observation.ExternalResourceChangeListener`][7] to be notified about changes. Certain properties can be used to restrict subscription to only a subset of events.
+Register an OSGi service for [`org.apache.sling.api.resource.observation.ResourceChangeListener`][6] to be notified about local changes. To be also notified about external changes (i.e. changes triggered by another Sling instance leveraging a clustered repository  make sure that your service implementation also implements the marker interface [`org.apache.sling.api.resource.observation.ExternalResourceChangeListener`][7]. The interface `ExternalResourceChangeListener` is not supposed to be registered with OSGi though.
+Certain properties can be used to restrict subscription to only a subset of events.
 
 ### OSGi Event Admin
 
-Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`.
+Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`. You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the [event attribute `event.application`](/apache-sling-eventing-and-job-handling.html#basic-principles), which is only set in case the event was triggered from an external resource modification.
 
 ## Wrap/Decorate Resources
 
