@@ -40,7 +40,7 @@ We'll use jira tickets for more specific things, this is more an overview.
 * Using Groovy MarkupTemplateEngine, examples at https://github.com/jbake-org/jbake-example-project-groovy-mte , docs for that engine at http://groovy-lang.org/templating.html#_the_markuptemplateengine
 * Other Apache projects using JBake include at least Tamaya (https://github.com/apache/incubator-tamaya-site) , OpenNLP (https://github.com/apache/opennlp-site) and http://incubator.apache.org .
 
-## Useful scripts and commands
-To find broken links use 
+## Useful scripts and commands
+To find broken links use
 
     wget --spider -r -nd -nv -l 5 http://localhost:8820/ 2>&1 | grep -B1 'broken link'
