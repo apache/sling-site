@@ -5,7 +5,7 @@ pipeline {
 
     tools {
         maven 'Maven 3.3.9'
-        jdk 'jdk8'
+        jdk 'JDK 1.8 (latest)'
     }
     stages {
         stage ('Build') {
