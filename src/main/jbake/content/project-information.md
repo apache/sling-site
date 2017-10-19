@@ -1,7 +1,7 @@
 title=Project Information		
 type=page
 status=published
-tags=mailinglists,issuetracker,sourcecode
+tags=mailinglists,issuetracker,sourcecode,git,github
 ~~~~~~
 
 This document provides an overview of the various documents and links that are part of this project's general information:
@@ -38,60 +38,11 @@ The issue tracker can be found at [http://issues.apache.org/jira/browse/SLING](h
 
 ## Source Repository
 
-This project uses Subversion to manage its source code. Instructions on Subversion use can be found at [http://svnbook.red-bean.com/](http://svnbook.red-bean.com/).
+As of October 2017 the Sling source code has migrated to multiple GitHub repositories, synced to the canonical ASF Git repositories using the [ASF Git](https://gitbox.apache.org/) services.
 
-We are migration to a Git setup, stay tuned for updates.
+All our repositories have `sling` in their name and are found under the `apache` organization, use [this search link](https://github.com/apache/?utf8=%E2%9C%93&q=sling) to find them.
 
-### Web Access
-
-The following is a link to the online source repository.
-
-
-    http://svn.apache.org/viewvc/sling/trunk
-
-
-### Anonymous access
-
-The source can be checked out anonymously from SVN with this command:
-
-
-    $ svn checkout http://svn.apache.org/repos/asf/sling/trunk sling
-
-
-### Developer access
-
-Everyone can access the Subversion repository via HTTPS, but Committers must checkout the Subversion repository via HTTPS.
-
-
-    $ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
-
-
-To commit changes to the repository, execute the following command to commit your changes (svn will prompt you for your password)
-
-
-    $ svn commit --username your-username -m "A message"
-
-
-### Access from behind a firewall
-
-For those users who are stuck behind a corporate firewall which is blocking http access to the Subversion repository, you can try to access it via the developer connection:
-
-
-    $ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
-
-
-### Access through a proxy
-
-The Subversion client can go through a proxy, if you configure it to do so. First, edit your "servers" configuration file to indicate which proxy to use. The files location depends on your operating system. On Linux or Unix it is located in the directory "~/.subversion". On Windows it is in "%APPDATA%\Subversion". (Try "echo %APPDATA%", note this is a hidden directory.)
-
-There are comments in the file explaining what to do. If you don't have that file, get the latest Subversion client and run any command; this will cause the configuration directory and template files to be created.
-
-Example : Edit the 'servers' file and add something like :
-
-
-    [global]
-    http-proxy-host = your.proxy.name
-    http-proxy-port = 3128
+As of October 19th this migration is not fully complete, see [SLING-3987](https://issues.apache.org/jira/browse/SLING-3987) for details.
 
 
 ## Continuous Integration
