@@ -6,7 +6,7 @@ tags=testing
 
 This is an overview of the Sling bundles that provide support for server-side JUnit tests. 
 
-The Maven modules below [`samples/testing`](https://github.com/apache/sling-samples/tree/master/testing)
+The Maven modules below [`sling-samples/testing`](https://github.com/apache/sling-samples/tree/master/testing)
 provide different examples including HTTP-based and server-side teleported tests in a 
 bundle module, running against a full Sling instance setup in the same Maven module.
 
@@ -158,7 +158,7 @@ The following customizers are currently used in Sling
 | `ClientSideTeleporter.testBundleDirectory` | if set the test bundles are being persisted (before being installed) within the given directory name. If the directory does not exist, it will be automatically created. Useful for debugging. Recommended value `${project.build.directory}/test-bundles`. | no | (-) | 1.0.12 | [SLING-6546](https://issues.apache.org/jira/browse/SLING-6546) |
 
 
-The provisioning of an appropriate instance can be done with the [slingstart-maven-plugin](/documentation/development/slingstart.html). An example for that is given at [`samples/testing/module-with-it`](https://github.com/apache/sling-samples/tree/master/testing/module-with-it). Since `slingstart-maven-plugin` 1.5.0 it is possible to bootstrap a Sling Server from a `model.txt` below `src/test/provisioning` independent of the packaging (see [SLING-6068](https://issues.apache.org/jira/browse/SLING-6068)).
+The provisioning of an appropriate instance can be done with the [slingstart-maven-plugin](/documentation/development/slingstart.html). An example for that is given at [`sling-samples/testing/module-with-it`](https://github.com/apache/sling-samples/tree/master/testing/module-with-it). Since `slingstart-maven-plugin` 1.5.0 it is possible to bootstrap a Sling Server from a `model.txt` below `src/test/provisioning` independent of the packaging (see [SLING-6068](https://issues.apache.org/jira/browse/SLING-6068)).
 
 #### LaunchpadCustomizer ####
 The *[`LaunchpadCustomizer.java`](https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/junit/teleporter/customizers/LaunchpadCustomizer.java)* only verifies that a Sling instance is ready at a given port and configures the `ClientSideTeleporter` to deploy to `http://localhost:8080` with the credentials `admin`:`admin`. `LaunchpadCustomizer` uses the `HttpTestBase` therefore some parameters are customizable through system properties. There is no bootstrapping of an instance done here, so this must be done separately!
