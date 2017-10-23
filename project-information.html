@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
-        <meta charset="UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <title>Apache Sling :: Project Information</title>
         <link rel="icon" href="/res/favicon.ico"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
@@ -73,7 +73,7 @@
         </div>        <div class="main">
             <div class="pagenav">
 <div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;</div>                
-<div class="tags"><a href="/tags/mailinglists.html" class="label">mailinglists</a> <a href="/tags/issuetracker.html" class="label">issuetracker</a> <a href="/tags/sourcecode.html" class="label">sourcecode</a> <a href="/tags/git.html" class="label">git</a> <a href="/tags/github.html" class="label">github</a> </div>                
+<div class="tags"><a href="/tags/mailinglists.html" class="label">mailinglists</a> <a href="/tags/issuetracker.html" class="label">issuetracker</a> <a href="/tags/sourcecode.html" class="label">sourcecode</a> </div>                
                 
             </div><h1 class="pagetitle">
                 Project Information
@@ -134,9 +134,35 @@
 <p>This project uses JIRA a J2EE-based, issue tracking and project management application. Issues, bugs, and feature requests should be submitted to the following issue tracking system for this project.</p>
 <p>The issue tracker can be found at <a href="http://issues.apache.org/jira/browse/SLING">http://issues.apache.org/jira/browse/SLING</a></p>
 <h2><a href="#source-repository" name="source-repository">Source Repository</a></h2>
-<p>As of October 2017 the Sling source code has migrated to multiple GitHub repositories, synced to the canonical ASF Git repositories using the <a href="https://gitbox.apache.org/">ASF Git</a> services.</p>
-<p>All our repositories have <code>sling</code> in their name and are found under the <code>apache</code> organization, use <a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">this search link</a> to find them.</p>
-<p>As of October 19th this migration is not fully complete, see <a href="https://issues.apache.org/jira/browse/SLING-3987">SLING-3987</a> for details.</p>
+<p>This project uses Subversion to manage its source code. Instructions on Subversion use can be found at <a href="http://svnbook.red-bean.com/">http://svnbook.red-bean.com/</a>.</p>
+<p>We are migration to a Git setup, stay tuned for updates.</p>
+<h3><a href="#web-access" name="web-access">Web Access</a></h3>
+<p>The following is a link to the online source repository.</p>
+<pre><code>http://svn.apache.org/viewvc/sling/trunk
+</code></pre>
+<h3><a href="#anonymous-access" name="anonymous-access">Anonymous access</a></h3>
+<p>The source can be checked out anonymously from SVN with this command:</p>
+<pre><code>$ svn checkout http://svn.apache.org/repos/asf/sling/trunk sling
+</code></pre>
+<h3><a href="#developer-access" name="developer-access">Developer access</a></h3>
+<p>Everyone can access the Subversion repository via HTTPS, but Committers must checkout the Subversion repository via HTTPS.</p>
+<pre><code>$ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
+</code></pre>
+<p>To commit changes to the repository, execute the following command to commit your changes (svn will prompt you for your password)</p>
+<pre><code>$ svn commit --username your-username -m &quot;A message&quot;
+</code></pre>
+<h3><a href="#access-from-behind-a-firewall" name="access-from-behind-a-firewall">Access from behind a firewall</a></h3>
+<p>For those users who are stuck behind a corporate firewall which is blocking http access to the Subversion repository, you can try to access it via the developer connection:</p>
+<pre><code>$ svn checkout https://svn.apache.org/repos/asf/sling/trunk sling
+</code></pre>
+<h3><a href="#access-through-a-proxy" name="access-through-a-proxy">Access through a proxy</a></h3>
+<p>The Subversion client can go through a proxy, if you configure it to do so. First, edit your "servers" configuration file to indicate which proxy to use. The files location depends on your operating system. On Linux or Unix it is located in the directory "~/.subversion". On Windows it is in "%APPDATA%\Subversion". (Try "echo %APPDATA%", note this is a hidden directory.)</p>
+<p>There are comments in the file explaining what to do. If you don't have that file, get the latest Subversion client and run any command; this will cause the configuration directory and template files to be created.</p>
+<p>Example : Edit the 'servers' file and add something like :</p>
+<pre><code>[global]
+http-proxy-host = your.proxy.name
+http-proxy-port = 3128
+</code></pre>
 <h2><a href="#continuous-integration" name="continuous-integration">Continuous Integration</a></h2>
 <p>Sling builds run automatically on the <a href="https://builds.apache.org/">ASF's Jenkins instance</a>, triggered by commits.</p>
 <p>We maintain multiple build jobs, typically one or two per module. These are grouped into two views:</p>
@@ -170,7 +196,7 @@
   <li>Watch a <a href="http://s.apache.org/cms-anonymous-tutorial">video tutorial by Rob Weir for anonymous users</a>.</li>
 </ol></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Oct 19 12:48:52 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sun Oct 8 20:19:31 2017 +0300</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
