@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2017
 
+* Scripting Core 2.0.50 (23rd)
 * Apache Sling Discovery Oak 1.2.22 (17th)
 * Apache Sling Maven Sling Plugin 2.3.4, Servlet Helpers 1.0.2, Servlet Helpers 1.1.2, JCR Mock 1.3.2, ResourceResolver Mock 1.1.20, OSGi Mock 1.9.8, OSGi Mock 2.3.4, Sling Mock 1.9.10, Sling Mock 2.2.14 (17th)
 * Apache Sling Context-Aware Configuration Impl 1.4.6 (9th)

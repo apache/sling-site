@@ -186,7 +186,7 @@ def bundles=[
   "Sample Server-Side Tests|org.apache.sling.testing.samples.sampletests|1.0.6",
   "Scripting API|org.apache.sling.scripting.api|2.2.0",
   "Scripting Console|org.apache.sling.scripting.console|1.0.0",
-  "Scripting Core|org.apache.sling.scripting.core|2.0.48",
+  "Scripting Core|org.apache.sling.scripting.core|2.0.50",
   "Scripting EL API Wrapper|org.apache.sling.scripting.el-api|1.0.0",
   "Scripting Java|org.apache.sling.scripting.java|2.1.2",
   "Scripting JavaScript|org.apache.sling.scripting.javascript|3.0.2",
