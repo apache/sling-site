@@ -40,10 +40,9 @@ The issue tracker can be found at [http://issues.apache.org/jira/browse/SLING](h
 
 As of October 2017 the Sling source code has migrated to multiple GitHub repositories, synced to the canonical ASF Git repositories using the [ASF Git](https://gitbox.apache.org/) services.
 
+The [sling-aggregator](https://github.com/apache/sling-aggregator) repository can be used to checkout all Sling modules.
+
 All our repositories have `sling` in their name and are found under the `apache` organization, use [this search link](https://github.com/apache/?utf8=%E2%9C%93&q=sling) to find them.
-
-As of October 19th this migration is not fully complete, see [SLING-3987](https://issues.apache.org/jira/browse/SLING-3987) for details.
-
 
 ## Continuous Integration
 

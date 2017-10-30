@@ -15,6 +15,9 @@ Rather than performing a full build of Sling, which can take 5-10 minutes on a r
 repository is up to date, it's recommended to build only the launchpad and the modules you're interested in.
 
 ## tl:dr - Short form build + run instructions 
+
+**TODO This needs to be updated due to our move to Git, please ask on our dev list if unsure**
+
 If you already have the required svn (or Git, see below) client, JDK and Maven installed, here's the short form recipe:
 
     $ svn co http://svn.apache.org/repos/asf/sling/trunk sling 
