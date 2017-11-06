@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2017
+
+* Sling API 2.16.4, Sling JCR ResourceResolver 3.0.6, Sling Default GET Servlets 2.1.28 (6th)
+
 ## October 2017
 
 * Scripting Core 2.0.50 (23rd)
