@@ -254,7 +254,7 @@ The `@PostConstruct` annotation can be used to add methods which are invoked upo
 	    }
 	}
 
-`@PostConstruct` methods in a super class will be invoked first.
+`@PostConstruct` methods in a super class will be invoked first. If a `@PostConstruct` method exists in a subclass with the same name as in the parent class, only the subclass method will be invoked. This is the case regardless of the scope of either method.
 
 Since Sling Models Implementation 1.4.6, `@PostConstruct` methods may return a `false` boolean value in which case the model creation will fail without logging any exception
 (a message will be logged at the `DEBUG` level).
