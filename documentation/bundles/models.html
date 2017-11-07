@@ -274,7 +274,7 @@ public class MyModel {
     }
 }
 </code></pre>
-<p><code>@PostConstruct</code> methods in a super class will be invoked first.</p>
+<p><code>@PostConstruct</code> methods in a super class will be invoked first. If a <code>@PostConstruct</code> method exists in a subclass with the same name as in the parent class, only the subclass method will be invoked. This is the case regardless of the scope of either method.</p>
 <p>Since Sling Models Implementation 1.4.6, <code>@PostConstruct</code> methods may return a <code>false</code> boolean value in which case the model creation will fail without logging any exception (a message will be logged at the <code>DEBUG</code> level).</p>
 <h2><a href="#via" name="via">Via</a></h2>
 <p>In some cases, a different object should be used as the adaptable instead of the original adaptable. This can be done using the <code>@Via</code> annotation. By default, this can be done using a JavaBean property of the adaptable:</p>
@@ -705,7 +705,7 @@ assert object1 == object2;
   <li><code>getAdaptable()</code> should return the new adaptable or <code>ViaProvider.ORIGINAL</code> to indicate that the original adaptable should be used.</li>
 </ul></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Justin Edelson</span> on <span class="comment">Sun Oct 1 08:33:05 2017 -0400</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Justin Edelson</span> on <span class="comment">Tue Nov 7 09:44:47 2017 -0500</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
