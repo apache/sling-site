@@ -26,7 +26,7 @@ This page is currently maintained manually, the ASF's LDAP information is the ul
 | clemens | Clemens Wyss | MySign AG | Java Developer |
 | chetanm (*) | Chetan Mehrotra | | Java Developer |
 | clombart (*) | Christophe Lombart | | Java Developer |
-| cziegeler (*) | Carsten Ziegeler | Adobe | Chair, Java Developer |
+| cziegeler (*) | Carsten Ziegeler | Adobe | Java Developer |
 | dklco (*) | Dan Klco | Six Dimensions |  Java Developer |
 | dulvac | Andrei Dulvac | Adobe | Java Developer |
 | fmeschbe (*) | Felix Meschberger | Adobe | Java Developer |
@@ -46,7 +46,7 @@ This page is currently maintained manually, the ASF's LDAP information is the ul
 | olli (*) | Oliver Lietz | | Java Developer |
 | pauls (*) | Karl Pauls | | Java Developer |
 | radu (*) | Radu Cotescu | Adobe | Java Developer |
-| rombert (*) | Robert Munteanu | Adobe | Java Developer |
+| rombert (*) | Robert Munteanu | Adobe | Chair, Java Developer |
 | sboehme | Sandro Boehme | inovex GmbH | Java Developer |
 | sseifert (*) | Stefan Seifert | pro!vision GmbH | Java Developer |
 | stefanegli (*) | Stefan Egli | Adobe | Java Developer |
