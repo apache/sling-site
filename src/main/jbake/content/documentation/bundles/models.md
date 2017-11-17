@@ -350,11 +350,11 @@ You can use the attribute `validation` on the Model annotation to call a validat
 
 In case the model is not instantiated an appropriate error message is logged (if `adaptTo()` is used) or an appropriate exception is thrown (if `ModelFactory.createModel()` is used).
 
-The only implementation for this Sling Models validation service is leveraging [Sling Validation](/documentation/bundles/validation.html) and is located in the bundle [org.apache.sling.models.validation-impl](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/models/validation-impl/). Validation is only working on models which are adapted from either `Resource` or `SlingHttpServletRequest` and if the Sling Validation Bundle is deployed.
+The only implementation for this Sling Models validation service is leveraging [Sling Validation](/documentation/bundles/validation.html) and is located in the bundle [org.apache.sling.models.validation-impl](https://github.com/apache/sling-org-apache-sling-models-validation-impl). Validation is only working on models which are adapted from either `Resource` or `SlingHttpServletRequest` and if the Sling Validation Bundle is deployed.
 
 # Custom Injectors
 
-To create a custom injector, simply implement the `org.apache.sling.models.spi.Injector` interface and register your implementation with the OSGi service registry. Please refer to the standard injectors in [Subversion](http://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/models/impl/src/main/java/org/apache/sling/models/impl/injectors/) for examples.
+To create a custom injector, simply implement the `org.apache.sling.models.spi.Injector` interface and register your implementation with the OSGi service registry. Please refer to the [standard injectors in Git](https://github.com/apache/sling-org-apache-sling-models-impl/tree/master/src/main/java/org/apache/sling/models/impl/injectors) for examples.
 
 Injectors are invoked in order of their service ranking, from lowest to highest. See the table below for the rankings of the standard injectors.
 
@@ -441,7 +441,7 @@ Instead of using the deprecated annotation element `optional` you should rather 
 
 To create a custom annotation, implement the `org.apache.sling.models.spi.injectorspecific.StaticInjectAnnotationProcessorFactory` interface.
 This interface may be implemented by the same class as implements an injector, but this is not strictly necessary. Please refer to the
-injectors in [Subversion](http://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/models/impl/src/main/java/org/apache/sling/models/impl/injectors/) for examples.
+[injectors in Git](https://github.com/apache/sling-org-apache-sling-models-impl/tree/master/src/main/java/org/apache/sling/models/impl/injectors) for examples.
  
 # Specifying an Alternate Adapter Class (since 1.1.0)
 

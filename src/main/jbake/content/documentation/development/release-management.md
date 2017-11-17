@@ -174,7 +174,7 @@ If the vote is successful, you need to promote and distribute the release - see 
 
 If the vote fails, or you decide to redo the release:
 
-1. Remove the release tag from Subversion (`svn del ...`)
+1. Remove the release tag from Git (`git push --delete origin ${tagName}`)
 1. Login to [https://repository.apache.org](https://repository.apache.org) using your Apache SVN credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select *Close*). Right click on this repository and select *Drop*.
 1. Remove the old version from Jira
     1. Create a new version in Jira with a version number following the one of the cancelled release

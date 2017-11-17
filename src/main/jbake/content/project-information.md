@@ -35,14 +35,17 @@ This project uses JIRA a J2EE-based, issue tracking and project management appli
 
 The issue tracker can be found at [http://issues.apache.org/jira/browse/SLING](http://issues.apache.org/jira/browse/SLING)
 
-
 ## Source Repository
 
-As of October 2017 the Sling source code has migrated to multiple GitHub repositories, synced to the canonical ASF Git repositories using the [ASF Git](https://gitbox.apache.org/) services.
+This project uses Git to manage its source code. The source code is hosted on the [ASF GitBox setup](https://gitbox.apache.org/repos/asf)
+and the [Apache organisation on GitHub](https://github.com/apache/).
 
-The [sling-aggregator](https://github.com/apache/sling-aggregator) repository can be used to checkout all Sling modules.
+To check out the Sling source code, see the instructions from  [Getting and building Sling](/documentation/development/getting-and-building-sling.html#getting-the-sling-source).
 
-All our repositories have `sling` in their name and are found under the `apache` organization, use [this search link](https://github.com/apache/?utf8=%E2%9C%93&q=sling) to find them.
+### Web Access
+
+The source code can be accessed using either the GitHub or GitBox setup, but the most convenient way is to use the GitHub
+search to display all Sling projects: [https://github.com/apache/?q=sling](https://github.com/apache/?q=sling).
 
 ## Continuous Integration
 
