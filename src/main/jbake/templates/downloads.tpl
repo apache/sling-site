@@ -202,7 +202,7 @@ def bundles=[
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.6",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.4",
   "Scripting Thymeleaf|org.apache.sling.scripting.thymeleaf|1.1.0",
-  "Security|org.apache.sling.security|1.1.6",
+  "Security|org.apache.sling.security|1.1.8",
   "Service User Mapper|org.apache.sling.serviceusermapper|1.3.4",
   "Servlet Helpers|org.apache.sling.servlet-helpers|1.1.2",
   "Servlets Compat|org.apache.sling.servlets.compat|1.0.2",
