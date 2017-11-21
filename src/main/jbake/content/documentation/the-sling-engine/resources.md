@@ -164,7 +164,11 @@ Certain properties can be used to restrict subscription to only a subset of even
 
 ### OSGi Event Admin
 
-Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`. You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the [event attribute `event.application`](/apache-sling-eventing-and-job-handling.html#basic-principles), which is only set in case the event was triggered from an external resource modification.
+Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`. 
+
+You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the [event attribute `event.application`](/apache-sling-eventing-and-job-handling.html#basic-principles), which is only set in case the event was triggered from an external resource modification (compare with [`DEAConstants`](https://sling.apache.org/apidocs/sling9/org/apache/sling/event/dea/DEAConstants.html) and try to reuse the constant from there).
+
+The OSGi event handlers may be [blacklisted by Apache Felix](http://felix.apache.org/documentation/subprojects/apache-felix-event-admin.html#configuration) in case the processing takes too long. Therefore dispatch all long-lasting operations to a new thread or start a new Sling Job.
 
 ## Wrap/Decorate Resources
 
