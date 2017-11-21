@@ -47,6 +47,13 @@ To check out the Sling source code, see the instructions from  [Getting and buil
 The source code can be accessed using either the GitHub or GitBox setup, but the most convenient way is to use the GitHub
 search to display all Sling projects: [https://github.com/apache/?q=sling](https://github.com/apache/?q=sling).
 
+### Attic
+A number of Sling modules that are not being developed further have been moved to the [Sling Attic](https://svn.apache.org/repos/asf/sling/attic/) in the svn
+repository that we used until late 2017.
+
+Now that the Sling codebase is split in multiple Git repositories, we'll probably keep such modules in place but mark them as being retired. We haven't had such
+a case since the move to Git, we will clarify once that happens.
+
 ## Continuous Integration
 
 Sling builds run automatically on the [ASF's Jenkins instance](https://builds.apache.org/), triggered
