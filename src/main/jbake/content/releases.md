@@ -16,9 +16,9 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## October 2017
 
 * Scripting Core 2.0.50 (23rd)
-* Apache Sling Discovery Oak 1.2.22 (17th)
-* Apache Sling Maven Sling Plugin 2.3.4, Servlet Helpers 1.0.2, Servlet Helpers 1.1.2, JCR Mock 1.3.2, ResourceResolver Mock 1.1.20, OSGi Mock 1.9.8, OSGi Mock 2.3.4, Sling Mock 1.9.10, Sling Mock 2.2.14 (17th)
-* Apache Sling Context-Aware Configuration Impl 1.4.6 (9th)
+* Maven Sling Plugin 2.3.4, Servlet Helpers 1.0.2, Servlet Helpers 1.1.2, JCR Mock 1.3.2, ResourceResolver Mock 1.1.20, OSGi Mock 1.9.8, OSGi Mock 2.3.4, Sling Mock 1.9.10, Sling Mock 2.2.14, Discovery Oak 1.2.22 (17th)
+* Starter Startup 1.0.2 (10th)
+* Context-Aware Configuration Impl 1.4.6 (9th)
 * Query 4.0.0 (4th)
 * Thread Support 3.2.10 (2nd)
 
@@ -250,7 +250,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 * Resource Resolver 1.5.14 (28th)
 * JUnit Tests Teleporter 1.0.12 (28th)
-* Apache Slingstart Maven Plugin 1.7.2 (28th)
+* Slingstart Maven Plugin 1.7.2 (28th)
 * Installer Core 3.8.6 (20th)
 * Content Distribution Core 0.2.4 (20th)
 * Content Distribution Core 0.2.0 (14th)
@@ -895,7 +895,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 * Engine 2.3.8 (27th)
 * Provisioning Model 1.0.0 (27th)
-* Apache Slingstart Maven Plugin 1.0.0 (27th)
+* Slingstart Maven Plugin 1.0.0 (27th)
 * JCR Resource Resolver 2.3.12 (26th)
 * Eventing 3.4.0 (24th)
 * Distributed Event Admin 1.0.0 (24th)
