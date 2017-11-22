@@ -49,9 +49,8 @@ The public wiki of Sling is available at [http://cwiki.apache.org/SLING](http://
 
 ## The JavaDoc
 
-<!-- GIT-TODO - no migrated yet -->
 With every major release of Sling the JavaDoc of all containing bundles are published below [http://sling.apache.org/apidocs/](http://sling.apache.org/apidocs/).
-The script for generating this aggregation JavaDoc is at [http://svn.apache.org/repos/asf/sling/trunk/tooling/release/](http://svn.apache.org/repos/asf/sling/trunk/tooling/release/) in `generate_javadoc_for_release.sh`
+The script for generating this aggregation JavaDoc is in the sling-tooling-release repo, at [generate_javadoc_for_release.sh](https://github.com/apache/sling-tooling-release/blob/master/generate_javadoc_for_release.sh).
 
 In addition every released bundle is released together with its JavaDoc (which is also pushed to Maven Central).
 

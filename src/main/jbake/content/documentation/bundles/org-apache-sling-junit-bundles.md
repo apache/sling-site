@@ -140,8 +140,7 @@ The following customizers are currently used in Sling
 
 ### Default Customizer ###
 
-<!-- GIT-TODO - not yet migrated -->
-*[DefaultPropertyBasedCustomizer.java](https://svn.apache.org/repos/asf/sling/trunk/testing/junit/teleporter/src/main/java/org/apache/sling/testing/teleporter/client/DefaultPropertyBasedCustomizer.java)* is used by default when no other customizer is referenced in `TeleporterRule.forClass(getClass())`. It relies on the following system properties:
+*[DefaultPropertyBasedCustomizer.java](https://github.com/apache/sling-org-apache-sling-junit-teleporter/blob/master/src/main/java/org/apache/sling/testing/teleporter/client/DefaultPropertyBasedCustomizer.java)* is used by default when no other customizer is referenced in `TeleporterRule.forClass(getClass())`. It relies on the following system properties:
 
 | Property Name                | Description                                     | Mandatory to set | Default value | Since version | Related JIRA |
 |------------------------------|-------------------------------------------------|------------------| ----- | ---| --- |

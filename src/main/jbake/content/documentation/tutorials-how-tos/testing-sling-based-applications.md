@@ -18,8 +18,7 @@ We have quite a lot of those in Sling, the older use the JUnit3 TestCase base cl
 
 ## Tests that use a JCR repository
 
-<!-- GIT-TODO commons/testing not migrated  -->
-Utility classes from our [commons/testing](https://svn.apache.org/repos/asf/sling/trunk/bundles/commons/testing) module make it easy to get a real JCR repository for testing. That's a bit slower than pure unit tests, of course, but this only adds 1-2 seconds to the execution of a test suite.
+Utility classes from our [commons/testing](https://github.com/apache/sling-org-apache-sling-commons-testing) module make it easy to get a real JCR repository for testing. That's a bit slower than pure unit tests, of course, but this only adds 1-2 seconds to the execution of a test suite.
 
 The `RepositoryProviderTest` in that module uses this technique to get a JCR repository.
 

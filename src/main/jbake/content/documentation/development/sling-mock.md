@@ -440,13 +440,11 @@ More examples:
 * [Apache Sling Context-Aware Configuration Mock Plugin][caconfig-mock-plugin]
 * [Apache Sling Context-Aware Configuration Mock Plugin Test][caconfig-mock-plugin-test]
 
-<!-- GIT-TODO - commons/testing is missing -->
-
 [osgi-mock]: /documentation/development/osgi-mock.html
 [jcr-mock]: /documentation/development/jcr-mock.html
 [resourceresolver-mock]: /documentation/development/resourceresolver-mock.html
 [jcr-resource]: https://github.com/apache/sling-org-apache-sling-jcr-resource
-[sling-commons-testing]: http://svn.apache.org/repos/asf/sling/trunk/bundles/commons/testing
+[sling-commons-testing]: https://github.com/apache/sling-org-apache-sling-commons-testing
 [mockito-testrunner]: http://mockito.github.io/mockito/docs/current/org/mockito/runners/MockitoJUnitRunner.html
 [caconfig-mock-plugin]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java
 [caconfig-mock-plugin-test]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java
