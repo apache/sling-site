@@ -81,7 +81,7 @@ Please note that operations are mutually exclusive. For a single POST request on
 
 <div class="note">
 <b>Automated tests</b>:
-Note that the `launchpad/testing` module contains a number of <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/">integration tests</a> for the SlingPostServlet. Most of these tests are fairly readable, and can be used to find out more details about the servlet's behavior.
+Note that the launchpad test services module contains a number of <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">integration tests</a> for the SlingPostServlet. Most of these tests are fairly readable, and can be used to find out more details about the servlet's behavior.
 </div>
 
 
@@ -106,7 +106,7 @@ If the resource of the request is a synthetic resource, e.g. `NonExistingResourc
 
 In both cases the path may still include selectors and extensions, which are cut off the path before finding out, what to do.
 
-To illustrate this algorithm, lets look at some examples (and check the [`PostServletCreateTest`](https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletCreateTest.java) in case of doubt):
+To illustrate this algorithm, lets look at some examples (and check the [`PostServletCreateTest`](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletCreateTest.java) in case of doubt):
 
 | Resource Path | Item path |
 |--|--|
@@ -158,7 +158,7 @@ following property names _if they are supplied with empty values in such a reque
 
 * `lastModifiedBy`, `jcr:lastModifiedBy` are set to the name of the user who modified the node.
 
-This is demonstrated by the [SlingAutoPropertiesTest](https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingAutoPropertiesTest.java) which is part of our launchpad integration tests.
+This is demonstrated by the [SlingAutoPropertiesTest](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingAutoPropertiesTest.java) which is part of our launchpad integration tests.
 
 ##### File Uploads
     
@@ -881,7 +881,7 @@ Such services must have a `sling.post.operation` service registration property s
 
 Before version 2.1.2 of the *org.apache.sling.servlets.post* bundle, such additional operations were implemented by the `org.apache.sling.servlets.post.SlingPostOperation` interface, which is now deprecated but still supported via a bridge. See [SLING-1725](https://issues.apache.org/jira/browse/SLING-1725) for details and discussions about this change.
 
-Two examples (old and new style) of additional POST operations are found in the [test-services](http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/) module, with the corresponding test code in the [integration-tests](http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/CustomPostOperationTest.java) module.
+Two examples (old and new style) of additional POST operations are found in the [test-services](https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post) module, with the corresponding test code in the [integration-tests](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/CustomPostOperationTest.java) module.
 
 
 ### SlingPostProcessor
@@ -890,4 +890,4 @@ OSGi services of the `org.apache.sling.servlets.post.SlingPostOperation` type ca
 
 A `SlingPostProcessor` may perform additional changes or revert previous ones. It is important that the `SlingPostProcessor` does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method `process(SlingHttpServletRequest, List<Modification>)`.
 
-Two examples of SlingPostProcessors are found in the [test-services](http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/) module, with the corresponding test code in the [integration-tests](http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest) module.
+Two examples of SlingPostProcessors are found in the [test-services](https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post) module, with the corresponding test code in the [integration-tests](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java) module.

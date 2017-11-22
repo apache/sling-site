@@ -19,9 +19,8 @@ While simple to run and understand, the Launchpad is a full-featured instance of
 
 ## See Also
 
-
 More Sling samples can be found under 
-[http://svn.apache.org/repos/asf/sling/trunk/samples/](http://svn.apache.org/repos/asf/sling/trunk/samples/)
+[https://github.com/apache/sling-samples/](https://github.com/apache/sling-samples/)
 
 Once you grok the basic examples of this page, we recommend studying the 
 *slingbucks* and *espblog* samples. Both have README files with more info.

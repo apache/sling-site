@@ -178,9 +178,9 @@ The Sling API provides an easy way to wrap or decorate a resource before returni
   [1]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html "ResourceMetadata"
   [2]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html "Resource"
   [3]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html "AbstractResource"
-  [4]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/resourceprovider/
-  [5]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/serversidetests/WriteableResourcesTest.java
-  [6]: https://svn.apache.org/repos/asf/sling/trunk/bundles/api/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java
-  [7]: https://svn.apache.org/repos/asf/sling/trunk/bundles/api/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java
+  [4]: https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/resourceprovider
+  [5]: https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/serversidetests/WriteableResourcesTest.java
+  [6]: https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java
+  [7]: https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java
   [8]: https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html
   [9]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html

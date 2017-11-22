@@ -22,7 +22,7 @@ The run modes are selected based on the `sling.run.modes` property (the "selecti
 
 Using `-Dsling.run.modes=foo,bar` on the JVM command-line, for example, activates the *foo* and *bar* run modes if that combination is valid.
 
-The absolute truth about run modes definition and selection is found in the [RunModeImplTest](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/settings/src/test/java/org/apache/sling/settings/impl/RunModeImplTest.java) which should be self-explaining.
+The absolute truth about run modes definition and selection is found in the [RunModeImplTest](https://github.com/apache/sling-org-apache-sling-settings/blob/master/src/test/java/org/apache/sling/settings/impl/RunModeImplTest.java) which should be self-explaining.
 
 ## Defining valid run modes
 Since [SLING-2662](https://issues.apache.org/jira/browse/SLING-2662) the valid run modes are defined by the `sling.run.mode.options` and `sling.run.mode.install.options` configuration properties, usually defined in the `sling.properties` file or in the provisioning model of a Sling Launchpad instance.

@@ -43,4 +43,4 @@ The class `org.apache.sling.testing.hamcrest.ResourceMatchers` is the main entry
 
     }
 
-The Slingshot sample application uses these matchers, see [SetupServiceTest.java](http://svn.apache.org/repos/asf/sling/trunk/samples/slingshot/src/test/java/org/apache/sling/sample/slingshot/impl/SetupServiceTest.java) for an example.
+The Slingshot sample application uses these matchers, see [SetupServiceTest.java](https://github.com/apache/sling-samples/blob/master/slingshot/src/test/java/org/apache/sling/sample/slingshot/impl/SetupServiceTest.java) for an example.

@@ -4,7 +4,7 @@ status=published
 tags=launchpad,embedding
 ~~~~~~
 
-The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the [Sling Launchpad Base project](http://svn.apache.org/repos/asf/sling/trunk/launchpad/base). This project has the following features:
+The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the [Sling Launchpad Base project](https://github.com/apache/sling-org-apache-sling-launchpad-base). This project has the following features:
 
 * Builds three artifacts:
     * A standalone Java Application with the artifact qualifier *app*; e.g. `org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-app.jar`
@@ -46,13 +46,13 @@ The bridging part is provided in the `org.apache.sling.launchpad.base.shared` pa
 
 # The Internal Part
 
-The main class from the internal class directly used is [`Sling`](http://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/base/impl/Sling.java) which instantiated to start the OSGi Framework. This class is responsible for setting up the environment to finally start the OSGi Framework:
+The main class from the internal class directly used is [`Sling`](https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/Sling.java) which instantiated to start the OSGi Framework. This class is responsible for setting up the environment to finally start the OSGi Framework:
 
 * Read the `sling.properties` file
 * Ensure the presence of the JMX MBeanServer service
 * Execute the bootstrap installations, updates and uninstallations
 
-The [`SlingFelix`](http://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/base/impl/SlingFelix.java) class extends the Apache Felix `Felix` class which is the actual OSGi framework implementation. We extend the class to be able to notify the `Notifiable` implementation and update the OSGi framework from within the OSGi framework by updating the system bundle.
+The [`SlingFelix`](https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/SlingFelix.java) class extends the Apache Felix `Felix` class which is the actual OSGi framework implementation. We extend the class to be able to notify the `Notifiable` implementation and update the OSGi framework from within the OSGi framework by updating the system bundle.
 
 
 ## The External Part
@@ -73,10 +73,6 @@ The standalone Java Application makes use of three classes:
 At the moment these classes are not directly suitable to be embedded in an existing application (or custom application launcher framework) unless that embedding prepares command line arguments in a `String[]` and calls the `Main.main` method. To allow for custom embeddings or extensions, the work distributions between the three classes should be refactored.
 
 ### Embedding the Standalone Java Application
-
-<div class="info">
-This work is being done as part of [SLING-2225](https://issues.apache.org/jira/browse/SLING-2225) and will be officially available with the Sling Launchpad Base release 2.4.0. If you want to use the embedding before the release, you have to checkout the source from [SVN|http://svn.apache.org/repos/asf/sling/trunk/launchpad/base] and build yourself.
-</div>
 
 To embedd the Sling Launcher in an application, the `Main` class is extended from. To manage the launcher, the following API is available:
 

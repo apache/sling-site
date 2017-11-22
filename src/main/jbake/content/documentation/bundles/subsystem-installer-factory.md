@@ -13,4 +13,4 @@ The subsystem file must end with ".esa" and the manifest must at least contain t
 
 # Project Info
 
-* Subsystems installer factory ([org.apache.sling.installer.factory.subsystems](http://svn.apache.org/repos/asf/sling/trunk/installer/factories/subsystems))
+* Subsystems installer factory ([org.apache.sling.installer.factory.subsystems](https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems))

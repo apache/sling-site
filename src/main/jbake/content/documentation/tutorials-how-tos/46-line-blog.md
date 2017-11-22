@@ -18,7 +18,7 @@ Although this is a simple sample, it requires some custom settings to work. If y
 
 See [Getting and Building Sling](/documentation/development/getting-and-building-sling.html) for how to start Sling. Start it on port 8080 for the below links to work.
 
-For this sample we need the optional *org.apache.sling.samples.path-based.rtp* bundle, if it's not present in the [OSGi console](http://localhost:8080/system/console/bundles), install and start it. That bundle is not released yet so you might need to build it yourself, from its [source](http://svn.apache.org/repos/asf/sling/trunk/samples/path-based-rtp). The bundle must then appear in the [OSGI console's list of bundles](http://localhost:8080/system/console/bundles), with name = *org.apache.sling.samples.path-based.rtp* and status = *Active*.
+For this sample we need the optional *org.apache.sling.samples.path-based.rtp* bundle, if it's not present in the [OSGi console](http://localhost:8080/system/console/bundles), install and start it. That bundle is not released yet so you might need to build it yourself, from its [source](https://github.com/apache/sling-samples/tree/master/path-based-rtp). The bundle must then appear in the [OSGI console's list of bundles](http://localhost:8080/system/console/bundles), with name = *org.apache.sling.samples.path-based.rtp* and status = *Active*.
 
 Then, login using <http://localhost:8080/?sling:authRequestLogin=1> which should prompt you for a username and password, use *admin* and *admin*. Once that's done, <http://localhost:8080/index.html> should say *You are currently logged in as user *admin* to workspace *default**.
 
@@ -155,7 +155,7 @@ To keep things simple, we'll refrain from adding ESP-based features at this poin
 
 ## That's the power of Sling
 
-The 46-line blog is a good example of the power of Sling. It leverages the [SlingPostServlet](/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html), which handles POST requests in a form-friendly way, and the [`sling.js`](http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/post/src/main/resources/system/sling.js) client library, which provides high-level functionality on the client side.
+The 46-line blog is a good example of the power of Sling. It leverages the [SlingPostServlet](/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html), which handles POST requests in a form-friendly way, and the [`sling.js`](https://github.com/apache/sling-org-apache-sling-servlets-post/blob/master/src/main/resources/system/sling.js) client library, which provides high-level functionality on the client side.
 
 ///Footnotes Go Here///
 

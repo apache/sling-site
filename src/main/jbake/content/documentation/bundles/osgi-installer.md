@@ -20,7 +20,7 @@ It's possible to add own providers, transformers and installer factories to supp
 
 ## API
 The installer API is defined by the `org.apache.sling.installer.api` package 
-of the [org.apache.sling.installer.core](http://svn.apache.org/repos/asf/sling/trunk/installer/core/) module. The main
+of the [org.apache.sling.installer.core](https://github.com/apache/sling-org-apache-sling-installer-core) module. The main
 interface is the `OsgiInstaller` with which installable resources can be registered.
 
 The [installer integration tests][1] module can be useful to understand the details of how the installer works.

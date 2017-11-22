@@ -261,7 +261,7 @@ Example
 
 ## Automated Tests
 
-The [launchpad/testing](http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/accessManager/) module contains test classes for various operations of the `jackrabbit-usermanager`. Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various operations, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know\!
+The [launchpad/testing](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/accessManager/) module contains test classes for various operations of the `jackrabbit-usermanager`. Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various operations, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know\!
 
 ## Permissions checking from scripts
 
@@ -308,11 +308,3 @@ Example:
             //TODO: draw your UI that allows the user to update the group memebership here
         }
     %>
-
-
-
-## Sample User Interface Implementation
-
-*Since Version 2.1.1*
-
-A sample implementation of ui pages for user/group management is provided @ [http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/](http://svn.apache.org/viewvc/sling/trunk/samples/usermanager-ui/).

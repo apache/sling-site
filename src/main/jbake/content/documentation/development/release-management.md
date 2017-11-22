@@ -116,6 +116,7 @@ Propose a vote on the dev list with the closed issues, the issues left, and the 
     https://repository.apache.org/content/repositories/orgapachesling-[YOUR REPOSITORY ID]/
     
     You can use this UNIX script to download the release and verify the signatures:
+    <!-- GIT-TODO - Reference the GitBox URL after migrating the sling-tooling-release stuff -->
     http://svn.apache.org/repos/asf/sling/trunk/check_staged_release.sh
     
     Usage:
@@ -261,6 +262,8 @@ releases which are just announced on our [news](/news.html) page.
 
 ## Releasing the Sling IDE Tooling
 
+<!-- GIT-TODO - update after releasing the IDE tooling from Git -->
+
 While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.
 
 1. set the fix version as released: `mvn tycho-versions:set-version -DnewVersion=1.0.2`
@@ -374,18 +377,43 @@ Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and
     
             $ gpg --keyserver pool.sks-keyservers.net --send-key <key-id>
         
+## Appendix B: Deploy Maven plugin documentation (if applicable)
 
+When releasing a Maven plugin, the Maven-generated documentation published under [http://sling.apache.org/components/](http://sling.apache.org/components/) needs
+to be updated.
 
-## Appendix B: Maven and SCM credentials
+This is currently supported for:
 
-For running the `mvn release:prepare` command without giving credentials on command line add `svn.apache.org` to your `settings.xml`:
+* `maven-sling-plugin`
+* `htl-maven-plugin`
+* `slingstart-maven-plugin`
+* `jspc-maven-plugin`
 
-    <server>
-      <id>svn.apache.org</id>
-      <username>USERNAME</username>
-      <password>ENCRYPTED_PASSWORD</password>
-    </server>
-    
+To publish the plugin documentation execute the following steps after the release:
+
+1. Checkout the release tag of the released plugin (or reset your workspace)
+
+2. Build and stage the maven site of the plugin. Note that this *commits* the generated content to the components folder mentioned below.
+   
+        $ mvn clean site:site site:stage scm-publish:publish-scm
+
+3. Checkout the Sling website and navigate to the 'components' directory
+
+        $ git clone https://github.com/apache/sling-site.git
+        $ cd sling-site/src/main/jbake/assets/components/
+
+4. SVN-rename the generated documenation that the site plugin commited to `<plugin-name>-archives/<plugin-name>-LATEST` to `<plugin-name>-archives/<plugin-name>-<version>`
+ 
+5. SVN-remove the existing folder `<plugin-name>` and SVN-copy the folder `<plugin-name>-archives/<plugin-name>-<version>` to `<plugin-name>`
+
+6. Commit the changes.
+
+7. Publish the Sling site to production
+
+8. Check the results at [http://sling.apache.org/components/](http://sling.apache.org/components/)
+
+For background information about this process see the [Maven components reference documentation](http://maven.apache.org/developers/website/deploy-component-reference-documentation.html).
+
 ## Appendix C: Deploy bundles on the Sling OBR (obsolete)
 
 *Update November 2016: We do now longer maintain the Sling OBR for new releases.*
@@ -440,40 +468,3 @@ To update the OBR you may use the Apache Felix Maven Bundle Plugin which prepare
     Wait for the buildbot to update the staging area with your site update (see dev list for an email).
     Then go to the CMS at [https://cms.apache.org/redirect?uri=http://sling.apache.org/obr](https://cms.apache.org/redirect?uri=http://sling.apache.org/obr) ,
     update your checkout and then publish the site.
-
-
-## Appendix D: Deploy Maven plugin documentation (if applicable)
-
-When releasing a Maven plugin, the Maven-generated documentation published under [http://sling.apache.org/components/](http://sling.apache.org/components/) needs
-to be updated.
-
-This is currently supported for:
-
-* `maven-sling-plugin`
-* `htl-maven-plugin`
-* `slingstart-maven-plugin`
-* `jspc-maven-plugin`
-
-To publish the plugin documentation execute the following steps after the release:
-
-1. Checkout the release tag of the released plugin (or reset your workspace)
-
-2. Build and stage the maven site of the plugin. Note that this *commits* the generated content to the components folder mentioned below.
-   
-        $ mvn clean site:site site:stage scm-publish:publish-scm
-
-3. Checkout the 'components' subtree of the Sling website
-
-        $ svn checkout https://svn.apache.org/repos/asf/sling/site/trunk/content/components
-
-4. SVN-rename the generated documenation that the site plugin commited to `<plugin-name>-archives/<plugin-name>-LATEST` to `<plugin-name>-archives/<plugin-name>-<version>`
- 
-5. SVN-remove the existing folder `<plugin-name>` and SVN-copy the folder `<plugin-name>-archives/<plugin-name>-<version>` to `<plugin-name>`
-
-6. Commit the changes.
-
-7. Publish the Sling site to production
-
-8. Check the results at [http://sling.apache.org/components/](http://sling.apache.org/components/)
-
-For background information about this process see the [Maven components reference documentation](http://maven.apache.org/developers/website/deploy-component-reference-documentation.html).

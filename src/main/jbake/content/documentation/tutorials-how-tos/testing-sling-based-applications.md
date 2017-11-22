@@ -18,6 +18,7 @@ We have quite a lot of those in Sling, the older use the JUnit3 TestCase base cl
 
 ## Tests that use a JCR repository
 
+<!-- GIT-TODO commons/testing not migrated  -->
 Utility classes from our [commons/testing](https://svn.apache.org/repos/asf/sling/trunk/bundles/commons/testing) module make it easy to get a real JCR repository for testing. That's a bit slower than pure unit tests, of course, but this only adds 1-2 seconds to the execution of a test suite.
 
 The `RepositoryProviderTest` in that module uses this technique to get a JCR repository.
@@ -30,7 +31,7 @@ The next step is to use mock classes and services to simulate components that ar
 
 The [Development](/documentation/development.html) documentation page contains a section "Testing Sling-based Applications" lising all mock implementations available as part of the Apache Sling project.
 
-In other cases we use [jmock](http://www.jmock.org/) or [Mockito][1] to help create mock objects without having to write much code - such mocking libraries take care of the plumbing and allow you to write just the bits of code that matter (often with funny syntaxes). The tests of the [org.apache.sling.event](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/event/) bundle, for example, make extensive use of such mock services.
+In other cases we use [jmock](http://www.jmock.org/) or [Mockito][1] to help create mock objects without having to write much code - such mocking libraries take care of the plumbing and allow you to write just the bits of code that matter (often with funny syntaxes). The tests of the [org.apache.sling.event](https://github.com/apache/sling-org-apache-sling-event) bundle, for example, make extensive use of such mock services.
 
 The problem with mocks is that it can become hard to make sure you're actually testing something, and not just "mocking mocks". At a certain level of complexity, it becomes quicker and clearer to actually start an OSGi framework for automated tests.
 
@@ -54,7 +55,7 @@ such as the [PrivateAccessor](http://junit-addons.sourceforge.net/junitx/util/Pr
 
 [Pax Exam](http://team.ops4j.org/wiki/display/paxexam/Pax+Exam) allows you to easily start an OSGi framework during execution of a JUnit test suite.
 
-We currently use it for our [Sling installer integration tests](https://svn.apache.org/repos/asf/sling/trunk/installer/it) for example. As parts of the installer interact directly with the OSGi framework, it felt safer to test it in a realistic situation rather than mock everything.
+We currently use it for our [Sling installer integration tests](https://github.com/apache/sling-org-apache-sling-installer-it) for example. As parts of the installer interact directly with the OSGi framework, it felt safer to test it in a realistic situation rather than mock everything.
 
 Such tests are obviously slower than plain unit tests and tests that use mocks. Our installer integration tests, using Pax Exam, take about a minute to execute on a 2010 macbook pro.
 
@@ -64,8 +65,8 @@ The tools described on the [JUnit server-side testing support](/documentation/bu
 running JUnit tests on an live Sling instance, as part of the normal integration testing cycle. 
 
 ## HTTP-based integration tests
-The [Sling HTTP Testing Rules](https://svn.apache.org/repos/asf/sling/trunk/testing/junit/rules) allow writing integration tests easily. They are primarily meant to be used for tests that use http against 
-a Sling instance and make use of the [org.apache.sling.testing.clients](https://svn.apache.org/repos/asf/sling/trunk/testing/http/clients) which offer a simple, immutable and extendable way of working 
+The [Sling HTTP Testing Rules](https://github.com/apache/sling-org-apache-sling-testing-rules) allow writing integration tests easily. They are primarily meant to be used for tests that use http against 
+a Sling instance and make use of the [org.apache.sling.testing.clients](https://github.com/apache/sling-org-apache-sling-testing-clients) which offer a simple, immutable and extendable way of working 
 with specialized testing clients.
 
 The JUnit rules incorporate boiler-plate logic that is shared in tests and take the modern approach of using rules rather than 
@@ -79,8 +80,8 @@ Starting an integration is very simple out of the box, but is very extendable, b
 using the versatile `SlingClient` (which can be extended or adapted by calling `adaptTo(MyClient.class)` without losing the client 
 configuration)
 
-The [README](https://svn.apache.org/repos/asf/sling/trunk/testing/junit/rules/README.md) provides more detail, as do [the tests](https://svn.apache.org/repos/asf/sling/trunk/testing/junit/rules/src/test/java).
-The [Sling HTTP Testing Clients](https://svn.apache.org/repos/asf/sling/trunk/testing/http/clients) provide simple explanations, and unit tests.
+The [README](https://github.com/apache/sling-org-apache-sling-testing-rules/blob/master/README.md) provides more detail, as do [the tests](https://github.com/apache/sling-org-apache-sling-testing-rules/tree/master/src/test/java).
+The [Sling HTTP Testing Clients](https://github.com/apache/sling-org-apache-sling-testing-clients) provide simple explanations, and unit tests.
 
 #### Maven Dependency
     #!xml 

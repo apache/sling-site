@@ -280,7 +280,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 
 ### Automated tests
 
-The initial content found in the [sling-test folder of the launchpad initial content](http://svn.apache.org/repos/asf/sling/trunk/launchpad/content/src/main/resources/content/sling-test) is verified by the [InitialContentTest](http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java) when running the *launchpad/testing* integration tests.
+The initial content found in the [sling-test folder of the launchpad initial content](https://github.com/apache/sling-org-apache-sling-launchpad-content/tree/master/src/main/resources/content/sling-test) is verified by the [InitialContentTest](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java) when running the *launchpad testing* integration tests.
 
 Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.
 

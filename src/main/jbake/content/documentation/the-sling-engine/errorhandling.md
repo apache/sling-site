@@ -67,4 +67,4 @@ Starting with Sling Servlet Resolver version 2.0.10 the default error handler se
 Thus to overwrite the default error handler servlet provide a servlet or script for the `default` extension, for example `/apps/sling/servlet/errorhandler/default.groovy`.
 
 
-  [1]: https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolver/errorhandler/ErrorHandlingTest.java
+  [1]: https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolver/errorhandler/ErrorHandlingTest.java

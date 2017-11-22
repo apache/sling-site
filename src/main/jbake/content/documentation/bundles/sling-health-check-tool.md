@@ -16,7 +16,7 @@ is a good starting point to run existing checks and to get familiar with how hea
 
 See also:
 
-* Source code at  [http://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/healthcheck](http://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/healthcheck)
+* [Source code for the HealthCheck modules on GitHub](https://github.com/apache?utf8=%E2%9C%93&q=sling%20hc)
 * adaptTo slides about Health Checks: [Introduction](http://www.slideshare.net/bdelacretaz/slinghc-bdelacretazadaptto2013) and [Health Check Executor](https://adapt.to/content/dam/adaptto/production/presentations/2014/adaptTo2014-Sling-Health-Checks-New-And-Noteworthy-Georg-Henzler.pdf/_jcr_content/renditions/original.media_file.download_attachment.file/adaptTo2014-Sling-Health-Checks-New-And-Noteworthy-Georg-Henzler.pdf)
 
 ## Use cases
@@ -176,7 +176,7 @@ based on their tags (positive and negative selection, see the `HealthCheckFilter
 
 The DEBUG logs of health checks can optionally be displayed, and an option allows for showing only health checks that have a non-OK status.
 
-The screenshot below shows an example, as of svn revision 1513462.
+The screenshot below shows an example.
 
 ![Health Check Webconsole Plugin](sling-hc-plugin.jpg)
 
@@ -217,9 +217,3 @@ remote testing utilities, and also as plain Health Checks for monitoring or trou
 To use this module, configure sets of tags at `/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider`
 using the standard `includeThisTag,-omitThatTag` syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html 
 to run the corresponding Health Checks.
-
-To run the Health Check tests at build time, see the [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests)
-sample module.
-  
-
-

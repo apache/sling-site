@@ -11,7 +11,7 @@ Those mock implementations are meant to be used in tests and also with services
 like the `SlingRequestProcessor` when making requests to that service outside of
 an HTTP request processing context.
 
-See the [automated tests](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/servlet-helpers) 
+See the [automated tests](https://github.com/apache/sling-org-apache-sling-servlet-helpers) 
 of the `servlet-helpers` module for more info.
 
 

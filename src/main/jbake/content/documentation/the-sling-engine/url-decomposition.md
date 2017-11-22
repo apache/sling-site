@@ -44,7 +44,7 @@ Assume there is a Resource at `/a/b`, which has no children.
 
 The tests at
 
-* [ResourceResolverImplTest](http://svn.apache.org/repos/asf/sling/trunk/bundles/resourceresolver/src/test/java/org/apache/sling/resourceresolver/impl/ResourceResolverImplTest.java) shows the split between resource path and the rest. Mostly in the method `testBasicAPIAssumptions`.
-* [SlingRequestPathInfoTest](http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java) demonstrates the decomposition after the resource path part.
+* [ResourceResolverImplTest](https://github.com/apache/sling-org-apache-sling-resourceresolver/blob/master/src/test/java/org/apache/sling/resourceresolver/impl/ResourceResolverImplTest.java) shows the split between resource path and the rest. Mostly in the method `testBasicAPIAssumptions`.
+* [SlingRequestPathInfoTest](https://github.com/apache/sling-org-apache-sling-engine/blob/master/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java) demonstrates the decomposition after the resource path part.
 
 Feel free to suggest additional tests that help clarify how this works!

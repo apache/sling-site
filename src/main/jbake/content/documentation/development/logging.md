@@ -562,6 +562,6 @@ You need to specify the location of logback.xml via `org.apache.sling.commons.lo
 [11]: http://www.slf4j.org/manual.html#mdc
 [12]: http://sling.apache.org/downloads.cgi
 [13]: http://logback.qos.ch/apidocs/ch/qos/logback/classic/spi/ILoggingEvent.html
-[14]: http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/logback-groovy-fragment/
+[14]: https://github.com/apache/sling-org-apache-sling-extensions-logback-groovy-fragment
 [15]: http://logback.qos.ch/manual/layouts.html#conversionWord
 [SLING-6144]: https://issues.apache.org/jira/browse/SLING-6144

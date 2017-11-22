@@ -20,7 +20,7 @@ The links to the latest update site, including a permanent URL which stays up to
 
 ### Building from source
 
-The update sites are provided as a convenience for users that do not wish to build the project themselves. Building the project only requires a recent Maven installation. The project can be checked out, either [from trunk for the latest development version](https://svn.apache.org/repos/asf/sling/trunk/tooling/ide/) or [from a tag for released versions](https://svn.apache.org/repos/asf/sling/tags/), where the tags names have the format sling-ide-tooling-$VERSION. Once you have obtained the source code, it is enough to run
+The update sites are provided as a convenience for users that do not wish to build the project themselves. Building the project only requires a recent Maven installation. The project can be checked out from [https://github.com/apache/sling-ide-tooling](https://github.com/apache/sling-ide-tooling). Once you have obtained the source code, it is enough to run
 
 	mvn package
 

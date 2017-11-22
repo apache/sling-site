@@ -4,6 +4,12 @@ status=published
 tags=jcr,jackrabbit,repository
 ~~~~~~
 
+<div class="note">
+Recent versions of Apache Sling no longer use Apache Jackrabbit as their persistence engine, but
+Apache Jackrabbit Oak. Oak is configured in a different, more OSGi-friendly way. For more details,
+see <a href="http://jackrabbit.apache.org/oak/docs/">The Jackrabbit Oak documentation</a>. The Jackrabbit integration has also been moved to the attic and is no longer maintained.
+</div>
+
 Out-of-the-box the embedded Jackrabbit repository used by Sling (the Embedded Jackrabbit Repository bundle) uses Derby to persist the JCR nodes and properties. For some applications or environments it may be required or required to replace Derby with another backing store such as PostgreSQL or Oracle.
 
 This page is based on the journey of Tony Giaccone to get Sling running with a PostgreSQL based Jackrabbit instance.
@@ -62,7 +68,7 @@ Alternatively, you may wish to stop Sling after uninstalling Derby and installin
 
 To actually use a persistence manager other than the default (Derby) persistence manager, you have to configure Jackrabbit to use it. Create a `repository.xml` file in the `sling/jackrabbit` folder before starting Sling for the first time. If the repository was already started, you can also modify the existing file.
 
-To prepare a repository.xml file before first startup, use the [`repository.xml`](http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/jackrabbit-server/src/main/resources/repository.xml) as a template and modify it by replacing the `<PersistenceManager>` elements to refer to the selected persistence manager.
+To prepare a repository.xml file before first startup, use the [`repository.xml`](https://svn.apache.org/repos/asf/sling/attic/jackrabbit-server/src/main/resources/repository.xml) as a template and modify it by replacing the `<PersistenceManager>` elements to refer to the selected persistence manager.
 
 If the file already exists, you can modifiy this existing file and there is no need to get the original from the SVN repository.
 
