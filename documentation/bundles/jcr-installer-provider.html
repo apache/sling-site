@@ -94,12 +94,7 @@
 <h1><a href="#example" name="example">Example</a></h1>
 <p>Here's a quick walkthrough of the JCR installer functionality.</p>
 <h2><a href="#installation" name="installation">Installation</a></h2>
-<p>Start the Sling <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/app">launchpad/app</a> and make sure that the following bundles are present and started:</p>
-<ul>
-  <li><a href="sling-settings-org-apache-sling-settings.html">Sling Settings</a></li>
-  <li>OSGi installer service (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/core">org.apache.sling.installer.core</a>)</li>
-  <li>JCR installer provider (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr">org.apache.sling.installer.provider.jcr</a>)</li>
-</ul>
+<p>Run the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a>.</p>
 <p>To watch the logs produced by these modules, you can filter <code>sling/logs/error.log</code> using <code>egrep &#39;jcrinstall|osgi.installer&#39;</code>.</p>
 <h2><a href="#install-and-remove-a-bundle" name="install-and-remove-a-bundle">Install and remove a bundle</a></h2>
 <p>We'll use the <a href="http://www.knopflerfish.org/releases/2.0.5/jars/desktop_awt/desktop_awt_all-2.0.0.jar">Knopflerfish Desktop</a> bundle for this example, it is convenient as it displays a graphical user interface when started.</p>
@@ -167,16 +162,16 @@ curl -X MKCOL  http://admin:admin@localhost:8080/apps/jcrtest/install
 <h1><a href="#automated-tests" name="automated-tests">Automated Tests</a></h1>
 <p>The following modules contain lots of automated tests (under <code>src/test</code>, as usual):</p>
 <ul>
-  <li>OSGi installer integration tests (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/it">org.apache.sling.installer.it</a>)</li>
-  <li>JCR installer service (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr">org.apache.sling.installer.providers.jcr</a>)</li>
+  <li>OSGi installer integration tests (<a href="https://github.com/apache/sling-org-apache-sling-installer-it">org.apache.sling.installer.it</a>)</li>
+  <li>JCR installer service (<a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr">org.apache.sling.installer.providers.jcr</a>)</li>
 </ul>
 <p>Many of these tests are fairly readable, and can be used to find out in more detail how these modules work.</p>
 <h1><a href="#project-info" name="project-info">Project Info</a></h1>
 <ul>
-  <li>JCR installer provider (<a href="http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr">org.apache.sling.installer.provider.jcr</a>)</li>
+  <li>JCR installer provider (<a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr">org.apache.sling.installer.provider.jcr</a>)</li>
 </ul></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

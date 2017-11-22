@@ -121,7 +121,7 @@
 <p>Please note that operations are mutually exclusive. For a single POST request only one operation may be executed. Operations also only consume the request parameters as described below. Any excess parameters are silently ignored.</p>
 <div class="note">
 <b>Automated tests</b>:
-Note that the `launchpad/testing` module contains a number of <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/">integration tests</a> for the SlingPostServlet. Most of these tests are fairly readable, and can be used to find out more details about the servlet's behavior.
+Note that the launchpad test services module contains a number of <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">integration tests</a> for the SlingPostServlet. Most of these tests are fairly readable, and can be used to find out more details about the servlet's behavior.
 </div>
 <div class="note">
 <b>Trailing star in the :applyTo parameter</b>:
@@ -137,7 +137,7 @@ of a resource without having to specify the path of each individual child resour
   <li>Otherwise the resource path is used as the path and name of the new item.</li>
 </ul>
 <p>In both cases the path may still include selectors and extensions, which are cut off the path before finding out, what to do.</p>
-<p>To illustrate this algorithm, lets look at some examples (and check the <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletCreateTest.java"><code>PostServletCreateTest</code></a> in case of doubt):</p>
+<p>To illustrate this algorithm, lets look at some examples (and check the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletCreateTest.java"><code>PostServletCreateTest</code></a> in case of doubt):</p>
 <table>
   <thead>
     <tr>
@@ -203,7 +203,7 @@ of a resource without having to specify the path of each individual child resour
   <li>
   <p><code>lastModifiedBy</code>, <code>jcr:lastModifiedBy</code> are set to the name of the user who modified the node.</p></li>
 </ul>
-<p>This is demonstrated by the <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingAutoPropertiesTest.java">SlingAutoPropertiesTest</a> which is part of our launchpad integration tests.</p>
+<p>This is demonstrated by the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingAutoPropertiesTest.java">SlingAutoPropertiesTest</a> which is part of our launchpad integration tests.</p>
 <h5><a href="#file-uploads" name="file-uploads">File Uploads</a></h5>
 <p>File uploads are typically done using the <code>&lt;input type=&quot;file&quot;&quot;/&gt;</code> element of an HTML form and ensuring the correct form encoding. The SlingPostServlet handles uploaded files specially, in that the file data is not simply written into a property, but a node is actually created with three properties:</p>
 <ul>
@@ -916,13 +916,13 @@ of a resource without having to specify the path of each individual child resour
 <p>OSGi services of the <code>org.apache.sling.servlets.post.PostOperation</code> type can be used to implement new POST operations.</p>
 <p>Such services must have a <code>sling.post.operation</code> service registration property set to the name of the operation. This name is used as the value of the <code>:operation</code> parameter of POST requests to select the extended operation.</p>
 <p>Before version 2.1.2 of the <em>org.apache.sling.servlets.post</em> bundle, such additional operations were implemented by the <code>org.apache.sling.servlets.post.SlingPostOperation</code> interface, which is now deprecated but still supported via a bridge. See <a href="https://issues.apache.org/jira/browse/SLING-1725">SLING-1725</a> for details and discussions about this change.</p>
-<p>Two examples (old and new style) of additional POST operations are found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/">test-services</a> module, with the corresponding test code in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/CustomPostOperationTest.java">integration-tests</a> module.</p>
+<p>Two examples (old and new style) of additional POST operations are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/CustomPostOperationTest.java">integration-tests</a> module.</p>
 <h3><a href="#slingpostprocessor" name="slingpostprocessor">SlingPostProcessor</a></h3>
 <p>OSGi services of the <code>org.apache.sling.servlets.post.SlingPostOperation</code> type can be used to post process <code>PostOperation</code>s. They are called after the operation has performed its changes but before the changes are persisted (via commit). All registered SlingPostProcessors are always called in the reverse order of their service ranking (i.e. the one with the highest service ranking first).</p>
 <p>A <code>SlingPostProcessor</code> may perform additional changes or revert previous ones. It is important that the <code>SlingPostProcessor</code> does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method <code>process(SlingHttpServletRequest, List&lt;Modification&gt;)</code>.</p>
-<p>Two examples of SlingPostProcessors are found in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/post/">test-services</a> module, with the corresponding test code in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest">integration-tests</a> module.</p></section></div></div>            
+<p>Two examples of SlingPostProcessors are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java">integration-tests</a> module.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

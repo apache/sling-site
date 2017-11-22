@@ -79,10 +79,12 @@
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
+<div class="note">
+This module has been deprecated and retired. It can be found in the <a href="https://svn.apache.org/repos/asf/sling/attic/openid/">Sling attic: OpenID module</a> but is no longer maintained or supported.
+</div>
 <p>The OpenID Authentication Handler supports authentication of request users using the <a href="http://www.openid.net">OpenID</a> authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.</p>
 <p>Since generally an OpenID identity is an URL and URLs may not be used as JCR user names, an association mechanism is used by the OpenID authentication handler to associate an OpenID identity with an existing JCR user: The OpenID identity URL is set as the value of a JCR user property. When a user authenticates with his OpenID identity the matching user searched for by looking for a match in this property.</p>
 <p><em>NOTE:</em> This association currently only works with Jackrabbit (or Jackrabbit based repositories) because user management is not part of the JCR 2 specification and the OpenID authentication handler uses the Jackrabbit <code>UserManager</code> to find users by a user property value.</p>
-<p>The OpenID Authentication Handler is maintained in the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/openid/">Sling SVN</a></p>
 <h3><a href="#credentials-extraction" name="credentials-extraction">Credentials Extraction</a></h3>
 <p>Theoretically each request with the <code>openid_identifier</code> request parameter set may initiate an OpenID authentication process which involves resolving the OpenID provider for the identifier and subsequently authentication with the provider authorizing the Sling instance to use the OpenID identity.</p>
 <p>This initiation, though, is not possible if the request already contains a valid and validated OpenID identifier either set as a request attribute or set in the HTTP Session or the OpenID cookie. In these situations, the current association of a client with an OpenID identity must first be removed by logging out, e.g. by requesting <code>/system/sling/logout.html</code> which causes the current OpenID user data to be removed by either removing it from the HTTP Session or by clearing the OpenID cookie.</p>
@@ -188,7 +190,7 @@
 </ol>
 <p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

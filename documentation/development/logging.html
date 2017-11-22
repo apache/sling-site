@@ -560,7 +560,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 </code></pre>
 <p>Logback exposes a variable <code>e</code> which is of type <a href="http://logback.qos.ch/apidocs/ch/qos/logback/classic/spi/ILoggingEvent.html">ILoggingEvent</a>. It provides access to current logging event. Above logback config would route all log messages from <code>org.apache.jackrabbit.oak.jcr.operations</code> category to <code>${sling.home}/logs/oak.log</code>. Further only those log messages would be logged where the <code>threadName</code> contains <code>JobHandler</code>. Depending on the requirement the expression can be customised.</p>
 <h3><a href="#installation" name="installation">Installation</a></h3>
-<p>Currently the bundle is not released and has to be build from <a href="http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/logback-groovy-fragment/">here</a></p>
+<p>Currently the bundle is not released and has to be build from <a href="https://github.com/apache/sling-org-apache-sling-extensions-logback-groovy-fragment">here</a></p>
 <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependency&gt;
     &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
     &lt;artifactId&gt;org.apache.sling.extensions.logback-groovy-fragment&lt;/artifactId&gt;
@@ -583,7 +583,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 <pre><code>    java -jar org.apache.sling.launchpad-XXX-standalone.jar -Dorg.apache.sling.commons.log.configurationFile=/path/to/logback
 </code></pre></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

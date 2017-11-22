@@ -89,13 +89,12 @@ in the newer "Junit Server-Side Tests Support" page instead, see link below.
   <li>Run integration tests via HTTP against a Sling instance that is started during the Maven build cycle, or independently.</li>
 </ul>
 <p>This page describes those tools, and points to the bundles that implement them.</p>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests">testing/samples/integration-tests</a> module demonstrates these tools, and is also meant as a sample project to show how to run integration tests for Sling-based applications.</p>
-<p>The main Sling integration tests at <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests">launchpad/integration-tests</a> were created before this testing framework, and do not use it yet (as of March 2011). The new testing tools are simpler to use, but the "old" tests (all 400 of them as I write this) fulfill their validation role for testing Sling itself, there's no real need to modify them to use the new tools.</p>
+<p>The main Sling integration tests at <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests">launchpad/integration-tests</a> were created before this testing framework, and do not use it yet (as of March 2011). The new testing tools are simpler to use, but the "old" tests (all 400 of them as I write this) fulfill their validation role for testing Sling itself, there's no real need to modify them to use the new tools.</p>
 <p>See also <a href="/documentation/tutorials-how-tos/testing-sling-based-applications.html">Testing Sling-based applications</a> which discusses testing in general.</p>
 <h2><a href="#required-bundles" name="required-bundles">Required bundles</a></h2>
-<p>These tools require a number of bundles on top of the standard Sling launchpad. See the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/pom.xml">sample tests pom.xml</a> for an up-to-date list. Look for <code>sling.additional.bundle.*</code> entries in that pom for the bundle artifact IDs, and see the <code>dependencies</code> section for their version numbers.</p>
+<p>These tools require a number of bundles on top of the standard Sling launchpad. See the for instance <a href="https://github.com/apache/sling-org-apache-sling-models-integration-tests/blob/master/pom.xml">Sling Models IT pom.xml</a> for an up-to-date list. Look for <code>sling.additional.bundle.*</code> entries in that pom for the bundle artifact IDs, and see the <code>dependencies</code> section for their version numbers.</p>
 <h1><a href="#server-side-junit-tests-contributed-by-bundles" name="server-side-junit-tests-contributed-by-bundles">Server-side JUnit tests contributed by bundles</a></h1>
-<p>The services provided by the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/core">org.apache.sling.junit.core</a> bundle allow bundles to register JUnit tests, which are executed server-side by the JUnitServlet registered by default at <code>/system/sling/junit</code>. This bundle is not dependent on Sling, it should work in other OSGi environments.</p>
+<p>The services provided by the <a href="https://github.com/apache/sling-org-apache-sling-junit-core">org.apache.sling.junit.core</a> bundle allow bundles to register JUnit tests, which are executed server-side by the JUnitServlet registered by default at <code>/system/sling/junit</code>. This bundle is not dependent on Sling, it should work in other OSGi environments.</p>
 <div class="warning">
 Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway.
 </div>
@@ -128,13 +127,12 @@ For tighter integration with Sling, the alternate `SlingJUnitServlet` is registe
 <pre><code>$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.failingtests.JUnit4FailingTest.json
 </code></pre>
 <h1><a href="#scriptable-server-side-tests" name="scriptable-server-side-tests">Scriptable server-side tests</a></h1>
-<p>If the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/scriptable">org.apache.sling.junit.scriptable</a> bundle is active in a Sling system, (in addition to the <code>org.apache.sling.junit.core</code> bundle), scriptable tests can be executed by the <code>JUnitServlet</code> according to the following rules:</p>
+<p>If the <a href="https://github.com/apache/sling-org-apache-sling-junit-scriptable">org.apache.sling.junit.scriptable</a> bundle is active in a Sling system, (in addition to the <code>org.apache.sling.junit.core</code> bundle), scriptable tests can be executed by the <code>JUnitServlet</code> according to the following rules:</p>
 <ul>
   <li>A node that has the <code>sling:Test</code> mixin is a scriptable test node.</li>
   <li>For security reasons, scriptable test nodes are only executed as tests if they are found under <code>/libs</code> or <code>/apps</code>, or more precisely under a path that's part of Sling's <code>ResourceResolver</code> search path.</li>
   <li>To execute a test, the scriptable tests provider makes an HTTP request to the test node's path, with a <code>.test.txt</code> selector and extension, and expects the output to contain only the string <code>TEST_PASSED</code>. Empty lines and comment lines starting with a hash sign (#) are ignored in the output, and other lines are reported as failures.</li>
 </ul>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/scriptable/ScriptableTestsTest.java">ScriptableTestsTest</a> class, from the integration test samples module described below, sets up such a test node and its accompanying script, and calls the JUnitServlet to execute the test. It can be used as a detailed example of how this works.</p>
 <p>Here's a minimal example that sets up and executes a scriptable test:</p>
 <pre><code>$ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
 ...
@@ -192,7 +190,7 @@ TEST_PASSED
 </code></pre>
 <p>the server start is interrupted until a debugger is connected on port 8000.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

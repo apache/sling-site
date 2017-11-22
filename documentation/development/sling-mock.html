@@ -98,7 +98,7 @@
   <li><code>ResourceResolver</code> implementation for reading and writing resource data using the Sling Resource API
     <ul>
       <li>Backed by a <a href="/documentation/development/jcr-mock.html">mocked</a> or real Jackrabbit JCR implementation</li>
-      <li>Uses the productive <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
+      <li>Uses the productive <a href="https://github.com/apache/sling-org-apache-sling-jcr-resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
       <li>Alternatively the non-JCR mock implementation provided by the  <a href="/documentation/development/resourceresolver-mock.html">Sling resourceresolver-mock implementation</a> can be used</li>
     </ul>
   </li>
@@ -193,7 +193,7 @@
 <p><strong>JCR_MOCK</strong></p>
 <ul>
   <li>Based on the <a href="/documentation/development/jcr-mock.html">JCR Mocks</a> implementation</li>
-  <li>Uses the productive <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
+  <li>Uses the productive <a href="https://github.com/apache/sling-org-apache-sling-jcr-resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
   <li>Is quite fast because data is stored only in-memory</li>
 </ul>
 <p><strong>NONE</strong></p>
@@ -206,7 +206,7 @@
 <ul>
   <li>Uses a real JCR Jackrabbit Oak implementation based on the <code>MemoryNodeStore</code></li>
   <li>Full JCR/Sling features supported e.g. observations manager, transactions, versioning</li>
-  <li>Uses the productive <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
+  <li>Uses the productive <a href="https://github.com/apache/sling-org-apache-sling-jcr-resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
   <li>Takes some seconds for startup on the first access</li>
   <li>Node types defined in OSGi bundle header 'Sling-Nodetypes' found in MANIFEST.MF files in the classpath are registered automatically.</li>
   <li>Lucene indexing is not included, thus fulltext search queries will return no result</li>
@@ -223,7 +223,7 @@
 <ul>
   <li>Uses a real JCR Jackrabbit implementation (not Oak) as provided by <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/commons/testing">sling/commons/testing</a></li>
   <li>Full JCR/Sling features supported e.g. observations manager, transactions, versioning</li>
-  <li>Uses the productive <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
+  <li>Uses the productive <a href="https://github.com/apache/sling-org-apache-sling-jcr-resource">Sling JCR resource provider implementation</a> internally to do the Resource-JCR mapping</li>
   <li>Takes some seconds for startup on the first access</li>
   <li>Node types defined in OSGi bundle header 'Sling-Nodetypes' found in MANIFEST.MF files in the classpath are registered automatically.</li>
 </ul>
@@ -413,11 +413,12 @@ public SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build(
 </code></pre>
 <p>More examples:</p>
 <ul>
-  <li><a href="https://github.com/apache/sling/blob/trunk/contrib/extensions/contextaware-config/testing/mocks/caconfig-mock-plugin/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java">Apache Sling Context-Aware Configuration Mock Plugin</a></li>
-  <li><a href="https://github.com/apache/sling/blob/trunk/contrib/extensions/contextaware-config/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java">Apache Sling Context-Aware Configuration Mock Plugin Test</a></li>
-</ul></section></div></div>            
+  <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java">Apache Sling Context-Aware Configuration Mock Plugin</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java">Apache Sling Context-Aware Configuration Mock Plugin Test</a></li>
+</ul>
+<!-- GIT-TODO - commons/testing is missing --></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

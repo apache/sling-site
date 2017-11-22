@@ -114,7 +114,7 @@
 <h2><a href="#selecting-the-active-run-modes" name="selecting-the-active-run-modes">Selecting the active run modes</a></h2>
 <p>The run modes are selected based on the <code>sling.run.modes</code> property (the "selection property"), specified in the Sling settings file or as a command-line parameter (which takes precedence), out of the valid run modes defined by the properties described below. The value is a String which contains a list of comma-separated run modes. If a run mode is given here which is not contained in any group of valid run modes (given in <code>sling.run.mode.install.options</code> or <code>sling.run.mode.options</code>) it is always active, on the other hand run modes which are contained in any of the predefined groups may be modified/removed (see below for the details).</p>
 <p>Using <code>-Dsling.run.modes=foo,bar</code> on the JVM command-line, for example, activates the <em>foo</em> and <em>bar</em> run modes if that combination is valid.</p>
-<p>The absolute truth about run modes definition and selection is found in the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/settings/src/test/java/org/apache/sling/settings/impl/RunModeImplTest.java">RunModeImplTest</a> which should be self-explaining.</p>
+<p>The absolute truth about run modes definition and selection is found in the <a href="https://github.com/apache/sling-org-apache-sling-settings/blob/master/src/test/java/org/apache/sling/settings/impl/RunModeImplTest.java">RunModeImplTest</a> which should be self-explaining.</p>
 <h2><a href="#defining-valid-run-modes" name="defining-valid-run-modes">Defining valid run modes</a></h2>
 <p>Since <a href="https://issues.apache.org/jira/browse/SLING-2662">SLING-2662</a> the valid run modes are defined by the <code>sling.run.mode.options</code> and <code>sling.run.mode.install.options</code> configuration properties, usually defined in the <code>sling.properties</code> file or in the provisioning model of a Sling Launchpad instance.</p>
 <p>The <code>sling.run.mode.install.options</code> property is only used on the first startup on the Sling instance and the run modes that it defines cannot be changed later.</p>
@@ -187,7 +187,7 @@ if(expectedRunModes.removeAll(currentRunModes)) {
 </code></pre>
 <p>Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

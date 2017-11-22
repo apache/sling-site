@@ -91,7 +91,7 @@
 <p>If any of them throws an Exception, the <code>SlingRepository</code> service is not registered.</p>
 <h2><a href="#the-repoinit-repository-initialization-language" name="the-repoinit-repository-initialization-language">The 'repoinit' Repository Initialization Language</a></h2>
 <p>The <code>org.apache.sling.repoinit.parser</code> implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as well as registering JCR namespaces and node types.</p>
-<p>The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the <code>RepoInitGrammar.jjt</code> file in that module, and the automated tests provide a number of <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/repoinit/parser/src/test/resources/testcases">test cases</a> which demonstrate various features.</p>
+<p>The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the <code>RepoInitGrammar.jjt</code> file in that module, and the automated tests provide a number of <a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases">test cases</a> which demonstrate various features.</p>
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
 <p>Here's a current example from the test cases mentioned above, that uses all language features as of version 1.0.2 of the parser module. </p>
 <p>The language is self-explaining but please refer to the actual test cases for details that are guaranteed to be up to date, assuming the tests pass.</p>
@@ -209,7 +209,7 @@ create service user provisioningModelUser
 </code></pre>
 <p>Which points to a <code>classpath:</code> URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

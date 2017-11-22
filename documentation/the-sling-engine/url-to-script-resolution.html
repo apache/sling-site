@@ -83,7 +83,7 @@
 <p>See also <a href="/documentation/the-sling-engine/servlets.html">Servlets and Scripts</a> which provides detailed info about how to register servlets.</p>
 <p>First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the <code>sling:resourceType</code> property which defines the resource type of that resource. Using this resource type (which is kind of a relative path, eg. "myblog/comment"), scripts or servlets are looked up. For more details about how the initial resource is identified for a specific request URL look at <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>.</p>
 <p>Scripts and servlets are itself resources in Sling and thus have a resource path: this is either the location in the JCR repository, the resource type in a servlet component configuration or the "virtual" bundle resource path (if a script is provided inside a bundle without being installed into the JCR repository). </p>
-<p>For the whole Truth about script resolution, see the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/resolver/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java">ScriptSelectionTest</a> class. If you see interesting cases that are not covered there, please let us know via the Sling users mailing list.</p>
+<p>For the whole Truth about script resolution, see the <a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java">ScriptSelectionTest</a> class. If you see interesting cases that are not covered there, please let us know via the Sling users mailing list.</p>
 <p>TODO: explain super types, servlet path mappings, node type resource types (<code>my:type -&gt; my/type</code>) </p>
 <h2><a href="#fundamental-scripts-and-servlets-are-equal" name="fundamental-scripts-and-servlets-are-equal">Fundamental: Scripts and Servlets are equal</a></h2>
 <p>In the following discussion, I will write about scripts. This will always include servlets as well. In fact, internally, Sling only handles with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script. </p>
@@ -152,7 +152,7 @@ while (type != null) {
 </ul>
 <p>The priority of script selection would be (starting with the best one): (6) - (4) - (5) - (3) - (2) - (1) - (0). Note that (4) is a better match than (5) because it matches more selectors even though (5) has an extension match where (4) does not. (7) is not a candidate because it does not include the first selector (print) and (8) is not a candidate because it has the wrong order of selectors.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

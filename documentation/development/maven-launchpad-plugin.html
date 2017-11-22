@@ -78,8 +78,7 @@
                 Maven Launchpad Plugin
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
-This page is out of sync with the latest maven-launchpad-plugin features and settings. For now,
-refer to the source code and the launchpad/builder and launchpad/testing modules for more information.
+The launchpad plugin has been retired in favour of the provisioning model and associated tooling, see <a href="http://sling.apache.org/documentation/development/slingstart.html">the provisioning model documentation</a>.
 </div>
 <p>The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi applications. It supports the following runtime scenarios:</p>
 <ul>
@@ -89,8 +88,8 @@ refer to the source code and the launchpad/builder and launchpad/testing modules
 </ul>
 <p>In addition, the Maven Launchpad Plugin supports the publishing of an application descriptor, in the form of a <em>bundle list</em>, as a Maven artifact. This descriptor can then be used by downstream application builders as the basis for other applications. In Sling, this is embodied by two Maven projects:</p>
 <ul>
-  <li><a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/builder">org.apache.sling.launchpad</a> - produces an application descriptor.</li>
-  <li><a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/">org.apache.sling.launchpad.testing</a> - uses the application descriptor from <code>org.apache.sling.launchpad</code> and adds two bundles.</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-starter">org.apache.sling.launchpad</a> - produces an application descriptor.</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing">org.apache.sling.launchpad.testing</a> - uses the application descriptor from <code>org.apache.sling.launchpad</code> and adds two bundles.</li>
 </ul>
 <p>Maven Launchpad Plugin provides the following goals: </p>
 <table>
@@ -240,7 +239,7 @@ refer to the source code and the launchpad/builder and launchpad/testing modules
   <li><code>mavenProject</code> - an instance of <code>org.apache.maven.project.MavenProject</code>.</li>
 </ul></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

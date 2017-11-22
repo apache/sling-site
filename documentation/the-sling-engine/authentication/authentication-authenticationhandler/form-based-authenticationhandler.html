@@ -85,7 +85,7 @@
   <li>For the initial form submission, the request URL must end with <code>/j_security_check</code> and the user name and password names must be <code>j_username</code> and <code>j_password</code>, resp.</li>
   <li>The authentication type as returned by <code>HttpServletRequest.getAuthType()</code> is set to <code>HttpServletRequest.FORM_AUTH</code>.</li>
 </ul>
-<p>The Form Based Authentication Handler is maintained in the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/form">Sling SVN</a></p>
+<p>The Form Based Authentication Handler is maintained in the <a href="https://github.com/apache/sling-org-apache-sling-auth-form">the Sling repo</a>.</p>
 <h3><a href="#authenticationhandler-implementation" name="authenticationhandler-implementation">AuthenticationHandler implementation</a></h3>
 <ul>
   <li><code>extractCredentials</code> -- Prepares credentials for the form entered data or from the Cookie or HTTP Session attribute. Returns <code>null</code> if neither data is provided in the request</li>
@@ -152,7 +152,7 @@
   </tbody>
 </table>
 <p>The <code>resource</code> and <code>sling.auth.redirect</code> parameters provide similar functionality but with differing historical backgrounds. The <code>resource</code> parameter is based on the <code>resource</code> request attribute which is set by the login servlet to indicate the original target resource the client desired when it was forced to authenticate. The <code>sling.auth.redirect</code> parameter can be used by clients (applications like cURL or plain HTML forms) to request being redirected after successful login. If both parameters are set, the <code>sling.auth.redirect</code> parameter takes precedence.</p>
-<p>The Form Based Authentication Handler contains a <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/form/src/main/java/org/apache/sling/auth/form/impl/AuthenticationFormServlet.java">default form servlet</a> and <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/form/src/main/resources/org/apache/sling/auth/form/impl/login.html">HTML form template</a>.</p>
+<p>The Form Based Authentication Handler contains a <a href="https://github.com/apache/sling-org-apache-sling-auth-form/blob/master/src/main/java/org/apache/sling/auth/form/impl/AuthenticationFormServlet.java">default form servlet</a> and <a href="https://github.com/apache/sling-org-apache-sling-auth-form/blob/master/src/main/resources/org/apache/sling/auth/form/impl/login.html">HTML form template</a>.</p>
 <h3><a href="#phase-2-authenticated-requests" name="phase-2-authenticated-requests">Phase 2: Authenticated Requests</a></h3>
 <p>After the successful authentication of the user in phase 1, the authentication state is stored in a Cookie or an HTTP Session. The stored value is a security token with the following contents:</p>
 <pre><code>HmacSHA1(securetoken, &lt;securetokennumber&gt;&lt;expirytime&gt;@&lt;userID&gt;)@&lt;securetokennumber&gt;&lt;expirytime&gt;@&lt;userID&gt;
@@ -228,7 +228,7 @@
 </ol>
 <p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

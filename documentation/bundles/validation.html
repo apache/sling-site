@@ -303,7 +303,7 @@ public void validate() {
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/validation/core/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-validation-core/blob/master/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> </td>
       <td>Validates that a property value matches a given regular expression </td>
       <td><code>regex</code>, mandatory parameter giving a regular expression according to the pattern described in <a href="http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">java.util.regex.Pattern</a>. Only if the property value matches this expression it is considered valid. </td>
       <td>1.0.0</td>
@@ -311,7 +311,7 @@ public void validate() {
   </tbody>
 </table>
 <h1><a href="#writing-validators" name="writing-validators">Writing Validators</a></h1>
-<p>To write a validator one needs to implement the <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/validation/api/src/main/java/org/apache/sling/validation/spi/Validator.java"><code>org.apache.sling.validation.spi.Validator</code></a> interface in an OSGi service (look at <a href="https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/validation/core/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> for an example). That interface defines the method <code>validate</code>. That is called for each property which is bound to the validator through the validation model. Each validator needs to specify one type parameter which defines upon which classes the validator can act (usually <code>String</code>). Array types are also supported here. Collection types are not supported. If a property value cannot be converted to the requested type from the validator (through <code>ValueMap.get(name, type)</code>), validation will fail.</p>
+<p>To write a validator one needs to implement the <a href="https://github.com/apache/sling-org-apache-sling-validation-api/blob/master/src/main/java/org/apache/sling/validation/spi/Validator.java"><code>org.apache.sling.validation.spi.Validator</code></a> interface in an OSGi service (look at <a href="https://github.com/apache/sling-org-apache-sling-validation-core/blob/master/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> for an example). That interface defines the method <code>validate</code>. That is called for each property which is bound to the validator through the validation model. Each validator needs to specify one type parameter which defines upon which classes the validator can act (usually <code>String</code>). Array types are also supported here. Collection types are not supported. If a property value cannot be converted to the requested type from the validator (through <code>ValueMap.get(name, type)</code>), validation will fail.</p>
 <p>In addition the OSGi service must expose a String property named <code>validation.id</code>. The value of this property should always start with the providing bundle's symbolic name. Only through this value the validator can be referenced from validation models. If multiple validators have the same <code>validation.id</code> value the one with the highest service ranking gets always chosen.</p>
 <p>A validator may also expose a service property named <code>validation.severity</code> with an Integer value. This defines the default severity of the Validator (which may be overwritten in the validation model).</p>
 <h1><a href="#references" name="references">References</a></h1>
@@ -319,7 +319,7 @@ public void validate() {
   <li><a href="http://www.slideshare.net/raducotescu/apache-sling-generic-validation-framework">Apache Sling Generic Validation Framework, adaptTo 2014</a></li>
 </ol></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

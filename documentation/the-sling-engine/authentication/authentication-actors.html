@@ -102,7 +102,7 @@
 </ul>
 <p>The Sling Jackrabbit Embedded Repository bundle provides additional plugin interfaces to extend the login process dynamically using OSGi services. To this avail the bundle configures a <code>LoginModule</code> with the provided default Jackrabbit configuration supporting these plugins:</p>
 <ul>
-  <li><code>LoginModulePlugin</code> -- The main service interface. Plugins must implement this interface to be able to extend the login process. See for example the <a href="http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/openid/">Sling OpenID authentication handler</a>, which implements this interface to support OpenID authentication.</li>
+  <li><code>LoginModulePlugin</code> -- The main service interface. Plugins must implement this interface to be able to extend the login process.</li>
   <li><code>AuthenticationPlugin</code> -- Helper interface for the <code>LoginModulePlugin</code>.</li>
 </ul>
 <h2><a href="#sling-applications" name="sling-applications">Sling Applications</a></h2>
@@ -118,7 +118,7 @@
 If you want to know whether a request is authenticated or not, you can inspect the result of the <code>HttpServletRequest.getAuthType</code> method: If this method returns <code>null</code> the request is not authenticated.
 </div></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

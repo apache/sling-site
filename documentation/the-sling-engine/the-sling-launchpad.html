@@ -190,7 +190,7 @@
   <li><code>status</code> to get the instance status (OK or STOPPING)</li>
   <li><code>threads</code> to get a thread dump</li>
 </ul>
-<p>For the Whole Truth about this functionality see the <a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/app/ControlListener.java">ControlListener class source code</a>.</p>
+<p>For the Whole Truth about this functionality see the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/app/ControlListener.java">ControlListener class source code</a>.</p>
 <p>The interface and port is configurable with the <code>-j</code> command line option. The actual address and port used are written to the <code>$\{sling.home}/conf/controlport</code> file. So technically the <code>-j</code> option is not required for the <code>status</code> and <code>stop</code> operations because the port information can be read from that file.</p>
 <p>Note that using a control connection for the Sling Standalone Application presents a potential security issue. For this reason the following defaults apply:</p>
 <ul>
@@ -313,7 +313,7 @@ Connection closed by foreign host.
 </ul>
 <p>That's it. The resulting artifact may be directly used to launch the Standalone Java Application or may directly be deployed into any Servlet API 3.0 (or later) compliant servlet container.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

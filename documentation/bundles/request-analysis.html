@@ -84,7 +84,7 @@
 <p>This tool provides mechanims to record states of request processing and a simple mechanism to time periods of processing. By default Sling itself uses this tool to track progress through Sling like script resolution and calling scripts.</p>
 <p>Scripts and servlets called during Sling's request processing may themselves use the <code>RequestProgressTracker</code> to log their own processing.</p>
 <p>Usually the data collected by the <code>RequestProgressTracker</code> is just dropped or it may be visible for a certain number of recent requests on the <em>Recent Requests</em> page of the Web Console. When doing load tests, though, this Web Console page is of limited use because a lot more requests are handled than can be displayed in the Web Console.</p>
-<p>This is where the <a href="http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/reqanalyzer">Request Processing Analyzer</a> comes in handy. When deployed as a bundle it registers as a request level servlet Filter with the Sling Main Servlet. Each request is logged in a special file (currently fixed at <code>${sling.home}/logs/requesttracker.txt</code>) with a header line provding core information on the request:</p>
+<p>This is where the <a href="https://github.com/apache/sling-org-apache-sling-reqanalyzer">Request Processing Analyzer</a> comes in handy. When deployed as a bundle it registers as a request level servlet Filter with the Sling Main Servlet. Each request is logged in a special file (currently fixed at <code>${sling.home}/logs/requesttracker.txt</code>) with a header line provding core information on the request:</p>
 <ul>
   <li>Start time stamp in ms since the Epoch</li>
   <li>Request processing time in ms</li>
@@ -116,7 +116,7 @@
 <p><img src="requesttracker-details.png" alt="Details of a recorded Request" /></p>
 <p>The size, location, and the widths of the table columns are persisted with the Java Preferences API and thus when starting the application again, these settings are preserved.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

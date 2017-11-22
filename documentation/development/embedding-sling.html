@@ -77,7 +77,7 @@
             </div><h1 class="pagetitle">
                 Embedding Sling
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/base">Sling Launchpad Base project</a>. This project has the following features:</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base">Sling Launchpad Base project</a>. This project has the following features:</p>
 <ul>
   <li>Builds three artifacts:
     <ul>
@@ -137,13 +137,13 @@
   </tbody>
 </table>
 <h1><a href="#the-internal-part" name="the-internal-part">The Internal Part</a></h1>
-<p>The main class from the internal class directly used is <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/base/impl/Sling.java"><code>Sling</code></a> which instantiated to start the OSGi Framework. This class is responsible for setting up the environment to finally start the OSGi Framework:</p>
+<p>The main class from the internal class directly used is <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/Sling.java"><code>Sling</code></a> which instantiated to start the OSGi Framework. This class is responsible for setting up the environment to finally start the OSGi Framework:</p>
 <ul>
   <li>Read the <code>sling.properties</code> file</li>
   <li>Ensure the presence of the JMX MBeanServer service</li>
   <li>Execute the bootstrap installations, updates and uninstallations</li>
 </ul>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/base/impl/SlingFelix.java"><code>SlingFelix</code></a> class extends the Apache Felix <code>Felix</code> class which is the actual OSGi framework implementation. We extend the class to be able to notify the <code>Notifiable</code> implementation and update the OSGi framework from within the OSGi framework by updating the system bundle.</p>
+<p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/SlingFelix.java"><code>SlingFelix</code></a> class extends the Apache Felix <code>Felix</code> class which is the actual OSGi framework implementation. We extend the class to be able to notify the <code>Notifiable</code> implementation and update the OSGi framework from within the OSGi framework by updating the system bundle.</p>
 <h2><a href="#the-external-part" name="the-external-part">The External Part</a></h2>
 <p>The external part is comprised of a main class started from the environment -- main class of the Java applicaction or the servlet deployed in the servlet container -- and a corresponding delegate class located inside of the launchpad base library. This delegate class is instantiated by the <code>Loader</code> loading from the <code>LauncherClassLoader</code>.</p>
 <h3><a href="#standalone-java-application" name="standalone-java-application">Standalone Java Application</a></h3>
@@ -172,9 +172,6 @@
 </table>
 <p>At the moment these classes are not directly suitable to be embedded in an existing application (or custom application launcher framework) unless that embedding prepares command line arguments in a <code>String[]</code> and calls the <code>Main.main</code> method. To allow for custom embeddings or extensions, the work distributions between the three classes should be refactored.</p>
 <h3><a href="#embedding-the-standalone-java-application" name="embedding-the-standalone-java-application">Embedding the Standalone Java Application</a></h3>
-<div class="info">
-This work is being done as part of [SLING-2225](https://issues.apache.org/jira/browse/SLING-2225) and will be officially available with the Sling Launchpad Base release 2.4.0. If you want to use the embedding before the release, you have to checkout the source from [SVN|http://svn.apache.org/repos/asf/sling/trunk/launchpad/base] and build yourself.
-</div>
 <p>To embedd the Sling Launcher in an application, the <code>Main</code> class is extended from. To manage the launcher, the following API is available:</p>
 <table>
   <thead>
@@ -314,7 +311,7 @@ This work is being done as part of [SLING-2225](https://issues.apache.org/jira/b
 </table>
 <p>At the moment these classes, particularly the <code>SlingServlet</code> class, are not particularly well suited to be extended by a servlet slightly modifying the launcher.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

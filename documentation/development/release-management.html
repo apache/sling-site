@@ -184,6 +184,7 @@ Staging repository:
 https://repository.apache.org/content/repositories/orgapachesling-[YOUR REPOSITORY ID]/
 
 You can use this UNIX script to download the release and verify the signatures:
+&lt;!-- GIT-TODO - Reference the GitBox URL after migrating the sling-tooling-release stuff --&gt;
 http://svn.apache.org/repos/asf/sling/trunk/check_staged_release.sh
 
 Usage:
@@ -305,6 +306,7 @@ Enjoy!
   <li><a href="http://wiki.apache.org/incubator/SigningReleases">http://wiki.apache.org/incubator/SigningReleases</a></li>
 </ol>
 <h2><a href="#releasing-the-sling-ide-tooling" name="releasing-the-sling-ide-tooling">Releasing the Sling IDE Tooling</a></h2>
+<!-- GIT-TODO - update after releasing the IDE tooling from Git -->
 <p>While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.</p>
 <ol>
   <li>set the fix version as released: <code>mvn tycho-versions:set-version -DnewVersion=1.0.2</code></li>
@@ -429,14 +431,42 @@ ssb   2048R/226BCE00 2016-01-21
     </ol>
   </li>
 </ol>
-<h2><a href="#appendix-b-maven-and-scm-credentials" name="appendix-b-maven-and-scm-credentials">Appendix B: Maven and SCM credentials</a></h2>
-<p>For running the <code>mvn release:prepare</code> command without giving credentials on command line add <code>svn.apache.org</code> to your <code>settings.xml</code>:</p>
-<pre><code>&lt;server&gt;
-  &lt;id&gt;svn.apache.org&lt;/id&gt;
-  &lt;username&gt;USERNAME&lt;/username&gt;
-  &lt;password&gt;ENCRYPTED_PASSWORD&lt;/password&gt;
-&lt;/server&gt;
+<h2><a href="#appendix-b-deploy-maven-plugin-documentation-if-applicable-" name="appendix-b-deploy-maven-plugin-documentation-if-applicable-">Appendix B: Deploy Maven plugin documentation (if applicable)</a></h2>
+<p>When releasing a Maven plugin, the Maven-generated documentation published under <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a> needs to be updated.</p>
+<p>This is currently supported for:</p>
+<ul>
+  <li><code>maven-sling-plugin</code></li>
+  <li><code>htl-maven-plugin</code></li>
+  <li><code>slingstart-maven-plugin</code></li>
+  <li><code>jspc-maven-plugin</code></li>
+</ul>
+<p>To publish the plugin documentation execute the following steps after the release:</p>
+<ol>
+  <li>
+  <p>Checkout the release tag of the released plugin (or reset your workspace)</p></li>
+  <li>
+    <p>Build and stage the maven site of the plugin. Note that this <em>commits</em> the generated content to the components folder mentioned below.</p>
+    <pre><code>$ mvn clean site:site site:stage scm-publish:publish-scm
 </code></pre>
+  </li>
+  <li>
+    <p>Checkout the Sling website and navigate to the 'components' directory</p>
+    <pre><code>$ git clone https://github.com/apache/sling-site.git
+$ cd sling-site/src/main/jbake/assets/components/
+</code></pre>
+  </li>
+  <li>
+  <p>SVN-rename the generated documenation that the site plugin commited to <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-LATEST</code> to <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code></p></li>
+  <li>
+  <p>SVN-remove the existing folder <code>&lt;plugin-name&gt;</code> and SVN-copy the folder <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code> to <code>&lt;plugin-name&gt;</code></p></li>
+  <li>
+  <p>Commit the changes.</p></li>
+  <li>
+  <p>Publish the Sling site to production</p></li>
+  <li>
+  <p>Check the results at <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a></p></li>
+</ol>
+<p>For background information about this process see the <a href="http://maven.apache.org/developers/website/deploy-component-reference-documentation.html">Maven components reference documentation</a>.</p>
 <h2><a href="#appendix-c-deploy-bundles-on-the-sling-obr-obsolete-" name="appendix-c-deploy-bundles-on-the-sling-obr-obsolete-">Appendix C: Deploy bundles on the Sling OBR (obsolete)</a></h2>
 <p><em>Update November 2016: We do now longer maintain the Sling OBR for new releases.</em></p>
 <p>We are mainting an OSGi Bundle Repository providing all release of the Sling Bundles. This repository is maintained as part of the Apache Sling site and is available at <a href="http://sling.apache.org/obr/sling.xml">http://sling.apache.org/obr/sling.xml</a>. The source for this page is maintained in the SVN repository below the <em>site</em>, that is at <a href="http://svn.apache.org/repos/asf/sling/site/">http://svn.apache.org/repos/asf/sling/site/</a>. To update the Sling OBR repository you must be an Apache Sling Committer since this requires SVN write access.</p>
@@ -485,44 +515,9 @@ $ rm the_module-version.jar the_module-version.pom
     <p>Update the Site</p>
     <p>Wait for the buildbot to update the staging area with your site update (see dev list for an email). Then go to the CMS at <a href="https://cms.apache.org/redirect?uri=http://sling.apache.org/obr">https://cms.apache.org/redirect?uri=http://sling.apache.org/obr</a> , update your checkout and then publish the site.</p>
   </li>
-</ol>
-<h2><a href="#appendix-d-deploy-maven-plugin-documentation-if-applicable-" name="appendix-d-deploy-maven-plugin-documentation-if-applicable-">Appendix D: Deploy Maven plugin documentation (if applicable)</a></h2>
-<p>When releasing a Maven plugin, the Maven-generated documentation published under <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a> needs to be updated.</p>
-<p>This is currently supported for:</p>
-<ul>
-  <li><code>maven-sling-plugin</code></li>
-  <li><code>htl-maven-plugin</code></li>
-  <li><code>slingstart-maven-plugin</code></li>
-  <li><code>jspc-maven-plugin</code></li>
-</ul>
-<p>To publish the plugin documentation execute the following steps after the release:</p>
-<ol>
-  <li>
-  <p>Checkout the release tag of the released plugin (or reset your workspace)</p></li>
-  <li>
-    <p>Build and stage the maven site of the plugin. Note that this <em>commits</em> the generated content to the components folder mentioned below.</p>
-    <pre><code>$ mvn clean site:site site:stage scm-publish:publish-scm
-</code></pre>
-  </li>
-  <li>
-    <p>Checkout the 'components' subtree of the Sling website</p>
-    <pre><code>$ svn checkout https://svn.apache.org/repos/asf/sling/site/trunk/content/components
-</code></pre>
-  </li>
-  <li>
-  <p>SVN-rename the generated documenation that the site plugin commited to <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-LATEST</code> to <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code></p></li>
-  <li>
-  <p>SVN-remove the existing folder <code>&lt;plugin-name&gt;</code> and SVN-copy the folder <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code> to <code>&lt;plugin-name&gt;</code></p></li>
-  <li>
-  <p>Commit the changes.</p></li>
-  <li>
-  <p>Publish the Sling site to production</p></li>
-  <li>
-  <p>Check the results at <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a></p></li>
-</ol>
-<p>For background information about this process see the <a href="http://maven.apache.org/developers/website/deploy-component-reference-documentation.html">Maven components reference documentation</a>.</p></section></div></div>            
+</ol></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri Nov 17 11:47:07 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
