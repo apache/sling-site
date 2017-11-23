@@ -7,7 +7,7 @@ class Git {
     def static getRevisionInfo(filename) {
     	def gitCmd = 'git log -1 --format=%h####%ad####%an####%s ' + filename
     	def defaultText = "0####0000####<MISSING>####<MISSING>"
-    	def gitInfo = includes.U.exec(gitCmd, defaultText).split("####")
+        def gitInfo = includes.OS.exec(gitCmd, defaultText).split("####")
     	return [
     		lastCommit : gitInfo[0],
     		date : gitInfo[1],

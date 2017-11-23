@@ -56,14 +56,4 @@ class U {
     	}
     	return result
     }
-
-    def static exec(cmd, defaultText) {
-    	try {
-     	    def p = cmd.execute()
-    	    p.waitFor()
-      	    return p.text
-    	} catch(Exception e) {
-    		return defaultText
-    	}
-    }
 }
