@@ -45,7 +45,7 @@ layout 'layout/main.tpl', true,
 		},
 		lastModified: contents {
 			div(class:"revisionInfo") {
-				def info = U.getRevisionInfo(content.file);
+				def info = includes.Git.getRevisionInfo(content.file);
 				yield "Last modified by "
 				span(class:"author") { yield info.author }
 				yield " on "

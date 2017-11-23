@@ -1,4 +1,4 @@
-// Shared utilities
+// Shared general utilities
 package includes
 
 class U {
@@ -57,7 +57,7 @@ class U {
     	return result
     }
 
-    def exec(cmd, defaultText) {
+    def static exec(cmd, defaultText) {
     	try {
      	    def p = cmd.execute()
     	    p.waitFor()
@@ -65,18 +65,5 @@ class U {
     	} catch(Exception e) {
     		return defaultText
     	}
-    }
-
-    def getRevisionInfo(filename) {
-        def lastCommit = "444eb637ff1ddcf11a0f37f02dd4b3fe89eb149f"
-    	def gitCmd = 'git log -1 --format=%h####%ad####%an####%s ' + filename
-    	def defaultText = "0####0000####<MISSING>####<MISSING>"
-    	def gitInfo = exec(gitCmd, defaultText).split("####")
-    	return [
-    		lastCommit : gitInfo[0],
-    		date : gitInfo[1],
-    		author : gitInfo[2],
-    		comment : gitInfo[3]
-    	]
     }
 }
