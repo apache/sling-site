@@ -1,5 +1,5 @@
 // Include common utilities
-U = new includes.U()
+U = new includes.U(config)
 
 layout 'layout/main.tpl', true,
         projects: projects,

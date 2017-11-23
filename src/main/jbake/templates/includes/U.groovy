@@ -2,6 +2,13 @@
 package includes
 
 class U {
+
+    U(jbakeConfig) {
+        // As this class is used in each build,
+        // use it to trigger the OncePerBuild stuff
+        def once = new runonce.OncePerBuild(jbakeConfig)
+    }
+
     def processBody(content, config) {
     	def str = content.body
 
