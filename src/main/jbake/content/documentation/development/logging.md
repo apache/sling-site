@@ -106,7 +106,7 @@ The following properties may be set:
 | `org.apache.sling.commons.log.level` | `String` | `INFO` | Sets the logging level of the loggers. This may be any of the defined logging levels `DEBUG`, `INFO`, `WARN`, `ERROR` and `FATAL`. |
 | `org.apache.sling.commons.log.file` | `String` | undefined | Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to `System.out`. This property should refer to the file name of a configured Log Writer (see below). If no Log Writer is configured with the same file name an implicit Log Writer configuration with default configuration is created. |
 | `org.apache.sling.commons.log.pattern` | `String` | \{0,date,dd.MM.yyyy HH:mm:ss.SSS\} \*\{4\}\* \{2\} \{3\} \{5\} | The `java.util.MessageFormat` pattern to use for formatting log messages with the root logger. This is a `java.util.MessageFormat` pattern supporting up to six arguments: \{0\} The timestamp of type `java.util.Date`, \{1\} the log marker, \{2\} the name of the current thread, \{3\} the name of the logger, \{4\} the log level and \{5\} the actual log message. If the log call includes a Throwable, the stacktrace is just appended to the message regardless of the pattern. |
-| `org.apache.sling.commons.log.names` | `String\[\]` | -- | A list of logger names to which this configuration applies. |
+| `org.apache.sling.commons.log.names` | `String[]` |  | A list of logger names to which this configuration applies. |
 | `org.apache.sling.commons.log.additiv` | `Boolean` | false | If set to false then logs from these loggers would not be sent to any appender attached higher in the hierarchy |
 
 
@@ -127,6 +127,9 @@ The following properties may be set:
 | `org.apache.sling.commons.log.file` | undefined | Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to `System.out`. |
 | `org.apache.sling.commons.log.file.number` | 5 | The number of rotated files to keep. |
 | `org.apache.sling.commons.log.file.size` | '.'yyyy-MM-dd | Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section *Log File Rotation* below for full details on log file rotation. |
+
+Note that any log writer config should not refer to same log file which is referred in global config i.e. 
+OSGi config pid for `org.apache.sling.commons.log.LogManager`
 
 See the section *Log File Rotation* below for full details on the `org.apache.sling.commons.log.file.size` and
 `org.apache.sling.commons.log.file.number` properties.
