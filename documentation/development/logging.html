@@ -228,9 +228,20 @@ http://localhost:8080/system/console/slinglog/tailer.txt?tail=1000&amp;grep=luce
       <td>{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* {2} {3} {5} </td>
       <td>The <code>java.util.MessageFormat</code> pattern to use for formatting log messages with the root logger. This is a <code>java.util.MessageFormat</code> pattern supporting up to six arguments: {0} The timestamp of type <code>java.util.Date</code>, {1} the log marker, {2} the name of the current thread, {3} the name of the logger, {4} the log level and {5} the actual log message. If the log call includes a Throwable, the stacktrace is just appended to the message regardless of the pattern. </td>
     </tr>
+    <tr>
+      <td><code>org.apache.sling.commons.log.names</code> </td>
+      <td><code>String[]</code> </td>
+      <td> </td>
+      <td>A list of logger names to which this configuration applies. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.commons.log.additiv</code> </td>
+      <td><code>Boolean</code> </td>
+      <td>false </td>
+      <td>If set to false then logs from these loggers would not be sent to any appender attached higher in the hierarchy </td>
+    </tr>
   </tbody>
 </table>
-<p>| <code>org.apache.sling.commons.log.names</code> | <code>String\[\]</code> | -- | A list of logger names to which this configuration applies. | | <code>org.apache.sling.commons.log.additiv</code> | <code>Boolean</code> | false | If set to false then logs from these loggers would not be sent to any appender attached higher in the hierarchy |</p>
 <p>Note that multiple Logger Configurations may refer to the same Log Writer Configuration. If no Log Writer Configuration exists whose file name matches the file name set on the Logger Configuration an implicit Log Writer Configuration with default setup (daily log rotation) is internally created. While the log level configuration is case insensitive, it is suggested to always use upper case letters.</p>
 <h3><a href="#log-writer-configuration" name="log-writer-configuration">Log Writer Configuration</a></h3>
 <p>Log Writer Configuration is used to setup file output and log file rotation characteristics for log writers used by the Loggers.</p>
@@ -261,6 +272,7 @@ http://localhost:8080/system/console/slinglog/tailer.txt?tail=1000&amp;grep=luce
     </tr>
   </tbody>
 </table>
+<p>Note that any log writer config should not refer to same log file which is referred in global config i.e. OSGi config pid for <code>org.apache.sling.commons.log.LogManager</code></p>
 <p>See the section <em>Log File Rotation</em> below for full details on the <code>org.apache.sling.commons.log.file.size</code> and <code>org.apache.sling.commons.log.file.number</code> properties.</p>
 <h4><a href="#log-file-rotation" name="log-file-rotation">Log File Rotation</a></h4>
 <p>Log files can grow rather quickly and fill up available disk space. To cope with this growth log files may be rotated in two ways: At specific times or when the log file reaches a configurable size. The first method is called <em>Scheduled Rotation</em> and is used by specifying a <code>SimpleDateFormat</code> pattern as the log file "size". The second method is called <em>Size Rotation</em> and is used by setting a maximum file size as the log file size.</p>
@@ -583,7 +595,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 <pre><code>    java -jar org.apache.sling.launchpad-XXX-standalone.jar -Dorg.apache.sling.commons.log.configurationFile=/path/to/logback
 </code></pre></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Chetan Mehrotra</span> on <span class="comment">Mon Nov 27 12:23:33 2017 +0530</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
