@@ -29,7 +29,7 @@ def mavenPlugins=[
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.4",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.10",
-  "HTL Maven Plugin|htl-maven-plugin|1.0.8",
+  "HTL Maven Plugin|htl-maven-plugin|1.1.0",
   "Java Version Maven Plugin|javaversion-maven-plugin|1.0.0"
 ]
 
@@ -196,8 +196,8 @@ def bundles=[
   "Scripting JST|org.apache.sling.scripting.jst|2.0.6",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.2",
   "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.14",
-  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.14",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.42",
+  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.16",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.44",
   "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.24",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.6",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.4",
@@ -212,7 +212,7 @@ def bundles=[
   "Settings|org.apache.sling.settings|1.3.8",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0",
   "Sling Query|org.apache.sling.query|4.0.0",
-  "Starter Startup|org.apache.sling.starter.startup|1.0.2",
+  "Starter Startup|org.apache.sling.starter.startup|1.0.4",
   "Superimposing Resource Provider|org.apache.sling.superimposing|0.2.0",
   "System Bundle Extension: Activation API|org.apache.sling.fragment.activation|1.0.2",
   "System Bundle Extension: WS APIs|org.apache.sling.fragment.ws|1.0.2",

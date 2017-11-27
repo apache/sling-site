@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2017
 
+* Scripting HTL Java Compiler 1.0.16,  Scripting HTL Engine 1.0.44,  HTL Maven Plugin 1.1.0, Starter Startup 1.0.4 (27th)
 * Security 1.1.8 (20th)
 * Context-Aware Configuration Impl 1.4.8 (13th)
 * Sling API 2.16.4, Sling JCR ResourceResolver 3.0.6, Sling Default GET Servlets 2.1.28 (6th)
