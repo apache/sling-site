@@ -146,6 +146,7 @@ hc.tags     | String[] | List of tags: Both Felix Console Plugin and Health Chec
 hc.mbean.name | String | Makes the HC result available via given MBean name. If not provided no MBean is created for that `HealthCheck`
 hc.async.cronExpression | String | Used to schedule the execution of a `HealthCheck` at regular intervals, using a cron expression as specified by the [Sling Scheduler](/documentation/bundles/scheduler-service-commons-scheduler.html) module. 
 hc.resultCacheTtlInMs | Long | Overrides the global default TTL as configured in health check executor for health check responses (since v1.2.6 of core)
+hc.warningsStickForMinutes | Long | This property will make WARN/CRITICAL results stay visible for future executions, even if the current state has returned to status OK. It is useful to keep attention on issues that might still require action after the state went back to OK, e.g. if an event pool has overflown and some events might have been lost (since v1.2.10 of core)
 
 All service properties are optional.
 
@@ -204,6 +205,8 @@ which specifies the servlet's base path. That URL then returns an HTML page, by 
 with instructions at the end of the page about URL parameters which can be used to select specific Health Checks and control their execution and output format.
 
 Note that by design **the Health Checks Servlet doesn't do any access control by itself** to ensure it can detect unhealthy states of the authentication itself. Make sure the configured path is only accessible to relevant infrastructure and operations people. Usually all `/system/*` paths are only accessible from a local network and not routed to the Internet.
+
+By default the HC servlet sends the CORS header `Access-Control-Allow-Origin: *` to allow for client-side browser integrations. The behaviour can be configured using the OSGi config property `cors.accessControlAllowOrigin` (a blank value disables the header).
 
 ## Health Checks as server-side JUnit tests
 The `org.apache.sling.hc.junit.bridge` bundle makes selected Health Checks available as server-side JUnit tests. 
