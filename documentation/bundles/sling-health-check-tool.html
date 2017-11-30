@@ -216,6 +216,11 @@ public class AnnotatedHealthCheckSample implements HealthCheck {
       <td>Long </td>
       <td>Overrides the global default TTL as configured in health check executor for health check responses (since v1.2.6 of core)</td>
     </tr>
+    <tr>
+      <td>hc.warningsStickForMinutes </td>
+      <td>Long </td>
+      <td>This property will make WARN/CRITICAL results stay visible for future executions, even if the current state has returned to status OK. It is useful to keep attention on issues that might still require action after the state went back to OK, e.g. if an event pool has overflown and some events might have been lost (since v1.2.10 of core)</td>
+    </tr>
   </tbody>
 </table>
 <p>All service properties are optional.</p>
@@ -278,13 +283,14 @@ servletPath = /system/health
 </code></pre>
 <p>which specifies the servlet's base path. That URL then returns an HTML page, by default with the results of all active health checks and with instructions at the end of the page about URL parameters which can be used to select specific Health Checks and control their execution and output format.</p>
 <p>Note that by design <strong>the Health Checks Servlet doesn't do any access control by itself</strong> to ensure it can detect unhealthy states of the authentication itself. Make sure the configured path is only accessible to relevant infrastructure and operations people. Usually all <code>/system/*</code> paths are only accessible from a local network and not routed to the Internet.</p>
+<p>By default the HC servlet sends the CORS header <code>Access-Control-Allow-Origin: *</code> to allow for client-side browser integrations. The behaviour can be configured using the OSGi config property <code>cors.accessControlAllowOrigin</code> (a blank value disables the header).</p>
 <h2><a href="#health-checks-as-server-side-junit-tests" name="health-checks-as-server-side-junit-tests">Health Checks as server-side JUnit tests</a></h2>
 <p>The <code>org.apache.sling.hc.junit.bridge</code> bundle makes selected Health Checks available as server-side JUnit tests. </p>
 <p>It requires the <code>org.apache.sling.junit.core bundle</code> which provides the server-side JUnit tests infrastructure.</p>
 <p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br/>remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
 <p>To use this module, configure sets of tags at <code>/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider</code> using the standard <code>includeThisTag,-omitThatTag</code> syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html to run the corresponding Health Checks.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">georg.henzler</span> on <span class="comment">Thu Nov 30 01:11:02 2017 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
