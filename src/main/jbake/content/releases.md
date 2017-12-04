@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## December 2017
+
+* Scripting JSP 2.3.4 (4th)
+
 ## November 2017
 
 * Scripting HTL Java Compiler 1.0.16,  Scripting HTL Engine 1.0.44,  HTL Maven Plugin 1.1.0, Starter Startup 1.0.4 (27th)
