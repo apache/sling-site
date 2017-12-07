@@ -180,6 +180,9 @@ If the vote fails, or you decide to redo the release:
     1. Create a new version in Jira with a version number following the one of the cancelled release
     1. Move all issues with the fix version set to the cancelled release to the next version
     1. Delete the old version from Jira
+1. Reply to the original release vote email to announce the cancellation
+    1. Add `[CANCELLED]` to the subject line
+    1. Briefly explain why the release needs to be cancelled 
 1. Commit any fixes you need to make and start a vote for a new release.
 
 ## Promoting the Release
