@@ -450,28 +450,26 @@ ssb   2048R/226BCE00 2016-01-21
   <li>
   <p>Checkout the release tag of the released plugin (or reset your workspace)</p></li>
   <li>
-    <p>Build and stage the maven site of the plugin. Note that this <em>commits</em> the generated content to the components folder mentioned below.</p>
-    <pre><code>$ mvn clean site:site site:stage scm-publish:publish-scm
+    <p>Build and stage the maven site of the plugin locally.</p>
+    <pre><code>$ mvn clean site:site site:stage
 </code></pre>
   </li>
   <li>
     <p>Checkout the Sling website and navigate to the 'components' directory</p>
     <pre><code>$ git clone https://github.com/apache/sling-site.git
-$ cd sling-site/src/main/jbake/assets/components/
 </code></pre>
   </li>
   <li>
-  <p>SVN-rename the generated documenation that the site plugin commited to <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-LATEST</code> to <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code></p></li>
+  <p>Replace the content of the existing folder <code>src/main/jbake/assets/components/&lt;plugin-name&gt;</code> with the generated maven site from <code>target/staging</code></p></li>
   <li>
-  <p>SVN-remove the existing folder <code>&lt;plugin-name&gt;</code> and SVN-copy the folder <code>&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code> to <code>&lt;plugin-name&gt;</code></p></li>
+  <p>Create a new folder <code>src/main/jbake/assets/components/&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code> and copy the generated maven site there as well</p></li>
   <li>
-  <p>Commit the changes.</p></li>
+  <p>Commit the changes</p></li>
   <li>
   <p>Publish the Sling site to production</p></li>
   <li>
   <p>Check the results at <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a></p></li>
 </ol>
-<p>For background information about this process see the <a href="http://maven.apache.org/developers/website/deploy-component-reference-documentation.html">Maven components reference documentation</a>.</p>
 <h2><a href="#appendix-c-deploy-bundles-on-the-sling-obr-obsolete-" name="appendix-c-deploy-bundles-on-the-sling-obr-obsolete-">Appendix C: Deploy bundles on the Sling OBR (obsolete)</a></h2>
 <p><em>Update November 2016: We do now longer maintain the Sling OBR for new releases.</em></p>
 <p>We are mainting an OSGi Bundle Repository providing all release of the Sling Bundles. This repository is maintained as part of the Apache Sling site and is available at <a href="http://sling.apache.org/obr/sling.xml">http://sling.apache.org/obr/sling.xml</a>. The source for this page is maintained in the SVN repository below the <em>site</em>, that is at <a href="http://svn.apache.org/repos/asf/sling/site/">http://svn.apache.org/repos/asf/sling/site/</a>. To update the Sling OBR repository you must be an Apache Sling Committer since this requires SVN write access.</p>
@@ -522,7 +520,7 @@ $ rm the_module-version.jar the_module-version.pom
   </li>
 </ol></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Thu Dec 7 11:05:46 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">sseifert</span> on <span class="comment">Fri Dec 8 13:08:41 2017 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
