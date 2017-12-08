@@ -9,17 +9,17 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## December 2017
 
 * Scripting HTL Java Compiler 1.0.18, HTL Maven Plugin 1.1.2 (8th)
-* Commons Log 5.1.0, Metrics RRD4J 1.0.2 (1st)
-* Scripting JSP 2.3.4 (4th)
 * Commons Metrics 1.2.4 (5th)
+* Scripting JSP 2.3.4 (4th)
+* Commons Log 5.1.0, Metrics RRD4J 1.0.2 (1st)
 
 ## November 2017
 
+* Event Support 4.2.10, JCR Registration 1.0.4 (30th)
 * Scripting HTL Java Compiler 1.0.16,  Scripting HTL Engine 1.0.44,  HTL Maven Plugin 1.1.0, Starter Startup 1.0.4 (27th)
 * Security 1.1.8 (20th)
 * Context-Aware Configuration Impl 1.4.8 (13th)
 * Sling API 2.16.4, Sling JCR ResourceResolver 3.0.6, Sling Default GET Servlets 2.1.28 (6th)
-* Event Support 4.2.10, JCR Registration 1.0.4 (30th)
 
 ## October 2017
 
