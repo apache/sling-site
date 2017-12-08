@@ -395,26 +395,23 @@ To publish the plugin documentation execute the following steps after the releas
 
 1. Checkout the release tag of the released plugin (or reset your workspace)
 
-2. Build and stage the maven site of the plugin. Note that this *commits* the generated content to the components folder mentioned below.
+2. Build and stage the maven site of the plugin locally.
    
-        $ mvn clean site:site site:stage scm-publish:publish-scm
+        $ mvn clean site:site site:stage
 
 3. Checkout the Sling website and navigate to the 'components' directory
 
         $ git clone https://github.com/apache/sling-site.git
-        $ cd sling-site/src/main/jbake/assets/components/
 
-4. SVN-rename the generated documenation that the site plugin commited to `<plugin-name>-archives/<plugin-name>-LATEST` to `<plugin-name>-archives/<plugin-name>-<version>`
- 
-5. SVN-remove the existing folder `<plugin-name>` and SVN-copy the folder `<plugin-name>-archives/<plugin-name>-<version>` to `<plugin-name>`
+4. Replace the content of the existing folder `src/main/jbake/assets/components/<plugin-name>` with the generated maven site from `target/staging`
 
-6. Commit the changes.
+5. Create a new folder `src/main/jbake/assets/components/<plugin-name>-archives/<plugin-name>-<version>` and copy the generated maven site there as well
+
+6. Commit the changes
 
 7. Publish the Sling site to production
 
 8. Check the results at [http://sling.apache.org/components/](http://sling.apache.org/components/)
-
-For background information about this process see the [Maven components reference documentation](http://maven.apache.org/developers/website/deploy-component-reference-documentation.html).
 
 ## Appendix C: Deploy bundles on the Sling OBR (obsolete)
 
