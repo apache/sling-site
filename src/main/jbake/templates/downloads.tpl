@@ -29,7 +29,7 @@ def mavenPlugins=[
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.4",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.10",
-  "HTL Maven Plugin|htl-maven-plugin|1.1.0",
+  "HTL Maven Plugin|htl-maven-plugin|1.1.2",
   "Java Version Maven Plugin|javaversion-maven-plugin|1.0.0"
 ]
 
@@ -196,7 +196,7 @@ def bundles=[
   "Scripting JST|org.apache.sling.scripting.jst|2.0.6",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.2",
   "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.14",
-  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.16",
+  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.18",
   "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.44",
   "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.24",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.6",

@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2017
 
+* Scripting HTL Java Compiler 1.0.18, HTL Maven Plugin 1.1.2 (8th)
 * Commons Log 5.1.0, Metrics RRD4J 1.0.2 (1st)
 * Scripting JSP 2.3.4 (4th)
 * Commons Metrics 1.2.4 (5th)
