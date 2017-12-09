@@ -106,11 +106,15 @@ Test failures would be included in this JSON representation - you can test that 
 same request again.      
 
 # Integration tests example
-The [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests) module runs some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.
+The [IT Samples](https://github.com/apache/sling-samples/tree/master/testing) modules run some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.
 
-This module's pom and Java code can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.
+Either of those modules can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.
 
 Besides serving as examples, some of the tests in this module are used to validate the testing tools. They run as part of the full Sling [continuous integration](/project-information.html) build, so they're guaranteed to be correct examples if that build is successful.
+
+<div class="warning">
+The information below is outdated and needs an update, please rather directly check the source files linked above.
+</div>
 
 The sample uses the [testing/tools](http://svn.apache.org/repos/asf/sling/trunk/testing/tools) to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.
 
