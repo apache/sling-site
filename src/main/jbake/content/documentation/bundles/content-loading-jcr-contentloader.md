@@ -287,8 +287,7 @@ Those tests can be used as verified examples of initial content loading. Contrib
 
 ## ACLs and Principals
 
-**Note:** Creating system users is not supported by contenteloader and you should use repoinit, repoinit also allows to set ACLs. See [SlingRepositoryInitializer](repository-initialization.html) for more information.
-
+**Note:** Creating system users is not supported by contentloader, you should use repoinit instead. Repoinit also allows to set ACLs. See [SlingRepositoryInitializer](repository-initialization.html) for more information.
 
 By adding a `security:acl` object to a content node definition in JSON you can define an ACL for this node. For each array entry in this example an ACE is added. Example:
 
