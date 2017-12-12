@@ -121,6 +121,8 @@ Implementations of this interface are registered as OSGi services providing two 
 
 `AdapterFactory` services are gathered by a `AdapterManager` implementation for use by consumers. Consumers should not care for `AdapterFactory` services.
 
+If multiple implementations for the same combination of adapter and adaptable are registered, the implementation with the lowest service ranking wins (or with the highest service id, if the ranking is the same).
+
 
 ## AdapterManager
 
