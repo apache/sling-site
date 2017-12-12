@@ -155,9 +155,12 @@ TEST_PASSED
 </code></pre>
 <p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again. </p>
 <h1><a href="#integration-tests-example" name="integration-tests-example">Integration tests example</a></h1>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests">testing/samples/integration-tests</a> module runs some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.</p>
-<p>This module's pom and Java code can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.</p>
+<p>The <a href="https://github.com/apache/sling-samples/tree/master/testing">IT Samples</a> modules run some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.</p>
+<p>Either of those modules can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.</p>
 <p>Besides serving as examples, some of the tests in this module are used to validate the testing tools. They run as part of the full Sling <a href="/project-information.html">continuous integration</a> build, so they're guaranteed to be correct examples if that build is successful.</p>
+<div class="warning">
+The information below is outdated and needs an update, please rather directly check the source files linked above.
+</div>
 <p>The sample uses the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/tools">testing/tools</a> to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.</p>
 <p>The following steps are executed in the <code>integration-test</code> phase of this module's Maven build:</p>
 <ol>
@@ -190,7 +193,7 @@ TEST_PASSED
 </code></pre>
 <p>the server start is interrupted until a debugger is connected on port 8000.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Sat Dec 9 11:10:04 2017 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
