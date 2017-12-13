@@ -208,7 +208,7 @@ def bundles=[
   "Servlets Compat|org.apache.sling.servlets.compat|1.0.2",
   "Servlets Get|org.apache.sling.servlets.get|2.1.28",
   "Servlets Post|org.apache.sling.servlets.post|2.3.22",
-  "Servlets Resolver|org.apache.sling.servlets.resolver|2.4.14",
+  "Servlets Resolver|org.apache.sling.servlets.resolver|2.4.22",
   "Settings|org.apache.sling.settings|1.3.8",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0",
   "Sling Query|org.apache.sling.query|4.0.0",
