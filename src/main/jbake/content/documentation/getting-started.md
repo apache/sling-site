@@ -28,7 +28,7 @@ This will start the latest Apache Sling distribution and mount the Sling directo
 
 ## Sling Download
 
-The other option is to download the latest released Apache Sling standalone application from our
+Another option is to download the latest released Apache Sling standalone application from our
  [Downloads](/downloads.cgi) section. Once you have downloaded the application make sure that you have
  Java ${sling_minJavaVersion} or later installed and run Sling with:
  
@@ -37,7 +37,11 @@ The other option is to download the latest released Apache Sling standalone appl
 
 Starting the Sling application creates the Sling directory name *sling* in the same directory
  from where you started the above command.
- 
+
+## Sling Karaf
+
+You can run Sling on [Karaf](https://karaf.apache.org) as well by either starting a [Sling Karaf Distribution](karaf.html#sling-karaf-distribution) or installing [Sling's Karaf Features](karaf.html#sling-karaf-features) into a running Karaf Container.
+
 # Explore Sling
 
 Once Sling is started, you can access Sling at [http://localhost:8080](http://localhost:8080).
