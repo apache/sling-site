@@ -53,6 +53,7 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [Sling Metrics](/documentation/bundles/metrics.html)
 * [Servlet Helpers](/documentation/bundles/servlet-helpers.html)
 * [Context-Aware Configuration](/documentation/bundles/context-aware-configuration/context-aware-configuration.html)
+* [HApi - Hypermedia API tools](/documentation/bundles/hapi.html)
 
 ## Content Presentation and Rendering
 * [Scripting](/documentation/bundles/scripting.html) (aka Templating)
