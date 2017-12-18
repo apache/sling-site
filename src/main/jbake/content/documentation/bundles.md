@@ -12,6 +12,7 @@ tags=bundles,modules
 * [Rendering Content - Default GET servlets (servlets.get)](/documentation/bundles/rendering-content-default-get-servlets.html)
 * [Validation](/documentation/bundles/validation.html)
 * [Repository Initialization](/documentation/bundles/repository-initialization.html)
+* [Distribution](/documentation/bundles/distribution.html)
 
 ## Resource Providers
 
