@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2017
 
+* Auth Core 1.4.0 (18th)
 * Servlets Resolver 2.4.22 (13th)
 * Scripting HTL Java Compiler 1.0.18, HTL Maven Plugin 1.1.2 (8th)
 * Commons Metrics 1.2.4 (5th)

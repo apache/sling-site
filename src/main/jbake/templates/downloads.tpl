@@ -39,7 +39,7 @@ def bundles=[
   "Adapter|org.apache.sling.adapter|2.1.10",
   "Adapter Annotations|adapter-annotations|1.0.0",
   "API|org.apache.sling.api|2.16.4",
-  "Auth Core|org.apache.sling.auth.core|1.4.0",
+  "Auth Core|org.apache.sling.auth.core|1.4.2",
   "Auth Form|org.apache.sling.auth.form|1.0.8",
   "Auth OpenID|org.apache.sling.auth.openid|1.0.4",
   "Auth Selector|org.apache.sling.auth.selector|1.0.6",
