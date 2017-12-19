@@ -261,8 +261,11 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
   <li>Remove the "special artifact"</li>
   <li>Remove the "another one"</li>
 </ul>
-<p>The changing model would mention the above as one artifact and in addition have:  [artifacts startLevel=5]  commons/library/1.1.0</p>
-<pre><code>[artifacts runModes=:remove]
+<p>The changing model would mention the above as one artifact and in addition have:</p>
+<pre><code>[artifacts startLevel=5]
+    commons/library/1.1.0
+
+[artifacts runModes=:remove]
     my/special/artifact/0.0.0
 
 [artifacts runModes=:remove,test]
@@ -416,7 +419,7 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 &lt;/plugin&gt;
 </code></pre></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Dec 19 13:40:20 2017 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

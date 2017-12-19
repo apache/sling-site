@@ -390,6 +390,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 <p>The initial content found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-content/tree/master/src/main/resources/content/sling-test">sling-test folder of the launchpad initial content</a> is verified by the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java">InitialContentTest</a> when running the <em>launchpad testing</em> integration tests.</p>
 <p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p>
 <h2><a href="#acls-and-principals" name="acls-and-principals">ACLs and Principals</a></h2>
+<p><strong>Note:</strong> Creating system users is not supported by contentloader, you should use repoinit instead. Repoinit also allows to set ACLs. See <a href="repository-initialization.html">SlingRepositoryInitializer</a> for more information.</p>
 <p>By adding a <code>security:acl</code> object to a content node definition in JSON you can define an ACL for this node. For each array entry in this example an ACE is added. Example:</p>
 <pre><code>{
     &quot;security:acl&quot;: [
@@ -415,7 +416,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 }
 </code></pre></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Andres Bott</span> on <span class="comment">Sun Dec 10 14:48:06 2017 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
