@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling :: HApi - Hypermedia API tools</title>
+        <link rel="icon" href="/res/favicon.ico"/>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        
+    </head>    <body>
+<div class="title">
+            <div class="logo">
+                <a href="http://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="http://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><div class="menu">
+            <p>
+                <strong><a href="/documentation.html">Documentation</a></strong><br/>
+                <a href="/documentation/getting-started.html">Getting Started</a><br/>
+                <a href="/documentation/the-sling-engine.html">The Sling Engine</a><br/>
+                <a href="/documentation/development.html">Development</a><br/>
+                <a href="/documentation/bundles.html">Bundles</a><br/>
+                <a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a><br/>
+                <a href="/documentation/configuration.html">Configuration</a>
+            </p><p>
+                <a href="http://s.apache.org/sling.wiki">Wiki</a><br/>
+                <a href="http://s.apache.org/sling.faq">FAQ</a><br/>
+                
+            </p><p>
+                <strong>API Docs</strong><br/>
+                <a href="/apidocs/sling9/index.html">Sling 9</a><br/>
+                <a href="/apidocs/sling8/index.html">Sling 8</a><br/>
+                <a href="/apidocs/sling7/index.html">Sling 7</a><br/>
+                <a href="/apidocs/sling6/index.html">Sling 6</a><br/>
+                <a href="/apidocs/sling5/index.html">Sling 5</a><br/>
+                <a href="/javadoc-io.html">Archive at javadoc.io</a><br/>
+                
+            </p><p>
+                <strong>Project Info</strong><br/>
+                <a href="/downloads.cgi">Downloads</a><br/>
+                <a href="http://www.apache.org/licenses/">License</a><br/>
+                <a href="/news.html">News</a><br/>
+                <a href="/releases.html">Releases</a><br/>
+                <a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a><br/>
+                <a href="/links.html">Links</a><br/>
+                <a href="/contributing.html">Contributing</a><br/>
+                <a href="/project-information.html">Project Information</a><br/>
+                <a href="/project-information/security.html">Security</a><br/>
+                
+            </p><p>
+                <strong>Source</strong><br/>
+                <a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a><br/>
+                <a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a><br/>
+                
+            </p><p>
+                <strong>Sponsorship</strong><br/>
+                <a href="http://www.apache.org/foundation/thanks.html">Thanks</a><br/>
+                <a href="http://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a><br/>
+                <a href="https://donate.apache.org/">Donate!</a><br/>
+                <a href="http://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a><br/>
+                
+            </p><p>
+                <strong><a href="/sitemap.html">Site Map</a></strong>
+            </p>
+        </div>        <div class="main">
+            <div class="pagenav">
+<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>                
+<div class="tags"><a href="/tags/hypermedia.html" class="label">hypermedia</a> </div>                
+                
+            </div><h1 class="pagetitle">
+                HApi - Hypermedia API tools
+            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
+<div class="row"><div class="small-12 columns"><section class="wrap"><h1><a name="section-1">HApi - Hypermedia API tools</a></h1>
+<p>The hypermedia API tools are a way to enable sling component developers to add metadata information to their HTML components and easily define an API using the html markup generated by the components. </p>
+<p>HApi tools work with <a href="http://docs.adobe.com/docs/en/aem/6-0/develop/sightly.html">sightly</a>, JSP or any scripting language that can call java code. For understanding how microdata works, read the next section, <a href="#section-2">Hypermedia API with Microdata</a>.</p>
+<p>To see how the HApi implemetation works, read <a href="#section-3">How HApi works, by example</a></p>
+<h2><a name="section-install">Installation</a></h2>
+<p>The two bundles, core and samplecontent need sightly installed on the sling instance.</p>
+<p>You can then install both with <em>mvn clean install sling:install</em></p>
+<p>After that, to check the sample page go to http://localhost:8080/apps/sling/hapi_sample/site/site.html and check out the sample page.</p>
+<p>See below for consuming the API with a generic client.</p>
+<h2><a name="section-2">Hypermedia API with Microdata</a></h2>
+<p>There is a lot of confusion surrounding this term, but shortly put, it's an API having content with links. We can use it a way of defining a protocol-agnostic API for our resources, designing it from the client-side, using the html markup as the media type. This means the requested resource representation would be displayed in browsers out-of-the-box, but also understood by any user or automaton which understands the API. Such APIs can be defined for XML, HTML, JSON and becomes a hypermedia API by adding links to the content. One way of defining an API over html is using the <a href="http://schema.org/docs/gs.html">microdata specification</a> (reading the examples provides a lot of insight). The links are already semantically defined in HTML, so that fullfills the requirements for a hypermedia API.</p>
+<p>For us out there in a hurry, let's take the following short example from the <a href="http://schema.org/docs/gs.html">schema.org</a> page:</p>
+<pre><code>&lt;div itemscope itemtype=&quot;http://schema.org/Movie&quot;&gt;
+   &lt;h1 itemprop=&quot;name&quot;&gt;Avatar&lt;/h1&gt;
+   &lt;span itemprop=&quot;genre&quot;&gt;Science fiction&lt;/span&gt;
+   &lt;a href=&quot;../movies/avatar-theatrical-trailer.html&quot; itemprop=&quot;trailer&quot;&gt;Trailer&lt;/a&gt;
+
+   &lt;div itemprop=&quot;director&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&gt; 
+       Director: &lt;span itemprop=&quot;name&quot;&gt;James Cameron&lt;/span&gt; (born &lt;span itemprop=&quot;birthDate&quot;&gt;August16, 1954)&lt;/span&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The attribute <em>itemscope</em> defines a scope for an object. The (optional) <em>itemtype</em> links to a description of the type of the object. Inside an element with an <em>itemscope</em> attribute, we have descendant elements with a property <em>itemprop</em>. This means the <em>name</em> property will point to the enclosed object, which is the simple text "Avatar". Similarly, the <em>genre</em> property is "Science Fiction". </p>
+<p>The <em>director</em> property is not a simple type, so it defines a new <em>itemscope</em>. Also, the <em>itemtype</em> shows it's a Person. Now, the schema for Person defines the <em>name</em> and the <em>birthDate</em> properties, which are pointed to the same way as above.</p>
+<h2><a name="section-3">How HApi works, by example</a></h2>
+<p>In order to see how HApi works, the best way is to check an example. In the sample content module, we have a demo app that defines an API and uses that in the sightly components. The best way to start is to analyze the end result and acknowledge it's usefuleness:</p>
+<h3><a name="section-3a">Consuming the API</a></h3>
+<p>The app looks like this in the browser: <img src="hapi/browser1.png" alt="Page in the browser" /></p>
+<p>The generated content looks something like this for the first card:</p>
+<pre><code>&lt;div itemtype=&quot;/apps/sling/hapi_sample/types/album_card.html&quot; itemscope=&quot;itemscope&quot; class=&quot;card-asset&quot;&gt;
+    &lt;a href=&quot;details.html&quot; rel=&quot;self&quot;&gt;
+        &lt;img itemprop=&quot;thumbnail&quot; itemtype=&quot;/libs/sling/hapi/types/image.html&quot; alt=&quot;&quot; src=&quot;assets/preview-small-album.png&quot; class=&quot;show-grid&quot;&gt;
+
+        &lt;div&gt;
+            &lt;h4 itemprop=&quot;title&quot; itemtype=&quot;/libs/sling/hapi/types/text.html&quot;&gt;PIC 001&lt;/h4&gt;
+
+            &lt;p class=&quot;type&quot;&gt;album&lt;/p&gt;
+
+            &lt;p itemprop=&quot;cards&quot; itemtype=&quot;/libs/sling/hapi/types/number.html&quot; class=&quot;size&quot;&gt;5&lt;/p&gt;
+            &lt;meta itemprop=&quot;disabled&quot; itemtype=&quot;/libs/sling/hapi/types/boolean.html&quot; content=&quot;false&quot;&gt;
+            &lt;div class=&quot;myinfo&quot;&gt;
+                &lt;p class=&quot;mymodified&quot;&gt;
+                    &lt;i&gt;Modified&lt;/i&gt;
+                    &lt;span itemprop=&quot;modified&quot; itemtype=&quot;/libs/sling/hapi/types/text.html&quot; class=&quot;date&quot;&gt;2 days ago&lt;/span&gt;
+                    &lt;span&gt;Admin&lt;/span&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The entities that have semantic meaning to us (e.g. Are part of the API) are the elements annotated with microdata, links and forms:</p>
+<ul>
+  <li><code>&lt;div itemtype=&quot;/apps/sling/hapi_sample/types/album_card.html&quot; itemscope=&quot;itemscope&quot; class=&quot;card-asset&quot;&gt;</code></li>
+  <li><code>&lt;a href=&quot;details.html&quot; rel=&quot;self&quot;&gt;</code></li>
+  <li><code>&lt;link ...&gt;</code></li>
+  <li><code>&lt;form ... &gt;</code></li>
+</ul>
+<p>Because the API is defined using the generated HTML (same consumed by the browser), we can consume the <em>real</em> content using any microdata thin, application-agnostic client.  A simple example is using <a href="https://github.com/dulvac/htmlapi-client-python/blob/master/htmlapi_client.py">a simple html python client</a>, but any client can be used. Here's what it can do:</p>
+<p><img src="hapi/python1.png" alt="Enter example" /></p>
+<p>We can see that we have two objects in the page/ resource (because I've chosen to expose just two), one of type <strong>pic_card</strong> and one of type <strong>album_card</strong>. The types are URLs resolvable in sling. They look something like this in the browser:</p>
+<p><img src="hapi/browser2.png" alt="Type in browser" /></p>
+<p>Let's continue using the html client to consume our API:</p>
+<p><img src="hapi/python2.png" alt="Properties example" /> <img src="hapi/python3.png" alt="Properties example" /></p>
+<p>For a hypermedia API, we use links as a way to change the state of the application, like it happens in the browser:</p>
+<p><img src="hapi/python4.png" alt="Links example" /></p>
+<p>So navigating/ changing state works by using the semantic meaning of links in html. Except the enter() function, there is no http url needed to use the sling web application. If you define your links and link relations correctly, any microdata client like this can change the state, in addition to consuming the content defined through the microdata hypermedia API.</p>
+<p>As you've probably noticed, we use some domain-specific types for <em>itemtype</em>. This is how you define the types:</p>
+<h3><a href="#defining-the-types" name="defining-the-types">Defining the types</a></h3>
+<p>The types are defined as nt:unstructured nodes in the repository with a certain <em>sling:resourceType</em> configurable in the OSGi config of the HApiUtil service:</p>
+<pre><code>{
+
+    &quot;fqdn&quot;: &quot;org.apache.sling.hapi_sample.album_card&quot;,
+    &quot;description&quot;: &quot;A demo card type for HApi&quot;,
+    &quot;name&quot;: &quot;album_card&quot;,
+    &quot;sling:resourceType&quot;: &quot;sling/hapi/components/type&quot;,
+    &quot;parameters&quot;: [ ],
+    &quot;extends&quot;: &quot;/apps/sling/hapi_sample/types/demo_card&quot;,
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+    &quot;thumbnail&quot;: 
+
+{
+
+    &quot;description&quot;: &quot;The thumbnail of the demo pic card&quot;,
+    &quot;type&quot;: &quot;org.apache.sling.hapi.common.Image&quot;,
+    &quot;multiple&quot;: true,
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;
+
+},
+&quot;disabled&quot;:
+{
+
+    &quot;description&quot;: &quot;Whether this album is disabled or not&quot;,
+    &quot;type&quot;: &quot;org.apache.sling.hapi.common.Boolean&quot;,
+    &quot;multiple&quot;: false,
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;
+
+},
+&quot;modified&quot;:
+{
+
+    &quot;description&quot;: &quot;When was the pic last modified&quot;,
+    &quot;type&quot;: &quot;org.apache.sling.hapi.common.Text&quot;,
+    &quot;multiple&quot;: false,
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;
+
+},
+&quot;cards&quot;:
+{
+
+    &quot;description&quot;: &quot;The number of pictures in this album&quot;,
+    &quot;type&quot;: &quot;org.apache.sling.hapi.common.Number&quot;,
+    &quot;multiple&quot;: false,
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;
+
+},
+&quot;users&quot;:
+
+    {
+        &quot;description&quot;: &quot;The numbers of users for this album&quot;,
+        &quot;type&quot;: &quot;org.apache.sling.hapi.common.Number&quot;,
+        &quot;multiple&quot;: false,
+        &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;
+    }
+
+}
+</code></pre>
+<h3><a href="#using-the-sightly-hapiuse-class" name="using-the-sightly-hapiuse-class">Using the sightly HApiUse class</a></h3>
+<p>After defining the types needed for the component in question, you can immediately benefit from the HApi tools and add the microdata annotations. There is also validation for the properties and the itemtype for properties is added automatically by the tools. </p>
+<p>This is how a sightly component using it looks like:</p>
+<pre><code>&lt;div data-sly-use.card=&quot;${&#39;org.apache.sling.hapi.sightly.HApiUse&#39; @type=&#39;/apps/sling/hapi_sample/types/pic_card&#39;}&quot;
+             data-sly-attribute=&quot;${card.itemtype}&quot; class=&quot;card-asset&quot;&gt;
+            &lt;a rel=&quot;self&quot; href=&quot;details.html&quot;&gt;
+                &lt;img data-sly-attribute=&quot;${card.itemprop.thumbnail}&quot; class=&quot;show-grid&quot; src=&quot;assets/preview-small.png&quot; alt=&quot;&quot;&gt;
+
+                &lt;div&gt;
+                    &lt;h4 data-sly-attribute=&quot;${card.itemprop[&#39;title&#39;]}&quot;&gt;PIC 001&lt;/h4&gt;
+
+                    &lt;p class=&quot;type&quot;&gt;PSD&lt;/p&gt;
+
+                    &lt;p data-sly-attribute=&quot;${card.itemprop.resolution}&quot;
+                       data-sly-use.resolution=&quot;${&#39;org.apache.sling.hapi.sightly.HApiUse&#39; @type=card.proptype.resolution}&quot; class=&quot;resolution&quot;&gt;
+                        &lt;span data-sly-attribute=&quot;${resolution.itemprop.width}&quot;&gt;1620&lt;/span&gt; x &lt;span
+                            data-sly-attribute=&quot;${resolution.itemprop.height}&quot;&gt;670&lt;/span&gt;
+                    &lt;/p&gt;
+
+                    &lt;p data-sly-attribute=&quot;${card.itemprop.size}&quot; class=&quot;size&quot;&gt;249KB&lt;/p&gt;
+                    &lt;meta data-sly-attribute=&quot;${card.itemprop.disabled}&quot; content=&quot;false&quot;/&gt;
+                    &lt;div class=&quot;myinfo&quot;&gt;
+                        &lt;p class=&quot;mymodified&quot;&gt;
+                            &lt;i&gt;Modified&lt;/i&gt;
+                            &lt;span data-sly-attribute=&quot;${card.itemprop.modified}&quot; class=&quot;date&quot;&gt;2 days ago&lt;/span&gt;
+                            &lt;span&gt;Admin&lt;/span&gt;
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The sightly script snippet above produces the html we saw in the section <a href="#section-3a">Consuming the API</a>. You only need to parameterize the use object once with the type identifier and the tool can validate the properties and infer the property type and automatically add the required itemtype attribute. Were we to try the following attribute on the pic_card markup, we'd get a runtime exception:</p>
+<pre><code>&lt;img data-sly-attribute=&quot;${card.itemprop.inexistent_property}&quot; class=&quot;show-grid&quot; src=&quot;assets/preview-small.png&quot; alt=&quot;&quot;&gt;&lt;/span&gt;           
+
+org.apache.sling.hapi.HApiException: Property inexistent_property does not exist for type /apps/hapi-sample/types/pic_card
+</code></pre></section></div></div>            
+            <div class="footer">
+<div class="revisionInfo">Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Mon Dec 18 11:47:31 2017 +0100</span></div>                <p>
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </p><p>
+                    Copyright © 2011-2017 The Apache Software Foundation.
+                </p>
+            </div>
+            
+        </div>
+    </body>
+</html>

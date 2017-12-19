@@ -104,6 +104,7 @@
                         <li><a href="/documentation/bundles/commons-html-utilities.html">Commons HTML Utilities (org.apache.sling.commons.html)</a></li>
                         <li><a href="/documentation/configuration.html">Configuration</a></li>
                         <li><a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a></li>
+                        <li><a href="/documentation/bundles/distribution.html">Content Distribution</a></li>
                         <li><a href="/documentation/bundles/content-distribution.html">Content Distribution (org.apache.sling.distribution)</a></li>
                         <li><a href="/documentation/bundles/content-loading-jcr-contentloader.html">Content Loading and Nodetype Support (jcr.contentloader)</a></li>
                         <li><a href="/contributing.html">Contributing</a></li>
@@ -128,6 +129,7 @@
                         <li><a href="/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a></li>
                         <li><a href="/old-stuff/scriptengineintegration/groovy-support.html">Groovy Support</a></li>
                         <li><a href="/guides.html">Guides (retired)</a></li>
+                        <li><a href="/documentation/bundles/hapi.html">HApi - Hypermedia API tools</a></li>
                         <li><a href="/documentation/development/htl-maven-plugin.html">HTL Maven Plugin</a></li>
                         <li><a href="/documentation/development/jspc.html">HTL Maven Plugin</a></li>
                         <li><a href="/documentation/bundles/scripting/scripting-htl.html">HTL Scripting Engine</a></li>
@@ -190,6 +192,7 @@
                         <li><a href="/documentation/development/resourceresolver-mock.html">Resource Resolver Mock</a></li>
                         <li><a href="/documentation/the-sling-engine/resources.html">Resources</a></li>
                         <li><a href="/old-stuff/run-modes-org-apache-sling-runmode.html">Run Modes</a></li>
+                        <li><a href="/documentation/karaf.html">Running Apache Sling on Apache Karaf</a></li>
                         <li><a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Scheduler Service (commons scheduler)</a></li>
                         <li><a href="/project-information/security.html">Security</a></li>
                         <li><a href="/documentation/bundles/sling-query/selectors.html">Selectors</a></li>
