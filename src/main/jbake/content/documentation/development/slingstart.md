@@ -245,6 +245,7 @@ Another model wants to use the above model as it's base but:
 * Remove the "another one"
 
 The changing model would mention the above as one artifact and in addition have:
+
     [artifacts startLevel=5]
         commons/library/1.1.0
     
