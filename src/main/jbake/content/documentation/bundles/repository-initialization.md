@@ -76,11 +76,15 @@ The language is self-explaining but please refer to the actual test cases for de
         deny jcr:all on / nodetypes example:Page
     end
 	
-	set ACL for restrictions_examples
+    set ACL for restrictions_examples
 	    deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
 	    allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
 	    allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
 	    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+
+            # empty rep:glob means "apply to this node but not its children"
+            # (requires o.a.s.jcr.repoinit 1.1.8)
+            allow jcr:something on / restriction(rep:glob)
 	end
 
 	# Set repository level ACL
