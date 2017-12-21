@@ -28,14 +28,14 @@ def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.4",
-  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.10",
+  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.14",
   "HTL Maven Plugin|htl-maven-plugin|1.1.2",
   "Java Version Maven Plugin|javaversion-maven-plugin|1.0.0"
 ]
 
 def bundles=[
   "Validation API|org.apache.sling.validation.api|1.0.0",
-  "Validation Core|org.apache.sling.validation.core|1.0.0",
+  "Validation Core|org.apache.sling.validation.core|1.0.4",
   "Adapter|org.apache.sling.adapter|2.1.10",
   "Adapter Annotations|adapter-annotations|1.0.0",
   "API|org.apache.sling.api|2.16.4",

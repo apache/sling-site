@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2017
 
+* Validation Core & Test Services 1.0.4, Slingstart Maven Plugin 1.7.14 (21st)
 * Scripting Core 2.0.54, Scripting JavaScript 3.0.4, Scripting HTL JS Use Provider 1.0.26, Scripting HTL Compiler 1.0.16, Scripting HTL Engine 1.0.46 (19th)
 * Auth Core 1.4.0 (18th)
 * Servlets Resolver 2.4.22 (13th)
