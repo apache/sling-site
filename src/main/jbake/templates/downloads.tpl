@@ -30,7 +30,6 @@ def mavenPlugins=[
   "Maven Sling Plugin|maven-sling-plugin|2.3.4",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.14",
   "HTL Maven Plugin|htl-maven-plugin|1.1.2",
-  "Java Version Maven Plugin|javaversion-maven-plugin|1.0.0"
 ]
 
 def bundles=[
