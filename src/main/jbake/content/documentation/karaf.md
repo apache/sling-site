@@ -6,6 +6,12 @@ tags=karaf
 
 **NOTE:** Tested and built with Apache Karaf 4.2.0.M1
 
+## Sling Karaf Features
+
+A features repository for easy deployment of [Apache Sling](https://sling.apache.org) on [Apache Karaf](https://karaf.apache.org) (see [Provisioning](https://karaf.apache.org/manual/latest/#_provisioning) for details).
+
+([GitBox](https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-karaf-features.git) | [GitHub](https://github.com/apache/sling-org-apache-sling-karaf-features))
+
 
 ## Sling Karaf Configs
 
@@ -13,11 +19,6 @@ OSGi configurations for provisioning with Apache Karaf used in [Sling's Karaf Fe
 
 ([GitBox](https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-karaf-configs.git) | [GitHub](https://github.com/apache/sling-org-apache-sling-karaf-configs))
 
-## Sling Karaf Features
-
-A features repository for easy deployment of [Apache Sling](https://sling.apache.org) on [Apache Karaf](https://karaf.apache.org) (see [Provisioning](https://karaf.apache.org/manual/latest/#_provisioning) for details).
-
-([GitBox](https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-karaf-features.git) | [GitHub](https://github.com/apache/sling-org-apache-sling-karaf-features))
 
 ## Sling Karaf Distribution
 
@@ -39,9 +40,8 @@ You have to set `serviceRequirements=disable` in Karaf's `etc/org.apache.karaf.f
 
     karaf@root()> feature:install sling-quickstart-oak-tar
 
-4) Install Launchpad Content and [Composum](https://github.com/ist-dresden/composum):
+4) Install Launchpad Content (feature includes [Composum](https://github.com/ist-dresden/composum)):
 
     karaf@root()> feature:install sling-launchpad-content
-    karaf@root()> feature:install composum
 
 5) Browse to [http://localhost:8181/](http://localhost:8181/⁠).
