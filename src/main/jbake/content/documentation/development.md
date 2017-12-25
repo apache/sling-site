@@ -24,6 +24,7 @@ Look here for more information on developper support when your are using Sling t
 
 ## Testing Sling-based Applications
 * [Testing Sling-based Applications](/documentation/tutorials-how-tos/testing-sling-based-applications.html)
+* [Testing with Pax Exam](/documentation/development/testing-paxexam.html)
 * [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html)
 * [Resource Resolver Mock](/documentation/development/resourceresolver-mock.html)
 * [Sling Mocks](/documentation/development/sling-mock.html)
