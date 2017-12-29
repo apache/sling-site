@@ -129,7 +129,7 @@ Create a test class (extend `TestSupport` to use helper methods and `Option`s) a
     public Option[] configuration() {
         return new Option[]{
             baseConfiguration(), // from TestSupport
-            quickstart(),
+            slingQuickstart(),
             // build artifact
             testBundle("bundle.filename"), // from TestSupport
             // testing
@@ -137,17 +137,17 @@ Create a test class (extend `TestSupport` to use helper methods and `Option`s) a
         };
     }
 
-    protected Option quickstart() {
+    protected Option slingQuickstart() {
         final String workingDirectory = workingDirectory(); // from TestSupport
         final int httpPort = findFreePort(); // from TestSupport
         return composite(
             slingQuickstartOakTar(workingDirectory, httpPort), // from SlingOptions
             slingModels(), // from SlingOptions (for illustration)
-            slingScriptingThymeleaf() // from SlingOptions (for illustration)
+            slingScripting() // from SlingOptions (for illustration)
         );
     }
 
-The above configuration provides all bundles and OSGi configurations to run a Sling Quickstart setup with Sling Models and Sling Scripting Thymeleaf.
+The above configuration provides all bundles and OSGi configurations to run a Sling Quickstart setup with Sling Models and Sling Scripting.
 
 **NOTE:** When using `slingQuickstartOakTar()` or `slingQuickstartOakMongo()` without _working directory_, _HTTP port_ and _Mongo URI_ make sure to clean up file system and database after each test and do not run tests in parallel to prevent interferences between tests.
 
@@ -166,6 +166,71 @@ To use a version from project (`pom.xml`) use `setVersionFromProject(String, Str
     SlingOptions.versionResolver.setVersionFromProject(SLING_GROUP_ID, "org.apache.sling.jcr.oak.server");
 
 ## Examples
+
+### Set up a tailored Sling instance
+
+The `FreemarkerTestSupport` below from [Scripting FreeMarker](https://github.com/apache/sling-org-apache-sling-scripting-freemarker) shows how to set up a tailored Sling instance to test Scripting FreeMarker itself. 
+
+`@Inject`ing `ServletResolver`, `SlingRequestProcessor`, `AuthenticationSupport`, `HttpService` and `ScriptEngineFactory` ensures testing is delayed until those services are available.
+
+The `@ProbeBuilder` annotated method modifies the [probe](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263860/Concepts#Concepts-Probe) for Sling by adding `Export-Package`, `Sling-Model-Packages` and `Sling-Initial-Content` headers.
+
+    public abstract class FreemarkerTestSupport extends TestSupport {
+    
+        @Inject
+        protected ServletResolver servletResolver;
+    
+        @Inject
+        protected SlingRequestProcessor slingRequestProcessor;
+    
+        @Inject
+        protected AuthenticationSupport authenticationSupport;
+    
+        @Inject
+        protected HttpService httpService;
+    
+        @Inject
+        @Filter(value = "(names=freemarker)")
+        protected ScriptEngineFactory scriptEngineFactory;
+    
+        public Option baseConfiguration() {
+            return composite(
+                super.baseConfiguration(),
+                slingQuickstart(),
+                // Sling Scripting FreeMarker
+                testBundle("bundle.filename"),
+                mavenBundle().groupId("org.freemarker").artifactId("freemarker").versionAsInProject(),
+                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxp-api-1.4").versionAsInProject(),
+                // testing
+                slingResourcePresence(),
+                mavenBundle().groupId("org.jsoup").artifactId("jsoup").versionAsInProject(),
+                mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").versionAsInProject(),
+                junitBundles()
+            );
+        }
+    
+        @ProbeBuilder
+        public TestProbeBuilder probeConfiguration(final TestProbeBuilder testProbeBuilder) {
+            testProbeBuilder.setHeader(Constants.EXPORT_PACKAGE, "org.apache.sling.scripting.freemarker.it.app");
+            testProbeBuilder.setHeader("Sling-Model-Packages", "org.apache.sling.scripting.freemarker.it.app");
+            testProbeBuilder.setHeader("Sling-Initial-Content", String.join(",",
+                "apps/freemarker;path:=/apps/freemarker;overwrite:=true;uninstall:=true",
+                "content;path:=/content;overwrite:=true;uninstall:=true"
+            ));
+            return testProbeBuilder;
+        }
+    
+        protected Option slingQuickstart() {
+            final int httpPort = findFreePort();
+            final String workingDirectory = workingDirectory();
+            return composite(
+                slingQuickstartOakTar(workingDirectory, httpPort),
+                slingModels(),
+                slingScripting()
+            );
+        }
+    
+    }
 
 ### Testing HTML over HTTP with jsoup
 

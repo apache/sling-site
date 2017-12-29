@@ -52,11 +52,11 @@ such as the [PrivateAccessor](http://junit-addons.sourceforge.net/junitx/util/Pr
 
 ## Pax Exam
 
-[Pax Exam](http://team.ops4j.org/wiki/display/paxexam/Pax+Exam) allows you to easily start an OSGi framework during execution of a JUnit test suite.
+[Pax Exam](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/overview) is an in-container testing framework for OSGi, Java EE and CDI.
 
-We currently use it for our [Sling installer integration tests](https://github.com/apache/sling-org-apache-sling-installer-it) for example. As parts of the installer interact directly with the OSGi framework, it felt safer to test it in a realistic situation rather than mock everything.
+Apache Sling [Testing PaxExam](/documentation/development/testing-paxexam.html) provides advanced and up-to-date test support for **in-container** and remote **testing over HTTP** with **real** Sling instances.
 
-Such tests are obviously slower than plain unit tests and tests that use mocks. Our installer integration tests, using Pax Exam, take about a minute to execute on a 2010 macbook pro.
+Plain Pax Exam is still used for our [Sling installer integration tests](https://github.com/apache/sling-org-apache-sling-installer-it) for example. As parts of the installer interact directly with the OSGi framework, it felt safer to test it in a realistic situation rather than mock everything.
 
 ## Server-side JUnit tests
 
