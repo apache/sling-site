@@ -6,19 +6,25 @@ tags=testing,development,maven,junit,exam
 
 ## Overview
 
-Sling Testing PaxExam provides test support for use with [Pax Exam](https://github.com/ops4j/org.ops4j.pax.exam2).
+[Sling Testing PaxExam](https://github.com/apache/sling-org-apache-sling-testing-paxexam) provides test support for use with [Pax Exam](https://github.com/ops4j/org.ops4j.pax.exam2) to test with *real* Sling instances – no limitations or issues due to incomplete and faulty mock implementations.
 
-[Sling's Karaf Features](https://sling.apache.org/documentation/karaf.html#sling-karaf-features) are available as `Option`s for Pax Exam to set up a tailored Sling instance easily.
+[Sling's Karaf Features](https://sling.apache.org/documentation/karaf.html#sling-karaf-features) are available as `Option`s for Pax Exam to set up tailored Sling instances easily.
 
-The `TestSupport` class comes with common helper methods and `Option`s.
+The [`TestSupport`](https://github.com/apache/sling-org-apache-sling-testing-paxexam/blob/master/src/main/java/org/apache/sling/testing/paxexam/TestSupport.java) class comes with common helper methods and `Option`s.
+
+The setups and examples on this page show how to run fully isolated tests in separate JVMs ([forked container](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263862/OSGi+Containers#OSGiContainers-ForkedContainer)) to avoid classloader issues and boot a new Sling instance per test class to have always a fresh OSGi container and JCR repository.
+
 
 ## Features
 
 * run integration tests in a *tailored* Sling instance in the *same module* (with the build artifact under test)
 * use different versions in build (e.g. *minimal*) and tests (e.g. *latest*)
 * overriding of versions
+* build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)
+
 
 ## Getting Started
+
 
 ### 1. Add required dependencies
 
@@ -151,6 +157,7 @@ The above configuration provides all bundles and OSGi configurations to run a Sl
 
 **NOTE:** When using `slingQuickstartOakTar()` or `slingQuickstartOakMongo()` without _working directory_, _HTTP port_ and _Mongo URI_ make sure to clean up file system and database after each test and do not run tests in parallel to prevent interferences between tests.
 
+
 ## Overriding or adding versions
 
 To use different versions of bundles in tests than the ones in `SlingVersionResolver` create a custom `SlingVersionResolver` (extending `SlingVersionResolver`) and set it in `SlingOptions`:
@@ -165,6 +172,7 @@ To use a version from project (`pom.xml`) use `setVersionFromProject(String, Str
 
     SlingOptions.versionResolver.setVersionFromProject(SLING_GROUP_ID, "org.apache.sling.jcr.oak.server");
 
+
 ## Examples
 
 ### Set up a tailored Sling instance
@@ -176,23 +184,23 @@ The `FreemarkerTestSupport` below from [Scripting FreeMarker](https://github.com
 The `@ProbeBuilder` annotated method modifies the [probe](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263860/Concepts#Concepts-Probe) for Sling by adding `Export-Package`, `Sling-Model-Packages` and `Sling-Initial-Content` headers.
 
     public abstract class FreemarkerTestSupport extends TestSupport {
-    
+
         @Inject
         protected ServletResolver servletResolver;
-    
+
         @Inject
         protected SlingRequestProcessor slingRequestProcessor;
-    
+
         @Inject
         protected AuthenticationSupport authenticationSupport;
-    
+
         @Inject
         protected HttpService httpService;
-    
+
         @Inject
         @Filter(value = "(names=freemarker)")
         protected ScriptEngineFactory scriptEngineFactory;
-    
+
         public Option baseConfiguration() {
             return composite(
                 super.baseConfiguration(),
@@ -208,7 +216,7 @@ The `@ProbeBuilder` annotated method modifies the [probe](https://ops4j1.jira.co
                 junitBundles()
             );
         }
-    
+
         @ProbeBuilder
         public TestProbeBuilder probeConfiguration(final TestProbeBuilder testProbeBuilder) {
             testProbeBuilder.setHeader(Constants.EXPORT_PACKAGE, "org.apache.sling.scripting.freemarker.it.app");
@@ -219,7 +227,7 @@ The `@ProbeBuilder` annotated method modifies the [probe](https://ops4j1.jira.co
             ));
             return testProbeBuilder;
         }
-    
+
         protected Option slingQuickstart() {
             final int httpPort = findFreePort();
             final String workingDirectory = workingDirectory();
@@ -229,7 +237,58 @@ The `@ProbeBuilder` annotated method modifies the [probe](https://ops4j1.jira.co
                 slingScripting()
             );
         }
+
+    }
+
+### Provide additional OSGi services for testing
+
+The `FreemarkerScriptEngineFactoryIT` and `Ranked2Configuration` below from [Scripting FreeMarker](https://github.com/apache/sling-org-apache-sling-scripting-freemarker) show how to build a bundle with [Tinybundles](https://github.com/ops4j/org.ops4j.pax.tinybundles) (and [bnd](https://github.com/bndtools/bnd)) on-the-fly (`buildBundleWithBnd()`) to provide additional OSGi DS services for testing.
+
+    @RunWith(PaxExam.class)
+    @ExamReactorStrategy(PerClass.class)
+    public class FreemarkerScriptEngineFactoryIT extends FreemarkerTestSupport {
+
+        @Inject
+        @Filter("(name=bar)")
+        private freemarker.template.Configuration configuration;
+
+        @Configuration
+        public Option[] configuration() {
+            return new Option[]{
+                baseConfiguration(),
+                buildBundleWithBnd( // from TestSupport
+                    Ranked1Configuration.class,
+                    Ranked2Configuration.class
+                )
+            };
+        }
     
+        […]
+    
+        @Test
+        public void testConfiguration() throws IllegalAccessException {
+            final Object configuration = FieldUtils.readDeclaredField(scriptEngineFactory, "configuration", true);
+            assertThat(configuration, sameInstance(this.configuration));
+            assertThat(configuration.getClass().getName(), is("org.apache.sling.scripting.freemarker.it.app.Ranked2Configuration"));
+        }
+
+    }
+
+Test service with [OSGi R6 DS annotation](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html#package_description) (extending `freemarker.template.Configuration`):
+
+    @Component(
+        service = Configuration.class,
+        property = {
+            "name=bar",
+            "service.ranking:Integer=2"
+        }
+    )
+    public class Ranked2Configuration extends Configuration {
+
+        public Ranked2Configuration() {
+            super(Configuration.getVersion());
+        }
+
     }
 
 ### Testing HTML over HTTP with jsoup
@@ -274,6 +333,7 @@ The `SimpleIT` below from [Scripting FreeMarker](https://github.com/apache/sling
         }
     
     }
+
 
 ## Logging
 
