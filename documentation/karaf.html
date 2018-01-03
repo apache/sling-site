@@ -77,29 +77,31 @@
             </div><h1 class="pagetitle">
                 Running Apache Sling on Apache Karaf
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p><strong>NOTE:</strong> Tested and built with Apache Karaf 4.2.0.M1</p>
-<h2><a href="#sling-karaf-configs" name="sling-karaf-configs">Sling Karaf Configs</a></h2>
-<p>OSGi configurations for provisioning with Apache Karaf</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p><strong>NOTE:</strong> Tested and built with Apache Karaf 4.2.0.M2</p>
 <h2><a href="#sling-karaf-features" name="sling-karaf-features">Sling Karaf Features</a></h2>
-<p>A features repository for easy deployment of <a href="https://sling.apache.org">Apache Sling</a> on <a href="https://karaf.apache.org">Apache Karaf</a> (see <a href="https://karaf.apache.org/manual/latest/#_provisioning">Provisioning</a> for details)</p>
+<p>A features repository for easy deployment of <a href="https://sling.apache.org">Apache Sling</a> on <a href="https://karaf.apache.org">Apache Karaf</a> (see <a href="https://karaf.apache.org/manual/latest/#_provisioning">Provisioning</a> for details).</p>
+<p>(<a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-karaf-features.git">GitBox</a> | <a href="https://github.com/apache/sling-org-apache-sling-karaf-features">GitHub</a>)</p>
+<h2><a href="#sling-karaf-configs" name="sling-karaf-configs">Sling Karaf Configs</a></h2>
+<p>OSGi configurations for provisioning with Apache Karaf used in <a href="#sling-karaf-features">Sling's Karaf Features</a>.</p>
+<p>(<a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-karaf-configs.git">GitBox</a> | <a href="https://github.com/apache/sling-org-apache-sling-karaf-configs">GitHub</a>)</p>
 <h2><a href="#sling-karaf-distribution" name="sling-karaf-distribution">Sling Karaf Distribution</a></h2>
-<p>A <a href="https://karaf.apache.org/manual/latest/#_custom_distributions">distribution</a> of <a href="https://sling.apache.org">Apache Sling</a> based on <a href="https://karaf.apache.org">Apache Karaf</a> (Sling's features and artifacts in a single archive)</p>
+<p>A <a href="https://karaf.apache.org/manual/latest/#_custom_distributions">distribution</a> of <a href="https://sling.apache.org">Apache Sling</a> based on <a href="https://karaf.apache.org">Apache Karaf</a> (<a href="#sling-karaf-features">Sling's Karaf Features</a> and artifacts in a single archive).</p>
+<p>(<a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-karaf-distribution.git">GitBox</a> | <a href="https://github.com/apache/sling-org-apache-sling-karaf-distribution">GitHub</a>)</p>
 <h2><a href="#getting-started" name="getting-started">Getting Started</a></h2>
 <p>You have to set <code>serviceRequirements=disable</code> in Karaf's <code>etc/org.apache.karaf.features.cfg</code> (not necessary when using <em>Sling's Karaf Distribution</em>).</p>
 <p>1) <a href="https://karaf.apache.org/manual/latest/#_quick_start">Start Apache Karaf</a> or <em>Sling's Karaf Distribution</em>.</p>
 <p>2) Add the Apache Sling features repository (not necessary when using <em>Sling's Karaf Distribution</em>):</p>
 <pre><code>karaf@root()&gt; feature:repo-add mvn:org.apache.sling/org.apache.sling.karaf-features/0.1.1-SNAPSHOT/xml/features
 </code></pre>
-<p>3) Install a <code>sling-launchpad-*</code> (<code>oak-tar</code> | <code>oak-mongo</code>) feature:</p>
-<pre><code>karaf@root()&gt; feature:install sling-launchpad-oak-tar
+<p>3) Install a Sling Quickstart feature, e.g. <code>sling-quickstart-oak-tar</code> or <code>sling-quickstart-oak-mongo</code> (requires a running and configured MongoDB):</p>
+<pre><code>karaf@root()&gt; feature:install sling-quickstart-oak-tar
 </code></pre>
-<p>4) Install Launchpad content and Explorer:</p>
+<p>4) Install Launchpad Content (feature includes <a href="https://github.com/ist-dresden/composum">Composum</a>):</p>
 <pre><code>karaf@root()&gt; feature:install sling-launchpad-content
-karaf@root()&gt; feature:install sling-extension-explorer
 </code></pre>
 <p>5) Browse to <a href="http://localhost:8181/⁠">http://localhost:8181/</a>.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Mon Dec 18 12:48:21 2017 +0100</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Tue Jan 2 17:51:19 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

@@ -105,9 +105,9 @@ resolverField.setAccessible(true);
 resolverField.set(servletResolver, factory);
 </code></pre>
 <h2><a href="#pax-exam" name="pax-exam">Pax Exam</a></h2>
-<p><a href="http://team.ops4j.org/wiki/display/paxexam/Pax+Exam">Pax Exam</a> allows you to easily start an OSGi framework during execution of a JUnit test suite.</p>
-<p>We currently use it for our <a href="https://github.com/apache/sling-org-apache-sling-installer-it">Sling installer integration tests</a> for example. As parts of the installer interact directly with the OSGi framework, it felt safer to test it in a realistic situation rather than mock everything.</p>
-<p>Such tests are obviously slower than plain unit tests and tests that use mocks. Our installer integration tests, using Pax Exam, take about a minute to execute on a 2010 macbook pro.</p>
+<p><a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/overview">Pax Exam</a> is an in-container testing framework for OSGi, Java EE and CDI.</p>
+<p>Apache Sling <a href="/documentation/development/testing-paxexam.html">Testing PaxExam</a> provides advanced and up-to-date test support for <strong>in-container</strong> and remote <strong>testing over HTTP</strong> with <strong>real</strong> Sling instances.</p>
+<p>Plain Pax Exam is still used for our <a href="https://github.com/apache/sling-org-apache-sling-installer-it">Sling installer integration tests</a> for example. As parts of the installer interact directly with the OSGi framework, it felt safer to test it in a realistic situation rather than mock everything.</p>
 <h2><a href="#server-side-junit-tests" name="server-side-junit-tests">Server-side JUnit tests</a></h2>
 <p>The tools described on the <a href="/documentation/bundles/org-apache-sling-junit-bundles.html">JUnit server-side testing support</a> page allow for running JUnit tests on an live Sling instance, as part of the normal integration testing cycle. </p>
 <h2><a href="#http-based-integration-tests" name="http-based-integration-tests">HTTP-based integration tests</a></h2>
@@ -144,7 +144,7 @@ resolverField.set(servletResolver, factory);
 <h2><a href="#summary" name="summary">Summary</a></h2>
 <p>Combining the above testing techniques has worked well for us in creating and testing Sling. Being able to test things at different levels of integration has proved an efficient way to get good test coverage without having to write too much boring test code.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 23:22:38 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Fri Dec 29 15:17:28 2017 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
