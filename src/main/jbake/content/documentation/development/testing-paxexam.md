@@ -92,7 +92,6 @@ Configure the build artifact (bundle) to use in integration testing in `pom.xml`
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.18.1</version>
         <executions>
           <execution>
             <goals>
@@ -118,6 +117,9 @@ Add `depends-maven-plugin` when using `TestSupport#baseConfiguration()` or `Slin
         <groupId>org.apache.servicemix.tooling</groupId>
         <artifactId>depends-maven-plugin</artifactId>
         <version>1.4.0</version>
+        <configuration>
+          <outputFile>${project.build.directory}/test-classes/META-INF/maven/dependencies.properties</outputFile>
+        </configuration>
         <executions>
           <execution>
             <goals>
@@ -126,6 +128,8 @@ Add `depends-maven-plugin` when using `TestSupport#baseConfiguration()` or `Slin
           </execution>
         </executions>
       </plugin>
+
+**NOTE:** `<version/>`, `<configuration/>` and `<executions/>` are managed in Sling Parent and can be omitted when using version 33 or higher.
 
 ### 3. Create a test class and provide a *Configuration*
 
