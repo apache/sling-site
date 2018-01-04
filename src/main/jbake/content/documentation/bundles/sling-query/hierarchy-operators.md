@@ -31,11 +31,11 @@ Selects all next resources matching `next` that are immediately preceded by a si
     // alternative version
     $(resource).closest('cq:Page').next('cq:Page')
 
-### Next siblings operator (`prev ~ next`)
+### Next siblings operator (`prev ~ siblings`)
 
 Selects all sibling resources that follow after the `prev` element, have the same parent, and match the filtering `siblings` selector
 
-    // find all next siblings of the cq:Page containing the resource
+    // find all siblings of the cq:Page containing the resource
     $(resource).closest('cq:Page ~ cq:Page')
     // alternative version
     $(resource).closest('cq:Page').nextAll('cq:Page')
