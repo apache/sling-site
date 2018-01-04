@@ -99,15 +99,15 @@ $(resource).closest(&#39;cq:Page + cq:Page&#39;)
 // alternative version
 $(resource).closest(&#39;cq:Page&#39;).next(&#39;cq:Page&#39;)
 </code></pre>
-<h3>Next siblings operator (<code>prev ~ next</code>)</h3>
+<h3>Next siblings operator (<code>prev ~ siblings</code>)</h3>
 <p>Selects all sibling resources that follow after the <code>prev</code> element, have the same parent, and match the filtering <code>siblings</code> selector</p>
-<pre><code>// find all next siblings of the cq:Page containing the resource
+<pre><code>// find all siblings of the cq:Page containing the resource
 $(resource).closest(&#39;cq:Page ~ cq:Page&#39;)
 // alternative version
 $(resource).closest(&#39;cq:Page&#39;).nextAll(&#39;cq:Page&#39;)
 </code></pre></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Jan 4 15:45:11 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
