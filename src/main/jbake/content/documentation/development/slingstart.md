@@ -93,8 +93,8 @@ Settings are key value pairs that are added to the framework properties. For now
 
 Features group run modes and define a special functionality. The model also defines two special features:
 
- * :launchpad This feature contains the dependency to Sling's launchpad artifact to be used. This mode is required if Apache Sling Launchpad should be used to start the application.
- * :boot The artifacts that are installed before the framework is started. They're used to bootstrap the system.
+ * `:launchpad` This feature contains the dependency to Sling's launchpad artifact to be used. This mode is required if Apache Sling Launchpad should be used to start the application.
+ * `:boot` The artifacts that are installed before the framework is started. They're used to bootstrap the system.
 
 ## Model Files
 
@@ -132,12 +132,89 @@ A configuration for a run mode looks like this:
            org.apache.sling.eventadmin
               useQueue=true
               ignoreTopics=["myTopic"]
-### Comments
+              
+The following paragraphs describes the different sections in a provisioning model file.
 
-Each object in the model can be annotated with comments. A comment is a line starting with a '#'. Leading spaces are ignored.
+Each section header may contain arbitrarily many parameters and has the following format:
 
-### Configurations in the Model file
+    section header ::= '[' <section name> { ' ' <parameter-name> '=' <parameter-value> } ']'
+
+### Feature
+
+Each model file must start with a feature. The feature contains all other subsections or directly artifacts (without the artifact section headers)
+
+####  Header Parameters
+
+Name | Description | Default Value | Mandatory | Related JIRA Issue
+---- | ----------- | ------------- | --------- | -------
+name | The name of the feature. Arbitrary String, relevant for merging. | `-` | yes | `-`
+type | One of `plain` (default), `osgi.subsystem.feature`, `osgi.subsystem.application`, `osgi.subsystem.composite`. | `plain` | no | [SLING-5149](https://issues.apache.org/jira/browse/SLING-5149)
+version | The version of the feature. Purely for information purposes, has no functional effect. | `-` | no | [SLING-6181](https://issues.apache.org/jira/browse/SLING-6181)
+runModes | The name(s) of the run modes for which this feature is relevant. The value contains the required run modes separated by `,` | `-` | no | `-`
+
+
+### Artifact
+
+The artifact section is the main section below a feature. The section header of the artifact section may be omitted if it follows directly after the feature header.
+
+####  Header Parameters
+
+Name | Description | Default Value | Mandatory | Related JIRA Issue
+---- | ----------- | ------------- | --------- | -------
+startLevel | The start level on which to start this artifact. | 0 | no | `-`
+
+The parameter `runModes` described for the features section can be set for artifact sections as well.
+
+#### Content
+
+Each line in the artifact section specifies a Maven artifact url in the following format
+
+    artifactUrl ::= [ <repository-url> '!' ] <group-id> '/' <artifact-id> [ '/' [version] [ '/' [type] [ '/' classifier ] ] ] ]
+    
+The version may be left out in which case either `LATEST` is assumed or the version is being resolved from the connected pom.
+
+After the `artifactUrl` there may follow arbitrary parameters enclosed in `[...]`
+
+The parameter name `bundle:rename-bsn` ([SLING-5379](https://issues.apache.org/jira/browse/SLING-5379)) may be used to rewrite the `Bundle-SymbolicName` (BSN) header in the bundle's manifest. It gets the new symbolic name as value. The original symbolic name is accessible in the manifest header `X-Original-Bundle-SymbolicName`
+
+    org.apache.sling/org.apache.sling.commons.johnzon/1.0.0 [bundle:rename-bsn=r-foo.bar.renamed.sling.commons.johnzon]
+    
+This example would rewrite the BSN of the the bundle Commons Johnzon to `r-foo.bar.renamed.sling.commons.johnzon`
+
+### Variables
+
+The variable section header must not contain any parameters
+
+#### Content
+
+Each line has the following format
+
+    <variable-name> '=' <variable-value>
+    
+The variables may be referenced in all other sections via `${<variable-name>}` and get replaced at run time with the assigned `<variable-value>`.
+
+### Settings
+
+This section defines OSGi framework properties. 
+
+####  Header Parameters
+
+The parameter `runModes` described for the features section can be set for setting sections as well.
+
+#### Content
+
+Each line contains an OSGi framework property. The framework properties of Apache Felix are documented [here](http://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html).
+
+    <framework-property-name> '=' <framework-property-value>
+
+### Configurations
+
+####  Header Parameters
+
+The parameter `runModes` described for the features section can be set for configurations sections as well.
  	 
+#### Content
+
 Configuration names are related to the PID and factory PID. The structure of the name is as follows:
  	 
 
@@ -152,9 +229,10 @@ When a Managed Service Factory is used, the situation is different. The `<pid>` 
     com.acme.xyz // 
     # Managed Service Factory, creates an instance for com.acme.abc
     com.acme.abc-default
+    
+In the line after the name follows the actual configuration content.
 
-
-### Default Configuration Format
+##### Default Configuration Format
 
 Configurations use by default the format of the Apache Felix ConfigAdmin implementation. It allows to specify the type and cardinality of a configuration property and is not limited to string values.
 
@@ -189,7 +267,7 @@ The 1 character type code is one of:
 Apart from the escaping of the usual characters like the quotes, double quotes, backslash etc. the equals sign and spaces need to be escaped as well!
 
 
-###  Configurations Defined through Properties
+#####  Configurations Defined through Properties
 
 While the default configuration form is very powerful, it might also sometimes be a little bit too heavy to specify a configuration. For these usage cases, the configuration can be described as properties:
 
@@ -197,6 +275,14 @@ While the default configuration form is very powerful, it might also sometimes b
         ftp.port = 21
         
 Notice that this definition only supports string properties. Therefore the service consuming the configuration needs to be able to adapt a string value to the correct type.
+
+### Additional Section
+
+Every section starting with `[:` is considered an additional section and can be used for custom purposes.
+
+### Comments
+
+Each object in the model can be annotated with comments. A comment is a line starting with a '#'. Leading spaces are ignored.
 
 ## Slingstart and Slingfeature projects
 
