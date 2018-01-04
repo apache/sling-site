@@ -143,8 +143,8 @@
 <h3><a href="#features" name="features">Features</a></h3>
 <p>Features group run modes and define a special functionality. The model also defines two special features:</p>
 <ul>
-  <li>:launchpad This feature contains the dependency to Sling's launchpad artifact to be used. This mode is required if Apache Sling Launchpad should be used to start the application.</li>
-  <li>:boot The artifacts that are installed before the framework is started. They're used to bootstrap the system.</li>
+  <li><code>:launchpad</code> This feature contains the dependency to Sling's launchpad artifact to be used. This mode is required if Apache Sling Launchpad should be used to start the application.</li>
+  <li><code>:boot</code> The artifacts that are installed before the framework is started. They're used to bootstrap the system.</li>
 </ul>
 <h2><a href="#model-files" name="model-files">Model Files</a></h2>
 <p>The model comes also with a textual description language:</p>
@@ -180,9 +180,107 @@
           useQueue=true
           ignoreTopics=[&quot;myTopic&quot;]
 </code></pre>
-<h3><a href="#comments" name="comments">Comments</a></h3>
-<p>Each object in the model can be annotated with comments. A comment is a line starting with a '#'. Leading spaces are ignored.</p>
-<h3><a href="#configurations-in-the-model-file" name="configurations-in-the-model-file">Configurations in the Model file</a></h3>
+<p>The following paragraphs describes the different sections in a provisioning model file.</p>
+<p>Each section header may contain arbitrarily many parameters and has the following format:</p>
+<pre><code>section header ::= &#39;[&#39; &lt;section name&gt; { &#39; &#39; &lt;parameter-name&gt; &#39;=&#39; &lt;parameter-value&gt; } &#39;]&#39;
+</code></pre>
+<h3><a href="#feature" name="feature">Feature</a></h3>
+<p>Each model file must start with a feature. The feature contains all other subsections or directly artifacts (without the artifact section headers)</p>
+<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th>Description </th>
+      <th>Default Value </th>
+      <th>Mandatory </th>
+      <th>Related JIRA Issue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name </td>
+      <td>The name of the feature. Arbitrary String, relevant for merging. </td>
+      <td><code>-</code> </td>
+      <td>yes </td>
+      <td><code>-</code></td>
+    </tr>
+    <tr>
+      <td>type </td>
+      <td>One of <code>plain</code> (default), <code>osgi.subsystem.feature</code>, <code>osgi.subsystem.application</code>, <code>osgi.subsystem.composite</code>. </td>
+      <td><code>plain</code> </td>
+      <td>no </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5149">SLING-5149</a></td>
+    </tr>
+    <tr>
+      <td>version </td>
+      <td>The version of the feature. Purely for information purposes, has no functional effect. </td>
+      <td><code>-</code> </td>
+      <td>no </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-6181">SLING-6181</a></td>
+    </tr>
+    <tr>
+      <td>runModes </td>
+      <td>The name(s) of the run modes for which this feature is relevant. The value contains the required run modes separated by <code>,</code> </td>
+      <td><code>-</code> </td>
+      <td>no </td>
+      <td><code>-</code></td>
+    </tr>
+  </tbody>
+</table>
+<h3><a href="#artifact" name="artifact">Artifact</a></h3>
+<p>The artifact section is the main section below a feature. The section header of the artifact section may be omitted if it follows directly after the feature header.</p>
+<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th>Description </th>
+      <th>Default Value </th>
+      <th>Mandatory </th>
+      <th>Related JIRA Issue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>startLevel </td>
+      <td>The start level on which to start this artifact. </td>
+      <td>0 </td>
+      <td>no </td>
+      <td><code>-</code></td>
+    </tr>
+  </tbody>
+</table>
+<p>The parameter <code>runModes</code> described for the features section can be set for artifact sections as well.</p>
+<h4><a href="#content" name="content">Content</a></h4>
+<p>Each line in the artifact section specifies a Maven artifact url in the following format</p>
+<pre><code>artifactUrl ::= [ &lt;repository-url&gt; &#39;!&#39; ] &lt;group-id&gt; &#39;/&#39; &lt;artifact-id&gt; [ &#39;/&#39; [version] [ &#39;/&#39; [type] [ &#39;/&#39; classifier ] ] ] ]
+</code></pre>
+<p>The version may be left out in which case either <code>LATEST</code> is assumed or the version is being resolved from the connected pom.</p>
+<p>After the <code>artifactUrl</code> there may follow arbitrary parameters enclosed in <code>[...]</code></p>
+<p>The parameter name <code>bundle:rename-bsn</code> (<a href="https://issues.apache.org/jira/browse/SLING-5379">SLING-5379</a>) may be used to rewrite the <code>Bundle-SymbolicName</code> (BSN) header in the bundle's manifest. It gets the new symbolic name as value. The original symbolic name is accessible in the manifest header <code>X-Original-Bundle-SymbolicName</code></p>
+<pre><code>org.apache.sling/org.apache.sling.commons.johnzon/1.0.0 [bundle:rename-bsn=r-foo.bar.renamed.sling.commons.johnzon]
+</code></pre>
+<p>This example would rewrite the BSN of the the bundle Commons Johnzon to <code>r-foo.bar.renamed.sling.commons.johnzon</code></p>
+<h3><a href="#variables" name="variables">Variables</a></h3>
+<p>The variable section header must not contain any parameters</p>
+<h4><a href="#content" name="content">Content</a></h4>
+<p>Each line has the following format</p>
+<pre><code>&lt;variable-name&gt; &#39;=&#39; &lt;variable-value&gt;
+</code></pre>
+<p>The variables may be referenced in all other sections via <code>${&lt;variable-name&gt;}</code> and get replaced at run time with the assigned <code>&lt;variable-value&gt;</code>.</p>
+<h3><a href="#settings" name="settings">Settings</a></h3>
+<p>This section defines OSGi framework properties. </p>
+<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
+<p>The parameter <code>runModes</code> described for the features section can be set for setting sections as well.</p>
+<h4><a href="#content" name="content">Content</a></h4>
+<p>Each line contains an OSGi framework property. The framework properties of Apache Felix are documented <a href="http://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html">here</a>.</p>
+<pre><code>&lt;framework-property-name&gt; &#39;=&#39; &lt;framework-property-value&gt;
+</code></pre>
+<h3><a href="#configurations" name="configurations">Configurations</a></h3>
+<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
+<p>The parameter <code>runModes</code> described for the features section can be set for configurations sections as well.</p>
+<h4><a href="#content" name="content">Content</a></h4>
 <p>Configuration names are related to the PID and factory PID. The structure of the name is as follows:</p>
 <pre><code>name ::= &lt;pid&gt; ( &#39;-&#39; &lt;subname&gt; )
 </code></pre>
@@ -193,7 +291,8 @@ com.acme.xyz //
 # Managed Service Factory, creates an instance for com.acme.abc
 com.acme.abc-default
 </code></pre>
-<h3><a href="#default-configuration-format" name="default-configuration-format">Default Configuration Format</a></h3>
+<p>In the line after the name follows the actual configuration content.</p>
+<h5><a href="#default-configuration-format" name="default-configuration-format">Default Configuration Format</a></h5>
 <p>Configurations use by default the format of the Apache Felix ConfigAdmin implementation. It allows to specify the type and cardinality of a configuration property and is not limited to string values.</p>
 <p>The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.</p>
 <p>The format is:</p>
@@ -222,12 +321,16 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
   <li>'B' : Boolean</li>
 </ul>
 <p>Apart from the escaping of the usual characters like the quotes, double quotes, backslash etc. the equals sign and spaces need to be escaped as well!</p>
-<h3><a href="#configurations-defined-through-properties" name="configurations-defined-through-properties">Configurations Defined through Properties</a></h3>
+<h5><a href="#configurations-defined-through-properties" name="configurations-defined-through-properties">Configurations Defined through Properties</a></h5>
 <p>While the default configuration form is very powerful, it might also sometimes be a little bit too heavy to specify a configuration. For these usage cases, the configuration can be described as properties:</p>
 <pre><code>com.acme.xyz [format=properties]     
     ftp.port = 21
 </code></pre>
 <p>Notice that this definition only supports string properties. Therefore the service consuming the configuration needs to be able to adapt a string value to the correct type.</p>
+<h3><a href="#additional-section" name="additional-section">Additional Section</a></h3>
+<p>Every section starting with <code>[:</code> is considered an additional section and can be used for custom purposes.</p>
+<h3><a href="#comments" name="comments">Comments</a></h3>
+<p>Each object in the model can be annotated with comments. A comment is a line starting with a '#'. Leading spaces are ignored.</p>
 <h2><a href="#slingstart-and-slingfeature-projects" name="slingstart-and-slingfeature-projects">Slingstart and Slingfeature projects</a></h2>
 <p>The <code>slingstart-maven-plugin</code> introduces two new packaging types:</p>
 <ul>
@@ -420,7 +523,7 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 &lt;/plugin&gt;
 </code></pre></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Dec 19 13:40:20 2017 +0100</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jan 4 13:56:38 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
