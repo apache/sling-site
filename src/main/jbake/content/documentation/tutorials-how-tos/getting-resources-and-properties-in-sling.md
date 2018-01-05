@@ -11,7 +11,7 @@ In this article we will explore a few ways to programmatically map a resource pa
 
 The whole game consists in first getting a `ResourceResolver` and then getting the `Resource` itself.
 
-## Within an OSGI Service/Compoment 
+## Within an OSGI Service/Component
 
 You can access a resource through the `ResourceResolverFactory` service:
 
