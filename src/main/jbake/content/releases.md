@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2018
+* XSS Protection API 2.0.4 (8th)
+
 ## December 2017
 
 * Validation Core & Test Services 1.0.4, Slingstart Maven Plugin 1.7.14 (21st)

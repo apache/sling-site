@@ -236,7 +236,7 @@ def bundles=[
   "URL Rewriter|org.apache.sling.urlrewriter|0.0.2",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0",
-  "XSS Protection|org.apache.sling.xss|2.0.0",
+  "XSS Protection|org.apache.sling.xss|2.0.4",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0"
 ]
 
