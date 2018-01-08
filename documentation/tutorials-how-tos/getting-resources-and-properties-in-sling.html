@@ -81,7 +81,7 @@
 <div class="row"><div class="small-12 columns"><section class="wrap"><p>The Resource is one of the central parts of Sling. Extending from JCR's Everything is Content, Sling assumes Everthing is a Resource. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigm of the REST architecture.</p>
 <p>In this article we will explore a few ways to programmatically map a resource path (String) to a resource object (Resource) and its properties in Sling, from within an OSGI service, a servlet and a JSP.</p>
 <p>The whole game consists in first getting a <code>ResourceResolver</code> and then getting the <code>Resource</code> itself.</p>
-<h2><a href="#within-an-osgi-service-component" name="within-an-osgi-service-component">Within an OSGI Service/Component</a></h2>
+<h2><a href="#within-an-osgi-service-compoment" name="within-an-osgi-service-compoment">Within an OSGI Service/Compoment</a></h2>
 <p>You can access a resource through the <code>ResourceResolverFactory</code> service:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->@Reference
 private ResourceResolverFactory resolverFactory;
@@ -137,7 +137,7 @@ ValueMap properties = ResourceUtil.getValueMap(res);
 </code></pre>
 <p>For more details about resources and how to access them in Sling, you can refer to the <a href="/documentation/the-sling-engine/resources.html">Sling documentation about Resources</a>.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Jan 5 15:33:28 2018 +0100</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
