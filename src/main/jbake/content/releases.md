@@ -7,6 +7,7 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## January 2018
+* Resource Merger 1.3.6
 * XSS Protection API 2.0.4 (8th)
 
 ## December 2017
@@ -19,6 +20,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Commons Metrics 1.2.4 (5th)
 * Scripting JSP 2.3.4 (4th)
 * Commons Log 5.1.0, Metrics RRD4J 1.0.2 (1st)
+* Engine 2.6.10, Feature Flags 1.2.2, i18n 2.5.10, and Security 1.1.10 (1st)
 
 ## November 2017
 
