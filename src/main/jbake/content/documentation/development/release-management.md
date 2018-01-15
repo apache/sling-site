@@ -79,8 +79,7 @@ First prepare your POMs for release:
         $ mvn release:clean
         $ mvn release:prepare
 
-    * Preparing the release will create the new tag in SVN, automatically checking in on your behalf
-    * If you get a build failure because of an SVN commit problem (namely *The specified baseline is not the latest baseline, so it may not be checked out.*), just repeat the `mvn release:prepare` command until SVN is happy. This is based on a known timing issue when using the European SVN mirror.
+    * Preparing the release will create the new tag in GIT, automatically checking in on your behalf
 
 1. Stage the release for a vote
 
@@ -90,7 +89,7 @@ First prepare your POMs for release:
     * You can continue to use `mvn release:prepare` and `mvn release:perform` on other sub-projects as necessary on the same machine and they will be combined in the same staging repository - this is useful when making a release of multiple Sling modules.
 
 1. Close the staging repository:
-    * Login to [https://repository.apache.org](https://repository.apache.org) using your Apache SVN credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
+    * Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
 
 1. Verify the staged artifacts
     * If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then rollback your release (see *Canceling the Release*) and repeat the process
@@ -175,7 +174,7 @@ If the vote is successful, you need to promote and distribute the release - see 
 If the vote fails, or you decide to redo the release:
 
 1. Remove the release tag from Git (`git push --delete origin ${tagName}`)
-1. Login to [https://repository.apache.org](https://repository.apache.org) using your Apache SVN credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select *Close*). Right click on this repository and select *Drop*.
+1. Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select *Close*). Right click on this repository and select *Drop*.
 1. Remove the old version from Jira
     1. Create a new version in Jira with a version number following the one of the cancelled release
     1. Move all issues with the fix version set to the cancelled release to the next version
@@ -412,58 +411,3 @@ To publish the plugin documentation execute the following steps after the releas
 7. Publish the Sling site to production
 
 8. Check the results at [http://sling.apache.org/components/](http://sling.apache.org/components/)
-
-## Appendix C: Deploy bundles on the Sling OBR (obsolete)
-
-*Update November 2016: We do now longer maintain the Sling OBR for new releases.*
-    
-We are mainting an OSGi Bundle Repository providing all release of the Sling Bundles. This repository is maintained as part of the Apache Sling site and is available at [http://sling.apache.org/obr/sling.xml](http://sling.apache.org/obr/sling.xml). The source for this page is maintained in the SVN repository below the _site_, that is at [http://svn.apache.org/repos/asf/sling/site/](http://svn.apache.org/repos/asf/sling/site/). To update the Sling OBR repository you must be an Apache Sling Committer since this requires SVN write access.
-    
-To update the OBR you may use the Apache Felix Maven Bundle Plugin which prepares the bundle descriptor to be added to the OBR file. Follow these steps to update the OBR:
-    
-1. Checkout or update the Site Source
-   
-        $ svn checkout https://svn.apache.org/repos/asf/sling/site 
-
-    Note, that you have to checkout the site using the `https` URL, otherwise you will not be able to commit the changes later.
-    
-2. Deploy the Descriptor
-    
-    To deploy the project descriptor, checkout the tag of the bundle to deploy and run maven
-
-        $ svn checkout http://svn.apache.org/repos/asf/sling/tags/the_module_tag
-        $ cd the_module_tag
-        $ mvn clean install \
-            org.apache.felix:maven-bundle-plugin:deploy \
-            -DprefixUrl=http://repo1.maven.org/maven2 \
-            -DremoteOBR=sling.xml \
-            -DaltDeploymentRepository=apache.releases::default::file:///path_to_site_checkout/trunk/content/obr
-
-    This generates the bundle descriptor and adds it to the sling.xml file of your site checkout.
-    As it also installs a fresh compiled version of the artifacts, it's better to remove that version from your local repository again (A new binary has new checksums etc.).
-    
-2. Variant: Refer to Maven Repository
-    
-    Instead of checking out and building the project locally, you may also use the `deploy-file` goal of the Maven Bundle Plugin:
-
-        $ wget http://repo1.maven.org/maven2/org/apache/sling/the_module/version/the_module-version.jar
-        $ wget http://repo1.maven.org/maven2/org/apache/sling/the_moduleversion/the_module-version.pom
-        $ mvn org.apache.felix:maven-bundle-plugin:deploy-file \
-            -Dfile=the_module-version.jar -DpomFile=the_module-version.pom \
-            -DbundleUrl=http://repo1.maven.org/maven2/org/apache/sling/the_module/version/the_module-version.jar \
-            -Durl=file:///path_to_site_checkout/obr \
-            -DprefixUrl=http://repo1.maven.org/maven2 \
-            -DremoteOBR=sling.xml
-        $ rm the_module-version.jar the_module-version.pom
-
-3. Commit the Site Changes
-
-    In the Site checkout folder commit the changes to the `trunk/content/obr/sling.xml` files (you may also review the changes using the `svn diff` command).
-    
-        $ svn commit -m"Add Bundle ABC Version X.Y.Z" trunk/content/obr/sling.xml
-
-4. Update the Site
-
-    Wait for the buildbot to update the staging area with your site update (see dev list for an email).
-    Then go to the CMS at [https://cms.apache.org/redirect?uri=http://sling.apache.org/obr](https://cms.apache.org/redirect?uri=http://sling.apache.org/obr) ,
-    update your checkout and then publish the site.
