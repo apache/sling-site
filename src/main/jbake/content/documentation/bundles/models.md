@@ -596,7 +596,7 @@ As discussed in the [Via](#via) section above, it is possible to select a differ
 `@Via` type value             | Description
 ----------------------------- | ------------------------------ 
 `BeanProperty`  (default)     | Uses a JavaBean property from the adaptable.
-`ChildResource`               | Uses a child resource from the adaptable, assuming the adaptable is a `Resource`.
+`ChildResource`               | Uses a child resource from the adaptable, assuming the adaptable is a `Resource`. In case the adaptable is a `SlingHttpServletRequest` uses a wrapper overwriting the `getResource()` to point to the given child resource ([SLING-7321](https://issues.apache.org/jira/browse/SLING-7321)).
 `ForcedResourceType`          | Creates a wrapped resource with the provided resource type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
 `ResourceSuperType`           | Creates a wrapped resource with the resource type set to the adaptable's resource super type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
 
