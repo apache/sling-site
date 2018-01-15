@@ -98,7 +98,7 @@ def bundles=[
   "Feature Flags|org.apache.sling.featureflags|1.2.2",
   "GWT Integration|org.apache.sling.gwt.servlet|3.0.0",
   "Thread Dumper|org.apache.sling.extensions.threaddump|0.2.2",
-  "File System Resource Provider|org.apache.sling.fsresource|2.1.8",
+  "File System Resource Provider|org.apache.sling.fsresource|2.1.10",
   "I18n|org.apache.sling.i18n|2.5.10",
   "HApi|org.apache.sling.api|1.0.0",
   "Health Check Annotations|org.apache.sling.hc.annotations|1.0.4",
