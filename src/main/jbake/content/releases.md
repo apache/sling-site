@@ -7,6 +7,7 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## January 2018
+* SlingStart Maven Plugin 1.7.16 (15th)
 * File System Resource Provider 2.1.10 (15th)
 * Resource Merger 1.3.6 (15th)
 * XSS Protection API 2.0.4 (8th)

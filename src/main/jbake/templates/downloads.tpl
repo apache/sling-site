@@ -28,7 +28,7 @@ def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.4",
-  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.14",
+  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.16",
   "HTL Maven Plugin|htl-maven-plugin|1.1.2",
 ]
 
@@ -247,7 +247,7 @@ def downloadLink(label, artifact, version, suffix) {
 	def sep = version ? "-" : ""
 	def path = "sling/${artifact}${sep}${version}${suffix}"
 	def digestsBase = "http://www.apache.org/dist/${path}"
-	
+
 	a(href:"[preferred]${path}", label)
 	yield " ("
 	a(href:"${digestsBase}.asc", "asc")
@@ -265,7 +265,7 @@ def tableHead(String [] headers) {
 			}
 		}
 	}
-	
+
 }
 
  // ------------------------------------------------------------------------------------------------
@@ -274,31 +274,31 @@ def tableHead(String [] headers) {
 layout 'layout/main.tpl', true,
         projects: projects,
         bodyContents: contents {
-			
+
             div(class:"row"){
                 div(class:"small-12 columns"){
                     section(class:"wrap"){
                         yieldUnescaped content.body
-						
+
 						h2("Sling Application")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Package")
 							tbody() {
-								slingApplication.each { line -> 
+								slingApplication.each { line ->
 									tr() {
 										def data = line.split("\\|")
 										td(data[0])
 										td(data[4])
 										td(data[1])
 										def artifact = "${data[2]}-${data[4]}${data[3]}"
-										td(){ 
+										td(){
 											downloadLink(artifact, artifact, "", "")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Sling IDE Tooling")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Update Site")
@@ -310,14 +310,14 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										td(data[3])
 										def artifact = "${data[1]}/${data[2]}"
-										td(){ 
+										td(){
 											downloadLink("Update site", artifact, "", "")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Sling Components")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Binary", "Source")
@@ -329,17 +329,17 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										def artifact = data[1]
 										def version = data[2]
-										td(){ 
-											downloadLink("Bundle", artifact, version, ".jar") 
+										td(){
+											downloadLink("Bundle", artifact, version, ".jar")
 										}
-										td(){ 
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Maven Plugins")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Binary", "Source")
@@ -351,11 +351,11 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										def artifact = data[1]
 										def version = data[2]
-										td(){ 
-											downloadLink("Maven Plugin", artifact, version, ".jar") 
+										td(){
+											downloadLink("Maven Plugin", artifact, version, ".jar")
 										}
-										td(){ 
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
 										}
 									}
 								}
