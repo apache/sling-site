@@ -6,6 +6,11 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2018
+* File System Resource Provider 2.1.10 (15th)
+* Resource Merger 1.3.6 (15th)
+* XSS Protection API 2.0.4 (8th)
+
 ## December 2017
 
 * Validation Core & Test Services 1.0.4, Slingstart Maven Plugin 1.7.14 (21st)
@@ -16,6 +21,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Commons Metrics 1.2.4 (5th)
 * Scripting JSP 2.3.4 (4th)
 * Commons Log 5.1.0, Metrics RRD4J 1.0.2 (1st)
+* Engine 2.6.10, Feature Flags 1.2.2, i18n 2.5.10, and Security 1.1.10 (1st)
 
 ## November 2017
 
