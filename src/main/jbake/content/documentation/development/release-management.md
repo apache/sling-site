@@ -309,7 +309,7 @@ The format of the release vote should be
     building the project.
 
     You can use this UNIX script to download the release and verify the signatures:
-    http://svn.apache.org/repos/asf/sling/trunk/tooling/ide/check_staged_release.sh
+    https://gitbox.apache.org/repos/asf?p=sling-ide-tooling.git;a=blob_plain;f=check_staged_release.sh;hb=HEAD 
 
     Usage:
     sh check_staged_release.sh X.Y.Z /tmp/sling-staging
