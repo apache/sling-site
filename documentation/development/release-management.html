@@ -311,17 +311,19 @@ Enjoy!
   <li><a href="http://wiki.apache.org/incubator/SigningReleases">http://wiki.apache.org/incubator/SigningReleases</a></li>
 </ol>
 <h2><a href="#releasing-the-sling-ide-tooling" name="releasing-the-sling-ide-tooling">Releasing the Sling IDE Tooling</a></h2>
-<!-- GIT-TODO - update after releasing the IDE tooling from Git -->
-<p>While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.</p>
+<p>While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see <a href="https://reference.apache.org/pmc/codesigning">Using the code signing service </a> for details.</p>
+<p>The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.</p>
 <ol>
   <li>set the fix version as released: <code>mvn tycho-versions:set-version -DnewVersion=1.0.2</code></li>
   <li>update the version of the source-bundle project to 1.0.2</li>
-  <li>commit the change to svn</li>
-  <li>manually tag in svn using <code>svn copy https://svn.apache.org/repos/asf/sling/trunk/tooling/ide https://svn.apache.org/repos/asf/sling/tags/sling-ide-tooling-1.0.2</code></li>
+  <li>commit and push the change</li>
+  <li>Tag the commit using <code>git tag -a -m &#39;Tag 1.0.2 release&#39; sling-ide-tooling-1.0.2</code></li>
   <li>update to next version: <code>mvn tycho-versions:set-version -DnewVersion=1.0.3-SNAPSHOT</code> and also update the version of the source-bundle project</li>
-  <li>commit the change to svn</li>
-  <li>Checkout the version from the tag and proceed with the build from there <code>https://svn.apache.org/repos/asf/sling/tags/sling-ide-tooling-1.0.2</code></li>
-  <li>build the project with p2/gpg signing enabled: <code>mvn clean package -Psign</code></li>
+  <li>commit and push the change</li>
+  <li>checkout the version from the tag and proceed with the build from there <code>git checkout sling-ide-tooling-1.0.2</code>a</li>
+  <li>In <code>p2update/pom.xml</code>, uncomment the <code>codesign-maven-plugin</code> declaration and change the code signing service to 'Java Signing Sha256'</li>
+  <li>build the project with p2/gpg signing enabled: <code>mvn clean package -Pcodesign</code></li>
+  <li>manually build the zipped p2 repository: <code>cd p2update/target/repository-signed &amp;&amp; zip -r org.apache.sling.ide.p2update-1.0.2.zip . &amp;&amp; cd -</code></li>
   <li>build the source bundle from the source-bundle directory: <code>mvn clean package</code></li>
   <li>copy the following artifacts to https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2
     <ol>
@@ -329,7 +331,7 @@ Enjoy!
       <li>zipped p2 repository ( org.apache.sling.ide.p2update-1.0.2.zip )</li>
     </ol>
   </li>
-  <li>ensure the artifacts are checksummed and gpg-signed by using the <code>tooling/ide/sign.sh</code> script</li>
+  <li>ensure the artifacts are checksummed and gpg-signed by using the <code>sign.sh</code> script</li>
   <li>call the vote</li>
 </ol>
 <p>The format of the release vote should be</p>
@@ -373,7 +375,7 @@ This majority vote is open for at least 72 hours
 <ol>
   <li>announce the result of the vote, see <a href="#wait-for-the-results">Wait for the results</a></li>
   <li>update versions in jira, see <a href="#update-jira">Update JIRA</a></li>
-  <li>upload p2update.zip* to https://dist.apache.org/repos/dist/release/sling/</li>
+  <li>upload <em>p2update.zip</em> to https://dist.apache.org/repos/dist/release/sling/</li>
   <li>upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2</li>
   <li>upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
     <ol>
@@ -471,7 +473,7 @@ ssb   2048R/226BCE00 2016-01-21
   <p>Check the results at <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a></p></li>
 </ol></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Dan Klco</span> on <span class="comment">Fri Jan 12 20:05:11 2018 -0500</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jan 17 23:22:33 2018 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

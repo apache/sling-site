@@ -683,7 +683,7 @@ assert object1 == object2;
     </tr>
     <tr>
       <td><code>ChildResource</code> </td>
-      <td>Uses a child resource from the adaptable, assuming the adaptable is a <code>Resource</code>.</td>
+      <td>Uses a child resource from the adaptable, assuming the adaptable is a <code>Resource</code>. In case the adaptable is a <code>SlingHttpServletRequest</code> uses a wrapper overwriting the <code>getResource()</code> to point to the given child resource (<a href="https://issues.apache.org/jira/browse/SLING-7321">SLING-7321</a>).</td>
     </tr>
     <tr>
       <td><code>ForcedResourceType</code> </td>
@@ -705,7 +705,7 @@ assert object1 == object2;
   <li><code>getAdaptable()</code> should return the new adaptable or <code>ViaProvider.ORIGINAL</code> to indicate that the original adaptable should be used.</li>
 </ul></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri Nov 17 11:47:07 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Jan 15 16:45:21 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
