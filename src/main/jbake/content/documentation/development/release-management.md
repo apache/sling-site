@@ -263,23 +263,25 @@ releases which are just announced on our [news](/news.html) page.
 
 ## Releasing the Sling IDE Tooling
 
-<!-- GIT-TODO - update after releasing the IDE tooling from Git -->
+While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see [Using the code signing service ](https://reference.apache.org/pmc/codesigning) for details.
 
-While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.
+The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.
 
 1. set the fix version as released: `mvn tycho-versions:set-version -DnewVersion=1.0.2`
 1. update the version of the source-bundle project to 1.0.2
-1. commit the change to svn   
-1. manually tag in svn using `svn copy https://svn.apache.org/repos/asf/sling/trunk/tooling/ide https://svn.apache.org/repos/asf/sling/tags/sling-ide-tooling-1.0.2`
+1. commit and push the change
+1. Tag the commit using `git tag -a -m 'Tag 1.0.2 release' sling-ide-tooling-1.0.2`
 1. update to next version: `mvn tycho-versions:set-version -DnewVersion=1.0.3-SNAPSHOT` and also update the version of the source-bundle project
-1. commit the change to svn 
-1. Checkout the version from the tag and proceed with the build from there `https://svn.apache.org/repos/asf/sling/tags/sling-ide-tooling-1.0.2`
-1. build the project with p2/gpg signing enabled: `mvn clean package -Psign`   
+1. commit and push the change
+1. checkout the version from the tag and proceed with the build from there `git checkout sling-ide-tooling-1.0.2`a
+1. In `p2update/pom.xml`, uncomment the `codesign-maven-plugin` declaration and change the code signing service to 'Java Signing Sha256'
+1. build the project with p2/gpg signing enabled: `mvn clean package -Pcodesign`
+1. manually build the zipped p2 repository: `cd p2update/target/repository-signed && zip -r org.apache.sling.ide.p2update-1.0.2.zip . && cd -`
 1. build the source bundle from the source-bundle directory: `mvn clean package`    
 1. copy the following artifacts to https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2   
     1. source bundle ( org.apache.sling.ide.source-bundle-1.0.2.zip )
     1. zipped p2 repository ( org.apache.sling.ide.p2update-1.0.2.zip )    
-1. ensure the artifacts are checksummed and gpg-signed by using the `tooling/ide/sign.sh` script
+1. ensure the artifacts are checksummed and gpg-signed by using the `sign.sh` script
 1. call the vote       
 
 The format of the release vote should be
@@ -325,7 +327,7 @@ Once the release has passed, the following must be done:
 
 1. announce the result of the vote, see [Wait for the results](#wait-for-the-results)
 1. update versions in jira, see [Update JIRA](#update-jira)
-1. upload p2update.zip* to https://dist.apache.org/repos/dist/release/sling/
+1. upload *p2update.zip* to https://dist.apache.org/repos/dist/release/sling/
 1. upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
 1. upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
     1. create GPG signatures and checksums for all uploaded jars using the `tooling/ide/sign.sh` script
