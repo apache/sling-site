@@ -50,7 +50,7 @@ def bundles=[
   "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.2.0",
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0",
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.0",
-  "Commons Compiler|org.apache.sling.commons.compiler|2.3.4",
+  "Commons Compiler|org.apache.sling.commons.compiler|2.3.6",
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.6",
   "Commons HTML|org.apache.sling.commons.html|1.0.0",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.1.0",

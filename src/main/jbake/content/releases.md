@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2018
 
+* Commons Compiler 2.3.6 (19th)
 * Context-Aware Configuration Impl 1.4.10 (19th)
 * ServiceUser Mapper 1.4.0 and ServiceUser WebConsole 1.0.0 (18th)
 * SlingStart Maven Plugin 1.7.16 (15th)
