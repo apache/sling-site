@@ -38,7 +38,7 @@ The issue tracker can be found at [http://issues.apache.org/jira/browse/SLING](h
 ## Source Repository
 
 This project uses Git to manage its source code. The source code is hosted on the [ASF GitBox setup](https://gitbox.apache.org/repos/asf)
-and the [Apache organisation on GitHub](https://github.com/apache/).
+and replicated to [Apache organisation on GitHub](https://github.com/apache/). As a developer you may push to either GitBox or GitHub. Note however that for GitHub to work you need to set up your GitHub account with two-factor authentication from [the main GitBox page](https://gitbox.apache.org/).
 
 To check out the Sling source code, see the instructions from  [Getting and building Sling](/documentation/development/getting-and-building-sling.html#getting-the-sling-source).
 
