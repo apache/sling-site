@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2018
 
-* Resource Merger 1.3.8 (20th)
+* Resource Merger 1.3.8, Parent 33 (20th)
 * Commons Compiler 2.3.6 (19th)
 * Context-Aware Configuration Impl 1.4.10 (19th)
 * ServiceUser Mapper 1.4.0 and ServiceUser WebConsole 1.0.0 (18th)
