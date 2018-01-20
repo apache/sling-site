@@ -20,6 +20,7 @@ This page is currently maintained manually, the ASF's LDAP information is the ul
 |--|--|--|--|
 | aheimoz | Alison Heimoz | Adobe | Technical Writer |
 | amitgupt | Amit Gupta | Adobe | Java Developer |
+| andysch | Andreas Schaefer | Madplanet.com Inc. | Java Developer |
 | apopescu (*) | Alexandru Popescu | | Java Developer |
 | asanso (*) | Antonio Sanso | Adobe | Java Developer |
 | bdelacretaz (*) | Bertrand Delacretaz | Adobe | Java Developer |
