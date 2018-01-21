@@ -135,7 +135,8 @@
 <p>Note that deploying a project on the server publishes all the resources from the project if the server is started. If the server is stopped, you need to manually publish the changes after startup.</p>
 <h3><a href="#converting-existing-projects" name="converting-existing-projects">Converting existing projects</a></h3>
 <h4><a href="#automatic-conversion" name="automatic-conversion">Automatic conversion</a></h4>
-<p>Maven projects configured using the <code>com.day.jcr.vault:content-package-maven-plugin</code> are now automatically configured as content projects, removing the need to manually add the needed facets after importing them into Eclipse for the first time.</p>
+<p><em>Support for the filevault-package-maven-plugin is available with Sling IDE Tooling for Eclipse 1.2 or newer</em></p>
+<p>Maven projects configured using the <code>com.day.jcr.vault:content-package-maven-plugin</code> or the <code>org.apache.jackrabbit:filevault-package-maven-plugin</code> are now automatically configured as content projects, removing the need to manually add the needed facets after importing them into Eclipse for the first time.</p>
 <p>The following pom properties can be used to tweak how the project is configured</p>
 <table>
   <thead>
@@ -159,6 +160,9 @@
     </tr>
   </tbody>
 </table>
+<p><em>Available with Sling IDE Tooling for Eclipse 1.2 or newer</em></p>
+<p>Additionally, automatic conversion and the addition of WTP natures and facets can be disabled from the <em>Sling IDE</em> → <em>Maven Project Configurators</em> preferences page.</p>
+<p><img src="ide-tooling/maven-configurators-preferences.png" alt="Maven Project Configurator preferences" /></p>
 <h4><a href="#manual-conversion" name="manual-conversion">Manual conversion</a></h4>
 <p>To mark a project as being a Sling content module, click it in the Project Explorer and Select Configure -&gt; Convert to Sling Content Project... . A dialog will pop up and will ask you to confirm the inferred location of the jcr_root directory. You can also change this from the project properties, the Sling page.</p>
 <h3><a href="#content-navigator" name="content-navigator">Content navigator</a></h3>
@@ -178,6 +182,10 @@
 <p><img src="ide-tooling/repository-export.png" alt="Repository export" /></p>
 <p>The import wizard is available under the Sling -&gt; Import Content ... action.</p>
 <p><img src="ide-tooling/repository-import.png" alt="Repository import" /></p>
+<h3><a href="#excluding-paths-from-the-sync-process" name="excluding-paths-from-the-sync-process">Excluding paths from the sync process</a></h3>
+<p><em>Available with Sling IDE Tooling for Eclipse 1.2 or newer</em></p>
+<p>The <em>Sling IDE</em> preferences page allows you to manage a global list of files names which will not be synchronized.</p>
+<p><img src="ide-tooling/content-sync-exclusions.png" alt="Content sync exclusions" /></p>
 <h2><a href="#bundle-sync" name="bundle-sync">Bundle sync</a></h2>
 <p>The only requirement for bundle projects is that they are Java projects which generate an exploded OSGi bundle in their output directory. That requires at least a valid OSGi Manifest located in META-INF/MANIFEST.MF, but typically one of more Java classes. Other auxiliary files, such as Declarative Service descriptors, must also be placed under the project's output directory.</p>
 <h3><a href="#creating-a-new-bundle-project" name="creating-a-new-bundle-project">Creating a new bundle project</a></h3>
@@ -242,7 +250,7 @@
   <li><a href="https://issues.apache.org/jira/browse/SLING-3644">SLING-3644 - Improve handling of binary properties outside nt:file file nodes</a> . Currently there is no workaround, but in practice this is not an often-encountered situation.</li>
 </ul></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sun Jan 21 22:10:43 2018 +0200</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
