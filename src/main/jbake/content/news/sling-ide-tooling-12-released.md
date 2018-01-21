@@ -4,7 +4,9 @@ status=published
 tags=ide,eclipse
 ~~~~~~
 
-Here are some of the more noteworthy things available in this release.
+This page contains information about the new features in the Sling IDE Tooling 1.2.0 release. For
+a full overview of the features and installation instructions, please see the 
+[Sling IDE Tooling](/documentation/development/ide-tooling.html) documentation page.
 
 # Custom contribution for provisioning model feature files
 
@@ -31,18 +33,17 @@ The Maven project configurators for content bundle projects can now be enabled a
 workspace level. Additionally, only the additional WTP natures and facets can be disabled for content
 projects.
 
-The preferences can be accesed via _Preferences_ → _Sling IDE_ → _Maven Project Configurator_.
+The preferences can be accesed via _Sling IDE_ → _Maven Project Configurator_ preference page.
 
-![Maven Project Configuratir preferences](/documentation/development/ide-tooling/maven-configurators-preferences.png)
+![Maven Project Configurator preferences](/documentation/development/ide-tooling/maven-configurators-preferences.png)
 
 # Support for the bnd-maven-plugin
 
 Projects configured usign the `bnd-maven-plugin` are now properly configured as bundle projects. Previously
 only the `maven-bundle-plugin` was supported.
 
-# Support for the new Jackrabbit content-package-plugin
+# Support for the new Jackrabbit filevault-package-maven-plugin
 
-Projects configured using the `content-package-plugin` from Apache Jackrabbit are now properly configured as
+Projects configured using the `filevault-package-maven-plugin` from Apache Jackrabbit are now properly configured as
 content projects. Previously only the `content-package-maven-plugin`
 
-For more information, see the [Sling IDE Tooling for Eclipse documentation page](/documentation/development/ide-tooling.html).
