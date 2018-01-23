@@ -67,26 +67,31 @@ We maintain multiple build jobs, typically one or two per module. These are grou
 More documentation regarding the Jenkins setup is available as wiki links from the views mentioned above.
 
 ## Documentation Repository
-The documentation website, in fact the very page that you are reading right now, is located at [The ASF Content Management System’s Sling project](https://cms.apache.org/sling/). You can contribute without being an official project committer.
+The documentation website, in fact the very page that you are reading right now, is located at [The Apache Sling Site Project](https://gitbox.apache.org/repos/asf?p=sling-site.git). You can contribute without being an official project committer.
 
-###Save your changes as an SVN patch:
+###Submitting a patch to the Sling Site project
 
-1. Log in as username *anonymous* and leave the password blank.
-1. Click *Get sling Working Copy* to check out a local branch through the browser.
-1. Navigate to a document and click *edit*.
-1. Edit the page in the online markdown editor.
-1. Uncheck *Quick Mail*.
-1. Click *submit*.
-1. Click *Diff*, then *Download Diff* and save the SVN patch to your computer.
+####Create a Git patch:
 
-###Submit your changes:
+1. Locally check out the git repository.
+1. Edit the documentation, don't commit.
+1. From the command line `git diff > site.patch`.
+
+####Submit your changes:
 
 1. Navigate to the [Jira issue tracker](https://issues.apache.org/jira/browse/SLING).
 1. Create an account and/or login.
 1. Create a ticket, enter a description and choose *Documentation* for *Components*.
-1. Select the ticket, click *more*, select *attach files* and attach your SVN patch.
+1. Select the ticket, click *more*, select *attach files* and attach your Git patch.
 
-###Further resources:
+Additionally there is a Github hosted [Apache Sling Site Project Mirror](https://github.com/apache/sling-site) which can be used to submit changes as well.
 
-1. Read the [ASF CMS reference for non-committers](http://www.apache.org/dev/cmsref#non-committer).
-1. Watch a [video tutorial by Rob Weir for anonymous users](http://s.apache.org/cms-anonymous-tutorial).
+###Submitting a pull request to the GitHub Sling Site mirror
+
+####Create the Pull Request:
+
+1. Navigate to the [Apache Sling Site Project Mirror](https://github.com/apache/sling-site).
+1. Create an account and/or login.
+1. Edit the documentation using the edit icon *Fork this project and edit this file*.
+1. Once all changes are done click *New pull request*.
+1. Select *base fork:apache/sling-site* *base:master* as the project to push to
