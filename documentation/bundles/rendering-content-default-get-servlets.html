@@ -113,9 +113,104 @@ page needs more work.
 <p>This is not to be confused with the <code>sling:redirect</code> property used under <code>/etc/map</code>, which is described in <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></p>
 <h2><a href="#slinginfoservlet" name="slinginfoservlet">SlingInfoServlet</a></h2>
 <p>The <code>SlingInfoServlet</code> provides info on the current JCR session, for requests that map to JCR nodes.</p>
-<p>It is available at <code>/system/sling/info.sessionInfo</code> by default, and supports <code>.json</code> and <code>.txt</code> extensions. </p></section></div></div>            
+<p>It is available at <code>/system/sling/info.sessionInfo</code> by default, and supports <code>.json</code> and <code>.txt</code> extensions. </p>
+<h2><a href="#jcr-versions-support" name="jcr-versions-support">JCR Versions Support</a></h2>
+<p>The extensions created for <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848</a> and <a href="https://issues.apache.org/jira/browse/SLING-4318">SLING-4318</a> provide some access to JCR version management features, along with the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">Sling POST Servlet</a> versioning-related features.</p>
+<p>Here's an example that demonstrates this.</p>
+<p>Use the <a href="http://localhost:8080/system/console/configMgr/org.apache.sling.servlets.get.impl.version.VersionInfoServlet">org.apache.sling.servlets.get.impl.version.VersionInfoServlet</a> OSGi configuration to activate the <code>VersionInfoServlet</code> which supports the <code>.V.json</code> selector shown below. That servlet is disabled by default to make sure the configurable V selector doesn't interfere with existing applications.</p>
+<p>First, create a versionable node and check it in:</p>
+<pre><code>curl -u admin:admin -Fjcr:mixinTypes=mix:versionable -Fmarker=A http://localhost:8080/vtest
+curl -u admin:admin -F :operation=checkin http://localhost:8080/vtest
+</code></pre>
+<p>The <code>VersionInfoServlet</code>, triggered by the V selector with our default configuration, shows the initial versions state:</p>
+<pre><code>curl -s -u admin:admin http://localhost:8080/vtest.V.json
+{
+  &quot;versions&quot;: {
+    &quot;jcr:rootVersion&quot;: {
+      &quot;created&quot;: &quot;Tue Jan 23 2018 14:08:09 GMT+0100&quot;,
+      &quot;successors&quot;: [
+        &quot;1.0&quot;
+      ],
+      &quot;predecessors&quot;: [],
+      &quot;labels&quot;: [],
+      &quot;baseVersion&quot;: &quot;false&quot;
+    },
+    &quot;1.0&quot;: {
+      &quot;created&quot;: &quot;Tue Jan 23 2018 14:08:35 GMT+0100&quot;,
+      &quot;successors&quot;: [],
+      &quot;predecessors&quot;: [
+        &quot;jcr:rootVersion&quot;
+      ],
+      &quot;labels&quot;: [],
+      &quot;baseVersion&quot;: &quot;true&quot;
+    }
+  }
+}    
+</code></pre>
+<p>Now, create two additional versions with a different <code>marker</code> value:</p>
+<pre><code>curl -u admin:admin -F :autoCheckin=true -F :autoCheckout=true -Fmarker=B http://localhost:8080/vtest
+curl -u admin:admin -F :autoCheckin=true -F :autoCheckout=true -Fmarker=C http://localhost:8080/vtest
+</code></pre>
+<p>The <code>VersionInfoServlet</code> now shows all versions (output abbreviated):</p>
+<pre><code>curl -s -u admin:admin http://localhost:8080/vtest.V.json
+{
+  &quot;versions&quot;: {
+    &quot;jcr:rootVersion&quot;: {
+      &quot;successors&quot;: [
+        &quot;1.0&quot;
+      ],
+      &quot;predecessors&quot;: []
+    },
+    &quot;1.0&quot;: {
+      &quot;successors&quot;: [
+        &quot;1.1&quot;
+      ],
+      &quot;predecessors&quot;: [
+        &quot;jcr:rootVersion&quot;
+      ]
+    },
+    &quot;1.1&quot;: {
+      &quot;successors&quot;: [
+        &quot;1.2&quot;
+      ],
+      &quot;predecessors&quot;: [
+        &quot;1.0&quot;
+      ]
+    },
+    &quot;1.2&quot;: {
+      &quot;successors&quot;: [],
+      &quot;predecessors&quot;: [
+        &quot;1.1&quot;
+      ]
+    }
+  }
+}
+</code></pre>
+<p>And the <code>;v=</code> URI path parameter gives access to each version (output abbreviated):</p>
+<pre><code>curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.0&quot; | jq . | sed &#39;s/^/    /&#39;
+{
+  &quot;marker&quot;: &quot;A&quot;,
+  &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
+  &quot;jcr:uuid&quot;: &quot;74291bc8-e7cb-4a71-ab3a-224ba234be0a&quot;
+}
+
+curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.1&quot; | jq . | sed &#39;s/^/    /&#39;
+{
+  &quot;marker&quot;: &quot;B&quot;,
+  &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
+  &quot;jcr:uuid&quot;: &quot;18b38479-a3fc-4a21-9cd4-89c44daf917d&quot;
+}
+
+curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.2&quot; | jq . | sed &#39;s/^/    /&#39;
+{
+  &quot;marker&quot;: &quot;C&quot;,
+  &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
+  &quot;jcr:uuid&quot;: &quot;3d55430b-2fa6-4562-b415-638fb6608c0e&quot;
+}
+</code></pre>
+<p>$ </p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Tue Jan 23 14:20:28 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
