@@ -15,7 +15,7 @@
 def launchpadVersion="9"
 
 def slingIDETooling=[
-  "Sling IDE Tooling for Eclipse|eclipse|1.1.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
+  "Sling IDE Tooling for Eclipse|eclipse|1.2.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[
@@ -28,7 +28,7 @@ def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.4",
-  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.14",
+  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.16",
   "HTL Maven Plugin|htl-maven-plugin|1.1.2",
 ]
 
@@ -50,7 +50,7 @@ def bundles=[
   "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.2.0",
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0",
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.0",
-  "Commons Compiler|org.apache.sling.commons.compiler|2.3.4",
+  "Commons Compiler|org.apache.sling.commons.compiler|2.3.6",
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.6",
   "Commons HTML|org.apache.sling.commons.html|1.0.0",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.1.0",
@@ -68,7 +68,7 @@ def bundles=[
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.2",
   "Context-Aware Configuration API|org.apache.sling.caconfig.api|1.1.0",
   "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2",
-  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.8",
+  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.10",
   "Context-Aware Configuration Mock Plugin|org.apache.sling.testing.caconfig-mock-plugin|1.3.0",
   "Context-Aware Configuration SPI|org.apache.sling.caconfig.spi|1.3.2",
   "Crankstart API|org.apache.sling.crankstart.api|1.0.0",
@@ -176,7 +176,7 @@ def bundles=[
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.2",
   "Resource Collection|org.apache.sling.resourcecollection|1.0.0",
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8",
-  "Resource Merger|org.apache.sling.resourcemerger|1.3.6",
+  "Resource Merger|org.apache.sling.resourcemerger|1.3.8",
   "Resource Presence|org.apache.sling.resource.presence|0.0.2",
   "Resource Resolver|org.apache.sling.resourceresolver|1.5.30",
   "Rewriter|org.apache.sling.rewriter|1.2.2",
@@ -202,7 +202,8 @@ def bundles=[
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.4",
   "Scripting Thymeleaf|org.apache.sling.scripting.thymeleaf|1.1.0",
   "Security|org.apache.sling.security|1.1.10",
-  "Service User Mapper|org.apache.sling.serviceusermapper|1.3.4",
+  "Service User Mapper|org.apache.sling.serviceusermapper|1.4.0",
+  "Service User WebConsole|org.apache.sling.serviceuser.webconsole|1.0.0",
   "Servlet Helpers|org.apache.sling.servlet-helpers|1.1.2",
   "Servlets Compat|org.apache.sling.servlets.compat|1.0.2",
   "Servlets Get|org.apache.sling.servlets.get|2.1.28",
@@ -247,7 +248,7 @@ def downloadLink(label, artifact, version, suffix) {
 	def sep = version ? "-" : ""
 	def path = "sling/${artifact}${sep}${version}${suffix}"
 	def digestsBase = "http://www.apache.org/dist/${path}"
-	
+
 	a(href:"[preferred]${path}", label)
 	yield " ("
 	a(href:"${digestsBase}.asc", "asc")
@@ -265,7 +266,7 @@ def tableHead(String [] headers) {
 			}
 		}
 	}
-	
+
 }
 
  // ------------------------------------------------------------------------------------------------
@@ -274,31 +275,31 @@ def tableHead(String [] headers) {
 layout 'layout/main.tpl', true,
         projects: projects,
         bodyContents: contents {
-			
+
             div(class:"row"){
                 div(class:"small-12 columns"){
                     section(class:"wrap"){
                         yieldUnescaped content.body
-						
+
 						h2("Sling Application")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Package")
 							tbody() {
-								slingApplication.each { line -> 
+								slingApplication.each { line ->
 									tr() {
 										def data = line.split("\\|")
 										td(data[0])
 										td(data[4])
 										td(data[1])
 										def artifact = "${data[2]}-${data[4]}${data[3]}"
-										td(){ 
+										td(){
 											downloadLink(artifact, artifact, "", "")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Sling IDE Tooling")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Update Site")
@@ -310,14 +311,14 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										td(data[3])
 										def artifact = "${data[1]}/${data[2]}"
-										td(){ 
+										td(){
 											downloadLink("Update site", artifact, "", "")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Sling Components")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Binary", "Source")
@@ -329,17 +330,17 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										def artifact = data[1]
 										def version = data[2]
-										td(){ 
-											downloadLink("Bundle", artifact, version, ".jar") 
+										td(){
+											downloadLink("Bundle", artifact, version, ".jar")
 										}
-										td(){ 
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Maven Plugins")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Binary", "Source")
@@ -351,11 +352,11 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										def artifact = data[1]
 										def version = data[2]
-										td(){ 
-											downloadLink("Maven Plugin", artifact, version, ".jar") 
+										td(){
+											downloadLink("Maven Plugin", artifact, version, ".jar")
 										}
-										td(){ 
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
 										}
 									}
 								}

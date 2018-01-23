@@ -34,7 +34,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
-      <version>0.0.5-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
 
@@ -117,9 +117,6 @@ Add `depends-maven-plugin` when using `TestSupport#baseConfiguration()` or `Slin
         <groupId>org.apache.servicemix.tooling</groupId>
         <artifactId>depends-maven-plugin</artifactId>
         <version>1.4.0</version>
-        <configuration>
-          <outputFile>${project.build.directory}/test-classes/META-INF/maven/dependencies.properties</outputFile>
-        </configuration>
         <executions>
           <execution>
             <goals>
@@ -129,7 +126,8 @@ Add `depends-maven-plugin` when using `TestSupport#baseConfiguration()` or `Slin
         </executions>
       </plugin>
 
-**NOTE:** `<version/>`, `<configuration/>` and `<executions/>` are managed in Sling Parent and can be omitted when using version 33 or higher.
+**NOTE:** `<version/>` and `<executions/>` are managed in Sling Parent and can be omitted when using version 33 or higher.
+
 
 ### 3. Create a test class and provide a *Configuration*
 
