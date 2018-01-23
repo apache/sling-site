@@ -75,3 +75,112 @@ This is not to be confused with the `sling:redirect` property used under `/etc/m
 The `SlingInfoServlet` provides info on the current JCR session, for requests that map to JCR nodes.
 
 It is available at `/system/sling/info.sessionInfo` by default, and supports `.json` and `.txt` extensions. 
+
+## JCR Versions Support
+
+The extensions created for [SLING-848](https://issues.apache.org/jira/browse/SLING-848) 
+and [SLING-4318](https://issues.apache.org/jira/browse/SLING-4318) provide some access to JCR version 
+management features, along with the [Sling POST Servlet](/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html) 
+versioning-related features.
+
+Here's an example that demonstrates this.
+
+Use the [org.apache.sling.servlets.get.impl.version.VersionInfoServlet](http://localhost:8080/system/console/configMgr/org.apache.sling.servlets.get.impl.version.VersionInfoServlet) OSGi configuration to activate the `VersionInfoServlet` which supports
+the `.V.json` selector shown below. That servlet is disabled by default to make sure the configurable V selector doesn't interfere with existing applications.
+
+First, create a versionable node and check it in:
+
+    curl -u admin:admin -Fjcr:mixinTypes=mix:versionable -Fmarker=A http://localhost:8080/vtest
+    curl -u admin:admin -F :operation=checkin http://localhost:8080/vtest
+    
+The `VersionInfoServlet`, triggered by the V selector with our default configuration, shows the initial versions state:
+
+    curl -s -u admin:admin http://localhost:8080/vtest.V.json
+    {
+      "versions": {
+        "jcr:rootVersion": {
+          "created": "Tue Jan 23 2018 14:08:09 GMT+0100",
+          "successors": [
+            "1.0"
+          ],
+          "predecessors": [],
+          "labels": [],
+          "baseVersion": "false"
+        },
+        "1.0": {
+          "created": "Tue Jan 23 2018 14:08:35 GMT+0100",
+          "successors": [],
+          "predecessors": [
+            "jcr:rootVersion"
+          ],
+          "labels": [],
+          "baseVersion": "true"
+        }
+      }
+    }    
+    
+Now, create two additional versions with a different `marker` value:
+
+    curl -u admin:admin -F :autoCheckin=true -F :autoCheckout=true -Fmarker=B http://localhost:8080/vtest
+    curl -u admin:admin -F :autoCheckin=true -F :autoCheckout=true -Fmarker=C http://localhost:8080/vtest
+    
+The `VersionInfoServlet` now shows all versions (output abbreviated):
+
+    curl -s -u admin:admin http://localhost:8080/vtest.V.json
+    {
+      "versions": {
+        "jcr:rootVersion": {
+          "successors": [
+            "1.0"
+          ],
+          "predecessors": []
+        },
+        "1.0": {
+          "successors": [
+            "1.1"
+          ],
+          "predecessors": [
+            "jcr:rootVersion"
+          ]
+        },
+        "1.1": {
+          "successors": [
+            "1.2"
+          ],
+          "predecessors": [
+            "1.0"
+          ]
+        },
+        "1.2": {
+          "successors": [],
+          "predecessors": [
+            "1.1"
+          ]
+        }
+      }
+    }
+
+And the `;v=` URI path parameter gives access to each version (output abbreviated):
+
+    curl -s "http://localhost:8080/vtest.tidy.json;v=1.0" | jq . | sed 's/^/    /'
+    {
+      "marker": "A",
+      "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
+      "jcr:uuid": "74291bc8-e7cb-4a71-ab3a-224ba234be0a"
+    }
+    
+    curl -s "http://localhost:8080/vtest.tidy.json;v=1.1" | jq . | sed 's/^/    /'
+    {
+      "marker": "B",
+      "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
+      "jcr:uuid": "18b38479-a3fc-4a21-9cd4-89c44daf917d"
+    }
+    
+    curl -s "http://localhost:8080/vtest.tidy.json;v=1.2" | jq . | sed 's/^/    /'
+    {
+      "marker": "C",
+      "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
+      "jcr:uuid": "3d55430b-2fa6-4562-b415-638fb6608c0e"
+    }
+$ 
+  
