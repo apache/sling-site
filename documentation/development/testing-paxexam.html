@@ -97,7 +97,7 @@
 &lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.paxexam&lt;/artifactId&gt;
-  &lt;version&gt;0.0.5-SNAPSHOT&lt;/version&gt;
+  &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
   &lt;scope&gt;provided&lt;/scope&gt;
 &lt;/dependency&gt;
 
@@ -177,9 +177,6 @@
     &lt;groupId&gt;org.apache.servicemix.tooling&lt;/groupId&gt;
     &lt;artifactId&gt;depends-maven-plugin&lt;/artifactId&gt;
     &lt;version&gt;1.4.0&lt;/version&gt;
-    &lt;configuration&gt;
-      &lt;outputFile&gt;${project.build.directory}/test-classes/META-INF/maven/dependencies.properties&lt;/outputFile&gt;
-    &lt;/configuration&gt;
     &lt;executions&gt;
       &lt;execution&gt;
         &lt;goals&gt;
@@ -189,7 +186,7 @@
     &lt;/executions&gt;
   &lt;/plugin&gt;
 </code></pre>
-<p><strong>NOTE:</strong> <code>&lt;version/&gt;</code>, <code>&lt;configuration/&gt;</code> and <code>&lt;executions/&gt;</code> are managed in Sling Parent and can be omitted when using version 33 or higher.</p>
+<p><strong>NOTE:</strong> <code>&lt;version/&gt;</code> and <code>&lt;executions/&gt;</code> are managed in Sling Parent and can be omitted when using version 33 or higher.</p>
 <h3>3. Create a test class and provide a <em>Configuration</em></h3>
 <p>Create a test class (extend <code>TestSupport</code> to use helper methods and <code>Option</code>s) and provide a <em>Configuration</em> (<code>Option[]</code>) for Pax Exam:</p>
 <pre><code>@Configuration
@@ -381,7 +378,7 @@ public class SimpleIT extends FreemarkerTestSupport {
 <p>See Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a> if logging needs to be tweaked.</p>
 <p>For <a href="https://logback.qos.ch">Logback</a> use <code>SlingOptions#logback()</code> and add both <code>exam.properties</code> and <code>logback.xml</code> to <code>src/test/resources</code> as described in Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a>.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Thu Jan 4 15:24:08 2018 +0100</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Mon Jan 22 14:59:51 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
