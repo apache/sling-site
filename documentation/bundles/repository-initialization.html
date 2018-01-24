@@ -212,9 +212,16 @@ create service user provisioningModelUser
 <p>Using a <code>RepositoryInitializer</code> reference like in this example, with the <em>raw</em> prefix, means that its content is passed as is to the repoinit parser:</p>
 <pre><code>raw:classpath://some-repoinit-file.txt
 </code></pre>
-<p>Which points to a <code>classpath:</code> URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.</p></section></div></div>            
+<p>Which points to a <code>classpath:</code> URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.</p>
+<h2><a href="#providing-repoinit-statements-from-osgi-factory-configurations" name="providing-repoinit-statements-from-osgi-factory-configurations">Providing repoinit statements from OSGi factory configurations</a></h2>
+<p>From version 1.1.6 of the <code>org.apache.sling.jcr.repoinit</code> bundle, repoinit statements can also be provided by OSGi factory configurations which use the <code>org.apache.sling.jcr.repoinit.RepositoryInitializer</code> factory PID.</p>
+<p>Such configurations have two optional fields:</p>
+<ul>
+  <li>A multi-value <code>references</code> field with each value providing the URL (as a String) of raw repoinit statements.</li>
+  <li>A multi-value <code>scripts</code> field with each value providing repoinit statements as plain text in a String.</li>
+</ul></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Dec 21 15:54:20 2017 +0100</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Jan 24 14:52:01 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
