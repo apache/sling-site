@@ -174,4 +174,14 @@ Using a `RepositoryInitializer` reference like in this example, with the _raw_ p
 	
 Which points to a `classpath:` URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.
 
+## Providing repoinit statements from OSGi factory configurations
+
+From version 1.1.6 of the `org.apache.sling.jcr.repoinit` bundle, repoinit statements can also be provided by OSGi factory
+configurations which use the `org.apache.sling.jcr.repoinit.RepositoryInitializer` factory PID.
+
+Such configurations have two optional fields:
+
+  * A multi-value `references` field with each value providing the URL (as a String) of raw repoinit statements.
+  * A multi-value `scripts` field with each value providing repoinit statements as plain text in a String.
+
    
