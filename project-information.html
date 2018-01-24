@@ -150,31 +150,33 @@
 </ul>
 <p>More documentation regarding the Jenkins setup is available as wiki links from the views mentioned above.</p>
 <h2><a href="#documentation-repository" name="documentation-repository">Documentation Repository</a></h2>
-<p>The documentation website, in fact the very page that you are reading right now, is located at <a href="https://cms.apache.org/sling/">The ASF Content Management System’s Sling project</a>. You can contribute without being an official project committer.</p>
-<h3><a href="#save-your-changes-as-an-svn-patch-" name="save-your-changes-as-an-svn-patch-">Save your changes as an SVN patch:</a></h3>
+<p>The documentation website, in fact the very page that you are reading right now, is located at <a href="https://gitbox.apache.org/repos/asf?p=sling-site.git">The Apache Sling Site Project</a>. You can contribute without being an official project committer.</p>
+<h3><a href="#submitting-a-patch-to-the-sling-site-project" name="submitting-a-patch-to-the-sling-site-project">Submitting a patch to the Sling Site project</a></h3>
+<h4><a href="#create-a-git-patch-" name="create-a-git-patch-">Create a Git patch:</a></h4>
 <ol>
-  <li>Log in as username <em>anonymous</em> and leave the password blank.</li>
-  <li>Click <em>Get sling Working Copy</em> to check out a local branch through the browser.</li>
-  <li>Navigate to a document and click <em>edit</em>.</li>
-  <li>Edit the page in the online markdown editor.</li>
-  <li>Uncheck <em>Quick Mail</em>.</li>
-  <li>Click <em>submit</em>.</li>
-  <li>Click <em>Diff</em>, then <em>Download Diff</em> and save the SVN patch to your computer.</li>
+  <li>Locally check out the git repository.</li>
+  <li>Edit the documentation, don't commit.</li>
+  <li>From the command line <code>git diff &gt; site.patch</code>.</li>
 </ol>
-<h3><a href="#submit-your-changes-" name="submit-your-changes-">Submit your changes:</a></h3>
+<h4><a href="#submit-your-changes-" name="submit-your-changes-">Submit your changes:</a></h4>
 <ol>
   <li>Navigate to the <a href="https://issues.apache.org/jira/browse/SLING">Jira issue tracker</a>.</li>
   <li>Create an account and/or login.</li>
   <li>Create a ticket, enter a description and choose <em>Documentation</em> for <em>Components</em>.</li>
-  <li>Select the ticket, click <em>more</em>, select <em>attach files</em> and attach your SVN patch.</li>
+  <li>Select the ticket, click <em>more</em>, select <em>attach files</em> and attach your Git patch.</li>
 </ol>
-<h3><a href="#further-resources-" name="further-resources-">Further resources:</a></h3>
+<p>Additionally there is a Github hosted <a href="https://github.com/apache/sling-site">Apache Sling Site Project Mirror</a> which can be used to submit changes as well.</p>
+<h3><a href="#submitting-a-pull-request-to-the-github-sling-site-mirror" name="submitting-a-pull-request-to-the-github-sling-site-mirror">Submitting a pull request to the GitHub Sling Site mirror</a></h3>
+<h4><a href="#create-the-pull-request-" name="create-the-pull-request-">Create the Pull Request:</a></h4>
 <ol>
-  <li>Read the <a href="http://www.apache.org/dev/cmsref#non-committer">ASF CMS reference for non-committers</a>.</li>
-  <li>Watch a <a href="http://s.apache.org/cms-anonymous-tutorial">video tutorial by Rob Weir for anonymous users</a>.</li>
+  <li>Navigate to the <a href="https://github.com/apache/sling-site">Apache Sling Site Project Mirror</a>.</li>
+  <li>Create an account and/or login.</li>
+  <li>Edit the documentation using the edit icon <em>Fork this project and edit this file</em>.</li>
+  <li>Once all changes are done click <em>New pull request</em>.</li>
+  <li>Select <em>base fork:apache/sling-site</em> <em>base:master</em> as the project to push to</li>
 </ol></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri Jan 19 23:31:47 2018 +0200</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">JE Bailey</span> on <span class="comment">Tue Jan 23 14:35:49 2018 -0500</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

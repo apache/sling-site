@@ -187,30 +187,29 @@ curl -u admin:admin -F :autoCheckin=true -F :autoCheckout=true -Fmarker=C http:/
 }
 </code></pre>
 <p>And the <code>;v=</code> URI path parameter gives access to each version (output abbreviated):</p>
-<pre><code>curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.0&quot; | jq . | sed &#39;s/^/    /&#39;
+<pre><code>curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.0&quot;
 {
   &quot;marker&quot;: &quot;A&quot;,
   &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
   &quot;jcr:uuid&quot;: &quot;74291bc8-e7cb-4a71-ab3a-224ba234be0a&quot;
 }
 
-curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.1&quot; | jq . | sed &#39;s/^/    /&#39;
+curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.1&quot;
 {
   &quot;marker&quot;: &quot;B&quot;,
   &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
   &quot;jcr:uuid&quot;: &quot;18b38479-a3fc-4a21-9cd4-89c44daf917d&quot;
 }
 
-curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.2&quot; | jq . | sed &#39;s/^/    /&#39;
+curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.2&quot;
 {
   &quot;marker&quot;: &quot;C&quot;,
   &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
   &quot;jcr:uuid&quot;: &quot;3d55430b-2fa6-4562-b415-638fb6608c0e&quot;
 }
-</code></pre>
-<p>$ </p></section></div></div>            
+</code></pre></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Tue Jan 23 14:20:28 2018 +0100</span></div>                <p>
+<div class="revisionInfo">Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Jan 24 09:40:10 2018 +0100</span></div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
