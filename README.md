@@ -20,6 +20,8 @@ Clone this repository and run the below commands or equivalent:
 
 The [ASF's gitpubsub mechanism](https://blogs.apache.org/infra/entry/git_based_websites_available) then synchronizes that content to [http://sling.apache.org](http://sling.apache.org), usually within a few seconds. More details about the publication process can be found in the [ASF Documentation about Project sites](https://www.apache.org/dev/project-site.html).
 
+We could automate this using a Jenkins job that's restricted to run on build nodes having the `git-websites` label, as done by [Apache PLC4X](http://plc4x.incubator.apache.org/developers/website.html).
+
 ## Variables in page content
 Adding `expandVariables=true` to a page's front matter enables simple variables replacement, see the `pageVariables` map in
 templates code for which variables are supported or to add more variables. A pattern like `${sling_tagline}` in page content
