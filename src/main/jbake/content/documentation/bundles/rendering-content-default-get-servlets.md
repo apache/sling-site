@@ -162,25 +162,24 @@ The `VersionInfoServlet` now shows all versions (output abbreviated):
 
 And the `;v=` URI path parameter gives access to each version (output abbreviated):
 
-    curl -s "http://localhost:8080/vtest.tidy.json;v=1.0" | jq . | sed 's/^/    /'
+    curl -s "http://localhost:8080/vtest.tidy.json;v=1.0"
     {
       "marker": "A",
       "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
       "jcr:uuid": "74291bc8-e7cb-4a71-ab3a-224ba234be0a"
     }
     
-    curl -s "http://localhost:8080/vtest.tidy.json;v=1.1" | jq . | sed 's/^/    /'
+    curl -s "http://localhost:8080/vtest.tidy.json;v=1.1"
     {
       "marker": "B",
       "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
       "jcr:uuid": "18b38479-a3fc-4a21-9cd4-89c44daf917d"
     }
     
-    curl -s "http://localhost:8080/vtest.tidy.json;v=1.2" | jq . | sed 's/^/    /'
+    curl -s "http://localhost:8080/vtest.tidy.json;v=1.2"
     {
       "marker": "C",
       "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
       "jcr:uuid": "3d55430b-2fa6-4562-b415-638fb6608c0e"
     }
-$ 
   
