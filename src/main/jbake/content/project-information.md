@@ -44,8 +44,10 @@ To check out the Sling source code, see the instructions from  [Getting and buil
 
 ### Web Access
 
-The source code can be accessed using either the GitHub or GitBox setup, but the most convenient way is to use the GitHub
-search to display all Sling projects: [https://github.com/apache/?q=sling](https://github.com/apache/?q=sling).
+The source code can be accessed using either the GitHub or GitBox setup. 
+
+To list all modules on GitHub you can use this search query: [https://github.com/apache/?q=sling](https://github.com/apache/?q=sling), or
+see our [list of repositories](/repolist.html) on this website.
 
 ### Attic
 A number of Sling modules that are not being developed further have been moved to the [Sling Attic](https://svn.apache.org/repos/asf/sling/attic/) in the svn
