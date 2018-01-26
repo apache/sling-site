@@ -209,6 +209,7 @@
                         <li><a href="/documentation/the-sling-engine/sling-api-crud-support.html">Sling API CRUD Support</a></li>
                         <li><a href="/javadoc-io.html">Sling API docs at javadoc.io</a></li>
                         <li><a href="/documentation/bundles/caching-services.html">Sling Caching Services</a></li>
+                        <li><a href="/repolist.html">Sling Git Repositories</a></li>
                         <li><a href="/documentation/bundles/sling-health-check-tool.html">Sling Health Check Tools</a></li>
                         <li><a href="/documentation/development/ide-tooling.html">Sling IDE tooling for Eclipse User Guide</a></li>
                         <li><a href="/documentation/bundles/metrics.html">Sling Metrics</a></li>

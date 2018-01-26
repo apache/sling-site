@@ -72,8 +72,22 @@
             </p>
         </div>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>                
-<div class="tags"><a href="/tags/healthchecks.html" class="label">healthchecks</a> <a href="/tags/operations.html" class="label">operations</a> </div>                
+<div class="breadcrumbs">
+                    <a href="/">
+                        Home
+                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                        Documentation
+                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                        Bundles
+                    </a>&nbsp;&raquo;&nbsp;
+                </div>                
+<div class="tags">
+                    <a href="/tags/healthchecks.html" class="label">
+                        healthchecks
+                    </a> <a href="/tags/operations.html" class="label">
+                        operations
+                    </a> 
+                </div>                
                 
             </div><h1 class="pagetitle">
                 Sling Health Check Tools
@@ -291,7 +305,9 @@ servletPath = /system/health
 <p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br/>remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
 <p>To use this module, configure sets of tags at <code>/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider</code> using the standard <code>includeThisTag,-omitThatTag</code> syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html to run the corresponding Health Checks.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">georg.henzler</span> on <span class="comment">Thu Nov 30 01:11:02 2017 +0100</span></div>                <p>
+<div class="revisionInfo">
+                    Last modified by <span class="author">georg.henzler</span> on <span class="comment">Thu Nov 30 01:11:02 2017 +0100</span>
+                </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

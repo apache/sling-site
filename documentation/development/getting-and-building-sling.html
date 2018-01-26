@@ -72,8 +72,20 @@
             </p>
         </div>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/development.html">Development</a>&nbsp;&raquo;&nbsp;</div>                
-<div class="tags"><a href="/tags/development.html" class="label">development</a> </div>                
+<div class="breadcrumbs">
+                    <a href="/">
+                        Home
+                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                        Documentation
+                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/development.html">
+                        Development
+                    </a>&nbsp;&raquo;&nbsp;
+                </div>                
+<div class="tags">
+                    <a href="/tags/development.html" class="label">
+                        development
+                    </a> 
+                </div>                
                 
             </div><h1 class="pagetitle">
                 Getting and Building Sling
@@ -100,7 +112,8 @@ $ java $DBG -jar target/org.apache.sling.launchpad... # (see below)
 <h2><a href="#configuring-maven" name="configuring-maven">Configuring Maven</a></h2>
 <p>See <a href="/documentation/development/maventipsandtricks.html">MavenTipsAndTricks</a>.</p>
 <h2><a href="#getting-the-sling-source" name="getting-the-sling-source">Getting the Sling Source</a></h2>
-<p>We provide a way of checking out all of the source modules that are used in Sling. Since that's over 2^<super>8</super> repositories, it's based on additional tooling.</p>
+<p>The Sling source code is managed in Git using the Apache Gitbox tools: Git repositories are mirrored from GitHub to the canonical Apache Git repositories. In practice, one can work on GitHub and the replication to the Apache repositories is transparent.</p>
+<p>The <a href="/repolist.html">complete list of modules</a> can be used to clone individual modules, but we provide a more convenient way of checking out all of the source modules that are used in Sling. Since that's over 2^<super>8</super> repositories, it's based on additional tooling:</p>
 <ol>
   <li>
   <p>Install a git client if needed and the <a href="https://android.googlesource.com/tools/repo">Google Repo</a> tool.</p></li>
@@ -184,7 +197,9 @@ When starting Sling inside the org-apache-sling-starter module you should not us
 </ul>
 <p>If adding dependencies to the poms, run mvn eclipse:eclipse again and refresh the project in Eclipse. Debugging works as described above.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri Nov 17 11:47:07 2017 +0200</span></div>                <p>
+<div class="revisionInfo">
+                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Jan 26 10:47:46 2018 +0100</span>
+                </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.

@@ -314,6 +314,7 @@ pre {
 .tags a {
     background-color: #EEE;
 	padding: 0.2em;
+    margin-left: 0.2em;
 	text-decoration: none;
 }
 

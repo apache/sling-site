@@ -72,8 +72,22 @@
             </p>
         </div>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs"><a href="/">Home</a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">Documentation</a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">Bundles</a>&nbsp;&raquo;&nbsp;</div>                
-<div class="tags"><a href="/tags/servlets.html" class="label">servlets</a> <a href="/tags/postservlet.html" class="label">postservlet</a> </div>                
+<div class="breadcrumbs">
+                    <a href="/">
+                        Home
+                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                        Documentation
+                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                        Bundles
+                    </a>&nbsp;&raquo;&nbsp;
+                </div>                
+<div class="tags">
+                    <a href="/tags/servlets.html" class="label">
+                        servlets
+                    </a> <a href="/tags/postservlet.html" class="label">
+                        postservlet
+                    </a> 
+                </div>                
                 
             </div><h1 class="pagetitle">
                 Manipulating Content - The SlingPostServlet (servlets.post)
@@ -923,7 +937,9 @@ of a resource without having to specify the path of each individual child resour
 <p>A <code>SlingPostProcessor</code> may perform additional changes or revert previous ones. It is important that the <code>SlingPostProcessor</code> does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method <code>process(SlingHttpServletRequest, List&lt;Modification&gt;)</code>.</p>
 <p>Two examples of SlingPostProcessors are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java">integration-tests</a> module.</p></section></div></div>            
             <div class="footer">
-<div class="revisionInfo">Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span></div>                <p>
+<div class="revisionInfo">
+                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2011-2017 The Apache Software Foundation.
