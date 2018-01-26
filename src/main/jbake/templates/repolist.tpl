@@ -49,6 +49,7 @@ layout 'layout/main.tpl', true,
             h2() { 
                 yield("Group: ${group}")
             }
+            newLine()
             
             ul() {
                 repos.'**'.findAll { 
@@ -61,8 +62,9 @@ layout 'layout/main.tpl', true,
                             yield("${p.attributes().path}")
                         }
                     }
+                    newLine()
                 }
             }
-    
+            newLine()
         }
     }
