@@ -8,8 +8,14 @@ U = new includes.U(config)
 
 layout 'layout/main.tpl', true,
     projects: projects,
+    breadcrumbs : contents {
+        include template : 'breadcrumbs-brick.tpl'
+    },
     tags : contents {
-        //include template: 'tags-brick.tpl'
+        include template: 'tags-brick.tpl'
+    },
+    lastModified: contents {
+        include template : 'lastmodified-brick.tpl'
     },
     bodyContents: contents {
         section(class:"wrap"){

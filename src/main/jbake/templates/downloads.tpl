@@ -274,6 +274,12 @@ def tableHead(String [] headers) {
 // ------------------------------------------------------------------------------------------------
 layout 'layout/main.tpl', true,
         projects: projects,
+        tags : contents {
+            include template: 'tags-brick.tpl'
+        },
+        lastModified: contents {
+            include template : 'lastmodified-brick.tpl'
+        },
         bodyContents: contents {
 
             div(class:"row"){
