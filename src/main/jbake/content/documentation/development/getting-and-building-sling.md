@@ -43,8 +43,12 @@ See [MavenTipsAndTricks](/documentation/development/maventipsandtricks.html).
 
 ## Getting the Sling Source
 
-We provide a way of checking out all of the source modules that are used in Sling. Since that's over 2^<super>8</super> repositories, it's based on
-additional tooling.
+The Sling source code is managed in Git using the Apache Gitbox tools: Git repositories are mirrored from GitHub to the canonical
+Apache Git repositories. In practice, one can work on GitHub and the replication to the Apache repositories is transparent.
+
+The [complete list of modules](/repolist.html) can be used to clone individual modules, but we provide a more convenient
+way of checking out all of the source modules that are used in Sling. Since that's over 2^<super>8</super> repositories,
+it's based on additional tooling:
 
 1. Install a git client if needed and the [Google Repo](https://android.googlesource.com/tools/repo) tool.
 

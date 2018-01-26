@@ -4,6 +4,13 @@ status=published
 tags=bundles,modules
 ~~~~~~
 
+## Bundles and Git repositories
+
+This is a manually maintained list of Sling bundles which have their documentation here.
+
+See also the [complete list of modules](/repolist.html) - some of them have their own "local" documentation
+in their README files instead of here.
+
 ## Content
 
 * [Content Loading (jcr.contentloader)](/documentation/bundles/content-loading-jcr-contentloader.html)
