@@ -19,18 +19,16 @@ Sling provides a number of testing tools to support the following use cases:
 
 This page describes those tools, and points to the bundles that implement them.
 
-The [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests) module demonstrates these tools, and is also meant as a sample project to show how to run integration tests for Sling-based applications.
-
-The main Sling integration tests at [launchpad/integration-tests](https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests) were created before this testing framework, and do not use it yet (as of March 2011). The new testing tools are simpler to use, but the "old" tests (all 400 of them as I write this) fulfill their validation role for testing Sling itself, there's no real need to modify them to use the new tools.
+The main Sling integration tests at [launchpad/integration-tests](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests) were created before this testing framework, and do not use it yet (as of March 2011). The new testing tools are simpler to use, but the "old" tests (all 400 of them as I write this) fulfill their validation role for testing Sling itself, there's no real need to modify them to use the new tools.
 
 See also [Testing Sling-based applications](/documentation/tutorials-how-tos/testing-sling-based-applications.html) which discusses testing in general.
 
 ## Required bundles
-These tools require a number of bundles on top of the standard Sling launchpad. See the [sample tests pom.xml](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/pom.xml)
+These tools require a number of bundles on top of the standard Sling launchpad. See the for instance [Sling Models IT pom.xml](https://github.com/apache/sling-org-apache-sling-models-integration-tests/blob/master/pom.xml)
 for an up-to-date list. Look for `sling.additional.bundle.*` entries in that pom for the bundle artifact IDs, and see the `dependencies` section for their version numbers.
 
 # Server-side JUnit tests contributed by bundles
-The services provided by the [org.apache.sling.junit.core](http://svn.apache.org/repos/asf/sling/trunk/testing/junit/core) bundle allow bundles to register JUnit tests, which are executed server-side by the JUnitServlet registered by default at `/system/sling/junit`. This bundle is not dependent on Sling, it should work in other OSGi environments.
+The services provided by the [org.apache.sling.junit.core](https://github.com/apache/sling-org-apache-sling-junit-core) bundle allow bundles to register JUnit tests, which are executed server-side by the JUnitServlet registered by default at `/system/sling/junit`. This bundle is not dependent on Sling, it should work in other OSGi environments.
 
 <div class="warning">
 Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway.
@@ -75,13 +73,11 @@ And another example with a test that fails:
     $ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.failingtests.JUnit4FailingTest.json
 
 # Scriptable server-side tests
-If the [org.apache.sling.junit.scriptable](http://svn.apache.org/repos/asf/sling/trunk/testing/junit/scriptable) bundle is active in a Sling system, (in addition to the `org.apache.sling.junit.core` bundle), scriptable tests can be executed by the `JUnitServlet` according to the following rules:
+If the [org.apache.sling.junit.scriptable](https://github.com/apache/sling-org-apache-sling-junit-scriptable) bundle is active in a Sling system, (in addition to the `org.apache.sling.junit.core` bundle), scriptable tests can be executed by the `JUnitServlet` according to the following rules:
 
 * A node that has the `sling:Test` mixin is a scriptable test node.
 * For security reasons, scriptable test nodes are only executed as tests if they are found under `/libs` or `/apps`, or more precisely under a path that's part of Sling's `ResourceResolver` search path.
 * To execute a test, the scriptable tests provider makes an HTTP request to the test node's path, with a `.test.txt` selector and extension, and expects the output to contain only the string `TEST_PASSED`. Empty lines and comment lines starting with a hash sign (#) are ignored in the output, and other lines are reported as failures.
-
-The [ScriptableTestsTest](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/scriptable/ScriptableTestsTest.java) class, from the integration test samples module described below, sets up such a test node and its accompanying script, and calls the JUnitServlet to execute the test. It can be used as a detailed example of how this works.
 
 Here's a minimal example that sets up and executes a scriptable test:
 
@@ -110,11 +106,15 @@ Test failures would be included in this JSON representation - you can test that 
 same request again.      
 
 # Integration tests example
-The [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests) module runs some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.
+The [IT Samples](https://github.com/apache/sling-samples/tree/master/testing) modules run some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.
 
-This module's pom and Java code can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.
+Either of those modules can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.
 
 Besides serving as examples, some of the tests in this module are used to validate the testing tools. They run as part of the full Sling [continuous integration](/project-information.html) build, so they're guaranteed to be correct examples if that build is successful.
+
+<div class="warning">
+The information below is outdated and needs an update, please rather directly check the source files linked above.
+</div>
 
 The sample uses the [testing/tools](http://svn.apache.org/repos/asf/sling/trunk/testing/tools) to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.
 

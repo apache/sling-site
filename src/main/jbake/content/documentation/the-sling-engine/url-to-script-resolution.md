@@ -18,7 +18,7 @@ Scripts and servlets are itself resources in Sling and thus have a resource path
 JCR repository, the resource type in a servlet component configuration or the "virtual" bundle resource path 
 (if a script is provided inside a bundle without being installed into the JCR repository). 
 
-For the whole Truth about script resolution, see the [ScriptSelectionTest](http://svn.apache.org/repos/asf/sling/trunk/bundles/servlets/resolver/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java) class. If you see interesting cases that are not
+For the whole Truth about script resolution, see the [ScriptSelectionTest](https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java) class. If you see interesting cases that are not
 covered there, please let us know via the Sling users mailing list.
 
 TODO: explain super types, servlet path mappings, node type resource types (`my:type -> my/type`) 

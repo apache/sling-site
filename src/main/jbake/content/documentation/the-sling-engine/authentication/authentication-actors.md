@@ -45,7 +45,7 @@ The actual process of logging into the repository and provided a `Session` is im
 
 The Sling Jackrabbit Embedded Repository bundle provides additional plugin interfaces to extend the login process dynamically using OSGi services. To this avail the bundle configures a `LoginModule` with the provided default Jackrabbit configuration supporting these plugins:
 
-  * `LoginModulePlugin` -- The main service interface. Plugins must implement this interface to be able to extend the login process. See for example the [Sling OpenID authentication handler](http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/openid/), which implements this interface to support OpenID authentication.
+  * `LoginModulePlugin` -- The main service interface. Plugins must implement this interface to be able to extend the login process.
   * `AuthenticationPlugin` -- Helper interface for the `LoginModulePlugin`.
 
 

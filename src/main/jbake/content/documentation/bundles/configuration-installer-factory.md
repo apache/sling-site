@@ -80,5 +80,5 @@ A number of such .config files exist in the Sling codebase and can be used as ex
 
 # Project Info
 
-* Configuration installer factory ([org.apache.sling.installer.factory.configuration](http://svn.apache.org/repos/asf/sling/trunk/installer/factories/configuration))
+* Configuration installer factory ([org.apache.sling.installer.factory.configuration](https://github.com/apache/sling-org-apache-sling-installer-factory-configuration))
 

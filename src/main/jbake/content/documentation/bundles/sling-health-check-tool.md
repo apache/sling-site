@@ -16,7 +16,7 @@ is a good starting point to run existing checks and to get familiar with how hea
 
 See also:
 
-* Source code at  [http://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/healthcheck](http://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/healthcheck)
+* [Source code for the HealthCheck modules on GitHub](https://github.com/apache?utf8=%E2%9C%93&q=sling%20hc)
 * adaptTo slides about Health Checks: [Introduction](http://www.slideshare.net/bdelacretaz/slinghc-bdelacretazadaptto2013) and [Health Check Executor](https://adapt.to/content/dam/adaptto/production/presentations/2014/adaptTo2014-Sling-Health-Checks-New-And-Noteworthy-Georg-Henzler.pdf/_jcr_content/renditions/original.media_file.download_attachment.file/adaptTo2014-Sling-Health-Checks-New-And-Noteworthy-Georg-Henzler.pdf)
 
 ## Use cases
@@ -146,6 +146,7 @@ hc.tags     | String[] | List of tags: Both Felix Console Plugin and Health Chec
 hc.mbean.name | String | Makes the HC result available via given MBean name. If not provided no MBean is created for that `HealthCheck`
 hc.async.cronExpression | String | Used to schedule the execution of a `HealthCheck` at regular intervals, using a cron expression as specified by the [Sling Scheduler](/documentation/bundles/scheduler-service-commons-scheduler.html) module. 
 hc.resultCacheTtlInMs | Long | Overrides the global default TTL as configured in health check executor for health check responses (since v1.2.6 of core)
+hc.warningsStickForMinutes | Long | This property will make WARN/CRITICAL results stay visible for future executions, even if the current state has returned to status OK. It is useful to keep attention on issues that might still require action after the state went back to OK, e.g. if an event pool has overflown and some events might have been lost (since v1.2.10 of core)
 
 All service properties are optional.
 
@@ -176,7 +177,7 @@ based on their tags (positive and negative selection, see the `HealthCheckFilter
 
 The DEBUG logs of health checks can optionally be displayed, and an option allows for showing only health checks that have a non-OK status.
 
-The screenshot below shows an example, as of svn revision 1513462.
+The screenshot below shows an example.
 
 ![Health Check Webconsole Plugin](sling-hc-plugin.jpg)
 
@@ -205,6 +206,8 @@ with instructions at the end of the page about URL parameters which can be used 
 
 Note that by design **the Health Checks Servlet doesn't do any access control by itself** to ensure it can detect unhealthy states of the authentication itself. Make sure the configured path is only accessible to relevant infrastructure and operations people. Usually all `/system/*` paths are only accessible from a local network and not routed to the Internet.
 
+By default the HC servlet sends the CORS header `Access-Control-Allow-Origin: *` to allow for client-side browser integrations. The behaviour can be configured using the OSGi config property `cors.accessControlAllowOrigin` (a blank value disables the header).
+
 ## Health Checks as server-side JUnit tests
 The `org.apache.sling.hc.junit.bridge` bundle makes selected Health Checks available as server-side JUnit tests. 
 
@@ -217,9 +220,3 @@ remote testing utilities, and also as plain Health Checks for monitoring or trou
 To use this module, configure sets of tags at `/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider`
 using the standard `includeThisTag,-omitThatTag` syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html 
 to run the corresponding Health Checks.
-
-To run the Health Check tests at build time, see the [testing/samples/integration-tests](http://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests)
-sample module.
-  
-
-

@@ -41,22 +41,28 @@ div(class:"menu"){
 
 	p(){
 		strong("Source") br() newLine()
-		a(href:"http://svn.apache.org/viewvc/sling/trunk", "Subversion") br() newLine()
-		a(href:"git://git.apache.org/sling.git", "Git") br() newLine()
-		a(href:"https://github.com/apache/sling", "Github Mirror") br() newLine()
-	}
-
-	p(){
-		strong("Sponsorship") br() newLine()
-		a(href:"http://www.apache.org/foundation/thanks.html", "Thanks") br() newLine()
-		a(href:"http://www.apache.org/foundation/sponsorship.html", "Become a Sponsor") br() newLine()
-		a(href:"https://donate.apache.org/", "Donate!") br() newLine()
-		a(href:"http://www.apache.org/foundation/buy_stuff.html", "Buy Stuff") br() newLine()  
+		a(href:"https://github.com/apache/?utf8=%E2%9C%93&q=sling", "GitHub") br() newLine()
+		a(href:"https://gitbox.apache.org/repos/asf?s=sling", "Git at Apache") br() newLine()
 	}
 
 	p(){
 		strong(){a(href:"${config.site_contextPath}sitemap.html", "Site Map")}
 	}
 
+	p(){
+		strong("Apache Software Foundation") br() newLine()
+		a(href:"http://www.apache.org/foundation/thanks.html", "Thanks!") br() newLine()
+		a(href:"http://www.apache.org/foundation/sponsorship.html", "Become a Sponsor") br() newLine()
+		a(href:"http://www.apache.org/foundation/buy_stuff.html", "Buy Stuff") br() newLine()  
+        a(href:"http://apache.org/foundation/contributing.html") {
+            img(
+                border:"0", 
+                alt:"Support the Apache Software Foundation!", 
+                src:"${config.site_contextPath}res/images/SupportApache-small.png",
+                width:"115px"
+            )
+        }
+	}
+    
 }
 

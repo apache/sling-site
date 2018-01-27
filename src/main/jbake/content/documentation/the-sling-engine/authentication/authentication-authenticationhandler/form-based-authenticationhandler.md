@@ -13,7 +13,7 @@ The implementation of the Form Based Authentication Handler follows the guidelin
 * For the initial form submission, the request URL must end with `/j_security_check` and the user name and password names must be `j_username` and `j_password`, resp.
 * The authentication type as returned by `HttpServletRequest.getAuthType()` is set to `HttpServletRequest.FORM_AUTH`.
 
-The Form Based Authentication Handler is maintained in the [Sling SVN](http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/form)
+The Form Based Authentication Handler is maintained in the [the Sling repo](https://github.com/apache/sling-org-apache-sling-auth-form).
 
 
 ### AuthenticationHandler implementation
@@ -66,7 +66,7 @@ If the `j_validate` parameter is not set or is set to any value other than `true
 
 The `resource` and `sling.auth.redirect` parameters provide similar functionality but with differing historical backgrounds. The `resource` parameter is based on the `resource` request attribute which is set by the login servlet to indicate the original target resource the client desired when it was forced to authenticate. The `sling.auth.redirect` parameter can be used by clients (applications like cURL or plain HTML forms) to request being redirected after successful login. If both parameters are set, the `sling.auth.redirect` parameter takes precedence.
 
-The Form Based Authentication Handler contains a [default form servlet](http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/form/src/main/java/org/apache/sling/auth/form/impl/AuthenticationFormServlet.java) and [HTML form template](http://svn.apache.org/repos/asf/sling/trunk/bundles/auth/form/src/main/resources/org/apache/sling/auth/form/impl/login.html).
+The Form Based Authentication Handler contains a [default form servlet](https://github.com/apache/sling-org-apache-sling-auth-form/blob/master/src/main/java/org/apache/sling/auth/form/impl/AuthenticationFormServlet.java) and [HTML form template](https://github.com/apache/sling-org-apache-sling-auth-form/blob/master/src/main/resources/org/apache/sling/auth/form/impl/login.html).
 
 
 ### Phase 2: Authenticated Requests

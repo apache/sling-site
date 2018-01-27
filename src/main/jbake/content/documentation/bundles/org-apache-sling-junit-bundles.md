@@ -89,7 +89,7 @@ bundle, making them available to the server-side tests.
 
 This teleporter mechanism is used in our integration tests, search for `TeleporterRule` in there
 for examples or look at the 
-[`integrationtest.teleporter`]( https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/teleporter)
+[`integrationtest.teleporter`](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/tree/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/teleporter)
 package. 
 
 As I write this the teleporter mechanism is quite new, I suspect there might be some weird interactions 
@@ -140,7 +140,7 @@ The following customizers are currently used in Sling
 
 ### Default Customizer ###
 
-*[DefaultPropertyBasedCustomizer.java](https://svn.apache.org/repos/asf/sling/trunk/testing/junit/teleporter/src/main/java/org/apache/sling/testing/teleporter/client/DefaultPropertyBasedCustomizer.java)* is used by default when no other customizer is referenced in `TeleporterRule.forClass(getClass())`. It relies on the following system properties:
+*[DefaultPropertyBasedCustomizer.java](https://github.com/apache/sling-org-apache-sling-junit-teleporter/blob/master/src/main/java/org/apache/sling/testing/teleporter/client/DefaultPropertyBasedCustomizer.java)* is used by default when no other customizer is referenced in `TeleporterRule.forClass(getClass())`. It relies on the following system properties:
 
 | Property Name                | Description                                     | Mandatory to set | Default value | Since version | Related JIRA |
 |------------------------------|-------------------------------------------------|------------------| ----- | ---| --- |
@@ -161,7 +161,7 @@ The following customizers are currently used in Sling
 The provisioning of an appropriate instance can be done with the [slingstart-maven-plugin](/documentation/development/slingstart.html). An example for that is given at [`sling-samples/testing/module-with-it`](https://github.com/apache/sling-samples/tree/master/testing/module-with-it). Since `slingstart-maven-plugin` 1.5.0 it is possible to bootstrap a Sling Server from a `model.txt` below `src/test/provisioning` independent of the packaging (see [SLING-6068](https://issues.apache.org/jira/browse/SLING-6068)).
 
 #### LaunchpadCustomizer ####
-The *[`LaunchpadCustomizer.java`](https://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/junit/teleporter/customizers/LaunchpadCustomizer.java)* only verifies that a Sling instance is ready at a given port and configures the `ClientSideTeleporter` to deploy to `http://localhost:8080` with the credentials `admin`:`admin`. `LaunchpadCustomizer` uses the `HttpTestBase` therefore some parameters are customizable through system properties. There is no bootstrapping of an instance done here, so this must be done separately!
+The *[`LaunchpadCustomizer.java`](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/junit/teleporter/customizers/LaunchpadCustomizer.java)* only verifies that a Sling instance is ready at a given port and configures the `ClientSideTeleporter` to deploy to `http://localhost:8080` with the credentials `admin`:`admin`. `LaunchpadCustomizer` uses the `HttpTestBase` therefore some parameters are customizable through system properties. There is no bootstrapping of an instance done here, so this must be done separately!
 
 #### BWIT_TeleporterCustomizer ####
 The *[`BWIT_TeleporterCustomizer.java`](https://github.com/apache/sling-samples/tree/master/testing/bundle-with-it/src/test/java/org/apache/sling/junit/teleporter/customizers/BWIT_TeleporterCustomizer.java)* relies on `SlingTestBase` to set the server's base url and credentials. Additionally the test bundle is adjusted so that the API is not included in it (but rather referenced from another bundle). The bootstrapping of the Sling instance is tweaked through system properties which are desribed [here](http://labs.6dglobal.com/blog/2013-06-05/creating-integration-tests-apache-sling/) and implicitly done by the customizer itself.

@@ -90,9 +90,9 @@ The following examples show example code how you can register Servlets with Slin
 
 ### Automated tests
 
-The [launchpad/test-services](http://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/) module contains test servlets that use various combinations of the above properties.
+The [launchpad/test-services](https://github.com/apache/sling-org-apache-sling-launchpad-test-services) module contains test servlets that use various combinations of the above properties.
 
-The [launchpad/integration-tests](http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/) module contains a number of tests (like the [ExtensionServletTest|http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution/ExtensionServletTest.java] for example) that verify the results.
+The [launchpad/integration-tests](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests) module contains a number of tests (like the [ExtensionServletTest|https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution/ExtensionServletTest.java] for example) that verify the results.
 
 Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various servlet registration mechanisms, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know!
 

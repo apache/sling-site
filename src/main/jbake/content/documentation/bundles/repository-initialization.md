@@ -28,7 +28,7 @@ If any of them throws an Exception, the `SlingRepository` service is not registe
 The `org.apache.sling.repoinit.parser` implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as 
 well as registering JCR namespaces and node types.
 
-The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the `RepoInitGrammar.jjt` file in that module, and the automated tests provide a number of [test cases](https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/repoinit/parser/src/test/resources/testcases) which demonstrate various features.
+The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the `RepoInitGrammar.jjt` file in that module, and the automated tests provide a number of [test cases](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases) which demonstrate various features.
 
 The companion `org.apache.sling.jcr.repoinit` module implements those operations on an Oak JCR repository, using a `SlingRepositoryInitializer`
 registered by default with a service ranking of 100. It also provides a `JcrRepoInitOpsProcessor` service to explicitly apply the output
@@ -76,15 +76,19 @@ The language is self-explaining but please refer to the actual test cases for de
         deny jcr:all on / nodetypes example:Page
     end
 	
-	set ACL for restrictions_examples
-	    deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
-	    allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
-	    allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
-	    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
-	end
+    set ACL for restrictions_examples
+        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
 
-	# Set repository level ACL
-	# Setting repository level ACL require
+        # empty rep:glob means "apply to this node but not its children"
+        # (requires o.a.s.jcr.repoinit 1.1.8)
+        allow jcr:something on / restriction(rep:glob)
+    end
+
+    # Set repository level ACL
+    # Setting repository level ACL require
     # o.a.s.repoinit.parser 1.2.0 and
     # o.a.s.jcr.repoinit 1.2.0
     set repository ACL for alice,bob
@@ -169,5 +173,15 @@ Using a `RepositoryInitializer` reference like in this example, with the _raw_ p
     raw:classpath://some-repoinit-file.txt
 	
 Which points to a `classpath:` URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.
+
+## Providing repoinit statements from OSGi factory configurations
+
+From version 1.1.6 of the `org.apache.sling.jcr.repoinit` bundle, repoinit statements can also be provided by OSGi factory
+configurations which use the `org.apache.sling.jcr.repoinit.RepositoryInitializer` factory PID.
+
+Such configurations have two optional fields:
+
+  * A multi-value `references` field with each value providing the URL (as a String) of raw repoinit statements.
+  * A multi-value `scripts` field with each value providing repoinit statements as plain text in a String.
 
    

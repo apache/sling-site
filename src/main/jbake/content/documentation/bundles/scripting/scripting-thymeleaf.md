@@ -82,6 +82,6 @@ Sling Scripting Thymeleaf comes with its own dialect using the `sling` prefix/na
 
 # Sample
 
-The [Sling Fling Sample](http://svn.apache.org/repos/asf/sling/trunk/samples/fling/) is a sample using Sling Scripting Thymeleaf with [Sling Models](/documentation/bundles/models.html) and [Sling Query](/documentation/bundles/sling-query.html).
+The [Sling Fling Sample](https://github.com/apache/sling-samples/tree/master/fling) is a sample using Sling Scripting Thymeleaf with [Sling Models](/documentation/bundles/models.html) and [Sling Query](/documentation/bundles/sling-query.html).
 
 ![Sling Fling Sample](sling-fling-sample.png)

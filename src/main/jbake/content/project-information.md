@@ -35,14 +35,26 @@ This project uses JIRA a J2EE-based, issue tracking and project management appli
 
 The issue tracker can be found at [http://issues.apache.org/jira/browse/SLING](http://issues.apache.org/jira/browse/SLING)
 
-
 ## Source Repository
 
-As of October 2017 the Sling source code has migrated to multiple GitHub repositories, synced to the canonical ASF Git repositories using the [ASF Git](https://gitbox.apache.org/) services.
+This project uses Git to manage its source code. The source code is hosted on the [ASF GitBox setup](https://gitbox.apache.org/repos/asf)
+and replicated to [Apache organisation on GitHub](https://github.com/apache/). As a developer you may push to either GitBox or GitHub. Note however that for GitHub to work you need to set up your GitHub account with two-factor authentication from [the main GitBox page](https://gitbox.apache.org/).
 
-The [sling-aggregator](https://github.com/apache/sling-aggregator) repository can be used to checkout all Sling modules.
+To check out the Sling source code, see the instructions from  [Getting and building Sling](/documentation/development/getting-and-building-sling.html#getting-the-sling-source).
 
-All our repositories have `sling` in their name and are found under the `apache` organization, use [this search link](https://github.com/apache/?utf8=%E2%9C%93&q=sling) to find them.
+### Web Access
+
+The source code can be accessed using either the GitHub or GitBox setup. 
+
+To list all modules on GitHub you can use this search query: [https://github.com/apache/?q=sling](https://github.com/apache/?q=sling), or
+see our [list of repositories](/repolist.html) on this website.
+
+### Attic
+A number of Sling modules that are not being developed further have been moved to the [Sling Attic](https://svn.apache.org/repos/asf/sling/attic/) in the svn
+repository that we used until late 2017.
+
+Now that the Sling codebase is split in multiple Git repositories, we'll probably keep such modules in place but mark them as being retired. We haven't had such
+a case since the move to Git, we will clarify once that happens.
 
 ## Continuous Integration
 
@@ -57,26 +69,31 @@ We maintain multiple build jobs, typically one or two per module. These are grou
 More documentation regarding the Jenkins setup is available as wiki links from the views mentioned above.
 
 ## Documentation Repository
-The documentation website, in fact the very page that you are reading right now, is located at [The ASF Content Management System’s Sling project](https://cms.apache.org/sling/). You can contribute without being an official project committer.
+The documentation website, in fact the very page that you are reading right now, is located at [The Apache Sling Site Project](https://gitbox.apache.org/repos/asf?p=sling-site.git). You can contribute without being an official project committer.
 
-###Save your changes as an SVN patch:
+###Submitting a patch to the Sling Site project
 
-1. Log in as username *anonymous* and leave the password blank.
-1. Click *Get sling Working Copy* to check out a local branch through the browser.
-1. Navigate to a document and click *edit*.
-1. Edit the page in the online markdown editor.
-1. Uncheck *Quick Mail*.
-1. Click *submit*.
-1. Click *Diff*, then *Download Diff* and save the SVN patch to your computer.
+####Create a Git patch:
 
-###Submit your changes:
+1. Locally check out the git repository.
+1. Edit the documentation, don't commit.
+1. From the command line `git diff > site.patch`.
+
+####Submit your changes:
 
 1. Navigate to the [Jira issue tracker](https://issues.apache.org/jira/browse/SLING).
 1. Create an account and/or login.
 1. Create a ticket, enter a description and choose *Documentation* for *Components*.
-1. Select the ticket, click *more*, select *attach files* and attach your SVN patch.
+1. Select the ticket, click *more*, select *attach files* and attach your Git patch.
 
-###Further resources:
+Additionally there is a Github hosted [Apache Sling Site Project Mirror](https://github.com/apache/sling-site) which can be used to submit changes as well.
 
-1. Read the [ASF CMS reference for non-committers](http://www.apache.org/dev/cmsref#non-committer).
-1. Watch a [video tutorial by Rob Weir for anonymous users](http://s.apache.org/cms-anonymous-tutorial).
+###Submitting a pull request to the GitHub Sling Site mirror
+
+####Create the Pull Request:
+
+1. Navigate to the [Apache Sling Site Project Mirror](https://github.com/apache/sling-site).
+1. Create an account and/or login.
+1. Edit the documentation using the edit icon *Fork this project and edit this file*.
+1. Once all changes are done click *New pull request*.
+1. Select *base fork:apache/sling-site* *base:master* as the project to push to

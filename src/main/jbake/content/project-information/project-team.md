@@ -20,19 +20,21 @@ This page is currently maintained manually, the ASF's LDAP information is the ul
 |--|--|--|--|
 | aheimoz | Alison Heimoz | Adobe | Technical Writer |
 | amitgupt | Amit Gupta | Adobe | Java Developer |
+| andysch | Andreas Schaefer | Madplanet.com Inc. | Java Developer |
 | apopescu (*) | Alexandru Popescu | | Java Developer |
 | asanso (*) | Antonio Sanso | Adobe | Java Developer |
 | bdelacretaz (*) | Bertrand Delacretaz | Adobe | Java Developer |
 | clemens | Clemens Wyss | MySign AG | Java Developer |
 | chetanm (*) | Chetan Mehrotra | | Java Developer |
 | clombart (*) | Christophe Lombart | | Java Developer |
-| cziegeler (*) | Carsten Ziegeler | Adobe | Chair, Java Developer |
+| cziegeler (*) | Carsten Ziegeler | Adobe | Java Developer |
 | dklco (*) | Dan Klco | Six Dimensions |  Java Developer |
 | dulvac | Andrei Dulvac | Adobe | Java Developer |
 | fmeschbe (*) | Felix Meschberger | Adobe | Java Developer |
 | enorman | Eric Norman | | Java Developer |
 | gianugo (*) | Gianugo Rabellino | | |
 | ghenzler | Georg Henzler | Netcentric | Java Developer |
+| jeb | Jason Bailey | SAS Institute | Java Developer |
 | jckautzmann | Jean-Christophe Kautzmann | Adobe | Java Developer |
 | jsedding | Julian Sedding | | Java Developer |
 | justin (*) | Justin Edelson | Adobe | Java Developer |
@@ -46,7 +48,7 @@ This page is currently maintained manually, the ASF's LDAP information is the ul
 | olli (*) | Oliver Lietz | | Java Developer |
 | pauls (*) | Karl Pauls | | Java Developer |
 | radu (*) | Radu Cotescu | Adobe | Java Developer |
-| rombert (*) | Robert Munteanu | Adobe | Java Developer |
+| rombert (*) | Robert Munteanu | Adobe | Chair, Java Developer |
 | sboehme | Sandro Boehme | inovex GmbH | Java Developer |
 | sseifert (*) | Stefan Seifert | pro!vision GmbH | Java Developer |
 | stefanegli (*) | Stefan Egli | Adobe | Java Developer |

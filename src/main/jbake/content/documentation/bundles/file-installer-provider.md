@@ -40,4 +40,4 @@ You can even combine start level and run mode support. Just pay attention that t
 
 # Project Info
 
-* File installer provider ([org.apache.sling.installer.provider.file](http://svn.apache.org/repos/asf/sling/trunk/installer/providers/file))
+* File installer provider ([org.apache.sling.installer.provider.file](https://github.com/apache/sling-org-apache-sling-installer-provider-file))

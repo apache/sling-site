@@ -4,6 +4,8 @@ status=published
 tags=news
 tableOfContents=false
 ~~~~~~
+* Released [Apache Sling IDE Tooling for Eclipse 1.2.0](/news/sling-ide-tooling-12-released.html) (January 21st, 2018).
+* Sling has moved to Git (October 20, 2017)
 * The [adaptTo() 2017 conference](https://adapt.to/2017/en.html) took place in Berlin. (September 25-27, 2017). 
 * Released [Apache Sling 9](/news/sling-launchpad-9-released.html) (June 12th, 2017)
 * The [adaptTo() 2016 conference](https://adapt.to/2016/en.html) took place in Berlin. (September 26-28, 2016). 

@@ -20,7 +20,7 @@ The links to the latest update site, including a permanent URL which stays up to
 
 ### Building from source
 
-The update sites are provided as a convenience for users that do not wish to build the project themselves. Building the project only requires a recent Maven installation. The project can be checked out, either [from trunk for the latest development version](https://svn.apache.org/repos/asf/sling/trunk/tooling/ide/) or [from a tag for released versions](https://svn.apache.org/repos/asf/sling/tags/), where the tags names have the format sling-ide-tooling-$VERSION. Once you have obtained the source code, it is enough to run
+The update sites are provided as a convenience for users that do not wish to build the project themselves. Building the project only requires a recent Maven installation. The project can be checked out from [https://github.com/apache/sling-ide-tooling](https://github.com/apache/sling-ide-tooling). Once you have obtained the source code, it is enough to run
 
 	mvn package
 
@@ -98,7 +98,9 @@ Note that deploying a project on the server publishes all the resources from the
 
 #### Automatic conversion
 
-Maven projects configured using the `com.day.jcr.vault:content-package-maven-plugin` are now automatically configured as content projects, removing the need to manually add the needed facets after importing them into Eclipse for the first time.
+_Support for the filevault-package-maven-plugin is available with Sling IDE Tooling for Eclipse 1.2 or newer_
+
+Maven projects configured using the `com.day.jcr.vault:content-package-maven-plugin` or the `org.apache.jackrabbit:filevault-package-maven-plugin` are now automatically configured as content projects, removing the need to manually add the needed facets after importing them into Eclipse for the first time.
 
 The following pom properties can be used to tweak how the project is configured
 
@@ -107,6 +109,12 @@ The following pom properties can be used to tweak how the project is configured
 | `sling.ide.m2e.contentpackage.active` | When set to `false`, the configuration is disabled |
 | `sling.ide.m2e.contentpackage.javaFacetVersion` | Controls the version of the Java Facet which is added to the project, e.g. `8` |
 | `sling.ide.m2e.contentpackage.webFacetVersion` | Controls the version of the Web Facet which is added to the project, e.g. `3.0` |
+
+_Available with Sling IDE Tooling for Eclipse 1.2 or newer_
+
+Additionally, automatic conversion and the addition of WTP natures and facets can be disabled from the _Sling IDE_ → _Maven Project Configurators_ preferences page.
+
+![Maven Project Configurator preferences](ide-tooling/maven-configurators-preferences.png)
 
 #### Manual conversion
 
@@ -145,6 +153,14 @@ The export wizard is available under the Sling -> Export Content ... action.
 The import wizard is available under the Sling -> Import Content ... action.
 
 ![Repository import](ide-tooling/repository-import.png)
+
+### Excluding paths from the sync process
+
+_Available with Sling IDE Tooling for Eclipse 1.2 or newer_
+
+The _Sling IDE_ preferences page allows you to manage a global list of files names which will not be synchronized.
+
+![Content sync exclusions](ide-tooling/content-sync-exclusions.png)
 
 ## Bundle sync
 

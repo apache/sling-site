@@ -103,10 +103,3 @@ Example:
 <div class="note">
 See section 16.3 of the JCR 2.0 specification for an explanation of the difference between bound and effective policies.
 </div>
-
-
-## Sample User Interface Implementation
-
-*Since Version 2.1.1*
-
-A sample implementation of ui pages for permissions management is provided @ http://svn.apache.org/viewvc/sling/trunk/samples/accessmanager-ui/

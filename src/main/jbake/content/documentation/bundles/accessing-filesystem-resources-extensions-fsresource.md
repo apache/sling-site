@@ -118,8 +118,8 @@ Notes:
 
 
 
-[src-trunk]: https://svn.apache.org/repos/asf/sling/trunk/bundles/extensions/fsresource/
-[src-branch]: https://svn.apache.org/repos/asf/sling/branches/fsresource-1.x/
+[src-trunk]: https://github.com/apache/sling-org-apache-sling-fsresource
+[src-branch]: https://github.com/apache/sling-org-apache-sling-fsresource/tree/release/1.x
 [maven-central]: https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.apache.sling%22%20AND%20a%3A%22org.apache.sling.fsresource%22
 [jcr-contentloader]: content-loading-jcr-contentloader.html
 [maven-sling-plugin]: http://sling.apache.org/components/maven-sling-plugin/

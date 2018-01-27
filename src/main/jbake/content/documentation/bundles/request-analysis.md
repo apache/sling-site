@@ -18,7 +18,7 @@ Scripts and servlets called during Sling's request processing may themselves use
 
 Usually the data collected by the `RequestProgressTracker` is just dropped or it may be visible for a certain number of recent requests on the *Recent Requests* page of the Web Console. When doing load tests, though, this Web Console page is of limited use because a lot more requests are handled than can be displayed in the Web Console.
 
-This is where the [Request Processing Analyzer](http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/reqanalyzer) comes in handy. When deployed as a bundle it registers as a request level servlet Filter with the Sling Main Servlet. Each request is logged in a special file (currently fixed at `${sling.home}/logs/requesttracker.txt`) with a header line provding core information on the request:
+This is where the [Request Processing Analyzer](https://github.com/apache/sling-org-apache-sling-reqanalyzer) comes in handy. When deployed as a bundle it registers as a request level servlet Filter with the Sling Main Servlet. Each request is logged in a special file (currently fixed at `${sling.home}/logs/requesttracker.txt`) with a header line provding core information on the request:
 
 * Start time stamp in ms since the Epoch
 * Request processing time in ms

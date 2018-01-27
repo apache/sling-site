@@ -38,11 +38,7 @@ If the parent folder of a bundle has a name which is a number, this is used as t
 Here's a quick walkthrough of the JCR installer functionality.
 
 ## Installation
-Start the Sling [launchpad/app](http://svn.apache.org/repos/asf/sling/trunk/launchpad/app) and make sure that the following bundles are present and started:
-
- * [Sling Settings](sling-settings-org-apache-sling-settings.html)
- * OSGi installer service ([org.apache.sling.installer.core](http://svn.apache.org/repos/asf/sling/trunk/installer/core))
- * JCR installer provider ([org.apache.sling.installer.provider.jcr](http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr))
+Run the [Sling Starter](https://github.com/apache/sling-org-apache-sling-starter).
 
 To watch the logs produced by these modules, you can filter `sling/logs/error.log` using `egrep 'jcrinstall|osgi.installer'`.
 
@@ -150,11 +146,11 @@ A node named like `o.a.s.foo.bar-a` uses *o.a.s.foo.bar* as its factory PID crea
 # Automated Tests
 The following modules contain lots of automated tests (under `src/test`, as usual):
 
-* OSGi installer integration tests ([org.apache.sling.installer.it](http://svn.apache.org/repos/asf/sling/trunk/installer/it))
-* JCR installer service ([org.apache.sling.installer.providers.jcr](http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr))
+* OSGi installer integration tests ([org.apache.sling.installer.it](https://github.com/apache/sling-org-apache-sling-installer-it))
+* JCR installer service ([org.apache.sling.installer.providers.jcr](https://github.com/apache/sling-org-apache-sling-installer-provider-jcr))
 
 Many of these tests are fairly readable, and can be used to find out in more detail how these modules work.
 
 # Project Info
 
-* JCR installer provider ([org.apache.sling.installer.provider.jcr](http://svn.apache.org/repos/asf/sling/trunk/installer/providers/jcr))
+* JCR installer provider ([org.apache.sling.installer.provider.jcr](https://github.com/apache/sling-org-apache-sling-installer-provider-jcr))

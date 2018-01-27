@@ -15,7 +15,7 @@
 def launchpadVersion="9"
 
 def slingIDETooling=[
-  "Sling IDE Tooling for Eclipse|eclipse|1.1.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
+  "Sling IDE Tooling for Eclipse|eclipse|1.2.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[
@@ -28,18 +28,17 @@ def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.4",
-  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.10",
-  "HTL Maven Plugin|htl-maven-plugin|1.0.8",
-  "Java Version Maven Plugin|javaversion-maven-plugin|1.0.0"
+  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.16",
+  "HTL Maven Plugin|htl-maven-plugin|1.1.2",
 ]
 
 def bundles=[
   "Validation API|org.apache.sling.validation.api|1.0.0",
-  "Validation Core|org.apache.sling.validation.core|1.0.0",
+  "Validation Core|org.apache.sling.validation.core|1.0.4",
   "Adapter|org.apache.sling.adapter|2.1.10",
   "Adapter Annotations|adapter-annotations|1.0.0",
-  "API|org.apache.sling.api|2.16.2",
-  "Auth Core|org.apache.sling.auth.core|1.4.0",
+  "API|org.apache.sling.api|2.16.4",
+  "Auth Core|org.apache.sling.auth.core|1.4.2",
   "Auth Form|org.apache.sling.auth.form|1.0.8",
   "Auth OpenID|org.apache.sling.auth.openid|1.0.4",
   "Auth Selector|org.apache.sling.auth.selector|1.0.6",
@@ -51,16 +50,16 @@ def bundles=[
   "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.2.0",
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0",
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.0",
-  "Commons Compiler|org.apache.sling.commons.compiler|2.3.4",
+  "Commons Compiler|org.apache.sling.commons.compiler|2.3.6",
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.6",
   "Commons HTML|org.apache.sling.commons.html|1.0.0",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.1.0",
   "Commons JSON|org.apache.sling.commons.json|2.0.20",
-  "Commons Log|org.apache.sling.commons.log|5.0.2",
+  "Commons Log|org.apache.sling.commons.log|5.1.0",
   "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|1.0.0",
   "Commons Log Service|org.apache.sling.commons.logservice|1.0.6",
-  "Commons Metrics|org.apache.sling.commons.metrics|1.2.2",
-  "Commons RRD4J metrics reporter|org.apache.sling.commons.metrics-rrd4j|1.0.0",
+  "Commons Metrics|org.apache.sling.commons.metrics|1.2.4",
+  "Commons RRD4J metrics reporter|org.apache.sling.commons.metrics-rrd4j|1.0.2",
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.1.10",
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.0",
   "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.2",
@@ -69,7 +68,7 @@ def bundles=[
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.2",
   "Context-Aware Configuration API|org.apache.sling.caconfig.api|1.1.0",
   "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2",
-  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.6",
+  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.10",
   "Context-Aware Configuration Mock Plugin|org.apache.sling.testing.caconfig-mock-plugin|1.3.0",
   "Context-Aware Configuration SPI|org.apache.sling.caconfig.spi|1.3.2",
   "Crankstart API|org.apache.sling.crankstart.api|1.0.0",
@@ -92,15 +91,15 @@ def bundles=[
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6",
   "Dynamic Include|org.apache.sling.dynamic-include|3.0.0",
-  "Engine|org.apache.sling.engine|2.6.8",
-  "Event|org.apache.sling.event|4.2.8",
+  "Engine|org.apache.sling.engine|2.6.10",
+  "Event|org.apache.sling.event|4.2.10",
   "Event API|org.apache.sling.event.api|1.0.0",
   "Explorer|org.apache.sling.extensions.explorer|1.0.4",
-  "Feature Flags|org.apache.sling.featureflags|1.2.0",
+  "Feature Flags|org.apache.sling.featureflags|1.2.2",
   "GWT Integration|org.apache.sling.gwt.servlet|3.0.0",
   "Thread Dumper|org.apache.sling.extensions.threaddump|0.2.2",
-  "File System Resource Provider|org.apache.sling.fsresource|2.1.8",
-  "I18n|org.apache.sling.i18n|2.5.8",
+  "File System Resource Provider|org.apache.sling.fsresource|2.1.10",
+  "I18n|org.apache.sling.i18n|2.5.10",
   "HApi|org.apache.sling.api|1.0.0",
   "Health Check Annotations|org.apache.sling.hc.annotations|1.0.4",
   "Health Check Core|org.apache.sling.hc.core|1.2.8",
@@ -131,9 +130,9 @@ def bundles=[
   "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|2.2.6",
   "JCR Oak Server|org.apache.sling.jcr.oak.server|1.1.4",
   "JCR Prefs|org.apache.sling.jcr.prefs|1.0.0",
-  "JCR Registration|org.apache.sling.jcr.registration|1.0.2",
+  "JCR Registration|org.apache.sling.jcr.registration|1.0.4",
   "JCR Repoinit|org.apache.sling.jcr.repoinit|1.1.6",
-  "JCR Resource|org.apache.sling.jcr.resource|3.0.4",
+  "JCR Resource|org.apache.sling.jcr.resource|3.0.6",
   "JCR Resource Security|org.apache.sling.jcr.resourcesecurity|1.0.2",
   "JCR Web Console Plugin|org.apache.sling.jcr.webconsole|1.0.2",
   "JXM Resource Provider|org.apache.sling.jmx.provider|1.0.2",
@@ -177,7 +176,7 @@ def bundles=[
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.2",
   "Resource Collection|org.apache.sling.resourcecollection|1.0.0",
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8",
-  "Resource Merger|org.apache.sling.resourcemerger|1.3.4",
+  "Resource Merger|org.apache.sling.resourcemerger|1.3.8",
   "Resource Presence|org.apache.sling.resource.presence|0.0.2",
   "Resource Resolver|org.apache.sling.resourceresolver|1.5.30",
   "Rewriter|org.apache.sling.rewriter|1.2.2",
@@ -186,32 +185,34 @@ def bundles=[
   "Sample Server-Side Tests|org.apache.sling.testing.samples.sampletests|1.0.6",
   "Scripting API|org.apache.sling.scripting.api|2.2.0",
   "Scripting Console|org.apache.sling.scripting.console|1.0.0",
-  "Scripting Core|org.apache.sling.scripting.core|2.0.50",
+  "Scripting Core|org.apache.sling.scripting.core|2.0.54",
   "Scripting EL API Wrapper|org.apache.sling.scripting.el-api|1.0.0",
   "Scripting Java|org.apache.sling.scripting.java|2.1.2",
-  "Scripting JavaScript|org.apache.sling.scripting.javascript|3.0.2",
-  "Scripting JSP|org.apache.sling.scripting.jsp|2.3.2",
+  "Scripting JavaScript|org.apache.sling.scripting.javascript|3.0.4",
+  "Scripting JSP|org.apache.sling.scripting.jsp|2.3.4",
   "Scripting JSP API Wrapper|org.apache.sling.scripting.jsp-api|1.0.0",
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.2.6",
   "Scripting JST|org.apache.sling.scripting.jst|2.0.6",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.2",
-  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.14",
-  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.14",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.42",
-  "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.24",
+  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.16",
+  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.18",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.46",
+  "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.26",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.6",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.4",
   "Scripting Thymeleaf|org.apache.sling.scripting.thymeleaf|1.1.0",
-  "Security|org.apache.sling.security|1.1.6",
-  "Service User Mapper|org.apache.sling.serviceusermapper|1.3.4",
+  "Security|org.apache.sling.security|1.1.10",
+  "Service User Mapper|org.apache.sling.serviceusermapper|1.4.0",
+  "Service User WebConsole|org.apache.sling.serviceuser.webconsole|1.0.0",
   "Servlet Helpers|org.apache.sling.servlet-helpers|1.1.2",
   "Servlets Compat|org.apache.sling.servlets.compat|1.0.2",
-  "Servlets Get|org.apache.sling.servlets.get|2.1.26",
+  "Servlets Get|org.apache.sling.servlets.get|2.1.28",
   "Servlets Post|org.apache.sling.servlets.post|2.3.22",
-  "Servlets Resolver|org.apache.sling.servlets.resolver|2.4.14",
+  "Servlets Resolver|org.apache.sling.servlets.resolver|2.4.22",
   "Settings|org.apache.sling.settings|1.3.8",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0",
   "Sling Query|org.apache.sling.query|4.0.0",
+  "Starter Startup|org.apache.sling.starter.startup|1.0.4",
   "Superimposing Resource Provider|org.apache.sling.superimposing|0.2.0",
   "System Bundle Extension: Activation API|org.apache.sling.fragment.activation|1.0.2",
   "System Bundle Extension: WS APIs|org.apache.sling.fragment.ws|1.0.2",
@@ -236,7 +237,7 @@ def bundles=[
   "URL Rewriter|org.apache.sling.urlrewriter|0.0.2",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0",
-  "XSS Protection|org.apache.sling.xss|2.0.0",
+  "XSS Protection|org.apache.sling.xss|2.0.4",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0"
 ]
 
@@ -247,7 +248,7 @@ def downloadLink(label, artifact, version, suffix) {
 	def sep = version ? "-" : ""
 	def path = "sling/${artifact}${sep}${version}${suffix}"
 	def digestsBase = "http://www.apache.org/dist/${path}"
-	
+
 	a(href:"[preferred]${path}", label)
 	yield " ("
 	a(href:"${digestsBase}.asc", "asc")
@@ -265,7 +266,7 @@ def tableHead(String [] headers) {
 			}
 		}
 	}
-	
+
 }
 
  // ------------------------------------------------------------------------------------------------
@@ -273,32 +274,38 @@ def tableHead(String [] headers) {
 // ------------------------------------------------------------------------------------------------
 layout 'layout/main.tpl', true,
         projects: projects,
+        tags : contents {
+            include template: 'tags-brick.tpl'
+        },
+        lastModified: contents {
+            include template : 'lastmodified-brick.tpl'
+        },
         bodyContents: contents {
-			
+
             div(class:"row"){
                 div(class:"small-12 columns"){
                     section(class:"wrap"){
                         yieldUnescaped content.body
-						
+
 						h2("Sling Application")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Package")
 							tbody() {
-								slingApplication.each { line -> 
+								slingApplication.each { line ->
 									tr() {
 										def data = line.split("\\|")
 										td(data[0])
 										td(data[4])
 										td(data[1])
 										def artifact = "${data[2]}-${data[4]}${data[3]}"
-										td(){ 
+										td(){
 											downloadLink(artifact, artifact, "", "")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Sling IDE Tooling")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Update Site")
@@ -310,14 +317,14 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										td(data[3])
 										def artifact = "${data[1]}/${data[2]}"
-										td(){ 
+										td(){
 											downloadLink("Update site", artifact, "", "")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Sling Components")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Binary", "Source")
@@ -329,17 +336,17 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										def artifact = data[1]
 										def version = data[2]
-										td(){ 
-											downloadLink("Bundle", artifact, version, ".jar") 
+										td(){
+											downloadLink("Bundle", artifact, version, ".jar")
 										}
-										td(){ 
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
 										}
 									}
 								}
 							}
 						}
-						
+
 						h2("Maven Plugins")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Binary", "Source")
@@ -351,11 +358,11 @@ layout 'layout/main.tpl', true,
 										td(data[2])
 										def artifact = data[1]
 										def version = data[2]
-										td(){ 
-											downloadLink("Maven Plugin", artifact, version, ".jar") 
+										td(){
+											downloadLink("Maven Plugin", artifact, version, ".jar")
 										}
-										td(){ 
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip") 
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
 										}
 									}
 								}

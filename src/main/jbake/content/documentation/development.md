@@ -24,6 +24,7 @@ Look here for more information on developper support when your are using Sling t
 
 ## Testing Sling-based Applications
 * [Testing Sling-based Applications](/documentation/tutorials-how-tos/testing-sling-based-applications.html)
+* [Testing with Pax Exam](/documentation/development/testing-paxexam.html)
 * [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html)
 * [Resource Resolver Mock](/documentation/development/resourceresolver-mock.html)
 * [Sling Mocks](/documentation/development/sling-mock.html)
@@ -54,5 +55,5 @@ Last but not least, here is some more information on how we ourselves are workin
 * [Issue Tracker](/documentation/development/issue-tracker.html)
 * [Release Management](/documentation/development/release-management.html)
 * [Maven Usage](/documentation/development/maven-usage.html)
-* To run our integration tests suite see the [launchpad/testing module README](http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/README.txt) and the [launchpad/integration-tests README](http://svn.apache.org/repos/asf/sling/trunk/launchpad/integration-tests/README.txt) for how to run individual integration tests. We use the [sling-IT](https://issues.apache.org/jira/issues/?jql=labels%20%3D%20sling-IT) label in JIRA for known issues with our integration tests.
+* To run our integration tests suite see the [launchpad/testing module README](https://github.com/apache/sling-org-apache-sling-launchpad-testing/blob/master/README.md) and the [launchpad/integration-tests README](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/README.md) for how to run individual integration tests. We use the [sling-IT](https://issues.apache.org/jira/issues/?jql=labels%20%3D%20sling-IT) label in JIRA for known issues with our integration tests.
 * A Sonar analysis is available on the [analysis.apache.org](https://analysis.apache.org/dashboard/index/org.apache.sling:sling-builder) server.

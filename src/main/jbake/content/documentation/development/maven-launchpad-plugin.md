@@ -5,8 +5,7 @@ tags=development,maven
 ~~~~~~
 
 <div class="note">
-This page is out of sync with the latest maven-launchpad-plugin features and settings. For now,
-refer to the source code and the launchpad/builder and launchpad/testing modules for more information.
+The launchpad plugin has been retired in favour of the provisioning model and associated tooling, see <a href="http://sling.apache.org/documentation/development/slingstart.html">the provisioning model documentation</a>.
 </div>
 
 The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi applications. It supports the following runtime scenarios:
@@ -17,8 +16,8 @@ The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi 
 
 In addition, the Maven Launchpad Plugin supports the publishing of an application descriptor, in the form of a *bundle list*, as a Maven artifact. This descriptor can then be used by downstream application builders as the basis for other applications. In Sling, this is embodied by two Maven projects:
 
- * [org.apache.sling.launchpad](http://svn.apache.org/repos/asf/sling/trunk/launchpad/builder) - produces an application descriptor.
- * [org.apache.sling.launchpad.testing](http://svn.apache.org/repos/asf/sling/trunk/launchpad/testing/) - uses the application descriptor from `org.apache.sling.launchpad` and adds two bundles.
+ * [org.apache.sling.launchpad](https://github.com/apache/sling-org-apache-sling-starter) - produces an application descriptor.
+ * [org.apache.sling.launchpad.testing](https://github.com/apache/sling-org-apache-sling-launchpad-testing) - uses the application descriptor from `org.apache.sling.launchpad` and adds two bundles.
 
 Maven Launchpad Plugin provides the following goals: 
 

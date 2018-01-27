@@ -8,7 +8,7 @@ Apache Sling uses Maven as a build tool. This page documents some of the choices
 
 ## Parent POM
 
-We separate the reactor POM from the parent POM. While the reactor POM functions as a simple aggregator, the parent POM, currently located at [parent/pom.xml](http://svn.apache.org/repos/asf/sling/trunk/parent/pom.xml), holds the common build configuration for all modules.
+We separate the reactor POM from the parent POM. While the reactor POM functions as a simple aggregator, the parent POM, currently located at [parent/pom.xml](https://github.com/apache/sling-parent/blob/master/pom.xml), holds the common build configuration for all modules.
 
 The reference to the parent POM is usually set to a released version since we don't deploy it as a SNAPSHOT during the build process. That reference must also contain an empty parentPath element, otherwise recent version of Maven will try to find it in the local filesystem, disregarding the version if the groupId and artifactId match. An example of how to reference the parent POM is
 

@@ -64,7 +64,7 @@ Currently supported commands are
 * `status` to get the instance status (OK or STOPPING)
 * `threads` to get a thread dump
 
-For the Whole Truth about this functionality see the [ControlListener class source code](https://svn.apache.org/repos/asf/sling/trunk/launchpad/base/src/main/java/org/apache/sling/launchpad/app/ControlListener.java).
+For the Whole Truth about this functionality see the [ControlListener class source code](https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/app/ControlListener.java).
 
 The interface and port is configurable with the `-j` command line option. The actual address and port used are written to the `$\{sling.home}/conf/controlport` file. So technically the `-j` option is not required for the `status` and `stop` operations because the port information can be read from that file.
 

@@ -6,12 +6,43 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2018
+
+* Resource Merger 1.3.8, Parent 33 (20th)
+* Commons Compiler 2.3.6 (19th)
+* Context-Aware Configuration Impl 1.4.10 (19th)
+* ServiceUser Mapper 1.4.0 and ServiceUser WebConsole 1.0.0 (18th)
+* SlingStart Maven Plugin 1.7.16 (15th)
+* File System Resource Provider 2.1.10 (15th)
+* Resource Merger 1.3.6 (15th)
+* XSS Protection API 2.0.4 (8th)
+
+## December 2017
+
+* Validation Core & Test Services 1.0.4, Slingstart Maven Plugin 1.7.14 (21st)
+* Scripting Core 2.0.54, Scripting JavaScript 3.0.4, Scripting HTL JS Use Provider 1.0.26, Scripting HTL Compiler 1.0.16, Scripting HTL Engine 1.0.46 (19th)
+* Auth Core 1.4.0 (18th)
+* Servlets Resolver 2.4.22 (13th)
+* Scripting HTL Java Compiler 1.0.18, HTL Maven Plugin 1.1.2 (8th)
+* Commons Metrics 1.2.4 (5th)
+* Scripting JSP 2.3.4 (4th)
+* Commons Log 5.1.0, Metrics RRD4J 1.0.2 (1st)
+* Engine 2.6.10, Feature Flags 1.2.2, i18n 2.5.10, and Security 1.1.10 (1st)
+
+## November 2017
+
+* Event Support 4.2.10, JCR Registration 1.0.4 (30th)
+* Scripting HTL Java Compiler 1.0.16,  Scripting HTL Engine 1.0.44,  HTL Maven Plugin 1.1.0, Starter Startup 1.0.4 (27th)
+* Security 1.1.8 (20th)
+* Context-Aware Configuration Impl 1.4.8 (13th)
+* Sling API 2.16.4, Sling JCR ResourceResolver 3.0.6, Sling Default GET Servlets 2.1.28 (6th)
+
 ## October 2017
 
 * Scripting Core 2.0.50 (23rd)
-* Apache Sling Discovery Oak 1.2.22 (17th)
-* Apache Sling Maven Sling Plugin 2.3.4, Servlet Helpers 1.0.2, Servlet Helpers 1.1.2, JCR Mock 1.3.2, ResourceResolver Mock 1.1.20, OSGi Mock 1.9.8, OSGi Mock 2.3.4, Sling Mock 1.9.10, Sling Mock 2.2.14 (17th)
-* Apache Sling Context-Aware Configuration Impl 1.4.6 (9th)
+* Maven Sling Plugin 2.3.4, Servlet Helpers 1.0.2, Servlet Helpers 1.1.2, JCR Mock 1.3.2, ResourceResolver Mock 1.1.20, OSGi Mock 1.9.8, OSGi Mock 2.3.4, Sling Mock 1.9.10, Sling Mock 2.2.14, Discovery Oak 1.2.22 (17th)
+* Starter Startup 1.0.2 (10th)
+* Context-Aware Configuration Impl 1.4.6 (9th)
 * Query 4.0.0 (4th)
 * Thread Support 3.2.10 (2nd)
 
@@ -243,7 +274,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 * Resource Resolver 1.5.14 (28th)
 * JUnit Tests Teleporter 1.0.12 (28th)
-* Apache Slingstart Maven Plugin 1.7.2 (28th)
+* Slingstart Maven Plugin 1.7.2 (28th)
 * Installer Core 3.8.6 (20th)
 * Content Distribution Core 0.2.4 (20th)
 * Content Distribution Core 0.2.0 (14th)
@@ -888,7 +919,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 * Engine 2.3.8 (27th)
 * Provisioning Model 1.0.0 (27th)
-* Apache Slingstart Maven Plugin 1.0.0 (27th)
+* Slingstart Maven Plugin 1.0.0 (27th)
 * JCR Resource Resolver 2.3.12 (26th)
 * Eventing 3.4.0 (24th)
 * Distributed Event Admin 1.0.0 (24th)

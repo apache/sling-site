@@ -11,7 +11,7 @@ See <a href="https://issues.apache.org/jira/browse/SLING-1213">SLING-1213</a>,
 <a href="https://issues.apache.org/jira/browse/SLING-1734">SLING-1734</a>, and
 <a href="http://markmail.org/message/quxhm7d5s6u66crr">Registering filters with Sling</a>
  for more details. The 
-<a href="https://svn.apache.org/repos/asf/sling/trunk/launchpad/test-services/src/main/java/org/apache/sling/launchpad/testservices/filters/NoPropertyFilter.java">NoPropertyFilter</a>
+<a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/filters/NoPropertyFilter.java">NoPropertyFilter</a>
 from our integration tests shows an example Sling Filter.
 </div>
 

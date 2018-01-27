@@ -4,6 +4,13 @@ status=published
 tags=bundles,modules
 ~~~~~~
 
+## Bundles and Git repositories
+
+This is a manually maintained list of Sling bundles which have their documentation here.
+
+See also the [complete list of modules](/repolist.html) - some of them have their own "local" documentation
+in their README files instead of here.
+
 ## Content
 
 * [Content Loading (jcr.contentloader)](/documentation/bundles/content-loading-jcr-contentloader.html)
@@ -12,6 +19,7 @@ tags=bundles,modules
 * [Rendering Content - Default GET servlets (servlets.get)](/documentation/bundles/rendering-content-default-get-servlets.html)
 * [Validation](/documentation/bundles/validation.html)
 * [Repository Initialization](/documentation/bundles/repository-initialization.html)
+* [Distribution](/documentation/bundles/distribution.html)
 
 ## Resource Providers
 
@@ -52,6 +60,7 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [Sling Metrics](/documentation/bundles/metrics.html)
 * [Servlet Helpers](/documentation/bundles/servlet-helpers.html)
 * [Context-Aware Configuration](/documentation/bundles/context-aware-configuration/context-aware-configuration.html)
+* [HApi - Hypermedia API tools](/documentation/bundles/hapi.html)
 
 ## Content Presentation and Rendering
 * [Scripting](/documentation/bundles/scripting.html) (aka Templating)

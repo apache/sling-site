@@ -23,6 +23,4 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 Sling Dynamic Include (org.apache.sling.dynamic-include)
 ========================================================
 For now the Sling Dynamic Include documentation can be found
-[in the Sling codebase](https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/sling-dynamic-include/README.md)
-or 
-[on our GitHub mirror](https://github.com/apache/sling/tree/trunk/contrib/extensions/sling-dynamic-include) if that's in sync.
+[in the module's README.md](https://github.com/apache/sling-org-apache-sling-dynamic-include).
