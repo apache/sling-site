@@ -144,6 +144,28 @@ Would assign the `/content/page/multi` property the value *[ "one", "two" ]*.
     
 This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.
     
+##### Updating property values
+Sometimes we need to just add or remove more values to a multi-value property. This is done using a combination of `@` suffixes - `@TypeHint` and `@Patch`. Let's see a short example, based on the one above:
+
+Suppose we want to update the ```/content/page/multi``` to also contain a third value. The way to do this is by issuing the following request from the command line:
+
+`$curl -Fmulti@TypeHint=String[] -Fmulti@Patch=true -Fmulti=+three http://host/content/page`
+
+The value of the `/content/page/multi` property would then be *[ "one", "two", "three" ]*. Note the ```+``` in the front of the value that we want to add. 
+
+Similarly, to remove a value from the multi value field we will use the following pattern:
+
+`$curl -Fmulti@TypeHint=String[] -Fmulti@Patch=true -Fmulti=-one http://host/content/page`
+ 
+ The value of the `/content/page/multi` property would then be *["two", "three" ]*. Note the `-` operator in front of the value that we want to remove.
+
+This operation has the following restrictions:
+
+* omitting the `+`/`-` operators will cause the value not to be updated
+* removing one value from the property will remove all the occurences, i.e. if the value is *[ "one","one","two","three"]* then using `-one` will remove both values
+* adding a value that is already present in the array of values will not add it again
+* newly added values will always be appended to the list
+
 ##### Automatic property values: last modified and created by
 
 To make it easier to set "last modified" and "created by" property
