@@ -12,6 +12,7 @@ writes given nodes and properties to current input resource
 
 - `sling:resourceType` is `slingPipes/write`
 - `conf` node tree that will be copied to the current input of the pipe, each property's names and value will be written to the input resource. Input resource will be outputed. Note that properties that will be evaluated (in an expression) as `null` for a given input resource will be removed from it. E.g. `./conf/some/node@prop=${null}` will add `./conf/some/node` structure if not in current input resource, but remove its `prop` property if any).
+- `expr` used if no configuration node provided: path of a content tree this will write to the current destination (basically a deep copy)  
 
 For most of the case where you just need to write properties, pipe builder API allows you to 
 e.g.
@@ -22,6 +23,12 @@ e.g.
 will write `@foo1=bar1` and `@foo2=bar2` in `/content/foo`. For more complicated cases where you need a structure to be written,
 just use a JCR / Resource explorer to edit the persistence of the pipe, and create the given structured under conf.
 
+Note that using `expr` you need configuration node _not_ to be here, and {{write}} shortcut creates one systematically.
+So if you want to use pipe builder and that, you'd need something like
+
+        .echo('/content/destination')
+        .pipe("slingPipes/write").expr("/content/source")
+        
 
 ##### MovePipe (`mv(expr)`)
 JCR move of current input to target path (can be a node or a property)
