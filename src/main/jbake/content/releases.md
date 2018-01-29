@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2018
 
+* I18N Support 2.5.12 (29th)
 * Resource Merger 1.3.8, Parent 33 (20th)
 * Commons Compiler 2.3.6 (19th)
 * Context-Aware Configuration Impl 1.4.10 (19th)
