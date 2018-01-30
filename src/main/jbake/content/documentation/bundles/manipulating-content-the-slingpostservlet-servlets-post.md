@@ -144,27 +144,7 @@ Would assign the `/content/page/multi` property the value *[ "one", "two" ]*.
     
 This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.
     
-##### Updating property values
-Sometimes we need to just add or remove more values to a multi-value property. This is done using a combination of `@` suffixes - `@TypeHint` and `@Patch`. Let's see a short example, based on the one above:
-
-Suppose we want to update the ```/content/page/multi``` to also contain a third value. The way to do this is by issuing the following request from the command line:
-
-`$curl -Fmulti@TypeHint=String[] -Fmulti@Patch=true -Fmulti=+three http://host/content/page`
-
-The value of the `/content/page/multi` property would then be *[ "one", "two", "three" ]*. Note the ```+``` in the front of the value that we want to add. 
-
-Similarly, to remove a value from the multi value field we will use the following pattern:
-
-`$curl -Fmulti@TypeHint=String[] -Fmulti@Patch=true -Fmulti=-one http://host/content/page`
- 
- The value of the `/content/page/multi` property would then be *["two", "three" ]*. Note the `-` operator in front of the value that we want to remove.
-
-This operation has the following restrictions:
-
-* omitting the `+`/`-` operators will cause the value not to be updated
-* removing one value from the property will remove all the occurences, i.e. if the value is *[ "one","one","two","three"]* then using `-one` will remove both values
-* adding a value that is already present in the array of values will not add it again
-* newly added values will always be appended to the list
+For more operations with multiple values you can use the [`@Patch`](#patch-suffix) suffix.
 
 ##### Automatic property values: last modified and created by
 
@@ -465,7 +445,7 @@ The `@CopyFrom` suffixed parameter is also special in that there must not be a c
 
 The `@CopyFrom` suffixed parameter in fact calls for a sub-operation, which is executed after the `@MoveFrom` sub operation but before any other tasks of content creation and modification are done.
 
-###### `@Patch`
+###### <a name="patch-suffix"></a>`@Patch`
     
 When modifying multi-value properties, the `@Patch` suffix can be used to just add `+` or remove `-` individual values without overwriting the full array. This allows to change the array without knowing the current values.
 
