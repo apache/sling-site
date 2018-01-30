@@ -144,7 +144,7 @@ Would assign the `/content/page/multi` property the value *[ "one", "two" ]*.
     
 This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.
     
-For more operations with multiple values you can use the [`@Patch`](https://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#patch) suffix.
+For more operations with multiple values you can use the [`@Patch`](#patch) suffix.
 
 ##### Automatic property values: last modified and created by
 
