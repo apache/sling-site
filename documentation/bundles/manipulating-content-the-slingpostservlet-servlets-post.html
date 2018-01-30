@@ -206,6 +206,7 @@ of a resource without having to specify the path of each individual child resour
 </code></pre>
 <p>Would assign the <code>/content/page/multi</code> property the value <em>[ "one", "two" ]</em>.</p>
 <p>This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.</p>
+<p>For more operations with multiple values you can use the <a href="#patch"><code>@Patch</code></a> suffix.</p>
 <h5><a href="#automatic-property-values-last-modified-and-created-by" name="automatic-property-values-last-modified-and-created-by">Automatic property values: last modified and created by</a></h5>
 <p>To make it easier to set "last modified" and "created by" property values from POST requests, values are generated automatically for the following property names <em>if they are supplied with empty values in such a request</em>:</p>
 <ul>
@@ -938,7 +939,7 @@ of a resource without having to specify the path of each individual child resour
 <p>Two examples of SlingPostProcessors are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java">integration-tests</a> module.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                    Last modified by <span class="author">Daniel Platon</span> on <span class="comment">Mon Jan 29 17:41:34 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
