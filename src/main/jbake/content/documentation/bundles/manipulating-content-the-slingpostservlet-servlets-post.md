@@ -144,7 +144,7 @@ Would assign the `/content/page/multi` property the value *[ "one", "two" ]*.
     
 This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.
     
-For more operations with multiple values you can use the [`@Patch`](#patch-suffix) suffix.
+For more operations with multiple values you can use the [`@Patch`](https://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#patch) suffix.
 
 ##### Automatic property values: last modified and created by
 
@@ -445,7 +445,7 @@ The `@CopyFrom` suffixed parameter is also special in that there must not be a c
 
 The `@CopyFrom` suffixed parameter in fact calls for a sub-operation, which is executed after the `@MoveFrom` sub operation but before any other tasks of content creation and modification are done.
 
-###### <a name="patch-suffix"></a>`@Patch`
+###### `@Patch`
     
 When modifying multi-value properties, the `@Patch` suffix can be used to just add `+` or remove `-` individual values without overwriting the full array. This allows to change the array without knowing the current values.
 
