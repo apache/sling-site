@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2018
 
+* Thread Support 3.2.16 (31st)
 * I18N Support 2.5.12, Testing Sling Mock 1.9.12, Testing Sling Mock 2.2.16 (29th)
 * Resource Merger 1.3.8, Parent 33 (20th)
 * Context-Aware Configuration Impl 1.4.10, Commons Compiler 2.3.6 (19th)
