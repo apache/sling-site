@@ -8,7 +8,8 @@ div(class:"menu"){
 		a(href:"${config.site_contextPath}documentation/development.html", "Development") br() newLine()
 		a(href:"${config.site_contextPath}documentation/bundles.html", "Bundles") br() newLine()
 		a(href:"${config.site_contextPath}documentation/tutorials-how-tos.html", "Tutorials &amp; How-Tos") br() newLine()
-		a(href:"${config.site_contextPath}documentation/configuration.html", "Configuration")   
+		a(href:"http://sling.apache.org/components/", "Maven Plugins") br() newLine()
+		a(href:"${config.site_contextPath}documentation/configuration.html", "Configuration") newLine()
 	}
 
 	p(){
