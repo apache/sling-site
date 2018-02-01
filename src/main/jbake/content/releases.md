@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+# February 2018
+* Scripting HTL Compiler 1.0.20-1.3.1, Scripting HTL Java Compiler 1.0.22-1.3.1, Scripting HTL Engine 1.0.48-1.3.1, Scripting HTL Testing Content 1.0.8-1.3.1, Scripting HTL Testing 1.0.6-1.3.1, HTL Maven Plugin 1.1.4-1.3.1 (1st)
+
 ## January 2018
 
 * Thread Support 3.2.16 (31st)
