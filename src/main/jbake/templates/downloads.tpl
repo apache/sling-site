@@ -20,8 +20,8 @@ def slingIDETooling=[
 
 def slingApplication=[
   "Sling Starter Standalone|A self-runnable Sling jar|org.apache.sling.starter|.jar|${launchpadVersion}",
-  "Sling Starter WAR|A ready-to run Sling webapp as a war file|org.apache.sling.stater|-webapp.war|${launchpadVersion}",
-  "Sling Source Release|The released Sling source code|org.apache.sling.stater|-source-release.zip|${launchpadVersion}",
+  "Sling Starter WAR|A ready-to run Sling webapp as a war file|org.apache.sling.starter|-webapp.war|${launchpadVersion}",
+  "Sling Source Release|The released Sling source code|org.apache.sling.starter|-source-release.zip|${launchpadVersion}",
 ]
 
 def mavenPlugins=[
