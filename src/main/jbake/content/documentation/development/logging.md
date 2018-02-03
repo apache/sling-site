@@ -551,8 +551,7 @@ To get complete log support working you need to deploy following bundles
 
 You need to specify the location of logback.xml via `org.apache.sling.commons.log.configurationFile`
 
-        java -jar org.apache.sling.launchpad-XXX-standalone.jar -Dorg.apache.sling.commons.log.configurationFile=/path/to/logback
- 
+        java -jar org.apache.sling.starter-XXX-standalone.jar -Dorg.apache.sling.commons.log.configurationFile=/path/to/logback
 
 [1]: http://logback.qos.ch/manual/filters.html
 [2]: http://logback.qos.ch/manual/appenders.html

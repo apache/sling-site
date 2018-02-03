@@ -33,7 +33,7 @@ Another option is to download the latest released Apache Sling standalone applic
  Java ${sling_minJavaVersion} or later installed and run Sling with:
  
     
-    java -jar org.apache.sling.launchpad-${sling_releaseVersion}.jar
+    java -jar org.apache.sling.starter-${sling_releaseVersion}.jar
 
 Starting the Sling application creates the Sling directory name *sling* in the same directory
  from where you started the above command.

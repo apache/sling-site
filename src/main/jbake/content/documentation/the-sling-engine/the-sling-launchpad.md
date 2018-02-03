@@ -78,7 +78,7 @@ For additional security, do not allow the control port to be opened on an extern
 
 Here's an example session where a Sling Standalone Application is started with the control port active:
 
-    $ java -jar target/org.apache.sling.launchpad-9-SNAPSHOT.jar start
+    $ java -jar target/org.apache.sling.starter-${sling_releaseVersion}.jar start
     05.04.2016 11:50:45.003 *INFO * [main] Setting sling.home=sling (default)
     05.04.2016 11:50:45.006 *INFO * [main] Starting Apache Sling in /foo/sling/launchpad/builder/sling
 	...

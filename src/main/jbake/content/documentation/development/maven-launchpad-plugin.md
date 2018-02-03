@@ -16,7 +16,7 @@ The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi 
 
 In addition, the Maven Launchpad Plugin supports the publishing of an application descriptor, in the form of a *bundle list*, as a Maven artifact. This descriptor can then be used by downstream application builders as the basis for other applications. In Sling, this is embodied by two Maven projects:
 
- * [org.apache.sling.launchpad](https://github.com/apache/sling-org-apache-sling-starter) - produces an application descriptor.
+ * [org.apache.sling.starter](https://github.com/apache/sling-org-apache-sling-starter) - produces an application descriptor.
  * [org.apache.sling.launchpad.testing](https://github.com/apache/sling-org-apache-sling-launchpad-testing) - uses the application descriptor from `org.apache.sling.launchpad` and adds two bundles.
 
 Maven Launchpad Plugin provides the following goals: 
