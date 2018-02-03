@@ -359,8 +359,8 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 </ul>
 <p>A model can reference other slingstart or slingfeature artifacts. When such an artifact is reference, the type needs to be specified, for example:</p>
 <pre><code>[artifacts]
-    org.apache.sling/org.apache.sling.launchpad/8-SNAPSHOT/slingstart
-    org.apache.sling/org.apache.sling.launchpad.test-bundles/0.0.1-SNAPSHOT/slingfeature
+    org.apache.sling/org.apache.sling.starter/${sling_releaseVersion}/slingstart
+    org.apache.sling/org.apache.sling.launchpad.test-bundles/0.0.4/slingfeature
 </code></pre>
 <p>The resulting model is a merged model, starting with the dependencies and then merging in the current model.</p>
 <p>By default the Maven classpath is extended by the dependencies of the merged model. This behaviour can be disabled though via setting the parameter <code>disableExtendingMavenClasspath</code> to <code>true</code> (<a href="https://issues.apache.org/jira/browse/SLING-6541">SLING-6541</a>).</p>
@@ -544,7 +544,7 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jan 4 13:56:38 2018 +0100</span>
+                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sat Feb 3 23:46:20 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
