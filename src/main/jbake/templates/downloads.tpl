@@ -12,16 +12,16 @@
 // To convert from the old svn downloads.list ust
 //    while read l; do echo "  \"$l\","; done < content/downloads.list
 // ------------------------------------------------------------------------------------------------
-def launchpadVersion="9"
+def launchpadVersion="10"
 
 def slingIDETooling=[
   "Sling IDE Tooling for Eclipse|eclipse|1.2.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[
-  "Sling Standalone Application|A self-runnable Sling jar|org.apache.sling.launchpad|.jar|${launchpadVersion}",
-  "Sling Web Application|A ready-to run Sling webapp as a war file|org.apache.sling.launchpad|-webapp.war|${launchpadVersion}",
-  "Sling Source Release|The released Sling source code|org.apache.sling.launchpad|-source-release.zip|${launchpadVersion}",
+  "Sling Starter Standalone|A self-runnable Sling jar|org.apache.sling.starter|.jar|${launchpadVersion}",
+  "Sling Starter WAR|A ready-to run Sling webapp as a war file|org.apache.sling.stater|-webapp.war|${launchpadVersion}",
+  "Sling Source Release|The released Sling source code|org.apache.sling.stater|-source-release.zip|${launchpadVersion}",
 ]
 
 def mavenPlugins=[
@@ -149,13 +149,13 @@ def bundles=[
   "Launchpad Base - Web Launcher|org.apache.sling.launchpad.base|5.6.0-2.6.16|webapp|war",
   "Launchpad Content|org.apache.sling.launchpad.content|2.0.12",
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2",
-  "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|1.0.",
+  "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|1.0.6",
   "Launchpad Test Fragment Bundle|org.apache.sling.launchpad.test-fragment|2.0.12",
-  "Launchpad Test Bundles|org.apache.sling.launchpad.test-bundles|0.0.2",
-  "Launchpad Testing|org.apache.sling.launchpad.testing|9",
-  "Launchpad Testing WAR|org.apache.sling.launchpad.testing-war|9",
-  "Launchpad Testing Services|org.apache.sling.launchpad.test-services|2.0.12",
-  "Launchpad Testing Services WAR|org.apache.sling.launchpad.test-services-war|2.0.12||war",
+  "Launchpad Test Bundles|org.apache.sling.launchpad.test-bundles|0.0.4",
+  "Launchpad Testing|org.apache.sling.launchpad.testing|10",
+  "Launchpad Testing WAR|org.apache.sling.launchpad.testing-war|10",
+  "Launchpad Testing Services|org.apache.sling.launchpad.test-services|2.0.14",
+  "Launchpad Testing Services WAR|org.apache.sling.launchpad.test-services-war|2.0.14||war",
   "Log Tracer|org.apache.sling.tracer|1.0.4",
   "Models API|org.apache.sling.models.api|1.3.4",
   "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0",

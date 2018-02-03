@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2018
 
+* Starter 10, Launchpad Testing 10, Launchpad Testing WAR 10, Launchpad Integration Tests 1.0.6, Launchpad Test Bundles 0.0.4, Launchpad Testing Fragment Bundle 2.0.14, Launchpad Testing Services 2.0.14, Launchpad Testing Services WAR 2.0.14, Archetype Parent 5, Bundle Archetype 1.0.6, JCRInstall Bundle Archetype 1.0.6, Initial Content Archetype 1.0.6, Slingstart Archetype 1.0.6 (3rd)
 * Testing PaxExam 1.0.0 (2nd)
 * Scripting HTL Compiler 1.0.20-1.3.1, Scripting HTL Java Compiler 1.0.22-1.3.1, Scripting HTL Engine 1.0.48-1.3.1, Scripting HTL Testing Content 1.0.8-1.3.1, Scripting HTL Testing 1.0.6-1.3.1, HTL Maven Plugin 1.1.4-1.3.1 (1st)
 
