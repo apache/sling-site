@@ -151,7 +151,7 @@ Using cURL's *-D* option shows the full HTTP response, which includes a *Locatio
 
 The actual node name might not be *adventures_with_slin* - depending on existing content in your repository, Sling will find a unique name for this new node, based on several well-know property values like title, description, etc. which are used for this if provided.
 
-So, in our case, our new node can be displayed in HTML via the [http://localhost:8080/blog/adventures_with_slin.html](http://localhost:8080/blog/adventures*with*slin.html) URL.
+So, in our case, our new node can be displayed in HTML via the [http://localhost:8080/blog/adventures_with_slin.html](http://localhost:8080/blog/adventures_with_slin.html) URL.
 
 Note that we didn't set a *sling:resourceType* property on our node, so if you want to render that node with a script, you'll have to store the script under */apps/nt/unstructured/html.esp*.
 
