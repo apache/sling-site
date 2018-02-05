@@ -24,7 +24,7 @@ in their README files instead of here.
 ## Resource Providers
 
 * [Accessing File System Resources (org.apache.sling.fsresource)](/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html)
-* [Bundle Resources (extensions.bundleresource)](/documentation/bundles/bundle-resources-extensions-bundleresource.html)
+* [Bundle Resources (org.apache.sling.bundleresource.impl)](/documentation/bundles/bundle-resources-extensions-bundleresource.html)
 * [NoSQL Resource Providers (org.apache.sling.nosql)](/documentation/bundles/nosql-resource-providers.html)
 * [Resource Merger (org.apache.sling.resourcemerger)](/documentation/bundles/resource-merger.html)
 
