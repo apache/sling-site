@@ -164,7 +164,7 @@ curl -X MKCOL -u admin:admin http://localhost:8080/apps/foo/bar
 <pre><code>Location: /blog/adventures_with_slin
 </code></pre>
 <p>The actual node name might not be <em>adventures_with_slin</em> - depending on existing content in your repository, Sling will find a unique name for this new node, based on several well-know property values like title, description, etc. which are used for this if provided.</p>
-<p>So, in our case, our new node can be displayed in HTML via the <a href="http://localhost:8080/blog/adventures*with*slin.html">http://localhost:8080/blog/adventures_with_slin.html</a> URL.</p>
+<p>So, in our case, our new node can be displayed in HTML via the <a href="http://localhost:8080/blog/adventures_with_slin.html">http://localhost:8080/blog/adventures_with_slin.html</a> URL.</p>
 <p>Note that we didn't set a <em>sling:resourceType</em> property on our node, so if you want to render that node with a script, you'll have to store the script under <em>/apps/nt/unstructured/html.esp</em>.</p>
 <h3><a href="#add-a-page-header-with-sling-include" name="add-a-page-header-with-sling-include">Add a page header with sling.include</a></h3>
 <p>The <em>sling.include</em> function can be called from scripts to include the rendered result of another node.</p>
@@ -206,7 +206,7 @@ curl -u admin:admin -T sling.jpg http://localhost:8080/images/sling.jpg
 <p>The <a href="http://localhost:8080/content/mynode.html">http://localhost:8080/content/mynode.html</a>, once refreshed, now shows the blue headline and logo, and this layout also applies to any node created with <em>sling:resourceType=foo/bar</em>.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                    Last modified by <span class="author">John Bradley</span> on <span class="comment">Sat Feb 3 18:04:27 2018 -0500</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
