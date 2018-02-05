@@ -27,6 +27,7 @@ This page is currently maintained manually, the ASF's LDAP information is the ul
 | clemens | Clemens Wyss | MySign AG | Java Developer |
 | chetanm (*) | Chetan Mehrotra | | Java Developer |
 | clombart (*) | Christophe Lombart | | Java Developer |
+| cmillar | Chris Millar | Adobe | Javascript Developer |
 | cziegeler (*) | Carsten Ziegeler | Adobe | Java Developer |
 | dklco (*) | Dan Klco | Six Dimensions |  Java Developer |
 | dulvac | Andrei Dulvac | Adobe | Java Developer |
