@@ -133,21 +133,10 @@
 <h2><a href="#support-for-mounting-json-files-in-the-bundle-resource-provider" name="support-for-mounting-json-files-in-the-bundle-resource-provider">Support for mounting JSON files in the bundle resource provider</a></h2>
 <p>The bundle resource provider now allows adding JSON files which hold properties for various nodes.</p>
 <p>The feature can be enabled by adding a directive to the header entry: <code>propsJSON:=EXTENSION</code>, e.g. <code>propsJSON=json</code>. All files having the configured extension will be treat as JSON files containing properties for the resources.</p>
-<p>It is possible to have a file and a JSON file for the same resource, like</p>
-<pre><code>/libs/system/myscript.txt
-/libs/system/myscript.txt.json
-</code></pre>
-<p>The json file will then contain properties (value map) for the resource, this includes defining the resource type. Such a json file can also contain a deep tree of objects like:</p>
-<pre><code>{
-  &quot;name&quot; : &quot;myscript&quot;,
-  &quot;child&quot; : {
-   &quot;foo&quot; : &quot;bar&quot;;
-  }
-}
-</code></pre></section></div></div>            
+<p>See the <a href="https://sling.apache.org/documentation/bundles/bundle-resources-extensions-bundleresource.html">Bundle resources documentation</a> for more details.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sun Feb 4 01:01:51 2018 +0200</span>
+                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Feb 6 13:52:27 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
