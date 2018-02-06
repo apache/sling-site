@@ -1,4 +1,4 @@
-title=Releases		
+title=Releases
 type=page
 status=published
 tags=news
