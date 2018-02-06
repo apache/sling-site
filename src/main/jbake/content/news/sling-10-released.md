@@ -78,18 +78,6 @@ The bundle resource provider now allows adding JSON files which hold properties 
 
 The feature can be enabled by adding a directive to the header entry: `propsJSON:=EXTENSION`, e.g. `propsJSON=json`.  All files having the configured extension will be treat as JSON files containing properties for the resources.
 
-It is possible to have a file and a JSON file for the same resource, like
-
-    /libs/system/myscript.txt
-    /libs/system/myscript.txt.json
-
-The json file will then contain properties (value map) for the resource, this includes defining the resource type. Such a json file can also contain a deep tree of objects like:
-
-    {
-      "name" : "myscript",
-      "child" : {
-       "foo" : "bar";
-      }
-    }
+See the [Bundle resources documentation](https://sling.apache.org/documentation/bundles/bundle-resources-extensions-bundleresource.html) for more details.
 
 [oak-fixes]: https://issues.apache.org/jira/issues/?jql=project%20%3D%20OAK%20AND%20resolution%20is%20not%20empty%20and%20fixVersion%20in%20(1.6.2%2C1.6.3%2C1.6.4%2C1.6.5%2C1.6.6%2C1.6.7%2C1.6.8)%20ORDER%20BY%20priority%20DESC%2C%20updated%20DESC)
