@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling :: Bundle Resources (org.apache.sling.bundleresource.impl)</title>
+        <title>Apache Sling :: Bundle Resources (extensions.bundleresource)</title>
         <link rel="icon" href="/res/favicon.ico"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
@@ -37,7 +37,6 @@
                 
             </p><p>
                 <strong>API Docs</strong><br/>
-                <a href="/apidocs/sling10/index.html">Sling 10</a><br/>
                 <a href="/apidocs/sling9/index.html">Sling 9</a><br/>
                 <a href="/apidocs/sling8/index.html">Sling 8</a><br/>
                 <a href="/apidocs/sling7/index.html">Sling 7</a><br/>
@@ -93,74 +92,41 @@
                 </div>                
                 
             </div><h1 class="pagetitle">
-                Bundle Resources (org.apache.sling.bundleresource.impl)
+                Bundle Resources (extensions.bundleresource)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h1><a href="#introduction" name="introduction">Introduction</a></h1>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>The Bundle Resource Provider provides access to files/directories included in an OSGi bundle through the Sling <code>ResourceResolver</code>. </p>
-<h1><a href="#configuration" name="configuration">Configuration</a></h1>
-<p>If a bundle wants to provide resources, it must specify the Bundle manifest header <code>Sling-Bundle-Resources</code> containing a list of absolute paths. The paths are separated by comma. Without any additional information such a path is mapped 1:1 meaning that the specified path is used as the root resource path and the corresponding resource is at the same path in the bundle. </p>
-<p>The following example header maps the paths <code>/libs/sling/explorer</code> and <code>/libs/sling/servlet/default/explorer</code> in the resource tree to resources in the bundle at the same path:</p>
-<pre><code>...
-Sling-Bundle-Resources: /libs/sling/explorer,                         
-    /libs/sling/servlet/default/explorer
-...
-</code></pre>
-<p>If such an entry points to a file in the bundle, only this file is mapped. If such an entry points to a directory in the bundle, the whole sub tree below this directory is mapped.</p>
-<p>It's also possible to map resources from the bundle to a different location in the resource tree. In this case the path has to be extended with a path directive to declare where the resources are in the bundle. Again the following example maps the path <code>/libs/sling/explorer</code> in the resource tree to resources below <code>/resources/explorer</code> in the bundle</p>
-<pre><code>...
-Sling-Bundle-Resources: /libs/sling/explorer;path:=/resources/explorer
-...
-</code></pre>
-<h1><a href="#resource-types" name="resource-types">Resource Types</a></h1>
+<h2><a href="#resource-types" name="resource-types">Resource Types</a></h2>
 <p>Files and directories are mapped into the resource tree as regular <code>Resource</code> instances whose resource type depends on the actual nature of the mapped resource:</p>
 <ul>
   <li>Regular files are assigned the <code>nt:file</code> resource type</li>
   <li>Directories are assigned the <code>nt:folder</code> resource type</li>
 </ul>
-<h1><a href="#defining-resources-through-json" name="defining-resources-through-json">Defining Resources Through JSON</a></h1>
-<p>By default, there is a 1:1 mapping between resources in the bundle and resources in the resource tree as explained above. While this works for adding files to the resource tree, it doesn't support adding arbitrary resources to the resource tree where the resources just have a map of properties and are not actually a file. By specifying the directive <code>propsJSON</code> with an extension, all files in the bundle having this extension are passed as JSON files and the contained structure is added as resources.</p>
-<p>For example with the following definition in the manifest:</p>
-<pre><code>...
-Sling-Bundle-Resources: /products;path:=/resources/products.json;propsJSON:=json
-...
-</code></pre>
-<p>the resource path <code>/products</code> is mapped to bundle resources at <code>/resources/products.json</code> and all bundle resources with the <code>json</code> extension are parsed. For example with the following <code>products.json</code>:</p>
-<pre><code>{
-    &quot;sling:resourceType&quot; : &quot;products&quot;,
-    &quot;sling&quot; : {
-        &quot;sling:resourceType&quot; : &quot;product&quot;,
-        &quot;name&quot; : &quot;sling&quot;,
-        &quot;title : &quot;Apache Sling&quot;
-    }
-}
-</code></pre>
-<p>a resource named <code>products</code> with the resource type <code>products</code> has a single child resource named <code>sling</code> and the above three properties.</p>
-<p>It's also possible to add additional properties to a file from a bundle resource. For example if the bundle contains the resource <code>tree.gif</code> and a JSON file <code>tree.gif.json</code> with the directive to parse all files ending in <code>json</code>, a file resource <code>tree.gif</code> exists in the resource tree with the additional properties from the json file. The JSON file can also override the default resource type in this case. In addition this json file can also contain nested resources below the file resource.</p>
-<h1><a href="#adapters" name="adapters">Adapters</a></h1>
+<h2><a href="#adapters" name="adapters">Adapters</a></h2>
 <p>Filesystem resources extend from Sling's <code>AbstractResource</code> class and thus are adaptable to any type for which an <code>AdapterFactory</code> is registered supporting bundle resources. In addition <code>BundleResource</code> support the following adapters natively:</p>
 <ul>
   <li><code>java.net.URL</code> -- A valid <code>bundle://</code> URL to the resource in the bundle.</li>
   <li><code>java.io.InputStream</code> -- An <code>InputStream</code> to read file contents. Doesn't apply to folders.</li>
 </ul>
-<h1><a href="#capability" name="capability">Capability</a></h1>
-<p>The bundle implementing the support for bundle resources must provide the following extender capability:</p>
-<pre><code>&lt;Provide-Capability&gt;
-   osgi.extender;osgi.extender=&quot;org.apache.sling.bundleresource&quot;;version:Version=&quot;1.1&quot;
-&lt;Provide-Capability&gt;
+<h2><a href="#configuration" name="configuration">Configuration</a></h2>
+<p>Providing bundles have a Bundle manifest header <code>Sling-Bundle-Resources</code> containing a list of absolute paths provided by the bundle. The paths are separated by comma or whitespace (SP, TAB, VTAB, CR, LF). </p>
+<p>Example (manifest.mf):</p>
+<pre><code>...
+Sling-Bundle-Resources: /libs/sling/explorer,                         
+    /libs/sling/servlet/default/explorer
+...
 </code></pre>
-<p>Bundles providing resources to the resource tree using the described mechanism should also require this capability to ensure at runtime that there is an implementation picking up those bundle resources. This can be done by using the following require capability header:</p>
-<pre><code>&lt;Require-Capability&gt;
-    osgi.extender;filter:=&quot;(&amp;(osgi.extender=org.apache.sling.bundleresource)(version&lt;=1.1.0)(!(version&gt;=2.0.0)))&quot;
-&lt;/Require-Capability&gt;
+<p>It's also possible to map resources from the bundle to a different location in the resource tree. In this case the path has to be extended with a path attrribute to declare where the resources are in the bundle:</p>
+<pre><code>...
+Sling-Bundle-Resources: /somepath/inthe/resourcetree;path:=/path/inthe/bundle
+...
 </code></pre>
-<p>Without requiring the capability, the bundle containing the resources might resolve successfully but the resource are not part of the resource tree as there is no implementation picking them up.</p>
-<h1><a href="#webconsole-plugin" name="webconsole-plugin">WebConsole Plugin</a></h1>
 <p>The Bundle Resource Provider also has a web console plugin through which the currently installed bundles can be seen.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Sun Feb 4 16:13:54 2018 -0800</span>
+                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
