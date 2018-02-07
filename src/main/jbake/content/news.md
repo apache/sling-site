@@ -4,6 +4,7 @@ status=published
 tags=news
 tableOfContents=false
 ~~~~~~
+* Released [Apache Sling Pipes 2.0.2](/documentation/bundles/sling-pipes.html) (February 7th, 2018).
 * Released [Apache Sling 10](/news/sling-10-released) (February 6th, 2018).
 * Released [Apache Sling IDE Tooling for Eclipse 1.2.0](/news/sling-ide-tooling-12-released.html) (January 21st, 2018).
 * Sling has moved to Git (October 20, 2017)

@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2018
 
+* Sling Pipes 2.0.2 (7th)
 * Discovery Base 2.0.8 and Discovery Support 1.0.4 (6th)
 * File System Resource Provider 2.1.12 (5th)
 * Starter 10, Launchpad Testing 10, Launchpad Testing WAR 10, Launchpad Integration Tests 1.0.6, Launchpad Test Bundles 0.0.4, Launchpad Testing Fragment Bundle 2.0.14, Launchpad Testing Services 2.0.14, Launchpad Testing Services WAR 2.0.14, Archetype Parent 5, Bundle Archetype 1.0.6, JCRInstall Bundle Archetype 1.0.6, Initial Content Archetype 1.0.6, Slingstart Archetype 1.0.6 (3rd)
