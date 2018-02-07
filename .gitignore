@@ -7,3 +7,4 @@ target
 !.gitignore
 !.sling-module.xml
 .DS_Store
+*.iml
