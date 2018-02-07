@@ -4,5 +4,5 @@ p() {
     yield "may be trademarks or registered trademarks of their respective owners."
 }
 p() {
-    yield "Copyright \u00a9 2011-2017 The Apache Software Foundation."
+    yield "Copyright \u00a9 2007-2018 The Apache Software Foundation."
 }
