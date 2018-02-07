@@ -159,6 +159,7 @@
                         <li><a href="/documentation/bundles/log-tracers.html">Log Tracer</a></li>
                         <li><a href="/documentation/development/logging.html">Logging</a></li>
                         <li><a href="/documentation/legacy/logging.html">Logging</a></li>
+                        <li><a href="/documentation/bundles/sling-pipes/logical.html">Logical Pipes</a></li>
                         <li><a href="/documentation/bundles/mime-type-support-commons-mime.html">MIME Type Support (commons.mime and commons.contentdetection)</a></li>
                         <li><a href="/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html">Managing permissions (jackrabbit.accessmanager)</a></li>
                         <li><a href="/documentation/bundles/managing-users-and-groups-jackrabbit-usermanager.html">Managing users and groups (jackrabbit.usermanager)</a></li>
@@ -185,6 +186,7 @@
                         <li><a href="/project-information.html">Project Information</a></li>
                         <li><a href="/project-information/project-license.html">Project License</a></li>
                         <li><a href="/project-information/project-team.html">Project Team</a></li>
+                        <li><a href="/documentation/bundles/sling-pipes/readers.html">Readers Pipes</a></li>
                         <li><a href="/documentation/development/release-management.html">Release Management</a></li>
                         <li><a href="/releases.html">Releases</a></li>
                         <li><a href="/documentation/bundles/rendering-content-default-get-servlets.html">Rendering Content - Default GET Servlets</a></li>
@@ -200,6 +202,7 @@
                         <li><a href="/documentation/the-sling-engine/resources.html">Resources</a></li>
                         <li><a href="/old-stuff/run-modes-org-apache-sling-runmode.html">Run Modes</a></li>
                         <li><a href="/documentation/karaf.html">Running Apache Sling on Apache Karaf</a></li>
+                        <li><a href="/documentation/bundles/sling-pipes/samples.html">Sample pipes</a></li>
                         <li><a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Scheduler Service (commons scheduler)</a></li>
                         <li><a href="/project-information/security.html">Security</a></li>
                         <li><a href="/documentation/bundles/sling-query/selectors.html">Selectors</a></li>
@@ -222,6 +225,8 @@
                         <li><a href="/documentation/bundles/sling-oak-restrictions.html">Sling Oak Restrictions</a></li>
                         <li><a href="/documentation/pax-exam-utils.html">Sling Pax Exam Utilities</a></li>
                         <li><a href="/documentation/bundles/sling-pipes.html">Sling Pipes</a></li>
+                        <li><a href="/documentation/bundles/sling-pipes/bindings.html">Sling Pipes Bindings</a></li>
+                        <li><a href="/documentation/bundles/sling-pipes/execution-monitoring.html">Sling Pipes Configuration, Execution and monitoring</a></li>
                         <li><a href="/documentation/bundles/sling-query.html">Sling Query</a></li>
                         <li><a href="/documentation/bundles/sling-query/vs-jcr.html">Sling Query vs JCR</a></li>
                         <li><a href="/documentation/bundles/scripting.html">Sling Scripting</a></li>
@@ -243,6 +248,7 @@
                         <li><a href="/documentation/bundles/web-console-extensions.html">Web Console Extensions</a></li>
                         <li><a href="/documentation/the-sling-engine/sling-properties.html">Well-known Sling Properties</a></li>
                         <li><a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a></li>
+                        <li><a href="/documentation/bundles/sling-pipes/writers.html">Writers</a></li>
                         <li><a href="/documentation/bundles/xml-support.html">XML support</a></li>
                         <li><a href="/old-stuff/scriptengineintegration/xslt-processing-pipeline.html">XSLT Processing Pipeline</a></li>
                     </ul></section></div>            
