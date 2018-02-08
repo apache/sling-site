@@ -140,6 +140,21 @@ otherwise, the third parameter is used as the default when retrieving the value 
 
     <c:set var="content" value="${sling:getValue(properties,'jcr:title',resource.name)}" />
 
+### hasChildren
+
+Return true if the specified resource has child resources.
+
+* Returns: `java.lang.Boolean` - True if there are child resource of the specified resource
+* Accepts:
+    * `org.apache.sling.api.resource.Resource` - The resource of which to check for children.
+* Since: 1.3
+
+*Example Usage*
+
+    <c:if test="${sling:hasChildren(resource)">
+        <h1>Do Something</h1>
+    </c:if>
+
 ### listChildren
 
 Method for allowing the invocation of the Sling Resource listChildren method.
@@ -302,8 +317,6 @@ Retrieves resources based on either an absolute path or a relative path and a ba
 * Attributes
     * base - The base resource under which to retrieve the child resource, will only be considered if a relative path is specified.
     * path - The path of the resource to retrieve, if relative, the base resource must be specified.
-    * defaultValue - The default value to return if no value exists for the key. If specified, this takes precedence over returnClass.
-    * returnClass - The class into which to coerce the returned value.
     * var - The name of the variable to which to save the resource.
 * Since: 1.3
 
