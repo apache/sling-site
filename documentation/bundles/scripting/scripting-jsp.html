@@ -237,6 +237,22 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getValue(properties,&#39;jcr:title&#39;,resource.name)}&quot; /&gt;
 </code></pre>
+<h3><a href="#haschildren" name="haschildren">hasChildren</a></h3>
+<p>Return true if the specified resource has child resources.</p>
+<ul>
+  <li>Returns: <code>java.lang.Boolean</code> - True if there are child resource of the specified resource</li>
+  <li>Accepts:
+    <ul>
+      <li><code>org.apache.sling.api.resource.Resource</code> - The resource of which to check for children.</li>
+    </ul>
+  </li>
+  <li>Since: 1.3</li>
+</ul>
+<p><em>Example Usage</em></p>
+<pre><code>&lt;c:if test=&quot;${sling:hasChildren(resource)&quot;&gt;
+    &lt;h1&gt;Do Something&lt;/h1&gt;
+&lt;/c:if&gt;
+</code></pre>
 <h3><a href="#listchildren" name="listchildren">listChildren</a></h3>
 <p>Method for allowing the invocation of the Sling Resource listChildren method.</p>
 <ul>
@@ -404,8 +420,6 @@
     <ul>
       <li>base - The base resource under which to retrieve the child resource, will only be considered if a relative path is specified.</li>
       <li>path - The path of the resource to retrieve, if relative, the base resource must be specified.</li>
-      <li>defaultValue - The default value to return if no value exists for the key. If specified, this takes precedence over returnClass.</li>
-      <li>returnClass - The class into which to coerce the returned value.</li>
       <li>var - The name of the variable to which to save the resource.</li>
     </ul>
   </li>
@@ -451,7 +465,7 @@
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
+                    Last modified by <span class="author">Dan Klco</span> on <span class="comment">Wed Feb 7 21:15:03 2018 -0500</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
