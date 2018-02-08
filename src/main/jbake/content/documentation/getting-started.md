@@ -15,12 +15,12 @@ There are different ways to get Apache Sling running. You can either use Docker,
 The easiest way to get Apache Sling running is to use Docker. If you don't have Docker installed
  you can skip to the next section.
 
-We maintain a docker image of our latest release at [Apache Sling Docker Image](https://hub.docker.com/r/apachesling/sling).
+We maintain a docker image of our latest release at [Apache Sling Docker Image](https://hub.docker.com/r/apache/sling).
  
 The simplest command to launch Sling is:
 
 
-    docker run -p 8080:8080 -v /tmp/sling:/opt/sling/sling apachesling/sling
+    docker run -p 8080:8080 -v /tmp/sling:/opt/sling/sling apache/sling
 
 This will start the latest Apache Sling distribution and mount the Sling directory to */tmp/sling*
  on your machine. Make sure that your docker configuration allows this or change to a different
