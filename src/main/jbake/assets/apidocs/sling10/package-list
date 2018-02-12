@@ -1,4 +1,5 @@
 org.apache.sling.adapter
+org.apache.sling.adapter.annotations
 org.apache.sling.api
 org.apache.sling.api.adapter
 org.apache.sling.api.auth
