@@ -29,8 +29,7 @@ Discussions about Sling happen on our mailing lists, see our
 
 Here are our most recent news, there are more in our [news archive](/news.html). A more detailed overview over all Sling module releases can be found in [Releases](/releases.html).
 
-<ul id="newsExcerpt">
-</ul>
+<ul id="newsExcerpt"></ul>
 
 <script src="/res/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
