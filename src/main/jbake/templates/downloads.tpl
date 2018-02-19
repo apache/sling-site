@@ -109,7 +109,7 @@ def bundles=[
   "Health Check Samples|org.apache.sling.hc.samples|1.0.6",
   "Health Check Support|org.apache.sling.hc.support|1.0.4",
   "Health Check Webconsole|org.apache.sling.hc.webconsole|1.1.2",
-  "Installer Core|org.apache.sling.installer.core|3.8.10",
+  "Installer Core|org.apache.sling.installer.core|3.8.12",
   "Installer Console|org.apache.sling.installer.console|1.0.2",
   "Installer Configuration Support|org.apache.sling.installer.factory.configuration|1.1.2",
   "Installer Health Checks|org.apache.sling.installer.hc|1.0.0",
