@@ -263,7 +263,14 @@ releases which are just announced on our [news](/news.html) page.
 
 ## Releasing the Sling IDE Tooling
 
+<div class="note">Eclipse is very aggresive about caching artifacts with the same coordinates. Make sure that once you build the artifacts 
+with code signing enabled you install the right ones. If you install artifacts with the same version but not signed, Eclipse will cache
+that version indefinitely with no known workaround except setting up a new installation of Eclipse.</div>
+
 While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see [Using the code signing service ](https://reference.apache.org/pmc/codesigning) for details.
+
+<div class="note">While we sort out a proper location you will need to locally build install the <tt>codesign-maven-plugin</tt> from
+<a href="https://github.com/apache/sling-whiteboard/tree/master/codesign">https://github.com/apache/sling-whiteboard/tree/master/codesign</a>.</div>
 
 The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.
 
@@ -273,8 +280,8 @@ The whole process is outlined below, assuming that we start with a development v
 1. Tag the commit using `git tag -a -m 'Tag 1.0.2 release' sling-ide-tooling-1.0.2`
 1. update to next version: `mvn tycho-versions:set-version -DnewVersion=1.0.3-SNAPSHOT` and also update the version of the source-bundle project
 1. commit and push the change
-1. checkout the version from the tag and proceed with the build from there `git checkout sling-ide-tooling-1.0.2`a
-1. In `p2update/pom.xml`, uncomment the `codesign-maven-plugin` declaration and change the code signing service to 'Java Signing Sha256'
+1. checkout the version from the tag and proceed with the build from there `git checkout sling-ide-tooling-1.0.2`
+1. In `p2update/pom.xml`, uncomment the `codesign-maven-plugin` declaration and change the code signing service to _Java Signing Sha256_. Note that the process might fail during the code signing with a SAAJ error, retrying usually fixes it.
 1. build the project with p2/gpg signing enabled: `mvn clean package -Pcodesign`
 1. manually build the zipped p2 repository: `cd p2update/target/repository-signed && zip -r org.apache.sling.ide.p2update-1.0.2.zip . && cd -`
 1. build the source bundle from the source-bundle directory: `mvn clean package`    
