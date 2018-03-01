@@ -6,9 +6,13 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## March 2018
+
+*  Testing Sling Mock 2.2.18, Servlet Helpers 1.1.4 (1st)
+
 ## February 2018
 
-* Installer Core (19th)
+* Installer Core 3.8.12 (19th)
 * Sling Pipes 2.0.2 (7th)
 * Discovery Base 2.0.8 and Discovery Support 1.0.4 (6th)
 * File System Resource Provider 2.1.12 (5th)
