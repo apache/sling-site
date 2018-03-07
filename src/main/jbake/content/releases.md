@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2018
 
-* Testing PaxExam 2.0.0 (7th)
+* Testing PaxExam 2.0.0, JCR Oak Server 1.2.0 (7th)
 *  Models Impl 1.4.8 (5th)
 *  Testing Sling Mock 2.2.18, Servlet Helpers 1.1.4 (1st)
 
