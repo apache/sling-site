@@ -196,7 +196,7 @@ def bundles=[
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.2",
   "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.20-1.3.1",
   "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.22-1.3.1",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.48-1.3.1",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.52-1.3.1",
   "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.26",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.6",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.4",
@@ -237,7 +237,7 @@ def bundles=[
   "URL Rewriter|org.apache.sling.urlrewriter|0.0.2",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0",
-  "XSS Protection|org.apache.sling.xss|2.0.4",
+  "XSS Protection|org.apache.sling.xss|2.0.6",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0"
 ]
 
