@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2018
 
+* API 2.18.0 (19th)
 * XSS Protection API 2.0.6, Scripting HTL Engine 1.0.52-1.3.1, AScripting HTL Testing 1.0.8-1.3.1 (16th)
 * Testing PaxExam 2.0.0, JCR Oak Server 1.2.0 (7th)
 * Models Impl 1.4.8 (5th)
