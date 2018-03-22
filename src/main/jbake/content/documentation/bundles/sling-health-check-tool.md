@@ -18,8 +18,8 @@ See also:
 
 * [Source code for the HealthCheck modules on GitHub](https://github.com/apache?utf8=%E2%9C%93&q=sling%20hc)
 * adaptTo() slides about Health Checks:
-  * [adaptTo() 2013 - Automated self-testing and health check of live Sling instances](https://adapt.to/2013/en/schedule/18_healthcheck.html)
-  * [adaptTo() 2014 - New features of the sling health check](https://adapt.to/2014/en/schedule/new-features-of-the-sling-health-check.html)
+    * [adaptTo() 2013 - Automated self-testing and health check of live Sling instances](https://adapt.to/2013/en/schedule/18_healthcheck.html)
+    * [adaptTo() 2014 - New features of the sling health check](https://adapt.to/2014/en/schedule/new-features-of-the-sling-health-check.html)
 
 ## Use cases
 Generally health checks have two high level use cases:
