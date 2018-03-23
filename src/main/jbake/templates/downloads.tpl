@@ -221,7 +221,7 @@ def bundles=[
   "Testing Hamcrest|org.apache.sling.testing.hamcrest|1.0.2",
   "Testing JCR Mock|org.apache.sling.testing.jcr-mock|1.3.2",
   "Testing Logging Mock|org.apache.sling.testing.logging-mock|2.0.0",
-  "Testing OSGi Mock|org.apache.sling.testing.osgi-mock|2.3.4",
+  "Testing OSGi Mock|org.apache.sling.testing.osgi-mock|2.3.8",
   "Testing PaxExam|org.apache.sling.testing.paxexam|2.0.0",
   "Testing Resource Resolver Mock|org.apache.sling.testing.resourceresolver-mock|1.1.20",
   "Testing Sling Mock|org.apache.sling.testing.sling-mock|2.2.18",

@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2018
 
+* Testing OSGi Mock 2.3.8 (23th)
 * Resource Resolver 1.6.0, JCR Resource 3.0.10 (22nd)
 * API 2.18.0, Security 1.1.12 (19th)
 * XSS Protection API 2.0.6, Scripting HTL Engine 1.0.52-1.3.1, AScripting HTL Testing 1.0.8-1.3.1 (16th)
