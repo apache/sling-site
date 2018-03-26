@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2018
 
+* Commons Log 5.1.4 (26th)
 * Testing OSGi Mock 2.3.8 (23th)
 * Resource Resolver 1.6.0, JCR Resource 3.0.10 (22nd)
 * API 2.18.0, Security 1.1.12 (19th)
