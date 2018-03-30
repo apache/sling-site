@@ -40,8 +40,8 @@ You have to set `serviceRequirements=disable` in Karaf's `etc/org.apache.karaf.f
 
     karaf@root()> feature:install sling-quickstart-oak-tar
 
-4) Install Launchpad Content (feature includes [Composum](https://github.com/ist-dresden/composum)):
+4) Install Starter Content (feature includes [Composum](https://github.com/ist-dresden/composum)):
 
-    karaf@root()> feature:install sling-launchpad-content
+    karaf@root()> feature:install sling-starter-content
 
 5) Browse to [http://localhost:8181/](http://localhost:8181/⁠).
