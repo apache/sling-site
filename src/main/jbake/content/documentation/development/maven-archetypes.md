@@ -14,7 +14,7 @@ This archetype generates a Maven project which will build a standalone Launchpad
 
 This archetype generates a Maven project which will build a Launchpad WAR file using the default bundle set. For demonstration purposes, the generated project includes an extra bundle list file (`src/main/bundles/list`) which includes Apache Felix FileInstall as well as a test configuration file (`src/test/config/sling.properties`).
 
-### sling-intitial-content-archetype
+### sling-initial-content-archetype
 
 This archetype generates a Maven project which will build an OSGi bundle that supports JCR NodeType registration (in `SLING-INF/nodetypes/nodetypes.cnd`) and initial content loading (in `SLING-INF/scripts` and `SLING-INF/content`).
 
