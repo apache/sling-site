@@ -4,7 +4,7 @@ status=published
 tags=karaf
 ~~~~~~
 
-**NOTE:** Tested and built with Apache Karaf 4.2.0.M2
+**NOTE:** Tested and built with Apache Karaf 4.2.0
 
 ## Sling Karaf Features
 
