@@ -146,6 +146,12 @@ img {
     color: #4a4a43
 }
 
+.menu img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .main {
     position: absolute;
     border-top: 10px solid #cde0ea;
