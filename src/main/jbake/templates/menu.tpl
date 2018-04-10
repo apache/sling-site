@@ -21,11 +21,7 @@ div(class:"menu"){
 		strong("API Docs")  br() newLine()
 		a(href:"${config.site_contextPath}apidocs/sling10/index.html", "Sling 10") br() newLine()
 		a(href:"${config.site_contextPath}apidocs/sling9/index.html", "Sling 9") br() newLine()
-		a(href:"${config.site_contextPath}apidocs/sling8/index.html", "Sling 8") br() newLine()
-		a(href:"${config.site_contextPath}apidocs/sling7/index.html", "Sling 7") br() newLine()
-		a(href:"${config.site_contextPath}apidocs/sling6/index.html", "Sling 6") br() newLine()
-		a(href:"${config.site_contextPath}apidocs/sling5/index.html", "Sling 5") br() newLine()
-		a(href:"${config.site_contextPath}javadoc-io.html", "Archive at javadoc.io") br() newLine()
+		a(href:"${config.site_contextPath}documentation/apidocs.html", "All versions") br() newLine()
 	}
 
 	p(){

@@ -113,3 +113,4 @@ Redirect Permanent /site/webdav.html /documentation/development/repository-based
 Redirect Permanent /site/wiki.html http://s.apache.org/sling.wiki
 Redirect Permanent /site/wrap-or-decorate-resources.html /documentation/the-sling-engine/wrap-or-decorate-resources.html
 Redirect Permanent /site/xslt-processing-pipeline.html /old-stuff/scriptengineintegration/xslt-processing-pipeline.html
+Redirect Permanent /javadoc-io.html /documentation/apidocs.html
