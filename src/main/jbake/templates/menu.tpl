@@ -52,12 +52,20 @@ div(class:"menu"){
 		a(href:"http://www.apache.org/foundation/thanks.html", "Thanks!") br() newLine()
 		a(href:"http://www.apache.org/foundation/sponsorship.html", "Become a Sponsor") br() newLine()
 		a(href:"http://www.apache.org/foundation/buy_stuff.html", "Buy Stuff") br() newLine()  
+        a(href:"https://www.apache.org/events/current-event.html") {
+            img(
+                border:"0",
+                alt:"Current ASF Events",
+                src:"https://www.apache.org/events/current-event-125x125.png",
+                width:"125px"
+            )
+        }
         a(href:"http://apache.org/foundation/contributing.html") {
             img(
                 border:"0", 
                 alt:"Support the Apache Software Foundation!", 
                 src:"${config.site_contextPath}res/images/SupportApache-small.png",
-                width:"115px"
+                width:"125px"
             )
         }
 	}
