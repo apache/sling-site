@@ -5,9 +5,13 @@ tags=downloads,community,pmc
 tableOfContents=false
 ~~~~~~
 
-To get the latest development release of Apache Sling, you can check out the Source Code and Getting and Building Sling yourself. Otherwise, the releases below are available for download. To install, just download and extract. The PGP keys at [https://www.apache.org/dist/sling/KEYS](https://www.apache.org/dist/sling/KEYS) can be used to verify the integrity of the release archives.
+To get the latest development release of Apache Sling, you can check out the Source Code and Getting and Building Sling yourself. Otherwise, the releases below are available for download. To install, just download and extract.
 
 All Apache Sling products are distributed under the terms of The [Apache Software License](http://apache.org/licenses/) (version 2.0). See our license, or the LICENSE file included in each distribution.
+
+# How to validate the downloaded files
+
+The PGP keys at [https://www.apache.org/dist/sling/KEYS](https://www.apache.org/dist/sling/KEYS) can be used to verify the integrity of the release archives. See [https://www.apache.org/info/verification](https://www.apache.org/info/verification) for how that works.
 
 # Mirrors
 
