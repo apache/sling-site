@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## April 2018
+
+* Installer Heath Checks 2.0.0 (11th)
+
 ## March 2018
 
 * Commons Log 5.1.4 (26th)
