@@ -253,7 +253,7 @@ def downloadLink(label, artifact, version, suffix) {
 	yield " ("
 	a(href:"${digestsBase}.asc", "asc")
 	yield ", "
-	a(href:"${digestsBase}.md5", "md5")
+	a(href:"${digestsBase}.sha1", "sha1")
 	yield ")"
 	newLine()
 }
