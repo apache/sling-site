@@ -1,4 +1,4 @@
-title=Logging		
+title=Logging (Legacy 3.x)
 type=page
 status=published
 tags=logging,operations
