@@ -170,8 +170,8 @@ It is possible to specify monthly, weekly, half-daily, daily, hourly, or minutel
 Do not use the colon ":" character in anywhere in the pattern option. The text before the colon is interpreted as the
 protocol specification of a URL which is probably not what you want.
 
-Note that Scheduled Rotation ignores the `org.apache.sling.commons.log.file.number` property since the old log files are
-not numbered but "dated".
+Note that when using Scheduled Rotation purging of old log files
+ can be disabled by setting the property `org.apache.sling.commons.log.file.number` to '0'.  
 
 ##### Size Rotation
 
