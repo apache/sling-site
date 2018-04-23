@@ -339,7 +339,7 @@ http://localhost:8080/system/console/slinglog/tailer.txt?tail=1000&amp;grep=luce
   </tbody>
 </table>
 <p>Do not use the colon ":" character in anywhere in the pattern option. The text before the colon is interpreted as the protocol specification of a URL which is probably not what you want.</p>
-<p>Note that Scheduled Rotation ignores the <code>org.apache.sling.commons.log.file.number</code> property since the old log files are not numbered but "dated".</p>
+<p>Note that when using Scheduled Rotation purging of old log files  can be disabled by setting the property <code>org.apache.sling.commons.log.file.number</code> to '0'. </p>
 <h5><a href="#size-rotation" name="size-rotation">Size Rotation</a></h5>
 <p>Log file rotation by size is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a plain number or a number plus a size multiplier. The size multiplier may be any of <code>K</code>, <code>KB</code>, <code>M</code>, <code>MB</code>, <code>G</code>, or <code>GB</code> where the case is ignored and the meaning is probably obvious.</p>
 <p>When using Size Rotation, the <code>org.apache.sling.commons.log.file.number</code> defines the number of old log file generations to keep. For example to keep 5 old log files indexed by 0 through 4, set the <code>org.apache.sling.commons.log.file.number</code> to <code>5</code> (which happens to be the default).</p>
@@ -612,7 +612,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sat Feb 3 23:46:20 2018 +0200</span>
+                    Last modified by <span class="author">Julian Sedding</span> on <span class="comment">Mon Apr 23 15:00:50 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
