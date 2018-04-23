@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2018
 
+* File System Resource Provider 2.1.14 (23rd)
 * Installer Heath Checks 2.0.0 (11th)
 
 ## March 2018
