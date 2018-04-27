@@ -213,11 +213,10 @@ And keep the versions sorted, so when adding a new version moved it down to just
 
 Close all issues associated with the released version.
 
-## Update the Sling Launchpad
+## Update the Sling Starter (fka Launchpad)
 
-If the bundle was already included in the Sling Launchpad or if it a new release that should be included
-add it with the release version in the provisioning model under `launchpad/builder/src/main/provisioning`.
-
+If the bundle was already included in the Sling Starter, or if it is a new release that should be included,
+add it with the release version in the provisioning model under `org-apache-sling-starter/src/main/provisioning`.
 
 ## Create an Announcement
 
