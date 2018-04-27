@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2018
 
+* Commons Log 5.1.6 (24th)
 * File System Resource Provider 2.1.14 (23rd)
 * Installer Heath Checks 2.0.0 (11th)
 
