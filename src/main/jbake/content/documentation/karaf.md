@@ -26,9 +26,8 @@ A [distribution](https://karaf.apache.org/manual/latest/#_custom_distributions) 
 
 ([GitBox](https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-karaf-distribution.git) | [GitHub](https://github.com/apache/sling-org-apache-sling-karaf-distribution))
 
-## Getting Started
 
-You have to set `serviceRequirements=disable` in Karaf's `etc/org.apache.karaf.features.cfg` (not necessary when using _Sling's Karaf Distribution_).
+## Getting Started
 
 1) [Start Apache Karaf](https://karaf.apache.org/manual/latest/#_quick_start) or _Sling's Karaf Distribution_.
 
