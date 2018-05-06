@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2018
+* Sling Query 4.0.2 (5th)
+* JCR Content Parser 1.2.6 (5th)
+
 ## April 2018
 
 * Commons Log 5.1.6 (24th)
