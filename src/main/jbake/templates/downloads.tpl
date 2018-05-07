@@ -27,7 +27,7 @@ def slingApplication=[
 def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
-  "Maven Sling Plugin|maven-sling-plugin|2.3.4",
+  "Maven Sling Plugin|maven-sling-plugin|2.3.6",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.16",
   "HTL Maven Plugin|htl-maven-plugin|1.1.4-1.3.1",
 ]
@@ -68,7 +68,7 @@ def bundles=[
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.2",
   "Context-Aware Configuration API|org.apache.sling.caconfig.api|1.1.0",
   "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2",
-  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.10",
+  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.12",
   "Context-Aware Configuration Mock Plugin|org.apache.sling.testing.caconfig-mock-plugin|1.3.0",
   "Context-Aware Configuration SPI|org.apache.sling.caconfig.spi|1.3.2",
   "Crankstart API|org.apache.sling.crankstart.api|1.0.0",

@@ -7,6 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## May 2018
+
+* Context-Aware Configuration Impl 1.4.12, Maven Sling Plugin 2.3.6 (7th)
 * Sling Query 4.0.2 (5th)
 * JCR Content Parser 1.2.6 (5th)
 
