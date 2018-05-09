@@ -1,7 +1,7 @@
 title=The Sling Launchpad		
 type=page
 status=published
-tags=launchpad
+tags=launchpad,launchers
 ~~~~~~
 
 [TOC]
