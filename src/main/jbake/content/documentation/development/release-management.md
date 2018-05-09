@@ -333,12 +333,13 @@ Once the release has passed, the following must be done:
 
 1. announce the result of the vote, see [Wait for the results](#wait-for-the-results)
 1. update versions in jira, see [Update JIRA](#update-jira)
-1. upload *p2update.zip* to https://dist.apache.org/repos/dist/release/sling/
+1. upload *p2update.zip* to https://dist.apache.org/repos/dist/release/sling/1.0.2
 1. upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
 1. upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
-    1. create GPG signatures and checksums for all uploaded jars using the `tooling/ide/sign.sh` script
+    1. create GPG signatures and checksums for all uploaded jars using the `ide-tooling/sign.sh` script
 1. update https://dist.apache.org/repos/dist/release/sling/eclipse/composite\{Content,Artifacts}.xml to point version 1.0.2
-1. archive the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.0.0/
+    1. The timestamps in the composite xml files should be refreshed to "now", for instance by using the value of ``echo "`date +%s`000"``
+1. remove the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.0.0/
 1. remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2
 1. update the news page and the download pages
 1. update the Eclipse Marketplace listing
