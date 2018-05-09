@@ -395,19 +395,15 @@ This majority vote is open for at least 72 hours
 <ol>
   <li>announce the result of the vote, see <a href="#wait-for-the-results">Wait for the results</a></li>
   <li>update versions in jira, see <a href="#update-jira">Update JIRA</a></li>
-  <li>upload <em>p2update.zip</em> to https://dist.apache.org/repos/dist/release/sling/1.0.2</li>
+  <li>upload <em>p2update.zip</em> to https://dist.apache.org/repos/dist/release/sling/</li>
   <li>upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2</li>
   <li>upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
     <ol>
-      <li>create GPG signatures and checksums for all uploaded jars using the <code>ide-tooling/sign.sh</code> script</li>
+      <li>create GPG signatures and checksums for all uploaded jars using the <code>tooling/ide/sign.sh</code> script</li>
     </ol>
   </li>
-  <li>update https://dist.apache.org/repos/dist/release/sling/eclipse/composite{Content,Artifacts}.xml to point version 1.0.2
-    <ol>
-      <li>The timestamps in the composite xml files should be refreshed to "now", for instance by using the value of <code>echo &quot;`date +%s`000&quot;</code></li>
-    </ol>
-  </li>
-  <li>remove the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.0.0/</li>
+  <li>update https://dist.apache.org/repos/dist/release/sling/eclipse/composite{Content,Artifacts}.xml to point version 1.0.2</li>
+  <li>archive the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.0.0/</li>
   <li>remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2</li>
   <li>update the news page and the download pages</li>
   <li>update the Eclipse Marketplace listing</li>
@@ -498,7 +494,7 @@ ssb   2048R/226BCE00 2016-01-21
 </ol></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed May 9 14:06:09 2018 +0300</span>
+                    Last modified by <span class="author">Julian Sedding</span> on <span class="comment">Fri Apr 27 15:31:07 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
