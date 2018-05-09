@@ -6,6 +6,12 @@ tags=slingstart,maven,launchers
 
 [TOC]
 
+<div class="note">
+    The <a href="/documentation/development/feature-model.html">OSGi Feature Model</a> is
+    meant to eventually replace the Sling Provisioning Model. If you are starting a new Sling project, please ask on
+    the Sling developers list about the status of the Feature Model to figure out which is best suited to your needs.
+</div>
+
 The Apache Sling provisioning model is a model to describe OSGi based application. It can also be used to define a partial application aka feature (or subsystem in OSGi terms).
 
 The model is describing an instance, it is not directly related to any particular tooling or packaging/provisioning vehicle.
