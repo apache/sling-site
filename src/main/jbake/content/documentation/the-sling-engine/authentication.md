@@ -8,7 +8,7 @@ tags=core,authentication
 
 This section describes the framework provided by Sling to authenticate HTTP requests.
 
-Let's look at generic request processing of Sling: Sling is linked into the outside world by registering the Sling Main Servlet &ndash; implemented by the `SlingMainServlet` class in the Sling Engine bundle &ndash; with an OSGi `HttpService`. This registration is accompanyied with an implementation instance of the OSGi `HttpContext` interface, which defines a method to authenticate requests: `handleSecurity`.
+Let's look at generic request processing of Sling: Sling is linked into the outside world by registering the Sling Main Servlet &ndash; implemented by the `SlingMainServlet` class in the Sling Engine bundle &ndash; with an OSGi `HttpService`. This registration is accompanied with an implementation instance of the OSGi `HttpContext` interface, which defines a method to authenticate requests: `handleSecurity`.
 
 This method is called by the OSGi HTTP Service implementation after the servlet has been selected to handle the request but before actually calling the servlet's `service` method.
 
