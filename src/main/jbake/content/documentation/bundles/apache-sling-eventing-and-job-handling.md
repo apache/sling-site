@@ -118,9 +118,51 @@ A job consumer is a service consuming and processing a job. It registers itself 
                 return JobResult.OK;
             }
         }
+The consumer can either return *JobResult.OK* indicating that the job has been processed, *JobResult.FAILED* indicating the processing failed, but can be retried or *JobResult.CANCEL* the processing has failed permanently.
+   
+### Job Executors
+If the job consumer needs more features like providing progress information or adding more information of the processing,*JobExecutor* should be implemented.      
+A job executor is a service processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:
 
-The *Job* interface allows to query the topic, the payload and additional information about the current job. The consumer can either return *JobResult.OK* indicating that the job has been processed, *JobResult.FAILED* indicating the processing failed, but can be retried or *JobResult.CANCEL* the processing has failed permanently.
+        import org.apache.felix.scr.annotations.Component;
+        import org.apache.felix.scr.annotations.Service;
+        import org.apache.sling.event.jobs.Job;
+        import org.apache.sling.event.jobs.consumer.JobExecutor;
+        import org.apache.sling.event.jobs.consumer.JobExecutionContext;
 
+        @Component
+        @Service(value={JobExecutor.class})
+        @Property(name=JobExecutor.PROPERTY_TOPICS, value="my/special/jobtopic",)
+        public class MyJobExecutor implements JobExecutor {
+
+            public JobExecutionResult process(final Job job, JobExecutionContext context)
+                //process the job and return the result
+                
+                //initialize job progress with n number of steps
+                context.getJobContext().initProgress(n, -1);
+                context.getJobContext().log("Job initialized");
+                
+                //increament progress by 2 steps
+                context.getJobContext().incrementProgressCount(2);
+                context.getJobContext().log("2 steps completed.");
+                
+                //stop processing if job was cancelled
+                if(context.isStopped()) {
+                    context.getJobContext().log("Job Stopped after 4 steps.");
+                    return context.result().message(resultMessage).cancelled();
+                }
+                
+                //add job log
+                context.getJobContext().log("Job finished.");
+                
+                return context.result().message(resultMessage).succeeded();
+            }
+        }
+        
+*JobExecutionContext* can be used by executor to update job execution progress, add job logs, build a JobExecutionResult and to check if job is still active by jobExecutionContext.isStopped().
+The executor can return job result "succeeded" by calling JobExecutionContext.result(successMsg).succeeded(), job result "failed" by calling JobExecutionContext.result(errorMessage).failed() and  job result "cancelled" by calling JobExecutionContext.result(message).cancelled().
+The *Job* interface allows to query the topic, the result message, progress, logs, the payload and additional information about the current job. 
+     
 ### Job Handling
 
 New jobs are first persisted in the resource tree (for failover etc.), then the job is distributed to an instance responsible for processing the job and on that instance the job is put into a processing queue. There are different types of queues defining how the jobs are processed (one after the other, in parallel etc.).
