@@ -15,7 +15,7 @@
 def launchpadVersion="10"
 
 def slingIDETooling=[
-  "Sling IDE Tooling for Eclipse|eclipse|1.2.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
+  "Sling IDE Tooling for Eclipse|eclipse|1.2.2|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[
@@ -52,7 +52,7 @@ def bundles=[
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.2",
   "Commons Compiler|org.apache.sling.commons.compiler|2.3.6",
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.8",
-  "Commons HTML|org.apache.sling.commons.html|1.0.0",
+  "Commons HTML|org.apache.sling.commons.html|1.0.2",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.1.0",
   "Commons JSON|org.apache.sling.commons.json|2.0.20",
   "Commons Log|org.apache.sling.commons.log|5.1.6",
@@ -208,7 +208,7 @@ def bundles=[
   "Security|org.apache.sling.security|1.1.12",
   "Service User Mapper|org.apache.sling.serviceusermapper|1.4.0",
   "Service User WebConsole|org.apache.sling.serviceuser.webconsole|1.0.0",
-  "Servlet Helpers|org.apache.sling.servlet-helpers|1.1.4",
+  "Servlet Helpers|org.apache.sling.servlet-helpers|1.1.6",
   "Servlets Compat|org.apache.sling.servlets.compat|1.0.2",
   "Servlets Get|org.apache.sling.servlets.get|2.1.30",
   "Servlets Post|org.apache.sling.servlets.post|2.3.24",
