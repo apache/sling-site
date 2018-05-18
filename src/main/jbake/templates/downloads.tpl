@@ -90,7 +90,7 @@ def bundles=[
   "Distribution Core|org.apache.sling.distribution.core|0.2.8",
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6",
-  "Dynamic Include|org.apache.sling.dynamic-include|3.0.0",
+  "Dynamic Include|org.apache.sling.dynamic-include|3.1.0",
   "Engine|org.apache.sling.engine|2.6.12",
   "Event|org.apache.sling.event|4.2.10",
   "Event API|org.apache.sling.event.api|1.0.0",
