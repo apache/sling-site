@@ -195,7 +195,7 @@ def bundles=[
   "Scripting JavaScript|org.apache.sling.scripting.javascript|3.0.4",
   "Scripting JSP|org.apache.sling.scripting.jsp|2.3.4",
   "Scripting JSP API Wrapper|org.apache.sling.scripting.jsp-api|1.0.0",
-  "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.2.6",
+  "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.3.0",
   "Scripting JST|org.apache.sling.scripting.jst|2.0.6",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.2",
   "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.20-1.3.1",
