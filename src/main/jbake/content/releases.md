@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2018
 
+* JSP Taglib 2.3.0 (22nd)
 * Servlet Helpers 1.1.6 (12th)
 * Commons HTML 1.0.2 (12th)
 * IDE tooling for Eclipse 1.2.2 (9th)
