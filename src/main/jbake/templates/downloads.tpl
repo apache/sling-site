@@ -151,6 +151,7 @@ def bundles=[
   "Launchpad Base|org.apache.sling.launchpad.base|5.6.10-2.6.26",
   "Launchpad Base - Application Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|app",
   "Launchpad Base - Web Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|webapp|war",
+  "Launchpad Content|org.apache.sling.launchpad.content|2.0.12",
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2",
   "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|1.0.6",
   "Launchpad Test Fragment Bundle|org.apache.sling.launchpad.test-fragment|2.0.14",
