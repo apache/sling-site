@@ -180,7 +180,45 @@ public class MyComponent {
         }
     }
 </code></pre>
-<p>The <em>Job</em> interface allows to query the topic, the payload and additional information about the current job. The consumer can either return <em>JobResult.OK</em> indicating that the job has been processed, <em>JobResult.FAILED</em> indicating the processing failed, but can be retried or <em>JobResult.CANCEL</em> the processing has failed permanently.</p>
+<p>The consumer can either return <em>JobResult.OK</em> indicating that the job has been processed, <em>JobResult.FAILED</em> indicating the processing failed, but can be retried or <em>JobResult.CANCEL</em> the processing has failed permanently.</p>
+<h3><a href="#job-executors" name="job-executors">Job Executors</a></h3>
+<p>If the job consumer needs more features like providing progress information or adding more information of the processing,*JobExecutor* should be implemented.<br/>A job executor is a service processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:</p>
+<pre><code>    import org.apache.felix.scr.annotations.Component;
+    import org.apache.felix.scr.annotations.Service;
+    import org.apache.sling.event.jobs.Job;
+    import org.apache.sling.event.jobs.consumer.JobExecutor;
+    import org.apache.sling.event.jobs.consumer.JobExecutionContext;
+
+    @Component
+    @Service(value={JobExecutor.class})
+    @Property(name=JobExecutor.PROPERTY_TOPICS, value=&quot;my/special/jobtopic&quot;,)
+    public class MyJobExecutor implements JobExecutor {
+
+        public JobExecutionResult process(final Job job, JobExecutionContext context)
+            //process the job and return the result
+
+            //initialize job progress with n number of steps
+            context.getJobContext().initProgress(n, -1);
+            context.getJobContext().log(&quot;Job initialized&quot;);
+
+            //increament progress by 2 steps
+            context.getJobContext().incrementProgressCount(2);
+            context.getJobContext().log(&quot;2 steps completed.&quot;);
+
+            //stop processing if job was cancelled
+            if(context.isStopped()) {
+                context.getJobContext().log(&quot;Job Stopped after 4 steps.&quot;);
+                return context.result().message(resultMessage).cancelled();
+            }
+
+            //add job log
+            context.getJobContext().log(&quot;Job finished.&quot;);
+
+            return context.result().message(resultMessage).succeeded();
+        }
+    }
+</code></pre>
+<p><em>JobExecutionContext</em> can be used by executor to update job execution progress, add job logs, build a JobExecutionResult and to check if job is still active by jobExecutionContext.isStopped(). The executor can return job result "succeeded" by calling JobExecutionContext.result(successMsg).succeeded(), job result "failed" by calling JobExecutionContext.result(errorMessage).failed() and job result "cancelled" by calling JobExecutionContext.result(message).cancelled(). The <em>Job</em> interface allows to query the topic, the result message, progress, logs, the payload and additional information about the current job. </p>
 <h3><a href="#job-handling" name="job-handling">Job Handling</a></h3>
 <p>New jobs are first persisted in the resource tree (for failover etc.), then the job is distributed to an instance responsible for processing the job and on that instance the job is put into a processing queue. There are different types of queues defining how the jobs are processed (one after the other, in parallel etc.).</p>
 <p>For managing queues, the Sling Job Handler uses the OSGi ConfigAdmin - it is possible to configure one or more queue configurations through the ConfigAdmin. One way of creating and configuring such configurations is the Apache Felix WebConsole. If there is no specific queue configuration maintained for the given job topic, the Sling Job Handler falls back to using the <code>Apache Sling Job Default Queue</code> (which can be configured through OSGi as well).</p>
@@ -263,7 +301,7 @@ public class MyComponent {
 <p>Scheduled events are OSGi events that have been created by the environemnt. They are generated on each application node of the cluster through an own scheduler instance. Sending these events works the same as sending events based on JCR events (see above).</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
+                    Last modified by <span class="author">Indra Kumar Gurjar</span> on <span class="comment">Tue May 15 15:00:18 2018 +0530</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
