@@ -54,7 +54,6 @@ def bundles=[
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.8",
   "Commons HTML|org.apache.sling.commons.html|1.0.2",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.1.0",
-  "Commons JSON|org.apache.sling.commons.json|2.0.20",
   "Commons Log|org.apache.sling.commons.log|5.1.6",
   "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|1.0.0",
   "Commons Log Service|org.apache.sling.commons.logservice|1.0.6",
@@ -100,7 +99,6 @@ def bundles=[
   "Feature Model IO|org.apache.sling.feature.io|0.1.0",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|0.1.0",
   "Feature Flags|org.apache.sling.featureflags|1.2.2",
-  "GWT Integration|org.apache.sling.extensions.gwt.servlet|3.0.0",
   "Thread Dumper|org.apache.sling.extensions.threaddump|0.2.2",
   "File System Resource Provider|org.apache.sling.fsresource|2.1.14",
   "I18n|org.apache.sling.i18n|2.5.12",
@@ -151,7 +149,6 @@ def bundles=[
   "Launchpad Base|org.apache.sling.launchpad.base|5.6.10-2.6.26",
   "Launchpad Base - Application Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|app",
   "Launchpad Base - Web Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|webapp|war",
-  "Launchpad Content|org.apache.sling.launchpad.content|2.0.12",
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2",
   "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|1.0.6",
   "Launchpad Test Fragment Bundle|org.apache.sling.launchpad.test-fragment|2.0.14",
@@ -244,6 +241,12 @@ def bundles=[
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0",
   "XSS Protection|org.apache.sling.xss|2.0.6",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0"
+]
+                                                                      
+def deprecated=[
+  "Commons JSON|Replaced with Commons Johnzon|org.apache.sling.commons.json|2.0.20",
+  "GWT Integration||org.apache.sling.extensions.gwt.servlet|3.0.0",
+  "Launchpad Content|Replaced with Starter Content|org.apache.sling.launchpad.content|2.0.12",
 ]
 
 // ------------------------------------------------------------------------------------------------
@@ -365,6 +368,29 @@ layout 'layout/main.tpl', true,
 										def version = data[2]
 										td(){
 											downloadLink("Maven Plugin", artifact, version, ".jar")
+										}
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
+										}
+									}
+								}
+							}
+						}
+    
+						h2("Deprecated")
+						table(class:"table") {
+							tableHead("Artifact", "Replacement", "Version", "Binary", "Source")
+							tbody() {
+								deprecated.each { line ->
+									tr() {
+										def data = line.split("\\|")
+										td(data[0])
+										td(data[1])
+										td(data[3])
+										def artifact = data[2]
+										def version = data[3]
+										td(){
+											downloadLink("Bundle", artifact, version, ".jar")
 										}
 										td(){
 											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
