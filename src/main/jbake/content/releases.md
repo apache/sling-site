@@ -8,11 +8,17 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2018
 
-* JSP Taglib 2.3.0, Servlets Post 2.3.26, Form Based Authentication 1.0.10, Starter Content 1.0.0, Starter Startup 1.0.6 (22nd)
+* JSP Taglib 2.3.0 (22nd) 
+* Servlets Post 2.3.26 (22nd)
+* Form Based Authentication 1.0.10 (22nd)
+* Starter Content 1.0.0 (22nd)
+* Starter Startup 1.0.6 (22nd)
+* Servlets Get 2.1.32 (21st)
 * Servlet Helpers 1.1.6 (12th)
 * Commons HTML 1.0.2 (12th)
 * IDE tooling for Eclipse 1.2.2 (9th)
-* Context-Aware Configuration Impl 1.4.12, Maven Sling Plugin 2.3.6 (7th)
+* Context-Aware Configuration Impl 1.4.12 (7th)
+* Maven Sling Plugin 2.3.6 (7th)
 * Sling Query 4.0.2 (5th)
 * JCR Content Parser 1.2.6 (5th)
 
