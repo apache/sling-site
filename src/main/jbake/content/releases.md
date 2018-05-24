@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2018
 
+* Commons Log 5.1.8 (24th) 
 * JSP Taglib 2.3.0 (22nd) 
 * Servlets Post 2.3.26 (22nd)
 * Form Based Authentication 1.0.10 (22nd)

@@ -54,7 +54,7 @@ def bundles=[
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.8",
   "Commons HTML|org.apache.sling.commons.html|1.0.2",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.1.0",
-  "Commons Log|org.apache.sling.commons.log|5.1.6",
+  "Commons Log|org.apache.sling.commons.log|5.1.8",
   "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|1.0.0",
   "Commons Log Service|org.apache.sling.commons.logservice|1.0.6",
   "Commons Metrics|org.apache.sling.commons.metrics|1.2.4",
