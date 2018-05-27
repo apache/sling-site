@@ -235,7 +235,6 @@ def bundles=[
   "Testing Email|org.apache.sling.testing.email|1.0.0",
   "Apache Sling Testing Rules|org.apache.sling.testing.rules|1.0.8",
   "Apache Sling Server Setup Tools|org.apache.sling.testing.serversetup|1.0.1",
-  "Testing Tools|org.apache.sling.testing.tools|1.0.16",
   "URL Rewriter|org.apache.sling.urlrewriter|0.0.2",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0",
@@ -247,6 +246,7 @@ def deprecated=[
   "Commons JSON|Replaced with Commons Johnzon|org.apache.sling.commons.json|2.0.20",
   "GWT Integration||org.apache.sling.extensions.gwt.servlet|3.0.0",
   "Launchpad Content|Replaced with Starter Content|org.apache.sling.launchpad.content|2.0.12",
+  "Testing Tools|org.apache.sling.testing.tools|1.0.16"
 ]
 
 // ------------------------------------------------------------------------------------------------
