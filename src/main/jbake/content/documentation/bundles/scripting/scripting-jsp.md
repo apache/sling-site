@@ -90,6 +90,37 @@ Searches for resources using the given query formulated in the given language.
     <c:forEach var="found" items="${sling:findResources(resourceResolver,'/jcr:root//*[jcr:contains(., 'Sling')] order by @jcr:score','xpath')">
         <li>${found.path}</li>
     </c:forEach>
+    
+### getAbsoluteParent
+
+Method for retrieving an absolute parent resource.
+
+* Returns: `org.apache.sling.api.resource.Resource` - The parent resource at the specified level
+* Accepts:
+    * `org.apache.sling.api.resource.Resource` - The current resource
+    * `java.lang.String` - The absolute level for the parent resource to retrieve
+* Since: Bundle 2.3.0
+
+*Example Usage*
+
+    <c:set var="content" value="${sling:getAbsoluteParent(resource,'2')}" />
+
+### getParents
+
+Function for retrieving all of the parent resources of a specified resource, returning them in hierarchy order.
+
+* Returns: `java.lang.Iterator` - an iterator of the parent resources in order
+* Accepts:
+    * `org.apache.sling.api.resource.Resource` - The current resource for which to retrieve the parents
+    * `java.lang.String` - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned
+* Since: Bundle 2.3.0
+
+*Example Usage*
+
+    <c:set var="parents" value="${sling:getParents(resource,'2')}" />
+    <c:forEach var="parent" items="${parents}">
+        <div>${parent.path}</div>
+    </c:forEach>
 
 ### getRelativeResource
 
@@ -294,17 +325,59 @@ Forwards a request to a resource rendering the current page
 
     <sling:forward path="/content/aresource" resourceType="myapp/components/display" />
 
-### getProperty
+### getCAConfigResource
 
-Retrieves the value from the ValueMap, allowing for a default value or coercing the return value.
+Retrieves Context-Aware Configuration resource for a specified resource, bucket and name.
 
 * Attributes
-    * properties - The ValueMap from which to retrieve the value.
-    * key - The key to retrieve the value from from the ValueMap.
-    * defaultValue - The default value to return if no value exists for the key. If specified, this takes precedence over returnClass.
-    * returnClass - The class into which to coerce the returned value.
-    * var - The name of the variable to which to save the value.
-* Since: 1.3
+    * resource - The resource for which to retrieve CA Config
+    * bucket - The bucket name to retrieve for the config
+    * name - The config name to retrieve
+    * var -  The name of the variable to which to save the CA config resource.
+* Since: Bundle 2.3.0
+
+*Example Usage*
+
+    <sling:getCAConfigResource resource="${resource}" bucket="site" name="templates" var="config" />
+
+### getCAConfigResources
+
+Retrieves Context-Aware Configuration resources for a specified resource, bucket and name.
+
+* Attributes
+    * resource - The resource for which to retrieve CA Configs
+    * bucket - The bucket name to retrieve for the configs
+    * name - The config name to retrieve
+    * var -  The name of the variable to which to save the CA config resources.
+* Since: Bundle 2.3.0
+
+*Example Usage*
+
+    <sling:getCAConfigResources resource="${resource}" bucket="site" name="templates" var="config" />
+
+### getParent
+
+Retrieves the parent of the resource or the absolute parent at the level if specified.
+
+* Attributes
+    * resource - The resource for which to retrieve the parent resource.
+    * level - The level of the parent resource to retrieve
+    * var -  The name of the variable to which to save the parent resource.
+* Since: Bundle 2.3.0
+
+*Example Usage*
+
+    <sling:getParent resource="${resource}" level="2" var="parent" />
+    
+### getParents
+
+Retrieves all of the parent resources of a specified resource, returning them in hierarchy order.
+
+* Attributes
+    * resource - The resource for which to retrieve the parent resources.
+    * startDepth - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned
+    * var -  The name of the variable to which to save the parent resources.
+* Since: Bundle 2.3.0
 
 *Example Usage*
 
