@@ -188,6 +188,39 @@
     &lt;li&gt;${found.path}&lt;/li&gt;
 &lt;/c:forEach&gt;
 </code></pre>
+<h3><a href="#getabsoluteparent" name="getabsoluteparent">getAbsoluteParent</a></h3>
+<p>Method for retrieving an absolute parent resource.</p>
+<ul>
+  <li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The parent resource at the specified level</li>
+  <li>Accepts:
+    <ul>
+      <li><code>org.apache.sling.api.resource.Resource</code> - The current resource</li>
+      <li><code>java.lang.String</code> - The absolute level for the parent resource to retrieve</li>
+    </ul>
+  </li>
+  <li>Since: Bundle 2.3.0</li>
+</ul>
+<p><em>Example Usage</em></p>
+<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getAbsoluteParent(resource,&#39;2&#39;)}&quot; /&gt;
+</code></pre>
+<h3><a href="#getparents" name="getparents">getParents</a></h3>
+<p>Function for retrieving all of the parent resources of a specified resource, returning them in hierarchy order.</p>
+<ul>
+  <li>Returns: <code>java.lang.Iterator</code> - an iterator of the parent resources in order</li>
+  <li>Accepts:
+    <ul>
+      <li><code>org.apache.sling.api.resource.Resource</code> - The current resource for which to retrieve the parents</li>
+      <li><code>java.lang.String</code> - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned</li>
+    </ul>
+  </li>
+  <li>Since: Bundle 2.3.0</li>
+</ul>
+<p><em>Example Usage</em></p>
+<pre><code>&lt;c:set var=&quot;parents&quot; value=&quot;${sling:getParents(resource,&#39;2&#39;)}&quot; /&gt;
+&lt;c:forEach var=&quot;parent&quot; items=&quot;${parents}&quot;&gt;
+    &lt;div&gt;${parent.path}&lt;/div&gt;
+&lt;/c:forEach&gt;
+</code></pre>
 <h3><a href="#getrelativeresource" name="getrelativeresource">getRelativeResource</a></h3>
 <p>Gets the resource at the relative path to the provided resource.</p>
 <ul>
@@ -394,19 +427,64 @@
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:forward path=&quot;/content/aresource&quot; resourceType=&quot;myapp/components/display&quot; /&gt;
 </code></pre>
-<h3><a href="#getproperty" name="getproperty">getProperty</a></h3>
-<p>Retrieves the value from the ValueMap, allowing for a default value or coercing the return value.</p>
+<h3><a href="#getcaconfigresource" name="getcaconfigresource">getCAConfigResource</a></h3>
+<p>Retrieves Context-Aware Configuration resource for a specified resource, bucket and name.</p>
 <ul>
   <li>Attributes
     <ul>
-      <li>properties - The ValueMap from which to retrieve the value.</li>
-      <li>key - The key to retrieve the value from from the ValueMap.</li>
-      <li>defaultValue - The default value to return if no value exists for the key. If specified, this takes precedence over returnClass.</li>
-      <li>returnClass - The class into which to coerce the returned value.</li>
-      <li>var - The name of the variable to which to save the value.</li>
+      <li>resource - The resource for which to retrieve CA Config</li>
+      <li>bucket - The bucket name to retrieve for the config</li>
+      <li>name - The config name to retrieve</li>
+      <li>var - The name of the variable to which to save the CA config resource.</li>
     </ul>
   </li>
-  <li>Since: 1.3</li>
+  <li>Since: Bundle 2.3.0</li>
+</ul>
+<p><em>Example Usage</em></p>
+<pre><code>&lt;sling:getCAConfigResource resource=&quot;${resource}&quot; bucket=&quot;site&quot; name=&quot;templates&quot; var=&quot;config&quot; /&gt;
+</code></pre>
+<h3><a href="#getcaconfigresources" name="getcaconfigresources">getCAConfigResources</a></h3>
+<p>Retrieves Context-Aware Configuration resources for a specified resource, bucket and name.</p>
+<ul>
+  <li>Attributes
+    <ul>
+      <li>resource - The resource for which to retrieve CA Configs</li>
+      <li>bucket - The bucket name to retrieve for the configs</li>
+      <li>name - The config name to retrieve</li>
+      <li>var - The name of the variable to which to save the CA config resources.</li>
+    </ul>
+  </li>
+  <li>Since: Bundle 2.3.0</li>
+</ul>
+<p><em>Example Usage</em></p>
+<pre><code>&lt;sling:getCAConfigResources resource=&quot;${resource}&quot; bucket=&quot;site&quot; name=&quot;templates&quot; var=&quot;config&quot; /&gt;
+</code></pre>
+<h3><a href="#getparent" name="getparent">getParent</a></h3>
+<p>Retrieves the parent of the resource or the absolute parent at the level if specified.</p>
+<ul>
+  <li>Attributes
+    <ul>
+      <li>resource - The resource for which to retrieve the parent resource.</li>
+      <li>level - The level of the parent resource to retrieve</li>
+      <li>var - The name of the variable to which to save the parent resource.</li>
+    </ul>
+  </li>
+  <li>Since: Bundle 2.3.0</li>
+</ul>
+<p><em>Example Usage</em></p>
+<pre><code>&lt;sling:getParent resource=&quot;${resource}&quot; level=&quot;2&quot; var=&quot;parent&quot; /&gt;
+</code></pre>
+<h3><a href="#getparents" name="getparents">getParents</a></h3>
+<p>Retrieves all of the parent resources of a specified resource, returning them in hierarchy order.</p>
+<ul>
+  <li>Attributes
+    <ul>
+      <li>resource - The resource for which to retrieve the parent resources.</li>
+      <li>startDepth - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned</li>
+      <li>var - The name of the variable to which to save the parent resources.</li>
+    </ul>
+  </li>
+  <li>Since: Bundle 2.3.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getProperties properties=&quot;${properties}&quot; key=&quot;jcr:title&quot; defaultValue=&quot;${resource.name}&quot; var=&quot;title&quot; /&gt;
@@ -463,7 +541,7 @@
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Dan Klco</span> on <span class="comment">Wed Feb 7 21:15:03 2018 -0500</span>
+                    Last modified by <span class="author">Dan Klco</span> on <span class="comment">Wed May 30 17:10:22 2018 -0400</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
