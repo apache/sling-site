@@ -6,7 +6,7 @@ tags=operations,bundles
 ~~~~~~
 
 <div class="note">
-We recommend to use the Apache Felix Web Console. The documentation below describes the old Sling Management Console, which isn't in use any more. Please refer to the documentation of the <a href="http://felix.apache.org/site/apache-felix-web-console.html">Apache Felix Web Console</a>.
+We recommend to use the Apache Felix Web Console. The documentation below describes the old Sling Management Console, which isn't in use any more. Please refer to the documentation of the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-web-console.html">Apache Felix Web Console</a>.
 </div>
 
 OSGi bundles installed in the OSGi framework, which is provided by Sling, may be upgraded or removed and new bundles may be installed by using the Sling Management Console. This page is about using the Sling Management Console for those tasks.
