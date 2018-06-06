@@ -210,6 +210,8 @@ from our integration tests shows an example Sling Filter.
   </li>
 </ul>
 <p>As a consequence, request level filters will be called at most once during request processing (they may not be called at all if a filter earlier in the filter chain decides to terminate the request) while the component level, include, and forward filters may be called multiple times while processing a request.</p>
+<h2><a href="#disabling-filters" name="disabling-filters">Disabling Filters</a></h2>
+<p>As hinted earlier in the page, a filter is ignored if you set an invalid <code>sling.filter.scope</code>. To disable a specific filter, you can deploy an OSGi config setting an invalid <code>sling.filter.scope</code>, for instance <em>disabled</em>.</p>
 <h2><a href="#troubleshooting" name="troubleshooting">Troubleshooting</a></h2>
 <p>Apart form the logs which tell you when filters are executed, two Sling plugins provide information about filters in the OSGi console.</p>
 <h3><a href="#recent-requests-plugin" name="recent-requests-plugin">Recent Requests plugin</a></h3>
@@ -260,7 +262,7 @@ Component Filters:
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jun 6 23:43:18 2018 +0300</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
