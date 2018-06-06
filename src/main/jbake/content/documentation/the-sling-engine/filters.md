@@ -67,6 +67,10 @@ When a servlet or script is including or forwarding to another resource for proc
 
 As a consequence, request level filters will be called at most once during request processing (they may not be called at all if a filter earlier in the filter chain decides to terminate the request) while the component level, include, and forward filters may be called multiple times while processing a request.
 
+## Disabling Filters
+
+As hinted earlier in the page, a filter is ignored if you set an invalid `sling.filter.scope`. To disable a specific filter, you can deploy an OSGi config setting an invalid `sling.filter.scope`, for instance _disabled_.
+
 ## Troubleshooting
 Apart form the logs which tell you when filters are executed, two Sling plugins provide information about filters in the OSGi console.
 
