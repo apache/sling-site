@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## June 2018
+
+* Commons Threads 3.2.18 (19th)
+
 ## May 2018
 
 * Commons Log 5.1.8 (24th) 

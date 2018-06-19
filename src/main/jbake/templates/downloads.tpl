@@ -63,7 +63,7 @@ def bundles=[
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.0",
   "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.2",
   "Commons Testing|org.apache.sling.commons.testing|2.1.2",
-  "Commons Threads|org.apache.sling.commons.threads|3.2.16",
+  "Commons Threads|org.apache.sling.commons.threads|3.2.18",
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.2",
   "Context-Aware Configuration API|org.apache.sling.caconfig.api|1.1.0",
   "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2",
