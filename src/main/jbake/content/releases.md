@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2018
 
+* Servlet Annotations 1.0.0 (19th)
 * Commons Threads 3.2.18 (19th)
 
 ## May 2018
