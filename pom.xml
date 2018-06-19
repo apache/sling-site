@@ -114,6 +114,8 @@
             <checkinComment>${msg}</checkinComment>
             <pubScmUrl>scm:git:https://gitbox.apache.org/repos/asf/sling-site.git</pubScmUrl>
             <scmBranch>asf-site</scmBranch>
+            <localCheckout>true</localCheckout>
+            <tryUpdate>true</tryUpdate>
         </configuration>
       </plugin>
       <plugin>
