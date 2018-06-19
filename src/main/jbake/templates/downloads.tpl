@@ -246,7 +246,7 @@ def deprecated=[
   "Commons JSON|Replaced with Commons Johnzon|org.apache.sling.commons.json|2.0.20",
   "GWT Integration||org.apache.sling.extensions.gwt.servlet|3.0.0",
   "Launchpad Content|Replaced with Starter Content|org.apache.sling.launchpad.content|2.0.12",
-  "Testing Tools|org.apache.sling.testing.tools|1.0.16"
+  "Testing Tools|SLING-5703|org.apache.sling.testing.tools|1.0.16"
 ]
 
 // ------------------------------------------------------------------------------------------------
