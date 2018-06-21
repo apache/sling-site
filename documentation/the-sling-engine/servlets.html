@@ -116,7 +116,7 @@
     </tr>
     <tr>
       <td><code>sling.servlet.selectors</code> </td>
-      <td>The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. </td>
+      <td>The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. In case this is not empty the first selector(s) (i.e. the one(s) on the left) in the request URL must match, otherwise the servlet is not executed. After that may follow arbitrarily many non-registered selectors. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. </td>
     </tr>
     <tr>
       <td><code>sling.servlet.extensions</code> </td>
@@ -124,7 +124,7 @@
     </tr>
     <tr>
       <td><code>sling.servlet.methods</code> </td>
-      <td>The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet.</td>
+      <td>The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet. </td>
     </tr>
     <tr>
       <td><code>sling.servlet.prefix</code> </td>
@@ -148,13 +148,65 @@
 <h3><a href="#registering-a-servlet-using-java-annotations" name="registering-a-servlet-using-java-annotations">Registering a Servlet using Java Annotations</a></h3>
 <p>If you are working with the default Apache Sling development stack you can either use </p>
 <ul>
-  <li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi 5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0">bnd 4.0</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.0.0</a>),</li>
+  <li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi R5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li>
   <li>Generic Felix SCR or Sling-specific <code>@SlingServlet</code> annotations from <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html">Apache Felix Maven SCR Plugin</a> to register your Sling servlets:</li>
 </ul>
 <p>The following examples show example code how you can register Servlets with Sling</p>
 <ol>
   <li>
-    <p>OSGi DS annotations (recommended)</p>
+    <p>OSGi DS 1.4 (R7) component property type annotations for Sling Servlets (recommended)</p>
+    <pre><code>:<!-- TODO syntax marker (::java) disabled -->@Component(
+service = { Servlet.class },
+@SlingServletResourceTypes(
+    resourceTypes=&quot;/apps/my/type&quot;, 
+    methods= &quot;GET&quot;,
+    extensions=&quot;html&quot;,
+    selectors=&quot;hello&quot;)
+public class MyServlet extends SlingSafeMethodsServlet {
+
+    @Override
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+        ...
+    }
+}
+</code></pre>
+    <p>This is only supported though with if you use <code>bnd-maven-plugin</code> and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the <code>bnd-maven-plugin</code> should look like this in your <code>pom.xml</code></p>
+    <pre><code>:<!-- TODO syntax marker (::xml) disabled -->&lt;build&gt;
+  ...
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;biz.aQute.bnd&lt;/groupId&gt;
+      &lt;artifactId&gt;bnd-maven-plugin&lt;/artifactId&gt;
+      &lt;version&gt;4.0.0&lt;/version&gt;
+      &lt;executions&gt;
+        &lt;execution&gt;
+          &lt;goals&gt;
+            &lt;goal&gt;bnd-process&lt;/goal&gt;
+          &lt;/goals&gt;
+        &lt;/execution&gt;
+      &lt;/executions&gt;
+    &lt;/plugin&gt;
+    ...
+  &lt;/plugins&gt;
+  ...
+&lt;/build&gt;
+...
+&lt;dependencies&gt;
+  ...
+  &lt;!-- dependency towards the custom component property type annotations for Sling Servlets --&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+    &lt;artifactId&gt;org.apache.sling.servlets.annotations&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+  &lt;/dependency&gt;
+  ...
+&lt;/dependencies&gt;
+</code></pre>
+    <p>Please refer to the <a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations/tree/master/src/main/java/org/apache/sling/servlets/annotations">Javadoc of the package</a> for other related annotations. </p>
+  </li>
+  <li>
+    <p>Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)</p>
     <pre><code>:<!-- TODO syntax marker (::java) disabled -->@Component(
 service = { Servlet.class },
 property = { 
@@ -172,10 +224,9 @@ public class MyServlet extends SlingSafeMethodsServlet {
     }
 }
 </code></pre>
-    <p>Custom OSGi DS annotations (e.g. for Sling servlets) are not yet supported by the OSGi spec (and therefore by bnd), but this is supposed to be fixed with DS 1.4 (OSGi 7), see also <a href="https://issues.apache.org/jira/browse/FELIX-5396">FELIX-5396</a>.</p>
   </li>
   <li>
-    <p>The <code>@SlingServlet</code> annotation (evaluated by maven-scr-plugin)</p>
+    <p>The <code>@SlingServlet</code> annotation (evaluated by maven-scr-plugin, use only if you can neither use 1. nor 2.)</p>
     <pre><code>:<!-- TODO syntax marker (::java) disabled -->@SlingServlet(
     resourceTypes = &quot;/apps/my/type&quot;,
     selectors = &quot;hello&quot;,
@@ -254,7 +305,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
 <p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jun 21 16:47:41 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
