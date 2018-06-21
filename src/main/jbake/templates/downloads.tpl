@@ -28,7 +28,7 @@ def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.6",
-  "Slingstart Maven Plugin|slingstart-maven-plugin|1.7.16",
+  "Slingstart Maven Plugin|slingstart-maven-plugin|1.8.2",
   "HTL Maven Plugin|htl-maven-plugin|1.1.4-1.3.1",
 ]
 
@@ -94,10 +94,10 @@ def bundles=[
   "Event|org.apache.sling.event|4.2.10",
   "Event API|org.apache.sling.event.api|1.0.0",
   "Explorer|org.apache.sling.extensions.explorer|1.0.4",
-  "Feature Model|org.apache.sling.feature|0.1.0",
-  "Feature Model Analyser|org.apache.sling.feature.analyser|0.1.0",
-  "Feature Model IO|org.apache.sling.feature.io|0.1.0",
-  "Feature Model Converter|org.apache.sling.feature.modelconverter|0.1.0",
+  "Feature Model|org.apache.sling.feature|0.1.2",
+  "Feature Model Analyser|org.apache.sling.feature.analyser|0.1.2",
+  "Feature Model IO|org.apache.sling.feature.io|0.1.2",
+  "Feature Model Converter|org.apache.sling.feature.modelconverter|0.1.2",
   "Feature Flags|org.apache.sling.featureflags|1.2.2",
   "Thread Dumper|org.apache.sling.extensions.threaddump|0.2.2",
   "File System Resource Provider|org.apache.sling.fsresource|2.1.14",
