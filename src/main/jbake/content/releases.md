@@ -10,6 +10,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 * Servlet Annotations 1.0.0 (19th)
 * Commons Threads 3.2.18 (19th)
+* SlingStart Maven Plugin 1.8.2 (16th)
+* Feature Model 0.1.2 (2nd)
 
 ## May 2018
 
@@ -27,6 +29,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Maven Sling Plugin 2.3.6 (7th)
 * Sling Query 4.0.2 (5th)
 * JCR Content Parser 1.2.6 (5th)
+* Feature Model 0.1.0 (1st)
 
 ## April 2018
 
