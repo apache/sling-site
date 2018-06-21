@@ -14,12 +14,12 @@ to a script or and servlet.
 Servlets can be registered as OSGi services. The following service reference properties are evaluated for Servlets defined as OSGi services of type `javax.servlet.Servlet` (all those property names are defined in `org.apache.sling.api.servlets.ServletResolverConstants` (since API 2.15.2) or `org.apache.sling.servlets.resolver.internal.ServletResolverConstants` (before API 2.15.2)):
 
 | Name | Description |
-|--|--|
+| --- | --- |
 | `sling.servlet.paths` | A list of absolute paths under which the servlet is accessible as a Resource. The property value must either be a single String, an array of Strings or a Vector of Strings.<br>A servlet using this property might be ignored unless its path is included in the *Execution Paths* (`servletresolver.paths`) configuration setting of the `SlingServletResolver` service. Either this property or the `sling.servlet.resourceTypes` property must be set, or the servlet is ignored. If both are set, the servlet is registered using both ways.<br>Binding resources by paths is discouraged, see [caveats when binding servlets by path](#caveats-when-binding-servlets-by-path) below. |
 | `sling.servlet.resourceTypes` | The resource type(s) supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. Either this property or the `sling.servlet.paths` property must be set, or the servlet is ignored. If both are set, the servlet is registered using both ways. |
-| `sling.servlet.selectors` | The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with `sling.servlet.resourceTypes`. |
+| `sling.servlet.selectors` | The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. In case this is not empty the first selector(s) (i.e. the one(s) on the left) in the request URL must match, otherwise the servlet is not executed. After that may follow arbitrarily many non-registered selectors. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with `sling.servlet.resourceTypes`. |
 | `sling.servlet.extensions` | The request URL extensions supported by the servlet for requests. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with `sling.servlet.resourceTypes`. |
-| `sling.servlet.methods` | The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with `sling.servlet.resourceTypes`. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet.|
+| `sling.servlet.methods` | The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with `sling.servlet.resourceTypes`. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet. |
 | `sling.servlet.prefix` | The prefix or numeric index to make relative paths absolute. If the value of this property is a number (int), it defines the index of the search path entries from the resource resolver to be used as the prefix. The defined search path is used as a prefix to mount this servlet. The number can be -1 which always points to the last search entry. If the specified value is higher than than the highest index of the search paths, the last entry is used. The index starts with 0. If the value of this property is a string and parseable as a number, the value is treated as if it would be a number. If the value of this property is a string starting with "/", this value is applied as a prefix, regardless of the configured search paths! If the value is anything else, it is ignored. If this property is not specified, it defaults to the default configuration of the sling servlet resolver. |
 
 A `SlingServletResolver` listens for `Servlet` services and - given the correct service registration properties - provides the servlets as resources in the (virtual) resource tree. Such servlets are provided as `ServletResource` instances which adapt to the `javax.servlet.Servlet` class.
@@ -45,12 +45,67 @@ Given these drawbacks it is strongly recommended to bind servlets to resource ty
 
 If you are working with the default Apache Sling development stack you can either use 
 
-* [OSGi DS annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) (introduced with DS 1.2/OSGi 5, properly supported since [bnd 3.0](https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0), being used in [maven-bundle-plugin 3.0.0](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html)) or 
+* [OSGi DS 1.4 (R7) component property type annotations](https://github.com/apache/sling-org-apache-sling-servlets-annotations) (introduced with DS 1.4/OSGi R7, supported since [bnd 4.0](https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0) being used in [bnd-maven-plugin 4.0.0](https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin)),
+* [OSGi DS annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) (introduced with DS 1.2/OSGi R5, properly supported since [bnd 3.0](https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0), being used in [maven-bundle-plugin 3.0.0](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html)) or 
 * Generic Felix SCR or Sling-specific `@SlingServlet` annotations from [Apache Felix Maven SCR Plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html) to register your Sling servlets:
 
 The following examples show example code how you can register Servlets with Sling
 
-1. OSGi DS annotations (recommended)
+1. OSGi DS 1.4 (R7) component property type annotations for Sling Servlets (recommended)
+
+        :::java
+        @Component(
+        service = { Servlet.class },
+        @SlingServletResourceTypes(
+            resourceTypes="/apps/my/type", 
+            methods= "GET",
+            extensions="html",
+            selectors="hello")
+        public class MyServlet extends SlingSafeMethodsServlet {
+
+            @Override
+            protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+                ...
+            }
+        }
+
+    This is only supported though with if you use `bnd-maven-plugin` and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the `bnd-maven-plugin` should look like this in your `pom.xml`
+    
+        :::xml
+        <build>
+          ...
+          <plugins>
+            <plugin>
+              <groupId>biz.aQute.bnd</groupId>
+              <artifactId>bnd-maven-plugin</artifactId>
+              <version>4.0.0</version>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>bnd-process</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            ...
+          </plugins>
+          ...
+        </build>
+        ...
+        <dependencies>
+          ...
+          <!-- dependency towards the custom component property type annotations for Sling Servlets -->
+          <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.servlets.annotations</artifactId>
+            <version>1.0.0</version>
+          </dependency>
+          ...
+        </dependencies>
+    
+    Please refer to the [Javadoc of the package](https://github.com/apache/sling-org-apache-sling-servlets-annotations/tree/master/src/main/java/org/apache/sling/servlets/annotations) for other related annotations.  
+            
+1. Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)
 
         :::java
         @Component(
@@ -70,9 +125,7 @@ The following examples show example code how you can register Servlets with Slin
             }
         }
 
-    Custom OSGi DS annotations (e.g. for Sling servlets) are not yet supported by the OSGi spec (and therefore by bnd), but this is supposed to be fixed with DS 1.4 (OSGi 7), see also [FELIX-5396](https://issues.apache.org/jira/browse/FELIX-5396).
-
-2. The `@SlingServlet` annotation (evaluated by maven-scr-plugin)
+2. The `@SlingServlet` annotation (evaluated by maven-scr-plugin, use only if you can neither use 1. nor 2.)
 
         :::java
         @SlingServlet(
