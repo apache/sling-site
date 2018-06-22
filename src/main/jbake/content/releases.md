@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2018
 
+* Scripting HTL Compiler 1.0.22-1.4.0, Scripting HTL Java Compiler 1.0.24-1.4.0, Scripting HTL Engine 1.0.54-1.4.0, Scripting HTL Testing Content 1.0.10-1.4.0, Scripting HTL Testing 1.0.10-1.4.0, HTL Maven Plugin 1.1.6-1.4.0, Scripting HTL REPL 1.0.6 (22nd)
 * Servlet Annotations 1.0.0 (19th)
 * Commons Threads 3.2.18 (19th)
 * SlingStart Maven Plugin 1.8.2 (16th)

@@ -29,7 +29,7 @@ def mavenPlugins=[
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
   "Maven Sling Plugin|maven-sling-plugin|2.3.6",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.8.2",
-  "HTL Maven Plugin|htl-maven-plugin|1.1.4-1.3.1",
+  "HTL Maven Plugin|htl-maven-plugin|1.1.6-1.4.0",
 ]
 
 def bundles=[
@@ -195,12 +195,12 @@ def bundles=[
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.3.0",
   "Scripting JST|org.apache.sling.scripting.jst|2.0.6",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.2",
-  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.20-1.3.1",
-  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.22-1.3.1",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.52-1.3.1",
+  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.22-1.4.0",
+  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.24-1.4.0",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.54-1.4.0",
   "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.26",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.6",
-  "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.4",
+  "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.6",
   "Scripting Thymeleaf|org.apache.sling.scripting.thymeleaf|1.1.0",
   "Security|org.apache.sling.security|1.1.12",
   "Service User Mapper|org.apache.sling.serviceusermapper|1.4.0",
