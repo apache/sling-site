@@ -145,7 +145,7 @@ stringsimple ::= &lt;quoted string representation of the value where both &#39;&
   <li><code>C</code> : Character</li>
   <li><code>B</code> : Boolean</li>
 </ul>
-<p>For Float and Double types the methods <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29">Float.intBitsToFloat</a> and [Double.longBitsToDouble](https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble(long)) are being used to convert the numeric string into the correct type. These methods rely on the IEEE 754 floating-point formats described in <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">Single-precision floating-point format</a> and <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Double-precision floating-point format</a>. A more user-friendly format is not yet supported for these types (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>).</p>
+<p>For Float and Double types the methods <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29">Float.intBitsToFloat</a> and <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble%28long%29">Double.longBitsToDouble</a> are being used to convert the numeric string into the correct type. These methods rely on the IEEE 754 floating-point formats described in <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">Single-precision floating-point format</a> and <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Double-precision floating-point format</a>. A more user-friendly format is not yet supported for these types (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>).</p>
 <p>A number of such .config files exist in the Sling codebase and can be used as examples.</p>
 <h1><a href="#project-info" name="project-info">Project Info</a></h1>
 <ul>
@@ -153,7 +153,7 @@ stringsimple ::= &lt;quoted string representation of the value where both &#39;&
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jun 28 10:33:26 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
