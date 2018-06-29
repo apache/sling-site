@@ -88,10 +88,15 @@ The health check will fail in the following cases:
 
 ### Bundles Installation Failure
 
-The checked bundle was not installed because it has been installed in a newer version through some other means (e.g. manually through the Felix Web Console or by another provider. For further details please review the OSGi Installer console at `/system/console/osgi-installer` and check for all bundles with the given symbolic name (=OSGi installers resource id) and the according URL.
+The checked bundle was not installed because it has been installed in a newer version from some other location (might even be through some other provider). For further details please look at the OSGi Installer console at `/system/console/osgi-installer` and check for all bundles with the given symbolic name (=OSGi installer's resource id) and their according URLs.
 
 ### Configuration Installation Failure
 
-The checked configuration was not installed because it has either been overwritten manually in the Felix Web Console or is installed by some non-checked provider (which has a higher priority). To revert manually overwritten configurations just go to `/system/console/configMgr` and delete the according configuration. That way the OSGi installer should automatically create a new configuration for the same PID based on the configuration provided by some provider with the highest prio. In case another non-checked provider has provided already a configuration you can see from where it has been installed by looking at the OSGi Installer console at `/system/console/osgi-installer` and look for all configurations with the given PID.
+The checked configuration was not installed because it is already installed from some other location (which has a higher priority). In this case you can see from where it has been installed by looking at the OSGi Installer console at `/system/console/osgi-installer` and check all configurations with the given PID and their according URLs.
 
+Due to [SLING-7735](https://issues.apache.org/jira/browse/SLING-7735), there might be false positives being reported by the health check, in case the configuration has already been deployed with exactly the same values in the system previously. In that case the OSGi Installer might also mark the resource as `IGNORED`. If you run into such an issue, you can fix it by removing the manually overwritten configurations: Just go to `/system/console/configMgr` and delete the according configuration. That way the OSGi installer should automatically create a new configuration for the same PID based on the configuration provided by some provider with the highest prio. 
+
+### Limitations of the health check
+
+Currently the health check and the OSGi installer cannot detect if a deployed bundle/configuration has been overwritten (e.g. via API or the WebConsole). So even if an OSGi installer resource is marked as `INSTALLED` it might already have been overwritten. This limitation is tracked in [SLING-7736](https://issues.apache.org/jira/browse/SLING-7736).
 
