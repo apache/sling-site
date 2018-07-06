@@ -7,6 +7,7 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## July 2018
+* Sling Content Loader 2.2.6 (6th)
 * XSS Protection API 2.0.8 (3rd)
 
 ## June 2018
