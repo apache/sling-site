@@ -124,7 +124,7 @@ def bundles=[
   "JCR Base|org.apache.sling.jcr.base|3.0.4",
   "JCR ClassLoader|org.apache.sling.jcr.classloader|3.2.2",
   "JCR Compiler|org.apache.sling.jcr.compiler|2.1.0",
-  "JCR Content Loader|org.apache.sling.jcr.contentloader|2.2.4",
+  "JCR Content Loader|org.apache.sling.jcr.contentloader|2.2.6",
   "JCR Content Parser|org.apache.sling.jcr.contentparser|1.2.6",
   "JCR DavEx|org.apache.sling.jcr.davex|1.3.10",
   "JCR Jackrabbit AccessManager|org.apache.sling.jcr.jackrabbit.accessmanager|3.0.0",
