@@ -15,7 +15,7 @@ The Resource is one of the central parts of Sling. Extending from JCR's *Everyth
 Resources have a number of essentiall properties:
 
 | Property | Description |
-|--|--|
+|---|---|
 | Path | Resources are part of a Resource Tree. As such each Resource has a path which is formed by concatenating the names of all Resources along the root to the Resource separated by a slash. Ok, really, this is much like a URL path or a file system path where the slash (`/`) is the separator character. |
 | Name | The name of the Resource is the last element (or segment) in the path. |
 | Resource Type | Each resource has a resource type which is used by the Servlet and Script resolver to find the appropriate Servlet or Script to handle the request for the Resource. |
@@ -31,7 +31,7 @@ The exact method of setting the resource type for a Resource depends on the actu
 implementations provided by Sling, the assignments are as follows:
 
 | Provider | Resource Type | Resource Super Type |
-|--|--|--|
+|---|---|---|
 | JCR | The value of the `sling:resourceType` property or the primary node type if the property is not set (a namespace separator colon is replaced by a slash, e.g. the `nt:file` primary node type is mapped to the `nt/file` resource type | The value of the `sling:resourceSuperType` of the Resource node or resource super type of the resource pointed to by the resource type (when accessed with `ResourceResolver.getResource(String)` |
 | File System | File based resources are of type `nt/file`; folder based resources are of type `nt/folder` corresponding to the respective JCR primary node type | none |
 | Bundle | File based resources are of type `nt/file`; folder based resources are of type `nt/folder` corresponding to the respective JCR primary node type | none |

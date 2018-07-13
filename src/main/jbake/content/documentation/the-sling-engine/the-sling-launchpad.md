@@ -30,7 +30,7 @@ The following is a list of uses for the Sling Home directory:
 The Java Standalone Application supports a number of command line options, which influence the operation of the launch process.
 
 | Option | Argument | Description |
-|--|--|--|
+|---|---|---|
 | `start` | (-) | Open a TCP/IP server socket when starting Sling. Uses option `-j` to define the local socket address. |
 | `status` | (-) | Check whether a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to check. Note, that the Sling application terminates after checking for the (remote) Sling status. |
 | `stop` | (-) | Stop a (remote) Sling application is running. Uses option `-j` to define the address of the Sling instance to stop. Note, that the Sling application tesrminates after stopping the (remote) Sling instance. |
@@ -124,7 +124,7 @@ The `sling.home` folders for Sling Web Applications without the `sling.home` ser
 Examples:
 
 | Servlet Context | Default `sling.home` |
-|--|--|
+|---|---|
 | *root* | `sling/_` |
 | `/sling` | `sling/_sling` |
 | `/sling/instance1` | `sling/_sling/instance1` |
@@ -134,7 +134,7 @@ Starting with Launchpad Base 2.2.2 the fixed prefix `sling` is configurable with
 Examples: Assume the `sling.home.prefix` system property is set to `/var/sling`
 
 | Servlet Context | Default `sling.home` |
-|--|--|
+|---|---|
 | *root* | `/var/sling/_` |
 | `/sling` | `/var/sling/_sling` |
 | `/sling/instance1` | `/var/sling/_sling/instance1` |

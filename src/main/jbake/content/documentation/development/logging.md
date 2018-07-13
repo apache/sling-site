@@ -73,7 +73,7 @@ The `org.apache.sling.commons.log` bundle gets its initial configuration from th
 
 
 | Property | Default | Description |
-|--|--|--|
+|---|---|---|
 | `org.apache.sling.commons.log.level` | `INFO` | Sets the initial logging level of the root logger. This may be any of the defined logging levels `DEBUG`, `INFO`, `WARN`, `ERROR` and `FATAL`. |
 | `org.apache.sling.commons.log.file` | undefined | Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to `System.out`. |
 | `org.apache.sling.commons.log.file.number` | 5 | The number of rotated files to keep. |
@@ -102,7 +102,7 @@ may be created and configured with the Configuration Admin Service.
 The following properties may be set:
 
 | Property | Type | Default | Description |
-|--|--|--|--|
+|---|---|---|---|
 | `org.apache.sling.commons.log.level` | `String` | `INFO` | Sets the logging level of the loggers. This may be any of the defined logging levels `DEBUG`, `INFO`, `WARN`, `ERROR` and `FATAL`. |
 | `org.apache.sling.commons.log.file` | `String` | undefined | Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to `System.out`. This property should refer to the file name of a configured Log Writer (see below). If no Log Writer is configured with the same file name an implicit Log Writer configuration with default configuration is created. |
 | `org.apache.sling.commons.log.pattern` | `String` | \{0,date,dd.MM.yyyy HH:mm:ss.SSS\} \*\{4\}\* \{2\} \{3\} \{5\} | The `java.util.MessageFormat` pattern to use for formatting log messages with the root logger. This is a `java.util.MessageFormat` pattern supporting up to six arguments: \{0\} The timestamp of type `java.util.Date`, \{1\} the log marker, \{2\} the name of the current thread, \{3\} the name of the logger, \{4\} the log level and \{5\} the actual log message. If the log call includes a Throwable, the stacktrace is just appended to the message regardless of the pattern. |
@@ -123,7 +123,7 @@ Log Writer Configuration is used to setup file output and log file rotation char
 The following properties may be set:
 
 | Property | Default | Description |
-|--|--|--|
+|---|---|---|
 | `org.apache.sling.commons.log.file` | undefined | Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to `System.out`. |
 | `org.apache.sling.commons.log.file.number` | 5 | The number of rotated files to keep. |
 | `org.apache.sling.commons.log.file.size` | '.'yyyy-MM-dd | Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section *Log File Rotation* below for full details on log file rotation. |
@@ -159,7 +159,7 @@ For example, if the log file is configured as `/foo/bar.log` and the pattern set
 It is possible to specify monthly, weekly, half-daily, daily, hourly, or minutely rollover schedules.
 
 | DatePattern | Rollover schedule | Example |
-|--|--|--|
+|---|---|---|
 | `'.'yyyy-MM` | Rollover at the beginning of each month | At midnight of May 31st, 2002 `/foo/bar.log` will be copied to `/foo/bar.log.2002-05`. Logging for the month of June will be output to `/foo/bar.log` until it is also rolled over the next month. |
 | `'.'yyyy-ww` | Rollover at the first day of each week. The first day of the week depends on the locale. | Assuming the first day of the week is Sunday, on Saturday midnight, June 9th 2002, the file `/foo/bar.log` will be copied to `/foo/bar.log.2002-23`. Logging for the 24th week of 2002 will be output to `/foo/bar.log` until it is rolled over the next week. |
 | `'.'yyyy-MM-dd` | Rollover at midnight each day.| At midnight, on March 8th, 2002, `/foo/bar.log` will be copied to `/foo/bar.log.2002-03-08`. Logging for the 9th day of March will be output to `/foo/bar.log` until it is rolled over the next day.|

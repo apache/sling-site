@@ -21,7 +21,7 @@ To show a Servlet inside the Resource tree, the `sling/servlet-resolver` project
 The following service reference properties are defined for Servlets defined as OSGi services of type `javax.servlet.Servlet`:
 
 | Name | Description |
-|--|--|
+|---|---|
 | `sling.servlet.paths` | A list of absolute paths under which the servlet is accessible as a Resource. The property value must either be a single String, an array of Strings or a Vector of Strings. |
 | `sling.servlet.resourceTypes` | The resource type(s) supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is ignored if the `sling.servlet.paths` property is set. |
 | `sling.servlet.selectors` |  The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is ignored if the `sling.servlet.paths` property is set. |

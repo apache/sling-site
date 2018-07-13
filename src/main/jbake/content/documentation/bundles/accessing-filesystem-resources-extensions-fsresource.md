@@ -51,7 +51,7 @@ Which files are mounted depends on the 'File system layout' configuration parame
 Configuration parameters for each mapping:
 
 | Parameter | Name | Description |
-|-|-|-|
+|---|---|---|
 | File System Root | `provider.file` | File system directory mapped to the virtual resource tree. This property must not be an empty string. If the path is relative it is resolved against sling.home or the current working directory. The path may be a file or folder. If the path does not address an existing file or folder, an empty folder is created. |
 | Provider Root	| `provider.root` (2.x), `provider.roots` (1.x) | Location in the virtual resource tree where the file system resources are mapped in. This property must not be an empty string. Only one path is supported. |
 | File system layout | `provider.fs.mode` | File system layout mode for files, folders and content. |

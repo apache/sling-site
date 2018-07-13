@@ -30,7 +30,7 @@ Access is denied if the username and password cannot be used to login to the def
 The Security Provider is configured with the configuration PID `org.apache.sling.extensions.webconsolesecurityprovider.internal.SlingWebConsoleSecurityProvider` supporting the following properties:
 
 | Property | Type | Default Value | Description
-|--|--|--|
+|---|---|---|
 | `users` | `String`, `String[]` or `Vector<String>` | admin | The list of users granted access to the Web Console |
 | `groups`| `String`, `String[]` or `Vector<String>` | (---) | The list of groups whose (direct or indirect) members are granted access to the Web Console |
 

@@ -39,7 +39,7 @@ The implementation follows this algorithm:
 Extracting the credentials and trying to login to the repository may yield the following results:
 
 | Credentials | Login | Consequence |
-|--|--|--|
+|---|---|---|
 | present | successful | Continue with an authenticated request |
 | present | failed | Select `AuthenticationHandler` and call `requestCredentials` method |
 | missing | anonymous allowed | Continue with a non authenticated request using anonymous access to the repository |
@@ -55,7 +55,7 @@ Extracting the credentials and trying to login to the repository may yield the f
 The `handleSecurity` method gets credentials from the `AuthenticationHandler` and logs into the JCR repository using those credentials. If the login is successful, the `SlingAuthenticator` sets the following request attributes:
 
 | Attribute | Description |
-|--|--|
+|---|---|
 | `org.osgi.service.http.authentication.remote.user` | The user ID of the JCR Session. This attribute is used by the HTTP Service implementation to implement the `HttpServletRequest.getRemoteUser` method. |
 | `org.osgi.service.http.authentication.type` | The authentication type defined by the `AuthenticationHandler`. This attribute is used by the HTTP Service implementation to implement the `HttpServletRequest.getAuthType` method. |
 | `org.apache.sling.auth.core.ResourceResolver` | The `ResourceResolver` created from the credentials and the logged in JCR Session. This attribute may be used by servlets to access the repository. Namely the `SlingMainServlet` uses this request attribute to provide the `ResourceResolver` to handle the request. |
@@ -108,7 +108,7 @@ The implementation of the `Authenticator` interface is similar for both methods:
 The `login` method has three possible exit states:
 
 | Exit State | Description |
-|--|--|
+|---|---|
 | Normal | An `AuthenticationHandler` could be selected to which the login request could be forwarded. |
 | `NoAuthenticationHandlerException` | No `AuthenticationHandler` could be selected to forward the login request to. In this case, the caller can proceed as appropriate. For example a servlet, which should just login a user may send back a 403/FORBIDDEN status because login is not possible. Or a 404/NOT FOUND handler, which tried to login as a fallback, may continue and send back the regular 404/NOT FOUND response. |
 | `IllegalStateException` | The response has already been committed and the login request cannot be processed. Normally to request login, the current response must be reset and a new response has to be prepared. This is only possible if the request has not yet been committed. |
