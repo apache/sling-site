@@ -44,14 +44,28 @@
 
         <!-- dependencies -->
         <dependencies>
-          <!-- as soon as this dependency is modified to 2.6.1 (or removed) it can no longer load the markdown engine
-            and emits "[WARNING] Unable to load a suitable rendering engine for extensions [md]".
-            Version 2.6.0 works without any issues.
-           -->
+          <!-- the following are only optional dependencies of jbake-core and 
+               therefore need to be listed explicitly here to be loaded.
+               The versions should be the same as listed in jbake-core.
+               Compare with https://github.com/jbake-org/jbake-maven-plugin/issues/14.
+          -->
+          <!-- for parsing MD -->
           <dependency>
-            <groupId>org.jbake</groupId>
-            <artifactId>jbake-core</artifactId>
-            <version>2.6.1</version>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark</artifactId>
+            <version>${flexmark.version}</version>
+          </dependency>
+          <!-- for supporting MD pegdown extensions -->
+          <dependency>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark-profile-pegdown</artifactId>
+            <version>${flexmark.version}</version>
+          </dependency>
+          <!-- for supporting groovy templates with extension tpl -->
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-templates</artifactId>
+            <version>2.4.15</version>
           </dependency>
         </dependencies>
 
