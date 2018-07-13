@@ -33,7 +33,7 @@ the Sling Taglib.
 There have been a number of releases of the Sling Taglibs, including versions with different URIs.
 
 | Taglib Version | Bundle Version | URI |
-|--|--|--|
+|---|---|---|
 | 1.0 | 2.0.6 | http://sling.apache.org/taglibs/sling/1.0 |
 | 1.1 | 2.1.0 | http://sling.apache.org/taglibs/sling/1.1 |
 | 1.2 | 2.1.8 | http://sling.apache.org/taglibs/sling/1.2 |

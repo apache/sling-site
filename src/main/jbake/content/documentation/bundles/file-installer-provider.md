@@ -12,7 +12,7 @@ The file installer provider scans configured directories and provides the found 
 The file installer can be configured with these framework (system) properties:
  	 
 |Property|Default|Description|
-|--|--|--|
+|---|---|---|
 |`sling.fileinstall.dir`| |The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts|
 |`sling.fileinstall.interval`|5000 ms|Number of milliseconds between 2 polls of the directory|
 |`sling.fileinstall.writeback`|true|If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system.|

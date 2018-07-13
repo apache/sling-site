@@ -63,7 +63,7 @@ Note that these steps are processed for every include or forward call.
 When servlet or script is called as a result of `RequestDispatcher.include` the following request attributes are set:
 
 | Attribute Name <br> Attribute Type | Description |
-|-|-|
+|---|---|
 | `org.apache.sling.api.include.servlet` <br> `javax.servlet.Servlet` | The name of the request attribute containing the `Servlet` which included the servlet currently being active. |
 | `org.apache.sling.api.include.resource` <br>`org.apache.sling.api.resource.Resource` | The name of the request attribute containing the `Resource` underlying the `Servlet` which included the servlet currently being active. |
 | `org.apache.sling.api.include.request_path_info` <br> `org.apache.sling.api.request.RequestPathInfo` | The name of the request attribute containing the `RequestPathInfo` underlying the `Servlet` which included the servlet currently being active |

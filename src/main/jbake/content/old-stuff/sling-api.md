@@ -71,7 +71,7 @@ During the *Resource Resolution* step, the client request URL is decomposed into
 *Examples*: Assume there is a Resource at `/a/b`, which has no children.
 
 | URI | Resource Path | Selectors | Extension | Suffix |
-|--|--|--|--|--|
+|---|---|---|---|---|
 | /a/b                      | /a/b | null  | null | null       |
 | /a/b.html                 | /a/b | null  | html | null       |
 | /a/b.s1.html              | /a/b | s1    | html | null       |
@@ -207,7 +207,7 @@ The `service` method of included Components are called with an instance of the `
 When a Component is included by another component the following request attributes are set:
 
 | *Request Attributes* | *Type* | *Description* |
-|--|--|--|
+|---|---|---|
 | `org.apache.sling.component.request.content` | String | The `Content` instance to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. |
 | `org.apache.sling.component.request.component` | String | The `Component` instance for the `Content` object to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. |
 
@@ -233,7 +233,7 @@ If such an exception is thrown, the Component Framework must act upon the except
 * Otherwise, the Component Framework may handle the error itself in a manner similar to the error handling approach defined the Servlet API specification (Section SRV 9.9 Error Handling of the Java Servlet Specification 2.4). Specifically the request attributes defined by the Servlet API specification must be set for the error handler:
 
 | *Request Attributes* | *Type* | *Description* |
-|--|--|--|
+|---|---|---|
 | `javax.servlet.error.status_code` | `java.lang.Integer` | The status code of the response. In the case of an exception thrown from the `service`, the code is defined by the Component Framework. |
 | `javax.servlet.error.exception_type` | `java.lang.Class` | The fully qualified name of the exception class thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. |
 | `javax.servlet.error.message` | `java.lang.String` | The message of the exception thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. |

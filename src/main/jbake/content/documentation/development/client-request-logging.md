@@ -13,7 +13,7 @@ In the Web Console configure the *Apache Sling Request Logger* (PID=`org.apache.
 In the Sling Web Console locate the Configuration page (`/system/console/configMgr`) and click on the pencil (edit) symbol on the *Apache Sling Request Logger* line. This opens a dialog to enter the configuration whose properties can be configured as follows:
 
 | Parameter | Name | Default | Description |
-|--|--|--|--|
+|---|---|---|---|
 | Request Log Name | `request.log.output` | logs/request.log | Name of the destination for the request log. The request log logs the entry and exit of each request into and out of the system together with the entry time, exit time, time to process the request, a request counter as well as the final status code and response content type. In terms of Request Logger Service formats, request entry is logged with the format `%t \[%R\] \-> %m %U%q %H` and request exit is logged with the format `%\{end}t \[%R] <\- %s %\{Content-Type}o %Dms` (See [Log Format Specification](#log-format-specification) below for the specification of the format). |
 | Request Log Type | `request.log.outputtype` | Logger Name | Type of Logger named with the Logger Name parameter. See [Log Output](#log-output) below |
 | Enable Request Log | `request.log.enabled` | true | Whether to enable Request logging or not. |
@@ -27,7 +27,7 @@ In the Sling Web Console locate the Configuration page (`/system/console/configM
 Output of client request logging is defined by the Logger Type and and Logger Name where the use of the Logger Name property value depends on the Logger Type:
 
 | Type Code | Type Name | Description and Logger Name interpretation |
-|--|--|--|
+|---|---|---|
 | 0 | Logger Name | Writes the logging information to a named SLF4J Logger. The name of the Logger is defined in the Logger Name property. The actual destination of the log messages is defined the SLF4J configuration for the named logger |
 | 1 | File Name | Writes the logging information to a file, on message per line. The file name is an absolute or relative path name. If the name is relative, it is resolved against the `sling.home` framework property. |
 | 2 | RequestLog Service | Sends the logging information to a `org.apache.sling.engine.RequestLog` service whose `requestlog.name` service registration property must the same as the value of the Logger Name property. If more than one such service is registered, all services are called. If no such service is registered, the logging information is discarded. Using RequestLog Services is deprecated. |
@@ -42,7 +42,7 @@ In the Web Console create *Apache Sling Customizable Request Data Logger* (Facto
 In the Sling Web Console locate the Configuration page (`/system/console/configMgr`) and click on the `+` (plus) symbol on the *Apache Sling Customizable Request Data Logger* line. This opens a dialog to enter the configuration whose properties can be configured as follows:
 
 | Parameter | Name | Default | Description |
-|--|--|--|--|
+|---|---|---|---|
 | Log Format | `request.log.service.format` | &nbsp; | Specify a [Log Format Specification](#log-format-specification) as described below |
 | Logger Type | `request.log.service.outputtype` | Logger Name/`0` | Type of Logger named with the Logger Name parameter. See [Log Output](#log-output) above |
 | Logger Name | `request.log.service.output` | `request.log` | Name of the Logger to be used. See [Log Output](#log-output) above |
@@ -57,7 +57,7 @@ The log format specification generally follows the [definition of the `format` a
 The characteristics of the request itself are logged by placing "%" directives in the format string, which are replaced in the log file by the values as follows:
 
 | Format String | Description |
-|--|--|
+|---|---|
 | `%%`  | The percent sign |
 | `%a`  | Remote IP-address |
 | `%A`  | Local IP-address |

@@ -22,7 +22,7 @@ In addition, the Maven Launchpad Plugin supports the publishing of an applicatio
 Maven Launchpad Plugin provides the following goals: 
 
 | Goals | Description | 
-|--|--|
+|---|---|
 | launchpad:prepare-package | Create the file system structure required by Sling's Launchpad framework. | 
 | launchpad:attach-bundle-list | Attach the bundle list descriptor to the current project as a Maven artifact. | 
 | launchpad:create-karaf-descriptor | Create an Apache Karaf Feature descriptor. | 

@@ -174,7 +174,7 @@ For managing queues, the Sling Job Handler uses the OSGi ConfigAdmin - it is pos
 A queue configuration can have the following properties:
 
 | Property Name | Description |
-|--|--|
+|---|---|
 | `queue.name` | The name of the queue. If matching is used for topics, the value {0} can be used for replacing the matched part. |
 | `queue.type` | The type of the queue: ORDERED, UNORDERED, TOPIC_ROUND_ROBIN |
 | `queue.topics` | A list of topics processed by this queue. Either the concrete topic is specified or the topic string ends with /* or /. If a star is at the end all topics and sub topics match, with a dot only direct sub topics match. |

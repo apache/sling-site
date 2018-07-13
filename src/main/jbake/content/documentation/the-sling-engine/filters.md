@@ -18,7 +18,7 @@ from our integration tests shows an example Sling Filter.
 For Sling to pick up a `javax.servlet.Filter` service for filter processing two service registration properties are inspected:
 
 | Property | Type | Default Value | Valid Values | Description |
-|--|--|--|--|--|
+|---|---|---|---|---|
 | `sling.filter.scope` | `String`, `String[]` or `Vector<String>` | `request` | `REQUEST`, `INCLUDE`, `FORWARD`, `ERROR`, `COMPONENT` | Indication of which chain the filter should be added to. This property is required. If it is missing from the service, the service is ignored because it is assumed another consumer will be interested in using the service. Any unknown values of this property are also ignored causing the service to be completely ignored if none of the values provided by the property are valid. See below for the description of the filter chains. |
 | `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to paths that match the supplied regular expression. Requires Sling Engine 2.4.0. |
 | `service.ranking` | `Integer` | `0` | Any `Integer` value | Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal `service.ranking` property value (explicitly set or default value of zero) will be ordered according to their `service.id` service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. |
@@ -31,7 +31,7 @@ Sling maintains five filter chains: request level, component level, include filt
 The following table summarizes when each of the filter chains is called and what value must be defined in the `sling.filter.scope` property to have a filter added to the respective chain:
 
 | `sling.filter.scope` | Servlet API Correspondence | Description |
-|--|--|--|
+|---|---|---|
 | `REQUEST` | `REQUEST` | Filters are called once per request hitting Sling from the outside. These filters are called after the resource addressed by the request URL and the Servlet or script to process the request has been resolved before the `COMPONENT` filters (if any) and the Servlet or script are called. |
 | `INCLUDE` | `INCLUDE` | Filters are called upon calling the `RequestDispatcher.include` method after the included resource and the Servlet or script to process the include have been resolved before the Servlet or script is called. |
 | `FORWARD` | `FORWARD` | Filters are called upon calling the `RequestDispatcher.forward` method after the included resource and the Servlet or script to process the include have been resolved before the Servlet or script is called. |

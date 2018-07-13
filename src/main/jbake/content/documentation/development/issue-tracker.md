@@ -16,7 +16,7 @@ See below for guidelines on creating and managing issues.
 When creating a new issue, select the issue type based as follows:
 
 | Issue type     | Description |
-|--|--|
+|---|---|
 |  *Bug*          |  Bug reports are used for cases where Sling fails not function as it should (as defined by some documentation). If you are not certain whether the issue you've found is actually a bug, please ask the [Sling mailing lists](/project-information.html#mailing-lists) first for help. |
 |  *New Feature*  |  Use a feature request when Sling does not have some functionality you need. |
 |  *Improvement*  |  Use an improvement request to suggest improvements to existing features. Typical improvement requests are about updating documentation, increasing stability and performance, simplifying the implementation, or other such changes that make Sling better without introducing new features or fixing existing bugs. |
@@ -34,7 +34,7 @@ The issue summary should be a short and clear statement that indicates the scope
 Issue priority should be set according to the following:
 
 | Issue priority | Description |
-|--|
+|---|
 |  *Blocker*      |  Legal or other fundamental issue that makes it impossible to release Jackrabbit code |
 |  *Critical*     |  Major loss of functionality that affects many Slingusers |
 |  *Major*        |  Important issue that should be resolved soon |
@@ -48,7 +48,7 @@ Issue priority should be set according to the following:
 Sling issues can transition through a number of states while being processed:
 
 | State | Description | Next States in Workflow |
-|--|--|--|
+|---|---|---|
 | *Open* | The issue has just been created | *In Pogress* |
 | *In Progress* | Work has started on the issue | *Documentation Required*, *Testcase Required*, *Documentation/Testcase required*, *Resolved*, *Open* |
 | *Documentation Required* | Implementation work has finished for this issue. To complete it documentation must be created and/or updated. | *Resolved* |

@@ -142,7 +142,7 @@ To signal to users of evolving packages, that there might be new and interesting
 A hypothetical evolution of version numbers shown on two packages and the bundle version might be as follows
 
 | Description | `api` package | `resource` package | bundle |
-|-|-|-|-|
+|---|---|---|---|
 | Initial Release | 1.0.0 | 1.0.0 | 1.0.0 |
 | Bug fix in a `resource` class | 1.0.0 | 1.0.2 | 1.0.2 |
 | New API in the `resource` package | 1.0.0 | 1.1.0 | 1.1.0 |
@@ -157,7 +157,7 @@ An example of such a hybrid bundle is the Sling Engine bundle. This bundle expor
 A hypothetical evolution of version numbers shown on one exported package and the bundle version might be as follows
 
 | Description | `engine` package | bundle |
-|-|-|-|
+|---|---|---|
 | Initial Release | 1.0.0 | 1.0.0 |
 | Bug fix in a `engine` class | 1.0.2 | 1.0.2 |
 | Bug fix in an internal calss | 1.0.2 | 1.0.4 |

@@ -36,7 +36,7 @@ The external part uses the bridging part to create the class loader into which t
 The bridging part is provided in the `org.apache.sling.launchpad.base.shared` package:
 
 | Class | Description |
-|--|--|
+|---|---|
 | Launcher | The interface implemented by the internal class matching the external class being called to start/stop the framework. |
 | LauncherClassLoader | `URLClassLoader` implementing the class loader to load the internal part (along with the OSGi framework). This class loader only delegates to the parent class loader any packages not contained in the launchpad library (primary artifact of the Launchpad Base project). |
 | Loader | Helper class to find the launchpad library and to create the `LauncherClassLoader` with that library. This class is also used to actually load the `Launcher` implementation to be called from the external launcher class. |
@@ -65,7 +65,7 @@ The external part is comprised of a main class started from the environment -- m
 The standalone Java Application makes use of three classes:
 
 | Class | Description |
-|--|--|
+|---|---|
 | Main | This is the main class whose `main` method is called by the Java VM. This class is itself the `Notifiable` and finds the `sling.home` location from the environment (command line parameter, system property, or environment variable). |
 | MainDelegate | This class is loaded by the `Loader` from the `LauncherClassLoader` to actually complete the initial setup before creating the `Sling` class to start the framework. |
 | ControlListener | This class is used by the `Main` class to open a server socket to be able to start and stop Sling as a server. This class allows for starting (opening the server socket), status check (connecting to the socket asking for status), and shutdown (connecting to the socket asking for shutdown). |
@@ -77,7 +77,7 @@ At the moment these classes are not directly suitable to be embedded in an exist
 To embedd the Sling Launcher in an application, the `Main` class is extended from. To manage the launcher, the following API is available:
 
 | Method | Description |
-|--|--|
+|---|---|
 | `Main(Map<String, String> properties)` | Instantiates the Main class with the given configuration properties. These are properties which are used directly as overwrites to the configurations in the `sling.properties` file. There is no more conversion applied. |
 | `doControlCommand()` | Before starting the application for the first time, this method can be called to handle any control command action. |
 | `doStart()` | Starts the Sling Application using the provided configuration properties as overwrites. Also these properties (or the `sling.home` system property or the `SLING_HOME` environment variable are analyzed to get the value for the `sling.home` setting. |
@@ -93,7 +93,7 @@ The `sling.control.socket` is either a normal port number, in which case the con
 The `sling.control.action` takes either of three values:
 
 | Value | Description |
-|--|--|
+|---|---|
 | `start` | Starts a server socket as specified by the `sling.control.socket` property. If the socket cannot be bound to (because the port is in use) an error message is printed. Using the `start` action only makes sense when starting the application. |
 | `stop` | The `stop` action is used to stop a running application. For that a connection is opened to the server running on the socket specified by the `sling.control.socket` property. On this connection the server is instructed to shut down. After executing the `stop` action, the Java application should be terminated. |
 | `status` | The `status` action is used to check the status of a running application. For that a connection is opened to the server running on the socket specified by the `sling.control.socket` property. On this connection the server is queried on its status. After executing the `stop` action, the Java application should be terminated. |
@@ -104,7 +104,7 @@ The `sling.control.action` takes either of three values:
 When calling the Main class through the JVM startup the `Main.main(String[] args)` methods is called which reads the command line arguments and converts them into a `Map<String, String>` suitable for the constructore as follows:
 
 | Command Line Argument | Properties Entry |
-|--|--|
+|---|---|
 | start | sling.control.action = "start" |
 | status | sling.control.action = "status" |
 | stop | sling.control.action = "stop" |
@@ -122,7 +122,7 @@ When calling the Main class through the JVM startup the `Main.main(String[] args
 The web application makes use of 5 classes:
 
 | Class | Description |
-|--|--|
+|---|---|
 | SlingServlet | This is the servlet registered in the `web.xml` descriptor and loaded by the servlet container into which Sling is deplyoed. This class locates the `sling.home` folder and loads the `SlingServletDelagate` to actually launch the framework. |
 | SlingSessionListener | This -- somewhat inappropriately named -- class is registered as a listener by the Sling `web.xml` descriptor. It is called by the servlet container and forwards events to the `SlingHttpSessionListenerDelegate` which in turn forwards the events to the respective Servlet API listener services registered in the OSGi Framework. |
 | SlingBridge | Simple extension of the `Sling` class which registers the system bundle's `BundleContext` as a servlet context attribute of the Sling web application. This allows Servlet Container bridging to properly work. |
