@@ -101,13 +101,13 @@
 <h1><a href="#modules" name="modules">Modules</a></h1>
 <p>The Sling implementation is comprised of the following modules:</p>
 <ol>
-  <li><a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/compiler"><code>org.apache.sling.scripting.sightly.compiler</code></a> - provides support for compiling HTML Template Language scripts into an Abstract Syntax Tree</li>
-  <li><a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/java-compiler"><code>org.apache.sling.scripting.sightly.compiler.java</code></a> - provides support for transpiling the Abstract Syntax Tree produced by the <code>org.apache.sling.scripting.sightly.compiler</code> module into Java source code</li>
-  <li><a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/engine"><code>org.apache.sling.scripting.sightly</code></a> - the HTL Scripting Engine bundle</li>
-  <li><a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/js-use-provider"><code>org.apache.sling.scripting.sightly.js.provider</code></a> - the HTL JavaScript Use Provider, implementing support for the <code>use</code> JavaScript function</li>
-  <li><a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/models-use-provider"><code>org.apache.sling.scripting.sightly.models.provider</code></a> - <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a> Use Provider</li>
-  <li><a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/repl"><code>org.apache.sling.scripting.sightly.repl</code></a> - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts</li>
-  <li><a href="https://github.com/apache/sling/tree/trunk/tooling/maven/htl-maven-plugin"><code>htl-maven-plugin</code></a> - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler"><code>org.apache.sling.scripting.sightly.compiler</code></a> - provides support for compiling HTML Template Language scripts into an Abstract Syntax Tree</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java"><code>org.apache.sling.scripting.sightly.compiler.java</code></a> - provides support for transpiling the Abstract Syntax Tree produced by the <code>org.apache.sling.scripting.sightly.compiler</code> module into Java source code</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly"><code>org.apache.sling.scripting.sightly</code></a> - the HTL Scripting Engine bundle</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider"><code>org.apache.sling.scripting.sightly.js.provider</code></a> - the HTL JavaScript Use Provider, implementing support for the <code>use</code> JavaScript function</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider"><code>org.apache.sling.scripting.sightly.models.provider</code></a> - <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a> Use Provider</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl"><code>org.apache.sling.scripting.sightly.repl</code></a> - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts</li>
+  <li><a href="https://github.com/apache/sling-htl-maven-plugin"><code>htl-maven-plugin</code></a> - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time</li>
 </ol>
 <h1><a href="#the-use-api" name="the-use-api">The Use-API</a></h1>
 <p>The <a href="https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/1.2/SPECIFICATION.md#4-use-api">HTML Template Language Specification</a> explicitly defines two ways of implementing support for business logic objects:</p>
@@ -144,7 +144,7 @@ use([&#39;dep1.js&#39;, &#39;dep2.js&#39;], function (Dep1, Dep2) {
 </code></pre>
   </li>
 </ol>
-<p>The HTL implementation from Sling provides the basic POJO support through the <a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java"><code>org.apache.sling.scripting.sightly.pojo.Use</code></a> interface and the <a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java"><code>JavaUseProvider</code></a>, whereas the <code>use</code> function is implemented by the <code>org.apache.sling.scripting.sightly.js.provider</code> bundle.</p>
+<p>The HTL implementation from Sling provides the basic POJO support through the <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java"><code>org.apache.sling.scripting.sightly.pojo.Use</code></a> interface and the <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java"><code>JavaUseProvider</code></a>, whereas the <code>use</code> function is implemented by the <code>org.apache.sling.scripting.sightly.js.provider</code> bundle.</p>
 <p>However, the Sling implementation provides a few extensions to the Use-API.</p>
 <h2><a href="#sling-specific-use-api-extensions" name="sling-specific-use-api-extensions">Sling-specific Use-API Extensions</a></h2>
 <p>A full HTL installation provides the following Use Providers, in the order of their priority (the higher the service ranking value, the higher the priority):</p>
@@ -259,7 +259,7 @@ use([&#39;dep1.js&#39;, &#39;dep2.js&#39;], function (Dep1, Dep2) {
 </code></pre>
 <p>The advantage of loading a bean using just the simple class name (e.g. <code>data-sly-use.page=&quot;PageBean&quot;</code>) is that an inheriting component can overlay the <code>PageBean.java</code> file and provide a different logic. In this case the package name of the <code>PageBean</code> class will automatically be derived from the calling script's parent path (e.g. <code>apps.my_project.components.page</code>) - the bean doesn't even have to specify it. However, keep in mind that loading a bean this way is slower than providing the fully qualified class name, since the provider has to check if there is a backing resource. At the same time, loading an object using its fully qualified class name will not allow overriding it by inheriting components.</p>
 <h4><a href="#passing-parameters" name="passing-parameters">Passing parameters</a></h4>
-<p>Passed parameters will be made available to the Use object as request attributes and, if the object implements the <a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java"><code>org.apache.sling.scripting.sightly.pojo.Use</code></a> interface, through the <code>javax.script.Bindings</code> passed to the <code>init</code> method. Assuming the following markup:</p>
+<p>Passed parameters will be made available to the Use object as request attributes and, if the object implements the <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java"><code>org.apache.sling.scripting.sightly.pojo.Use</code></a> interface, through the <code>javax.script.Bindings</code> passed to the <code>init</code> method. Assuming the following markup:</p>
 <pre><code>    &lt;div data-sly-use.useObject=&quot;${&#39;org.example.use.MyUseObject&#39; @ colour=&#39;red&#39;, year=2016}&quot;&gt;
         ${useObject.shine}
     &lt;/div&gt;
@@ -546,7 +546,7 @@ use             // the use function
 </table></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
+                    Last modified by <span class="author">JE Bailey</span> on <span class="comment">Fri Jul 13 09:06:26 2018 -0400</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
