@@ -30,7 +30,7 @@ Requesting an OpenID identifier is initiated by the Sling Authenticator deciding
 In this case the OpenID authenticator causes a form to be rendered by redirecting the client to the URL indicated by the `form.login.form` configuration parameter. This redirection request may accompanied by the following parameters:
 
 | Request Parameter | Description |
-|--|--|
+|---|---|
 | `resource` | The location to which the user initially requested access and that caused the `requestCredentials` method to be called. This may not be set (or be set to an empty string). |
 | `j_reason` | The reason why an earlier attempt at authentication with the OpenID authentication handler failed. This request parameter is only set if the same named request attribute has been set by the `extractCredentials` or the `authenticationFailed` method. The value of the parameter is the name of one of the `OpenIDFailure` constants. |
 | `j_openid_identity` | The OpenID identity which could not successfully be associated with an existing JCR user. This request parameter is only set if the `authenticationFailed` method has been called due to inability to associate an existing and validated OpenID identity with an existing JCR user. |
@@ -49,7 +49,7 @@ The OpenID Authentication Handler provides a default login form registered at `/
 The OpenID AuthenticationHandler is configured with configuration provided by the OSGi Configuration Admin Service using the `org.apache.sling.openidauth.OpenIdAuthenticationHandler` service PID.
 
 | Parameter | Default | Description |
-|--|--|--|
+|---|---|---|
 | `path` | -- | Repository path for which this authentication handler should be used by Sling. If this is empty, the authentication handler will be disabled. |
 | `openid.login.form` | `/system/sling/openid/login` | This should provide a way to capture the user's OpenID identifier.  This is not the OpenID Provider's login page, however, it does not have to be a local URL. If it is a local Sling URL, it must be accessible by the anonymous user. The user is HTTP Redirect'ed to this URL.  This page should POST back the user's OpenID identifier (as named by the "OpenID identifier form field" property) to the originally requested URL set in the "resource" request parameter. |
 | `openid.login.identifier` | `openid_identifier` | The name of the form parameter that provides the user's OpenID identifier. By convention this is `openid_identifier`. Only change this if you have a very good reason to do so. |
@@ -89,7 +89,7 @@ If the `sling:authRequestLogin` parameter is set to a value other than `OpenID` 
 If the parameter is not set or is set to `OpenID` this method continues with first invalidating any cached OpenID credentials (same as `dropCredentials` does) and then redirecting the client to the login form configured with the `openid.login.form` configuration property. The redirect is provided with up to three request parameters:
 
 | Request Parameter | Description |
-|--|--|
+|---|---|
 | `resource` | The location to which the user initially requested access and that caused the `requestCredentials` method to be called. |
 | `j_reason` | The reason why an earlier attempt at authentication with the OpenID authentication handler failed. This request parameter is only set if the same named request attribute has been set by the `extractCredentials` or the `authenticationFailed` method. The value of the parameter is the name of one of the `OpenIDFailure` constants. |
 | `j_openid_identity` | The OpenID identity which could not successfully be associated with an existing JCR user. This request parameter is only set if the `authenticationFailed` method has been called due to inability to associate an existing and validated OpenID identity with an existing JCR user. |

@@ -11,7 +11,7 @@ The `jackrabbit-accessmanager` bundle delivers a REST interface to manipulate us
 ## Privileges
 
 | privilagename | description |
-|--|--|
+|---|---|
 | jcr:read | the privilege to retrieve a node and get its properties and their values |
 | jcr:readAccessControl | the privilege to get the access control policy of a node |
 | jcr:modifyProperties | the privilege to create, modify and remove the properties of a node |

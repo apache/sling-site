@@ -22,7 +22,7 @@ The members of the Sling Project Management Commitee ([PMC](http://www.apache.or
 The following list of former committers and PMC members have chosen to go emeritus. We are still thankful for their help and guidance during earlier phases of the Sling project.
 
 | Id | Name | Organization | Roles |
-|--|--|--|--|
+|---|---|---|---|
 | farra | **J Aaron Farr** | | Mentor |
 | jukka | **Jukka Zitting** | Adobe | Champion, Mentor |
 
@@ -33,7 +33,7 @@ Committers with their names printed in bold face have also been members of the P
 The following list of former PMC members have chosen to go emeritus as a PMC member but stay active as a committer. We are still thankful for their help and guidance.
 
 | Id | Name | Organization | Roles |
-|--|--|--|--|
+|---|---|---|---|
 | vramdal | Vidar Ramdal | | Java Developer |
 
 ## Special Thanks

@@ -10,7 +10,7 @@ tags=core,requests
 The Servlet API specification provides the following methods to access the parameters of a request
 
 | Method | Description |
-|-|-|
+|---|---|
 | `HttpServletRequest.getQueryString()` | Returns the query part of the request URL |
 | `ServletRequest.getParameter(String)` | Returns the (first) named parameter |
 | `ServletRequest.getParameterValues(String)` | Returns all parameters of that name |
@@ -27,7 +27,7 @@ The actual encoding of the parameters is all but safe because the encoding of UR
 To overcome the restrictions and to provide uniform access to request parameters the Sling API in addition to the Servlet API methods to access parameters provides an abstraction of parameters which is applicable to all parameters sent by clients, the `RequestParameter` interface. Through this interface, each parameter may be analyzed for these topics:
 
 | Type | Description |
-|-|-|
+|---|---|
 | Raw Content | Byte array and `InputStream` representation of the request parameter values. You will generally use the `InputStream` to handle uploaded files. |
 | String Content | Access the values as strings is some given encoding (see below) or by requesting the conversion using an explicit encoding. |
 | File Uploads | Find out whether a parameter is a file upload, get the size in bytes of the parameter value and client side file name as sent by the browser. |
@@ -35,7 +35,7 @@ To overcome the restrictions and to provide uniform access to request parameters
 To accomodate this new interface as well as to provide easy access in the traditional way the `SlingHttpServletRequest` interface adds following methods to the standard Servlet API parameter access methods:
 
 | Method | Description |
-|-|-|
+|---|---|
 | `getRequestParameter(String)` | Returns the (first) named parameter as a `RequestParameter` instance |
 | `getRequestParameters(String)` | Returns the named parameter as an array of `RequestParameter` instances |
 | `getRequestParameterMap()` | Returns `RequestParameterMap` being a map of `RequestParameter` arrays indexed by parameter names |

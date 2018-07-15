@@ -59,7 +59,7 @@ The standalone application currently sets properties for the third step of the c
 In addition the following command line arguments are accepted:
 
 | Argument | Sling property | Description |
-|--|--|--|
+|---|---|---|
 | `-l loglevel` | `org.apache.sling.osgi.log.level` | The initial loglevel (0..4, FATAL, ERROR, WARN, INFO, DEBUG) |
 | `-f logfile` | `org.apache.sling.osgi.log.file` | The log file, "-" for stdout |
 | `-c slinghome` | `sling.home` | the sling context directory |
@@ -122,7 +122,7 @@ Sometimes, especially in the Servlet Container case, it is important to use the 
 *Examples*
 
 | Configuration | Description |
-|--|--|
+|---|---|
 | `sling.bootdelegation.simple = com.some.package` | This setting unconditionally adds the `com.some.package` package to the `org.osgi.framework.bootdelegation` property |
 | `sling.bootdelegation.class.com.some.other.Main = com.some.other` | This setting checks whether the `com.some.other.Main` class is known. If so, the `com.some.other` package is added to the `org.osgi.framework.bootdelegation` property. Otherwise the `com.some.other` package is not added - and therefore must be exported by a bundle if required for use inside the framework. |
 
@@ -138,7 +138,7 @@ As listed in the above section on OSGi Boot Delegation Support, the `org.osgi.fr
 *Examples*
 
 | Configuration | Description |
-|--|--|
+|---|---|
 | `sling.system.packages.simple = com.some.package` | This setting unconditionally adds the `com.some.package` package to the `org.osgi.framework.system.packages` property |
 | `sling.system.packages.class.com.some.other.Main = com.some.other` | This setting checks whether the `com.some.other.Main` class is known. If so, the `com.some.other` package is added to the `org.osgi.framework.system.packages` property. Otherwise the `com.some.other` package is not added - and therefore must be exported by a bundle if required for use inside the framework. |
 
@@ -166,7 +166,7 @@ To prevent property name collisions, I suggest the following convention:
 The following table is a collection of well known property names from different parts of Project Sling.
 
 | Property | Description |
-|--|--|
+|---|---|
 | `sling.home` | Defines the file system location where Project Sling will write copies of the initial configuration. This property should also be used to define other local file system locations such as the directory to use for the Apache Felix Bundle Cache (`${sling.home}/felix` by default). If this property is not set it defaults to `${user.dir}/sling`. |
 | `sling.home.url` | Contains the Sling directory set in the `sling.home` property as a valid URL. This property may be used in situations where the Sling directory is required as an URL. This property is automatically set by the Sling application and may not be modified by configuration files. |
 | `sling.ignoreSystemProperties` | Whether to overwrite any configuration properties with Java system properties or not. By default this property is set to `true` by the Sling Servlet but not set by the Sling main class. The reason to set this by default in the Sling Servlet is to not induce values from the environment, which may not be appropriate in the Web Application case. |

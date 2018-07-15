@@ -10,14 +10,14 @@ The `AuthenticationHandler` interface defines the service API which may be imple
 `AuthenticationHandler` services have a single required service registration property which is used to identify requests to which the `AuthenticationHandler` service is applicable:
 
 | Property | Description |
-|-|-|
+|---|---|
 | `path` | One or more (array or vector) string values indicating the request URLs to which the `AuthenticationHandler` is applicable. |
 | `authtype` | The authentication type implemented by this handler. This is a string value property and should be the same as will be used as the authentication type of the `AuthenticationInfo` object provided by the `extractCredentials` method. If this property is set, the `requestCredentials` method of the authentication handler is only called if the `sling:authRequestLogin` request parameter is either not set or is set to the same value as the `authtype` of the handler. This property is optional. If not set, the `requestCredentials` method is always called regardless of the value of the `sling:authRequestLogin` request parameter. |
 
 Each path may be an absolute URL, a URL with just the host/port and path or just a plain absolute path:
 
 | URL part | Scheme | Host/Port | Path |
-|-|-|-|-|
+|---|---|---|---|
 | Absolute URL | must match | must match | request URL path is prefixed with the path |
 | Host/Port with Path | ignored | must match | request URL path is prefixed with the path |
 | Path | ignored | ignored | request URL path is prefixed with the path |
