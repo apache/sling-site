@@ -33,6 +33,7 @@
     <repos.list.url>https://raw.githubusercontent.com/apache/sling-aggregator/master/default.xml</repos.list.url>
     <downloads.dir>${project.build.directory}/downloads</downloads.dir>
     <repos.list.fullpath>${downloads.dir}/github-repositories.xml</repos.list.fullpath>
+    <flexmark.version>0.32.20</flexmark.version>
   </properties>
 
   <build>
