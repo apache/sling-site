@@ -14,7 +14,7 @@ The Sling API provides an easy way to wrap or decorate a resource before returni
 
 To add a resource decorator just register one or more services which implement the interface `ResourceDecorator`
 
-    :::java
+    ::java
     interface ResourceDecorator {
         /** Optionally decorate the supplied Resource */
         Resource decorate(Resource)
@@ -32,7 +32,7 @@ If the service does not want to decorate the resource, it should return the orig
 Starting with version 2.1.0 of the JCR Resource bundle, the two-argument `decorate` method is not called anymore. 
 Implementors of this interface targeting both newer and older versions of this bundle are advised to implement this method as:
 
-    :::java
+    ::java
     public Resource decorate(Resource resource, HttpServletRequest request) {
         return this.decorate(resource);
     }

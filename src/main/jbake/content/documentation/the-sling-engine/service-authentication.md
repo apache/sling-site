@@ -168,7 +168,7 @@ The according user must exist at the point in time where `ResourceResolverFactor
 
 Example OSGi DS Component
 
-    :::java
+    ::java
     @Component(
         reference = {
             // this waits with the activation of this component until a service user mapping with the service name = current bundle's id and the sub service name 'my-subservice-name' is available.

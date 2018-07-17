@@ -35,14 +35,14 @@ Another option is to create the bundle on your own using Peter Kriens' [bnd Tool
 1. Get the JDBC driver for your database from the driver provider
 1. Wrap the JDBC driver library into an OSGi bundle:    
 
-        :::sh
+        ::sh
         # Example for PostgreSQL JDBC 3 driver 8.4-701
         $ java -jar bnd.jar wrap postgresql-8.4-701.jdbc3.jar
         $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar
 
 1. Deploy the driver to your local Maven 2 Repository (Required if adding the JDBC driver to a Maven build, e.g. using the Sling Launchpad Plugin)
 
-        :::sh
+        ::sh
         $ mvn install:install-file \  
             -DgroupId=postgresql -DartifactId=postgresql -Dversion=8.4.701.jdbc3 \  
             -Dpackaging=jar -Dfile=postgresql-8.4-701.jdbc3-bnd.jar
@@ -74,7 +74,7 @@ If the file already exists, you can modifiy this existing file and there is no n
 
 For example to use PostgreSQL instead of Derby modify the `<PersistenceManager>` elements as follows:
 
-    :::xml
+    ::xml
     <Repository>
         ...
         <Workspace name="${wsp.name}">

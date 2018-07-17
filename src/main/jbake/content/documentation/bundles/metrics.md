@@ -17,7 +17,7 @@ application.
 
 ## Basic Usage
 
-    :::java
+    ::java
     import org.apache.sling.metrics.Counter;
     import org.apache.sling.metrics.MetricsService;
     
@@ -88,13 +88,13 @@ The instance registered has a service property `name` set to `sling` (so as allo
 from any other registered `MetricRegistry` instance). It can be used to get direct access to Dropwizard 
 Metric API if required.
 
-    :::java
+    ::java
     @Reference(target = "(name=sling)")
     private MetricRegistry registry;
   
 Also the wrapper Metric instance can be converted to actual instance via `adaptTo` calls.
 
-    :::java
+    ::java
     import org.apache.sling.commons.metrics.Counter
 
     Counter counter = metricService.counter("login");
@@ -117,7 +117,7 @@ use of same name in different registry instances.
 
 Add following Maven dependency to your pom.xml:
 
-    :::xml
+    ::xml
     <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.commons.metrics</artifactId>
