@@ -201,7 +201,7 @@ The following sections provide more details.
 [Logback TurboFilters][3] operate globally and are invoked for every Logback call. To register an OSGi `TurboFilter`,
 just to register an service that implements the `ch.qos.logback.classic.turbo.TurboFilter` interface.
 
-    :::java
+    ::java
     import import ch.qos.logback.classic.turbo.MatchingFilter;
 
     SimpleTurboFilter stf = new SimpleTurboFilter();
@@ -227,7 +227,7 @@ be passed to the appender. When registering a filter the bundle needs to configu
 `appenders` which refers to list of appender names to which the Filter must be attached
 
 
-    :::java
+    ::java
     import ch.qos.logback.core.filter.Filter;
 
     SimpleFilter stf = new SimpleFilter();
@@ -254,7 +254,7 @@ If the `appenders` value is set to `*` then the filter would be registered with 
 just register a service that implements the `ch.qos.logback.core.Appender` interface.  Such a service must
 have a `loggers` service property, which refers to list of logger names to which the Appender must be attached.
 
-    :::java
+    ::java
     Dictionary<String,Object> props = new Hashtable<String, Object>();
 
     String[] loggers = {
@@ -277,7 +277,7 @@ If you have the config as string then you can register that String instance as a
 set to true. The Sling Logback Extension monitors such objects and passes them to logback.
 
 
-    :::java
+    ::java
     Properties props = new Properties();
     props.setProperty("logbackConfig","true");
 
@@ -305,7 +305,7 @@ If the config needs to be updated just re-register the service so that changes a
 Another way to provide config fragments is with services that implement the 
 `org.apache.sling.commons.log.logback.ConfigProvider` interface.
 
-    :::java
+    ::java
     @Component
     @Service
     public class ConfigProviderExample implements ConfigProvider {
@@ -317,7 +317,7 @@ Another way to provide config fragments is with services that implement the
 If the config changes then sending an OSGi event with the `org/apache/sling/commons/log/RESET` topic 
 resets the Logback runtime.
 
-    :::java
+    ::java
     eventAdmin.sendEvent(new Event("org/apache/sling/commons/log/RESET",new Properties()));
 
 ### External Config File
@@ -330,7 +330,7 @@ Logback can be configured with an external file. The file name can be specified 
 If you are providing an external config file then to support OSGi integration you need to add following
 action entry:
 
-    :::xml
+    ::xml
     <newRule pattern="*/configuration/osgi"
              actionClass="org.apache.sling.commons.log.logback.OsgiAction"/>
     <newRule pattern="*/configuration/appender-ref-osgi"
@@ -367,7 +367,7 @@ For example, for the following OSGi config
 The Logback appender would be named `logs/error.log`. To extend/override the config in a Logback config
 create an appender with the name `logs/error.log`:
 
-    :::xml
+    ::xml
     <appender name="/logs/error.log" class="ch.qos.logback.core.FileAppender">
       <file>${sling.home}/logs/error.log</file>
       <encoder>
@@ -389,7 +389,7 @@ of the API jar, follow the below steps. (See [SLING-3243][SLING-3243]) for more 
 
 1. Update the api version in the pom:
 
-        :::xml
+        ::xml
         <dependencies>
             <dependency>
               <groupId>org.slf4j</groupId>
@@ -402,7 +402,7 @@ of the API jar, follow the below steps. (See [SLING-3243][SLING-3243]) for more 
 
 2. Add an `Import-Package` instruction with a custom version range: 
 
-        :::xml
+        ::xml
         <build>
             <plugins>
               <plugin>

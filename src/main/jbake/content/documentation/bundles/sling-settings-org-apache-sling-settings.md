@@ -69,7 +69,7 @@ Remember to look at the `RunModeImplTest` mentioned above for details, and feel 
 
 The `SlingSettings` service provides the Run Modes of the running Sling instance as in this example:
 
-    :::java
+    ::java
     SlingSettings settings = ...get from BundleContext...
     Set<String> currentRunModes = settings.getRunModes();
     

@@ -204,7 +204,7 @@ Recording features works as explained below
 
     Below is a json output for GET request
 
-        :::javascript
+        ::javascript
         {
           "method": "GET",
           "time": 15140,

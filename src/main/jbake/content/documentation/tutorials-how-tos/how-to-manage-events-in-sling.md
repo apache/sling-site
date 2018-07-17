@@ -40,7 +40,7 @@ an **event.topics** property that describes which event topics the handler is in
 To listen to a Sling **resource added** events, for example, you'll set the *event.topics* property to 
 **org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED** in the class annotations:
 
-     :::java
+     ::java
      @Property(name=org.osgi.service.event.EventConstants.EVENT_TOPIC,
         value=org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED)
 
@@ -52,7 +52,7 @@ class lists and explains the available event topics available in Sling.
 
 To start a job, the *JobManager* service can be used. It needs a job topic and a payload. In our case we define our dropbox job topic and give the resource path as the payload:
 
-    :::java
+    ::java
         final String resourcePath = ...; // path to the resource to handle
 	    final Map<String, Object> payload = new HashMap<String, Object>();
         payload.put("resourcePath", resourcePath);
@@ -61,7 +61,7 @@ To start a job, the *JobManager* service can be used. It needs a job topic and a
 
 To receive the resource event, the service needs to implement the **org.osgi.service.event.EventHandler** interface and register it as an EventHandler service:
 
-    :::java
+    ::java
     @Component(immediate=true) // immediate should only be used in rare cases (see below)
     @Service(value=EventHandler.class)
     public class DropBoxService implements EventHandler {
@@ -72,14 +72,14 @@ Usually a service should be lazy and therefore not declare itself to be immediat
 
 To start the job we need a reference to the JobManager:
 
-    :::java
+    ::java
     @Reference
     private JobManager jobManager;
 
 	
 The job topic for dropbox job events needs to be defined:
 
-    :::java
+    ::java
     /** The job topic for dropbox job events. */
     public static final String JOB_TOPIC = "com/sling/eventing/dropbox/job";
 
@@ -96,7 +96,7 @@ Its logic is as follows:
 
 For example:
 
-    :::java
+    ::java
     public void handleEvent(final Event event) {
         // get the resource event information
         final String propPath = (String) event.getProperty(SlingConstants.PROPERTY_PATH);
@@ -121,14 +121,14 @@ Now that you have implemented a service that starts a job when a file is uploade
 
 To process to the job that have been defined before the property **job.topics** needs to be set to **DropBoxService.JOB_TOPIC** in the class annotations:
 
-    :::java
+    ::java
     @Property(name="job.topics",
         value=DropBoxService.JOB_TOPIC)
 
 In addition the service needs to implement the **org.apache.sling.event.jobs.consumer.JobConsumer** interface:
 
 
-    :::java
+    ::java
     public class DropBoxEventHandler implements JobConsumer {
 
 
@@ -140,7 +140,7 @@ Some class fields need to be defined:
 
 For example:
 
-    :::java
+    ::java
     /** Default log. */
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -165,7 +165,7 @@ Its logic is as follows:
 
 or in Java Code:
 
-    :::java
+    ::java
     public JobResult process(final Job job) {
 		ResourceResolver adminResolver = null;
 		try {

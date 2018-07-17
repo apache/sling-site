@@ -35,7 +35,7 @@ This command-line parameter takes precedence over a similar definition (*sling.r
 
 The [RunMode service]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:
 
-    :::java
+    ::java
     RunMode r = ...get from BundleContext...
     String [] currentRunModes = r.getCurrentRunModes();
     

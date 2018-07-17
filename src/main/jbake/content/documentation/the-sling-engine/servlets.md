@@ -53,7 +53,7 @@ The following examples show example code how you can register Servlets with Slin
 
 1. OSGi DS 1.4 (R7) component property type annotations for Sling Servlets (recommended)
 
-        :::java
+        ::java
         @Component(
         service = { Servlet.class },
         @SlingServletResourceTypes(
@@ -71,7 +71,7 @@ The following examples show example code how you can register Servlets with Slin
 
     This is only supported though with if you use `bnd-maven-plugin` and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the `bnd-maven-plugin` should look like this in your `pom.xml`
     
-        :::xml
+        ::xml
         <build>
           ...
           <plugins>
@@ -107,7 +107,7 @@ The following examples show example code how you can register Servlets with Slin
             
 1. Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)
 
-        :::java
+        ::java
         @Component(
         service = { Servlet.class },
         property = { 
@@ -127,7 +127,7 @@ The following examples show example code how you can register Servlets with Slin
 
 2. The `@SlingServlet` annotation (evaluated by maven-scr-plugin, use only if you can neither use 1. nor 2.)
 
-        :::java
+        ::java
         @SlingServlet(
             resourceTypes = "/apps/my/type",
             selectors = "hello",
