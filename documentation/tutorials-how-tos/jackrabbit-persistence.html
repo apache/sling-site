@@ -116,14 +116,14 @@ see <a href="http://jackrabbit.apache.org/oak/docs/">The Jackrabbit Oak document
 <ol>
   <li>Get the JDBC driver for your database from the driver provider</li>
   <li>Wrap the JDBC driver library into an OSGi bundle:
-    <pre><code>:<!-- TODO syntax marker (::sh) disabled --># Example for PostgreSQL JDBC 3 driver 8.4-701
+    <pre><code><!-- TODO syntax marker (::sh) disabled --># Example for PostgreSQL JDBC 3 driver 8.4-701
 $ java -jar bnd.jar wrap postgresql-8.4-701.jdbc3.jar
 $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar
 </code></pre>
   </li>
   <li>
     <p>Deploy the driver to your local Maven 2 Repository (Required if adding the JDBC driver to a Maven build, e.g. using the Sling Launchpad Plugin)</p>
-    <pre><code>:<!-- TODO syntax marker (::sh) disabled -->$ mvn install:install-file \  
+    <pre><code><!-- TODO syntax marker (::sh) disabled -->$ mvn install:install-file \  
     -DgroupId=postgresql -DartifactId=postgresql -Dversion=8.4.701.jdbc3 \  
     -Dpackaging=jar -Dfile=postgresql-8.4-701.jdbc3-bnd.jar
 </code></pre>
@@ -144,7 +144,7 @@ $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar
 <p>To prepare a repository.xml file before first startup, use the <a href="https://svn.apache.org/repos/asf/sling/attic/jackrabbit-server/src/main/resources/repository.xml"><code>repository.xml</code></a> as a template and modify it by replacing the <code>&lt;PersistenceManager&gt;</code> elements to refer to the selected persistence manager.</p>
 <p>If the file already exists, you can modifiy this existing file and there is no need to get the original from the SVN repository.</p>
 <p>For example to use PostgreSQL instead of Derby modify the <code>&lt;PersistenceManager&gt;</code> elements as follows:</p>
-<pre><code>:<!-- TODO syntax marker (::xml) disabled -->&lt;Repository&gt;
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;Repository&gt;
     ...
     &lt;Workspace name=&quot;${wsp.name}&quot;&gt;
         ...
@@ -182,7 +182,7 @@ $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar
 <p>This description is based on Tony Giaccone's description <a href="http://markmail.org/message/wlbfrukmjjsl33hh">Swapping Postgres for Derby</a> sent to the Sling Users mailing list.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                    Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">Tue Jul 17 21:15:24 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

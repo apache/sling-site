@@ -109,7 +109,7 @@ Sling Settings Bundle, though.
 <p>This command-line parameter takes precedence over a similar definition (*sling.run.modes=dev,staging*) that might be present in the <em>sling.properties</em> file found in the Sling home directory.</p>
 <h1><a href="#getting-the-current-list-of-run-modes" name="getting-the-current-list-of-run-modes">Getting the current list of run modes</a></h1>
 <p>The [RunMode service]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->RunMode r = ...get from BundleContext...
+<pre><code><!-- TODO syntax marker (::java) disabled -->RunMode r = ...get from BundleContext...
 String [] currentRunModes = r.getCurrentRunModes();
 
 String [] expectedRunModes = { &quot;foo&quot;, &quot;wii&quot; };
@@ -122,7 +122,7 @@ if(r.isActive(expectedRunModes)) {
 <p>The RunMode service is used by the [jcrinstall]({{ refs.jcr-installer-provider.path }}) services.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
+                    Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">Tue Jul 17 21:15:24 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

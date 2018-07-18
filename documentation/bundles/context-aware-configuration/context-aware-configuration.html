@@ -219,7 +219,12 @@ public class MyTest {
 ...
 </code></pre>
 <p>In you project define a test dependency (additionally the sling-mock dependency is required):</p>
-<p> #!xml  <dependency>  <groupId>org.apache.sling</groupId>  <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>  <scope>test</scope>  </dependency></p>
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+  &lt;artifactId&gt;org.apache.sling.testing.caconfig-mock-plugin&lt;/artifactId&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
 <p>Full example: <a href="https://github.com/apache/sling/blob/trunk/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java">Apache Sling Context-Aware Configuration Mock Plugin Test</a></p>
 <h1><a href="#customizing-the-configuration-lookup" name="customizing-the-configuration-lookup">Customizing the configuration lookup</a></h1>
 <p>The Context-Aware Configuration implementation provides a set of Service Provider Interfaces (SPI) that allows you to overlay, enhance or replace the default implementation and adapt it to your needs.</p>
@@ -245,7 +250,7 @@ public class MyTest {
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
+                    Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">Wed Jul 18 08:57:34 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

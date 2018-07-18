@@ -192,7 +192,7 @@
 <p>Remember to look at the <code>RunModeImplTest</code> mentioned above for details, and feel free to enhance it with useful examples.</p>
 <h3><a href="#getting-the-run-modes-of-the-sling-instance" name="getting-the-run-modes-of-the-sling-instance">Getting the Run Modes of the Sling instance</a></h3>
 <p>The <code>SlingSettings</code> service provides the Run Modes of the running Sling instance as in this example:</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->SlingSettings settings = ...get from BundleContext...
+<pre><code><!-- TODO syntax marker (::java) disabled -->SlingSettings settings = ...get from BundleContext...
 Set&lt;String&gt; currentRunModes = settings.getRunModes();
 
 Set&lt;String&gt; expectedRunModes = new HashSet&lt;String&gt;(){{ add(&quot;foo&quot;);add(&quot;wii&quot;); }};
@@ -204,7 +204,7 @@ if(expectedRunModes.removeAll(currentRunModes)) {
 <p>Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                    Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">Tue Jul 17 21:15:24 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

@@ -111,8 +111,7 @@
 <p>A Service may be comprised of multiple parts, so each part of the service may be further identified by a <em>Subservice Name</em>. This Subservice Name is optional, though. Examples of <em>Subservice Name</em> are names for subsystems in a Message Transfer System such as accepting messages, queueing messages, delivering messages.</p>
 <p>Ultimately, the combination of the <em>Service Name</em> and <em>Subservice Name</em> defines the <em>Service ID</em>. It is the <em>Service ID</em> which is finally mapped to a Resource Resolver and/or JCR Repository user ID for authentication.</p>
 <p>Thus the actual service identification (service ID) is defined as:</p>
-<pre><code>#!text
-service-id = service-name [ &quot;:&quot; subservice-name ] .
+<pre><code>service-id = service-name [ &quot;:&quot; subservice-name ] .
 </code></pre>
 <p>The <code>service-name</code> is the symbolic name of the bundle providing the service.</p>
 <h3><a href="#example-tenant-administration" name="example-tenant-administration">Example: Tenant Administration</a></h3>
@@ -162,7 +161,7 @@ service-id = service-name [ &quot;:&quot; subservice-name ] .
 </code></pre>
 <p>The according user must exist at the point in time where <code>ResourceResolverFactory.getServiceResourceResolver(...)</code> or <code>SlingRepository.loginService(...)</code> is called. If you rely on one of those methods in your <code>activate</code> method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service <code>ServiceUserMapped</code> (see Section <code>ServiceUserMapper</code> above), optionally with a target filter on property <code>subServiceName</code> (in case such a subservice name is used). The service <code>ServiceUserMapped</code> does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components. However this waits only for the mapping configuration to be available, it does not wait for the service user itself to be available.</p>
 <p>Example OSGi DS Component</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->@Component(
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Component(
     reference = {
         // this waits with the activation of this component until a service user mapping with the service name = current bundle&#39;s id and the sub service name &#39;my-subservice-name&#39; is available.
         // you can leave out &quot;target&quot; if the sub service name is not used.
@@ -251,7 +250,7 @@ whitelist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
 </table></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:36:08 2017 +0200</span>
+                    Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">Wed Jul 18 09:27:08 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

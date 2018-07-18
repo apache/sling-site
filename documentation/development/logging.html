@@ -356,7 +356,7 @@ http://localhost:8080/system/console/slinglog/tailer.txt?tail=1000&amp;grep=luce
 <p>The following sections provide more details.</p>
 <h3><a href="#turbofilters-as-osgi-services" name="turbofilters-as-osgi-services">TurboFilters as OSGi Services</a></h3>
 <p><a href="http://logback.qos.ch/manual/filters.html#TurboFilter">Logback TurboFilters</a> operate globally and are invoked for every Logback call. To register an OSGi <code>TurboFilter</code>, just to register an service that implements the <code>ch.qos.logback.classic.turbo.TurboFilter</code> interface.</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->import import ch.qos.logback.classic.turbo.MatchingFilter;
+<pre><code><!-- TODO syntax marker (::java) disabled -->import import ch.qos.logback.classic.turbo.MatchingFilter;
 
 SimpleTurboFilter stf = new SimpleTurboFilter();
 ServiceRegistration sr  = bundleContext.registerService(TurboFilter.class.getName(), stf, null);
@@ -375,7 +375,7 @@ private static class SimpleTurboFilter extends MatchingFilter {
 <p>As these filters are invoked for every call they must execute quickly.</p>
 <h3><a href="#filters-as-osgi-services" name="filters-as-osgi-services">Filters as OSGi services</a></h3>
 <p><a href="http://logback.qos.ch/manual/filters.html">Logback Filters</a> are attached to appenders and are used to determine if any LoggingEvent needs to be passed to the appender. When registering a filter the bundle needs to configure a service property <code>appenders</code> which refers to list of appender names to which the Filter must be attached</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->import ch.qos.logback.core.filter.Filter;
+<pre><code><!-- TODO syntax marker (::java) disabled -->import ch.qos.logback.core.filter.Filter;
 
 SimpleFilter stf = new SimpleFilter();
 Dictionary&lt;String, Object&gt; props = new Hashtable&lt;String, Object&gt;();
@@ -396,7 +396,7 @@ private static class SimpleFilter extends Filter&lt;ILoggingEvent&gt; {
 <p>If the <code>appenders</code> value is set to <code>*</code> then the filter would be registered with all the appenders (<code>Since 4.0.4</code>)</p>
 <h3><a href="#appenders-as-osgi-services" name="appenders-as-osgi-services">Appenders as OSGi services</a></h3>
 <p><a href="http://logback.qos.ch/manual/appenders.html">Logback Appenders</a> handle the logging events produced by Logback. To register an OSGi <code>Appender</code>, just register a service that implements the <code>ch.qos.logback.core.Appender</code> interface. Such a service must have a <code>loggers</code> service property, which refers to list of logger names to which the Appender must be attached.</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->Dictionary&lt;String,Object&gt; props = new Hashtable&lt;String, Object&gt;();
+<pre><code><!-- TODO syntax marker (::java) disabled -->Dictionary&lt;String,Object&gt; props = new Hashtable&lt;String, Object&gt;();
 
 String[] loggers = {
         &quot;foo.bar:DEBUG&quot;,
@@ -410,7 +410,7 @@ sr = bundleContext.registerService(Appender.class.getName(),this,props);
 <p>Logback supports including parts of a configuration file from another file (See <a href="http://logback.qos.ch/manual/configuration.html#fileInclusion">File Inclusion</a>). This module extends that support by allowing other bundles to provide config fragments. There are two ways to achieve that, described below.</p>
 <h4><a href="#logback-config-fragments-as-string-objects" name="logback-config-fragments-as-string-objects">Logback config fragments as String objects</a></h4>
 <p>If you have the config as string then you can register that String instance as a service with property <code>logbackConfig</code> set to true. The Sling Logback Extension monitors such objects and passes them to logback.</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->Properties props = new Properties();
+<pre><code><!-- TODO syntax marker (::java) disabled -->Properties props = new Properties();
 props.setProperty(&quot;logbackConfig&quot;,&quot;true&quot;);
 
 String config = &quot;&lt;included&gt;\n&quot; +
@@ -432,7 +432,7 @@ registration = context.registerService(String.class.getName(),config,props);
 <p>If the config needs to be updated just re-register the service so that changes are picked up.</p>
 <h4><a href="#logback-config-fragments-as-configprovider-instances" name="logback-config-fragments-as-configprovider-instances">Logback config fragments as ConfigProvider instances</a></h4>
 <p>Another way to provide config fragments is with services that implement the <code>org.apache.sling.commons.log.logback.ConfigProvider</code> interface.</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->@Component
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Component
 @Service
 public class ConfigProviderExample implements ConfigProvider {
     public InputSource getConfigSource() {
@@ -441,7 +441,7 @@ public class ConfigProviderExample implements ConfigProvider {
 }
 </code></pre>
 <p>If the config changes then sending an OSGi event with the <code>org/apache/sling/commons/log/RESET</code> topic resets the Logback runtime.</p>
-<pre><code>:<!-- TODO syntax marker (::java) disabled -->eventAdmin.sendEvent(new Event(&quot;org/apache/sling/commons/log/RESET&quot;,new Properties()));
+<pre><code><!-- TODO syntax marker (::java) disabled -->eventAdmin.sendEvent(new Event(&quot;org/apache/sling/commons/log/RESET&quot;,new Properties()));
 </code></pre>
 <h3><a href="#external-config-file" name="external-config-file">External Config File</a></h3>
 <p>Logback can be configured with an external file. The file name can be specified through</p>
@@ -450,7 +450,7 @@ public class ConfigProviderExample implements ConfigProvider {
   <li>OSGi Framework Properties - Logback support also looks for a file named according to the OSGi framwork <code>org.apache.sling.commons.log.configurationFile</code> property.</li>
 </ol>
 <p>If you are providing an external config file then to support OSGi integration you need to add following action entry:</p>
-<pre><code>:<!-- TODO syntax marker (::xml) disabled -->&lt;newRule pattern=&quot;*/configuration/osgi&quot;
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;newRule pattern=&quot;*/configuration/osgi&quot;
          actionClass=&quot;org.apache.sling.commons.log.logback.OsgiAction&quot;/&gt;
 &lt;newRule pattern=&quot;*/configuration/appender-ref-osgi&quot;
          actionClass=&quot;org.apache.sling.commons.log.logback.OsgiAppenderRefAction&quot;/&gt;
@@ -473,7 +473,7 @@ org.apache.sling.commons.log.file.number=I&quot;7&quot;
 org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* [{2}] {3} {5}&quot;
 </code></pre>
 <p>The Logback appender would be named <code>logs/error.log</code>. To extend/override the config in a Logback config create an appender with the name <code>logs/error.log</code>:</p>
-<pre><code>:<!-- TODO syntax marker (::xml) disabled -->&lt;appender name=&quot;/logs/error.log&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;appender name=&quot;/logs/error.log&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;
   &lt;file&gt;${sling.home}/logs/error.log&lt;/file&gt;
   &lt;encoder&gt;
     &lt;pattern&gt;%d %-5level %X{sling.userId:-NA} [%thread] %logger{30} %marker- %msg %n&lt;/pattern&gt;
@@ -487,7 +487,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 <ol>
   <li>
     <p>Update the api version in the pom:</p>
-    <pre><code>:<!-- TODO syntax marker (::xml) disabled -->&lt;dependencies&gt;
+    <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependencies&gt;
     &lt;dependency&gt;
       &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
       &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
@@ -500,7 +500,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
   </li>
   <li>
     <p>Add an <code>Import-Package</code> instruction with a custom version range: </p>
-    <pre><code>:<!-- TODO syntax marker (::xml) disabled -->&lt;build&gt;
+    <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;build&gt;
     &lt;plugins&gt;
       &lt;plugin&gt;
         &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
@@ -612,7 +612,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                    Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">Tue Jul 17 21:15:24 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

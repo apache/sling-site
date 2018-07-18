@@ -223,7 +223,7 @@ public class SamplePropertyProvider implements PropertyProvider {
 <p><code>discovery.impl</code> requires the, eventually consistent, underlying repository to propagate changes within reasonable time: in less than the configured heartbeat timeout. If heartbeats for some reason are not becoming visible by peers in the cluster within that time, <code>discovery.impl</code> will consider that peer instance as dead. At which point it will first send a TOPOLOGY_CHANGING event to all listeners to make them aware that something is changing in the topology, and then start a new voting. Once the voting concludes a TOPOLOGY_CHANGED event will follow.</p>
 <p>Given the voting is happening through the repository as well, one could imagine a situation where the repository delays can cause a topology to be "pseudo partitioned" into two or more parts, each one agreeing on a set of instances in that sub-cluster (one requirement for such a scenario being that the delays must be asymmetric, ie changes from a subset of instances propagate slow, while the remaining changes propagate fast - ie. two different sets of delays in the cluster). Such a situation would only last as long as the repository delays are large (larger than the heartbeat timeouts). Exact cases where the repository experiences large delays depend of course on the repository configuration and deployment details, known cases include for example long running queries, large set of changes, large set of commits and long-running session.saves.</p>
 <p>The following is an illustration of the impact of large cluster delays:</p>
-<p>![discovery.impl split brain](discovery-impl-split-brain.png =360x)</p>
+<p><img src="discovery-impl-split-brain.png" alt="discovery.impl split brain" /></p>
 <p>In discovery.impl 1.2.2 several improvements have been done to avoid pseudo-network partitioning including the following: (see SLING-3432 for more in-depth details)</p>
 <ul>
   <li>SLING-5195 : monitor the HeartbeatHandler for long-running session.saves.</li>
@@ -296,7 +296,7 @@ public class SamplePropertyProvider implements PropertyProvider {
 <p>This is the base bundle solely used by discovery.impl and discovery.oak and contains exactly the mentioned properties and announcement handling.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
+                    Last modified by <span class="author">stefan-egli</span> on <span class="comment">Tue Jul 17 17:08:10 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
