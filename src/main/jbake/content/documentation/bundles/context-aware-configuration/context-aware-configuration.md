@@ -204,12 +204,12 @@ Example for setting up the unit test context rule:
 
 In you project define a test dependency (additionally the sling-mock dependency is required):
 
-  	#!xml
-  	<dependency>
-  		<groupId>org.apache.sling</groupId>
-  		<artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
-  		<scope>test</scope>
-  	</dependency>
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
+      <scope>test</scope>
+    </dependency>
 
 Full example: [Apache Sling Context-Aware Configuration Mock Plugin Test](https://github.com/apache/sling/blob/trunk/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java)
 
