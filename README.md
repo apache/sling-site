@@ -52,3 +52,21 @@ It's sometimes useful to ~~steal ideas~~ get inspiration from other projects usi
 To find broken links use
 
     wget --spider -r -nd -nv -l 5 http://localhost:8820/ 2>&1 | grep -B1 'broken link'
+
+## Deploying when git is configured with user.useConfigOnly = true
+
+It it possible to configure git to not inherit or infer the `user.name` and `user.email`
+properties, to avoid the situation where an incorrect value is used.
+
+However, this breaks site publishing as the git checkout no longer inherits the global
+configuration settings. To still be able to publish, the following steps are needed
+
+    mvn package -Ppublish-site -Dmsg="your-msg-here"
+    cd target/scm-checkout
+    git config user.email user@apache.org
+    mvn package -Ppublish-site -Dmsg="your-msg-here"
+
+We are publishing the site once, which creates the SCM checkout, and fails to push
+since no `user.email` config is set. Then we manually configure this property in
+the SCM checkout and try publishing again. Be careful to avoid any `clean` operations
+with Maven since it will erase the initial checkout.
