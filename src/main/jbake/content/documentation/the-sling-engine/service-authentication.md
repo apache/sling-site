@@ -56,7 +56,6 @@ a Resource Resolver and/or JCR Repository user ID for authentication.
 
 Thus the actual service identification (service ID) is defined as:
 
-    #!text
     service-id = service-name [ ":" subservice-name ] .
 
 The `service-name` is the symbolic name of the bundle providing the service.
