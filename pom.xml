@@ -33,6 +33,7 @@
     <repos.list.url>https://raw.githubusercontent.com/apache/sling-aggregator/master/default.xml</repos.list.url>
     <downloads.dir>${project.build.directory}/downloads</downloads.dir>
     <repos.list.fullpath>${downloads.dir}/github-repositories.xml</repos.list.fullpath>
+    <flexmark.version>0.32.20</flexmark.version>
   </properties>
 
   <build>
@@ -40,39 +41,33 @@
       <plugin>
         <groupId>org.jbake</groupId>
         <artifactId>jbake-maven-plugin</artifactId>
-        <version>0.2.0</version>
+        <version>0.3.1</version>
 
         <!-- dependencies -->
         <dependencies>
-
-          <!-- optional : a jbake version -->
+          <!-- the following are only optional dependencies of jbake-core and 
+               therefore need to be listed explicitly here to be loaded.
+               The versions should be the same as listed in jbake-core.
+               Compare with https://github.com/jbake-org/jbake-maven-plugin/issues/14.
+          -->
+          <!-- for parsing MD -->
           <dependency>
-            <groupId>org.jbake</groupId>
-            <artifactId>jbake-core</artifactId>
-            <version>2.5.1</version>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark</artifactId>
+            <version>${flexmark.version}</version>
           </dependency>
-          <!-- for freemarker templates (.ftl) -->
+          <!-- for supporting MD pegdown extensions -->
           <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.25-incubating</version>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark-profile-pegdown</artifactId>
+            <version>${flexmark.version}</version>
           </dependency>
-          <!-- for markdown parsing (.md) -->
+          <!-- for supporting groovy templates with extension tpl -->
           <dependency>
-            <groupId>org.pegdown</groupId>
-            <artifactId>pegdown</artifactId>
-            <version>1.6.0</version>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-templates</artifactId>
+            <version>2.4.15</version>
           </dependency>
-          <dependency>
-            <groupId>org.asciidoctor</groupId>
-            <artifactId>asciidoctorj</artifactId>
-            <version>1.5.5</version>
-          </dependency>
-		  <dependency>
-		      <groupId>org.codehaus.groovy</groupId>
-		      <artifactId>groovy-all</artifactId>
-		      <version>2.4.12</version>
-		  </dependency>
         </dependencies>
 
         <executions>
