@@ -91,70 +91,69 @@
             </div><h1 class="pagetitle">
                 MIME Type Support (commons.mime and commons.contentdetection)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Support for MIME type mappings is generally a problematic issue. On the one hand applications have to take care to stay up to date with their mappings on the other hands in web applications it is tedious to maintain the mappings. Apache Sling takes a very user and deployment friendly approadch to this problem which is described in detail on this page.</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Support for MIME type mappings is generally a problematic issue. On the one hand applications have to take care to stay up to date with their mappings on the other hands in web applications it is tedious to maintain the mappings. Apache Sling takes a very user and deployment friendly approadch to this problem which is described in detail on this page.</p> 
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
-<h2><a href="#servlet-api-support" name="servlet-api-support">Servlet API Support</a></h2>
-<p>The Servlet API specification provides a limited support for MIME type mappings :</p>
-<ul>
-  <li>Mappings may be defined in the <code>mime-mapping</code> elements of the the web application descriptor <code>web.xml</code>. Managing these mappings is presumably tedious. So servlet containers may provide reasonable defaults (or not).</li>
-  <li>The <code>ServletContext.getMimeType(String)</code> returns a MIME type for a given file name based on the extension of the filename. The mapping returned is based on the servlet container configuration as well as the web application descriptor's <code>mime-mapping</code> elements.</li>
-</ul>
-<h2><a href="#the-sling-mimetypeservice" name="the-sling-mimetypeservice">The Sling MimeTypeService</a></h2>
-<p>Already at the start of the Sling project we realized, that just basing the MIME type mapping decisions on the servlet container will not yield acceptable results. For this reason the Apache Sling projects provides a spezialized and configurable service supporting such mappings: The <a href="/apidocs/sling6/org/apache/sling/commons/mime/MimeTypeService.html"><code>MimeTypeService</code></a> provided by the <code>org.apache.sling.commons.mime</code> bundle.</p>
-<p>This service provides access to registered MIME types and their mappings with two methods:</p>
-<ul>
-  <li><code>getExtension(String)</code> -- given a MIME type this methods returns a primary extension. For example for the type <code>text/plain</code> this method will return <code>txt</code></li>
-  <li><code>getMimeType(String)</code> -- given a file name or just the extension) returns the mapped MIME type. For example for the filename <code>sample.html</code> (or just the extension <code>html</code>) this method will return <code>text/html</code></li>
-</ul>
-<p>Two more methods allow to programmatically add MIME type mappings:</p>
-<ul>
-  <li><code>registerMimeType(InputStream)</code> registers additional mappings from the given input stream which is expected to be formated in traditional <code>mime.types</code> file format (see below).</li>
-  <li><code>registerMimeType(String, String...)</code> registers a single mapping for the give MIME type and the respective extensions.</li>
-</ul>
-<h2><a href="#the-sling-contentawaremimetypeservice" name="the-sling-contentawaremimetypeservice">The Sling ContentAwareMimeTypeService</a></h2>
-<p>For content-based mime type detection (as opposed to filename-based detection), the <code>org.apache.sling.commons.contentdetection</code> bundle provides the <code>ContentAwareMimeTypeService</code>, which takes an <code>InputStream</code> that's analyzed to detect its mime type, using Apache Tika by default:</p>
-<ul>
-  <li><code>getMimeType(String filename, InputStream content)</code> -- given a filename and an <code>InputStream</code> that points to the file contents, this method first tries content-based detection using the stream, and falls back to filename-based detection if needed.</li>
-</ul>
-<h2><a href="#and-more-" name="and-more-">And More...</a></h2>
-<p>Besides the <code>MimeTypeService</code> provided by Apache Sling, there is actually more:</p>
-<ul>
-  <li>The <a href="/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html"><code>SlingHttpServletRequest</code></a> provides the <code>getResponseContentType()</code> method, which returns the preferred <em>Content-Type</em> for the response based on the requests extension. This method is implemented by Apache Sling using the <code>MimeTypeService</code>. So servlets and scripts may just call this method to set the content type of the response to the desired value.</li>
-  <li>Each Servlet (and JSP scripts) is initialized by Apache Sling with a <code>ServletContext</code> instance whose implementation of the <code>getMimeType(String)</code> effectively calls the <code>MimeTypeService.getMimeType(String)</code> method.</li>
-  <li>The Scripting support infrastructure of Sling sets the response content type on behalf of the script to the default value as returned by the <code>SlingHttpServletRequest.getResponseContentType()</code> method. At the same time the response character set is also set to <code>UTF-8</code> for <em>text</em> content types.</li>
-</ul>
-<h2><a href="#configuring-mime-type-mappings" name="configuring-mime-type-mappings">Configuring MIME Type Mappings</a></h2>
-<p>The implementation of the <code>MimeTypeService</code> in the Apache Sling MIME type mapping support (<code>org.apache.sling.commons.mime</code>) bundle supports a numnber of ways to configure and extend the set of MIME type mappings:</p>
-<ul>
-  <li>Default configuration. The default configuration is based on the <a href="http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types"><code>mime.types</code></a> file maintained by Roy Fielding for the Apache httpd project and some extensions by Apache Sling.</li>
-  <li>Bundle provided mappings. Bundles registered in the OSGi framework may contain MIME type mappings files <code>META-INF/mime.types</code> which are loaded automatically by the Apache Sling MIME type mapping support bundle.</li>
-  <li>Configuration. Mappings may be supplied by configuration of the <code>MimeTypeService</code> implementation as the multi-value string property <code>mime.types</code>. Each value of the property corresponds to a line in a MIME type configuration file (see below for the format).</li>
-  <li>Registered Mappings. Mappings may be registered with the <code>MimeTypeService.registerMapping</code> methods.</li>
-  <li><a href="/apidocs/sling6/org/apache/sling/commons/mime/MimeTypeProvider.html"><code>MimeTypeProvider</code></a>. Additional mappings may be provided by service implementing the <code>MimeTypeProvider</code> interface. The <code>MimeTypeService</code> implementation will call these services in turn until a service returns a mapping provided there is no static configuration to responde to the mapping request.</li>
-</ul>
-<p>Please note, that existing mappings cannot be overwritten later. Thus mappings have an inherent priority:</p>
-<ol>
-  <li>Mappings provided by the Apache httpd project's <code>mime.types</code> file</li>
-  <li>Extensions by the Apache Sling MIME type mapping support bundle</li>
-  <li>Bundles providing a <code>META-INF/mime.types</code> file in the order of their bundle-id (or startup order if started after the MIME type mapping support bundle)</li>
-  <li>OSGi Configuration. Note that bundles started <em>after</em> the MIME type mapping support bundle may not overwrite mappings provided by the OSGi configuration. This may sounds like a problem, but in reality this should genrally not matter</li>
-  <li>Mappings registered calling the <code>MimeTypeService.registerMimeType</code> method</li>
-  <li>Mappings provided by <code>MimeTypeProvider</code> services</li>
-</ol>
-<h2><a href="#mime-type-mapping-file-format" name="mime-type-mapping-file-format">MIME Type Mapping File Format</a></h2>
-<p>The file format for MIME type mapping files is rather simple:</p>
-<ul>
-  <li>The files are assumed to be encoded with the <em>ISO-8859-1</em> (aka Latin 1) character encoding</li>
-  <li>The files consist of lines defining mappings where each line is terminated with either or both of a carriage return (CR, 0x0c) and line feed character (LF, 0x0a). There is no line continuation support *-la shell scripts or Java properties files.
-</li>
-  <li>Empty lines and lines starting with a hash sign (<code>#</code>) are ignored</li>
-  <li>Data lines consist of space (any whitespace matching the <code>\s</code> regular expression) separated values. The first value is the MIME type name and the remaining values defining mappings to file name extensions. The first listed file name extension is considered the <em>default mapping</em> and is returned by the <code>MimeTypeService.getExtension(String)</code> method. Entry lines consisting of just a mime type but no extensions are also (currently) ignored.</li>
-</ul>
-<p>THe data line format described here also applies to configuration provided by the values of the <code>mime.types</code> property of the MIME type service configuration. The file format description applies to all <code>META-INF/mime.types</code> files provided by the bundles as well as input streams supplied to the <code>MimeTypeService.registerMimeType(InputStream)</code> method.</p>
-<h2><a href="#web-console-plugin" name="web-console-plugin">Web Console Plugin</a></h2>
-<p>The Apache Sling MIME type mapping support bundle implements a plugin for the Apache Felix Web Console which may be consulted to investigate the current contents of the MIME type mapping tables.</p>
-<p><img src="/documentation/bundles/mimetypes.png" alt="Mime Types Web Console Plugin" /></p></section></div></div>            
+</p> 
+<h2><a href="#servlet-api-support" id="servlet-api-support">Servlet API Support</a></h2> 
+<p>The Servlet API specification provides a limited support for MIME type mappings :</p> 
+<ul> 
+ <li>Mappings may be defined in the <code>mime-mapping</code> elements of the the web application descriptor <code>web.xml</code>. Managing these mappings is presumably tedious. So servlet containers may provide reasonable defaults (or not).</li> 
+ <li>The <code>ServletContext.getMimeType(String)</code> returns a MIME type for a given file name based on the extension of the filename. The mapping returned is based on the servlet container configuration as well as the web application descriptor's <code>mime-mapping</code> elements.</li> 
+</ul> 
+<h2><a href="#the-sling-mimetypeservice" id="the-sling-mimetypeservice">The Sling MimeTypeService</a></h2> 
+<p>Already at the start of the Sling project we realized, that just basing the MIME type mapping decisions on the servlet container will not yield acceptable results. For this reason the Apache Sling projects provides a spezialized and configurable service supporting such mappings: The <a href="/apidocs/sling6/org/apache/sling/commons/mime/MimeTypeService.html"><code>MimeTypeService</code></a> provided by the <code>org.apache.sling.commons.mime</code> bundle.</p> 
+<p>This service provides access to registered MIME types and their mappings with two methods:</p> 
+<ul> 
+ <li><code>getExtension(String)</code> -- given a MIME type this methods returns a primary extension. For example for the type <code>text/plain</code> this method will return <code>txt</code></li> 
+ <li><code>getMimeType(String)</code> -- given a file name or just the extension) returns the mapped MIME type. For example for the filename <code>sample.html</code> (or just the extension <code>html</code>) this method will return <code>text/html</code></li> 
+</ul> 
+<p>Two more methods allow to programmatically add MIME type mappings:</p> 
+<ul> 
+ <li><code>registerMimeType(InputStream)</code> registers additional mappings from the given input stream which is expected to be formated in traditional <code>mime.types</code> file format (see below).</li> 
+ <li><code>registerMimeType(String, String...)</code> registers a single mapping for the give MIME type and the respective extensions.</li> 
+</ul> 
+<h2><a href="#the-sling-contentawaremimetypeservice" id="the-sling-contentawaremimetypeservice">The Sling ContentAwareMimeTypeService</a></h2> 
+<p>For content-based mime type detection (as opposed to filename-based detection), the <code>org.apache.sling.commons.contentdetection</code> bundle provides the <code>ContentAwareMimeTypeService</code>, which takes an <code>InputStream</code> that's analyzed to detect its mime type, using Apache Tika by default:</p> 
+<ul> 
+ <li><code>getMimeType(String filename, InputStream content)</code> -- given a filename and an <code>InputStream</code> that points to the file contents, this method first tries content-based detection using the stream, and falls back to filename-based detection if needed.</li> 
+</ul> 
+<h2><a href="#and-more" id="and-more">And More...</a></h2> 
+<p>Besides the <code>MimeTypeService</code> provided by Apache Sling, there is actually more:</p> 
+<ul> 
+ <li>The <a href="/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html"><code>SlingHttpServletRequest</code></a> provides the <code>getResponseContentType()</code> method, which returns the preferred <em>Content-Type</em> for the response based on the requests extension. This method is implemented by Apache Sling using the <code>MimeTypeService</code>. So servlets and scripts may just call this method to set the content type of the response to the desired value.</li> 
+ <li>Each Servlet (and JSP scripts) is initialized by Apache Sling with a <code>ServletContext</code> instance whose implementation of the <code>getMimeType(String)</code> effectively calls the <code>MimeTypeService.getMimeType(String)</code> method.</li> 
+ <li>The Scripting support infrastructure of Sling sets the response content type on behalf of the script to the default value as returned by the <code>SlingHttpServletRequest.getResponseContentType()</code> method. At the same time the response character set is also set to <code>UTF-8</code> for <em>text</em> content types.</li> 
+</ul> 
+<h2><a href="#configuring-mime-type-mappings" id="configuring-mime-type-mappings">Configuring MIME Type Mappings</a></h2> 
+<p>The implementation of the <code>MimeTypeService</code> in the Apache Sling MIME type mapping support (<code>org.apache.sling.commons.mime</code>) bundle supports a numnber of ways to configure and extend the set of MIME type mappings:</p> 
+<ul> 
+ <li>Default configuration. The default configuration is based on the <a href="http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types"><code>mime.types</code></a> file maintained by Roy Fielding for the Apache httpd project and some extensions by Apache Sling.</li> 
+ <li>Bundle provided mappings. Bundles registered in the OSGi framework may contain MIME type mappings files <code>META-INF/mime.types</code> which are loaded automatically by the Apache Sling MIME type mapping support bundle.</li> 
+ <li>Configuration. Mappings may be supplied by configuration of the <code>MimeTypeService</code> implementation as the multi-value string property <code>mime.types</code>. Each value of the property corresponds to a line in a MIME type configuration file (see below for the format).</li> 
+ <li>Registered Mappings. Mappings may be registered with the <code>MimeTypeService.registerMapping</code> methods.</li> 
+ <li><a href="/apidocs/sling6/org/apache/sling/commons/mime/MimeTypeProvider.html"><code>MimeTypeProvider</code></a>. Additional mappings may be provided by service implementing the <code>MimeTypeProvider</code> interface. The <code>MimeTypeService</code> implementation will call these services in turn until a service returns a mapping provided there is no static configuration to responde to the mapping request.</li> 
+</ul> 
+<p>Please note, that existing mappings cannot be overwritten later. Thus mappings have an inherent priority:</p> 
+<ol> 
+ <li>Mappings provided by the Apache httpd project's <code>mime.types</code> file</li> 
+ <li>Extensions by the Apache Sling MIME type mapping support bundle</li> 
+ <li>Bundles providing a <code>META-INF/mime.types</code> file in the order of their bundle-id (or startup order if started after the MIME type mapping support bundle)</li> 
+ <li>OSGi Configuration. Note that bundles started <em>after</em> the MIME type mapping support bundle may not overwrite mappings provided by the OSGi configuration. This may sounds like a problem, but in reality this should genrally not matter</li> 
+ <li>Mappings registered calling the <code>MimeTypeService.registerMimeType</code> method</li> 
+ <li>Mappings provided by <code>MimeTypeProvider</code> services</li> 
+</ol> 
+<h2><a href="#mime-type-mapping-file-format" id="mime-type-mapping-file-format">MIME Type Mapping File Format</a></h2> 
+<p>The file format for MIME type mapping files is rather simple:</p> 
+<ul> 
+ <li>The files are assumed to be encoded with the <em>ISO-8859-1</em> (aka Latin 1) character encoding</li> 
+ <li>The files consist of lines defining mappings where each line is terminated with either or both of a carriage return (CR, 0x0c) and line feed character (LF, 0x0a). There is no line continuation support *-la shell scripts or Java properties files.</li> 
+ <li>Empty lines and lines starting with a hash sign (<code>#</code>) are ignored</li> 
+ <li>Data lines consist of space (any whitespace matching the <code>\s</code> regular expression) separated values. The first value is the MIME type name and the remaining values defining mappings to file name extensions. The first listed file name extension is considered the <em>default mapping</em> and is returned by the <code>MimeTypeService.getExtension(String)</code> method. Entry lines consisting of just a mime type but no extensions are also (currently) ignored.</li> 
+</ul> 
+<p>THe data line format described here also applies to configuration provided by the values of the <code>mime.types</code> property of the MIME type service configuration. The file format description applies to all <code>META-INF/mime.types</code> files provided by the bundles as well as input streams supplied to the <code>MimeTypeService.registerMimeType(InputStream)</code> method.</p> 
+<h2><a href="#web-console-plugin" id="web-console-plugin">Web Console Plugin</a></h2> 
+<p>The Apache Sling MIME type mapping support bundle implements a plugin for the Apache Felix Web Console which may be consulted to investigate the current contents of the MIME type mapping tables.</p> 
+<p><img src="http://sling.apache.org/documentation/bundles/mimetypes.png" alt="Mime Types Web Console Plugin"></p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>

@@ -100,116 +100,168 @@
                 OpenID AuthenticationHandler
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
+</p> 
 <div class="note">
-This module has been deprecated and retired. It can be found in the <a href="https://svn.apache.org/repos/asf/sling/attic/openid/">Sling attic: OpenID module</a> but is no longer maintained or supported.
-</div>
-<p>The OpenID Authentication Handler supports authentication of request users using the <a href="http://www.openid.net">OpenID</a> authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.</p>
-<p>Since generally an OpenID identity is an URL and URLs may not be used as JCR user names, an association mechanism is used by the OpenID authentication handler to associate an OpenID identity with an existing JCR user: The OpenID identity URL is set as the value of a JCR user property. When a user authenticates with his OpenID identity the matching user searched for by looking for a match in this property.</p>
-<p><em>NOTE:</em> This association currently only works with Jackrabbit (or Jackrabbit based repositories) because user management is not part of the JCR 2 specification and the OpenID authentication handler uses the Jackrabbit <code>UserManager</code> to find users by a user property value.</p>
-<h3><a href="#credentials-extraction" name="credentials-extraction">Credentials Extraction</a></h3>
-<p>Theoretically each request with the <code>openid_identifier</code> request parameter set may initiate an OpenID authentication process which involves resolving the OpenID provider for the identifier and subsequently authentication with the provider authorizing the Sling instance to use the OpenID identity.</p>
-<p>This initiation, though, is not possible if the request already contains a valid and validated OpenID identifier either set as a request attribute or set in the HTTP Session or the OpenID cookie. In these situations, the current association of a client with an OpenID identity must first be removed by logging out, e.g. by requesting <code>/system/sling/logout.html</code> which causes the current OpenID user data to be removed by either removing it from the HTTP Session or by clearing the OpenID cookie.</p>
-<h3><a href="#phase-1-form-submission" name="phase-1-form-submission">Phase 1: Form Submission</a></h3>
-<p>Requesting an OpenID identifier is initiated by the Sling Authenticator deciding, that authentication is actually required to process a request and the OpenID Authentication Handler being selected to request credentials with.</p>
-<p>In this case the OpenID authenticator causes a form to be rendered by redirecting the client to the URL indicated by the <code>form.login.form</code> configuration parameter. This redirection request may accompanied by the following parameters:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Request Parameter </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>resource</code> </td>
-      <td>The location to which the user initially requested access and that caused the <code>requestCredentials</code> method to be called. This may not be set (or be set to an empty string). </td>
-    </tr>
-    <tr>
-      <td><code>j_reason</code> </td>
-      <td>The reason why an earlier attempt at authentication with the OpenID authentication handler failed. This request parameter is only set if the same named request attribute has been set by the <code>extractCredentials</code> or the <code>authenticationFailed</code> method. The value of the parameter is the name of one of the <code>OpenIDFailure</code> constants. </td>
-    </tr>
-    <tr>
-      <td><code>j_openid_identity</code> </td>
-      <td>The OpenID identity which could not successfully be associated with an existing JCR user. This request parameter is only set if the <code>authenticationFailed</code> method has been called due to inability to associate an existing and validated OpenID identity with an existing JCR user. </td>
-    </tr>
-  </tbody>
-</table>
-<p>The OpenID Authentication handlers supports the following request parameters submitted by the HTML form:</p>
-<ul>
-  <li><code>openid_identifier</code> -- OpenID Claimed Identifier. This may be any actual OpenID identity URL or the URL of OpenID Provider such as https://www.google.com/accounts/o8/id, https://me.yahoo.com, or https://www.myopenid.com.</li>
-  <li><code>sling:authRequestLogin</code> -- This request parameter is recommended to be set with a hidden field to the value <em>OpenID</em> to ensure the request is handled by the OpenID Authentication Handler.</li>
-  <li><code>resource</code> -- The <code>resource</code> request parameter should be sent back to ensure the user is finally redirected to requested target resource after successful authentication. If this request parameter is not set, or is set to an empty string, it is assumed to be the request context root path.</li>
-</ul>
-<p>The OpenID Authentication Handler provides a default login form registered at <code>/system/sling/openid/login</code>.</p>
-<h3><a href="#configuration" name="configuration">Configuration</a></h3>
-<p>The OpenID AuthenticationHandler is configured with configuration provided by the OSGi Configuration Admin Service using the <code>org.apache.sling.openidauth.OpenIdAuthenticationHandler</code> service PID.</p>
-<table>
-  <thead>
-    <tr>
-      <th>Parameter </th>
-      <th>Default </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-</table>
-<p>| <code>path</code> | -- | Repository path for which this authentication handler should be used by Sling. If this is empty, the authentication handler will be disabled. | | <code>openid.login.form</code> | <code>/system/sling/openid/login</code> | This should provide a way to capture the user's OpenID identifier. This is not the OpenID Provider's login page, however, it does not have to be a local URL. If it is a local Sling URL, it must be accessible by the anonymous user. The user is HTTP Redirect'ed to this URL. This page should POST back the user's OpenID identifier (as named by the "OpenID identifier form field" property) to the originally requested URL set in the "resource" request parameter. | | <code>openid.login.identifier</code> | <code>openid_identifier</code> | The name of the form parameter that provides the user's OpenID identifier. By convention this is <code>openid_identifier</code>. Only change this if you have a very good reason to do so. | | <code>openid.external.url.prefix</code> | -- | The prefix of URLs generated for the <code>ReturnTo</code> and <code>TrustRoot</code> properties of the OpenID request to the OpenID provider. Thus this URL prefix should bring back the authenticated user to this Sling instance. Configuring this property is usually necessary when running Sling behind a proxy (like Apache) since proxy mapping is not performed on the OpenID ReturnTo and TrustRoot URLs as they are sent to the OpenID Provider as form parameters. If this property is empty, the URLs are generated using the hostname found in the original request.| | <code>openid.use.cookie</code> | <code>true</code> | Whether to use a regular Cookie or an HTTP Session to cache the OpenID authentication details. By default a regular cookie is used to prevent use of HTTP Sessions. | | <code>openid.cookie.domain</code> | -- | Domain of cookie used to persist authentication. This defaults to the host name of the Sling server but may be set to a different value to share the cookie amongst a server farm or if the server is running behind a proxy. Only used if 'Use Cookie' is checked. | | <code>openid.cookie.name</code> | <code>sling.openid</code> | Name of cookie used to persist authentication. Only used if 'Use Cookie' is checked. | | <code>openid.cookie.secret.key</code> | <code>secret</code> | Secret key used to create a signature of the cookie value to prevent tampering. Only used if 'Use Cookie' is true. | | <code>openid.user.attr</code> | <code>openid.user</code> | Name of the JCR SimpleCredentials attribute to to set with the OpenID User data. This attribute is used by the OpenID LoginModule to validate the OpenID user authentication data. | | <code>openid.property.identity</code> | <code>openid.identity</code> | The name of the JCR User attribute listing one or more OpenID Identity URLs with which a user is associated. The property may be a multi- or single-valued. To resolve a JCR user ID from an OpenID identity a user is searched who lists the identity in this property. |</p>
-<h3><a href="#authenticationhandler-implementation" name="authenticationhandler-implementation">AuthenticationHandler implementation</a></h3>
-<h4><a href="#extractcredentials" name="extractcredentials">extractCredentials</a></h4>
-<p>To extract authentication information from the request, the Sling OpenID Authentication handler considers the following information in order:</p>
-<ol>
-  <li>The OpenID credentials cookie or OpenID User data in the HTTP Session (depending on the <code>openid.use.cookie</code> configuration)</li>
-  <li>Otherwise the <code>openid_identifier</code> request parameter (or a different request parameter depending on the <code>openid.login.identifier</code> configuration)</li>
-</ol>
-<p>If the OpenID credentials already exist in the request, they are validated and returned if valid</p>
-<p>If the existing credentials fail to validate, authentication failure is assumed and the credentials are removed from the request, either by clearing the OpenID cookie or by removing the OpenID User data from the HTTP Session.</p>
-<p>If no OpenID credentials are found in the request, the request parameter is considered and if set is used to resolve the actual OpenID identity of the user. This involves redirecting the client to the OpenID provider resolved from the OpenID identifier supplied.</p>
-<p>If the supplied OpenID identifier fails to resolve to an OpenID provider or if the identifier fails to be resolved to a validated OpenID identity, authentication fails.</p>
-<h4><a href="#requestcredentials" name="requestcredentials">requestCredentials</a></h4>
-<p>If the <code>sling:authRequestLogin</code> parameter is set to a value other than <code>OpenID</code> this method immediately returns <code>false</code>.</p>
-<p>If the parameter is not set or is set to <code>OpenID</code> this method continues with first invalidating any cached OpenID credentials (same as <code>dropCredentials</code> does) and then redirecting the client to the login form configured with the <code>openid.login.form</code> configuration property. The redirect is provided with up to three request parameters:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Request Parameter </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>resource</code> </td>
-      <td>The location to which the user initially requested access and that caused the <code>requestCredentials</code> method to be called. </td>
-    </tr>
-    <tr>
-      <td><code>j_reason</code> </td>
-      <td>The reason why an earlier attempt at authentication with the OpenID authentication handler failed. This request parameter is only set if the same named request attribute has been set by the <code>extractCredentials</code> or the <code>authenticationFailed</code> method. The value of the parameter is the name of one of the <code>OpenIDFailure</code> constants. </td>
-    </tr>
-    <tr>
-      <td><code>j_openid_identity</code> </td>
-      <td>The OpenID identity which could not successfully be associated with an existing JCR user. This request parameter is only set if the <code>authenticationFailed</code> method has been called due to inability to associate an existing and validated OpenID identity with an existing JCR user. </td>
-    </tr>
-  </tbody>
-</table>
-<h4><a href="#dropcredentials" name="dropcredentials">dropCredentials</a></h4>
-<p>Invalidates the OpenID identity currently stored with the request. This means to either remove the OpenID cookie or to remove the OpenID information from the HTTP Session. This method does not write to the response (except setting the <code>Set-Cookie</code> header to remove the OpenID cookie if required) and does not commit the response.</p>
-<h3><a href="#authenticationfeedbackhandler-implementation" name="authenticationfeedbackhandler-implementation">AuthenticationFeedbackHandler implementation</a></h3>
-<h4><a href="#authenticationfailed" name="authenticationfailed">authenticationFailed</a></h4>
-<p>This method is called, if the Credentials provided by the Authentication Handler could not be validated by the Jackrabbit authentication infrastructure. One cause may be that the integration with Jackrabbit has not been completed (see <em>Integration with Jackrabbit</em> below). Another, more probably cause, is that the validated OpenID identifier cannot be associated with an existing JCR user.</p>
-<p>The OpenID Authentication Handler implementation of the <code>authenticationFailed</code> method sets the <code>j_reason</code> request attribute to <code>OpenIDFailure.REPOSITORY</code> and sets the <code>j_openid_identity</code> request attribute to the OpenID identity of the authenticated user.</p>
-<p>A login form provider may wish to act upon this situation and provide a login form to the user to allow to his OpenID identity with an existing JCR user.</p>
-<p>In addition, the current OpenID identity is invalidated thus the cached OpenID information is removed from the HTTP Session or the OpenID cookie is cleaned. This will allow the user to present a different OpenID identifier to retry or it will require the OpenID identity to be revalidated with the OpenID provider if the identity is associated with a JCR user.</p>
-<h4><a href="#authenticationsucceeded" name="authenticationsucceeded">authenticationSucceeded</a></h4>
-<p>The OpenID Authentication Handler implementation of the <code>authenticationSucceeded</code> method just calls the <code>DefaultAuthenticationFeedbackHandler.handleRedirect</code> method to redirect the user to the initially requested location.</p>
-<h3><a href="#integration-with-jackrabbit" name="integration-with-jackrabbit">Integration with Jackrabbit</a></h3>
-<p>The OpenID authentication handler can be integrated in two ways into the Jackrabbit authentication mechanism which is based on JAAS <code>LoginModule</code>. One integration is by means of a <code>LoginModulePlugin</code> which plugs into the extensible <code>LoginModule</code> architecture supported by the Sling Jackrabbit Embedded Repository bundle.</p>
-<p>The other integration option is the <code>trusted_credentials_attribute</code> mechanism supported by the Jackrabbit <code>DefaultLoginModule</code>. By setting the <code>trusted_credentials_attribute</code> parameter of the Jackrabbit <code>DefaultLoginModule</code> and the <code>openid.user.attr</code> configuration property of the OpenID Authentication Handler to the same value, the existence of an attribute of that name in the <code>SimpleCredentials</code> instance provided to the <code>Repository.login</code> method signals pre-authenticated credentials, which need not be further checked by the <code>DefaultLoginModule</code>.</p>
-<h3><a href="#security-considerations" name="security-considerations">Security Considerations</a></h3>
-<p>OpenIDAuthentication has some limitations in terms of security:</p>
-<ol>
-  <li>User name and password are transmitted in plain text in the initial form submission.</li>
-  <li>The Cookie used to provide the authentication state or the HTTP Session ID may be stolen.</li>
-  <li>When using the <code>trusted_credentials_attribute</code> mechanism, any intruder knowing the attribute name may log into the repository as any existing JCR user. The better option is to be based on the <code>LoginModulePlugin</code> mechanism.</li>
-</ol>
+  This module has been deprecated and retired. It can be found in the 
+ <a href="https://svn.apache.org/repos/asf/sling/attic/openid/">Sling attic: OpenID module</a> but is no longer maintained or supported. 
+</div> 
+<p>The OpenID Authentication Handler supports authentication of request users using the <a href="http://www.openid.net">OpenID</a> authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.</p> 
+<p>Since generally an OpenID identity is an URL and URLs may not be used as JCR user names, an association mechanism is used by the OpenID authentication handler to associate an OpenID identity with an existing JCR user: The OpenID identity URL is set as the value of a JCR user property. When a user authenticates with his OpenID identity the matching user searched for by looking for a match in this property.</p> 
+<p><em>NOTE:</em> This association currently only works with Jackrabbit (or Jackrabbit based repositories) because user management is not part of the JCR 2 specification and the OpenID authentication handler uses the Jackrabbit <code>UserManager</code> to find users by a user property value.</p> 
+<h3><a href="#credentials-extraction" id="credentials-extraction">Credentials Extraction</a></h3> 
+<p>Theoretically each request with the <code>openid_identifier</code> request parameter set may initiate an OpenID authentication process which involves resolving the OpenID provider for the identifier and subsequently authentication with the provider authorizing the Sling instance to use the OpenID identity.</p> 
+<p>This initiation, though, is not possible if the request already contains a valid and validated OpenID identifier either set as a request attribute or set in the HTTP Session or the OpenID cookie. In these situations, the current association of a client with an OpenID identity must first be removed by logging out, e.g. by requesting <code>/system/sling/logout.html</code> which causes the current OpenID user data to be removed by either removing it from the HTTP Session or by clearing the OpenID cookie.</p> 
+<h3><a href="#phase-1-form-submission" id="phase-1-form-submission">Phase 1: Form Submission</a></h3> 
+<p>Requesting an OpenID identifier is initiated by the Sling Authenticator deciding, that authentication is actually required to process a request and the OpenID Authentication Handler being selected to request credentials with.</p> 
+<p>In this case the OpenID authenticator causes a form to be rendered by redirecting the client to the URL indicated by the <code>form.login.form</code> configuration parameter. This redirection request may accompanied by the following parameters:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Request Parameter </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>resource</code> </td>
+   <td> The location to which the user initially requested access and that caused the <code>requestCredentials</code> method to be called. This may not be set (or be set to an empty string). </td>
+  </tr> 
+  <tr>
+   <td> <code>j_reason</code> </td>
+   <td> The reason why an earlier attempt at authentication with the OpenID authentication handler failed. This request parameter is only set if the same named request attribute has been set by the <code>extractCredentials</code> or the <code>authenticationFailed</code> method. The value of the parameter is the name of one of the <code>OpenIDFailure</code> constants. </td>
+  </tr> 
+  <tr>
+   <td> <code>j_openid_identity</code> </td>
+   <td> The OpenID identity which could not successfully be associated with an existing JCR user. This request parameter is only set if the <code>authenticationFailed</code> method has been called due to inability to associate an existing and validated OpenID identity with an existing JCR user. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>The OpenID Authentication handlers supports the following request parameters submitted by the HTML form:</p> 
+<ul> 
+ <li><code>openid_identifier</code> -- OpenID Claimed Identifier. This may be any actual OpenID identity URL or the URL of OpenID Provider such as https://www.google.com/accounts/o8/id, https://me.yahoo.com, or https://www.myopenid.com.</li> 
+ <li><code>sling:authRequestLogin</code> -- This request parameter is recommended to be set with a hidden field to the value <em>OpenID</em> to ensure the request is handled by the OpenID Authentication Handler.</li> 
+ <li><code>resource</code> -- The <code>resource</code> request parameter should be sent back to ensure the user is finally redirected to requested target resource after successful authentication. If this request parameter is not set, or is set to an empty string, it is assumed to be the request context root path.</li> 
+</ul> 
+<p>The OpenID Authentication Handler provides a default login form registered at <code>/system/sling/openid/login</code>.</p> 
+<h3><a href="#configuration" id="configuration">Configuration</a></h3> 
+<p>The OpenID AuthenticationHandler is configured with configuration provided by the OSGi Configuration Admin Service using the <code>org.apache.sling.openidauth.OpenIdAuthenticationHandler</code> service PID.</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Parameter </th>
+   <th> Default </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>path</code> </td>
+   <td> -- </td>
+   <td> Repository path for which this authentication handler should be used by Sling. If this is empty, the authentication handler will be disabled. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.login.form</code> </td>
+   <td> <code>/system/sling/openid/login</code> </td>
+   <td> This should provide a way to capture the user's OpenID identifier. This is not the OpenID Provider's login page, however, it does not have to be a local URL. If it is a local Sling URL, it must be accessible by the anonymous user. The user is HTTP Redirect'ed to this URL. This page should POST back the user's OpenID identifier (as named by the "OpenID identifier form field" property) to the originally requested URL set in the "resource" request parameter. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.login.identifier</code> </td>
+   <td> <code>openid_identifier</code> </td>
+   <td> The name of the form parameter that provides the user's OpenID identifier. By convention this is <code>openid_identifier</code>. Only change this if you have a very good reason to do so. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.external.url.prefix</code> </td>
+   <td> -- </td>
+   <td> The prefix of URLs generated for the <code>ReturnTo</code> and <code>TrustRoot</code> properties of the OpenID request to the OpenID provider. Thus this URL prefix should bring back the authenticated user to this Sling instance. Configuring this property is usually necessary when running Sling behind a proxy (like Apache) since proxy mapping is not performed on the OpenID ReturnTo and TrustRoot URLs as they are sent to the OpenID Provider as form parameters. If this property is empty, the URLs are generated using the hostname found in the original request.</td>
+  </tr> 
+  <tr>
+   <td> <code>openid.use.cookie</code> </td>
+   <td> <code>true</code> </td>
+   <td> Whether to use a regular Cookie or an HTTP Session to cache the OpenID authentication details. By default a regular cookie is used to prevent use of HTTP Sessions. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.cookie.domain</code> </td>
+   <td> -- </td>
+   <td> Domain of cookie used to persist authentication. This defaults to the host name of the Sling server but may be set to a different value to share the cookie amongst a server farm or if the server is running behind a proxy. Only used if 'Use Cookie' is checked. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.cookie.name</code> </td>
+   <td> <code>sling.openid</code> </td>
+   <td> Name of cookie used to persist authentication. Only used if 'Use Cookie' is checked. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.cookie.secret.key</code> </td>
+   <td> <code>secret</code> </td>
+   <td> Secret key used to create a signature of the cookie value to prevent tampering. Only used if 'Use Cookie' is true. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.user.attr</code> </td>
+   <td> <code>openid.user</code> </td>
+   <td> Name of the JCR SimpleCredentials attribute to to set with the OpenID User data. This attribute is used by the OpenID LoginModule to validate the OpenID user authentication data. </td>
+  </tr> 
+  <tr>
+   <td> <code>openid.property.identity</code> </td>
+   <td> <code>openid.identity</code> </td>
+   <td> The name of the JCR User attribute listing one or more OpenID Identity URLs with which a user is associated. The property may be a multi- or single-valued. To resolve a JCR user ID from an OpenID identity a user is searched who lists the identity in this property. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h3><a href="#authenticationhandler-implementation" id="authenticationhandler-implementation">AuthenticationHandler implementation</a></h3> 
+<h4><a href="#extractcredentials" id="extractcredentials">extractCredentials</a></h4> 
+<p>To extract authentication information from the request, the Sling OpenID Authentication handler considers the following information in order:</p> 
+<ol> 
+ <li>The OpenID credentials cookie or OpenID User data in the HTTP Session (depending on the <code>openid.use.cookie</code> configuration)</li> 
+ <li>Otherwise the <code>openid_identifier</code> request parameter (or a different request parameter depending on the <code>openid.login.identifier</code> configuration)</li> 
+</ol> 
+<p>If the OpenID credentials already exist in the request, they are validated and returned if valid</p> 
+<p>If the existing credentials fail to validate, authentication failure is assumed and the credentials are removed from the request, either by clearing the OpenID cookie or by removing the OpenID User data from the HTTP Session.</p> 
+<p>If no OpenID credentials are found in the request, the request parameter is considered and if set is used to resolve the actual OpenID identity of the user. This involves redirecting the client to the OpenID provider resolved from the OpenID identifier supplied.</p> 
+<p>If the supplied OpenID identifier fails to resolve to an OpenID provider or if the identifier fails to be resolved to a validated OpenID identity, authentication fails.</p> 
+<h4><a href="#requestcredentials" id="requestcredentials">requestCredentials</a></h4> 
+<p>If the <code>sling:authRequestLogin</code> parameter is set to a value other than <code>OpenID</code> this method immediately returns <code>false</code>.</p> 
+<p>If the parameter is not set or is set to <code>OpenID</code> this method continues with first invalidating any cached OpenID credentials (same as <code>dropCredentials</code> does) and then redirecting the client to the login form configured with the <code>openid.login.form</code> configuration property. The redirect is provided with up to three request parameters:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Request Parameter </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>resource</code> </td>
+   <td> The location to which the user initially requested access and that caused the <code>requestCredentials</code> method to be called. </td>
+  </tr> 
+  <tr>
+   <td> <code>j_reason</code> </td>
+   <td> The reason why an earlier attempt at authentication with the OpenID authentication handler failed. This request parameter is only set if the same named request attribute has been set by the <code>extractCredentials</code> or the <code>authenticationFailed</code> method. The value of the parameter is the name of one of the <code>OpenIDFailure</code> constants. </td>
+  </tr> 
+  <tr>
+   <td> <code>j_openid_identity</code> </td>
+   <td> The OpenID identity which could not successfully be associated with an existing JCR user. This request parameter is only set if the <code>authenticationFailed</code> method has been called due to inability to associate an existing and validated OpenID identity with an existing JCR user. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h4><a href="#dropcredentials" id="dropcredentials">dropCredentials</a></h4> 
+<p>Invalidates the OpenID identity currently stored with the request. This means to either remove the OpenID cookie or to remove the OpenID information from the HTTP Session. This method does not write to the response (except setting the <code>Set-Cookie</code> header to remove the OpenID cookie if required) and does not commit the response.</p> 
+<h3><a href="#authenticationfeedbackhandler-implementation" id="authenticationfeedbackhandler-implementation">AuthenticationFeedbackHandler implementation</a></h3> 
+<h4><a href="#authenticationfailed" id="authenticationfailed">authenticationFailed</a></h4> 
+<p>This method is called, if the Credentials provided by the Authentication Handler could not be validated by the Jackrabbit authentication infrastructure. One cause may be that the integration with Jackrabbit has not been completed (see <em>Integration with Jackrabbit</em> below). Another, more probably cause, is that the validated OpenID identifier cannot be associated with an existing JCR user.</p> 
+<p>The OpenID Authentication Handler implementation of the <code>authenticationFailed</code> method sets the <code>j_reason</code> request attribute to <code>OpenIDFailure.REPOSITORY</code> and sets the <code>j_openid_identity</code> request attribute to the OpenID identity of the authenticated user.</p> 
+<p>A login form provider may wish to act upon this situation and provide a login form to the user to allow to his OpenID identity with an existing JCR user.</p> 
+<p>In addition, the current OpenID identity is invalidated thus the cached OpenID information is removed from the HTTP Session or the OpenID cookie is cleaned. This will allow the user to present a different OpenID identifier to retry or it will require the OpenID identity to be revalidated with the OpenID provider if the identity is associated with a JCR user.</p> 
+<h4><a href="#authenticationsucceeded" id="authenticationsucceeded">authenticationSucceeded</a></h4> 
+<p>The OpenID Authentication Handler implementation of the <code>authenticationSucceeded</code> method just calls the <code>DefaultAuthenticationFeedbackHandler.handleRedirect</code> method to redirect the user to the initially requested location.</p> 
+<h3><a href="#integration-with-jackrabbit" id="integration-with-jackrabbit">Integration with Jackrabbit</a></h3> 
+<p>The OpenID authentication handler can be integrated in two ways into the Jackrabbit authentication mechanism which is based on JAAS <code>LoginModule</code>. One integration is by means of a <code>LoginModulePlugin</code> which plugs into the extensible <code>LoginModule</code> architecture supported by the Sling Jackrabbit Embedded Repository bundle.</p> 
+<p>The other integration option is the <code>trusted_credentials_attribute</code> mechanism supported by the Jackrabbit <code>DefaultLoginModule</code>. By setting the <code>trusted_credentials_attribute</code> parameter of the Jackrabbit <code>DefaultLoginModule</code> and the <code>openid.user.attr</code> configuration property of the OpenID Authentication Handler to the same value, the existence of an attribute of that name in the <code>SimpleCredentials</code> instance provided to the <code>Repository.login</code> method signals pre-authenticated credentials, which need not be further checked by the <code>DefaultLoginModule</code>.</p> 
+<h3><a href="#security-considerations" id="security-considerations">Security Considerations</a></h3> 
+<p>OpenIDAuthentication has some limitations in terms of security:</p> 
+<ol> 
+ <li>User name and password are transmitted in plain text in the initial form submission.</li> 
+ <li>The Cookie used to provide the authentication state or the HTTP Session ID may be stolen.</li> 
+ <li>When using the <code>trusted_credentials_attribute</code> mechanism, any intruder knowing the attribute name may log into the repository as any existing JCR user. The better option is to be based on the <code>LoginModulePlugin</code> mechanism.</li> 
+</ol> 
 <p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -93,43 +93,43 @@
             </div><h1 class="pagetitle">
                 Request Listeners
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling provides the possibility to "listen" to a request processed by the Sling Engine (<code>SlingMainServlet</code>). To get notified you implement the service interface <code>org.apache.sling.api.request.SlingRequestListener</code>.</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling provides the possibility to "listen" to a request processed by the Sling Engine (<code>SlingMainServlet</code>). To get notified you implement the service interface <code>org.apache.sling.api.request.SlingRequestListener</code>.</p> 
 <pre><code><!-- TODO syntax marker (#!java) disabled -->public interface SlingRequestListener {
+	
+	static final String SERVICE_NAME = "org.apache.sling.api.request.SlingRequestListener";	
 
-    static final String SERVICE_NAME = &quot;org.apache.sling.api.request.SlingRequestListener&quot;;    
-
-    /**
-     * This method is called from the Sling application for every
-     * &lt;code&gt;EventType&lt;/code&gt; appearing during the dispatching of
-     * a Sling request  
-     * 
-     * @param sre the object representing the event
-     * 
-     * @see org.apache.sling.api.request.SlingRequestEvent.EventType
-     */
-    public void onEvent( SlingRequestEvent sre );
+	/**
+	 * This method is called from the Sling application for every
+	 * &lt;code&gt;EventType&lt;/code&gt; appearing during the dispatching of
+	 * a Sling request  
+	 * 
+	 * @param sre the object representing the event
+	 * 
+	 * @see org.apache.sling.api.request.SlingRequestEvent.EventType
+	 */
+	public void onEvent( SlingRequestEvent sre );
 }
-</code></pre>
-<p>There are no special properties to set. </p>
-<h2><a href="#supported-types-of-events" name="supported-types-of-events">Supported types of events</a></h2>
-<p>At the moment you will get two different types of <code>SlingRequestEvent</code>:</p>
-<table>
-  <thead>
-    <tr>
-      <th>events types (<code>SlingRequestEvent.EventType</code>) </th>
-      <th>point in time </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>EVENT_INIT </td>
-      <td>after entering the <code>service</code> method in <code>SlingMainServlet</code>. Note that this will be <strong>after</strong> the <code>handleSecurity</code> call. </td>
-    </tr>
-    <tr>
-      <td>EVENT_DESTROY </td>
-      <td>at the end of the <code>service</code> method in <code>SlingMainServlet</code> </td>
-    </tr>
-  </tbody>
+</code></pre> 
+<p>There are no special properties to set.</p> 
+<h2><a href="#supported-types-of-events" id="supported-types-of-events">Supported types of events</a></h2> 
+<p>At the moment you will get two different types of <code>SlingRequestEvent</code>:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> events types (<code>SlingRequestEvent.EventType</code>) </th>
+   <th> point in time </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> EVENT_INIT </td>
+   <td> after entering the <code>service</code> method in <code>SlingMainServlet</code>. Note that this will be <strong>after</strong> the <code>handleSecurity</code> call. </td>
+  </tr> 
+  <tr>
+   <td> EVENT_DESTROY </td>
+   <td> at the end of the <code>service</code> method in <code>SlingMainServlet</code> </td>
+  </tr> 
+ </tbody> 
 </table></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

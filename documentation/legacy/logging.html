@@ -92,186 +92,189 @@
                 Logging (Legacy 3.x)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
-This document is for 3.x release of Sling Commons Log components. Refer to
-<a href="http://sling.apache.org/documentation/development/logging.html">Logging</a> for documentation related
-to newer version.
-</div>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
-<p>Logging in Sling is supported by the <code>org.apache.sling.commons.log</code> bundle, which is one of the first bundles installed and started by the Sling Launcher. The <code>org.apache.sling.commons.log</code> bundle has the following tasks:</p>
-<ul>
-  <li>Implements the OSGi Log Service Specification and registers the <code>LogService</code> and <code>LogReader</code> services</li>
-  <li>Exports three commonly used logging APIs:
-    <ul>
-      <li><a href="http://www.slf4j.org">Simple Logging Facade for Java (SLF4J)</a></li>
-      <li><a href="http://jakarta.apache.org/commons/logging">Apache Commons Logging</a></li>
-      <li><a href="http://logging.apache.org/log4j/index.html">log4j</a></li>
-      <li><a href="http://download.oracle.com/javase/6/docs/api/java/util/logging/package-summary.html">java.util.logging</a> (as of r1169918)</li>
-    </ul>
-  </li>
-  <li>Configures logging through our own implementation of the SLF4J backend API</li>
-</ul>
-<h2><a href="#initial-configuration" name="initial-configuration">Initial Configuration</a></h2>
-<p>The <code>org.apache.sling.commons.log</code> bundle gets the initial configuration from the following <code>BundleContext</code> properties:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Default </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>org.apache.sling.commons.log.level</code> </td>
-      <td><code>INFO</code> </td>
-      <td>Sets the initial logging level of the root logger. This may be any of the defined logging levels <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code> and <code>FATAL</code>. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file</code> </td>
-      <td>undefined </td>
-      <td>Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to <code>System.out</code>. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file.number</code> </td>
-      <td>5 </td>
-      <td>The number of rotated files to keep. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file.size</code> </td>
-      <td>'.'yyyy-MM-dd </td>
-      <td>Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section <em>Log File Rotation</em> below for full details on log file rotation. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.pattern</code> </td>
-      <td>{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* {2} {3} {5} </td>
-      <td>The <code>MessageFormat</code> pattern to use for formatting log messages with the root logger. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.julenabled</code> </td>
-      <td>n/a </td>
-      <td>Enables the <code>java.util.logging</code> support. </td>
-    </tr>
-  </tbody>
-</table>
-<h2><a href="#user-configuration" name="user-configuration">User Configuration</a></h2>
-<p>User Configuration after initial configuration is provided by the Configuration Admin Service. To this avail two <code>org.osgi.services.cm.ManagedServiceFactory</code> services are registered under the PIDs <code>org.apache.sling.commons.log.LogManager.factory.writer</code> and <code>org.apache.sling.commons.log.LogManager.factory.config</code> which may receive configuration.</p>
-<h3><a href="#logger-configuration" name="logger-configuration">Logger Configuration</a></h3>
-<p>Loggers (or Categories) can be configured to log to specific files at specific levels using configurable patterns. To this avail factory configuration instances with factory PID <code>org.apache.sling.commons.log.LogManager.factory.config</code> may be created and configured with the Configuration Admin Service.</p>
-<p>The following properties may be set:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Type </th>
-      <th>Default </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>org.apache.sling.commons.log.level</code> </td>
-      <td><code>String</code> </td>
-      <td><code>INFO</code> </td>
-      <td>Sets the logging level of the loggers. This may be any of the defined logging levels <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code> and <code>FATAL</code>. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file</code> </td>
-      <td><code>String</code> </td>
-      <td>undefined </td>
-      <td>Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to <code>System.out</code>. This property should refer to the file name of a configured Log Writer (see below). If no Log Writer is configured with the same file name an implicit Log Writer configuration with default configuration is created. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.pattern</code> </td>
-      <td><code>String</code> </td>
-      <td>{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* {2} {3} {5} </td>
-      <td>The <code>java.util.MessageFormat</code> pattern to use for formatting log messages with the root logger. This is a <code>java.util.MessageFormat</code> pattern supporting up to six arguments: {0} The timestamp of type <code>java.util.Date</code>, {1} the log marker, {2} the name of the current thread, {3} the name of the logger, {4} the debug level and {5} the actual debug message. If the log call includes a Throwable, the stacktrace is just appended to the message regardless of the pattern. </td>
-    </tr>
-  </tbody>
-</table>
-<p>| <code>org.apache.sling.commons.log.names</code> | <code>String\[\]</code> | -- | A list of logger names to which this configuration applies. |</p>
-<p>Note that multiple Logger Configurations may refer to the same Log Writer Configuration. If no Log Writer Configuration exists whose file name matches the file name set on the Logger Configuration an implicit Log Writer Configuration with default setup (daily log rotation) is internally created. </p>
-<h3><a href="#log-writer-configuration" name="log-writer-configuration">Log Writer Configuration</a></h3>
-<p>Log Writer Configuration is used to setup file output and log file rotation characteristics for log writers used by the Loggers.</p>
-<p>The following properties may be set:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Default </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file</code> </td>
-      <td>undefined </td>
-      <td>Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to <code>System.out</code>. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file.number</code> </td>
-      <td>5 </td>
-      <td>The number of rotated files to keep. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file.size</code> </td>
-      <td>'.'yyyy-MM-dd </td>
-      <td>Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section <em>Log File Rotation</em> below for full details on log file rotation. </td>
-    </tr>
-  </tbody>
-</table>
-<p>See the section <em>Log File Rotation</em> below for full details on the <code>org.apache.sling.commons.log.file.size</code> and <code>org.apache.sling.commons.log.file.number</code> properties.</p>
-<h2><a href="#log-file-rotation" name="log-file-rotation">Log File Rotation</a></h2>
-<p>Log files can grow rather quickly and fill up available disk space. To cope with this growth log files may be rotated in two ways: At specific times or when the log file reaches a configurable size. The first method is called <em>Scheduled Rotation</em> and is used by specifying a <code>SimpleDateFormat</code> pattern as the log file "size". The second method is called <em>Size Rotation</em> and is used by setting a maximum file size as the log file size.</p>
-<p>As of version 2.0.6 of the Sling Commons Log bundle, the default value for log file scheduling is <code>&#39;.&#39;yyyy-MM-dd</code> causing daily log rotation. Previously log rotation defaulted to a 10MB file size limit.</p>
-<h3><a href="#scheduled-rotation" name="scheduled-rotation">Scheduled Rotation</a></h3>
-<p>The rolling schedule is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a <code>java.text.SimpleDateFormat</code> pattern. Literal text (such as a leading dot) to be included must be <em>enclosed</em> within a pair of single quotes. A formatted version of the date pattern is used as the suffix for the rolled file name.</p>
-<p>For example, if the log file is configured as <code>/foo/bar.log</code> and the pattern set to <code>&#39;.&#39;yyyy-MM-dd</code>, on 2001-02-16 at midnight, the logging file <code>/foo/bar.log</code> will be renamed to <code>/foo/bar.log.2001-02-16</code> and logging for 2001-02-17 will continue in a new <code>/foo/bar.log</code> file until it rolls over the next day.</p>
-<p>It is possible to specify monthly, weekly, half-daily, daily, hourly, or minutely rollover schedules.</p>
-<table>
-  <thead>
-    <tr>
-      <th>DatePattern </th>
-      <th>Rollover schedule </th>
-      <th>Example </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>&#39;.&#39;yyyy-MM</code> </td>
-      <td>Rollover at the beginning of each month </td>
-      <td>At midnight of May 31st, 2002 <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-05</code>. Logging for the month of June will be output to <code>/foo/bar.log</code> until it is also rolled over the next month. </td>
-    </tr>
-    <tr>
-      <td><code>&#39;.&#39;yyyy-ww</code> </td>
-      <td>Rollover at the first day of each week. The first day of the week depends on the locale. </td>
-      <td>Assuming the first day of the week is Sunday, on Saturday midnight, June 9th 2002, the file <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-23</code>. Logging for the 24th week of 2002 will be output to <code>/foo/bar.log</code> until it is rolled over the next week. </td>
-    </tr>
-    <tr>
-      <td><code>&#39;.&#39;yyyy-MM-dd</code> </td>
-      <td>Rollover at midnight each day.</td>
-      <td>At midnight, on March 8th, 2002, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-03-08</code>. Logging for the 9th day of March will be output to <code>/foo/bar.log</code> until it is rolled over the next day.</td>
-    </tr>
-    <tr>
-      <td><code>&#39;.&#39;yyyy-MM-dd-a</code> </td>
-      <td>Rollover at midnight and midday of each day.</td>
-      <td>at noon, on March 9th, 2002, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-03-09-AM</code>. Logging for the afternoon of the 9th will be output to <code>/foo/bar.log</code> until it is rolled over at midnight.</td>
-    </tr>
-    <tr>
-      <td><code>&#39;.&#39;yyyy-MM-dd-HH</code> </td>
-      <td>Rollover at the top of every hour.</td>
-      <td>At approximately 11:00.000 o'clock on March 9th, 2002, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-03-09-10</code>. Logging for the 11th hour of the 9th of March will be output to <code>/foo/bar.log</code> until it is rolled over at the beginning of the next hour.</td>
-    </tr>
-    <tr>
-      <td><code>&#39;.&#39;yyyy-MM-dd-HH-mm</code> </td>
-      <td>Rollover at the beginning of every minute.</td>
-      <td>At approximately 11:23,000, on March 9th, 2001, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2001-03-09-10-22</code>. Logging for the minute of 11:23 (9th of March) will be output to <code>/foo/bar.log</code> until it is rolled over the next minute.</td>
-    </tr>
-  </tbody>
-</table>
-<p>Do not use the colon ":" character in anywhere in the pattern option. The text before the colon is interpeted as the protocol specificaion of a URL which is probably not what you want.</p>
-<p>Note that Scheduled Rotation ignores the <code>org.apache.sling.commons.log.file.number</code> property since the old log files are not numbered but "dated".</p>
-<h3><a href="#size-rotation" name="size-rotation">Size Rotation</a></h3>
-<p>Log file rotation by size is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a plain number or a number plus a size multiplier. The size multiplier may be any of <code>K</code>, <code>KB</code>, <code>M</code>, <code>MB</code>, <code>G</code>, or <code>GB</code> where the case is ignored and the meaning is probably obvious.</p>
+  This document is for 3.x release of Sling Commons Log components. Refer to 
+ <a href="http://sling.apache.org/documentation/development/logging.html">Logging</a> for documentation related to newer version. 
+</div> 
+<h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>Logging in Sling is supported by the <code>org.apache.sling.commons.log</code> bundle, which is one of the first bundles installed and started by the Sling Launcher. The <code>org.apache.sling.commons.log</code> bundle has the following tasks:</p> 
+<ul> 
+ <li>Implements the OSGi Log Service Specification and registers the <code>LogService</code> and <code>LogReader</code> services</li> 
+ <li>Exports three commonly used logging APIs: 
+  <ul> 
+   <li><a href="http://www.slf4j.org">Simple Logging Facade for Java (SLF4J)</a></li> 
+   <li><a href="http://jakarta.apache.org/commons/logging">Apache Commons Logging</a></li> 
+   <li><a href="http://logging.apache.org/log4j/index.html">log4j</a></li> 
+   <li><a href="http://download.oracle.com/javase/6/docs/api/java/util/logging/package-summary.html">java.util.logging</a> (as of r1169918)</li> 
+  </ul> </li> 
+ <li>Configures logging through our own implementation of the SLF4J backend API</li> 
+</ul> 
+<h2><a href="#initial-configuration" id="initial-configuration">Initial Configuration</a></h2> 
+<p>The <code>org.apache.sling.commons.log</code> bundle gets the initial configuration from the following <code>BundleContext</code> properties:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Property </th>
+   <th> Default </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.level</code> </td>
+   <td> <code>INFO</code> </td>
+   <td> Sets the initial logging level of the root logger. This may be any of the defined logging levels <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code> and <code>FATAL</code>. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.file</code> </td>
+   <td> undefined </td>
+   <td> Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to <code>System.out</code>. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.file.number</code> </td>
+   <td> 5 </td>
+   <td> The number of rotated files to keep. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.file.size</code> </td>
+   <td> '.'yyyy-MM-dd </td>
+   <td> Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section <em>Log File Rotation</em> below for full details on log file rotation. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.pattern</code> </td>
+   <td> {0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* {2} {3} {5} </td>
+   <td> The <code>MessageFormat</code> pattern to use for formatting log messages with the root logger. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.julenabled</code> </td>
+   <td> n/a </td>
+   <td> Enables the <code>java.util.logging</code> support. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h2><a href="#user-configuration" id="user-configuration">User Configuration</a></h2> 
+<p>User Configuration after initial configuration is provided by the Configuration Admin Service. To this avail two <code>org.osgi.services.cm.ManagedServiceFactory</code> services are registered under the PIDs <code>org.apache.sling.commons.log.LogManager.factory.writer</code> and <code>org.apache.sling.commons.log.LogManager.factory.config</code> which may receive configuration.</p> 
+<h3><a href="#logger-configuration" id="logger-configuration">Logger Configuration</a></h3> 
+<p>Loggers (or Categories) can be configured to log to specific files at specific levels using configurable patterns. To this avail factory configuration instances with factory PID <code>org.apache.sling.commons.log.LogManager.factory.config</code> may be created and configured with the Configuration Admin Service.</p> 
+<p>The following properties may be set:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Property </th>
+   <th> Type </th>
+   <th> Default </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.level</code> </td>
+   <td> <code>String</code> </td>
+   <td> <code>INFO</code> </td>
+   <td> Sets the logging level of the loggers. This may be any of the defined logging levels <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code> and <code>FATAL</code>. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.file</code> </td>
+   <td> <code>String</code> </td>
+   <td> undefined </td>
+   <td> Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to <code>System.out</code>. This property should refer to the file name of a configured Log Writer (see below). If no Log Writer is configured with the same file name an implicit Log Writer configuration with default configuration is created. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.pattern</code> </td>
+   <td> <code>String</code> </td>
+   <td> {0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* {2} {3} {5} </td>
+   <td> The <code>java.util.MessageFormat</code> pattern to use for formatting log messages with the root logger. This is a <code>java.util.MessageFormat</code> pattern supporting up to six arguments: {0} The timestamp of type <code>java.util.Date</code>, {1} the log marker, {2} the name of the current thread, {3} the name of the logger, {4} the debug level and {5} the actual debug message. If the log call includes a Throwable, the stacktrace is just appended to the message regardless of the pattern. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.names</code> </td>
+   <td> <code>String\[\]</code> </td>
+   <td> -- </td>
+   <td> A list of logger names to which this configuration applies. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>Note that multiple Logger Configurations may refer to the same Log Writer Configuration. If no Log Writer Configuration exists whose file name matches the file name set on the Logger Configuration an implicit Log Writer Configuration with default setup (daily log rotation) is internally created.</p> 
+<h3><a href="#log-writer-configuration" id="log-writer-configuration">Log Writer Configuration</a></h3> 
+<p>Log Writer Configuration is used to setup file output and log file rotation characteristics for log writers used by the Loggers.</p> 
+<p>The following properties may be set:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Property </th>
+   <th> Default </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.file</code> </td>
+   <td> undefined </td>
+   <td> Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to <code>System.out</code>. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.file.number</code> </td>
+   <td> 5 </td>
+   <td> The number of rotated files to keep. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.commons.log.file.size</code> </td>
+   <td> '.'yyyy-MM-dd </td>
+   <td> Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section <em>Log File Rotation</em> below for full details on log file rotation. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>See the section <em>Log File Rotation</em> below for full details on the <code>org.apache.sling.commons.log.file.size</code> and <code>org.apache.sling.commons.log.file.number</code> properties.</p> 
+<h2><a href="#log-file-rotation" id="log-file-rotation">Log File Rotation</a></h2> 
+<p>Log files can grow rather quickly and fill up available disk space. To cope with this growth log files may be rotated in two ways: At specific times or when the log file reaches a configurable size. The first method is called <em>Scheduled Rotation</em> and is used by specifying a <code>SimpleDateFormat</code> pattern as the log file "size". The second method is called <em>Size Rotation</em> and is used by setting a maximum file size as the log file size.</p> 
+<p>As of version 2.0.6 of the Sling Commons Log bundle, the default value for log file scheduling is <code>'.'yyyy-MM-dd</code> causing daily log rotation. Previously log rotation defaulted to a 10MB file size limit.</p> 
+<h3><a href="#scheduled-rotation" id="scheduled-rotation">Scheduled Rotation</a></h3> 
+<p>The rolling schedule is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a <code>java.text.SimpleDateFormat</code> pattern. Literal text (such as a leading dot) to be included must be <em>enclosed</em> within a pair of single quotes. A formatted version of the date pattern is used as the suffix for the rolled file name.</p> 
+<p>For example, if the log file is configured as <code>/foo/bar.log</code> and the pattern set to <code>'.'yyyy-MM-dd</code>, on 2001-02-16 at midnight, the logging file <code>/foo/bar.log</code> will be renamed to <code>/foo/bar.log.2001-02-16</code> and logging for 2001-02-17 will continue in a new <code>/foo/bar.log</code> file until it rolls over the next day.</p> 
+<p>It is possible to specify monthly, weekly, half-daily, daily, hourly, or minutely rollover schedules.</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> DatePattern </th>
+   <th> Rollover schedule </th>
+   <th> Example </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>'.'yyyy-MM</code> </td>
+   <td> Rollover at the beginning of each month </td>
+   <td> At midnight of May 31st, 2002 <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-05</code>. Logging for the month of June will be output to <code>/foo/bar.log</code> until it is also rolled over the next month. </td>
+  </tr> 
+  <tr>
+   <td> <code>'.'yyyy-ww</code> </td>
+   <td> Rollover at the first day of each week. The first day of the week depends on the locale. </td>
+   <td> Assuming the first day of the week is Sunday, on Saturday midnight, June 9th 2002, the file <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-23</code>. Logging for the 24th week of 2002 will be output to <code>/foo/bar.log</code> until it is rolled over the next week. </td>
+  </tr> 
+  <tr>
+   <td> <code>'.'yyyy-MM-dd</code> </td>
+   <td> Rollover at midnight each day.</td>
+   <td> At midnight, on March 8th, 2002, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-03-08</code>. Logging for the 9th day of March will be output to <code>/foo/bar.log</code> until it is rolled over the next day.</td>
+  </tr> 
+  <tr>
+   <td> <code>'.'yyyy-MM-dd-a</code> </td>
+   <td> Rollover at midnight and midday of each day.</td>
+   <td> at noon, on March 9th, 2002, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-03-09-AM</code>. Logging for the afternoon of the 9th will be output to <code>/foo/bar.log</code> until it is rolled over at midnight.</td>
+  </tr> 
+  <tr>
+   <td> <code>'.'yyyy-MM-dd-HH</code> </td>
+   <td> Rollover at the top of every hour.</td>
+   <td> At approximately 11:00.000 o'clock on March 9th, 2002, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2002-03-09-10</code>. Logging for the 11th hour of the 9th of March will be output to <code>/foo/bar.log</code> until it is rolled over at the beginning of the next hour.</td>
+  </tr> 
+  <tr>
+   <td> <code>'.'yyyy-MM-dd-HH-mm</code> </td>
+   <td> Rollover at the beginning of every minute.</td>
+   <td> At approximately 11:23,000, on March 9th, 2001, <code>/foo/bar.log</code> will be copied to <code>/foo/bar.log.2001-03-09-10-22</code>. Logging for the minute of 11:23 (9th of March) will be output to <code>/foo/bar.log</code> until it is rolled over the next minute.</td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>Do not use the colon ":" character in anywhere in the pattern option. The text before the colon is interpeted as the protocol specificaion of a URL which is probably not what you want.</p> 
+<p>Note that Scheduled Rotation ignores the <code>org.apache.sling.commons.log.file.number</code> property since the old log files are not numbered but "dated".</p> 
+<h3><a href="#size-rotation" id="size-rotation">Size Rotation</a></h3> 
+<p>Log file rotation by size is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a plain number or a number plus a size multiplier. The size multiplier may be any of <code>K</code>, <code>KB</code>, <code>M</code>, <code>MB</code>, <code>G</code>, or <code>GB</code> where the case is ignored and the meaning is probably obvious.</p> 
 <p>When using Size Rotation, the <code>org.apache.sling.commons.log.file.number</code> defines the number of old log file generations to keep. For example to keep 5 old log files indexed by 0 through 4, set the <code>org.apache.sling.commons.log.file.number</code> to <code>5</code> (which happens to be the default).</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

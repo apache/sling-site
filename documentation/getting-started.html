@@ -89,38 +89,38 @@
             </div><h1 class="pagetitle">
                 Getting Started
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h1><a href="#run-the-sling-application" name="run-the-sling-application">Run the Sling Application</a></h1>
-<p>There are different ways to get Apache Sling running. You can either use Docker, download a  distribution or build it from source.</p>
-<h2><a href="#sling-docker-image" name="sling-docker-image">Sling Docker Image</a></h2>
-<p>The easiest way to get Apache Sling running is to use Docker. If you don't have Docker installed  you can skip to the next section.</p>
-<p>We maintain a docker image of our latest release at <a href="https://hub.docker.com/r/apache/sling">Apache Sling Docker Image</a>.</p>
-<p>The simplest command to launch Sling is:</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><h1><a href="#run-the-sling-application" id="run-the-sling-application">Run the Sling Application</a></h1> 
+<p>There are different ways to get Apache Sling running. You can either use Docker, download a distribution or build it from source.</p> 
+<h2><a href="#sling-docker-image" id="sling-docker-image">Sling Docker Image</a></h2> 
+<p>The easiest way to get Apache Sling running is to use Docker. If you don't have Docker installed you can skip to the next section.</p> 
+<p>We maintain a docker image of our latest release at <a href="https://hub.docker.com/r/apache/sling">Apache Sling Docker Image</a>.</p> 
+<p>The simplest command to launch Sling is:</p> 
 <pre><code>docker run -p 8080:8080 -v /tmp/sling:/opt/sling/sling apache/sling
-</code></pre>
-<p>This will start the latest Apache Sling distribution and mount the Sling directory to <em>/tmp/sling</em>  on your machine. Make sure that your docker configuration allows this or change to a different  directory.</p>
-<h2><a href="#sling-download" name="sling-download">Sling Download</a></h2>
-<p>Another option is to download the latest released Apache Sling standalone application from our  <a href="/downloads.cgi">Downloads</a> section. Once you have downloaded the application make sure that you have  Java 8 or later installed and run Sling with:</p>
+</code></pre> 
+<p>This will start the latest Apache Sling distribution and mount the Sling directory to <em>/tmp/sling</em> on your machine. Make sure that your docker configuration allows this or change to a different directory.</p> 
+<h2><a href="#sling-download" id="sling-download">Sling Download</a></h2> 
+<p>Another option is to download the latest released Apache Sling standalone application from our <a href="/downloads.cgi">Downloads</a> section. Once you have downloaded the application make sure that you have Java 8 or later installed and run Sling with:</p> 
 <pre><code>java -jar org.apache.sling.starter-10.jar
-</code></pre>
-<p>Starting the Sling application creates the Sling directory name <em>sling</em> in the same directory  from where you started the above command.</p>
-<h2><a href="#sling-karaf" name="sling-karaf">Sling Karaf</a></h2>
-<p>You can run Sling on <a href="https://karaf.apache.org">Karaf</a> as well by either starting a <a href="karaf.html#sling-karaf-distribution">Sling Karaf Distribution</a> or installing <a href="karaf.html#sling-karaf-features">Sling's Karaf Features</a> into a running Karaf Container.</p>
-<h1><a href="#explore-sling" name="explore-sling">Explore Sling</a></h1>
-<p>Once Sling is started, you can access Sling at <a href="http://localhost:8080">http://localhost:8080</a>.  Starting Sling might take some seconds, so if you get an error in your browser that some  service is missing, simply reload the page a little bit later.</p>
-<p>The Sling directory contains a directory <em>logs</em>. This directory contains all the log files  created by Sling. The main log file is called <em>error.log</em>.</p>
-<h1><a href="#where-to-head-from-here" name="where-to-head-from-here">Where to head from here</a></h1>
-<p>We're on the way to update the documentation to make it more easy to get in touch with Sling. We recommend you read through following topics to get as fast as possible into Sling: </p>
-<ul>
-  <li><a href="/documentation/development/getting-and-building-sling.html">Getting and building Sling</a></li>
-  <li><a href="getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a></li>
-  <li><a href="/documentation/the-sling-engine/architecture.html">Architecture</a></li>
-  <li><a href="/documentation/the-sling-engine/dispatching-requests.html">Dispatching Requests</a></li>
-  <li><a href="/documentation/the-sling-engine/resources.html">Resources</a></li>
-  <li><a href="/documentation/development/ide-tooling.html">Sling IDE Tooling</a></li>
-  <li><a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">Manipulating Content - The SlingPostServlet (servlets.post)</a></li>
-  <li><a href="/documentation/the-sling-engine/request-parameters.html">Request Parameters</a></li>
-  <li><a href="/documentation/the-sling-engine/authentication.html">Authentication</a></li>
-  <li><a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Eventing and Jobs</a></li>
+</code></pre> 
+<p>Starting the Sling application creates the Sling directory name <em>sling</em> in the same directory from where you started the above command.</p> 
+<h2><a href="#sling-karaf" id="sling-karaf">Sling Karaf</a></h2> 
+<p>You can run Sling on <a href="https://karaf.apache.org">Karaf</a> as well by either starting a <a href="karaf.html#sling-karaf-distribution">Sling Karaf Distribution</a> or installing <a href="karaf.html#sling-karaf-features">Sling's Karaf Features</a> into a running Karaf Container.</p> 
+<h1><a href="#explore-sling" id="explore-sling">Explore Sling</a></h1> 
+<p>Once Sling is started, you can access Sling at <a href="http://localhost:8080">http://localhost:8080</a>. Starting Sling might take some seconds, so if you get an error in your browser that some service is missing, simply reload the page a little bit later.</p> 
+<p>The Sling directory contains a directory <em>logs</em>. This directory contains all the log files created by Sling. The main log file is called <em>error.log</em>.</p> 
+<h1><a href="#where-to-head-from-here" id="where-to-head-from-here">Where to head from here</a></h1> 
+<p>We're on the way to update the documentation to make it more easy to get in touch with Sling. We recommend you read through following topics to get as fast as possible into Sling:</p> 
+<ul> 
+ <li><a href="/documentation/development/getting-and-building-sling.html">Getting and building Sling</a></li> 
+ <li><a href="getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a></li> 
+ <li><a href="/documentation/the-sling-engine/architecture.html">Architecture</a></li> 
+ <li><a href="/documentation/the-sling-engine/dispatching-requests.html">Dispatching Requests</a></li> 
+ <li><a href="/documentation/the-sling-engine/resources.html">Resources</a></li> 
+ <li><a href="/documentation/development/ide-tooling.html">Sling IDE Tooling</a></li> 
+ <li><a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">Manipulating Content - The SlingPostServlet (servlets.post)</a></li> 
+ <li><a href="/documentation/the-sling-engine/request-parameters.html">Request Parameters</a></li> 
+ <li><a href="/documentation/the-sling-engine/authentication.html">Authentication</a></li> 
+ <li><a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Eventing and Jobs</a></li> 
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -92,42 +92,42 @@
                 Request Processing Analyzer (reqanalyzer)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
-<p>Sling provides a helpful functionality to track progress of requests being processed: The <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/request/RequestProgressTracker.html">RequestProgressTracker</a> which is available through the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html#getRequestProgressTracker%28%29">SlingHttpServletRequest</a>.</p>
-<p>This tool provides mechanims to record states of request processing and a simple mechanism to time periods of processing. By default Sling itself uses this tool to track progress through Sling like script resolution and calling scripts.</p>
-<p>Scripts and servlets called during Sling's request processing may themselves use the <code>RequestProgressTracker</code> to log their own processing.</p>
-<p>Usually the data collected by the <code>RequestProgressTracker</code> is just dropped or it may be visible for a certain number of recent requests on the <em>Recent Requests</em> page of the Web Console. When doing load tests, though, this Web Console page is of limited use because a lot more requests are handled than can be displayed in the Web Console.</p>
-<p>This is where the <a href="https://github.com/apache/sling-org-apache-sling-reqanalyzer">Request Processing Analyzer</a> comes in handy. When deployed as a bundle it registers as a request level servlet Filter with the Sling Main Servlet. Each request is logged in a special file (currently fixed at <code>${sling.home}/logs/requesttracker.txt</code>) with a header line provding core information on the request:</p>
-<ul>
-  <li>Start time stamp in ms since the Epoch</li>
-  <li>Request processing time in ms</li>
-  <li>Request Method</li>
-  <li>Request URL</li>
-  <li>Response content type (plus character encoding if available)</li>
-  <li>Response Status</li>
-</ul>
-<p>After that first line the complete data from the requests <code>RequestProgressTracker</code> is dumped.</p>
-<h2><a href="#web-console-integration" name="web-console-integration">Web Console Integration</a></h2>
-<p>The Request Processing Analyzer is available through the Web Console in the <em>Sling</em> category to</p>
-<ul>
-  <li>Download the <code>requesttracker.txt</code> file as a plain text or ZIP-ed file</li>
-  <li>Launch the Swing-based GUI to analyze the file</li>
-</ul>
-<p>The option to launch the Swing-based GUI is only available if the Sling application is not running in headless mode and if the Web Console is accessed on <em>localhost</em>, that is on the same host as the Sling instance is running.</p>
-<h2>Analyzing the <code>requesttracker.txt</code> file</h2>
-<p>To analyze the <code>requesttracker.txt</code> file the <em>Request Processing Analyzer</em> module can also be used as a standalone Java application. Just start the module using the <code>java</code> command:</p>
+</p> 
+<h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>Sling provides a helpful functionality to track progress of requests being processed: The <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/request/RequestProgressTracker.html">RequestProgressTracker</a> which is available through the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html#getRequestProgressTracker%28%29">SlingHttpServletRequest</a>.</p> 
+<p>This tool provides mechanims to record states of request processing and a simple mechanism to time periods of processing. By default Sling itself uses this tool to track progress through Sling like script resolution and calling scripts.</p> 
+<p>Scripts and servlets called during Sling's request processing may themselves use the <code>RequestProgressTracker</code> to log their own processing.</p> 
+<p>Usually the data collected by the <code>RequestProgressTracker</code> is just dropped or it may be visible for a certain number of recent requests on the <em>Recent Requests</em> page of the Web Console. When doing load tests, though, this Web Console page is of limited use because a lot more requests are handled than can be displayed in the Web Console.</p> 
+<p>This is where the <a href="https://github.com/apache/sling-org-apache-sling-reqanalyzer">Request Processing Analyzer</a> comes in handy. When deployed as a bundle it registers as a request level servlet Filter with the Sling Main Servlet. Each request is logged in a special file (currently fixed at <code>${sling.home}/logs/requesttracker.txt</code>) with a header line provding core information on the request:</p> 
+<ul> 
+ <li>Start time stamp in ms since the Epoch</li> 
+ <li>Request processing time in ms</li> 
+ <li>Request Method</li> 
+ <li>Request URL</li> 
+ <li>Response content type (plus character encoding if available)</li> 
+ <li>Response Status</li> 
+</ul> 
+<p>After that first line the complete data from the requests <code>RequestProgressTracker</code> is dumped.</p> 
+<h2><a href="#web-console-integration" id="web-console-integration">Web Console Integration</a></h2> 
+<p>The Request Processing Analyzer is available through the Web Console in the <em>Sling</em> category to</p> 
+<ul> 
+ <li>Download the <code>requesttracker.txt</code> file as a plain text or ZIP-ed file</li> 
+ <li>Launch the Swing-based GUI to analyze the file</li> 
+</ul> 
+<p>The option to launch the Swing-based GUI is only available if the Sling application is not running in headless mode and if the Web Console is accessed on <em>localhost</em>, that is on the same host as the Sling instance is running.</p> 
+<h2><a href="#analyzing-the-requesttrackertxt-file" id="analyzing-the-requesttrackertxt-file">Analyzing the <code>requesttracker.txt</code> file</a></h2> 
+<p>To analyze the <code>requesttracker.txt</code> file the <em>Request Processing Analyzer</em> module can also be used as a standalone Java application. Just start the module using the <code>java</code> command:</p> 
 <pre><code>$ java -jar org.apache.sling.reqanalyzer-0.0.1-SNAPSHOT.jar requesttracker.txt
-</code></pre>
-<p>The command supports two command line arguments:</p>
-<ol>
-  <li>The tracker file (required)</li>
-  <li>The number of requests to load and display from the file. This second option is optional and may be used to limit the request information loaded to the first requests in the file</li>
-</ol>
-<p>After starting and parsing the file, a window is opened showing the core request information in simple table. This table can be sorted by any of the columns by clicking on the column title.</p>
-<p><img src="requesttracker.png" alt="Recorded Requests" /></p>
-<p>Clicking on any row opens a second window displaying the detail request progress information as recorded before with the <code>RequestProgressTracker</code>.</p>
-<p><img src="requesttracker-details.png" alt="Details of a recorded Request" /></p>
+</code></pre> 
+<p>The command supports two command line arguments:</p> 
+<ol> 
+ <li>The tracker file (required)</li> 
+ <li>The number of requests to load and display from the file. This second option is optional and may be used to limit the request information loaded to the first requests in the file</li> 
+</ol> 
+<p>After starting and parsing the file, a window is opened showing the core request information in simple table. This table can be sorted by any of the columns by clicking on the column title.</p> 
+<p><img src="http://sling.apache.org/requesttracker.png" alt="Recorded Requests"></p> 
+<p>Clicking on any row opens a second window displaying the detail request progress information as recorded before with the <code>RequestProgressTracker</code>.</p> 
+<p><img src="http://sling.apache.org/requesttracker-details.png" alt="Details of a recorded Request"></p> 
 <p>The size, location, and the widths of the table columns are persisted with the Java Preferences API and thus when starting the application again, these settings are preserved.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

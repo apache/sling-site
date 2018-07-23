@@ -92,133 +92,133 @@
                 Rendering Content - Default GET Servlets
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
+</p> 
 <div class="note">
-Not all features of the <b>org.apache.sling.servlets.get</b> bundle are described below - this
-page needs more work.
-</div>
-<h1><a href="#default-get-and-head-servlets" name="default-get-and-head-servlets">Default GET and HEAD servlets</a></h1>
-<p>Sling provides a number of default GET and HEAD servlets, in the <code>org.apache.sling.servlets.get</code> bundle.</p>
-<p>This provides useful functionality out of the box: JSON rendering of content for example, usually does not require custom code.</p>
-<p>This page provides an overview of these default servlets.</p>
-<p>Currently, only the <code>DefaultGetServlet</code> has configuration parameters. Those are found at <code>/system/console/configMgr/org.apache.sling.servlets.get.DefaultGetServlet</code> on a standard Sling setup, and should be self-explaining. One common use is to disable some of the default renderings listed below, as they might not be useful or desired on production systems. </p>
-<h1><a href="#default-renderings" name="default-renderings">Default renderings</a></h1>
-<h2><a href="#default-json-rendering" name="default-json-rendering">Default JSON rendering</a></h2>
-<p>Adding a .json extension to a request triggers the default Sling GET servlet in JSON mode, unless a more specific servlet or script is provided for the current resource.</p>
-<p>This servlet currently supports the following selectors:</p>
-<ul>
-  <li><code>.tidy</code> causes the JSON output to be formatted</li>
-  <li><code>.harray</code> causes child nodes to be output as arrays instead of objects, to preserve their order (requires <code>org.apache.sling.servlets.get</code> V2.1.10)</li>
-  <li>A numeric value or <code>.infinity</code> as the last selector selects the desired recursion level</li>
-</ul>
-<p>Note that the number of elements is limited by a configurable value, see the <code>DefaultGetServlet</code> configuration for more info.</p>
-<h2><a href="#default-html-rendering" name="default-html-rendering">Default HTML rendering</a></h2>
-<p>In a similar way, adding a <code>.html</code> extension to a request triggers the default Sling GET servlet in HTML mode. That rendering just dumps the current node values in a readable way, but it's only really useful for troubleshooting.</p>
-<h2><a href="#default-text-rendering" name="default-text-rendering">Default text rendering</a></h2>
-<p>A basic text rendering is also provided if the request has a <code>.txt</code> extension, unless more specific servlets or scripts are provided.</p>
-<h2><a href="#default-xml-rendering" name="default-xml-rendering">Default XML rendering</a></h2>
-<p>Adding a <code>.xml</code> extension triggers the default XML rendering, once again unless a more specific script or servlet is registered for the current resource.</p>
-<p>That XML rendering currently uses the JCR "document view" export functionality directly, so it only supports rendering resources that are backed by JCR nodes.</p>
-<h2><a href="#streamrendererservlet" name="streamrendererservlet">StreamRendererServlet</a></h2>
-<p>Whenever the request carries the extension <code>.res</code> or no extension at all, the resource's input stream is spooled to the servlet response (leveraging <code>Resource.adaptTo(InputStream.class)</code>). This servlet supports conditional requests (<a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>) evaluating the resource's modification date from <code>Resource.getResourceMetadata().getModificationTime()</code> and range requests (<a href="https://tools.ietf.org/html/rfc7233">RFC 7233</a>).</p>
-<h2><a href="#redirectservlet" name="redirectservlet">RedirectServlet</a></h2>
-<p>The <code>RedirectServlet</code> handles the <code>sling:redirect</code> resource type, using the <code>sling:target</code> property of the resource to define the redirect target, and the <code>sling:status</code> property to define the HTTP status to use (default is 302).</p>
-<p>This is not to be confused with the <code>sling:redirect</code> property used under <code>/etc/map</code>, which is described in <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></p>
-<h2><a href="#slinginfoservlet" name="slinginfoservlet">SlingInfoServlet</a></h2>
-<p>The <code>SlingInfoServlet</code> provides info on the current JCR session, for requests that map to JCR nodes.</p>
-<p>It is available at <code>/system/sling/info.sessionInfo</code> by default, and supports <code>.json</code> and <code>.txt</code> extensions. </p>
-<h2><a href="#jcr-versions-support" name="jcr-versions-support">JCR Versions Support</a></h2>
-<p>The extensions created for <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848</a> and <a href="https://issues.apache.org/jira/browse/SLING-4318">SLING-4318</a> provide some access to JCR version management features, along with the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">Sling POST Servlet</a> versioning-related features.</p>
-<p>Here's an example that demonstrates this.</p>
-<p>Use the <a href="http://localhost:8080/system/console/configMgr/org.apache.sling.servlets.get.impl.version.VersionInfoServlet">org.apache.sling.servlets.get.impl.version.VersionInfoServlet</a> OSGi configuration to activate the <code>VersionInfoServlet</code> which supports the <code>.V.json</code> selector shown below. That servlet is disabled by default to make sure the configurable V selector doesn't interfere with existing applications.</p>
-<p>First, create a versionable node and check it in:</p>
+  Not all features of the 
+ <b>org.apache.sling.servlets.get</b> bundle are described below - this page needs more work. 
+</div> 
+<h1><a href="#default-get-and-head-servlets" id="default-get-and-head-servlets">Default GET and HEAD servlets</a></h1> 
+<p>Sling provides a number of default GET and HEAD servlets, in the <code>org.apache.sling.servlets.get</code> bundle.</p> 
+<p>This provides useful functionality out of the box: JSON rendering of content for example, usually does not require custom code.</p> 
+<p>This page provides an overview of these default servlets.</p> 
+<p>Currently, only the <code>DefaultGetServlet</code> has configuration parameters. Those are found at <code>/system/console/configMgr/org.apache.sling.servlets.get.DefaultGetServlet</code> on a standard Sling setup, and should be self-explaining. One common use is to disable some of the default renderings listed below, as they might not be useful or desired on production systems.</p> 
+<h1><a href="#default-renderings" id="default-renderings">Default renderings</a></h1> 
+<h2><a href="#default-json-rendering" id="default-json-rendering">Default JSON rendering</a></h2> 
+<p>Adding a .json extension to a request triggers the default Sling GET servlet in JSON mode, unless a more specific servlet or script is provided for the current resource.</p> 
+<p>This servlet currently supports the following selectors:</p> 
+<ul> 
+ <li><code>.tidy</code> causes the JSON output to be formatted</li> 
+ <li><code>.harray</code> causes child nodes to be output as arrays instead of objects, to preserve their order (requires <code>org.apache.sling.servlets.get</code> V2.1.10)</li> 
+ <li>A numeric value or <code>.infinity</code> as the last selector selects the desired recursion level</li> 
+</ul> 
+<p>Note that the number of elements is limited by a configurable value, see the <code>DefaultGetServlet</code> configuration for more info.</p> 
+<h2><a href="#default-html-rendering" id="default-html-rendering">Default HTML rendering</a></h2> 
+<p>In a similar way, adding a <code>.html</code> extension to a request triggers the default Sling GET servlet in HTML mode. That rendering just dumps the current node values in a readable way, but it's only really useful for troubleshooting.</p> 
+<h2><a href="#default-text-rendering" id="default-text-rendering">Default text rendering</a></h2> 
+<p>A basic text rendering is also provided if the request has a <code>.txt</code> extension, unless more specific servlets or scripts are provided.</p> 
+<h2><a href="#default-xml-rendering" id="default-xml-rendering">Default XML rendering</a></h2> 
+<p>Adding a <code>.xml</code> extension triggers the default XML rendering, once again unless a more specific script or servlet is registered for the current resource.</p> 
+<p>That XML rendering currently uses the JCR "document view" export functionality directly, so it only supports rendering resources that are backed by JCR nodes.</p> 
+<h2><a href="#streamrendererservlet" id="streamrendererservlet">StreamRendererServlet</a></h2> 
+<p>Whenever the request carries the extension <code>.res</code> or no extension at all, the resource's input stream is spooled to the servlet response (leveraging <code>Resource.adaptTo(InputStream.class)</code>). This servlet supports conditional requests (<a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>) evaluating the resource's modification date from <code>Resource.getResourceMetadata().getModificationTime()</code> and range requests (<a href="https://tools.ietf.org/html/rfc7233">RFC 7233</a>).</p> 
+<h2><a href="#redirectservlet" id="redirectservlet">RedirectServlet</a></h2> 
+<p>The <code>RedirectServlet</code> handles the <code>sling:redirect</code> resource type, using the <code>sling:target</code> property of the resource to define the redirect target, and the <code>sling:status</code> property to define the HTTP status to use (default is 302).</p> 
+<p>This is not to be confused with the <code>sling:redirect</code> property used under <code>/etc/map</code>, which is described in <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></p> 
+<h2><a href="#slinginfoservlet" id="slinginfoservlet">SlingInfoServlet</a></h2> 
+<p>The <code>SlingInfoServlet</code> provides info on the current JCR session, for requests that map to JCR nodes.</p> 
+<p>It is available at <code>/system/sling/info.sessionInfo</code> by default, and supports <code>.json</code> and <code>.txt</code> extensions.</p> 
+<h2><a href="#jcr-versions-support" id="jcr-versions-support">JCR Versions Support</a></h2> 
+<p>The extensions created for <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848</a> and <a href="https://issues.apache.org/jira/browse/SLING-4318">SLING-4318</a> provide some access to JCR version management features, along with the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">Sling POST Servlet</a> versioning-related features.</p> 
+<p>Here's an example that demonstrates this.</p> 
+<p>Use the <a href="http://localhost:8080/system/console/configMgr/org.apache.sling.servlets.get.impl.version.VersionInfoServlet">org.apache.sling.servlets.get.impl.version.VersionInfoServlet</a> OSGi configuration to activate the <code>VersionInfoServlet</code> which supports the <code>.V.json</code> selector shown below. That servlet is disabled by default to make sure the configurable V selector doesn't interfere with existing applications.</p> 
+<p>First, create a versionable node and check it in:</p> 
 <pre><code>curl -u admin:admin -Fjcr:mixinTypes=mix:versionable -Fmarker=A http://localhost:8080/vtest
 curl -u admin:admin -F :operation=checkin http://localhost:8080/vtest
-</code></pre>
-<p>The <code>VersionInfoServlet</code>, triggered by the V selector with our default configuration, shows the initial versions state:</p>
+</code></pre> 
+<p>The <code>VersionInfoServlet</code>, triggered by the V selector with our default configuration, shows the initial versions state:</p> 
 <pre><code>curl -s -u admin:admin http://localhost:8080/vtest.V.json
 {
-  &quot;versions&quot;: {
-    &quot;jcr:rootVersion&quot;: {
-      &quot;created&quot;: &quot;Tue Jan 23 2018 14:08:09 GMT+0100&quot;,
-      &quot;successors&quot;: [
-        &quot;1.0&quot;
+  "versions": {
+    "jcr:rootVersion": {
+      "created": "Tue Jan 23 2018 14:08:09 GMT+0100",
+      "successors": [
+        "1.0"
       ],
-      &quot;predecessors&quot;: [],
-      &quot;labels&quot;: [],
-      &quot;baseVersion&quot;: &quot;false&quot;
+      "predecessors": [],
+      "labels": [],
+      "baseVersion": "false"
     },
-    &quot;1.0&quot;: {
-      &quot;created&quot;: &quot;Tue Jan 23 2018 14:08:35 GMT+0100&quot;,
-      &quot;successors&quot;: [],
-      &quot;predecessors&quot;: [
-        &quot;jcr:rootVersion&quot;
+    "1.0": {
+      "created": "Tue Jan 23 2018 14:08:35 GMT+0100",
+      "successors": [],
+      "predecessors": [
+        "jcr:rootVersion"
       ],
-      &quot;labels&quot;: [],
-      &quot;baseVersion&quot;: &quot;true&quot;
+      "labels": [],
+      "baseVersion": "true"
     }
   }
 }    
-</code></pre>
-<p>Now, create two additional versions with a different <code>marker</code> value:</p>
+</code></pre> 
+<p>Now, create two additional versions with a different <code>marker</code> value:</p> 
 <pre><code>curl -u admin:admin -F :autoCheckin=true -F :autoCheckout=true -Fmarker=B http://localhost:8080/vtest
 curl -u admin:admin -F :autoCheckin=true -F :autoCheckout=true -Fmarker=C http://localhost:8080/vtest
-</code></pre>
-<p>The <code>VersionInfoServlet</code> now shows all versions (output abbreviated):</p>
+</code></pre> 
+<p>The <code>VersionInfoServlet</code> now shows all versions (output abbreviated):</p> 
 <pre><code>curl -s -u admin:admin http://localhost:8080/vtest.V.json
 {
-  &quot;versions&quot;: {
-    &quot;jcr:rootVersion&quot;: {
-      &quot;successors&quot;: [
-        &quot;1.0&quot;
+  "versions": {
+    "jcr:rootVersion": {
+      "successors": [
+        "1.0"
       ],
-      &quot;predecessors&quot;: []
+      "predecessors": []
     },
-    &quot;1.0&quot;: {
-      &quot;successors&quot;: [
-        &quot;1.1&quot;
+    "1.0": {
+      "successors": [
+        "1.1"
       ],
-      &quot;predecessors&quot;: [
-        &quot;jcr:rootVersion&quot;
+      "predecessors": [
+        "jcr:rootVersion"
       ]
     },
-    &quot;1.1&quot;: {
-      &quot;successors&quot;: [
-        &quot;1.2&quot;
+    "1.1": {
+      "successors": [
+        "1.2"
       ],
-      &quot;predecessors&quot;: [
-        &quot;1.0&quot;
+      "predecessors": [
+        "1.0"
       ]
     },
-    &quot;1.2&quot;: {
-      &quot;successors&quot;: [],
-      &quot;predecessors&quot;: [
-        &quot;1.1&quot;
+    "1.2": {
+      "successors": [],
+      "predecessors": [
+        "1.1"
       ]
     }
   }
 }
-</code></pre>
-<p>And the <code>;v=</code> URI path parameter gives access to each version (output abbreviated):</p>
-<pre><code>curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.0&quot;
+</code></pre> 
+<p>And the <code>;v=</code> URI path parameter gives access to each version (output abbreviated):</p> 
+<pre><code>curl -s "http://localhost:8080/vtest.tidy.json;v=1.0"
 {
-  &quot;marker&quot;: &quot;A&quot;,
-  &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
-  &quot;jcr:uuid&quot;: &quot;74291bc8-e7cb-4a71-ab3a-224ba234be0a&quot;
+  "marker": "A",
+  "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
+  "jcr:uuid": "74291bc8-e7cb-4a71-ab3a-224ba234be0a"
 }
 
-curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.1&quot;
+curl -s "http://localhost:8080/vtest.tidy.json;v=1.1"
 {
-  &quot;marker&quot;: &quot;B&quot;,
-  &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
-  &quot;jcr:uuid&quot;: &quot;18b38479-a3fc-4a21-9cd4-89c44daf917d&quot;
+  "marker": "B",
+  "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
+  "jcr:uuid": "18b38479-a3fc-4a21-9cd4-89c44daf917d"
 }
 
-curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.2&quot;
+curl -s "http://localhost:8080/vtest.tidy.json;v=1.2"
 {
-  &quot;marker&quot;: &quot;C&quot;,
-  &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
-  &quot;jcr:uuid&quot;: &quot;3d55430b-2fa6-4562-b415-638fb6608c0e&quot;
+  "marker": "C",
+  "jcr:frozenUuid": "a6fd966d-917d-49e2-ba32-e7f942ff3a0f",
+  "jcr:uuid": "3d55430b-2fa6-4562-b415-638fb6608c0e"
 }
 </code></pre></section></div></div>            
             <div class="footer">

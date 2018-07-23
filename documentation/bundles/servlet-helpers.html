@@ -91,46 +91,46 @@
             </div><h1 class="pagetitle">
                 Sling Servlet Helpers
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Servlet Helpers bundle provides mock implementations of the <code>SlingHttpServletRequest</code>, <code>SlingHttpServletResponse</code> and related classes.</p>
-<p>Those mock implementations are meant to be used in tests and also with services like the <code>SlingRequestProcessor</code> when making requests to that service outside of an HTTP request processing context.</p>
-<p>See the <a href="https://github.com/apache/sling-org-apache-sling-servlet-helpers">automated tests</a> of the <code>servlet-helpers</code> module for more info.</p>
-<h2><a href="#usage" name="usage">Usage</a></h2>
-<h3><a href="#slinghttpservletrequest" name="slinghttpservletrequest">SlingHttpServletRequest</a></h3>
-<p>Example for preparing a sling request with custom request data:</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Servlet Helpers bundle provides mock implementations of the <code>SlingHttpServletRequest</code>, <code>SlingHttpServletResponse</code> and related classes.</p> 
+<p>Those mock implementations are meant to be used in tests and also with services like the <code>SlingRequestProcessor</code> when making requests to that service outside of an HTTP request processing context.</p> 
+<p>See the <a href="https://github.com/apache/sling-org-apache-sling-servlet-helpers">automated tests</a> of the <code>servlet-helpers</code> module for more info.</p> 
+<h2><a href="#usage" id="usage">Usage</a></h2> 
+<h3><a href="#slinghttpservletrequest" id="slinghttpservletrequest">SlingHttpServletRequest</a></h3> 
+<p>Example for preparing a sling request with custom request data:</p> 
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling request
 MockSlingHttpServletRequest request = new MockSlingHttpServletRequest(resourceResolver);
 
 // simulate query string
-request.setQueryString(&quot;param1=aaa&amp;param2=bbb&quot;);
+request.setQueryString("param1=aaa&amp;param2=bbb");
 
 // alternative - set query parameters as map
 request.setParameterMap(ImmutableMap.&lt;String,Object&gt;builder()
-    .put(&quot;param1&quot;, &quot;aaa&quot;)
-    .put(&quot;param2&quot;, &quot;bbb&quot;)
+    .put("param1", "aaa")
+    .put("param2", "bbb")
     .build());
 
 // set current resource
-request.setResource(resourceResolver.getResource(&quot;/content/sample&quot;));
+request.setResource(resourceResolver.getResource("/content/sample"));
 
 // set sling request path info properties
 MockRequestPathInfo requestPathInfo = (MockRequestPathInfo)request.getRequestPathInfo();
-requestPathInfo.setSelectorString(&quot;selector1.selector2&quot;);
-requestPathInfo.setExtension(&quot;html&quot;);
+requestPathInfo.setSelectorString("selector1.selector2");
+requestPathInfo.setExtension("html");
 
 // set method
 request.setMethod(HttpConstants.METHOD_POST);
 
 // set attributes
-request.setAttribute(&quot;attr1&quot;, &quot;value1&quot;);
+request.setAttribute("attr1", "value1");
 
 // set headers
-request.addHeader(&quot;header1&quot;, &quot;value1&quot;);
+request.addHeader("header1", "value1");
 
 // set cookies
-request.addCookie(new Cookie(&quot;cookie1&quot;, &quot;value1&quot;));
-</code></pre>
-<h3><a href="#slinghttpservletresponse" name="slinghttpservletresponse">SlingHttpServletResponse</a></h3>
-<p>Example for preparing a sling response which can collect the data that was written to it:</p>
+request.addCookie(new Cookie("cookie1", "value1"));
+</code></pre> 
+<h3><a href="#slinghttpservletresponse" id="slinghttpservletresponse">SlingHttpServletResponse</a></h3> 
+<p>Example for preparing a sling response which can collect the data that was written to it:</p> 
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling response
 MockSlingHttpServletResponse response = new MockSlingHttpServletResponse();
 
@@ -140,13 +140,13 @@ MockSlingHttpServletResponse response = new MockSlingHttpServletResponse();
 assertEquals(HttpServletResponse.SC_OK, response.getStatus());
 
 // validate content type and content length
-assertEquals(&quot;text/plain;charset=UTF-8&quot;, response.getContentType());
+assertEquals("text/plain;charset=UTF-8", response.getContentType());
 assertEquals(CharEncoding.UTF_8, response.getCharacterEncoding());
 assertEquals(55, response.getContentLength());
 
 // validate headers
-assertTrue(response.containsHeader(&quot;header1&quot;));
-assertEquals(&quot;5&quot;, response.getHeader(&quot;header2&quot;));
+assertTrue(response.containsHeader("header1"));
+assertEquals("5", response.getHeader("header2"));
 
 // validate response body as string
 assertEquals(TEST_CONTENT, response.getOutputAsString());

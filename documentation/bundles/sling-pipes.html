@@ -91,46 +91,46 @@
             </div><h1 class="pagetitle">
                 Sling Pipes
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling pipes is a tool set for doing extract - transform - load operations by chaining proven code blocks.</p>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
-<p>Sling Pipes can be seen as a language that optimizes communication between two developers knowing sling terminology, just as they would talk about it, e.g.</p>
-<pre><code>    searching for resources with type &quot;foo/bar&quot; and setting property id to 3
-</code></pre>
-<p>Such sentence with that limited amount of words is enough between two sling developers to understand fully what it is doing. However, implementing this as a servlet would take a lot more words, risks of failure, complexity of deployement and would be more opaque, not talking about monitoring or execution common, but complex features you'd like to add.</p>
-<p>With Sling Pipes, what you need to develop, and what is readable by another developer is</p>
-<pre><code>    plumber.newPipe(resolver).$(&quot;[sling:resourceType=&#39;foo/bar&#39;]&quot;).write(&quot;id&quot;,3).build(&quot;/etc/demo&quot;)
-</code></pre>
-<p>this is enough to persist a pipe in <code>/etc/demo</code> that is executable as http, java, groovy console script, or JMX. You can make it monitor it with JMX, logs, http, you'll have dry run possibility of that execution for example, or asynchronous execution. You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the <code>PipeModel</code> </p>
-<h2><a href="#what-is-a-pipe" name="what-is-a-pipe">What is a pipe</a></h2>
-<p>A sling pipe is essentially a sling resource stream, encapsulating a well-known sling operation</p>
-<ul>
-  <li>it provides an output as a sling resource iterator,</li>
-  <li>it gets its input either from a configured path, either from former pipe's output,</li>
-  <li>each pipe can have scripted configuration, accessing bindings from others</li>
-</ul>
-<p>Important bits of a pipe are:</p>
-<ul>
-  <li>its type, specifying what sling block you will use, through a RT property, or a method depending on what <a href="/documentation/bundles/sling-pipes/execution-monitoring.html">builder you use</a>,</li>
-  <li>its <code>name</code>, used in logs, JCR persistence, and bindings,</li>
-  <li>its input, forced with <code>path</code> property, or because the pipe follows another one,</li>
-  <li>its optional expression, configured with <code>expr</code> property, that means different things depending on the pipe,</li>
-  <li>its configuration node, configured with <code>conf</code> node, that means different things depending on the pipe</li>
-</ul>
-<h2><a href="#get-started" name="get-started">Get Started</a></h2>
-<p>You can <a href="/documentation/bundles/sling-pipes/execution-monitoring.html">configure and execute a pipe with java, groovy console, http, or jmx</a></p>
-<p>To get more familiar with pipes go through the 3 families of pipes to consider and the samples detailed:</p>
-<ul>
-  <li><a href="/documentation/bundles/sling-pipes/readers.html">reader pipes</a>, that will just output a set of resource depending on the input, without modifying anything,</li>
-  <li><a href="/documentation/bundles/sling-pipes/writers.html">writer pipes</a>, that modify the repository, depending on configuration and input,</li>
-  <li><a href="/documentation/bundles/sling-pipes/logical.html">logical pipes</a>, that refer to other pipes, chaining them or using their results in a general way</li>
-</ul>
-<p>Once you've successfully run your first try, you can get into more complicated configuration, making them dynamics with <a href="/documentation/bundles/sling-pipes/bindings.html">bindings</a> and have a look at some <a href="/documentation/bundles/sling-pipes/samples.html">other samples</a> </p>
-<h2><a href="#compatibility" name="compatibility">Compatibility</a></h2>
-<p>For running this tool on a sling instance you need:</p>
-<ul>
-  <li>java 8 (Nashorn is used for expression)</li>
-  <li>slingQuery (3.0.0) (used in SlingQueryPipe)</li>
-  <li>jackrabbit api (2.7.5+) (used in AuthorizablePipe)</li>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling pipes is a tool set for doing extract - transform - load operations by chaining proven code blocks.</p> 
+<h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>Sling Pipes can be seen as a language that optimizes communication between two developers knowing sling terminology, just as they would talk about it, e.g.</p> 
+<pre><code>    searching for resources with type "foo/bar" and setting property id to 3
+</code></pre> 
+<p>Such sentence with that limited amount of words is enough between two sling developers to understand fully what it is doing. However, implementing this as a servlet would take a lot more words, risks of failure, complexity of deployement and would be more opaque, not talking about monitoring or execution common, but complex features you'd like to add.</p> 
+<p>With Sling Pipes, what you need to develop, and what is readable by another developer is</p> 
+<pre><code>    plumber.newPipe(resolver).$("[sling:resourceType='foo/bar']").write("id",3).build("/etc/demo")
+</code></pre> 
+<p>this is enough to persist a pipe in <code>/etc/demo</code> that is executable as http, java, groovy console script, or JMX. You can make it monitor it with JMX, logs, http, you'll have dry run possibility of that execution for example, or asynchronous execution. You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the <code>PipeModel</code></p> 
+<h2><a href="#what-is-a-pipe" id="what-is-a-pipe">What is a pipe</a></h2> 
+<p>A sling pipe is essentially a sling resource stream, encapsulating a well-known sling operation</p> 
+<ul> 
+ <li>it provides an output as a sling resource iterator,</li> 
+ <li>it gets its input either from a configured path, either from former pipe's output,</li> 
+ <li>each pipe can have scripted configuration, accessing bindings from others</li> 
+</ul> 
+<p>Important bits of a pipe are:</p> 
+<ul> 
+ <li>its type, specifying what sling block you will use, through a RT property, or a method depending on what <a href="/documentation/bundles/sling-pipes/execution-monitoring.html">builder you use</a>,</li> 
+ <li>its <code>name</code>, used in logs, JCR persistence, and bindings,</li> 
+ <li>its input, forced with <code>path</code> property, or because the pipe follows another one,</li> 
+ <li>its optional expression, configured with <code>expr</code> property, that means different things depending on the pipe,</li> 
+ <li>its configuration node, configured with <code>conf</code> node, that means different things depending on the pipe</li> 
+</ul> 
+<h2><a href="#get-started" id="get-started">Get Started</a></h2> 
+<p>You can <a href="/documentation/bundles/sling-pipes/execution-monitoring.html">configure and execute a pipe with java, groovy console, http, or jmx</a></p> 
+<p>To get more familiar with pipes go through the 3 families of pipes to consider and the samples detailed:</p> 
+<ul> 
+ <li><a href="/documentation/bundles/sling-pipes/readers.html">reader pipes</a>, that will just output a set of resource depending on the input, without modifying anything,</li> 
+ <li><a href="/documentation/bundles/sling-pipes/writers.html">writer pipes</a>, that modify the repository, depending on configuration and input,</li> 
+ <li><a href="/documentation/bundles/sling-pipes/logical.html">logical pipes</a>, that refer to other pipes, chaining them or using their results in a general way</li> 
+</ul> 
+<p>Once you've successfully run your first try, you can get into more complicated configuration, making them dynamics with <a href="/documentation/bundles/sling-pipes/bindings.html">bindings</a> and have a look at some <a href="/documentation/bundles/sling-pipes/samples.html">other samples</a></p> 
+<h2><a href="#compatibility" id="compatibility">Compatibility</a></h2> 
+<p>For running this tool on a sling instance you need:</p> 
+<ul> 
+ <li>java 8 (Nashorn is used for expression)</li> 
+ <li>slingQuery (3.0.0) (used in SlingQueryPipe)</li> 
+ <li>jackrabbit api (2.7.5+) (used in AuthorizablePipe)</li> 
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -93,50 +93,50 @@
             </div><h1 class="pagetitle">
                 Examples
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Get containing page (like [PageManager#getContainingPage](https://docs.adobe.com/docs/en/aem/6-3/develop/ref/javadoc/com/day/cq/wcm/api/PageManager.html#getContainingPage(org.apache.sling.api.resource.Resource)))</p>
-<pre><code>$(resource).closest(&quot;cq:Page&quot;)
-</code></pre>
-<p>Get first ancestor with a given template</p>
-<pre><code>$(resource).closest(&quot;cq:Page[jcr:content/cq:template=/apps/geometrixx/templates/homepage]&quot;)
-</code></pre>
-<p>List siblings of the current page which can be displayed in the navigation</p>
-<pre><code>$(resource).closest(&quot;cq:Page&quot;).siblings(&quot;cq:Page[jcr:content/hiddenInNav=false]&quot;)
-</code></pre>
-<p>Get the first sibling of the current page</p>
-<pre><code>$(resource).closest(&quot;cq:Page&quot;).siblings(&quot;cq:Page&quot;).first()
-</code></pre>
-<p>Get page ancestor closest to the root</p>
-<pre><code>$(resource).parents(&quot;cq:Page&quot;).last()
-</code></pre>
-<p>Get the second child of each resource:</p>
-<pre><code>$(resource1, resource2, resource3).children(&quot;:eq(1)&quot;)
-</code></pre>
-<p>Get the first two children of each resource:</p>
-<pre><code>$(resource1, resource2, resource3).children(&quot;:lt(2)&quot;)
-</code></pre>
-<p>Closest ancestor page having non-empty parsys</p>
-<pre><code>$(resource).closest(&quot;cq:Page foundation/components/parsys:parent&quot;)
-</code></pre>
-<p>Get all parents of the current resource and adapt them to Page object</p>
-<pre><code>Iterable&lt;Page&gt; breadcrumbs = $(resource).parents(&quot;cq:Page&quot;).map(Page.class);
-</code></pre>
-<p>Get all parents of the current resource up to the home page</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Get containing page (like <a href="https://docs.adobe.com/docs/en/aem/6-3/develop/ref/javadoc/com/day/cq/wcm/api/PageManager.html#getContainingPage(org.apache.sling.api.resource.Resource)">PageManager#getContainingPage</a>)</p> 
+<pre><code>$(resource).closest("cq:Page")
+</code></pre> 
+<p>Get first ancestor with a given template</p> 
+<pre><code>$(resource).closest("cq:Page[jcr:content/cq:template=/apps/geometrixx/templates/homepage]")
+</code></pre> 
+<p>List siblings of the current page which can be displayed in the navigation</p> 
+<pre><code>$(resource).closest("cq:Page").siblings("cq:Page[jcr:content/hiddenInNav=false]")
+</code></pre> 
+<p>Get the first sibling of the current page</p> 
+<pre><code>$(resource).closest("cq:Page").siblings("cq:Page").first()
+</code></pre> 
+<p>Get page ancestor closest to the root</p> 
+<pre><code>$(resource).parents("cq:Page").last()
+</code></pre> 
+<p>Get the second child of each resource:</p> 
+<pre><code>$(resource1, resource2, resource3).children(":eq(1)")
+</code></pre> 
+<p>Get the first two children of each resource:</p> 
+<pre><code>$(resource1, resource2, resource3).children(":lt(2)")
+</code></pre> 
+<p>Closest ancestor page having non-empty parsys</p> 
+<pre><code>$(resource).closest("cq:Page foundation/components/parsys:parent")
+</code></pre> 
+<p>Get all parents of the current resource and adapt them to Page object</p> 
+<pre><code>Iterable&lt;Page&gt; breadcrumbs = $(resource).parents("cq:Page").map(Page.class);
+</code></pre> 
+<p>Get all parents of the current resource up to the home page</p> 
 <pre><code>Iterable&lt;Page&gt; breadcrumbs;
 breadcrumbs = $(resource).parentsUntil(
-    &quot;cq:Page[jcr:content/cq:template=/apps/geometrixx/templates/homepage]&quot;,
-    &quot;cq:Page&quot;).map(Page.class);
-</code></pre>
-<p>List all grand-children pages having empty parsys</p>
-<pre><code>$(resource).children(&quot;cq:Page&quot;).children(&quot;cq:Page&quot;).has(&quot;foundation/components/parsys:empty)
-</code></pre>
-<p>Use JCR query to find all <code>cq:Page</code>s with a given template</p>
+    "cq:Page[jcr:content/cq:template=/apps/geometrixx/templates/homepage]",
+    "cq:Page").map(Page.class);
+</code></pre> 
+<p>List all grand-children pages having empty parsys</p> 
+<pre><code>$(resource).children("cq:Page").children("cq:Page").has("foundation/components/parsys:empty)
+</code></pre> 
+<p>Use JCR query to find all <code>cq:Page</code>s with a given template</p> 
 <pre><code>$(resourceResolver)
     .searchStrategy(SearchStrategy.QUERY)
-    .find(&quot;cq:PageContent[cq:template=/apps/geometrixx/templates/homepage]&quot;)
+    .find("cq:PageContent[cq:template=/apps/geometrixx/templates/homepage]")
     .parent()
-</code></pre>
-<p>Find children named <code>en</code> or <code>de</code></p>
-<pre><code>$(resource).children(&quot;#en, #de&quot;)
+</code></pre> 
+<p>Find children named <code>en</code> or <code>de</code></p> 
+<pre><code>$(resource).children("#en, #de")
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

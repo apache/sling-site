@@ -94,86 +94,87 @@
                 Maven Launchpad Plugin
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
-The launchpad plugin has been retired in favour of the provisioning model and associated tooling, see <a href="http://sling.apache.org/documentation/development/slingstart.html">the provisioning model documentation</a>.
-</div>
-<p>The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi applications. It supports the following runtime scenarios:</p>
-<ul>
-  <li>A WAR file suitable for running in a JavaEE servlet container.</li>
-  <li>A standalone Java application, with HTTP support from the Felix HttpService implementation</li>
-  <li>Inside Apache Karaf</li>
-</ul>
-<p>In addition, the Maven Launchpad Plugin supports the publishing of an application descriptor, in the form of a <em>bundle list</em>, as a Maven artifact. This descriptor can then be used by downstream application builders as the basis for other applications. In Sling, this is embodied by two Maven projects:</p>
-<ul>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-starter">org.apache.sling.starter</a> - produces an application descriptor.</li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing">org.apache.sling.launchpad.testing</a> - uses the application descriptor from <code>org.apache.sling.launchpad</code> and adds two bundles.</li>
-</ul>
-<p>Maven Launchpad Plugin provides the following goals: </p>
-<table>
-  <thead>
-    <tr>
-      <th>Goals </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>launchpad:prepare-package </td>
-      <td>Create the file system structure required by Sling's Launchpad framework. </td>
-    </tr>
-    <tr>
-      <td>launchpad:attach-bundle-list </td>
-      <td>Attach the bundle list descriptor to the current project as a Maven artifact. </td>
-    </tr>
-    <tr>
-      <td>launchpad:create-karaf-descriptor </td>
-      <td>Create an Apache Karaf Feature descriptor. </td>
-    </tr>
-    <tr>
-      <td>launchpad:create-bundle-jar </td>
-      <td>Create a JAR file containing the bundles in a Launchpad-structured JAR file. </td>
-    </tr>
-    <tr>
-      <td>launchpad:check-bundle-list-for-snapshots </td>
-      <td>Validate that the bundle list does not contain any SNAPSHOT versions. </td>
-    </tr>
-    <tr>
-      <td>launchpad:run </td>
-      <td>Run a Launchpad application. </td>
-    </tr>
-    <tr>
-      <td>launchpad:start </td>
-      <td>Start a Launchpad application. </td>
-    </tr>
-    <tr>
-      <td>launchpad:stop </td>
-      <td>Stop a Launchpad application. </td>
-    </tr>
-    <tr>
-      <td>launchpad:output-bundle-list </td>
-      <td>Output the bundle list to the console as XML. (added in version 2.0.8) </td>
-    </tr>
-  </tbody>
-</table>
-<h3><a href="#general-configuration" name="general-configuration">General Configuration</a></h3>
-<p>In general, the bulk of the configuration of the Maven Launchpad Plugin is concerned with setting up the bundle list which all of the goals will use. This bundle list is created using the following steps:</p>
-<ol>
-  <li>If <code>includeDefaultBundles</code> is <code>true</code> (the default), the default bundle list is loaded. By default, this is <code>org.apache.sling.launchpad:org.apache.sling.launchpad:RELEASE:xml:bundlelist</code>, but can be overridden by setting the <code>defaultBundleList</code> plugin parameter.</li>
-  <li>If <code>includeDefaultBundles</code> is <code>false</code>, an empty list is created.</li>
-  <li>If the bundle list file exists (by default, at <code>src/main/bundles/list.xml</code>), the bundles defined in it are added to the bundle list.</li>
-  <li>If the <code>additionalBundles</code> plugin parameter is defined, those bundles are added to the bundle list.</li>
-  <li>If the <code>bundleExclusions</code> plugin parameter is defined, those bundles are removed from the bundle list.</li>
-</ol>
-<p>When a bundle is added to the bundle list, if a bundle with the same groupId, artifactId, type, and classifier is already in the bundle list, the version of the existing bundle is modified. However, the start level of a bundle is never changed once that bundle is added to the bundle list.</p>
-<p>The plugin may also contribute bundles to (or remove bundles from) the bundle list as it sees fit.</p>
-<h3><a href="#framework-configuration" name="framework-configuration">Framework Configuration</a></h3>
-<p>For the <code>run</code> and <code>start</code> goals, the plugin will look for a file named <code>src/test/config/sling.properties</code>. If this file is present, it will be filtered using standard Maven filtering and used to populate the OSGi framework properties. This can be used, for example, to specify a <code>repository.xml</code> file to be used during development:</p>
+  The launchpad plugin has been retired in favour of the provisioning model and associated tooling, see 
+ <a href="http://sling.apache.org/documentation/development/slingstart.html">the provisioning model documentation</a>. 
+</div> 
+<p>The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi applications. It supports the following runtime scenarios:</p> 
+<ul> 
+ <li>A WAR file suitable for running in a JavaEE servlet container.</li> 
+ <li>A standalone Java application, with HTTP support from the Felix HttpService implementation</li> 
+ <li>Inside Apache Karaf</li> 
+</ul> 
+<p>In addition, the Maven Launchpad Plugin supports the publishing of an application descriptor, in the form of a <em>bundle list</em>, as a Maven artifact. This descriptor can then be used by downstream application builders as the basis for other applications. In Sling, this is embodied by two Maven projects:</p> 
+<ul> 
+ <li><a href="https://github.com/apache/sling-org-apache-sling-starter">org.apache.sling.starter</a> - produces an application descriptor.</li> 
+ <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing">org.apache.sling.launchpad.testing</a> - uses the application descriptor from <code>org.apache.sling.launchpad</code> and adds two bundles.</li> 
+</ul> 
+<p>Maven Launchpad Plugin provides the following goals:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Goals </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> launchpad:prepare-package </td>
+   <td> Create the file system structure required by Sling's Launchpad framework. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:attach-bundle-list </td>
+   <td> Attach the bundle list descriptor to the current project as a Maven artifact. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:create-karaf-descriptor </td>
+   <td> Create an Apache Karaf Feature descriptor. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:create-bundle-jar </td>
+   <td> Create a JAR file containing the bundles in a Launchpad-structured JAR file. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:check-bundle-list-for-snapshots </td>
+   <td> Validate that the bundle list does not contain any SNAPSHOT versions. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:run </td>
+   <td> Run a Launchpad application. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:start </td>
+   <td> Start a Launchpad application. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:stop </td>
+   <td> Stop a Launchpad application. </td>
+  </tr> 
+  <tr>
+   <td> launchpad:output-bundle-list </td>
+   <td> Output the bundle list to the console as XML. (added in version 2.0.8) </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h3><a href="#general-configuration" id="general-configuration">General Configuration</a></h3> 
+<p>In general, the bulk of the configuration of the Maven Launchpad Plugin is concerned with setting up the bundle list which all of the goals will use. This bundle list is created using the following steps:</p> 
+<ol> 
+ <li>If <code>includeDefaultBundles</code> is <code>true</code> (the default), the default bundle list is loaded. By default, this is <code>org.apache.sling.launchpad:org.apache.sling.launchpad:RELEASE:xml:bundlelist</code>, but can be overridden by setting the <code>defaultBundleList</code> plugin parameter.</li> 
+ <li>If <code>includeDefaultBundles</code> is <code>false</code>, an empty list is created.</li> 
+ <li>If the bundle list file exists (by default, at <code>src/main/bundles/list.xml</code>), the bundles defined in it are added to the bundle list.</li> 
+ <li>If the <code>additionalBundles</code> plugin parameter is defined, those bundles are added to the bundle list.</li> 
+ <li>If the <code>bundleExclusions</code> plugin parameter is defined, those bundles are removed from the bundle list.</li> 
+</ol> 
+<p>When a bundle is added to the bundle list, if a bundle with the same groupId, artifactId, type, and classifier is already in the bundle list, the version of the existing bundle is modified. However, the start level of a bundle is never changed once that bundle is added to the bundle list.</p> 
+<p>The plugin may also contribute bundles to (or remove bundles from) the bundle list as it sees fit.</p> 
+<h3><a href="#framework-configuration" id="framework-configuration">Framework Configuration</a></h3> 
+<p>For the <code>run</code> and <code>start</code> goals, the plugin will look for a file named <code>src/test/config/sling.properties</code>. If this file is present, it will be filtered using standard Maven filtering and used to populate the OSGi framework properties. This can be used, for example, to specify a <code>repository.xml</code> file to be used during development:</p> 
 <pre><code>sling.repository.config.file.url=${basedir}/src/test/config/repository.xml
-</code></pre>
-<h2><a href="#bundle-list-files" name="bundle-list-files">Bundle List Files</a></h2>
-<p>The bundle list file uses a simple XML syntax representing a list of bundles organized into start levels:</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+</code></pre> 
+<h2><a href="#bundle-list-files" id="bundle-list-files">Bundle List Files</a></h2> 
+<p>The bundle list file uses a simple XML syntax representing a list of bundles organized into start levels:</p> 
+<pre><code>&lt;?xml version="1.0"?&gt;
 &lt;bundles&gt;
-    &lt;startLevel level=&quot;0&quot;&gt;
+    &lt;startLevel level="0"&gt;
         &lt;bundle&gt;
             &lt;groupId&gt;commons-io&lt;/groupId&gt;
             &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
@@ -186,7 +187,7 @@ The launchpad plugin has been retired in favour of the provisioning model and as
         &lt;/bundle&gt;
     &lt;/startLevel&gt;
 
-    &lt;startLevel level=&quot;10&quot;&gt;
+    &lt;startLevel level="10"&gt;
         &lt;bundle&gt;
             &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
             &lt;artifactId&gt;org.apache.felix.eventadmin&lt;/artifactId&gt;
@@ -194,7 +195,7 @@ The launchpad plugin has been retired in favour of the provisioning model and as
         &lt;/bundle&gt;
     &lt;/startLevel&gt;
 
-    &lt;startLevel level=&quot;15&quot;&gt;
+    &lt;startLevel level="15"&gt;
         &lt;bundle&gt;
             &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
             &lt;artifactId&gt;org.apache.sling.jcr.api&lt;/artifactId&gt;
@@ -202,11 +203,11 @@ The launchpad plugin has been retired in favour of the provisioning model and as
         &lt;/bundle&gt;
     &lt;/startLevel&gt;
 &lt;/bundles&gt;
-</code></pre>
-<p>Within each <code>bundle</code> element, <code>type</code> and <code>classifier</code> are also supported.</p>
-<p>The Http Service support can not be configured using the bundle list, but only using the <code>jarWebSupport</code> parameter, since it is specific to whether the Sling Launchpad is built as a java application (in which case the Jetty-based Http Service is used) or a web application (in which case the Http Service bridge is used).</p>
-<h2><a href="#artifact-definition" name="artifact-definition">Artifact Definition</a></h2>
-<p>The <code>defaultBundleList</code>, <code>jarWebSupport</code>, <code>additionalBundles</code>, and <code>bundleExclusions</code> parameters are configured with artifact definitions. This is done using a syntax similar to Maven dependency elements:</p>
+</code></pre> 
+<p>Within each <code>bundle</code> element, <code>type</code> and <code>classifier</code> are also supported.</p> 
+<p>The Http Service support can not be configured using the bundle list, but only using the <code>jarWebSupport</code> parameter, since it is specific to whether the Sling Launchpad is built as a java application (in which case the Jetty-based Http Service is used) or a web application (in which case the Http Service bridge is used).</p> 
+<h2><a href="#artifact-definition" id="artifact-definition">Artifact Definition</a></h2> 
+<p>The <code>defaultBundleList</code>, <code>jarWebSupport</code>, <code>additionalBundles</code>, and <code>bundleExclusions</code> parameters are configured with artifact definitions. This is done using a syntax similar to Maven dependency elements:</p> 
 <pre><code>&lt;configuration&gt;
 ...
   &lt;jarWebSupport&gt;
@@ -217,8 +218,8 @@ The launchpad plugin has been retired in favour of the provisioning model and as
   &lt;/jarWebSupport&gt;
 ...
 &lt;/configuration&gt;
-</code></pre>
-<p>For example, to use Pax Web instead of Felix HttpService as the HttpService provider, use the following:</p>
+</code></pre> 
+<p>For example, to use Pax Web instead of Felix HttpService as the HttpService provider, use the following:</p> 
 <pre><code>&lt;configuration&gt;
 ...
   &lt;jarWebSupport&gt;
@@ -229,8 +230,8 @@ The launchpad plugin has been retired in favour of the provisioning model and as
   &lt;/jarWebSupport&gt;
 ...
 &lt;/configuration&gt;
-</code></pre>
-<p>In the case of <code>additionalBundles</code> and <code>bundleExclusions</code>, these are arrays of definitions, so an intermediate <code>bundle</code> element is necessary:</p>
+</code></pre> 
+<p>In the case of <code>additionalBundles</code> and <code>bundleExclusions</code>, these are arrays of definitions, so an intermediate <code>bundle</code> element is necessary:</p> 
 <pre><code>&lt;configuration&gt;
 ...
   &lt;additionalBundles&gt;
@@ -243,16 +244,16 @@ The launchpad plugin has been retired in favour of the provisioning model and as
   &lt;/additionalBundles&gt;
 ...
 &lt;/configuration&gt;
-</code></pre>
-<p>By default, bundles are added to start level 0. To change, this use the <code>startLevel</code> element within each additional bundle definition.</p>
-<h2><a href="#integration-testing" name="integration-testing">Integration Testing</a></h2>
-<p>For integration testing examples, see <code>/samples/inplace-integration-test</code> and <code>launchpad/testing</code> in the Sling source tree.</p>
-<h2><a href="#bundle-list-rewriting" name="bundle-list-rewriting">Bundle List Rewriting</a></h2>
-<p>The Maven Launchpad Plugin supports the use of rules to rewrite the bundle list. These rules are executed by the <a href="http://www.jboss.org/drools">Drools</a> rule engine. Typically, this is used along with Maven profiles. For example, Sling's testing project includes a profile called <code>test-reactor-sling-bundles</code>. When activated, this profile runs a Drools rule file which scans the project list from the Maven reactor and modifies the version number for bundles which were contained within the reactor.</p>
-<p>In order for rules to interact with the Maven build, the following global variables are made available:</p>
-<ul>
-  <li><code>mavenSession</code> - an instance of <code>org.apache.maven.execution.MavenSession</code>.</li>
-  <li><code>mavenProject</code> - an instance of <code>org.apache.maven.project.MavenProject</code>.</li>
+</code></pre> 
+<p>By default, bundles are added to start level 0. To change, this use the <code>startLevel</code> element within each additional bundle definition.</p> 
+<h2><a href="#integration-testing" id="integration-testing">Integration Testing</a></h2> 
+<p>For integration testing examples, see <code>/samples/inplace-integration-test</code> and <code>launchpad/testing</code> in the Sling source tree.</p> 
+<h2><a href="#bundle-list-rewriting" id="bundle-list-rewriting">Bundle List Rewriting</a></h2> 
+<p>The Maven Launchpad Plugin supports the use of rules to rewrite the bundle list. These rules are executed by the <a href="http://www.jboss.org/drools">Drools</a> rule engine. Typically, this is used along with Maven profiles. For example, Sling's testing project includes a profile called <code>test-reactor-sling-bundles</code>. When activated, this profile runs a Drools rule file which scans the project list from the Maven reactor and modifies the version number for bundles which were contained within the reactor.</p> 
+<p>In order for rules to interact with the Maven build, the following global variables are made available:</p> 
+<ul> 
+ <li><code>mavenSession</code> - an instance of <code>org.apache.maven.execution.MavenSession</code>.</li> 
+ <li><code>mavenProject</code> - an instance of <code>org.apache.maven.project.MavenProject</code>.</li> 
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

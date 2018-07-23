@@ -91,43 +91,43 @@
             </div><h1 class="pagetitle">
                 Discovery API and its implementations
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>In many situations a particular Sling-based deployment consists of several Sling instances: typically a number of instances would form a <code>cluster</code> that share a common content repository - in other situations, or additionally, instances might be loosely coupled, each with their own repository.</p>
-<p>The <code>discovery-api</code> bundle introduces an abstraction for such scenarios called <code>topology</code>. It provides access to the current topology, allows to be informed of any changes in the topology (such as joining or leaving instances) and contains a simple property exchange mechanism, e.g. to allow building communication services on top of it.</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>In many situations a particular Sling-based deployment consists of several Sling instances: typically a number of instances would form a <code>cluster</code> that share a common content repository - in other situations, or additionally, instances might be loosely coupled, each with their own repository.</p> 
+<p>The <code>discovery-api</code> bundle introduces an abstraction for such scenarios called <code>topology</code>. It provides access to the current topology, allows to be informed of any changes in the topology (such as joining or leaving instances) and contains a simple property exchange mechanism, e.g. to allow building communication services on top of it.</p> 
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
-<h2><a href="#discovery-entities" name="discovery-entities">Discovery Entities</a></h2>
-<p>The Discovery API defines the following entities</p>
-<h3><a href="#instance-instancedescription" name="instance-instancedescription">Instance, InstanceDescription</a></h3>
-<p>A Sling instance running in one VM is represented in the discovery API by an <code>InstanceDescription</code>:</p>
-<ul>
-  <li>it represents one Sling instance</li>
-  <li>it has thus a unique Sling ID</li>
-  <li>it has a flag that marks if it is leader in a cluster (more details below)</li>
-  <li>plus it has properties (which can be provided via <code>PropertyProviders</code>)</li>
-</ul>
-<h3><a href="#cluster-clusterview" name="cluster-clusterview">Cluster, ClusterView</a></h3>
-<p>Multiple instances that are connected to the same underlying repository are commonly referred to as a 'Cluster'. The reasoning behind this terminology being that they access the same data and can thus deliver or modify the same data.</p>
-<p>In the discovery API this cluster concept is represented via a <code>ClusterView</code> object. A 'view' because it is a momentary snapshot of the cluster and only contains instances that are currently alive. It's features are:</p>
-<ul>
-  <li>each cluster has a stable leader. Stable meaning it won't change unless that leader crashes.</li>
-  <li>it has an ordered, stable list of instances that are part of it, thus currently alive. the relative order of instances in this list is stable, meaning that it only stays or moves up one position if an instance listed 'above' crashes - a newly started instance will always be added at the end of this list.</li>
-  <li>plus it has a unique id that is persistent across restarts</li>
-</ul>
-<h3><a href="#topology-topologyview" name="topology-topologyview">Topology, TopologyView</a></h3>
-<p>The topology - or more precisely the <code>TopologyView</code> - represents a snapshot (<code>view</code>) of a number of loosely coupled Sling instances (<code>InstanceDescription</code>) and clusters (<code>ClusterView</code>) of a particular deployment. A cluster can consist of one or more instances. Each instance is always part of a cluster (even if the cluster consists of only one instance). The features are:</p>
-<ul>
-  <li>only one: it has a list of clusters</li>
-</ul>
-<p>There are no further assumption made on the structure of a topology.</p>
-<p>If different clusters in the topology should represent different 'types of clusters' (eg a publish or an author cluster), then that is not explicitly handled by the discovery API. Instead, applications can define properties on each instance that model such cluster types or other aspects.</p>
-<h2><a href="#cluster-leader-and-instance-ordering" name="cluster-leader-and-instance-ordering">Cluster Leader and Instance Ordering</a></h2>
-<p>As mentioned the discovery API introduces support for a <code>cluster leader</code>: within each cluster, the API guarantees that one and only one instance is leader at any time. That leader is guaranteed to be <code>stable</code>, ie as long as it stays alive and is visible by other instances of the same cluster, it will stay leader. As soon as it leaves the cluster (or the corresponding implementation bundle is deactivated), another instance in that cluster is elected leader. The leader can be used to deal with work that must be guaranteed to only execute on one (but any) instance in the cluster.</p>
-<p>Additionally each cluster (<code>ClusterView</code>) orders its instances in a stable list: each newly joined instances is added at the end of the list and retains its order in the list as long as it doesn't leave the cluster. This can be used to distribute "singleton" work amongst the cluster to more than just the leader. </p>
-<h2><a href="#topology-changes" name="topology-changes">Topology Changes</a></h2>
-<p>The <code>DiscoveryService</code> provides access to the currently valid <code>TopologyView</code>. Additionally, applications can register a <code>TopologyEventListener</code> and thus be informed about any changes in the topology. Whenever the discovery service detects that an instance is no longer responding or has newly joined, or a new leader has been elected, it sends a <code>TOPOLOGY_CHANGING</code> event, starts settling the change within the topology (i.e. making sure everybody else in the topology agrees with the change) and finally sends a <code>TOPOLOGY_CHANGED</code> event with the new topology.</p>
-<p>Additionally, when "only" properties have changed, a <code>PROPERTIES_CHANGED</code> event is sent.</p>
-<p>Note that the detection of topology (or properties) changes will incur a delay which is implementation dependent.</p>
-<p>The following is an example of a listener. Note that the binding is done automatically by OSGi, as soon as a <code>TopologyEventListener</code> is registered.</p>
+</p> 
+<h2><a href="#discovery-entities" id="discovery-entities">Discovery Entities</a></h2> 
+<p>The Discovery API defines the following entities</p> 
+<h3><a href="#instance-instancedescription" id="instance-instancedescription">Instance, InstanceDescription</a></h3> 
+<p>A Sling instance running in one VM is represented in the discovery API by an <code>InstanceDescription</code>:</p> 
+<ul> 
+ <li>it represents one Sling instance</li> 
+ <li>it has thus a unique Sling ID</li> 
+ <li>it has a flag that marks if it is leader in a cluster (more details below)</li> 
+ <li>plus it has properties (which can be provided via <code>PropertyProviders</code>)</li> 
+</ul> 
+<h3><a href="#cluster-clusterview" id="cluster-clusterview">Cluster, ClusterView</a></h3> 
+<p>Multiple instances that are connected to the same underlying repository are commonly referred to as a 'Cluster'. The reasoning behind this terminology being that they access the same data and can thus deliver or modify the same data.</p> 
+<p>In the discovery API this cluster concept is represented via a <code>ClusterView</code> object. A 'view' because it is a momentary snapshot of the cluster and only contains instances that are currently alive. It's features are:</p> 
+<ul> 
+ <li>each cluster has a stable leader. Stable meaning it won't change unless that leader crashes.</li> 
+ <li>it has an ordered, stable list of instances that are part of it, thus currently alive. the relative order of instances in this list is stable, meaning that it only stays or moves up one position if an instance listed 'above' crashes - a newly started instance will always be added at the end of this list.</li> 
+ <li>plus it has a unique id that is persistent across restarts</li> 
+</ul> 
+<h3><a href="#topology-topologyview" id="topology-topologyview">Topology, TopologyView</a></h3> 
+<p>The topology - or more precisely the <code>TopologyView</code> - represents a snapshot (<code>view</code>) of a number of loosely coupled Sling instances (<code>InstanceDescription</code>) and clusters (<code>ClusterView</code>) of a particular deployment. A cluster can consist of one or more instances. Each instance is always part of a cluster (even if the cluster consists of only one instance). The features are:</p> 
+<ul> 
+ <li>only one: it has a list of clusters</li> 
+</ul> 
+<p>There are no further assumption made on the structure of a topology.</p> 
+<p>If different clusters in the topology should represent different 'types of clusters' (eg a publish or an author cluster), then that is not explicitly handled by the discovery API. Instead, applications can define properties on each instance that model such cluster types or other aspects.</p> 
+<h2><a href="#cluster-leader-and-instance-ordering" id="cluster-leader-and-instance-ordering">Cluster Leader and Instance Ordering</a></h2> 
+<p>As mentioned the discovery API introduces support for a <code>cluster leader</code>: within each cluster, the API guarantees that one and only one instance is leader at any time. That leader is guaranteed to be <code>stable</code>, ie as long as it stays alive and is visible by other instances of the same cluster, it will stay leader. As soon as it leaves the cluster (or the corresponding implementation bundle is deactivated), another instance in that cluster is elected leader. The leader can be used to deal with work that must be guaranteed to only execute on one (but any) instance in the cluster.</p> 
+<p>Additionally each cluster (<code>ClusterView</code>) orders its instances in a stable list: each newly joined instances is added at the end of the list and retains its order in the list as long as it doesn't leave the cluster. This can be used to distribute "singleton" work amongst the cluster to more than just the leader.</p> 
+<h2><a href="#topology-changes" id="topology-changes">Topology Changes</a></h2> 
+<p>The <code>DiscoveryService</code> provides access to the currently valid <code>TopologyView</code>. Additionally, applications can register a <code>TopologyEventListener</code> and thus be informed about any changes in the topology. Whenever the discovery service detects that an instance is no longer responding or has newly joined, or a new leader has been elected, it sends a <code>TOPOLOGY_CHANGING</code> event, starts settling the change within the topology (i.e. making sure everybody else in the topology agrees with the change) and finally sends a <code>TOPOLOGY_CHANGED</code> event with the new topology.</p> 
+<p>Additionally, when "only" properties have changed, a <code>PROPERTIES_CHANGED</code> event is sent.</p> 
+<p>Note that the detection of topology (or properties) changes will incur a delay which is implementation dependent.</p> 
+<p>The following is an example of a listener. Note that the binding is done automatically by OSGi, as soon as a <code>TopologyEventListener</code> is registered.</p> 
 <pre><code>import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.discovery.TopologyEvent;
@@ -138,16 +138,16 @@ import org.apache.sling.discovery.TopologyEventListener;
 public class MyTopologyEventListener implements TopologyEventListener {
 
     public void handleTopologyEvent(final TopologyEvent event) {
-        // your code here
+    	// your code here
     }
 
 }
-</code></pre>
-<h2><a href="#properties" name="properties">Properties</a></h2>
-<p>The discovery API not only lists all clusters and instances that are part of a topology but also provides a simple mechanism for announcing properties of each instance to the topology, via the <code>PropertyProvider</code> service interface.</p>
-<p>Typical use cases for this are announcements of endpoint URLs or ports such that applications can communicate to other instances in the topology.</p>
-<p>Note that the properties mechanism is not meant be used as a messaging tool: both from an API point of view and the implementation of it are not optimized for frequent changes and its use for messaging is discouraged. It is only meant to be used to announce configuration information for accessing proper messaging services.</p>
-<p>The following is an example of a <code>PropertyProvider</code> that provides <code>sample.value1</code> and <code>sample.value2</code> properties:</p>
+</code></pre> 
+<h2><a href="#properties" id="properties">Properties</a></h2> 
+<p>The discovery API not only lists all clusters and instances that are part of a topology but also provides a simple mechanism for announcing properties of each instance to the topology, via the <code>PropertyProvider</code> service interface.</p> 
+<p>Typical use cases for this are announcements of endpoint URLs or ports such that applications can communicate to other instances in the topology.</p> 
+<p>Note that the properties mechanism is not meant be used as a messaging tool: both from an API point of view and the implementation of it are not optimized for frequent changes and its use for messaging is discouraged. It is only meant to be used to announce configuration information for accessing proper messaging services.</p> 
+<p>The following is an example of a <code>PropertyProvider</code> that provides <code>sample.value1</code> and <code>sample.value2</code> properties:</p> 
 <pre><code>import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.discovery.PropertyProvider;
@@ -155,144 +155,134 @@ import org.apache.sling.discovery.PropertyProvider;
 @Component
 @Service(value = { PropertyProvider.class })
 @Property(name = PropertyProvider.PROPERTY_PROPERTIES, 
-          value = {&quot;sample.value1&quot;, &quot;sample.value2&quot; })
+          value = {"sample.value1", "sample.value2" })
 public class SamplePropertyProvider implements PropertyProvider {
 
-    public String getProperty(final String name) {
-       if (&quot;sample.value1&quot;.equals(name)) {
-         return &quot;foo&quot;;
-       } else if (&quot;sample.value2&quot;.equals(name)) {
-         return &quot;bar&quot;;
-       } else {
-         return null;
-       }
-    }
+	public String getProperty(final String name) {
+		if ("sample.value1".equals(name)) {
+			return "foo";
+		} else if ("sample.value2".equals(name)) {
+			return "bar";
+		} else {
+			return null;
+		}
+	}
 }
-</code></pre>
-<h2><a href="#deployment-and-configuration" name="deployment-and-configuration">Deployment and configuration</a></h2>
-<p>The discovery API makes no assumptions as to how the instances and clusters discover each other. This is entirely up to the implementations. Some might choose automatic discovery within a LAN using IP multicast, others might choose explicit configuration via a central service etc.</p>
-<h2><a href="#discovery-impl-resource-based-ootb-implementation" name="discovery-impl-resource-based-ootb-implementation">discovery.impl: Resource-based, OOTB Implementation</a></h2>
-<p>The <code>discovery.impl</code> bundle is a resource-based, out of the box implementation of the <code>discovery.api</code> using standard Sling. </p>
-<p>The discovery within a cluster is done by writing heartbeat information into the (common) repository (there's no other form of communication within a cluster). The establishment of a clusterview is done by analyzing these heartbeats, initiating a voting within the cluster (such that each instance can agree that it sees the same number of instances) and by concluding the voting by promoting it as the new "established" view.</p>
-<p>The discovery of instances and clusters outside the local cluster requires explicit configuration of what is termed 'topology connectors', which are HTTP PUTs (see below).</p>
-<h3><a href="#location-in-repository" name="location-in-repository">Location in Repository</a></h3>
-<p>Administrative note: All the information about the topology is stored at the following location in the repository:</p>
+</code></pre> 
+<h2><a href="#deployment-and-configuration" id="deployment-and-configuration">Deployment and configuration</a></h2> 
+<p>The discovery API makes no assumptions as to how the instances and clusters discover each other. This is entirely up to the implementations. Some might choose automatic discovery within a LAN using IP multicast, others might choose explicit configuration via a central service etc.</p> 
+<h2><a href="#discoveryimpl-resource-based-ootb-implementation" id="discoveryimpl-resource-based-ootb-implementation">discovery.impl: Resource-based, OOTB Implementation</a></h2> 
+<p>The <code>discovery.impl</code> bundle is a resource-based, out of the box implementation of the <code>discovery.api</code> using standard Sling.</p> 
+<p>The discovery within a cluster is done by writing heartbeat information into the (common) repository (there's no other form of communication within a cluster). The establishment of a clusterview is done by analyzing these heartbeats, initiating a voting within the cluster (such that each instance can agree that it sees the same number of instances) and by concluding the voting by promoting it as the new "established" view.</p> 
+<p>The discovery of instances and clusters outside the local cluster requires explicit configuration of what is termed 'topology connectors', which are HTTP PUTs (see below).</p> 
+<h3><a href="#location-in-repository" id="location-in-repository">Location in Repository</a></h3> 
+<p>Administrative note: All the information about the topology is stored at the following location in the repository:</p> 
 <pre><code>/var/discovery/impl
-</code></pre>
-<h4><a href="#var-discovery-impl-clusterinstances-lt-slingid-gt-" name="var-discovery-impl-clusterinstances-lt-slingid-gt-">/var/discovery/impl/clusterInstances/&lt;slingId&gt;</a></h4>
-<p>Each instance has its own node under <code>clusterInstances/</code> where it stores:</p>
-<ul>
-  <li><code>lastHeartbeat</code>: property, which marks the instance as alive for another <code>heartbeatTimeout</code></li>
-  <li><code>leaderElectionId</code>: an id which is used to determine the leader: the instance with the lowest such leaderElectionId is the leader. Therefore this id is crucial to implement stable leader and ordering. The id contains a prefix (to account for a crx2 edge case where jobs might want to be executed on slave rather than on master), followed by the bundle activate time (to honour stability) and ultimately by the slingId (to have a discriminator should there be multiple instances started at the same time)</li>
-  <li><code>runtimeId</code>: a plain, random UUID that is created fresh upon bundle activation. It is used to detect situations where multiple instances have the same slingId and thus write into the same <code>/var/discovery/impl/clusterInstances/&lt;slingId&gt;</code> node.</li>
-  <li><code>slingHomePath</code> and <code>endpoints</code>: these are used for logging purpose only</li>
-</ul>
-<p>Additionally, there are two sub-nodes:</p>
-<ul>
-  <li><code>announcements</code>: this contains announcements of topology connector peers (also see below). An announcement is a json-encoded representation of the sub-tree that the connector peer is aware of and is thereby announcing to this instance. Announcements are sent in both directions of a topology connector. Discovery.impl takes care of filtering out duplicate instances should the structure of topology connectors, and thus these announcements overlap (which is legal)</li>
-  <li><code>properties</code>: contains all properties as specified by registered <code>PropertyProvider</code></li>
-</ul>
-<h4><a href="#var-discovery-impl-establishedview" name="var-discovery-impl-establishedview">/var/discovery/impl/establishedView</a></h4>
-<p>This contains the currently valid, agreed/voted upon cluster view that lists all alive instances:</p>
-<ul>
-  <li>the name of the node directly under <code>establishedView</code> is a unique id of the current incarnation of the cluster view - thus changes whenever an instance joins or leaves or there is a new voting for another reason. ** <code>clusterId</code> : name of the persistent identifier of this cluster. As this is propagated from cluster view to cluster view it stays unchanged forever. ** <code>leaderElectionId</code>: the leaderElectionId that was winning, ie that was lowest ** <code>leaderId</code>: the slingId of the instance that is leader of this cluster view</li>
-  <li><code>members</code>: just an intermediate node containing all alive instances as child nodes</li>
-  <li>child node of <code>members</code>: each child represents a particular alive node (with the name being the slingId) and contains the following properties: ** <code>leaderElectionId</code>: the id that will be used to determine the leader - this value is copied from the corresponding <code>/var/discovery/impl/clusterInstances/&lt;slingId&gt;</code> ** <code>initiator</code>: this marks the instance that originally created this voting ** <code>vote</code>: represents this instance's vote, which is true for a voting that got promoted to established view</li>
-</ul>
-<h4><a href="#var-discovery-impl-ongoingvotings" name="var-discovery-impl-ongoingvotings">/var/discovery/impl/ongoingVotings</a></h4>
-<p>This area is used for voting. Each instance can initiate a voting when it realizes that the live instances - denominated by those instances that have a not-yet-timed-out heartbeat property - does not match with the <code>establishedView</code>.</p>
-<p>Once a voting gets a yes vote by all instances it is promoted (moved) under <code>establishedView</code> by the initiating instance. Each establishedView was once a voting, thus the structure is the same as described above.</p>
-<h4><a href="#var-discovery-impl-previousview" name="var-discovery-impl-previousview">/var/discovery/impl/previousView</a></h4>
-<p>The instance that promotes its winning voting to <code>establishedView</code> first moves what was there before under <code>previousView</code>. This is purely for debugging and not used anywhere, it just represents a persistet history of previous views of length 1.</p>
-<h3><a href="#heartbeats-voting-and-intra-cluster-discovery" name="heartbeats-voting-and-intra-cluster-discovery">Heartbeats, Voting and Intra-Cluster Discovery</a></h3>
-<p><code>discovery.impl</code> uses the fact that all instance of a cluster are connected to the same repository as the basis for discovering those instances. It does so by using a heartbeat and voting mechanism:</p>
-<ul>
-  <li>each instance periodically stores a 'heartbeat' into the repository in a well-known location. This is done by setting a corresponding <code>lastHeartbeat</code> property to the current timestamp</li>
-  <li>a 'heartbeat' that has not yet timed out is considered a signal that the instance is alive</li>
-  <li>as soon as a 'heartbeat' is timed out, the assumption is that the corresponding instance is dead/shutdown</li>
-</ul>
-<p>To avoid having each instance make it's own, perhaps differing conclusions as to which instance/heartbeat is dead or not, there is an explicit, unanimous voting mechanism that agrees upon a list of alive instances. This list of alive instances is called cluster view. </p>
-<ul>
-  <li>as soon as any instance notices a change in the list of active instances, it is free to calculate a new such list and start a voting in the cluster - each voting carries a unique votingId</li>
-  <li>since any instance can do this, you can have concurrent creation of new votings</li>
-  <li>each instance has one 'yes' vote - and if there are multiple concurrent votings the lowest one wins</li>
-  <li>when a voting receives a 'yes' from all instances that it enlists it is considered as 'winning' and is promoted to be the new, valid view from now on.</li>
-  <li>a promoted view is stored in <code>/var/discovery/impl/establishedView</code> and any change therein is passed on in a TopologyEvent to all registered listeners.</li>
-</ul>
-<h3><a href="#pseudo-network-partitioning-aka-split-brain" name="pseudo-network-partitioning-aka-split-brain">pseudo-network partitioning aka split-brain</a></h3>
-<p><code>discovery.impl</code> requires the, eventually consistent, underlying repository to propagate changes within reasonable time: in less than the configured heartbeat timeout. If heartbeats for some reason are not becoming visible by peers in the cluster within that time, <code>discovery.impl</code> will consider that peer instance as dead. At which point it will first send a TOPOLOGY_CHANGING event to all listeners to make them aware that something is changing in the topology, and then start a new voting. Once the voting concludes a TOPOLOGY_CHANGED event will follow.</p>
-<p>Given the voting is happening through the repository as well, one could imagine a situation where the repository delays can cause a topology to be "pseudo partitioned" into two or more parts, each one agreeing on a set of instances in that sub-cluster (one requirement for such a scenario being that the delays must be asymmetric, ie changes from a subset of instances propagate slow, while the remaining changes propagate fast - ie. two different sets of delays in the cluster). Such a situation would only last as long as the repository delays are large (larger than the heartbeat timeouts). Exact cases where the repository experiences large delays depend of course on the repository configuration and deployment details, known cases include for example long running queries, large set of changes, large set of commits and long-running session.saves.</p>
-<p>The following is an illustration of the impact of large cluster delays:</p>
-<p><img src="discovery-impl-split-brain.png" alt="discovery.impl split brain" /></p>
-<p>In discovery.impl 1.2.2 several improvements have been done to avoid pseudo-network partitioning including the following: (see SLING-3432 for more in-depth details)</p>
-<ul>
-  <li>SLING-5195 : monitor the HeartbeatHandler for long-running session.saves.</li>
-  <li>SLING-5280 : reduce synchronization for HeartbeatHandler to avoid other threads blocking it</li>
-  <li>SLING-5030 : avoid "isolated mode" and replace it with larger TOPOLOGY_CHANGING phase</li>
-</ul>
-<p>All of the above greatly reduce the likelyhood of pseudo-network partitioning with <code>discovery.impl</code>, however, as also described in SLING-4640, there is still a small time-window in which it cannot be ruled out entirely. The successor of discovery.impl, the <code>discovery.oak</code> bundle, addresses these concerns to avoid pseudo-network partitioning alltogether.</p>
-<p>In the context of <code>discovery.impl</code> it is therefore paramount that the underlying repository is monitored and optimized such that the delays are well under control and do not exceed the configured heartbeat timeout.</p>
-<h3><a href="#topology-connectors-for-cross-cluster-discovery" name="topology-connectors-for-cross-cluster-discovery">Topology Connectors for Cross-Cluster Discovery</a></h3>
-<p>From a discovery API's point of view a cluster consists of all instances that are connected to the same repository. The above described built-in mechanism of storing a lastHeartbeat property into the (shared) repository, of voting on changes and creating an explicit establishedView results in automatic discovery within a cluster. There is therefore no further configuration needed for discovering instances in the same cluster.</p>
-<p>However, for discovering multiple clusters such an automatic discovery is not possible and the clusters need to be explicitly configured using (cross-cluster) topology connectors:</p>
-<p>A topology connector is a periodically issued HTTP PUT that announces the part of the topology known to the sending instance to the receiving instance and vica-verca the receiving instance announces its part of the topology to the sender in the response of the very same HTTP PUT. This way whatever other clusters are connected to sender or receiver will be made known to each other. Such a 'topology announcement' will be valid either until the same sender sends the announcement again (which it does periodically) - or until it times out (configurable). A topology connector is by definition always between clusters, never within the same cluster. Topology connectors can be structured in an arbitrary way (chain, star, tree, etc) with the only important point to note here that since changes in the topology propagate through these topology connectors they have a certain delay (namely the configured heartbeatInterval per hop).</p>
-<p>Topology connectors are configured at <a href="http://localhost:8080/system/console/configMgr/org.apache.sling.discovery.impl.Config">/system/console/configMgr/org.apache.sling.discovery.impl.Config</a>. They use the same interval and timeout as the repository heartbeats (heartbeatInterval and heartbeatTimeout).</p>
-<h3><a href="#webconsole" name="webconsole">WebConsole</a></h3>
-<p>A Felix WebConsole plugin at <a href="http://localhost:8080/system/console/topology">/system/console/topology</a> provides a (read-only) overview of the topology.</p>
-<h3><a href="#configuration" name="configuration">Configuration</a></h3>
-<p>The following properties can be configured (at <a href="http://localhost:8080/system/console/configMgr/org.apache.sling.discovery.impl.Config">/system/console/configMgr/org.apache.sling.discovery.impl.Config</a>):</p>
-<ul>
-  <li>
-  <p>heartbeatInterval: the time in seconds between two heartbeats (both cluster-internal and for HTTP-connectors). Default  value is 15 seconds.</p></li>
-  <li>
-  <p>heartbeatTimeout: the time in seconds after which an instance is considered dead if no heartbeat was sent since. Default  value is 20 seconds.</p></li>
-  <li>
-  <p>topologyConnectorUrls: a list of connector URLs to which this instance should connect to. The list can contain multiple  instances of the same cluster (for fallback configurations). If the list is empty, no connector will be created.  The default relative URL is /libs/sling/topology/connector. Note that this URL is accessible without authentication -  to avoid having to configure administrative username/passwords in all instances. Instead, a whitelist approach is used  (see next item).</p></li>
-  <li>
-  <p>topologyConnectorWhitelist: As mentioned above, the path /libs/sling/topology/connector does not require authentication.  To assure that only trusted instances can connect to the topology, its hostname or IP address must be in a whitelist.  By default this whitelist only contains localhost and 127.0.0.1.</p></li>
-  <li>
-  <p>minEventDelay: To reduce the number of events sent during changes, there is a delay (in seconds) before the event is sent.  If additional changes happen during this delay, the change will be combined in one event.</p></li>
-  <li>
-  <p>leaderElectionRepositoryDescriptor: this is an advanced parameter. It denotes a repository descriptor that is evaluated  and taken into account for leader Election: the corresponding value of the descriptor is sorted by first.</p></li>
-  <li>
-  <p>hmacEnabled: If this is true, and sharedKey is set to a value on all Sling instances within the same topology, then messages are  validates using a signature of the content of the message based on the shared key. The signature and the digest of the content  appear as http headers. When hmac message validation is enabled, whitelisting is disabled. This use useful where the topology  messages are transported through multiple reverse proxy layers or the topology is dynamic. The Hmac algorithm in use is HmacSHA256.  The JVM is expected to have a provider implementing this algorithm (The Standard JDKs do).</p></li>
-  <li>
-  <p>sharedKey: If hmacEnabled is true, this must be set to a secret value, shared amongst all Sling instances that are members of the  same topology.</p></li>
-  <li>
-  <p>enableEncryption: If hmacEnabled is true, and sharedKey is set, setting this to true will encrypt the body of the message using 128 Bit AES encryption. The encryption key is derived from the sharedKey using a 9 byte random salt, giving 2^^72 potential salt values.</p></li>
-  <li>
-  <p>hmacSharedKeyTTL: The key used for the signatures is derived from the shared key. Each derived key has a lifetime before the next key is generated. This parameter sets the lifetime of each key in ms. The default is 4h. Messages sent using old keys will remain valid for 2x the TTL, after which time the message will be ignored.</p></li>
-</ul>
-<h2><a href="#discovery-oak-oak-based-ootb-implementation" name="discovery-oak-oak-based-ootb-implementation">discovery.oak: Oak-based, OOTB-implementation</a></h2>
-<p>When running discovery.impl ontop of an eventually consistent repository (such as documentMK of oak), the heartbeat mechanism becomes unreliable. The eventual-ness of the repository has an inherent problem in that it doesn't guarantee by when a change initiated from instance A is visible by instance B. And when there are no hard guarantees, it becomes impossible to choose a <code>heartbeatTimeout</code> that works for all eventualities.</p>
-<p>Therefore it becomes necessary to be able to store heartbeats in a (low-level) location that provides higher consistency (than eventualness). Such a 'low-level location' is the DocumentStore of oak (which is an internal API of the DocumentNodeStore). Turns out that the DocumentNodeStore already has a heartbeat-like concept called leases. Those can be re-used for discovery to fulfill the same aspect as heartbeats do: indicate alive instances. This can further be combined with an explicit materialization of a "cluster view" in the DocumentStore so that all instances agree and refer to the same view without the actual need for voting (this is possible since the DocumentStore allows to do conditional updates).</p>
-<h3><a href="#jackrabbit-oak-s-discovery-lite" name="jackrabbit-oak-s-discovery-lite">Jackrabbit Oak's discovery-lite</a></h3>
-<p>All of the above mentioned features have been implemented in so-called 'discovery-lite': Discovery-lite is a simplified version of discovery on the oak level. Other than the discovery API it only provides one thing, and that's the clusterview-json:</p>
-<h4><a href="#oak-discoverylite-clusterview-" name="oak-discoverylite-clusterview-">'oak.discoverylite.clusterview'</a></h4>
-<p>The discovery-lite descriptor <code>oak.discoverylite.clusterview</code> is a shrink-wrapped json-formatted object representing the current state of the cluster. It contains the following:</p>
-<ul>
-  <li><code>active</code>: a list of active nodes in the documentNodeStore cluster</li>
-  <li><code>deactivating</code>: a list of nodes that are in the process of being deactivated</li>
-  <li><code>inactive</code>: a list of nodes that are inactive</li>
-  <li><code>me</code>: the id (number) of the local instance (which is always part of the active nodes)</li>
-  <li><code>id</code>: the id (unique, persistent) of the cluster (which thus survives node/cluster restarts)</li>
-  <li><code>seq</code>: a sequence number that is incremented upon each change in this descriptor (to be able to identify a change even if the other values are unchanged) and shared amongst all instances in the cluster, ie all instances see the same sequence number. This number can thus be used by upper layers to identify this particular incarnation of clusterview.</li>
-  <li><code>final</code>: when this flag is <code>false</code> it indicates that the sequence number has changed (as well as eg <code>active</code> and <code>inactive</code>), but that the local instance has not yet fully processed this changed on a low-level. I.e. it marks that the local instance has not yet read the entire back-log of another, deactivating instance. Thus when <code>final==false</code>, the upper layers should wait until <code>final==true</code>, at which point they know oak has finished processing an instance crashing/shutting down.</li>
-</ul>
-<h4><a href="#accessing-discovery-lite" name="accessing-discovery-lite">Accessing discovery-lite</a></h4>
-<p>The <code>oak.discoverylite.clusterview</code> descriptor is exposed as a JCR repository descriptor and can be accessed like so:</p>
-<pre><code>getRepository().getDescriptor(&quot;oak.discoverylite.clusterview&quot;)
-</code></pre>
-<p>which will return the json-formatted clusterview as described above.</p>
-<p>Note however, that this API is not meant to be a public, stable API and changes will be done without prior notice. It is merely an internal information exposed by oak and not standardized nor guaranteed to remain supported or unchanged!</p>
-<h3><a href="#sling-s-discovery-oak" name="sling-s-discovery-oak">Sling's discovery.oak</a></h3>
-<p>discovery.oak is a implementation of the discovery API that now makes use of this new discovery-lite descriptor in oak. It basically delegates the detection of the instances in the local cluster to discovery-lite. To do so, it periodically reads this descriptor (which is designed to be read at a high-frequency without problems) and triggers <code>TopologyEvents</code> when this descriptor changes.</p>
-<p>The advantage of using discovery-lite (which uses oak leases) instead of writing heartbeats into the repository is that discovery.oak thus becomes independent of the speed/latency that the repository can produce under high load. The discovery-lite should be entirley resilient to high load, thus is discovery.oak.</p>
-<p>Additionally, it reuses functionality from discovery.impl, such as the way properties (from <code>PropertyProviders</code>) or cross-cluster topology announcements (via topology connectors) are handled.</p>
-<p>In order to do this, the discovery.impl bundle has been refactored as follows:</p>
-<h4><a href="#discovery-commons" name="discovery-commons">discovery.commons</a></h4>
-<p>This is a bundle usable by any implementation of discovery and contains very basic, implementation-independent functionality</p>
-<h4><a href="#discovery-base" name="discovery-base">discovery.base</a></h4>
+</code></pre> 
+<h4><a href="#vardiscoveryimplclusterinstancesslingid" id="vardiscoveryimplclusterinstancesslingid">/var/discovery/impl/clusterInstances/&lt;slingId&gt;</a></h4> 
+<p>Each instance has its own node under <code>clusterInstances/</code> where it stores:</p> 
+<ul> 
+ <li><code>lastHeartbeat</code>: property, which marks the instance as alive for another <code>heartbeatTimeout</code></li> 
+ <li><code>leaderElectionId</code>: an id which is used to determine the leader: the instance with the lowest such leaderElectionId is the leader. Therefore this id is crucial to implement stable leader and ordering. The id contains a prefix (to account for a crx2 edge case where jobs might want to be executed on slave rather than on master), followed by the bundle activate time (to honour stability) and ultimately by the slingId (to have a discriminator should there be multiple instances started at the same time)</li> 
+ <li><code>runtimeId</code>: a plain, random UUID that is created fresh upon bundle activation. It is used to detect situations where multiple instances have the same slingId and thus write into the same <code>/var/discovery/impl/clusterInstances/&lt;slingId&gt;</code> node.</li> 
+ <li><code>slingHomePath</code> and <code>endpoints</code>: these are used for logging purpose only</li> 
+</ul> 
+<p>Additionally, there are two sub-nodes:</p> 
+<ul> 
+ <li><code>announcements</code>: this contains announcements of topology connector peers (also see below). An announcement is a json-encoded representation of the sub-tree that the connector peer is aware of and is thereby announcing to this instance. Announcements are sent in both directions of a topology connector. Discovery.impl takes care of filtering out duplicate instances should the structure of topology connectors, and thus these announcements overlap (which is legal)</li> 
+ <li><code>properties</code>: contains all properties as specified by registered <code>PropertyProvider</code></li> 
+</ul> 
+<h4><a href="#vardiscoveryimplestablishedview" id="vardiscoveryimplestablishedview">/var/discovery/impl/establishedView</a></h4> 
+<p>This contains the currently valid, agreed/voted upon cluster view that lists all alive instances:</p> 
+<ul> 
+ <li>the name of the node directly under <code>establishedView</code> is a unique id of the current incarnation of the cluster view - thus changes whenever an instance joins or leaves or there is a new voting for another reason. ** <code>clusterId</code> : name of the persistent identifier of this cluster. As this is propagated from cluster view to cluster view it stays unchanged forever. ** <code>leaderElectionId</code>: the leaderElectionId that was winning, ie that was lowest ** <code>leaderId</code>: the slingId of the instance that is leader of this cluster view</li> 
+ <li><code>members</code>: just an intermediate node containing all alive instances as child nodes</li> 
+ <li>child node of <code>members</code>: each child represents a particular alive node (with the name being the slingId) and contains the following properties: ** <code>leaderElectionId</code>: the id that will be used to determine the leader - this value is copied from the corresponding <code>/var/discovery/impl/clusterInstances/&lt;slingId&gt;</code> ** <code>initiator</code>: this marks the instance that originally created this voting ** <code>vote</code>: represents this instance's vote, which is true for a voting that got promoted to established view</li> 
+</ul> 
+<h4><a href="#vardiscoveryimplongoingvotings" id="vardiscoveryimplongoingvotings">/var/discovery/impl/ongoingVotings</a></h4> 
+<p>This area is used for voting. Each instance can initiate a voting when it realizes that the live instances - denominated by those instances that have a not-yet-timed-out heartbeat property - does not match with the <code>establishedView</code>.</p> 
+<p>Once a voting gets a yes vote by all instances it is promoted (moved) under <code>establishedView</code> by the initiating instance. Each establishedView was once a voting, thus the structure is the same as described above.</p> 
+<h4><a href="#vardiscoveryimplpreviousview" id="vardiscoveryimplpreviousview">/var/discovery/impl/previousView</a></h4> 
+<p>The instance that promotes its winning voting to <code>establishedView</code> first moves what was there before under <code>previousView</code>. This is purely for debugging and not used anywhere, it just represents a persistet history of previous views of length 1.</p> 
+<h3><a href="#heartbeats-voting-and-intra-cluster-discovery" id="heartbeats-voting-and-intra-cluster-discovery">Heartbeats, Voting and Intra-Cluster Discovery</a></h3> 
+<p><code>discovery.impl</code> uses the fact that all instance of a cluster are connected to the same repository as the basis for discovering those instances. It does so by using a heartbeat and voting mechanism:</p> 
+<ul> 
+ <li>each instance periodically stores a 'heartbeat' into the repository in a well-known location. This is done by setting a corresponding <code>lastHeartbeat</code> property to the current timestamp</li> 
+ <li>a 'heartbeat' that has not yet timed out is considered a signal that the instance is alive</li> 
+ <li>as soon as a 'heartbeat' is timed out, the assumption is that the corresponding instance is dead/shutdown</li> 
+</ul> 
+<p>To avoid having each instance make it's own, perhaps differing conclusions as to which instance/heartbeat is dead or not, there is an explicit, unanimous voting mechanism that agrees upon a list of alive instances. This list of alive instances is called cluster view.</p> 
+<ul> 
+ <li>as soon as any instance notices a change in the list of active instances, it is free to calculate a new such list and start a voting in the cluster - each voting carries a unique votingId</li> 
+ <li>since any instance can do this, you can have concurrent creation of new votings</li> 
+ <li>each instance has one 'yes' vote - and if there are multiple concurrent votings the lowest one wins</li> 
+ <li>when a voting receives a 'yes' from all instances that it enlists it is considered as 'winning' and is promoted to be the new, valid view from now on.</li> 
+ <li>a promoted view is stored in <code>/var/discovery/impl/establishedView</code> and any change therein is passed on in a TopologyEvent to all registered listeners.</li> 
+</ul> 
+<h3><a href="#pseudo-network-partitioning-aka-split-brain" id="pseudo-network-partitioning-aka-split-brain">pseudo-network partitioning aka split-brain</a></h3> 
+<p><code>discovery.impl</code> requires the, eventually consistent, underlying repository to propagate changes within reasonable time: in less than the configured heartbeat timeout. If heartbeats for some reason are not becoming visible by peers in the cluster within that time, <code>discovery.impl</code> will consider that peer instance as dead. At which point it will first send a TOPOLOGY_CHANGING event to all listeners to make them aware that something is changing in the topology, and then start a new voting. Once the voting concludes a TOPOLOGY_CHANGED event will follow.</p> 
+<p>Given the voting is happening through the repository as well, one could imagine a situation where the repository delays can cause a topology to be "pseudo partitioned" into two or more parts, each one agreeing on a set of instances in that sub-cluster (one requirement for such a scenario being that the delays must be asymmetric, ie changes from a subset of instances propagate slow, while the remaining changes propagate fast - ie. two different sets of delays in the cluster). Such a situation would only last as long as the repository delays are large (larger than the heartbeat timeouts). Exact cases where the repository experiences large delays depend of course on the repository configuration and deployment details, known cases include for example long running queries, large set of changes, large set of commits and long-running session.saves.</p> 
+<p>The following is an illustration of the impact of large cluster delays:</p> 
+<p><img src="http://sling.apache.org/discovery-impl-split-brain.png" alt="discovery.impl split brain"></p> 
+<p>In discovery.impl 1.2.2 several improvements have been done to avoid pseudo-network partitioning including the following: (see SLING-3432 for more in-depth details)</p> 
+<ul> 
+ <li>SLING-5195 : monitor the HeartbeatHandler for long-running session.saves.</li> 
+ <li>SLING-5280 : reduce synchronization for HeartbeatHandler to avoid other threads blocking it</li> 
+ <li>SLING-5030 : avoid "isolated mode" and replace it with larger TOPOLOGY_CHANGING phase</li> 
+</ul> 
+<p>All of the above greatly reduce the likelyhood of pseudo-network partitioning with <code>discovery.impl</code>, however, as also described in SLING-4640, there is still a small time-window in which it cannot be ruled out entirely. The successor of discovery.impl, the <code>discovery.oak</code> bundle, addresses these concerns to avoid pseudo-network partitioning alltogether.</p> 
+<p>In the context of <code>discovery.impl</code> it is therefore paramount that the underlying repository is monitored and optimized such that the delays are well under control and do not exceed the configured heartbeat timeout.</p> 
+<h3><a href="#topology-connectors-for-cross-cluster-discovery" id="topology-connectors-for-cross-cluster-discovery">Topology Connectors for Cross-Cluster Discovery</a></h3> 
+<p>From a discovery API's point of view a cluster consists of all instances that are connected to the same repository. The above described built-in mechanism of storing a lastHeartbeat property into the (shared) repository, of voting on changes and creating an explicit establishedView results in automatic discovery within a cluster. There is therefore no further configuration needed for discovering instances in the same cluster.</p> 
+<p>However, for discovering multiple clusters such an automatic discovery is not possible and the clusters need to be explicitly configured using (cross-cluster) topology connectors:</p> 
+<p>A topology connector is a periodically issued HTTP PUT that announces the part of the topology known to the sending instance to the receiving instance and vica-verca the receiving instance announces its part of the topology to the sender in the response of the very same HTTP PUT. This way whatever other clusters are connected to sender or receiver will be made known to each other. Such a 'topology announcement' will be valid either until the same sender sends the announcement again (which it does periodically) - or until it times out (configurable). A topology connector is by definition always between clusters, never within the same cluster. Topology connectors can be structured in an arbitrary way (chain, star, tree, etc) with the only important point to note here that since changes in the topology propagate through these topology connectors they have a certain delay (namely the configured heartbeatInterval per hop).</p> 
+<p>Topology connectors are configured at <a href="http://localhost:8080/system/console/configMgr/org.apache.sling.discovery.impl.Config">/system/console/configMgr/org.apache.sling.discovery.impl.Config</a>. They use the same interval and timeout as the repository heartbeats (heartbeatInterval and heartbeatTimeout).</p> 
+<h3><a href="#webconsole" id="webconsole">WebConsole</a></h3> 
+<p>A Felix WebConsole plugin at <a href="http://localhost:8080/system/console/topology">/system/console/topology</a> provides a (read-only) overview of the topology.</p> 
+<h3><a href="#configuration" id="configuration">Configuration</a></h3> 
+<p>The following properties can be configured (at <a href="http://localhost:8080/system/console/configMgr/org.apache.sling.discovery.impl.Config">/system/console/configMgr/org.apache.sling.discovery.impl.Config</a>):</p> 
+<ul> 
+ <li> <p>heartbeatInterval: the time in seconds between two heartbeats (both cluster-internal and for HTTP-connectors). Default value is 15 seconds.</p> </li> 
+ <li> <p>heartbeatTimeout: the time in seconds after which an instance is considered dead if no heartbeat was sent since. Default value is 20 seconds.</p> </li> 
+ <li> <p>topologyConnectorUrls: a list of connector URLs to which this instance should connect to. The list can contain multiple instances of the same cluster (for fallback configurations). If the list is empty, no connector will be created. The default relative URL is /libs/sling/topology/connector. Note that this URL is accessible without authentication - to avoid having to configure administrative username/passwords in all instances. Instead, a whitelist approach is used (see next item).</p> </li> 
+ <li> <p>topologyConnectorWhitelist: As mentioned above, the path /libs/sling/topology/connector does not require authentication. To assure that only trusted instances can connect to the topology, its hostname or IP address must be in a whitelist. By default this whitelist only contains localhost and 127.0.0.1.</p> </li> 
+ <li> <p>minEventDelay: To reduce the number of events sent during changes, there is a delay (in seconds) before the event is sent. If additional changes happen during this delay, the change will be combined in one event.</p> </li> 
+ <li> <p>leaderElectionRepositoryDescriptor: this is an advanced parameter. It denotes a repository descriptor that is evaluated and taken into account for leader Election: the corresponding value of the descriptor is sorted by first.</p> </li> 
+ <li> <p>hmacEnabled: If this is true, and sharedKey is set to a value on all Sling instances within the same topology, then messages are validates using a signature of the content of the message based on the shared key. The signature and the digest of the content appear as http headers. When hmac message validation is enabled, whitelisting is disabled. This use useful where the topology messages are transported through multiple reverse proxy layers or the topology is dynamic. The Hmac algorithm in use is HmacSHA256. The JVM is expected to have a provider implementing this algorithm (The Standard JDKs do).</p> </li> 
+ <li> <p>sharedKey: If hmacEnabled is true, this must be set to a secret value, shared amongst all Sling instances that are members of the same topology.</p> </li> 
+ <li> <p>enableEncryption: If hmacEnabled is true, and sharedKey is set, setting this to true will encrypt the body of the message using 128 Bit AES encryption. The encryption key is derived from the sharedKey using a 9 byte random salt, giving 2^^72 potential salt values.</p> </li> 
+ <li> <p>hmacSharedKeyTTL: The key used for the signatures is derived from the shared key. Each derived key has a lifetime before the next key is generated. This parameter sets the lifetime of each key in ms. The default is 4h. Messages sent using old keys will remain valid for 2x the TTL, after which time the message will be ignored.</p> </li> 
+</ul> 
+<h2><a href="#discoveryoak-oak-based-ootb-implementation" id="discoveryoak-oak-based-ootb-implementation">discovery.oak: Oak-based, OOTB-implementation</a></h2> 
+<p>When running discovery.impl ontop of an eventually consistent repository (such as documentMK of oak), the heartbeat mechanism becomes unreliable. The eventual-ness of the repository has an inherent problem in that it doesn't guarantee by when a change initiated from instance A is visible by instance B. And when there are no hard guarantees, it becomes impossible to choose a <code>heartbeatTimeout</code> that works for all eventualities.</p> 
+<p>Therefore it becomes necessary to be able to store heartbeats in a (low-level) location that provides higher consistency (than eventualness). Such a 'low-level location' is the DocumentStore of oak (which is an internal API of the DocumentNodeStore). Turns out that the DocumentNodeStore already has a heartbeat-like concept called leases. Those can be re-used for discovery to fulfill the same aspect as heartbeats do: indicate alive instances. This can further be combined with an explicit materialization of a "cluster view" in the DocumentStore so that all instances agree and refer to the same view without the actual need for voting (this is possible since the DocumentStore allows to do conditional updates).</p> 
+<h3><a href="#jackrabbit-oaks-discovery-lite" id="jackrabbit-oaks-discovery-lite">Jackrabbit Oak's discovery-lite</a></h3> 
+<p>All of the above mentioned features have been implemented in so-called 'discovery-lite': Discovery-lite is a simplified version of discovery on the oak level. Other than the discovery API it only provides one thing, and that's the clusterview-json:</p> 
+<h4><a href="#oakdiscoveryliteclusterview" id="oakdiscoveryliteclusterview">'oak.discoverylite.clusterview'</a></h4> 
+<p>The discovery-lite descriptor <code>oak.discoverylite.clusterview</code> is a shrink-wrapped json-formatted object representing the current state of the cluster. It contains the following:</p> 
+<ul> 
+ <li><code>active</code>: a list of active nodes in the documentNodeStore cluster</li> 
+ <li><code>deactivating</code>: a list of nodes that are in the process of being deactivated</li> 
+ <li><code>inactive</code>: a list of nodes that are inactive</li> 
+ <li><code>me</code>: the id (number) of the local instance (which is always part of the active nodes)</li> 
+ <li><code>id</code>: the id (unique, persistent) of the cluster (which thus survives node/cluster restarts)</li> 
+ <li><code>seq</code>: a sequence number that is incremented upon each change in this descriptor (to be able to identify a change even if the other values are unchanged) and shared amongst all instances in the cluster, ie all instances see the same sequence number. This number can thus be used by upper layers to identify this particular incarnation of clusterview.</li> 
+ <li><code>final</code>: when this flag is <code>false</code> it indicates that the sequence number has changed (as well as eg <code>active</code> and <code>inactive</code>), but that the local instance has not yet fully processed this changed on a low-level. I.e. it marks that the local instance has not yet read the entire back-log of another, deactivating instance. Thus when <code>final==false</code>, the upper layers should wait until <code>final==true</code>, at which point they know oak has finished processing an instance crashing/shutting down.</li> 
+</ul> 
+<h4><a href="#accessing-discovery-lite" id="accessing-discovery-lite">Accessing discovery-lite</a></h4> 
+<p>The <code>oak.discoverylite.clusterview</code> descriptor is exposed as a JCR repository descriptor and can be accessed like so:</p> 
+<pre><code>getRepository().getDescriptor("oak.discoverylite.clusterview")
+</code></pre> 
+<p>which will return the json-formatted clusterview as described above.</p> 
+<p>Note however, that this API is not meant to be a public, stable API and changes will be done without prior notice. It is merely an internal information exposed by oak and not standardized nor guaranteed to remain supported or unchanged!</p> 
+<h3><a href="#slings-discoveryoak" id="slings-discoveryoak">Sling's discovery.oak</a></h3> 
+<p>discovery.oak is a implementation of the discovery API that now makes use of this new discovery-lite descriptor in oak. It basically delegates the detection of the instances in the local cluster to discovery-lite. To do so, it periodically reads this descriptor (which is designed to be read at a high-frequency without problems) and triggers <code>TopologyEvents</code> when this descriptor changes.</p> 
+<p>The advantage of using discovery-lite (which uses oak leases) instead of writing heartbeats into the repository is that discovery.oak thus becomes independent of the speed/latency that the repository can produce under high load. The discovery-lite should be entirley resilient to high load, thus is discovery.oak.</p> 
+<p>Additionally, it reuses functionality from discovery.impl, such as the way properties (from <code>PropertyProviders</code>) or cross-cluster topology announcements (via topology connectors) are handled.</p> 
+<p>In order to do this, the discovery.impl bundle has been refactored as follows:</p> 
+<h4><a href="#discoverycommons" id="discoverycommons">discovery.commons</a></h4> 
+<p>This is a bundle usable by any implementation of discovery and contains very basic, implementation-independent functionality</p> 
+<h4><a href="#discoverybase" id="discoverybase">discovery.base</a></h4> 
 <p>This is the base bundle solely used by discovery.impl and discovery.oak and contains exactly the mentioned properties and announcement handling.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

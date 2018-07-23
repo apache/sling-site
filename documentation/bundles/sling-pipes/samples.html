@@ -93,51 +93,49 @@
             </div><h1 class="pagetitle">
                 Sample pipes
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#pipebuilder-samples" name="pipebuilder-samples">Pipebuilder samples</a></h2>
-<p>those are samples built with pipebuilder api you can </p>
-<h3>echo | $ | children | write</h3>
-<p>write repository user prefix Ms/Mr depending on gender</p>
-<pre><code>  echo(&#39;/home/users&#39;)
-  .$(&#39;rep:User&#39;)
-  .children(&quot;nt:unstructured#profile&quot;)
-  .write(&quot;fullName&quot;,&quot;${(profile.gender === &#39;female&#39; ? &#39;Ms &#39; + profile.fullName : &#39;Mr &#39; + profile.fullName)}&quot;)
-</code></pre>
-<h3>echo | $ | multiProperty | auth | write</h3>
-<p>move badge&lt;-&gt;user relation ship from badge-&gt;users MV property to a user-&gt;badges MV property</p>
-<pre><code> .echo(&#39;/etc/badges/jcr:content/par&#39;)
- .$(&#39;[sling:resourceType=myApp/components/badge]&#39;).name(&#39;badge&#39;)
- .pipe(&#39;slingPipes/multiProperty&#39;).path(&#39;${path.badge}/profiles&#39;).name(&#39;profile&#39;)
- .auth(&#39;${profile}&#39;).name(&#39;user&#39;)
- .echo(&#39;${path.user}/profile&#39;)
- .write(&#39;badges&#39;,&#39;+[${path.badge}]&#39;)
-</code></pre>
-<h5>echo | children | children | echo | json | write</h5>
-<p>this use case is for completing repository website with external system's data (that has an json api), it does </p>
-<ul>
-  <li>loop over "my:Page" country/language tree under <code>/content/mySite</code>,</li>
-  <li>fetch json with contextual parameter that must be in upper case,</li>
-  <li>and write part of the returned json in the current resource.</li>
-</ul>
-<p>This pipe is run asynchronously in case the execution takes long.</p>
-<pre><code> .echo(&quot;/content/mySite&quot;)
- .children(&#39;my:Page&#39;)
- .children(&#39;my:Page&#39;).name(&quot;localePage&quot;)
- .echo(&#39;${path.localePage}/jcr:content&#39;).name(&quot;content&quot;)
- .json(&#39;https://www.external.com/api/${content.country.toUpperCase()}.json.name(&#39;api&#39;)
- .write(&#39;cachedValue&#39;,&#39;${api.remoteJsonValueWeWant}&#39;)
-</code></pre>
-<h5>echo | $ | parent | rm</h5>
-<ul>
-  <li>query all user profile nodes with bad properties,</li>
-  <li>get the parent node (user node)</li>
-  <li>remove it
-    <pre><code>.echo(&quot;/home/users&quot;)
-.$(&quot;profile[@bad]&quot;)
+<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#pipebuilder-samples" id="pipebuilder-samples">Pipebuilder samples</a></h2> 
+<p>those are samples built with pipebuilder api you can</p> 
+<h3><a href="#echo-children-write" id="echo-children-write">echo |&nbsp;$ | children | write</a></h3> 
+<p>write repository user prefix Ms/Mr depending on gender</p> 
+<pre><code>  echo('/home/users')
+  .$('rep:User')
+  .children("nt:unstructured#profile")
+  .write("fullName","${(profile.gender === 'female' ? 'Ms ' + profile.fullName : 'Mr ' + profile.fullName)}")
+</code></pre> 
+<h3><a href="#echo-multiproperty-auth-write" id="echo-multiproperty-auth-write">echo |&nbsp;$ | multiProperty | auth | write</a></h3> 
+<p>move badge&lt;-&gt;user relation ship from badge-&gt;users MV property to a user-&gt;badges MV property</p> 
+<pre><code> .echo('/etc/badges/jcr:content/par')
+ .$('[sling:resourceType=myApp/components/badge]').name('badge')
+ .pipe('slingPipes/multiProperty').path('${path.badge}/profiles').name('profile')
+ .auth('${profile}').name('user')
+ .echo('${path.user}/profile')
+ .write('badges','+[${path.badge}]')
+</code></pre> 
+<h5><a href="#echo-children-children-echo-json-write" id="echo-children-children-echo-json-write">echo | children | children | echo | json | write</a></h5> 
+<p>this use case is for completing repository website with external system's data (that has an json api), it does</p> 
+<ul> 
+ <li>loop over "my:Page" country/language tree under <code>/content/mySite</code>,</li> 
+ <li>fetch json with contextual parameter that must be in upper case,</li> 
+ <li>and write part of the returned json in the current resource.</li> 
+</ul> 
+<p>This pipe is run asynchronously in case the execution takes long.</p> 
+<pre><code> .echo("/content/mySite")
+ .children('my:Page')
+ .children('my:Page').name("localePage")
+ .echo('${path.localePage}/jcr:content').name("content")
+ .json('https://www.external.com/api/${content.country.toUpperCase()}.json.name('api')
+ .write('cachedValue','${api.remoteJsonValueWeWant}')
+</code></pre> 
+<h5><a href="#echo-parent-rm" id="echo-parent-rm">echo | $ | parent | rm</a></h5> 
+<ul> 
+ <li>query all user profile nodes with bad properties,</li> 
+ <li>get the parent node (user node)</li> 
+ <li>remove it <pre><code>.echo("/home/users")
+.$("profile[@bad]")
 .parent()
 .rm()
-</code></pre>
-  </li>
-</ul>
+</code></pre> </li> 
+</ul> 
 <p>some other samples are in https://github.com/npeltier/sling-pipes/tree/master/src/test/</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

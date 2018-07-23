@@ -95,159 +95,159 @@
             </div><h1 class="pagetitle">
                 Authentication - Framework
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.</p>
-<p>This support encompasses three parts:</p>
-<ul>
-  <li>The <code>AuthenticationSupport</code> service provided by the <code>SlingAuthenticator</code> class. This service can be used by implementations of the OSGi <code>HttpContext</code> interface to delegate authentication.</li>
-  <li>The <code>Authenticator</code> service also provided by the <code>SlingAuthenticator</code> class. This service may be used by Sling applications to help clients login and logout.</li>
-  <li>The <code>AuthenticationHandler</code> service interface. These services may be implemented by extensions to support various ways for transporting credentials from clients to the Sling server.</li>
-</ul>
-<p>This page describes how the <code>SlingAuthenticator</code> class provides the <code>AuthenticationSupport</code> and <code>Authenticator</code> services. For a description of the <code>AuthenticationHandler</code> service interface and the interaction between the <code>SlingAuthenticator</code> and the <code>AuthenticationHandler</code> services refer to the <a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">AuthenticationHandler</a> page.</p>
-<p>The <code>SlingAuthenticator</code> class is an internal class of the <code>org.apache.sling.auth.core</code> bundle and implements the <code>Authenticator</code> and <code>AuthenticationSupport</code> services.</p>
-<h2><a href="#authenticationsupport" name="authenticationsupport">AuthenticationSupport</a></h2>
-<p>The <code>AuthenticationSupport</code> service interface defines a single method: <code>handleSecurity</code>. This method is intended to be called by the <code>handleSecurity</code> method of any <code>HttpContext</code> implementation wishing to make use of the Sling Authentication Framework.</p>
-<p>The Sling Authenticator implementation selects an <code>AuthenticationHandler</code> service appropriate for the request and calls the <code>AuthenticationHandler.extractCredentials</code> method to extract the credentials from the request. If no credentials could be extracted, the Sling Authenticator either admits the request as an anonymous request or requests authentication from the client by calling its own <code>login</code> method.</p>
-<p>The implementation follows this algorithm:</p>
-<ol>
-  <li>Select one or more <code>AuthenticationHandler</code> for the request according to the request URL's scheme and authorization part.</li>
-  <li>Call the <code>extractCredentials</code> method of each authentication handler, where the order of handler call is defined by the length of the registered path: handlers registered with longer paths are called before handlers with shorter paths. The goal is to call the handlers in order from longest request path match to shortest match. Handlers not matching the request path at all are not called.</li>
-  <li>The first handler returning a non-<code>null</code> <code>AuthenticationInfo</code> result "wins" and the result is used for authentication.</li>
-  <li>If any <code>AuthenticationInfoPostProcessor</code> services are registered, the <code>AuthenticationInfo</code> object is passed to their <code>postProcess()</code> method.</li>
-  <li>If no handler returns a non-<code>null</code> result, the request may be handled anonymously. In these cases, an empty <code>AuthenticationInfo</code> object is passed to any <code>AuthenticationInfoPostProcessor</code> services.</li>
-  <li>(Try to) log into the repository either with the provided credentials or anonymously.</li>
-  <li>If there were credentials provided and the login was successful, a login event is posted <em>if</em> the <code>AuthenticationInfo</code> object contains a non-null object with the key <code>$$auth.info.login$$</code> (<code>AuthConstants.AUTH_INFO_LOGIN</code>). This event is posted with the topic <code>org/apache/sling/auth/core/Authenticator/LOGIN</code>. (added in Sling Auth Core 1.1.0)</li>
-  <li>Set request attributes listed below.</li>
-</ol>
-<p>Extracting the credentials and trying to login to the repository may yield the following results:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Credentials </th>
-      <th>Login </th>
-      <th>Consequence </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>present </td>
-      <td>successful </td>
-      <td>Continue with an authenticated request </td>
-    </tr>
-    <tr>
-      <td>present </td>
-      <td>failed </td>
-      <td>Select <code>AuthenticationHandler</code> and call <code>requestCredentials</code> method </td>
-    </tr>
-    <tr>
-      <td>missing </td>
-      <td>anonymous allowed </td>
-      <td>Continue with a non authenticated request using anonymous access to the repository </td>
-    </tr>
-    <tr>
-      <td>missing </td>
-      <td>anonymous forbidden </td>
-      <td>Select <code>AuthenticationHandler</code> and call <code>requestCredentials</code> method </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The core piece of functionality with respect to authentication in Sling is contained in the Sling Auth Core bundle. This bundle provides the API for Sling and Sling applications to make use of authentication.</p> 
+<p>This support encompasses three parts:</p> 
+<ul> 
+ <li>The <code>AuthenticationSupport</code> service provided by the <code>SlingAuthenticator</code> class. This service can be used by implementations of the OSGi <code>HttpContext</code> interface to delegate authentication.</li> 
+ <li>The <code>Authenticator</code> service also provided by the <code>SlingAuthenticator</code> class. This service may be used by Sling applications to help clients login and logout.</li> 
+ <li>The <code>AuthenticationHandler</code> service interface. These services may be implemented by extensions to support various ways for transporting credentials from clients to the Sling server.</li> 
+</ul> 
+<p>This page describes how the <code>SlingAuthenticator</code> class provides the <code>AuthenticationSupport</code> and <code>Authenticator</code> services. For a description of the <code>AuthenticationHandler</code> service interface and the interaction between the <code>SlingAuthenticator</code> and the <code>AuthenticationHandler</code> services refer to the <a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">AuthenticationHandler</a> page.</p> 
+<p>The <code>SlingAuthenticator</code> class is an internal class of the <code>org.apache.sling.auth.core</code> bundle and implements the <code>Authenticator</code> and <code>AuthenticationSupport</code> services.</p> 
+<h2><a href="#authenticationsupport" id="authenticationsupport">AuthenticationSupport</a></h2> 
+<p>The <code>AuthenticationSupport</code> service interface defines a single method: <code>handleSecurity</code>. This method is intended to be called by the <code>handleSecurity</code> method of any <code>HttpContext</code> implementation wishing to make use of the Sling Authentication Framework.</p> 
+<p>The Sling Authenticator implementation selects an <code>AuthenticationHandler</code> service appropriate for the request and calls the <code>AuthenticationHandler.extractCredentials</code> method to extract the credentials from the request. If no credentials could be extracted, the Sling Authenticator either admits the request as an anonymous request or requests authentication from the client by calling its own <code>login</code> method.</p> 
+<p>The implementation follows this algorithm:</p> 
+<ol> 
+ <li>Select one or more <code>AuthenticationHandler</code> for the request according to the request URL's scheme and authorization part.</li> 
+ <li>Call the <code>extractCredentials</code> method of each authentication handler, where the order of handler call is defined by the length of the registered path: handlers registered with longer paths are called before handlers with shorter paths. The goal is to call the handlers in order from longest request path match to shortest match. Handlers not matching the request path at all are not called.</li> 
+ <li>The first handler returning a non-<code>null</code> <code>AuthenticationInfo</code> result "wins" and the result is used for authentication.</li> 
+ <li>If any <code>AuthenticationInfoPostProcessor</code> services are registered, the <code>AuthenticationInfo</code> object is passed to their <code>postProcess()</code> method.</li> 
+ <li>If no handler returns a non-<code>null</code> result, the request may be handled anonymously. In these cases, an empty <code>AuthenticationInfo</code> object is passed to any <code>AuthenticationInfoPostProcessor</code> services.</li> 
+ <li>(Try to) log into the repository either with the provided credentials or anonymously.</li> 
+ <li>If there were credentials provided and the login was successful, a login event is posted <em>if</em> the <code>AuthenticationInfo</code> object contains a non-null object with the key <code>$$auth.info.login$$</code> (<code>AuthConstants.AUTH_INFO_LOGIN</code>). This event is posted with the topic <code>org/apache/sling/auth/core/Authenticator/LOGIN</code>. (added in Sling Auth Core 1.1.0)</li> 
+ <li>Set request attributes listed below.</li> 
+</ol> 
+<p>Extracting the credentials and trying to login to the repository may yield the following results:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Credentials </th>
+   <th> Login </th>
+   <th> Consequence </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> present </td>
+   <td> successful </td>
+   <td> Continue with an authenticated request </td>
+  </tr> 
+  <tr>
+   <td> present </td>
+   <td> failed </td>
+   <td> Select <code>AuthenticationHandler</code> and call <code>requestCredentials</code> method </td>
+  </tr> 
+  <tr>
+   <td> missing </td>
+   <td> anonymous allowed </td>
+   <td> Continue with a non authenticated request using anonymous access to the repository </td>
+  </tr> 
+  <tr>
+   <td> missing </td>
+   <td> anonymous forbidden </td>
+   <td> Select <code>AuthenticationHandler</code> and call <code>requestCredentials</code> method </td>
+  </tr> 
+ </tbody> 
+</table> 
 <div class="note">
-    Only one <code>AuthenticationHandler</code> is able to provide credentials for a given request. If the credentials provided by the handler cannot be used to login to the repository, authentication fails and no further <code>AuthenticationHandler</code> is consulted.
-</div>
-<h4><a href="#request-attributes-on-successful-login" name="request-attributes-on-successful-login">Request Attributes on Successful Login</a></h4>
-<p>The <code>handleSecurity</code> method gets credentials from the <code>AuthenticationHandler</code> and logs into the JCR repository using those credentials. If the login is successful, the <code>SlingAuthenticator</code> sets the following request attributes:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Attribute </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>org.osgi.service.http.authentication.remote.user</code> </td>
-      <td>The user ID of the JCR Session. This attribute is used by the HTTP Service implementation to implement the <code>HttpServletRequest.getRemoteUser</code> method. </td>
-    </tr>
-    <tr>
-      <td><code>org.osgi.service.http.authentication.type</code> </td>
-      <td>The authentication type defined by the <code>AuthenticationHandler</code>. This attribute is used by the HTTP Service implementation to implement the <code>HttpServletRequest.getAuthType</code> method. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.auth.core.ResourceResolver</code> </td>
-      <td>The <code>ResourceResolver</code> created from the credentials and the logged in JCR Session. This attribute may be used by servlets to access the repository. Namely the <code>SlingMainServlet</code> uses this request attribute to provide the <code>ResourceResolver</code> to handle the request. </td>
-    </tr>
-    <tr>
-      <td><code>javax.jcr.Session</code> </td>
-      <td>The JCR Session. This attribute is for backwards compatibility only. <em>Its use is deprecated and the attribute will be removed in future versions</em>. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.auth.core.spi.AuthenticationInfo</code> </td>
-      <td>The <code>AuthenticationInfo</code> object produced from the <code>AuthenticationHandler</code>. </td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>NOTE</strong>: Do <em>NOT</em> use the <code>javax.jcr.Session</code> request attribute in your Sling applications. This attribute must be considered implementation specific to convey the JCR Session to the <code>SlingMainServlet</code>. In future versions of the Sling Auth Core bundle, this request attribute will not be present anymore. To get the JCR Session for the current request adapt the request's resource resolver to a JCR Session:</p>
+  Only one 
+ <code>AuthenticationHandler</code> is able to provide credentials for a given request. If the credentials provided by the handler cannot be used to login to the repository, authentication fails and no further 
+ <code>AuthenticationHandler</code> is consulted. 
+</div> 
+<h4><a href="#request-attributes-on-successful-login" id="request-attributes-on-successful-login">Request Attributes on Successful Login</a></h4> 
+<p>The <code>handleSecurity</code> method gets credentials from the <code>AuthenticationHandler</code> and logs into the JCR repository using those credentials. If the login is successful, the <code>SlingAuthenticator</code> sets the following request attributes:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Attribute </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>org.osgi.service.http.authentication.remote.user</code> </td>
+   <td> The user ID of the JCR Session. This attribute is used by the HTTP Service implementation to implement the <code>HttpServletRequest.getRemoteUser</code> method. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.osgi.service.http.authentication.type</code> </td>
+   <td> The authentication type defined by the <code>AuthenticationHandler</code>. This attribute is used by the HTTP Service implementation to implement the <code>HttpServletRequest.getAuthType</code> method. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.auth.core.ResourceResolver</code> </td>
+   <td> The <code>ResourceResolver</code> created from the credentials and the logged in JCR Session. This attribute may be used by servlets to access the repository. Namely the <code>SlingMainServlet</code> uses this request attribute to provide the <code>ResourceResolver</code> to handle the request. </td>
+  </tr> 
+  <tr>
+   <td> <code>javax.jcr.Session</code> </td>
+   <td> The JCR Session. This attribute is for backwards compatibility only. <em>Its use is deprecated and the attribute will be removed in future versions</em>. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.auth.core.spi.AuthenticationInfo</code> </td>
+   <td> The <code>AuthenticationInfo</code> object produced from the <code>AuthenticationHandler</code>. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<p><strong>NOTE</strong>: Do <em>NOT</em> use the <code>javax.jcr.Session</code> request attribute in your Sling applications. This attribute must be considered implementation specific to convey the JCR Session to the <code>SlingMainServlet</code>. In future versions of the Sling Auth Core bundle, this request attribute will not be present anymore. To get the JCR Session for the current request adapt the request's resource resolver to a JCR Session:</p> 
 <pre><code>Session session = request.getResourceResolver().adaptTo(Session.class);
-</code></pre>
-<h4><a href="#anonymous-login" name="anonymous-login">Anonymous Login</a></h4>
-<p>The <code>SlingAuthenticator</code> provides high level of control with respect to allowing anonymous requests or requiring authentication up front:</p>
-<ul>
-  <li>Global setting of whether anonymous requests are allowed or not. This is the boolean value of the <em>Allow Anonymous Access</em> (<code>auth.annonymous</code>) property of the <code>SlingAuthenticator</code> configuration. This property is supported for backwards compatibility and defaults to <code>true</code> (allowing anonymous access). Setting it to <code>true</code> is a shortcut for setting <code>sling.auth.requirements</code> to <code>-/</code>.</li>
-  <li>Specific configuration per URL. The <em>Authentication Requirements</em> (<code>sling.auth.requirements</code>) property of the <code>SlingAuthenticator</code> configuration may provide a list of URLs for which authentication may be required or not: Any entry prefixed with a dash <code>-</code> defines a request path prefix for which authentication is not required. Any entry not prefixed with a dash or prefixed with a plus <code>+</code> defines a subtree for which authentication is required up front and thus anonymous access is not allowed. This list is empty by default.</li>
-  <li>Any OSGi service may provide a <code>sling.auth.requirements</code> registration property which is used to dynamically extend the authentication requirements from the <em>Authentication Requirements</em> configuration. This may for example be set by <code>AuthenticationHandler</code> implementations providing a login form to ensure access to the login form does not require authentication. The value of this property is a single string, an array of strings or a Collection of strings and is formatted in the same way as the <em>Authentication Requirements</em> configuration property.</li>
-</ul>
-<p>The values set on the <em>Authentication Requirements</em> configuration property or the <code>sling.auth.requirements</code> service registration property can be absolute paths or URLs like the <code>path</code> service registration property of <code>AuthenticationHandler</code> services. This allows the limitation of this setup to certain requests by scheme and/or virtual host address. The requests path (<code>HttpServletRequest.getServletPath()</code> + <code>HttpServletRequest.getPathInfo()</code>) is afterwards matched against the given paths. It matches if it starts with one of the given paths.</p>
-<p><strong>Examples</strong></p>
-<ul>
-  <li>The <code>LoginServlet</code> contained in the Sling Auth Core bundle registers itself with the service registration property <code>sling.auth.requirements = &quot;-/system/sling/login&quot;</code> to ensure the servlet can be accessed without requiring authentication (checks for <code>slash</code> or <code>dot</code> or <code>end of string</code>). The following request urls would work then without authentication:
-    <ul>
-      <li>/system/sling/login</li>
-      <li>/system/sling/login.html</li>
-      <li>/system/sling/login/somesuffix</li>
-    </ul>
-  </li>
-</ul>
-<p>While the following request will still require authentication </p>
-<pre><code>* /system/sling/login-test 
-</code></pre>
-<ul>
-  <li>An authentication handler may register itself with the service registration property <code>sling.auth.requirements = &quot;-/apps/sample/loginform&quot;</code> to ensure the login form can be rendered without requiring authentication.</li>
-</ul>
-<h2><a href="#authenticator-implementation" name="authenticator-implementation">Authenticator implementation</a></h2>
-<p>The implementation of the <code>Authenticator</code> interface is similar for both methods:</p>
-<p><strong><code>login</code></strong></p>
-<ol>
-  <li>Select one or more <code>AuthenticationHandler</code> for the request according to the request URL's scheme and authorization part.</li>
-  <li>Call the <code>requestCredentials</code> method of each authentication handler, where the order of handler call is defined by the length of the registered path: handlers registered with longer paths are called before handlers with shorter paths. The goal is to call the handlers in order from longest request path match to shortest match. Handlers not matching the request path at all are not called.</li>
-  <li>As soon as the first handlers returns <code>true</code>, the process ends and it is assumed credentials have been requested from the client.</li>
-</ol>
-<p>The <code>login</code> method has three possible exit states:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Exit State </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Normal </td>
-      <td>An <code>AuthenticationHandler</code> could be selected to which the login request could be forwarded. </td>
-    </tr>
-    <tr>
-      <td><code>NoAuthenticationHandlerException</code> </td>
-      <td>No <code>AuthenticationHandler</code> could be selected to forward the login request to. In this case, the caller can proceed as appropriate. For example a servlet, which should just login a user may send back a 403/FORBIDDEN status because login is not possible. Or a 404/NOT FOUND handler, which tried to login as a fallback, may continue and send back the regular 404/NOT FOUND response. </td>
-    </tr>
-    <tr>
-      <td><code>IllegalStateException</code> </td>
-      <td>The response has already been committed and the login request cannot be processed. Normally to request login, the current response must be reset and a new response has to be prepared. This is only possible if the request has not yet been committed. </td>
-    </tr>
-  </tbody>
-</table>
-<p><strong><code>logout</code></strong></p>
-<ol>
-  <li>Select one or more <code>AuthenticationHandler</code> for the request according to the request URL's scheme and authorization part.</li>
-  <li>Call the <code>dropCredentials</code> method of each authentication handler, where the order of handler call is defined by the length of the registered path: handlers registered with longer paths are called before handlers with shorter paths. The goal is to call the handlers in order from longest request path match to shortest match. Handlers not matching the request path at all are not called.</li>
-</ol>
+</code></pre> 
+<h4><a href="#anonymous-login" id="anonymous-login">Anonymous Login</a></h4> 
+<p>The <code>SlingAuthenticator</code> provides high level of control with respect to allowing anonymous requests or requiring authentication up front:</p> 
+<ul> 
+ <li>Global setting of whether anonymous requests are allowed or not. This is the boolean value of the <em>Allow Anonymous Access</em> (<code>auth.annonymous</code>) property of the <code>SlingAuthenticator</code> configuration. This property is supported for backwards compatibility and defaults to <code>true</code> (allowing anonymous access). Setting it to <code>true</code> is a shortcut for setting <code>sling.auth.requirements</code> to <code>-/</code>.</li> 
+ <li>Specific configuration per URL. The <em>Authentication Requirements</em> (<code>sling.auth.requirements</code>) property of the <code>SlingAuthenticator</code> configuration may provide a list of URLs for which authentication may be required or not: Any entry prefixed with a dash <code>-</code> defines a request path prefix for which authentication is not required. Any entry not prefixed with a dash or prefixed with a plus <code>+</code> defines a subtree for which authentication is required up front and thus anonymous access is not allowed. This list is empty by default.</li> 
+ <li>Any OSGi service may provide a <code>sling.auth.requirements</code> registration property which is used to dynamically extend the authentication requirements from the <em>Authentication Requirements</em> configuration. This may for example be set by <code>AuthenticationHandler</code> implementations providing a login form to ensure access to the login form does not require authentication. The value of this property is a single string, an array of strings or a Collection of strings and is formatted in the same way as the <em>Authentication Requirements</em> configuration property.</li> 
+</ul> 
+<p>The values set on the <em>Authentication Requirements</em> configuration property or the <code>sling.auth.requirements</code> service registration property can be absolute paths or URLs like the <code>path</code> service registration property of <code>AuthenticationHandler</code> services. This allows the limitation of this setup to certain requests by scheme and/or virtual host address. The requests path (<code>HttpServletRequest.getServletPath()</code> + <code>HttpServletRequest.getPathInfo()</code>) is afterwards matched against the given paths. It matches if it starts with one of the given paths.</p> 
+<p><strong>Examples</strong></p> 
+<ul> 
+ <li>The <code>LoginServlet</code> contained in the Sling Auth Core bundle registers itself with the service registration property <code>sling.auth.requirements = "-/system/sling/login"</code> to ensure the servlet can be accessed without requiring authentication (checks for <code>slash</code> or <code>dot</code> or <code>end of string</code>). The following request urls would work then without authentication: 
+  <ul> 
+   <li>/system/sling/login</li> 
+   <li>/system/sling/login.html</li> 
+   <li>/system/sling/login/somesuffix</li> 
+  </ul> </li> 
+</ul> 
+<p>While the following request will still require authentication</p> 
+<ul> 
+ <li> <p>/system/sling/login-test</p> </li> 
+ <li> <p>An authentication handler may register itself with the service registration property <code>sling.auth.requirements = "-/apps/sample/loginform"</code> to ensure the login form can be rendered without requiring authentication.</p> </li> 
+</ul> 
+<h2><a href="#authenticator-implementation" id="authenticator-implementation">Authenticator implementation</a></h2> 
+<p>The implementation of the <code>Authenticator</code> interface is similar for both methods:</p> 
+<p><strong><code>login</code></strong></p> 
+<ol> 
+ <li>Select one or more <code>AuthenticationHandler</code> for the request according to the request URL's scheme and authorization part.</li> 
+ <li>Call the <code>requestCredentials</code> method of each authentication handler, where the order of handler call is defined by the length of the registered path: handlers registered with longer paths are called before handlers with shorter paths. The goal is to call the handlers in order from longest request path match to shortest match. Handlers not matching the request path at all are not called.</li> 
+ <li>As soon as the first handlers returns <code>true</code>, the process ends and it is assumed credentials have been requested from the client.</li> 
+</ol> 
+<p>The <code>login</code> method has three possible exit states:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Exit State </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> Normal </td>
+   <td> An <code>AuthenticationHandler</code> could be selected to which the login request could be forwarded. </td>
+  </tr> 
+  <tr>
+   <td> <code>NoAuthenticationHandlerException</code> </td>
+   <td> No <code>AuthenticationHandler</code> could be selected to forward the login request to. In this case, the caller can proceed as appropriate. For example a servlet, which should just login a user may send back a 403/FORBIDDEN status because login is not possible. Or a 404/NOT FOUND handler, which tried to login as a fallback, may continue and send back the regular 404/NOT FOUND response. </td>
+  </tr> 
+  <tr>
+   <td> <code>IllegalStateException</code> </td>
+   <td> The response has already been committed and the login request cannot be processed. Normally to request login, the current response must be reset and a new response has to be prepared. This is only possible if the request has not yet been committed. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<p><strong><code>logout</code></strong></p> 
+<ol> 
+ <li>Select one or more <code>AuthenticationHandler</code> for the request according to the request URL's scheme and authorization part.</li> 
+ <li>Call the <code>dropCredentials</code> method of each authentication handler, where the order of handler call is defined by the length of the registered path: handlers registered with longer paths are called before handlers with shorter paths. The goal is to call the handlers in order from longest request path match to shortest match. Handlers not matching the request path at all are not called.</li> 
+</ol> 
 <p>Unlike for the <code>login</code> method in the <code>logout</code> method case all <code>AuthenticationHandler</code> services selected in the first step are called. If none can be selected or none can actually handle the <code>dropCredentials</code> request, the <code>logout</code> silently returns.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -93,48 +93,47 @@
             </div><h1 class="pagetitle">
                 Sling Health Check Tools
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Based on simple <code>HealthCheck</code> OSGi services, the Sling Health Check Tools ("hc" in short form) are used to check the health of live Sling systems, based on inputs like JMX MBean attribute values, OSGi framework information, Sling requests status, etc.</p>
-<p>Health checks are easily extensible either by configuring the supplied default <code>HealthCheck</code> services, or by implementing your own <code>HealthCheck</code> services to cater for project specific requirements.</p>
-<p>However for simple setups, the out of the box health checks are often sufficient. <a href="#executing-health-checks">Executing Health Checks</a> is a good starting point to run existing checks and to get familiar with how health checks work.</p>
-<p>See also:</p>
-<ul>
-  <li><a href="https://github.com/apache?utf8=%E2%9C%93&q=sling%20hc">Source code for the HealthCheck modules on GitHub</a></li>
-  <li>adaptTo() slides about Health Checks:
-    <ul>
-      <li><a href="https://adapt.to/2013/en/schedule/18_healthcheck.html">adaptTo() 2013 - Automated self-testing and health check of live Sling instances</a></li>
-      <li><a href="https://adapt.to/2014/en/schedule/new-features-of-the-sling-health-check.html">adaptTo() 2014 - New features of the sling health check</a></li>
-    </ul>
-  </li>
-</ul>
-<h2><a href="#use-cases" name="use-cases">Use cases</a></h2>
-<p>Generally health checks have two high level use cases:</p>
-<ul>
-  <li>Operations teams checking sling instances for their internal state manually</li>
-  <li>Load balancers can query the health of a sling instance and decide to take it out or back into the list of used backends automatically</li>
-</ul>
-<p>The strength of Health Checks are to surface internal Sling state for external use:</p>
-<ul>
-  <li>Verify that performance counters are in range</li>
-  <li>Run smoke tests at system startup</li>
-  <li>Check that all OSGi bundles are up and running</li>
-  <li>Check that demo content has been removed from a production system</li>
-  <li>Check that demo accounts are disabled</li>
-  <li>Ping external systems and raise alarms if they are down</li>
-</ul>
-<p>The health check subsystem uses tags to select which health checks to execute so you can for example execute just the <em>performance</em> or <em>security</em> health checks once they are configured with the corresponding tags.</p>
-<p>The out of the box health check services also allow for using them as JMX aggregators and processors, which take JMX attribute values as input and make the results accessible via JMX MBeans.</p>
-<h2>What's a <code>HealthCheck</code> ?</h2>
-<p>A <code>HealthCheck</code> is just an OSGi service that returns a <code>Result</code>.</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Based on simple <code>HealthCheck</code> OSGi services, the Sling Health Check Tools ("hc" in short form) are used to check the health of live Sling systems, based on inputs like JMX MBean attribute values, OSGi framework information, Sling requests status, etc.</p> 
+<p>Health checks are easily extensible either by configuring the supplied default <code>HealthCheck</code> services, or by implementing your own <code>HealthCheck</code> services to cater for project specific requirements.</p> 
+<p>However for simple setups, the out of the box health checks are often sufficient. <a href="#executing-health-checks">Executing Health Checks</a> is a good starting point to run existing checks and to get familiar with how health checks work.</p> 
+<p>See also:</p> 
+<ul> 
+ <li><a href="https://github.com/apache?utf8=%E2%9C%93&amp;q=sling%20hc">Source code for the HealthCheck modules on GitHub</a></li> 
+ <li>adaptTo() slides about Health Checks: 
+  <ul> 
+   <li><a href="https://adapt.to/2013/en/schedule/18_healthcheck.html">adaptTo() 2013 - Automated self-testing and health check of live Sling instances</a></li> 
+   <li><a href="https://adapt.to/2014/en/schedule/new-features-of-the-sling-health-check.html">adaptTo() 2014 - New features of the sling health check</a></li> 
+  </ul> </li> 
+</ul> 
+<h2><a href="#use-cases" id="use-cases">Use cases</a></h2> 
+<p>Generally health checks have two high level use cases:</p> 
+<ul> 
+ <li>Operations teams checking sling instances for their internal state manually</li> 
+ <li>Load balancers can query the health of a sling instance and decide to take it out or back into the list of used backends automatically</li> 
+</ul> 
+<p>The strength of Health Checks are to surface internal Sling state for external use:</p> 
+<ul> 
+ <li>Verify that performance counters are in range</li> 
+ <li>Run smoke tests at system startup</li> 
+ <li>Check that all OSGi bundles are up and running</li> 
+ <li>Check that demo content has been removed from a production system</li> 
+ <li>Check that demo accounts are disabled</li> 
+ <li>Ping external systems and raise alarms if they are down</li> 
+</ul> 
+<p>The health check subsystem uses tags to select which health checks to execute so you can for example execute just the <em>performance</em> or <em>security</em> health checks once they are configured with the corresponding tags.</p> 
+<p>The out of the box health check services also allow for using them as JMX aggregators and processors, which take JMX attribute values as input and make the results accessible via JMX MBeans.</p> 
+<h2><a href="#whats-a-healthcheck-" id="whats-a-healthcheck-">What's a <code>HealthCheck</code> ?</a></h2> 
+<p>A <code>HealthCheck</code> is just an OSGi service that returns a <code>Result</code>.</p> 
 <pre><code>public interface HealthCheck {
-
+    
     /** Execute this health check and return a {@link Result} 
      *  This is meant to execute quickly, access to external
      *  systems, for example, should be managed asynchronously.
      */
     public Result execute();
 }
-</code></pre>
-<p>Where <code>Result</code> is a simple immutable class that provides a <code>Status</code> (OK, WARN, CRITICAL etc.) and one or more log-like messages that can provide more info about what, if anything, went wrong.</p>
+</code></pre> 
+<p>Where <code>Result</code> is a simple immutable class that provides a <code>Status</code> (OK, WARN, CRITICAL etc.) and one or more log-like messages that can provide more info about what, if anything, went wrong.</p> 
 <pre><code>public class Result implements Iterable &lt;ResultLog.Entry&gt; {
 
     public boolean isOk() {
@@ -149,18 +148,18 @@
     public Iterator&lt;ResultLog.Entry&gt; iterator() {
         return resultLog.iterator();
     }
-
+    
     ... details omitted
 } 
-</code></pre>
-<h3><a href="#slinghealthcheck-annotation" name="slinghealthcheck-annotation">SlingHealthCheck annotation</a></h3>
-<p>The <code>SlingHealthCheck</code> annotation makes it easier to specify the required <code>HealthCheck</code> service properties.</p>
-<p>Here's an example from the <code>samples</code> module - see the <code>annotations</code> module for more details.</p>
+</code></pre> 
+<h3><a href="#slinghealthcheck-annotation" id="slinghealthcheck-annotation">SlingHealthCheck annotation</a></h3> 
+<p>The <code>SlingHealthCheck</code> annotation makes it easier to specify the required <code>HealthCheck</code> service properties.</p> 
+<p>Here's an example from the <code>samples</code> module - see the <code>annotations</code> module for more details.</p> 
 <pre><code>@SlingHealthCheck(
-    name=&quot;Annotated Health Check Sample&quot;, 
-    mbeanName=&quot;annotatedHC&quot;,
-    description=&quot;Sample Health Check defined by a java annotation&quot;,
-    tags={&quot;sample&quot;,&quot;annotation&quot;})
+    name="Annotated Health Check Sample", 
+    mbeanName="annotatedHC",
+    description="Sample Health Check defined by a java annotation",
+    tags={"sample","annotation"})
 
 public class AnnotatedHealthCheckSample implements HealthCheck {
 
@@ -169,146 +168,146 @@ public class AnnotatedHealthCheckSample implements HealthCheck {
         ...health check code
     }
 }
-</code></pre>
-<h2><a href="#executing-health-checks" name="executing-health-checks">Executing Health Checks</a></h2>
-<p>Health Checks can be executed via a <a href="#webconsole-plugin">webconsole plugin</a>, the <a href="#health-check-servlet">health check servlet</a> or via <a href="#jmx-access-to-health-checks">JMX</a>. <code>HealthCheck</code> services can be selected for execution based on their <code>hc.tags</code> multi-value service property. </p>
-<p>The <code>HealthCheckFilter</code> utility accepts positive and negative tag parameters, so that <code>-security,sling</code> selects all <code>HealthCheck</code> having the <code>sling</code> tag but not the <code>security</code> tag, for example.</p>
-<p>For advanced use cases it is also possible to use the API directly by using the interface <code>org.apache.sling.hc.api.execution.HealthCheckExecutor</code>.</p>
-<h2><a href="#health-check-bundles" name="health-check-bundles">Health Check bundles</a></h2>
-<p>The Health Check subsystem consists of the following bundles:</p>
-<ul>
-  <li>The only required bundles are <code>org.apache.sling.hc.api</code> which provides the API and <code>org.apache.sling.hc.core</code> which provides some utility classes and some generally useful <code>HealthCheck</code> services (e.g. the health check executor)</li>
-  <li><code>org.apache.sling.hc.support</code> provides more Sling-specific <code>HealthCheck</code> services.</li>
-  <li><code>org.apache.sling.hc.webconsole</code> provides the Webconsole plugin described below.</li>
-  <li><code>org.apache.sling.junit.healthcheck</code> provides a <code>HealthCheck</code> service that executes JUnit tests in the server-side OSGi context.</li>
-  <li><code>org.apache.sling.hc.samples</code> provides sample OSGi configurations and <code>HealthCheck</code> services. The sample configurations are provided as Sling content, so the Sling Installer is required to activate them.</li>
-  <li><code>org.apache.sling.hc.junit.bridge</code> makes selected Health Checks available as server-side JUnit tests. See below for more info.</li>
-</ul>
-<h2>Out-of-the-box <code>HealthCheck</code> services</h2>
-<p>The following default <code>HealthCheck</code> services are provided by the <code>org.apache.sling.hc.core</code> bundle: </p>
-<p>The <code>org.apache.sling.hc.samples</code> bundle provides OSGi configurations that demonstrate them.</p>
-<ul>
-  <li><code>JmxAttributeHealthCheck</code> checks the value of a single JMX attribute and supports ranges like <em>between 12 and 42</em>.</li>
-  <li><code>ScriptableHealthCheck</code> evaluates an expression written in any scripting language that Sling supports, and provides bindings to access JMX attributes.</li>
-  <li><code>CompositeHealthCheck</code> executes a set of <code>HealthCheck</code> selected by tags, useful for creating higher-level checks.</li>
-</ul>
-<p>A few more Sling-specific ones are provided by the <code>org.apache.sling.hc.support</code> bundle:</p>
-<ul>
-  <li><code>SlingRequestStatusHealthCheck</code> checks the HTTP status of Sling requests.</li>
-  <li><code>DefaultLoginsHealthCheck</code> can be used to verify that the default Sling logins fail.</li>
-  <li><code>ThreadUsageHealthCheck</code> can be used to monitor for deadlocks using JRE ThreadMXBean (see <a href="https://issues.apache.org/jira/browse/SLING-6698">SLING-6698</a> )</li>
-</ul>
-<p>A bridge to server-side OSGi-aware JUnit tests is provided by the <code>JUnitHealthCheck</code>, from the <code>org.apache.sling.junit.healthcheck</code> bundle.</p>
-<p>The <code>org.apache.sling.hc.samples</code> bundle provides an example <code>OsgiScriptBindingsProvider</code> for the default <code>ScriptableHealthCheck</code>, which provides OSGi-related information to health check script expressions.</p>
-<h2><a href="#configuring-health-checks" name="configuring-health-checks">Configuring Health Checks</a></h2>
-<p><code>HealthCheck</code> services are created via OSGi configurations. Generic health check service properties are interpreted by the health check executor service. Custom health check service properties can be used by the health check implementation itself to configure its behaviour.</p>
-<p>The following generic Health Check properties may be used for all checks:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Type </th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>hc.name </td>
-      <td>String </td>
-      <td>The name of the health check as shown in UI</td>
-    </tr>
-    <tr>
-      <td>hc.tags </td>
-      <td>String[] </td>
-      <td>List of tags: Both Felix Console Plugin and Health Check servlet support selecting relevant checks by providing a list of tags</td>
-    </tr>
-    <tr>
-      <td>hc.mbean.name </td>
-      <td>String </td>
-      <td>Makes the HC result available via given MBean name. If not provided no MBean is created for that <code>HealthCheck</code></td>
-    </tr>
-    <tr>
-      <td>hc.async.cronExpression </td>
-      <td>String </td>
-      <td>Used to schedule the execution of a <code>HealthCheck</code> at regular intervals, using a cron expression as specified by the <a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Sling Scheduler</a> module.</td>
-    </tr>
-    <tr>
-      <td>hc.resultCacheTtlInMs </td>
-      <td>Long </td>
-      <td>Overrides the global default TTL as configured in health check executor for health check responses (since v1.2.6 of core)</td>
-    </tr>
-    <tr>
-      <td>hc.warningsStickForMinutes </td>
-      <td>Long </td>
-      <td>This property will make WARN/CRITICAL results stay visible for future executions, even if the current state has returned to status OK. It is useful to keep attention on issues that might still require action after the state went back to OK, e.g. if an event pool has overflown and some events might have been lost (since v1.2.10 of core)</td>
-    </tr>
-  </tbody>
-</table>
-<p>All service properties are optional.</p>
-<p>As an example, here's a <code>ScriptableHealthCheck</code> configuration provided by the <code>org.apache.sling.hc.samples</code> bundle:</p>
+</code></pre> 
+<h2><a href="#executing-health-checks" id="executing-health-checks">Executing Health Checks</a></h2> 
+<p>Health Checks can be executed via a <a href="#webconsole-plugin">webconsole plugin</a>, the <a href="#health-check-servlet">health check servlet</a> or via <a href="#jmx-access-to-health-checks">JMX</a>. <code>HealthCheck</code> services can be selected for execution based on their <code>hc.tags</code> multi-value service property.</p> 
+<p>The <code>HealthCheckFilter</code> utility accepts positive and negative tag parameters, so that <code>-security,sling</code> selects all <code>HealthCheck</code> having the <code>sling</code> tag but not the <code>security</code> tag, for example.</p> 
+<p>For advanced use cases it is also possible to use the API directly by using the interface <code>org.apache.sling.hc.api.execution.HealthCheckExecutor</code>.</p> 
+<h2><a href="#health-check-bundles" id="health-check-bundles">Health Check bundles</a></h2> 
+<p>The Health Check subsystem consists of the following bundles:</p> 
+<ul> 
+ <li>The only required bundles are <code>org.apache.sling.hc.api</code> which provides the API and <code>org.apache.sling.hc.core</code> which provides some utility classes and some generally useful <code>HealthCheck</code> services (e.g. the health check executor)</li> 
+ <li><code>org.apache.sling.hc.support</code> provides more Sling-specific <code>HealthCheck</code> services.</li> 
+ <li><code>org.apache.sling.hc.webconsole</code> provides the Webconsole plugin described below.</li> 
+ <li><code>org.apache.sling.junit.healthcheck</code> provides a <code>HealthCheck</code> service that executes JUnit tests in the server-side OSGi context.</li> 
+ <li><code>org.apache.sling.hc.samples</code> provides sample OSGi configurations and <code>HealthCheck</code> services. The sample configurations are provided as Sling content, so the Sling Installer is required to activate them.</li> 
+ <li><code>org.apache.sling.hc.junit.bridge</code> makes selected Health Checks available as server-side JUnit tests. See below for more info.</li> 
+</ul> 
+<h2><a href="#out-of-the-box-healthcheck-services" id="out-of-the-box-healthcheck-services">Out-of-the-box <code>HealthCheck</code> services</a></h2> 
+<p>The following default <code>HealthCheck</code> services are provided by the <code>org.apache.sling.hc.core</code> bundle:</p> 
+<p>The <code>org.apache.sling.hc.samples</code> bundle provides OSGi configurations that demonstrate them.</p> 
+<ul> 
+ <li><code>JmxAttributeHealthCheck</code> checks the value of a single JMX attribute and supports ranges like <em>between 12 and 42</em>.</li> 
+ <li><code>ScriptableHealthCheck</code> evaluates an expression written in any scripting language that Sling supports, and provides bindings to access JMX attributes.</li> 
+ <li><code>CompositeHealthCheck</code> executes a set of <code>HealthCheck</code> selected by tags, useful for creating higher-level checks.</li> 
+</ul> 
+<p>A few more Sling-specific ones are provided by the <code>org.apache.sling.hc.support</code> bundle:</p> 
+<ul> 
+ <li><code>SlingRequestStatusHealthCheck</code> checks the HTTP status of Sling requests.</li> 
+ <li><code>DefaultLoginsHealthCheck</code> can be used to verify that the default Sling logins fail.</li> 
+ <li><code>ThreadUsageHealthCheck</code> can be used to monitor for deadlocks using JRE ThreadMXBean (see <a href="https://issues.apache.org/jira/browse/SLING-6698">SLING-6698</a> )</li> 
+</ul> 
+<p>A bridge to server-side OSGi-aware JUnit tests is provided by the <code>JUnitHealthCheck</code>, from the <code>org.apache.sling.junit.healthcheck</code> bundle.</p> 
+<p>The <code>org.apache.sling.hc.samples</code> bundle provides an example <code>OsgiScriptBindingsProvider</code> for the default <code>ScriptableHealthCheck</code>, which provides OSGi-related information to health check script expressions.</p> 
+<h2><a href="#configuring-health-checks" id="configuring-health-checks">Configuring Health Checks</a></h2> 
+<p><code>HealthCheck</code> services are created via OSGi configurations. Generic health check service properties are interpreted by the health check executor service. Custom health check service properties can be used by the health check implementation itself to configure its behaviour.</p> 
+<p>The following generic Health Check properties may be used for all checks:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th>Property </th>
+   <th> Type </th>
+   <th> Description</th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td>hc.name </td>
+   <td> String </td>
+   <td> The name of the health check as shown in UI</td>
+  </tr> 
+  <tr>
+   <td>hc.tags </td>
+   <td> String[] </td>
+   <td> List of tags: Both Felix Console Plugin and Health Check servlet support selecting relevant checks by providing a list of tags</td>
+  </tr> 
+  <tr>
+   <td>hc.mbean.name </td>
+   <td> String </td>
+   <td> Makes the HC result available via given MBean name. If not provided no MBean is created for that <code>HealthCheck</code></td>
+  </tr> 
+  <tr>
+   <td>hc.async.cronExpression </td>
+   <td> String </td>
+   <td> Used to schedule the execution of a <code>HealthCheck</code> at regular intervals, using a cron expression as specified by the <a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Sling Scheduler</a> module.</td>
+  </tr> 
+  <tr>
+   <td>hc.resultCacheTtlInMs </td>
+   <td> Long </td>
+   <td> Overrides the global default TTL as configured in health check executor for health check responses (since v1.2.6 of core)</td>
+  </tr> 
+  <tr>
+   <td>hc.warningsStickForMinutes </td>
+   <td> Long </td>
+   <td> This property will make WARN/CRITICAL results stay visible for future executions, even if the current state has returned to status OK. It is useful to keep attention on issues that might still require action after the state went back to OK, e.g. if an event pool has overflown and some events might have been lost (since v1.2.10 of core)</td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>All service properties are optional.</p> 
+<p>As an example, here's a <code>ScriptableHealthCheck</code> configuration provided by the <code>org.apache.sling.hc.samples</code> bundle:</p> 
 <pre><code>Factory PID = org.apache.sling.hc.ScriptableHealthCheck
-&quot;hc.name&quot; : &quot;LoadedClassCount and ManagementSpecVersion are in range&quot; 
-&quot;hc.mbean.name&quot; : &quot;LoadedClassCount and ManagementSpecVersion&quot;
-&quot;hc.tags&quot; : [jvm, script]
-&quot;expression&quot; : &quot;jmx.attribute(&#39;java.lang:type=ClassLoading&#39;, &#39;LoadedClassCount&#39;) &gt; 10 &amp;&amp;  jmx.attribute(&#39;java.lang:type=Runtime&#39;, &#39;ManagementSpecVersion&#39;) &gt; 1&quot; 
-&quot;language.extension&quot; : &quot;ecma&quot; 
-</code></pre>
-<p>The service properties starting with the <code>hc.</code> prefix in this example should be provided by all <code>HealthCheck</code> services. </p>
-<h2><a href="#configuring-the-health-check-executor" name="configuring-the-health-check-executor">Configuring the Health Check Executor</a></h2>
-<p>The health check executor can <strong>optionally</strong> be configured via service PID <code>org.apache.sling.hc.core.impl.executor.HealthCheckExecutorImpl</code>:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Type </th>
-      <th>Default </th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>timeoutInMs </td>
-      <td>Long </td>
-      <td>2000ms </td>
-      <td>Timeout in ms until a check is marked as timed out</td>
-    </tr>
-    <tr>
-      <td>longRunningFutureThresholdForCriticalMs </td>
-      <td>Long </td>
-      <td>300000ms = 5min </td>
-      <td>Threshold in ms until a check is marked as 'exceedingly' timed out and will marked CRITICAL instead of WARN only</td>
-    </tr>
-    <tr>
-      <td>resultCacheTtlInMs </td>
-      <td>Long </td>
-      <td>2000ms </td>
-      <td>Result Cache time to live - results will be cached for the given time</td>
-    </tr>
-  </tbody>
-</table>
-<h2><a href="#webconsole-plugin" name="webconsole-plugin">Webconsole plugin</a></h2>
-<p>If the <code>org.apache.sling.hc.webconsole</code> bundle is active, a webconsole plugin at <code>/system/console/healthcheck</code> allows for executing health checks, optionally selected based on their tags (positive and negative selection, see the <code>HealthCheckFilter</code> mention above).</p>
-<p>The DEBUG logs of health checks can optionally be displayed, and an option allows for showing only health checks that have a non-OK status.</p>
-<p>The screenshot below shows an example.</p>
-<p><img src="sling-hc-plugin.jpg" alt="Health Check Webconsole Plugin" /></p>
-<h2><a href="#jmx-access-to-health-checks" name="jmx-access-to-health-checks">JMX access to health checks</a></h2>
-<p>If the <code>org.apache.sling.hc.jmx</code> bundle is active, a JMX MBean is created for each <code>HealthCheck</code> which has the service property <code>hc.mbean.name</code> service property set. All health check MBeans are registered in the domain <code>org.apache.sling.healthcheck</code> with a type of <code>HealthCheck</code>.</p>
-<p>The MBean gives access to the <code>Result</code> and the log, as shown on the screenshot below. </p>
-<p>See the example configurations of the <code>org.apache.sling.hc.samples</code> for more details.</p>
-<p><img src="jconsole-hc.jpg" alt="JConsole showing Sling Health Check MBeans" /></p>
-<h2><a href="#health-check-servlet" name="health-check-servlet">Health Check Servlet</a></h2>
-<p>Starting with version 1.2.4 of the <code>org.apache.sling.hc.core</code> bundle, a flexible Health Checks execution servlet is available. It provides similar features to the Web Console plugin described above, with output in HTML, JSON (plain or jsonp) and TXT (concise or verbose) formats (see HTML format rendering page for more documentation).</p>
-<p>The Health Checks Servlet is disabled by default, to enable it create an OSGi configuration like</p>
+"hc.name" : "LoadedClassCount and ManagementSpecVersion are in range" 
+"hc.mbean.name" : "LoadedClassCount and ManagementSpecVersion"
+"hc.tags" : [jvm, script]
+"expression" : "jmx.attribute('java.lang:type=ClassLoading', 'LoadedClassCount') &gt; 10 &amp;&amp;  jmx.attribute('java.lang:type=Runtime', 'ManagementSpecVersion') &gt; 1" 
+"language.extension" : "ecma" 
+</code></pre> 
+<p>The service properties starting with the <code>hc.</code> prefix in this example should be provided by all <code>HealthCheck</code> services.</p> 
+<h2><a href="#configuring-the-health-check-executor" id="configuring-the-health-check-executor">Configuring the Health Check Executor</a></h2> 
+<p>The health check executor can <strong>optionally</strong> be configured via service PID <code>org.apache.sling.hc.core.impl.executor.HealthCheckExecutorImpl</code>:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th>Property </th>
+   <th> Type </th>
+   <th> Default </th>
+   <th> Description</th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td>timeoutInMs </td>
+   <td> Long </td>
+   <td> 2000ms </td>
+   <td> Timeout in ms until a check is marked as timed out</td>
+  </tr> 
+  <tr>
+   <td>longRunningFutureThresholdForCriticalMs </td>
+   <td> Long </td>
+   <td> 300000ms = 5min </td>
+   <td> Threshold in ms until a check is marked as 'exceedingly' timed out and will marked CRITICAL instead of WARN only</td>
+  </tr> 
+  <tr>
+   <td>resultCacheTtlInMs </td>
+   <td> Long </td>
+   <td> 2000ms </td>
+   <td> Result Cache time to live - results will be cached for the given time</td>
+  </tr> 
+ </tbody> 
+</table> 
+<h2><a href="#webconsole-plugin" id="webconsole-plugin">Webconsole plugin</a></h2> 
+<p>If the <code>org.apache.sling.hc.webconsole</code> bundle is active, a webconsole plugin at <code>/system/console/healthcheck</code> allows for executing health checks, optionally selected based on their tags (positive and negative selection, see the <code>HealthCheckFilter</code> mention above).</p> 
+<p>The DEBUG logs of health checks can optionally be displayed, and an option allows for showing only health checks that have a non-OK status.</p> 
+<p>The screenshot below shows an example.</p> 
+<p><img src="http://sling.apache.org/sling-hc-plugin.jpg" alt="Health Check Webconsole Plugin"></p> 
+<h2><a href="#jmx-access-to-health-checks" id="jmx-access-to-health-checks">JMX access to health checks</a></h2> 
+<p>If the <code>org.apache.sling.hc.jmx</code> bundle is active, a JMX MBean is created for each <code>HealthCheck</code> which has the service property <code>hc.mbean.name</code> service property set. All health check MBeans are registered in the domain <code>org.apache.sling.healthcheck</code> with a type of <code>HealthCheck</code>.</p> 
+<p>The MBean gives access to the <code>Result</code> and the log, as shown on the screenshot below.</p> 
+<p>See the example configurations of the <code>org.apache.sling.hc.samples</code> for more details.</p> 
+<p><img src="http://sling.apache.org/jconsole-hc.jpg" alt="JConsole showing Sling Health Check MBeans"></p> 
+<h2><a href="#health-check-servlet" id="health-check-servlet">Health Check Servlet</a></h2> 
+<p>Starting with version 1.2.4 of the <code>org.apache.sling.hc.core</code> bundle, a flexible Health Checks execution servlet is available. It provides similar features to the Web Console plugin described above, with output in HTML, JSON (plain or jsonp) and TXT (concise or verbose) formats (see HTML format rendering page for more documentation).</p> 
+<p>The Health Checks Servlet is disabled by default, to enable it create an OSGi configuration like</p> 
 <pre><code>PID = org.apache.sling.hc.core.impl.servlet.HealthCheckExecutorServlet
 servletPath = /system/health
-</code></pre>
-<p>which specifies the servlet's base path. That URL then returns an HTML page, by default with the results of all active health checks and with instructions at the end of the page about URL parameters which can be used to select specific Health Checks and control their execution and output format.</p>
-<p>Note that by design <strong>the Health Checks Servlet doesn't do any access control by itself</strong> to ensure it can detect unhealthy states of the authentication itself. Make sure the configured path is only accessible to relevant infrastructure and operations people. Usually all <code>/system/*</code> paths are only accessible from a local network and not routed to the Internet.</p>
-<p>By default the HC servlet sends the CORS header <code>Access-Control-Allow-Origin: *</code> to allow for client-side browser integrations. The behaviour can be configured using the OSGi config property <code>cors.accessControlAllowOrigin</code> (a blank value disables the header).</p>
-<h2><a href="#health-checks-as-server-side-junit-tests" name="health-checks-as-server-side-junit-tests">Health Checks as server-side JUnit tests</a></h2>
-<p>The <code>org.apache.sling.hc.junit.bridge</code> bundle makes selected Health Checks available as server-side JUnit tests. </p>
-<p>It requires the <code>org.apache.sling.junit.core bundle</code> which provides the server-side JUnit tests infrastructure.</p>
-<p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br/>remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
+</code></pre> 
+<p>which specifies the servlet's base path. That URL then returns an HTML page, by default with the results of all active health checks and with instructions at the end of the page about URL parameters which can be used to select specific Health Checks and control their execution and output format.</p> 
+<p>Note that by design <strong>the Health Checks Servlet doesn't do any access control by itself</strong> to ensure it can detect unhealthy states of the authentication itself. Make sure the configured path is only accessible to relevant infrastructure and operations people. Usually all <code>/system/*</code> paths are only accessible from a local network and not routed to the Internet.</p> 
+<p>By default the HC servlet sends the CORS header <code>Access-Control-Allow-Origin: *</code> to allow for client-side browser integrations. The behaviour can be configured using the OSGi config property <code>cors.accessControlAllowOrigin</code> (a blank value disables the header).</p> 
+<h2><a href="#health-checks-as-server-side-junit-tests" id="health-checks-as-server-side-junit-tests">Health Checks as server-side JUnit tests</a></h2> 
+<p>The <code>org.apache.sling.hc.junit.bridge</code> bundle makes selected Health Checks available as server-side JUnit tests.</p> 
+<p>It requires the <code>org.apache.sling.junit.core bundle</code> which provides the server-side JUnit tests infrastructure.</p> 
+<p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br> remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p> 
 <p>To use this module, configure sets of tags at <code>/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider</code> using the standard <code>includeThisTag,-omitThatTag</code> syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html to run the corresponding Health Checks.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -91,10 +91,10 @@
             </div><h1 class="pagetitle">
                 Wrap or Decorate Resources
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#introduction" name="introduction">Introduction</a></h2>
-<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Use cases for this could for example be * overwrite resource type/resource super type (for example based on the resource path) * add metadata</p>
-<p>## </p>
-<p>To add a resource decorator just register one or more services which implement the interface <code>ResourceDecorator</code></p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Use cases for this could for example be * overwrite resource type/resource super type (for example based on the resource path) * add metadata</p> 
+<h2><a href="#"></a></h2> 
+<p>To add a resource decorator just register one or more services which implement the interface <code>ResourceDecorator</code></p> 
 <pre><code><!-- TODO syntax marker (::java) disabled -->interface ResourceDecorator {
     /** Optionally decorate the supplied Resource */
     Resource decorate(Resource)
@@ -103,13 +103,13 @@
     @Deprecated
     Resource decorate(Resource, HttpServletRequest)
 } 
-</code></pre>
-<p>The registered decorators will be called from the resource resolver for each resource returned. If the service decorates the resource it should return the new resource (often using a <code>ResourceWrapper</code> to wrap the original Resource). If the service does not want to decorate the resource, it should return the original resource or null. </p>
-<p>Starting with version 2.1.0 of the JCR Resource bundle, the two-argument <code>decorate</code> method is not called anymore. Implementors of this interface targeting both newer and older versions of this bundle are advised to implement this method as:</p>
+</code></pre> 
+<p>The registered decorators will be called from the resource resolver for each resource returned. If the service decorates the resource it should return the new resource (often using a <code>ResourceWrapper</code> to wrap the original Resource). If the service does not want to decorate the resource, it should return the original resource or null.</p> 
+<p>Starting with version 2.1.0 of the JCR Resource bundle, the two-argument <code>decorate</code> method is not called anymore. Implementors of this interface targeting both newer and older versions of this bundle are advised to implement this method as:</p> 
 <pre><code><!-- TODO syntax marker (::java) disabled -->public Resource decorate(Resource resource, HttpServletRequest request) {
     return this.decorate(resource);
 }
-</code></pre>
+</code></pre> 
 <p>And use some other mechanism (e.g. a <code>ThreadLocal</code>) to obtain the current request if necessary.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

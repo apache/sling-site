@@ -94,123 +94,123 @@
                 Accessing File System Resources (org.apache.sling.fsresource)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
-<p>The Apache Sling File System Resource Provider provides access to the operating system's file system through the Sling <code>ResourceResolver</code>. Multiple locations may be mapped into the resource tree by configuring the file system location and the resource tree root path for each location to be mapped. The provider supports mapping folders and files as binaries, and content structures stored in JSON files or FileVault XML format.</p>
-<p>To activate this feature, install the <code>org.apache.sling.fsresource</code> bundle. You can get it from the Sling downloads page or from <a href="https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.apache.sling%22%20AND%20a%3A%22org.apache.sling.fsresource%22">Maven Central</a>.</p>
-<p>Currently two major versions are maintained - choose the correct version depending on your Sling environment:</p>
-<ul>
-  <li>fsresource 2.x (<a href="https://github.com/apache/sling-org-apache-sling-fsresource">trunk</a>): compatible with Apache Sling API 2.11 and Apache Sling Resource Resolver 1.5.18 or above.</li>
-  <li>fsresource 1.x (<a href="https://github.com/apache/sling-org-apache-sling-fsresource/tree/release/1.x">branch</a>): compatible with Apache Sling API 2.4 and Apache Sling Resource Resolver 1.1.0 or above.</li>
-</ul>
-<h2><a href="#resource-types" name="resource-types">Resource Types</a></h2>
-<p>Files and directories are mapped into the resource tree as regular <code>Resource</code> instances whose resource type depends on the actual nature of the mapped file system resource:</p>
-<ul>
-  <li>Regular files are assigned the <code>nt:file</code> resource type</li>
-  <li>Directories are assigned the <code>nt:folder</code> resource type</li>
-</ul>
-<p>Content stored in JSON or FileVault XML files are mapped with the resource type stored in the files. If a resource type is missing <code>nt:unstructured</code> is used as fallback.</p>
-<h2><a href="#adapters" name="adapters">Adapters</a></h2>
-<p>File system resources extend from Sling's <code>AbstractResource</code> class and thus are adaptable to any type for which an <code>AdapterFactory</code> is registered supporting file system resources. In addition File system Resources support the following adapters natively:</p>
-<ul>
-  <li><code>java.io.File</code> -- The Java file object providing access to the file system file</li>
-  <li><code>java.net.URL</code> -- A valid <code>file://</code> URL to the file. This URL is derived from the <code>java.io.File</code> object by calling the <code>File.toURI().toURL()</code> sequence.</li>
-  <li><code>java.io.InputStream</code> -- If the <code>java.io.File</code> can be read from (as per <code>File.canRead()</code> an <code>InputStream</code> to read from the file is returned.</li>
-</ul>
-<h2><a href="#configuration" name="configuration">Configuration</a></h2>
-<p>The File System Resource Provider is configured with OSGi Configuration Admin factory configurtions whose factory PID is <code>org.apache.sling.fsprovider.internal.FsResourceProvider</code>. Configuration can be managed using the OSGi Configuration Admin API, through the Web Console or by any other means supporting Configuration Admin configurations. Each configuration "mounts" a specific file system path into the resource hierarchy.</p>
-<p>Which files are mounted depends on the 'File system layout' configuration parameter:</p>
-<ul>
-  <li>FILES_FOLDERS (default): Support only files and folders (classic mode).</li>
-  <li>INITIAL_CONTENT: Sling-Initial-Content filesystem layout, supports file and folders ant content files in JSON and jcr.xml format.</li>
-  <li>FILEVAULT_XML: FileVault XML format (expanded content package).</li>
-</ul>
-<p>Configuration parameters for each mapping:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Parameter </th>
-      <th>Name </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>File System Root </td>
-      <td><code>provider.file</code> </td>
-      <td>File system directory mapped to the virtual resource tree. This property must not be an empty string. If the path is relative it is resolved against sling.home or the current working directory. The path may be a file or folder. If the path does not address an existing file or folder, an empty folder is created. </td>
-    </tr>
-    <tr>
-      <td>Provider Root </td>
-      <td><code>provider.root</code> (2.x), <code>provider.roots</code> (1.x) </td>
-      <td>Location in the virtual resource tree where the file system resources are mapped in. This property must not be an empty string. Only one path is supported. </td>
-    </tr>
-    <tr>
-      <td>File system layout </td>
-      <td><code>provider.fs.mode</code> </td>
-      <td>File system layout mode for files, folders and content. </td>
-    </tr>
-    <tr>
-      <td>Init. Content Options </td>
-      <td><code>provider.initial.content.import.options</code> </td>
-      <td>Import options for Sling-Initial-Content file system layout. Supported options: overwrite, ignoreImportProviders. </td>
-    </tr>
-    <tr>
-      <td>FileVault Filter </td>
-      <td><code>provider.filevault.filterxml.path</code> </td>
-      <td>Path to META-INF/vault/filter.xml when using FileVault XML file system layout. </td>
-    </tr>
-    <tr>
-      <td>Check Interval </td>
-      <td><code>provider.checkinterval</code> </td>
-      <td>If the interval has a value higher than 100, the provider will check the file system for changes periodically. This interval defines the period in milliseconds (the default is 1000). If a change is detected, resource events are sent through the event admin. </td>
-    </tr>
-    <tr>
-      <td>Cache Size </td>
-      <td><code>provider.cache.size</code> </td>
-      <td>Max. number of content files cached in memory. </td>
-    </tr>
-  </tbody>
-</table>
-<h3>FILES_FOLDERS file system layout</h3>
-<p>The mode maps only files and folders. This was the only mode supported in fsresource versions before 1.3.</p>
-<p>Notes:</p>
-<ul>
-  <li>No caching is used for this mode.</li>
-  <li>Resource events are sent when file oder folder changes are detected.</li>
-</ul>
-<h3>INITIAL_CONTENT file system layout</h3>
-<p>The mode maps files and folders, and content files stored in JSON or jcr.xml files. The layout has to match the conventions of the <a href="content-loading-jcr-contentloader.html">Apache Sling JCR Content Loader</a>. The bundle header <code>Sling-Initial-Content</code> defines where and how the content should be loaded to.</p>
-<p>This mode is best use together with the <a href="http://sling.apache.org/components/maven-sling-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations for a Maven bundle project containing content structures. For each path an individual configuration is created.</p>
-<p>Usage - deploy OSGi bundle from current maven project and register the appropriate OSGi configuration mappings:</p>
+</p> 
+<h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>The Apache Sling File System Resource Provider provides access to the operating system's file system through the Sling <code>ResourceResolver</code>. Multiple locations may be mapped into the resource tree by configuring the file system location and the resource tree root path for each location to be mapped. The provider supports mapping folders and files as binaries, and content structures stored in JSON files or FileVault XML format.</p> 
+<p>To activate this feature, install the <code>org.apache.sling.fsresource</code> bundle. You can get it from the Sling downloads page or from <a href="https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.apache.sling%22%20AND%20a%3A%22org.apache.sling.fsresource%22">Maven Central</a>.</p> 
+<p>Currently two major versions are maintained - choose the correct version depending on your Sling environment:</p> 
+<ul> 
+ <li>fsresource 2.x (<a href="https://github.com/apache/sling-org-apache-sling-fsresource">trunk</a>): compatible with Apache Sling API 2.11 and Apache Sling Resource Resolver 1.5.18 or above.</li> 
+ <li>fsresource 1.x (<a href="https://github.com/apache/sling-org-apache-sling-fsresource/tree/release/1.x">branch</a>): compatible with Apache Sling API 2.4 and Apache Sling Resource Resolver 1.1.0 or above.</li> 
+</ul> 
+<h2><a href="#resource-types" id="resource-types">Resource Types</a></h2> 
+<p>Files and directories are mapped into the resource tree as regular <code>Resource</code> instances whose resource type depends on the actual nature of the mapped file system resource:</p> 
+<ul> 
+ <li>Regular files are assigned the <code>nt:file</code> resource type</li> 
+ <li>Directories are assigned the <code>nt:folder</code> resource type</li> 
+</ul> 
+<p>Content stored in JSON or FileVault XML files are mapped with the resource type stored in the files. If a resource type is missing <code>nt:unstructured</code> is used as fallback.</p> 
+<h2><a href="#adapters" id="adapters">Adapters</a></h2> 
+<p>File system resources extend from Sling's <code>AbstractResource</code> class and thus are adaptable to any type for which an <code>AdapterFactory</code> is registered supporting file system resources. In addition File system Resources support the following adapters natively:</p> 
+<ul> 
+ <li><code>java.io.File</code> -- The Java file object providing access to the file system file</li> 
+ <li><code>java.net.URL</code> -- A valid <code>file://</code> URL to the file. This URL is derived from the <code>java.io.File</code> object by calling the <code>File.toURI().toURL()</code> sequence.</li> 
+ <li><code>java.io.InputStream</code> -- If the <code>java.io.File</code> can be read from (as per <code>File.canRead()</code> an <code>InputStream</code> to read from the file is returned.</li> 
+</ul> 
+<h2><a href="#configuration" id="configuration">Configuration</a></h2> 
+<p>The File System Resource Provider is configured with OSGi Configuration Admin factory configurtions whose factory PID is <code>org.apache.sling.fsprovider.internal.FsResourceProvider</code>. Configuration can be managed using the OSGi Configuration Admin API, through the Web Console or by any other means supporting Configuration Admin configurations. Each configuration "mounts" a specific file system path into the resource hierarchy.</p> 
+<p>Which files are mounted depends on the 'File system layout' configuration parameter:</p> 
+<ul> 
+ <li>FILES_FOLDERS (default): Support only files and folders (classic mode).</li> 
+ <li>INITIAL_CONTENT: Sling-Initial-Content filesystem layout, supports file and folders ant content files in JSON and jcr.xml format.</li> 
+ <li>FILEVAULT_XML: FileVault XML format (expanded content package).</li> 
+</ul> 
+<p>Configuration parameters for each mapping:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Parameter </th>
+   <th> Name </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> File System Root </td>
+   <td> <code>provider.file</code> </td>
+   <td> File system directory mapped to the virtual resource tree. This property must not be an empty string. If the path is relative it is resolved against sling.home or the current working directory. The path may be a file or folder. If the path does not address an existing file or folder, an empty folder is created. </td>
+  </tr> 
+  <tr>
+   <td> Provider Root </td>
+   <td> <code>provider.root</code> (2.x), <code>provider.roots</code> (1.x) </td>
+   <td> Location in the virtual resource tree where the file system resources are mapped in. This property must not be an empty string. Only one path is supported. </td>
+  </tr> 
+  <tr>
+   <td> File system layout </td>
+   <td> <code>provider.fs.mode</code> </td>
+   <td> File system layout mode for files, folders and content. </td>
+  </tr> 
+  <tr>
+   <td> Init. Content Options </td>
+   <td> <code>provider.initial.content.import.options</code> </td>
+   <td> Import options for Sling-Initial-Content file system layout. Supported options: overwrite, ignoreImportProviders. </td>
+  </tr> 
+  <tr>
+   <td> FileVault Filter </td>
+   <td> <code>provider.filevault.filterxml.path</code> </td>
+   <td> Path to META-INF/vault/filter.xml when using FileVault XML file system layout. </td>
+  </tr> 
+  <tr>
+   <td> Check Interval </td>
+   <td> <code>provider.checkinterval</code> </td>
+   <td> If the interval has a value higher than 100, the provider will check the file system for changes periodically. This interval defines the period in milliseconds (the default is 1000). If a change is detected, resource events are sent through the event admin. </td>
+  </tr> 
+  <tr>
+   <td> Cache Size </td>
+   <td> <code>provider.cache.size</code> </td>
+   <td> Max. number of content files cached in memory. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h3><a href="#files-folders-file-system-layout" id="files-folders-file-system-layout">FILES_FOLDERS file system layout</a></h3> 
+<p>The mode maps only files and folders. This was the only mode supported in fsresource versions before 1.3.</p> 
+<p>Notes:</p> 
+<ul> 
+ <li>No caching is used for this mode.</li> 
+ <li>Resource events are sent when file oder folder changes are detected.</li> 
+</ul> 
+<h3><a href="#initial-content-file-system-layout" id="initial-content-file-system-layout">INITIAL_CONTENT file system layout</a></h3> 
+<p>The mode maps files and folders, and content files stored in JSON or jcr.xml files. The layout has to match the conventions of the <a href="content-loading-jcr-contentloader.html">Apache Sling JCR Content Loader</a>. The bundle header <code>Sling-Initial-Content</code> defines where and how the content should be loaded to.</p> 
+<p>This mode is best use together with the <a href="http://sling.apache.org/components/maven-sling-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations for a Maven bundle project containing content structures. For each path an individual configuration is created.</p> 
+<p>Usage - deploy OSGi bundle from current maven project and register the appropriate OSGi configuration mappings:</p> 
 <pre><code>$ mvn -Dsling.mountByFS=true sling:install
-</code></pre>
-<p>Only register the appropriate mappings:</p>
+</code></pre> 
+<p>Only register the appropriate mappings:</p> 
 <pre><code>$ mvn sling:fsmount
-</code></pre>
-<p>Remove the mappings:</p>
+</code></pre> 
+<p>Remove the mappings:</p> 
 <pre><code>$ mvn sling:fsunmount
-</code></pre>
-<p>Notes:</p>
-<ul>
-  <li>The content of JSON or jcr.xml files is cached in-memory until it changes.</li>
-  <li>Resource events are sent when file oder folder changes are detected. When a JSON or jcr.xml file is changed resource events are sent for each resource contained in this file.</li>
-  <li>When 'overwrite:=true' is not set for a path in the <code>Sling-Initial-Content</code> header the resource provider falls back to the parent resource provider (e.g. JCR repository) if a requested resource is not find in the file system (version 2.x, with version 1.x this always happens).</li>
-</ul>
-<h3>FILEVAULT_XML file system layout</h3>
-<p>The mode maps an maven project containing an expanded content package which uses the <a href="http://jackrabbit.apache.org/filevault/vaultfs.html">Jackrabbit FileVault XML layout</a> in the running Sling instance. The existing of a filter file <code>META-INF/vault/filter.xml</code> is mandatory.</p>
-<p>This mode is best use together with the <a href="http://sling.apache.org/components/maven-sling-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations. For each path defined in the filter.xml one mapping configuration is created. The include/exclude definitions are respected as well.</p>
-<p>Usage - register the appropriate mappings:</p>
+</code></pre> 
+<p>Notes:</p> 
+<ul> 
+ <li>The content of JSON or jcr.xml files is cached in-memory until it changes.</li> 
+ <li>Resource events are sent when file oder folder changes are detected. When a JSON or jcr.xml file is changed resource events are sent for each resource contained in this file.</li> 
+ <li>When 'overwrite:=true' is not set for a path in the <code>Sling-Initial-Content</code> header the resource provider falls back to the parent resource provider (e.g. JCR repository) if a requested resource is not find in the file system (version 2.x, with version 1.x this always happens).</li> 
+</ul> 
+<h3><a href="#filevault-xml-file-system-layout" id="filevault-xml-file-system-layout">FILEVAULT_XML file system layout</a></h3> 
+<p>The mode maps an maven project containing an expanded content package which uses the <a href="http://jackrabbit.apache.org/filevault/vaultfs.html">Jackrabbit FileVault XML layout</a> in the running Sling instance. The existing of a filter file <code>META-INF/vault/filter.xml</code> is mandatory.</p> 
+<p>This mode is best use together with the <a href="http://sling.apache.org/components/maven-sling-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations. For each path defined in the filter.xml one mapping configuration is created. The include/exclude definitions are respected as well.</p> 
+<p>Usage - register the appropriate mappings:</p> 
 <pre><code>$ mvn sling:fsmount
-</code></pre>
-<p>Remove the mappings:</p>
+</code></pre> 
+<p>Remove the mappings:</p> 
 <pre><code>$ mvn sling:fsunmount
-</code></pre>
-<p>Notes:</p>
-<ul>
-  <li>The content of .content.xml files is cached in-memory until it changes.</li>
-  <li>Resource events are sent when file oder folder changes are detected. When a JSON or jcr.xml file is changed resource events are sent for each resource contained in this file.</li>
-  <li>Content excluded by the filter definition is not mounted by the resource provider, if a resource of the relevant path is requested the resource provider falls back to the parent resource provider (e.g. JCR repository).</li>
+</code></pre> 
+<p>Notes:</p> 
+<ul> 
+ <li>The content of .content.xml files is cached in-memory until it changes.</li> 
+ <li>Resource events are sent when file oder folder changes are detected. When a JSON or jcr.xml file is changed resource events are sent for each resource contained in this file.</li> 
+ <li>Content excluded by the filter definition is not mounted by the resource provider, if a resource of the relevant path is requested the resource provider falls back to the parent resource provider (e.g. JCR repository).</li> 
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

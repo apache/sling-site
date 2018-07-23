@@ -93,48 +93,48 @@
             </div><h1 class="pagetitle">
                 Selectors
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Selector string are something between filters and content descriptors. Selector can filter resources by their <a href="#resource-type">type</a>, <a href="#resource-name">name</a>, <a href="#attributes">attributes</a> and <a href="#modifiers">additional modifiers</a>. They can be also <a href="#joining-selectors">chained together</a> to describe more sophisticated hierarchy structure or <a href="#combining-selectors">combined with comma</a>.</p>
-<h2><a href="#syntax" name="syntax">Syntax</a></h2>
-<p>Selector consists of four parts:</p>
-<h3><a href="#resource-type" name="resource-type">Resource type</a></h3>
-<p>Resource type, which could be a <code>sling:resourceType</code>, like <code>foundation/components/richtext</code> or the underlying JCR node type, like <code>cq:Page</code> or <code>nt:unstructured</code>. In the latter case, SlingQuery takes types hierarchy into consideration (eg. <code>nt:base</code> matches everything). JCR mixin types could be used as well.</p>
-<h3><a href="#resource-name" name="resource-name">Resource name</a></h3>
-<p>Resource name can be defined with a hash <code>#</code> character, after the resource type (or instead of it):</p>
-<pre><code>$(resource).children(&quot;cq:Page#some-name&quot;)
-</code></pre>
-<p>If the desired resource name contains colon (<code>:</code>) character, the whole string should be escaped with apostrophes:</p>
-<pre><code>$(resource).children(&quot;#&#39;jcr:content&#39;[jcr:title=My title]&quot;)
-</code></pre>
-<h3><a href="#attributes" name="attributes">Attributes</a></h3>
-<p>After the resource type and resource name one could pass a number of filtering attributes. Each attribute has following form: <code>[property=value]</code>. Passing multiple attributes will match only those resources that have all of them set. Property name could contain <code>/</code>. In this case property will be taken from the child resource, eg.:</p>
-<pre><code>$(resource).children(&quot;cq:Page[jcr:content/jcr:title=My title]&quot;)
-</code></pre>
-<p>will return only children of type <code>cq:Page</code> that have sub-resource called <code>jcr:content</code> with property <code>jcr:title</code> set to <code>My title</code>. Besides the <code>=</code> you may use other operators like <code>*=</code>, which means <em>contains</em>:</p>
-<pre><code>$(resource).children(&quot;cq:Page[jcr:content/jcr:title*=title]&quot;)
-</code></pre>
-<p>See the <a href="operators.html">fulll list of operators</a>.</p>
-<h3><a href="#modifiers" name="modifiers">Modifiers</a></h3>
-<p>At the end of the selector one could define any number of modifiers that will be used to filter out the resources matched by the resource type and attributes. Each modifier starts with colon, some of them accepts a parameter set in parentheses. Example:</p>
-<pre><code>$(resource).children(&quot;cq:Page:first&quot;);
-$(resource).children(&quot;cq:Page:eq(0)&quot;); // the same
-$(resource).children(&quot;:first&quot;); // modifier can be used alone
-</code></pre>
-<p>It is important that modifier filters out sub-collection created for each node, before it is merged. Eg.:, there is a difference between:</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Selector string are something between filters and content descriptors. Selector can filter resources by their <a href="#resource-type">type</a>, <a href="#resource-name">name</a>, <a href="#attributes">attributes</a> and <a href="#modifiers">additional modifiers</a>. They can be also <a href="#joining-selectors">chained together</a> to describe more sophisticated hierarchy structure or <a href="#combining-selectors">combined with comma</a>.</p> 
+<h2><a href="#syntax" id="syntax">Syntax</a></h2> 
+<p>Selector consists of four parts:</p> 
+<h3><a href="#resource-type" id="resource-type">Resource type</a></h3> 
+<p>Resource type, which could be a <code>sling:resourceType</code>, like <code>foundation/components/richtext</code> or the underlying JCR node type, like <code>cq:Page</code> or <code>nt:unstructured</code>. In the latter case, SlingQuery takes types hierarchy into consideration (eg. <code>nt:base</code> matches everything). JCR mixin types could be used as well.</p> 
+<h3><a href="#resource-name" id="resource-name">Resource name</a></h3> 
+<p>Resource name can be defined with a hash <code>#</code> character, after the resource type (or instead of it):</p> 
+<pre><code>$(resource).children("cq:Page#some-name")
+</code></pre> 
+<p>If the desired resource name contains colon (<code>:</code>) character, the whole string should be escaped with apostrophes:</p> 
+<pre><code>$(resource).children("#'jcr:content'[jcr:title=My title]")
+</code></pre> 
+<h3><a href="#attributes" id="attributes">Attributes</a></h3> 
+<p>After the resource type and resource name one could pass a number of filtering attributes. Each attribute has following form: <code>[property=value]</code>. Passing multiple attributes will match only those resources that have all of them set. Property name could contain <code>/</code>. In this case property will be taken from the child resource, eg.:</p> 
+<pre><code>$(resource).children("cq:Page[jcr:content/jcr:title=My title]")
+</code></pre> 
+<p>will return only children of type <code>cq:Page</code> that have sub-resource called <code>jcr:content</code> with property <code>jcr:title</code> set to <code>My title</code>. Besides the <code>=</code> you may use other operators like <code>*=</code>, which means <em>contains</em>:</p> 
+<pre><code>$(resource).children("cq:Page[jcr:content/jcr:title*=title]")
+</code></pre> 
+<p>See the <a href="operators.html">fulll list of operators</a>.</p> 
+<h3><a href="#modifiers" id="modifiers">Modifiers</a></h3> 
+<p>At the end of the selector one could define any number of modifiers that will be used to filter out the resources matched by the resource type and attributes. Each modifier starts with colon, some of them accepts a parameter set in parentheses. Example:</p> 
+<pre><code>$(resource).children("cq:Page:first");
+$(resource).children("cq:Page:eq(0)"); // the same
+$(resource).children(":first"); // modifier can be used alone
+</code></pre> 
+<p>It is important that modifier filters out sub-collection created for each node, before it is merged. Eg.:, there is a difference between:</p> 
 <pre><code>$(resource1, resource2).children().first();
-</code></pre>
-<p>and</p>
-<pre><code>$(resource1, resource2).children(&quot;:first&quot;);
-</code></pre>
-<p>In the first case we create a new collection consisting of children of the <code>resource1</code> and <code>resource2</code> and then we get the first element of the merged collection. On the other hand, the second example takes <em>first child</em> of each resource and creates a collection from them.</p>
-<p>See the <a href="modifiers.html">full list of modifiers</a>.</p>
-<h2><a href="#joining-selectors" name="joining-selectors">Joining selectors</a></h2>
-<p>Selectors can be joined together using <a href="hierarchy-operators.html">hierarchy operators</a>. This feature enables the developer to create sophisticated filters describing desired resource structure, eg.:</p>
-<pre><code>$(resource).children(&quot;cq:Page foundation/components/parsys &gt; foundation/components/richtext&quot;)
-</code></pre>
-<p>will all <code>cq:Page</code>s containing paragraph systems with a richtext inside.</p>
-<h2><a href="#combining-selectors" name="combining-selectors">Combining selectors</a></h2>
-<p>You may specify any number of selectors to combine into a single result. Use comma to join a few conditions. Comma is treated as <code>OR</code> statement:</p>
-<pre><code>$(resource).children(&quot;#en, #de, #fr&quot;); // return all direct children named `en` or `de` or `fr`.
+</code></pre> 
+<p>and</p> 
+<pre><code>$(resource1, resource2).children(":first");
+</code></pre> 
+<p>In the first case we create a new collection consisting of children of the <code>resource1</code> and <code>resource2</code> and then we get the first element of the merged collection. On the other hand, the second example takes <em>first child</em> of each resource and creates a collection from them.</p> 
+<p>See the <a href="modifiers.html">full list of modifiers</a>.</p> 
+<h2><a href="#joining-selectors" id="joining-selectors">Joining selectors</a></h2> 
+<p>Selectors can be joined together using <a href="hierarchy-operators.html">hierarchy operators</a>. This feature enables the developer to create sophisticated filters describing desired resource structure, eg.:</p> 
+<pre><code>$(resource).children("cq:Page foundation/components/parsys &gt; foundation/components/richtext")
+</code></pre> 
+<p>will all <code>cq:Page</code>s containing paragraph systems with a richtext inside.</p> 
+<h2><a href="#combining-selectors" id="combining-selectors">Combining selectors</a></h2> 
+<p>You may specify any number of selectors to combine into a single result. Use comma to join a few conditions. Comma is treated as <code>OR</code> statement:</p> 
+<pre><code>$(resource).children("#en, #de, #fr"); // return all direct children named `en` or `de` or `fr`.
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

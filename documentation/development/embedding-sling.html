@@ -93,238 +93,237 @@
             </div><h1 class="pagetitle">
                 Embedding Sling
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base">Sling Launchpad Base project</a>. This project has the following features:</p>
-<ul>
-  <li>Builds three artifacts:
-    <ul>
-      <li>A standalone Java Application with the artifact qualifier <em>app</em>; e.g. <code>org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-app.jar</code></li>
-      <li>A Web Application with the artifact qualifier <em>webapp</em>; e.g <code>org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-wepabb.war</code></li>
-      <li>The primary artifact without an artifact qualifier; e.g. <code>org.apache.sling.launchpad.base-2.3.1-SNAPSHOT.jar</code></li>
-    </ul>
-  </li>
-  <li>Embeds the OSGi Framework (Apache Felix) in the primary artifact</li>
-  <li>Encapsulates the OSGi Framework in its own <code>URLClassLoader</code></li>
-  <li>Supports Framework restart</li>
-  <li>Allows propagation of core setup functionality depending on the environment</li>
-</ul>
-<p>This page is about the internal details of the Sling Launchpad Base module. To get an outside overview of the Sling Launchpad you might want to refer to <a href="/documentation/the-sling-engine/the-sling-launchpad.html">The Sling Launchpad</a> page.</p>
-<h1><a href="#structure" name="structure">Structure</a></h1>
-<p>The Launcher is based on three parts:</p>
-<ol>
-  <li>The external part which is for example the standalone Java application's main class or the servlet deployed into the servlet container</li>
-  <li>The internal part which is the OSGi framework plus helper classes to control the framework and run initial installations</li>
-  <li>The bridging part, which contains API common to the external and internal part.</li>
-</ol>
-<p>The external part uses the bridging part to create the class loader into which the internal part is loaded. The bidirectional communication between the external and internal part is implement based on two interfaces:</p>
-<ul>
-  <li>The <code>Launcher</code> interface is implemented by a class in the internal part which is loaded through the bridge class loader. This interface allows setting, starting and stopping of the framework.</li>
-  <li>The <code>Notifiable</code> interface is implemented by a class in the external part which instance is handed to the <code>Launcher</code> instance. This interface allows the internal part to communicate back to the external part, most notably to indicate that the framework has been stopped from within or that the framework has been updated and must be restarted.</li>
-</ul>
-<h1><a href="#the-bridging-part" name="the-bridging-part">The Bridging Part</a></h1>
-<p>The bridging part is provided in the <code>org.apache.sling.launchpad.base.shared</code> package:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Class </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Launcher </td>
-      <td>The interface implemented by the internal class matching the external class being called to start/stop the framework. </td>
-    </tr>
-    <tr>
-      <td>LauncherClassLoader </td>
-      <td><code>URLClassLoader</code> implementing the class loader to load the internal part (along with the OSGi framework). This class loader only delegates to the parent class loader any packages not contained in the launchpad library (primary artifact of the Launchpad Base project). </td>
-    </tr>
-    <tr>
-      <td>Loader </td>
-      <td>Helper class to find the launchpad library and to create the <code>LauncherClassLoader</code> with that library. This class is also used to actually load the <code>Launcher</code> implementation to be called from the external launcher class. </td>
-    </tr>
-    <tr>
-      <td>Notifiable </td>
-      <td>The interface implemented in the external part and handed over to the internal part. </td>
-    </tr>
-    <tr>
-      <td>SharedConstants </td>
-      <td>Constants naming various properties and classes. </td>
-    </tr>
-  </tbody>
-</table>
-<h1><a href="#the-internal-part" name="the-internal-part">The Internal Part</a></h1>
-<p>The main class from the internal class directly used is <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/Sling.java"><code>Sling</code></a> which instantiated to start the OSGi Framework. This class is responsible for setting up the environment to finally start the OSGi Framework:</p>
-<ul>
-  <li>Read the <code>sling.properties</code> file</li>
-  <li>Ensure the presence of the JMX MBeanServer service</li>
-  <li>Execute the bootstrap installations, updates and uninstallations</li>
-</ul>
-<p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/SlingFelix.java"><code>SlingFelix</code></a> class extends the Apache Felix <code>Felix</code> class which is the actual OSGi framework implementation. We extend the class to be able to notify the <code>Notifiable</code> implementation and update the OSGi framework from within the OSGi framework by updating the system bundle.</p>
-<h2><a href="#the-external-part" name="the-external-part">The External Part</a></h2>
-<p>The external part is comprised of a main class started from the environment -- main class of the Java applicaction or the servlet deployed in the servlet container -- and a corresponding delegate class located inside of the launchpad base library. This delegate class is instantiated by the <code>Loader</code> loading from the <code>LauncherClassLoader</code>.</p>
-<h3><a href="#standalone-java-application" name="standalone-java-application">Standalone Java Application</a></h3>
-<p>The standalone Java Application makes use of three classes:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Class </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Main </td>
-      <td>This is the main class whose <code>main</code> method is called by the Java VM. This class is itself the <code>Notifiable</code> and finds the <code>sling.home</code> location from the environment (command line parameter, system property, or environment variable). </td>
-    </tr>
-    <tr>
-      <td>MainDelegate </td>
-      <td>This class is loaded by the <code>Loader</code> from the <code>LauncherClassLoader</code> to actually complete the initial setup before creating the <code>Sling</code> class to start the framework. </td>
-    </tr>
-    <tr>
-      <td>ControlListener </td>
-      <td>This class is used by the <code>Main</code> class to open a server socket to be able to start and stop Sling as a server. This class allows for starting (opening the server socket), status check (connecting to the socket asking for status), and shutdown (connecting to the socket asking for shutdown). </td>
-    </tr>
-  </tbody>
-</table>
-<p>At the moment these classes are not directly suitable to be embedded in an existing application (or custom application launcher framework) unless that embedding prepares command line arguments in a <code>String[]</code> and calls the <code>Main.main</code> method. To allow for custom embeddings or extensions, the work distributions between the three classes should be refactored.</p>
-<h3><a href="#embedding-the-standalone-java-application" name="embedding-the-standalone-java-application">Embedding the Standalone Java Application</a></h3>
-<p>To embedd the Sling Launcher in an application, the <code>Main</code> class is extended from. To manage the launcher, the following API is available:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Method </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Main(Map&lt;String, String&gt; properties)</code> </td>
-      <td>Instantiates the Main class with the given configuration properties. These are properties which are used directly as overwrites to the configurations in the <code>sling.properties</code> file. There is no more conversion applied. </td>
-    </tr>
-    <tr>
-      <td><code>doControlCommand()</code> </td>
-      <td>Before starting the application for the first time, this method can be called to handle any control command action. </td>
-    </tr>
-    <tr>
-      <td><code>doStart()</code> </td>
-      <td>Starts the Sling Application using the provided configuration properties as overwrites. Also these properties (or the <code>sling.home</code> system property or the <code>SLING_HOME</code> environment variable are analyzed to get the value for the <code>sling.home</code> setting. </td>
-    </tr>
-    <tr>
-      <td><code>doStop()</code> </td>
-      <td>Stops the application started by the <code>doStart()</code> method. </td>
-    </tr>
-  </tbody>
-</table>
-<h4><a href="#external-control-of-the-sling-application" name="external-control-of-the-sling-application">External Control of the Sling Application</a></h4>
-<p>By using control actions, the Sling Launcher may open or connect to a control port to communicate. The <code>doControlAction()</code> method together with the <code>sling.control.action</code> and <code>sling.control.socket</code> properties is able to setup this communication.</p>
-<p>The <code>sling.control.socket</code> is either a normal port number, in which case the connection is opened on the <code>localhost</code> interface (usually 127.0.0.1). Otheriwse, it may also be a value of the form <em>host:port</em> where <em>host</em> is the name or IP address of the interface to connect to and port is the port number. For security reasons it is suggested to not use an interface which is available remotely. So the default of <code>localhost</code> is usually the best choice.</p>
-<p>The <code>sling.control.action</code> takes either of three values:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Value </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>start</code> </td>
-      <td>Starts a server socket as specified by the <code>sling.control.socket</code> property. If the socket cannot be bound to (because the port is in use) an error message is printed. Using the <code>start</code> action only makes sense when starting the application. </td>
-    </tr>
-    <tr>
-      <td><code>stop</code> </td>
-      <td>The <code>stop</code> action is used to stop a running application. For that a connection is opened to the server running on the socket specified by the <code>sling.control.socket</code> property. On this connection the server is instructed to shut down. After executing the <code>stop</code> action, the Java application should be terminated. </td>
-    </tr>
-    <tr>
-      <td><code>status</code> </td>
-      <td>The <code>status</code> action is used to check the status of a running application. For that a connection is opened to the server running on the socket specified by the <code>sling.control.socket</code> property. On this connection the server is queried on its status. After executing the <code>stop</code> action, the Java application should be terminated. </td>
-    </tr>
-  </tbody>
-</table>
-<h4><a href="#conversion-of-commandline-arguments-to-properties" name="conversion-of-commandline-arguments-to-properties">Conversion of Commandline Arguments to Properties</a></h4>
-<p>When calling the Main class through the JVM startup the <code>Main.main(String[] args)</code> methods is called which reads the command line arguments and converts them into a <code>Map&lt;String, String&gt;</code> suitable for the constructore as follows:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Command Line Argument </th>
-      <th>Properties Entry </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>start </td>
-      <td>sling.control.action = "start" </td>
-    </tr>
-    <tr>
-      <td>status </td>
-      <td>sling.control.action = "status" </td>
-    </tr>
-    <tr>
-      <td>stop </td>
-      <td>sling.control.action = "stop" </td>
-    </tr>
-    <tr>
-      <td>-c slinghome </td>
-      <td>sling.home = slinghome </td>
-    </tr>
-    <tr>
-      <td>-l loglevel </td>
-      <td>org.apache.sling.commons.log.level = loglevel </td>
-    </tr>
-    <tr>
-      <td>-f logfile </td>
-      <td>org.apache.sling.commons.log.file = logfile </td>
-    </tr>
-    <tr>
-      <td>-a address </td>
-      <td>This command line argument is not supported yet and thus ignored </td>
-    </tr>
-    <tr>
-      <td>-p port </td>
-      <td>org.osgi.service.http.port = port </td>
-    </tr>
-    <tr>
-      <td>-j [ host ":" ] port </td>
-      <td>sling.control.socket = [ host ":" ] port </td>
-    </tr>
-    <tr>
-      <td>-h </td>
-      <td>This command line option is handled directly and not converted into the map </td>
-    </tr>
-  </tbody>
-</table>
-<h3><a href="#web-application" name="web-application">Web Application</a></h3>
-<p>The web application makes use of 5 classes:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Class </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>SlingServlet </td>
-      <td>This is the servlet registered in the <code>web.xml</code> descriptor and loaded by the servlet container into which Sling is deplyoed. This class locates the <code>sling.home</code> folder and loads the <code>SlingServletDelagate</code> to actually launch the framework. </td>
-    </tr>
-    <tr>
-      <td>SlingSessionListener </td>
-      <td>This -- somewhat inappropriately named -- class is registered as a listener by the Sling <code>web.xml</code> descriptor. It is called by the servlet container and forwards events to the <code>SlingHttpSessionListenerDelegate</code> which in turn forwards the events to the respective Servlet API listener services registered in the OSGi Framework. </td>
-    </tr>
-    <tr>
-      <td>SlingBridge </td>
-      <td>Simple extension of the <code>Sling</code> class which registers the system bundle's <code>BundleContext</code> as a servlet context attribute of the Sling web application. This allows Servlet Container bridging to properly work. </td>
-    </tr>
-    <tr>
-      <td>SlingHttpSessionListenerDelegate </td>
-      <td>This class is loaded by the <code>LauncherClassLoader</code> called from the <code>SlingSessionListener</code>. It is called by the <code>SlingSessionListener</code> to forward servlet container events to registered Servlet API listener services. </td>
-    </tr>
-    <tr>
-      <td>SlingServletDelegate </td>
-      <td>This class is loaded by the <code>Loader</code> from the <code>LauncherClassLoader</code> to actually complete the initial setup before creating the <code>SlingBridge</code> class to start the framework. </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling Launchpad Launcher can be used to embed the OSGi Framework startup in your own Java application. This functionality is implemented in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base">Sling Launchpad Base project</a>. This project has the following features:</p> 
+<ul> 
+ <li>Builds three artifacts: 
+  <ul> 
+   <li>A standalone Java Application with the artifact qualifier <em>app</em>; e.g. <code>org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-app.jar</code></li> 
+   <li>A Web Application with the artifact qualifier <em>webapp</em>; e.g <code>org.apache.sling.launchpad.base-2.3.1-SNAPSHOT-wepabb.war</code></li> 
+   <li>The primary artifact without an artifact qualifier; e.g. <code>org.apache.sling.launchpad.base-2.3.1-SNAPSHOT.jar</code></li> 
+  </ul> </li> 
+ <li>Embeds the OSGi Framework (Apache Felix) in the primary artifact</li> 
+ <li>Encapsulates the OSGi Framework in its own <code>URLClassLoader</code></li> 
+ <li>Supports Framework restart</li> 
+ <li>Allows propagation of core setup functionality depending on the environment</li> 
+</ul> 
+<p>This page is about the internal details of the Sling Launchpad Base module. To get an outside overview of the Sling Launchpad you might want to refer to <a href="/documentation/the-sling-engine/the-sling-launchpad.html">The Sling Launchpad</a> page.</p> 
+<h1><a href="#structure" id="structure">Structure</a></h1> 
+<p>The Launcher is based on three parts:</p> 
+<ol> 
+ <li>The external part which is for example the standalone Java application's main class or the servlet deployed into the servlet container</li> 
+ <li>The internal part which is the OSGi framework plus helper classes to control the framework and run initial installations</li> 
+ <li>The bridging part, which contains API common to the external and internal part.</li> 
+</ol> 
+<p>The external part uses the bridging part to create the class loader into which the internal part is loaded. The bidirectional communication between the external and internal part is implement based on two interfaces:</p> 
+<ul> 
+ <li>The <code>Launcher</code> interface is implemented by a class in the internal part which is loaded through the bridge class loader. This interface allows setting, starting and stopping of the framework.</li> 
+ <li>The <code>Notifiable</code> interface is implemented by a class in the external part which instance is handed to the <code>Launcher</code> instance. This interface allows the internal part to communicate back to the external part, most notably to indicate that the framework has been stopped from within or that the framework has been updated and must be restarted.</li> 
+</ul> 
+<h1><a href="#the-bridging-part" id="the-bridging-part">The Bridging Part</a></h1> 
+<p>The bridging part is provided in the <code>org.apache.sling.launchpad.base.shared</code> package:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Class </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> Launcher </td>
+   <td> The interface implemented by the internal class matching the external class being called to start/stop the framework. </td>
+  </tr> 
+  <tr>
+   <td> LauncherClassLoader </td>
+   <td> <code>URLClassLoader</code> implementing the class loader to load the internal part (along with the OSGi framework). This class loader only delegates to the parent class loader any packages not contained in the launchpad library (primary artifact of the Launchpad Base project). </td>
+  </tr> 
+  <tr>
+   <td> Loader </td>
+   <td> Helper class to find the launchpad library and to create the <code>LauncherClassLoader</code> with that library. This class is also used to actually load the <code>Launcher</code> implementation to be called from the external launcher class. </td>
+  </tr> 
+  <tr>
+   <td> Notifiable </td>
+   <td> The interface implemented in the external part and handed over to the internal part. </td>
+  </tr> 
+  <tr>
+   <td> SharedConstants </td>
+   <td> Constants naming various properties and classes. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h1><a href="#the-internal-part" id="the-internal-part">The Internal Part</a></h1> 
+<p>The main class from the internal class directly used is <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/Sling.java"><code>Sling</code></a> which instantiated to start the OSGi Framework. This class is responsible for setting up the environment to finally start the OSGi Framework:</p> 
+<ul> 
+ <li>Read the <code>sling.properties</code> file</li> 
+ <li>Ensure the presence of the JMX MBeanServer service</li> 
+ <li>Execute the bootstrap installations, updates and uninstallations</li> 
+</ul> 
+<p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-base/blob/master/src/main/java/org/apache/sling/launchpad/base/impl/SlingFelix.java"><code>SlingFelix</code></a> class extends the Apache Felix <code>Felix</code> class which is the actual OSGi framework implementation. We extend the class to be able to notify the <code>Notifiable</code> implementation and update the OSGi framework from within the OSGi framework by updating the system bundle.</p> 
+<h2><a href="#the-external-part" id="the-external-part">The External Part</a></h2> 
+<p>The external part is comprised of a main class started from the environment -- main class of the Java applicaction or the servlet deployed in the servlet container -- and a corresponding delegate class located inside of the launchpad base library. This delegate class is instantiated by the <code>Loader</code> loading from the <code>LauncherClassLoader</code>.</p> 
+<h3><a href="#standalone-java-application" id="standalone-java-application">Standalone Java Application</a></h3> 
+<p>The standalone Java Application makes use of three classes:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Class </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> Main </td>
+   <td> This is the main class whose <code>main</code> method is called by the Java VM. This class is itself the <code>Notifiable</code> and finds the <code>sling.home</code> location from the environment (command line parameter, system property, or environment variable). </td>
+  </tr> 
+  <tr>
+   <td> MainDelegate </td>
+   <td> This class is loaded by the <code>Loader</code> from the <code>LauncherClassLoader</code> to actually complete the initial setup before creating the <code>Sling</code> class to start the framework. </td>
+  </tr> 
+  <tr>
+   <td> ControlListener </td>
+   <td> This class is used by the <code>Main</code> class to open a server socket to be able to start and stop Sling as a server. This class allows for starting (opening the server socket), status check (connecting to the socket asking for status), and shutdown (connecting to the socket asking for shutdown). </td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>At the moment these classes are not directly suitable to be embedded in an existing application (or custom application launcher framework) unless that embedding prepares command line arguments in a <code>String[]</code> and calls the <code>Main.main</code> method. To allow for custom embeddings or extensions, the work distributions between the three classes should be refactored.</p> 
+<h3><a href="#embedding-the-standalone-java-application" id="embedding-the-standalone-java-application">Embedding the Standalone Java Application</a></h3> 
+<p>To embedd the Sling Launcher in an application, the <code>Main</code> class is extended from. To manage the launcher, the following API is available:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Method </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>Main(Map&lt;String, String&gt; properties)</code> </td>
+   <td> Instantiates the Main class with the given configuration properties. These are properties which are used directly as overwrites to the configurations in the <code>sling.properties</code> file. There is no more conversion applied. </td>
+  </tr> 
+  <tr>
+   <td> <code>doControlCommand()</code> </td>
+   <td> Before starting the application for the first time, this method can be called to handle any control command action. </td>
+  </tr> 
+  <tr>
+   <td> <code>doStart()</code> </td>
+   <td> Starts the Sling Application using the provided configuration properties as overwrites. Also these properties (or the <code>sling.home</code> system property or the <code>SLING_HOME</code> environment variable are analyzed to get the value for the <code>sling.home</code> setting. </td>
+  </tr> 
+  <tr>
+   <td> <code>doStop()</code> </td>
+   <td> Stops the application started by the <code>doStart()</code> method. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h4><a href="#external-control-of-the-sling-application" id="external-control-of-the-sling-application">External Control of the Sling Application</a></h4> 
+<p>By using control actions, the Sling Launcher may open or connect to a control port to communicate. The <code>doControlAction()</code> method together with the <code>sling.control.action</code> and <code>sling.control.socket</code> properties is able to setup this communication.</p> 
+<p>The <code>sling.control.socket</code> is either a normal port number, in which case the connection is opened on the <code>localhost</code> interface (usually 127.0.0.1). Otheriwse, it may also be a value of the form <em>host:port</em> where <em>host</em> is the name or IP address of the interface to connect to and port is the port number. For security reasons it is suggested to not use an interface which is available remotely. So the default of <code>localhost</code> is usually the best choice.</p> 
+<p>The <code>sling.control.action</code> takes either of three values:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Value </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>start</code> </td>
+   <td> Starts a server socket as specified by the <code>sling.control.socket</code> property. If the socket cannot be bound to (because the port is in use) an error message is printed. Using the <code>start</code> action only makes sense when starting the application. </td>
+  </tr> 
+  <tr>
+   <td> <code>stop</code> </td>
+   <td> The <code>stop</code> action is used to stop a running application. For that a connection is opened to the server running on the socket specified by the <code>sling.control.socket</code> property. On this connection the server is instructed to shut down. After executing the <code>stop</code> action, the Java application should be terminated. </td>
+  </tr> 
+  <tr>
+   <td> <code>status</code> </td>
+   <td> The <code>status</code> action is used to check the status of a running application. For that a connection is opened to the server running on the socket specified by the <code>sling.control.socket</code> property. On this connection the server is queried on its status. After executing the <code>stop</code> action, the Java application should be terminated. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h4><a href="#conversion-of-commandline-arguments-to-properties" id="conversion-of-commandline-arguments-to-properties">Conversion of Commandline Arguments to Properties</a></h4> 
+<p>When calling the Main class through the JVM startup the <code>Main.main(String[] args)</code> methods is called which reads the command line arguments and converts them into a <code>Map&lt;String, String&gt;</code> suitable for the constructore as follows:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Command Line Argument </th>
+   <th> Properties Entry </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> start </td>
+   <td> sling.control.action = "start" </td>
+  </tr> 
+  <tr>
+   <td> status </td>
+   <td> sling.control.action = "status" </td>
+  </tr> 
+  <tr>
+   <td> stop </td>
+   <td> sling.control.action = "stop" </td>
+  </tr> 
+  <tr>
+   <td> -c slinghome </td>
+   <td> sling.home = slinghome </td>
+  </tr> 
+  <tr>
+   <td> -l loglevel </td>
+   <td> org.apache.sling.commons.log.level = loglevel </td>
+  </tr> 
+  <tr>
+   <td> -f logfile </td>
+   <td> org.apache.sling.commons.log.file = logfile </td>
+  </tr> 
+  <tr>
+   <td> -a address </td>
+   <td> This command line argument is not supported yet and thus ignored </td>
+  </tr> 
+  <tr>
+   <td> -p port </td>
+   <td> org.osgi.service.http.port = port </td>
+  </tr> 
+  <tr>
+   <td> -j [ host ":" ] port </td>
+   <td> sling.control.socket = [ host ":" ] port </td>
+  </tr> 
+  <tr>
+   <td> -h </td>
+   <td> This command line option is handled directly and not converted into the map </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h3><a href="#web-application" id="web-application">Web Application</a></h3> 
+<p>The web application makes use of 5 classes:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Class </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> SlingServlet </td>
+   <td> This is the servlet registered in the <code>web.xml</code> descriptor and loaded by the servlet container into which Sling is deplyoed. This class locates the <code>sling.home</code> folder and loads the <code>SlingServletDelagate</code> to actually launch the framework. </td>
+  </tr> 
+  <tr>
+   <td> SlingSessionListener </td>
+   <td> This -- somewhat inappropriately named -- class is registered as a listener by the Sling <code>web.xml</code> descriptor. It is called by the servlet container and forwards events to the <code>SlingHttpSessionListenerDelegate</code> which in turn forwards the events to the respective Servlet API listener services registered in the OSGi Framework. </td>
+  </tr> 
+  <tr>
+   <td> SlingBridge </td>
+   <td> Simple extension of the <code>Sling</code> class which registers the system bundle's <code>BundleContext</code> as a servlet context attribute of the Sling web application. This allows Servlet Container bridging to properly work. </td>
+  </tr> 
+  <tr>
+   <td> SlingHttpSessionListenerDelegate </td>
+   <td> This class is loaded by the <code>LauncherClassLoader</code> called from the <code>SlingSessionListener</code>. It is called by the <code>SlingSessionListener</code> to forward servlet container events to registered Servlet API listener services. </td>
+  </tr> 
+  <tr>
+   <td> SlingServletDelegate </td>
+   <td> This class is loaded by the <code>Loader</code> from the <code>LauncherClassLoader</code> to actually complete the initial setup before creating the <code>SlingBridge</code> class to start the framework. </td>
+  </tr> 
+ </tbody> 
+</table> 
 <p>At the moment these classes, particularly the <code>SlingServlet</code> class, are not particularly well suited to be extended by a servlet slightly modifying the launcher.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

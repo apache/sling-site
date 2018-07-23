@@ -92,33 +92,32 @@
                 Run Modes
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><div markdown="1" class="note">
-As of Sling 6 the <code>org.apache.sling.runmode</code> bundle is replaced
-by the new <a href="/documentation/bundles/sling-settings-org-apache-sling-settings.html">Sling Settings (org.apache.sling.settings)</a>
-Bundle. For backwards compatibility this bundle may still exist in your environment. New code should use the API of the new
-Sling Settings Bundle, though.
-</div>
-<h1><a href="#overview" name="overview">Overview</a></h1>
-<p>Run modes are meant to define different sets of configuration parameters for various Sling instances.</p>
-<p>In a web publishing environment, for example, one could use run modes like <em>staging, production, dev, dmz</em> or combinations of such values.</p>
-<p>The <em>[org.apache.sling.runmode]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode.path }})</em> bundle provides a simple way of defining and querying a list of run modes.</p>
-<h1><a href="#installation" name="installation">Installation</a></h1>
-<p>The run mode service is not present in the default Sling launchpad builds, to activate it install and start the <em>org.apache.sling.runmode</em> bundle.</p>
-<h1><a href="#configuration" name="configuration">Configuration</a></h1>
-<p>Run modes can only be configured using a system property, or via the <em>sling.properties</em> file.</p>
-<p>Using <em>-Dsling.run.modes=foo,bar</em> on the JVM command-line, for example, activates the <em>foo</em> and <em>bar</em> run modes. </p>
-<p>This command-line parameter takes precedence over a similar definition (*sling.run.modes=dev,staging*) that might be present in the <em>sling.properties</em> file found in the Sling home directory.</p>
-<h1><a href="#getting-the-current-list-of-run-modes" name="getting-the-current-list-of-run-modes">Getting the current list of run modes</a></h1>
-<p>The [RunMode service]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:</p>
+  As of Sling 6 the 
+ <code>org.apache.sling.runmode</code> bundle is replaced by the new 
+ <a href="/documentation/bundles/sling-settings-org-apache-sling-settings.html">Sling Settings (org.apache.sling.settings)</a> Bundle. For backwards compatibility this bundle may still exist in your environment. New code should use the API of the new Sling Settings Bundle, though. 
+</div> 
+<h1><a href="#overview" id="overview">Overview</a></h1> 
+<p>Run modes are meant to define different sets of configuration parameters for various Sling instances.</p> 
+<p>In a web publishing environment, for example, one could use run modes like <em>staging, production, dev, dmz</em> or combinations of such values.</p> 
+<p>The <em>[org.apache.sling.runmode]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode.path }})</em> bundle provides a simple way of defining and querying a list of run modes.</p> 
+<h1><a href="#installation" id="installation">Installation</a></h1> 
+<p>The run mode service is not present in the default Sling launchpad builds, to activate it install and start the <em>org.apache.sling.runmode</em> bundle.</p> 
+<h1><a href="#configuration" id="configuration">Configuration</a></h1> 
+<p>Run modes can only be configured using a system property, or via the <em>sling.properties</em> file.</p> 
+<p>Using <em>-Dsling.run.modes=foo,bar</em> on the JVM command-line, for example, activates the <em>foo</em> and <em>bar</em> run modes.</p> 
+<p>This command-line parameter takes precedence over a similar definition (<em>sling.run.modes=dev,staging</em>) that might be present in the <em>sling.properties</em> file found in the Sling home directory.</p> 
+<h1><a href="#getting-the-current-list-of-run-modes" id="getting-the-current-list-of-run-modes">Getting the current list of run modes</a></h1> 
+<p>The [RunMode service]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:</p> 
 <pre><code><!-- TODO syntax marker (::java) disabled -->RunMode r = ...get from BundleContext...
 String [] currentRunModes = r.getCurrentRunModes();
 
-String [] expectedRunModes = { &quot;foo&quot;, &quot;wii&quot; };
+String [] expectedRunModes = { "foo", "wii" };
 if(r.isActive(expectedRunModes)) {
   // at least one of (foo,wii) run modes
   // is active
 }
-</code></pre>
-<h1><a href="#see-also" name="see-also">See also</a></h1>
+</code></pre> 
+<h1><a href="#see-also" id="see-also">See also</a></h1> 
 <p>The RunMode service is used by the [jcrinstall]({{ refs.jcr-installer-provider.path }}) services.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -93,58 +93,58 @@
             </div><h1 class="pagetitle">
                 Basic Ideas
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#collections" name="collections">Collections</a></h3>
-<p><code>SlingQuery</code> class represents a collection of resources. Basic collection can be created explicitly via a dollar method:</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#collections" id="collections">Collections</a></h3> 
+<p><code>SlingQuery</code> class represents a collection of resources. Basic collection can be created explicitly via a dollar method:</p> 
 <pre><code>$(resource1, resource2, resource3)
-</code></pre>
-<p>Above method creates a new <code>SlingQuery</code> object that consists of 3 resources. This object implements <code>Iterable&lt;Resource&gt;</code> interface, so can be used in foreach statements directly:</p>
+</code></pre> 
+<p>Above method creates a new <code>SlingQuery</code> object that consists of 3 resources. This object implements <code>Iterable&lt;Resource&gt;</code> interface, so can be used in foreach statements directly:</p> 
 <pre><code>for (Resource resource in $(...)) { }
-</code></pre>
-<h3><a href="#operations" name="operations">Operations</a></h3>
-<p><code>SlingQuery</code> class defines a number of methods which can be used to transform current collection into a new one. Following code:</p>
+</code></pre> 
+<h3><a href="#operations" id="operations">Operations</a></h3> 
+<p><code>SlingQuery</code> class defines a number of methods which can be used to transform current collection into a new one. Following code:</p> 
 <pre><code>$(resource1, resource2).parent()
-</code></pre>
-<p>will replace each resource with its direct parent. If some resource is a repository root, it will be skipped. Some methods replace each resource with another resource (eg. <code>parent()</code> or <code>closest()</code>). Other methods can replace each resource with a set of resources:</p>
+</code></pre> 
+<p>will replace each resource with its direct parent. If some resource is a repository root, it will be skipped. Some methods replace each resource with another resource (eg. <code>parent()</code> or <code>closest()</code>). Other methods can replace each resource with a set of resources:</p> 
 <pre><code>$(resource1, resource2).children();
-</code></pre>
-<p>Resulting object will contain direct children of both <code>resource1</code> and <code>resource2</code> objects. There are also methods that doesn't add any new resources, but removes existing:</p>
+</code></pre> 
+<p>Resulting object will contain direct children of both <code>resource1</code> and <code>resource2</code> objects. There are also methods that doesn't add any new resources, but removes existing:</p> 
 <pre><code>$(resource1, resource2).first();
-</code></pre>
-<p>Methods can be chained to create more complex query. Eg. following code will return last direct child of the <code>resource</code>:</p>
+</code></pre> 
+<p>Methods can be chained to create more complex query. Eg. following code will return last direct child of the <code>resource</code>:</p> 
 <pre><code>$(resource).children().last();
-</code></pre>
-<h4><a href="#laziness" name="laziness">Laziness</a></h4>
-<p>All operations are lazy (except <code>prev()</code> and sometimes <code>not()</code>). It means that <code>SlingQuery</code> won't read any resources until it's actually necessary. Example:</p>
+</code></pre> 
+<h4><a href="#laziness" id="laziness">Laziness</a></h4> 
+<p>All operations are lazy (except <code>prev()</code> and sometimes <code>not()</code>). It means that <code>SlingQuery</code> won't read any resources until it's actually necessary. Example:</p> 
 <pre><code>$(resource).children().children().first();
-</code></pre>
-<p><code>children().children()</code> construction reads all grand-children of the given resource. However, the last method limits the output to the first found resource. As a result, <code>SlingQuery</code> won't iterate over all children and grand-children, but it will simply take the first child of the <code>resource</code> and return its first child.</p>
-<h4><a href="#immutability" name="immutability">Immutability</a></h4>
-<p><code>SlingQuery</code> object is immutable and each operation creates a new one. We can "freeze" some collection before performing more operations on it:</p>
+</code></pre> 
+<p><code>children().children()</code> construction reads all grand-children of the given resource. However, the last method limits the output to the first found resource. As a result, <code>SlingQuery</code> won't iterate over all children and grand-children, but it will simply take the first child of the <code>resource</code> and return its first child.</p> 
+<h4><a href="#immutability" id="immutability">Immutability</a></h4> 
+<p><code>SlingQuery</code> object is immutable and each operation creates a new one. We can "freeze" some collection before performing more operations on it:</p> 
 <pre><code>SlingQuery children = $(resource).children();
 SlingQuery firstChild = children.first();
 for (Resource child : children) { /* will display all children */ }
 for (Resource child : firstChild) { /* will display the first child */ }
-</code></pre>
-<h3><a href="#selectors" name="selectors">Selectors</a></h3>
-<p>Some operations may take an additional string selector parameter that defines a filtering. Selector could be used to define resource type, resource attributes and additional modifiers. Example selector could look like this:</p>
-<pre><code>&quot;cq:Page&quot;
-</code></pre>
-<p>It will match all resources with the given resource type. Example:</p>
-<pre><code>$(resource).children(&quot;cq:Page&quot;)
-</code></pre>
-<p>will return only children with <code>cq:Page</code> resource type. You could also filter these resources defining any number of attributes in the square brackets:</p>
-<pre><code>$(resource).children(&quot;cq:Page[jcr:title=Some title][jcr:description=Some desc]&quot;)
-</code></pre>
-<p>And finally, you could add some modifiers at the end:</p>
-<pre><code>$(resource).children(&quot;cq:Page[jcr:content/cq:template=my/template]:even&quot;)
-</code></pre>
-<p>Above resources will find <code>cq:Page</code> children of the resource, using template <code>my/template</code> and return not all of them, but only those with even indices (eg. if matching children of the <code>resource</code> are <code>page_0</code>, <code>page_1</code> and <code>page_2</code>, only the first and the last will be returned).</p>
-<p>All parts of the selector are optional. In fact, an empty string (<code>&quot;&quot;</code>) is a valid selector, accepting all resources. However, the defined order (resource type, attributes in square brackets and modifiers) has to be followed. Example selectors:</p>
-<pre><code>&quot;foundation/components/richtext&quot; // resource type
-&quot;foundation/components/richtext:first&quot; // resource type with modifier
-&quot;[property=value][property2=value2]&quot; // two attributes
-&quot;:even&quot; // modifier
-&quot;:even:not(:first)&quot; // two modifiers, the second one is nested
+</code></pre> 
+<h3><a href="#selectors" id="selectors">Selectors</a></h3> 
+<p>Some operations may take an additional string selector parameter that defines a filtering. Selector could be used to define resource type, resource attributes and additional modifiers. Example selector could look like this:</p> 
+<pre><code>"cq:Page"
+</code></pre> 
+<p>It will match all resources with the given resource type. Example:</p> 
+<pre><code>$(resource).children("cq:Page")
+</code></pre> 
+<p>will return only children with <code>cq:Page</code> resource type. You could also filter these resources defining any number of attributes in the square brackets:</p> 
+<pre><code>$(resource).children("cq:Page[jcr:title=Some title][jcr:description=Some desc]")
+</code></pre> 
+<p>And finally, you could add some modifiers at the end:</p> 
+<pre><code>$(resource).children("cq:Page[jcr:content/cq:template=my/template]:even")
+</code></pre> 
+<p>Above resources will find <code>cq:Page</code> children of the resource, using template <code>my/template</code> and return not all of them, but only those with even indices (eg. if matching children of the <code>resource</code> are <code>page_0</code>, <code>page_1</code> and <code>page_2</code>, only the first and the last will be returned).</p> 
+<p>All parts of the selector are optional. In fact, an empty string (<code>""</code>) is a valid selector, accepting all resources. However, the defined order (resource type, attributes in square brackets and modifiers) has to be followed. Example selectors:</p> 
+<pre><code>"foundation/components/richtext" // resource type
+"foundation/components/richtext:first" // resource type with modifier
+"[property=value][property2=value2]" // two attributes
+":even" // modifier
+":even:not(:first)" // two modifiers, the second one is nested
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

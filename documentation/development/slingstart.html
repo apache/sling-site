@@ -98,59 +98,58 @@
                 The Apache Sling Provisioning Model and Apache SlingStart
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
+</p> 
 <div class="note">
-    The <a href="/documentation/development/feature-model.html">OSGi Feature Model</a> is
-    meant to eventually replace the Sling Provisioning Model. If you are starting a new Sling project, please ask on
-    the Sling developers list about the status of the Feature Model to figure out which is best suited to your needs.
-</div>
-<p>The Apache Sling provisioning model is a model to describe OSGi based application. It can also be used to define a partial application aka feature (or subsystem in OSGi terms).</p>
-<p>The model is describing an instance, it is not directly related to any particular tooling or packaging/provisioning vehicle.</p>
-<p>For Apache Maven users, the <code>slingstart-maven-plugin</code> uses the model to create an executable application and/or a web application based on the model. Sling's Launchpad is defined using the model and built by this Maven plugin. See <a href="http://sling.apache.org/components/slingstart-maven-plugin/">SlingStart Maven Plugin</a> for a documentation of the supported goals and parameters.</p>
-<h2><a href="#the-model" name="the-model">The Model</a></h2>
-<p>The model is a simple API consisting of data objects:</p>
-<ul>
-  <li>Model: This is the central object. It consists of features.</li>
-  <li>Feature : this is the central object describing a (partial) system. A feature consists of variables and run modes.</li>
-  <li>Variables: These can be used to define artifact versions, settings values or configuration property values.</li>
-  <li>Run Mode : A run mode contains artifacts, configurations, and settings. The artifacts are divided into artifact groups.</li>
-  <li>Artifact Group: A group of artifacts with an associated start level (the artifacts are usually bundles)</li>
-  <li>Artifact: A deployable artifact described by Maven coordinates.</li>
-  <li>Configuration: A OSGi configuration</li>
-  <li>Settings : Framework settings for the OSGi framework</li>
-</ul>
-<h3><a href="#run-modes" name="run-modes">Run Modes</a></h3>
-<p>The default run mode is always active, and all information provided there will be used/started. Custom run modes can be used to configure for different situations. Depending on which run mode is used to start the instance a different set of artifacts or configurations is used. Each run mode is associated with a set of run mode names. Only if all listed run modes are active, the definition is used.</p>
-<p>The model also supports special run modes, which have special meaning. By default, these pre defined special run modes are available:</p>
-<ul>
-  <li>:standalone Artifacts for the standalone application - in contrast to a war.</li>
-  <li>:webapp Artifacts for the webapp only</li>
-</ul>
-<p>Other special run modes can be defined by using a single run mode name which starts with a colon, like :test. These run modes can be used by special tooling.</p>
-<h3><a href="#start-levels" name="start-levels">Start Levels</a></h3>
-<p>Each run mode has start levels. These start levels correspond to OSGi start levels. The default start level has the level 0 and should be used for all non bundle artifacts. If a non bundle artifact is configured with a start level, it's still provisioned, however the start level information might not have any meaning. As usually the provisioned artifacts are bundles and as start levels are pretty handy, this was conscious design decision in order to keep the model files small.</p>
-<h3><a href="#artifacts" name="artifacts">Artifacts</a></h3>
-<p>An artifact is defined by Maven coordinates, that is group id, artifact id and version. Type and classifier can be specified, too. Type defaults to "jar". Although the maven way of referring to an artifact is used, the model is in no way tied to Maven and can be used with any tooling. For a plain jar the text definition for an artifact is:</p>
+  The 
+ <a href="/documentation/development/feature-model.html">OSGi Feature Model</a> is meant to eventually replace the Sling Provisioning Model. If you are starting a new Sling project, please ask on the Sling developers list about the status of the Feature Model to figure out which is best suited to your needs. 
+</div> 
+<p>The Apache Sling provisioning model is a model to describe OSGi based application. It can also be used to define a partial application aka feature (or subsystem in OSGi terms).</p> 
+<p>The model is describing an instance, it is not directly related to any particular tooling or packaging/provisioning vehicle.</p> 
+<p>For Apache Maven users, the <code>slingstart-maven-plugin</code> uses the model to create an executable application and/or a web application based on the model. Sling's Launchpad is defined using the model and built by this Maven plugin. See <a href="http://sling.apache.org/components/slingstart-maven-plugin/">SlingStart Maven Plugin</a> for a documentation of the supported goals and parameters.</p> 
+<h2><a href="#the-model" id="the-model">The Model</a></h2> 
+<p>The model is a simple API consisting of data objects:</p> 
+<ul> 
+ <li>Model: This is the central object. It consists of features.</li> 
+ <li>Feature : this is the central object describing a (partial) system. A feature consists of variables and run modes.</li> 
+ <li>Variables: These can be used to define artifact versions, settings values or configuration property values.</li> 
+ <li>Run Mode : A run mode contains artifacts, configurations, and settings. The artifacts are divided into artifact groups.</li> 
+ <li>Artifact Group: A group of artifacts with an associated start level (the artifacts are usually bundles)</li> 
+ <li>Artifact: A deployable artifact described by Maven coordinates.</li> 
+ <li>Configuration: A OSGi configuration</li> 
+ <li>Settings : Framework settings for the OSGi framework</li> 
+</ul> 
+<h3><a href="#run-modes" id="run-modes">Run Modes</a></h3> 
+<p>The default run mode is always active, and all information provided there will be used/started. Custom run modes can be used to configure for different situations. Depending on which run mode is used to start the instance a different set of artifacts or configurations is used. Each run mode is associated with a set of run mode names. Only if all listed run modes are active, the definition is used.</p> 
+<p>The model also supports special run modes, which have special meaning. By default, these pre defined special run modes are available:</p> 
+<ul> 
+ <li>:standalone Artifacts for the standalone application - in contrast to a war.</li> 
+ <li>:webapp Artifacts for the webapp only</li> 
+</ul> 
+<p>Other special run modes can be defined by using a single run mode name which starts with a colon, like :test. These run modes can be used by special tooling.</p> 
+<h3><a href="#start-levels" id="start-levels">Start Levels</a></h3> 
+<p>Each run mode has start levels. These start levels correspond to OSGi start levels. The default start level has the level 0 and should be used for all non bundle artifacts. If a non bundle artifact is configured with a start level, it's still provisioned, however the start level information might not have any meaning. As usually the provisioned artifacts are bundles and as start levels are pretty handy, this was conscious design decision in order to keep the model files small.</p> 
+<h3><a href="#artifacts" id="artifacts">Artifacts</a></h3> 
+<p>An artifact is defined by Maven coordinates, that is group id, artifact id and version. Type and classifier can be specified, too. Type defaults to "jar". Although the maven way of referring to an artifact is used, the model is in no way tied to Maven and can be used with any tooling. For a plain jar the text definition for an artifact is:</p> 
 <pre><code>            groupId/artifactId/version
             org.apache.sling/api/2.8.0
-</code></pre>
-<p>If you want to specify the type, it's appended after the version:</p>
+</code></pre> 
+<p>If you want to specify the type, it's appended after the version:</p> 
 <pre><code>            groupId/artifactId/version/type
             org.apache.sling/api/2.8.0/jar
-</code></pre>
-<p>If you want to specify the classifier, it gets appended after the type:</p>
+</code></pre> 
+<p>If you want to specify the classifier, it gets appended after the type:</p> 
 <pre><code>            groupId/artifactId/version/type/classifier
             org.apache.sling/api/2.8.0/jar/test
-</code></pre>
-<h3><a href="#configurations" name="configurations">Configurations</a></h3>
-<p>A configuration has a pid, or a factory pid and an alias and of course the properties of the configuration object.</p>
-<p>Special configurations can be marked with a leading ":" of the pid. Special configurations are not added to the OSGi config admin. There are some predefined special configurations</p>
-<ul>
-  <li>:web.xml This configuration must be part of the :webapp runmode and contains a complete web.xml for the web application</li>
-  <li>:bootstrap This configuration must be part of either the :boot, :base, :standalone, or :webapp run mode and define the contents for the bootstrap command file executed by Launchpad.</li>
-</ul>
-<h4><a href="#bootstrap-command-file" name="bootstrap-command-file">Bootstrap Command File</a></h4>
-<p>The bootstrap configuration is a text block consisting of uninstall directives. This block is only executed on the first startup.</p>
+</code></pre> 
+<h3><a href="#configurations" id="configurations">Configurations</a></h3> 
+<p>A configuration has a pid, or a factory pid and an alias and of course the properties of the configuration object.</p> 
+<p>Special configurations can be marked with a leading ":" of the pid. Special configurations are not added to the OSGi config admin. There are some predefined special configurations</p> 
+<ul> 
+ <li>:web.xml This configuration must be part of the :webapp runmode and contains a complete web.xml for the web application</li> 
+ <li>:bootstrap This configuration must be part of either the :boot, :base, :standalone, or :webapp run mode and define the contents for the bootstrap command file executed by Launchpad.</li> 
+</ul> 
+<h4><a href="#bootstrap-command-file" id="bootstrap-command-file">Bootstrap Command File</a></h4> 
+<p>The bootstrap configuration is a text block consisting of uninstall directives. This block is only executed on the first startup.</p> 
 <pre><code>[feature name=:launchpad]
 
 [configurations]
@@ -160,18 +159,18 @@
   uninstall org.apache.sling.fragment.activation 1.2
   uninstall org.apache.sling.installer.api [1.0,2.0)
   uninstall org.apache.sling.tests
-</code></pre>
-<p>Each uninstall directive starts with the text "uninstall" followed by the bundle symbolic name. A version range can be specified as well. If no version information is specified, the bundle with that symbolic name is uninstalled on startup. If a version is specified, the bundle is only uninstalled if it's installed with the exact same version. If a range is specified, the bundle is only uninstalled, if the version is within that range.</p>
-<h3><a href="#settings" name="settings">Settings</a></h3>
-<p>Settings are key value pairs that are added to the framework properties. For now, only settings for the run modes :boot, :base, :standalone, or :webapp are supported.</p>
-<h3><a href="#features" name="features">Features</a></h3>
-<p>Features group run modes and define a special functionality. The model also defines two special features:</p>
-<ul>
-  <li><code>:launchpad</code> This feature contains the dependency to Sling's launchpad artifact to be used. This mode is required if Apache Sling Launchpad should be used to start the application.</li>
-  <li><code>:boot</code> The artifacts that are installed before the framework is started. They're used to bootstrap the system.</li>
-</ul>
-<h2><a href="#model-files" name="model-files">Model Files</a></h2>
-<p>The model comes also with a textual description language:</p>
+</code></pre> 
+<p>Each uninstall directive starts with the text "uninstall" followed by the bundle symbolic name. A version range can be specified as well. If no version information is specified, the bundle with that symbolic name is uninstalled on startup. If a version is specified, the bundle is only uninstalled if it's installed with the exact same version. If a range is specified, the bundle is only uninstalled, if the version is within that range.</p> 
+<h3><a href="#settings" id="settings">Settings</a></h3> 
+<p>Settings are key value pairs that are added to the framework properties. For now, only settings for the run modes :boot, :base, :standalone, or :webapp are supported.</p> 
+<h3><a href="#features" id="features">Features</a></h3> 
+<p>Features group run modes and define a special functionality. The model also defines two special features:</p> 
+<ul> 
+ <li><code>:launchpad</code> This feature contains the dependency to Sling's launchpad artifact to be used. This mode is required if Apache Sling Launchpad should be used to start the application.</li> 
+ <li><code>:boot</code> The artifacts that are installed before the framework is started. They're used to bootstrap the system.</li> 
+</ul> 
+<h2><a href="#model-files" id="model-files">Model Files</a></h2> 
+<p>The model comes also with a textual description language:</p> 
 <pre><code>[feature name=my-feature]
     [variables]
         eventadmin.version=1.0.0
@@ -181,13 +180,13 @@
        org.apache.sling/eventadmin/${eventadmin.version}
        org.apache.sling/metatype/${metatype.version}
        org.apache.sling/coordinator/3.0.0
-
+       
     [configurations]
        org.apache.sling.eventadmin
           useQueue=true
-          ignoreTopics=[&quot;myTopic&quot;]
-</code></pre>
-<p>A configuration for a run mode looks like this:</p>
+          ignoreTopics=["myTopic"]
+</code></pre> 
+<p>A configuration for a run mode looks like this:</p> 
 <pre><code>[feature name=my-feature]
     [variables]
         eventadmin.version=1.0.0
@@ -198,198 +197,198 @@
 
     [artifacts startLevel=5 runModes=mymode]
        org.apache.sling/eventadmin/${eventadmin.version}
-
+    
     [configurations runModes=mymode]
        org.apache.sling.eventadmin
           useQueue=true
-          ignoreTopics=[&quot;myTopic&quot;]
-</code></pre>
-<p>The following paragraphs describes the different sections in a provisioning model file.</p>
-<p>Each section header may contain arbitrarily many parameters and has the following format:</p>
-<pre><code>section header ::= &#39;[&#39; &lt;section name&gt; { &#39; &#39; &lt;parameter-name&gt; &#39;=&#39; &lt;parameter-value&gt; } &#39;]&#39;
-</code></pre>
-<h3><a href="#feature" name="feature">Feature</a></h3>
-<p>Each model file must start with a feature. The feature contains all other subsections or directly artifacts (without the artifact section headers)</p>
-<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
-<table>
-  <thead>
-    <tr>
-      <th>Name </th>
-      <th>Description </th>
-      <th>Default Value </th>
-      <th>Mandatory </th>
-      <th>Related JIRA Issue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>name </td>
-      <td>The name of the feature. Arbitrary String, relevant for merging. </td>
-      <td><code>-</code> </td>
-      <td>yes </td>
-      <td><code>-</code></td>
-    </tr>
-    <tr>
-      <td>type </td>
-      <td>One of <code>plain</code> (default), <code>osgi.subsystem.feature</code>, <code>osgi.subsystem.application</code>, <code>osgi.subsystem.composite</code>. </td>
-      <td><code>plain</code> </td>
-      <td>no </td>
-      <td><a href="https://issues.apache.org/jira/browse/SLING-5149">SLING-5149</a></td>
-    </tr>
-    <tr>
-      <td>version </td>
-      <td>The version of the feature. Purely for information purposes, has no functional effect. </td>
-      <td><code>-</code> </td>
-      <td>no </td>
-      <td><a href="https://issues.apache.org/jira/browse/SLING-6181">SLING-6181</a></td>
-    </tr>
-    <tr>
-      <td>runModes </td>
-      <td>The name(s) of the run modes for which this feature is relevant. The value contains the required run modes separated by <code>,</code> </td>
-      <td><code>-</code> </td>
-      <td>no </td>
-      <td><code>-</code></td>
-    </tr>
-  </tbody>
-</table>
-<h3><a href="#artifact" name="artifact">Artifact</a></h3>
-<p>The artifact section is the main section below a feature. The section header of the artifact section may be omitted if it follows directly after the feature header.</p>
-<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
-<table>
-  <thead>
-    <tr>
-      <th>Name </th>
-      <th>Description </th>
-      <th>Default Value </th>
-      <th>Mandatory </th>
-      <th>Related JIRA Issue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>startLevel </td>
-      <td>The start level on which to start this artifact. </td>
-      <td>0 </td>
-      <td>no </td>
-      <td><code>-</code></td>
-    </tr>
-  </tbody>
-</table>
-<p>The parameter <code>runModes</code> described for the features section can be set for artifact sections as well.</p>
-<h4><a href="#content" name="content">Content</a></h4>
-<p>Each line in the artifact section specifies a Maven artifact url in the following format</p>
-<pre><code>artifactUrl ::= [ &lt;repository-url&gt; &#39;!&#39; ] &lt;group-id&gt; &#39;/&#39; &lt;artifact-id&gt; [ &#39;/&#39; [version] [ &#39;/&#39; [type] [ &#39;/&#39; classifier ] ] ] ]
-</code></pre>
-<p>The version may be left out in which case either <code>LATEST</code> is assumed or the version is being resolved from the connected pom.</p>
-<p>After the <code>artifactUrl</code> there may follow arbitrary parameters enclosed in <code>[...]</code></p>
-<p>The parameter name <code>bundle:rename-bsn</code> (<a href="https://issues.apache.org/jira/browse/SLING-5379">SLING-5379</a>) may be used to rewrite the <code>Bundle-SymbolicName</code> (BSN) header in the bundle's manifest. It gets the new symbolic name as value. The original symbolic name is accessible in the manifest header <code>X-Original-Bundle-SymbolicName</code></p>
+          ignoreTopics=["myTopic"]
+</code></pre> 
+<p>The following paragraphs describes the different sections in a provisioning model file.</p> 
+<p>Each section header may contain arbitrarily many parameters and has the following format:</p> 
+<pre><code>section header ::= '[' &lt;section name&gt; { ' ' &lt;parameter-name&gt; '=' &lt;parameter-value&gt; } ']'
+</code></pre> 
+<h3><a href="#feature" id="feature">Feature</a></h3> 
+<p>Each model file must start with a feature. The feature contains all other subsections or directly artifacts (without the artifact section headers)</p> 
+<h4><a href="#header-parameters" id="header-parameters">Header Parameters</a></h4> 
+<table> 
+ <thead> 
+  <tr>
+   <th>Name </th>
+   <th> Description </th>
+   <th> Default Value </th>
+   <th> Mandatory </th>
+   <th> Related JIRA Issue</th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td>name </td>
+   <td> The name of the feature. Arbitrary String, relevant for merging. </td>
+   <td> <code>-</code> </td>
+   <td> yes </td>
+   <td> <code>-</code></td>
+  </tr> 
+  <tr>
+   <td>type </td>
+   <td> One of <code>plain</code> (default), <code>osgi.subsystem.feature</code>, <code>osgi.subsystem.application</code>, <code>osgi.subsystem.composite</code>. </td>
+   <td> <code>plain</code> </td>
+   <td> no </td>
+   <td> <a href="https://issues.apache.org/jira/browse/SLING-5149">SLING-5149</a></td>
+  </tr> 
+  <tr>
+   <td>version </td>
+   <td> The version of the feature. Purely for information purposes, has no functional effect. </td>
+   <td> <code>-</code> </td>
+   <td> no </td>
+   <td> <a href="https://issues.apache.org/jira/browse/SLING-6181">SLING-6181</a></td>
+  </tr> 
+  <tr>
+   <td>runModes </td>
+   <td> The name(s) of the run modes for which this feature is relevant. The value contains the required run modes separated by <code>,</code> </td>
+   <td> <code>-</code> </td>
+   <td> no </td>
+   <td> <code>-</code></td>
+  </tr> 
+ </tbody> 
+</table> 
+<h3><a href="#artifact" id="artifact">Artifact</a></h3> 
+<p>The artifact section is the main section below a feature. The section header of the artifact section may be omitted if it follows directly after the feature header.</p> 
+<h4><a href="#header-parameters" id="header-parameters">Header Parameters</a></h4> 
+<table> 
+ <thead> 
+  <tr>
+   <th>Name </th>
+   <th> Description </th>
+   <th> Default Value </th>
+   <th> Mandatory </th>
+   <th> Related JIRA Issue</th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td>startLevel </td>
+   <td> The start level on which to start this artifact. </td>
+   <td> 0 </td>
+   <td> no </td>
+   <td> <code>-</code></td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>The parameter <code>runModes</code> described for the features section can be set for artifact sections as well.</p> 
+<h4><a href="#content" id="content">Content</a></h4> 
+<p>Each line in the artifact section specifies a Maven artifact url in the following format</p> 
+<pre><code>artifactUrl ::= [ &lt;repository-url&gt; '!' ] &lt;group-id&gt; '/' &lt;artifact-id&gt; [ '/' [version] [ '/' [type] [ '/' classifier ] ] ] ]
+</code></pre> 
+<p>The version may be left out in which case either <code>LATEST</code> is assumed or the version is being resolved from the connected pom.</p> 
+<p>After the <code>artifactUrl</code> there may follow arbitrary parameters enclosed in <code>[...]</code></p> 
+<p>The parameter name <code>bundle:rename-bsn</code> (<a href="https://issues.apache.org/jira/browse/SLING-5379">SLING-5379</a>) may be used to rewrite the <code>Bundle-SymbolicName</code> (BSN) header in the bundle's manifest. It gets the new symbolic name as value. The original symbolic name is accessible in the manifest header <code>X-Original-Bundle-SymbolicName</code></p> 
 <pre><code>org.apache.sling/org.apache.sling.commons.johnzon/1.0.0 [bundle:rename-bsn=r-foo.bar.renamed.sling.commons.johnzon]
-</code></pre>
-<p>This example would rewrite the BSN of the the bundle Commons Johnzon to <code>r-foo.bar.renamed.sling.commons.johnzon</code></p>
-<h3><a href="#variables" name="variables">Variables</a></h3>
-<p>The variable section header must not contain any parameters</p>
-<h4><a href="#content" name="content">Content</a></h4>
-<p>Each line has the following format</p>
-<pre><code>&lt;variable-name&gt; &#39;=&#39; &lt;variable-value&gt;
-</code></pre>
-<p>The variables may be referenced in all other sections via <code>${&lt;variable-name&gt;}</code> and get replaced at run time with the assigned <code>&lt;variable-value&gt;</code>.</p>
-<h3><a href="#settings" name="settings">Settings</a></h3>
-<p>This section defines OSGi framework properties. </p>
-<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
-<p>The parameter <code>runModes</code> described for the features section can be set for setting sections as well.</p>
-<h4><a href="#content" name="content">Content</a></h4>
-<p>Each line contains an OSGi framework property. The framework properties of Apache Felix are documented <a href="http://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html">here</a>.</p>
-<pre><code>&lt;framework-property-name&gt; &#39;=&#39; &lt;framework-property-value&gt;
-</code></pre>
-<h3><a href="#configurations" name="configurations">Configurations</a></h3>
-<h4><a href="#header-parameters" name="header-parameters">Header Parameters</a></h4>
-<p>The parameter <code>runModes</code> described for the features section can be set for configurations sections as well.</p>
-<h4><a href="#content" name="content">Content</a></h4>
-<p>Configuration names are related to the PID and factory PID. The structure of the name is as follows:</p>
-<pre><code>name ::= &lt;pid&gt; ( &#39;-&#39; &lt;subname&gt; )
-</code></pre>
-<p>If the form is just <code>&lt;pid&gt;</code>, the configuration contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p>
-<p>When a Managed Service Factory is used, the situation is different. The <code>&lt;pid&gt;</code> part then describes the PID of the Managed Service Factory. You can pick any <code>&lt;subname&gt;</code> which is used as a unique alias. For example:</p>
+</code></pre> 
+<p>This example would rewrite the BSN of the the bundle Commons Johnzon to <code>r-foo.bar.renamed.sling.commons.johnzon</code></p> 
+<h3><a href="#variables" id="variables">Variables</a></h3> 
+<p>The variable section header must not contain any parameters</p> 
+<h4><a href="#content" id="content">Content</a></h4> 
+<p>Each line has the following format</p> 
+<pre><code>&lt;variable-name&gt; '=' &lt;variable-value&gt;
+</code></pre> 
+<p>The variables may be referenced in all other sections via <code>${&lt;variable-name&gt;}</code> and get replaced at run time with the assigned <code>&lt;variable-value&gt;</code>.</p> 
+<h3><a href="#settings" id="settings">Settings</a></h3> 
+<p>This section defines OSGi framework properties.</p> 
+<h4><a href="#header-parameters" id="header-parameters">Header Parameters</a></h4> 
+<p>The parameter <code>runModes</code> described for the features section can be set for setting sections as well.</p> 
+<h4><a href="#content" id="content">Content</a></h4> 
+<p>Each line contains an OSGi framework property. The framework properties of Apache Felix are documented <a href="http://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html">here</a>.</p> 
+<pre><code>&lt;framework-property-name&gt; '=' &lt;framework-property-value&gt;
+</code></pre> 
+<h3><a href="#configurations" id="configurations">Configurations</a></h3> 
+<h4><a href="#header-parameters" id="header-parameters">Header Parameters</a></h4> 
+<p>The parameter <code>runModes</code> described for the features section can be set for configurations sections as well.</p> 
+<h4><a href="#content" id="content">Content</a></h4> 
+<p>Configuration names are related to the PID and factory PID. The structure of the name is as follows:</p> 
+<pre><code>name ::= &lt;pid&gt; ( '-' &lt;subname&gt; )
+</code></pre> 
+<p>If the form is just <code>&lt;pid&gt;</code>, the configuration contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p> 
+<p>When a Managed Service Factory is used, the situation is different. The <code>&lt;pid&gt;</code> part then describes the PID of the Managed Service Factory. You can pick any <code>&lt;subname&gt;</code> which is used as a unique alias. For example:</p> 
 <pre><code># Configuration for Managed Service com.acme.xyz
 com.acme.xyz // 
 # Managed Service Factory, creates an instance for com.acme.abc
 com.acme.abc-default
-</code></pre>
-<p>In the line after the name follows the actual configuration content.</p>
-<h5><a href="#default-configuration-format" name="default-configuration-format">Default Configuration Format</a></h5>
-<p>Configurations use by default the format of the Apache Felix ConfigAdmin implementation. It allows to specify the type and cardinality of a configuration property and is not limited to string values.</p>
-<p>The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.</p>
-<p>The format is:</p>
+</code></pre> 
+<p>In the line after the name follows the actual configuration content.</p> 
+<h5><a href="#default-configuration-format" id="default-configuration-format">Default Configuration Format</a></h5> 
+<p>Configurations use by default the format of the Apache Felix ConfigAdmin implementation. It allows to specify the type and cardinality of a configuration property and is not limited to string values.</p> 
+<p>The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.</p> 
+<p>The format is:</p> 
 <pre><code>file ::= (comment) (header) *
-comment ::= &#39;#&#39; &lt;any&gt;
-header ::= prop &#39;=&#39; value
+comment ::= '#' &lt;any&gt;
+header ::= prop '=' value
 prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
-symbolic-name ::= token { &#39;.&#39; token } 
-token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | &#39;_&#39; | &#39;-&#39; }
-value ::= [ type ] ( &#39;[&#39; values &#39;]&#39; | &#39;(&#39; values &#39;)&#39; | simple ) 
-values ::= simple { &#39;,&#39; simple } 
-simple ::= &#39;&quot;&#39; stringsimple &#39;&quot;&#39;
+symbolic-name ::= token { '.' token } 
+token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' }
+value ::= [ type ] ( '[' values ']' | '(' values ')' | simple ) 
+values ::= simple { ',' simple } 
+simple ::= '"' stringsimple '"'
 type ::= &lt;1-char type code&gt;
 stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
-</code></pre>
-<p>The 1 character type code is one of:</p>
-<ul>
-  <li>'T' : simple string</li>
-  <li>'I' : Integer</li>
-  <li>'L' : Long</li>
-  <li>'F' : Float</li>
-  <li>'D' : Double</li>
-  <li>'X' : Byte</li>
-  <li>'S' : Short</li>
-  <li>'C' : Character</li>
-  <li>'B' : Boolean</li>
-</ul>
-<p>Apart from the escaping of the usual characters like the quotes, double quotes, backslash etc. the equals sign and spaces need to be escaped as well!</p>
-<h5><a href="#configurations-defined-through-properties" name="configurations-defined-through-properties">Configurations Defined through Properties</a></h5>
-<p>While the default configuration form is very powerful, it might also sometimes be a little bit too heavy to specify a configuration. For these usage cases, the configuration can be described as properties:</p>
-<pre><code>com.acme.xyz [format=properties]     
+</code></pre> 
+<p>The 1 character type code is one of:</p> 
+<ul> 
+ <li>'T' : simple string</li> 
+ <li>'I' : Integer</li> 
+ <li>'L' : Long</li> 
+ <li>'F' : Float</li> 
+ <li>'D' : Double</li> 
+ <li>'X' : Byte</li> 
+ <li>'S' : Short</li> 
+ <li>'C' : Character</li> 
+ <li>'B' : Boolean</li> 
+</ul> 
+<p>Apart from the escaping of the usual characters like the quotes, double quotes, backslash etc. the equals sign and spaces need to be escaped as well!</p> 
+<h5><a href="#configurations-defined-through-properties" id="configurations-defined-through-properties">Configurations Defined through Properties</a></h5> 
+<p>While the default configuration form is very powerful, it might also sometimes be a little bit too heavy to specify a configuration. For these usage cases, the configuration can be described as properties:</p> 
+<pre><code>com.acme.xyz [format=properties] 	 
     ftp.port = 21
-</code></pre>
-<p>Notice that this definition only supports string properties. Therefore the service consuming the configuration needs to be able to adapt a string value to the correct type.</p>
-<h3><a href="#additional-section" name="additional-section">Additional Section</a></h3>
-<p>Every section starting with <code>[:</code> is considered an additional section and can be used for custom purposes.</p>
-<h3><a href="#comments" name="comments">Comments</a></h3>
-<p>Each object in the model can be annotated with comments. A comment is a line starting with a '#'. Leading spaces are ignored.</p>
-<h2><a href="#slingstart-and-slingfeature-projects" name="slingstart-and-slingfeature-projects">Slingstart and Slingfeature projects</a></h2>
-<p>The <code>slingstart-maven-plugin</code> introduces two new packaging types:</p>
-<ul>
-  <li><code>slingstart</code> : This type requires a model at src/main/provisioning. It reads all text files in that directory and merges them in alphabetical order. The resulting artifact is a runnable jar. The assembled model is also attached to the project artifacts.</li>
-  <li><code>slingfeature</code> : This type requires a model at src/main/provisioning. It reads all text files in that directory and merges them in alphabetical order and creates a merged model which is the final artifact of this project.</li>
-</ul>
-<p>A model can reference other slingstart or slingfeature artifacts. When such an artifact is reference, the type needs to be specified, for example:</p>
+</code></pre> 
+<p>Notice that this definition only supports string properties. Therefore the service consuming the configuration needs to be able to adapt a string value to the correct type.</p> 
+<h3><a href="#additional-section" id="additional-section">Additional Section</a></h3> 
+<p>Every section starting with <code>[:</code> is considered an additional section and can be used for custom purposes.</p> 
+<h3><a href="#comments" id="comments">Comments</a></h3> 
+<p>Each object in the model can be annotated with comments. A comment is a line starting with a '#'. Leading spaces are ignored.</p> 
+<h2><a href="#slingstart-and-slingfeature-projects" id="slingstart-and-slingfeature-projects">Slingstart and Slingfeature projects</a></h2> 
+<p>The <code>slingstart-maven-plugin</code> introduces two new packaging types:</p> 
+<ul> 
+ <li><code>slingstart</code> : This type requires a model at src/main/provisioning. It reads all text files in that directory and merges them in alphabetical order. The resulting artifact is a runnable jar. The assembled model is also attached to the project artifacts.</li> 
+ <li><code>slingfeature</code> : This type requires a model at src/main/provisioning. It reads all text files in that directory and merges them in alphabetical order and creates a merged model which is the final artifact of this project.</li> 
+</ul> 
+<p>A model can reference other slingstart or slingfeature artifacts. When such an artifact is reference, the type needs to be specified, for example:</p> 
 <pre><code>[artifacts]
     org.apache.sling/org.apache.sling.starter/${sling_releaseVersion}/slingstart
     org.apache.sling/org.apache.sling.launchpad.test-bundles/0.0.4/slingfeature
-</code></pre>
-<p>The resulting model is a merged model, starting with the dependencies and then merging in the current model.</p>
-<p>By default the Maven classpath is extended by the dependencies of the merged model. This behaviour can be disabled though via setting the parameter <code>disableExtendingMavenClasspath</code> to <code>true</code> (<a href="https://issues.apache.org/jira/browse/SLING-6541">SLING-6541</a>).</p>
-<h2><a href="#model-merging" name="model-merging">Model Merging</a></h2>
-<p>If two or more models are supplied, they are merged feature by feature, each feature being treated as a separate unit. </p>
-<p>Within a feature each run mode is treated separately as well. </p>
-<p>Within a run mode, a model can overwrite definitions from the base model. For example, it can define a different configuration or a different version and/or start level for an artifact.</p>
-<p>The supplied models are ordered alphanumercally by their filenames for merging.</p>
-<h3><a href="#removing-and-changing-of-artifacts" name="removing-and-changing-of-artifacts">Removing and Changing of Artifacts</a></h3>
-<p>In addition, it can also remove artifacts and configurations. For this the special runmode :remove needs to be used together with all run modes the artifact or configuration is currently in.</p>
-<p>Let's look at an example base model</p>
+</code></pre> 
+<p>The resulting model is a merged model, starting with the dependencies and then merging in the current model.</p> 
+<p>By default the Maven classpath is extended by the dependencies of the merged model. This behaviour can be disabled though via setting the parameter <code>disableExtendingMavenClasspath</code> to <code>true</code> (<a href="https://issues.apache.org/jira/browse/SLING-6541">SLING-6541</a>).</p> 
+<h2><a href="#model-merging" id="model-merging">Model Merging</a></h2> 
+<p>If two or more models are supplied, they are merged feature by feature, each feature being treated as a separate unit.</p> 
+<p>Within a feature each run mode is treated separately as well.</p> 
+<p>Within a run mode, a model can overwrite definitions from the base model. For example, it can define a different configuration or a different version and/or start level for an artifact.</p> 
+<p>The supplied models are ordered alphanumercally by their filenames for merging.</p> 
+<h3><a href="#removing-and-changing-of-artifacts" id="removing-and-changing-of-artifacts">Removing and Changing of Artifacts</a></h3> 
+<p>In addition, it can also remove artifacts and configurations. For this the special runmode :remove needs to be used together with all run modes the artifact or configuration is currently in.</p> 
+<p>Let's look at an example base model</p> 
 <pre><code>[artifacts]
     my/special/artifact/1.0.0
     commons/library/1.0.0
-
+   
 [artifacts runModes=test]
     another/one/2.1.0
-</code></pre>
-<p>Another model wants to use the above model as it's base but:</p>
-<ul>
-  <li>Change the version of the commons library to 1.1.0 and move it to a different start level.</li>
-  <li>Remove the "special artifact"</li>
-  <li>Remove the "another one"</li>
-</ul>
-<p>The changing model would mention the above as one artifact and in addition have:</p>
+</code></pre> 
+<p>Another model wants to use the above model as it's base but:</p> 
+<ul> 
+ <li>Change the version of the commons library to 1.1.0 and move it to a different start level.</li> 
+ <li>Remove the "special artifact"</li> 
+ <li>Remove the "another one"</li> 
+</ul> 
+<p>The changing model would mention the above as one artifact and in addition have:</p> 
 <pre><code>[artifacts startLevel=5]
     commons/library/1.1.0
 
@@ -398,140 +397,140 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 
 [artifacts runModes=:remove,test]
     another/one/0.0.0
-</code></pre>
-<p>Note that the version for removal does not play a role, it's not compared for an exact match. But please keep in mind that the remove directive needs to be specified in the same feature and run mode as the original.</p>
-<h3><a href="#removing-and-changing-of-configurations" name="removing-and-changing-of-configurations">Removing and Changing of Configurations</a></h3>
-<p>Configurations can be removed in the same way by just specifying their PID in the :remove run mode. This is the base model:</p>
+</code></pre> 
+<p>Note that the version for removal does not play a role, it's not compared for an exact match. But please keep in mind that the remove directive needs to be specified in the same feature and run mode as the original.</p> 
+<h3><a href="#removing-and-changing-of-configurations" id="removing-and-changing-of-configurations">Removing and Changing of Configurations</a></h3> 
+<p>Configurations can be removed in the same way by just specifying their PID in the :remove run mode. This is the base model:</p> 
 <pre><code>[configurations]
     my.special.configuration.b
-      foo=&quot;bar&quot;
+      foo="bar"
     another.special.configuration.a
-      x=&quot;y&quot;
-</code></pre>
-<p>When this model is merged with the following model, the resulting model has a different configuration for my.special.configuration.b and no configuration for another.special.configuration.a:</p>
+      x="y"
+</code></pre> 
+<p>When this model is merged with the following model, the resulting model has a different configuration for my.special.configuration.b and no configuration for another.special.configuration.a:</p> 
 <pre><code>[configurations]
     my.special.configuration.b
-      a=&quot;b&quot;
+      a="b"
 
 [configurations runModes=:remove]
     another.special.configuration.a
-</code></pre>
-<p>By default if a model inherits from another and uses the same configuration pid, the configuration is overwritten! In the above example, the configuration my.special.configuration.b contains a single property named "a". </p>
-<p>It is also possible to merge configurations:</p>
+</code></pre> 
+<p>By default if a model inherits from another and uses the same configuration pid, the configuration is overwritten! In the above example, the configuration my.special.configuration.b contains a single property named "a".</p> 
+<p>It is also possible to merge configurations:</p> 
 <pre><code>[configurations]
     my.special.configuration.b [mode=merge]
-      a=&quot;b&quot;
-</code></pre>
-<p>When the merge directive is used, the configurations are merged and the properties are applied as a delta to the base configuration. Therefore the configuration my.special.configuration.b will have two properties "a" and "foo".</p>
-<p>If a merged configuration redefines a property that already exists, it overwrites it, so the last configuration supplied in a merge wins.</p>
-<h2><a href="#starting-a-server" name="starting-a-server">Starting a server</a></h2>
-<p>Use the goal with name <code>start</code> to start one or multiple servers. The goal is bound by default to the <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference"><code>pre-integration-test</code> lifecycle phase</a>. The launchpad JAR used to start the server is being looked up from the following locations:</p>
-<ol>
-  <li>the file path given in the configuration field <code>launchpadJar</code> or parameter <code>launchpad.jar</code></li>
-  <li>the slingstart artifact being referenced in the configuration element <code>launchpadDependency</code></li>
-  <li>the artifact being created through the Maven project itself (through model definitions found below <code>src/main/provisioning</code> or <code>src/test/provisioning</code> which are consumed by the goals <code>prepare-package</code> and <code>package</code> (<a href="https://issues.apache.org/jira/browse/SLING-6068">SLING-6068</a>) ).</li>
-  <li>the first dependency of type <code>slingstart</code></li>
-</ol>
-<p>The server itself is configured within an element <code>server</code> below the configuration element <code>servers</code>. It supports the following configuration settings</p>
-<table>
-  <thead>
-    <tr>
-      <th>Name </th>
-      <th>Type </th>
-      <th>Description </th>
-      <th>Default Value </th>
-      <th>Mandatory</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>port </td>
-      <td>String </td>
-      <td>The port on which the server is listening for HTTP requests. Arbitrary if not set. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>id </td>
-      <td>String </td>
-      <td>The instance id for this server. If not set the id is automatically generated from the run modes and the port. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>runmode </td>
-      <td>String </td>
-      <td>The comma-separated list of <a href="/documentation/bundles/sling-settings-org-apache-sling-settings.html#run-modes">run modes</a> to be set for this server. Those will be set in addition to the ones being defined by the underlying model. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>contextPath </td>
-      <td>String </td>
-      <td>The context path. If not set then Sling is deployed in the root context. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>controlPort </td>
-      <td>String </td>
-      <td>The TCP <a href="/documentation/the-sling-engine/the-sling-launchpad.html#control-port">control port</a> on which the server is listening for control commands. Arbitrary if not set. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>instances </td>
-      <td>int </td>
-      <td>The number of instances which should be created from this server element. In this case the configuration acts as template. The port and controlPort for all servers being generated from this configuration are random (except for the first server). </td>
-      <td>1 </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>folder </td>
-      <td>String </td>
-      <td>The folder from where to start Sling. If not set is a folder in the project's build directory named like the <code>id</code>. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>vmOpts </td>
-      <td>String </td>
-      <td>The JVM options to use. </td>
-      <td><code>-Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true</code> </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>opts </td>
-      <td>String </td>
-      <td>Additional application options. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>debug </td>
-      <td>String </td>
-      <td>See below for an explanation. </td>
-      <td>(-) </td>
-      <td>no</td>
-    </tr>
-    <tr>
-      <td>stdOutFile </td>
-      <td>String </td>
-      <td>The relative filename of the file which receives both the standard output (stdout) and standard error (stderr) of the server processes. If null or empty string the server process inherits stdout from the parent process (i.e. the Maven process). The given filename must be relative to the working directory of the according server. This was added with <a href="https://issues.apache.org/jira/browse/SLING-6545">SLING-6545</a>. </td>
-      <td>null </td>
-      <td>no</td>
-    </tr>
-  </tbody>
-</table>
-<h3><a href="#debugging" name="debugging">Debugging</a></h3>
-<p>Since version 1.2.0 of this plugin it is possible to easily start a Sling server in debug mode (<a href="https://issues.apache.org/jira/browse/SLING-4677">SLING-4677</a>). For that you either configure the property <code>debug</code> inside you server configuration in the pom.xml accordingly or by using the parameter <code>Dlaunchpad.debug</code>. Both values can either be <code>true</code> (in which case the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JDWP options</a> <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000</code> are appended to the VM options) or just some arbitrary string defining debugging options. In case both are used the parameter <code>Dlaunchpad.debug</code> takes precedence.</p>
-<h2><a href="#stopping-a-server" name="stopping-a-server">Stopping a server</a></h2>
-<p>Use the goal with name <code>stop</code> to stop one or multiple servers. The goal is bound by default to the <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference"><code>post-integration-test</code> lifecycle phase</a>.</p>
-<h2><a href="#known-issues" name="known-issues">Known Issues</a></h2>
-<h3><a href="#support-of-configuration-formats" name="support-of-configuration-formats">Support of configuration formats</a></h3>
-<p>The provisioning model supports two formats to define configurations, properties and the format of the Apache Felix ConfigAdmin implementation.</p>
-<p>Starting with version 1.2.0 of the provisioning model and version 1.2.0 of the slingstart-maven-plugin, the implementation uses the latest format from Apache Felix, version 1.8.6 (or higher) of the ConfigAdmin. This requires you to use version 3.6.6 (or higher) of the OSGi installer core bundle to handle these configurations.</p>
-<p>If you want to stick with the old format from config admin, you can configure the maven plugin as follows:</p>
+      a="b"
+</code></pre> 
+<p>When the merge directive is used, the configurations are merged and the properties are applied as a delta to the base configuration. Therefore the configuration my.special.configuration.b will have two properties "a" and "foo".</p> 
+<p>If a merged configuration redefines a property that already exists, it overwrites it, so the last configuration supplied in a merge wins.</p> 
+<h2><a href="#starting-a-server" id="starting-a-server">Starting a server</a></h2> 
+<p>Use the goal with name <code>start</code> to start one or multiple servers. The goal is bound by default to the <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference"><code>pre-integration-test</code> lifecycle phase</a>. The launchpad JAR used to start the server is being looked up from the following locations:</p> 
+<ol> 
+ <li>the file path given in the configuration field <code>launchpadJar</code> or parameter <code>launchpad.jar</code></li> 
+ <li>the slingstart artifact being referenced in the configuration element <code>launchpadDependency</code></li> 
+ <li>the artifact being created through the Maven project itself (through model definitions found below <code>src/main/provisioning</code> or <code>src/test/provisioning</code> which are consumed by the goals <code>prepare-package</code> and <code>package</code> (<a href="https://issues.apache.org/jira/browse/SLING-6068">SLING-6068</a>) ).</li> 
+ <li>the first dependency of type <code>slingstart</code></li> 
+</ol> 
+<p>The server itself is configured within an element <code>server</code> below the configuration element <code>servers</code>. It supports the following configuration settings</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th>Name </th>
+   <th> Type </th>
+   <th> Description </th>
+   <th> Default Value </th>
+   <th> Mandatory</th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td>port </td>
+   <td> String </td>
+   <td> The port on which the server is listening for HTTP requests. Arbitrary if not set. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>id </td>
+   <td> String </td>
+   <td> The instance id for this server. If not set the id is automatically generated from the run modes and the port. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>runmode </td>
+   <td> String </td>
+   <td> The comma-separated list of <a href="/documentation/bundles/sling-settings-org-apache-sling-settings.html#run-modes">run modes</a> to be set for this server. Those will be set in addition to the ones being defined by the underlying model. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>contextPath </td>
+   <td> String </td>
+   <td> The context path. If not set then Sling is deployed in the root context. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>controlPort </td>
+   <td> String </td>
+   <td> The TCP <a href="/documentation/the-sling-engine/the-sling-launchpad.html#control-port">control port</a> on which the server is listening for control commands. Arbitrary if not set. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>instances </td>
+   <td> int </td>
+   <td> The number of instances which should be created from this server element. In this case the configuration acts as template. The port and controlPort for all servers being generated from this configuration are random (except for the first server). </td>
+   <td> 1 </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>folder </td>
+   <td> String </td>
+   <td> The folder from where to start Sling. If not set is a folder in the project's build directory named like the <code>id</code>. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>vmOpts </td>
+   <td> String </td>
+   <td> The JVM options to use. </td>
+   <td> <code>-Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true</code> </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>opts </td>
+   <td> String </td>
+   <td> Additional application options. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>debug </td>
+   <td> String </td>
+   <td> See below for an explanation. </td>
+   <td> (-) </td>
+   <td> no</td>
+  </tr> 
+  <tr>
+   <td>stdOutFile </td>
+   <td> String </td>
+   <td> The relative filename of the file which receives both the standard output (stdout) and standard error (stderr) of the server processes. If null or empty string the server process inherits stdout from the parent process (i.e. the Maven process). The given filename must be relative to the working directory of the according server. This was added with <a href="https://issues.apache.org/jira/browse/SLING-6545">SLING-6545</a>. </td>
+   <td> null </td>
+   <td> no</td>
+  </tr> 
+ </tbody> 
+</table> 
+<h3><a href="#debugging" id="debugging">Debugging</a></h3> 
+<p>Since version 1.2.0 of this plugin it is possible to easily start a Sling server in debug mode (<a href="https://issues.apache.org/jira/browse/SLING-4677">SLING-4677</a>). For that you either configure the property <code>debug</code> inside you server configuration in the pom.xml accordingly or by using the parameter <code>Dlaunchpad.debug</code>. Both values can either be <code>true</code> (in which case the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JDWP options</a> <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000</code> are appended to the VM options) or just some arbitrary string defining debugging options. In case both are used the parameter <code>Dlaunchpad.debug</code> takes precedence.</p> 
+<h2><a href="#stopping-a-server" id="stopping-a-server">Stopping a server</a></h2> 
+<p>Use the goal with name <code>stop</code> to stop one or multiple servers. The goal is bound by default to the <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference"><code>post-integration-test</code> lifecycle phase</a>.</p> 
+<h2><a href="#known-issues" id="known-issues">Known Issues</a></h2> 
+<h3><a href="#support-of-configuration-formats" id="support-of-configuration-formats">Support of configuration formats</a></h3> 
+<p>The provisioning model supports two formats to define configurations, properties and the format of the Apache Felix ConfigAdmin implementation.</p> 
+<p>Starting with version 1.2.0 of the provisioning model and version 1.2.0 of the slingstart-maven-plugin, the implementation uses the latest format from Apache Felix, version 1.8.6 (or higher) of the ConfigAdmin. This requires you to use version 3.6.6 (or higher) of the OSGi installer core bundle to handle these configurations.</p> 
+<p>If you want to stick with the old format from config admin, you can configure the maven plugin as follows:</p> 
 <pre><code>&lt;plugin&gt;
     &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
     &lt;artifactId&gt;slingstart-maven-plugin&lt;/artifactId&gt;

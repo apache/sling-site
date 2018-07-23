@@ -94,136 +94,136 @@
                 Sling API CRUD Support
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
-<h2><a href="#apache-sling-api-support" name="apache-sling-api-support">Apache Sling API Support</a></h2>
-<p>As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD) features. CRUD support is provided by the addition of the following methods to the ResourceResolver:</p>
-<ul>
-  <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#delete-org.apache.sling.api.resource.Resource-">void delete(Resource resource) throws PersistenceException</a></li>
-  <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#create-org.apache.sling.api.resource.Resource-java.lang.String-java.util.Map-">Resource create(Resource parent, String name, Map&lt;String, Object&gt; properties) throws PersistenceException</a></li>
-  <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#revert--">void revert()</a></li>
-  <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#commit--">void commit() throws PersistenceException</a></li>
-  <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#hasChanges--">boolean hasChanges()</a></li>
-  <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#refresh--">void refresh()</a></li>
-</ul>
-<p>Which provide the ability to create and delete resources as well as the addition of the ModifiableValueMap interface which is similar to the ValueMap interface, but allows for updating properties on a resource.</p>
-<h2><a href="#comparing-sling-api-crud-to-sling-post-servlet" name="comparing-sling-api-crud-to-sling-post-servlet">Comparing Sling API CRUD to Sling Post Servlet</a></h2>
-<p>Here are some examples of common operations performed using the Sling Post Servlet and Sling API CRUD support. Note, the examples are derived from the <a href="http://dev.day.com/content/ddc/blog/2008/07/cheatsheet/_jcr_content/images/cheatsheet/back.png">SlingPostServlet Cheatsheet</a>.</p>
-<h3><a href="#updating-a-property" name="updating-a-property">Updating a Property</a></h3>
-<p>Update /myresource, setting the title and body:</p>
-<p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
-  &lt;input type=&quot;text&quot; name=&quot;title&quot;&gt;
-  &lt;textarea name=&quot;body&quot;&gt;
+</p> 
+<h2><a href="#apache-sling-api-support" id="apache-sling-api-support">Apache Sling API Support</a></h2> 
+<p>As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD) features. CRUD support is provided by the addition of the following methods to the ResourceResolver:</p> 
+<ul> 
+ <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#delete-org.apache.sling.api.resource.Resource-">void delete(Resource resource) throws PersistenceException</a></li> 
+ <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#create-org.apache.sling.api.resource.Resource-java.lang.String-java.util.Map-">Resource create(Resource parent, String name, Map&lt;String, Object&gt; properties) throws PersistenceException</a></li> 
+ <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#revert--">void revert()</a></li> 
+ <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#commit--">void commit() throws PersistenceException</a></li> 
+ <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#hasChanges--">boolean hasChanges()</a></li> 
+ <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#refresh--">void refresh()</a></li> 
+</ul> 
+<p>Which provide the ability to create and delete resources as well as the addition of the ModifiableValueMap interface which is similar to the ValueMap interface, but allows for updating properties on a resource.</p> 
+<h2><a href="#comparing-sling-api-crud-to-sling-post-servlet" id="comparing-sling-api-crud-to-sling-post-servlet">Comparing Sling API CRUD to Sling Post Servlet</a></h2> 
+<p>Here are some examples of common operations performed using the Sling Post Servlet and Sling API CRUD support. Note, the examples are derived from the <a href="http://dev.day.com/content/ddc/blog/2008/07/cheatsheet/_jcr_content/images/cheatsheet/back.png">SlingPostServlet Cheatsheet</a>.</p> 
+<h3><a href="#updating-a-property" id="updating-a-property">Updating a Property</a></h3> 
+<p>Update /myresource, setting the title and body:</p> 
+<p><strong>Sling Post Servlet</strong></p> 
+<pre><code>&lt;form action="/myresource" method="POST"&gt;
+  &lt;input type="text" name="title"&gt;
+  &lt;textarea name="body"&gt;
 &lt;/form&gt;
-</code></pre>
-<p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+</code></pre> 
+<p><strong>Sling API CRUD</strong></p> 
+<pre><code>Resource myResource = resourceResolver.getResource("/myresource");
 ModifiableValueMap properties = myNode.adaptTo(ModifiableValueMap.class);
-properties.put(&quot;title&quot;, {TITLE});
-properties.put(&quot;body&quot;, {BODY});
+properties.put("title", {TITLE});
+properties.put("body", {BODY});
 resourceResolver.commit();
-</code></pre>
-<h3><a href="#create-new-resource" name="create-new-resource">Create New Resource</a></h3>
-<p>Create a new resource below /myresource</p>
-<p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource/&quot; method=&quot;POST&quot;&gt;
-  &lt;input type=&quot;text&quot; name=&quot;dummy&quot;&gt;
+</code></pre> 
+<h3><a href="#create-new-resource" id="create-new-resource">Create New Resource</a></h3> 
+<p>Create a new resource below /myresource</p> 
+<p><strong>Sling Post Servlet</strong></p> 
+<pre><code>&lt;form action="/myresource/" method="POST"&gt;
+  &lt;input type="text" name="dummy"&gt;
 &lt;/form&gt;
-</code></pre>
-<p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+</code></pre> 
+<p><strong>Sling API CRUD</strong></p> 
+<pre><code>Resource myResource = resourceResolver.getResource("/myresource");
 Map&lt;String,Object&gt; properties = new HashMap&lt;String,Object&gt;();
-properties.put(&quot;jcr:primaryType&quot;, &quot;nt:unstructured&quot;);
-properties.put(&quot;sling:resourceType&quot;, &quot;myapp/components/mytype&quot;);
-Resource dummy = resourceResolver.create(myResource, &quot;dummy&quot;, properties);
+properties.put("jcr:primaryType", "nt:unstructured");
+properties.put("sling:resourceType", "myapp/components/mytype");
+Resource dummy = resourceResolver.create(myResource, "dummy", properties);
 resourceResolver.commit();
-</code></pre>
-<h3><a href="#remove-a-property" name="remove-a-property">Remove a Property</a></h3>
-<p>Remove the property title</p>
-<p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;title@Delete&quot;&gt;
+</code></pre> 
+<h3><a href="#remove-a-property" id="remove-a-property">Remove a Property</a></h3> 
+<p>Remove the property title</p> 
+<p><strong>Sling Post Servlet</strong></p> 
+<pre><code>&lt;form action="/myresource" method="POST"&gt;
+  &lt;input type="hidden" name="title@Delete"&gt;
 &lt;/form&gt;
-</code></pre>
-<p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+</code></pre> 
+<p><strong>Sling API CRUD</strong></p> 
+<pre><code>Resource myResource = resourceResolver.getResource("/myresource");
 ModifiableValueMap properties = myResource.adaptTo(ModifiableValueMap.class);
-properties.remove(&quot;title&quot;);
+properties.remove("title");
 resourceResolver.commit();
-</code></pre>
-<h3><a href="#copy-a-resource" name="copy-a-resource">Copy a Resource</a></h3>
-<p>Copy the resource /myresource to /myresource2</p>
-<p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;copy&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;:dest&quot; value=&quot;/myresource2&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;:replace&quot; value=&quot;true&quot;&gt;
+</code></pre> 
+<h3><a href="#copy-a-resource" id="copy-a-resource">Copy a Resource</a></h3> 
+<p>Copy the resource /myresource to /myresource2</p> 
+<p><strong>Sling Post Servlet</strong></p> 
+<pre><code>&lt;form action="/myresource" method="POST"&gt;
+  &lt;input type="hidden" name=":operation" value="copy"&gt;
+  &lt;input type="hidden" name=":dest" value="/myresource2"&gt;
+  &lt;input type="hidden" name=":replace" value="true"&gt;
 &lt;/form&gt;
-</code></pre>
-<p><strong>Sling API CRUD</strong></p>
+</code></pre> 
+<p><strong>Sling API CRUD</strong></p> 
 <pre><code>Map&lt;String,Object&gt; properties = myResource.adaptTo(ValueMap.class);
-Resource myResource2 = resourceResolver.create(null, &quot;myresource2&quot;, properties);
+Resource myResource2 = resourceResolver.create(null, "myresource2", properties);
 resourceResolver.commit();
-</code></pre>
-<h3><a href="#move-a-resource" name="move-a-resource">Move a Resource</a></h3>
-<p>Move the resource /myresource2 to /myresource3</p>
-<p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource2&quot; method=&quot;POST&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;move&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;:dest&quot; value=&quot;/myresource3&quot;&gt;
+</code></pre> 
+<h3><a href="#move-a-resource" id="move-a-resource">Move a Resource</a></h3> 
+<p>Move the resource /myresource2 to /myresource3</p> 
+<p><strong>Sling Post Servlet</strong></p> 
+<pre><code>&lt;form action="/myresource2" method="POST"&gt;
+  &lt;input type="hidden" name=":operation" value="move"&gt;
+  &lt;input type="hidden" name=":dest" value="/myresource3"&gt;
 &lt;/form&gt;
-</code></pre>
-<p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource2 = resourceResolver.getResource(&quot;/myresource2&quot;);
+</code></pre> 
+<p><strong>Sling API CRUD</strong></p> 
+<pre><code>Resource myResource2 = resourceResolver.getResource("/myresource2");
 Map&lt;String,Object&gt; properties = myResource2.adaptTo(ValueMap.class);
-Resource myResource3 = resourceResolver.create(null, &quot;myresource3&quot;, properties);
+Resource myResource3 = resourceResolver.create(null, "myresource3", properties);
 resourceResolver.delete(myResource2);
 resourceResolver.commit();
-</code></pre>
-<h3><a href="#setting-non-string-value" name="setting-non-string-value">Setting non-String Value</a></h3>
-<p>Set the property date to a particular date</p>
-<p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource3&quot; method=&quot;POST&quot;&gt;
-  &lt;input type=&quot;text&quot; name=&quot;date&quot; value=&quot;2008-06-13T18:55:00&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;date@TypeHint&quot; value=&quot;Date&quot;&gt;
+</code></pre> 
+<h3><a href="#setting-non-string-value" id="setting-non-string-value">Setting non-String Value</a></h3> 
+<p>Set the property date to a particular date</p> 
+<p><strong>Sling Post Servlet</strong></p> 
+<pre><code>&lt;form action="/myresource3" method="POST"&gt;
+  &lt;input type="text" name="date" value="2008-06-13T18:55:00"&gt;
+  &lt;input type="hidden" name="date@TypeHint" value="Date"&gt;
 &lt;/form&gt;
-</code></pre>
-<p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource3 = resourceResolver.getResource(&quot;/myresource3&quot;);
+</code></pre> 
+<p><strong>Sling API CRUD</strong></p> 
+<pre><code>Resource myResource3 = resourceResolver.getResource("/myresource3");
 Calendar calendar = [SOME_DATE];
 ModifiableValueMap properties = myResource3.adaptTo(ModifiableValueMap.class);
-properties.put(&quot;date&quot;, calendar);
+properties.put("date", calendar);
 resourceResolver.commit();
-</code></pre>
-<h3><a href="#delete-a-resource" name="delete-a-resource">Delete a Resource</a></h3>
-<p>Delete the resource /myresource</p>
-<p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource&quot; method=&quot;POST&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;delete&quot;&gt;
+</code></pre> 
+<h3><a href="#delete-a-resource" id="delete-a-resource">Delete a Resource</a></h3> 
+<p>Delete the resource /myresource</p> 
+<p><strong>Sling Post Servlet</strong></p> 
+<pre><code>&lt;form action="/myresource" method="POST"&gt;
+  &lt;input type="hidden" name=":operation" value="delete"&gt;
 &lt;/form&gt;
-</code></pre>
-<p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource = resourceResolver.getResource(&quot;/myresource&quot;);
+</code></pre> 
+<p><strong>Sling API CRUD</strong></p> 
+<pre><code>Resource myResource = resourceResolver.getResource("/myresource");
 resourceResolver.delete(myResource);
 resourceResolver.commit();
-</code></pre>
-<h2><a href="#value-class-support" name="value-class-support">Value Class Support</a></h2>
+</code></pre> 
+<h2><a href="#value-class-support" id="value-class-support">Value Class Support</a></h2> 
 <div class="info">
-	Please note, this information is specific to the Sling JCR Resource implementation provided by the Apache Sling project.  Other implementations may have different value class support.  
-</div>
-<p>The Classes implementing the following types are supported directly when setting properties:</p>
-<ul>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html">Calendar</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html">InputStream</a></li>
-  <li><a href="http://www.day.com/maven/javax.jcr/javadocs/jcr-2.0/javax/jcr/Node.html">Node</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html">BigDecimal</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html">Long</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Short.html">Short</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Number.html">Number</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html">Boolean</a></li>
-  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></li>
-</ul>
+  Please note, this information is specific to the Sling JCR Resource implementation provided by the Apache Sling project. Other implementations may have different value class support. 
+</div> 
+<p>The Classes implementing the following types are supported directly when setting properties:</p> 
+<ul> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html">Calendar</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html">InputStream</a></li> 
+ <li><a href="http://www.day.com/maven/javax.jcr/javadocs/jcr-2.0/javax/jcr/Node.html">Node</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html">BigDecimal</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html">Long</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Short.html">Short</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Number.html">Number</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html">Boolean</a></li> 
+ <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></li> 
+</ul> 
 <p>As well as the corresponding primitive types. Any object which implements the Serializable interface will be serialized and the result of the serialization will be saved as a binary value for the property.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -93,40 +93,40 @@
             </div><h1 class="pagetitle">
                 Logical Pipes
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Those pipes help assembling pipes, or modifying the resource streams <a href="/documentation/bundles/sling-pipes/readers.html">readers</a> or <a href="/documentation/bundles/sling-pipes/writers.html">writers</a> could create.</p>
-<h3><a href="#container-pipe" name="container-pipe">Container Pipe</a></h3>
-<p>assemble a sequence of pipes</p>
-<ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/container</code></li>
-  <li><code>conf</code> node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)</li>
-</ul>
-<p>Note that pipe builder api automatically creates one for you to chain the subpipe you are configuring.</p>
-<h3>ReferencePipe (<code>ref(path)</code>)</h3>
-<p>executes the pipe referenced in path property</p>
-<ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/reference</code></li>
-  <li><code>path</code> path of the referenced pipe</li>
-</ul>
-<h3>FilterPipe (<code>grep(conf)</code>)</h3>
-<p>outputs the input resource if its matches its configuration</p>
-<ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/filter</code></li>
-  <li><code>conf</code> node tree that will be tested against the current input of the pipe, each <code>/conf/sub@prop=value</code> will triggers a test on <code>./sub@prop</code> property of the current input, testing if its value matches <code>value</code> regex. If the special <code>slingPipesFilter_noChildren=${true}</code> property is there with the value instantiated as a true boolean, then filter will pass if corresponding node has no children.</li>
-  <li><code>slingPipesFilter_test=&#39;${...}&#39;</code> evaluates the property value, and filters out the stream if the expression is not a boolean or false</li>
-  <li><code>slingPipesFilter_not=&#39;true&#39;</code> inverts the expected result of the filter</li>
-</ul>
-<p>as an example,</p>
-<pre><code>echo(&#39;/content/foo&#39;).grep(&#39;foo&#39;,&#39;bar&#39;,&#39;slingPipesFilter_not&#39;,true).run()
-</code></pre>
-<p>will either return <code>/content/foo</code> either nothing depending on it not containing <code>@foo=bar</code></p>
-<pre><code>echo(&#39;content/foo&#39;).name(&#39;FOO&#39;).grep(&#39;slingPipesFilter_test&#39;,&#39;${FOO.foo == &quot;bar&quot;}&#39;).run()
-</code></pre>
-<p>is an equivalent</p>
-<h3><a href="#notpipe" name="notpipe">NotPipe</a></h3>
-<p>executes the pipe referenced in path property, passes input only if referenced pipe doesn't return any resource</p>
-<ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/not</code></li>
-  <li><code>path</code> path of the referenced pipe</li>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Those pipes help assembling pipes, or modifying the resource streams <a href="/documentation/bundles/sling-pipes/readers.html">readers</a> or <a href="/documentation/bundles/sling-pipes/writers.html">writers</a> could create.</p> 
+<h3><a href="#container-pipe" id="container-pipe">Container Pipe</a></h3> 
+<p>assemble a sequence of pipes</p> 
+<ul> 
+ <li><code>sling:resourceType</code> is <code>slingPipes/container</code></li> 
+ <li><code>conf</code> node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)</li> 
+</ul> 
+<p>Note that pipe builder api automatically creates one for you to chain the subpipe you are configuring.</p> 
+<h3><a href="#referencepipe-refpath" id="referencepipe-refpath">ReferencePipe (<code>ref(path)</code>)</a></h3> 
+<p>executes the pipe referenced in path property</p> 
+<ul> 
+ <li><code>sling:resourceType</code> is <code>slingPipes/reference</code></li> 
+ <li><code>path</code> path of the referenced pipe</li> 
+</ul> 
+<h3><a href="#filterpipe-grepconf" id="filterpipe-grepconf">FilterPipe (<code>grep(conf)</code>)</a></h3> 
+<p>outputs the input resource if its matches its configuration</p> 
+<ul> 
+ <li><code>sling:resourceType</code> is <code>slingPipes/filter</code></li> 
+ <li><code>conf</code> node tree that will be tested against the current input of the pipe, each <code>/conf/sub@prop=value</code> will triggers a test on <code>./sub@prop</code> property of the current input, testing if its value matches <code>value</code> regex. If the special <code>slingPipesFilter_noChildren=${true}</code> property is there with the value instantiated as a true boolean, then filter will pass if corresponding node has no children.</li> 
+ <li><code>slingPipesFilter_test='${...}'</code> evaluates the property value, and filters out the stream if the expression is not a boolean or false</li> 
+ <li><code>slingPipesFilter_not='true'</code> inverts the expected result of the filter</li> 
+</ul> 
+<p>as an example,</p> 
+<pre><code>echo('/content/foo').grep('foo','bar','slingPipesFilter_not',true).run()
+</code></pre> 
+<p>will either return <code>/content/foo</code> either nothing depending on it not containing <code>@foo=bar</code></p> 
+<pre><code>echo('content/foo').name('FOO').grep('slingPipesFilter_test','${FOO.foo == "bar"}').run()
+</code></pre> 
+<p>is an equivalent</p> 
+<h3><a href="#notpipe" id="notpipe">NotPipe</a></h3> 
+<p>executes the pipe referenced in path property, passes input only if referenced pipe doesn't return any resource</p> 
+<ul> 
+ <li><code>sling:resourceType</code> is <code>slingPipes/not</code></li> 
+ <li><code>path</code> path of the referenced pipe</li> 
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

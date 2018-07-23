@@ -91,105 +91,105 @@
             </div><h1 class="pagetitle">
                 46 Line Blog
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>This tutorial is based on the first <em>Sling Gems</em> on dev.day.com: The <a href="http://dev.day.com/microsling/content/blogs/main/sling-46-lines-blog.html">Sling gems: a blog in 46 lines of code</a>. It has slightly been adapted to fit here.</p>
-<p>In this tutorial, the SlingPostServlet and the sling.js library are brought together using 46 (no kidding: <em>fourty-six</em>) lines of code to create a simple blog (or let's say <em>bloggish</em>) application.</p>
-<p>I used this example in my <a href="http://www.slideshare.net/bdelacretaz/rapid-jcr-applications-development-with-sling-1196003">Rapid JCR application development with Apache Sling</a> presentation at ApacheCon US 09 in Oakland (slides will be available soon), and I think it's a good testimony to the power and simplicity of Sling.</p>
-<h2><a href="#audience" name="audience">Audience</a></h2>
-<p>Although this is a simple sample, it requires some custom settings to work. If you're just starting with Sling, <a href="/documentation/getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a> might be a better choice.</p>
-<h2><a href="#step-0-start-configure-and-login-to-sling" name="step-0-start-configure-and-login-to-sling">Step 0: Start, configure and login to Sling</a></h2>
-<p>See <a href="/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a> for how to start Sling. Start it on port 8080 for the below links to work.</p>
-<p>For this sample we need the optional <em>org.apache.sling.samples.path-based.rtp</em> bundle, if it's not present in the <a href="http://localhost:8080/system/console/bundles">OSGi console</a>, install and start it. That bundle is not released yet so you might need to build it yourself, from its <a href="https://github.com/apache/sling-samples/tree/master/path-based-rtp">source</a>. The bundle must then appear in the <a href="http://localhost:8080/system/console/bundles">OSGI console's list of bundles</a>, with name = <em>org.apache.sling.samples.path-based.rtp</em> and status = <em>Active</em>.</p>
-<p>Then, login using <a href="http://localhost:8080/?sling:authRequestLogin=1">http://localhost:8080/?sling:authRequestLogin=1</a> which should prompt you for a username and password, use <em>admin</em> and <em>admin</em>. Once that's done, <a href="http://localhost:8080/index.html">http://localhost:8080/index.html</a> should say <em>You are currently logged in as user <em>admin</em> to workspace <em>default</em></em>.</p>
-<h2><a href="#step-1-creating-content" name="step-1-creating-content">Step 1: Creating content</a></h2>
-<p>The easiest way to create content in Sling is to use an HTTP POST request, let's use a simple HTML form:</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>This tutorial is based on the first <em>Sling Gems</em> on dev.day.com: The <a href="http://dev.day.com/microsling/content/blogs/main/sling-46-lines-blog.html">Sling gems: a blog in 46 lines of code</a>. It has slightly been adapted to fit here.</p> 
+<p>In this tutorial, the SlingPostServlet and the sling.js library are brought together using 46 (no kidding: <em>fourty-six</em>) lines of code to create a simple blog (or let's say <em>bloggish</em>) application.</p> 
+<p>I used this example in my <a href="http://www.slideshare.net/bdelacretaz/rapid-jcr-applications-development-with-sling-1196003">Rapid JCR application development with Apache Sling</a> presentation at ApacheCon US 09 in Oakland (slides will be available soon), and I think it's a good testimony to the power and simplicity of Sling.</p> 
+<h2><a href="#audience" id="audience">Audience</a></h2> 
+<p>Although this is a simple sample, it requires some custom settings to work. If you're just starting with Sling, <a href="/documentation/getting-started/discover-sling-in-15-minutes.html">Discover Sling in 15 minutes</a> might be a better choice.</p> 
+<h2><a href="#step-0-start-configure-and-login-to-sling" id="step-0-start-configure-and-login-to-sling">Step 0: Start, configure and login to Sling</a></h2> 
+<p>See <a href="/documentation/development/getting-and-building-sling.html">Getting and Building Sling</a> for how to start Sling. Start it on port 8080 for the below links to work.</p> 
+<p>For this sample we need the optional <em>org.apache.sling.samples.path-based.rtp</em> bundle, if it's not present in the <a href="http://localhost:8080/system/console/bundles">OSGi console</a>, install and start it. That bundle is not released yet so you might need to build it yourself, from its <a href="https://github.com/apache/sling-samples/tree/master/path-based-rtp">source</a>. The bundle must then appear in the <a href="http://localhost:8080/system/console/bundles">OSGI console's list of bundles</a>, with name = <em>org.apache.sling.samples.path-based.rtp</em> and status = <em>Active</em>.</p> 
+<p>Then, login using <a href="http://localhost:8080/?sling:authRequestLogin=1">http://localhost:8080/?sling:authRequestLogin=1</a> which should prompt you for a username and password, use <em>admin</em> and <em>admin</em>. Once that's done, <a href="http://localhost:8080/index.html">http://localhost:8080/index.html</a> should say <em>You are currently logged in as user <em>admin</em> to workspace <em>default</em></em>.</p> 
+<h2><a href="#step-1-creating-content" id="step-1-creating-content">Step 1: Creating content</a></h2> 
+<p>The easiest way to create content in Sling is to use an HTTP POST request, let's use a simple HTML form:</p> 
 <pre><code>&lt;html&gt;
   &lt;body&gt;
     &lt;h1&gt;Sling microblog&lt;/h1&gt;
-
+  
     &lt;div&gt;
-      &lt;form method=&quot;POST&quot;&gt;
+      &lt;form method="POST"&gt;
         Title:&lt;br/&gt;
-        &lt;input type=&quot;text&quot; name=&quot;title&quot; style=&quot;width:100%&quot;/&gt;
-
+        &lt;input type="text" name="title" style="width:100%"/&gt;
+        
         &lt;br/&gt;Text:&lt;br/&gt;
-        &lt;textarea style=&quot;width:100%&quot; name=&quot;text&quot;&gt;&lt;/textarea&gt;
-
+        &lt;textarea style="width:100%" name="text"&gt;&lt;/textarea&gt;
+        
         &lt;br/&gt;
-        &lt;input type=&quot;submit&quot; value=&quot;save&quot;/&gt;
-        &lt;input type=&quot;hidden&quot; name=&quot;:redirect&quot; value=&quot;*.html&quot;/&gt;
+        &lt;input type="submit" value="save"/&gt;
+        &lt;input type="hidden" name=":redirect" value="*.html"/&gt;
 
         &lt;!-- used by Sling when decoding request parameters --&gt;
-        &lt;input type=&quot;hidden&quot; name=&quot;_charset_&quot; value=&quot;UTF-8&quot;/&gt;
+        &lt;input type="hidden" name="_charset_" value="UTF-8"/&gt;
       &lt;/form&gt;
     &lt;/div&gt;
-
+  
     &lt;!-- code of step 2 comes here --&gt;
   &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-<p>That's two input fields, a submit button and a hidden field that tells Sling what to do after the POST (in this case: redirect to the html view of the node that was just created).</p>
-<p>To test the form, start Sling and save the above script as {{/apps/blog/blog.esp}} [^esp] in the Sling repository - a WebDAV mount is the easiest way to do that. Browsing to <a href="http://localhost:8080/content/blog/*.html">http://localhost:8080/content/blog/*.html</a> [^port] should display the above form.</p>
-<p>[^esp]: ESP is Sling's server-side javascript language [^port]: This assumes your instance of Sling is running on port 8080. If that's not the case, adjust the example URLs accordingly.</p>
-<p>Input some data (using "foo" for the title, for the sake of our examples below), save the form, and Sling should display the form again, using the URL of the node that was just created.</p>
+</code></pre> 
+<p>That's two input fields, a submit button and a hidden field that tells Sling what to do after the POST (in this case: redirect to the html view of the node that was just created).</p> 
+<p>To test the form, start Sling and save the above script as {{/apps/blog/blog.esp}} [^esp] in the Sling repository - a WebDAV mount is the easiest way to do that. Browsing to <a href="http://localhost:8080/content/blog/*.html">http://localhost:8080/content/blog/*.html</a> [^port] should display the above form.</p> 
+<p>[^esp]: ESP is Sling's server-side javascript language [^port]: This assumes your instance of Sling is running on port 8080. If that's not the case, adjust the example URLs accordingly.</p> 
+<p>Input some data (using "foo" for the title, for the sake of our examples below), save the form, and Sling should display the form again, using the URL of the node that was just created.</p> 
 <div class="note">
-If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to add or modify item_ it means that you are not logged in as user _admin_. See instructions above for logging in.
-</div>
-<p>At this point you're probably looking at an empty form with an URL ending in <em>foo</em>, if you used that for the title. Or <em>foo_0</em> or <em>foo_1</em> if other _foo_s already existed. Don't worry about not seeing your content, we'll fix that right away.</p>
-<h2><a href="#step-2-where-s-my-content-" name="step-2-where-s-my-content-">Step 2: Where's my content?</a></h2>
-<p>To verify that our content has been created, we can have a look at the JSON data at <a href="http://localhost:8080/content/blog/foo.tidy.json">http://localhost:8080/content/blog/foo.tidy.json</a>, which should display our new node's values:</p>
+  If you get an error saying _javax.jcr.AccessDeniedException: ...not allowed to add or modify item_ it means that you are not logged in as user _admin_. See instructions above for logging in. 
+</div> 
+<p>At this point you're probably looking at an empty form with an URL ending in <em>foo</em>, if you used that for the title. Or <em>foo_0</em> or <em>foo_1</em> if other _foo_s already existed. Don't worry about not seeing your content, we'll fix that right away.</p> 
+<h2><a href="#step-2-wheres-my-content" id="step-2-wheres-my-content">Step 2: Where's my content?</a></h2> 
+<p>To verify that our content has been created, we can have a look at the JSON data at <a href="http://localhost:8080/content/blog/foo.tidy.json">http://localhost:8080/content/blog/foo.tidy.json</a>, which should display our new node's values:</p> 
 <pre><code>{
-  &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
-  &quot;text&quot;: &quot;This is the foo text&quot;,
-  &quot;title&quot;: &quot;foo&quot;
+  "jcr:primaryType": "nt:unstructured",
+  "text": "This is the foo text",
+  "title": "foo"
 }
-</code></pre>
-<p>That's reassuring, but what we really want is for these values to be displayed on the editing form for our post.</p>
-<p>Thanks to the <em>sling.js</em> client library, we just need to add a <code>Sling.wizard()</code> call to our form to display those values. Let's first add a <code>&lt;head&gt;</code> element to our form to load the <em>sling.js</em> library, before the existing <code>&lt;body&gt;</code> of course:</p>
+</code></pre> 
+<p>That's reassuring, but what we really want is for these values to be displayed on the editing form for our post.</p> 
+<p>Thanks to the <em>sling.js</em> client library, we just need to add a <code>Sling.wizard()</code> call to our form to display those values. Let's first add a <code>&lt;head&gt;</code> element to our form to load the <em>sling.js</em> library, before the existing <code>&lt;body&gt;</code> of course:</p> 
 <pre><code>&lt;head&gt;
-  &lt;script src=&quot;/system/sling.js&quot;&gt;&lt;/script&gt;
+  &lt;script src="/system/sling.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
-</code></pre>
-<p>And add the <code>Sling.wizard()</code> after the form, where we had the <em>code of step 2 comes here</em> comment:</p>
+</code></pre> 
+<p>And add the <code>Sling.wizard()</code> after the form, where we had the <em>code of step 2 comes here</em> comment:</p> 
 <pre><code>&lt;!-- code of step 2 comes here --&gt;
 &lt;script&gt;Sling.wizard();&lt;/script&gt;
-</code></pre>
-<p>Reloading the form at <code>http://localhost:8080/content/blog/*.html</code> and creating a new post should now redirect to an editable version of the post, with the form fields correctly initialized.</p>
-<p>We can now create and edit posts; let's add some navigation, using more of the <em>sling.js</em> functionality. </p>
-<h2><a href="#step-3-navigation" name="step-3-navigation">Step 3: Navigation</a></h2>
-<p>The <em>sling.js</em> library provides utilities to access and manipulate content. For our blog, we'll use the <code>getContent(path)</code> method to list the siblings of the current node.</p>
-<p>Add the following code to your script, after the <code>Sling.wizard()</code> call that was added in step 2:</p>
+</code></pre> 
+<p>Reloading the form at <code>http://localhost:8080/content/blog/*.html</code> and creating a new post should now redirect to an editable version of the post, with the form fields correctly initialized.</p> 
+<p>We can now create and edit posts; let's add some navigation, using more of the <em>sling.js</em> functionality.</p> 
+<h2><a href="#step-3-navigation" id="step-3-navigation">Step 3: Navigation</a></h2> 
+<p>The <em>sling.js</em> library provides utilities to access and manipulate content. For our blog, we'll use the <code>getContent(path)</code> method to list the siblings of the current node.</p> 
+<p>Add the following code to your script, after the <code>Sling.wizard()</code> call that was added in step 2:</p> 
 <pre><code>&lt;h3&gt;Navigation&lt;/h3&gt;
 &lt;ul&gt;
-    &lt;li&gt;&lt;em&gt;&lt;a href=&quot;/content/blog/*.html&quot;&gt;[Create new post]&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;em&gt;&lt;a href="/content/blog/*.html"&gt;[Create new post]&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
     &lt;script&gt;
-      var posts = Sling.getContent(&quot;/content/blog&quot;, 2);
+      var posts = Sling.getContent("/content/blog", 2);
       for(var i in posts) {
-        document.write(&quot;&lt;li&gt;&quot;
-          + &quot;&lt;a href=&#39;/content/blog/&quot; + i + &quot;.html&#39;&gt;&quot;    
+        document.write("&lt;li&gt;"
+          + "&lt;a href='/content/blog/" + i + ".html'&gt;"    
           + posts[i].title
-          + &quot;&lt;/a&gt;&lt;/li&gt;&quot;);
+          + "&lt;/a&gt;&lt;/li&gt;");
       }
     &lt;/script&gt;
 &lt;/ul&gt;
-</code></pre>
-<p>The first link to <code>/content/blog/*</code> brings us back to our content creating form, which is nothing else than the editing form reading empty values and posting to the "magic star" URL. </p>
-<p>The rest of the javascript runs client-side, as it is not embedded in <code>&lt;% %&gt;</code> code markers, calls the <code>sling.getContent</code> method to get two levels of node data below <code>/content/blog</code>, and displays links to nodes that it finds.</p>
-<p>That's a basic navigation, of course, in a real blog we'd need some paging and contextualization to cope with large numbers of posts.</p>
-<p>Nevertheless, with this addition our ESP script allows us to create, edit and navigate blog posts - not bad for 46 lines of code, including comments, whitespace and output formatting.</p>
-<h2><a href="#step-4-data-first-structure-later" name="step-4-data-first-structure-later">Step 4: Data first, structure later</a></h2>
-<p>You might have heard this mantra, which we apply in many areas of Sling.</p>
-<p>In this case, adding a new field to our blog posts could not be easier: just add an input field to the form, and Sling will do the rest.</p>
-<p>Adding this inside our script's <code>&lt;form&gt;</code> element, for example:</p>
+</code></pre> 
+<p>The first link to <code>/content/blog/*</code> brings us back to our content creating form, which is nothing else than the editing form reading empty values and posting to the "magic star" URL.</p> 
+<p>The rest of the javascript runs client-side, as it is not embedded in <code>&lt;% %&gt;</code> code markers, calls the <code>sling.getContent</code> method to get two levels of node data below <code>/content/blog</code>, and displays links to nodes that it finds.</p> 
+<p>That's a basic navigation, of course, in a real blog we'd need some paging and contextualization to cope with large numbers of posts.</p> 
+<p>Nevertheless, with this addition our ESP script allows us to create, edit and navigate blog posts - not bad for 46 lines of code, including comments, whitespace and output formatting.</p> 
+<h2><a href="#step-4-data-first-structure-later" id="step-4-data-first-structure-later">Step 4: Data first, structure later</a></h2> 
+<p>You might have heard this mantra, which we apply in many areas of Sling.</p> 
+<p>In this case, adding a new field to our blog posts could not be easier: just add an input field to the form, and Sling will do the rest.</p> 
+<p>Adding this inside our script's <code>&lt;form&gt;</code> element, for example:</p> 
 <pre><code>&lt;br/&gt;Author:&lt;br/&gt;
-&lt;input type=&quot;author&quot; name=&quot;author&quot; style=&quot;width:100%&quot;/&gt;
-</code></pre>
-<p>Allows us to add an author name to our blog posts. No need to define anything at the repository level, as Sling is using it in unstructured mode in this case, and no need to migrate existing data, the author field of existing posts will simply be empty.</p>
-<h2>I want my ESP!</h2>
-<p>Now wait...we said we were going to create an ESP script, but our "application" is just static HTML and some client javascript at this point.</p>
-<p>That's correct - as we are using only Sling client-facing features at this point (HTTP POST and <code>sling.js</code>), we do not necessarily need to use ESP code.</p>
-<p>To keep things simple, we'll refrain from adding ESP-based features at this point, but you can of course use any ESP code in the <em>blog.esp</em> "script".</p>
-<h2><a href="#that-s-the-power-of-sling" name="that-s-the-power-of-sling">That's the power of Sling</a></h2>
-<p>The 46-line blog is a good example of the power of Sling. It leverages the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">SlingPostServlet</a>, which handles POST requests in a form-friendly way, and the <a href="https://github.com/apache/sling-org-apache-sling-servlets-post/blob/master/src/main/resources/system/sling.js"><code>sling.js</code></a> client library, which provides high-level functionality on the client side.</p>
+&lt;input type="author" name="author" style="width:100%"/&gt;
+</code></pre> 
+<p>Allows us to add an author name to our blog posts. No need to define anything at the repository level, as Sling is using it in unstructured mode in this case, and no need to migrate existing data, the author field of existing posts will simply be empty.</p> 
+<h2><a href="#i-want-my-esp" id="i-want-my-esp">I want my ESP!</a></h2> 
+<p>Now wait...we said we were going to create an ESP script, but our "application" is just static HTML and some client javascript at this point.</p> 
+<p>That's correct - as we are using only Sling client-facing features at this point (HTTP POST and <code>sling.js</code>), we do not necessarily need to use ESP code.</p> 
+<p>To keep things simple, we'll refrain from adding ESP-based features at this point, but you can of course use any ESP code in the <em>blog.esp</em> "script".</p> 
+<h2><a href="#thats-the-power-of-sling" id="thats-the-power-of-sling">That's the power of Sling</a></h2> 
+<p>The 46-line blog is a good example of the power of Sling. It leverages the <a href="/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html">SlingPostServlet</a>, which handles POST requests in a form-friendly way, and the <a href="https://github.com/apache/sling-org-apache-sling-servlets-post/blob/master/src/main/resources/system/sling.js"><code>sling.js</code></a> client library, which provides high-level functionality on the client side.</p> 
 <p>///Footnotes Go Here///</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

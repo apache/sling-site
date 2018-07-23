@@ -93,38 +93,38 @@
             </div><h1 class="pagetitle">
                 Feature Flags
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Feature Flags are used to select whether a particular feature is enabled or not. This allows to continuosly deploy new features of an application without making them globally available yet.</p>
-<p>Features may be enabled based on various contextual data:</p>
-<ul>
-  <li>Time of Day</li>
-  <li>Segmentation Data (gender, age, etc.), if available</li>
-  <li>Request Parameter</li>
-  <li>Request Header</li>
-  <li>Cookie Value</li>
-  <li>Static Configuration</li>
-</ul>
-<p>Feature flags can be provided by registering <code>org.apache.sling.featureflags.Feature</code> services. Alternatively feature flags can be provided by factory configuration with factory PID <code>org.apache.sling.featureflags.Feature</code> as follows:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>name</code> </td>
-      <td>Short name of this feature. This name is used to refer to this feature when checking for it to be enabled or not. This property is required and defaults to a name derived from the feature's class name and object identity. It is strongly recommended to define a useful and unique for the feature</td>
-    </tr>
-    <tr>
-      <td><code>description</code> </td>
-      <td>Description for the feature. The intent is to descibe the behaviour of the application if this feature would be enabled. It is recommended to define this property. The default value is the value of the name property. </td>
-    </tr>
-    <tr>
-      <td><code>enabled</code> </td>
-      <td>Boolean flag indicating whether the feature is enabled or not by this configuration</td>
-    </tr>
-  </tbody>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Feature Flags are used to select whether a particular feature is enabled or not. This allows to continuosly deploy new features of an application without making them globally available yet.</p> 
+<p>Features may be enabled based on various contextual data:</p> 
+<ul> 
+ <li>Time of Day</li> 
+ <li>Segmentation Data (gender, age, etc.), if available</li> 
+ <li>Request Parameter</li> 
+ <li>Request Header</li> 
+ <li>Cookie Value</li> 
+ <li>Static Configuration</li> 
+</ul> 
+<p>Feature flags can be provided by registering <code>org.apache.sling.featureflags.Feature</code> services. Alternatively feature flags can be provided by factory configuration with factory PID <code>org.apache.sling.featureflags.Feature</code> as follows:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Property </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>name</code> </td>
+   <td> Short name of this feature. This name is used to refer to this feature when checking for it to be enabled or not. This property is required and defaults to a name derived from the feature's class name and object identity. It is strongly recommended to define a useful and unique for the feature</td>
+  </tr> 
+  <tr>
+   <td> <code>description</code> </td>
+   <td> Description for the feature. The intent is to descibe the behaviour of the application if this feature would be enabled. It is recommended to define this property. The default value is the value of the name property. </td>
+  </tr> 
+  <tr>
+   <td> <code>enabled</code> </td>
+   <td> Boolean flag indicating whether the feature is enabled or not by this configuration</td>
+  </tr> 
+ </tbody> 
 </table></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -92,203 +92,171 @@
                 Content Distribution (org.apache.sling.distribution)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
-<p>The Sling Content Distribution (SCD) module allows one to distribute Sling resources between different Sling instances. The API works at path level and the distribution agents basically enable distribution of specific paths between instances. There are several main usecases in which SCD can help. Typically the distribution is done from one or more source instances to one or more target instances.</p>
-<h2><a href="#distribution-usecases" name="distribution-usecases">Distribution usecases</a></h2>
-<p>Some of the usecases have sample configuration in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/sample/src/main/resources/SLING-CONTENT/libs/sling/distribution">Distribution Sample Module</a> and are tested in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/it">Distribution ITs Module</a>.</p>
-<h3><a href="#forward-distribution" name="forward-distribution">Forward distribution</a></h3>
-<p>A forward distribution setup allows one to transfer content from a source instance to a farm of target instances. That is done by pushing the content from source to target.</p>
-<h4><a href="#setup-overview" name="setup-overview">Setup overview</a></h4>
-<ul>
-  <li>one source instance
-    <ul>
-      <li>one distribution agent connected to importer endpoints for all target instances.</li>
-    </ul>
-  </li>
-  <li>N target instances
-    <ul>
-      <li>one distribution importer on each target instance used to import packages into the local instance.</li>
-    </ul>
-  </li>
-</ul>
-<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
-<ul>
-  <li>
-    <p>on source instance: one forward agent</p>
-    <pre><code>org.apache.sling.distribution.agent.impl.ForwardDistributionAgentFactory-publish.json            
-    name=&quot;publish&quot;
-    packageImporter.endpoints=[&quot;http://localhost:4503/libs/sling/distribution/services/importers/default&quot;]
-</code></pre>
-  </li>
-  <li>
-    <p>on target instance: one local importer</p>
-    <pre><code>org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default
-    name=&quot;default&quot;
-</code></pre>
-  </li>
-</ul>
-<h4><a href="#trigger-forward-distribution" name="trigger-forward-distribution">Trigger forward distribution</a></h4>
-<p>Forward distribution can be triggered by sending a <code>POST</code> HTTP request to the agent resource on the source instance with the parameter <code>action=ADD</code> and parameters <code>path=&lt;resourcePath&gt;</code>.</p>
-<p>The example below distributes the path <code>/content/sample1</code></p>
-<pre><code>$ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d &#39;action=ADD&#39; -d &#39;path=/content/sample1&#39;
-</code></pre>
-<h3><a href="#reverse-distribution" name="reverse-distribution">Reverse distribution</a></h3>
-<p>A reverse distribution setup allows one to transfer content from a farm of source instances to a target instance. That is done by pulling the content from source instances into the target instance.</p>
-<h4><a href="#setup-overview" name="setup-overview">Setup overview</a></h4>
-<ul>
-  <li>one target instance
-    <ul>
-      <li>one distribution agent connected to exporter endpoints for all target instances.</li>
-    </ul>
-  </li>
-  <li>N source instances
-    <ul>
-      <li>one distribution (queue) agent on each source instance; changes from the source instances are placed in the queues of these agents.</li>
-      <li>one distribution exporter on each source instance that exports packages from the queue agent.</li>
-    </ul>
-  </li>
-</ul>
-<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
-<ul>
-  <li>
-    <p>on target instance: one reverse agent</p>
-    <pre><code>org.apache.sling.distribution.agent.impl.ReverseDistributionAgentFactory-reverse.json            
-    name=&quot;reverse&quot;
-    packageExporter.endpoints=[&quot;http://localhost:4503/libs/sling/distribution/services/exporters/reverse&quot;]
-</code></pre>
-  </li>
-  <li>
-    <p>on source instance: one queue agent and one exporter for that agent</p>
-    <pre><code>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
-    name=&quot;reverse&quot;
+</p> 
+<h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>The Sling Content Distribution (SCD) module allows one to distribute Sling resources between different Sling instances. The API works at path level and the distribution agents basically enable distribution of specific paths between instances. There are several main usecases in which SCD can help. Typically the distribution is done from one or more source instances to one or more target instances.</p> 
+<h2><a href="#distribution-usecases" id="distribution-usecases">Distribution usecases</a></h2> 
+<p>Some of the usecases have sample configuration in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/sample/src/main/resources/SLING-CONTENT/libs/sling/distribution">Distribution Sample Module</a> and are tested in <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/distribution/it">Distribution ITs Module</a>.</p> 
+<h3><a href="#forward-distribution" id="forward-distribution">Forward distribution</a></h3> 
+<p>A forward distribution setup allows one to transfer content from a source instance to a farm of target instances. That is done by pushing the content from source to target.</p> 
+<h4><a href="#setup-overview" id="setup-overview">Setup overview</a></h4> 
+<ul> 
+ <li>one source instance 
+  <ul> 
+   <li>one distribution agent connected to importer endpoints for all target instances.</li> 
+  </ul> </li> 
+ <li>N target instances 
+  <ul> 
+   <li>one distribution importer on each target instance used to import packages into the local instance.</li> 
+  </ul> </li> 
+</ul> 
+<h4><a href="#sample-configuration" id="sample-configuration">Sample configuration</a></h4> 
+<ul> 
+ <li> <p>on source instance: one forward agent</p> <pre><code>org.apache.sling.distribution.agent.impl.ForwardDistributionAgentFactory-publish.json            
+    name="publish"
+    packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default"]
+</code></pre> </li> 
+ <li> <p>on target instance: one local importer</p> <pre><code>org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default
+    name="default"
+</code></pre> </li> 
+</ul> 
+<h4><a href="#trigger-forward-distribution" id="trigger-forward-distribution">Trigger forward distribution</a></h4> 
+<p>Forward distribution can be triggered by sending a <code>POST</code> HTTP request to the agent resource on the source instance with the parameter <code>action=ADD</code> and parameters <code>path=&lt;resourcePath&gt;</code>.</p> 
+<p>The example below distributes the path <code>/content/sample1</code></p> 
+<pre><code>$ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d 'action=ADD' -d 'path=/content/sample1'
+</code></pre> 
+<h3><a href="#reverse-distribution" id="reverse-distribution">Reverse distribution</a></h3> 
+<p>A reverse distribution setup allows one to transfer content from a farm of source instances to a target instance. That is done by pulling the content from source instances into the target instance.</p> 
+<h4><a href="#setup-overview" id="setup-overview">Setup overview</a></h4> 
+<ul> 
+ <li>one target instance 
+  <ul> 
+   <li>one distribution agent connected to exporter endpoints for all target instances.</li> 
+  </ul> </li> 
+ <li>N source instances 
+  <ul> 
+   <li>one distribution (queue) agent on each source instance; changes from the source instances are placed in the queues of these agents.</li> 
+   <li>one distribution exporter on each source instance that exports packages from the queue agent.</li> 
+  </ul> </li> 
+</ul> 
+<h4><a href="#sample-configuration" id="sample-configuration">Sample configuration</a></h4> 
+<ul> 
+ <li> <p>on target instance: one reverse agent</p> <pre><code>org.apache.sling.distribution.agent.impl.ReverseDistributionAgentFactory-reverse.json            
+    name="reverse"
+    packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse"]
+</code></pre> </li> 
+ <li> <p>on source instance: one queue agent and one exporter for that agent</p> <pre><code>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
+    name="reverse"
 
 org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse
-    name=&quot;reverse&quot;
-    agent.target=&quot;(name=reverse)&quot;
-</code></pre>
-  </li>
-</ul>
-<h4><a href="#trigger-reverse-distribution" name="trigger-reverse-distribution">Trigger reverse distribution</a></h4>
-<p>Reverse distribution can be triggered by sending a <code>POST</code> HTTP request to the agent resource on the target instance with the parameter <code>action=PULL</code>.</p>
-<p>The example below adds the the path <code>/content/sample1</code> and then reverse distribute it.</p>
-<pre><code>$ curl -v -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/publish -d &#39;action=PULL&#39; -d &#39;path=/content/sample1&#39;
-</code></pre>
-<h3><a href="#sync-distribution" name="sync-distribution">Sync distribution</a></h3>
-<p>A sync distribution setup allows one to synchronize content in a farm of instances. That is done by using a coordinator instance (typically an author instance) that pulls content from all instances in a farm and pushes it back to all.</p>
-<h4><a href="#setup-overview-" name="setup-overview-">Setup overview:</a></h4>
-<ul>
-  <li>one coordinator instance
-    <ul>
-      <li>one distribution agent connected to exporter/importer endpoints for all farm instances.</li>
-    </ul>
-  </li>
-  <li>N farm instances
-    <ul>
-      <li>one distribution (queue) agent on each farm instance; changes from these instances are placed in the queues of the queue agents.</li>
-      <li>one distribution exporter on each farm instance that exports packages from the queue agent.</li>
-      <li>one distribution importer on each farm instance used to import packages into the local instance.</li>
-    </ul>
-  </li>
-</ul>
-<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
-<ul>
-  <li>
-    <p>on coordinator instance: one sync agent</p>
-    <pre><code>org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-sync.json            
-    name=&quot;sync&quot;
-    packageExporter.endpoints=[&quot;http://localhost:4503/libs/sling/distribution/services/exporters/reverse&quot;, &quot;http://localhost:4504/libs/sling/distribution/services/exporters/reverse&quot;]
-    packageImporter.endpoints=[&quot;http://localhost:4503/libs/sling/distribution/services/importers/default&quot;, &quot;http://localhost:4504/libs/sling/distribution/services/importers/default&quot;]
-</code></pre>
-  </li>
-  <li>
-    <p>on each farm instance: one local exporter and one local importer</p>
-    <pre><code>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
-    name=&quot;reverse&quot;
+    name="reverse"
+    agent.target="(name=reverse)"
+</code></pre> </li> 
+</ul> 
+<h4><a href="#trigger-reverse-distribution" id="trigger-reverse-distribution">Trigger reverse distribution</a></h4> 
+<p>Reverse distribution can be triggered by sending a <code>POST</code> HTTP request to the agent resource on the target instance with the parameter <code>action=PULL</code>.</p> 
+<p>The example below adds the the path <code>/content/sample1</code> and then reverse distribute it.</p> 
+<pre><code>$ curl -v -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/publish -d 'action=PULL' -d 'path=/content/sample1'
+</code></pre> 
+<h3><a href="#sync-distribution" id="sync-distribution">Sync distribution</a></h3> 
+<p>A sync distribution setup allows one to synchronize content in a farm of instances. That is done by using a coordinator instance (typically an author instance) that pulls content from all instances in a farm and pushes it back to all.</p> 
+<h4><a href="#setup-overview" id="setup-overview">Setup overview:</a></h4> 
+<ul> 
+ <li>one coordinator instance 
+  <ul> 
+   <li>one distribution agent connected to exporter/importer endpoints for all farm instances.</li> 
+  </ul> </li> 
+ <li>N farm instances 
+  <ul> 
+   <li>one distribution (queue) agent on each farm instance; changes from these instances are placed in the queues of the queue agents.</li> 
+   <li>one distribution exporter on each farm instance that exports packages from the queue agent.</li> 
+   <li>one distribution importer on each farm instance used to import packages into the local instance.</li> 
+  </ul> </li> 
+</ul> 
+<h4><a href="#sample-configuration" id="sample-configuration">Sample configuration</a></h4> 
+<ul> 
+ <li> <p>on coordinator instance: one sync agent</p> <pre><code>org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-sync.json            
+    name="sync"
+    packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse", "http://localhost:4504/libs/sling/distribution/services/exporters/reverse"]
+    packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default", "http://localhost:4504/libs/sling/distribution/services/importers/default"]
+</code></pre> </li> 
+ <li> <p>on each farm instance: one local exporter and one local importer</p> <pre><code>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
+    name="reverse"
 
 org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse
-    name=&quot;reverse&quot;
-    agent.target=&quot;(name=reverse)&quot;
+    name="reverse"
+    agent.target="(name=reverse)"
 
 org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default
-    name=&quot;reverse&quot;
-    agent.target=&quot;(name=reverse)&quot;
-</code></pre>
-  </li>
-</ul>
-<h3><a href="#multidatacenter-sync-distribution" name="multidatacenter-sync-distribution">Multidatacenter sync distribution</a></h3>
-<p>A multidatacenter sync distribution setup allows one to synchronize content in a farm of publish instances across datacenters. This a variation of sync distribution but using a coordinator in each datacenter.</p>
-<h4><a href="#setup-overview" name="setup-overview">Setup overview</a></h4>
-<ul>
-  <li>one coordinator instance in each datacenter
-    <ul>
-      <li>one distribution agent for intra-datacenter synchronization. Like a regular sync agent it connects to all farm instances in its datacenter and syncronizes them. In addition to a regular sync agent it keeps the packages also in dedicated queues for the other DCs, so that the coordinators from the other DCs can pull the updates.</li>
-      <li>one distribution exporter for each queue dedicated for the remote DCs. The inter-dc coordinators from the other DCs will connect to these exporter endpoints.</li>
-      <li>one distribution agent for inter-datacenter synchronization; it conntects to the dedicated queues exposed by intra-dc coordinators from the other datacenters.</li>
-    </ul>
-  </li>
-  <li>N farm instances in each datacenter
-    <ul>
-      <li>one distribution (queue) agent on each farm instance; changes from these instances are placed in the queues of the queue agents.</li>
-      <li>one distribution exporter on each farm instance that exports packages from the queue agent.</li>
-      <li>one distribution importer on each farm instance used to import packages into the local instance.</li>
-    </ul>
-  </li>
-</ul>
-<h4><a href="#sample-configuration" name="sample-configuration">Sample configuration</a></h4>
-<ul>
-  <li>
-    <p>on coordinator instance: one intradcsync agent with two exporters for the other dcs, and one interdcsync agent that connects to remote exporters.</p>
-    <pre><code>org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-intradcsync          
-    name=&quot;intradcsync&quot;
-    packageExporter.endpoints=[&quot;http://localhost:4503/libs/sling/distribution/services/exporters/reverse&quot;, &quot;http://localhost:4504/libs/sling/distribution/services/exporters/reverse&quot;]
-    packageImporter.endpoints=[&quot;http://localhost:4503/libs/sling/distribution/services/importers/default&quot;, &quot;http://localhost:4504/libs/sling/distribution/services/importers/default&quot;]
-    passiveQueues=[&quot;dc2queue&quot;, &quot;dc3queue&quot;]
+    name="reverse"
+    agent.target="(name=reverse)"
+</code></pre> </li> 
+</ul> 
+<h3><a href="#multidatacenter-sync-distribution" id="multidatacenter-sync-distribution">Multidatacenter sync distribution</a></h3> 
+<p>A multidatacenter sync distribution setup allows one to synchronize content in a farm of publish instances across datacenters. This a variation of sync distribution but using a coordinator in each datacenter.</p> 
+<h4><a href="#setup-overview" id="setup-overview">Setup overview</a></h4> 
+<ul> 
+ <li>one coordinator instance in each datacenter 
+  <ul> 
+   <li>one distribution agent for intra-datacenter synchronization. Like a regular sync agent it connects to all farm instances in its datacenter and syncronizes them. In addition to a regular sync agent it keeps the packages also in dedicated queues for the other DCs, so that the coordinators from the other DCs can pull the updates.</li> 
+   <li>one distribution exporter for each queue dedicated for the remote DCs. The inter-dc coordinators from the other DCs will connect to these exporter endpoints.</li> 
+   <li>one distribution agent for inter-datacenter synchronization; it conntects to the dedicated queues exposed by intra-dc coordinators from the other datacenters.</li> 
+  </ul> </li> 
+ <li>N farm instances in each datacenter 
+  <ul> 
+   <li>one distribution (queue) agent on each farm instance; changes from these instances are placed in the queues of the queue agents.</li> 
+   <li>one distribution exporter on each farm instance that exports packages from the queue agent.</li> 
+   <li>one distribution importer on each farm instance used to import packages into the local instance.</li> 
+  </ul> </li> 
+</ul> 
+<h4><a href="#sample-configuration" id="sample-configuration">Sample configuration</a></h4> 
+<ul> 
+ <li> <p>on coordinator instance: one intradcsync agent with two exporters for the other dcs, and one interdcsync agent that connects to remote exporters.</p> <pre><code>org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-intradcsync          
+    name="intradcsync"
+    packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse", "http://localhost:4504/libs/sling/distribution/services/exporters/reverse"]
+    packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default", "http://localhost:4504/libs/sling/distribution/services/importers/default"]
+    passiveQueues=["dc2queue", "dc3queue"]
 
 org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-dc2queue
-    name=&quot;dc2queue&quot;
-    agent.target=&quot;(name=intradcsync)&quot;
-    queue=&quot;dc2queue&quot;
+    name="dc2queue"
+    agent.target="(name=intradcsync)"
+    queue="dc2queue"
 
 org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-dc3queue
-    name=&quot;dc3queue&quot;
-    agent.target=&quot;(name=intradcsync)&quot;
-    queue=&quot;dc3queue&quot;
+    name="dc3queue"
+    agent.target="(name=intradcsync)"
+    queue="dc3queue"
 
 org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-interdcsync           
-    name=&quot;interdcsync&quot;
-    packageExporter.endpoints=[&quot;http://localhost:5502/libs/sling/distribution/services/exporters/dc1queue&quot;, &quot;http://localhost:6502/libs/sling/distribution/services/exporters/dc1queue&quot;]
-    packageImporter.endpoints=[&quot;http://localhost:4503/libs/sling/distribution/services/importers/default&quot;, &quot;http://localhost:4504/libs/sling/distribution/services/importers/default&quot;]
-</code></pre>
-  </li>
-  <li>
-    <p>on each farm instance: one local exporter and one local importer</p>
-    <pre><code>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
-    name=&quot;reverse&quot;
+    name="interdcsync"
+    packageExporter.endpoints=["http://localhost:5502/libs/sling/distribution/services/exporters/dc1queue", "http://localhost:6502/libs/sling/distribution/services/exporters/dc1queue"]
+    packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default", "http://localhost:4504/libs/sling/distribution/services/importers/default"]
+</code></pre> </li> 
+ <li> <p>on each farm instance: one local exporter and one local importer</p> <pre><code>org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
+    name="reverse"
 
 org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse
-    name=&quot;reverse&quot;
-    agent.target=&quot;(name=reverse)&quot;
+    name="reverse"
+    agent.target="(name=reverse)"
 
 org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default
-    name=&quot;default&quot;
-</code></pre>
-  </li>
-</ul>
-<h2><a href="#additional-options" name="additional-options">Additional options</a></h2>
-<h3><a href="#how-to-configure-binary-less-distribution-" name="how-to-configure-binary-less-distribution-">How to configure binary-less distribution?</a></h3>
-<p>Binary-less distribution is supported for deployments over a shared data store and involving agents that leverage the Vault based Distribution package exporter (Factory PID: org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory) package builder.</p>
-<p>With binary-less mode enabled, the content packages distributed contain references to binaries rather than the actual binaries.</p>
-<p>SCD does not explicitly deal with binary references. Instead, it configures Apache Jackrabbit FileVault export options in order to assemble/import binary references.</p>
-<p>Upon import, if a referenced binary is not visible on the destination instance, SCD will retry distributing the content package after a delay has elapsed.</p>
-<p>Binary-less is configured by setting the 'useReferences' to true on the VaultDistributionPackageBuilderFactory.</p>
-<h3><a href="#how-to-configure-priority-queue-" name="how-to-configure-priority-queue-">How to configure priority queue?</a></h3>
-<p>SCD agents allow to prioritize the distribution of content depending on its path. This feature improves the delays in use cases where a subset of the content to be distributed must meet tighter delay than the remaining one (e.g. news flash).</p>
-<p>Each agent can be configured with one or more priority queues.</p>
-<p>In order to setup the priority queues, configure the 'priorityQueues' agent property by providing the queuePrefix and path regular expression.</p>
-<h3><a href="#how-to-configure-retry-strategy-" name="how-to-configure-retry-strategy-">How to configure retry strategy?</a></h3>
-<p>The agent behaviour upon failed distribution request can be configured via the Retry Strategy 'retry.strategy' and 'retry.attempts' properties.</p>
-<p>With the 'none' strategy, an agent will retry distributing an item forever, blocking the queue until the distribution succeeds. The 'none' strategy guarantees the distribution order but may block the queue until someone resolves the situation.</p>
+    name="default"
+</code></pre> </li> 
+</ul> 
+<h2><a href="#additional-options" id="additional-options">Additional options</a></h2> 
+<h3><a href="#how-to-configure-binary-less-distribution" id="how-to-configure-binary-less-distribution">How to configure binary-less distribution?</a></h3> 
+<p>Binary-less distribution is supported for deployments over a shared data store and involving agents that leverage the Vault based Distribution package exporter (Factory PID: org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory) package builder.</p> 
+<p>With binary-less mode enabled, the content packages distributed contain references to binaries rather than the actual binaries.</p> 
+<p>SCD does not explicitly deal with binary references. Instead, it configures Apache Jackrabbit FileVault export options in order to assemble/import binary references.</p> 
+<p>Upon import, if a referenced binary is not visible on the destination instance, SCD will retry distributing the content package after a delay has elapsed.</p> 
+<p>Binary-less is configured by setting the 'useReferences' to true on the VaultDistributionPackageBuilderFactory.</p> 
+<h3><a href="#how-to-configure-priority-queue" id="how-to-configure-priority-queue">How to configure priority queue?</a></h3> 
+<p>SCD agents allow to prioritize the distribution of content depending on its path. This feature improves the delays in use cases where a subset of the content to be distributed must meet tighter delay than the remaining one (e.g. news flash).</p> 
+<p>Each agent can be configured with one or more priority queues.</p> 
+<p>In order to setup the priority queues, configure the 'priorityQueues' agent property by providing the queuePrefix and path regular expression.</p> 
+<h3><a href="#how-to-configure-retry-strategy" id="how-to-configure-retry-strategy">How to configure retry strategy?</a></h3> 
+<p>The agent behaviour upon failed distribution request can be configured via the Retry Strategy 'retry.strategy' and 'retry.attempts' properties.</p> 
+<p>With the 'none' strategy, an agent will retry distributing an item forever, blocking the queue until the distribution succeeds. The 'none' strategy guarantees the distribution order but may block the queue until someone resolves the situation.</p> 
 <p>With the 'errorQueue' strategy, an agent will automatically create an additional error queue. The agent will retry up to 'retry.attempts' attempts then move the failed item to the error queue. The error queue is passive and allow to keep track of the failed distribution item for post analysis. The 'errorQueue' strategy does not guarantee the distribution order, but it guarantee that the queue is stuck for a bounded number of retries.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

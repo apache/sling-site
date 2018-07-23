@@ -91,48 +91,48 @@
             </div><h1 class="pagetitle">
                 File Installer Provider
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The file installer provider scans configured directories and provides the found artifacts (files) to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>. The functionality is very similar to Apache Felix FileInstall, with the major difference that this service implements just the task of scanning a file directory. All the management logic is implemented in the OSGi installer and support of various artifact types like bundles, configurations or custom formats is implemented by plugins for the OSGi installer.</p>
-<h2><a href="#setup" name="setup">Setup</a></h2>
-<p>The file installer can be configured with these framework (system) properties:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Property</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>sling.fileinstall.dir</code></td>
-      <td> </td>
-      <td>The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts</td>
-    </tr>
-    <tr>
-      <td><code>sling.fileinstall.interval</code></td>
-      <td>5000 ms</td>
-      <td>Number of milliseconds between 2 polls of the directory</td>
-    </tr>
-    <tr>
-      <td><code>sling.fileinstall.writeback</code></td>
-      <td>true</td>
-      <td>If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system.</td>
-    </tr>
-  </tbody>
-</table>
-<h2><a href="#bundles" name="bundles">Bundles</a></h2>
-<p>Bundles are supported by the OSGi installer. If a bundle jar is added to a scanned directory, this bundle is installed. If the file is updated/changed, the bundle is updated. If the file is removed, the bundle gets removed. Of course, these are the simple rules. The actual action depends by the overall state of the system and is controlled by the OSGi installer. For example if already the same bundle with a higher version is installed, when a bundle is dropped into the install folder, the OSGi installer will perform no operation.</p>
-<p>Start levels are supported as well by creating a directory with the name of the start level within the scan directory and putting the bundles within this directory. For example, if the <code>install</code> folder is scanned, the bundle <code>install/3/mybundle.jar</code> will be installed with start level 3. Without such a directory the default start level is used.</p>
-<h2><a href="#configurations" name="configurations">Configurations</a></h2>
-<p>Configurations are handled by the <a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a>. The different formats are described there.</p>
-<h2><a href="#custom-artifacts" name="custom-artifacts">Custom Artifacts</a></h2>
-<p>Custom artifacts are handled by the OSGi installer depending on the installed plugins. Have a look at the OSGi installer and its plugins for more information.</p>
-<h2><a href="#runmode-support" name="runmode-support">Runmode Support</a></h2>
-<p>The file installer supports run modes for installing artifacts (added with <a href="https://issues.apache.org/jira/browse/SLING-4478">SLING-4478</a>). Within the scanned directory, a folder prefixed with "install." and followed by one or more run modes (separated by ".") will only be considered if all the respective run modes are active. For example artifacts below a folder named <code>install.a1.dev</code> are only taken into account if the run modes <code>a1</code> and <code>dev</code> are both active. </p>
-<p>You can even combine start level and run mode support. Just pay attention that the run mode foldername must be set on a direct child folder of <code>sling.fileinstall.dir</code> while the start level must be set directly on the parent folder of the artifact you want to install. E.g. <code>&lt;sling.fileinstall.dir&gt;/install.a1.dev/3/mybundle.jar</code> will only be considered if both run modes <code>a1</code> and <code>dev</code> are set. If this is the case then the according artifact will be installed in start level 3.</p>
-<h1><a href="#project-info" name="project-info">Project Info</a></h1>
-<ul>
-  <li>File installer provider (<a href="https://github.com/apache/sling-org-apache-sling-installer-provider-file">org.apache.sling.installer.provider.file</a>)</li>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The file installer provider scans configured directories and provides the found artifacts (files) to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>. The functionality is very similar to Apache Felix FileInstall, with the major difference that this service implements just the task of scanning a file directory. All the management logic is implemented in the OSGi installer and support of various artifact types like bundles, configurations or custom formats is implemented by plugins for the OSGi installer.</p> 
+<h2><a href="#setup" id="setup">Setup</a></h2> 
+<p>The file installer can be configured with these framework (system) properties:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th>Property</th>
+   <th>Default</th>
+   <th>Description</th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td><code>sling.fileinstall.dir</code></td>
+   <td> </td>
+   <td>The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts</td>
+  </tr> 
+  <tr>
+   <td><code>sling.fileinstall.interval</code></td>
+   <td>5000 ms</td>
+   <td>Number of milliseconds between 2 polls of the directory</td>
+  </tr> 
+  <tr>
+   <td><code>sling.fileinstall.writeback</code></td>
+   <td>true</td>
+   <td>If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system.</td>
+  </tr> 
+ </tbody> 
+</table> 
+<h2><a href="#bundles" id="bundles">Bundles</a></h2> 
+<p>Bundles are supported by the OSGi installer. If a bundle jar is added to a scanned directory, this bundle is installed. If the file is updated/changed, the bundle is updated. If the file is removed, the bundle gets removed. Of course, these are the simple rules. The actual action depends by the overall state of the system and is controlled by the OSGi installer. For example if already the same bundle with a higher version is installed, when a bundle is dropped into the install folder, the OSGi installer will perform no operation.</p> 
+<p>Start levels are supported as well by creating a directory with the name of the start level within the scan directory and putting the bundles within this directory. For example, if the <code>install</code> folder is scanned, the bundle <code>install/3/mybundle.jar</code> will be installed with start level 3. Without such a directory the default start level is used.</p> 
+<h2><a href="#configurations" id="configurations">Configurations</a></h2> 
+<p>Configurations are handled by the <a href="/documentation/bundles/configuration-installer-factory.html">Configuration Installer Factory</a>. The different formats are described there.</p> 
+<h2><a href="#custom-artifacts" id="custom-artifacts">Custom Artifacts</a></h2> 
+<p>Custom artifacts are handled by the OSGi installer depending on the installed plugins. Have a look at the OSGi installer and its plugins for more information.</p> 
+<h2><a href="#runmode-support" id="runmode-support">Runmode Support</a></h2> 
+<p>The file installer supports run modes for installing artifacts (added with <a href="https://issues.apache.org/jira/browse/SLING-4478">SLING-4478</a>). Within the scanned directory, a folder prefixed with "install." and followed by one or more run modes (separated by ".") will only be considered if all the respective run modes are active. For example artifacts below a folder named <code>install.a1.dev</code> are only taken into account if the run modes <code>a1</code> and <code>dev</code> are both active.</p> 
+<p>You can even combine start level and run mode support. Just pay attention that the run mode foldername must be set on a direct child folder of <code>sling.fileinstall.dir</code> while the start level must be set directly on the parent folder of the artifact you want to install. E.g. <code>&lt;sling.fileinstall.dir&gt;/install.a1.dev/3/mybundle.jar</code> will only be considered if both run modes <code>a1</code> and <code>dev</code> are set. If this is the case then the according artifact will be installed in start level 3.</p> 
+<h1><a href="#project-info" id="project-info">Project Info</a></h1> 
+<ul> 
+ <li>File installer provider (<a href="https://github.com/apache/sling-org-apache-sling-installer-provider-file">org.apache.sling.installer.provider.file</a>)</li> 
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

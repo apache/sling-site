@@ -94,52 +94,52 @@
                 NoSQL Resource Providers (org.apache.sling.nosql)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
-<p>Apache Sling provides resource-based access to NoSQL document stores like MongoDB and Couchbase via its Resource API using the NoSQL resource providers. This is possible in combination with a JCR-based repository (e.g. only on a special path in the resource tree), or a only persistence for the whole resource tree depending on the resource provider configuration.</p>
-<p>The general concept of retrieving from and storing resource data in NoSQL document stores is the same independently from the NoSQL product used:</p>
-<ul>
-  <li>For each resource a structured document is stored (usually in JSON format)</li>
-  <li>The path of the resource is the key of the document</li>
-  <li>The properties of the resource are stored in a map-like form in the document</li>
-  <li>Special mapping applies to convert special data types like numbers, dates and binary data to a format that can safely stored in the document event if the format is not natively supported (e.g. converting dates to strings and binary to base64)</li>
-  <li>The Sling CRUD support defines a simple transaction model with buffering all changes in memory until a call to "commit()" persists them to the NoSQL database</li>
-  <li>Iterating over child resources and deleting a resource including all descendants requires some basic query capabilities in the NoSQL store</li>
-</ul>
-<p>All these general features are implemented in an abstraction layer called <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/generic">"Apache Sling NoSQL Generic Resource Provider"</a>, which is used by the resource provider implementations per NoSQL product. Those implementation than only implement a thin "adapter" which maps the resource data to the NoSQL product-specific storage formats and query capabilities, without having to care about all the complex resource provider handling.</p>
-<p>This generic resource provider also contains a set of integration tests covering the most relevant resource read- and write usecases which can be used to test a NoSQL product-specific resource provider implementation and the underlying NoSQL database.</p>
-<h2><a href="#mongodb-nosql-resource-provider" name="mongodb-nosql-resource-provider">MongoDB NoSQL Resource Provider</a></h2>
-<p>Resource provider for <a href="https://www.mongodb.org/">MongoDB</a> NoSQL database.</p>
-<p>Tested with MongoDB Server 3.0.6 and MongoDB Java Driver 3.1.1.</p>
-<p>Configuration example:</p>
+</p> 
+<h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>Apache Sling provides resource-based access to NoSQL document stores like MongoDB and Couchbase via its Resource API using the NoSQL resource providers. This is possible in combination with a JCR-based repository (e.g. only on a special path in the resource tree), or a only persistence for the whole resource tree depending on the resource provider configuration.</p> 
+<p>The general concept of retrieving from and storing resource data in NoSQL document stores is the same independently from the NoSQL product used:</p> 
+<ul> 
+ <li>For each resource a structured document is stored (usually in JSON format)</li> 
+ <li>The path of the resource is the key of the document</li> 
+ <li>The properties of the resource are stored in a map-like form in the document</li> 
+ <li>Special mapping applies to convert special data types like numbers, dates and binary data to a format that can safely stored in the document event if the format is not natively supported (e.g. converting dates to strings and binary to base64)</li> 
+ <li>The Sling CRUD support defines a simple transaction model with buffering all changes in memory until a call to "commit()" persists them to the NoSQL database</li> 
+ <li>Iterating over child resources and deleting a resource including all descendants requires some basic query capabilities in the NoSQL store</li> 
+</ul> 
+<p>All these general features are implemented in an abstraction layer called <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/generic">"Apache Sling NoSQL Generic Resource Provider"</a>, which is used by the resource provider implementations per NoSQL product. Those implementation than only implement a thin "adapter" which maps the resource data to the NoSQL product-specific storage formats and query capabilities, without having to care about all the complex resource provider handling.</p> 
+<p>This generic resource provider also contains a set of integration tests covering the most relevant resource read- and write usecases which can be used to test a NoSQL product-specific resource provider implementation and the underlying NoSQL database.</p> 
+<h2><a href="#mongodb-nosql-resource-provider" id="mongodb-nosql-resource-provider">MongoDB NoSQL Resource Provider</a></h2> 
+<p>Resource provider for <a href="https://www.mongodb.org/">MongoDB</a> NoSQL database.</p> 
+<p>Tested with MongoDB Server 3.0.6 and MongoDB Java Driver 3.1.1.</p> 
+<p>Configuration example:</p> 
 <pre><code>org.apache.sling.nosql.mongodb.resourceprovider.MongoDBNoSqlResourceProviderFactory.factory.config-default
-    provider.roots=[&quot;/&quot;]
-    connectionString=&quot;localhost:27017&quot;
-    database=&quot;sling&quot;
-    collection=&quot;resources&quot;
-</code></pre>
-<p>See Apache Felix OSGi console for detailed documentation of the parameters. All resource data is stored in one Collection of one MongoDB database. Each resource is stored as a document with the path stored in an "_id" property.</p>
-<p>Source code: <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/mongodb-resourceprovider">Apache Sling NoSQL MongoDB Resource Provider</a></p>
-<p>Please note: there is an <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/mongodb">alternative MongoDB resource provider implementation</a> from 2012 which has less features, a slightly different concept for storing resource data (in multiple collections), and it does not use the "Generic Resource Provider".</p>
-<h2><a href="#couchbase-nosql-resource-provider" name="couchbase-nosql-resource-provider">Couchbase NoSQL Resource Provider</a></h2>
-<p>Resource provider for <a href="http://www.couchbase.com/">Couchbase</a> NoSQL database.</p>
-<p>Tested with Couchbase Server 4.0.0 and Couchbase Java SDK 2.2.4. Please note: Couchbase 4 or higher is mandatory because N1QL support is required.</p>
-<p>Configuration example:</p>
+    provider.roots=["/"]
+    connectionString="localhost:27017"
+    database="sling"
+    collection="resources"
+</code></pre> 
+<p>See Apache Felix OSGi console for detailed documentation of the parameters. All resource data is stored in one Collection of one MongoDB database. Each resource is stored as a document with the path stored in an "_id" property.</p> 
+<p>Source code: <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/mongodb-resourceprovider">Apache Sling NoSQL MongoDB Resource Provider</a></p> 
+<p>Please note: there is an <a href="https://github.com/apache/sling/tree/trunk/contrib/extensions/mongodb">alternative MongoDB resource provider implementation</a> from 2012 which has less features, a slightly different concept for storing resource data (in multiple collections), and it does not use the "Generic Resource Provider".</p> 
+<h2><a href="#couchbase-nosql-resource-provider" id="couchbase-nosql-resource-provider">Couchbase NoSQL Resource Provider</a></h2> 
+<p>Resource provider for <a href="http://www.couchbase.com/">Couchbase</a> NoSQL database.</p> 
+<p>Tested with Couchbase Server 4.0.0 and Couchbase Java SDK 2.2.4. Please note: Couchbase 4 or higher is mandatory because N1QL support is required.</p> 
+<p>Configuration example:</p> 
 <pre><code>org.apache.sling.nosql.couchbase.resourceprovider.CouchbaseNoSqlResourceProviderFactory.factory.config-default
-    provider.roots=[&quot;/&quot;]
+    provider.roots=["/"]
 
 org.apache.sling.nosql.couchbase.client.CouchbaseClient.factory.config-default
-    clientId=&quot;sling-resourceprovider-couchbase&quot;
-    couchbaseHosts=&quot;localhost:8091&quot;
-    bucketName=&quot;sling&quot;
-    enabled=B&quot;true&quot;
-</code></pre>
-<p>See Apache Felix OSGi console for detailed documentation of the parameters. All resource data is stored in one Couchbase bucket. Each resource is stored as a document with the path as key.</p>
-<p>Source code: <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/couchbase-resourceprovider">Apache Sling NoSQL Couchbase Resource Provider</a></p>
-<p>The resource provider requires and additional bundle <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/couchbase-client">Apache Sling NoSQL Couchbase Client</a> which wraps the Couchbase Java SDK (which itself is not an OSGi bundle), and ensures that the Couchbase Environment instance is used as a singleton in the VM.</p>
-<h2><a href="#example-launchpad" name="example-launchpad">Example Launchpad</a></h2>
-<p>An example launchpad is provided that contains the NoSQL resource providers configured as main resource provider at <code>/</code>.</p>
-<p>Source code: <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/launchpad">Apache Sling NoSQL Launchpad</a></p>
+    clientId="sling-resourceprovider-couchbase"
+    couchbaseHosts="localhost:8091"
+    bucketName="sling"
+    enabled=B"true"
+</code></pre> 
+<p>See Apache Felix OSGi console for detailed documentation of the parameters. All resource data is stored in one Couchbase bucket. Each resource is stored as a document with the path as key.</p> 
+<p>Source code: <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/couchbase-resourceprovider">Apache Sling NoSQL Couchbase Resource Provider</a></p> 
+<p>The resource provider requires and additional bundle <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/couchbase-client">Apache Sling NoSQL Couchbase Client</a> which wraps the Couchbase Java SDK (which itself is not an OSGi bundle), and ensures that the Couchbase Environment instance is used as a singleton in the VM.</p> 
+<h2><a href="#example-launchpad" id="example-launchpad">Example Launchpad</a></h2> 
+<p>An example launchpad is provided that contains the NoSQL resource providers configured as main resource provider at <code>/</code>.</p> 
+<p>Source code: <a href="https://github.com/apache/sling/tree/trunk/contrib/nosql/launchpad">Apache Sling NoSQL Launchpad</a></p> 
 <p>See README for details how to start the launchpad.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

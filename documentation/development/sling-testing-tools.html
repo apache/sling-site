@@ -96,119 +96,118 @@
                 Sling Testing Tools
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><div class="warning">
-While this information is still valid, we recommend using the tools and techniques described
-in the newer "Junit Server-Side Tests Support" page instead, see link below. 
-</div>
-<p>As mentioned above, this is now replaced by the <a href="/documentation/bundles/org-apache-sling-junit-bundles.html">Junit Server-Side Tests Support</a> page. </p>
-<p>Sling provides a number of testing tools to support the following use cases:</p>
-<ul>
-  <li>Run JUnit tests contributed by OSGi bundles in an OSGi system. This does not require Sling and should work in other OSGi environments.</li>
-  <li>Run scriptable tests in a Sling instance, using any supported scripting language.</li>
-  <li>Run integration tests via HTTP against a Sling instance that is started during the Maven build cycle, or independently.</li>
-</ul>
-<p>This page describes those tools, and points to the bundles that implement them.</p>
-<p>The main Sling integration tests at <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests">launchpad/integration-tests</a> were created before this testing framework, and do not use it yet (as of March 2011). The new testing tools are simpler to use, but the "old" tests (all 400 of them as I write this) fulfill their validation role for testing Sling itself, there's no real need to modify them to use the new tools.</p>
-<p>See also <a href="/documentation/tutorials-how-tos/testing-sling-based-applications.html">Testing Sling-based applications</a> which discusses testing in general.</p>
-<h2><a href="#required-bundles" name="required-bundles">Required bundles</a></h2>
-<p>These tools require a number of bundles on top of the standard Sling launchpad. See the for instance <a href="https://github.com/apache/sling-org-apache-sling-models-integration-tests/blob/master/pom.xml">Sling Models IT pom.xml</a> for an up-to-date list. Look for <code>sling.additional.bundle.*</code> entries in that pom for the bundle artifact IDs, and see the <code>dependencies</code> section for their version numbers.</p>
-<h1><a href="#server-side-junit-tests-contributed-by-bundles" name="server-side-junit-tests-contributed-by-bundles">Server-side JUnit tests contributed by bundles</a></h1>
-<p>The services provided by the <a href="https://github.com/apache/sling-org-apache-sling-junit-core">org.apache.sling.junit.core</a> bundle allow bundles to register JUnit tests, which are executed server-side by the JUnitServlet registered by default at <code>/system/sling/junit</code>. This bundle is not dependent on Sling, it should work in other OSGi environments.</p>
+  While this information is still valid, we recommend using the tools and techniques described in the newer "Junit Server-Side Tests Support" page instead, see link below. 
+</div> 
+<p>As mentioned above, this is now replaced by the <a href="/documentation/bundles/org-apache-sling-junit-bundles.html">Junit Server-Side Tests Support</a> page.</p> 
+<p>Sling provides a number of testing tools to support the following use cases:</p> 
+<ul> 
+ <li>Run JUnit tests contributed by OSGi bundles in an OSGi system. This does not require Sling and should work in other OSGi environments.</li> 
+ <li>Run scriptable tests in a Sling instance, using any supported scripting language.</li> 
+ <li>Run integration tests via HTTP against a Sling instance that is started during the Maven build cycle, or independently.</li> 
+</ul> 
+<p>This page describes those tools, and points to the bundles that implement them.</p> 
+<p>The main Sling integration tests at <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests">launchpad/integration-tests</a> were created before this testing framework, and do not use it yet (as of March 2011). The new testing tools are simpler to use, but the "old" tests (all 400 of them as I write this) fulfill their validation role for testing Sling itself, there's no real need to modify them to use the new tools.</p> 
+<p>See also <a href="/documentation/tutorials-how-tos/testing-sling-based-applications.html">Testing Sling-based applications</a> which discusses testing in general.</p> 
+<h2><a href="#required-bundles" id="required-bundles">Required bundles</a></h2> 
+<p>These tools require a number of bundles on top of the standard Sling launchpad. See the for instance <a href="https://github.com/apache/sling-org-apache-sling-models-integration-tests/blob/master/pom.xml">Sling Models IT pom.xml</a> for an up-to-date list. Look for <code>sling.additional.bundle.*</code> entries in that pom for the bundle artifact IDs, and see the <code>dependencies</code> section for their version numbers.</p> 
+<h1><a href="#server-side-junit-tests-contributed-by-bundles" id="server-side-junit-tests-contributed-by-bundles">Server-side JUnit tests contributed by bundles</a></h1> 
+<p>The services provided by the <a href="https://github.com/apache/sling-org-apache-sling-junit-core">org.apache.sling.junit.core</a> bundle allow bundles to register JUnit tests, which are executed server-side by the JUnitServlet registered by default at <code>/system/sling/junit</code>. This bundle is not dependent on Sling, it should work in other OSGi environments.</p> 
 <div class="warning">
-Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway.
-</div>
+  Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway. 
+</div> 
 <div class="note">
-For tighter integration with Sling, the alternate `SlingJUnitServlet` is registered with the `sling/junit/testing` resource type and `.junit` selector, if the bundle is running in a Sling system. Using this servlet instead of the plain JUnitServlet also allows Sling authentication to be used for running the tests, and the standard Sling request processing is used, including servlet filters for example.
-</div>
-<p>To try the JUnitServlet interactively, install a bundle that contains tests registered via the <code>Sling-Test-Regexp=.*Test</code> bundle header. </p>
-<p>The JUnit core services use this regular expression to select which classes of the test bundle should be executed as JUnit tests.</p>
-<p>To list the available tests, open http://localhost:8080/system/sling/junit/ . The servlet shows available tests, and allows you to execute them via a POST request.</p>
-<p>Adding a path allows you to select a specific subset of tests, as in http://localhost:8080/system/sling/junit/org.apache.sling.junit.remote.html - the example integration tests described below use this to selectively execute server-side tests. The JUnitServlet provides various output formats, including in particular JSON, see http://localhost:8080/system/sling/junit/.json for example.</p>
-<p>To supply tests from your own bundles, simply export the tests classes and add the <code>Sling-Test-Regexp</code> header to the bundle so that the Sling JUnit core services register them as tests.</p>
-<h3><a href="#injection-of-osgi-services" name="injection-of-osgi-services">Injection of OSGi services</a></h3>
-<p>The <code>@TestReference</code> annotation is used to inject OSGi services in tests that are executed server side.The <code>BundleContext</code> can also be injected in this way.</p>
-<h2><a href="#curl-examples" name="curl-examples">Curl examples</a></h2>
-<p>Here's an example executing a few tests using curl:</p>
+  For tighter integration with Sling, the alternate `SlingJUnitServlet` is registered with the `sling/junit/testing` resource type and `.junit` selector, if the bundle is running in a Sling system. Using this servlet instead of the plain JUnitServlet also allows Sling authentication to be used for running the tests, and the standard Sling request processing is used, including servlet filters for example. 
+</div> 
+<p>To try the JUnitServlet interactively, install a bundle that contains tests registered via the <code>Sling-Test-Regexp=.*Test</code> bundle header.</p> 
+<p>The JUnit core services use this regular expression to select which classes of the test bundle should be executed as JUnit tests.</p> 
+<p>To list the available tests, open http://localhost:8080/system/sling/junit/ . The servlet shows available tests, and allows you to execute them via a POST request.</p> 
+<p>Adding a path allows you to select a specific subset of tests, as in http://localhost:8080/system/sling/junit/org.apache.sling.junit.remote.html - the example integration tests described below use this to selectively execute server-side tests. The JUnitServlet provides various output formats, including in particular JSON, see http://localhost:8080/system/sling/junit/.json for example.</p> 
+<p>To supply tests from your own bundles, simply export the tests classes and add the <code>Sling-Test-Regexp</code> header to the bundle so that the Sling JUnit core services register them as tests.</p> 
+<h3><a href="#injection-of-osgi-services" id="injection-of-osgi-services">Injection of OSGi services</a></h3> 
+<p>The <code>@TestReference</code> annotation is used to inject OSGi services in tests that are executed server side.The <code>BundleContext</code> can also be injected in this way.</p> 
+<h2><a href="#curl-examples" id="curl-examples">Curl examples</a></h2> 
+<p>Here's an example executing a few tests using curl:</p> 
 <pre><code>$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.sampletests.JUnit.json
 [{
-    &quot;INFO_TYPE&quot;: &quot;test&quot;,
-    &quot;description&quot;: &quot;testPasses(org.apache.sling.testing.samples.sampletests.JUnit3Test)&quot;
+    "INFO_TYPE": "test",
+    "description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit3Test)"
   },{
-    &quot;INFO_TYPE&quot;: &quot;test&quot;,
-    &quot;description&quot;: &quot;testPasses(org.apache.sling.testing.samples.sampletests.JUnit4Test)&quot;
+    "INFO_TYPE": "test",
+    "description": "testPasses(org.apache.sling.testing.samples.sampletests.JUnit4Test)"
   },{
-    &quot;INFO_TYPE&quot;: &quot;test&quot;,
-    &quot;description&quot;: &quot;testRequiresBefore(org.apache.sling.testing.samples.sampletests.JUnit4Test)&quot;
+    "INFO_TYPE": "test",
+    "description": "testRequiresBefore(org.apache.sling.testing.samples.sampletests.JUnit4Test)"
   }
 ]
-</code></pre>
-<p>And another example with a test that fails:</p>
+</code></pre> 
+<p>And another example with a test that fails:</p> 
 <pre><code>$ curl -X POST http://localhost:8080/system/sling/junit/org.apache.sling.testing.samples.failingtests.JUnit4FailingTest.json
-</code></pre>
-<h1><a href="#scriptable-server-side-tests" name="scriptable-server-side-tests">Scriptable server-side tests</a></h1>
-<p>If the <a href="https://github.com/apache/sling-org-apache-sling-junit-scriptable">org.apache.sling.junit.scriptable</a> bundle is active in a Sling system, (in addition to the <code>org.apache.sling.junit.core</code> bundle), scriptable tests can be executed by the <code>JUnitServlet</code> according to the following rules:</p>
-<ul>
-  <li>A node that has the <code>sling:Test</code> mixin is a scriptable test node.</li>
-  <li>For security reasons, scriptable test nodes are only executed as tests if they are found under <code>/libs</code> or <code>/apps</code>, or more precisely under a path that's part of Sling's <code>ResourceResolver</code> search path.</li>
-  <li>To execute a test, the scriptable tests provider makes an HTTP request to the test node's path, with a <code>.test.txt</code> selector and extension, and expects the output to contain only the string <code>TEST_PASSED</code>. Empty lines and comment lines starting with a hash sign (#) are ignored in the output, and other lines are reported as failures.</li>
-</ul>
-<p>Here's a minimal example that sets up and executes a scriptable test:</p>
+</code></pre> 
+<h1><a href="#scriptable-server-side-tests" id="scriptable-server-side-tests">Scriptable server-side tests</a></h1> 
+<p>If the <a href="https://github.com/apache/sling-org-apache-sling-junit-scriptable">org.apache.sling.junit.scriptable</a> bundle is active in a Sling system, (in addition to the <code>org.apache.sling.junit.core</code> bundle), scriptable tests can be executed by the <code>JUnitServlet</code> according to the following rules:</p> 
+<ul> 
+ <li>A node that has the <code>sling:Test</code> mixin is a scriptable test node.</li> 
+ <li>For security reasons, scriptable test nodes are only executed as tests if they are found under <code>/libs</code> or <code>/apps</code>, or more precisely under a path that's part of Sling's <code>ResourceResolver</code> search path.</li> 
+ <li>To execute a test, the scriptable tests provider makes an HTTP request to the test node's path, with a <code>.test.txt</code> selector and extension, and expects the output to contain only the string <code>TEST_PASSED</code>. Empty lines and comment lines starting with a hash sign (#) are ignored in the output, and other lines are reported as failures.</li> 
+</ul> 
+<p>Here's a minimal example that sets up and executes a scriptable test:</p> 
 <pre><code>$ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
 ...
 $ echo TEST_PASSED &gt; /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp
-</code></pre>
-<p>At this point, foo.test.txt is what the scriptable test framework will request, and that outputs just TEST_PASSED:</p>
+</code></pre> 
+<p>At this point, foo.test.txt is what the scriptable test framework will request, and that outputs just TEST_PASSED:</p> 
 <pre><code>$ curl -u admin:admin http://localhost:8080/apps/foo.test.txt
 TEST_PASSED
-</code></pre>
-<p>And a POST to the JUnit servlet returns information on the test's execution:</p>
+</code></pre> 
+<p>And a POST to the JUnit servlet returns information on the test's execution:</p> 
 <pre><code>curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json
 [{
-    &quot;INFO_TYPE&quot;: &quot;test&quot;,
-    &quot;description&quot;: &quot;verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)&quot;,
-    &quot;test_metadata&quot;: {
-      &quot;test_execution_time_msec&quot;: 2
+    "INFO_TYPE": "test",
+    "description": "verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)",
+    "test_metadata": {
+      "test_execution_time_msec": 2
     }
   }
 ]
-</code></pre>
-<p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again. </p>
-<h1><a href="#integration-tests-example" name="integration-tests-example">Integration tests example</a></h1>
-<p>The <a href="https://github.com/apache/sling-samples/tree/master/testing">IT Samples</a> modules run some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.</p>
-<p>Either of those modules can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.</p>
-<p>Besides serving as examples, some of the tests in this module are used to validate the testing tools. They run as part of the full Sling <a href="/project-information.html">continuous integration</a> build, so they're guaranteed to be correct examples if that build is successful.</p>
+</code></pre> 
+<p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again.</p> 
+<h1><a href="#integration-tests-example" id="integration-tests-example">Integration tests example</a></h1> 
+<p>The <a href="https://github.com/apache/sling-samples/tree/master/testing">IT Samples</a> modules run some simple integration tests against a Sling Launchpad instance that's setup from scratch before running the tests.</p> 
+<p>Either of those modules can be used as examples to setup your own integration testing modules for Sling-based apps - or for any other runnable jar that provides an http service.</p> 
+<p>Besides serving as examples, some of the tests in this module are used to validate the testing tools. They run as part of the full Sling <a href="/project-information.html">continuous integration</a> build, so they're guaranteed to be correct examples if that build is successful.</p> 
 <div class="warning">
-The information below is outdated and needs an update, please rather directly check the source files linked above.
-</div>
-<p>The sample uses the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/tools">testing/tools</a> to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.</p>
-<p>The following steps are executed in the <code>integration-test</code> phase of this module's Maven build:</p>
-<ol>
-  <li>A random port number for the Sling server is selected by the Maven build helper plugin, unless explicitely set (see pom.xml for such options).</li>
-  <li>Additional bundles, defined in the module's pom, are downloaded from the Maven repository in the <code>target/sling/additional-bundles</code> folder.</li>
-  <li>The first test that inherits from the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/tools/src/main/java/org/apache/sling/testing/tools/sling/SlingTestBase.java">SlingTestBase</a> class causes the Sling runnable jar (defined as a dependency in the module's pom) to be started.</li>
-  <li>The <code>SlingTestBase</code> class waits for the Sling server to be ready, based on URLs and expected responses defined in the pom.</li>
-  <li>The <code>SlingTestBase</code> class installs and starts the bundles found in the <code>target/sling/additional-bundles</code> folder.</li>
-  <li>The test can now either test Sling directly via its http interface, or use the JUnitServlet to execute server-side tests contributed by bundles or scripts, as described above.</li>
-  <li>The Sling runnable jar is stopped when the test VM exits.</li>
-  <li>The test results are reported via the usual Maven mechanisms.</li>
-</ol>
-<p>If <code>-DkeepJarRunning</code> is used on the Maven command line, the Sling runnable jar does not exit, to allow for running individual tests against this instance, for example when debugging the tests or the server code. See the pom for details.</p>
-<h2><a href="#running-tests-against-existing-server" name="running-tests-against-existing-server">Running tests against existing server</a></h2>
-<p>Instead of provisioning a completely new Sling server, the ITs can also be executed on an already existing server instance. For that the <code>test-server-url</code> system property has to point to the existing server url. Additional bundles can still be deployed by using the <code>sling.additional.bundle.&lt;num&gt;</code> system property.</p>
-<p>Optionally, the additional bundles can be undeployed after the execution of the IT by setting <code>additional.bundles.uninstall</code> to <code>true</code>. (since Sling Testing Tools 1.0.12, <a href="https://issues.apache.org/jira/browse/SLING-4819">SLING-4819</a>)</p>
-<h1><a href="#remote-test-execution" name="remote-test-execution">Remote test execution</a></h1>
-<p>The testing tools support two types of remote test execution.</p>
-<h2><a href="#slingremotetestrunner" name="slingremotetestrunner">SlingRemoteTestRunner</a></h2>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/testrunner/SlingRemoteTestRunner.java">SlingRemoteTestRunner</a> is used to run tests using the <code>JUnitServlet</code> described above. In this case, the client-side JUnit test only defines which tests to run and some optional assertions. Checking the number of tests executed, for example, can be useful to make sure all test bundles have been activated as expected, to avoid ignoring missing test bundles.</p>
-<p>See the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/ServerSideSampleTest.java">ServerSideSampleTest</a> class for an example.</p>
-<p>It's a good idea to check that the JUnit servlet is ready before running those tests, see the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/sling/SlingServerSideTestsBase.java">ServerSideTestsBase</a> for an example of how to do that.</p>
-<h2><a href="#slingremoteexecutionrule" name="slingremoteexecutionrule">SlingRemoteExecutionRule</a></h2>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/ide/SlingRemoteExecutionRule.java">SlingRemoteExecutionRule</a> is a JUnit Rule that allows tests to be executed remotely in a Sling instance from an IDE, assuming the test is available on both sides.</p>
-<p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/exported/ExampleRemoteTest.java">ExampleRemoteTest</a> class demonstrates this. To run it from your IDE, set the <code>sling.remote.test.url</code> in the IDE to the URL of the JUnitServlet, like http://localhost:8080/system/sling/junit for example.</p>
-<h1><a href="#debugging-its" name="debugging-its">Debugging ITs</a></h1>
-<p>The JVM is usually forked twice during the execution of integration tests. The first time by the <code>maven-surefire-plugin</code> which executes the client-side (i.e. Maven-side) part of the tests. To debug this side the option <code>-Dmaven.surefire.debug</code> can be used which waits for a debugger to be attached on port 5005 before the (client-side) test is executed. More information is available in the <a href="http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html">documentation of the maven-surefire-plugin</a>.</p>
-<p>Then the <code>JarExecutor</code> is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable <code>jar.executor.vm.options</code> can be used to start that VM with debug options. All debug options are described at the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JPDA documentation</a>. If running </p>
-<pre><code>mvn test -Djar.executor.vm.options=&quot;-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000&quot;
-</code></pre>
+  The information below is outdated and needs an update, please rather directly check the source files linked above. 
+</div> 
+<p>The sample uses the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/tools">testing/tools</a> to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.</p> 
+<p>The following steps are executed in the <code>integration-test</code> phase of this module's Maven build:</p> 
+<ol> 
+ <li>A random port number for the Sling server is selected by the Maven build helper plugin, unless explicitely set (see pom.xml for such options).</li> 
+ <li>Additional bundles, defined in the module's pom, are downloaded from the Maven repository in the <code>target/sling/additional-bundles</code> folder.</li> 
+ <li>The first test that inherits from the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/tools/src/main/java/org/apache/sling/testing/tools/sling/SlingTestBase.java">SlingTestBase</a> class causes the Sling runnable jar (defined as a dependency in the module's pom) to be started.</li> 
+ <li>The <code>SlingTestBase</code> class waits for the Sling server to be ready, based on URLs and expected responses defined in the pom.</li> 
+ <li>The <code>SlingTestBase</code> class installs and starts the bundles found in the <code>target/sling/additional-bundles</code> folder.</li> 
+ <li>The test can now either test Sling directly via its http interface, or use the JUnitServlet to execute server-side tests contributed by bundles or scripts, as described above.</li> 
+ <li>The Sling runnable jar is stopped when the test VM exits.</li> 
+ <li>The test results are reported via the usual Maven mechanisms.</li> 
+</ol> 
+<p>If <code>-DkeepJarRunning</code> is used on the Maven command line, the Sling runnable jar does not exit, to allow for running individual tests against this instance, for example when debugging the tests or the server code. See the pom for details.</p> 
+<h2><a href="#running-tests-against-existing-server" id="running-tests-against-existing-server">Running tests against existing server</a></h2> 
+<p>Instead of provisioning a completely new Sling server, the ITs can also be executed on an already existing server instance. For that the <code>test-server-url</code> system property has to point to the existing server url. Additional bundles can still be deployed by using the <code>sling.additional.bundle.&lt;num&gt;</code> system property.</p> 
+<p>Optionally, the additional bundles can be undeployed after the execution of the IT by setting <code>additional.bundles.uninstall</code> to <code>true</code>. (since Sling Testing Tools 1.0.12, <a href="https://issues.apache.org/jira/browse/SLING-4819">SLING-4819</a>)</p> 
+<h1><a href="#remote-test-execution" id="remote-test-execution">Remote test execution</a></h1> 
+<p>The testing tools support two types of remote test execution.</p> 
+<h2><a href="#slingremotetestrunner" id="slingremotetestrunner">SlingRemoteTestRunner</a></h2> 
+<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/testrunner/SlingRemoteTestRunner.java">SlingRemoteTestRunner</a> is used to run tests using the <code>JUnitServlet</code> described above. In this case, the client-side JUnit test only defines which tests to run and some optional assertions. Checking the number of tests executed, for example, can be useful to make sure all test bundles have been activated as expected, to avoid ignoring missing test bundles.</p> 
+<p>See the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/ServerSideSampleTest.java">ServerSideSampleTest</a> class for an example.</p> 
+<p>It's a good idea to check that the JUnit servlet is ready before running those tests, see the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/sling/SlingServerSideTestsBase.java">ServerSideTestsBase</a> for an example of how to do that.</p> 
+<h2><a href="#slingremoteexecutionrule" id="slingremoteexecutionrule">SlingRemoteExecutionRule</a></h2> 
+<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/ide/SlingRemoteExecutionRule.java">SlingRemoteExecutionRule</a> is a JUnit Rule that allows tests to be executed remotely in a Sling instance from an IDE, assuming the test is available on both sides.</p> 
+<p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/exported/ExampleRemoteTest.java">ExampleRemoteTest</a> class demonstrates this. To run it from your IDE, set the <code>sling.remote.test.url</code> in the IDE to the URL of the JUnitServlet, like http://localhost:8080/system/sling/junit for example.</p> 
+<h1><a href="#debugging-its" id="debugging-its">Debugging ITs</a></h1> 
+<p>The JVM is usually forked twice during the execution of integration tests. The first time by the <code>maven-surefire-plugin</code> which executes the client-side (i.e. Maven-side) part of the tests. To debug this side the option <code>-Dmaven.surefire.debug</code> can be used which waits for a debugger to be attached on port 5005 before the (client-side) test is executed. More information is available in the <a href="http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html">documentation of the maven-surefire-plugin</a>.</p> 
+<p>Then the <code>JarExecutor</code> is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable <code>jar.executor.vm.options</code> can be used to start that VM with debug options. All debug options are described at the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JPDA documentation</a>. If running</p> 
+<pre><code>mvn test -Djar.executor.vm.options="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"
+</code></pre> 
 <p>the server start is interrupted until a debugger is connected on port 8000.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -93,105 +93,86 @@
             </div><h1 class="pagetitle">
                 Dispatching Requests
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#main-process" name="main-process">Main process</a></h2>
-<p>The following steps should give you an overview how a request is processed in Sling. Details can be found under provided links.</p>
-<ol>
-  <li>
-  <p>The client sends the request</p></li>
-  <li>
-  <p>This step applies only if a Servlet Container is installed and Sling is embedded: Servlet Container gets request and forwards to OSGi HttpService</p></li>
-  <li>
-  <p>OSGi HttpService looks for responsible registered Servlet or resource (see 102.4 of the OSGi compendium)</p></li>
-  <li>
-    <p>OSGi HttpService calls <code>handleSecurity</code> of the HttpContext associated with the servlet/resource. In case of Sling this calls into SlingMainServlet.handleSecurity and then into SlingAuthenticator.authenticate</p>
-    <ol>
-      <li>
-      <p>SlingAuthenticator selects an authentication handler for the request and forwards the authenticate call. On success a <code>javax.jcr.Session</code> is created, the request attributes required by the HTTP Service spec are set (like <code>org.osgi.service.http.authentication.remote.user</code> and <code>org.osgi.service.http.authentication.type</code>and also the <code>javax.jcr.Session</code> which is used later is set in the request attributes. On success, continue with step 5.</p></li>
-      <li>
-      <p>If authentication fails either an anonymous session is acquired (if anonymous is allowed per configuration) or the login method is called. If anonymous is allowed, continue with step 5.</p></li>
-      <li>
-      <p>The login method selects an AuthenticationHandler and forwards the login call to the AuthenticationHandler.requestAuthentication method to cause the client to authenticate. Request processing stops here (<code>SlingMainServlet.handleSecurity</code> returns false).</p></li>
-    </ol>
-  </li>
-  <li>
-  <p>After getting a response the HttpService either terminates the request (if authentication failed and <code>SlingMainServlet.handleSecurity</code> returned false) or continues by either spooling the resource or in the case of Sling calling the <code>SlingMainServlet.service</code> method.</p></li>
-  <li>
-    <p>The <code>SlingMainServlet.service</code> method is the entry point into the Sling proper. This method sets up the request:</p>
-    <ul>
-      <li>Wraps the <code>HttpServletRequest</code> and the <code>HttpServletResponse</code> into the <code>SlingHttpServletRequest</code> and the <code>SlingHttpServletResponse</code></li>
-      <li>Checks if Sling is ready for processing the request (checks at the moment for an existing ResourceResolverFactory service, a ServletResolver service and a MimeTypeService)</li>
-      <li>Create the ResourceResolver based on the Session (by default creates a <code>JcrResourceResolver2</code>)</li>
-      <li>Locate the <a href="/documentation/the-sling-engine/resources.html">Resource</a> on the basis of the request by calling <code>ResourceResovler.resolve</code> through <code>RequestData.initResource</code> (see also <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>)</li>
-      <li>Locate the servlet or script (see <a href="/documentation/the-sling-engine/servlets.html">Servlets</a>) by calling <code>ServletResolver.resolveServlet</code> through <code>RequestData.initServlet</code></li>
-    </ul>
-  </li>
-  <li>
-  <p>After this setup, the request level filters are called (the ones registered as <code>javax.servlet.Filter</code> with the property <code>filter.scope=request</code>, see <a href="/documentation/the-sling-engine/filters.html">Filters</a> for details). If any called filter doesn't call <code>FilterChain.doFilter</code> at the end of the <code>Filter.doFilter</code> method request processing stops here.</p></li>
-  <li>
-  <p>After having called all request level filters, the component level filters (registered with the property <code>filter.scope=component</code>, see <a href="/documentation/the-sling-engine/filters.html">Filters</a> for details) are called.</p></li>
-  <li>
-  <p>After having called the component level filters, the request servlet or script is finally called to process the request.</p></li>
-</ol>
-<h2><a href="#include-forward" name="include-forward">Include/Forward</a></h2>
-<p>If a servlet or script is including another resource for processing through the <code>RequestDispatcher.include</code> or <code>RequestDispatcher.forward</code> (or any JSP or feature of another scripting language which relies on one of this two methods) the following processing takes place:</p>
-<ol>
-  <li>
-  <p>Code in the processing servlet or script calls <code>RequestDispatcher.include</code> or <code>RequestDispatcher.forward</code>.</p></li>
-  <li>
-  <p>The resource is resolved though ResourceResolver.getResource (if the RequestDispatcher has not been created with a resource already)</p></li>
-  <li>
-  <p>The servlet or script to handle the resource is resolved calling the <code>ServletResolver.resolverServlet</code> method.</p></li>
-  <li>
-  <p>The component level filters (registered with the property <code>filter.scope=component</code>) are called again (see <a href="/documentation/the-sling-engine/filters.html">Filters</a> for details).</p></li>
-  <li>
-  <p>The servlet or script is called to process the request.</p></li>
-</ol>
-<p>Note that these steps are processed for every include or forward call.</p>
-<h2><a href="#included-request-attributes" name="included-request-attributes">Included Request Attributes</a></h2>
-<p>When servlet or script is called as a result of <code>RequestDispatcher.include</code> the following request attributes are set:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Attribute Name <br> Attribute Type </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>org.apache.sling.api.include.servlet</code> <br> <code>javax.servlet.Servlet</code> </td>
-      <td>The name of the request attribute containing the <code>Servlet</code> which included the servlet currently being active. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.api.include.resource</code> <br><code>org.apache.sling.api.resource.Resource</code> </td>
-      <td>The name of the request attribute containing the <code>Resource</code> underlying the <code>Servlet</code> which included the servlet currently being active. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.api.include.request_path_info</code> <br> <code>org.apache.sling.api.request.RequestPathInfo</code> </td>
-      <td>The name of the request attribute containing the <code>RequestPathInfo</code> underlying the <code>Servlet</code> which included the servlet currently being active </td>
-    </tr>
-    <tr>
-      <td><code>javax.servlet.include.request_uri</code> <br> <code>String</code> </td>
-      <td>The name of the request attribute containing the <code>HttpServletRequest.getRequestURI()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br>**Note:** In Sling, the <code>HttpServletRequest.getRequestURI()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
-    </tr>
-    <tr>
-      <td><code>javax.servlet.include.context_path</code> <br> <code>String</code> </td>
-      <td>The name of the request attribute containing the <code>HttpServletRequest.getContextPath()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br>**Note:** In Sling, the <code>HttpServletRequest.getContextPath()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
-    </tr>
-    <tr>
-      <td><code>javax.servlet.include.servlet_path</code> <br> <code>String</code> </td>
-      <td>The name of the request attribute containing the <code>HttpServletRequest.getServletPath()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br>**Note:** In Sling, the <code>HttpServletRequest.getServletPath()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
-    </tr>
-    <tr>
-      <td><code>javax.servlet.include.path_info</code> <br> <code>String</code> </td>
-      <td>The name of the request attribute containing the <code>HttpServletRequest.getPathInfo()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br>**Note:** In Sling, the <code>HttpServletRequest.getPathInfo()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification.</td>
-    </tr>
-    <tr>
-      <td><code>javax.servlet.include.query_string</code> <br> <code>String</code> </td>
-      <td>The name of the request attribute containing the <code>HttpServletRequest.getQueryString()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br>**Note:** In Sling, the <code>HttpServletRequest.getQueryString()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
-    </tr>
-  </tbody>
-</table>
-<p>Constants are defined in the <code>org.apache.sling.api.SlingConstants</code> class for these request attributes.</p>
+<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#main-process" id="main-process">Main process</a></h2> 
+<p>The following steps should give you an overview how a request is processed in Sling. Details can be found under provided links.</p> 
+<ol> 
+ <li> <p>The client sends the request</p> </li> 
+ <li> <p>This step applies only if a Servlet Container is installed and Sling is embedded: Servlet Container gets request and forwards to OSGi HttpService</p> </li> 
+ <li> <p>OSGi HttpService looks for responsible registered Servlet or resource (see 102.4 of the OSGi compendium)</p> </li> 
+ <li> <p>OSGi HttpService calls <code>handleSecurity</code> of the HttpContext associated with the servlet/resource. In case of Sling this calls into SlingMainServlet.handleSecurity and then into SlingAuthenticator.authenticate</p> 
+  <ol> 
+   <li> <p>SlingAuthenticator selects an authentication handler for the request and forwards the authenticate call. On success a <code>javax.jcr.Session</code> is created, the request attributes required by the HTTP Service spec are set (like <code>org.osgi.service.http.authentication.remote.user</code> and <code>org.osgi.service.http.authentication.type</code>and also the <code>javax.jcr.Session</code> which is used later is set in the request attributes. On success, continue with step 5.</p> </li> 
+   <li> <p>If authentication fails either an anonymous session is acquired (if anonymous is allowed per configuration) or the login method is called. If anonymous is allowed, continue with step 5.</p> </li> 
+   <li> <p>The login method selects an AuthenticationHandler and forwards the login call to the AuthenticationHandler.requestAuthentication method to cause the client to authenticate. Request processing stops here (<code>SlingMainServlet.handleSecurity</code> returns false).</p> </li> 
+  </ol> </li> 
+ <li> <p>After getting a response the HttpService either terminates the request (if authentication failed and <code>SlingMainServlet.handleSecurity</code> returned false) or continues by either spooling the resource or in the case of Sling calling the <code>SlingMainServlet.service</code> method.</p> </li> 
+ <li> <p>The <code>SlingMainServlet.service</code> method is the entry point into the Sling proper. This method sets up the request:</p> 
+  <ul> 
+   <li>Wraps the <code>HttpServletRequest</code> and the <code>HttpServletResponse</code> into the <code>SlingHttpServletRequest</code> and the <code>SlingHttpServletResponse</code></li> 
+   <li>Checks if Sling is ready for processing the request (checks at the moment for an existing ResourceResolverFactory service, a ServletResolver service and a MimeTypeService)</li> 
+   <li>Create the ResourceResolver based on the Session (by default creates a <code>JcrResourceResolver2</code>)</li> 
+   <li>Locate the <a href="/documentation/the-sling-engine/resources.html">Resource</a> on the basis of the request by calling <code>ResourceResovler.resolve</code> through <code>RequestData.initResource</code> (see also <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>)</li> 
+   <li>Locate the servlet or script (see <a href="/documentation/the-sling-engine/servlets.html">Servlets</a>) by calling <code>ServletResolver.resolveServlet</code> through <code>RequestData.initServlet</code></li> 
+  </ul> </li> 
+ <li> <p>After this setup, the request level filters are called (the ones registered as <code>javax.servlet.Filter</code> with the property <code>filter.scope=request</code>, see <a href="/documentation/the-sling-engine/filters.html">Filters</a> for details). If any called filter doesn't call <code>FilterChain.doFilter</code> at the end of the <code>Filter.doFilter</code> method request processing stops here.</p> </li> 
+ <li> <p>After having called all request level filters, the component level filters (registered with the property <code>filter.scope=component</code>, see <a href="/documentation/the-sling-engine/filters.html">Filters</a> for details) are called.</p> </li> 
+ <li> <p>After having called the component level filters, the request servlet or script is finally called to process the request.</p> </li> 
+</ol> 
+<h2><a href="#includeforward" id="includeforward">Include/Forward</a></h2> 
+<p>If a servlet or script is including another resource for processing through the <code>RequestDispatcher.include</code> or <code>RequestDispatcher.forward</code> (or any JSP or feature of another scripting language which relies on one of this two methods) the following processing takes place:</p> 
+<ol> 
+ <li> <p>Code in the processing servlet or script calls <code>RequestDispatcher.include</code> or <code>RequestDispatcher.forward</code>.</p> </li> 
+ <li> <p>The resource is resolved though ResourceResolver.getResource (if the RequestDispatcher has not been created with a resource already)</p> </li> 
+ <li> <p>The servlet or script to handle the resource is resolved calling the <code>ServletResolver.resolverServlet</code> method.</p> </li> 
+ <li> <p>The component level filters (registered with the property <code>filter.scope=component</code>) are called again (see <a href="/documentation/the-sling-engine/filters.html">Filters</a> for details).</p> </li> 
+ <li> <p>The servlet or script is called to process the request.</p> </li> 
+</ol> 
+<p>Note that these steps are processed for every include or forward call.</p> 
+<h2><a href="#included-request-attributes" id="included-request-attributes">Included Request Attributes</a></h2> 
+<p>When servlet or script is called as a result of <code>RequestDispatcher.include</code> the following request attributes are set:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Attribute Name <br> Attribute Type </th>
+   <th> Description </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>org.apache.sling.api.include.servlet</code> <br> <code>javax.servlet.Servlet</code> </td>
+   <td> The name of the request attribute containing the <code>Servlet</code> which included the servlet currently being active. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.api.include.resource</code> <br><code>org.apache.sling.api.resource.Resource</code> </td>
+   <td> The name of the request attribute containing the <code>Resource</code> underlying the <code>Servlet</code> which included the servlet currently being active. </td>
+  </tr> 
+  <tr>
+   <td> <code>org.apache.sling.api.include.request_path_info</code> <br> <code>org.apache.sling.api.request.RequestPathInfo</code> </td>
+   <td> The name of the request attribute containing the <code>RequestPathInfo</code> underlying the <code>Servlet</code> which included the servlet currently being active </td>
+  </tr> 
+  <tr>
+   <td> <code>javax.servlet.include.request_uri</code> <br> <code>String</code> </td>
+   <td> The name of the request attribute containing the <code>HttpServletRequest.getRequestURI()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br><strong>Note:</strong> In Sling, the <code>HttpServletRequest.getRequestURI()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
+  </tr> 
+  <tr>
+   <td> <code>javax.servlet.include.context_path</code> <br> <code>String</code> </td>
+   <td> The name of the request attribute containing the <code>HttpServletRequest.getContextPath()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br><strong>Note:</strong> In Sling, the <code>HttpServletRequest.getContextPath()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
+  </tr> 
+  <tr>
+   <td> <code>javax.servlet.include.servlet_path</code> <br> <code>String</code> </td>
+   <td> The name of the request attribute containing the <code>HttpServletRequest.getServletPath()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br><strong>Note:</strong> In Sling, the <code>HttpServletRequest.getServletPath()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
+  </tr> 
+  <tr>
+   <td> <code>javax.servlet.include.path_info</code> <br> <code>String</code> </td>
+   <td> The name of the request attribute containing the <code>HttpServletRequest.getPathInfo()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br><strong>Note:</strong> In Sling, the <code>HttpServletRequest.getPathInfo()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification.</td>
+  </tr> 
+  <tr>
+   <td> <code>javax.servlet.include.query_string</code> <br> <code>String</code> </td>
+   <td> The name of the request attribute containing the <code>HttpServletRequest.getQueryString()</code> of the request which included the servlet currently being active underlying the <code>Servlet</code> which included the servlet currently being active.<br><strong>Note:</strong> In Sling, the <code>HttpServletRequest.getQueryString()</code> method will always return the same result regardless of whether it is called from the client request processing servlet or script or from an included servlet or script. This request attribute is set for compatibility with the Servlet API specification. </td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>Constants are defined in the <code>org.apache.sling.api.SlingConstants</code> class for these request attributes.</p> 
 <p><strong>Note:</strong> These request attributes are not set if the servlet or script is called to handle the request or as a result of <code>RequestDispatcher.forward</code>.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
