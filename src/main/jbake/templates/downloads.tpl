@@ -91,7 +91,7 @@ def bundles=[
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6",
   "Dynamic Include|org.apache.sling.dynamic-include|3.1.0",
   "Engine|org.apache.sling.engine|2.6.12",
-  "Event|org.apache.sling.event|4.2.10",
+  "Event|org.apache.sling.event|4.2.12",
   "Event API|org.apache.sling.event.api|1.0.0",
   "Explorer|org.apache.sling.extensions.explorer|1.0.4",
   "Feature Model|org.apache.sling.feature|0.1.2",
