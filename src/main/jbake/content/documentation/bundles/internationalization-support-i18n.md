@@ -142,7 +142,7 @@ Similar to standard Java `ResourceBundle` instances, Sling `ResourceBundle` inst
 The base name argument can take one three values:
 
 | Value | `ResourceBundle` selection |
-|--|--|
+|---|---|
 | `null` | Selects messages of `mix:language` nodes ignoring the existence or absence of `sling:basename` properties |
 | Empty String | Selects messages of `mix:language` nodes which have `sling:basename` properties, ignoring the actual values |
 | Any other Value | Selects messages of `mix:language` nodes whose `sling:basename` properties has any value which matches the base name string |

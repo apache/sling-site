@@ -95,7 +95,7 @@ used have to be registered as services under the name `org.apache.sling.componen
 Service properties set upon registration of the filter define the chain to which the filter belongs and the order in which the filters should be processed:
 
 | Property | Description |
-|--|--|
+|---|---|
 | `filter.scope` | Defines the chain to which the filter is added. Supported values are `component` for component level filters and `request` for request level filters. If this property is missing or set to an unknown value the filter is added to the request level filter chain. |
 | `filter.order` | Defines the weight of the filter to resolve the processing order. This property must be an `java.lang.Integer`. If not set or not an `Integer` the order defaults to `Integer.MAX_VALUE`. The lower the order number the earlier in the filter chain will the filter be inserted. If two filters are registered with the same order value, the filter with the lower `service.id` value is called first. |
 

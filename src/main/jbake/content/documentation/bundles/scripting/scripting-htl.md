@@ -12,13 +12,13 @@ The Apache Sling HTL Scripting Engine, [formerly known as Sightly](https://issue
 
 The Sling implementation is comprised of the following modules:
 
-1. [`org.apache.sling.scripting.sightly.compiler`](https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/compiler) - provides support for compiling HTML Template Language scripts into an Abstract Syntax Tree
-2. [`org.apache.sling.scripting.sightly.compiler.java`](https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/java-compiler) - provides support for transpiling the Abstract Syntax Tree produced by the `org.apache.sling.scripting.sightly.compiler` module into Java source code
-3. [`org.apache.sling.scripting.sightly`](https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/engine) - the HTL Scripting Engine bundle
-4. [`org.apache.sling.scripting.sightly.js.provider`](https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/js-use-provider) - the HTL JavaScript Use Provider, implementing support for the `use` JavaScript function
-5. [`org.apache.sling.scripting.sightly.models.provider`](https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/models-use-provider) - [Sling Models](https://sling.apache.org/documentation/bundles/models.html) Use Provider
-6. [`org.apache.sling.scripting.sightly.repl`](https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/repl) - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts
-7. [`htl-maven-plugin`](https://github.com/apache/sling/tree/trunk/tooling/maven/htl-maven-plugin) - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time
+1. [`org.apache.sling.scripting.sightly.compiler`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler) - provides support for compiling HTML Template Language scripts into an Abstract Syntax Tree
+2. [`org.apache.sling.scripting.sightly.compiler.java`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java) - provides support for transpiling the Abstract Syntax Tree produced by the `org.apache.sling.scripting.sightly.compiler` module into Java source code
+3. [`org.apache.sling.scripting.sightly`](https://github.com/apache/sling-org-apache-sling-scripting-sightly) - the HTL Scripting Engine bundle
+4. [`org.apache.sling.scripting.sightly.js.provider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider) - the HTL JavaScript Use Provider, implementing support for the `use` JavaScript function
+5. [`org.apache.sling.scripting.sightly.models.provider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider) - [Sling Models](https://sling.apache.org/documentation/bundles/models.html) Use Provider
+6. [`org.apache.sling.scripting.sightly.repl`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl) - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts
+7. [`htl-maven-plugin`](https://github.com/apache/sling-htl-maven-plugin) - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time
 
 # The Use-API
 
@@ -54,7 +54,7 @@ The [HTML Template Language Specification](https://github.com/Adobe-Marketing-Cl
             }
         });
 
-The HTL implementation from Sling provides the basic POJO support through the [`org.apache.sling.scripting.sightly.pojo.Use`](https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java) interface and the [`JavaUseProvider`](https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java), whereas the `use` function is implemented by the `org.apache.sling.scripting.sightly.js.provider` bundle.
+The HTL implementation from Sling provides the basic POJO support through the [`org.apache.sling.scripting.sightly.pojo.Use`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java) interface and the [`JavaUseProvider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java), whereas the `use` function is implemented by the `org.apache.sling.scripting.sightly.js.provider` bundle.
 
 However, the Sling implementation provides a few extensions to the Use-API.
 
@@ -154,7 +154,7 @@ or like:
 The advantage of loading a bean using just the simple class name (e.g. `data-sly-use.page="PageBean"`) is that an inheriting component can overlay the `PageBean.java` file and provide a different logic. In this case the package name of the `PageBean` class will automatically be derived from the calling script's parent path (e.g. `apps.my_project.components.page`) - the bean doesn't even have to specify it. However, keep in mind that loading a bean this way is slower than providing the fully qualified class name, since the provider has to check if there is a backing resource. At the same time, loading an object using its fully qualified class name will not allow overriding it by inheriting components.
 
 #### Passing parameters
-Passed parameters will be made available to the Use object as request attributes and, if the object implements the [`org.apache.sling.scripting.sightly.pojo.Use`](https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java) interface, through the `javax.script.Bindings` passed to the `init` method. Assuming the following markup:
+Passed parameters will be made available to the Use object as request attributes and, if the object implements the [`org.apache.sling.scripting.sightly.pojo.Use`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java) interface, through the `javax.script.Bindings` passed to the `init` method. Assuming the following markup:
 
         <div data-sly-use.useObject="${'org.example.use.MyUseObject' @ colour='red', year=2016}">
             ${useObject.shine}

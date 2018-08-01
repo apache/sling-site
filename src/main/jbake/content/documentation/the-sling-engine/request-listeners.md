@@ -31,6 +31,6 @@ There are no special properties to set.
 At the moment you will get two different types of `SlingRequestEvent`:
 
 | events types (`SlingRequestEvent.EventType`) | point in time |
-|--|--|
+|---|---|
 | EVENT_INIT | after entering the `service` method in `SlingMainServlet`. Note that this will be **after** the `handleSecurity` call. |
 | EVENT_DESTROY | at the end of the `service` method in `SlingMainServlet` |

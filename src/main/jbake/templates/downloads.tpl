@@ -38,7 +38,7 @@ def bundles=[
   "Validation Core|org.apache.sling.validation.core|1.0.4",
   "Adapter|org.apache.sling.adapter|2.1.10",
   "Adapter Annotations|adapter-annotations|1.0.0",
-  "API|org.apache.sling.api|2.18.0",
+  "API|org.apache.sling.api|2.18.2",
   "Auth Core|org.apache.sling.auth.core|1.4.2",
   "Auth Form|org.apache.sling.auth.form|1.0.10",
   "Auth OpenID|org.apache.sling.auth.openid|1.0.4",
@@ -95,7 +95,7 @@ def bundles=[
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6",
   "Dynamic Include|org.apache.sling.dynamic-include|3.1.0",
   "Engine|org.apache.sling.engine|2.6.12",
-  "Event|org.apache.sling.event|4.2.10",
+  "Event|org.apache.sling.event|4.2.12",
   "Event API|org.apache.sling.event.api|1.0.0",
   "Explorer|org.apache.sling.extensions.explorer|1.0.4",
   "Feature Model|org.apache.sling.feature|0.1.2",
@@ -129,7 +129,7 @@ def bundles=[
   "JCR Base|org.apache.sling.jcr.base|3.0.4",
   "JCR ClassLoader|org.apache.sling.jcr.classloader|3.2.2",
   "JCR Compiler|org.apache.sling.jcr.compiler|2.1.0",
-  "JCR Content Loader|org.apache.sling.jcr.contentloader|2.2.4",
+  "JCR Content Loader|org.apache.sling.jcr.contentloader|2.2.6",
   "JCR Content Parser|org.apache.sling.jcr.contentparser|1.2.6",
   "JCR DavEx|org.apache.sling.jcr.davex|1.3.10",
   "JCR Jackrabbit AccessManager|org.apache.sling.jcr.jackrabbit.accessmanager|3.0.0",
@@ -244,7 +244,7 @@ def bundles=[
   "URL Rewriter|org.apache.sling.urlrewriter|0.0.2",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0",
-  "XSS Protection|org.apache.sling.xss|2.0.6",
+  "XSS Protection|org.apache.sling.xss|2.0.10",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0"
 ]
                                                                       

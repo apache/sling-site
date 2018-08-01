@@ -105,7 +105,7 @@ Maven projects configured using the `com.day.jcr.vault:content-package-maven-plu
 The following pom properties can be used to tweak how the project is configured
 
 | Property name | Effect |
-|--|--|
+|---|---|
 | `sling.ide.m2e.contentpackage.active` | When set to `false`, the configuration is disabled |
 | `sling.ide.m2e.contentpackage.javaFacetVersion` | Controls the version of the Java Facet which is added to the project, e.g. `8` |
 | `sling.ide.m2e.contentpackage.webFacetVersion` | Controls the version of the Web Facet which is added to the project, e.g. `3.0` |

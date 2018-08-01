@@ -56,7 +56,6 @@ a Resource Resolver and/or JCR Repository user ID for authentication.
 
 Thus the actual service identification (service ID) is defined as:
 
-    #!text
     service-id = service-name [ ":" subservice-name ] .
 
 The `service-name` is the symbolic name of the bundle providing the service.
@@ -168,7 +167,7 @@ The according user must exist at the point in time where `ResourceResolverFactor
 
 Example OSGi DS Component
 
-    :::java
+    ::java
     @Component(
         reference = {
             // this waits with the activation of this component until a service user mapping with the service name = current bundle's id and the sub service name 'my-subservice-name' is available.

@@ -9,7 +9,7 @@ tags=pipes
 A pipe configuration is ultimately a jcr node, with properties (varying a lot depending on the pipe type):
 
 | Configuration node property | Explanation |
-|--|--|
+|---|---|
 | `sling:resourceType` | which must be a pipe type registered by the plumber | 
 | `name` | that will be used in bindings as an id, and will be the key for the output bindings (default value being a value map of the current output resource). Note that the node name will be used in case no name is provided. |
 | `path` | defines pipe's input. Note that property is not mandatory in case the pipe is streamed after another pipe, in which case previous pipe output's can be used as input. |
@@ -17,7 +17,7 @@ A pipe configuration is ultimately a jcr node, with properties (varying a lot de
 | `additionalScripts` | multi value property to declare scripts that can be reused in [expressions](/documentation/bundles/sling-pipes/bindings.html) |
 
 | Configuration child node | Explanation |
-|--|--|
+|---|---|
 | `conf` | optional, contains addition configuration of the pipe (depending on the type) |
 | `additionalBinding`  | set "global" [bindings](/documentation/bundles/sling-pipes/bindings.html) (property=value) in pipe execution |
 | `writer` | set a writer with key / value property being label, and value of each added entry. Those values can be [expressions](/documentation/bundles/sling-pipes/bindings.html) | 
@@ -57,7 +57,7 @@ This works pretty well with a groovy console just by entering following set of i
  
  
 | Pipe Builder Method | Explanation |
-|--|--|
+|---|---|
 | `pipe(type)` | generate a new subpipe |
 | `with(Object...)` | add to actual subpipe configuration node key/value configurations |
 | `expr(String)` | add an `expr` configuration |
@@ -80,7 +80,7 @@ when available, shortcuts will be specified next to each pipe type documentation
 Once you are happy with the pipe you have created, you should terminate the builder with following commands
 
 | Pipe Builder Method | Explanation |
-|--|--|
+|---|---|
 | `outputs(keys...)` | set the keys you want as an output |
 | `build(path)` | builds the requested pipe at the given `path` location |
 | `build()` | will build the pipe under /var/pipes/... (random node under timed base path) |
@@ -92,7 +92,7 @@ Once you are happy with the pipe you have created, you should terminate the buil
 #### Pipe HTTP Request bits 
 
 | request bit | Explanation |
-|--|--|
+|---|---|
 | request path | path of a pipe configuration resource (see above), or a resource of type `slingPipes/plumber` with a path parameter indicating the pipe configuration resource path.|
 | request method | `GET` or `POST`. Note that `GET` will not work on pipe modifying content (unless you are using a `dryRun`) |
 | request extension | `.json` or `.csv` |
@@ -102,7 +102,7 @@ Once you are happy with the pipe you have created, you should terminate the buil
 ##### Pipe HTTP Request parameter
 
 | request parameter | Explanation |
-|--|--|
+|---|---|
 | `size` | size of the returned excerpt. Default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter. 0 value will return all the items |
 | `binding` | json object of global bindings you want to add for the execution of the pipe e.g. `{testBinding:'foo'}` |
 | `writer` | you can configure output of your servlet, with `writer` parameter, a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. This will be entries of your json output, or headers and values of your csv output, e.g `{"user":"${user.fullName}"}` |

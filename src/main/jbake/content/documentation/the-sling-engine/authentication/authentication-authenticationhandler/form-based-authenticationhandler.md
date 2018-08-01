@@ -53,14 +53,14 @@ The `j_username` and `j_password` parameters are used to create a JCR `SimpleCre
 The `j_validate` parameter may be used to implement login form submission using AJAX. If this parameter is set to `true` (case-insensitive) the credentials are used to login and after success or failure to return a status code:
 
 | Status | Description |
-|--|--|
+|---|---|
 | `200 OK` | Authentication succeeded; credentials are valid for login; the Cookie or HTTP Session attribute is now set |
 | `403 FORBIDDEN` | Authentication failed; credentials are invalid for login; the Cookie or HTTP Session attribute is not set (if it was set, it is now cleared) |
 
 If the `j_validate` parameter is not set or is set to any value other than `true`, the request processing depends on authentication success or failure:
 
 | Authentication | Description |
-|--|--|
+|---|---|
 | Success | Client is redirected to the authenticated resource; the Cookie or HTTP Session attribute is now set. |
 | Failure | The request is redirected to the login form again; the Cookie or HTTP Session attribute is not set (if it was set, it is now cleared) |
 
@@ -100,7 +100,7 @@ If the authentication state is kept in an HTTP Session the setup of the session 
 The Form Based Authentication Handler is configured with configuration provided by the OSGi Configuration Admin Service using the `org.apache.sling.formauth.FormAuthenticationHandler` service PID.
 
 | Parameter | Default | Description |
-|--|--|--|
+|---|---|---|
 | `form.login.form` | `/system/sling/form/login` | The URL (without any context path prefix) to redirect the client to to present the login form. |
 | `form.auth.storage` | `cookie` | The type of storage used to provide the authentication state. Valid values are `cookie` and `session`. The default value also applies if any setting other than the supported values is configured. |
 | `form.auth.name` | `sling.formauth` | The name of the Cookie or HTTP Session attribute providing the authentication state. |

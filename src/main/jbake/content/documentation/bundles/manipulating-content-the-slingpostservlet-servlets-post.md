@@ -109,7 +109,7 @@ In both cases the path may still include selectors and extensions, which are cut
 To illustrate this algorithm, lets look at some examples (and check the [`PostServletCreateTest`](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletCreateTest.java) in case of doubt):
 
 | Resource Path | Item path |
-|--|--|
+|---|---|
 | `/content/new` | `/content/new` |
 | `/content/new.html` | `/content/new` |
 | `/content/new.print.a4.html` | `/content/new` |
@@ -501,7 +501,7 @@ After generating and filtering the name it is further guaranteed that the name i
 The modification operation has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | An existing node has been updated with content |
 | 201/CREATED | A new node has been created and filled with content |
 | 500/INTERNAL SERVER ERROR | Some exception, for example a `RepositoryException`, occurred while processing the request |
@@ -521,7 +521,7 @@ To remove existing content just address the item to be removed and set the `:ope
 The delete operation has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | The resource (and all its descendants) has been removed |
 | 404/NOT FOUND | The request URL does not address an existing repository item |
 | 500/INTERNAL SERVER ERROR | Some exception, for example a `RepositoryException`, occurred while processing the request |
@@ -554,7 +554,7 @@ If any resource listed in the `:applyTo` parameter does not exist, it is silentl
 The delete operation applied to multiple resources has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | All requested and existing resources have been removed |
 | 500/INTERNAL SERVER ERROR | Some exception, for example a `RepositoryException`, occurred while processing the request |
 
@@ -568,7 +568,7 @@ To copy existing content to a new location, the `copy` operation is specified. T
 To illustrate the `:dest` parameter handling, lets look at a few examples. All examples are based on addressing the `/content/sample` item:
 
 | `:dest` Parameter | Destination Absolute Path |
-|--|--|
+|---|---|
 | `/content/newSample` | `/content/newSample` |
 | `different/newSample` | `/content/different/newSample` |
 | `/content/different/` | `/content/different/sample` |
@@ -584,7 +584,7 @@ If an item already exists at the location derived from the `:dest` parameter, th
 The copy operation has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | The node has been copied to the new location replacing an existing item at the destination |
 | 201/CREATED | The node has been copied to the new location creating a new item at the destination |
 | 404/NOT FOUND | The request URL does not address an existing repository item |
@@ -622,7 +622,7 @@ If any resource listed in the `:applyTo` parameter does not exist, it is silentl
 The copy operation applied to multiple resources has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | All requested and existing resources have been copied |
 | 412/PRECONDITION FAILED | The node indicated by the `:dest` parameter does not exist |
 | 500/INTERNAL SERVER ERROR | Some exception, for example a `RepositoryException`, occurred while processing the request. This status is also set if the `:dest` parameter value does not have a trailing slash character. |
@@ -639,7 +639,7 @@ To move existing content to a new location, the `move` operation is specified. T
 To illustrate the `:dest` parameter handling, lets look at a few examples. All examples are based on addressing the `/content/sample` item:
 
 | `:dest` Parameter | Destination Absolute Path |
-|--|--|
+|---|---|
 | `/content/newSample` | `/content/newSample` |
 | `different/newSample` | `/content/different/newSample` |
 | `/content/different/` | `/content/different/sample` |
@@ -655,7 +655,7 @@ If an item already exists at the location derived from the `:dest` parameter, th
 The move operation has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | The node has been moved to the new location replacing an existing item at the destination |
 | 201/CREATED | The node has been moved to the new location creating a new item at the destination |
 | 404/NOT FOUND | The request URL does not address an existing repository item |
@@ -693,7 +693,7 @@ If any resource listed in the `:applyTo` parameter does not exist, it is silentl
 The move operation applied to multiple resources has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | All requested and existing resources have been moved |
 | 412/PRECONDITION FAILED | The node indicated by the `:dest` parameter does not exist |
 | 500/INTERNAL SERVER ERROR | Some exception, for example a `RepositoryException`, occurred while processing the request. This status is also set if the `:dest` parameter value does not have a trailing slash character. |
@@ -710,7 +710,7 @@ The optional name of the root node of the imported content may optionally be sup
 Other parameters for the import operation:
 
 | Parameter | Required | Default value | Description |
-|--|--|--|--|
+|---|---|---|---|
 | `:contentType` | `true` | | The `:contentType` value specifies the type of content being imported.  Possible values are: xml, jcr.xml, json, jar, zip |
 | `:content` | `false` | | The `:content` value specifies content string to import. The format of the import content is the same as is used by the jcr.contentloader bundle.  This parameter is required if the :contentFile parameter is not supplied. |
 | `:contentFile` | `false` | | The `:contentFile` value specifies a file uploaded for import. The format of the import content is the same as is used by the jcr.contentloader bundle.  This parameter is required if the :content parameter is not supplied. |
@@ -766,7 +766,7 @@ For example the following form imports content from a file upload:
 The move operation applied to multiple resources has the following status responses:
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | All requested content has been imported |
 | 404/NOT FOUND | The target parent node does not exist |
 | 412/PRECONDITION FAILED | One or more of the required parameters does not exist |
@@ -788,7 +788,7 @@ The `:nopstatus` request parameter must be an integral number in the range [ 100
 The null operation sets a default status or the status requested by the `:nopstatus` request parameter.
 
 | Status | Explanation |
-|--|--|
+|---|---|
 | 200/OK | Default status set if `:nopstatus` parameter is not set or does not have a valid value |
 | {:nopstatus} | The status as requested by the `:nopstatus` parameter |
 
@@ -807,7 +807,7 @@ Child nodes may be ordered if the primary node type of their common parent node 
 The `:order` parameter may have the following values:
 
 | Value | Description |
-|--|--|
+|---|---|
 | `first` | Place the target node as the first amongst its siblings |
 | `last` | Place the target node as the last amongst its siblings |
 | `before *xyz*` | Place the target node immediately before the sibling whose name is *xyz* |

@@ -23,7 +23,7 @@ There's a cheat sheet in Adobe's AEM documentation at [https://docs.adobe.com/do
 Assume there is a Resource at `/a/b`, which has no children.
 
 | URI | Resource Path | Selectors | Extension | Suffix | Resource Found |
-|--|--|--|--|--|--|
+|---|---|---|---|---|---|
 | /a/b                      | /a/b | null  | null | null       | yes |
 | /a/b.html                 | /a/b | null  | html | null       | yes |
 | /a/b.s1.html              | /a/b | s1    | html | null       | yes |

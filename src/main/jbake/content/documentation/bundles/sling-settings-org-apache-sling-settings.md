@@ -9,7 +9,7 @@ tags=configuration,runmodes
 The Sling Settings Bundle exposes the `SlingSettingsService` which allows access to the following information pertinent to a Sling instance:
 
 | Method | Bundle Context Property | Description |
-|--|--|--|
+|---|---|---|
 | `String getSlingId()` | (-) | A unique identifier of the running Sling instance. This value is created when Sling is first started and may be used to identify the instance, for example if multiple Sling instances are running on top of a Jackrabbit Repository Cluster |
 | `String getSlingHomePath()` | `sling.home` | The absolute filesystem path to the directory where Sling stores all its content |
 | `URL getSlingHome()` | `sling.home.url` | The Sling Home path as an `java.net.URL` instance |
@@ -69,7 +69,7 @@ Remember to look at the `RunModeImplTest` mentioned above for details, and feel 
 
 The `SlingSettings` service provides the Run Modes of the running Sling instance as in this example:
 
-    :::java
+    ::java
     SlingSettings settings = ...get from BundleContext...
     Set<String> currentRunModes = settings.getRunModes();
     

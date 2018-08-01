@@ -40,7 +40,7 @@ The parent POM only does dependency management for build time dependencies and a
 The `<dependencyManagement>` element currently contains the following managed dependencies:
 
 | Group ID | Artifact ID | Version | Scope |
-|--|--|--|--|
+|---|---|---|---|
 | org.osgi | org.osgi.core | 4.1.0 | provided |
 | org.osgi | org.osgi.compendium | 4.1.0 | provided |
 | javax.servlet | servlet-api | 2.4 | provided |

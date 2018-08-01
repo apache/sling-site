@@ -329,7 +329,6 @@ in the classpath beneath the unit tests. This data can be used as text fixture f
 
 Example JSON data:
 
-    #!json
     {
       "jcr:primaryType": "app:Page",
       "jcr:content": {

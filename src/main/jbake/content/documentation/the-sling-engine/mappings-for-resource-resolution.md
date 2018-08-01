@@ -93,7 +93,7 @@ Consider the following content
 This would define the following mapping entries:
 
 | Regular Expression | Redirect | Internal | Description |
-|--|--|--|--|
+|---|---|---|---|
 | http/example.com.80 | http://www.example.com | no | Redirect all requests to the Second Level Domain to www |
 | http/www.example.com.80 | /example | yes | Prefix the URI paths of the requests sent to this domain with the string `/example` |
 | http/.+\.example\.com\.80 | http://www.example.com | no | Redirect all requests to sub domains to www. The actual regular expression for the host.port segment is taken from the `sling:match` property. |
