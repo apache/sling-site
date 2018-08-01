@@ -22,6 +22,7 @@ def slingApplication=[
   "Sling Starter Standalone|A self-runnable Sling jar|org.apache.sling.starter|.jar|${launchpadVersion}",
   "Sling Starter WAR|A ready-to run Sling webapp as a war file|org.apache.sling.starter|-webapp.war|${launchpadVersion}",
   "Sling Source Release|The released Sling source code|org.apache.sling.starter|-source-release.zip|${launchpadVersion}",
+  "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.builder|.jar|0.9.0",
 ]
 
 def mavenPlugins=[
@@ -48,7 +49,10 @@ def bundles=[
   "Background Servlets Engine|org.apache.sling.bgservlets|1.0.8",
   "Background Servlets Integration Test|org.apache.sling.bgservlets.testing|1.0.0",
   "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.3.0",
-  "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0",
+  "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0",                                                                   
+  "CMS App Core|org.apache.sling.cms.core|0.9.0",
+  "CMS App Reference|org.apache.sling.cms.reference|0.9.0",
+  "CMS App UI|org.apache.sling.cms.ui|0.9.0",                                                                    
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.2",
   "Commons Compiler|org.apache.sling.commons.compiler|2.3.6",
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.8",
@@ -99,6 +103,7 @@ def bundles=[
   "Feature Model IO|org.apache.sling.feature.io|0.1.2",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|0.1.2",
   "Feature Flags|org.apache.sling.featureflags|1.2.2",
+  "File Optimization|org.apache.sling.fileoptim|0.9.0",
   "Thread Dumper|org.apache.sling.extensions.threaddump|0.2.2",
   "File System Resource Provider|org.apache.sling.fsresource|2.1.14",
   "I18n|org.apache.sling.i18n|2.5.12",

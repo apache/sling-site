@@ -6,6 +6,14 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2018
+* File Optimization 0.9.0, App CMS 0.9.0 (1st)
+
+## July 2018
+* API 2.18.2 (30th)
+* Sling Content Loader 2.2.6 (6th)
+* XSS Protection API 2.0.8 (3rd)
+
 ## June 2018
 
 * Scripting HTL Compiler 1.0.22-1.4.0, Scripting HTL Java Compiler 1.0.24-1.4.0, Scripting HTL Engine 1.0.54-1.4.0, Scripting HTL Testing Content 1.0.10-1.4.0, Scripting HTL Testing 1.0.10-1.4.0, HTL Maven Plugin 1.1.6-1.4.0, Scripting HTL REPL 1.0.6 (22nd)
