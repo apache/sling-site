@@ -7,6 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## August 2018
+
+* Parent POM 34 (9th)
 * Scripting HTL Java Compiler 1.0.26-1.4.0, HTL Maven Plugin 1.1.8-1.4.0, XSS Protection API 2.0.12 (7th)
 * Servlet Helpers 1.1.8, Testing JCR Mock 1.3.4, Testing OSGi Mock 2.3.10, Testing Sling Mock 2.2.20 (6th)
 * Resource Resolver 1.6.4 (3rd)
@@ -15,6 +17,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * App CMS 0.9.0 (1st)
 
 ## July 2018
+
 * API 2.18.2 (30th)
 * Sling Content Loader 2.2.6 (6th)
 * XSS Protection API 2.0.8 (3rd)
