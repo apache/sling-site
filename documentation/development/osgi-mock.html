@@ -101,16 +101,23 @@
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p> 
 <h2><a href="#maven-dependency" id="maven-dependency">Maven Dependency</a></h2> 
+<p>For JUnit 4:</p> 
 <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
-  &lt;artifactId&gt;org.apache.sling.testing.osgi-mock&lt;/artifactId&gt;
+  &lt;artifactId&gt;org.apache.sling.testing.osgi-mock.junit4&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre> 
+<p>For JUnit 5:</p> 
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+  &lt;artifactId&gt;org.apache.sling.testing.osgi-mock.junit5&lt;/artifactId&gt;
 &lt;/dependency&gt;
 </code></pre> 
 <p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p> 
 <p>There are two major version ranges available:</p> 
 <ul> 
- <li>osgi-mock 1.x: compatible with OSGi R4 and above</li> 
- <li>osgi-mock 2.x: compatible with OSGi R6 and above</li> 
+ <li>osgi-mock 1.x: compatible with OSGi R4 and above, JUnit 4</li> 
+ <li>osgi-mock 2.x: compatible with OSGi R6 and above, JUnit 4 and JUnit 5</li> 
 </ul> 
 <h2><a href="#implemented-mock-features" id="implemented-mock-features">Implemented mock features</a></h2> 
 <p>The mock implementation supports:</p> 
@@ -132,8 +139,17 @@
  <li>Support OSGi R6 and Declarative Services 1.3: Field-based reference bindings and component property types</li> 
 </ul> 
 <h2><a href="#usage" id="usage">Usage</a></h2> 
-<h3><a href="#osgi-context-junit-rule" id="osgi-context-junit-rule">OSGi Context JUnit Rule</a></h3> 
-<p>The OSGi mock context can be injected into a JUnit test using a custom JUnit rule named <code>OsgiContext</code>. This rules takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p> 
+<p>The <code>OsgiContext</code> object provides access to mock implementations of:</p> 
+<ul> 
+ <li>OSGi Component Context</li> 
+ <li>OSGi Bundle Context</li> 
+</ul> 
+<p>Additionally it supports:</p> 
+<ul> 
+ <li>Registering and activating OSGi services and inject dependencies</li> 
+</ul> 
+<h3><a href="#junit-4-osgi-context-junit-rule" id="junit-4-osgi-context-junit-rule">JUnit 4: OSGi Context JUnit Rule</a></h3> 
+<p>The OSGi mock context can be injected into a JUnit test using a custom JUnit rule named <code>OsgiContext</code>. This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p> 
 <p>Example:</p> 
 <pre><code><!-- TODO syntax marker (#!java) disabled -->public class ExampleTest {
 
@@ -154,16 +170,30 @@
 
 }
 </code></pre> 
-<p>It is possible to combine such a unit test with a <code>@RunWith</code> annotation e.g. for <a href="http://mockito.github.io/mockito/docs/current/org/mockito/runners/MockitoJUnitRunner.html">Mockito JUnit Runner</a>.</p> 
-<p>The <code>OsgiContext</code> object provides access to mock implementations of:</p> 
-<ul> 
- <li>OSGi Component Context</li> 
- <li>OSGi Bundle Context</li> 
-</ul> 
-<p>Additionally it supports:</p> 
-<ul> 
- <li>Registering and activating OSGi services and inject dependencies</li> 
-</ul> 
+<p>It is possible to combine such a unit test with a <code>@RunWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html">Mockito JUnit Runner</a>.</p> 
+<h3><a href="#junit-5-osgi-context-junit-extension" id="junit-5-osgi-context-junit-extension">JUnit 5: OSGi Context JUnit Extension</a></h3> 
+<p>The OSGi mock context can be injected into a JUnit test using a custom JUnit extension named <code>OsgiContextExtension</code>. This extension takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p> 
+<p>Example:</p> 
+<pre><code><!-- TODO syntax marker (#!java) disabled -->@ExtendWith(OsgiContextExtension.class)
+public class ExampleTest {
+
+  private final OsgiContext context = new OsgiContext();
+
+  @Test
+  public void testSomething() {
+
+    // register and activate service with configuration
+    MyService service1 = context.registerInjectActivateService(new MyService(),
+        "prop1", "value1");
+
+    // get service instance
+    OtherService service2 = context.getService(OtherService.class);
+
+  }
+
+}
+</code></pre> 
+<p>It is possible to combine such a unit test with a <code>@ExtendWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html">Mockito JUnit Jupiter Extension</a>.</p> 
 <h3><a href="#getting-osgi-mock-objects" id="getting-osgi-mock-objects">Getting OSGi mock objects</a></h3> 
 <p>The factory class <code>MockOsgi</code> allows to instantiate the different mock implementations.</p> 
 <p>Example:</p> 
@@ -222,8 +252,7 @@ myServiceConfig.update(props);
 <p>To define a plugin implement the <code>org.apache.sling.testing.mock.osgi.context.ContextPlugin&lt;OsgiContextImpl&gt;</code> interface. For convenience it is recommended to extend the abstract class <code>org.apache.sling.testing.mock.osgi.context.AbstractContextPlugin&lt;OsgiContextImpl&gt;</code>. These plugins can be used with OSGi Mock context, but also with context instances deriving from it like Sling Mocks and AEM Mocks. In most cases you would just override the <code>afterSetUp</code> method. In this method you can register additional OSGi services or do other preparation work. It is recommended to define a constant pointing to a singleton of a plugin instance for using it.</p> 
 <p>To use a plugin in your unit test class, use the <code>OsgiContextBuilder</code> class instead of directly instantiating the <code>OsgiContext</code>class. This allows you in a fluent style to configure more options, with the <code>plugin(...)</code> method you can add one or more plugins.</p> 
 <p>Example:</p> 
-<pre><code><!-- TODO syntax marker (#!java) disabled -->@Rule
-public OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
+<pre><code><!-- TODO syntax marker (#!java) disabled -->public OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
 </code></pre> 
 <p>More examples:</p> 
 <ul> 
@@ -232,7 +261,7 @@ public OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
+                    Last modified by <span class="author">sseifert</span> on <span class="comment">Mon Aug 13 17:16:47 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
