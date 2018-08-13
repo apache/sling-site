@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2018
 
+* Engine 2.16.14 (13th)
 * Parent POM 34 (9th)
 * Scripting HTL Java Compiler 1.0.26-1.4.0, HTL Maven Plugin 1.1.8-1.4.0, XSS Protection API 2.0.12 (7th)
 * Servlet Helpers 1.1.8, Testing JCR Mock 1.3.4, Testing OSGi Mock 2.3.10, Testing Sling Mock 2.2.20 (6th)
