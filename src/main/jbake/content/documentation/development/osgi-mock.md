@@ -11,20 +11,20 @@ Mock implementation of selected OSGi APIs for easier testing.
 
 ## Maven Dependency
 
-For JUnit 4:
-
-    #!xml
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.osgi-mock.junit4</artifactId>
-    </dependency>
-
 For JUnit 5:
 
     #!xml
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.osgi-mock.junit5</artifactId>
+    </dependency>
+
+For JUnit 4:
+
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.osgi-mock.junit4</artifactId>
     </dependency>
 
 See latest version on the [downloads page](/downloads.cgi).
@@ -68,38 +68,6 @@ Additionally it supports:
 * Registering and activating OSGi services and inject dependencies
 
 
-### JUnit 4: OSGi Context JUnit Rule
-
-The OSGi mock context can be injected into a JUnit test using a custom JUnit rule named `OsgiContext`.
-This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
-independently (and in parallel, if required).
-
-Example:
-
-    #!java
-    public class ExampleTest {
-
-      @Rule
-      public final OsgiContext context = new OsgiContext();
-
-      @Test
-      public void testSomething() {
-
-        // register and activate service with configuration
-        MyService service1 = context.registerInjectActivateService(new MyService(),
-            "prop1", "value1");
-
-        // get service instance
-        OtherService service2 = context.getService(OtherService.class);
-
-      }
-
-    }
-
-It is possible to combine such a unit test with a `@RunWith` annotation e.g. for
-[Mockito JUnit Runner][mockito-junit4-testrunner].
-
-
 ### JUnit 5: OSGi Context JUnit Extension
 
 The OSGi mock context can be injected into a JUnit test using a custom JUnit extension named `OsgiContextExtension`.
@@ -130,6 +98,38 @@ Example:
 
 It is possible to combine such a unit test with a `@ExtendWith` annotation e.g. for
 [Mockito JUnit Jupiter Extension][mockito-junit5-extension].
+
+
+### JUnit 4: OSGi Context JUnit Rule
+
+The OSGi mock context can be injected into a JUnit test using a custom JUnit rule named `OsgiContext`.
+This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
+independently (and in parallel, if required).
+
+Example:
+
+    #!java
+    public class ExampleTest {
+
+      @Rule
+      public final OsgiContext context = new OsgiContext();
+
+      @Test
+      public void testSomething() {
+
+        // register and activate service with configuration
+        MyService service1 = context.registerInjectActivateService(new MyService(),
+            "prop1", "value1");
+
+        // get service instance
+        OtherService service2 = context.getService(OtherService.class);
+
+      }
+
+    }
+
+It is possible to combine such a unit test with a `@RunWith` annotation e.g. for
+[Mockito JUnit Runner][mockito-junit4-testrunner].
 
 
 ### Getting OSGi mock objects
@@ -218,7 +218,7 @@ To use a plugin in your unit test class, use the `OsgiContextBuilder` class inst
 Example: 
 
     #!java
-    public OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
+    OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
 
 More examples:
 

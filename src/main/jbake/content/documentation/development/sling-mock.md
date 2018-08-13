@@ -11,20 +11,20 @@ Mock implementation of selected Sling APIs for easier testing.
 
 ## Maven Dependency
 
-For JUnit 4:
-
-    #!xml
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
-    </dependency>
-
 For JUnit 5:
 
     #!xml
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.sling-mock.junit5</artifactId>
+    </dependency>
+
+For JUnit 4:
+
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
     </dependency>
 
 See latest version on the [downloads page](/downloads.cgi).
@@ -90,32 +90,6 @@ Additionally it supports:
 * Accessing ContentLoader, and ContentBuilder and ResourceBuilder
 
 
-### JUnit 4: Sling Context JUnit Rule
-
-The Sling mock context can be injected into a JUnit test using a custom JUnit rule named `SlingContext`.
-This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
-independently (and in parallel, if required).
-
-Example:
-
-    #!java
-    public class ExampleTest {
-
-      @Rule
-      public final SlingContext context = new SlingContext();
-
-      @Test
-      public void testSomething() {
-        Resource resource = context.resourceResolver().getResource("/content/sample/en");
-        // further testing
-      }
-
-    }
-
-It is possible to combine such a unit test rule with a `@RunWith` annotation e.g. for
-[Mockito JUnit Runner][mockito-junit4-testrunner].
-
-
 ### JUnit 5: Sling Context JUnit Extension
 
 The Sling mock context can be injected into a JUnit test using a custom JUnit extension named `SlingContextExtension`.
@@ -138,8 +112,34 @@ Example:
 
     }
 
-It is possible to combine such a unit test rule with a `@ExtendWith` annotation e.g. for
+It is possible to combine such a unit test with a `@ExtendWith` annotation e.g. for
 [Mockito JUnit Jupiter Extension][mockito-junit5-extension].
+
+
+### JUnit 4: Sling Context JUnit Rule
+
+The Sling mock context can be injected into a JUnit test using a custom JUnit rule named `SlingContext`.
+This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
+independently (and in parallel, if required).
+
+Example:
+
+    #!java
+    public class ExampleTest {
+
+      @Rule
+      public final SlingContext context = new SlingContext();
+
+      @Test
+      public void testSomething() {
+        Resource resource = context.resourceResolver().getResource("/content/sample/en");
+        // further testing
+      }
+
+    }
+
+It is possible to combine such a unit test with a `@RunWith` annotation e.g. for
+[Mockito JUnit Runner][mockito-junit4-testrunner].
 
 
 ### Choosing Resource Resolver Mock Type
@@ -463,7 +463,7 @@ To use a plugin in your unit test class, use the `SlingContextBuilder` class ins
 Example: 
 
     #!java
-    public SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build();
+    SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build();
 
 More examples:
 
