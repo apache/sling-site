@@ -99,16 +99,16 @@
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p> 
 <h2><a href="#maven-dependency" id="maven-dependency">Maven Dependency</a></h2> 
-<p>For JUnit 4:</p> 
-<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
-  &lt;artifactId&gt;org.apache.sling.testing.sling-mock.junit4&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre> 
 <p>For JUnit 5:</p> 
 <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.sling-mock.junit5&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre> 
+<p>For JUnit 4:</p> 
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+  &lt;artifactId&gt;org.apache.sling.testing.sling-mock.junit4&lt;/artifactId&gt;
 &lt;/dependency&gt;
 </code></pre> 
 <p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p> 
@@ -172,23 +172,6 @@
  <li>Registering adapter factories</li> 
  <li>Accessing ContentLoader, and ContentBuilder and ResourceBuilder</li> 
 </ul> 
-<h3><a href="#junit-4-sling-context-junit-rule" id="junit-4-sling-context-junit-rule">JUnit 4: Sling Context JUnit Rule</a></h3> 
-<p>The Sling mock context can be injected into a JUnit test using a custom JUnit rule named <code>SlingContext</code>. This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p> 
-<p>Example:</p> 
-<pre><code><!-- TODO syntax marker (#!java) disabled -->public class ExampleTest {
-
-  @Rule
-  public final SlingContext context = new SlingContext();
-
-  @Test
-  public void testSomething() {
-    Resource resource = context.resourceResolver().getResource("/content/sample/en");
-    // further testing
-  }
-
-}
-</code></pre> 
-<p>It is possible to combine such a unit test rule with a <code>@RunWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html">Mockito JUnit Runner</a>.</p> 
 <h3><a href="#junit-5-sling-context-junit-extension" id="junit-5-sling-context-junit-extension">JUnit 5: Sling Context JUnit Extension</a></h3> 
 <p>The Sling mock context can be injected into a JUnit test using a custom JUnit extension named <code>SlingContextExtension</code>. This extension takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p> 
 <p>Example:</p> 
@@ -205,7 +188,24 @@ public class ExampleTest {
 
 }
 </code></pre> 
-<p>It is possible to combine such a unit test rule with a <code>@ExtendWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html">Mockito JUnit Jupiter Extension</a>.</p> 
+<p>It is possible to combine such a unit test with a <code>@ExtendWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html">Mockito JUnit Jupiter Extension</a>.</p> 
+<h3><a href="#junit-4-sling-context-junit-rule" id="junit-4-sling-context-junit-rule">JUnit 4: Sling Context JUnit Rule</a></h3> 
+<p>The Sling mock context can be injected into a JUnit test using a custom JUnit rule named <code>SlingContext</code>. This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p> 
+<p>Example:</p> 
+<pre><code><!-- TODO syntax marker (#!java) disabled -->public class ExampleTest {
+
+  @Rule
+  public final SlingContext context = new SlingContext();
+
+  @Test
+  public void testSomething() {
+    Resource resource = context.resourceResolver().getResource("/content/sample/en");
+    // further testing
+  }
+
+}
+</code></pre> 
+<p>It is possible to combine such a unit test with a <code>@RunWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html">Mockito JUnit Runner</a>.</p> 
 <h3><a href="#choosing-resource-resolver-mock-type" id="choosing-resource-resolver-mock-type">Choosing Resource Resolver Mock Type</a></h3> 
 <p>The Sling mock context supports different resource resolver types. Example:</p> 
 <pre><code><!-- TODO syntax marker (#!java) disabled -->public final SlingContext context = new SlingContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
@@ -439,7 +439,7 @@ assertArrayEquals(TEST_DATA, response.getOutput());
 <p>To define a plugin implement the <code>org.apache.sling.testing.mock.osgi.context.ContextPlugin&lt;SlingContextImpl&gt;</code> interface. For convenience it is recommended to extend the abstract class <code>org.apache.sling.testing.mock.osgi.context.AbstractContextPlugin&lt;SlingContextImpl&gt;</code>. These plugins can be used with Sling Mock context, but also with context instances deriving from it like AEM Mocks. In most cases you would just override the <code>afterSetUp</code> method. In this method you can register additional OSGi services or do other preparation work. It is recommended to define a constant pointing to a singleton of a plugin instance for using it.</p> 
 <p>To use a plugin in your unit test class, use the <code>SlingContextBuilder</code> class instead of directly instantiating the <code>SlingContext</code>class. This allows you in a fluent style to configure more options, with the <code>plugin(...)</code> method you can add one or more plugins.</p> 
 <p>Example:</p> 
-<pre><code><!-- TODO syntax marker (#!java) disabled -->public SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build();
+<pre><code><!-- TODO syntax marker (#!java) disabled -->SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build();
 </code></pre> 
 <p>More examples:</p> 
 <ul> 
@@ -448,7 +448,7 @@ assertArrayEquals(TEST_DATA, response.getOutput());
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">sseifert</span> on <span class="comment">Mon Aug 13 17:16:47 2018 +0200</span>
+                    Last modified by <span class="author">sseifert</span> on <span class="comment">Mon Aug 13 17:34:05 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
