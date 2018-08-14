@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2018
 
+* JCR Repository Registration 1.0.6, Apache Sling JCR Resource Resolver 3.0.16, Dynamic Include 3.1.2 (14th)
 * Engine 2.16.14 (13th)
 * Parent POM 34 (9th)
 * Scripting HTL Java Compiler 1.0.26-1.4.0, HTL Maven Plugin 1.1.8-1.4.0, XSS Protection API 2.0.12 (7th)
