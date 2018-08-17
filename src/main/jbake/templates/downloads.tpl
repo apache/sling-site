@@ -28,7 +28,7 @@ def slingApplication=[
 def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4",
-  "Maven Sling Plugin|maven-sling-plugin|2.3.6",
+  "Maven Sling Plugin|maven-sling-plugin|2.3.8",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.8.2",
   "HTL Maven Plugin|htl-maven-plugin|1.1.8-1.4.0",
 ]
