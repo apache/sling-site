@@ -22,15 +22,18 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
 
 ## Introduction
 
-The purpose of the module presented here is to replace dynamic generated components (eg. current time or foreign exchange rates) with server-side include tag (eg. [SSI](http://httpd.apache.org/docs/current/howto/ssi.html) or [ESI](http://www.w3.org/TR/esi-lang)). Therefore the dispatcher is able to cache the whole page but dynamic components are generated and included with every request. Components to include are chosen in filter configuration using `resourceType` attribute.
+This module introduces a Servlet Filter that replaces dynamic components (eg. current time or foreign exchange rates) with server-side include tags (eg. [SSI](http://httpd.apache.org/docs/current/howto/ssi.html) or [ESI](http://www.w3.org/TR/esi-lang)).
+Thanks to this approach, the whole page can be cached by the Dispatcher or a Content Delivery Network while dynamic components are generated and included with every request. Components to include in this manner are specified by `resourceType` in the filter's configuration.
 
-When the filter intercepts request for a component with given `resourceType`, it'll return a server-side include tag (eg. `<!--#include virtual="/path/to/resource" -->` for Apache server). However the path is extended by new selector (`nocache` by default). This is required because filter has to know when to return actual content.
+When the filter intercepts a request for a component with a matching `resourceType`, it'll return a server-side include tag (eg. `<!--#include virtual="/path/to/resource" -->` when the Apache HTTP server with `mod_include` is used).
+However, an additional selector (`nocache` by default) is inserted into the path. This serves as a marker for the filter, instructing it to return actual content.
 
-Components don't have to be modified in order to use this module (or even aware of its existence). It's servlet filter, installed as an OSGi bundle and it can be enabled, disabled or reconfigured without touching CQ installation.
+Components don't have to be modified in order to use this module (or even be aware of its existence).
+It's a Servlet Filter, installed as an OSGi bundle and it can be enabled, disabled or reconfigured at runtime.
 
 ## Prerequisites
 
-* CQ / Apache Sling 2
+* AEM / Apache Sling 2+
 * Maven 2.x, 3.x
 
 ## Installation
@@ -45,31 +48,31 @@ Add following dependency to your project:
 
 ## Configuration
 
-Filter is delivered as a standard OSGi bundle. SDI is configured via the configuration factory called *SDI Configuration*. Following properties are available:
+The filter is delivered as a standard OSGi bundle. SDI is configured via a configuration factory called *SDI Configuration*. The following properties are available:
 
 * **Enabled** - enable SDI
-* **Base path** - This SDI configuration will work only for paths matching this value. If value starts with "^" sign, regex matching will be performed. Otherwise it will check for path prefix. (Available since 3.1.0)
-* **Resource types** - which components should be replaced with tags
-* **Include type** - type of include tag (Apache SSI, ESI or Javascript)
-* **Add comment** - adds debug comment: `<!-- SDI include (path: %s, resourceType: %s) -->` to every replaced component
-* **Filter selector** - selector used to get actual content
-* **Component TTL** - time to live in seconds, set for rendered component (require Dispatcher 4.1.11+)
-* **Required header** - SDI will be enabled only if the configured header is present in the request. By default it's `Server-Agent=Communique-Dispatcher` header, added by the AEM dispatcher. You may enter just the header name only or the name and the value split with `=`.
+* **Base path** - This SDI configuration will work only for paths matching this value. If the value starts with a `^` character, regular expression matching (Available since 3.1.0) will be performed. Otherwise it will try to match the value as a path prefix.
+* **Resource types** - specifies which components should be replaced with tags
+* **Include type** - type of the include tag (SSI, ESI or JavaScript)
+* **Add comment** - adds a debug comment: `<!-- SDI include (path: %s, resourceType: %s) -->` to every component replaced
+* **Filter selector** - the selector used in the request to get actual content
+* **Component TTL** - time to live in seconds, set for rendered component (requires Dispatcher 4.1.11+ or another caching proxy that respects the `max-age` directive of the `Cache-Control` HTTP header)
+* **Required header** - SDI will be enabled only if the configured header is present in the request. By default it's `Server-Agent=Communique-Dispatcher` header, added by the AEM Dispatcher. You may enter just the header name only or the name and the value split with `=`.
 * **Ignore URL params** - SDI normally skips all requests containing any GET parameters. This option allows to set a list of parameters that should be ignored in the test. See the [Ignoring URL parameters](https://docs.adobe.com/docs/en/dispatcher/disp-config.html#Ignoring%20URL%20Parameters) section in the dispatcher documentation.
-* **Include path rewriting** -- enable rewriting link (according to sling mappings) that is used for dynamic content including.
+* **Include path rewriting** - enable rewriting link (according to [Sling mapping](https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html)) that is used for dynamic content inclusion.
 
 ## Compatibility with components
 
-Filter is incompatible with following types of component:
+The filter is incompatible with the following types of component:
 
-* components which handles POST requests or GET parameters,
-* synthetic components which uses suffixes (because suffix is used to pass `requestType` of the synthetic resource).
+* components which handle POST requests or GET parameters (query strings),
+* synthetic components which use suffixes (because suffix is used to pass `requestType` of the synthetic resource).
 
-If component do not generate HTML but eg. JS or binary data then remember to turn off *Comment* option in configuration.
+If a component does not generate HTML but JSON, binary data or any format that doesn't allow XML-style comments, make sure to turn off the *Comment* option in configuration.
 
-## Enabling SSI in Apache & dispatcher
+## Enabling SSI in Apache & Dispatcher
 
-In order to enable SSI in Apache with dispatcher first enable `Include` mod (on Debian: `a2enmod include`). Then add `Includes` option to the `Options` directive in your virtual configuration host. After that find following lines in `dispatcher.conf` file:
+In order to enable SSI on Apache with the Dispatcher, first enable [`mod_include`](https://httpd.apache.org/docs/2.4/mod/mod_include.html) (on Debian: `a2enmod include`). After that, find the following lines in the `dispatcher.conf` file:
 
         <IfModule dispatcher_module>
             SetHandler dispatcher-handler
@@ -82,7 +85,7 @@ and modify it:
         </IfModule>
         SetOutputFilter INCLUDES
 
-After setting output filter open virtualhost configuration and add `Includes` option to `Options` directive:
+Having added the `SetOutputFilter` directive, open the virtual host's configuration and add the `Includes` option to the `Options` directive:
 
         <Directory />
             Options FollowSymLinks Includes
@@ -95,7 +98,7 @@ After setting output filter open virtualhost configuration and add `Includes` op
             allow from all
         </Directory>
 
-It's also a good idea to disable the caching for `.nocache.html` files in `dispatcher.any` config file. Just add:
+It's also a good idea to disable caching for `.nocache.html` files in `dispatcher.any` config file. Just add:
 
         /disable-nocache
         {
@@ -103,19 +106,21 @@ It's also a good idea to disable the caching for `.nocache.html` files in `dispa
             /type "deny"
         }
 
-at the end of the `/rules` section.
+at the end of the `/rules` section. This way, dynamic components will not be cached by the Dispatcher.
+This step may not be necessary if you're using SDI to optimize the caching of static components.
 
 ## Enabling TTL in dispatcher 4.1.11+
-In order to enable TTL on Apache with dispatcher just add:
+In order to enable TTL on Apache with the Dispatcher just add:
 
 	/enableTTL "1"
 
-to your dispatcher configuration.
+to your Dispatcher configuration.
 
 
 ## Enabling ESI in Varnish
 
-Just add following lines at the beginning of the `vcl_fetch` section in `/etc/varnish/default.vcl` file:
+Edge Side Includes can be used as an alternative to SSI. ESI tags can be processed by Varnish.
+In order to configure Varnish to work with SDI, add following lines at the beginning of the `vcl_fetch` section in your `/etc/varnish/default.vcl` file:
 
         if(req.url ~ "\.nocache.html") {
             set beresp.ttl = 0s;
@@ -127,35 +132,41 @@ It'll enable ESI includes in `.html` files and disable caching of the `.nocache.
 
 ## JavaScript Include
 
-Dynamic Include Filter can also replace dynamic components with AJAX tags, so they are loaded by the browser. It's called JSI. In the current version jQuery framework is used. More attention is required if included component has some Javascript code. Eg. Geometrixx Carousel component won't work because it's initialization is done in page `<head>` section while the component itself is still not loaded.
+The Dynamic Include Filter can also replace dynamic components with script tags using AJAX so that they are loaded by the browser. It's called JSI. In the current version of SDI, the jQuery library is used.
+More attention is required if the included component renders some JavaScript code. For example, the Geometrixx Carousel component won't work because its initialization is done in page's `<head>` section while the component itself is still not loaded.
 
 ## Plain and synthetic resources
 
-There are two cases: the first involves including a component which is available at some URL, eg.
+Resources in Apache Sling can be backed by JCR nodes but that's not always the case.
+In this section, we will look at the different ways SDI handles JCR-based resources
+
+Let's start with an example of a JCR-based component available at some URL, e.g.
 
     /content/geometrixx/en/jcr:content/carousel.html
 
-In this case, component is replaced with include tag, and `nocache` selector is added
+In this case, the component is replaced with an include tag, and the `nocache` selector (or its equivalent as per the configuration) is added to the selector string
 
     <!--#include virtual="/content/geometrixx/en/jcr:content/carousel.nocache.html" -->
 
-If the filter gets request with selector it'll pass it (using `doChain`) further without taking any action.
+If the filter gets a request with the selector it'll pass it further (using `doChain`) without taking any action.
 
-![Plain include](/documentation/bundles/sling-dynamic-include/sling-dynamic-include-processing-flow.png)
+![SDI request processing flow](/documentation/bundles/sling-dynamic-include/sling-dynamic-include-processing-flow.png)
 
-There are also components which are created from so-called synthetic resources. Synthetic resource have some resourceType and path, but they don't have any node is JCR repository. An example is
+In contrast to the above example, some components are based on so-called synthetic resources. Synthetic resources have a `resourceType` and a path but they're not backed by a node in the JCR.
+
+One such example is the
 
     /content/geometrixx/en/jcr:content/userinfo
 
-component with `foundation/components/userinfo` resource type. These components return 404 error if you try to make a HTTP request. SDI recognizes these components and forms a different include URL for them in which resource type is added as a suffix, eg.:
+component with `foundation/components/userinfo` as the resource type. These components return an HTTP 404 response if one makes them a target of an HTTP request. SDI recognizes these components and builds a different include URL for them in which the resource type is added as a suffix, e.g.:
 
     /content/geometrixx/en/jcr:content/userinfo.nocache.html/foundation/components/userinfo
 
-If filter got such request, it'll try to emulate `<sling:include>` JSP tag and includes resource with given type and `nocache` selector:
+When the filter intercepts such a request, it'll try to emulate the behaviour of a `<sling:include>` JSP tag and include the resource with the given type and a `nocache` selector:
 
     /content/geometrixx/en/jcr:content/userinfo.nocache.html
 
-Selector is necessary, because otherwise filter would again replace component with a SSI tag.
+The selector is necessary because without it the filter would replace the component with an SSI tag again, resulting in an infinite loop leading to an SSI/ESI processing error.
 
 # External resources
 
