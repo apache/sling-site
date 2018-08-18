@@ -153,6 +153,7 @@
                         <li><a href="/documentation/bundles/org-apache-sling-junit-bundles.html">JUnit server-side testing support bundles</a></li>
                         <li><a href="/documentation/tutorials-how-tos/jackrabbit-persistence.html">Jackrabbit Persistence</a></li>
                         <li><a href="/old-stuff/launch-sling.html">Launch Sling</a></li>
+                        <li><a href="/documentation/development/null-analysis.html">Leveraging @NotNull/@Nullable annotations to prevent NullPointerExceptions</a></li>
                         <li><a href="/documentation/development/jsr-305.html">Leveraging JSR-305 null annotations to prevent NullPointerExceptions</a></li>
                         <li><a href="/links.html">Links</a></li>
                         <li><a href="/documentation/bundles/log-tracers.html">Log Tracer</a></li>
