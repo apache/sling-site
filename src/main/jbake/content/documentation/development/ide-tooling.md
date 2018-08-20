@@ -38,11 +38,11 @@ To create a new Sling launchpad server you will need to start a Sling launchpad 
 
 To kick off, create a new Sling Server using the File -> New -> Other... menu entry.
 
-![New Server](ide-tooling/new-server.png)
+![New Server](./ide-tooling/new-server.png)
 
 In the resulting wizard, select the Sling Server (External) entry and enter the host name.
 
-![New Server Step 2](ide-tooling/new-server-2.png)
+![New Server Step 2](./ide-tooling/new-server-2.png)
 
 Once that is done, press finish.
 
@@ -50,7 +50,7 @@ Once that is done, press finish.
 
 The server will appear in the servers view. You can double-click on it to review the settings which were automatically provided.
 
-![Servers View](ide-tooling/servers-view.png)
+![Servers View](./ide-tooling/servers-view.png)
 
 There are a couple of important settings in the server definition page:
 
@@ -63,7 +63,7 @@ For working with OSGi bundles there are two options as to how they are installed
 * Install via bundle upload: this is the normal way which creates a bundle (jar) locally and uploads that to the server. It thus works locally or remotely.
 * Install directly from local directory: this is a faster bundle redeployment variant which does not build a bundle (jar) locally but instead instructs the server to install a bundle based on an exploded directory. (See [SLING-3019](https://issues.apache.org/jira/browse/SLING-3019) for details). This requires a special support bundle to be present on the server. If it is not present, you can install it using the hyperlink from the Install section. Note that this only works locally since the server will directly read from the exploded directory.
 
-![Servers Definition](ide-tooling/server-definition.png)
+![Servers Definition](./ide-tooling/server-definition.png)
 
 You can now connect to the server.
 
@@ -80,15 +80,15 @@ All changes performed in the local workspace are synchronized to the repository,
 
 Creating a new Sling content project is easily done by using the new Sling Content Project Wizard. To kick off, start by selected File -> New -> Project and select Sling Content Project under the Sling category.
 
-![New content project step 1](ide-tooling/new-content-project-step-1.png)
+![New content project step 1](./ide-tooling/new-content-project-step-1.png)
 
 You will then be asked to name the project and select its location.
 
-![New content project step 2](ide-tooling/new-content-project-step-2.png)
+![New content project step 2](./ide-tooling/new-content-project-step-2.png)
 
 Finally, you can select whether to add the project to an existing server, create a new one, or leave it undeployed.
 
-![New content project step 3](ide-tooling/new-content-project-step-3.png)
+![New content project step 3](./ide-tooling/new-content-project-step-3.png)
 
 Once you press finish, the project will be created and deployed to the server if needed.
 
@@ -114,7 +114,7 @@ _Available with Sling IDE Tooling for Eclipse 1.2 or newer_
 
 Additionally, automatic conversion and the addition of WTP natures and facets can be disabled from the _Sling IDE_ → _Maven Project Configurators_ preferences page.
 
-![Maven Project Configurator preferences](ide-tooling/maven-configurators-preferences.png)
+![Maven Project Configurator preferences](./ide-tooling/maven-configurators-preferences.png)
 
 #### Manual conversion
 
@@ -124,11 +124,11 @@ To mark a project as being a Sling content module, click it in the Project Explo
 
 In the Project Explorer view there is an additional 'jcr_root' contribution to the project. It is denoted by a folder icon with a small web overlay. This contribution provides a logical view over the repository content, taking into account JCR metadata. As such, .content.xml files will be folded into the corresponding node.
 
-![Content navigator](ide-tooling/content-navigator.png)
+![Content navigator](./ide-tooling/content-navigator.png)
 
 Node properties can be edited in a distinct JCR properties view.
 
-![JCR properties](ide-tooling/jcr-properties.png)
+![JCR properties](./ide-tooling/jcr-properties.png)
 
 ### filter.xml - workspace filter definition
 
@@ -138,7 +138,7 @@ A content project does not synchronize all its contents to the workspace. Instea
 
 To deploy a project on the server, open the Servers view and use the Add and Remove... dialog to add one or more modules.
 
-![Add and Remove projects from server](ide-tooling/add-remove-projects.png)
+![Add and Remove projects from server](./ide-tooling/add-remove-projects.png)
 
 After content projects are deployed, each change will cause the changed resources to be updated in the repository.
 
@@ -148,11 +148,11 @@ It is possible to manually import/export content from/to the repository. The pre
 
 The export wizard is available under the Sling -> Export Content ... action.
 
-![Repository export](ide-tooling/repository-export.png)
+![Repository export](./ide-tooling/repository-export.png)
 
 The import wizard is available under the Sling -> Import Content ... action.
 
-![Repository import](ide-tooling/repository-import.png)
+![Repository import](./ide-tooling/repository-import.png)
 
 ### Excluding paths from the sync process
 
@@ -160,7 +160,7 @@ _Available with Sling IDE Tooling for Eclipse 1.2 or newer_
 
 The _Sling IDE_ preferences page allows you to manage a global list of files names which will not be synchronized.
 
-![Content sync exclusions](ide-tooling/content-sync-exclusions.png)
+![Content sync exclusions](./ide-tooling/content-sync-exclusions.png)
 
 ## Bundle sync
 
@@ -170,19 +170,19 @@ The only requirement for bundle projects is that they are Java projects which ge
 
 Creating a new Sling bundle project is easily done by using the new Sling Bundle Project Wizard. This wizard is only available when the Maven-based integration is installed. To kick off, start by selected File -> New -> Project and select Sling Bundle Project under the Sling category.
 
-![New bundle project step 1](ide-tooling/new-bundle-project-step-1.png)
+![New bundle project step 1](./ide-tooling/new-bundle-project-step-1.png)
 
 The next page allows you to select the archetype to use. It's recommended to select the latest version of the archetype.
 
-![New bundle project step 2](ide-tooling/new-bundle-project-step-2.png)
+![New bundle project step 2](./ide-tooling/new-bundle-project-step-2.png)
 
 You will be asked to configure the archetype's properties.
 
-![New bundle project step 3](ide-tooling/new-bundle-project-step-3.png)
+![New bundle project step 3](./ide-tooling/new-bundle-project-step-3.png)
 
 Finally, you can select whether to add the project to an existing server, create a new one, or leave it undeployed.
 
-![New bundle project step 4](ide-tooling/new-bundle-project-step-4.png)
+![New bundle project step 4](./ide-tooling/new-bundle-project-step-4.png)
 
 Once you press finish, the project will be created and deployed to the server if needed.
 
@@ -194,7 +194,7 @@ To mark a project as being a Sling bundle module, right click it in the Project 
 
 To deploy a project on the server, open the Servers view and use the Add and Remove... dialog to add one or more modules.
 
-![Add and Remove projects from server](ide-tooling/add-remove-projects.png)
+![Add and Remove projects from server](./ide-tooling/add-remove-projects.png)
 
 After OSGi bundle projects are deployed, each change will cause the bundle to be redeployed on the server.
 
@@ -210,7 +210,7 @@ This feature provides the following enhancements:
 * wizards for creating new HTL scripts and Use Classes ( Java and Javascript )
 * HTL-aware validation for HTML files
 
-![HTL Editor](ide-tooling/sightly-editor.png)
+![HTL Editor](./ide-tooling/sightly-editor.png)
 
 These enhancements are enabled once the HTL facet is added to a project. This is done automatically when converting a project to content project, but can also be done manually via the project properties, under the _Project Facets_ page.
 
@@ -220,7 +220,7 @@ _Available with Sling IDE Tooling for Eclipse 1.1 or newer_
 
 When first connecting to a Sling instance in debug mode, the IDE tooling tries to bind all the sources associated with the bundles deployed on the server and retrieves the associated source artifacts using Maven. Therefore, the debug classpath is as close as possible to sources used to build the bundles deployed on the server.
 
-![Debugging](ide-tooling/debug.png)
+![Debugging](./ide-tooling/debug.png)
 
 Since a first source bundle resolution can potentially take a long time, this behaviour can be disabled from the server configuration page.
 
@@ -232,7 +232,7 @@ Maven projects configured with the `slingstart-maven-plugin` will automatically 
 
 The configuration is done automatically on import, and you can also do it manually by right-clicking on the project and then selecting _Maven_ → _Update Project..._.
 
-![Launchpad project](ide-tooling/launchpad-models-directory.png)
+![Launchpad project](./ide-tooling/launchpad-models-directory.png)
 
 ## Troubleshooting
 
@@ -240,15 +240,15 @@ The configuration is done automatically on import, and you can also do it manual
 
 All operations that are performed on the Sling launchpad are logged in the Sling console. To view these operations, open the Eclipse console view and select Open Console -> Sling Console.
 
-![Sling Console](ide-tooling/sling-console.png)
+![Sling Console](./ide-tooling/sling-console.png)
 
 Additional information can be obtained by enabling the Eclipse platform tracing facility. To do so, open the Eclipse preferences and navigate to General -> Tracing. Make sure that 'Enable tracing' is checked and all options under 'Sling IDE Tooling' are enabled.
 
-![Tracing](ide-tooling/tracing.png)
+![Tracing](./ide-tooling/tracing.png)
 
 ### Why do I get an error about "No DS descriptor found at..."?
 
-![Missing SCR descriptors](ide-tooling/missing-scr-descriptor.png)
+![Missing SCR descriptors](./ide-tooling/missing-scr-descriptor.png)
 
 Bundle deployment assumes that the OSGi bundle is packaged into the project's output directory. This includes:
 
