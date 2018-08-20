@@ -3,22 +3,6 @@ type=page
 status=published
 tags=publishing
 ~~~~~~
-Notice:    Licensed to the Apache Software Foundation (ASF) under one
-           or more contributor license agreements.  See the NOTICE file
-           distributed with this work for additional information
-           regarding copyright ownership.  The ASF licenses this file
-           to you under the Apache License, Version 2.0 (the
-           "License"); you may not use this file except in compliance
-           with the License.  You may obtain a copy of the License at
-           .
-             http://www.apache.org/licenses/LICENSE-2.0
-           .
-           Unless required by applicable law or agreed to in writing,
-           software distributed under the License is distributed on an
-           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-           KIND, either express or implied.  See the License for the
-           specific language governing permissions and limitations
-           under the License.
 
 ## Introduction
 
@@ -70,15 +54,30 @@ The filter is incompatible with the following types of component:
 
 If a component does not generate HTML but JSON, binary data or any format that doesn't allow XML-style comments, make sure to turn off the *Comment* option in configuration.
 
-## Enabling SSI in Apache & Dispatcher
+## Enabling SSI in Apache with the AEM Dispatcher Module
 
-In order to enable SSI on Apache with the Dispatcher, first enable [`mod_include`](https://httpd.apache.org/docs/2.4/mod/mod_include.html) (on Debian: `a2enmod include`). After that, find the following lines in the `dispatcher.conf` file:
+One of the most common stacks where SDI proves useful is when the Apache HTTP server is set up as a caching proxy in front of Adobe Experience Manager (a Sling-based content management system).
+A dedicated module called the [Dispatcher](https://helpx.adobe.com/experience-manager/dispatcher/using/dispatcher.html) is used to serve as the caching layer.
+
+If you're working with a Sling-based application other than AEM, the `mod_proxy` configuration remains relevant. The Dispatcher is specific to AEM but even if you're using a different caching layer, the changes you will need to make should be similar in principle to the ones outlined below.
+
+This section describes the minimal configuration necessary to use Sling Dynamic Include in this manner. You will need:
+
+  - Apache HTTP server with [`mod_include`](https://httpd.apache.org/docs/2.4/mod/mod_include.html) (to process Server Side Includes) and the [Dispatcher module](https://helpx.adobe.com/experience-manager/dispatcher/using/dispatcher-install.html#ApacheWebServer) (to handle caching)
+  - Adobe Experience Manager as a Sling installation to serve your content
+  - SDI installed on the AEM Publish instance
+
+Start by [installing Apache and the Dispatcher](https://helpx.adobe.com/experience-manager/dispatcher/using/dispatcher-install.html#ApacheWebServer)
+
+Then, enable [`mod_include`](https://httpd.apache.org/docs/2.4/mod/mod_include.html) (on Debian: `a2enmod include`) on Apache. This will allow the Server-Side Include tags rendered by SDI to be processed.
+
+After that, find the following lines in the `dispatcher.conf` file:
 
         <IfModule dispatcher_module>
             SetHandler dispatcher-handler
         </IfModule>
 
-and modify it:
+and modify it as shown below:
 
         <IfModule dispatcher_module>
             SetHandler dispatcher-handler
@@ -119,7 +118,8 @@ to your Dispatcher configuration.
 
 ## Enabling ESI in Varnish
 
-Edge Side Includes can be used as an alternative to SSI. ESI tags can be processed by Varnish.
+Edge Side Includes can be used as an alternative to SSI. ESI tags can be processed by [Varnish](https://varnish-cache.org/) which can be installed locally and often made available as part of Content Delivery Networks.
+
 In order to configure Varnish to work with SDI, add following lines at the beginning of the `vcl_fetch` section in your `/etc/varnish/default.vcl` file:
 
         if(req.url ~ "\.nocache.html") {
