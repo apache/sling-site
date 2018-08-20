@@ -150,7 +150,7 @@ In this case, the component is replaced with an include tag, and the `nocache` s
 
 If the filter gets a request with the selector it'll pass it further (using `doChain`) without taking any action.
 
-![SDI request processing flow](/documentation/bundles/sling-dynamic-include/sling-dynamic-include-processing-flow.png)
+![SDI request processing flow](./sling-dynamic-include/sling-dynamic-include-processing-flow.png)
 
 In contrast to the above example, some components are based on so-called synthetic resources. Synthetic resources have a `resourceType` and a path but they're not backed by a node in the JCR.
 
