@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2018
 
+* Resource Builder 1.0.4, Testing JCR Mock 1.3.6, ResourceResolver Mock 1.1.22, OSGi Mock 2.4.0, Sling Mock 2.3.0, Sling Mock Oak 2.1.0, Context-Aware Configuration Mock Plugin 1.3.2 (21th)
 * Maven Sling Plugin 2.3.8 (17th)
 * JCR Repository Registration 1.0.6, Apache Sling JCR Resource Resolver 3.0.16, Dynamic Include 3.1.2 (14th)
 * Engine 2.16.14 (13th)
