@@ -147,8 +147,36 @@
   </tr> 
  </tbody> 
 </table> 
-<h3><a href="#java" id="java">Java</a></h3> 
-<p><code>Plumber</code> is an osgi service you can access that will help you registering a pipe (must implement Pipe interface, and would better extend BasePipe class), and get a pipe from a resource (assuming you have a <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe">pipe configuration JCR</a> tree already set)</p> 
+<h3><a href="#plumber-service" id="plumber-service">Plumber Service</a></h3> 
+<p><code>Plumber</code> is an osgi service that is the one and only entry point for any sling pipes java API. It exposes following osgi configuration:</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th> Field </th>
+   <th> Explanation </th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td> <code>bufferSize</code> </td>
+   <td> Number of iterations after which plumber should saves a pipe execution (defaults to 1000) </td>
+  </tr> 
+  <tr>
+   <td> <code>sleep</code> </td>
+   <td> Number of milliseconds of sleep after each persistence (defaults to 0)&nbsp;</td>
+  </tr> 
+  <tr>
+   <td> <code>serviceUser</code> </td>
+   <td>&nbsp;Name of service user, with appropriate rights, that will be used for any activity not triggered by users (async execution, JMX monitoring, ...) (no service user is provided by default) </td>
+  </tr> 
+  <tr>
+   <td> <code>authorizedUsers</code> </td>
+   <td> Users allowed to register async pipes (defaults to ['admin']) </td>
+  </tr> 
+ </tbody> 
+</table> 
+<h3><a href="#raw-java-api" id="raw-java-api">Raw Java API</a></h3> 
+<p><code>Plumber</code> offers java API for registering a pipe (must implement Pipe interface, and would better extend BasePipe class), and get a pipe from a resource (assuming you have a <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe">pipe configuration JCR</a> tree already set)</p> 
 <pre><code>    Pipe pipe = plumber.getPipe(resource);
 </code></pre> 
 <p>Once the pipe is obtained, you can just iterate through the output of it by retrieving it's output</p> 
@@ -156,9 +184,9 @@
 </code></pre> 
 <p>Be aware that if the pipe is modifying content, you might need to save it.</p> 
 <p>You can encapsulate the whole execution of a pipe through the <code>execute</code> methods that are used internally by both Pipe Builder and HTTP APIs.</p> 
-<h3><a href="#pipe-builder-api" id="pipe-builder-api">Pipe Builder API</a></h3> 
-<p>Plumber osgi service provides PipeBuilder with <code>newPipe(ResourceResolver resolver)</code> API, that gives a fluent API to quickly configure and run pipes. e.g.</p> 
-<pre><code>plumber.newPipe(resolver).xpath('//element(*,nt:unstructured)[@sling:resourceType='to/delete']").rm().run();
+<h3><a href="#pipe-builder-java-api" id="pipe-builder-java-api">Pipe Builder Java API</a></h3> 
+<p><code>Plumber</code> also provides PipeBuilder with <code>newPipe(ResourceResolver resolver)</code> API, that gives a fluent API to quickly configure and run pipes. e.g.</p> 
+<pre><code>plumber.newPipe(resolver).xpath('//element(*,nt:unstructured)[@sling:resourceType="to/delete"]').rm().run();
 </code></pre> 
 <p>will search for resource of type <code>to/delete</code> and remove them.</p> 
 <p>PipeBuilder will configure a container pipe, chaining pipes you can configure with a fluent API. This works pretty well with a groovy console just by entering following set of instruction</p> 
@@ -204,7 +232,7 @@
 </table> 
 <p>note that that configuration part has shortcuts for some pipes. Typically, above sample is a shorter equivalent of</p> 
 <pre><code>    plumber.newPipe(resolver)
-        .pipe('slingPipes/xpath').expr('//element(*,nt:unstructured)[@sling:resourceType='to/delete']")
+        .pipe('slingPipes/xpath').expr('//element(*,nt:unstructured)[@sling:resourceType="to/delete"]')
         .pipe('slingPipes/rm').run();
 </code></pre> 
 <p>when available, shortcuts will be specified next to each pipe type documentation, for</p> 
@@ -272,7 +300,7 @@
   </tr> 
  </tbody> 
 </table> 
-<h5><a href="#pipe-http-request-parameter" id="pipe-http-request-parameter">Pipe HTTP Request parameter</a></h5> 
+<h4><a href="#pipe-http-request-parameter" id="pipe-http-request-parameter">Pipe HTTP Request parameter</a></h4> 
 <table> 
  <thead> 
   <tr>
@@ -335,7 +363,7 @@
     .parent("my:Page")  
 </code></pre> 
 <h3><a href="#jmx" id="jmx">JMX</a></h3> 
-<p>as soon as you add <code>monitored=true</code> flag to a pipe configuration, you'll make the given pipe monitored by JMX, giving stats, status, and an entry point to execute it. Note that if you don't see the pipe you just added, you might have to refresh monitored pipes by hitting the related button in plumber mbean.</p></section></div></div>            
+<p>as soon as you add <code>monitored=true</code> flag to a pipe node, assuming you <a href="#plumber-service-1">configured a service user</a> with appropriate rights, you'll make the given pipe monitored by JMX, giving stats, status, and an entry point to execute it. Note that if you don't see the pipe you just added, you might have to refresh monitored pipes by hitting the related button in plumber mbean.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>

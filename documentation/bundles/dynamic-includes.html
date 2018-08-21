@@ -91,12 +91,150 @@
             </div><h1 class="pagetitle">
                 Apache Sling Dynamic Include
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Notice: Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at . http://www.apache.org/licenses/LICENSE-2.0 . Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p> 
-<h1><a href="#sling-dynamic-include-orgapacheslingdynamic-include" id="sling-dynamic-include-orgapacheslingdynamic-include">Sling Dynamic Include (org.apache.sling.dynamic-include)</a></h1> 
-<p>For now the Sling Dynamic Include documentation can be found <a href="https://github.com/apache/sling-org-apache-sling-dynamic-include">in the module's README.md</a>.</p></section></div></div>            
+<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#introduction" id="introduction">Introduction</a></h2> 
+<p>This module introduces a Servlet Filter that replaces dynamic components (eg. current time or foreign exchange rates) with server-side include tags (eg. <a href="http://httpd.apache.org/docs/current/howto/ssi.html">SSI</a> or <a href="http://www.w3.org/TR/esi-lang">ESI</a>). Thanks to this approach, the whole page can be cached by the Dispatcher or a Content Delivery Network while dynamic components are generated and included with every request. Components to include in this manner are specified by <code>resourceType</code> in the filter's configuration.</p> 
+<p>When the filter intercepts a request for a component with a matching <code>resourceType</code>, it'll return a server-side include tag (eg. <code>&lt;!--#include virtual="/path/to/resource" --&gt;</code> when the Apache HTTP server with <code>mod_include</code> is used). However, an additional selector (<code>nocache</code> by default) is inserted into the path. This serves as a marker for the filter, instructing it to return actual content.</p> 
+<p>Components don't have to be modified in order to use this module (or even be aware of its existence). It's a Servlet Filter, installed as an OSGi bundle and it can be enabled, disabled or reconfigured at runtime.</p> 
+<h2><a href="#prerequisites" id="prerequisites">Prerequisites</a></h2> 
+<ul> 
+ <li>AEM / Apache Sling 2+</li> 
+ <li>Maven 2.x, 3.x</li> 
+</ul> 
+<h2><a href="#installation" id="installation">Installation</a></h2> 
+<p>Add following dependency to your project:</p> 
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+    &lt;artifactId&gt;dynamic-include&lt;/artifactId&gt;
+    &lt;version&gt;3.1.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre> 
+<h2><a href="#configuration" id="configuration">Configuration</a></h2> 
+<p>The filter is delivered as a standard OSGi bundle. SDI is configured via a configuration factory called <em>SDI Configuration</em>. The following properties are available:</p> 
+<ul> 
+ <li><strong>Enabled</strong> - enable SDI</li> 
+ <li><strong>Base path</strong> - This SDI configuration will work only for paths matching this value. If the value starts with a <code>^</code> character, regular expression matching (Available since 3.1.0) will be performed. Otherwise it will try to match the value as a path prefix.</li> 
+ <li><strong>Resource types</strong> - specifies which components should be replaced with tags</li> 
+ <li><strong>Include type</strong> - type of the include tag (SSI, ESI or JavaScript)</li> 
+ <li><strong>Add comment</strong> - adds a debug comment: <code>&lt;!-- SDI include (path: %s, resourceType: %s) --&gt;</code> to every component replaced</li> 
+ <li><strong>Filter selector</strong> - the selector used in the request to get actual content</li> 
+ <li><strong>Component TTL</strong> - time to live in seconds, set for rendered component (requires Dispatcher 4.1.11+ or another caching proxy that respects the <code>max-age</code> directive of the <code>Cache-Control</code> HTTP header)</li> 
+ <li><strong>Required header</strong> - SDI will be enabled only if the configured header is present in the request. By default it's <code>Server-Agent=Communique-Dispatcher</code> header, added by the AEM Dispatcher. You may enter just the header name only or the name and the value split with <code>=</code>.</li> 
+ <li><strong>Ignore URL params</strong> - SDI normally skips all requests containing any GET parameters. This option allows to set a list of parameters that should be ignored in the test. See the <a href="https://docs.adobe.com/docs/en/dispatcher/disp-config.html#Ignoring%20URL%20Parameters">Ignoring URL parameters</a> section in the dispatcher documentation.</li> 
+ <li><strong>Include path rewriting</strong> - enable rewriting link (according to <a href="https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html">Sling mapping</a>) that is used for dynamic content inclusion.</li> 
+</ul> 
+<h2><a href="#compatibility-with-components" id="compatibility-with-components">Compatibility with components</a></h2> 
+<p>The filter is incompatible with the following types of component:</p> 
+<ul> 
+ <li>components which handle POST requests or GET parameters (query strings),</li> 
+ <li>synthetic components which use suffixes (because suffix is used to pass <code>requestType</code> of the synthetic resource).</li> 
+</ul> 
+<p>If a component does not generate HTML but JSON, binary data or any format that doesn't allow XML-style comments, make sure to turn off the <em>Comment</em> option in configuration.</p> 
+<h2><a href="#enabling-ssi-in-apache-with-the-aem-dispatcher-module" id="enabling-ssi-in-apache-with-the-aem-dispatcher-module">Enabling SSI in Apache with the AEM Dispatcher Module</a></h2> 
+<p>One of the most common stacks where SDI proves useful is when the Apache HTTP server is set up as a caching proxy in front of Adobe Experience Manager (a Sling-based content management system). A dedicated module called the <a href="https://helpx.adobe.com/experience-manager/dispatcher/using/dispatcher.html">Dispatcher</a> is used to serve as the caching layer.</p> 
+<p>If you're working with a Sling-based application other than AEM, the <code>mod_proxy</code> configuration remains relevant. The Dispatcher is specific to AEM but even if you're using a different caching layer, the changes you will need to make should be similar in principle to the ones outlined below.</p> 
+<p>This section describes the minimal configuration necessary to use Sling Dynamic Include in this manner. You will need:</p> 
+<ul> 
+ <li>Apache HTTP server with <a href="https://httpd.apache.org/docs/2.4/mod/mod_include.html"><code>mod_include</code></a> (to process Server Side Includes) and the <a href="https://helpx.adobe.com/experience-manager/dispatcher/using/dispatcher-install.html#ApacheWebServer">Dispatcher module</a> (to handle caching)</li> 
+ <li>Adobe Experience Manager as a Sling installation to serve your content</li> 
+ <li>SDI installed on the AEM Publish instance</li> 
+</ul> 
+<p>Start by <a href="https://helpx.adobe.com/experience-manager/dispatcher/using/dispatcher-install.html#ApacheWebServer">installing Apache and the Dispatcher</a></p> 
+<p>Then, enable <a href="https://httpd.apache.org/docs/2.4/mod/mod_include.html"><code>mod_include</code></a> (on Debian: <code>a2enmod include</code>) on Apache. This will allow the Server-Side Include tags rendered by SDI to be processed.</p> 
+<p>After that, find the following lines in the <code>dispatcher.conf</code> file:</p> 
+<pre><code>    &lt;IfModule dispatcher_module&gt;
+        SetHandler dispatcher-handler
+    &lt;/IfModule&gt;
+</code></pre> 
+<p>and modify it as shown below:</p> 
+<pre><code>    &lt;IfModule dispatcher_module&gt;
+        SetHandler dispatcher-handler
+    &lt;/IfModule&gt;
+    SetOutputFilter INCLUDES
+</code></pre> 
+<p>Having added the <code>SetOutputFilter</code> directive, open the virtual host's configuration and add the <code>Includes</code> option to the <code>Options</code> directive:</p> 
+<pre><code>    &lt;Directory /&gt;
+        Options FollowSymLinks Includes
+        AllowOverride None
+    &lt;/Directory&gt;
+    &lt;Directory /var/www/&gt;
+        Options Indexes FollowSymLinks MultiViews Includes
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    &lt;/Directory&gt;
+</code></pre> 
+<p>It's also a good idea to disable caching for <code>.nocache.html</code> files in <code>dispatcher.any</code> config file. Just add:</p> 
+<pre><code>    /disable-nocache
+    {
+        /glob "*.nocache.html*"
+        /type "deny"
+    }
+</code></pre> 
+<p>at the end of the <code>/rules</code> section. This way, dynamic components will not be cached by the Dispatcher. This step may not be necessary if you're using SDI to optimize the caching of static components.</p> 
+<h2><a href="#enabling-ttl-in-dispatcher-4111" id="enabling-ttl-in-dispatcher-4111">Enabling TTL in dispatcher 4.1.11+</a></h2> 
+<p>In order to enable TTL on Apache with the Dispatcher just add:</p> 
+<pre><code>/enableTTL "1"
+</code></pre> 
+<p>to your Dispatcher configuration.</p> 
+<h2><a href="#enabling-esi-in-varnish" id="enabling-esi-in-varnish">Enabling ESI in Varnish</a></h2> 
+<p>Edge Side Includes can be used as an alternative to SSI. ESI tags can be processed by <a href="https://varnish-cache.org/">Varnish</a> which can be installed locally and often made available as part of Content Delivery Networks.</p> 
+<p>In order to configure Varnish to work with SDI, add following lines at the beginning of the <code>vcl_fetch</code> section in your <code>/etc/varnish/default.vcl</code> file:</p> 
+<pre><code>    if(req.url ~ "\.nocache.html") {
+        set beresp.ttl = 0s;
+    } else if (req.url ~ "\.html") {
+        set beresp.do_esi = true;
+    }
+</code></pre> 
+<p>It'll enable ESI includes in <code>.html</code> files and disable caching of the <code>.nocache.html</code> files.</p> 
+<h2><a href="#javascript-include" id="javascript-include">JavaScript Include</a></h2> 
+<p>The Dynamic Include Filter can also replace dynamic components with script tags using AJAX so that they are loaded by the browser. It's called JSI. In the current version of SDI, the jQuery library is used. More attention is required if the included component renders some JavaScript code. For example, the Geometrixx Carousel component won't work because its initialization is done in page's <code>&lt;head&gt;</code> section while the component itself is still not loaded.</p> 
+<h2><a href="#plain-and-synthetic-resources" id="plain-and-synthetic-resources">Plain and synthetic resources</a></h2> 
+<p>Resources in Apache Sling can be backed by JCR nodes but that's not always the case. In this section, we will look at the different ways SDI handles JCR-based resources</p> 
+<p>Let's start with an example of a JCR-based component available at some URL, e.g.</p> 
+<pre><code>/content/geometrixx/en/jcr:content/carousel.html
+</code></pre> 
+<p>In this case, the component is replaced with an include tag, and the <code>nocache</code> selector (or its equivalent as per the configuration) is added to the selector string</p> 
+<pre><code>&lt;!--#include virtual="/content/geometrixx/en/jcr:content/carousel.nocache.html" --&gt;
+</code></pre> 
+<p>If the filter gets a request with the selector it'll pass it further (using <code>doChain</code>) without taking any action.</p> 
+<p><img src="http://sling.apache.org/documentation/bundles/sling-dynamic-include/sling-dynamic-include-processing-flow.png" alt="SDI request processing flow"></p> 
+<p>In contrast to the above example, some components are based on so-called synthetic resources. Synthetic resources have a <code>resourceType</code> and a path but they're not backed by a node in the JCR.</p> 
+<p>One such example is the</p> 
+<pre><code>/content/geometrixx/en/jcr:content/userinfo
+</code></pre> 
+<p>component with <code>foundation/components/userinfo</code> as the resource type. These components return an HTTP 404 response if one makes them a target of an HTTP request. SDI recognizes these components and builds a different include URL for them in which the resource type is added as a suffix, e.g.:</p> 
+<pre><code>/content/geometrixx/en/jcr:content/userinfo.nocache.html/foundation/components/userinfo
+</code></pre> 
+<p>When the filter intercepts such a request, it'll try to emulate the behaviour of a <code>&lt;sling:include&gt;</code> JSP tag and include the resource with the given type and a <code>nocache</code> selector:</p> 
+<pre><code>/content/geometrixx/en/jcr:content/userinfo.nocache.html
+</code></pre> 
+<p>The selector is necessary because without it the filter would replace the component with an SSI tag again, resulting in an infinite loop leading to an SSI/ESI processing error.</p> 
+<h1><a href="#external-resources" id="external-resources">External resources</a></h1> 
+<ul> 
+ <li><a href="http://www.pro-vision.de/content/medialib/pro-vision/production/adaptto/2012/adaptto2012-sling-dynamic-include-tomasz-rekaweki-pdf/_jcr_content/renditions/rendition.file/adaptto2012-sling-dynamic-include-tomasz-rekaweki.pdf">SDI presentation</a> on <a href="http://www.pro-vision.de/de/adaptto/adaptto-2012.html">adaptTo() 2012</a></li> 
+ <li><a href="http://www.cognifide.com/blogs/cq/sling-dynamic-include/">SDI blog</a> post on the Cognifide website</li> 
+ <li>See the <a href="http://sling.apache.org/">Apache Sling website</a> for the Sling reference documentation. Apache Sling, Apache and Sling are trademarks of the <a href="http://apache.org">Apache Software Foundation</a>.</li> 
+</ul> 
+<h1><a href="#release-notes" id="release-notes">Release notes</a></h1> 
+<h2><a href="#312" id="312">3.1.2</a></h2> 
+<ul> 
+ <li>Introduced readable names for SDI configuration entries in the OSGi console (<a href="https://issues.apache.org/jira/browse/SLING-7695">SLING-7695</a>)</li> 
+ <li>Fixed a bug where the selector configured for use with SDI was added multiple times to the same selector string (<a href="https://issues.apache.org/jira/browse/SLING-7742">SLING-7742</a>)</li> 
+ <li>Introduced a mechanism that allows synthetic resources included via SDI to be cached by the AEM Dispatcher (<a href="https://issues.apache.org/jira/browse/SLING-7785">SLING-7785</a>)</li> 
+</ul> 
+<h2><a href="#310" id="310">3.1.0</a></h2> 
+<ul> 
+ <li>Regular expression matching can be used when configuring resource paths (<a href="https://issues.apache.org/jira/browse/SLING-7621">SLING-7621</a>)</li> 
+</ul> 
+<h2><a href="#300" id="300">3.0.0</a></h2> 
+<p>Sling Dynamic Include donated to the Apache Sling project (<a href="https://issues.apache.org/jira/browse/SLING-5594">SLING-5594</a>), repackaged and released (<a href="https://issues.apache.org/jira/browse/SLING-6301">SLING-6301</a>)</p> 
+<h2><a href="#220" id="220">2.2.0</a></h2> 
+<ul> 
+ <li>Support for time-based (TTL) caching, Dispatcher 4.1.11+ required</li> 
+</ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>
+                    Last modified by <span class="author">Tomek Niedzwiedz</span> on <span class="comment">Mon Aug 20 21:32:43 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
