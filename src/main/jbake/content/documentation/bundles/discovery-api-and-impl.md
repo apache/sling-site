@@ -248,7 +248,7 @@ of changes, large set of commits and long-running session.saves.
 
 The following is an illustration of the impact of large cluster delays:
 
-![discovery.impl split brain](discovery-impl-split-brain.png)
+![discovery.impl split brain](./discovery-impl-split-brain.png)
 
 In discovery.impl 1.2.2 several improvements have been done to avoid pseudo-network partitioning including the following:
 (see SLING-3432 for more in-depth details)

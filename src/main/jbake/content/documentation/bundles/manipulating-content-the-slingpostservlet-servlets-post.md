@@ -862,7 +862,7 @@ This default behavior can be modified either globally (i.e. for all requests) or
 * `servlet.post.autoCheckout`
 * `servlet.post.autoCheckin`
 
-![](2010-07-01_1036.png)
+![](./2010-07-01_1036.png)
 
 On a per-request basis, these request parameters can be used:
 
