@@ -43,12 +43,30 @@ It's sometimes useful to ~~steal ideas~~ get inspiration from other projects usi
  * Incubator - https://github.com/apache/incubator
 
 ## JBake and other technotes
-* Currently using 2.5.1 via the `jbake-maven-plugin`, see under `/bin`, docs at http://jbake.org/docs/2.5.1
-* That version of JBake uses https://github.com/sirthias/pegdown for Markdown, syntax info at https://github.com/sirthias/pegdown/blob/master/src/test/resources/MarkdownTest103/Markdown%20Documentation%20-%20Syntax.md , extensions at http://www.decodified.com/pegdown/api/org/pegdown/Extensions.html
-* Using Groovy MarkupTemplateEngine, examples at https://github.com/jbake-org/jbake-example-project-groovy-mte , docs for that engine at http://groovy-lang.org/templating.html#_the_markuptemplateengine
+* Currently using 2.6.1 via the `jbake-maven-plugin`, see under `/bin`, docs at http://jbake.org/docs/2.6.1
+* That version of JBake uses [Flexmark](https://github.com/vsch/flexmark-java) as parser for Markdown and [Pegdown extensions](https://github.com/sirthias/pegdown)
+* The templates use the [Groovy Markup Template Engine](http://groovy-lang.org/templating.html#_the_markuptemplateengine), other examples are provided at https://github.com/jbake-org/jbake-example-project-groovy-mte
 
 
 ## Useful scripts and commands
 To find broken links use
 
     wget --spider -r -nd -nv -l 5 http://localhost:8820/ 2>&1 | grep -B1 'broken link'
+
+## Deploying when git is configured with user.useConfigOnly = true
+
+It it possible to configure git to not inherit or infer the `user.name` and `user.email`
+properties, to avoid the situation where an incorrect value is used.
+
+However, this breaks site publishing as the git checkout no longer inherits the global
+configuration settings. To still be able to publish, the following steps are needed
+
+    mvn package -Ppublish-site -Dmsg="your-msg-here"
+    cd target/scm-checkout
+    git config user.email user@apache.org
+    mvn package -Ppublish-site -Dmsg="your-msg-here"
+
+We are publishing the site once, which creates the SCM checkout, and fails to push
+since no `user.email` config is set. Then we manually configure this property in
+the SCM checkout and try publishing again. Be careful to avoid any `clean` operations
+with Maven since it will erase the initial checkout.

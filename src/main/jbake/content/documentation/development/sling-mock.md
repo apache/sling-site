@@ -11,10 +11,20 @@ Mock implementation of selected Sling APIs for easier testing.
 
 ## Maven Dependency
 
+For JUnit 5:
+
     #!xml
     <dependency>
       <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.sling-mock</artifactId>
+      <artifactId>org.apache.sling.testing.sling-mock.junit5</artifactId>
+    </dependency>
+
+For JUnit 4:
+
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
     </dependency>
 
 See latest version on the [downloads page](/downloads.cgi).
@@ -22,8 +32,8 @@ See latest version on the [downloads page](/downloads.cgi).
 
 There are two major version ranges available:
 
-* sling-mock 1.x: compatible with older Sling versions from 2014 (Sling API 2.4 and above)
-* sling-mock 2.x: compatible with Sling versions from 2016 (Sling API 2.11 and above)
+* sling-mock 1.x: compatible with older Sling versions from 2014 (Sling API 2.4 and above), JUnit 4
+* sling-mock 2.x: compatible with Sling versions from 2016 (Sling API 2.11 and above), JUnit 4 and JUnit 5
 
 
 ## Implemented mock features
@@ -64,10 +74,52 @@ Additional features provided:
 
 ## Usage
 
-### Sling Context JUnit Rule
+The `SlingContext` object provides access to mock implementations of:
+
+* OSGi Component Context
+* OSGi Bundle Context
+* Sling Resource Resolver
+* Sling Request
+* Sling Response
+* Sling Script Helper
+
+Additionally it supports:
+
+* Registering OSGi services
+* Registering adapter factories
+* Accessing ContentLoader, and ContentBuilder and ResourceBuilder
+
+
+### JUnit 5: Sling Context JUnit Extension
+
+The Sling mock context can be injected into a JUnit test using a custom JUnit extension named `SlingContextExtension`.
+This extension takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
+independently (and in parallel, if required).
+
+Example:
+
+    #!java
+    @ExtendWith(SlingContextExtension.class)
+    public class ExampleTest {
+
+      private final SlingContext context = new SlingContext();
+
+      @Test
+      public void testSomething() {
+        Resource resource = context.resourceResolver().getResource("/content/sample/en");
+        // further testing
+      }
+
+    }
+
+It is possible to combine such a unit test with a `@ExtendWith` annotation e.g. for
+[Mockito JUnit Jupiter Extension][mockito-junit5-extension].
+
+
+### JUnit 4: Sling Context JUnit Rule
 
 The Sling mock context can be injected into a JUnit test using a custom JUnit rule named `SlingContext`.
-This rules takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
+This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
 independently (and in parallel, if required).
 
 Example:
@@ -86,23 +138,8 @@ Example:
 
     }
 
-It is possible to combine such a unit test rule with a `@RunWith` annotation e.g. for
-[Mockito JUnit Runner][mockito-testrunner].
-
-The `SlingContext` object provides access to mock implementations of:
-
-* OSGi Component Context
-* OSGi Bundle Context
-* Sling Resource Resolver
-* Sling Request
-* Sling Response
-* Sling Script Helper
-
-Additionally it supports:
-
-* Registering OSGi services
-* Registering adapter factories
-* Accessing ContentLoader, and ContentBuilder and ResourceBuilder
+It is possible to combine such a unit test with a `@RunWith` annotation e.g. for
+[Mockito JUnit Runner][mockito-junit4-testrunner].
 
 
 ### Choosing Resource Resolver Mock Type
@@ -110,12 +147,7 @@ Additionally it supports:
 The Sling mock context supports different resource resolver types. Example:
 
     #!java
-    public class ExampleTest {
-
-      @Rule
-      public final SlingContext context = new SlingContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
-
-    }
+    public final SlingContext context = new SlingContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
 
 Different resource resolver mock types are supported with pros and cons, see next chapter for details.
 
@@ -431,8 +463,7 @@ To use a plugin in your unit test class, use the `SlingContextBuilder` class ins
 Example: 
 
     #!java
-    @Rule
-    public SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build();
+    SlingContext context = new SlingContextBuilder().plugin(MY_PLUGIN).build();
 
 More examples:
 
@@ -444,6 +475,7 @@ More examples:
 [resourceresolver-mock]: /documentation/development/resourceresolver-mock.html
 [jcr-resource]: https://github.com/apache/sling-org-apache-sling-jcr-resource
 [sling-commons-testing]: https://github.com/apache/sling-org-apache-sling-commons-testing
-[mockito-testrunner]: http://mockito.github.io/mockito/docs/current/org/mockito/runners/MockitoJUnitRunner.html
+[mockito-junit4-testrunner]: https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html
+[mockito-junit5-extension]: https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html
 [caconfig-mock-plugin]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java
 [caconfig-mock-plugin-test]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java

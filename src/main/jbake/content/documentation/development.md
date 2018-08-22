@@ -19,7 +19,7 @@ Look here for more information on developper support when your are using Sling t
 * [Monitoring Requests](/documentation/development/monitoring-requests.html)
 * [Repository Based Development](/documentation/development/repository-based-development.html)
 * [Sling IDE Tooling](/documentation/development/ide-tooling.html)
-* [Leveraging JSR-305 null annotations](/documentation/development/jsr-305.html)
+* [Leveraging @NotNull/@Nullable null annotations](/documentation/development/null-analysis.html)
 
 
 ## Testing Sling-based Applications

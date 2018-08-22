@@ -11,18 +11,28 @@ Mock implementation of selected OSGi APIs for easier testing.
 
 ## Maven Dependency
 
+For JUnit 5:
+
     #!xml
     <dependency>
       <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.osgi-mock</artifactId>
+      <artifactId>org.apache.sling.testing.osgi-mock.junit5</artifactId>
+    </dependency>
+
+For JUnit 4:
+
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.osgi-mock.junit4</artifactId>
     </dependency>
 
 See latest version on the [downloads page](/downloads.cgi).
 
 There are two major version ranges available:
 
-* osgi-mock 1.x: compatible with OSGi R4 and above
-* osgi-mock 2.x: compatible with OSGi R6 and above
+* osgi-mock 1.x: compatible with OSGi R4 and above, JUnit 4
+* osgi-mock 2.x: compatible with OSGi R6 and above, JUnit 4 and JUnit 5
 
 
 ## Implemented mock features
@@ -48,10 +58,52 @@ Since osgi-mock 2.0.0:
 
 ## Usage
 
-### OSGi Context JUnit Rule
+The `OsgiContext` object provides access to mock implementations of:
+
+* OSGi Component Context
+* OSGi Bundle Context
+
+Additionally it supports:
+
+* Registering and activating OSGi services and inject dependencies
+
+
+### JUnit 5: OSGi Context JUnit Extension
+
+The OSGi mock context can be injected into a JUnit test using a custom JUnit extension named `OsgiContextExtension`.
+This extension takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
+independently (and in parallel, if required).
+
+Example:
+
+    #!java
+    @ExtendWith(OsgiContextExtension.class)
+    public class ExampleTest {
+
+      private final OsgiContext context = new OsgiContext();
+
+      @Test
+      public void testSomething() {
+
+        // register and activate service with configuration
+        MyService service1 = context.registerInjectActivateService(new MyService(),
+            "prop1", "value1");
+
+        // get service instance
+        OtherService service2 = context.getService(OtherService.class);
+
+      }
+
+    }
+
+It is possible to combine such a unit test with a `@ExtendWith` annotation e.g. for
+[Mockito JUnit Jupiter Extension][mockito-junit5-extension].
+
+
+### JUnit 4: OSGi Context JUnit Rule
 
 The OSGi mock context can be injected into a JUnit test using a custom JUnit rule named `OsgiContext`.
-This rules takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
+This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run 
 independently (and in parallel, if required).
 
 Example:
@@ -77,16 +129,7 @@ Example:
     }
 
 It is possible to combine such a unit test with a `@RunWith` annotation e.g. for
-[Mockito JUnit Runner][mockito-testrunner].
-
-The `OsgiContext` object provides access to mock implementations of:
-
-* OSGi Component Context
-* OSGi Bundle Context
-
-Additionally it supports:
-
-* Registering and activating OSGi services and inject dependencies
+[Mockito JUnit Runner][mockito-junit4-testrunner].
 
 
 ### Getting OSGi mock objects
@@ -175,8 +218,7 @@ To use a plugin in your unit test class, use the `OsgiContextBuilder` class inst
 Example: 
 
     #!java
-    @Rule
-    public OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
+    OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
 
 More examples:
 
@@ -185,6 +227,7 @@ More examples:
 
 
 
-[mockito-testrunner]: http://mockito.github.io/mockito/docs/current/org/mockito/runners/MockitoJUnitRunner.html
+[mockito-junit4-testrunner]: https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html
+[mockito-junit5-extension]: https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html
 [caconfig-mock-plugin]: https://github.com/apache/sling/blob/trunk/contrib/extensions/contextaware-config/testing/mocks/caconfig-mock-plugin/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java
 [caconfig-mock-plugin-test]: https://github.com/apache/sling/blob/trunk/contrib/extensions/contextaware-config/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java
