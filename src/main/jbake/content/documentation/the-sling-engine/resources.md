@@ -21,9 +21,9 @@ Resources have a number of essentiall properties:
 | Resource Type | Each resource has a resource type which is used by the Servlet and Script resolver to find the appropriate Servlet or Script to handle the request for the Resource. |
 | Resource Super Type | The (optional explicit) super type of the Resource. See the section _Resource Types_ below for more details. |
 | Adapters | Resources are always `Adaptable` and therefore can be adapted to a different view. See the section _Resource Adapters_ below for more details. |
-| Metadata | Resources in general support [link text][1] providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. |
+| Metadata | Resources in general support [`ResourceMetadata`][1] providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. |
 
-For a complete description of the `Resource` interface, please refer to the [link text][2] JavaDoc.
+For a complete description of the `Resource` interface, please refer to the [`Resource`][2] JavaDoc.
 
 ### Resource Types
 
@@ -43,7 +43,7 @@ Resource Types form a type hierarchy much like Java classes form a type hierarch
 
 The object types to which Resources may be adapted depend mostly depends on the Resource Provider providing the resource. For example all JCR node based resources always adapt to `javax.jcr.Node` objects.
 
-If the actual Resource object class implementation extends from the `SlingAdaptable` class, then in addition all `AdapterFactory` services adapting `Resource` objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from [link text][3] which guarantees the Resource implementation to extend from `SlingAdaptable` and thus supporting Adapter Factories.
+If the actual Resource object class implementation extends from the `SlingAdaptable` class, then in addition all `AdapterFactory` services adapting `Resource` objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from [`AbstractResource`][3] which guarantees the Resource implementation to extend from `SlingAdaptable` and thus supporting Adapter Factories.
 
 ## How to get a Resource
 
@@ -175,9 +175,9 @@ The OSGi event handlers may be [blacklisted by Apache Felix](http://felix.apache
 The Sling API provides an easy way to wrap or decorate a resource before returning. Details see [Wrap or Decorate Resources](/documentation/the-sling-engine/wrap-or-decorate-resources.html).
 
 
-  [1]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html "ResourceMetadata"
-  [2]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html "Resource"
-  [3]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html "AbstractResource"
+  [1]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html
+  [2]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html
+  [3]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html
   [4]: https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/resourceprovider
   [5]: https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/serversidetests/WriteableResourcesTest.java
   [6]: https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java
