@@ -41,7 +41,7 @@ Resource Types form a type hierarchy much like Java classes form a type hierarch
 
 ### Adapters
 
-The object types to which Resources may be adapted depend mostly depends on the Resource Provider providing the resource. For example all JCR node based resources always adapt to `javax.jcr.Node` objects.
+The object types to which Resources may be adapted mostly depends on the Resource Provider providing the resource. For example all JCR node based resources always adapt to `javax.jcr.Node` objects.
 
 If the actual Resource object class implementation extends from the `SlingAdaptable` class, then in addition all `AdapterFactory` services adapting `Resource` objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from [`AbstractResource`][3] which guarantees the Resource implementation to extend from `SlingAdaptable` and thus supporting Adapter Factories.
 
