@@ -48,7 +48,7 @@ def bundles=[
   "Authentication XING OAuth|org.apache.sling.auth.xing.oauth|0.0.2",
   "Background Servlets Engine|org.apache.sling.bgservlets|1.0.8",
   "Background Servlets Integration Test|org.apache.sling.bgservlets.testing|1.0.0",
-  "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.3.0",
+  "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.3.2",
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0",                                                                   
   "CMS App Core|org.apache.sling.cms.core|0.9.0",
   "CMS App Reference|org.apache.sling.cms.reference|0.9.0",
