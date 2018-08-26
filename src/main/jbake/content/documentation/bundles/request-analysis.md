@@ -54,10 +54,10 @@ The command supports two command line arguments:
 
 After starting and parsing the file, a window is opened showing the core request information in simple table. This table can be sorted by any of the columns by clicking on the column title.
 
-![Recorded Requests](requesttracker.png)
+![Recorded Requests](./requesttracker.png)
 
 Clicking on any row opens a second window displaying the detail request progress information as recorded before with the `RequestProgressTracker`.
 
-![Details of a recorded Request](requesttracker-details.png)
+![Details of a recorded Request](./requesttracker-details.png)
 
 The size, location, and the widths of the table columns are persisted with the Java Preferences API and thus when starting the application again, these settings are preserved.

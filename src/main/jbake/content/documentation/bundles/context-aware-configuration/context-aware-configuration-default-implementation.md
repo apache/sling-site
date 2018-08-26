@@ -29,7 +29,7 @@ The content resource hierarchy is defined by setting `sling:configRef` propertie
 
 This illustration shows an example for configuration resource lookup:
 
-![Configuration resource lookup](config-resource-lookup.png)
+![Configuration resource lookup](./config-resource-lookup.png)
 
 If you get the context-aware configuration via the API for any resource below `/content/tenant1/region1/site1` it is looked up in this path in this order:
 
@@ -87,7 +87,7 @@ By setting the property `sling:configCollectionInherit` on multiple configuratio
 
 Example for resource inheritance:
 
-![Resource inheritance](resource-inheritance.png)
+![Resource inheritance](./resource-inheritance.png)
 
 The result of this example is: **C, A, B**. It would by just **C** if the `sling:configCollectionInherit` is not set.
 

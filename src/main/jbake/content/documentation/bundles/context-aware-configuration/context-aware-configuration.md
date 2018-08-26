@@ -12,7 +12,7 @@ These bundles provide a service API that can be used to get context-aware config
 
 Here is an example how your content structure may look like:
 
-![Configuration example](context-aware-config-example.png)
+![Configuration example](./context-aware-config-example.png)
 
 The application needs different configuration for different sites, regions and tenants = different contexts. Some parameters may be shared, so inheritance for nested contexts and from global fallback values is supported as well. You have full control which content subtrees are the contexts in your application, the structure above is only an example.
 
@@ -90,7 +90,7 @@ When you use the [Default Implementation][default-impl] contexts in the content 
 
 Example:
 
-![Context and config reference](context-and-config-reference.png)
+![Context and config reference](./context-and-config-reference.png)
 
 If you define nested contexts or use a deeper hierarchy of resourced in `/conf` the inheritance rules are applied. Additionally it is possible to define default values as fallback if no configuration resource exists yet in `/conf`. See [Default Implementation][default-impl] for details.
 

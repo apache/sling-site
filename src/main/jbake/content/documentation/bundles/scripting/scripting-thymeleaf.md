@@ -38,25 +38,25 @@ There is a feature for Karaf:
 
 By default Sling Scripting Thymeleaf's _ScriptEngineFactory_ is configured for templates with extension `html` and mime type `text/html` and uses all of Thymeleaf's standard extensions either _also_ or _exclusively_.
 
-![Apache Sling Scripting Thymeleaf “ScriptEngineFactory”](Scripting-Thymeleaf-ScriptEngineFactory.png)
+![Apache Sling Scripting Thymeleaf “ScriptEngineFactory”](./Scripting-Thymeleaf-ScriptEngineFactory.png)
 
 ## Apache Sling Scripting Thymeleaf “Sling Resource TemplateResolver”
 
 The _Sling Resource TemplateResolver_ is configured to resolve templates with _use decoupled logic_ enabled.
 
-![Apache Sling Scripting Thymeleaf “Sling Resource TemplateResolver”](Scripting-Thymeleaf-Sling-Resource-TemplateResolver.png)
+![Apache Sling Scripting Thymeleaf “Sling Resource TemplateResolver”](./Scripting-Thymeleaf-Sling-Resource-TemplateResolver.png)
 
 ## Apache Sling Scripting Thymeleaf “Pattern TemplateModeProvider”
 
 The _Pattern TemplateModeProvider_ is configured to match template paths against default extensions for providing template modes (of course except no-op mode `RAW`).
 
-![Apache Sling Scripting Thymeleaf “Pattern TemplateModeProvider](Scripting-Thymeleaf-Pattern-TemplateModeProvider.png)
+![Apache Sling Scripting Thymeleaf “Pattern TemplateModeProvider](./Scripting-Thymeleaf-Pattern-TemplateModeProvider.png)
 
 ## Apache Sling Scripting Thymeleaf “ResourceBundle MessageResolver”
 
 The _ResourceBundle MessageResolver_ is configured to use the message's key as absent message representation.
 
-![Apache Sling Scripting Thymeleaf “ResourceBundle MessageResolver”](Scripting-Thymeleaf-ResourceBundle-MessageResolver.png)
+![Apache Sling Scripting Thymeleaf “ResourceBundle MessageResolver”](./Scripting-Thymeleaf-ResourceBundle-MessageResolver.png)
 
 # Sling Dialect
 
@@ -78,10 +78,10 @@ Sling Scripting Thymeleaf comes with its own dialect using the `sling` prefix/na
 
 # Class Diagram
 
-[![Class Diagram](Scripting-Thymeleaf-Class-Diagram.png)](Scripting-Thymeleaf-Class-Diagram.png)
+[![Class Diagram](Scripting-Thymeleaf-Class-Diagram.png)](./Scripting-Thymeleaf-Class-Diagram.png)
 
 # Sample
 
 The [Sling Fling Sample](https://github.com/apache/sling-samples/tree/master/fling) is a sample using Sling Scripting Thymeleaf with [Sling Models](/documentation/bundles/models.html) and [Sling Query](/documentation/bundles/sling-query.html).
 
-![Sling Fling Sample](sling-fling-sample.png)
+![Sling Fling Sample](./sling-fling-sample.png)
