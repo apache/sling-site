@@ -91,14 +91,14 @@
             </div><h1 class="pagetitle">
                 Sling Metrics
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling Metrics bundle provides integration with <a href="http://metrics.dropwizard.io/">Dropwizard Metrics</a> library which provides a toolkit to capture runtime performance statistics in your application.</p> 
-<h2><a href="#features" id="features">Features</a></h2> 
-<ul> 
- <li>Registers a <a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/MetricsService.java">MetricsService</a> which can be used to create various types of Metric instances</li> 
- <li>WebConsole Plugin which provides a HTML Reporter for the various Metric instances</li> 
- <li>Inventory Plugin which dumps the Metric state in plain text format</li> 
-</ul> 
-<h2><a href="#basic-usage" id="basic-usage">Basic Usage</a></h2> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling Metrics bundle provides integration with <a href="http://metrics.dropwizard.io/">Dropwizard Metrics</a> library which provides a toolkit to capture runtime performance statistics in your application. </p>
+<h2><a href="#features" name="features">Features</a></h2>
+<ul>
+  <li>Registers a <a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/MetricsService.java">MetricsService</a> which can be used to create various types of Metric  instances</li>
+  <li>WebConsole Plugin which provides a HTML Reporter for the various Metric instances</li>
+  <li>Inventory Plugin which dumps the Metric state in plain text format</li>
+</ul>
+<h2><a href="#basic-usage" name="basic-usage">Basic Usage</a></h2>
 <pre><code><!-- TODO syntax marker (::java) disabled -->import org.apache.sling.metrics.Counter;
 import org.apache.sling.metrics.MetricsService;
 
@@ -109,63 +109,63 @@ private Counter counter;
 
 @Activate
 private void activate(){
-    counter = metricsService.counter("sessionCounter");
+    counter = metricsService.counter(&quot;sessionCounter&quot;);
 }
 
 public void onSessionCreation(){
     counter.increment();
 }
-</code></pre> 
-<p>To make use of <code>MetricsService</code></p> 
-<ol> 
- <li>Get a reference to <code>org.apache.sling.metrics.MetricsService</code></li> 
- <li>Initialize the metric e.g. Counter in above case. This avoids any potential lookup cost in critical code paths</li> 
- <li>Make use of metric instance to capture require stats</li> 
-</ol> 
-<p>Refer to <a href="https://dropwizard.github.io/metrics/3.1.0/getting-started/#counters">Metric Getting Started</a> guide to see how various types of Metric instances can be used. Note that when using Sling Commons Metrics bundle class names belong to <code>org.apache.sling.commons.metrics</code> package</p> 
-<h2><a href="#best-practices" id="best-practices">Best Practices</a></h2> 
-<ol> 
- <li>Use descriptive names - Qualify the name with class/package name where the metric is being used</li> 
- <li>Do not use the metrics for operation which take less than 1E-7s i.e. 1000 nano seconds otherwise timer overhead (Metrics makes use of System.nanoTime) would start affecting the performance.</li> 
-</ol> 
-<h2><a href="#api" id="api">API</a></h2> 
-<p>Sling Metrics bundle provides its own Metric classes which are modelled on <a href="http://metrics.dropwizard.io/">Dropwizard Metrics</a> library. The metric interfaces defined by Sling bundle only provides methods related to data collection.</p> 
-<ul> 
- <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Meter.java">org.apache.sling.commons.metrics.Meter</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#meters">Dropwizard Meter</a></li> 
- <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Timer.java">org.apache.sling.commons.metrics.Timer</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#timers">Dropwizard Timer</a></li> 
- <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Counter.java">org.apache.sling.commons.metrics.Counter</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#counters">Dropwizard Counter</a></li> 
- <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Histogram.java">org.apache.sling.commons.metrics.Histogram</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#histograms">Dropwizard Histogram</a></li> 
-</ul> 
-<p>Further it provides a <code>MetricsService</code> which enables creation of different type of Metrics like Meter, Timer, Counter and Histogram.</p> 
-<h3><a href="#requirement-of-wrapper-interfaces" id="requirement-of-wrapper-interfaces">Requirement of wrapper interfaces</a></h3> 
-<ul> 
- <li>Abstraction - Provides an abstraction around how metrics are collected and how they are reported and consumed. Most of the code would only be concerned with collecting interesting data. How it gets consumed or reported is implementation detail.</li> 
- <li>Ability to turnoff stats collection - We can easily turn off data collection by switching to NOOP variant of <code>MetricsService</code> in case it starts adding appreciable overhead. Turning on and off can also be done on individual metric basis.</li> 
-</ul> 
-<p>It also allows us to later extend the type of data collected. For e.g. we can also collect <a href="https://jackrabbit.apache.org/api/2.6/org/apache/jackrabbit/api/stats/TimeSeries.html">TimerSeries</a> type of data for each metric without modifying the caller logic.</p> 
-<h3><a href="#access-to-dropwizard-metrics-api" id="access-to-dropwizard-metrics-api">Access to Dropwizard Metrics API</a></h3> 
-<p>Sling Metrics bundle also registers the <code>MetricRegistry</code> instance with OSGi service registry. The instance registered has a service property <code>name</code> set to <code>sling</code> (so as allow distinguishing from any other registered <code>MetricRegistry</code> instance). It can be used to get direct access to Dropwizard Metric API if required.</p> 
-<pre><code><!-- TODO syntax marker (::java) disabled -->@Reference(target = "(name=sling)")
+</code></pre>
+<p>To make use of <code>MetricsService</code></p>
+<ol>
+  <li>Get a reference to <code>org.apache.sling.metrics.MetricsService</code></li>
+  <li>Initialize the metric e.g. Counter in above case. This avoids  any potential lookup cost in critical code paths</li>
+  <li>Make use of metric instance to capture require stats</li>
+</ol>
+<p>Refer to <a href="https://dropwizard.github.io/metrics/3.1.0/getting-started/#counters">Metric Getting Started</a> guide to see how various types of Metric instances can be used. Note that when using Sling Commons Metrics bundle class names belong to <code>org.apache.sling.commons.metrics</code> package</p>
+<h2><a href="#best-practices" name="best-practices">Best Practices</a></h2>
+<ol>
+  <li>Use descriptive names - Qualify the name with class/package name where the  metric is being used</li>
+  <li>Do not use the metrics for operation which take less than 1E-7s i.e. 1000 nano  seconds otherwise timer overhead (Metrics makes use of System.nanoTime)  would start affecting the performance.</li>
+</ol>
+<h2><a href="#api" name="api">API</a></h2>
+<p>Sling Metrics bundle provides its own Metric classes which are modelled on <a href="http://metrics.dropwizard.io/">Dropwizard Metrics</a> library. The metric interfaces defined by Sling bundle only provides methods related to data collection. </p>
+<ul>
+  <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Meter.java">org.apache.sling.commons.metrics.Meter</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#meters">Dropwizard Meter</a></li>
+  <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Timer.java">org.apache.sling.commons.metrics.Timer</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#timers">Dropwizard Timer</a></li>
+  <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Counter.java">org.apache.sling.commons.metrics.Counter</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#counters">Dropwizard Counter</a></li>
+  <li><a href="https://github.com/apache/sling/blob/trunk/bundles/commons/metrics/src/main/java/org/apache/sling/commons/metrics/Histogram.java">org.apache.sling.commons.metrics.Histogram</a> - Similar to <a href="https://dropwizard.github.io/metrics/3.1.0/manual/core/#histograms">Dropwizard Histogram</a></li>
+</ul>
+<p>Further it provides a <code>MetricsService</code> which enables creation of different type of Metrics like Meter, Timer, Counter and Histogram.</p>
+<h3><a href="#requirement-of-wrapper-interfaces" name="requirement-of-wrapper-interfaces">Requirement of wrapper interfaces</a></h3>
+<ul>
+  <li>Abstraction - Provides an abstraction around how metrics are collected and how  they are reported and consumed. Most of the code would only be concerned with  collecting interesting data. How it gets consumed or reported is implementation  detail.</li>
+  <li>Ability to turnoff stats collection - We can easily turn off data collection  by switching to NOOP variant of <code>MetricsService</code> in case it starts adding appreciable  overhead. Turning on and off can also be done on individual metric basis.</li>
+</ul>
+<p>It also allows us to later extend the type of data collected. For e.g. we can also collect <a href="https://jackrabbit.apache.org/api/2.6/org/apache/jackrabbit/api/stats/TimeSeries.html">TimerSeries</a> type of data for each metric without modifying the caller logic.</p>
+<h3><a href="#access-to-dropwizard-metrics-api" name="access-to-dropwizard-metrics-api">Access to Dropwizard Metrics API</a></h3>
+<p>Sling Metrics bundle also registers the <code>MetricRegistry</code> instance with OSGi service registry. The instance registered has a service property <code>name</code> set to <code>sling</code> (so as allow distinguishing from any other registered <code>MetricRegistry</code> instance). It can be used to get direct access to Dropwizard Metric API if required.</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Reference(target = &quot;(name=sling)&quot;)
 private MetricRegistry registry;
-</code></pre> 
-<p>Also the wrapper Metric instance can be converted to actual instance via <code>adaptTo</code> calls.</p> 
+</code></pre>
+<p>Also the wrapper Metric instance can be converted to actual instance via <code>adaptTo</code> calls.</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->import org.apache.sling.commons.metrics.Counter
 
-Counter counter = metricService.counter("login");
+Counter counter = metricService.counter(&quot;login&quot;);
 com.codahale.metrics.Counter = counter.adaptTo(com.codahale.metrics.Counter.class)
-</code></pre> 
-<h2><a href="#webconsole-plugin" id="webconsole-plugin">WebConsole Plugin</a></h2> 
-<p>A Web Console plugin is also provided which is accessible at http://localhost:8080/system/console/slingmetrics. It lists down all registered Metric instances and their state.</p> 
-<p><img src="http://sling.apache.org/documentation/bundles/metric-web-console.png" alt="Metric Plugin"></p> 
-<p>The plugin lists all Metric instances from any <code>MetricRegistry</code> instance found in the OSGi service registry. If the <code>MetricRegistry</code> service has a <code>name</code> property defined then that would be prefixed to the Metric names from that registry. This allows use of same name in different registry instances.</p> 
-<h2><a href="#installation" id="installation">Installation</a></h2> 
-<p>Add following Maven dependency to your pom.xml:</p> 
+</code></pre>
+<h2><a href="#webconsole-plugin" name="webconsole-plugin">WebConsole Plugin</a></h2>
+<p>A Web Console plugin is also provided which is accessible at http://localhost:8080/system/console/slingmetrics. It lists down all registered Metric instances and their state. </p>
+<p><img src="/documentation/bundles/metric-web-console.png" alt="Metric Plugin" /></p>
+<p>The plugin lists all Metric instances from any <code>MetricRegistry</code> instance found in the OSGi service registry. If the <code>MetricRegistry</code> service has a <code>name</code> property defined then that would be prefixed to the Metric names from that registry. This allows use of same name in different registry instances.</p>
+<h2><a href="#installation" name="installation">Installation</a></h2>
+<p>Add following Maven dependency to your pom.xml:</p>
 <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependency&gt;
     &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
     &lt;artifactId&gt;org.apache.sling.commons.metrics&lt;/artifactId&gt;
     &lt;version&gt;1.0.0&lt;/version&gt;
 &lt;/dependency&gt;
-</code></pre> 
+</code></pre>
 <p>Or download from <a href="http://sling.apache.org/downloads.cgi">here</a></p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

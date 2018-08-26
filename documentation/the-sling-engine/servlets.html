@@ -94,73 +94,75 @@
                 Servlets and Scripts
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p> 
-<p>See also <a href="/documentation/the-sling-engine/url-to-script-resolution.html">URL to Script Resolution</a> which explains how Sling maps URLs to a script or and servlet.</p> 
-<h2><a href="#servlet-registration" id="servlet-registration">Servlet Registration</a></h2> 
-<p>Servlets can be registered as OSGi services. The following service reference properties are evaluated for Servlets defined as OSGi services of type <code>javax.servlet.Servlet</code> (all those property names are defined in <code>org.apache.sling.api.servlets.ServletResolverConstants</code> (since API 2.15.2) or <code>org.apache.sling.servlets.resolver.internal.ServletResolverConstants</code> (before API 2.15.2)):</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> Name </th>
-   <th> Description </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>sling.servlet.paths</code> </td>
-   <td> A list of absolute paths under which the servlet is accessible as a Resource. The property value must either be a single String, an array of Strings or a Vector of Strings.<br>A servlet using this property might be ignored unless its path is included in the <em>Execution Paths</em> (<code>servletresolver.paths</code>) configuration setting of the <code>SlingServletResolver</code> service. Either this property or the <code>sling.servlet.resourceTypes</code> property must be set, or the servlet is ignored. If both are set, the servlet is registered using both ways.<br>Binding resources by paths is discouraged, see <a href="#caveats-when-binding-servlets-by-path">caveats when binding servlets by path</a> below. </td>
-  </tr> 
-  <tr>
-   <td> <code>sling.servlet.resourceTypes</code> </td>
-   <td> The resource type(s) supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. Either this property or the <code>sling.servlet.paths</code> property must be set, or the servlet is ignored. If both are set, the servlet is registered using both ways. </td>
-  </tr> 
-  <tr>
-   <td> <code>sling.servlet.selectors</code> </td>
-   <td> The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. In case this is not empty the first selector(s) (i.e. the one(s) on the left) in the request URL must match, otherwise the servlet is not executed. After that may follow arbitrarily many non-registered selectors. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. </td>
-  </tr> 
-  <tr>
-   <td> <code>sling.servlet.extensions</code> </td>
-   <td> The request URL extensions supported by the servlet for requests. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. </td>
-  </tr> 
-  <tr>
-   <td> <code>sling.servlet.methods</code> </td>
-   <td> The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet. </td>
-  </tr> 
-  <tr>
-   <td> <code>sling.servlet.prefix</code> </td>
-   <td> The prefix or numeric index to make relative paths absolute. If the value of this property is a number (int), it defines the index of the search path entries from the resource resolver to be used as the prefix. The defined search path is used as a prefix to mount this servlet. The number can be -1 which always points to the last search entry. If the specified value is higher than than the highest index of the search paths, the last entry is used. The index starts with 0. If the value of this property is a string and parseable as a number, the value is treated as if it would be a number. If the value of this property is a string starting with "/", this value is applied as a prefix, regardless of the configured search paths! If the value is anything else, it is ignored. If this property is not specified, it defaults to the default configuration of the sling servlet resolver. </td>
-  </tr> 
- </tbody> 
-</table> 
-<p>A <code>SlingServletResolver</code> listens for <code>Servlet</code> services and - given the correct service registration properties - provides the servlets as resources in the (virtual) resource tree. Such servlets are provided as <code>ServletResource</code> instances which adapt to the <code>javax.servlet.Servlet</code> class.</p> 
-<p>For a Servlet registered as an OSGi service to be used by the Sling Servlet Resolver, either one or both of the <code>sling.servlet.paths</code> or the <code>sling.servlet.resourceTypes</code> service reference properties must be set. If neither is set, the Servlet service is ignored.</p> 
-<p>Each path to be used for registration - either from the <code>sling.servlet.paths</code> property or constructed from the other <code>sling.servlet.\*</code> properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the <code>sling.servlet.prefix</code> service registration property. If this property is not set, the first entry in the <code>ResourceResolver</code> search path for the <code>ResourceResolver.getResource(String)</code> method is used as the prefix. If this entry cannot be derived, a simpe slash - <code>/</code> - is used as the prefix.</p> 
-<p>If <code>sling.servlet.methods</code> is not specified, the servlet is only registered for handling GET and HEAD requests. Make sure to list all methods you want to be handled by this servlet.</p> 
-<h3><a href="#caveats-when-binding-servlets-by-path" id="caveats-when-binding-servlets-by-path">Caveats when binding servlets by path</a></h3> 
-<p>Binding servlets by paths has several disadvantages when compared to binding by resource types, namely:</p> 
-<ul> 
- <li>path-bound servlets cannot be access controlled using the default JCR repository ACLs</li> 
- <li>path-bound servlets can only be registered to a path and not a resource type (i.e. no suffix handling)</li> 
- <li>if a path-bound servlet is not active, e.g. if the bundle is missing or not started, a POST might result in unexpected results. usually creating a node at /bin/xyz which subsequently overlays the servlets path binding</li> 
- <li>the mapping is not transparent to a developer looking just at the repository</li> 
-</ul> 
-<p>Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths.</p> 
-<h3><a href="#registering-a-servlet-using-java-annotations" id="registering-a-servlet-using-java-annotations">Registering a Servlet using Java Annotations</a></h3> 
-<p>If you are working with the default Apache Sling development stack you can either use</p> 
-<ul> 
- <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0">bnd 4.0</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.0.0</a>),</li> 
- <li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi R5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li> 
- <li>Generic Felix SCR or Sling-specific <code>@SlingServlet</code> annotations from <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html">Apache Felix Maven SCR Plugin</a> to register your Sling servlets:</li> 
-</ul> 
-<p>The following examples show example code how you can register Servlets with Sling</p> 
-<ol> 
- <li> <p>OSGi DS 1.4 (R7) component property type annotations for Sling Servlets (recommended)</p> <pre><code><!-- TODO syntax marker (::java) disabled -->@Component(
+</p>
+<p>See also <a href="/documentation/the-sling-engine/url-to-script-resolution.html">URL to Script Resolution</a> which explains how Sling maps URLs to a script or and servlet.</p>
+<h2><a href="#servlet-registration" name="servlet-registration">Servlet Registration</a></h2>
+<p>Servlets can be registered as OSGi services. The following service reference properties are evaluated for Servlets defined as OSGi services of type <code>javax.servlet.Servlet</code> (all those property names are defined in <code>org.apache.sling.api.servlets.ServletResolverConstants</code> (since API 2.15.2) or <code>org.apache.sling.servlets.resolver.internal.ServletResolverConstants</code> (before API 2.15.2)):</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.servlet.paths</code> </td>
+      <td>A list of absolute paths under which the servlet is accessible as a Resource. The property value must either be a single String, an array of Strings or a Vector of Strings.<br>A servlet using this property might be ignored unless its path is included in the <em>Execution Paths</em> (<code>servletresolver.paths</code>) configuration setting of the <code>SlingServletResolver</code> service. Either this property or the <code>sling.servlet.resourceTypes</code> property must be set, or the servlet is ignored. If both are set, the servlet is registered using both ways.<br>Binding resources by paths is discouraged, see <a href="#caveats-when-binding-servlets-by-path">caveats when binding servlets by path</a> below. </td>
+    </tr>
+    <tr>
+      <td><code>sling.servlet.resourceTypes</code> </td>
+      <td>The resource type(s) supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. Either this property or the <code>sling.servlet.paths</code> property must be set, or the servlet is ignored. If both are set, the servlet is registered using both ways. </td>
+    </tr>
+    <tr>
+      <td><code>sling.servlet.selectors</code> </td>
+      <td>The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. In case this is not empty the first selector(s) (i.e. the one(s) on the left) in the request URL must match, otherwise the servlet is not executed. After that may follow arbitrarily many non-registered selectors. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. </td>
+    </tr>
+    <tr>
+      <td><code>sling.servlet.extensions</code> </td>
+      <td>The request URL extensions supported by the servlet for requests. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. </td>
+    </tr>
+    <tr>
+      <td><code>sling.servlet.methods</code> </td>
+      <td>The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet. </td>
+    </tr>
+    <tr>
+      <td><code>sling.servlet.prefix</code> </td>
+      <td>The prefix or numeric index to make relative paths absolute. If the value of this property is a number (int), it defines the index of the search path entries from the resource resolver to be used as the prefix. The defined search path is used as a prefix to mount this servlet. The number can be -1 which always points to the last search entry. If the specified value is higher than than the highest index of the search paths, the last entry is used. The index starts with 0. If the value of this property is a string and parseable as a number, the value is treated as if it would be a number. If the value of this property is a string starting with "/", this value is applied as a prefix, regardless of the configured search paths! If the value is anything else, it is ignored. If this property is not specified, it defaults to the default configuration of the sling servlet resolver. </td>
+    </tr>
+  </tbody>
+</table>
+<p>A <code>SlingServletResolver</code> listens for <code>Servlet</code> services and - given the correct service registration properties - provides the servlets as resources in the (virtual) resource tree. Such servlets are provided as <code>ServletResource</code> instances which adapt to the <code>javax.servlet.Servlet</code> class.</p>
+<p>For a Servlet registered as an OSGi service to be used by the Sling Servlet Resolver, either one or both of the <code>sling.servlet.paths</code> or the <code>sling.servlet.resourceTypes</code> service reference properties must be set. If neither is set, the Servlet service is ignored.</p>
+<p>Each path to be used for registration - either from the <code>sling.servlet.paths</code> property or constructed from the other <code>sling.servlet.\*</code> properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the <code>sling.servlet.prefix</code> service registration property. If this property is not set, the first entry in the <code>ResourceResolver</code> search path for the <code>ResourceResolver.getResource(String)</code> method is used as the prefix. If this entry cannot be derived, a simpe slash - <code>/</code> - is used as the prefix.</p>
+<p>If <code>sling.servlet.methods</code> is not specified, the servlet is only registered for handling GET and HEAD requests. Make sure to list all methods you want to be handled by this servlet.</p>
+<h3><a href="#caveats-when-binding-servlets-by-path" name="caveats-when-binding-servlets-by-path">Caveats when binding servlets by path</a></h3>
+<p>Binding servlets by paths has several disadvantages when compared to binding by resource types, namely:</p>
+<ul>
+  <li>path-bound servlets cannot be access controlled using the default JCR repository ACLs</li>
+  <li>path-bound servlets can only be registered to a path and not a resource type (i.e. no suffix handling)</li>
+  <li>if a path-bound servlet is not active, e.g. if the bundle is missing or not started, a POST might result in unexpected results. usually creating a node at /bin/xyz which subsequently overlays the servlets path binding</li>
+  <li>the mapping is not transparent to a developer looking just at the repository</li>
+</ul>
+<p>Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths. </p>
+<h3><a href="#registering-a-servlet-using-java-annotations" name="registering-a-servlet-using-java-annotations">Registering a Servlet using Java Annotations</a></h3>
+<p>If you are working with the default Apache Sling development stack you can either use </p>
+<ul>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0">bnd 4.0</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.0.0</a>),</li>
+  <li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi R5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li>
+  <li>Generic Felix SCR or Sling-specific <code>@SlingServlet</code> annotations from <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html">Apache Felix Maven SCR Plugin</a> to register your Sling servlets:</li>
+</ul>
+<p>The following examples show example code how you can register Servlets with Sling</p>
+<ol>
+  <li>
+    <p>OSGi DS 1.4 (R7) component property type annotations for Sling Servlets (recommended)</p>
+    <pre><code><!-- TODO syntax marker (::java) disabled -->@Component(
 service = { Servlet.class },
 @SlingServletResourceTypes(
-    resourceTypes="/apps/my/type", 
-    methods= "GET",
-    extensions="html",
-    selectors="hello")
+    resourceTypes=&quot;/apps/my/type&quot;, 
+    methods= &quot;GET&quot;,
+    extensions=&quot;html&quot;,
+    selectors=&quot;hello&quot;)
 public class MyServlet extends SlingSafeMethodsServlet {
 
     @Override
@@ -168,7 +170,9 @@ public class MyServlet extends SlingSafeMethodsServlet {
         ...
     }
 }
-</code></pre> <p>This is only supported though with if you use <code>bnd-maven-plugin</code> and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the <code>bnd-maven-plugin</code> should look like this in your <code>pom.xml</code></p> <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;build&gt;
+</code></pre>
+    <p>This is only supported though with if you use <code>bnd-maven-plugin</code> and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the <code>bnd-maven-plugin</code> should look like this in your <code>pom.xml</code></p>
+    <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;build&gt;
   ...
   &lt;plugins&gt;
     &lt;plugin&gt;
@@ -198,14 +202,18 @@ public class MyServlet extends SlingSafeMethodsServlet {
   &lt;/dependency&gt;
   ...
 &lt;/dependencies&gt;
-</code></pre> <p>Please refer to the <a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations/tree/master/src/main/java/org/apache/sling/servlets/annotations">Javadoc of the package</a> for other related annotations.</p> </li> 
- <li> <p>Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)</p> <pre><code><!-- TODO syntax marker (::java) disabled -->@Component(
+</code></pre>
+    <p>Please refer to the <a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations/tree/master/src/main/java/org/apache/sling/servlets/annotations">Javadoc of the package</a> for other related annotations. </p>
+  </li>
+  <li>
+    <p>Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)</p>
+    <pre><code><!-- TODO syntax marker (::java) disabled -->@Component(
 service = { Servlet.class },
 property = { 
-    SLING_SERVLET_RESOURCE_TYPES + "=/apps/my/type"
-    SLING_SERVLET_METHODS + "=GET",
-    SLING_SERVLET_EXTENSIONS + "=html",
-    SLING_SERVLET_SELECTORS + "=hello",
+    SLING_SERVLET_RESOURCE_TYPES + &quot;=/apps/my/type&quot;
+    SLING_SERVLET_METHODS + &quot;=GET&quot;,
+    SLING_SERVLET_EXTENSIONS + &quot;=html&quot;,
+    SLING_SERVLET_SELECTORS + &quot;=hello&quot;,
   }
 )
 public class MyServlet extends SlingSafeMethodsServlet {
@@ -215,12 +223,15 @@ public class MyServlet extends SlingSafeMethodsServlet {
         ...
     }
 }
-</code></pre> </li> 
- <li> <p>The <code>@SlingServlet</code> annotation (evaluated by maven-scr-plugin, use only if you can neither use 1. nor 2.)</p> <pre><code><!-- TODO syntax marker (::java) disabled -->@SlingServlet(
-    resourceTypes = "/apps/my/type",
-    selectors = "hello",
-    extensions = "html",
-    methods = "GET")
+</code></pre>
+  </li>
+  <li>
+    <p>The <code>@SlingServlet</code> annotation (evaluated by maven-scr-plugin, use only if you can neither use 1. nor 2.)</p>
+    <pre><code><!-- TODO syntax marker (::java) disabled -->@SlingServlet(
+    resourceTypes = &quot;/apps/my/type&quot;,
+    selectors = &quot;hello&quot;,
+    extensions = &quot;html&quot;,
+    methods = &quot;GET&quot;)
 public class MyServlet extends SlingSafeMethodsServlet {
 
     @Override
@@ -228,68 +239,69 @@ public class MyServlet extends SlingSafeMethodsServlet {
         ...
     }
 }
-</code></pre> </li> 
-</ol> 
-<h3><a href="#automated-tests" id="automated-tests">Automated tests</a></h3> 
-<p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services">launchpad/test-services</a> module contains test servlets that use various combinations of the above properties.</p> 
-<p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests">launchpad/integration-tests</a> module contains a number of tests (like the [ExtensionServletTest|https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution/ExtensionServletTest.java] for example) that verify the results.</p> 
-<p>Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various servlet registration mechanisms, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know!</p> 
-<h3><a href="#example-registration-by-path" id="example-registration-by-path">Example: Registration by Path</a></h3> 
-<pre><code>sling.servlet.paths = [ "/libs/sling/sample/html", "/libs/sling/sample/txt" ]
-sling.servlet.selectors = [ "img" ]
-sling.servlet.extensions = [ "html", "txt", "json" ]
-</code></pre> 
-<p>A Servlet service registered with these properties is registered under the following paths:</p> 
-<ul> 
- <li><code>/libs/sling/sample/html</code></li> 
- <li><code>/libs/sling/sample/txt</code></li> 
-</ul> 
-<p>The registration properties <code>sling.servlet.selectors</code> and <code>sling.servlet.extensions</code> <em>are ignored</em> because the servlet is registered only by path (only <code>sling.servlet.paths</code> property is set).</p> 
-<h3><a href="#example-registration-by-resource-type-etc" id="example-registration-by-resource-type-etc">Example: Registration by Resource Type etc.</a></h3> 
-<pre><code>sling.servlet.resourceTypes = [ "sling/unused" ]
-sling.servlet.selectors = [ "img", "tab" ]
-sling.servlet.extensions = [ "html", "txt", "json" ]
-</code></pre> 
-<p>A Servlet service registered with these properties is registered for the following resource types:</p> 
-<ul> 
- <li><code>&lt;prefix&gt;/sling/unused/img/html</code></li> 
- <li><code>&lt;prefix&gt;/sling/unused/img/txt</code></li> 
- <li><code>&lt;prefix&gt;/sling/unused/img/json</code></li> 
- <li><code>&lt;prefix&gt;/sling/unused/tab/html</code></li> 
- <li><code>&lt;prefix&gt;/sling/unused/tab/txt</code></li> 
- <li><code>&lt;prefix&gt;/sling/unused/tab/json</code></li> 
-</ul> 
-<p>As explained the Servlet is registered for each permutation of the resource types, selectors and extension. See above at the explanation of <code>sling.servlet.prefix</code> how <code>&lt;prefix&gt;</code> is defined.</p> 
-<p>It is more common to register for absolute resource types or at least explicitly define <code>sling.servlet.prefix</code> as well, because otherwise you are in most cases not sure under which absolute path the Servlet is registered (and therefore by which other paths it might get overwritten).</p> 
-<h3><a href="#servlet-lifecycle-issues" id="servlet-lifecycle-issues">Servlet Lifecycle Issues</a></h3> 
-<p>The Servlet API specification states the following with respect to the life cycle of Servlets:</p> 
-<blockquote> 
- <p>The servlet container calls the init method exactly once after instantiating the servlet.</p> 
-</blockquote> 
-<p>This works perfectly in a regular servlet container which both instantiates and initializes the servlets. With Sling the tasks of instantiation and initialization are split:</p> 
-<ul> 
- <li>The provider of the Servlet service takes care of creating the servlet instance</li> 
- <li>The Sling Servlet Resolver picks up the Servlet services and initializes and destroys them as needed</li> 
-</ul> 
-<p>So Sling has not way of making sure a Servlet is only initialized and destroyed once in the life time of the Servlet object instance.</p> 
-<p>The provider of the Servlet service on the other can cope with this situation by making sure to drop the servlet instance once it is destroyed. The mechanism helping the provider here is the OSGi Service Factory.</p> 
-<h2><a href="#scripts-are-servlets" id="scripts-are-servlets">Scripts are Servlets</a></h2> 
-<p>The Sling API defines a <code>SlingScript</code> interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the <code>scripting/core</code> bundle in the <code>DefaultSlingScript</code> class which also implements the <code>javax.servlet.Servlet</code>.</p> 
-<p>To further simplify the access to scripts from the Resource tree, the <code>scripting/core</code> bundle registers an <code>AdapterFactory</code> to adapt Resources to Scripts and Servlets (the <code>SlingScriptAdapterFactory</code>). In fact the adapter factory returns instances of the <code>DefaultSlingScript</code> class for both Scripts and Servlets.</p> 
-<p>From the perspective of the Servlet resolver, scripts and servlets are handled exactly the same. In fact, internally, Sling only handles with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script.</p> 
-<h2><a href="#default-servlets" id="default-servlets">Default Servlet(s)</a></h2> 
-<p>As explained in the Resolution Process section above, a default Servlet is selected if no servlet (or script) for the current resource type can be found. To make the provisioning of a default Servlet as versatile as provisioning per resource type Servlets (or scripts), the default Servlet is selected with just a special resource type <code>sling/servlet/default</code>.</p> 
-<p>The actual Servlet or Script called as the default Servlet is resolved exactly the same way as for any resource type. That is, also for the default Servlet selection, the request selectors and extension or method are considered. Also, the Servlet may be a Servlet registered as an OSGi service or it may be a Script stored in the repository or provided by any bundle.</p> 
-<p>Finally, if not even a registered default Servlet may be resolved for the request, because none has been registered, the <code>servlets/resolver</code> bundle provides a fall back the <code>DefaultServlet</code> with the following functionality:</p> 
-<ul> 
- <li>If an <code>NonExistingResource</code> was created for the request the <code>DefaultServlet</code> sends a 404 (Not Found)</li> 
- <li>Otherwise the <code>DefaultServlet</code> sends a 500 (Internal Server Error), because normally at least a <code>NonExistingResource</code> should be created</li> 
-</ul> 
-<h2><a href="#optingservlet-interface" id="optingservlet-interface">OptingServlet interface</a></h2> 
-<p>If a registered servlet implements the OptingServlet interface, Sling uses that servlet's <code>accepts(SlingHttpServletRequest request)</code> method to refine the servlet resolution process.</p> 
-<p>In this case, the servlet is only selected for processing the current request if its <code>accept</code> method returns true.</p> 
-<p>While an opting servlet seems to be a nice way of picking the right servlet to process the request, the use of an opting servlet is not recommended: the main reason is that it complicates the request processing, makes it less transparent what is going on during a request and prevents optimizations like caching the script resolution in an optimal manner. The other static options are usually sufficient for all use cases.</p> 
-<h2><a href="#error-handler-servlets-or-scripts" id="error-handler-servlets-or-scripts">Error Handler Servlet(s) or Scripts</a></h2> 
+</code></pre>
+  </li>
+</ol>
+<h3><a href="#automated-tests" name="automated-tests">Automated tests</a></h3>
+<p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services">launchpad/test-services</a> module contains test servlets that use various combinations of the above properties.</p>
+<p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests">launchpad/integration-tests</a> module contains a number of tests (like the [ExtensionServletTest|https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution/ExtensionServletTest.java] for example) that verify the results.</p>
+<p>Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various servlet registration mechanisms, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know!</p>
+<h3><a href="#example-registration-by-path" name="example-registration-by-path">Example: Registration by Path</a></h3>
+<pre><code>sling.servlet.paths = [ &quot;/libs/sling/sample/html&quot;, &quot;/libs/sling/sample/txt&quot; ]
+sling.servlet.selectors = [ &quot;img&quot; ]
+sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot; ]
+</code></pre>
+<p>A Servlet service registered with these properties is registered under the following paths:</p>
+<ul>
+  <li><code>/libs/sling/sample/html</code></li>
+  <li><code>/libs/sling/sample/txt</code></li>
+</ul>
+<p>The registration properties <code>sling.servlet.selectors</code> and <code>sling.servlet.extensions</code> <em>are ignored</em> because the servlet is registered only by path (only <code>sling.servlet.paths</code> property is set).</p>
+<h3><a href="#example-registration-by-resource-type-etc-" name="example-registration-by-resource-type-etc-">Example: Registration by Resource Type etc.</a></h3>
+<pre><code>sling.servlet.resourceTypes = [ &quot;sling/unused&quot; ]
+sling.servlet.selectors = [ &quot;img&quot;, &quot;tab&quot; ]
+sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot; ]
+</code></pre>
+<p>A Servlet service registered with these properties is registered for the following resource types:</p>
+<ul>
+  <li><code>&lt;prefix&gt;/sling/unused/img/html</code></li>
+  <li><code>&lt;prefix&gt;/sling/unused/img/txt</code></li>
+  <li><code>&lt;prefix&gt;/sling/unused/img/json</code></li>
+  <li><code>&lt;prefix&gt;/sling/unused/tab/html</code></li>
+  <li><code>&lt;prefix&gt;/sling/unused/tab/txt</code></li>
+  <li><code>&lt;prefix&gt;/sling/unused/tab/json</code></li>
+</ul>
+<p>As explained the Servlet is registered for each permutation of the resource types, selectors and extension. See above at the explanation of <code>sling.servlet.prefix</code> how <code>&lt;prefix&gt;</code> is defined.</p>
+<p>It is more common to register for absolute resource types or at least explicitly define <code>sling.servlet.prefix</code> as well, because otherwise you are in most cases not sure under which absolute path the Servlet is registered (and therefore by which other paths it might get overwritten).</p>
+<h3><a href="#servlet-lifecycle-issues" name="servlet-lifecycle-issues">Servlet Lifecycle Issues</a></h3>
+<p>The Servlet API specification states the following with respect to the life cycle of Servlets:</p>
+<blockquote>
+  <p>The servlet container calls the init method exactly once after  instantiating the servlet.</p>
+</blockquote>
+<p>This works perfectly in a regular servlet container which both instantiates and initializes the servlets. With Sling the tasks of instantiation and initialization are split:</p>
+<ul>
+  <li>The provider of the Servlet service takes care of creating the servlet instance</li>
+  <li>The Sling Servlet Resolver picks up the Servlet services and initializes and destroys them as needed</li>
+</ul>
+<p>So Sling has not way of making sure a Servlet is only initialized and destroyed once in the life time of the Servlet object instance.</p>
+<p>The provider of the Servlet service on the other can cope with this situation by making sure to drop the servlet instance once it is destroyed. The mechanism helping the provider here is the OSGi Service Factory.</p>
+<h2><a href="#scripts-are-servlets" name="scripts-are-servlets">Scripts are Servlets</a></h2>
+<p>The Sling API defines a <code>SlingScript</code> interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the <code>scripting/core</code> bundle in the <code>DefaultSlingScript</code> class which also implements the <code>javax.servlet.Servlet</code>.</p>
+<p>To further simplify the access to scripts from the Resource tree, the <code>scripting/core</code> bundle registers an <code>AdapterFactory</code> to adapt Resources to Scripts and Servlets (the <code>SlingScriptAdapterFactory</code>). In fact the adapter factory returns instances of the <code>DefaultSlingScript</code> class for both Scripts and Servlets.</p>
+<p>From the perspective of the Servlet resolver, scripts and servlets are handled exactly the same. In fact, internally, Sling only handles with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script.</p>
+<h2><a href="#default-servlet-s-" name="default-servlet-s-">Default Servlet(s)</a></h2>
+<p>As explained in the Resolution Process section above, a default Servlet is selected if no servlet (or script) for the current resource type can be found. To make the provisioning of a default Servlet as versatile as provisioning per resource type Servlets (or scripts), the default Servlet is selected with just a special resource type <code>sling/servlet/default</code>.</p>
+<p>The actual Servlet or Script called as the default Servlet is resolved exactly the same way as for any resource type. That is, also for the default Servlet selection, the request selectors and extension or method are considered. Also, the Servlet may be a Servlet registered as an OSGi service or it may be a Script stored in the repository or provided by any bundle.</p>
+<p>Finally, if not even a registered default Servlet may be resolved for the request, because none has been registered, the <code>servlets/resolver</code> bundle provides a fall back the <code>DefaultServlet</code> with the following functionality:</p>
+<ul>
+  <li>If an <code>NonExistingResource</code> was created for the request the <code>DefaultServlet</code> sends a 404 (Not Found)</li>
+  <li>Otherwise the <code>DefaultServlet</code> sends a 500 (Internal Server Error), because normally at least a <code>NonExistingResource</code> should be created</li>
+</ul>
+<h2><a href="#optingservlet-interface" name="optingservlet-interface">OptingServlet interface</a></h2>
+<p>If a registered servlet implements the OptingServlet interface, Sling uses that servlet's <code>accepts(SlingHttpServletRequest request)</code> method to refine the servlet resolution process.</p>
+<p>In this case, the servlet is only selected for processing the current request if its <code>accept</code> method returns true.</p>
+<p>While an opting servlet seems to be a nice way of picking the right servlet to process the request, the use of an opting servlet is not recommended: the main reason is that it complicates the request processing, makes it less transparent what is going on during a request and prevents optimizations like caching the script resolution in an optimal manner. The other static options are usually sufficient for all use cases.</p>
+<h2><a href="#error-handler-servlet-s-or-scripts" name="error-handler-servlet-s-or-scripts">Error Handler Servlet(s) or Scripts</a></h2>
 <p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

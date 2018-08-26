@@ -93,248 +93,248 @@
             </div><h1 class="pagetitle">
                 Sling Pipes Configuration, Execution and monitoring
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#jcr-persistence-of-a-pipe" id="jcr-persistence-of-a-pipe">JCR persistence of a pipe</a></h3> 
-<p>A pipe configuration is ultimately a jcr node, with properties (varying a lot depending on the pipe type):</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> Configuration node property </th>
-   <th> Explanation </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>sling:resourceType</code> </td>
-   <td> which must be a pipe type registered by the plumber </td>
-  </tr> 
-  <tr>
-   <td> <code>name</code> </td>
-   <td> that will be used in bindings as an id, and will be the key for the output bindings (default value being a value map of the current output resource). Note that the node name will be used in case no name is provided. </td>
-  </tr> 
-  <tr>
-   <td> <code>path</code> </td>
-   <td> defines pipe's input. Note that property is not mandatory in case the pipe is streamed after another pipe, in which case previous pipe output's can be used as input. </td>
-  </tr> 
-  <tr>
-   <td> <code>expr</code> </td>
-   <td> expression through which the pipe will execute (depending on the type) </td>
-  </tr> 
-  <tr>
-   <td> <code>additionalScripts</code> </td>
-   <td> multi value property to declare scripts that can be reused in <a href="/documentation/bundles/sling-pipes/bindings.html">expressions</a>&nbsp;</td>
-  </tr> 
- </tbody> 
-</table> 
-<table> 
- <thead> 
-  <tr>
-   <th> Configuration child node </th>
-   <th> Explanation </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td>&nbsp;<code>conf</code> </td>
-   <td>&nbsp;optional, contains addition configuration of the pipe (depending on the type)&nbsp;</td>
-  </tr> 
-  <tr>
-   <td> <code>additionalBinding</code> </td>
-   <td> set "global" <a href="/documentation/bundles/sling-pipes/bindings.html">bindings</a> (property=value) in pipe execution </td>
-  </tr> 
-  <tr>
-   <td> <code>writer</code> </td>
-   <td>&nbsp;set a writer with key / value property being label, and value of each added entry. Those values can be <a href="/documentation/bundles/sling-pipes/bindings.html">expressions</a>&nbsp;</td>
-  </tr> 
- </tbody> 
-</table> 
-<h3><a href="#java" id="java">Java</a></h3> 
-<p><code>Plumber</code> is an osgi service you can access that will help you registering a pipe (must implement Pipe interface, and would better extend BasePipe class), and get a pipe from a resource (assuming you have a <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe">pipe configuration JCR</a> tree already set)</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#jcr-persistence-of-a-pipe" name="jcr-persistence-of-a-pipe">JCR persistence of a pipe</a></h3>
+<p>A pipe configuration is ultimately a jcr node, with properties (varying a lot depending on the pipe type):</p>
+<table>
+  <thead>
+    <tr>
+      <th>Configuration node property </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling:resourceType</code> </td>
+      <td>which must be a pipe type registered by the plumber </td>
+    </tr>
+    <tr>
+      <td><code>name</code> </td>
+      <td>that will be used in bindings as an id, and will be the key for the output bindings (default value being a value map of the current output resource). Note that the node name will be used in case no name is provided. </td>
+    </tr>
+    <tr>
+      <td><code>path</code> </td>
+      <td>defines pipe's input. Note that property is not mandatory in case the pipe is streamed after another pipe, in which case previous pipe output's can be used as input. </td>
+    </tr>
+    <tr>
+      <td><code>expr</code> </td>
+      <td>expression through which the pipe will execute (depending on the type) </td>
+    </tr>
+    <tr>
+      <td><code>additionalScripts</code> </td>
+      <td>multi value property to declare scripts that can be reused in <a href="/documentation/bundles/sling-pipes/bindings.html">expressions</a> </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>Configuration child node </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <code>conf</code> </td>
+      <td> optional, contains addition configuration of the pipe (depending on the type) </td>
+    </tr>
+    <tr>
+      <td><code>additionalBinding</code> </td>
+      <td>set "global" <a href="/documentation/bundles/sling-pipes/bindings.html">bindings</a> (property=value) in pipe execution </td>
+    </tr>
+    <tr>
+      <td><code>writer</code> </td>
+      <td> set a writer with key / value property being label, and value of each added entry. Those values can be <a href="/documentation/bundles/sling-pipes/bindings.html">expressions</a> </td>
+    </tr>
+  </tbody>
+</table>
+<h3><a href="#java" name="java">Java</a></h3>
+<p><code>Plumber</code> is an osgi service you can access that will help you registering a pipe (must implement Pipe interface, and would better extend BasePipe class), and get a pipe from a resource (assuming you have a <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe">pipe configuration JCR</a> tree already set)</p>
 <pre><code>    Pipe pipe = plumber.getPipe(resource);
-</code></pre> 
-<p>Once the pipe is obtained, you can just iterate through the output of it by retrieving it's output</p> 
+</code></pre>
+<p>Once the pipe is obtained, you can just iterate through the output of it by retrieving it's output</p>
 <pre><code>    Iterator&lt;Resource&gt; outputResources = pipe.getOutput();
-</code></pre> 
-<p>Be aware that if the pipe is modifying content, you might need to save it.</p> 
-<p>You can encapsulate the whole execution of a pipe through the <code>execute</code> methods that are used internally by both Pipe Builder and HTTP APIs.</p> 
-<h3><a href="#pipe-builder-api" id="pipe-builder-api">Pipe Builder API</a></h3> 
-<p>Plumber osgi service provides PipeBuilder with <code>newPipe(ResourceResolver resolver)</code> API, that gives a fluent API to quickly configure and run pipes. e.g.</p> 
-<pre><code>plumber.newPipe(resolver).xpath('//element(*,nt:unstructured)[@sling:resourceType='to/delete']").rm().run();
-</code></pre> 
-<p>will search for resource of type <code>to/delete</code> and remove them.</p> 
-<p>PipeBuilder will configure a container pipe, chaining pipes you can configure with a fluent API. This works pretty well with a groovy console just by entering following set of instruction</p> 
-<pre><code>     def plumber = getService("org.apache.sling.pipes.Plumber");
-     
+</code></pre>
+<p>Be aware that if the pipe is modifying content, you might need to save it.</p>
+<p>You can encapsulate the whole execution of a pipe through the <code>execute</code> methods that are used internally by both Pipe Builder and HTTP APIs. </p>
+<h3><a href="#pipe-builder-api" name="pipe-builder-api">Pipe Builder API</a></h3>
+<p>Plumber osgi service provides PipeBuilder with <code>newPipe(ResourceResolver resolver)</code> API, that gives a fluent API to quickly configure and run pipes. e.g. </p>
+<pre><code>plumber.newPipe(resolver).xpath(&#39;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;).rm().run();
+</code></pre>
+<p>will search for resource of type <code>to/delete</code> and remove them.</p>
+<p>PipeBuilder will configure a container pipe, chaining pipes you can configure with a fluent API. This works pretty well with a groovy console just by entering following set of instruction</p>
+<pre><code>     def plumber = getService(&quot;org.apache.sling.pipes.Plumber&quot;);
+
      plumber.newPipe(resourceResolver)
-         .echo("/content/mySite")
+         .echo(&quot;/content/mySite&quot;)
          .run();
-</code></pre> 
-<table> 
- <thead> 
-  <tr>
-   <th> Pipe Builder Method </th>
-   <th> Explanation </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>pipe(type)</code> </td>
-   <td> generate a new subpipe </td>
-  </tr> 
-  <tr>
-   <td> <code>with(Object...)</code> </td>
-   <td> add to actual subpipe configuration node key/value configurations </td>
-  </tr> 
-  <tr>
-   <td> <code>expr(String)</code> </td>
-   <td> add an <code>expr</code> configuration </td>
-  </tr> 
-  <tr>
-   <td> <code>path(String)</code> </td>
-   <td> add an <code>path</code> configuration </td>
-  </tr> 
-  <tr>
-   <td> <code>name(String)</code> </td>
-   <td> specify a name (there would be a default one, named 'one', 'two', ... depending on the position otherwise), that will be use in the persistence and bindings </td>
-  </tr> 
-  <tr>
-   <td> <code>conf(Object...)</code> </td>
-   <td> add an extra configuration node with key/value properties/values </td>
-  </tr> 
- </tbody> 
-</table> 
-<p>note that that configuration part has shortcuts for some pipes. Typically, above sample is a shorter equivalent of</p> 
+</code></pre>
+<table>
+  <thead>
+    <tr>
+      <th>Pipe Builder Method </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>pipe(type)</code> </td>
+      <td>generate a new subpipe </td>
+    </tr>
+    <tr>
+      <td><code>with(Object...)</code> </td>
+      <td>add to actual subpipe configuration node key/value configurations </td>
+    </tr>
+    <tr>
+      <td><code>expr(String)</code> </td>
+      <td>add an <code>expr</code> configuration </td>
+    </tr>
+    <tr>
+      <td><code>path(String)</code> </td>
+      <td>add an <code>path</code> configuration </td>
+    </tr>
+    <tr>
+      <td><code>name(String)</code> </td>
+      <td>specify a name (there would be a default one, named 'one', 'two', ... depending on the position otherwise), that will be use in the persistence and bindings </td>
+    </tr>
+    <tr>
+      <td><code>conf(Object...)</code> </td>
+      <td>add an extra configuration node with key/value properties/values </td>
+    </tr>
+  </tbody>
+</table>
+<p>note that that configuration part has shortcuts for some pipes. Typically, above sample is a shorter equivalent of </p>
 <pre><code>    plumber.newPipe(resolver)
-        .pipe('slingPipes/xpath').expr('//element(*,nt:unstructured)[@sling:resourceType='to/delete']")
-        .pipe('slingPipes/rm').run();
-</code></pre> 
-<p>when available, shortcuts will be specified next to each pipe type documentation, for</p> 
-<ul> 
- <li><a href="/documentation/bundles/sling-pipes/readers.html">reader pipes</a>, that will just output a set of resource depending on the input, without modifying anything,</li> 
- <li><a href="/documentation/bundles/sling-pipes/writers.html">writer pipes</a>, that modify the repository, depending on configuration and input,</li> 
- <li><a href="/documentation/bundles/sling-pipes/logical.html">logical pipes</a>, that refer to other pipes, chaining them or using their results in a general way</li> 
-</ul> 
-<p>Once you are happy with the pipe you have created, you should terminate the builder with following commands</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> Pipe Builder Method </th>
-   <th> Explanation </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>outputs(keys...)</code> </td>
-   <td> set the keys you want as an output </td>
-  </tr> 
-  <tr>
-   <td> <code>build(path)</code> </td>
-   <td> builds the requested pipe at the given <code>path</code> location </td>
-  </tr> 
-  <tr>
-   <td> <code>build()</code> </td>
-   <td> will build the pipe under /var/pipes/... (random node under timed base path) </td>
-  </tr> 
-  <tr>
-   <td> <code>run(bindings)</code> or <code>runWith(bindings...)</code> </td>
-   <td> will build the pipe in random location, and run it with passed bindings </td>
-  </tr> 
-  <tr>
-   <td> <code>runAsync(bindings)</code> </td>
-   <td> will do the same, but asynchronously </td>
-  </tr> 
- </tbody> 
-</table> 
-<h3><a href="#http-api" id="http-api">HTTP API</a></h3> 
-<h4><a href="#pipe-http-request-bits" id="pipe-http-request-bits">Pipe HTTP Request bits</a></h4> 
-<table> 
- <thead> 
-  <tr>
-   <th> request bit </th>
-   <th> Explanation </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> request path </td>
-   <td> path of a pipe configuration resource (see above), or a resource of type <code>slingPipes/plumber</code> with a path parameter indicating the pipe configuration resource path.</td>
-  </tr> 
-  <tr>
-   <td> request method </td>
-   <td> <code>GET</code> or <code>POST</code>. Note that <code>GET</code> will not work on pipe modifying content (unless you are using a <code>dryRun</code>) </td>
-  </tr> 
-  <tr>
-   <td> request extension </td>
-   <td> <code>.json</code> or <code>.csv</code> </td>
-  </tr> 
-  <tr>
-   <td> request selectors </td>
-   <td>&nbsp;you can add <code>status</code> to get status on a currently executed pipe</td>
-  </tr> 
- </tbody> 
-</table> 
-<h5><a href="#pipe-http-request-parameter" id="pipe-http-request-parameter">Pipe HTTP Request parameter</a></h5> 
-<table> 
- <thead> 
-  <tr>
-   <th> request parameter </th>
-   <th> Explanation </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>size</code> </td>
-   <td>&nbsp;size of the returned excerpt. Default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter. 0 value will return all the items </td>
-  </tr> 
-  <tr>
-   <td> <code>binding</code> </td>
-   <td> json object of global bindings you want to add for the execution of the pipe e.g. <code>{testBinding:'foo'}</code> </td>
-  </tr> 
-  <tr>
-   <td> <code>writer</code> </td>
-   <td> you can configure output of your servlet, with <code>writer</code> parameter, a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. This will be entries of your json output, or headers and values of your csv output, e.g <code>{"user":"${user.fullName}"}</code> </td>
-  </tr> 
-  <tr>
-   <td> <code>dryRun=true</code> </td>
-   <td> if parameter dryRun is set to true, and the executed pipe is supposed to modify content, it will log (at best it can) the change it <em>would</em> have done, without doing anything </td>
-  </tr> 
-  <tr>
-   <td> <code>async=true</code> </td>
-   <td> allow asynchronous execution of the given type. This is advised in case you plan your pipe execution to last longer than the session of your HTTP client. If used, the returned value will be id of the created sling Job. In that case you can monitor the pipes path with <code>status</code> selector as described above until it has the value <code>finished</code>. </td>
-  </tr> 
- </tbody> 
-</table> 
-<h3><a href="#pipemodel" id="pipemodel">PipeModel</a></h3> 
-<p>a <a href="/documentation/bundles/models.html">Sling Model</a> is shipped with sling pipes bundle that allows you to add a set of pipes to a component instance.</p> 
-<p>A typical usage would be to have some list pipes stored e.g. under <code>/etc/pipes/navigation-lists</code> and then</p> 
-<p>a component instance would be</p> 
+        .pipe(&#39;slingPipes/xpath&#39;).expr(&#39;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;)
+        .pipe(&#39;slingPipes/rm&#39;).run();
+</code></pre>
+<p>when available, shortcuts will be specified next to each pipe type documentation, for</p>
+<ul>
+  <li><a href="/documentation/bundles/sling-pipes/readers.html">reader pipes</a>, that will just output a set of resource depending on the input, without modifying anything,</li>
+  <li><a href="/documentation/bundles/sling-pipes/writers.html">writer pipes</a>, that modify the repository, depending on configuration and input,</li>
+  <li><a href="/documentation/bundles/sling-pipes/logical.html">logical pipes</a>, that refer to other pipes, chaining them or using their results in a general way</li>
+</ul>
+<p>Once you are happy with the pipe you have created, you should terminate the builder with following commands</p>
+<table>
+  <thead>
+    <tr>
+      <th>Pipe Builder Method </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>outputs(keys...)</code> </td>
+      <td>set the keys you want as an output </td>
+    </tr>
+    <tr>
+      <td><code>build(path)</code> </td>
+      <td>builds the requested pipe at the given <code>path</code> location </td>
+    </tr>
+    <tr>
+      <td><code>build()</code> </td>
+      <td>will build the pipe under /var/pipes/... (random node under timed base path) </td>
+    </tr>
+    <tr>
+      <td><code>run(bindings)</code> or <code>runWith(bindings...)</code> </td>
+      <td>will build the pipe in random location, and run it with passed bindings </td>
+    </tr>
+    <tr>
+      <td><code>runAsync(bindings)</code> </td>
+      <td>will do the same, but asynchronously </td>
+    </tr>
+  </tbody>
+</table>
+<h3><a href="#http-api" name="http-api">HTTP API</a></h3>
+<h4><a href="#pipe-http-request-bits" name="pipe-http-request-bits">Pipe HTTP Request bits</a></h4>
+<table>
+  <thead>
+    <tr>
+      <th>request bit </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>request path </td>
+      <td>path of a pipe configuration resource (see above), or a resource of type <code>slingPipes/plumber</code> with a path parameter indicating the pipe configuration resource path.</td>
+    </tr>
+    <tr>
+      <td>request method </td>
+      <td><code>GET</code> or <code>POST</code>. Note that <code>GET</code> will not work on pipe modifying content (unless you are using a <code>dryRun</code>) </td>
+    </tr>
+    <tr>
+      <td>request extension </td>
+      <td><code>.json</code> or <code>.csv</code> </td>
+    </tr>
+    <tr>
+      <td>request selectors </td>
+      <td> you can add <code>status</code> to get status on a currently executed pipe</td>
+    </tr>
+  </tbody>
+</table>
+<h5><a href="#pipe-http-request-parameter" name="pipe-http-request-parameter">Pipe HTTP Request parameter</a></h5>
+<table>
+  <thead>
+    <tr>
+      <th>request parameter </th>
+      <th>Explanation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code> </td>
+      <td> size of the returned excerpt. Default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter. 0 value will return all the items </td>
+    </tr>
+    <tr>
+      <td><code>binding</code> </td>
+      <td>json object of global bindings you want to add for the execution of the pipe e.g. <code>{testBinding:&#39;foo&#39;}</code> </td>
+    </tr>
+    <tr>
+      <td><code>writer</code> </td>
+      <td>you can configure output of your servlet, with <code>writer</code> parameter, a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. This will be entries of your json output, or headers and values of your csv output, e.g <code>{&quot;user&quot;:&quot;${user.fullName}&quot;}</code> </td>
+    </tr>
+    <tr>
+      <td><code>dryRun=true</code> </td>
+      <td>if parameter dryRun is set to true, and the executed pipe is supposed to modify content, it will log (at best it can) the change it <em>would</em> have done, without doing anything </td>
+    </tr>
+    <tr>
+      <td><code>async=true</code> </td>
+      <td>allow asynchronous execution of the given type. This is advised in case you plan your pipe execution to last longer than the session of your HTTP client. If used, the returned value will be id of the created sling Job. In that case you can monitor the pipes path with <code>status</code> selector as described above until it has the value <code>finished</code>. </td>
+    </tr>
+  </tbody>
+</table>
+<h3><a href="#pipemodel" name="pipemodel">PipeModel</a></h3>
+<p>a <a href="/documentation/bundles/models.html">Sling Model</a> is shipped with sling pipes bundle that allows you to add a set of pipes to a component instance. </p>
+<p>A typical usage would be to have some list pipes stored e.g. under <code>/etc/pipes/navigation-lists</code> and then </p>
+<p>a component instance would be</p>
 <pre><code>    {
-        "jcr:primaryType":"nt:unstructured",
-        "sling:resourceType":"my/navigation/breadcrumb",
-        "pipes": {
-            "jcr:primaryType":"nt:unstructured",
-            "breadcrumb": {
-                "jcr:primaryType":"nt:unstructured",
-                "sling:resourceType":"slingPipes/reference"
-                "expr":"/etc/pipes/navigation-lists/breadcrumb"
+        &quot;jcr:primaryType&quot;:&quot;nt:unstructured&quot;,
+        &quot;sling:resourceType&quot;:&quot;my/navigation/breadcrumb&quot;,
+        &quot;pipes&quot;: {
+            &quot;jcr:primaryType&quot;:&quot;nt:unstructured&quot;,
+            &quot;breadcrumb&quot;: {
+                &quot;jcr:primaryType&quot;:&quot;nt:unstructured&quot;,
+                &quot;sling:resourceType&quot;:&quot;slingPipes/reference&quot;
+                &quot;expr&quot;:&quot;/etc/pipes/navigation-lists/breadcrumb&quot;
             }
         }
     }
-</code></pre> 
-<p>and then the sightly script for "/apps/my/navigation/breadcrumb" could look like</p> 
-<pre><code>        &lt;ol class="breadcrumb"
-                 data-sly-use.pipe="org.apache.sling.pipes.models.PipeModel"
-                 data-sly-list.nav="${pipe.outputs.breadcrumb}"&gt;
-            &lt;sly data-sly-resource="${breadcrumb.path}"&gt;&lt;/sly&gt;
+</code></pre>
+<p>and then the sightly script for "/apps/my/navigation/breadcrumb" could look like </p>
+<pre><code>        &lt;ol class=&quot;breadcrumb&quot;
+                 data-sly-use.pipe=&quot;org.apache.sling.pipes.models.PipeModel&quot;
+                 data-sly-list.nav=&quot;${pipe.outputs.breadcrumb}&quot;&gt;
+            &lt;sly data-sly-resource=&quot;${breadcrumb.path}&quot;&gt;&lt;/sly&gt;
         &lt;/ol&gt;
-</code></pre> 
-<p>This allows not to have to write a new model or POJO for each component you do, if all you need is a set of resources. A very similar exemple is in action in the <a href="https://github.com/apache/sling-org-apache-sling-pipes/blob/master/src/test/java/org/apache/sling/pipes/it/PipeModelIT.java">PipeModel integration test</a></p> 
-<p>Note that a specific <a href="/documentation/bundles/sling-pipes/bindings.html">binding</a>, <code>currentResource</code> is added to each pipes executed by the model, allowing pipes to be executed in the context of the component.</p> 
-<p>so a breadcrumb pipe could be something like</p> 
-<pre><code>    .echo('${path.currentResource}')
-    .parents("my:PageContent[showInNav=true]")
-    .parent("my:Page")  
-</code></pre> 
-<h3><a href="#jmx" id="jmx">JMX</a></h3> 
+</code></pre>
+<p>This allows not to have to write a new model or POJO for each component you do, if all you need is a set of resources. A very similar exemple is in action in the <a href="https://github.com/apache/sling-org-apache-sling-pipes/blob/master/src/test/java/org/apache/sling/pipes/it/PipeModelIT.java">PipeModel integration test</a></p>
+<p>Note that a specific <a href="/documentation/bundles/sling-pipes/bindings.html">binding</a>, <code>currentResource</code> is added to each pipes executed by the model, allowing pipes to be executed in the context of the component.</p>
+<p>so a breadcrumb pipe could be something like</p>
+<pre><code>    .echo(&#39;${path.currentResource}&#39;)
+    .parents(&quot;my:PageContent[showInNav=true]&quot;)
+    .parent(&quot;my:Page&quot;)  
+</code></pre>
+<h3><a href="#jmx" name="jmx">JMX</a></h3>
 <p>as soon as you add <code>monitored=true</code> flag to a pipe configuration, you'll make the given pipe monitored by JMX, giving stats, status, and an entry point to execute it. Note that if you don't see the pipe you just added, you might have to refresh monitored pipes by hitting the related button in plumber mbean.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -91,232 +91,232 @@
             </div><h1 class="pagetitle">
                 JUnit server-side testing support bundles
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>This is an overview of the Sling bundles that provide support for server-side JUnit tests.</p> 
-<p>The Maven modules below <a href="https://github.com/apache/sling-samples/tree/master/testing"><code>sling-samples/testing</code></a> provide different examples including HTTP-based and server-side teleported tests in a bundle module, running against a full Sling instance setup in the same Maven module.</p> 
-<h2><a href="#orgapacheslingjunitcore-server-side-junit-tests-support" id="orgapacheslingjunitcore-server-side-junit-tests-support">org.apache.sling.junit.core: server-side JUnit tests support</a></h2> 
-<p>This bundle provides a <code>JUnitServlet</code> that runs JUnit tests found in bundles.</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>This is an overview of the Sling bundles that provide support for server-side JUnit tests. </p>
+<p>The Maven modules below <a href="https://github.com/apache/sling-samples/tree/master/testing"><code>sling-samples/testing</code></a> provide different examples including HTTP-based and server-side teleported tests in a bundle module, running against a full Sling instance setup in the same Maven module.</p>
+<h2><a href="#org-apache-sling-junit-core-server-side-junit-tests-support" name="org-apache-sling-junit-core-server-side-junit-tests-support">org.apache.sling.junit.core: server-side JUnit tests support</a></h2>
+<p>This bundle provides a <code>JUnitServlet</code> that runs JUnit tests found in bundles. </p>
 <div class="warning">
-  Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway. 
-</div> 
+Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway.
+</div>
 <div class="note">
-  For tighter integration with Sling, the alternate `SlingJUnitServlet` is registered with the `sling/junit/testing` resource type and `.junit` selector, if the bundle is running in a Sling system. Using this servlet instead of the plain JUnitServlet also allows Sling authentication to be used for running the tests, and the standard Sling request processing is used, including servlet filters for example. 
-</div> 
-<p>To make tests available to that servlet, the bundle that contains them must point to them with a <code>Sling-Test-Regexp</code> bundle header that defines a regular expression that matches the test class names, like for example:</p> 
+For tighter integration with Sling, the alternate `SlingJUnitServlet` is registered with the `sling/junit/testing` resource type and `.junit` selector, if the bundle is running in a Sling system. Using this servlet instead of the plain JUnitServlet also allows Sling authentication to be used for running the tests, and the standard Sling request processing is used, including servlet filters for example.
+</div>
+<p>To make tests available to that servlet, the bundle that contains them must point to them with a <code>Sling-Test-Regexp</code> bundle header that defines a regular expression that matches the test class names, like for example:</p>
 <pre><code>Sling-Test-Regexp=com.example.*ServerSideTest
-</code></pre> 
-<h3><a href="#the-teleporterrule" id="the-teleporterrule">The TeleporterRule</a></h3> 
-<p>The <code>TeleporterRule</code> supplied by this bundle (since V1.0.12) makes it easy to write such tests, as it takes care of all the mechanics of</p> 
-<ol> 
- <li>creating the test bundle including all necessary classes for execution</li> 
- <li>adding the <code>Sling-Test-Regexp</code> header to the bundles manifest</li> 
- <li>deploy the bundle on an Sling server (with the help of the customizer)</li> 
- <li>calling the <code>JUnitServlet</code> from the client-side and report back the results</li> 
- <li>uninstalling the test bundle</li> 
-</ol> 
-<p>Most of these steps are done on the client-side by the org.apache.sling.junit.teleporter module (see below).</p> 
-<p>Using this rule the server-side tests can be mixed with other tests in the source code if that's convenient, it just requires the <code>junit.core</code> and <code>junit.teleporter</code> modules described on this page to create such tests.</p> 
-<p>Here's a basic example of a server-side test that accesses OSGi services:</p> 
+</code></pre>
+<h3><a href="#the-teleporterrule" name="the-teleporterrule">The TeleporterRule</a></h3>
+<p>The <code>TeleporterRule</code> supplied by this bundle (since V1.0.12) makes it easy to write such tests, as it takes care of all the mechanics of </p>
+<ol>
+  <li>creating the test bundle including all necessary classes for execution</li>
+  <li>adding the <code>Sling-Test-Regexp</code> header to the bundles manifest</li>
+  <li>deploy the bundle on an Sling server (with the help of the customizer)</li>
+  <li>calling the <code>JUnitServlet</code> from the client-side and report back the results</li>
+  <li>uninstalling the test bundle</li>
+</ol>
+<p>Most of these steps are done on the client-side by the org.apache.sling.junit.teleporter module (see below).</p>
+<p>Using this rule the server-side tests can be mixed with other tests in the source code if that's convenient, it just requires the <code>junit.core</code> and <code>junit.teleporter</code> modules described on this page to create such tests. </p>
+<p>Here's a basic example of a server-side test that accesses OSGi services:</p>
 <pre><code>public class BasicTeleporterTest {
 
     @Rule
-    public final TeleporterRule teleporter = TeleporterRule.forClass(getClass(), "Launchpad");
-    
+    public final TeleporterRule teleporter = TeleporterRule.forClass(getClass(), &quot;Launchpad&quot;);
+
     @Test
     public void testConfigAdmin() throws IOException {
-        final String pid = "TEST_" + getClass().getName() + UUID.randomUUID();
-        
+        final String pid = &quot;TEST_&quot; + getClass().getName() + UUID.randomUUID();
+
         final ConfigurationAdmin ca = teleporter.getService(ConfigurationAdmin.class);
-        assertNotNull("Teleporter should provide a ConfigurationAdmin", ca);
-        
+        assertNotNull(&quot;Teleporter should provide a ConfigurationAdmin&quot;, ca);
+
         final Configuration cfg = ca.getConfiguration(pid);
-        assertNotNull("Expecting to get a Configuration", cfg);
-        assertEquals("Expecting the correct pid", pid, cfg.getPid());
+        assertNotNull(&quot;Expecting to get a Configuration&quot;, cfg);
+        assertEquals(&quot;Expecting the correct pid&quot;, pid, cfg.getPid());
     }
 }
-</code></pre> 
-<p>That's all there is to it, the <code>TeleporterRule</code> takes care of the rest.</p> 
-<p>The test bundle being build and deployed through this rule usually happens quickly as the temporary bundle is very small. Both the client-side and server-side parts of the test can be debugged easily with the appropriate IDE settings.</p> 
-<p>The <code>Teleporter.getService</code> method takes an optional OSGi LDAP filter for service selection, like for example:</p> 
-<pre><code>final StringTransformer t = teleporter.getService(StringTransformer.class, "(mode=uppercase)");
-</code></pre> 
-<p>The method waits for the service to be available or until the timeout elapsed (<a href="https://issues.apache.org/jira/browse/SLING-6031">SLING-6031</a>).</p> 
-<p>And starting with version 1.0.4 of the <code>org.apache.sling.junit.teleporter</code> bundle, you can specify resources to embed in the test bundle, as in this example:</p> 
+</code></pre>
+<p>That's all there is to it, the <code>TeleporterRule</code> takes care of the rest. </p>
+<p>The test bundle being build and deployed through this rule usually happens quickly as the temporary bundle is very small. Both the client-side and server-side parts of the test can be debugged easily with the appropriate IDE settings.</p>
+<p>The <code>Teleporter.getService</code> method takes an optional OSGi LDAP filter for service selection, like for example:</p>
+<pre><code>final StringTransformer t = teleporter.getService(StringTransformer.class, &quot;(mode=uppercase)&quot;);
+</code></pre>
+<p>The method waits for the service to be available or until the timeout elapsed (<a href="https://issues.apache.org/jira/browse/SLING-6031">SLING-6031</a>).</p>
+<p>And starting with version 1.0.4 of the <code>org.apache.sling.junit.teleporter</code> bundle, you can specify resources to embed in the test bundle, as in this example:</p>
 <pre><code>@Rule
 public final TeleporterRule teleporter = 
-  TeleporterRule.forClass(getClass(), "Launchpad")
-  .withResources("/foo/", "/some/other/resource.txt");
-</code></pre> 
-<p>which will embed all resources found under <code>/foo</code> as well as the <code>resource.txt</code> in the test bundle, making them available to the server-side tests.</p> 
-<p>This teleporter mechanism is used in our integration tests, search for <code>TeleporterRule</code> in there for examples or look at the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/tree/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/teleporter"><code>integrationtest.teleporter</code></a> package.</p> 
-<p>As I write this the teleporter mechanism is quite new, I suspect there might be some weird interactions between things like <code>@AfterClass</code>, custom test runners and this mechanism but it works well to a growing number of tests in our <code>launchpad/integration-tests</code> module. Moving to JUnit <code>Rules</code> as much as possible, and combining them using JUnit's <code>RuleChain</code>, should help work around such limitations if they arise.</p> 
-<h3><a href="#more-details-on-the-junitservlet" id="more-details-on-the-junitservlet">More details on the JUnitServlet</a></h3> 
-<p>To try the JUnitServlet interactively, you can install a bundle that contains tests and a <code>Sling-Test-Regexp</code> bundle header that points to them, as described above. Or use the <code>TeleporterRule</code> and set a breakpoint in the tests execution, when the test bundle in installed and listed by the test servlet.</p> 
-<p>To list the available tests, open <code>/system/sling/junit/</code> in your browser. The servlet shows available tests and allows you to execute them via a POST request.</p> 
-<p>Adding a path allows you to select a specific subset of tests, as in <code>/system/sling/junit/org.apache.sling.junit.remote.html</code></p> 
-<p>The JUnitServlet provides various output formats, including in particular JSON, see <code>/system/sling/junit/.json</code> for example.</p> 
-<h2><a href="#orgapacheslingjunitteleporter-client-side-teleporterrule-support" id="orgapacheslingjunitteleporter-client-side-teleporterrule-support">org.apache.sling.junit.teleporter: client-side TeleporterRule support</a></h2> 
-<p>This module provides the <code>ClientSideTeleporter</code> which the <code>TeleporterRule</code> uses to package the server-side tests in bundles that's installed temporarily on the test server. Almost all steps described above in <a href="#the-teleporterrule">The TeleporterRule</a> are being performed by this module.</p> 
-<p>This module is not a bundle, as it's used on the client only, as a dependency when running the tests.</p> 
-<h3><a href="#teleporterrulecustomizer" id="teleporterrulecustomizer">TeleporterRule.Customizer</a></h3> 
-<p>A <code>TeleporterRule.Customizer</code> is used to setup the <code>ClientSideTeleporter</code>. That customizer is instantiated dynamically based on a String passed to the <code>TeleporterRule.forClass</code> method as 2nd parameter. As an example from our <code>launchpad/integration-tests</code> module, this call</p> 
-<pre><code>TeleporterRule.forClass(getClass(), "Launchpad:author");
-</code></pre> 
-<p>causes the <code>TeleporterRule</code> to use the <code>org.apache.sling.junit.teleporter.customizers.LaunchpadCustomizer</code> class to setup the <code>ClientSideTeleporter</code>, and passes the "author" string to it as an option. Although our current <code>LaunchpadCustomizer</code> does not use this options string, it is meant to select a specific server (of family of servers) to run the tests on.</p> 
-<p>The options string can also use a full class name instead of the <code>Launchpad</code> short form used here, if needed. The part of that string that follows the first colon is passed to the customizer as is.</p> 
-<p>Using Strings for customization reduces the coupling with the <code>junit.core</code> bundle, as it does not need to know those classes which are used only on the client side when running tests.</p> 
-<p>If <code>TeleporterRule.forClass(getClass())</code> is used (the method without an additional 2nd parameter) the default customizer is used (<a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a>, since version 1.0.8).</p> 
-<p>The following customizers are currently used in Sling</p> 
-<h3><a href="#default-customizer" id="default-customizer">Default Customizer</a></h3> 
-<p><em><a href="https://github.com/apache/sling-org-apache-sling-junit-teleporter/blob/master/src/main/java/org/apache/sling/testing/teleporter/client/DefaultPropertyBasedCustomizer.java">DefaultPropertyBasedCustomizer.java</a></em> is used by default when no other customizer is referenced in <code>TeleporterRule.forClass(getClass())</code>. It relies on the following system properties:</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> Property Name </th>
-   <th> Description </th>
-   <th> Mandatory to set </th>
-   <th> Default value </th>
-   <th> Since version </th>
-   <th> Related JIRA </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>ClientSideTeleporter.baseUrl</code> </td>
-   <td> base url of the Sling Server to which to deploy. </td>
-   <td> yes </td>
-   <td> (-) </td>
-   <td> 1.0.8 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.includeDependencyPrefixes</code> </td>
-   <td> comma-separated list of package prefixes for classes referenced from the IT. Only the classes having one of the given package prefix are included in the bundle being deployed to the given Sling instance together with the IT class itself. They are only included though in case they are referenced! If this is not set, no referenced classes will be included. </td>
-   <td> no </td>
-   <td> (-) </td>
-   <td> 1.0.8 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.excludeDependencyPrefixes</code> </td>
-   <td> comma-separated list of package prefixes for classes referenced from the IT. Classes having one of the given package prefix will not be included in the bundle being deployed to the given Sling instance together with the IT class itself. This takes precedence over the <code>ClientSideTeleporter.includeDependencyPrefixes</code>. </td>
-   <td> no </td>
-   <td> (-) </td>
-   <td> 1.0.8 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.embedClasses</code> </td>
-   <td> comma-separated list of fully qualified class names which should be embedded in the test bundle. Use this only for classes which are not detected automatically by the Maven Dependency Analyzer but still should be embedded in the test bundle </td>
-   <td> no </td>
-   <td> (-) </td>
-   <td> 1.0.8 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.embedClassesDirectories</code> </td>
-   <td> comma-separated list directories containing class files which should be embedded in the test bundle. Use this only for classes which are not detected automatically by the Maven Dependency Analyzer but still should be embedded in the test bundle </td>
-   <td> no </td>
-   <td> (-) </td>
-   <td> 1.0.12 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-6551">SLING-6551</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.additionalBundleHeaders</code> </td>
-   <td> comma-separated list of entries in the format <code>&lt;name&gt;:&lt;value&gt;</code> which should be added to the test bundle as additional headers </td>
-   <td> no </td>
-   <td> (-) </td>
-   <td> 1.0.12 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-6558">SLING-6558</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.testReadyTimeoutSeconds</code> </td>
-   <td> how long to wait for our test to be ready on the server-side in seconds, after installing the test bundle. </td>
-   <td> no </td>
-   <td> <code>12</code> </td>
-   <td> 1.0.8 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.serverUsername</code> </td>
-   <td> the username with which to send requests to the Sling server. </td>
-   <td> no </td>
-   <td> <code>admin</code> </td>
-   <td> 1.0.8 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.serverPassword</code> </td>
-   <td> the password with which to send requests to the Sling server. </td>
-   <td> no </td>
-   <td> <code>admin</code> </td>
-   <td> 1.0.8 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.enableLogging</code> </td>
-   <td> set to <code>true</code> to log the tasks being performed by the teleporter. Useful for debugging. </td>
-   <td> no </td>
-   <td> <code>false</code> </td>
-   <td> 1.0.12 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-6546">SLING-6546</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.preventToUninstallBundle</code> </td>
-   <td> set to <code>true</code> to not automatically uninstall the test bundle after test execution. Useful for debugging. </td>
-   <td> no </td>
-   <td> <code>false</code> </td>
-   <td> 1.0.12 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-6546">SLING-6546</a> </td>
-  </tr> 
-  <tr>
-   <td> <code>ClientSideTeleporter.testBundleDirectory</code> </td>
-   <td> if set the test bundles are being persisted (before being installed) within the given directory name. If the directory does not exist, it will be automatically created. Useful for debugging. Recommended value <code>${project.build.directory}/test-bundles</code>. </td>
-   <td> no </td>
-   <td> (-) </td>
-   <td> 1.0.12 </td>
-   <td> <a href="https://issues.apache.org/jira/browse/SLING-6546">SLING-6546</a> </td>
-  </tr> 
- </tbody> 
-</table> 
-<p>The provisioning of an appropriate instance can be done with the <a href="/documentation/development/slingstart.html">slingstart-maven-plugin</a>. An example for that is given at <a href="https://github.com/apache/sling-samples/tree/master/testing/module-with-it"><code>sling-samples/testing/module-with-it</code></a>. Since <code>slingstart-maven-plugin</code> 1.5.0 it is possible to bootstrap a Sling Server from a <code>model.txt</code> below <code>src/test/provisioning</code> independent of the packaging (see <a href="https://issues.apache.org/jira/browse/SLING-6068">SLING-6068</a>).</p> 
-<h4><a href="#launchpadcustomizer" id="launchpadcustomizer">LaunchpadCustomizer</a></h4> 
-<p>The <em><a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/junit/teleporter/customizers/LaunchpadCustomizer.java"><code>LaunchpadCustomizer.java</code></a></em> only verifies that a Sling instance is ready at a given port and configures the <code>ClientSideTeleporter</code> to deploy to <code>http://localhost:8080</code> with the credentials <code>admin</code>:<code>admin</code>. <code>LaunchpadCustomizer</code> uses the <code>HttpTestBase</code> therefore some parameters are customizable through system properties. There is no bootstrapping of an instance done here, so this must be done separately!</p> 
-<h4><a href="#bwit-teleportercustomizer" id="bwit-teleportercustomizer">BWIT_TeleporterCustomizer</a></h4> 
-<p>The <em><a href="https://github.com/apache/sling-samples/tree/master/testing/bundle-with-it/src/test/java/org/apache/sling/junit/teleporter/customizers/BWIT_TeleporterCustomizer.java"><code>BWIT_TeleporterCustomizer.java</code></a></em> relies on <code>SlingTestBase</code> to set the server's base url and credentials. Additionally the test bundle is adjusted so that the API is not included in it (but rather referenced from another bundle). The bootstrapping of the Sling instance is tweaked through system properties which are described <a href="https://www.danklco.com/posts/2013/06/05/creating-integration-tests-apache-sling/">here</a> and implicitly done by the customizer itself.</p> 
-<p>Those should give you an overview on what can be done with a customizer and decide whether you need to write your own one or using the default customizer is just enough.</p> 
-<h2><a href="#orgapacheslingjunithealthcheck-run-junit-tests-as-sling-health-checks" id="orgapacheslingjunithealthcheck-run-junit-tests-as-sling-health-checks">org.apache.sling.junit.healthcheck: run JUnit tests as Sling Health Checks</a></h2> 
-<p>This bundle allows JUnit tests to run as <a href="/documentation/bundles/sling-health-check-tool.html">Sling Health Checks</a>, which can be useful when defining smoke tests for example, allowing them to be used both at build time and run time.</p> 
-<p>See the <code>JUnitHealthCheck</code> class for details.</p> 
-<h2><a href="#orgapacheslingjunitscriptable-scriptable-server-side-tests" id="orgapacheslingjunitscriptable-scriptable-server-side-tests">org.apache.sling.junit.scriptable: scriptable server-side tests</a></h2> 
-<p>This bundle allows Sling scripts to be executed from the <code>JUnitServlet</code> as JUnit tests, as follows:</p> 
-<ul> 
- <li>A node that has the <code>sling:Test</code> mixin is a scriptable test node.</li> 
- <li>For security reasons, scriptable test nodes are only executed as tests if they are found under <code>/libs</code> or <code>/apps</code>, or more precisely under a path that's part of Sling's <code>ResourceResolver</code> search path.</li> 
- <li>To execute a test, the scriptable tests provider makes an HTTP request to the test node's path, with a <code>.test.txt</code> selector and extension, and expects the output to contain only the string <code>TEST_PASSED</code>. Empty lines and comment lines starting with a hash sign (#) are ignored in the output, and other lines are reported as failures.</li> 
-</ul> 
-<p>Here's a minimal example that sets up and executes a scriptable test:</p> 
+  TeleporterRule.forClass(getClass(), &quot;Launchpad&quot;)
+  .withResources(&quot;/foo/&quot;, &quot;/some/other/resource.txt&quot;);
+</code></pre>
+<p>which will embed all resources found under <code>/foo</code> as well as the <code>resource.txt</code> in the test bundle, making them available to the server-side tests.</p>
+<p>This teleporter mechanism is used in our integration tests, search for <code>TeleporterRule</code> in there for examples or look at the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/tree/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/teleporter"><code>integrationtest.teleporter</code></a> package. </p>
+<p>As I write this the teleporter mechanism is quite new, I suspect there might be some weird interactions between things like <code>@AfterClass</code>, custom test runners and this mechanism but it works well to a growing number of tests in our <code>launchpad/integration-tests</code> module. Moving to JUnit <code>Rules</code> as much as possible, and combining them using JUnit's <code>RuleChain</code>, should help work around such limitations if they arise.</p>
+<h3><a href="#more-details-on-the-junitservlet" name="more-details-on-the-junitservlet">More details on the JUnitServlet</a></h3>
+<p>To try the JUnitServlet interactively, you can install a bundle that contains tests and a <code>Sling-Test-Regexp</code> bundle header that points to them, as described above. Or use the <code>TeleporterRule</code> and set a breakpoint in the tests execution, when the test bundle in installed and listed by the test servlet.</p>
+<p>To list the available tests, open <code>/system/sling/junit/</code> in your browser. The servlet shows available tests and allows you to execute them via a POST request.</p>
+<p>Adding a path allows you to select a specific subset of tests, as in <code>/system/sling/junit/org.apache.sling.junit.remote.html</code></p>
+<p>The JUnitServlet provides various output formats, including in particular JSON, see  <code>/system/sling/junit/.json</code> for example.</p>
+<h2><a href="#org-apache-sling-junit-teleporter-client-side-teleporterrule-support" name="org-apache-sling-junit-teleporter-client-side-teleporterrule-support">org.apache.sling.junit.teleporter: client-side TeleporterRule support</a></h2>
+<p>This module provides the <code>ClientSideTeleporter</code> which the <code>TeleporterRule</code> uses to package the server-side tests in bundles that's installed temporarily on the test server. Almost all steps described above in <a href="#the-teleporterrule">The TeleporterRule</a> are being performed by this module.</p>
+<p>This module is not a bundle, as it's used on the client only, as a dependency when running the tests.</p>
+<h3><a href="#teleporterrule-customizer" name="teleporterrule-customizer">TeleporterRule.Customizer</a></h3>
+<p>A <code>TeleporterRule.Customizer</code> is used to setup the <code>ClientSideTeleporter</code>. That customizer is instantiated dynamically based on a String passed to the <code>TeleporterRule.forClass</code> method as 2nd parameter. As an example from our <code>launchpad/integration-tests</code> module, this call</p>
+<pre><code>TeleporterRule.forClass(getClass(), &quot;Launchpad:author&quot;);
+</code></pre>
+<p>causes the <code>TeleporterRule</code> to use the <code>org.apache.sling.junit.teleporter.customizers.LaunchpadCustomizer</code> class to setup the <code>ClientSideTeleporter</code>, and passes the "author" string to it as an option. Although our current <code>LaunchpadCustomizer</code> does not use this options string, it is meant to select a specific server (of family of servers) to run the tests on.</p>
+<p>The options string can also use a full class name instead of the <code>Launchpad</code> short form used here, if needed. The part of that string that follows the first colon is passed to the customizer as is.</p>
+<p>Using Strings for customization reduces the coupling with the <code>junit.core</code> bundle, as it does not need to know those classes which are used only on the client side when running tests. </p>
+<p>If <code>TeleporterRule.forClass(getClass())</code> is used (the method without an additional 2nd parameter) the default customizer is used (<a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a>, since version 1.0.8). </p>
+<p>The following customizers are currently used in Sling</p>
+<h3><a href="#default-customizer" name="default-customizer">Default Customizer</a></h3>
+<p><em><a href="https://github.com/apache/sling-org-apache-sling-junit-teleporter/blob/master/src/main/java/org/apache/sling/testing/teleporter/client/DefaultPropertyBasedCustomizer.java">DefaultPropertyBasedCustomizer.java</a></em> is used by default when no other customizer is referenced in <code>TeleporterRule.forClass(getClass())</code>. It relies on the following system properties:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property Name </th>
+      <th>Description </th>
+      <th>Mandatory to set </th>
+      <th>Default value </th>
+      <th>Since version </th>
+      <th>Related JIRA </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ClientSideTeleporter.baseUrl</code> </td>
+      <td>base url of the Sling Server to which to deploy. </td>
+      <td>yes </td>
+      <td>(-) </td>
+      <td>1.0.8 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.includeDependencyPrefixes</code> </td>
+      <td>comma-separated list of package prefixes for classes referenced from the IT. Only the classes having one of the given package prefix are included in the bundle being deployed to the given Sling instance together with the IT class itself. They are only included though in case they are referenced! If this is not set, no referenced classes will be included. </td>
+      <td>no </td>
+      <td>(-) </td>
+      <td>1.0.8 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.excludeDependencyPrefixes</code> </td>
+      <td>comma-separated list of package prefixes for classes referenced from the IT. Classes having one of the given package prefix will not be included in the bundle being deployed to the given Sling instance together with the IT class itself. This takes precedence over the <code>ClientSideTeleporter.includeDependencyPrefixes</code>. </td>
+      <td>no </td>
+      <td>(-) </td>
+      <td>1.0.8 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.embedClasses</code> </td>
+      <td>comma-separated list of fully qualified class names which should be embedded in the test bundle. Use this only for classes which are not detected automatically by the Maven Dependency Analyzer but still should be embedded in the test bundle </td>
+      <td>no </td>
+      <td>(-) </td>
+      <td>1.0.8 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.embedClassesDirectories</code> </td>
+      <td>comma-separated list directories containing class files which should be embedded in the test bundle. Use this only for classes which are not detected automatically by the Maven Dependency Analyzer but still should be embedded in the test bundle </td>
+      <td>no </td>
+      <td>(-) </td>
+      <td>1.0.12 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-6551">SLING-6551</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.additionalBundleHeaders</code> </td>
+      <td>comma-separated list of entries in the format <code>&lt;name&gt;:&lt;value&gt;</code> which should be added to the test bundle as additional headers </td>
+      <td>no </td>
+      <td>(-) </td>
+      <td>1.0.12 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-6558">SLING-6558</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.testReadyTimeoutSeconds</code> </td>
+      <td>how long to wait for our test to be ready on the server-side in seconds, after installing the test bundle. </td>
+      <td>no </td>
+      <td><code>12</code> </td>
+      <td>1.0.8 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.serverUsername</code> </td>
+      <td>the username with which to send requests to the Sling server. </td>
+      <td>no </td>
+      <td><code>admin</code> </td>
+      <td>1.0.8 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.serverPassword</code> </td>
+      <td>the password with which to send requests to the Sling server. </td>
+      <td>no </td>
+      <td><code>admin</code> </td>
+      <td>1.0.8 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.enableLogging</code> </td>
+      <td>set to <code>true</code> to log the tasks being performed by the teleporter. Useful for debugging. </td>
+      <td>no </td>
+      <td><code>false</code> </td>
+      <td>1.0.12 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-6546">SLING-6546</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.preventToUninstallBundle</code> </td>
+      <td>set to <code>true</code> to not automatically uninstall the test bundle after test execution. Useful for debugging. </td>
+      <td>no </td>
+      <td><code>false</code> </td>
+      <td>1.0.12 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-6546">SLING-6546</a> </td>
+    </tr>
+    <tr>
+      <td><code>ClientSideTeleporter.testBundleDirectory</code> </td>
+      <td>if set the test bundles are being persisted (before being installed) within the given directory name. If the directory does not exist, it will be automatically created. Useful for debugging. Recommended value <code>${project.build.directory}/test-bundles</code>. </td>
+      <td>no </td>
+      <td>(-) </td>
+      <td>1.0.12 </td>
+      <td><a href="https://issues.apache.org/jira/browse/SLING-6546">SLING-6546</a> </td>
+    </tr>
+  </tbody>
+</table>
+<p>The provisioning of an appropriate instance can be done with the <a href="/documentation/development/slingstart.html">slingstart-maven-plugin</a>. An example for that is given at <a href="https://github.com/apache/sling-samples/tree/master/testing/module-with-it"><code>sling-samples/testing/module-with-it</code></a>. Since <code>slingstart-maven-plugin</code> 1.5.0 it is possible to bootstrap a Sling Server from a <code>model.txt</code> below <code>src/test/provisioning</code> independent of the packaging (see <a href="https://issues.apache.org/jira/browse/SLING-6068">SLING-6068</a>).</p>
+<h4><a href="#launchpadcustomizer" name="launchpadcustomizer">LaunchpadCustomizer</a></h4>
+<p>The <em><a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/junit/teleporter/customizers/LaunchpadCustomizer.java"><code>LaunchpadCustomizer.java</code></a></em> only verifies that a Sling instance is ready at a given port and configures the <code>ClientSideTeleporter</code> to deploy to <code>http://localhost:8080</code> with the credentials <code>admin</code>:<code>admin</code>. <code>LaunchpadCustomizer</code> uses the <code>HttpTestBase</code> therefore some parameters are customizable through system properties. There is no bootstrapping of an instance done here, so this must be done separately!</p>
+<h4>BWIT_TeleporterCustomizer</h4>
+<p>The <em><a href="https://github.com/apache/sling-samples/tree/master/testing/bundle-with-it/src/test/java/org/apache/sling/junit/teleporter/customizers/BWIT_TeleporterCustomizer.java"><code>BWIT_TeleporterCustomizer.java</code></a></em> relies on <code>SlingTestBase</code> to set the server's base url and credentials. Additionally the test bundle is adjusted so that the API is not included in it (but rather referenced from another bundle). The bootstrapping of the Sling instance is tweaked through system properties which are described <a href="https://www.danklco.com/posts/2013/06/05/creating-integration-tests-apache-sling/">here</a> and implicitly done by the customizer itself.</p>
+<p>Those should give you an overview on what can be done with a customizer and decide whether you need to write your own one or using the default customizer is just enough.</p>
+<h2><a href="#org-apache-sling-junit-healthcheck-run-junit-tests-as-sling-health-checks" name="org-apache-sling-junit-healthcheck-run-junit-tests-as-sling-health-checks">org.apache.sling.junit.healthcheck: run JUnit tests as Sling Health Checks</a></h2>
+<p>This bundle allows JUnit tests to run as <a href="/documentation/bundles/sling-health-check-tool.html">Sling Health Checks</a>, which can be useful when defining smoke tests for example, allowing them to be used both at build time and run time.</p>
+<p>See the <code>JUnitHealthCheck</code> class for details. </p>
+<h2><a href="#org-apache-sling-junit-scriptable-scriptable-server-side-tests" name="org-apache-sling-junit-scriptable-scriptable-server-side-tests">org.apache.sling.junit.scriptable: scriptable server-side tests</a></h2>
+<p>This bundle allows Sling scripts to be executed from the <code>JUnitServlet</code> as JUnit tests, as follows:</p>
+<ul>
+  <li>A node that has the <code>sling:Test</code> mixin is a scriptable test node.</li>
+  <li>For security reasons, scriptable test nodes are only executed as tests if they are found under <code>/libs</code> or <code>/apps</code>, or more precisely under a path that's part of Sling's <code>ResourceResolver</code> search path.</li>
+  <li>To execute a test, the scriptable tests provider makes an HTTP request to the test node's path, with a <code>.test.txt</code> selector and extension, and expects the output to contain only the string <code>TEST_PASSED</code>. Empty lines and comment lines starting with a hash sign (#) are ignored in the output, and other lines are reported as failures.</li>
+</ul>
+<p>Here's a minimal example that sets up and executes a scriptable test:</p>
 <pre><code>$ curl -u admin:admin -Fjcr:primaryNodeType=sling:Folder -Fsling:resourceType=foo -Fjcr:mixinTypes=sling:Test http://localhost:8080/apps/foo
 ...
 $ echo TEST_PASSED &gt; /tmp/test.txt.esp ; curl -u admin:admin -T/tmp/test.txt.esp http://localhost:8080/apps/foo/test.txt.esp
-</code></pre> 
-<p>At this point, foo.test.txt is what the scriptable test framework will request, and that outputs just TEST_PASSED:</p> 
+</code></pre>
+<p>At this point, foo.test.txt is what the scriptable test framework will request, and that outputs just TEST_PASSED:</p>
 <pre><code>$ curl -u admin:admin http://localhost:8080/apps/foo.test.txt
 TEST_PASSED
-</code></pre> 
-<p>And a POST to the JUnit servlet returns information on the test's execution:</p> 
+</code></pre>
+<p>And a POST to the JUnit servlet returns information on the test's execution:</p>
 <pre><code>curl -u admin:admin -XPOST http://localhost:8080/system/sling/junit/org.apache.sling.junit.scriptable.ScriptableTestsProvider.json
 [{
-    "INFO_TYPE": "test",
-    "description": "verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)",
-    "test_metadata": {
-      "test_execution_time_msec": 2
+    &quot;INFO_TYPE&quot;: &quot;test&quot;,
+    &quot;description&quot;: &quot;verifyContent[0](org.apache.sling.junit.scriptable.TestAllPaths)&quot;,
+    &quot;test_metadata&quot;: {
+      &quot;test_execution_time_msec&quot;: 2
     }
   }
 ]
-</code></pre> 
-<p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again.</p> 
-<h2><a href="#orgapacheslingjunitremote-obsolete" id="orgapacheslingjunitremote-obsolete">org.apache.sling.junit.remote: obsolete</a></h2> 
-<p>The <code>org.apache.sling.junit.remote</code> bundle provides utilities to run server-side JUnit tests, but using the newer <code>TeleporterRule</code> described above is much simpler. As a result, this bundle should only be needed for existing tests that were written using its mechanisms.</p></section></div></div>            
+</code></pre>
+<p>Test failures would be included in this JSON representation - you can test that by modifying the script to fail and making the same request again. </p>
+<h2><a href="#org-apache-sling-junit-remote-obsolete" name="org-apache-sling-junit-remote-obsolete">org.apache.sling.junit.remote: obsolete</a></h2>
+<p>The <code>org.apache.sling.junit.remote</code> bundle provides utilities to run server-side JUnit tests, but using the newer <code>TeleporterRule</code> described above is much simpler. As a result, this bundle should only be needed for existing tests that were written using its mechanisms. </p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Dan Klco</span> on <span class="comment">Thu Feb 22 16:26:54 2018 -0500</span>

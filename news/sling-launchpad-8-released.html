@@ -89,34 +89,34 @@
             </div><h1 class="pagetitle">
                 Apache Sling Launchpad 8 released
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Here are some of the more noteworthy things available in this release.</p> 
-<h2><a href="#switched-to-apache-jackrabbit-oak" id="switched-to-apache-jackrabbit-oak">Switched to Apache Jackrabbit Oak</a></h2> 
-<p>The Sling launchpad has switched from Apache Jackrabbit 2.7.5 to Apache Jackrabbit Oak 1.3.7 as a persistence engine. Apache Jackrabbit Oak is now supported in Sling with two persistence modes: SegmentNodeStore ( file-based ) and DocumentNodeStore ( MongoDB-based ). See <a href="http://jackrabbit.apache.org/oak/docs/index.html">the Oak documentation</a> for more details about the Oak persistence modes and <a href="https://sling.apache.org/documentation/the-sling-engine/the-sling-launchpad.html#launchpad-app-and-launchpad-webapp">the Sling Launchpad documentation</a> for details about configuring the persistence mode.</p> 
-<h2><a href="#provisioning-model" id="provisioning-model">Provisioning model</a></h2> 
-<p>Sling is now provisioned using a simple, text-based, model. See See <a href="http://sling.apache.org/documentation/development/slingstart.html">the Sling Provisioning Model documentation</a> for details.</p> 
-<h2><a href="#sightly" id="sightly">Sightly</a></h2> 
-<p>Sightly is an HTML templating language, similar to JSP (Java Server Pages) and ESP (ECMAScript Server Pages). The name “Sightly” (meaning “pleasing to the eye”) highlights its focus on keeping your markup beautiful, and thus maintainable, once made dynamic.</p> 
-<p>The cornerstones of Sightly are:</p> 
-<ul> 
- <li>Secure by default: Sightly automatically filters and escapes all variables being output to the presentation layer to prevent cross-site-scripting (XSS) vulnerabilities</li> 
- <li>Supports separation of concerns: The expressiveness of the Sightly template language is purposely limited, in order to make sure that a real programming language is used to express the corresponding presentation logic</li> 
- <li>Built on HTML 5: A Sightly file is itself a valid HTML5 file. All Sightly-specific syntax is expressed either within a data attribute, or within HTML text.</li> 
-</ul> 
-<p>See <a href="https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md">the Sightly HTML Templating Language Specification</a> for details.</p> 
-<h2><a href="#versioning-support-in-the-resource-api" id="versioning-support-in-the-resource-api">Versioning support in the Resource API</a></h2> 
-<p>The Java Resource API and the HTTP API are now able to work with versioned resources. See <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848 - Support getting versioned resources by using uri path parameters</a> for more details.</p> 
-<h2><a href="#improved-testing-tools" id="improved-testing-tools">Improved testing tools</a></h2> 
-<p>The Sling testing tools have seen numerous additions since the last release, including a family of Mock libraries known as the Sling Mocks and a Teleporter JUnit module for running Sling tests in provisioned Sling instances. For more details, see the documentation on <a href="https://sling.apache.org/documentation/bundles/org-apache-sling-junit-bundles.html">JUnit server-side testing support bundles</a> and <a href="https://sling.apache.org/documentation/development/sling-mock.html">Sling Mocks</a> .</p> 
-<h2><a href="#servlet-api-30" id="servlet-api-30">Servlet API 3.0</a></h2> 
-<p>Sling now uses and requires Servlet API 3.0. See <a href="https://jcp.org/en/jsr/detail?id=315">JSR 315: JavaTM Servlet 3.0 Specification</a> for details.</p> 
-<h2><a href="#performance" id="performance">Performance</a></h2> 
-<p>Various performance and concurrency improvements were added to the Engine and JCR Resource bundles.</p> 
-<h2><a href="#dependency-updates" id="dependency-updates">Dependency updates</a></h2> 
-<p>Some of the notable dependency updates are:</p> 
-<ul> 
- <li>Apache Felix has been upgraded to version 5.2.0</li> 
- <li>Apache Tika has been updated to version 1.10</li> 
- <li>Apache HttpClient 4.4 has been added</li> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Here are some of the more noteworthy things available in this release.</p>
+<h2><a href="#switched-to-apache-jackrabbit-oak" name="switched-to-apache-jackrabbit-oak">Switched to Apache Jackrabbit Oak</a></h2>
+<p>The Sling launchpad has switched from Apache Jackrabbit 2.7.5 to Apache Jackrabbit Oak 1.3.7 as a persistence engine. Apache Jackrabbit Oak is now supported in Sling with two persistence modes: SegmentNodeStore ( file-based ) and DocumentNodeStore ( MongoDB-based ). See <a href="http://jackrabbit.apache.org/oak/docs/index.html">the Oak documentation</a> for more details about the Oak persistence modes and <a href="https://sling.apache.org/documentation/the-sling-engine/the-sling-launchpad.html#launchpad-app-and-launchpad-webapp">the Sling Launchpad documentation</a> for details about configuring the persistence mode.</p>
+<h2><a href="#provisioning-model" name="provisioning-model">Provisioning model</a></h2>
+<p>Sling is now provisioned using a simple, text-based, model. See See <a href="http://sling.apache.org/documentation/development/slingstart.html">the Sling Provisioning Model documentation</a> for details.</p>
+<h2><a href="#sightly" name="sightly">Sightly</a></h2>
+<p>Sightly is an HTML templating language, similar to JSP (Java Server Pages) and ESP (ECMAScript Server Pages). The name “Sightly” (meaning “pleasing to the eye”) highlights its focus on keeping your markup beautiful, and thus maintainable, once made dynamic.</p>
+<p>The cornerstones of Sightly are:</p>
+<ul>
+  <li>Secure by default: Sightly automatically filters and escapes all variables being output to the presentation layer to prevent cross-site-scripting (XSS) vulnerabilities</li>
+  <li>Supports separation of concerns: The expressiveness of the Sightly template language is purposely limited, in order to make sure that a real programming language is used to express the corresponding presentation logic</li>
+  <li>Built on HTML 5: A Sightly file is itself a valid HTML5 file. All Sightly-specific syntax is expressed either within a data attribute, or within HTML text.</li>
+</ul>
+<p>See <a href="https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md">the Sightly HTML Templating Language Specification</a> for details.</p>
+<h2><a href="#versioning-support-in-the-resource-api" name="versioning-support-in-the-resource-api">Versioning support in the Resource API</a></h2>
+<p>The Java Resource API and the HTTP API are now able to work with versioned resources. See <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848 - Support getting versioned resources by using uri path parameters</a> for more details.</p>
+<h2><a href="#improved-testing-tools" name="improved-testing-tools">Improved testing tools</a></h2>
+<p>The Sling testing tools have seen numerous additions since the last release, including a family of Mock libraries known as the Sling Mocks and a Teleporter JUnit module for running Sling tests in provisioned Sling instances. For more details, see the documentation on <a href="https://sling.apache.org/documentation/bundles/org-apache-sling-junit-bundles.html">JUnit server-side testing support bundles</a> and <a href="https://sling.apache.org/documentation/development/sling-mock.html">Sling Mocks</a> .</p>
+<h2><a href="#servlet-api-3-0" name="servlet-api-3-0">Servlet API 3.0</a></h2>
+<p>Sling now uses and requires Servlet API 3.0. See <a href="https://jcp.org/en/jsr/detail?id=315">JSR 315: JavaTM Servlet 3.0 Specification</a> for details.</p>
+<h2><a href="#performance" name="performance">Performance</a></h2>
+<p>Various performance and concurrency improvements were added to the Engine and JCR Resource bundles.</p>
+<h2><a href="#dependency-updates" name="dependency-updates">Dependency updates</a></h2>
+<p>Some of the notable dependency updates are:</p>
+<ul>
+  <li>Apache Felix has been upgraded to version 5.2.0</li>
+  <li>Apache Tika has been updated to version 1.10</li>
+  <li>Apache HttpClient 4.4 has been added</li>
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

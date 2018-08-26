@@ -92,100 +92,100 @@
                 Managing permissions (jackrabbit.accessmanager)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>jackrabbit-accessmanager</code> bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the <code>jackrabbit-accessmanager</code> bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like <code>modifyAce</code>, <code>acl</code> and <code>deleteAce</code>. <!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p> 
-<h2><a href="#privileges" id="privileges">Privileges</a></h2> 
-<table> 
- <thead> 
-  <tr>
-   <th> privilagename </th>
-   <th> description </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> jcr:read </td>
-   <td> the privilege to retrieve a node and get its properties and their values </td>
-  </tr> 
-  <tr>
-   <td> jcr:readAccessControl </td>
-   <td> the privilege to get the access control policy of a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:modifyProperties </td>
-   <td> the privilege to create, modify and remove the properties of a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:addChildNodes </td>
-   <td> the privilege to create child nodes of a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:removeChildNodes </td>
-   <td> the privilege to remove child nodes of a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:removeNode </td>
-   <td> the privilege to remove a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:write </td>
-   <td> an aggregate privilege that contains: jcr:modifyProperties jcr:addChildNodes jcr:removeNode jcr:removeChildNodes </td>
-  </tr> 
-  <tr>
-   <td> jcr:modifyAccessControl </td>
-   <td> the privilege to modify the access control policies of a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:lockManagement </td>
-   <td> the privilege to lock and unlock a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:versionManagement </td>
-   <td> the privilege to perform versioning operations on a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:nodeTypeManagement </td>
-   <td> the privilege to add and remove mixin node types and change the primary node type of a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:retentionManagement </td>
-   <td> the privilege to perform retention management operations on a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:lifecycleManagement </td>
-   <td> the privilege to perform lifecycle operations on a node </td>
-  </tr> 
-  <tr>
-   <td> jcr:all </td>
-   <td> an aggregate privilege that contains all predefined privileges </td>
-  </tr> 
- </tbody> 
-</table> 
-<h2><a href="#add-or-modify-permissions" id="add-or-modify-permissions">Add or modify permissions</a></h2> 
-<p>To modify the permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.modifyAce.&lt;html or json&gt;</code>. The following parameters are available:</p> 
-<ul> 
- <li><em>numeric</em> - Place the target ACE at the specified numeric index. |</li> 
-</ul> 
-<p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. | Example with curl:</p> 
+</p>
+<h2><a href="#privileges" name="privileges">Privileges</a></h2>
+<table>
+  <thead>
+    <tr>
+      <th>privilagename </th>
+      <th>description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>jcr:read </td>
+      <td>the privilege to retrieve a node and get its properties and their values </td>
+    </tr>
+    <tr>
+      <td>jcr:readAccessControl </td>
+      <td>the privilege to get the access control policy of a node </td>
+    </tr>
+    <tr>
+      <td>jcr:modifyProperties </td>
+      <td>the privilege to create, modify and remove the properties of a node </td>
+    </tr>
+    <tr>
+      <td>jcr:addChildNodes </td>
+      <td>the privilege to create child nodes of a node </td>
+    </tr>
+    <tr>
+      <td>jcr:removeChildNodes </td>
+      <td>the privilege to remove child nodes of a node </td>
+    </tr>
+    <tr>
+      <td>jcr:removeNode </td>
+      <td>the privilege to remove a node </td>
+    </tr>
+    <tr>
+      <td>jcr:write </td>
+      <td>an aggregate privilege that contains: jcr:modifyProperties jcr:addChildNodes jcr:removeNode jcr:removeChildNodes </td>
+    </tr>
+    <tr>
+      <td>jcr:modifyAccessControl </td>
+      <td>the privilege to modify the access control policies of a node </td>
+    </tr>
+    <tr>
+      <td>jcr:lockManagement </td>
+      <td>the privilege to lock and unlock a node </td>
+    </tr>
+    <tr>
+      <td>jcr:versionManagement </td>
+      <td>the privilege to perform versioning operations on a node </td>
+    </tr>
+    <tr>
+      <td>jcr:nodeTypeManagement </td>
+      <td>the privilege to add and remove mixin node types and change the primary node type of a node </td>
+    </tr>
+    <tr>
+      <td>jcr:retentionManagement </td>
+      <td>the privilege to perform retention management operations on a node </td>
+    </tr>
+    <tr>
+      <td>jcr:lifecycleManagement </td>
+      <td>the privilege to perform lifecycle operations on a node </td>
+    </tr>
+    <tr>
+      <td>jcr:all </td>
+      <td>an aggregate privilege that contains all predefined privileges </td>
+    </tr>
+  </tbody>
+</table>
+<h2><a href="#add-or-modify-permissions" name="add-or-modify-permissions">Add or modify permissions</a></h2>
+<p>To modify the permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.modifyAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<ul>
+  <li><em>numeric</em> - Place the target ACE at the specified numeric index. |</li>
+</ul>
+<p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. | Example with curl:</p>
 <pre><code>curl -FprincipalId=myuser -Fprivilege@jcr:read=granted http://localhost:8080/test/node.modifyAce.html
-</code></pre> 
-<h2><a href="#delete-permissions" id="delete-permissions">Delete permissions</a></h2> 
-<p>To delete permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.deleteAce.&lt;html or json&gt;</code>. The following parameters are available:</p> 
-<p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. | Example with curl:</p> 
+</code></pre>
+<h2><a href="#delete-permissions" name="delete-permissions">Delete permissions</a></h2>
+<p>To delete permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.deleteAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. | Example with curl:</p>
 <pre><code>curl -F:applyTo=myuser http://localhost:8080/test/node.deleteAce.html
-</code></pre> 
-<h2><a href="#get-permissions" id="get-permissions">Get permissions</a></h2> 
-<h3><a href="#bound-permissions" id="bound-permissions">Bound Permissions</a></h3> 
-<p>To get the permissions bound to a particular node in a json format for a node send a GET request to <code>/&lt;path-to-the-node&gt;.acl.json</code>.</p> 
-<p>Example:</p> 
+</code></pre>
+<h2><a href="#get-permissions" name="get-permissions">Get permissions</a></h2>
+<h3><a href="#bound-permissions" name="bound-permissions">Bound Permissions</a></h3>
+<p>To get the permissions bound to a particular node in a json format for a node send a GET request to <code>/&lt;path-to-the-node&gt;.acl.json</code>. </p>
+<p>Example:</p>
 <pre><code>http://localhost:8080/test/node.acl.json
-</code></pre> 
-<h3><a href="#effective-permissions" id="effective-permissions">Effective Permissions</a></h3> 
-<p>To get the permissions which are effective for a particular node in a json format for a node send a GET request to <code>/&lt;path-to-the-node&gt;.eacl.json</code>.</p> 
-<p>Example:</p> 
+</code></pre>
+<h3><a href="#effective-permissions" name="effective-permissions">Effective Permissions</a></h3>
+<p>To get the permissions which are effective for a particular node in a json format for a node send a GET request to <code>/&lt;path-to-the-node&gt;.eacl.json</code>. </p>
+<p>Example:</p>
 <pre><code>http://localhost:8080/test/node.eacl.json
-</code></pre> 
+</code></pre>
 <div class="note">
-  See section 16.3 of the JCR 2.0 specification for an explanation of the difference between bound and effective policies. 
+See section 16.3 of the JCR 2.0 specification for an explanation of the difference between bound and effective policies.
 </div></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

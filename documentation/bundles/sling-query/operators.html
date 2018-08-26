@@ -93,37 +93,37 @@
             </div><h1 class="pagetitle">
                 Operators
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#contains-namevalue" id="contains-namevalue">Contains <code>[name*=value]</code></a></h3> 
-<p>Select resources that have property <code>name</code> containing <code>value</code>:</p> 
-<pre><code>// select children pages titled 'foo', 'foo bar', 'bar foo bar', 'foofoofoo', etc.
-$(resources).children("cq:Page[jcr:content/jcr:title*=foo]")
-</code></pre> 
-<h3><a href="#contains-a-word-namevalue" id="contains-a-word-namevalue">Contains a word <code>[name~=value]</code></a></h3> 
-<p>Select resources that have property <code>name</code> containing word <code>value</code> delimited with spaces:</p> 
-<pre><code>// select children pages titled 'foo', 'foo bar', 'bar foo bar', but not 'foofoofoo'
-$(resources).children("cq:Page[jcr:content/jcr:title~=foo]")
-</code></pre> 
-<h3><a href="#ends-with-namevalue" id="ends-with-namevalue">Ends with <code>[name$=value]</code></a></h3> 
-<p>Select resources that have property <code>name</code> ending with <code>value</code>:</p> 
-<pre><code>// select children pages titled 'foo', 'bar foo', etc.
-$(resources).children("cq:Page[jcr:content/jcr:title$=foo]")
-</code></pre> 
-<h3><a href="#equals-namevalue" id="equals-namevalue">Equals <code>[name=value]</code></a></h3> 
-<p>Select resources that have property <code>name</code> that equals to <code>value</code>:</p> 
-<pre><code>$(resources).children("cq:Page[jcr:content/jcr:title=foo]")
-</code></pre> 
-<h3><a href="#not-equal-namevalue" id="not-equal-namevalue">Not equal <code>[name!=value]</code></a></h3> 
-<p>Select resources that have property <code>name</code> that not equals to <code>value</code>:</p> 
-<pre><code>$(resources).children("cq:Page[jcr:content/jcr:title!=foo]")
-</code></pre> 
-<h3><a href="#starts-with-namevalue" id="starts-with-namevalue">Starts with <code>[name^=value]</code></a></h3> 
-<p>Select resources that have property <code>name</code> starting with <code>value</code>:</p> 
-<pre><code>// select children pages titled 'foo', 'foo bar', etc.
-$(resources).children("cq:Page[jcr:content/jcr:title^=foo]")
-</code></pre> 
-<h3><a href="#has-attribute-name" id="has-attribute-name">Has attribute <code>[name]</code></a></h3> 
-<p>Select resources that have property <code>name</code>:</p> 
-<pre><code>$(resources).find("[markerProperty]")
+<div class="row"><div class="small-12 columns"><section class="wrap"><h3>Contains <code>[name*=value]</code></h3>
+<p>Select resources that have property <code>name</code> containing <code>value</code>:</p>
+<pre><code>// select children pages titled &#39;foo&#39;, &#39;foo bar&#39;, &#39;bar foo bar&#39;, &#39;foofoofoo&#39;, etc.
+$(resources).children(&quot;cq:Page[jcr:content/jcr:title*=foo]&quot;)
+</code></pre>
+<h3>Contains a word <code>[name~=value]</code></h3>
+<p>Select resources that have property <code>name</code> containing word <code>value</code> delimited with spaces:</p>
+<pre><code>// select children pages titled &#39;foo&#39;, &#39;foo bar&#39;, &#39;bar foo bar&#39;, but not &#39;foofoofoo&#39;
+$(resources).children(&quot;cq:Page[jcr:content/jcr:title~=foo]&quot;)
+</code></pre>
+<h3>Ends with <code>[name$=value]</code></h3>
+<p>Select resources that have property <code>name</code> ending with <code>value</code>:</p>
+<pre><code>// select children pages titled &#39;foo&#39;, &#39;bar foo&#39;, etc.
+$(resources).children(&quot;cq:Page[jcr:content/jcr:title$=foo]&quot;)
+</code></pre>
+<h3>Equals <code>[name=value]</code></h3>
+<p>Select resources that have property <code>name</code> that equals to <code>value</code>:</p>
+<pre><code>$(resources).children(&quot;cq:Page[jcr:content/jcr:title=foo]&quot;)
+</code></pre>
+<h3>Not equal <code>[name!=value]</code></h3>
+<p>Select resources that have property <code>name</code> that not equals to <code>value</code>:</p>
+<pre><code>$(resources).children(&quot;cq:Page[jcr:content/jcr:title!=foo]&quot;)
+</code></pre>
+<h3>Starts with <code>[name^=value]</code></h3>
+<p>Select resources that have property <code>name</code> starting with <code>value</code>:</p>
+<pre><code>// select children pages titled &#39;foo&#39;, &#39;foo bar&#39;, etc.
+$(resources).children(&quot;cq:Page[jcr:content/jcr:title^=foo]&quot;)
+</code></pre>
+<h3>Has attribute <code>[name]</code></h3>
+<p>Select resources that have property <code>name</code>:</p>
+<pre><code>$(resources).find(&quot;[markerProperty]&quot;)
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

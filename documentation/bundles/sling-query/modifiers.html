@@ -93,45 +93,45 @@
             </div><h1 class="pagetitle">
                 Modifiers
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#eqindex" id="eqindex"><code>:eq(index)</code></a></h3> 
-<p>Reduce the set of matched elements to the one at the specified 0-based index. Example:</p> 
-<pre><code>$(...).find("foundation/components/richtext:eq(2)"); // find the third richtext in the subtree
-</code></pre> 
-<h3><a href="#even" id="even"><code>:even</code></a></h3> 
-<p>Reduce the set of matched elements to those which indexes are even numbers:</p> 
-<pre><code>$(...).children("cq:Page:even"); // get even children pages for each resource in the collection
-</code></pre> 
-<h3><a href="#first" id="first"><code>:first</code></a></h3> 
-<p>Reduce the set of matched elements to the first one:</p> 
-<pre><code>$(...).find("foundation/components/richtext:first"); // find the first richtext in the subtree
-</code></pre> 
-<h3><a href="#gtindex" id="gtindex"><code>:gt(index)</code></a></h3> 
-<p>Reduce the set of matched elements to those which indexes are greater than the argument:</p> 
-<pre><code>$(...).children("cq:Page:gt(2)"); // filter out first 3 pages
-</code></pre> 
-<h3><a href="#hasselector" id="hasselector"><code>:has(selector)</code></a></h3> 
-<p>Reduce the set of the matched elements to those which have descendant matching the selector:</p> 
-<pre><code>$(...).children("cq:Page:has(foundation/components/richtext)]"); // get children pages containing richtext component
-</code></pre> 
-<h3><a href="#last" id="last"><code>:last</code></a></h3> 
-<p>Reduce the set of matched elements to the last one:</p> 
-<pre><code>$(...).find("foundation/components/richtext:last"); // find the last richtext in the subtree
-</code></pre> 
-<h3><a href="#ltindex" id="ltindex"><code>:lt(index)</code></a></h3> 
-<p>Reduce the set of matched elements to those which indexes are lesser than the argument:</p> 
-<pre><code>$(...).children("cq:Page:lt(3)"); // get first 3 matches
-</code></pre> 
-<h3><a href="#notselector" id="notselector"><code>:not(selector)</code></a></h3> 
-<p>Reduce the set of matched elements to those which doesn't match the selector. The selector may contain other modifiers as well, however in this case the function will be evaluated eagerly:</p> 
-<pre><code>$(...).find(":not(:parent)"); // ancestor resources that doesn't contain any children
-</code></pre> 
-<h3><a href="#odd" id="odd"><code>:odd</code></a></h3> 
-<p>Reduce the set of matched elements to those which indexes are odd numbers:</p> 
-<pre><code>$(...).children("cq:Page:odd"); // get odd children pages for each resource in the collection
-</code></pre> 
-<h3><a href="#parent" id="parent"><code>:parent</code></a></h3> 
-<p>Reduce the set of the matched elements to those which have any descendant resource.</p> 
-<pre><code>$(...).children(":parent]"); // get children resources containing any resource
+<div class="row"><div class="small-12 columns"><section class="wrap"><h3><a href="#eq-index-" name="eq-index-">:eq(index)</a></h3>
+<p>Reduce the set of matched elements to the one at the specified 0-based index. Example:</p>
+<pre><code>$(...).find(&quot;foundation/components/richtext:eq(2)&quot;); // find the third richtext in the subtree
+</code></pre>
+<h3><a href="#even" name="even">:even</a></h3>
+<p>Reduce the set of matched elements to those which indexes are even numbers:</p>
+<pre><code>$(...).children(&quot;cq:Page:even&quot;); // get even children pages for each resource in the collection
+</code></pre>
+<h3><a href="#first" name="first">:first</a></h3>
+<p>Reduce the set of matched elements to the first one:</p>
+<pre><code>$(...).find(&quot;foundation/components/richtext:first&quot;); // find the first richtext in the subtree
+</code></pre>
+<h3><a href="#gt-index-" name="gt-index-">:gt(index)</a></h3>
+<p>Reduce the set of matched elements to those which indexes are greater than the argument:</p>
+<pre><code>$(...).children(&quot;cq:Page:gt(2)&quot;); // filter out first 3 pages
+</code></pre>
+<h3><a href="#has-selector-" name="has-selector-">:has(selector)</a></h3>
+<p>Reduce the set of the matched elements to those which have descendant matching the selector:</p>
+<pre><code>$(...).children(&quot;cq:Page:has(foundation/components/richtext)]&quot;); // get children pages containing richtext component
+</code></pre>
+<h3><a href="#last" name="last">:last</a></h3>
+<p>Reduce the set of matched elements to the last one:</p>
+<pre><code>$(...).find(&quot;foundation/components/richtext:last&quot;); // find the last richtext in the subtree
+</code></pre>
+<h3><a href="#lt-index-" name="lt-index-">:lt(index)</a></h3>
+<p>Reduce the set of matched elements to those which indexes are lesser than the argument:</p>
+<pre><code>$(...).children(&quot;cq:Page:lt(3)&quot;); // get first 3 matches
+</code></pre>
+<h3><a href="#not-selector-" name="not-selector-">:not(selector)</a></h3>
+<p>Reduce the set of matched elements to those which doesn't match the selector. The selector may contain other modifiers as well, however in this case the function will be evaluated eagerly:</p>
+<pre><code>$(...).find(&quot;:not(:parent)&quot;); // ancestor resources that doesn&#39;t contain any children
+</code></pre>
+<h3><a href="#odd" name="odd">:odd</a></h3>
+<p>Reduce the set of matched elements to those which indexes are odd numbers:</p>
+<pre><code>$(...).children(&quot;cq:Page:odd&quot;); // get odd children pages for each resource in the collection
+</code></pre>
+<h3><a href="#parent" name="parent">:parent</a></h3>
+<p>Reduce the set of the matched elements to those which have any descendant resource.</p>
+<pre><code>$(...).children(&quot;:parent]&quot;); // get children resources containing any resource
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -99,21 +99,21 @@
             </div><h1 class="pagetitle">
                 Apache Sling Testing PaxExam
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#overview" id="overview">Overview</a></h2> 
-<p><a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam">Sling Testing PaxExam</a> provides test support for use with <a href="https://github.com/ops4j/org.ops4j.pax.exam2">Pax Exam</a> to test with <em>real</em> Sling instances – no limitations or issues due to incomplete and faulty mock implementations.</p> 
-<p><a href="https://sling.apache.org/documentation/karaf.html#sling-karaf-features">Sling's Karaf Features</a> are available as <code>Option</code>s for Pax Exam to set up tailored Sling instances easily.</p> 
-<p>The <a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam/blob/master/src/main/java/org/apache/sling/testing/paxexam/TestSupport.java"><code>TestSupport</code></a> class comes with common helper methods and <code>Option</code>s.</p> 
-<p>The setups and examples on this page show how to run fully isolated tests in separate JVMs (<a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263862/OSGi+Containers#OSGiContainers-ForkedContainer">forked container</a>) to avoid classloader issues and boot a new Sling instance per test class to have always a fresh OSGi container and JCR repository.</p> 
-<h2><a href="#features" id="features">Features</a></h2> 
-<ul> 
- <li>run integration tests in a <em>tailored</em> Sling instance in the <em>same module</em> (with the build artifact under test)</li> 
- <li>use different versions in build (e.g. <em>minimal</em>) and tests (e.g. <em>latest</em>)</li> 
- <li>overriding of versions</li> 
- <li>build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)</li> 
-</ul> 
-<h2><a href="#getting-started" id="getting-started">Getting Started</a></h2> 
-<h3><a href="#1-add-required-dependencies" id="1-add-required-dependencies">1. Add required dependencies</a></h3> 
-<p>Add the required dependencies for testing with JUnit and Pax Exam in Sling:</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#overview" name="overview">Overview</a></h2>
+<p><a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam">Sling Testing PaxExam</a> provides test support for use with <a href="https://github.com/ops4j/org.ops4j.pax.exam2">Pax Exam</a> to test with <em>real</em> Sling instances – no limitations or issues due to incomplete and faulty mock implementations.</p>
+<p><a href="https://sling.apache.org/documentation/karaf.html#sling-karaf-features">Sling's Karaf Features</a> are available as <code>Option</code>s for Pax Exam to set up tailored Sling instances easily.</p>
+<p>The <a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam/blob/master/src/main/java/org/apache/sling/testing/paxexam/TestSupport.java"><code>TestSupport</code></a> class comes with common helper methods and <code>Option</code>s.</p>
+<p>The setups and examples on this page show how to run fully isolated tests in separate JVMs (<a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263862/OSGi+Containers#OSGiContainers-ForkedContainer">forked container</a>) to avoid classloader issues and boot a new Sling instance per test class to have always a fresh OSGi container and JCR repository.</p>
+<h2><a href="#features" name="features">Features</a></h2>
+<ul>
+  <li>run integration tests in a <em>tailored</em> Sling instance in the <em>same module</em> (with the build artifact under test)</li>
+  <li>use different versions in build (e.g. <em>minimal</em>) and tests (e.g. <em>latest</em>)</li>
+  <li>overriding of versions</li>
+  <li>build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)</li>
+</ul>
+<h2><a href="#getting-started" name="getting-started">Getting Started</a></h2>
+<h3><a href="#1-add-required-dependencies" name="1-add-required-dependencies">1. Add required dependencies</a></h3>
+<p>Add the required dependencies for testing with JUnit and Pax Exam in Sling:</p>
 <pre><code>&lt;!-- Sling Testing PaxExam --&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
@@ -168,9 +168,9 @@
   &lt;version&gt;4.11.0&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
-</code></pre> 
-<h3><a href="#2-configure-the-build-artifact-to-use-in-integration-testing" id="2-configure-the-build-artifact-to-use-in-integration-testing">2. Configure the build artifact to use in integration testing</a></h3> 
-<p>Configure the build artifact (bundle) to use in integration testing in <code>pom.xml</code>:</p> 
+</code></pre>
+<h3><a href="#2-configure-the-build-artifact-to-use-in-integration-testing" name="2-configure-the-build-artifact-to-use-in-integration-testing">2. Configure the build artifact to use in integration testing</a></h3>
+<p>Configure the build artifact (bundle) to use in integration testing in <code>pom.xml</code>:</p>
 <pre><code>  &lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
@@ -192,8 +192,8 @@
       &lt;/systemProperties&gt;
     &lt;/configuration&gt;
   &lt;/plugin&gt;
-</code></pre> 
-<p>Add <code>depends-maven-plugin</code> when using <code>TestSupport#baseConfiguration()</code> or <code>SlingVersionResolver#setVersionFromProject(…)</code>:</p> 
+</code></pre>
+<p>Add <code>depends-maven-plugin</code> when using <code>TestSupport#baseConfiguration()</code> or <code>SlingVersionResolver#setVersionFromProject(…)</code>:</p>
 <pre><code>  &lt;plugin&gt;
     &lt;groupId&gt;org.apache.servicemix.tooling&lt;/groupId&gt;
     &lt;artifactId&gt;depends-maven-plugin&lt;/artifactId&gt;
@@ -206,17 +206,17 @@
       &lt;/execution&gt;
     &lt;/executions&gt;
   &lt;/plugin&gt;
-</code></pre> 
-<p><strong>NOTE:</strong> <code>&lt;version/&gt;</code> and <code>&lt;executions/&gt;</code> are managed in Sling Parent and can be omitted when using version 33 or higher.</p> 
-<h3><a href="#3-create-a-test-class-and-provide-a-configuration" id="3-create-a-test-class-and-provide-a-configuration">3. Create a test class and provide a <em>Configuration</em></a></h3> 
-<p>Create a test class (extend <code>TestSupport</code> to use helper methods and <code>Option</code>s) and provide a <em>Configuration</em> (<code>Option[]</code>) for Pax Exam:</p> 
+</code></pre>
+<p><strong>NOTE:</strong> <code>&lt;version/&gt;</code> and <code>&lt;executions/&gt;</code> are managed in Sling Parent and can be omitted when using version 33 or higher.</p>
+<h3>3. Create a test class and provide a <em>Configuration</em></h3>
+<p>Create a test class (extend <code>TestSupport</code> to use helper methods and <code>Option</code>s) and provide a <em>Configuration</em> (<code>Option[]</code>) for Pax Exam:</p>
 <pre><code>@Configuration
 public Option[] configuration() {
     return new Option[]{
         baseConfiguration(), // from TestSupport
         slingQuickstart(),
         // build artifact
-        testBundle("bundle.filename"), // from TestSupport
+        testBundle(&quot;bundle.filename&quot;), // from TestSupport
         // testing
         junitBundles()
     };
@@ -231,24 +231,24 @@ protected Option slingQuickstart() {
         slingScripting() // from SlingOptions (for illustration)
     );
 }
-</code></pre> 
-<p>The above configuration provides all bundles and OSGi configurations to run a Sling Quickstart setup with Sling Models and Sling Scripting.</p> 
-<p><strong>NOTE:</strong> When using <code>slingQuickstartOakTar()</code> or <code>slingQuickstartOakMongo()</code> without <em>working directory</em>, <em>HTTP port</em> and <em>Mongo URI</em> make sure to clean up file system and database after each test and do not run tests in parallel to prevent interferences between tests.</p> 
-<h2><a href="#overriding-or-adding-versions" id="overriding-or-adding-versions">Overriding or adding versions</a></h2> 
-<p>To use different versions of bundles in tests than the ones in <code>SlingVersionResolver</code> create a custom <code>SlingVersionResolver</code> (extending <code>SlingVersionResolver</code>) and set it in <code>SlingOptions</code>:</p> 
+</code></pre>
+<p>The above configuration provides all bundles and OSGi configurations to run a Sling Quickstart setup with Sling Models and Sling Scripting.</p>
+<p><strong>NOTE:</strong> When using <code>slingQuickstartOakTar()</code> or <code>slingQuickstartOakMongo()</code> without <em>working directory</em>, <em>HTTP port</em> and <em>Mongo URI</em> make sure to clean up file system and database after each test and do not run tests in parallel to prevent interferences between tests.</p>
+<h2><a href="#overriding-or-adding-versions" name="overriding-or-adding-versions">Overriding or adding versions</a></h2>
+<p>To use different versions of bundles in tests than the ones in <code>SlingVersionResolver</code> create a custom <code>SlingVersionResolver</code> (extending <code>SlingVersionResolver</code>) and set it in <code>SlingOptions</code>:</p>
 <pre><code>SlingOptions.versionResolver = new CustomSlingVersionResolver();
-</code></pre> 
-<p>or simply (re)set versions in <code>SlingVersionResolver</code>:</p> 
-<pre><code>SlingOptions.versionResolver.setVersion(SLING_GROUP_ID, "org.apache.sling.jcr.oak.server", "1.1.0");
-</code></pre> 
-<p>To use a version from project (<code>pom.xml</code>) use <code>setVersionFromProject(String, String)</code> with <code>groupId</code> and <code>artifactId</code>:</p> 
-<pre><code>SlingOptions.versionResolver.setVersionFromProject(SLING_GROUP_ID, "org.apache.sling.jcr.oak.server");
-</code></pre> 
-<h2><a href="#examples" id="examples">Examples</a></h2> 
-<h3><a href="#set-up-a-tailored-sling-instance" id="set-up-a-tailored-sling-instance">Set up a tailored Sling instance</a></h3> 
-<p>The <code>FreemarkerTestSupport</code> below from <a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">Scripting FreeMarker</a> shows how to set up a tailored Sling instance to test Scripting FreeMarker itself.</p> 
-<p><code>@Inject</code>ing <code>ServletResolver</code>, <code>SlingRequestProcessor</code>, <code>AuthenticationSupport</code>, <code>HttpService</code> and <code>ScriptEngineFactory</code> ensures testing is delayed until those services are available.</p> 
-<p>The <code>@ProbeBuilder</code> annotated method modifies the <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263860/Concepts#Concepts-Probe">probe</a> for Sling by adding <code>Export-Package</code>, <code>Sling-Model-Packages</code> and <code>Sling-Initial-Content</code> headers.</p> 
+</code></pre>
+<p>or simply (re)set versions in <code>SlingVersionResolver</code>:</p>
+<pre><code>SlingOptions.versionResolver.setVersion(SLING_GROUP_ID, &quot;org.apache.sling.jcr.oak.server&quot;, &quot;1.1.0&quot;);
+</code></pre>
+<p>To use a version from project (<code>pom.xml</code>) use <code>setVersionFromProject(String, String)</code> with <code>groupId</code> and <code>artifactId</code>:</p>
+<pre><code>SlingOptions.versionResolver.setVersionFromProject(SLING_GROUP_ID, &quot;org.apache.sling.jcr.oak.server&quot;);
+</code></pre>
+<h2><a href="#examples" name="examples">Examples</a></h2>
+<h3><a href="#set-up-a-tailored-sling-instance" name="set-up-a-tailored-sling-instance">Set up a tailored Sling instance</a></h3>
+<p>The <code>FreemarkerTestSupport</code> below from <a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">Scripting FreeMarker</a> shows how to set up a tailored Sling instance to test Scripting FreeMarker itself. </p>
+<p><code>@Inject</code>ing <code>ServletResolver</code>, <code>SlingRequestProcessor</code>, <code>AuthenticationSupport</code>, <code>HttpService</code> and <code>ScriptEngineFactory</code> ensures testing is delayed until those services are available.</p>
+<p>The <code>@ProbeBuilder</code> annotated method modifies the <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263860/Concepts#Concepts-Probe">probe</a> for Sling by adding <code>Export-Package</code>, <code>Sling-Model-Packages</code> and <code>Sling-Initial-Content</code> headers.</p>
 <pre><code>public abstract class FreemarkerTestSupport extends TestSupport {
 
     @Inject
@@ -264,7 +264,7 @@ protected Option slingQuickstart() {
     protected HttpService httpService;
 
     @Inject
-    @Filter(value = "(names=freemarker)")
+    @Filter(value = &quot;(names=freemarker)&quot;)
     protected ScriptEngineFactory scriptEngineFactory;
 
     public Option baseConfiguration() {
@@ -272,24 +272,24 @@ protected Option slingQuickstart() {
             super.baseConfiguration(),
             slingQuickstart(),
             // Sling Scripting FreeMarker
-            testBundle("bundle.filename"),
-            mavenBundle().groupId("org.freemarker").artifactId("freemarker").versionAsInProject(),
-            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxp-api-1.4").versionAsInProject(),
+            testBundle(&quot;bundle.filename&quot;),
+            mavenBundle().groupId(&quot;org.freemarker&quot;).artifactId(&quot;freemarker&quot;).versionAsInProject(),
+            mavenBundle().groupId(&quot;org.apache.servicemix.specs&quot;).artifactId(&quot;org.apache.servicemix.specs.jaxp-api-1.4&quot;).versionAsInProject(),
             // testing
             slingResourcePresence(),
-            mavenBundle().groupId("org.jsoup").artifactId("jsoup").versionAsInProject(),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").versionAsInProject(),
+            mavenBundle().groupId(&quot;org.jsoup&quot;).artifactId(&quot;jsoup&quot;).versionAsInProject(),
+            mavenBundle().groupId(&quot;org.apache.servicemix.bundles&quot;).artifactId(&quot;org.apache.servicemix.bundles.hamcrest&quot;).versionAsInProject(),
             junitBundles()
         );
     }
 
     @ProbeBuilder
     public TestProbeBuilder probeConfiguration(final TestProbeBuilder testProbeBuilder) {
-        testProbeBuilder.setHeader(Constants.EXPORT_PACKAGE, "org.apache.sling.scripting.freemarker.it.app");
-        testProbeBuilder.setHeader("Sling-Model-Packages", "org.apache.sling.scripting.freemarker.it.app");
-        testProbeBuilder.setHeader("Sling-Initial-Content", String.join(",",
-            "apps/freemarker;path:=/apps/freemarker;overwrite:=true;uninstall:=true",
-            "content;path:=/content;overwrite:=true;uninstall:=true"
+        testProbeBuilder.setHeader(Constants.EXPORT_PACKAGE, &quot;org.apache.sling.scripting.freemarker.it.app&quot;);
+        testProbeBuilder.setHeader(&quot;Sling-Model-Packages&quot;, &quot;org.apache.sling.scripting.freemarker.it.app&quot;);
+        testProbeBuilder.setHeader(&quot;Sling-Initial-Content&quot;, String.join(&quot;,&quot;,
+            &quot;apps/freemarker;path:=/apps/freemarker;overwrite:=true;uninstall:=true&quot;,
+            &quot;content;path:=/content;overwrite:=true;uninstall:=true&quot;
         ));
         return testProbeBuilder;
     }
@@ -305,15 +305,15 @@ protected Option slingQuickstart() {
     }
 
 }
-</code></pre> 
-<h3><a href="#provide-additional-osgi-services-for-testing" id="provide-additional-osgi-services-for-testing">Provide additional OSGi services for testing</a></h3> 
-<p>The <code>FreemarkerScriptEngineFactoryIT</code> and <code>Ranked2Configuration</code> below from <a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">Scripting FreeMarker</a> show how to build a bundle with <a href="https://github.com/ops4j/org.ops4j.pax.tinybundles">Tinybundles</a> (and <a href="https://github.com/bndtools/bnd">bnd</a>) on-the-fly (<code>buildBundleWithBnd()</code>) to provide additional OSGi DS services for testing.</p> 
+</code></pre>
+<h3><a href="#provide-additional-osgi-services-for-testing" name="provide-additional-osgi-services-for-testing">Provide additional OSGi services for testing</a></h3>
+<p>The <code>FreemarkerScriptEngineFactoryIT</code> and <code>Ranked2Configuration</code> below from <a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">Scripting FreeMarker</a> show how to build a bundle with <a href="https://github.com/ops4j/org.ops4j.pax.tinybundles">Tinybundles</a> (and <a href="https://github.com/bndtools/bnd">bnd</a>) on-the-fly (<code>buildBundleWithBnd()</code>) to provide additional OSGi DS services for testing.</p>
 <pre><code>@RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class FreemarkerScriptEngineFactoryIT extends FreemarkerTestSupport {
 
     @Inject
-    @Filter("(name=bar)")
+    @Filter(&quot;(name=bar)&quot;)
     private freemarker.template.Configuration configuration;
 
     @Configuration
@@ -331,19 +331,19 @@ public class FreemarkerScriptEngineFactoryIT extends FreemarkerTestSupport {
 
     @Test
     public void testConfiguration() throws IllegalAccessException {
-        final Object configuration = FieldUtils.readDeclaredField(scriptEngineFactory, "configuration", true);
+        final Object configuration = FieldUtils.readDeclaredField(scriptEngineFactory, &quot;configuration&quot;, true);
         assertThat(configuration, sameInstance(this.configuration));
-        assertThat(configuration.getClass().getName(), is("org.apache.sling.scripting.freemarker.it.app.Ranked2Configuration"));
+        assertThat(configuration.getClass().getName(), is(&quot;org.apache.sling.scripting.freemarker.it.app.Ranked2Configuration&quot;));
     }
 
 }
-</code></pre> 
-<p>Test service with <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html#package_description">OSGi R6 DS annotation</a> (extending <code>freemarker.template.Configuration</code>):</p> 
+</code></pre>
+<p>Test service with <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html#package_description">OSGi R6 DS annotation</a> (extending <code>freemarker.template.Configuration</code>):</p>
 <pre><code>@Component(
     service = Configuration.class,
     property = {
-        "name=bar",
-        "service.ranking:Integer=2"
+        &quot;name=bar&quot;,
+        &quot;service.ranking:Integer=2&quot;
     }
 )
 public class Ranked2Configuration extends Configuration {
@@ -353,9 +353,9 @@ public class Ranked2Configuration extends Configuration {
     }
 
 }
-</code></pre> 
-<h3><a href="#testing-html-over-http-with-jsoup" id="testing-html-over-http-with-jsoup">Testing HTML over HTTP with jsoup</a></h3> 
-<p>The <code>SimpleIT</code> below from <a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">Scripting FreeMarker</a> shows how to test HTML rendering with <a href="https://jsoup.org">jsoup</a>. The use of <a href="https://github.com/apache/sling-org-apache-sling-resource-presence">ResourcePresence</a> ensures that tests are delayed until Sling's repository is ready to serve the <code>Resource</code> at given path.</p> 
+</code></pre>
+<h3><a href="#testing-html-over-http-with-jsoup" name="testing-html-over-http-with-jsoup">Testing HTML over HTTP with jsoup</a></h3>
+<p>The <code>SimpleIT</code> below from <a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">Scripting FreeMarker</a> shows how to test HTML rendering with <a href="https://jsoup.org">jsoup</a>. The use of <a href="https://github.com/apache/sling-org-apache-sling-resource-presence">ResourcePresence</a> ensures that tests are delayed until Sling's repository is ready to serve the <code>Resource</code> at given path.</p>
 <pre><code>@RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class SimpleIT extends FreemarkerTestSupport {
@@ -363,40 +363,40 @@ public class SimpleIT extends FreemarkerTestSupport {
     private Document document;
 
     @Inject
-    @Filter(value = "(path=/apps/freemarker/page/simple/html.ftl)")
+    @Filter(value = &quot;(path=/apps/freemarker/page/simple/html.ftl)&quot;)
     private ResourcePresence resourcePresence;
 
     @Configuration
     public Option[] configuration() {
         return new Option[]{
             baseConfiguration(),
-            factoryConfiguration("org.apache.sling.resource.presence.internal.ResourcePresenter")
-                .put("path", "/apps/freemarker/page/simple/html.ftl")
+            factoryConfiguration(&quot;org.apache.sling.resource.presence.internal.ResourcePresenter&quot;)
+                .put(&quot;path&quot;, &quot;/apps/freemarker/page/simple/html.ftl&quot;)
                 .asOption(),
         };
     }
 
     @Before
     public void setup() throws IOException {
-        final String url = String.format("http://localhost:%s/freemarker/simple.html", httpPort());
+        final String url = String.format(&quot;http://localhost:%s/freemarker/simple.html&quot;, httpPort());
         document = Jsoup.connect(url).get();
     }
 
     @Test
     public void testTitle() {
-        assertThat(document.title(), is("freemarker simple"));
+        assertThat(document.title(), is(&quot;freemarker simple&quot;));
     }
 
     @Test
     public void testPageName() {
-        final Element name = document.getElementById("name");
-        assertThat(name.text(), is("simple"));
+        final Element name = document.getElementById(&quot;name&quot;);
+        assertThat(name.text(), is(&quot;simple&quot;));
     }
 
 }
-</code></pre> 
-<h2><a href="#logging" id="logging">Logging</a></h2> 
-<p>See Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a> if logging needs to be tweaked.</p> 
+</code></pre>
+<h2><a href="#logging" name="logging">Logging</a></h2>
+<p>See Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a> if logging needs to be tweaked.</p>
 <p>For <a href="https://logback.qos.ch">Logback</a> use <code>SlingOptions#logback()</code> and add both <code>exam.properties</code> and <code>logback.xml</code> to <code>src/test/resources</code> as described in Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a>.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

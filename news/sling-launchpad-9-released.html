@@ -89,37 +89,37 @@
             </div><h1 class="pagetitle">
                 Apache Sling Launchpad 9 released
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Here are some of the more noteworthy things available in this release.</p> 
-<h2><a href="#updated-to-oak-161-and-segment-tar-persistence" id="updated-to-oak-161-and-segment-tar-persistence">Updated to Oak 1.6.1 and segment-tar persistence</a></h2> 
-<p>We now include the latest stable version of Oak and have switched to the latest form of the disk-based persitence - oak-segment-tar. This module provides better runtime characteristics when compared to the oak-segment persistence and also allows reliable online compaction of the repository.</p> 
-<p>If you're upgrading from a previous version of Sling you will need to manually upgrade the repository. See the <a href="http://jackrabbit.apache.org/oak/docs/migration.html">Oak documentation on Repository migration</a> for more details.</p> 
-<h2><a href="#the-sling-explorer-is-replaced-with-composum" id="the-sling-explorer-is-replaced-with-composum">The Sling Explorer is replaced with Composum</a></h2> 
-<p>The Sling Launchpad ships with a new repository explorer and administration tool - <a href="https://github.com/ist-dresden/composum">Composum</a>. Composum is more reliable and featureful compared to the previous Sling explorer.</p> 
-<h2><a href="#the-slingshot-sample-is-included" id="the-slingshot-sample-is-included">The Slingshot sample is included</a></h2> 
-<p>The default Sling configuration now includes the Slingshot sample. Slingshot exemplifies how to build and deploy a Sling application.</p> 
-<h2><a href="#new-resource-provider-and-observation-api" id="new-resource-provider-and-observation-api">New Resource Provider and Observation API</a></h2> 
-<p>The Resource Provider API has been replaced with a new implementation, which is more performant and better suited for future evolution. Existing ResourceProvider will be able to work using a backwards-compatible layer, but developers are nonetheless encouraged to move to the new implementation.</p> 
-<p>In the same manner, the Observation API has been refreshed.</p> 
-<h2><a href="#new-modules-added-validation-context-aware-configuration-repository-initialization-language" id="new-modules-added-validation-context-aware-configuration-repository-initialization-language">New modules added: Validation, Context-Aware Configuration, Repository Initialization Language</a></h2> 
-<p>A number of new general-purpose modules have been added to the Sling Launchpad:</p> 
-<ul> 
- <li><a href="/documentation/bundles/validation.html">Validation</a></li> 
- <li><a href="/documentation/bundles/context-aware-configuration/context-aware-configuration.html">Context-Aware configuration</a></li> 
- <li><a href="/documentation/bundles/repository-initialization.html">Repository Initialization Language</a></li> 
-</ul> 
-<h2><a href="#tooling-htl-maven-plugin" id="tooling-htl-maven-plugin">Tooling: HTL Maven Plugin</a></h2> 
-<p>The <a href="http://sling.apache.org/components/htl-maven-plugin/">HTL Maven Plugin</a> provides build-time validation for projects using HTL. Furthermore, the HTL engine has been modularised into an HTL Compiler, an HTL Java Compiler and an HTL Script Engine, with the first two allowing to build other HTL tools in a Sling-independent way.</p> 
-<h2><a href="#streaming-upload-support" id="streaming-upload-support">Streaming Upload Support</a></h2> 
-<p>The version of the Sling Engine shipped in the Launchpad now supports streaming uploads, for better I/O throughput. Streaming uploads are opt-in via setting the following HTTP Header:</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Here are some of the more noteworthy things available in this release.</p>
+<h2><a href="#updated-to-oak-1-6-1-and-segment-tar-persistence" name="updated-to-oak-1-6-1-and-segment-tar-persistence">Updated to Oak 1.6.1 and segment-tar persistence</a></h2>
+<p>We now include the latest stable version of Oak and have switched to the latest form of the disk-based persitence - oak-segment-tar. This module provides better runtime characteristics when compared to the oak-segment persistence and also allows reliable online compaction of the repository.</p>
+<p>If you're upgrading from a previous version of Sling you will need to manually upgrade the repository. See the <a href="http://jackrabbit.apache.org/oak/docs/migration.html">Oak documentation on Repository migration</a> for more details.</p>
+<h2><a href="#the-sling-explorer-is-replaced-with-composum" name="the-sling-explorer-is-replaced-with-composum">The Sling Explorer is replaced with Composum</a></h2>
+<p>The Sling Launchpad ships with a new repository explorer and administration tool - <a href="https://github.com/ist-dresden/composum">Composum</a>. Composum is more reliable and featureful compared to the previous Sling explorer.</p>
+<h2><a href="#the-slingshot-sample-is-included" name="the-slingshot-sample-is-included">The Slingshot sample is included</a></h2>
+<p>The default Sling configuration now includes the Slingshot sample. Slingshot exemplifies how to build and deploy a Sling application.</p>
+<h2><a href="#new-resource-provider-and-observation-api" name="new-resource-provider-and-observation-api">New Resource Provider and Observation API</a></h2>
+<p>The Resource Provider API has been replaced with a new implementation, which is more performant and better suited for future evolution. Existing ResourceProvider will be able to work using a backwards-compatible layer, but developers are nonetheless encouraged to move to the new implementation.</p>
+<p>In the same manner, the Observation API has been refreshed.</p>
+<h2><a href="#new-modules-added-validation-context-aware-configuration-repository-initialization-language" name="new-modules-added-validation-context-aware-configuration-repository-initialization-language">New modules added: Validation, Context-Aware Configuration, Repository Initialization Language</a></h2>
+<p>A number of new general-purpose modules have been added to the Sling Launchpad:</p>
+<ul>
+  <li><a href="/documentation/bundles/validation.html">Validation</a></li>
+  <li><a href="/documentation/bundles/context-aware-configuration/context-aware-configuration.html">Context-Aware configuration</a></li>
+  <li><a href="/documentation/bundles/repository-initialization.html">Repository Initialization Language</a></li>
+</ul>
+<h2><a href="#tooling-htl-maven-plugin" name="tooling-htl-maven-plugin">Tooling: HTL Maven Plugin</a></h2>
+<p>The <a href="http://sling.apache.org/components/htl-maven-plugin/">HTL Maven Plugin</a> provides build-time validation for projects using HTL. Furthermore, the HTL engine has been modularised into an HTL Compiler, an HTL Java Compiler and an HTL Script Engine, with the first two allowing to build other HTL tools in a Sling-independent way.</p>
+<h2><a href="#streaming-upload-support" name="streaming-upload-support">Streaming Upload Support</a></h2>
+<p>The version of the Sling Engine shipped in the Launchpad now supports streaming uploads, for better I/O throughput. Streaming uploads are opt-in via setting the following HTTP Header:</p>
 <pre><code>Sling-UploadMode: stream
-</code></pre> 
-<h2><a href="#discovery-added-oak-based-discovery-implementation" id="discovery-added-oak-based-discovery-implementation">Discovery: added Oak-based discovery implementation</a></h2> 
-<p>The Sling discovery mechanism has been augmented with a mechanism which delegates instance discovery to Oak. When working with a DocumentNodeStore-based Oak implementation, this information is already available to Oak so there is no point in duplicating the work.</p> 
-<h2><a href="#security-loginadministrative-deprecation" id="security-loginadministrative-deprecation">Security: loginAdministrative deprecation</a></h2> 
-<p>We believe that the vast majority of bundles performing background work do not require administrative access to the repository via <code>loginAdministrative</code>. We have removed many usages of <code>loginAdministrative</code> in the Sling code and replaced then with a service-based approach - <code>loginService</code>. We encourage you to do the same.</p> 
-<p>Documentation available at <a href="/documentation/the-sling-engine/service-authentication.html">Service Authentication</a>.</p> 
-<h2><a href="#removed-orgapacheslingcommonsjson-and-orgjson-bundles" id="removed-orgapacheslingcommonsjson-and-orgjson-bundles">Removed org.apache.sling.commons.json and org.json bundles</a></h2> 
-<p>Apache projects are no longer allowed, for legal reasons, to ship code which uses or links to the JSON.org Java implementation. As a consequence we have removed all code which references that API.</p> 
+</code></pre>
+<h2><a href="#discovery-added-oak-based-discovery-implementation" name="discovery-added-oak-based-discovery-implementation">Discovery: added Oak-based discovery implementation</a></h2>
+<p>The Sling discovery mechanism has been augmented with a mechanism which delegates instance discovery to Oak. When working with a DocumentNodeStore-based Oak implementation, this information is already available to Oak so there is no point in duplicating the work.</p>
+<h2><a href="#security-loginadministrative-deprecation" name="security-loginadministrative-deprecation">Security: loginAdministrative deprecation</a></h2>
+<p>We believe that the vast majority of bundles performing background work do not require administrative access to the repository via <code>loginAdministrative</code>. We have removed many usages of <code>loginAdministrative</code> in the Sling code and replaced then with a service-based approach - <code>loginService</code>. We encourage you to do the same.</p>
+<p>Documentation available at <a href="/documentation/the-sling-engine/service-authentication.html">Service Authentication</a>.</p>
+<h2><a href="#removed-org-apache-sling-commons-json-and-org-json-bundles" name="removed-org-apache-sling-commons-json-and-org-json-bundles">Removed org.apache.sling.commons.json and org.json bundles</a></h2>
+<p>Apache projects are no longer allowed, for legal reasons, to ship code which uses or links to the JSON.org Java implementation. As a consequence we have removed all code which references that API.</p>
 <p>If you need to use these bundles, you can always retrieve then from Maven Central and incorporate them in your launchpad.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

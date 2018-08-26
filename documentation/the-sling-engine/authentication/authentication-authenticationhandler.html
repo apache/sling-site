@@ -95,79 +95,79 @@
             </div><h1 class="pagetitle">
                 Authentication - AuthenticationHandler
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>AuthenticationHandler</code> interface defines the service API which may be implemented by authentication handlers registered as OSGi services.</p> 
-<p><code>AuthenticationHandler</code> services have a single required service registration property which is used to identify requests to which the <code>AuthenticationHandler</code> service is applicable:</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> Property </th>
-   <th> Description </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>path</code> </td>
-   <td> One or more (array or vector) string values indicating the request URLs to which the <code>AuthenticationHandler</code> is applicable. </td>
-  </tr> 
-  <tr>
-   <td> <code>authtype</code> </td>
-   <td> The authentication type implemented by this handler. This is a string value property and should be the same as will be used as the authentication type of the <code>AuthenticationInfo</code> object provided by the <code>extractCredentials</code> method. If this property is set, the <code>requestCredentials</code> method of the authentication handler is only called if the <code>sling:authRequestLogin</code> request parameter is either not set or is set to the same value as the <code>authtype</code> of the handler. This property is optional. If not set, the <code>requestCredentials</code> method is always called regardless of the value of the <code>sling:authRequestLogin</code> request parameter. </td>
-  </tr> 
- </tbody> 
-</table> 
-<p>Each path may be an absolute URL, a URL with just the host/port and path or just a plain absolute path:</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> URL part </th>
-   <th> Scheme </th>
-   <th> Host/Port </th>
-   <th> Path </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> Absolute URL </td>
-   <td> must match </td>
-   <td> must match </td>
-   <td> request URL path is prefixed with the path </td>
-  </tr> 
-  <tr>
-   <td> Host/Port with Path </td>
-   <td> ignored </td>
-   <td> must match </td>
-   <td> request URL path is prefixed with the path </td>
-  </tr> 
-  <tr>
-   <td> Path </td>
-   <td> ignored </td>
-   <td> ignored </td>
-   <td> request URL path is prefixed with the path </td>
-  </tr> 
- </tbody> 
-</table> 
-<p>When looking for an <code>AuthenticationHandler</code> the authentication handler is selected whose path is the longest match on the request URL. If the service is registered with Scheme and Host/Port, these must exactly match for the service to be eligible. If multiple <code>AuthenticationHandler</code> services are registered with the same length matching path, the handler with the higher service ranking is selected[^ranking].</p> 
-<p>[^ranking]: Service ranking is defined by the OSGi Core Specification as follows: <em>If multiple qualifying service interfaces exist, a service with the highest <code>service.ranking</code> number, or when equal to the lowest <code>service.id</code>, determines which service object is returned by the Framework</em>.</p> 
-<p>The value of <code>path</code> service registration property value triggering the call to any of the <code>AuthenticationHandler</code> methods is available as the <code>path</code> request attribute (for the time of the method call only). If the service is registered with multiple path values, the value of the <code>path</code> request attribute may be used to implement specific handling.</p> 
-<h3><a href="#implementations-provided-by-sling" id="implementations-provided-by-sling">Implementations provided by Sling</a></h3> 
-<ul> 
- <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html">Form Based AuthenticationHandler</a></li> 
- <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.html">OpenID AuthenticationHandler</a></li> 
-</ul> 
-<h3><a href="#sample-implementations" id="sample-implementations">Sample implementations</a></h3> 
-<h4><a href="#http-basic-authentication-handler" id="http-basic-authentication-handler">HTTP Basic Authentication Handler</a></h4> 
-<ul> 
- <li><code>extractCredentials</code> -- Get user name and password from the <code>Authorization</code> HTTP header</li> 
- <li><code>requestCredentials</code> -- Send a 401/UNAUTHORIZED status with <code>WWW-Authenticate</code> response header setting the Realm</li> 
- <li><code>dropCredentials</code> -- Send a 401/UNAUTHORIZED status with <code>WWW-Authenticate</code> response header setting the Realm</li> 
-</ul> 
-<p>Interestingly the <code>dropCredentials</code> method is implemented in the same way as the <code>requestCredentials</code> method. The reason for this is, that HTTP Basic authentication does not have a notion of login and logout. Rather the request is accompanied with an <code>Authorization</code> header or not. The contents of this header is usually cached by the client browser. So logout is actually simulated by sending a 401/UNAUTHORIZED status thus causing the client browser to clear the cache and ask for user name and password.</p> 
-<h4><a href="#form-based-authentication-handler" id="form-based-authentication-handler">Form Based Authentication Handler</a></h4> 
-<ul> 
- <li><code>extractCredentials</code> -- Get user name and password with the help of a special cookie (note, that of course the cookie should not contain this data, but refer to it in an internal store of the authentication handler). If the cookie is not set, check for specific login parameters to setup the cookie.</li> 
- <li><code>requestCredentials</code> -- Send the login form for the user to provide the login parameters.</li> 
- <li><code>dropCredentials</code> -- Clear the authentication cookie and internal store.</li> 
-</ul> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>AuthenticationHandler</code> interface defines the service API which may be implemented by authentication handlers registered as OSGi services.</p>
+<p><code>AuthenticationHandler</code> services have a single required service registration property which is used to identify requests to which the <code>AuthenticationHandler</code> service is applicable:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>path</code> </td>
+      <td>One or more (array or vector) string values indicating the request URLs to which the <code>AuthenticationHandler</code> is applicable. </td>
+    </tr>
+    <tr>
+      <td><code>authtype</code> </td>
+      <td>The authentication type implemented by this handler. This is a string value property and should be the same as will be used as the authentication type of the <code>AuthenticationInfo</code> object provided by the <code>extractCredentials</code> method. If this property is set, the <code>requestCredentials</code> method of the authentication handler is only called if the <code>sling:authRequestLogin</code> request parameter is either not set or is set to the same value as the <code>authtype</code> of the handler. This property is optional. If not set, the <code>requestCredentials</code> method is always called regardless of the value of the <code>sling:authRequestLogin</code> request parameter. </td>
+    </tr>
+  </tbody>
+</table>
+<p>Each path may be an absolute URL, a URL with just the host/port and path or just a plain absolute path:</p>
+<table>
+  <thead>
+    <tr>
+      <th>URL part </th>
+      <th>Scheme </th>
+      <th>Host/Port </th>
+      <th>Path </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Absolute URL </td>
+      <td>must match </td>
+      <td>must match </td>
+      <td>request URL path is prefixed with the path </td>
+    </tr>
+    <tr>
+      <td>Host/Port with Path </td>
+      <td>ignored </td>
+      <td>must match </td>
+      <td>request URL path is prefixed with the path </td>
+    </tr>
+    <tr>
+      <td>Path </td>
+      <td>ignored </td>
+      <td>ignored </td>
+      <td>request URL path is prefixed with the path </td>
+    </tr>
+  </tbody>
+</table>
+<p>When looking for an <code>AuthenticationHandler</code> the authentication handler is selected whose path is the longest match on the request URL. If the service is registered with Scheme and Host/Port, these must exactly match for the service to be eligible. If multiple <code>AuthenticationHandler</code> services are registered with the same length matching path, the handler with the higher service ranking is selected[^ranking].</p>
+<p>[^ranking]: Service ranking is defined by the OSGi Core Specification as follows: <em>If multiple qualifying service interfaces exist, a service with the highest <code>service.ranking</code> number, or when equal to the lowest <code>service.id</code>, determines which service object is returned by the Framework</em>.</p>
+<p>The value of <code>path</code> service registration property value triggering the call to any of the <code>AuthenticationHandler</code> methods is available as the <code>path</code> request attribute (for the time of the method call only). If the service is registered with multiple path values, the value of the <code>path</code> request attribute may be used to implement specific handling.</p>
+<h3><a href="#implementations-provided-by-sling" name="implementations-provided-by-sling">Implementations provided by Sling</a></h3>
+<ul>
+  <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html">Form Based AuthenticationHandler</a></li>
+  <li><a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.html">OpenID AuthenticationHandler</a></li>
+</ul>
+<h3><a href="#sample-implementations" name="sample-implementations">Sample implementations</a></h3>
+<h4><a href="#http-basic-authentication-handler" name="http-basic-authentication-handler">HTTP Basic Authentication Handler</a></h4>
+<ul>
+  <li><code>extractCredentials</code> -- Get user name and password from the <code>Authorization</code> HTTP header</li>
+  <li><code>requestCredentials</code> -- Send a 401/UNAUTHORIZED status with <code>WWW-Authenticate</code> response header setting the Realm</li>
+  <li><code>dropCredentials</code> -- Send a 401/UNAUTHORIZED status with <code>WWW-Authenticate</code> response header setting the Realm</li>
+</ul>
+<p>Interestingly the <code>dropCredentials</code> method is implemented in the same way as the <code>requestCredentials</code> method. The reason for this is, that HTTP Basic authentication does not have a notion of login and logout. Rather the request is accompanied with an <code>Authorization</code> header or not. The contents of this header is usually cached by the client browser. So logout is actually simulated by sending a 401/UNAUTHORIZED status thus causing the client browser to clear the cache and ask for user name and password.</p>
+<h4><a href="#form-based-authentication-handler" name="form-based-authentication-handler">Form Based Authentication Handler</a></h4>
+<ul>
+  <li><code>extractCredentials</code> -- Get user name and password with the help of a special cookie (note, that of course the cookie should not contain this data, but refer to it in an internal store of the authentication handler). If the cookie is not set, check for specific login parameters to setup the cookie.</li>
+  <li><code>requestCredentials</code> -- Send the login form for the user to provide the login parameters.</li>
+  <li><code>dropCredentials</code> -- Clear the authentication cookie and internal store.</li>
+</ul>
 <p>///Footnotes Go Here///</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

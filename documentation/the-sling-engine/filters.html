@@ -93,125 +93,129 @@
             </div><h1 class="pagetitle">
                 Servlet Filter Support
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling supports filter processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type <code>javax.servlet.Filter</code> which of course means that the services implement this interface.</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling supports filter processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type <code>javax.servlet.Filter</code> which of course means that the services implement this interface.</p>
 <div class="note">
-  See 
- <a href="https://issues.apache.org/jira/browse/SLING-1213">SLING-1213</a>, 
- <a href="https://issues.apache.org/jira/browse/SLING-1734">SLING-1734</a>, and 
- <a href="http://markmail.org/message/quxhm7d5s6u66crr">Registering filters with Sling</a> for more details. The 
- <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/filters/NoPropertyFilter.java">NoPropertyFilter</a> from our integration tests shows an example Sling Filter. 
-</div> 
-<p>For Sling to pick up a <code>javax.servlet.Filter</code> service for filter processing two service registration properties are inspected:</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> Property </th>
-   <th> Type </th>
-   <th> Default Value </th>
-   <th> Valid Values </th>
-   <th> Description </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>sling.filter.scope</code> </td>
-   <td> <code>String</code>, <code>String[]</code> or <code>Vector&lt;String&gt;</code> </td>
-   <td> <code>request</code> </td>
-   <td> <code>REQUEST</code>, <code>INCLUDE</code>, <code>FORWARD</code>, <code>ERROR</code>, <code>COMPONENT</code> </td>
-   <td> Indication of which chain the filter should be added to. This property is required. If it is missing from the service, the service is ignored because it is assumed another consumer will be interested in using the service. Any unknown values of this property are also ignored causing the service to be completely ignored if none of the values provided by the property are valid. See below for the description of the filter chains. </td>
-  </tr> 
-  <tr>
-   <td> <code>sling.filter.pattern</code> </td>
-   <td> <code>String</code></td>
-   <td> <code>(-)</code> </td>
-   <td> Any <code>String</code> value </td>
-   <td> Restrict the filter to paths that match the supplied regular expression. Requires Sling Engine 2.4.0. </td>
-  </tr> 
-  <tr>
-   <td> <code>service.ranking</code> </td>
-   <td> <code>Integer</code> </td>
-   <td> <code>0</code> </td>
-   <td> Any <code>Integer</code> value </td>
-   <td> Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal <code>service.ranking</code> property value (explicitly set or default value of zero) will be ordered according to their <code>service.id</code> service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. </td>
-  </tr> 
- </tbody> 
-</table> 
-<h2><a href="#filter-chains" id="filter-chains">Filter Chains</a></h2> 
-<p>Sling maintains five filter chains: request level, component level, include filters, forward filters and error filters. Except for the component level filter these filter chains correspond to the filter <code>&lt;dispatcher&gt;</code> configurations as defined for Servlet API 2.5 web applications (see section SRV.6.2.5 Filters and the RequestDispatcher).</p> 
-<p>The following table summarizes when each of the filter chains is called and what value must be defined in the <code>sling.filter.scope</code> property to have a filter added to the respective chain:</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> <code>sling.filter.scope</code> </th>
-   <th> Servlet API Correspondence </th>
-   <th> Description </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>REQUEST</code> </td>
-   <td> <code>REQUEST</code> </td>
-   <td> Filters are called once per request hitting Sling from the outside. These filters are called after the resource addressed by the request URL and the Servlet or script to process the request has been resolved before the <code>COMPONENT</code> filters (if any) and the Servlet or script are called. </td>
-  </tr> 
-  <tr>
-   <td> <code>INCLUDE</code> </td>
-   <td> <code>INCLUDE</code> </td>
-   <td> Filters are called upon calling the <code>RequestDispatcher.include</code> method after the included resource and the Servlet or script to process the include have been resolved before the Servlet or script is called. </td>
-  </tr> 
-  <tr>
-   <td> <code>FORWARD</code> </td>
-   <td> <code>FORWARD</code> </td>
-   <td> Filters are called upon calling the <code>RequestDispatcher.forward</code> method after the included resource and the Servlet or script to process the include have been resolved before the Servlet or script is called. </td>
-  </tr> 
-  <tr>
-   <td> <code>ERROR</code> </td>
-   <td> <code>ERROR</code> </td>
-   <td> Filters are called upon <code>HttpServletResponse.sendError</code> or any uncaught <code>Throwable</code> before resolving the error handler Servlet or script. </td>
-  </tr> 
-  <tr>
-   <td> <code>COMPONENT</code> </td>
-   <td> <code>REQUEST,INCLUDE,FORWARD</code> </td>
-   <td> The <code>COMPONENT</code> scoped filters are present for backwards compatibility with earlier Sling Engine releases. These filters will be called among the <code>INCLUDE</code> and <code>FORWARD</code> filters upon <code>RequestDispatcher.include</code> or <code>RequestDispatcher.forward</code> as well as before calling the request level Servlet or script after the <code>REQUEST</code> filters. </td>
-  </tr> 
- </tbody> 
-</table> 
-<p>Note on <code>INCLUDE</code> and <code>FORWARD</code> with respect to JSP tags: These filters are also called if the respective including (e.g. <code>&lt;jsp:include&gt;</code> or <code>&lt;sling:include&gt;</code>) or forwarding (e.g. <code>&lt;jsp:forward&gt;</code> or <code>&lt;sling:forward&gt;</code>) ultimately calls the <code>RequestDispatcher</code>.</p> 
-<h2><a href="#filter-processing" id="filter-processing">Filter Processing</a></h2> 
-<p>Filter processing is part of the Sling request processing, which may be sketched as follows:</p> 
-<ul> 
- <li><em>Request Level</em>: 
-  <ul> 
-   <li>Authentication</li> 
-   <li>Resource Resolution</li> 
-   <li>Servlet/Script Resolution</li> 
-   <li>Request Level Filter Processing</li> 
-  </ul> </li> 
-</ul> 
-<p>The first step of request processing is the <em>Request Level</em> processing which is concerned with resolving the resource, finding the appropriate servlet and calling into the request level filter chain. The next step is the <em>Component Level</em> processing, calling into the component level filters before finally calling the servlet or script:</p> 
-<ul> 
- <li><em>Component Level</em>: 
-  <ul> 
-   <li>Component Level Filter Processing</li> 
-   <li>Call Servlet or Script</li> 
-  </ul> </li> 
-</ul> 
-<p>When a servlet or script is including or forwarding to another resource for processing through the <code>RequestDispatcher</code> (or any JSP tag or other language feature ultimately using a <code>RequestDispatcher</code>) the following <em>Dispatch</em> processing takes place:</p> 
-<ul> 
- <li><em>Dispatch</em>: 
-  <ul> 
-   <li>Resolve the resource to dispatch to if not already defined when getting the <code>RequestDispatcher</code></li> 
-   <li>Servlet/Script resolution</li> 
-   <li>Call include or forward filters depending on the kind of dispatch</li> 
-   <li>Call Servlet or Script</li> 
-  </ul> </li> 
-</ul> 
-<p>As a consequence, request level filters will be called at most once during request processing (they may not be called at all if a filter earlier in the filter chain decides to terminate the request) while the component level, include, and forward filters may be called multiple times while processing a request.</p> 
-<h2><a href="#disabling-filters" id="disabling-filters">Disabling Filters</a></h2> 
-<p>As hinted earlier in the page, a filter is ignored if you set an invalid <code>sling.filter.scope</code>. To disable a specific filter, you can deploy an OSGi config setting an invalid <code>sling.filter.scope</code>, for instance <em>disabled</em>.</p> 
-<h2><a href="#troubleshooting" id="troubleshooting">Troubleshooting</a></h2> 
-<p>Apart form the logs which tell you when filters are executed, two Sling plugins provide information about filters in the OSGi console.</p> 
-<h3><a href="#recent-requests-plugin" id="recent-requests-plugin">Recent Requests plugin</a></h3> 
-<p>The request traces provided at <code>/system/console/requests</code> contain information about filter execution, as in this example:</p> 
+See <a href="https://issues.apache.org/jira/browse/SLING-1213">SLING-1213</a>,
+<a href="https://issues.apache.org/jira/browse/SLING-1734">SLING-1734</a>, and
+<a href="http://markmail.org/message/quxhm7d5s6u66crr">Registering filters with Sling</a>
+ for more details. The 
+<a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/filters/NoPropertyFilter.java">NoPropertyFilter</a>
+from our integration tests shows an example Sling Filter.
+</div>
+<p>For Sling to pick up a <code>javax.servlet.Filter</code> service for filter processing two service registration properties are inspected:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property </th>
+      <th>Type </th>
+      <th>Default Value </th>
+      <th>Valid Values </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling.filter.scope</code> </td>
+      <td><code>String</code>, <code>String[]</code> or <code>Vector&lt;String&gt;</code> </td>
+      <td><code>request</code> </td>
+      <td><code>REQUEST</code>, <code>INCLUDE</code>, <code>FORWARD</code>, <code>ERROR</code>, <code>COMPONENT</code> </td>
+      <td>Indication of which chain the filter should be added to. This property is required. If it is missing from the service, the service is ignored because it is assumed another consumer will be interested in using the service. Any unknown values of this property are also ignored causing the service to be completely ignored if none of the values provided by the property are valid. See below for the description of the filter chains. </td>
+    </tr>
+    <tr>
+      <td><code>sling.filter.pattern</code> </td>
+      <td><code>String</code></td>
+      <td><code>(-)</code> </td>
+      <td>Any <code>String</code> value </td>
+      <td>Restrict the filter to paths that match the supplied regular expression. Requires Sling Engine 2.4.0. </td>
+    </tr>
+    <tr>
+      <td><code>service.ranking</code> </td>
+      <td><code>Integer</code> </td>
+      <td><code>0</code> </td>
+      <td>Any <code>Integer</code> value </td>
+      <td>Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal <code>service.ranking</code> property value (explicitly set or default value of zero) will be ordered according to their <code>service.id</code> service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. </td>
+    </tr>
+  </tbody>
+</table>
+<h2><a href="#filter-chains" name="filter-chains">Filter Chains</a></h2>
+<p>Sling maintains five filter chains: request level, component level, include filters, forward filters and error filters. Except for the component level filter these filter chains correspond to the filter <code>&lt;dispatcher&gt;</code> configurations as defined for Servlet API 2.5 web applications (see section SRV.6.2.5 Filters and the RequestDispatcher).</p>
+<p>The following table summarizes when each of the filter chains is called and what value must be defined in the <code>sling.filter.scope</code> property to have a filter added to the respective chain:</p>
+<table>
+  <thead>
+    <tr>
+      <th><code>sling.filter.scope</code> </th>
+      <th>Servlet API Correspondence </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>REQUEST</code> </td>
+      <td><code>REQUEST</code> </td>
+      <td>Filters are called once per request hitting Sling from the outside. These filters are called after the resource addressed by the request URL and the Servlet or script to process the request has been resolved before the <code>COMPONENT</code> filters (if any) and the Servlet or script are called. </td>
+    </tr>
+    <tr>
+      <td><code>INCLUDE</code> </td>
+      <td><code>INCLUDE</code> </td>
+      <td>Filters are called upon calling the <code>RequestDispatcher.include</code> method after the included resource and the Servlet or script to process the include have been resolved before the Servlet or script is called. </td>
+    </tr>
+    <tr>
+      <td><code>FORWARD</code> </td>
+      <td><code>FORWARD</code> </td>
+      <td>Filters are called upon calling the <code>RequestDispatcher.forward</code> method after the included resource and the Servlet or script to process the include have been resolved before the Servlet or script is called. </td>
+    </tr>
+    <tr>
+      <td><code>ERROR</code> </td>
+      <td><code>ERROR</code> </td>
+      <td>Filters are called upon <code>HttpServletResponse.sendError</code> or any uncaught <code>Throwable</code> before resolving the error handler Servlet or script. </td>
+    </tr>
+    <tr>
+      <td><code>COMPONENT</code> </td>
+      <td><code>REQUEST,INCLUDE,FORWARD</code> </td>
+      <td>The <code>COMPONENT</code> scoped filters are present for backwards compatibility with earlier Sling Engine releases. These filters will be called among the <code>INCLUDE</code> and <code>FORWARD</code> filters upon <code>RequestDispatcher.include</code> or <code>RequestDispatcher.forward</code> as well as before calling the request level Servlet or script after the <code>REQUEST</code> filters. </td>
+    </tr>
+  </tbody>
+</table>
+<p>Note on <code>INCLUDE</code> and <code>FORWARD</code> with respect to JSP tags: These filters are also called if the respective including (e.g. <code>&lt;jsp:include&gt;</code> or <code>&lt;sling:include&gt;</code>) or forwarding (e.g. <code>&lt;jsp:forward&gt;</code> or <code>&lt;sling:forward&gt;</code>) ultimately calls the <code>RequestDispatcher</code>.</p>
+<h2><a href="#filter-processing" name="filter-processing">Filter Processing</a></h2>
+<p>Filter processing is part of the Sling request processing, which may be sketched as follows:</p>
+<ul>
+  <li><em>Request Level</em>:
+    <ul>
+      <li>Authentication</li>
+      <li>Resource Resolution</li>
+      <li>Servlet/Script Resolution</li>
+      <li>Request Level Filter Processing</li>
+    </ul>
+  </li>
+</ul>
+<p>The first step of request processing is the <em>Request Level</em> processing which is concerned with resolving the resource, finding the appropriate servlet and calling into the request level filter chain. The next step is the <em>Component Level</em> processing, calling into the component level filters before finally calling the servlet or script:</p>
+<ul>
+  <li><em>Component Level</em>:
+    <ul>
+      <li>Component Level Filter Processing</li>
+      <li>Call Servlet or Script</li>
+    </ul>
+  </li>
+</ul>
+<p>When a servlet or script is including or forwarding to another resource for processing through the <code>RequestDispatcher</code> (or any JSP tag or other language feature ultimately using a <code>RequestDispatcher</code>) the following <em>Dispatch</em> processing takes place:</p>
+<ul>
+  <li><em>Dispatch</em>:
+    <ul>
+      <li>Resolve the resource to dispatch to if not already defined when getting the <code>RequestDispatcher</code></li>
+      <li>Servlet/Script resolution</li>
+      <li>Call include or forward filters depending on the kind of dispatch</li>
+      <li>Call Servlet or Script</li>
+    </ul>
+  </li>
+</ul>
+<p>As a consequence, request level filters will be called at most once during request processing (they may not be called at all if a filter earlier in the filter chain decides to terminate the request) while the component level, include, and forward filters may be called multiple times while processing a request.</p>
+<h2><a href="#disabling-filters" name="disabling-filters">Disabling Filters</a></h2>
+<p>As hinted earlier in the page, a filter is ignored if you set an invalid <code>sling.filter.scope</code>. To disable a specific filter, you can deploy an OSGi config setting an invalid <code>sling.filter.scope</code>, for instance <em>disabled</em>.</p>
+<h2><a href="#troubleshooting" name="troubleshooting">Troubleshooting</a></h2>
+<p>Apart form the logs which tell you when filters are executed, two Sling plugins provide information about filters in the OSGi console.</p>
+<h3><a href="#recent-requests-plugin" name="recent-requests-plugin">Recent Requests plugin</a></h3>
+<p>The request traces provided at <code>/system/console/requests</code> contain information about filter execution, as in this example:</p>
 <pre><code>0 (2010-09-08 15:22:38) TIMER_START{Request Processing}
 ...
 0 (2010-09-08 15:22:38) LOG Method=GET, PathInfo=/some/path.html
@@ -225,9 +229,9 @@
 3 (2010-09-08 15:22:38) TIMER_START{/some/script.jsp#0}
 ...
 8 (2010-09-08 15:22:38) TIMER_END{8,Request Processing} Request Processing
-</code></pre> 
-<h3><a href="#config-status-plugin" id="config-status-plugin">Config Status plugin</a></h3> 
-<p>The configuration status page at <code>/system/console/config</code> includes the current list of active filters in its <em>Servlet Filters</em> category, as in this example:</p> 
+</code></pre>
+<h3><a href="#config-status-plugin" name="config-status-plugin">Config Status plugin</a></h3>
+<p>The configuration status page at <code>/system/console/config</code> includes the current list of active filters in its <em>Servlet Filters</em> category, as in this example:</p>
 <pre><code>Current Apache Sling Servlet Filter Configuration
 
 Request Filters:
@@ -247,14 +251,14 @@ Forward Filters:
 
 Component Filters:
 -200 : class some.package.SomeComponentFilter (2583)
-</code></pre> 
-<p>The first numbers on those lines are the filter priorities, and the last number in parentheses is the OSGi service ID.</p> 
-<h2><a href="#support-in-sling-engine-210" id="support-in-sling-engine-210">Support in Sling Engine 2.1.0</a></h2> 
-<p>Up to and including Sling Engine 2.1.0 support for Servlet Filters has been as follows:</p> 
-<ul> 
- <li>Any <code>javax.servlet.Filter</code> service is accepted as a filter for Sling unless the <code>pattern</code> property used by the <a href="http://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard">Apache Felix HttpService whiteboard support</a> is set in the service registration properties.</li> 
- <li>The <code>filter.scope</code> property is optional and supports the case-sensitive values <code>request</code> and <code>component</code>.</li> 
- <li>Filter ordering is defined by the <code>filter.order</code> property whose default value is <code>Integer.MAX_VALUE</code> where smaller values have higher priority over higher values.</li> 
+</code></pre>
+<p>The first numbers on those lines are the filter priorities, and the last number in parentheses is the OSGi service ID.</p>
+<h2><a href="#support-in-sling-engine-2-1-0" name="support-in-sling-engine-2-1-0">Support in Sling Engine 2.1.0</a></h2>
+<p>Up to and including Sling Engine 2.1.0 support for Servlet Filters has been as follows:</p>
+<ul>
+  <li>Any <code>javax.servlet.Filter</code> service is accepted as a filter for Sling unless the <code>pattern</code> property used by the <a href="http://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard">Apache Felix HttpService whiteboard support</a> is set in the service registration properties.</li>
+  <li>The <code>filter.scope</code> property is optional and supports the case-sensitive values <code>request</code> and <code>component</code>.</li>
+  <li>Filter ordering is defined by the <code>filter.order</code> property whose default value is <code>Integer.MAX_VALUE</code> where smaller values have higher priority over higher values.</li>
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

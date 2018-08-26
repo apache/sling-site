@@ -91,17 +91,17 @@
             </div><h1 class="pagetitle">
                 Getting Resources and Properties in Sling
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Resource is one of the central parts of Sling. Extending from JCR's Everything is Content, Sling assumes Everthing is a Resource. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigm of the REST architecture.</p> 
-<p>In this article we will explore a few ways to programmatically map a resource path (String) to a resource object (Resource) and its properties in Sling, from within an OSGI service, a servlet and a JSP.</p> 
-<p>The whole game consists in first getting a <code>ResourceResolver</code> and then getting the <code>Resource</code> itself.</p> 
-<h2><a href="#within-an-osgi-servicecomponent" id="within-an-osgi-servicecomponent">Within an OSGI Service/Component</a></h2> 
-<p>You can access a resource through the <code>ResourceResolverFactory</code> service:</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Resource is one of the central parts of Sling. Extending from JCR's Everything is Content, Sling assumes Everthing is a Resource. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigm of the REST architecture.</p>
+<p>In this article we will explore a few ways to programmatically map a resource path (String) to a resource object (Resource) and its properties in Sling, from within an OSGI service, a servlet and a JSP.</p>
+<p>The whole game consists in first getting a <code>ResourceResolver</code> and then getting the <code>Resource</code> itself.</p>
+<h2><a href="#within-an-osgi-service-component" name="within-an-osgi-service-component">Within an OSGI Service/Component</a></h2>
+<p>You can access a resource through the <code>ResourceResolverFactory</code> service:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->@Reference
 private ResourceResolverFactory resolverFactory;
 
 public void myMethod() {
     try {
-        String resourcePath = "path/to/resource";
+        String resourcePath = &quot;path/to/resource&quot;;
         ResourceResolver resourceResolver = resolverFactory.getAdministrativeResourceResolver(null);
         Resource res = resourceResolver.getResource(resourcePath);
         // do something with the resource
@@ -111,43 +111,43 @@ public void myMethod() {
         // log the error
     }
 }
-</code></pre> 
-<h2><a href="#within-a-servlet" id="within-a-servlet">Within a Servlet</a></h2> 
-<p>You can access the resource defined by the request URL through the <code>SlingHttpServletRequest</code>:</p> 
+</code></pre>
+<h2><a href="#within-a-servlet" name="within-a-servlet">Within a Servlet</a></h2>
+<p>You can access the resource defined by the request URL through the <code>SlingHttpServletRequest</code>:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// req is the SlingHttpServletRequest
 Resource res = req.getResource();
-</code></pre> 
-<p>You can access any resource by first accessing the <code>ResourceResolver</code>:</p> 
-<pre><code><!-- TODO syntax marker (#!java) disabled -->String resourcePath = "path/to/resource";
+</code></pre>
+<p>You can access any resource by first accessing the <code>ResourceResolver</code>:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->String resourcePath = &quot;path/to/resource&quot;;
 // req is the SlingHttpServletRequest
 ResourceResolver resourceResolver = req.getResourceResolver();
 Resource res = resourceResolver.getResource(resourcePath);
-</code></pre> 
-<h2><a href="#within-a-jsp-file" id="within-a-jsp-file">Within a JSP file</a></h2> 
-<p>When you use the <code>&lt;sling:defineObjects&gt;</code> tag in a JSP file, you have access to a few handy objects, one of them is <code>resource</code>, the resource that is resolved from the URL. Another one is <code>resourceResolver</code>, the <code>ResourceResolver</code> defined through the <code>SlingHttpServletRequest</code>.</p> 
-<p>To access a resource:</p> 
+</code></pre>
+<h2><a href="#within-a-jsp-file" name="within-a-jsp-file">Within a JSP file</a></h2>
+<p>When you use the <code>&lt;sling:defineObjects&gt;</code> tag in a JSP file, you have access to a few handy objects, one of them is <code>resource</code>, the resource that is resolved from the URL. Another one is <code>resourceResolver</code>, the <code>ResourceResolver</code> defined through the <code>SlingHttpServletRequest</code>. </p>
+<p>To access a resource:</p>
 <pre><code><!-- TODO syntax marker (#!jsp) disabled -->&lt;sling:defineObjects&gt;
 &lt;%
-    String resourcePath = "path/to/resource";
+    String resourcePath = &quot;path/to/resource&quot;;
     Resource res = resourceResolver.getResource(resourcePath);
 %&gt;
-</code></pre> 
-<p>If needed you can adapt a Sling Resource to a JCR Node:</p> 
+</code></pre>
+<p>If needed you can adapt a Sling Resource to a JCR Node:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->Node node = resource.adaptTo(Node.class);
-</code></pre> 
-<p>Note: <code>resource.adaptTo(Node.class)</code> may return null if the resource is not backed by a JCR node. This is particularly the case for <code>NonExistingResource</code> resources or resource provided by a non-JCR resource provider.</p> 
-<h2><a href="#accessing-a-property" id="accessing-a-property">Accessing a Property</a></h2> 
-<p>The <code>ValueMap</code> is an easy way to access properties of a resource. With most resources you can use <code>Adaptable.adaptTo(Class)</code> to adapt the resource to a value map:</p> 
+</code></pre>
+<p>Note: <code>resource.adaptTo(Node.class)</code> may return null if the resource is not backed by a JCR node. This is particularly the case for <code>NonExistingResource</code> resources or resource provided by a non-JCR resource provider.</p>
+<h2><a href="#accessing-a-property" name="accessing-a-property">Accessing a Property</a></h2>
+<p>The <code>ValueMap</code> is an easy way to access properties of a resource. With most resources you can use <code>Adaptable.adaptTo(Class)</code> to adapt the resource to a value map:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// res is the Resource
 ValueMap properties = res.adaptTo(ValueMap.class);
-</code></pre> 
-<p>You can also access the properties through the <code>ResourceUtil</code> utility class:</p> 
+</code></pre>
+<p>You can also access the properties through the <code>ResourceUtil</code> utility class:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// res is the Resource
 ValueMap properties = ResourceUtil.getValueMap(res);
-</code></pre> 
-<p>Then, to access a specific String property called <code>propName</code>:</p> 
+</code></pre>
+<p>Then, to access a specific String property called <code>propName</code>:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->String rule = properties.get(propName, (String) null);
-</code></pre> 
+</code></pre>
 <p>For more details about resources and how to access them in Sling, you can refer to the <a href="/documentation/the-sling-engine/resources.html">Sling documentation about Resources</a>.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

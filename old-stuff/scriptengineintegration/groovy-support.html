@@ -93,44 +93,44 @@
             </div><h1 class="pagetitle">
                 Groovy Support
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>After meeting Paul King of the Groovy Team at Apache Con US 08 in New Orleans, I set out to take a stab at SLING-315 again to add Groovy support to Sling. It turned out, that the current Groovy 1.6 branch already contains the required setup to build the <code>groovy-all.jar</code> as an OSGi Bundle, which is directly usable with Sling by just installing that bundle.</p> 
-<p>Currently the Groovy team is working hard towards the 1.6 release and many things are in flux, which is really great.</p> 
-<p>So, on 11. Dec. 2008 Paul King of the Groovy Team has deployed a [first RC1 Snapshot of Groovy 1.6]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.6-RC-1-SNAPSHOT/groovy-all-1.6-RC-1-20081211.113737-1.jar.path }}) which contains all the required OSGi bundle manifest headers as well das the JSR-233 <code>ScriptEngine</code> to use the <code>groovy-all.jar</code> unmodified with Sling. So just go ahead, grab the Groovy-All 1.6 RC 1 SNAPSHOT deploy it into your Sling instance and enjoy the fun of Groovy.</p> 
-<p>If you want to be on verge of development, you might want to go for Groovy 1.7: The second SNAPSHOT of beta-1 also contains the required headers and classes and may as well be used unmodified in Sling. You may download it here: <code>[groovy-all-1.7-beta-1-20081210.120632-2.jar]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.7-beta-1-SNAPSHOT/groovy-all-1.7-beta-1-20081210.120632-2.jar.path }})</code>.</p> 
-<p>To deploy the bundle go to the Bundles page, for example at http://localhost:8080/system/console/bundles of the Apache Felix Web Console select the bundle file to upload, check the <em>Start</em> check box and click <em>Install or Update</em> button.</p> 
-<p>You may check, whether the Groovy ScriptEngine has been "accepted" by Sling, by going to the Script Engines page of the Apache Felix Web Console. You should see the entry for Groovy there, somthing like this:</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>After meeting Paul King of the Groovy Team at Apache Con US 08 in New Orleans, I set out to take a stab at SLING-315 again to add Groovy support to Sling. It turned out, that the current Groovy 1.6 branch already contains the required setup to build the <code>groovy-all.jar</code> as an OSGi Bundle, which is directly usable with Sling by just installing that bundle.</p>
+<p>Currently the Groovy team is working hard towards the 1.6 release and many things are in flux, which is really great.</p>
+<p>So, on 11. Dec. 2008 Paul King of the Groovy Team has deployed a [first RC1 Snapshot of Groovy 1.6]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.6-RC-1-SNAPSHOT/groovy-all-1.6-RC-1-20081211.113737-1.jar.path }}) which contains all the required OSGi bundle manifest headers as well das the JSR-233 <code>ScriptEngine</code> to use the <code>groovy-all.jar</code> unmodified with Sling. So just go ahead, grab the Groovy-All 1.6 RC 1 SNAPSHOT deploy it into your Sling instance and enjoy the fun of Groovy.</p>
+<p>If you want to be on verge of development, you might want to go for Groovy 1.7: The second SNAPSHOT of beta-1 also contains the required headers and classes and may as well be used unmodified in Sling. You may download it here: <code>[groovy-all-1.7-beta-1-20081210.120632-2.jar]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.7-beta-1-SNAPSHOT/groovy-all-1.7-beta-1-20081210.120632-2.jar.path }})</code>.</p>
+<p>To deploy the bundle go to the Bundles page, for example at http://localhost:8080/system/console/bundles of the Apache Felix Web Console select the bundle file to upload, check the <em>Start</em> check box and click <em>Install or Update</em> button.</p>
+<p>You may check, whether the Groovy ScriptEngine has been "accepted" by Sling, by going to the Script Engines page of the Apache Felix Web Console. You should see the entry for Groovy there, somthing like this:</p>
 <pre><code>Groovy Scripting Engine, 2.0
   Language      Groovy,
   Extensions    groovy
   MIME Types    application/x-groovy
   Names         groovy, Groovy
-</code></pre> 
-<h2><a href="#testing" id="testing">Testing</a></h2> 
-<p>To test create a simple Groovy script, for example</p> 
-<pre><code>response.setContentType("text/plain");
-response.setCharacterEncoding("UTF-8");
+</code></pre>
+<h2><a href="#testing" name="testing">Testing</a></h2>
+<p>To test create a simple Groovy script, for example</p>
+<pre><code>response.setContentType(&quot;text/plain&quot;);
+response.setCharacterEncoding(&quot;UTF-8&quot;);
 
-println "Hello World !"
-println "This is Groovy Speaking"
-println "You requested the Resource ${resource} (yes, this is a GString)"
-</code></pre> 
-<p>and upload it to the repository as <code>/apps/nt/folder/GET.groovy</code> using your favourite WebDAV client or use curl to upload the file (assuming Sling is running on localhost:8080) :</p> 
+println &quot;Hello World !&quot;
+println &quot;This is Groovy Speaking&quot;
+println &quot;You requested the Resource ${resource} (yes, this is a GString)&quot;
+</code></pre>
+<p>and upload it to the repository as <code>/apps/nt/folder/GET.groovy</code> using your favourite WebDAV client or use curl to upload the file (assuming Sling is running on localhost:8080) :</p>
 <pre><code>$ curl -u admin:admin -FGET.groovy=@GET.groovy -F../../nt/jcr:primaryType=sling:Folder http:host:8080/apps/nt/folder
-</code></pre> 
-<p>To test it create a <code>/sample</code> <code>nt:Folder</code> node using your favourite WebDAV client or use curl again:</p> 
+</code></pre>
+<p>To test it create a <code>/sample</code> <code>nt:Folder</code> node using your favourite WebDAV client or use curl again:</p>
 <pre><code>$ curl -u admin:admin -Fjcr:primaryType=nt:folder http://localhost:8080/
-</code></pre> 
-<p>Finally, request the <code>/sample</code> node using your favourite Browser or use curl again:</p> 
+</code></pre>
+<p>Finally, request the <code>/sample</code> node using your favourite Browser or use curl again:</p>
 <pre><code>$ curl http://localhost:8080/sample
 Hello World !
 This is Groovy Speaking
 You requested Resource JcrNodeResource, type=nt:folder, path=/sample (yes, this is a GString)
-</code></pre> 
-<h2><a href="#references" id="references">References</a></h2> 
-<ul> 
- <li>[SLING-315]({{ refs.https://issues.apache.org/jira/browse/SLING-315.path }}) -- The initial Sling issue proposing the addition of a Groovy ScriptEngine to Sling.</li> 
- <li>[Groovy Support in Apache Sling]({{ refs.http://markmail.org/message/7sqscr5y2mbk6jko.path }}) -- A short thread on turning the Groovy <code>groovy-all.jar</code> into an OSGi Bundle.</li> 
- <li>[Groovy in Apache Sling]({{ refs.http://markmail.org/message/47n2ow2jlo553jvk.path }}) -- Thread on adding the <code>DynamicImport-Package</code> header to the Groovy bundle manifest.</li> 
+</code></pre>
+<h2><a href="#references" name="references">References</a></h2>
+<ul>
+  <li>[SLING-315]({{ refs.https://issues.apache.org/jira/browse/SLING-315.path }}) -- The initial Sling issue proposing the addition of a Groovy ScriptEngine to Sling.</li>
+  <li>[Groovy Support in Apache Sling]({{ refs.http://markmail.org/message/7sqscr5y2mbk6jko.path }}) -- A short thread on turning the Groovy <code>groovy-all.jar</code> into an OSGi Bundle.</li>
+  <li>[Groovy in Apache Sling]({{ refs.http://markmail.org/message/47n2ow2jlo553jvk.path }}) -- Thread on adding the <code>DynamicImport-Package</code> header to the Groovy bundle manifest.</li>
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

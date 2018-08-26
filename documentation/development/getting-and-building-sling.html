@@ -91,105 +91,111 @@
             </div><h1 class="pagetitle">
                 Getting and Building Sling
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.</p> 
-<p>Note that you don't <em>have</em> to build Sling yourself, if you don't need the bleeding-edge stuff you can get prebuilt binaries from the <a href="/downloads.cgi">Downloads</a> page. But those, especially the starter runnable jar, are not released often and can be outdated. In case of doubt, build it yourself as shown below or ask on the Sling users mailing list.</p> 
-<p>Note that building the Sling starter application does not rebuild all of the modules contained in it. If you want to work on a certain module, you should rebuild it separately.</p> 
-<h2><a href="#tldr-short-form-build-run-instructions" id="tldr-short-form-build-run-instructions">tl:dr - Short form build + run instructions</a></h2> 
-<p>If you already have the required Git client, JDK and Maven installed, here's the short form recipe:</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>A quick guide for getting the Sling source, then building and running the resulting Sling instance; either without or with Eclipse.</p>
+<p>Note that you don't <em>have</em> to build Sling yourself, if you don't need the bleeding-edge stuff you can get prebuilt binaries from the <a href="/downloads.cgi">Downloads</a> page. But those, especially the starter runnable jar, are not released often and can be outdated. In case of doubt, build it yourself as shown below or ask on the Sling users mailing list.</p>
+<p>Note that building the Sling starter application does not rebuild all of the modules contained in it. If you want to work on a certain module, you should rebuild it separately.</p>
+<h2><a href="#tl-dr-short-form-build-run-instructions" name="tl-dr-short-form-build-run-instructions">tl:dr - Short form build + run instructions</a></h2>
+<p>If you already have the required Git client, JDK and Maven installed, here's the short form recipe:</p>
 <pre><code>$ git clone https://github.com/apache/sling-org-apache-sling-starter.git
 $ cd sling-org-apache-sling-starter
 $ mvn --update-snapshots clean install
-$ export DBG="-Xmx384M -agentlib:jdwp..." # (see below)
+$ export DBG=&quot;-Xmx384M -agentlib:jdwp...&quot; # (see below)
 $ java $DBG -jar target/org.apache.sling.starter... # (see below)
-</code></pre> 
-<p>With this, Sling should be running at http://localhost:8080 with remote debugging active as per the $DBG variable.</p> 
-<h2><a href="#prerequisites" id="prerequisites">Prerequisites</a></h2> 
-<p>Before you begin, you need to have the following tools installed on your system:</p> 
-<ul> 
- <li>Java 8 or higher</li> 
- <li><a href="http://maven.apache.org">Maven</a> 3.3.9 or later; enforced by the Sling parent pom</li> 
-</ul> 
-<p>If you want to set up an IDE any recent version of a Java IDE with Maven support will do just fine. If you're using Eclipse, you can install the [/documentation/development/ide-tooling.html](Sling IDE tooling) for some extra niceties, but it's not required in any way.</p> 
-<h2><a href="#configuring-maven" id="configuring-maven">Configuring Maven</a></h2> 
-<p>See <a href="/documentation/development/maventipsandtricks.html">MavenTipsAndTricks</a>.</p> 
-<h2><a href="#getting-the-sling-source" id="getting-the-sling-source">Getting the Sling Source</a></h2> 
-<p>The Sling source code is managed in Git using the Apache Gitbox tools: Git repositories are mirrored from GitHub to the canonical Apache Git repositories. In practice, one can work on GitHub and the replication to the Apache repositories is transparent.</p> 
-<p>The <a href="/repolist.html">complete list of modules</a> can be used to clone individual modules, but we provide a more convenient way of checking out all of the source modules that are used in Sling. Since that's over 2^
- <super>
-  8
- </super> repositories, it's based on additional tooling:</p> 
-<ol> 
- <li> <p>Install a git client if needed and the <a href="https://android.googlesource.com/tools/repo">Google Repo</a> tool.</p> </li> 
- <li> <p>Check out a new repo workspace</p> <pre><code>$ repo init --no-clone-bundle -u https://github.com/apache/sling-aggregator.git
+</code></pre>
+<p>With this, Sling should be running at http://localhost:8080 with remote debugging active as per the $DBG variable.</p>
+<h2><a href="#prerequisites" name="prerequisites">Prerequisites</a></h2>
+<p>Before you begin, you need to have the following tools installed on your system:</p>
+<ul>
+  <li>Java 8 or higher</li>
+  <li><a href="http://maven.apache.org">Maven</a> 3.3.9 or later; enforced by the Sling parent pom</li>
+</ul>
+<p>If you want to set up an IDE any recent version of a Java IDE with Maven support will do just fine. If you're using Eclipse, you can install the [/documentation/development/ide-tooling.html](Sling IDE tooling) for some extra niceties, but it's not required in any way.</p>
+<h2><a href="#configuring-maven" name="configuring-maven">Configuring Maven</a></h2>
+<p>See <a href="/documentation/development/maventipsandtricks.html">MavenTipsAndTricks</a>.</p>
+<h2><a href="#getting-the-sling-source" name="getting-the-sling-source">Getting the Sling Source</a></h2>
+<p>The Sling source code is managed in Git using the Apache Gitbox tools: Git repositories are mirrored from GitHub to the canonical Apache Git repositories. In practice, one can work on GitHub and the replication to the Apache repositories is transparent.</p>
+<p>The <a href="/repolist.html">complete list of modules</a> can be used to clone individual modules, but we provide a more convenient way of checking out all of the source modules that are used in Sling. Since that's over 2^<super>8</super> repositories, it's based on additional tooling:</p>
+<ol>
+  <li>
+  <p>Install a git client if needed and the <a href="https://android.googlesource.com/tools/repo">Google Repo</a> tool.</p></li>
+  <li>
+    <p>Check out a new repo workspace</p>
+    <pre><code>$ repo init --no-clone-bundle -u https://github.com/apache/sling-aggregator.git
 $ repo sync -j 16 --no-clone-bundle
-</code></pre> </li> 
- <li> <p>In your IDE, import the projects you're interested in from the repo workspace.</p> </li> 
-</ol> 
-<h2><a href="#building-sling" id="building-sling">Building Sling</a></h2> 
-<p>We don't yet offer a way of building all the Sling modules using a single command, but that should not be usually needed. To build any Sling module, just enter the local directory and execute</p> 
+</code></pre>
+  </li>
+  <li>
+  <p>In your IDE, import the projects you're interested in from the repo workspace.</p></li>
+</ol>
+<h2><a href="#building-sling" name="building-sling">Building Sling</a></h2>
+<p>We don't yet offer a way of building all the Sling modules using a single command, but that should not be usually needed. To build any Sling module, just enter the local directory and execute</p>
 <pre><code>$ mvn --update-snapshots clean install
-</code></pre> 
-<p>Some modules may have specific build instructions, see the <code>README.md</code> file for each module.</p> 
-<h2><a href="#running-sling" id="running-sling">Running Sling</a></h2> 
-<p>The Sling project produces an executable jar with the <code>org-apache-sling-starter</code> module. After building the module, you can execute</p> 
+</code></pre>
+<p>Some modules may have specific build instructions, see the <code>README.md</code> file for each module.</p>
+<h2><a href="#running-sling" name="running-sling">Running Sling</a></h2>
+<p>The Sling project produces an executable jar with the <code>org-apache-sling-starter</code> module. After building the module, you can execute</p>
 <pre><code>$ java -jar target/org.apache.sling.starter-*.jar
-</code></pre> 
-<p>to start it up.</p> 
+</code></pre>
+<p>to start it up.</p>
 <div class="note">
-  When starting Sling inside the org-apache-sling-starter module you should not use the default Sling Home folder name sling because this folder is removed when running mvn clean. 
-</div> 
-<p>Messages should now be printed to the console which is being used as the "log file";</p> 
-<ul> 
- <li>the <code>-f</code> command line option is set to <code>-</code>, indicating the use of standard output as the log file.</li> 
- <li>the <code>-c sling</code> command line option instructs Sling to use the <code>sling</code> directory in the current directory for its data store, which is the Apache Felix bundle archive, the Jackrabbit repository data and configuration. You may also specify another directory here, either a relative or absolute path name (See also <a href="/documentation/configuration.html">Configuration</a> for more information).</li> 
- <li>Use the <code>-h</code> option to see the list of flags and options.</li> 
-</ul> 
-<p>After all messages have been printed you should be able to open the Sling Management Console by pointing your web browser at <a href="http://localhost:8080/system/console">http://localhost:8080/system/console</a>. You will be prompted for a user name and password. Enter <code>admin</code> for both the user name and the password (this may be set on the <em>Configuration</em> page later). From this console, you can manage the installed bundles, modify configuration objects, dump a configuration status and see some system information.</p> 
-<p>To stop Sling, just hit <code>Ctrl-C</code> in the console or click the <em>Stop</em> button on the <em>System Information</em> page of the Sling Management Console.</p> 
-<h2><a href="#making-and-deploying-changes" id="making-and-deploying-changes">Making and deploying changes</a></h2> 
-<p>Enter the module of the bundle you're working on, then do a build and deploy the bundle to the running launchpad instance</p> 
+When starting Sling inside the org-apache-sling-starter module you should not use the default Sling Home folder name sling because this folder is removed when running mvn clean.
+</div>
+<p>Messages should now be printed to the console which is being used as the "log file";</p>
+<ul>
+  <li>the <code>-f</code> command line option is set to <code>-</code>, indicating the use of standard output as the log file.</li>
+  <li>the <code>-c sling</code> command line option instructs Sling to use the <code>sling</code> directory in the current directory for its data store, which is the Apache Felix bundle archive, the Jackrabbit repository data and configuration. You may also specify another directory here, either a relative or absolute path name (See also <a href="/documentation/configuration.html">Configuration</a> for more information).</li>
+  <li>Use the <code>-h</code> option to see the list of flags and options.</li>
+</ul>
+<p>After all messages have been printed you should be able to open the Sling Management Console by pointing your web browser at <a href="http://localhost:8080/system/console">http://localhost:8080/system/console</a>. You will be prompted for a user name and password. Enter <code>admin</code> for both the user name and the password (this may be set on the <em>Configuration</em> page later). From this console, you can manage the installed bundles, modify configuration objects, dump a configuration status and see some system information.</p>
+<p>To stop Sling, just hit <code>Ctrl-C</code> in the console or click the <em>Stop</em> button on the <em>System Information</em> page of the Sling Management Console.</p>
+<h2><a href="#making-and-deploying-changes" name="making-and-deploying-changes">Making and deploying changes</a></h2>
+<p>Enter the module of the bundle you're working on, then do a build and deploy the bundle to the running launchpad instance</p>
 <pre><code>    $ cd org-apache-sling-servlets-get
     $ mvn clean install sling:install
-</code></pre> 
-<p>The Maven build command ensure that:</p> 
-<ul> 
- <li>the bundle is installed in the local repository so future builds of the launchpad module will pick it up ( <code>install</code> goal )</li> 
- <li>the bundle is deployed in the running launchpad instance ( <code>sling:install</code> goal )</li> 
-</ul> 
-<p>Congratulations ! You should now have a running Sling instance, that you can start playing around with.</p> 
-<h2><a href="#further-tips-and-tricks" id="further-tips-and-tricks">Further Tips and Tricks</a></h2> 
-<h3><a href="#debug-sling-in-eclipse" id="debug-sling-in-eclipse">Debug Sling in Eclipse</a></h3> 
-<p>You can use remote debugging to debug Sling in Eclipse, here's a little How-To</p> 
-<ol> 
- <li> <p>start Sling from the command line with (replace N with the actual version before running the command)</p> <p>java -Xmx384M -agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n -jar org.apache.sling.starter-N.jar</p> </li> 
- <li> <p>Open Menu Run-&gt; Debug configurations</p> </li> 
- <li>Right-click on "Remote Java Applications"</li> 
- <li>Choose "New"</li> 
- <li>In the "Connect" tab choose the Eclipse Sling Project for the field "Project" with the browse button</li> 
- <li>Let the Connection type be "Standard (Socket Attach)"</li> 
- <li>The host should be localhost</li> 
- <li>Set the Port to 30303</li> 
- <li>On the source tab click the "Add" button</li> 
- <li>Select "Java Project"</li> 
- <li>Select all Sling projects and click OK</li> 
- <li>Click "Debug"</li> 
-</ol> 
-<p>Now you should be able to set breakpoints, evaluate properties, and so on as usual.</p> 
-<h3><a href="#debug-maven-tests-in-eclipse" id="debug-maven-tests-in-eclipse">Debug Maven Tests in Eclipse</a></h3> 
-<p>In the same way as you can debug the sling app, you are also able to debug a maven test. Just run the maven tests like this</p> 
+</code></pre>
+<p>The Maven build command ensure that:</p>
+<ul>
+  <li>the bundle is installed in the local repository so future builds of the launchpad module will pick it up ( <code>install</code> goal )</li>
+  <li>the bundle is deployed in the running launchpad instance ( <code>sling:install</code> goal )</li>
+</ul>
+<p>Congratulations ! You should now have a running Sling instance, that you can start playing around with.</p>
+<h2><a href="#further-tips-and-tricks" name="further-tips-and-tricks">Further Tips and Tricks</a></h2>
+<h3><a href="#debug-sling-in-eclipse" name="debug-sling-in-eclipse">Debug Sling in Eclipse</a></h3>
+<p>You can use remote debugging to debug Sling in Eclipse, here's a little How-To</p>
+<ol>
+  <li>
+    <p>start Sling from the command line with (replace N with the actual version before running the command)</p>
+    <p>java -Xmx384M -agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n -jar org.apache.sling.starter-N.jar</p>
+  </li>
+  <li>
+  <p>Open Menu Run-&gt; Debug configurations</p></li>
+  <li>Right-click on "Remote Java Applications"</li>
+  <li>Choose "New"</li>
+  <li>In the "Connect" tab choose the Eclipse Sling Project for the field "Project" with the browse button</li>
+  <li>Let the Connection type be "Standard (Socket Attach)"</li>
+  <li>The host should be localhost</li>
+  <li>Set the Port to 30303</li>
+  <li>On the source tab click the "Add" button</li>
+  <li>Select "Java Project"</li>
+  <li>Select all Sling projects and click OK</li>
+  <li>Click "Debug"</li>
+</ol>
+<p>Now you should be able to set breakpoints, evaluate properties, and so on as usual.</p>
+<h3><a href="#debug-maven-tests-in-eclipse" name="debug-maven-tests-in-eclipse">Debug Maven Tests in Eclipse</a></h3>
+<p>In the same way as you can debug the sling app, you are also able to debug a maven test. Just run the maven tests like this</p>
 <pre><code>mvn -Dmaven.surefire.debug test
-</code></pre> 
-<p>The tests will automatically pause and await a remote debugger on port 5005. You can then attach to the running tests using Eclipse. You can setup a "Remote Java Application" launch configuration via the menu command "Run" &gt; "Open Debug Dialog..." (see above). For more information on this see the <a href="http://maven.apache.org/plugins/maven-surefire-plugin/examples/debugging.html">Maven Surefire Docu</a>.</p> 
-<h3><a href="#simple-way-to-develop-new-bundle-in-eclipse-for-sling" id="simple-way-to-develop-new-bundle-in-eclipse-for-sling">Simple way to develop new bundle in Eclipse for Sling</a></h3> 
-<p>The easiest way that I found is to create a new folder in the existing Eclipse workspace. After that you can follow these steps:</p> 
-<ul> 
- <li>Start by copying and adapting an existing Sling pom.xml (eg. the pom.xml from the espblog sample)</li> 
- <li>Generate the Eclipse project files using mvn eclipse:eclipse</li> 
- <li>Choose File/Import in Eclipse and select "Existing projects into workspace"</li> 
- <li>Now you can create, edit and compile the files in Eclipse</li> 
- <li>To create the bundle jar and install it, just use the command line "mvn clean install" in the project directory</li> 
- <li>If you have a running Sling app you can install the bundle from the command line with "mvn -P autoInstallBundle clean install -Dsling.url=http://localhost:8080/system/console"</li> 
-</ul> 
+</code></pre>
+<p>The tests will automatically pause and await a remote debugger on port 5005. You can then attach to the running tests using Eclipse. You can setup a "Remote Java Application" launch configuration via the menu command "Run" &gt; "Open Debug Dialog..." (see above). For more information on this see the <a href="http://maven.apache.org/plugins/maven-surefire-plugin/examples/debugging.html">Maven Surefire Docu</a>.</p>
+<h3><a href="#simple-way-to-develop-new-bundle-in-eclipse-for-sling" name="simple-way-to-develop-new-bundle-in-eclipse-for-sling">Simple way to develop new bundle in Eclipse for Sling</a></h3>
+<p>The easiest way that I found is to create a new folder in the existing Eclipse workspace. After that you can follow these steps:</p>
+<ul>
+  <li>Start by copying and adapting an existing Sling pom.xml (eg. the pom.xml from the espblog sample)</li>
+  <li>Generate the Eclipse project files using mvn eclipse:eclipse</li>
+  <li>Choose File/Import in Eclipse and select "Existing projects into workspace"</li>
+  <li>Now you can create, edit and compile the files in Eclipse</li>
+  <li>To create the bundle jar and install it, just use the command line "mvn clean install" in the project directory</li>
+  <li>If you have a running Sling app you can install the bundle from the command line with "mvn -P autoInstallBundle clean install -Dsling.url=http://localhost:8080/system/console"</li>
+</ul>
 <p>If adding dependencies to the poms, run mvn eclipse:eclipse again and refresh the project in Eclipse. Debugging works as described above.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -91,16 +91,15 @@
             </div><h1 class="pagetitle">
                 Scheduler Service (commons scheduler)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The scheduler is a service for scheduling other services/jobs (it uses the open source Quartz library). The scheduler can be used in two ways, by registering the job through the scheduler API and by leveraging the whiteboard pattern that is supported by the scheduler. In most cases the whiteboard pattern is preferred</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The scheduler is a service for scheduling other services/jobs (it uses the open source Quartz library). The scheduler can be used in two ways, by registering the job through the scheduler API and by leveraging the whiteboard pattern that is supported by the scheduler. In most cases the whiteboard pattern is preferred</p>
 <div class="note">
-  The notion of Job used in this context is a different one than the one used for 
- <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a>. The main difference is that a scheduler's job is not persisted. 
-</div> 
-<h2><a href="#examples-of-jobs-that-are-scheduled-by-leveraging-the-whiteboard-pattern" id="examples-of-jobs-that-are-scheduled-by-leveraging-the-whiteboard-pattern">Examples of jobs that are scheduled by leveraging the whiteboard pattern</a></h2> 
-<p>The following examples show you how to define and schedule a job by leveraging the whiteboard pattern.</p> 
-<h3><a href="#scheduling-with-a-cron-expression" id="scheduling-with-a-cron-expression">Scheduling with a cron expression</a></h3> 
-<p>The cron expression format is described in the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html#format">Quartz Cron Documentation</a> and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute).</p> 
-<p>The following job is executed every minute by setting <em>scheduler.expression</em> to the cron expression <code>0 * * * * ?</code>:</p> 
+The notion of Job used in this context is a different one than the one used for <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a>. The main difference is that a scheduler's job is not persisted.
+</div>
+<h2><a href="#examples-of-jobs-that-are-scheduled-by-leveraging-the-whiteboard-pattern" name="examples-of-jobs-that-are-scheduled-by-leveraging-the-whiteboard-pattern">Examples of jobs that are scheduled by leveraging the whiteboard pattern</a></h2>
+<p>The following examples show you how to define and schedule a job by leveraging the whiteboard pattern.</p>
+<h3><a href="#scheduling-with-a-cron-expression" name="scheduling-with-a-cron-expression">Scheduling with a cron expression</a></h3>
+<p>The cron expression format is described in the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html#format">Quartz Cron Documentation</a> and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute). </p>
+<p>The following job is executed every minute by setting <em>scheduler.expression</em> to the cron expression <code>0 * * * * ?</code>:</p>
 <pre><code>package sling.docu.examples;
 
 import org.slf4j.Logger;
@@ -111,20 +110,20 @@ import org.apache.felix.scr.annotations.Property;
 
 @Component
 @Service(value = Runnable.class)
-@Property( name = "scheduler.expression", value = "0 * * * * ?")
+@Property( name = &quot;scheduler.expression&quot;, value = &quot;0 * * * * ?&quot;)
 public class ScheduledCronJob implements Runnable {
 
-	/** Default log. */
+    /** Default log. */
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-    
+
     public void run() {
-    	log.info("Executing a cron job (job#1) through the whiteboard pattern");
+        log.info(&quot;Executing a cron job (job#1) through the whiteboard pattern&quot;);
     }
 //
 }
-</code></pre> 
-<h3><a href="#scheduling-at-periodic-times" id="scheduling-at-periodic-times">Scheduling at periodic times</a></h3> 
-<p>The following job is executed every ten seconds by setting <em>scheduler.period</em> to <em>10</em>:</p> 
+</code></pre>
+<h3><a href="#scheduling-at-periodic-times" name="scheduling-at-periodic-times">Scheduling at periodic times</a></h3>
+<p>The following job is executed every ten seconds by setting <em>scheduler.period</em> to <em>10</em>:</p>
 <pre><code>package sling.docu.examples;
 
 import org.slf4j.Logger;
@@ -135,62 +134,62 @@ import org.apache.felix.scr.annotations.Property;
 
 @Component
 @Service(value = Runnable.class)
-@Property( name = "scheduler.period", longValue = 10)
+@Property( name = &quot;scheduler.period&quot;, longValue = 10)
 public class ScheduledPeriodicJob implements Runnable {
 
-	/** Default log. */
+    /** Default log. */
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-    
+
     public void run() {
-    	log.info("Executing a perodic job (job#2) through the whiteboard pattern");
+        log.info(&quot;Executing a perodic job (job#2) through the whiteboard pattern&quot;);
     }
 //
 }
-</code></pre> 
-<h3><a href="#preventing-concurrent-execution" id="preventing-concurrent-execution">Preventing concurrent execution</a></h3> 
-<p>By default, jobs can be concurrently executed. To prevent this, set the <em>scheduler.concurrent</em> property to <em>false</em>:</p> 
-<pre><code>@Property(name="scheduler.concurrent", boolValue=false)
-</code></pre> 
-<h3><a href="#scheduling-the-job-just-once-in-a-cluster" id="scheduling-the-job-just-once-in-a-cluster">Scheduling the job just once in a cluster</a></h3> 
-<p>If the same code/same services is executed on multiple nodes within a cluster, the same job might be scheduled on each instance. If this is not desired, the job can either be bound to the leader of the topology or a single instance (which one this is, is not further defined):</p> 
-<pre><code>@Property(name="scheduler.runOn", value="LEADER");
-</code></pre> 
-<p>or</p> 
-<pre><code>@Property(name="scheduler.runOn", value="SINGLE");
-</code></pre> 
-<p>Since in contrast to <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a> the scheduler queue is only held in memory, there will be no distribution of jobs. So if job '1' was scheduled on instance 'a' with the option to run on the leader only, but the leader is instance 'b', which hasn't the job in the queue, the job will never be executed by any instance!</p> 
-<h2><a href="#the-scheduler-api" id="the-scheduler-api">The Scheduler API</a></h2> 
-<p>The scheduler has methods to execute jobs periodically, based on a cron expression or at a given time. For more details please refer to the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/commons/scheduler/Scheduler.html">javadocs</a>.</p> 
-<h2><a href="#examples-of-scheduled-jobs-registered-through-the-scheduler-api" id="examples-of-scheduled-jobs-registered-through-the-scheduler-api">Examples of scheduled jobs registered through the scheduler API</a></h2> 
-<p>The following examples show you how to define and schedule a job that is registered through the scheduler api.</p> 
-<h3><a href="#defining-the-job" id="defining-the-job">Defining the job</a></h3> 
-<p>The following code sample defines a <em>job</em> object that writes a message in the logs:</p> 
+</code></pre>
+<h3><a href="#preventing-concurrent-execution" name="preventing-concurrent-execution">Preventing concurrent execution</a></h3>
+<p>By default, jobs can be concurrently executed. To prevent this, set the <em>scheduler.concurrent</em> property to <em>false</em>:</p>
+<pre><code>@Property(name=&quot;scheduler.concurrent&quot;, boolValue=false)
+</code></pre>
+<h3><a href="#scheduling-the-job-just-once-in-a-cluster" name="scheduling-the-job-just-once-in-a-cluster">Scheduling the job just once in a cluster</a></h3>
+<p>If the same code/same services is executed on multiple nodes within a cluster, the same job might be scheduled on each instance. If this is not desired, the job can either be bound to the leader of the topology or a single instance (which one this is, is not further defined):</p>
+<pre><code>@Property(name=&quot;scheduler.runOn&quot;, value=&quot;LEADER&quot;);
+</code></pre>
+<p>or</p>
+<pre><code>@Property(name=&quot;scheduler.runOn&quot;, value=&quot;SINGLE&quot;);
+</code></pre>
+<p>Since in contrast to <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a> the scheduler queue is only held in memory, there will be no distribution of jobs. So if job '1' was scheduled on instance 'a' with the option to run on the leader only, but the leader is instance 'b', which hasn't the job in the queue, the job will never be executed by any instance!</p>
+<h2><a href="#the-scheduler-api" name="the-scheduler-api">The Scheduler API</a></h2>
+<p>The scheduler has methods to execute jobs periodically, based on a cron expression or at a given time. For more details please refer to the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/commons/scheduler/Scheduler.html">javadocs</a>.</p>
+<h2><a href="#examples-of-scheduled-jobs-registered-through-the-scheduler-api" name="examples-of-scheduled-jobs-registered-through-the-scheduler-api">Examples of scheduled jobs registered through the scheduler API</a></h2>
+<p>The following examples show you how to define and schedule a job that is registered through the scheduler api.</p>
+<h3><a href="#defining-the-job" name="defining-the-job">Defining the job</a></h3>
+<p>The following code sample defines a <em>job</em> object that writes a message in the logs:</p>
 <pre><code>final Runnable job = new Runnable() {
-	public void run() {
-		log.info("Executing the job");
-	}
+    public void run() {
+       log.info(&quot;Executing the job&quot;);
+    }
 };
-</code></pre> 
-<h3><a href="#scheduling-with-a-cron-expression" id="scheduling-with-a-cron-expression">Scheduling with a cron expression</a></h3> 
-<p>To execute the job as defined above at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday, you can use the <em>addJob()</em> method with the following parameters:</p> 
-<pre><code>String schedulingExpression = "0 15 10 ? * MON-FRI";
-this.scheduler.addJob("myJob", job, null, schedulingExpression, true);
-</code></pre> 
-<p>Refer to http://www.docjar.com/docs/api/org/quartz/CronTrigger.html to define more scheduling expressions.</p> 
-<h3><a href="#scheduling-at-periodic-times" id="scheduling-at-periodic-times">Scheduling at periodic times</a></h3> 
-<p>To execute the job as defined above every 3 minutes (180 seconds), you can use the <em>addPeriodicJob()</em> method with the following parameters:</p> 
+</code></pre>
+<h3><a href="#scheduling-with-a-cron-expression" name="scheduling-with-a-cron-expression">Scheduling with a cron expression</a></h3>
+<p>To execute the job as defined above at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday, you can use the <em>addJob()</em> method with the following parameters:</p>
+<pre><code>String schedulingExpression = &quot;0 15 10 ? * MON-FRI&quot;;
+this.scheduler.addJob(&quot;myJob&quot;, job, null, schedulingExpression, true);
+</code></pre>
+<p>Refer to http://www.docjar.com/docs/api/org/quartz/CronTrigger.html  to define more scheduling expressions.</p>
+<h3><a href="#scheduling-at-periodic-times" name="scheduling-at-periodic-times">Scheduling at periodic times</a></h3>
+<p>To execute the job as defined above every 3 minutes (180 seconds), you can use the <em>addPeriodicJob()</em> method with the following parameters:</p>
 <pre><code>long period = 3*60; //the period is expressed in seconds
-this.scheduler.addPeriodicJob("myJob", job, null, period, true);
-</code></pre> 
-<h3><a href="#scheduling-at-a-given-time" id="scheduling-at-a-given-time">Scheduling at a given time</a></h3> 
-<p>To execute the job as defined above at a specific date (on January 10th 2020), you can use the <em>fireJobAt()</em> method with the following parameters:</p> 
-<pre><code>SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-String date = "2020/01/10";
+this.scheduler.addPeriodicJob(&quot;myJob&quot;, job, null, period, true);
+</code></pre>
+<h3><a href="#scheduling-at-a-given-time" name="scheduling-at-a-given-time">Scheduling at a given time</a></h3>
+<p>To execute the job as defined above at a specific date (on January 10th 2020), you can use the <em>fireJobAt()</em> method with the following parameters:</p>
+<pre><code>SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyy/MM/dd&quot;);
+String date = &quot;2020/01/10&quot;;
 java.util.Date fireDate = formatter.parse(date);
-this.scheduler.fireJobAt("myJob", job, null, fireDate);
-</code></pre> 
-<h3><a href="#a-service-scheduling-the-job-based-on-3-different-kinds-of-scheduling" id="a-service-scheduling-the-job-based-on-3-different-kinds-of-scheduling">A service scheduling the job based on 3 different kinds of scheduling</a></h3> 
-<p>The code implementing a service that simultaneously executes the job based on 3 different kinds of scheduling can look as follows:</p> 
+this.scheduler.fireJobAt(&quot;myJob&quot;, job, null, fireDate);
+</code></pre>
+<h3><a href="#a-service-scheduling-the-job-based-on-3-different-kinds-of-scheduling" name="a-service-scheduling-the-job-based-on-3-different-kinds-of-scheduling">A service scheduling the job based on 3 different kinds of scheduling</a></h3>
+<p>The code implementing a service that simultaneously executes the job based on 3 different kinds of scheduling can look as follows:</p>
 <pre><code>package sling.docu.examples;
 
 import java.io.Serializable;
@@ -211,67 +210,67 @@ import org.apache.felix.scr.annotations.Reference;
  */
 @Component
 public class HelloWorldScheduledService {
-	
+
     /** Default log. */
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-    
+
     /** The scheduler for rescheduling jobs. */
     @Reference
     private Scheduler scheduler;
-    
+
 
     protected void activate(ComponentContext componentContext) throws Exception {
         //case 1: with addJob() method: executes the job every minute
-    	String schedulingExpression = "0 * * * * ?";
-    	String jobName1 = "case1";
-    	Map&lt;String, Serializable&gt; config1 = new HashMap&lt;String, Serializable&gt;();
-    	boolean canRunConcurrently = true;
+        String schedulingExpression = &quot;0 * * * * ?&quot;;
+        String jobName1 = &quot;case1&quot;;
+        Map&lt;String, Serializable&gt; config1 = new HashMap&lt;String, Serializable&gt;();
+        boolean canRunConcurrently = true;
         final Runnable job1 = new Runnable() {
             public void run() {
-            	log.info("Executing job1");
+                log.info(&quot;Executing job1&quot;);
             }
         };
         try {
-        	this.scheduler.addJob(jobName1, job1, config1, schedulingExpression, canRunConcurrently);
+            this.scheduler.addJob(jobName1, job1, config1, schedulingExpression, canRunConcurrently);
         } catch (Exception e) {
             job1.run();
         }
-    	
+
         //case 2: with addPeriodicJob(): executes the job every 3 minutes
-        String jobName2 = "case2";
-    	long period = 180;
-    	Map&lt;String, Serializable&gt; config2 = new HashMap&lt;String, Serializable&gt;();
+        String jobName2 = &quot;case2&quot;;
+        long period = 180;
+        Map&lt;String, Serializable&gt; config2 = new HashMap&lt;String, Serializable&gt;();
         final Runnable job2 = new Runnable() {
             public void run() {
-            	log.info("Executing job2");
+                log.info(&quot;Executing job2&quot;);
             }
         };
         try {
-        	this.scheduler.addPeriodicJob(jobName2, job2, config2, period, canRunConcurrently);
+            this.scheduler.addPeriodicJob(jobName2, job2, config2, period, canRunConcurrently);
         } catch (Exception e) {
             job2.run();
         }
 
         //case 3: with fireJobAt(): executes the job at a specific date (date of deployment + delay of 30 seconds)
-        String jobName3 = "case3";
-    	final long delay = 30*1000;
-    	final Date fireDate = new Date();
+        String jobName3 = &quot;case3&quot;;
+        final long delay = 30*1000;
+        final Date fireDate = new Date();
         fireDate.setTime(System.currentTimeMillis() + delay);
-    	Map&lt;String, Serializable&gt; config3 = new HashMap&lt;String, Serializable&gt;();
+        Map&lt;String, Serializable&gt; config3 = new HashMap&lt;String, Serializable&gt;();
         final Runnable job3 = new Runnable() {
             public void run() {
-            	log.info("Executing job3 at date: {} with a delay of: {} seconds", fireDate, delay/1000);
+                log.info(&quot;Executing job3 at date: {} with a delay of: {} seconds&quot;, fireDate, delay/1000);
             }
         };
         try {
-        	this.scheduler.fireJobAt(jobName3, job3, config3, fireDate);
+            this.scheduler.fireJobAt(jobName3, job3, config3, fireDate);
         } catch (Exception e) {
             job3.run();
         }
     }
 
     protected void deactivate(ComponentContext componentContext) {
-        log.info("Deactivated, goodbye!");
+        log.info(&quot;Deactivated, goodbye!&quot;);
     }
 
 }

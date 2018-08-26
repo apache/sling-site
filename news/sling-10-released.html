@@ -89,51 +89,50 @@
             </div><h1 class="pagetitle">
                 Apache Sling 10 released
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling 10 release is focused on adding improved support for newer Java versions, but we managed to sneak in a couple of improvements as well. Please see the full details below.</p> 
-<p>To find out more about running Sling, see out <a href="/documentation/getting-started.html">getting started page</a>.</p> 
-<h2><a href="#java-9-and-10-support" id="java-9-and-10-support">Java 9 and 10 support</a></h2> 
-<p>Sling now fully supports Java 9, with the integration tests running on Java 8 and Java 9 side-by-side. Java 10 has received the same attention in terms of testing, but since it is not officially released we can not declare it as fully supported.</p> 
-<h2><a href="#change-of-artifactid-for-the-main-sling-artifact" id="change-of-artifactid-for-the-main-sling-artifact">Change of artifactId for the main Sling artifact</a></h2> 
-<p>To better reflect its role, the old Sling launchpad has been renamed to the Sling starter. The name reflects that it's been used to quickly start working with Sling and also that it's aimed to start your appetite of working with Sling.</p> 
-<p>The Maven coordinates have changed from <code>org.apache.sling:org.apache.sling.launchpad</code> to <code>org.apache.sling:org.apache.sling.starter</code> .</p> 
-<h2><a href="#migrated-from-tika-bundle-to-tika-parsers" id="migrated-from-tika-bundle-to-tika-parsers">Migrated from tika-bundle to tika-parsers</a></h2> 
-<p>In order to keep the Slingstart artifact size under control, we no longer embed the tika-bundle uber-artifact. Instead, we include tika-parsers and explicitly support parsing of PDF documents via PDFBox. Consumers that desire to parse other document types can include other dependencies as OSGi bundle as needed.</p> 
-<p>Discovering parsers that do not work can be done by starting Sling with the additional <code>-Dorg.apache.tika.service.error.warn=true</code> argument. See also <a href="https://wiki.apache.org/tika/Troubleshooting%20Tika">Troubleshooting Tika</a> .</p> 
-<h2><a href="#direct-access-to-a-datastore-binary-when-the-repository-allows-it" id="direct-access-to-a-datastore-binary-when-the-repository-allows-it">Direct access to a DataStore binary when the repository allows it</a></h2> 
-<p>Sling is now able to directly redirect clients to secure URLs of DataStore binaries when the underlying repository allows it. This feature is intended to allow quick serving of content from remote services such as S3 without having to stream the binaries from Sling.</p> 
-<p>For more details see <a href="https://issues.apache.org/jira/browse/OAK-6575">OAK-6575 - Provide a secure external URL to a DataStore binary</a>, <a href="https://issues.apache.org/jira/browse/SLING-7140">SLING-7140 - Support redirects to URLs provided by the underlying datastore</a> and <a href="https://gist.github.com/ieb/f9e044e4033b8f810238fe9a27eeaa78">Ian Boston's quick configuration notes</a>.</p> 
-<h2><a href="#exception-stack-traces-now-contain-the-originating-bundle" id="exception-stack-traces-now-contain-the-originating-bundle">Exception stack traces now contain the originating bundle</a></h2> 
-<p>When an exception is logged, the Bundle-SymbolicName and the version of the bundle containing each stack trace element are shown. The intent is to simplify debugging and support when logs are available but bundle versions are not known.</p> 
-<p>See the <a href="https://sling.apache.org/documentation/development/logging.html">logging documentation</a> for more details.</p> 
-<h2><a href="#update-to-oak-168" id="update-to-oak-168">Update to Oak 1.6.8</a></h2> 
-<p>We use the latest stable Oak version from the 1.6 stream, bringing in over 140 fixes and improvements. See the [full list of resolved issues][oak-fixes].</p> 
-<h2><a href="#service-user-web-console-page-added" id="service-user-web-console-page-added">Service user web console page added</a></h2> 
-<p>Working with service users is now made simpler by a new Web Console addition which allows inspecting and managing Service Users.</p> 
-<p><img src="http://sling.apache.org/documentation/development/serviceuser-web-console.png" alt="service users in web console"></p> 
-<p>This console page is available as a standalone artifact at the <code>org.apache.sling:org.apache.sling.serviceuser.webconsole</code> Maven coordinates.</p> 
-<h2><a href="#service-user-privilege-declaration-based-on-principal-names" id="service-user-privilege-declaration-based-on-principal-names">Service user privilege declaration based on principal names</a></h2> 
-<p>Service users may now be declared as having a list of principal names which exhaustively map the privileges they contain. This style of declaration is preferred since it reduces redundancy and adds clarity to the privileges used by a certain service user. Pre-authentication can also lead to performance improvements.</p> 
-<p>The OSGi configuration differs from the standard model by using an array to hold the principal names, as opposed to a single value. An example can be seen below</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The Sling 10 release is focused on adding improved support for newer Java versions, but we managed to sneak in a couple of improvements as well. Please see the full details below.</p>
+<p>To find out more about running Sling, see out <a href="/documentation/getting-started.html">getting started page</a>.</p>
+<h2><a href="#java-9-and-10-support" name="java-9-and-10-support">Java 9 and 10 support</a></h2>
+<p>Sling now fully supports Java 9, with the integration tests running on Java 8 and Java 9 side-by-side. Java 10 has received the same attention in terms of testing, but since it is not officially released we can not declare it as fully supported.</p>
+<h2><a href="#change-of-artifactid-for-the-main-sling-artifact" name="change-of-artifactid-for-the-main-sling-artifact">Change of artifactId for the main Sling artifact</a></h2>
+<p>To better reflect its role, the old Sling launchpad has been renamed to the Sling starter. The name reflects that it's been used to quickly start working with Sling and also that it's aimed to start your appetite of working with Sling.</p>
+<p>The Maven coordinates have changed from <code>org.apache.sling:org.apache.sling.launchpad</code> to <code>org.apache.sling:org.apache.sling.starter</code> .</p>
+<h2><a href="#migrated-from-tika-bundle-to-tika-parsers" name="migrated-from-tika-bundle-to-tika-parsers">Migrated from tika-bundle to tika-parsers</a></h2>
+<p>In order to keep the Slingstart artifact size under control, we no longer embed the tika-bundle uber-artifact. Instead, we include tika-parsers and explicitly support parsing of PDF documents via PDFBox. Consumers that desire to parse other document types can include other dependencies as OSGi bundle as needed.</p>
+<p>Discovering parsers that do not work can be done by starting Sling with the additional <code>-Dorg.apache.tika.service.error.warn=true</code> argument. See also <a href="https://wiki.apache.org/tika/Troubleshooting%20Tika">Troubleshooting Tika</a> .</p>
+<h2><a href="#direct-access-to-a-datastore-binary-when-the-repository-allows-it" name="direct-access-to-a-datastore-binary-when-the-repository-allows-it">Direct access to a DataStore binary when the repository allows it</a></h2>
+<p>Sling is now able to directly redirect clients to secure URLs of DataStore binaries when the underlying repository allows it. This feature is intended to allow quick serving of content from remote services such as S3 without having to stream the binaries from Sling.</p>
+<p>For more details see <a href="https://issues.apache.org/jira/browse/OAK-6575">OAK-6575 - Provide a secure external URL to a DataStore binary</a>, <a href="https://issues.apache.org/jira/browse/SLING-7140">SLING-7140 - Support redirects to URLs provided by the underlying datastore</a> and <a href="https://gist.github.com/ieb/f9e044e4033b8f810238fe9a27eeaa78">Ian Boston's quick configuration notes</a>.</p>
+<h2><a href="#exception-stack-traces-now-contain-the-originating-bundle" name="exception-stack-traces-now-contain-the-originating-bundle">Exception stack traces now contain the originating bundle</a></h2>
+<p>When an exception is logged, the Bundle-SymbolicName and the version of the bundle containing each stack trace element are shown. The intent is to simplify debugging and support when logs are available but bundle versions are not known.</p>
+<p>See the <a href="https://sling.apache.org/documentation/development/logging.html">logging documentation</a> for more details.</p>
+<h2><a href="#update-to-oak-1-6-8" name="update-to-oak-1-6-8">Update to Oak 1.6.8</a></h2>
+<p>We use the latest stable Oak version from the 1.6 stream, bringing in over 140 fixes and improvements. See the <a href="https://issues.apache.org/jira/issues/?jql=project%20%3D%20OAK%20AND%20resolution%20is%20not%20empty%20and%20fixVersion%20in%20(1.6.2%2C1.6.3%2C1.6.4%2C1.6.5%2C1.6.6%2C1.6.7%2C1.6.8)%20ORDER%20BY%20priority%20DESC%2C%20updated%20DESC)">full list of resolved issues</a>.</p>
+<h2><a href="#service-user-web-console-page-added" name="service-user-web-console-page-added">Service user web console page added</a></h2>
+<p>Working with service users is now made simpler by a new Web Console addition which allows inspecting and managing Service Users.</p>
+<p><img src="/documentation/development/serviceuser-web-console.png" alt="service users in web console" /></p>
+<p>This console page is available as a standalone artifact at the <code>org.apache.sling:org.apache.sling.serviceuser.webconsole</code> Maven coordinates.</p>
+<h2><a href="#service-user-privilege-declaration-based-on-principal-names" name="service-user-privilege-declaration-based-on-principal-names">Service user privilege declaration based on principal names</a></h2>
+<p>Service users may now be declared as having a list of principal names which exhaustively map the privileges they contain. This style of declaration is preferred since it reduces redundancy and adds clarity to the privileges used by a certain service user. Pre-authentication can also lead to performance improvements.</p>
+<p>The OSGi configuration differs from the standard model by using an array to hold the principal names, as opposed to a single value. An example can be seen below</p>
 <pre><code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-resourceresolver
   user.mapping=[
-    "org.apache.sling.resourceresolver:mapping\=[repository-reader-service]"
+    &quot;org.apache.sling.resourceresolver:mapping\=[repository-reader-service]&quot;
   ]
-</code></pre> 
-<p>See the <a href="http://jackrabbit.apache.org/oak/docs/security/authentication/preauthentication.html#withoutrepository">Oak documentation on pre-authentication</a> for more details.</p> 
-<h2><a href="#enhancements-to-the-repoinit-language" id="enhancements-to-the-repoinit-language">Enhancements to the repoinit language</a></h2> 
-<p>We have added several improvements to repoinit, including</p> 
-<ul> 
- <li>mixins in "create path" statements</li> 
- <li>repository-level permissions</li> 
- <li>disabling service users</li> 
- <li>specifying oak restrictions</li> 
-</ul> 
-<p>See the <a href="https://sling.apache.org/documentation/bundles/repository-initialization.html">Repository Initialization documentation</a> for more details.</p> 
-<h2><a href="#support-for-mounting-json-files-in-the-bundle-resource-provider" id="support-for-mounting-json-files-in-the-bundle-resource-provider">Support for mounting JSON files in the bundle resource provider</a></h2> 
-<p>The bundle resource provider now allows adding JSON files which hold properties for various nodes.</p> 
-<p>The feature can be enabled by adding a directive to the header entry: <code>propsJSON:=EXTENSION</code>, e.g. <code>propsJSON=json</code>. All files having the configured extension will be treat as JSON files containing properties for the resources.</p> 
-<p>See the <a href="https://sling.apache.org/documentation/bundles/bundle-resources-extensions-bundleresource.html">Bundle resources documentation</a> for more details.</p> 
-<p>[oak-fixes]: https://issues.apache.org/jira/issues/?jql=project%20%3D%20OAK%20AND%20resolution%20is%20not%20empty%20and%20fixVersion%20in%20(1.6.2%2C1.6.3%2C1.6.4%2C1.6.5%2C1.6.6%2C1.6.7%2C1.6.8)%20ORDER%20BY%20priority%20DESC%2C%20updated%20DESC)</p></section></div></div>            
+</code></pre>
+<p>See the <a href="http://jackrabbit.apache.org/oak/docs/security/authentication/preauthentication.html#withoutrepository">Oak documentation on pre-authentication</a> for more details.</p>
+<h2><a href="#enhancements-to-the-repoinit-language" name="enhancements-to-the-repoinit-language">Enhancements to the repoinit language</a></h2>
+<p>We have added several improvements to repoinit, including</p>
+<ul>
+  <li>mixins in "create path" statements</li>
+  <li>repository-level permissions</li>
+  <li>disabling service users</li>
+  <li>specifying oak restrictions</li>
+</ul>
+<p>See the <a href="https://sling.apache.org/documentation/bundles/repository-initialization.html">Repository Initialization documentation</a> for more details.</p>
+<h2><a href="#support-for-mounting-json-files-in-the-bundle-resource-provider" name="support-for-mounting-json-files-in-the-bundle-resource-provider">Support for mounting JSON files in the bundle resource provider</a></h2>
+<p>The bundle resource provider now allows adding JSON files which hold properties for various nodes.</p>
+<p>The feature can be enabled by adding a directive to the header entry: <code>propsJSON:=EXTENSION</code>, e.g. <code>propsJSON=json</code>. All files having the configured extension will be treat as JSON files containing properties for the resources.</p>
+<p>See the <a href="https://sling.apache.org/documentation/bundles/bundle-resources-extensions-bundleresource.html">Bundle resources documentation</a> for more details.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Feb 6 13:52:27 2018 +0200</span>

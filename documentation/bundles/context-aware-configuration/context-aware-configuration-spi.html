@@ -94,32 +94,32 @@
                 Apache Sling Context-Aware Configuration - SPI
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p> 
-<h1><a href="#about" id="about">About</a></h1> 
-<p>The Context-Aware Configuration implementation provides a set of Service Provider Interfaces (SPI) that allows you to overlay, enhance or replace the default implementation and adapt it to your needs.</p> 
-<p>Please use the SPI with care, and first check if the <a href="http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html">Default Implementation</a> does not already fulfill your needs.</p> 
-<h1><a href="#general-principles" id="general-principles">General principles</a></h1> 
-<p>All SPIs share a common principle:</p> 
-<ul> 
- <li>Support multiple strategies at the same time</li> 
- <li>No need to switch off or „copy“ the initial strategy</li> 
- <li>Apply additional strategies only for those places where needed (“minimally invasive”)</li> 
-</ul> 
-<p>All existing implementations are iterated in order of their service ranking.</p> 
-<h1><a href="#context-path-strategy" id="context-path-strategy">Context Path Strategy</a></h1> 
-<p>By providing an implementation of <code>org.apache.sling.caconfig.resource.spi.ContextPathStrategy</code> you can provide additional ways how context paths and their configuration references are detected in your content resource hierarchy.</p> 
-<p>E.g. you could implement detecting context paths by project-specific conventions.</p> 
-<h1><a href="#configuration-resource-resolver-strategy" id="configuration-resource-resolver-strategy">Configuration Resource Resolver Strategy</a></h1> 
-<p>By providing an implementation of <code>org.apache.sling.caconfig.resource.spi.ConfigurationResourceResolvingStrategy</code> you can define where configuration data is looked up, and how resource and property inheritance is handled.</p> 
-<h1><a href="#configuration-inheritance-strategy" id="configuration-inheritance-strategy">Configuration Inheritance Strategy</a></h1> 
-<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationInheritanceStrategy</code> you can define if and how resources are inherited across the inheritance chain.</p> 
-<h1><a href="#configuration-persistence-strategy" id="configuration-persistence-strategy">Configuration Persistence Strategy</a></h1> 
-<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationPersistenceStrategy2</code> you can define the persistence structure of the configuration within the configuration resources.</p> 
-<p>E.g. you could use a specific JCR node type or slightly different content structure to store the configuration data.</p> 
-<h1><a href="#configuration-metadata-provider" id="configuration-metadata-provider">Configuration Metadata Provider</a></h1> 
-<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationMetadataProvider</code> you can provide information about configuration metadata from other sources than annotation classes.</p> 
-<h1><a href="#configuration-override-provider" id="configuration-override-provider">Configuration Override Provider</a></h1> 
-<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationOverrideProvider</code> you can provide your own overrides - if the built-in override providers do not fit your needs.</p> 
+</p>
+<h1><a href="#about" name="about">About</a></h1>
+<p>The Context-Aware Configuration implementation provides a set of Service Provider Interfaces (SPI) that allows you to overlay, enhance or replace the default implementation and adapt it to your needs.</p>
+<p>Please use the SPI with care, and first check if the <a href="http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html">Default Implementation</a> does not already fulfill your needs.</p>
+<h1><a href="#general-principles" name="general-principles">General principles</a></h1>
+<p>All SPIs share a common principle:</p>
+<ul>
+  <li>Support multiple strategies at the same time</li>
+  <li>No need to switch off or „copy“ the initial strategy</li>
+  <li>Apply additional strategies only for those places where needed (“minimally invasive”)</li>
+</ul>
+<p>All existing implementations are iterated in order of their service ranking.</p>
+<h1><a href="#context-path-strategy" name="context-path-strategy">Context Path Strategy</a></h1>
+<p>By providing an implementation of <code>org.apache.sling.caconfig.resource.spi.ContextPathStrategy</code> you can provide additional ways how context paths and their configuration references are detected in your content resource hierarchy.</p>
+<p>E.g. you could implement detecting context paths by project-specific conventions.</p>
+<h1><a href="#configuration-resource-resolver-strategy" name="configuration-resource-resolver-strategy">Configuration Resource Resolver Strategy</a></h1>
+<p>By providing an implementation of <code>org.apache.sling.caconfig.resource.spi.ConfigurationResourceResolvingStrategy</code> you can define where configuration data is looked up, and how resource and property inheritance is handled.</p>
+<h1><a href="#configuration-inheritance-strategy" name="configuration-inheritance-strategy">Configuration Inheritance Strategy</a></h1>
+<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationInheritanceStrategy</code> you can define if and how resources are inherited across the inheritance chain.</p>
+<h1><a href="#configuration-persistence-strategy" name="configuration-persistence-strategy">Configuration Persistence Strategy</a></h1>
+<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationPersistenceStrategy2</code> you can define the persistence structure of the configuration within the configuration resources.</p>
+<p>E.g. you could use a specific JCR node type or slightly different content structure to store the configuration data.</p>
+<h1><a href="#configuration-metadata-provider" name="configuration-metadata-provider">Configuration Metadata Provider</a></h1>
+<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationMetadataProvider</code> you can provide information about configuration metadata from other sources than annotation classes.</p>
+<h1><a href="#configuration-override-provider" name="configuration-override-provider">Configuration Override Provider</a></h1>
+<p>By providing an implementation of <code>org.apache.sling.caconfig.spi.ConfigurationOverrideProvider</code> you can provide your own overrides - if the built-in override providers do not fit your needs.</p>
 <p>See <a href="http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-override.html">Override</a> for the list of built-in providers and the override syntax.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

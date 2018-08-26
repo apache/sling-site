@@ -91,173 +91,173 @@
             </div><h1 class="pagetitle">
                 Content Distribution
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#overview" id="overview">Overview</a></h2> 
-<p>The Sling Content Distribution module main goal is allowing distribution of content (Sling resources) among different Sling instances. The term "distribution" here means the ability of picking one or more resources on a certain Sling instance in order to copy and persist them onto another Sling instance. The Sling Content Distribution module is able to distribute content by:</p> 
-<ul> 
- <li>"pushing" from Sling instance A to Sling instance B</li> 
- <li>"pulling" from Sling instance B to Sling instance A</li> 
- <li>"synchronizing" Sling instances A and B via a (third) coordinating instance C</li> 
-</ul> 
-<h3><a href="#bundles" id="bundles">Bundles</a></h3> 
-<p>The Sling Content Distribution module consists of the following bundles:</p> 
-<ul> 
- <li><code>org.apache.sling.distribution.api</code>: this is where the APIs are defined</li> 
- <li><code>org.apache.sling.distribution.core</code>: this is where the basic infrastructure for distributing content is implemented</li> 
- <li><code>org.apache.sling.distribution.kryo-serializer</code>: Kryo based distribution package serializer</li> 
- <li><code>org.apache.sling.distribution.avro-serializer</code>: Apache Avro based distribution package serializer</li> 
- <li><code>org.apache.sling.distribution.sample</code>: this is a set of sample configurations and implementations for demo purpose</li> 
- <li><code>org.apache.sling.distribution.it</code>: this is the integration testing suite</li> 
-</ul> 
-<h2><a href="#design" id="design">Design</a></h2> 
-<p>The Sling Content Distribution aims to be: <em>Reliable</em>, <em>simple</em> and <em>extensible</em>.</p> 
-<p>Reliability means that the system should be able to keep working also in presence of failures regarding I/O, network, etc. An example of such problems is when pushing content from instance A to instance B fails because B is unreachable: in such scenarios instance A should be able to keep pushing (pulling, etc.) content to other instances seamlessly. Another example is when delivery of a certain content (package) fails too many times the distribution module should be able to either drop it or move it into a different "bucket" of failed items. Simplicity means that this module should be able to accomplish its tasks by providing clear, minimal and easy to use APIs together with smart but not overly complicated or "hacky" implementations (see <a href="http://events.linuxfoundation.org/events/apachecon-europe/program/schedule">"Simple software is hard"</a>). Extensibility means that the Sling Content Distribution module provides a set of APIs for distributing resources where each component coming into place during the distribution lifecycle can be extended or totally replaced.</p> 
-<p>A distribution <em>request</em> represents the need of aggregating some resources and to copy them from / to another Sling instance. Such requests are handled by <em>agents</em> that are the main entry point for working with the distribution module. Each agent distributes content from one or more sources to one or more targets, such distribution can be triggered by:</p> 
-<ul> 
- <li>"pushing" the content to the (remote) target instances</li> 
- <li>"pulling" content from the (remote) source instances</li> 
- <li>"coordinating" instances, that is they are used to synchronize multiple instances by having them as both sources and targets</li> 
-</ul> 
-<p>An <em>agent</em> is capable of handling a certain distribution <em>request</em> by creating one or more <em>packages</em> of resources out of it from the source(s), dispatching such <em>packages</em> to one or more <em>queues</em> and of processing such queued <em>packages</em> by persisting them into the target instance(s).</p> 
-<p>The process of creating one or more packages is called <em>exporting</em> as such operation may either happen locally to the agent (the "push" scenario) or remotely (the "pull" scenario).</p> 
-<p>The process of persisting one or more packages is called <em>importing</em> as such operation may either happen locally (the "pull" scenario) or remotely (the "push" scenario).</p> 
-<p>In order to properly handle large number of <em>requests</em> against the same <em>agent</em> each of them is provided with <em>queues</em> where the exported <em>packages</em> are sent, the <em>agent</em> takes then care to process such a <em>queue</em> in order to <em>import</em> each <em>package</em>.</p> 
-<h3><a href="#distribution-agents-configuration" id="distribution-agents-configuration">Distribution agents configuration</a></h3> 
-<p>Distribution agents configurations are proper OSGi configurations (backed by nodes of type <code>sling:OsgiConfig</code> in the repository).</p> 
-<p>There are specialized factories for each supported scenario:</p> 
-<ul> 
- <li>"forward" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.author/publish/org.apache.sling.distribution.agent.impl.ForwardDistributionAgentFactory-publish.json">ForwardDistributionAgentFactory-publish.json</a>.</li> 
- <li>"reverse" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.author/publish-reverse/org.apache.sling.distribution.agent.impl.ReverseDistributionAgentFactory-publish-reverse.json">ReverseDistributionAgentFactory-publish-reverse.json</a>.</li> 
- <li>"sync" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.author/pubsync/org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-pubsync.json">SyncDistributionAgentFactory-pubsync.json</a>.</li> 
- <li>"queue" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.publish/reverse/org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json">QueueDistributionAgentFactory-reverse.json</a>.</li> 
-</ul> 
-<p>For example a "forward" agent can be defined specifying</p> 
-<ul> 
- <li>The name of the agent (name property)</li> 
- <li>The sub service name used to access content and build packages (serviceName property)</li> 
- <li>The endpoints where the packages are to be imported (packageImporter.endpoints property)</li> 
-</ul> 
-<p>The sample package contains endpoints for exposing configuration for distribution agents. The <em>DistributionConfigurationResourceProviderFactory</em> is used to expose agent configurations as resources.</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#overview" name="overview">Overview</a></h2>
+<p>The Sling Content Distribution module main goal is allowing distribution of content (Sling resources) among different Sling instances. The term "distribution" here means the ability of picking one or more resources on a certain Sling instance in order to copy and persist them onto another Sling instance. The Sling Content Distribution module is able to distribute content by:</p>
+<ul>
+  <li>"pushing" from Sling instance A to Sling instance B</li>
+  <li>"pulling" from Sling instance B to Sling instance A</li>
+  <li>"synchronizing" Sling instances A and B via a (third) coordinating instance C</li>
+</ul>
+<h3><a href="#bundles" name="bundles">Bundles</a></h3>
+<p>The Sling Content Distribution module consists of the following bundles:</p>
+<ul>
+  <li><code>org.apache.sling.distribution.api</code>: this is where the APIs are defined</li>
+  <li><code>org.apache.sling.distribution.core</code>: this is where the basic infrastructure for distributing content is implemented</li>
+  <li><code>org.apache.sling.distribution.kryo-serializer</code>: Kryo based distribution package serializer</li>
+  <li><code>org.apache.sling.distribution.avro-serializer</code>: Apache Avro based distribution package serializer</li>
+  <li><code>org.apache.sling.distribution.sample</code>: this is a set of sample configurations and implementations for demo purpose</li>
+  <li><code>org.apache.sling.distribution.it</code>: this is the integration testing suite</li>
+</ul>
+<h2><a href="#design" name="design">Design</a></h2>
+<p>The Sling Content Distribution aims to be: <em>Reliable</em>, <em>simple</em> and <em>extensible</em>.</p>
+<p>Reliability means that the system should be able to keep working also in presence of failures regarding I/O, network, etc. An example of such problems is when pushing content from instance A to instance B fails because B is unreachable: in such  scenarios instance A should be able to keep pushing (pulling, etc.) content to other instances seamlessly. Another example  is when delivery of a certain content (package) fails too many times the distribution module should be able to either drop  it or move it into a different "bucket" of failed items. Simplicity means that this module should be able to accomplish its tasks by providing clear, minimal and easy to use APIs together with smart but not overly complicated or "hacky" implementations (see <a href="http://events.linuxfoundation.org/events/apachecon-europe/program/schedule">"Simple software is hard"</a>). Extensibility means that the Sling Content Distribution module provides a set of APIs for distributing resources where each component coming into place during the distribution lifecycle can be extended or totally replaced.</p>
+<p>A distribution <em>request</em> represents the need of aggregating some resources and to copy them from / to another Sling instance. Such requests are handled by <em>agents</em> that are the main entry point for working with the distribution module. Each agent distributes content from one or more sources to one or more targets, such distribution can be triggered by:</p>
+<ul>
+  <li>"pushing" the content to the (remote) target instances</li>
+  <li>"pulling" content from the (remote) source instances</li>
+  <li>"coordinating" instances, that is they are used to synchronize multiple instances by having them as both sources and targets</li>
+</ul>
+<p>An <em>agent</em> is capable of handling a certain distribution <em>request</em> by creating one or more <em>packages</em> of resources out of it from the source(s), dispatching such <em>packages</em> to one or more <em>queues</em> and of processing such queued <em>packages</em> by persisting them into the target instance(s).</p>
+<p>The process of creating one or more packages is called <em>exporting</em> as such operation may either happen locally to the agent (the "push" scenario) or remotely (the "pull" scenario).</p>
+<p>The process of persisting one or more packages is called <em>importing</em> as such operation may either happen locally (the "pull" scenario) or remotely (the "push" scenario).</p>
+<p>In order to properly handle large number of <em>requests</em> against the same <em>agent</em> each of them is provided with <em>queues</em> where the exported <em>packages</em> are sent, the <em>agent</em> takes then care to process such a <em>queue</em> in order to <em>import</em> each <em>package</em>. </p>
+<h3><a href="#distribution-agents-configuration" name="distribution-agents-configuration">Distribution agents configuration</a></h3>
+<p>Distribution agents configurations are proper OSGi configurations (backed by nodes of type <code>sling:OsgiConfig</code> in the repository).</p>
+<p>There are specialized factories for each supported scenario:</p>
+<ul>
+  <li>"forward" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.author/publish/org.apache.sling.distribution.agent.impl.ForwardDistributionAgentFactory-publish.json">ForwardDistributionAgentFactory-publish.json</a>.</li>
+  <li>"reverse" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.author/publish-reverse/org.apache.sling.distribution.agent.impl.ReverseDistributionAgentFactory-publish-reverse.json">ReverseDistributionAgentFactory-publish-reverse.json</a>.</li>
+  <li>"sync" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.author/pubsync/org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-pubsync.json">SyncDistributionAgentFactory-pubsync.json</a>.</li>
+  <li>"queue" agents, see <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-sample.git;a=blob_plain;f=src/main/resources/SLING-CONTENT/libs/sling/distribution/install.publish/reverse/org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json">QueueDistributionAgentFactory-reverse.json</a>.</li>
+</ul>
+<p>For example a "forward" agent can be defined specifying</p>
+<ul>
+  <li>The name of the agent (name property)</li>
+  <li>The sub service name used to access content and build packages (serviceName property)</li>
+  <li>The endpoints where the packages are to be imported (packageImporter.endpoints property)</li>
+</ul>
+<p>The sample package contains endpoints for exposing configuration for distribution agents. The <em>DistributionConfigurationResourceProviderFactory</em> is used to expose agent configurations as resources.</p>
 <pre><code>{
-  "jcr:primaryType": "sling:OsgiConfig",
-  "provider.roots": [ "/libs/sling/distribution/settings/agents" ],
-  "kind" : "agent"
+  &quot;jcr:primaryType&quot;: &quot;sling:OsgiConfig&quot;,
+  &quot;provider.roots&quot;: [ &quot;/libs/sling/distribution/settings/agents&quot; ],
+  &quot;kind&quot; : &quot;agent&quot;
 }
-</code></pre> 
-<p>Distribution agents' configurations can be retrieved via <code>HTTP GET</code>:</p> 
+</code></pre>
+<p>Distribution agents' configurations can be retrieved via <code>HTTP GET</code>:</p>
 <pre><code>$ curl -u admin:admin http://localhost:8080/libs/sling/distribution/settings/agents/{agentName}.json
-</code></pre> 
-<h3><a href="#distribution-agents-services" id="distribution-agents-services">Distribution agents services</a></h3> 
-<p>Each distribution agent is an OSGi service and is resolved using a <a href="#Resource_Providers">Sling Resource Provider</a> who locate it under <code>libs/sling/distribution/services/agents</code>.</p> 
-<p>The <em>DistributionConfigurationResourceProviderFactory</em> allows one to configure HTTP endpoints to access distribution OSGI configurations. The sample package contains endpoints for exposing distribution agents. The <em>DistributionServiceResourceProviderFactory</em> is used to expose agent services as resources.</p> 
+</code></pre>
+<h3><a href="#distribution-agents-services" name="distribution-agents-services">Distribution agents services</a></h3>
+<p>Each distribution agent is an OSGi service and is resolved using a <a href="#Resource_Providers">Sling Resource Provider</a> who locate it under <code>libs/sling/distribution/services/agents</code>.</p>
+<p>The <em>DistributionConfigurationResourceProviderFactory</em> allows one to configure HTTP endpoints to access distribution OSGI configurations. The sample package contains endpoints for exposing distribution agents. The <em>DistributionServiceResourceProviderFactory</em> is used to expose agent services as resources.</p>
 <pre><code>{
-  "jcr:primaryType": "sling:OsgiConfig",
-  "provider.roots": [ "/libs/sling/distribution/services/agents" ],
-  "kind" : "agent"
+  &quot;jcr:primaryType&quot;: &quot;sling:OsgiConfig&quot;,
+  &quot;provider.roots&quot;: [ &quot;/libs/sling/distribution/services/agents&quot; ],
+  &quot;kind&quot; : &quot;agent&quot;
 }
-</code></pre> 
-<p>Distribution agents can be triggered by sending <code>HTTP POST</code> requests to</p> 
-<p><code>http://$host:$port/libs/sling/distribution/services/agents/{agentName}</code></p> 
-<p>with HTTP parameters <code>action</code> and <code>path</code>.</p> 
-<h3><a href="#distribution-queues" id="distribution-queues">Distribution queues</a></h3> 
-<h4><a href="#in-memory-queue" id="in-memory-queue">In Memory queue</a></h4> 
-<p>That's a draft implementation using an in memory blocking queue together with a Sling scheduled processor which periodically fetches the first item of each queue and trigger a distribution of such an item. It's not suitable for production as it's currently not persisted and therefore restarting the bundle / platform would not keep the queue together with its items.</p> 
-<h4><a href="#sling-job-handling-based-queue" id="sling-job-handling-based-queue">Sling Job Handling based queue</a></h4> 
-<p>That's a queue implementation based on the queues and jobs provided by Sling Event bundle. Each item addition to a queue triggers the creation of a Sling job which will handle the processing of that item in the queue. By default Sling queues for distribution have the following options:</p> 
-<ul> 
- <li>ordered</li> 
- <li>with max priority</li> 
- <li>with infinite retries</li> 
- <li>keeping job history</li> 
-</ul> 
-<h3><a href="#distribution-of-packages-among-queues" id="distribution-of-packages-among-queues">Distribution of packages among queues</a></h3> 
-<p>Each distribution agent uses a specific queue distribution mechanism, specified via a 'queue distribution strategy', which defines how packages are routed into agent queues. The currently available distribution strategies are</p> 
-<ul> 
- <li>single: the agent has one only queue and all the items are routed there</li> 
- <li>priority path: the agent can route a configurable set of paths (note that this configuration is currently global for the system, not per agent) to a dedicated priority queue while all the others go to the default queue</li> 
- <li>error aware: the agent has one default queue for all the items, items failing for a configurable amount of times are either dropped or moved to an error queue (depending on configuration)</li> 
-</ul> 
-<h2><a href="#usecases" id="usecases">Usecases</a></h2> 
-<h3><a href="#forward-distribution" id="forward-distribution">Forward distribution</a></h3> 
-<p>In order to configure the "forward" distribution workflow, that transfers content from an author instance to a publish instance:</p> 
-<ul> 
- <li>configure a remote importer on publish</li> 
- <li>configure a "forward" agent on author pointing to the url of the importer on publish</li> 
-</ul> 
-<p>Send <code>HTTP POST</code>request to <code>http://localhost:8080/libs/sling/distribution/services/agents/publish</code> with parameters <code>action=ADD</code> and <code>path=/content</code></p> 
-<h4><a href="#createupdate-content" id="createupdate-content">Create/update content</a></h4> 
-<pre><code>$ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d 'action=ADD' -d 'path=/content/sample1'
-</code></pre> 
-<h4><a href="#delete-content" id="delete-content">Delete content</a></h4> 
-<pre><code>$ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d 'action= DELETE' -d 'path=/content/sample1'
-</code></pre> 
-<h3><a href="#reverse-distribution" id="reverse-distribution">Reverse distribution</a></h3> 
-<p>In order to configure the "reverse" distribution workflow, that transfers content from a publish instance to an author instance: - configure a queue agent on publish to hold the packages that need to be distributed to author - configure a remote exporter on publish that exports package from the queue agent - configure a "reverse" agent on author pointing to the url of the exporter on publish</p> 
-<p>Send <code>HTTP POST</code>request to <code>http://localhost:8080/libs/sling/distribution/services/agents/publish-reverse</code> with parameters <code>action=PULL</code></p> 
-<h4><a href="#createupdate-content" id="createupdate-content">Create/update content</a></h4> 
-<pre><code>$ curl -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/reverse -d 'action=ADD' -d 'path=/content/sample1'
-$ curl -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish-reverse -d 'action=PULL'
-</code></pre> 
-<h3><a href="#sync-distribution" id="sync-distribution">Sync distribution</a></h3> 
-<p>In order to configure the "sync" distribution workflow, that transfers content from two publish instances via an author instance: - configure a remote exporter on each publish instance - configure a remote importer on each publish instance - configure a "sync" agent on author pointing to the urls of the exporter and importers on publish</p> 
-<p>Send <code>HTTP POST</code>request to <code>http://localhost:8080/libs/sling/distribution/services/agents/pubsync</code> with parameters <code>action=PULL</code></p> 
-<h4><a href="#createupdate-content" id="createupdate-content">Create/update content</a></h4> 
-<pre><code>$ curl -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/reverse-pubsync -d 'action=ADD' -d 'path=/content/sample1'
-$ curl -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/pubsync -d 'action=PULL'
-</code></pre> 
-<h3><a href="#installation" id="installation">Installation</a></h3> 
-<ul> 
- <li>install the dependency bundles on all Sling instances</li> 
- <li>install Sling Distribution api, core, samples on all Sling instances</li> 
-</ul> 
-<h2><a href="#http-api" id="http-api">HTTP API</a></h2> 
-<h3><a href="#api-requirements" id="api-requirements">API Requirements</a></h3> 
-<p>We need to expose APIs for configuring, commanding and monitoring distribution agents.</p> 
-<ul> 
- <li>Configuration API should allow:</li> 
- <li>CRUD operations for agent configs</li> 
- <li>Command API (eventually issued to multiple agents at once) should allow:</li> 
- <li>to trigger a distribution request on a specific agent</li> 
- <li>to explicitly create and export a package</li> 
- <li>to explicitly import a formerly created package</li> 
- <li>Monitoring API should allow:</li> 
- <li>inspection to internal queues of distribution agents</li> 
- <li>inspection of commands history</li> 
-</ul> 
-<h3><a href="#api-endpoints" id="api-endpoints">&nbsp;API endpoints</a></h3> 
-<h4><a href="#configuration-api" id="configuration-api">Configuration API</a></h4> 
-<ul> 
- <li>Create config: - POST <em>/libs/sling/distribution/settings/agents</em></li> 
- <li>Read config - GET <em>/libs/sling/distribution/settings/agents/{agentName}</em></li> 
- <li>Update config - PUT <em>/libs/sling/distribution/settings/agents/{agentName}</em></li> 
- <li>Delete config - DELETE <em>/libs/sling/distribution/settings/agents/{agentName}</em></li> 
-</ul> 
-<h4><a href="#command-api" id="command-api">Command API</a></h4> 
-<ul> 
- <li>Distribute - POST <em>/libs/sling/distribution/services/agents/{agentName}</em></li> 
- <li>Import package - POST <em>/libs/sling/distribution/services/importers/{importerName}</em></li> 
- <li>Export package - POST <em>/libs/sling/distribution/services/exporters/{exporterName}</em></li> 
-</ul> 
-<h4><a href="#monitoring-api" id="monitoring-api">Monitoring API</a></h4> 
-<ul> 
- <li>Distribution history - GET <em>/libs/sling/distribution/services/agents/{agentName}/log</em></li> 
- <li>Agent queue inspection - GET <em>/libs/sling/distribution/services/agents/{agentName}/queues</em></li> 
-</ul> 
-<h2><a href="#java-api" id="java-api">Java API</a></h2> 
-<p>There is a single entry point in triggering a distribution workflow, via <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-api.git;a=blob_plain;f=src/main/java/org/apache/sling/distribution/Distributor.java">Distributor</a> API.</p> 
+</code></pre>
+<p>Distribution agents can be triggered by sending <code>HTTP POST</code> requests to</p>
+<p><code>http://$host:$port/libs/sling/distribution/services/agents/{agentName}</code></p>
+<p>with HTTP parameters <code>action</code> and <code>path</code>.</p>
+<h3><a href="#distribution-queues" name="distribution-queues">Distribution queues</a></h3>
+<h4><a href="#in-memory-queue" name="in-memory-queue">In Memory queue</a></h4>
+<p>That's a draft implementation using an in memory blocking queue together with a Sling scheduled processor which periodically fetches the first item of each queue and trigger a distribution of such an item. It's not suitable for production as it's currently not persisted and therefore restarting the bundle / platform would not keep the queue together with its items.</p>
+<h4><a href="#sling-job-handling-based-queue" name="sling-job-handling-based-queue">Sling Job Handling based queue</a></h4>
+<p>That's a queue implementation based on the queues and jobs provided by Sling Event bundle. Each item addition to a queue triggers the creation of a Sling job which will handle the processing of that item in the queue. By default Sling queues for distribution have the following options:</p>
+<ul>
+  <li>ordered</li>
+  <li>with max priority</li>
+  <li>with infinite retries</li>
+  <li>keeping job history</li>
+</ul>
+<h3><a href="#distribution-of-packages-among-queues" name="distribution-of-packages-among-queues">Distribution of packages among queues</a></h3>
+<p>Each distribution agent uses a specific queue distribution mechanism, specified via a 'queue distribution strategy', which defines how packages are routed into agent queues. The currently available distribution strategies are</p>
+<ul>
+  <li>single: the agent has one only queue and all the items are routed there</li>
+  <li>priority path: the agent can route a configurable set of paths (note that this configuration is currently global for the system, not per agent) to a dedicated priority queue while all the others go to the default queue</li>
+  <li>error aware: the agent has one default queue for all the items, items failing for a configurable amount of times are either dropped or moved to an error queue (depending on configuration)</li>
+</ul>
+<h2><a href="#usecases" name="usecases">Usecases</a></h2>
+<h3><a href="#forward-distribution" name="forward-distribution">Forward distribution</a></h3>
+<p>In order to configure the "forward" distribution workflow, that transfers content from an author instance to a publish instance:</p>
+<ul>
+  <li>configure a remote importer on publish</li>
+  <li>configure a "forward" agent on author pointing to the url of the importer on publish</li>
+</ul>
+<p>Send <code>HTTP POST</code>request to <code>http://localhost:8080/libs/sling/distribution/services/agents/publish</code> with parameters <code>action=ADD</code> and <code>path=/content</code></p>
+<h4><a href="#create-update-content" name="create-update-content">Create/update content</a></h4>
+<pre><code>$ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d &#39;action=ADD&#39; -d &#39;path=/content/sample1&#39;
+</code></pre>
+<h4><a href="#delete-content" name="delete-content">Delete content</a></h4>
+<pre><code>$ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d &#39;action= DELETE&#39; -d &#39;path=/content/sample1&#39;
+</code></pre>
+<h3><a href="#reverse-distribution" name="reverse-distribution">Reverse distribution</a></h3>
+<p>In order to configure the "reverse" distribution workflow, that transfers content from a publish instance to an author instance: - configure a queue agent on publish to hold the packages that need to be distributed to author - configure a remote exporter on publish that exports package from the queue agent - configure a "reverse" agent on author pointing to the url of the exporter on publish</p>
+<p>Send <code>HTTP POST</code>request to <code>http://localhost:8080/libs/sling/distribution/services/agents/publish-reverse</code> with parameters <code>action=PULL</code></p>
+<h4><a href="#create-update-content" name="create-update-content">Create/update content</a></h4>
+<pre><code>$ curl -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/reverse -d &#39;action=ADD&#39; -d &#39;path=/content/sample1&#39;
+$ curl -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish-reverse -d &#39;action=PULL&#39;
+</code></pre>
+<h3><a href="#sync-distribution" name="sync-distribution">Sync distribution</a></h3>
+<p>In order to configure the "sync" distribution workflow, that transfers content from two publish instances via an author instance: - configure a remote exporter on each publish instance - configure a remote importer on each publish instance - configure a "sync" agent on author pointing to the urls of the exporter and importers on publish</p>
+<p>Send <code>HTTP POST</code>request to <code>http://localhost:8080/libs/sling/distribution/services/agents/pubsync</code> with parameters <code>action=PULL</code></p>
+<h4><a href="#create-update-content" name="create-update-content">Create/update content</a></h4>
+<pre><code>$ curl -u admin:admin http://localhost:8081/libs/sling/distribution/services/agents/reverse-pubsync -d &#39;action=ADD&#39; -d &#39;path=/content/sample1&#39;
+$ curl -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/pubsync -d &#39;action=PULL&#39;
+</code></pre>
+<h3><a href="#installation" name="installation">Installation</a></h3>
+<ul>
+  <li>install the dependency bundles on all Sling instances</li>
+  <li>install Sling Distribution api, core, samples on all Sling instances</li>
+</ul>
+<h2><a href="#http-api" name="http-api">HTTP API</a></h2>
+<h3><a href="#api-requirements" name="api-requirements">API Requirements</a></h3>
+<p>We need to expose APIs for configuring, commanding and monitoring distribution agents.</p>
+<ul>
+  <li>Configuration API should allow:</li>
+  <li>CRUD operations for agent configs</li>
+  <li>Command API (eventually issued to multiple agents at once) should allow:</li>
+  <li>to trigger a distribution request on a specific agent</li>
+  <li>to explicitly create and export a package</li>
+  <li>to explicitly import a formerly created package</li>
+  <li>Monitoring API should allow:</li>
+  <li>inspection to internal queues of distribution agents</li>
+  <li>inspection of commands history</li>
+</ul>
+<h3><a href="#api-endpoints" name="api-endpoints"> API endpoints</a></h3>
+<h4><a href="#configuration-api" name="configuration-api">Configuration API</a></h4>
+<ul>
+  <li>Create config: - POST <em>/libs/sling/distribution/settings/agents</em></li>
+  <li>Read config - GET <em>/libs/sling/distribution/settings/agents/{agentName}</em></li>
+  <li>Update config - PUT <em>/libs/sling/distribution/settings/agents/{agentName}</em></li>
+  <li>Delete config - DELETE <em>/libs/sling/distribution/settings/agents/{agentName}</em></li>
+</ul>
+<h4><a href="#command-api" name="command-api">Command API</a></h4>
+<ul>
+  <li>Distribute - POST <em>/libs/sling/distribution/services/agents/{agentName}</em></li>
+  <li>Import package - POST <em>/libs/sling/distribution/services/importers/{importerName}</em></li>
+  <li>Export package - POST <em>/libs/sling/distribution/services/exporters/{exporterName}</em></li>
+</ul>
+<h4><a href="#monitoring-api" name="monitoring-api">Monitoring API</a></h4>
+<ul>
+  <li>Distribution history - GET <em>/libs/sling/distribution/services/agents/{agentName}/log</em></li>
+  <li>Agent queue inspection - GET <em>/libs/sling/distribution/services/agents/{agentName}/queues</em></li>
+</ul>
+<h2><a href="#java-api" name="java-api">Java API</a></h2>
+<p>There is a single entry point in triggering a distribution workflow, via <a href="https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-distribution-api.git;a=blob_plain;f=src/main/java/org/apache/sling/distribution/Distributor.java">Distributor</a> API.</p>
 <pre><code>Distributor.distribute(agentName, resourceResolver, distributionRequest)
-</code></pre> 
-<h2><a href="#extensions" id="extensions">Extensions</a></h2> 
-<p>The following extensions for Apache Sling Content Distribution exist.</p> 
-<h3><a href="#apache-avro-serializer" id="apache-avro-serializer">Apache Avro serializer</a></h3> 
-<p>The <em>org.apache.sling.distribution.avro-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="http://avro.apache.org">Apache Avro</a>.</p> 
-<h3><a href="#kryo-serializer" id="kryo-serializer">Kryo serializer</a></h3> 
-<p>The <em>org.apache.sling.distribution.kryo-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="http://github.com/EsotericSoftware/kryo">Kryo</a>.</p> 
-<h2><a href="#ideas-for-future-developments" id="ideas-for-future-developments">Ideas for future developments</a></h2> 
-<ul> 
- <li>distributed configuration</li> 
- <li>pushing to / pulling from JMS (pros: established pattern for producers/consumers problems, cons: other library / systems involved as a possible PoF)</li> 
- <li>WebSocket support (pros: once established it's bidirectional and therefore also publish can directly push stuff to author)</li> 
- <li>asynchronous import of packages (pros: parallel transport and import, cons: complex management of multiple queues on different publish instances)</li> 
+</code></pre>
+<h2><a href="#extensions" name="extensions">Extensions</a></h2>
+<p>The following extensions for Apache Sling Content Distribution exist.</p>
+<h3><a href="#apache-avro-serializer" name="apache-avro-serializer">Apache Avro serializer</a></h3>
+<p>The <em>org.apache.sling.distribution.avro-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="http://avro.apache.org">Apache Avro</a>.</p>
+<h3><a href="#kryo-serializer" name="kryo-serializer">Kryo serializer</a></h3>
+<p>The <em>org.apache.sling.distribution.kryo-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="http://github.com/EsotericSoftware/kryo">Kryo</a>.</p>
+<h2><a href="#ideas-for-future-developments" name="ideas-for-future-developments">Ideas for future developments</a></h2>
+<ul>
+  <li>distributed configuration</li>
+  <li>pushing to / pulling from JMS (pros: established pattern for producers/consumers problems, cons: other library / systems involved as a possible PoF)</li>
+  <li>WebSocket support (pros: once established it's bidirectional and therefore also publish can directly push stuff to author)</li>
+  <li>asynchronous import of packages (pros: parallel transport and import, cons: complex management of multiple queues on different publish instances)</li>
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

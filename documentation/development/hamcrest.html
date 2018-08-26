@@ -91,20 +91,20 @@
             </div><h1 class="pagetitle">
                 Hamcrest Integration
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Deeper integration with the <a href="http://hamcrest.org/">Hamcrest matcher library</a>.</p> 
-<h2><a href="#maven-dependency" id="maven-dependency">Maven Dependency</a></h2> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Deeper integration with the <a href="http://hamcrest.org/">Hamcrest matcher library</a>.</p>
+<h2><a href="#maven-dependency" name="maven-dependency">Maven Dependency</a></h2>
 <div class="warning">
-  This module has not yet been officially released. 
-</div> 
+This module has not yet been officially released.
+</div>
 <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.hamcrest&lt;/artifactId&gt;
 &lt;/dependency&gt;
-</code></pre> 
-<p>Note that to keep the classpath consistent this module has all its dependencies marked as <code>provided</code>. It relies on your own project to define the needed dependencies, such as <code>org.hamcrest:hamcrest-core</code> and <code>org.apache.sling:org.apache.sling.api</code> .</p> 
-<p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p> 
-<h2><a href="#usage" id="usage">Usage</a></h2> 
-<p>The class <code>org.apache.sling.testing.hamcrest.ResourceMatchers</code> is the main entry point. It contains static methods that can be used to create assertions.</p> 
+</code></pre>
+<p>Note that to keep the classpath consistent this module has all its dependencies marked as <code>provided</code>. It relies on your own project to define the needed dependencies, such as <code>org.hamcrest:hamcrest-core</code> and <code>org.apache.sling:org.apache.sling.api</code> .</p>
+<p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p>
+<h2><a href="#usage" name="usage">Usage</a></h2>
+<p>The class <code>org.apache.sling.testing.hamcrest.ResourceMatchers</code> is the main entry point. It contains static methods that can be used to create assertions.</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->import static org.apache.sling.hamcrest.ResourceMatchers.resourceOfType;
 
 public void MyServiceTest {
@@ -113,14 +113,14 @@ public void MyServiceTest {
   public void loadResources() {
     Map&lt;String, Object&gt; expectedProperties = /* define properties */;
     Resource resource = /* load resource */ null;
-    
-    assertThat(resource, resourceOfType("my/app"));
-    assertThat(resource, hasChildren("header", "body"));
+
+    assertThat(resource, resourceOfType(&quot;my/app&quot;));
+    assertThat(resource, hasChildren(&quot;header&quot;, &quot;body&quot;));
     assertThat(resource, resourceWithProps(expectedProperties));
   }
 
 }
-</code></pre> 
+</code></pre>
 <p>The Slingshot sample application uses these matchers, see <a href="https://github.com/apache/sling-samples/blob/master/slingshot/src/test/java/org/apache/sling/sample/slingshot/impl/SetupServiceTest.java">SetupServiceTest.java</a> for an example.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

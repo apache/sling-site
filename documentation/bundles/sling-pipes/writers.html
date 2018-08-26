@@ -93,72 +93,76 @@
             </div><h1 class="pagetitle">
                 Writers
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>those pipes all are using common sling (or other) APIs to modify content. You'll probably need some <a href="/documentation/bundles/sling-pipes/readers.html">reader</a> pipes and/or <a href="/documentation/bundles/sling-pipes/logical.html">logical</a> pipes first to put you into the right context.</p> 
-<h5><a href="#write-pipe-writeconf" id="write-pipe-writeconf">Write Pipe (<code>write(conf)</code>)</a></h5> 
-<p>writes given nodes and properties to current input resource</p> 
-<ul> 
- <li><code>sling:resourceType</code> is <code>slingPipes/write</code></li> 
- <li><code>conf</code> node tree that will be copied to the current input of the pipe, each property's names and value will be written to the input resource. Input resource will be outputed. Note that properties that will be evaluated (in an expression) as <code>null</code> for a given input resource will be removed from it. E.g. <code>./conf/some/node@prop=${null}</code> will add <code>./conf/some/node</code> structure if not in current input resource, but remove its <code>prop</code> property if any).</li> 
- <li><code>expr</code> used if no configuration node provided: path of a content tree this will write to the current destination (basically a deep copy)</li> 
-</ul> 
-<p>For most of the case where you just need to write properties, pipe builder API allows you to e.g.</p> 
-<pre><code>    .echo('/content/foo')
-    .write('foo1','bar1','foo2','bar2')
-</code></pre> 
-<p>will write <code>@foo1=bar1</code> and <code>@foo2=bar2</code> in <code>/content/foo</code>. For more complicated cases where you need a structure to be written, just use a JCR / Resource explorer to edit the persistence of the pipe, and create the given structured under conf.</p> 
-<p>Note that using <code>expr</code> you need configuration node <em>not</em> to be here, and {{write}} shortcut creates one systematically. So if you want to use pipe builder and that, you'd need something like</p> 
-<pre><code>    .echo('/content/destination')
-    .pipe("slingPipes/write").expr("/content/source")
-</code></pre> 
-<h5><a href="#movepipe-mvexpr" id="movepipe-mvexpr">MovePipe (<code>mv(expr)</code>)</a></h5> 
-<p>JCR move of current input to target path (can be a node or a property)</p> 
-<ul> 
- <li><code>sling:resourceType</code> is <code>slingPipes/mv</code></li> 
- <li><code>expr</code> full target path, note that parent path must exists <pre><code>.echo("/content/foo/old/location")
-.mv("/content/bar/new/location")
-</code></pre> </li> 
-</ul> 
-<h5><a href="#removepipe-rm" id="removepipe-rm">RemovePipe (<code>rm()</code>)</a></h5> 
-<p>removes the input resource, returns the parent, regardless of the resource being a node, or a property</p> 
-<ul> 
- <li><code>sling:resourceType</code> is <code>slingPipes/rm</code></li> 
- <li><code>conf</code> node tree that will be used to filter relative properties &amp; subtrees to the current resource to remove. A subnode is considered to be removed if it has no property configured, nore any child.</li> 
-</ul> 
-<p>more common usage is just without configuration node, removing incoming resource</p> 
-<pre><code>    .echo("/content/foo/toRemove")
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>those pipes all are using common sling (or other) APIs to modify content. You'll probably need some <a href="/documentation/bundles/sling-pipes/readers.html">reader</a> pipes and/or <a href="/documentation/bundles/sling-pipes/logical.html">logical</a> pipes first to put you into the right context. </p>
+<h5>Write Pipe (<code>write(conf)</code>)</h5>
+<p>writes given nodes and properties to current input resource</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/write</code></li>
+  <li><code>conf</code> node tree that will be copied to the current input of the pipe, each property's names and value will be written to the input resource. Input resource will be outputed. Note that properties that will be evaluated (in an expression) as <code>null</code> for a given input resource will be removed from it. E.g. <code>./conf/some/node@prop=${null}</code> will add <code>./conf/some/node</code> structure if not in current input resource, but remove its <code>prop</code> property if any).</li>
+  <li><code>expr</code> used if no configuration node provided: path of a content tree this will write to the current destination (basically a deep copy)</li>
+</ul>
+<p>For most of the case where you just need to write properties, pipe builder API allows you to e.g.</p>
+<pre><code>    .echo(&#39;/content/foo&#39;)
+    .write(&#39;foo1&#39;,&#39;bar1&#39;,&#39;foo2&#39;,&#39;bar2&#39;)
+</code></pre>
+<p>will write <code>@foo1=bar1</code> and <code>@foo2=bar2</code> in <code>/content/foo</code>. For more complicated cases where you need a structure to be written, just use a JCR / Resource explorer to edit the persistence of the pipe, and create the given structured under conf.</p>
+<p>Note that using <code>expr</code> you need configuration node <em>not</em> to be here, and {{write}} shortcut creates one systematically. So if you want to use pipe builder and that, you'd need something like</p>
+<pre><code>    .echo(&#39;/content/destination&#39;)
+    .pipe(&quot;slingPipes/write&quot;).expr(&quot;/content/source&quot;)
+</code></pre>
+<h5>MovePipe (<code>mv(expr)</code>)</h5>
+<p>JCR move of current input to target path (can be a node or a property)</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/mv</code></li>
+  <li><code>expr</code> full target path, note that parent path must exists
+    <pre><code>.echo(&quot;/content/foo/old/location&quot;)
+.mv(&quot;/content/bar/new/location&quot;)
+</code></pre>
+  </li>
+</ul>
+<h5>RemovePipe (<code>rm()</code>)</h5>
+<p>removes the input resource, returns the parent, regardless of the resource being a node, or a property</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/rm</code></li>
+  <li><code>conf</code> node tree that will be used to filter relative properties &amp; subtrees to the current resource to remove. A subnode is considered to be removed if it has no property configured, nore any child.</li>
+</ul>
+<p>more common usage is just without configuration node, removing incoming resource</p>
+<pre><code>    .echo(&quot;/content/foo/toRemove&quot;)
     .rm() 
-</code></pre> 
-<h5><a href="#pathpipe-mkdirexpr" id="pathpipe-mkdirexpr">PathPipe (<code>mkdir(expr)</code>)</a></h5> 
-<p>get or create path given in expression. Uses <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceUtil.html#getOrCreateResource-org.apache.sling.api.resource.ResourceResolver-java.lang.String-java.lang.String-java.lang.String-boolean-">ResourceUtil.getOrCreateResource</a></p> 
-<ul> 
- <li><code>sling:resourceType</code> is <code>slingPipes/path</code></li> 
- <li><code>nodeType</code> node type of the intermediate nodes to create</li> 
- <li><code>autosave</code> should save at each creation (will make things slow, but sometimes you don't have choice) <pre><code>.mkdir("/content/foo/bar")
-</code></pre> </li> 
-</ul> 
-<p>will create a <code>/content/foo/bar</code> path of <code>sling:Folder</code> nodes</p> 
-<h5><a href="#authorizablepipe-authconf" id="authorizablepipe-authconf">AuthorizablePipe (<code>auth(conf)</code>)</a></h5> 
-<p>retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression), from the input path, output the found authorizable's resource caution this pipe <strong>can modify content</strong> in case additional configuration is added (see below)</p> 
-<ul> 
- <li><code>sling:resourceType</code> is <code>slingPipes/authorizable</code></li> 
- <li><code>expr</code> should be an authorizable id, or void (but then input should be an authorizable)</li> 
- <li><code>autoCreateGroup</code> (boolean) if autorizable id is here, but the authorizable not present, then create group with given id (in that case, considered as a write pipe)</li> 
- <li><code>addMembers</code> (stringified json array) if authorizable is a group, add instanciated members to it (in that case, considered as a write pipe)</li> 
- <li><code>addToGroup</code> (expression) add found authorizable to instanciated group (in that case, considered as a write pipe)</li> 
- <li><code>bindMembers</code> (boolean) if found authorizable is a group, bind the members (in that case, considered as a write pipe)</li> 
-</ul> 
-<p>This example creates a group</p> 
-<pre><code>    .auth("createGroup", true).expr("foo-bar")
-</code></pre> 
-<p>This example searches for users in a given location and add them to <code>foo-bar</code> group</p> 
-<pre><code>    .echo("/home/users/foo")
-    .$("rep:User")
-    .auth("addToGroup", "foo-bar")
-</code></pre> 
-<p>In this example, auth is not writing anything but makes use of bind members and json to create one content tree per admin</p> 
-<pre><code>    .auth("bindMembers",true).expr("administrators")
-    .json('${one}')
-    .mkdir('/content/admin-users/${two}')
+</code></pre>
+<h5>PathPipe (<code>mkdir(expr)</code>)</h5>
+<p>get or create path given in expression. Uses <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceUtil.html#getOrCreateResource-org.apache.sling.api.resource.ResourceResolver-java.lang.String-java.lang.String-java.lang.String-boolean-">ResourceUtil.getOrCreateResource</a></p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/path</code></li>
+  <li><code>nodeType</code> node type of the intermediate nodes to create</li>
+  <li><code>autosave</code> should save at each creation (will make things slow, but sometimes you don't have choice)
+    <pre><code>.mkdir(&quot;/content/foo/bar&quot;)
+</code></pre>
+  </li>
+</ul>
+<p>will create a <code>/content/foo/bar</code> path of <code>sling:Folder</code> nodes </p>
+<h5>AuthorizablePipe (<code>auth(conf)</code>)</h5>
+<p>retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression), from the input path, output the found authorizable's resource caution this pipe <strong>can modify content</strong> in case additional configuration is added (see below)</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/authorizable</code></li>
+  <li><code>expr</code> should be an authorizable id, or void (but then input should be an authorizable)</li>
+  <li><code>autoCreateGroup</code> (boolean) if autorizable id is here, but the authorizable not present, then create group with given id (in that case, considered as a write pipe)</li>
+  <li><code>addMembers</code> (stringified json array) if authorizable is a group, add instanciated members to it (in that case, considered as a write pipe)</li>
+  <li><code>addToGroup</code> (expression) add found authorizable to instanciated group (in that case, considered as a write pipe)</li>
+  <li><code>bindMembers</code> (boolean) if found authorizable is a group, bind the members (in that case, considered as a write pipe)</li>
+</ul>
+<p>This example creates a group</p>
+<pre><code>    .auth(&quot;createGroup&quot;, true).expr(&quot;foo-bar&quot;)
+</code></pre>
+<p>This example searches for users in a given location and add them to <code>foo-bar</code> group</p>
+<pre><code>    .echo(&quot;/home/users/foo&quot;)
+    .$(&quot;rep:User&quot;)
+    .auth(&quot;addToGroup&quot;, &quot;foo-bar&quot;)
+</code></pre>
+<p>In this example, auth is not writing anything but makes use of bind members and json to create one content tree per admin</p>
+<pre><code>    .auth(&quot;bindMembers&quot;,true).expr(&quot;administrators&quot;)
+    .json(&#39;${one}&#39;)
+    .mkdir(&#39;/content/admin-users/${two}&#39;)
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">

@@ -95,60 +95,64 @@
             </div><h1 class="pagetitle">
                 Sling Scripting Thymeleaf
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling Scripting Thymeleaf is the scripting engine for <a href="http://www.thymeleaf.org"><em>Thymeleaf</em></a> (3.0) templates.</p> 
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>Sling Scripting Thymeleaf is the scripting engine for <a href="http://www.thymeleaf.org"><em>Thymeleaf</em></a> (3.0) templates.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
-</p> 
-<h1><a href="#features" id="features">Features</a></h1> 
-<ul> 
- <li>Supporting all of Thymeleaf's extension points: <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateresolver/ITemplateResolver.html"><em>TemplateResolver</em></a>﻿s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/messageresolver/IMessageResolver.html"><em>MessageResolver</em></a>﻿s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/dialect/IDialect.html">_Dialect_﻿</a>s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/linkbuilder/ILinkBuilder.html"><em>LinkBuilder</em></a>﻿s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateparser/markup/decoupled/IDecoupledTemplateLogicResolver.html"><em>DecoupledTemplateLogicResolver</em></a>, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/cache/ICacheManager.html"><em>CacheManager</em></a> and <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/context/IEngineContext.html"><em>EngineContextFactory</em></a></li> 
- <li><code>SlingResourceTemplateResolver</code> customizable through <code>TemplateModeProvider</code>﻿</li> 
- <li><code>ResourceBundleMessageResolver</code> backed by <code>ResourceBundleProvider</code> from <a href="https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html">Sling i18n</a> customizable through optional <code>AbsentMessageRepresentationProvider</code>﻿</li> 
- <li><code>PatternTemplateModeProvider</code> supporting <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html"><code>Pattern</code></a> configurations for all <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templatemode/TemplateMode.html">template modes</a> (<code>HTML</code>, <code>XML</code>, <code>TEXT</code>, <code>JAVASCRIPT</code>, <code>CSS</code> and <code>RAW</code>)</li> 
- <li><code>SlingDialect</code></li> 
- <li>Thymeleaf's <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html"><code>TemplateEngine</code></a> registered as OSGi Service (<a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html"><code>ITemplateEngine</code></a>) for direct use</li> 
-</ul> 
-<h1><a href="#installation" id="installation">Installation</a></h1> 
-<p>For running Sling Scripting Thymeleaf with Sling's Launchpad some dependencies need to be resolved. This can be achieved by installing the following bundles:</p> 
+</p>
+<h1><a href="#features" name="features">Features</a></h1>
+<ul>
+  <li>Supporting all of Thymeleaf's extension points: <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateresolver/ITemplateResolver.html"><em>TemplateResolver</em></a>﻿s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/messageresolver/IMessageResolver.html"><em>MessageResolver</em></a>﻿s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/dialect/IDialect.html"><em>Dialect</em>﻿</a>s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/linkbuilder/ILinkBuilder.html"><em>LinkBuilder</em></a>﻿s, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateparser/markup/decoupled/IDecoupledTemplateLogicResolver.html"><em>DecoupledTemplateLogicResolver</em></a>, <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/cache/ICacheManager.html"><em>CacheManager</em></a> and <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/context/IEngineContext.html"><em>EngineContextFactory</em></a></li>
+  <li><code>SlingResourceTemplateResolver</code> customizable through <code>TemplateModeProvider</code>﻿</li>
+  <li><code>ResourceBundleMessageResolver</code> backed by <code>ResourceBundleProvider</code> from <a href="https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html">Sling i18n</a> customizable through optional <code>AbsentMessageRepresentationProvider</code>﻿</li>
+  <li><code>PatternTemplateModeProvider</code> supporting <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html"><code>Pattern</code></a> configurations for all <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templatemode/TemplateMode.html">template modes</a> (<code>HTML</code>, <code>XML</code>, <code>TEXT</code>, <code>JAVASCRIPT</code>, <code>CSS</code> and <code>RAW</code>)</li>
+  <li><code>SlingDialect</code></li>
+  <li>Thymeleaf's <a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html"><code>TemplateEngine</code></a> registered as OSGi Service (<a href="http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html"><code>ITemplateEngine</code></a>) for direct use</li>
+</ul>
+<h1><a href="#installation" name="installation">Installation</a></h1>
+<p>For running Sling Scripting Thymeleaf with Sling's Launchpad some dependencies need to be resolved. This can be achieved by installing the following bundles:</p>
 <pre><code>mvn:org.attoparser/attoparser/2.0.2.RELEASE
 mvn:org.unbescape/unbescape/1.1.4.RELEASE
 mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ognl/3.2_1
 mvn:org.javassist/javassist/3.20.0-GA
-</code></pre> 
-<p>There is a feature for Karaf:</p> 
+</code></pre>
+<p>There is a feature for Karaf:</p>
 <pre><code>karaf@root()&gt; feature:install sling-scripting-thymeleaf
-</code></pre> 
-<p><strong>Note:</strong> Sling Scripting Thymeleaf requires an implementation of OSGi Declarative Services 1.3 (e.g. <a href="http://felix.apache.org/documentation/subprojects/apache-felix-service-component-runtime.html">Apache Felix Service Component Runtime</a> 2.0.0 or greater)</p> 
-<h1><a href="#configuration" id="configuration">Configuration</a></h1> 
-<h2><a href="#apache-sling-scripting-thymeleaf-scriptenginefactory" id="apache-sling-scripting-thymeleaf-scriptenginefactory">Apache Sling Scripting Thymeleaf “ScriptEngineFactory”</a></h2> 
-<p>By default Sling Scripting Thymeleaf's <em>ScriptEngineFactory</em> is configured for templates with extension <code>html</code> and mime type <code>text/html</code> and uses all of Thymeleaf's standard extensions either <em>also</em> or <em>exclusively</em>.</p> 
-<p><img src="http://sling.apache.org/Scripting-Thymeleaf-ScriptEngineFactory.png" alt="Apache Sling Scripting Thymeleaf “ScriptEngineFactory”"></p> 
-<h2><a href="#apache-sling-scripting-thymeleaf-sling-resource-templateresolver" id="apache-sling-scripting-thymeleaf-sling-resource-templateresolver">Apache Sling Scripting Thymeleaf “Sling Resource TemplateResolver”</a></h2> 
-<p>The <em>Sling Resource TemplateResolver</em> is configured to resolve templates with <em>use decoupled logic</em> enabled.</p> 
-<p><img src="http://sling.apache.org/Scripting-Thymeleaf-Sling-Resource-TemplateResolver.png" alt="Apache Sling Scripting Thymeleaf “Sling Resource TemplateResolver”"></p> 
-<h2><a href="#apache-sling-scripting-thymeleaf-pattern-templatemodeprovider" id="apache-sling-scripting-thymeleaf-pattern-templatemodeprovider">Apache Sling Scripting Thymeleaf “Pattern TemplateModeProvider”</a></h2> 
-<p>The <em>Pattern TemplateModeProvider</em> is configured to match template paths against default extensions for providing template modes (of course except no-op mode <code>RAW</code>).</p> 
-<p><img src="http://sling.apache.org/Scripting-Thymeleaf-Pattern-TemplateModeProvider.png" alt="Apache Sling Scripting Thymeleaf “Pattern TemplateModeProvider"></p> 
-<h2><a href="#apache-sling-scripting-thymeleaf-resourcebundle-messageresolver" id="apache-sling-scripting-thymeleaf-resourcebundle-messageresolver">Apache Sling Scripting Thymeleaf “ResourceBundle MessageResolver”</a></h2> 
-<p>The <em>ResourceBundle MessageResolver</em> is configured to use the message's key as absent message representation.</p> 
-<p><img src="http://sling.apache.org/Scripting-Thymeleaf-ResourceBundle-MessageResolver.png" alt="Apache Sling Scripting Thymeleaf “ResourceBundle MessageResolver”"></p> 
-<h1><a href="#sling-dialect" id="sling-dialect">Sling Dialect</a></h1> 
-<p>Sling Scripting Thymeleaf comes with its own dialect using the <code>sling</code> prefix/namespace currently supporting the <em>include</em> feature known from <a href="/documentation/bundles/scripting/scripting-jsp.html">Sling Scripting JSP Taglib</a>.</p> 
-<h2><a href="#include" id="include">include</a></h2> 
-<p><code>&lt;header data-sling-include="${resource}" data-sling-resourceType="'example/page/header'" data-sling-unwrap="true"/&gt;</code></p> 
-<p><code>include</code> - The resource object (<a href="http://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a>) or the path (<code>String</code>) of the resource object to include in the current request processing. If this path is relative it is appended to the path of the current resource whose script is including the given resource.</p> 
-<h3><a href="#supported-options-requestdispatcher-option" id="supported-options-requestdispatcher-option">supported options (* = </a><a href="http://sling.apache.org/apidocs/sling7/org/apache/sling/api/request/RequestDispatcherOptions.html">RequestDispatcher option</a>)</h3> 
-<ul> 
- <li><code>addSelectors</code> (<code>String</code>) *: When dispatching, add the value provided by this option to the selectors.</li> 
- <li><code>replaceSelectors</code> (<code>String</code>) *: When dispatching, replace selectors by the value provided by this option.</li> 
- <li><code>replaceSuffix</code> (<code>String</code>) *: When dispatching, replace the suffix by the value provided by this option.</li> 
- <li><code>resourceType</code> (<code>String</code>) *: The resource type of a resource to include. If the resource to be included is specified with the path attribute, which cannot be resolved to a resource, the tag may create a synthetic resource object out of the path and this resource type. If the resource type is set the path must be the exact path to a resource object. That is, adding parameters, selectors and extensions to the path is not supported if the resource type is set.</li> 
- <li><code>unwrap</code> (<code>Boolean</code>): removes the host element</li> 
-</ul> 
-<h1><a href="#class-diagram" id="class-diagram">Class Diagram</a></h1> 
-<p><a href="Scripting-Thymeleaf-Class-Diagram.png"><img src="http://sling.apache.org/Scripting-Thymeleaf-Class-Diagram.png" alt="Class Diagram"></a></p> 
-<h1><a href="#sample" id="sample">Sample</a></h1> 
-<p>The <a href="https://github.com/apache/sling-samples/tree/master/fling">Sling Fling Sample</a> is a sample using Sling Scripting Thymeleaf with <a href="/documentation/bundles/models.html">Sling Models</a> and <a href="/documentation/bundles/sling-query.html">Sling Query</a>.</p> 
-<p><img src="http://sling.apache.org/sling-fling-sample.png" alt="Sling Fling Sample"></p></section></div></div>            
+</code></pre>
+<p><strong>Note:</strong> Sling Scripting Thymeleaf requires an implementation of OSGi Declarative Services 1.3 (e.g. <a href="http://felix.apache.org/documentation/subprojects/apache-felix-service-component-runtime.html">Apache Felix Service Component Runtime</a> 2.0.0 or greater)</p>
+<h1><a href="#configuration" name="configuration">Configuration</a></h1>
+<h2><a href="#apache-sling-scripting-thymeleaf-scriptenginefactory-" name="apache-sling-scripting-thymeleaf-scriptenginefactory-">Apache Sling Scripting Thymeleaf “ScriptEngineFactory”</a></h2>
+<p>By default Sling Scripting Thymeleaf's <em>ScriptEngineFactory</em> is configured for templates with extension <code>html</code> and mime type <code>text/html</code> and uses all of Thymeleaf's standard extensions either <em>also</em> or <em>exclusively</em>.</p>
+<p><img src="Scripting-Thymeleaf-ScriptEngineFactory.png" alt="Apache Sling Scripting Thymeleaf “ScriptEngineFactory”" /></p>
+<h2><a href="#apache-sling-scripting-thymeleaf-sling-resource-templateresolver-" name="apache-sling-scripting-thymeleaf-sling-resource-templateresolver-">Apache Sling Scripting Thymeleaf “Sling Resource TemplateResolver”</a></h2>
+<p>The <em>Sling Resource TemplateResolver</em> is configured to resolve templates with <em>use decoupled logic</em> enabled.</p>
+<p><img src="Scripting-Thymeleaf-Sling-Resource-TemplateResolver.png" alt="Apache Sling Scripting Thymeleaf “Sling Resource TemplateResolver”" /></p>
+<h2><a href="#apache-sling-scripting-thymeleaf-pattern-templatemodeprovider-" name="apache-sling-scripting-thymeleaf-pattern-templatemodeprovider-">Apache Sling Scripting Thymeleaf “Pattern TemplateModeProvider”</a></h2>
+<p>The <em>Pattern TemplateModeProvider</em> is configured to match template paths against default extensions for providing template modes (of course except no-op mode <code>RAW</code>).</p>
+<p><img src="Scripting-Thymeleaf-Pattern-TemplateModeProvider.png" alt="Apache Sling Scripting Thymeleaf “Pattern TemplateModeProvider" /></p>
+<h2><a href="#apache-sling-scripting-thymeleaf-resourcebundle-messageresolver-" name="apache-sling-scripting-thymeleaf-resourcebundle-messageresolver-">Apache Sling Scripting Thymeleaf “ResourceBundle MessageResolver”</a></h2>
+<p>The <em>ResourceBundle MessageResolver</em> is configured to use the message's key as absent message representation.</p>
+<p><img src="Scripting-Thymeleaf-ResourceBundle-MessageResolver.png" alt="Apache Sling Scripting Thymeleaf “ResourceBundle MessageResolver”" /></p>
+<h1><a href="#sling-dialect" name="sling-dialect">Sling Dialect</a></h1>
+<p>Sling Scripting Thymeleaf comes with its own dialect using the <code>sling</code> prefix/namespace currently supporting the <em>include</em> feature known from <a href="/documentation/bundles/scripting/scripting-jsp.html">Sling Scripting JSP Taglib</a>.</p>
+<h2><a href="#include" name="include">include</a></h2>
+<p><code>&lt;header data-sling-include=&quot;${resource}&quot; data-sling-resourceType=&quot;&#39;example/page/header&#39;&quot; data-sling-unwrap=&quot;true&quot;/&gt;</code></p>
+<p><code>include</code> - The resource object (<a href="http://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a>) or the path (<code>String</code>) of the resource object to include in the current request processing. If this path is relative it is appended to the path of the current resource whose script is including the given resource.</p>
+<h3>supported options (* = <a href="http://sling.apache.org/apidocs/sling7/org/apache/sling/api/request/RequestDispatcherOptions.html">RequestDispatcher option</a>)</h3>
+<ul>
+  <li><code>addSelectors</code> (<code>String</code>) *: When dispatching, add the value provided by this option to the selectors.
+</li>
+  <li><code>replaceSelectors</code> (<code>String</code>) *: When dispatching, replace selectors by the value provided by this option.
+</li>
+  <li><code>replaceSuffix</code> (<code>String</code>) *: When dispatching, replace the suffix by the value provided by this option.
+</li>
+  <li><code>resourceType</code> (<code>String</code>) *: The resource type of a resource to include. If the resource to be included is specified with the path attribute, which cannot be resolved to a resource, the tag may create a synthetic resource object out of the path and this resource type. If the resource type is set the path must be the exact path to a resource object. That is, adding parameters, selectors and extensions to the path is not supported if the resource type is set.
+</li>
+  <li><code>unwrap</code> (<code>Boolean</code>): removes the host element</li>
+</ul>
+<h1><a href="#class-diagram" name="class-diagram">Class Diagram</a></h1>
+<p><a href="Scripting-Thymeleaf-Class-Diagram.png"><img src="Scripting-Thymeleaf-Class-Diagram.png" alt="Class Diagram" /></a></p>
+<h1><a href="#sample" name="sample">Sample</a></h1>
+<p>The <a href="https://github.com/apache/sling-samples/tree/master/fling">Sling Fling Sample</a> is a sample using Sling Scripting Thymeleaf with <a href="/documentation/bundles/models.html">Sling Models</a> and <a href="/documentation/bundles/sling-query.html">Sling Query</a>.</p>
+<p><img src="sling-fling-sample.png" alt="Sling Fling Sample" /></p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Nov 22 22:30:38 2017 +0200</span>

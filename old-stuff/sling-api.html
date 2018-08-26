@@ -92,284 +92,283 @@
                 Sling API
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><div class="note">
-  The contents of this page is being created at the moment. It contains incomplete and partially wrong information as the text is adapted from the contents of the [Component API]({{ refs.component-api.path }}) documentation page. 
-</div> 
-<h2><a href="#introduction" id="introduction">Introduction</a></h2> 
-<p>The <em>Sling API</em> defines a presentation framework to build Web Applications. As such the Sling API builds upon the Servlet API but extends the latter with new functionality:</p> 
-<ul> 
- <li>A web page may be built from many different pieces. This aggregation of different pieces is comparable to the functionality provided by the Portlet API. In contrast to the latter, though, the pieces may themselves be aggregates of yet more pieces. So a single web page response may consist of a tree of pieces.</li> 
- <li>Just like the Servlet API and the Portlet API the Sling API mainly defines a Java based framework. Yet the Sling API comes with the intention of supporting scripting built.</li> 
- <li>In contrast to the Servlet API and the Portlet API, the Sling API is resource centric. That is, the request URL does not address a servlet or a portlet but a resource represented by an instance of the <code>org.apache.sling.api.resource.Resource</code> interface. From this resource the implementation of the Sling API will derive a <code>javax.servlet.Servlet</code> or <code>org.apache.sling.api.scripting.SlingScript</code> instance, which is used to handle the request.</li> 
-</ul> 
-<p>An implementation of the presentation framework defined by the Sling API is called a <em>Sling Framework</em>. The Apache Sling project actually contains two implementations of this API: <em>microsling</em> and <em>Sling</em>. microsling (note the lowercase <em>m</em>) implements the same request processing mechanisms as <em>Sling</em> but is very hardcoded. It serves well as a rapid development environment as it is quickly set up, easy to handle and shows results very easily. Sling on the other hand is based on an OSGi framework and very flexible, allowing the extension of the system in various ways.</p> 
-<h2><a href="#going-resource-centric" id="going-resource-centric">Going Resource Centric</a></h2> 
-<p>Traditional web applications are built around the notion of a traditional application which is converted into an application which may be used using a Web Browser. Web applications consist of a series of servlets and JSP scripts, which are called based on configuration in the web application deployment descriptor. Such applications are generally based on some internal database or some static filesystem content.</p> 
-<p>The Sling API on the other hand looks more like a traditional web server from the outside, which delivers more or less static content. Thus, while the traditional web application uses the request URL to select a piece of code to execute, the Sling API uses the URL to select a resource to be delivered.</p> 
-<h3><a href="#comparsion-to-the-servlet-api" id="comparsion-to-the-servlet-api">Comparsion to the Servlet API</a></h3> 
-<p>The Sling API builds upon the Servlet API. Generally a Sling Framework will run inside a Servlet Container and be manifested towards the Servlet Container as a single Servlet, which dispatches requests to the Servlets and Scripts depending on the request URLs.</p> 
-<p>Response rendering may itself be a multi-step operation. Depending on the Servlets and Scripts, the rendering may include dispatching for child (or even foreign) Resources.</p> 
-<h3><a href="#comparision-to-the-portlet-api" id="comparision-to-the-portlet-api">Comparision to the Portlet API</a></h3> 
-<p>Unlike the Portlet API, which defines one single level of portlet hierarchy - portlets are just pieces residing besides each other - the Sling API allows for hierarchic structuring of Resources and hence Servlet and Script renderings. To support this structuring, the Sling Framework does not control the rendering process of all elements on the page like the Portlet Container does for the portlets. Instead only the Resource addressed by the request URL is processed and it is left to the Servlet or Script rendering that Resource to dispatch other Resource/Servlet/Script tupels to add more data to the response.</p> 
-<h3><a href="#to-iterator-or-to-enumeration" id="to-iterator-or-to-enumeration">To Iterator or To Enumeration</a></h3> 
-<p>With the advent of the Java Collection framework in Java 2, the <code>Enumeration</code> has been superceded by the <code>Iterator</code>. So the natural choice for the Sling API for methods to return enumeratable collection of objects would have be to declare the use of <code>Iterator</code> instances. But because the Servlet API defines to use <code>Enumeration</code> instances, the Sling API will also declare the use of <code>Enumeration</code> instances for consistency with the Servlet API extended by the Sling API.</p> 
-<h2><a href="#request-processing" id="request-processing">Request Processing</a></h2> 
-<p>Unlike traditional Servlet API request processing, a Sling API request is processed by the Sling Framework in three basic steps:</p> 
-<ol> 
- <li><em>Resource Resolution</em> - The Sling Framework derives a Resource instance from the client request URL. The details of how to resolve the Resource. One possible solution would be to map the request URL to a [Java Content Repository]({{ refs.http://www.jcp.org/en/jsr/detail?id=170.path }}) Node and return a Resource representing that Node.</li> 
- <li><em>Servlet and Script Resolution</em> - From the Resource created in the first step, the Servlet or Script is resolved based on the type of the Resource. The resource type is a simple string, whose semantics is defined by the Sling Framework. One possible definition could be for the resource type to be the primary node type of the Node underlying the Resource.</li> 
- <li><em>Input Processing and Response Generation</em> - After getting the Resource and the Servlet or Script, the <code>service()</code> method is called or the script is evaluated to process any user supplied input and send the response to the client. To structure the rendered response page, this method is responsible to include other resources. See <em>Dispatching Requests</em> below for details. See <em>Error Handling</em> below for a discussion on how exceptions and HTTP stati are handled.</li> 
-</ol> 
-<h3><a href="#url-decomposition" id="url-decomposition">URL decomposition</a></h3> 
-<p>During the <em>Resource Resolution</em> step, the client request URL is decomposed into the following parts:</p> 
-<ol> 
- <li><em>Resource Path</em> - The longest substring of the request URL resolving to a Resource such that the resource path is either the complete request URL or the next character in the request URL after the resource path is either a dot (<code>.</code>) or a slash (<code>/</code>).</li> 
- <li><em>Selectors</em> - If the first character in the request URL after the resource path is a dot, the string after the dot upto but not including the last dot before the next slash character or the end of the request URL. If the resource path spans the complete request URL or if a slash follows the resource path in the request URL, no seletors exist. If only one dot follows the resource path before the end of the request URL or the next slash, no selectors exist.</li> 
- <li><em>Extension</em> - The string after the last dot after the resource path in the request URL but before the end of the request URL or the next slash after the resource path in the request URL. If a slash follows the resource path in the request URL, the extension is empty.</li> 
- <li><em>Suffix Path</em> - If the request URL contains a slash character after the resource path and optional selectors and extension, the path starting with the slash upto the end of the request URL is the suffix path. Otherwise, the suffix path is empty.</li> 
-</ol> 
-<p><em>Examples</em>: Assume there is a Resource at <code>/a/b</code>, which has no children.</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> URI </th>
-   <th> Resource Path </th>
-   <th> Selectors </th>
-   <th> Extension </th>
-   <th> Suffix </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> /a/b </td>
-   <td> /a/b </td>
-   <td> null </td>
-   <td> null </td>
-   <td> null </td>
-  </tr> 
-  <tr>
-   <td> /a/b.html </td>
-   <td> /a/b </td>
-   <td> null </td>
-   <td> html </td>
-   <td> null </td>
-  </tr> 
-  <tr>
-   <td> /a/b.s1.html </td>
-   <td> /a/b </td>
-   <td> s1 </td>
-   <td> html </td>
-   <td> null </td>
-  </tr> 
-  <tr>
-   <td> /a/b.s1.s2.html </td>
-   <td> /a/b </td>
-   <td> s1.s2 </td>
-   <td> html </td>
-   <td> null </td>
-  </tr> 
-  <tr>
-   <td> /a/b/c/d </td>
-   <td> /a/b </td>
-   <td> null </td>
-   <td> null </td>
-   <td> /c/d </td>
-  </tr> 
-  <tr>
-   <td> /a/b.html/c/d </td>
-   <td> /a/b </td>
-   <td> null </td>
-   <td> html </td>
-   <td> /c/d </td>
-  </tr> 
-  <tr>
-   <td> /a/b.s1.html/c/d </td>
-   <td> /a/b </td>
-   <td> s1 </td>
-   <td> html </td>
-   <td> /c/d </td>
-  </tr> 
-  <tr>
-   <td> /a/b.s1.s2.html/c/d </td>
-   <td> /a/b </td>
-   <td> s1.s2 </td>
-   <td> html </td>
-   <td> /c/d </td>
-  </tr> 
-  <tr>
-   <td> /a/b/c/d.s.txt </td>
-   <td> /a/b </td>
-   <td> null </td>
-   <td> null </td>
-   <td> /c/d.s.txt </td>
-  </tr> 
-  <tr>
-   <td> /a/b.html/c/d.s.txt </td>
-   <td> /a/b </td>
-   <td> null </td>
-   <td> html </td>
-   <td> /c/d.s.txt </td>
-  </tr> 
-  <tr>
-   <td> /a/b.s1.html/c/d.s.txt </td>
-   <td> /a/b </td>
-   <td> s1 </td>
-   <td> html </td>
-   <td> /c/d.s.txt </td>
-  </tr> 
-  <tr>
-   <td> /a/b.s1.s2.html/c/d.s.txt </td>
-   <td> /a/b </td>
-   <td> s1.s2 </td>
-   <td> html </td>
-   <td> /c/d.s.txt </td>
-  </tr> 
- </tbody> 
-</table> 
+The contents of this page is being created at the moment. It contains incomplete and partially wrong information as the text is adapted from the contents of the [Component API]({{ refs.component-api.path }}) documentation page.
+</div>
+<h2><a href="#introduction" name="introduction">Introduction</a></h2>
+<p>The <em>Sling API</em> defines a presentation framework to build Web Applications. As such the Sling API builds upon the Servlet API but extends the latter with new functionality:</p>
+<ul>
+  <li>A web page may be built from many different pieces. This aggregation of different pieces is comparable to the functionality provided by the Portlet API. In contrast to the latter, though, the pieces may themselves be aggregates of yet more pieces. So a single web page response may consist of a tree of pieces.</li>
+  <li>Just like the Servlet API and the Portlet API the Sling API mainly defines a Java based framework. Yet the Sling API comes with the intention of supporting scripting built.</li>
+  <li>In contrast to the Servlet API and the Portlet API, the Sling API is resource centric. That is, the request URL does not address a servlet or a portlet but a resource represented by an instance of the <code>org.apache.sling.api.resource.Resource</code> interface. From this resource the implementation of the Sling API will derive a <code>javax.servlet.Servlet</code> or <code>org.apache.sling.api.scripting.SlingScript</code> instance, which is used to handle the request.</li>
+</ul>
+<p>An implementation of the presentation framework defined by the Sling API is called a <em>Sling Framework</em>. The Apache Sling project actually contains two implementations of this API: <em>microsling</em> and <em>Sling</em>. microsling (note the lowercase <em>m</em>) implements the same request processing mechanisms as <em>Sling</em> but is very hardcoded. It serves well as a rapid development environment as it is quickly set up, easy to handle and shows results very easily. Sling on the other hand is based on an OSGi framework and very flexible, allowing the extension of the system in various ways.</p>
+<h2><a href="#going-resource-centric" name="going-resource-centric">Going Resource Centric</a></h2>
+<p>Traditional web applications are built around the notion of a traditional application which is converted into an application which may be used using a Web Browser. Web applications consist of a series of servlets and JSP scripts, which are called based on configuration in the web application deployment descriptor. Such applications are generally based on some internal database or some static filesystem content.</p>
+<p>The Sling API on the other hand looks more like a traditional web server from the outside, which delivers more or less static content. Thus, while the traditional web application uses the request URL to select a piece of code to execute, the Sling API uses the URL to select a resource to be delivered.</p>
+<h3><a href="#comparsion-to-the-servlet-api" name="comparsion-to-the-servlet-api">Comparsion to the Servlet API</a></h3>
+<p>The Sling API builds upon the Servlet API. Generally a Sling Framework will run inside a Servlet Container and be manifested towards the Servlet Container as a single Servlet, which dispatches requests to the Servlets and Scripts depending on the request URLs.</p>
+<p>Response rendering may itself be a multi-step operation. Depending on the Servlets and Scripts, the rendering may include dispatching for child (or even foreign) Resources.</p>
+<h3><a href="#comparision-to-the-portlet-api" name="comparision-to-the-portlet-api">Comparision to the Portlet API</a></h3>
+<p>Unlike the Portlet API, which defines one single level of portlet hierarchy - portlets are just pieces residing besides each other - the Sling API allows for hierarchic structuring of Resources and hence Servlet and Script renderings. To support this structuring, the Sling Framework does not control the rendering process of all elements on the page like the Portlet Container does for the portlets. Instead only the Resource addressed by the request URL is processed and it is left to the Servlet or Script rendering that Resource to dispatch other Resource/Servlet/Script tupels to add more data to the response.</p>
+<h3><a href="#to-iterator-or-to-enumeration" name="to-iterator-or-to-enumeration">To Iterator or To Enumeration</a></h3>
+<p>With the advent of the Java Collection framework in Java 2, the <code>Enumeration</code> has been superceded by the <code>Iterator</code>. So the natural choice for the Sling API for methods to return enumeratable collection of objects would have be to declare the use of <code>Iterator</code> instances. But because the Servlet API defines to use <code>Enumeration</code> instances, the Sling API will also declare the use of <code>Enumeration</code> instances for consistency with the Servlet API extended by the Sling API.</p>
+<h2><a href="#request-processing" name="request-processing">Request Processing</a></h2>
+<p>Unlike traditional Servlet API request processing, a Sling API request is processed by the Sling Framework in three basic steps:</p>
+<ol>
+  <li><em>Resource Resolution</em> - The Sling Framework derives a Resource instance from the client request URL. The details of how to resolve the Resource. One possible solution would be to map the request URL to a [Java Content Repository]({{ refs.http://www.jcp.org/en/jsr/detail?id=170.path }}) Node and return a Resource representing that Node.</li>
+  <li><em>Servlet and Script Resolution</em> - From the Resource created in the first step, the Servlet or Script is resolved based on the type of the Resource. The resource type is a simple string, whose semantics is defined by the Sling Framework. One possible definition could be for the resource type to be the primary node type of the Node underlying the Resource.</li>
+  <li><em>Input Processing and Response Generation</em> - After getting the Resource and the Servlet or Script, the <code>service()</code> method is called or the script is evaluated to process any user supplied input and send the response to the client. To structure the rendered response page, this method is responsible to include other resources. See <em>Dispatching Requests</em> below for details. See <em>Error Handling</em> below for a discussion on how exceptions and HTTP stati are handled.</li>
+</ol>
+<h3><a href="#url-decomposition" name="url-decomposition">URL decomposition</a></h3>
+<p>During the <em>Resource Resolution</em> step, the client request URL is decomposed into the following parts:</p>
+<ol>
+  <li><em>Resource Path</em> - The longest substring of the request URL resolving to a Resource such that the resource path is either the complete request URL or the next character in the request URL after the resource path is either a dot (<code>.</code>) or a slash (<code>/</code>).</li>
+  <li><em>Selectors</em> - If the first character in the request URL after the resource path is a dot, the string after the dot upto but not including the last dot before the next slash character or the end of the request URL. If the resource path spans the complete request URL or if a slash follows the resource path in the request URL, no seletors exist. If only one dot follows the resource path before the end of the request URL or the next slash, no selectors exist.</li>
+  <li><em>Extension</em> - The string after the last dot after the resource path in the request URL but before the end of the request URL or the next slash after the resource path in the request URL. If a slash follows the resource path in the request URL, the extension is empty.</li>
+  <li><em>Suffix Path</em> - If the request URL contains a slash character after the resource path and optional selectors and extension, the path starting with the slash upto the end of the request URL is the suffix path. Otherwise, the suffix path is empty.</li>
+</ol>
+<p><em>Examples</em>: Assume there is a Resource at <code>/a/b</code>, which has no children.</p>
+<table>
+  <thead>
+    <tr>
+      <th>URI </th>
+      <th>Resource Path </th>
+      <th>Selectors </th>
+      <th>Extension </th>
+      <th>Suffix </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/a/b </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>null </td>
+      <td>null </td>
+    </tr>
+    <tr>
+      <td>/a/b.html </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>html </td>
+      <td>null </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.html </td>
+      <td>/a/b </td>
+      <td>s1 </td>
+      <td>html </td>
+      <td>null </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.s2.html </td>
+      <td>/a/b </td>
+      <td>s1.s2 </td>
+      <td>html </td>
+      <td>null </td>
+    </tr>
+    <tr>
+      <td>/a/b/c/d </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>null </td>
+      <td>/c/d </td>
+    </tr>
+    <tr>
+      <td>/a/b.html/c/d </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>html </td>
+      <td>/c/d </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.html/c/d </td>
+      <td>/a/b </td>
+      <td>s1 </td>
+      <td>html </td>
+      <td>/c/d </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.s2.html/c/d </td>
+      <td>/a/b </td>
+      <td>s1.s2 </td>
+      <td>html </td>
+      <td>/c/d </td>
+    </tr>
+    <tr>
+      <td>/a/b/c/d.s.txt </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>null </td>
+      <td>/c/d.s.txt </td>
+    </tr>
+    <tr>
+      <td>/a/b.html/c/d.s.txt </td>
+      <td>/a/b </td>
+      <td>null </td>
+      <td>html </td>
+      <td>/c/d.s.txt </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.html/c/d.s.txt </td>
+      <td>/a/b </td>
+      <td>s1 </td>
+      <td>html </td>
+      <td>/c/d.s.txt </td>
+    </tr>
+    <tr>
+      <td>/a/b.s1.s2.html/c/d.s.txt </td>
+      <td>/a/b </td>
+      <td>s1.s2 </td>
+      <td>html </td>
+      <td>/c/d.s.txt </td>
+    </tr>
+  </tbody>
+</table>
 <div class="info">
-  The [SlingRequestPathInfoTest]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java.path }}) demonstrates and tests this decomposition. Feel free to suggest additional tests that help clarify how this works! 
-</div> 
-<h2><a href="#the-slinghttpservletrequest" id="the-slinghttpservletrequest">The SlingHttpServletRequest</a></h2> 
-<p>The <code>org.apache.sling.api.SlingHttpServletRequest</code> interface defines the basic data available from the client request to both action processing and response rendering. The <code>SlingHttpServletRequest</code> extends the <code>javax.servlet.http.HTTPServletRequest</code>.</p> 
-<p>This section describes the data available from the <code>SlingHttpServletRequest</code>. For a complete and normative description of the methods, refer to the Sling API JavaDoc. The following information is represented for reference. In the case of differences between the following descriptions and the Sling API JavaDoc, the latter takes precedence.</p> 
-<ol> 
- <li><em>Resource access</em> - Resources may be accessed from the <code>SlingHttpServletRequest</code> object through the following methods: <code>getResource()</code>, <code>getResourceResolver()</code>.</li> 
- <li><em>Request URL information</em> - In addition to the standard <code>HttpServletRequest</code> information the <code>SlingHttpServletRequest</code> provides access to the selectors, extension and suffix through the <code>getRequestPathInfo()</code> method. Note that the Resource path is not directly available form the <code>SlingHttpServletRequest</code> object. Instead it is available through the <code>Resource.getPath()</code> method of the Resource object retrieved through <code>SlingHttpServletRequest.getResource()</code>.</li> 
- <li><em>Request Parameters</em> - To support user input submitted as <code>multipart/form-data</code> encoded POST parameters, the Sling API intrduces the <code>RequestParameter</code> interface allowing file uploads. Request parameters represented as <code>RequestParameter</code> objects are returned by the following methods: <code>getRequestParameter(String name)</code>, <code>getRequestParameterMap()</code>, <code>getRequestParameters(String name)</code>.</li> 
- <li><em>Request Dispatching</em> - In addition to standard Serlvet API request dispatching, the Sling API supports dispatching requests to render different Resources using <code>RequestDispatcher</code> objects returned by the methods: <code>getRequestDispatcher(Resource resource)</code> and <code>getRequestDispatcher(Resource resource, RequestDispatcherOptions options)</code>.</li> 
- <li><em>Miscellaneous</em> - Finally the ComponentRequest interface provides the following methods: <code>getCookie(String name)</code>, <code>getRequestProgressTracker()</code>, <code>getResponseContentType()</code>, <code>getResponseContentTypes()</code>, <code>getResourceBundle(Locale locale)</code>, <code>getServiceLocator()</code>.</li> 
-</ol> 
-<p>The <code>SlingHttpServletRequest</code> objects are only valid during the time of request processing. Servlets and Scripts must not keep references for later use. As such, the <code>SlingHttpServletRequest</code> interface and its extensions are defined to not be thread safe.</p> 
-<p><em>A note on HTTP Sessions</em>: The <code>SlingHttpServletRequest</code> extends the <code>HttpSerlvetRequest</code> and thus supports standard HTTP sessions. Be aware, though that Sessions are server side sessions and hence violate the sessionless principle of REST and therefore should be used with care. It is almost always possible to not use sessions.</p> 
-<h2><a href="#the-slinghttpservletresponse" id="the-slinghttpservletresponse">The SlingHttpServletResponse</a></h2> 
-<p>The <code>org.apache.sling.api.SlingHttpServletResponse</code> interface extends the <code>javax.servet.http.HttpServletResponse</code> interface and is currently empty. It merely exists for symmetry with the <code>SlingHttpServletRequest</code>.</p> 
-<h2><a href="#the-resource" id="the-resource">The Resource</a></h2> 
-<p>The <code>org.apache.sling.resource.Resource</code> represents the data addressed by the request URL. Resources may also be retrieved through the <code>org.apache.sling.api.resource.ResourceResolver</code>. Usually this interface is not implemented by clients. In certain use cases we call <em>synthetic Resource</em> if may be usefull to define a simple object implementing the <code>Resource</code> interface. The Sling Framework does not care about the concrete implementation of the <code>Resource</code> interface and rather uses the defined methods to access required information. The interface defines the following methods:</p> 
-<ol> 
- <li><em>getResourceType()</em> - Returns the type of the resource. This resource type is used to resolve the Servlet or Script used to handle the request for the resource.</li> 
- <li><em>getPath()</em> - Returns the path derived from the client request URL which led to the creation of the Resource instance. See the [#URL_decomposition URL decomposition]({{ refs.-url_decomposition-url-decomposition.path }}) section above for more information. It is not required, that the Resource path be a part of the original client request URL. The request URL may also have been mapped to some internal path.</li> 
- <li><em>getResourceMetadata()</em> - Returns meta data information about the resource in a <code>ResourceMetadata</code> object.</li> 
- <li><em>adaptTo(Class
-   <adaptertype>
-     type)
-   </adaptertype></em> - Returns alternative representations of the Resource. The concrete supported classes to which the Resource may be adapted depends on the implementation. For example a Resource based on a JCR Node may support being adapted to the underlying Node, an <code>InputStream</code>, an <code>URL</code> or even to a mapped object through JCR Object Content Mapping.</li> 
-</ol> 
-<hr> 
-<h2><a href="#the-component" id="the-component">The Component</a></h2> 
-<p>The <code>org.apache.sling.component.Component</code> interface defines the API implemented to actually handle requests. As such the Component interface is comparable to the =javax.servlet.Servlet= interface. Like those other interfaces, the Component interface provides methods for life cycle management: <code>init(ComponentContext context)</code>, <code>destroy()</code>.</p> 
-<h3><a href="#processing-the-request" id="processing-the-request">Processing the Request</a></h3> 
-<p>The Component Framework calls the <code>service(ComponentRequest request, ComponentResponse response)</code> method of the Component to have the component process the request optionally processing user input, rendering the response and optionally dispatch to other Content/Component tuples to provide more response data.</p> 
-<h3><a href="#content-and-its-component" id="content-and-its-component">Content and its Component</a></h3> 
-<p>The Content object and a Component form a pair, in which the Content object takes the passive part of providing data to the Component and the Component takes the active part of acting upon the Content object. As a consequence, there always exists a link between a given implementation of the Content interface and a given implementation of the Component interface.</p> 
-<p>This link is manifested by the Component identifier available from the Content object through the <code>Content.getComponentId()</code> method on the one hand. On the other hand, the link is manifested by the <code>getContentClassName()</code> and <code>createContentInstance()</code> methods of the Component interface.</p> 
-<h3><a href="#component-lifecylce" id="component-lifecylce">Component Lifecylce</a></h3> 
-<p>When a Component instance is created and added to the Component framework, the <code>init(ComponentContext)</code> method is called to prepare and initialize the Component. If this method terminates abnormally by throwing an exception, the Component is not used. The Component Framework implementation may try at a later time to recreate the Component, intialize it and use it. If the Component Framework tries to recreate the Component a new instance of the Component must be created to be initialized and used.</p> 
-<p>When the Component has successfully been initialized, it may be referred to by Content objects. When a client request is to be processed, the Content object is resolved and the <code>service</code> method on the Component to which the Content object refers is called. The <code>service</code> method may - and generally will - be called simultaneously to handle different requests in different threads. As such, implementations of these methods must be thread safe.</p> 
-<p>When the Component Framework decides to take a Component out of service, the <code>destroy()</code> method is called to give the Component a chance to cleanup any held resources. The destroy method must only be called by the Component Framework when no more request processing is using the Component, that is no thread may be in the <code>service</code> method of a Component to be destroyed. Irrespective of whether the destroy method terminated normally or abnormally, the Component will not be used again.</p> 
-<p>The addition and removal of Components is at the discretion of the Component Framework. A Component may be loaded at framework start time or on demand and my be removed at any time. But only one single Component instance with the same Component identifier may be active at the same time within a single Component Framework instance.</p> 
-<h3><a href="#the-componentextension" id="the-componentextension">The ComponentExtension</a></h3> 
-<p>To enhance the core functionality of Components, each Component may have zero, one ore more Component Extensions attached. A Component Extensions is a Java object implementing the <code>org.apache.sling.component.ComponentExtension</code> interface. This interface just defines a <code>getName()</code> method to identify extensions.</p> 
-<p>The concrete implementation as well as instantiation and management of Component Extensions is left to the Component Framework implementation with one restriction though: The extensions must be available to the Component at the time the <code>init(ComponentContext)</code> method is called may only be dropped after the <code>destroy()</code> method terminates.</p> 
-<p>The Component interface defines two methods to access Extensions: The <code>getExtensions()</code> method returns a <code>java.util.Enumeration</code> of all ComponentExtension objects attached to the component. If no Component Extension are attached to the Component, an empty enumeration is returned. The <code>getExtension(String name)</code> returns the named Component Extension attached to the Component or <code>null</code> if no such Component Extension is attached to the Component.</p> 
-<p>Component Frameworks are allowed to share Component Extension instances of the same name between different Component instances. Regardless of whether Component Extensions are shared or not, they must be thread safe, as any Component Extension may be used within the <code>service</code> method, which themselves may be called concurrently.</p> 
-<h2><a href="#request-processing-filters" id="request-processing-filters">Request Processing Filters</a></h2> 
-<p>Similar to the Servlet API providing filters for filtering requests and/or responses the Component API provides the <code>org.apache.sling.component.ComponentFilter</code> interface. The filters are called by a <code>ComponentFilterChain</code> and either handle the request, manipulate the request and/or response object and finally forward the request and response optionally wrapped to the <code>ComponentFilterChain.doFilter(ComponentRequest, ComponentResponse)</code> method.</p> 
-<p>Like the <code>Component</code>s filters have a defined lifecycle manifested by <code>init</code> and <code>destroy</code> methods. When the filter enters the system, the Component Framework calls the <code>ComponentFilter.init(ComponentContext)</code> method. Only when this method completes successfully will the filter be put into action and be used during request processing. When the filter leaves the system, the Component Framework removes the filter from being used in filter chains and calls the <code>ComponentFilter.destroy()</code> method. This method is not expected to throw any exceptions. The filter may be removed from the Component Framework at the discretion of the Component Framework or because the filter is being unregistered from the Component Framework by some means outside this specification.</p> 
-<p>This specification does not define how <code>ComponentFilter</code> objects are registered with the Component Framework nor is it specified how the order in which the filters are called is defined. Likewise it is outside this specification how the filter instances registered with the Component Framework are configured.</p> 
-<h2><a href="#sessions" id="sessions">Sessions</a></h2> 
-<p>The <code>org.apache.sling.component.ComponentSession</code> interface provides a way to identify a user across more than one request and to store transient information about that user.</p> 
-<p>A component can bind an object attribute into a <code>ComponentSession</code> by name. The <code>ComponentSession</code> interface defines two scopes for storing objects: <code>APPLICATION*SCOPE</code>, <code>COMPONENT*SCOPE</code>. All objects stored in the session using the <code>APPLICATION*SCOPE</code> must be available to all the components, servlets and JSPs that belong to the same component application and that handle a request identified as being a part of the same session. Objects stored in the session using the <code>COMPONENT*SCOPE</code> must be available to the component during requests for the same content that the objects where stored from. Attributes stored in the <code>COMPONENT_SCOPE</code> are not protected from other web components of the component application. They are just conveniently namespaced.</p> 
-<p>The component session extends the Servlet API <code>HttpSession</code>. Therefore all <code>HttpSession</code> listeners do apply to the component session and attributes set in the component session are visible in the <code>HttpSession</code> and vice versa.</p> 
-<p>The attribute accessor methods without the <em>scope</em> parameter always refer to <code>COMPONENT*SCOPE</code> attributes. To access <code>APPLICATION*SCOPE</code> attributes use the accessors taking an explicit <code>scope</code> parameter.</p> 
-<p><em>A final note on Sessions</em>: Sessions are server side sessions and hence violate the sessionless principle of REST and therefore should be used with care. It is almost always possible to not use sessions.</p> 
-<h2><a href="#dispatching-requests" id="dispatching-requests">Dispatching Requests</a></h2> 
-<p>To include renderings of child Content objects, a <code>org.apache.sling.component.ComponentRequestDispatcher</code> object may be retrieved from the ComponentContext with which the Component has been initialized or from the ComponentRequest provided to the service method. Using this dispatcher the reponse of rendering the Content may be included by calling the <code>ComponentRequestDispatcher.include(ComponentRequest, ComponentResponse)</code> method.</p> 
-<p>This method is comparable to the <code>RequestDispatcher.include(ServletRequest, ServletResponse</code> method of the Servlet API but dispatching by the <code>ComponentRequestDispatcher</code> does not go through the servlet container and stays within the Component Framework.</p> 
-<p>The <code>service</code> method of included Components are called with an instance of the <code>ComponentRequest</code> interface whose <code>getContent()</code> returns the Content object for the included Content.</p> 
-<p>When a Component is included by another component the following request attributes are set:</p> 
-<table> 
- <thead> 
-  <tr>
-   <th> <em>Request Attributes</em> </th>
-   <th> <em>Type</em> </th>
-   <th> <em>Description</em> </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>org.apache.sling.component.request.content</code> </td>
-   <td> String </td>
-   <td> The <code>Content</code> instance to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. </td>
-  </tr> 
-  <tr>
-   <td> <code>org.apache.sling.component.request.component</code> </td>
-   <td> String </td>
-   <td> The <code>Component</code> instance for the <code>Content</code> object to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. </td>
-  </tr> 
- </tbody> 
-</table> 
-<h3><a href="#error-handling" id="error-handling">Error Handling</a></h3> 
-<p>While processing requests, the <code>service</code> methods called may have problems. Components have multiple options of reporting issues during processing to the client:</p> 
-<ul> 
- <li>Set the status of the HTTP response calling the <code>ComponentResponse.setStatus</code> method</li> 
- <li>Send an error page calling the <code>ComponentResponse.sendError</code> method</li> 
- <li>Throw an exception</li> 
-</ul> 
-<p>If such an exception is thrown, the Component Framework must act upon the exception in one of the following ways:</p> 
-<ul> 
- <li>If the request is processed through Servlet API request inclusion, the exception must be given back to the servlet container. A <code>ComponentException</code> is just forwarded as a <code>ServletException</code>. This is a requirement of the Servlet API specification which states for included requests:</li> 
-</ul> 
-<p>{quote}</p> 
-<p>{quote}</p> 
-<ul> 
- <li>Otherwise, the Component Framework may handle the error itself in a manner similar to the error handling approach defined the Servlet API specification (Section SRV 9.9 Error Handling of the Java Servlet Specification 2.4). Specifically the request attributes defined by the Servlet API specification must be set for the error handler:</li> 
-</ul> 
-<table> 
- <thead> 
-  <tr>
-   <th> <em>Request Attributes</em> </th>
-   <th> <em>Type</em> </th>
-   <th> <em>Description</em> </th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td> <code>javax.servlet.error.status_code</code> </td>
-   <td> <code>java.lang.Integer</code> </td>
-   <td> The status code of the response. In the case of an exception thrown from the <code>service</code>, the code is defined by the Component Framework. </td>
-  </tr> 
-  <tr>
-   <td> <code>javax.servlet.error.exception_type</code> </td>
-   <td> <code>java.lang.Class</code> </td>
-   <td> The fully qualified name of the exception class thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. </td>
-  </tr> 
-  <tr>
-   <td> <code>javax.servlet.error.message</code> </td>
-   <td> <code>java.lang.String</code> </td>
-   <td> The message of the exception thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. </td>
-  </tr> 
-  <tr>
-   <td> <code>javax.servlet.error.exception</code> </td>
-   <td> <code>java.lang.Throwable</code> </td>
-   <td> The exception thrown. This attribute does not exist, if error handling does not result from an exception. </td>
-  </tr> 
-  <tr>
-   <td> <code>javax.servlet.error.request_uri</code> </td>
-   <td> <code>java.lang.String</code> </td>
-   <td> The request URL whose processing resulted in the error. </td>
-  </tr> 
-  <tr>
-   <td> <code>javax.servlet.error.servlet_name</code> </td>
-   <td> <code>java.lang.String</code> </td>
-   <td> The name of the servlet which yielded the error. The servlet name will generally not have any significance inside the Component Framework. </td>
-  </tr> 
-  <tr>
-   <td> <code>org.apache.sling.component.error.componentId</code> </td>
-   <td> <code>java.lang.String</code> </td>
-   <td> The identifier of the Component whose <code>service</code> method has caused the error. This attribute does not exist, if the Component Framework itself caused the error processing. </td>
-  </tr> 
- </tbody> 
-</table> 
-<p>* If the Component Framework decides to not handle the error itself, the exception must be forwarded to the servlet container as a <code>ComponentException</code> wrapping the original exception as its root cause.</p> 
+The [SlingRequestPathInfoTest]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java.path }}) demonstrates and tests this decomposition. Feel free to suggest additional tests that help clarify how this works!
+</div>
+<h2><a href="#the-slinghttpservletrequest" name="the-slinghttpservletrequest">The SlingHttpServletRequest</a></h2>
+<p>The <code>org.apache.sling.api.SlingHttpServletRequest</code> interface defines the basic data available from the client request to both action processing and response rendering. The <code>SlingHttpServletRequest</code> extends the <code>javax.servlet.http.HTTPServletRequest</code>.</p>
+<p>This section describes the data available from the <code>SlingHttpServletRequest</code>. For a complete and normative description of the methods, refer to the Sling API JavaDoc. The following information is represented for reference. In the case of differences between the following descriptions and the Sling API JavaDoc, the latter takes precedence.</p>
+<ol>
+  <li><em>Resource access</em> - Resources may be accessed from the <code>SlingHttpServletRequest</code> object through the following methods: <code>getResource()</code>, <code>getResourceResolver()</code>.</li>
+  <li><em>Request URL information</em> - In addition to the standard <code>HttpServletRequest</code> information the <code>SlingHttpServletRequest</code> provides access to the selectors, extension and suffix through the <code>getRequestPathInfo()</code> method. Note that the Resource path is not directly available form the <code>SlingHttpServletRequest</code> object. Instead it is available through the <code>Resource.getPath()</code> method of the Resource object retrieved through <code>SlingHttpServletRequest.getResource()</code>.</li>
+  <li><em>Request Parameters</em> - To support user input submitted as <code>multipart/form-data</code> encoded POST parameters, the Sling API intrduces the <code>RequestParameter</code> interface allowing file uploads. Request parameters represented as <code>RequestParameter</code> objects are returned by the following methods: <code>getRequestParameter(String name)</code>, <code>getRequestParameterMap()</code>, <code>getRequestParameters(String name)</code>.</li>
+  <li><em>Request Dispatching</em> - In addition to standard Serlvet API request dispatching, the Sling API supports dispatching requests to render different Resources using <code>RequestDispatcher</code> objects returned by the methods: <code>getRequestDispatcher(Resource resource)</code> and <code>getRequestDispatcher(Resource resource, RequestDispatcherOptions options)</code>.</li>
+  <li><em>Miscellaneous</em> - Finally the ComponentRequest interface provides the following methods: <code>getCookie(String name)</code>, <code>getRequestProgressTracker()</code>, <code>getResponseContentType()</code>, <code>getResponseContentTypes()</code>, <code>getResourceBundle(Locale locale)</code>, <code>getServiceLocator()</code>.</li>
+</ol>
+<p>The <code>SlingHttpServletRequest</code> objects are only valid during the time of request processing. Servlets and Scripts must not keep references for later use. As such, the <code>SlingHttpServletRequest</code> interface and its extensions are defined to not be thread safe.</p>
+<p><em>A note on HTTP Sessions</em>: The <code>SlingHttpServletRequest</code> extends the <code>HttpSerlvetRequest</code> and thus supports standard HTTP sessions. Be aware, though that Sessions are server side sessions and hence violate the sessionless principle of REST and therefore should be used with care. It is almost always possible to not use sessions.</p>
+<h2><a href="#the-slinghttpservletresponse" name="the-slinghttpservletresponse">The SlingHttpServletResponse</a></h2>
+<p>The <code>org.apache.sling.api.SlingHttpServletResponse</code> interface extends the <code>javax.servet.http.HttpServletResponse</code> interface and is currently empty. It merely exists for symmetry with the <code>SlingHttpServletRequest</code>.</p>
+<h2><a href="#the-resource" name="the-resource">The Resource</a></h2>
+<p>The <code>org.apache.sling.resource.Resource</code> represents the data addressed by the request URL. Resources may also be retrieved through the <code>org.apache.sling.api.resource.ResourceResolver</code>. Usually this interface is not implemented by clients. In certain use cases we call <em>synthetic Resource</em> if may be usefull to define a simple object implementing the <code>Resource</code> interface. The Sling Framework does not care about the concrete implementation of the <code>Resource</code> interface and rather uses the defined methods to access required information. The interface defines the following methods:</p>
+<ol>
+  <li><em>getResourceType()</em> - Returns the type of the resource. This resource type is used to resolve the Servlet or Script used to handle the request for the resource.</li>
+  <li><em>getPath()</em> - Returns the path derived from the client request URL which led to the creation of the Resource instance. See the [#URL_decomposition URL decomposition]({{ refs.-url_decomposition-url-decomposition.path }}) section above for more information. It is not required, that the Resource path be a part of the original client request URL. The request URL may also have been mapped to some internal path.</li>
+  <li><em>getResourceMetadata()</em> - Returns meta data information about the resource in a <code>ResourceMetadata</code> object.</li>
+  <li><em>adaptTo(Class<AdapterType> type)</em> - Returns alternative representations of the Resource. The concrete supported classes to which the Resource may be adapted depends on the implementation. For example a Resource based on a JCR Node may support being adapted to the underlying Node, an <code>InputStream</code>, an <code>URL</code> or even to a mapped object through JCR Object Content Mapping.</li>
+</ol>
+<hr/>
+<h2><a href="#the-component" name="the-component">The Component</a></h2>
+<p>The <code>org.apache.sling.component.Component</code> interface defines the API implemented to actually handle requests. As such the Component interface is comparable to the =javax.servlet.Servlet= interface. Like those other interfaces, the Component interface provides methods for life cycle management: <code>init(ComponentContext context)</code>, <code>destroy()</code>.</p>
+<h3><a href="#processing-the-request" name="processing-the-request">Processing the Request</a></h3>
+<p>The Component Framework calls the <code>service(ComponentRequest request, ComponentResponse response)</code> method of the Component to have the component process the request optionally processing user input, rendering the response and optionally dispatch to other Content/Component tuples to provide more response data.</p>
+<h3><a href="#content-and-its-component" name="content-and-its-component">Content and its Component</a></h3>
+<p>The Content object and a Component form a pair, in which the Content object takes the passive part of providing data to the Component and the Component takes the active part of acting upon the Content object. As a consequence, there always exists a link between a given implementation of the Content interface and a given implementation of the Component interface.</p>
+<p>This link is manifested by the Component identifier available from the Content object through the <code>Content.getComponentId()</code> method on the one hand. On the other hand, the link is manifested by the <code>getContentClassName()</code> and <code>createContentInstance()</code> methods of the Component interface.</p>
+<h3><a href="#component-lifecylce" name="component-lifecylce">Component Lifecylce</a></h3>
+<p>When a Component instance is created and added to the Component framework, the <code>init(ComponentContext)</code> method is called to prepare and initialize the Component. If this method terminates abnormally by throwing an exception, the Component is not used. The Component Framework implementation may try at a later time to recreate the Component, intialize it and use it. If the Component Framework tries to recreate the Component a new instance of the Component must be created to be initialized and used.</p>
+<p>When the Component has successfully been initialized, it may be referred to by Content objects. When a client request is to be processed, the Content object is resolved and the <code>service</code> method on the Component to which the Content object refers is called. The <code>service</code> method may - and generally will - be called simultaneously to handle different requests in different threads. As such, implementations of these methods must be thread safe.</p>
+<p>When the Component Framework decides to take a Component out of service, the <code>destroy()</code> method is called to give the Component a chance to cleanup any held resources. The destroy method must only be called by the Component Framework when no more request processing is using the Component, that is no thread may be in the <code>service</code> method of a Component to be destroyed. Irrespective of whether the destroy method terminated normally or abnormally, the Component will not be used again.</p>
+<p>The addition and removal of Components is at the discretion of the Component Framework. A Component may be loaded at framework start time or on demand and my be removed at any time. But only one single Component instance with the same Component identifier may be active at the same time within a single Component Framework instance.</p>
+<h3><a href="#the-componentextension" name="the-componentextension">The ComponentExtension</a></h3>
+<p>To enhance the core functionality of Components, each Component may have zero, one ore more Component Extensions attached. A Component Extensions is a Java object implementing the <code>org.apache.sling.component.ComponentExtension</code> interface. This interface just defines a <code>getName()</code> method to identify extensions.</p>
+<p>The concrete implementation as well as instantiation and management of Component Extensions is left to the Component Framework implementation with one restriction though: The extensions must be available to the Component at the time the <code>init(ComponentContext)</code> method is called may only be dropped after the <code>destroy()</code> method terminates.</p>
+<p>The Component interface defines two methods to access Extensions: The <code>getExtensions()</code> method returns a <code>java.util.Enumeration</code> of all ComponentExtension objects attached to the component. If no Component Extension are attached to the Component, an empty enumeration is returned. The <code>getExtension(String name)</code> returns the named Component Extension attached to the Component or <code>null</code> if no such Component Extension is attached to the Component.</p>
+<p>Component Frameworks are allowed to share Component Extension instances of the same name between different Component instances. Regardless of whether Component Extensions are shared or not, they must be thread safe, as any Component Extension may be used within the <code>service</code> method, which themselves may be called concurrently.</p>
+<h2><a href="#request-processing-filters" name="request-processing-filters">Request Processing Filters</a></h2>
+<p>Similar to the Servlet API providing filters for filtering requests and/or responses the Component API provides the <code>org.apache.sling.component.ComponentFilter</code> interface. The filters are called by a <code>ComponentFilterChain</code> and either handle the request, manipulate the request and/or response object and finally forward the request and response optionally wrapped to the <code>ComponentFilterChain.doFilter(ComponentRequest, ComponentResponse)</code> method.</p>
+<p>Like the <code>Component</code>s filters have a defined lifecycle manifested by <code>init</code> and <code>destroy</code> methods. When the filter enters the system, the Component Framework calls the <code>ComponentFilter.init(ComponentContext)</code> method. Only when this method completes successfully will the filter be put into action and be used during request processing. When the filter leaves the system, the Component Framework removes the filter from being used in filter chains and calls the <code>ComponentFilter.destroy()</code> method. This method is not expected to throw any exceptions. The filter may be removed from the Component Framework at the discretion of the Component Framework or because the filter is being unregistered from the Component Framework by some means outside this specification.</p>
+<p>This specification does not define how <code>ComponentFilter</code> objects are registered with the Component Framework nor is it specified how the order in which the filters are called is defined. Likewise it is outside this specification how the filter instances registered with the Component Framework are configured.</p>
+<h2><a href="#sessions" name="sessions">Sessions</a></h2>
+<p>The <code>org.apache.sling.component.ComponentSession</code> interface provides a way to identify a user across more than one request and to store transient information about that user.</p>
+<p>A component can bind an object attribute into a <code>ComponentSession</code> by name. The <code>ComponentSession</code> interface defines two scopes for storing objects: <code>APPLICATION*SCOPE</code>, <code>COMPONENT*SCOPE</code>. All objects stored in the session using the <code>APPLICATION*SCOPE</code> must be available to all the components, servlets and JSPs that belong to the same component application and that handle a request identified as being a part of the same session. Objects stored in the session using the <code>COMPONENT*SCOPE</code> must be available to the component during requests for the same content that the objects where stored from. Attributes stored in the <code>COMPONENT_SCOPE</code> are not protected from other web components of the component application. They are just conveniently namespaced.</p>
+<p>The component session extends the Servlet API <code>HttpSession</code>. Therefore all <code>HttpSession</code> listeners do apply to the component session and attributes set in the component session are visible in the <code>HttpSession</code> and vice versa.</p>
+<p>The attribute accessor methods without the <em>scope</em> parameter always refer to <code>COMPONENT*SCOPE</code> attributes. To access <code>APPLICATION*SCOPE</code> attributes use the accessors taking an explicit <code>scope</code> parameter.</p>
+<p><em>A final note on Sessions</em>: Sessions are server side sessions and hence violate the sessionless principle of REST and therefore should be used with care. It is almost always possible to not use sessions.</p>
+<h2><a href="#dispatching-requests" name="dispatching-requests">Dispatching Requests</a></h2>
+<p>To include renderings of child Content objects, a <code>org.apache.sling.component.ComponentRequestDispatcher</code> object may be retrieved from the ComponentContext with which the Component has been initialized or from the ComponentRequest provided to the service method. Using this dispatcher the reponse of rendering the Content may be included by calling the <code>ComponentRequestDispatcher.include(ComponentRequest, ComponentResponse)</code> method.</p>
+<p>This method is comparable to the <code>RequestDispatcher.include(ServletRequest, ServletResponse</code> method of the Servlet API but dispatching by the <code>ComponentRequestDispatcher</code> does not go through the servlet container and stays within the Component Framework.</p>
+<p>The <code>service</code> method of included Components are called with an instance of the <code>ComponentRequest</code> interface whose <code>getContent()</code> returns the Content object for the included Content.</p>
+<p>When a Component is included by another component the following request attributes are set:</p>
+<table>
+  <thead>
+    <tr>
+      <th><em>Request Attributes</em> </th>
+      <th><em>Type</em> </th>
+      <th><em>Description</em> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>org.apache.sling.component.request.content</code> </td>
+      <td>String </td>
+      <td>The <code>Content</code> instance to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.component.request.component</code> </td>
+      <td>String </td>
+      <td>The <code>Component</code> instance for the <code>Content</code> object to which the client URL resolved. This attribute is set when included Components are being rendered and it is not set for the Component directly addressed by the client request. </td>
+    </tr>
+  </tbody>
+</table>
+<h3><a href="#error-handling" name="error-handling">Error Handling</a></h3>
+<p>While processing requests, the <code>service</code> methods called may have problems. Components have multiple options of reporting issues during processing to the client:</p>
+<ul>
+  <li>Set the status of the HTTP response calling the <code>ComponentResponse.setStatus</code> method</li>
+  <li>Send an error page calling the <code>ComponentResponse.sendError</code> method</li>
+  <li>Throw an exception</li>
+</ul>
+<p>If such an exception is thrown, the Component Framework must act upon the exception in one of the following ways:</p>
+<ul>
+  <li>If the request is processed through Servlet API request inclusion, the exception must be given back to the servlet container. A <code>ComponentException</code> is just forwarded as a <code>ServletException</code>. This is a requirement of the Servlet API specification which states for included requests:</li>
+</ul>
+<p>{quote}</p>
+<p>{quote}</p>
+<ul>
+  <li>Otherwise, the Component Framework may handle the error itself in a manner similar to the error handling approach defined the Servlet API specification (Section SRV 9.9 Error Handling of the Java Servlet Specification 2.4). Specifically the request attributes defined by the Servlet API specification must be set for the error handler:</li>
+</ul>
+<table>
+  <thead>
+    <tr>
+      <th><em>Request Attributes</em> </th>
+      <th><em>Type</em> </th>
+      <th><em>Description</em> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>javax.servlet.error.status_code</code> </td>
+      <td><code>java.lang.Integer</code> </td>
+      <td>The status code of the response. In the case of an exception thrown from the <code>service</code>, the code is defined by the Component Framework. </td>
+    </tr>
+    <tr>
+      <td><code>javax.servlet.error.exception_type</code> </td>
+      <td><code>java.lang.Class</code> </td>
+      <td>The fully qualified name of the exception class thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. </td>
+    </tr>
+    <tr>
+      <td><code>javax.servlet.error.message</code> </td>
+      <td><code>java.lang.String</code> </td>
+      <td>The message of the exception thrown. This attribute does not exist, if error handling does not result from an exception. This attribute is maintained for backwards compatibility according to the Servlet API Specification. </td>
+    </tr>
+    <tr>
+      <td><code>javax.servlet.error.exception</code> </td>
+      <td><code>java.lang.Throwable</code> </td>
+      <td>The exception thrown. This attribute does not exist, if error handling does not result from an exception. </td>
+    </tr>
+    <tr>
+      <td><code>javax.servlet.error.request_uri</code> </td>
+      <td><code>java.lang.String</code> </td>
+      <td>The request URL whose processing resulted in the error. </td>
+    </tr>
+    <tr>
+      <td><code>javax.servlet.error.servlet_name</code> </td>
+      <td><code>java.lang.String</code> </td>
+      <td>The name of the servlet which yielded the error. The servlet name will generally not have any significance inside the Component Framework. </td>
+    </tr>
+    <tr>
+      <td><code>org.apache.sling.component.error.componentId</code> </td>
+      <td><code>java.lang.String</code> </td>
+      <td>The identifier of the Component whose <code>service</code> method has caused the error. This attribute does not exist, if the Component Framework itself caused the error processing. </td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+  <li>If the Component Framework decides to not handle the error itself, the exception must be forwarded to the servlet container as a <code>ComponentException</code> wrapping the original exception as its root cause.</li>
+</ul>
 <p>This specification does not define, how error handlers are configured and used if the Component Framework provides error handling support. Likewise the Component Framework may or may not implement support to handle calls to the <code>ComponentResponse.sendError</code> method. The Component Framework may also use its own error handling also for errors resulting from request processing failures, for example if authentication is required or if the request URL cannot be resolved to a Content object.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
