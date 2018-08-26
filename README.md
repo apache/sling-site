@@ -43,9 +43,9 @@ It's sometimes useful to ~~steal ideas~~ get inspiration from other projects usi
  * Incubator - https://github.com/apache/incubator
 
 ## JBake and other technotes
-* Currently using 2.6.1 via the `jbake-maven-plugin`, see under `/bin`, docs at http://jbake.org/docs/2.6.1
-* That version of JBake uses [Flexmark](https://github.com/vsch/flexmark-java) as parser for Markdown and [Pegdown extensions](https://github.com/sirthias/pegdown)
-* The templates use the [Groovy Markup Template Engine](http://groovy-lang.org/templating.html#_the_markuptemplateengine), other examples are provided at https://github.com/jbake-org/jbake-example-project-groovy-mte
+* Currently using 2.5.1 via the `jbake-maven-plugin`, see under `/bin`, docs at http://jbake.org/docs/2.5.1
+* That version of JBake uses https://github.com/sirthias/pegdown for Markdown, syntax info at https://github.com/sirthias/pegdown/blob/master/src/test/resources/MarkdownTest103/Markdown%20Documentation%20-%20Syntax.md , extensions at http://www.decodified.com/pegdown/api/org/pegdown/Extensions.html
+* Using Groovy MarkupTemplateEngine, examples at https://github.com/jbake-org/jbake-example-project-groovy-mte , docs for that engine at http://groovy-lang.org/templating.html#_the_markuptemplateengine
 
 
 ## Useful scripts and commands
