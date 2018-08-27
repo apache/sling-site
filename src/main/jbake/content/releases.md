@@ -8,6 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2018
 
+* Testing JCR Mock 1.4.0 (27th)
+* Testing Sling Mock 2.3.2 (27th)
 * Installer Core 3.9.0 (27th)
 * Installer Factory Configuration 1.2.0 (27th)
 * Bundle Resource 2.3.2 (24th)
