@@ -8,6 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2018
 
+* Installer Core 3.9.0 (27th)
+* Installer Factory Configuration 1.2.0 (27th)
 * Bundle Resource 2.3.2 (24th)
 * Resource Builder 1.0.4 (21th)
 * Testing JCR Mock 1.3.6 (21th)
