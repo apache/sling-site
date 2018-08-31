@@ -213,7 +213,7 @@ def bundles=[
   "Servlet Annotations|org.apache.sling.servlets.annotations|1.0.0",
   "Servlet Helpers|org.apache.sling.servlet-helpers|1.1.8",
   "Servlets Compat|org.apache.sling.servlets.compat|1.0.2",
-  "Servlets Get|org.apache.sling.servlets.get|2.1.32",
+  "Servlets Get|org.apache.sling.servlets.get|2.1.34",
   "Servlets Post|org.apache.sling.servlets.post|2.3.26",
   "Servlets Resolver|org.apache.sling.servlets.resolver|2.4.22",
   "Settings|org.apache.sling.settings|1.3.8",
