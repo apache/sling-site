@@ -129,11 +129,11 @@
     </tr>
     <tr>
       <td>Metadata </td>
-      <td>Resources in general support <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html" title="ResourceMetadata">link text</a> providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. </td>
+      <td>Resources in general support <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html"><code>ResourceMetadata</code></a> providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. </td>
     </tr>
   </tbody>
 </table>
-<p>For a complete description of the <code>Resource</code> interface, please refer to the <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html" title="Resource">link text</a> JavaDoc.</p>
+<p>For a complete description of the <code>Resource</code> interface, please refer to the <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a> JavaDoc.</p>
 <h3><a href="#resource-types" name="resource-types">Resource Types</a></h3>
 <p>The exact method of setting the resource type for a Resource depends on the actual Resource Provider. For the four main Resource Provider implementations provided by Sling, the assignments are as follows:</p>
 <table>
@@ -169,8 +169,8 @@
 </table>
 <p>Resource Types form a type hierarchy much like Java classes form a type hierarchy. Each resource type has a resource super type, either explicitly defined as for example for JCR or Servlet Resources or implicitly. The implicit Resource Super Type is at the same time the root Resource Type much like the <code>java.lang.Object</code> class is called <code>sling/servlet/default</code> (for historical reasons). The <code>sling/servlet/default</code> Resource Type is the only type without a super type.</p>
 <h3><a href="#adapters" name="adapters">Adapters</a></h3>
-<p>The object types to which Resources may be adapted depend mostly depends on the Resource Provider providing the resource. For example all JCR node based resources always adapt to <code>javax.jcr.Node</code> objects.</p>
-<p>If the actual Resource object class implementation extends from the <code>SlingAdaptable</code> class, then in addition all <code>AdapterFactory</code> services adapting <code>Resource</code> objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html" title="AbstractResource">link text</a> which guarantees the Resource implementation to extend from <code>SlingAdaptable</code> and thus supporting Adapter Factories.</p>
+<p>The object types to which Resources may be adapted mostly depends on the Resource Provider providing the resource. For example all JCR node based resources always adapt to <code>javax.jcr.Node</code> objects.</p>
+<p>If the actual Resource object class implementation extends from the <code>SlingAdaptable</code> class, then in addition all <code>AdapterFactory</code> services adapting <code>Resource</code> objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html"><code>AbstractResource</code></a> which guarantees the Resource implementation to extend from <code>SlingAdaptable</code> and thus supporting Adapter Factories.</p>
 <h2><a href="#how-to-get-a-resource" name="how-to-get-a-resource">How to get a Resource</a></h2>
 <p>To get at Resources, you need a <code>ResourceResolver</code>. This interface defines four kinds of methods to access resources:</p>
 <ul>
@@ -249,7 +249,7 @@
 <p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                    Last modified by <span class="author">Philip Mundt</span> on <span class="comment">Fri Aug 24 16:27:50 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
