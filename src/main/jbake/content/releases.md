@@ -6,9 +6,14 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2018
+
+* Testing Sling Mock 2.3.4 (3rd)
+* Testing OSGi Mock 2.4.2 (3rd)
+
 ## August 2018
 
-* Servlets Get 2.1.34, Discovery Oak 1.2.28(31st)
+* Servlets Get 2.1.34, Discovery Oak 1.2.28 (31st)
 * Testing JCR Mock 1.4.0, API 2.18.4, ResourceResolver 1.6.6 (27th)
 * Testing Sling Mock 2.3.2 (27th)
 * Installer Core 3.9.0 (27th)
