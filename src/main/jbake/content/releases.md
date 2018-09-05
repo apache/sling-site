@@ -8,6 +8,10 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2018
 
+* Context-Aware Configuration API 1.1.2 (5th)
+* Context-Aware Configuration SPI 1.3.4 (5th)
+* Context-Aware Configuration Impl 1.4.14 (5th)
+* Sling Tenant 1.1.2 (5th)
 * Testing Sling Mock 2.3.4 (3rd)
 * Testing OSGi Mock 2.4.2 (3rd)
 
