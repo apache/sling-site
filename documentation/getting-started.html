@@ -103,6 +103,10 @@
 <pre><code>java -jar org.apache.sling.starter-10.jar
 </code></pre>
 <p>Starting the Sling application creates the Sling directory name <em>sling</em> in the same directory  from where you started the above command.</p>
+<h3><a href="#java-9-and-newer" name="java-9-and-newer">Java 9 and newer</a></h3>
+<p>For Sling 10 it is necessary to add the <code>java.see.module</code> manually, so the command line invocation becomes</p>
+<pre><code>java --add-modules java.se.ee -jar org.apache.sling.starter-10.jar
+</code></pre>
 <h2><a href="#sling-karaf" name="sling-karaf">Sling Karaf</a></h2>
 <p>You can run Sling on <a href="https://karaf.apache.org">Karaf</a> as well by either starting a <a href="karaf.html#sling-karaf-distribution">Sling Karaf Distribution</a> or installing <a href="karaf.html#sling-karaf-features">Sling's Karaf Features</a> into a running Karaf Container.</p>
 <h1><a href="#explore-sling" name="explore-sling">Explore Sling</a></h1>
@@ -124,7 +128,7 @@
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Thu Feb 8 17:42:33 2018 +0200</span>
+                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sat Sep 8 23:23:17 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
