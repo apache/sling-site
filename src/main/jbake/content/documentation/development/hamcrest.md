@@ -8,17 +8,13 @@ Deeper integration with the [Hamcrest matcher library](http://hamcrest.org/).
 
 ## Maven Dependency
 
-<div class="warning">
-This module has not yet been officially released.
-</div>
-
     #!xml
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.hamcrest</artifactId>
     </dependency>
 
-Note that to keep the classpath consistent this module has all its dependencies marked as `provided`. It relies on your own project to define the needed dependencies, such as `org.hamcrest:hamcrest-core` and `org.apache.sling:org.apache.sling.api` .
+Note that to keep the classpath consistent this module has all its dependencies marked as `provided` (except hamcrest). It relies on your own project to define the needed dependencies, such as `org.apache.sling:org.apache.sling.api`.
 
 See latest version on the [downloads page](/downloads.cgi).
 
