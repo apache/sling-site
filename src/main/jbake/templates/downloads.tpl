@@ -181,6 +181,7 @@ def bundles=[
   "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.0.0",
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.4",
   "Resource Collection|org.apache.sling.resourcecollection|1.0.0",
+  "Resource Filter|org.apache.sling.resource.filter|1.0.0",
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8",
   "Resource Merger|org.apache.sling.resourcemerger|1.3.8",
   "Resource Presence|org.apache.sling.resource.presence|0.0.2",
