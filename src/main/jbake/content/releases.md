@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2018
 
+* Commons Log 5.1.10 (10th)
 * Resource Filter 1.0.0 (8th)
 * Context-Aware Configuration API 1.1.2 (5th)
 * Context-Aware Configuration SPI 1.3.4 (5th)
