@@ -20,9 +20,54 @@ For Sling to pick up a `javax.servlet.Filter` service for filter processing two 
 | Property | Type | Default Value | Valid Values | Description |
 |---|---|---|---|---|
 | `sling.filter.scope` | `String`, `String[]` or `Vector<String>` | `request` | `REQUEST`, `INCLUDE`, `FORWARD`, `ERROR`, `COMPONENT` | Indication of which chain the filter should be added to. This property is required. If it is missing from the service, the service is ignored because it is assumed another consumer will be interested in using the service. Any unknown values of this property are also ignored causing the service to be completely ignored if none of the values provided by the property are valid. See below for the description of the filter chains. |
-| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to paths that match the supplied regular expression. Requires Sling Engine 2.4.0. |
 | `service.ranking` | `Integer` | `0` | Any `Integer` value | Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal `service.ranking` property value (explicitly set or default value of zero) will be ordered according to their `service.id` service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. |
+| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to paths that match the supplied regular expression. Requires Sling Engine 2.4.0. |
+| `sling.filter.suffix.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to requests with suffix that match the supplied regular expression. Requires Sling Engine 2.6.14. |
+| `sling.filter.selectors` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose selectors match one or more of the provided ones. Requires Sling Engine 2.6.14. |
+| `sling.filter.methods` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose methods match one or more of the provided ones. Requires Sling Engine 2.6.14. |
+| `sling.filter.resourceTypes` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose resource type match one of the provided ones. Requires Sling Engine 2.6.14. |
+| `sling.filter.extensions` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose extension matches one of the provided ones. Requires Sling Engine 2.6.14. |
 
+## SlingServletFilter Annotation
+
+Coding the above being a bit tedious, `Apache Sling Servlets Annotations 1.1.0` provides handy `SlingServletFilter annotation to set those values:
+```
+...
+   import org.apache.sling.servlets.annotations.SlingServletFilter;
+   import org.apache.sling.servlets.annotations.SlingServletFilterScope;
+   import org.osgi.service.component.annotations.Component;
+...   
+   @Component
+   @SlingServletFilter(scope = {SlingServletFilterScope.REQUEST},
+                       suffix_pattern = "/suffix/foo",
+                       resourceTypes = {"foo/bar"},
+                       pattern = "/content/.*",
+                       extensions = {"txt","json"},
+                       selectors = {"foo","bar"},
+                       methods = {"GET","HEAD"})
+   public class FooBarFilter implements Filter {
+   
+       @Override
+       public void init(FilterConfig filterConfig) throws ServletException {
+   
+       }
+   
+       @Override
+       public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+           SlingHttpServletResponse slingResponse = (SlingHttpServletResponse)response;
+           //will only be run on (GET|HEAD) /content/.*.foo|bar.txt|json/suffix/foo requests
+           //code here can be reduced to what should actually be done in that case
+           //for other requests, this filter will not be in the call stack 
+           slingResponse.addHeader("foobared", "true");
+           chain.doFilter(request, slingResponse);
+       }
+   
+       @Override
+       public void destroy() {
+   
+       }
+   }
+```
 
 ## Filter Chains
 
