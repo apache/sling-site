@@ -211,7 +211,7 @@ def bundles=[
   "Security|org.apache.sling.security|1.1.12",
   "Service User Mapper|org.apache.sling.serviceusermapper|1.4.0",
   "Service User WebConsole|org.apache.sling.serviceuser.webconsole|1.0.0",
-  "Servlet Annotations|org.apache.sling.servlets.annotations|1.0.0",
+  "Servlet Annotations|org.apache.sling.servlets.annotations|1.1.0",
   "Servlet Helpers|org.apache.sling.servlet-helpers|1.1.8",
   "Servlets Compat|org.apache.sling.servlets.compat|1.0.2",
   "Servlets Get|org.apache.sling.servlets.get|2.1.34",
