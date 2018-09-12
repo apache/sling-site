@@ -103,7 +103,7 @@ def bundles=[
   "Feature Model IO|org.apache.sling.feature.io|0.1.2",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|0.1.2",
   "Feature Flags|org.apache.sling.featureflags|1.2.2",
-  "File Optimization|org.apache.sling.fileoptim|0.9.0",
+  "File Optimization|org.apache.sling.fileoptim|0.9.2",
   "Thread Dumper|org.apache.sling.extensions.threaddump|0.2.2",
   "File System Resource Provider|org.apache.sling.fsresource|2.1.14",
   "I18n|org.apache.sling.i18n|2.5.12",
