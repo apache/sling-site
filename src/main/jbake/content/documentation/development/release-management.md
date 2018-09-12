@@ -95,6 +95,13 @@ First prepare your POMs for release:
     * If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then rollback your release (see *Canceling the Release*) and repeat the process
     * Note the staging repository URL, especially the number at the end of the URL. You will need this in your vote email
 
+### Redeploying staged artifacts
+
+It may happen that deployment to Nexus fails or is partially successful. To fix such a deployment, you can re-deploy the artifacts from within the SCM checkout:
+
+    $ cd target/checkout
+    $ mvn deploy -Papache-release
+
 ## Starting the Vote
 
 Propose a vote on the dev list with the closed issues, the issues left, and the staging repository - for example:
