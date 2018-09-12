@@ -26,7 +26,7 @@ Add following dependency to your project:
 
     <dependency>
 	    <groupId>org.apache.sling</groupId>
-	    <artifactId>dynamic-include</artifactId>
+	    <artifactId>org.apache.sling.dynamic-include</artifactId>
 	    <version>3.1.2</version>
     </dependency>
 
