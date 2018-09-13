@@ -1,3 +1,2 @@
-org.apache.sling.maven.slingstart
-org.apache.sling.maven.slingstart.launcher
-org.apache.sling.maven.slingstart.run
+org.apache.sling.feature.maven
+org.apache.sling.feature.maven.mojos

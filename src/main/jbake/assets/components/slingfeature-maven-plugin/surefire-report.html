@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20180913" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Apache Sling SlingStart Maven Plugin &#x2013; Surefire Report</title>
+    <title>Apache Sling OSGi Feature Maven Plugin &#x2013; Surefire Report</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.6.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -18,7 +18,7 @@
     <body class="topBarDisabled">
       <div class="container-fluid">
       <div id="banner">
-        <div class="pull-left"><div id="bannerLeft"><h2>Apache Sling SlingStart Maven Plugin</h2>
+        <div class="pull-left"><div id="bannerLeft"><h2>Apache Sling OSGi Feature Maven Plugin</h2>
 </div>
 </div>
         <div class="pull-right"></div>
@@ -29,7 +29,7 @@
         <ul class="breadcrumb">
         <li id="publishDate">Last Published: 2018-09-13<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 1.8.2</li>
+          <li id="projectVersion">Version: 0.2.0-SNAPSHOT</li>
         </ul>
       </div>
       <div class="row-fluid">
@@ -43,7 +43,7 @@
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a>  </li>
     <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-down"></span>Project Reports</a>
       <ul class="nav nav-list">
-    <li><a href="apidocs/index.html" title="JavaDocs"><span class="none"></span>JavaDocs</a>  </li>
+    <li><a href="apidocs/index.html" title="Javadoc"><span class="none"></span>Javadoc</a>  </li>
     <li class="active"><a href="#"><span class="none"></span>Surefire Report</a>
   </li>
     <li><a href="jira-report.html" title="JIRA Report"><span class="none"></span>JIRA Report</a>  </li>
@@ -93,12 +93,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>7</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.798</td></tr></table><br />
+<td>0.734</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
@@ -113,16 +113,16 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#org.apache.sling.maven.slingstart">org.apache.sling.maven.slingstart</a></td>
-<td>7</td>
+<td><a href="#org.apache.sling.feature.maven.mojos">org.apache.sling.feature.maven.mojos</a></td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.798</td></tr></table><br />
+<td>0.734</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
-<h3><a name="org.apache.sling.maven.slingstart"></a>org.apache.sling.maven.slingstart</h3><a name="org.apache.sling.maven.slingstart"></a>
+<h3><a name="org.apache.sling.feature.maven.mojos"></a>org.apache.sling.feature.maven.mojos</h3><a name="org.apache.sling.feature.maven.mojos"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <th></th>
@@ -134,84 +134,92 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#org.apache.sling.maven.slingstartFeatureModelConverterTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#org.apache.sling.maven.slingstartFeatureModelConverterTest">FeatureModelConverterTest</a></td>
-<td>1</td>
+<td><a href="#org.apache.sling.feature.maven.mojosAggregateFeaturesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#org.apache.sling.feature.maven.mojosAggregateFeaturesTest">AggregateFeaturesTest</a></td>
+<td>8</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.61</td></tr>
+<td>0.734</td></tr>
 <tr class="a">
-<td><a href="#org.apache.sling.maven.slingstartGenerateResourcesMojoTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#org.apache.sling.maven.slingstartGenerateResourcesMojoTest">GenerateResourcesMojoTest</a></td>
+<td><a href="#org.apache.sling.feature.maven.mojosAttachFeatureTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#org.apache.sling.feature.maven.mojosAttachFeatureTest">AttachFeatureTest</a></td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.015</td></tr>
+<td>0</td></tr>
 <tr class="b">
-<td><a href="#org.apache.sling.maven.slingstartPomArtifactVersionResolverTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#org.apache.sling.maven.slingstartPomArtifactVersionResolverTest">PomArtifactVersionResolverTest</a></td>
+<td><a href="#org.apache.sling.feature.maven.mojosGenerateResourceTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#org.apache.sling.feature.maven.mojosGenerateResourceTest">GenerateResourceTest</a></td>
 <td>3</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.016</td></tr>
-<tr class="a">
-<td><a href="#org.apache.sling.maven.slingstartPreparePackageMojoTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#org.apache.sling.maven.slingstartPreparePackageMojoTest">PreparePackageMojoTest</a></td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0.157</td></tr></table></div><br /></div>
+<td>0</td></tr></table></div><br /></div>
 <div class="section">
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
 <div class="section">
-<h3><a name="FeatureModelConverterTest"></a>FeatureModelConverterTest</h3><a name="org.apache.sling.maven.slingstartFeatureModelConverterTest"></a>
+<h3><a name="AggregateFeaturesTest"></a>AggregateFeaturesTest</h3><a name="org.apache.sling.feature.maven.mojosAggregateFeaturesTest"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testConvert</td>
-<td>0.547</td></tr></table></div>
-<div class="section">
-<h3><a name="GenerateResourcesMojoTest"></a>GenerateResourcesMojoTest</h3><a name="org.apache.sling.maven.slingstartGenerateResourcesMojoTest"></a>
-<table border="1" class="table table-striped">
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testIncludeOrdering"></a>testIncludeOrdering</td>
+<td>0.563</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testNonMatchingDirectoryIncludes"></a>testNonMatchingDirectoryIncludes</td>
+<td>0</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testExecute</td>
-<td>0.015</td></tr></table></div>
-<div class="section">
-<h3><a name="PomArtifactVersionResolverTest"></a>PomArtifactVersionResolverTest</h3><a name="org.apache.sling.maven.slingstartPomArtifactVersionResolverTest"></a>
-<table border="1" class="table table-striped">
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testAggregateFeaturesFromDirectory"></a>testAggregateFeaturesFromDirectory</td>
+<td>0.016</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testReadFeatureFromArtifact"></a>testReadFeatureFromArtifact</td>
+<td>0.047</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testArtifactEqualsForMavenDependencies</td>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testFeatureConfig"></a>testFeatureConfig</td>
 <td>0</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testNormalizeType</td>
-<td>0</td></tr>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testAggregateFeaturesFromDirectoryWithIncludesExcludes"></a>testAggregateFeaturesFromDirectoryWithIncludesExcludes</td>
+<td>0.015</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testArtifactEqualsForMavenArtifact</td>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testNonMatchingDirectoryExcludes"></a>testNonMatchingDirectoryExcludes</td>
+<td>0</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AggregateFeaturesTest.testPluginHandling"></a>testPluginHandling</td>
 <td>0</td></tr></table></div>
 <div class="section">
-<h3><a name="PreparePackageMojoTest"></a>PreparePackageMojoTest</h3><a name="org.apache.sling.maven.slingstartPreparePackageMojoTest"></a>
+<h3><a name="AttachFeatureTest"></a>AttachFeatureTest</h3><a name="org.apache.sling.feature.maven.mojosAttachFeatureTest"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testBSNRenaming</td>
-<td>0.125</td></tr>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.AttachFeatureTest.testAttachArtifacts"></a>testAttachArtifacts</td>
+<td>0</td></tr></table></div>
+<div class="section">
+<h3><a name="GenerateResourceTest"></a>GenerateResourceTest</h3><a name="org.apache.sling.feature.maven.mojosGenerateResourceTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.GenerateResourceTest.testExecute"></a>testExecute</td>
+<td>0</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testSubsystemBaseGeneration</td>
-<td>0.032</td></tr></table></div><br /></div>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.GenerateResourceTest.testReplaceVars"></a>testReplaceVars</td>
+<td>0</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_org.apache.sling.feature.maven.mojos.GenerateResourceTest.testExecuteWithoutFeatureFiles"></a>testExecuteWithoutFeatureFiles</td>
+<td>0</td></tr></table></div><br /></div>
         </div>
       </div>
     </div>
