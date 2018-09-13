@@ -396,8 +396,9 @@ This is currently supported for:
 
 * `maven-sling-plugin`
 * `htl-maven-plugin`
-* `slingstart-maven-plugin`
 * `jspc-maven-plugin`
+* `slingstart-maven-plugin`
+* `slingfeature-maven-plugin`
 
 To publish the plugin documentation execute the following steps after the release:
 
