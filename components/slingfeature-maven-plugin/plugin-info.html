@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20180913" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Apache Sling SlingStart Maven Plugin &#x2013; Plugin Documentation</title>
+    <title>Apache Sling OSGi Feature Maven Plugin &#x2013; Plugin Documentation</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.6.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -18,7 +18,7 @@
     <body class="topBarDisabled">
       <div class="container-fluid">
       <div id="banner">
-        <div class="pull-left"><div id="bannerLeft"><h2>Apache Sling SlingStart Maven Plugin</h2>
+        <div class="pull-left"><div id="bannerLeft"><h2>Apache Sling OSGi Feature Maven Plugin</h2>
 </div>
 </div>
         <div class="pull-right"></div>
@@ -29,7 +29,7 @@
         <ul class="breadcrumb">
         <li id="publishDate">Last Published: 2018-09-13<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 1.8.2</li>
+          <li id="projectVersion">Version: 0.2.0-SNAPSHOT</li>
         </ul>
       </div>
       <div class="row-fluid">
@@ -44,7 +44,7 @@
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a>  </li>
     <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-down"></span>Project Reports</a>
       <ul class="nav nav-list">
-    <li><a href="apidocs/index.html" title="JavaDocs"><span class="none"></span>JavaDocs</a>  </li>
+    <li><a href="apidocs/index.html" title="Javadoc"><span class="none"></span>Javadoc</a>  </li>
     <li><a href="surefire-report.html" title="Surefire Report"><span class="none"></span>Surefire Report</a>  </li>
     <li><a href="jira-report.html" title="JIRA Report"><span class="none"></span>JIRA Report</a>  </li>
     <li class="active"><a href="#"><span class="none"></span>Plugin Documentation</a>
@@ -71,37 +71,19 @@
 <th>Goal</th>
 <th>Description</th></tr>
 <tr class="b">
-<td><a href="attach-modelarchive-mojo.html">slingstart:attach-modelarchive</a></td>
-<td>Attach the model archive as a project artifact.</td></tr>
+<td><a href="aggregate-features-mojo.html">slingfeature:aggregate-features</a></td>
+<td>Aggregate multiple features into a single one.</td></tr>
 <tr class="a">
-<td><a href="attach-slingfeature-mojo.html">slingstart:attach-slingfeature</a></td>
-<td>Attach the model as a project artifact.</td></tr>
+<td><a href="attach-features-mojo.html">slingfeature:attach-features</a></td>
+<td>Attach the feature as a project artifact.</td></tr>
 <tr class="b">
-<td><a href="generate-resources-mojo.html">slingstart:generate-resources</a></td>
+<td><a href="generate-resources-mojo.html">slingfeature:generate-resources</a></td>
 <td>No description.</td></tr>
 <tr class="a">
-<td><a href="help-mojo.html">slingstart:help</a></td>
-<td>Display help information on slingstart-maven-plugin.<br />
-Call <code>mvn slingstart:help -Ddetail=true
--Dgoal=&lt;goal-name&gt;</code> to display parameter details.</td></tr>
-<tr class="b">
-<td><a href="package-mojo.html">slingstart:package</a></td>
-<td>Create a Sling quickstart package (either JAR or WAR) based on the
-referenced model.</td></tr>
-<tr class="a">
-<td><a href="prepare-package-mojo.html">slingstart:prepare-package</a></td>
-<td>Prepare the packaging of the Sling quickstart artifact (either JAR
-or WAR).</td></tr>
-<tr class="b">
-<td><a href="repository-mojo.html">slingstart:repository</a></td>
-<td>Create a Maven repository structure from the referenced artifacts
-in the model.</td></tr>
-<tr class="a">
-<td><a href="start-mojo.html">slingstart:start</a></td>
-<td>Start one or multiple launchpad instance(s).</td></tr>
-<tr class="b">
-<td><a href="stop-mojo.html">slingstart:stop</a></td>
-<td>Stop one or multiple running launchpad instance(s).</td></tr></table>
+<td><a href="help-mojo.html">slingfeature:help</a></td>
+<td>Display help information on slingfeature-maven-plugin.<br />
+Call <code>mvn slingfeature:help -Ddetail=true
+-Dgoal=&lt;goal-name&gt;</code> to display parameter details.</td></tr></table>
 <div class="section">
 <h3><a name="System_Requirements"></a>System Requirements</h3><a name="System_Requirements"></a>
 <p>The following specifies the minimum requirements to run this Maven plugin:</p>
@@ -129,8 +111,8 @@ in the model.</td></tr>
       &lt;plugins&gt;
         &lt;plugin&gt;
           &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
-          &lt;artifactId&gt;slingstart-maven-plugin&lt;/artifactId&gt;
-          &lt;version&gt;1.8.2&lt;/version&gt;
+          &lt;artifactId&gt;slingfeature-maven-plugin&lt;/artifactId&gt;
+          &lt;version&gt;0.2.0-SNAPSHOT&lt;/version&gt;
         &lt;/plugin&gt;
         ...
       &lt;/plugins&gt;
@@ -139,8 +121,8 @@ in the model.</td></tr>
     &lt;plugins&gt;
       &lt;plugin&gt;
         &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
-        &lt;artifactId&gt;slingstart-maven-plugin&lt;/artifactId&gt;
-        &lt;version&gt;1.8.2&lt;/version&gt;
+        &lt;artifactId&gt;slingfeature-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;0.2.0-SNAPSHOT&lt;/version&gt;
       &lt;/plugin&gt;
       ...
     &lt;/plugins&gt;
