@@ -31,43 +31,42 @@ For Sling to pick up a `javax.servlet.Filter` service for filter processing two 
 ## SlingServletFilter Annotation
 
 Coding the above being a bit tedious, `Apache Sling Servlets Annotations 1.1.0` provides handy `SlingServletFilter annotation to set those values:
-```
-...
-   import org.apache.sling.servlets.annotations.SlingServletFilter;
-   import org.apache.sling.servlets.annotations.SlingServletFilterScope;
-   import org.osgi.service.component.annotations.Component;
-...   
-   @Component
-   @SlingServletFilter(scope = {SlingServletFilterScope.REQUEST},
-                       suffix_pattern = "/suffix/foo",
-                       resourceTypes = {"foo/bar"},
-                       pattern = "/content/.*",
-                       extensions = {"txt","json"},
-                       selectors = {"foo","bar"},
-                       methods = {"GET","HEAD"})
-   public class FooBarFilter implements Filter {
-   
-       @Override
-       public void init(FilterConfig filterConfig) throws ServletException {
-   
+
+    ...
+       import org.apache.sling.servlets.annotations.SlingServletFilter;
+       import org.apache.sling.servlets.annotations.SlingServletFilterScope;
+       import org.osgi.service.component.annotations.Component;
+    ...   
+       @Component
+       @SlingServletFilter(scope = {SlingServletFilterScope.REQUEST},
+                           suffix_pattern = "/suffix/foo",
+                           resourceTypes = {"foo/bar"},
+                           pattern = "/content/.*",
+                           extensions = {"txt","json"},
+                           selectors = {"foo","bar"},
+                           methods = {"GET","HEAD"})
+       public class FooBarFilter implements Filter {
+       
+           @Override
+           public void init(FilterConfig filterConfig) throws ServletException {
+       
+           }
+       
+           @Override
+           public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+               SlingHttpServletResponse slingResponse = (SlingHttpServletResponse)response;
+               //will only be run on (GET|HEAD) /content/.*.foo|bar.txt|json/suffix/foo requests
+               //code here can be reduced to what should actually be done in that case
+               //for other requests, this filter will not be in the call stack 
+               slingResponse.addHeader("foobared", "true");
+               chain.doFilter(request, slingResponse);
+           }
+       
+           @Override
+           public void destroy() {
+       
+           }
        }
-   
-       @Override
-       public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-           SlingHttpServletResponse slingResponse = (SlingHttpServletResponse)response;
-           //will only be run on (GET|HEAD) /content/.*.foo|bar.txt|json/suffix/foo requests
-           //code here can be reduced to what should actually be done in that case
-           //for other requests, this filter will not be in the call stack 
-           slingResponse.addHeader("foobared", "true");
-           chain.doFilter(request, slingResponse);
-       }
-   
-       @Override
-       public void destroy() {
-   
-       }
-   }
-```
 
 ## Filter Chains
 
