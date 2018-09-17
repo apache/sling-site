@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2018
 
+* Jackrabbit UserManager Support 2.2.8, Jackrabbit JSR-283 Access Control Manager Support 3.0.2 (17th)
 * Pipes 3.0.2 (17th)
 * File Optimization 0.9.2, Clam 1.0.0, Commons Clam 1.0.0, Commons Metrics 1.2.6, Commons Mime 2.2.0, Scripting FreeMarker 1.0.0, Scripting Groovy 1.0.4, Scripting Thymeleaf 2.0.0, Service User Mapper 1.4.2, Settings 1.3.10 (12th)
 * Servlets Annotations 1.1.0 (11th)
