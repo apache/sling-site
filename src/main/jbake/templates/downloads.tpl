@@ -177,7 +177,7 @@ def bundles=[
   "Path-based RTP sample|org.apache.sling.samples.path-based.rtp|2.0.4",
   "Pax Exam Utilities|org.apache.sling.paxexam.util|1.0.4",
   "Performance Test Utilities|org.apache.sling.performance.base|1.0.2",
-  "Pipes|org.apache.sling.pipes|2.0.2",
+  "Pipes|org.apache.sling.pipes|3.0.2",
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.4",
   "Repoinit Parser|org.apache.sling.repoinit.parser|1.2.2",
   "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.0.0",
