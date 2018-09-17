@@ -174,28 +174,42 @@ from our integration tests shows an example Sling Filter.
 </table>
 <h2><a href="#slingservletfilter-annotation" name="slingservletfilter-annotation">SlingServletFilter Annotation</a></h2>
 <p>Coding the above being a bit tedious, <code>Apache Sling Servlets Annotations 1.1.0</code> provides handy `SlingServletFilter annotation to set those values:</p>
-<p>``` ...  import org.apache.sling.servlets.annotations.SlingServletFilter;  import org.apache.sling.servlets.annotations.SlingServletFilterScope;  import org.osgi.service.component.annotations.Component; ...<br/> @Component  @SlingServletFilter(scope = {SlingServletFilterScope.REQUEST},  suffix_pattern = "/suffix/foo",  resourceTypes = {"foo/bar"},  pattern = "/content/.*",  extensions = {"txt","json"},  selectors = {"foo","bar"},  methods = {"GET","HEAD"})  public class FooBarFilter implements Filter {</p>
-<pre><code>   @Override
-   public void init(FilterConfig filterConfig) throws ServletException {
+<pre><code>...
+   import org.apache.sling.servlets.annotations.SlingServletFilter;
+   import org.apache.sling.servlets.annotations.SlingServletFilterScope;
+   import org.osgi.service.component.annotations.Component;
+...   
+   @Component
+   @SlingServletFilter(scope = {SlingServletFilterScope.REQUEST},
+                       suffix_pattern = &quot;/suffix/foo&quot;,
+                       resourceTypes = {&quot;foo/bar&quot;},
+                       pattern = &quot;/content/.*&quot;,
+                       extensions = {&quot;txt&quot;,&quot;json&quot;},
+                       selectors = {&quot;foo&quot;,&quot;bar&quot;},
+                       methods = {&quot;GET&quot;,&quot;HEAD&quot;})
+   public class FooBarFilter implements Filter {
 
-   }
+       @Override
+       public void init(FilterConfig filterConfig) throws ServletException {
 
-   @Override
-   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-       SlingHttpServletResponse slingResponse = (SlingHttpServletResponse)response;
-       //will only be run on (GET|HEAD) /content/.*.foo|bar.txt|json/suffix/foo requests
-       //code here can be reduced to what should actually be done in that case
-       //for other requests, this filter will not be in the call stack 
-       slingResponse.addHeader(&quot;foobared&quot;, &quot;true&quot;);
-       chain.doFilter(request, slingResponse);
-   }
+       }
 
-   @Override
-   public void destroy() {
+       @Override
+       public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+           SlingHttpServletResponse slingResponse = (SlingHttpServletResponse)response;
+           //will only be run on (GET|HEAD) /content/.*.foo|bar.txt|json/suffix/foo requests
+           //code here can be reduced to what should actually be done in that case
+           //for other requests, this filter will not be in the call stack 
+           slingResponse.addHeader(&quot;foobared&quot;, &quot;true&quot;);
+           chain.doFilter(request, slingResponse);
+       }
 
+       @Override
+       public void destroy() {
+
+       }
    }
 </code></pre>
-<p>} ```</p>
 <h2><a href="#filter-chains" name="filter-chains">Filter Chains</a></h2>
 <p>Sling maintains five filter chains: request level, component level, include filters, forward filters and error filters. Except for the component level filter these filter chains correspond to the filter <code>&lt;dispatcher&gt;</code> configurations as defined for Servlet API 2.5 web applications (see section SRV.6.2.5 Filters and the RequestDispatcher).</p>
 <p>The following table summarizes when each of the filter chains is called and what value must be defined in the <code>sling.filter.scope</code> property to have a filter added to the respective chain:</p>
