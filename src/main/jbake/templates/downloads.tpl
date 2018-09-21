@@ -92,7 +92,7 @@ def bundles=[
   "Discovery Support|org.apache.sling.discovery.support|1.0.4",
   "Distributed Event Admin|org.apache.sling.event.dea|1.1.2",
   "Distribution API|org.apache.sling.distribution.api|0.3.0",
-  "Distribution Core|org.apache.sling.distribution.core|0.2.8",
+  "Distribution Core|org.apache.sling.distribution.core|0.3.4",
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6",
   "Dynamic Include|org.apache.sling.dynamic-include|3.1.2",
