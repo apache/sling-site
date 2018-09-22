@@ -92,8 +92,21 @@ First prepare your POMs for release:
     * Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
 
 1. Verify the staged artifacts
-    * If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then rollback your release (see *Canceling the Release*) and repeat the process
+    * If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then redo (see [Redoing release perform](#redoing-release-perform)) or rollback your release (see *Canceling the Release*) and repeat the process
     * Note the staging repository URL, especially the number at the end of the URL. You will need this in your vote email
+
+### Redoing release perform
+
+If perform fails for whatever reason (e.g. staged artifacts are incomplete or signed with a wrong key) drop the staging repository and create a required `release.properties` file containing `scm.url` and `scm.tag` manually.
+
+Example `release.properties` file:
+
+    scm.url=scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-settings.git
+    scm.tag=org.apache.sling.settings-1.3.10
+
+Execute perform step again:
+
+    $ mvn release:perform
 
 ### Redeploying staged artifacts
 
