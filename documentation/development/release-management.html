@@ -177,11 +177,20 @@ $ mvn release:prepare
   <li>
     <p>Verify the staged artifacts</p>
     <ul>
-      <li>If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of *.asc (signature) files. If you don't like the content of the repository, right click your repository and choose <em>Drop</em>. You can then rollback your release (see <em>Canceling the Release</em>) and repeat the process</li>
+      <li>If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of *.asc (signature) files. If you don't like the content of the repository, right click your repository and choose <em>Drop</em>. You can then redo (see <a href="#redoing-release-perform">Redoing release perform</a>) or rollback your release (see <em>Canceling the Release</em>) and repeat the process</li>
       <li>Note the staging repository URL, especially the number at the end of the URL. You will need this in your vote email</li>
     </ul>
   </li>
 </ol>
+<h3><a href="#redoing-release-perform" name="redoing-release-perform">Redoing release perform</a></h3>
+<p>If perform fails for whatever reason (e.g. staged artifacts are incomplete or signed with a wrong key) drop the staging repository and create a required <code>release.properties</code> file containing <code>scm.url</code> and <code>scm.tag</code> manually.</p>
+<p>Example <code>release.properties</code> file:</p>
+<pre><code>scm.url=scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-settings.git
+scm.tag=org.apache.sling.settings-1.3.10
+</code></pre>
+<p>Execute perform step again:</p>
+<pre><code>$ mvn release:perform
+</code></pre>
 <h3><a href="#redeploying-staged-artifacts" name="redeploying-staged-artifacts">Redeploying staged artifacts</a></h3>
 <p>It may happen that deployment to Nexus fails or is partially successful. To fix such a deployment, you can re-deploy the artifacts from within the SCM checkout:</p>
 <pre><code>$ cd target/checkout
@@ -504,7 +513,7 @@ ssb   2048R/226BCE00 2016-01-21
 </ol></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Sep 12 13:59:44 2018 +0200</span>
+                    Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Sat Sep 22 12:37:02 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
