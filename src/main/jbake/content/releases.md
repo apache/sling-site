@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2018
 
+* Security 1.1.16 (25th)
 * Distribution Core 0.3.4 (21st)
 * Jackrabbit UserManager Support 2.2.8, Jackrabbit JSR-283 Access Control Manager Support 3.0.2 (17th)
 * Pipes 3.0.2 (17th)
