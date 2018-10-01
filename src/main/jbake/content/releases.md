@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2018
+
+* Clam 1.0.0, Commons Clam 1.0.0 (1st)
+
 ## September 2018
 
 * Security 1.1.16 (25th)
