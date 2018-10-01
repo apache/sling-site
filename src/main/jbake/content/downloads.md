@@ -7,6 +7,8 @@ tableOfContents=false
 
 To get the latest development release of Apache Sling, you can check out the Source Code and Getting and Building Sling yourself. Otherwise, the releases below are available for download. To install, just download and extract.
 
+Older releases are available at [http://archive.apache.org/dist/sling/](http://archive.apache.org/dist/sling/) .
+
 All Apache Sling products are distributed under the terms of The [Apache Software License](http://apache.org/licenses/) (version 2.0). See our license, or the LICENSE file included in each distribution.
 
 # How to validate the downloaded files
