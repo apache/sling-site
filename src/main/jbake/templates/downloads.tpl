@@ -30,7 +30,7 @@ def mavenPlugins=[
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
   "Maven Sling Plugin|maven-sling-plugin|2.3.8|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.8.2|Y",
-  "HTL Maven Plugin|htl-maven-plugin|1.1.8-1.4.0|Y",
+  "HTL Maven Plugin|htl-maven-plugin|1.2.0-1.4.0|Y",
 ]
 
 def bundles=[
