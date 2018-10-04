@@ -41,7 +41,7 @@ class U {
     // Is parent an ancestor of child?
     def isAncestor(parent, child) {
     	// assuming .html extension
-    	return child.uri[0..-6].contains(parent.uri[0..-6]) && !child.uri.equals(parent.uri)
+        return child.uri[0..-6].contains(parent.uri[0..-6] + '/') && !child.uri.equals(parent.uri)
     }
 
     // Return the parents of supplied content, sorted by
