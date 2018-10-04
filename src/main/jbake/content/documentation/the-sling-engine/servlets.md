@@ -43,6 +43,10 @@ Given these drawbacks it is strongly recommended to bind servlets to resource ty
 
 ### Registering a Servlet using Java Annotations
 
+The "new" (as of 2018) Sling Servlet annotations were presented by Konrad Windzus at [adaptTo() 2018](https://adapt.to/2018/en/schedule/lightning-talks/new-sling-servlet-annotations.html).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7CBjnQnrxTw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 If you are working with the default Apache Sling development stack you can either use 
 
 * [OSGi DS 1.4 (R7) component property type annotations](https://github.com/apache/sling-org-apache-sling-servlets-annotations) (introduced with DS 1.4/OSGi R7, supported since [bnd 4.0](https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0) being used in [bnd-maven-plugin 4.0.0](https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin)),
