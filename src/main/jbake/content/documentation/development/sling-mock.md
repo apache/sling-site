@@ -51,8 +51,8 @@ The mock implementation supports:
    OSGi services from the [mocked OSGi][osgi-mock] environment.
 * Implementations of the servlet-related Sling API classes like `SlingHttpServletRequest` and `SlingHttpServletRequest`
     * It is possible to set request data to simulate a certain Sling HTTP request
-* Support for Sling Models (Sling Models API 1.1 and Impl 1.1 or higher required)
-* Additional services `MimeTypeService`
+* Support for Sling Models (Sling Models API 1.1 and Impl 1.1 or higher required), all relevant Sling Models services are registered by default
+* Additional services: `MimeTypeService`
 * Context Plugins
 
 The following features are *not supported*:
@@ -239,6 +239,34 @@ Example:
     ResourceResolver resolver = MockSling.newResourceResolver(ResourceResolverType.JCR_MOCK);
 
 If you use the `SlingContext` JUnit rule you case just use `context.resourceResolver()`.
+
+### Sling Models
+
+You should use the following approach to test Sling Models.
+
+#### Model Registration
+
+First you need to make sure that the model you want to test is registered. 
+Since Sling Mocks 1.9.0/2.2.0 the Sling Models from the classpath are automatically registered ([SLING-6363](https://issues.apache.org/jira/browse/SLING-6363)) when the Manifest contains the right bundle headers (`Sling-Model-Packages` or `Sling-Model-Classes`).  This behaviour can be tweaked since version 2.2.20 with the `SlingContextBuilder.registerSlingModelsFromClassPath(false)` method ([SLING-7712](https://issues.apache.org/jira/browse/SLING-7712)).
+
+Manual registration is supported via `SlingContext.addModelsForPackage(...)` and `SlingContext.addModelsForClasses(...)`.
+
+#### Model Instantiation
+
+Preferably use the `ModelFactory.createModel(...)` method rather than the adaptTo method to benefit from better error messages in case of errors.
+
+
+    #!java
+    // load some content into the mocked repo
+    context.load().json(..., "/resource1");
+    
+    // load resource
+    Resource myResource = content.resourceResolver().getResource("/resource1");
+    
+    // instantiate Sling Model (adaptable via Resource)
+    // this will throw exceptions if model cannot be instantiated
+    MyModel myModel = context.getService(ModelFactory.class).createModel(myResource, MyModel.class);
+
 
 
 ### Adapter Factories
