@@ -217,10 +217,22 @@
 </code></pre>
   </li>
 </ul>
-<p>should create a tree of 3 resources /content/1, /content/2 and /content/3</p></section></div></div>            
+<p>should create a tree of 3 resources /content/1, /content/2 and /content/3</p>
+<h3>Regexp pipe (<code>egrep(expr)</code>)</h3>
+<p>feeds bindings with text input stream, parsed with a regexp</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/egrep</code></li>
+  <li><code>expr</code> see above</li>
+  <li><code>pattern</code> is a regular expression, with named group (e.g. <code>(?&lt;user&gt;.*)</code>) that will be used to produce the output binding names
+    <pre><code>egrep(&quot;https://sling.apache.org/&quot;)
+      .with(&quot;pattern&quot;,&#39;src=\&quot;/res/(?&lt;asset&gt;/[\\-\\w\\.\\/0-9]+)\&quot;&#39;).name(&quot;demo&quot;)
+.echo(&#39;/content/assets/${demo.asset}&#39;)
+</code></pre>
+  </li>
+</ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">npeltier</span> on <span class="comment">Sat Jan 27 22:17:38 2018 +0100</span>
+                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Oct 8 17:09:17 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

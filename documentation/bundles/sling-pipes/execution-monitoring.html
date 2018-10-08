@@ -158,7 +158,7 @@
 <p>You can encapsulate the whole execution of a pipe through the <code>execute</code> methods that are used internally by both Pipe Builder and HTTP APIs. </p>
 <h3><a href="#pipe-builder-api" name="pipe-builder-api">Pipe Builder API</a></h3>
 <p>Plumber osgi service provides PipeBuilder with <code>newPipe(ResourceResolver resolver)</code> API, that gives a fluent API to quickly configure and run pipes. e.g. </p>
-<pre><code>plumber.newPipe(resolver).xpath(&#39;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;).rm().run();
+<pre><code>plumber.newPipe(resolver).xpath(&quot;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;).rm().run();
 </code></pre>
 <p>will search for resource of type <code>to/delete</code> and remove them.</p>
 <p>PipeBuilder will configure a container pipe, chaining pipes you can configure with a fluent API. This works pretty well with a groovy console just by entering following set of instruction</p>
@@ -204,7 +204,7 @@
 </table>
 <p>note that that configuration part has shortcuts for some pipes. Typically, above sample is a shorter equivalent of </p>
 <pre><code>    plumber.newPipe(resolver)
-        .pipe(&#39;slingPipes/xpath&#39;).expr(&#39;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;)
+        .pipe(&#39;slingPipes/xpath&#39;).expr(&quot;//element(*,nt:unstructured)[@sling:resourceType=&#39;to/delete&#39;]&quot;)
         .pipe(&#39;slingPipes/rm&#39;).run();
 </code></pre>
 <p>when available, shortcuts will be specified next to each pipe type documentation, for</p>
@@ -244,6 +244,9 @@
     </tr>
   </tbody>
 </table>
+<h3><a href="#apache-felix-gogo" name="apache-felix-gogo">Apache Felix Gogo</a></h3>
+<p>when installing pipes bundle, <a href="http://felix.apache.org/documentation/subprojects/apache-felix-gogo.html">apache felix gogo</a> commands are exposed to the console that allow you to - build (pipe:build or just build if no other command) - run (pipe:run or just run if no other command) - execute (pipe:execute or just execute if no other command) - and print help on how to use the above</p>
+<p>the pipe is here represented as <code>/</code> character as <code>|</code> is already used by gogo console, an heavy usage of the gogo console is made in the <a href="http://localhost:8820/documentation/bundles/sling-pipes.html#adaptto-introductions">main page videos</a>, or you can direcly check in there for sample gogo commands for <a href="https://github.com/npeltier/99-bottles-of-beers-with-sling">99 bottles of beer</a> sample.</p>
 <h3><a href="#http-api" name="http-api">HTTP API</a></h3>
 <h4><a href="#pipe-http-request-bits" name="pipe-http-request-bits">Pipe HTTP Request bits</a></h4>
 <table>
@@ -338,7 +341,7 @@
 <p>as soon as you add <code>monitored=true</code> flag to a pipe configuration, you'll make the given pipe monitored by JMX, giving stats, status, and an entry point to execute it. Note that if you don't see the pipe you just added, you might have to refresh monitored pipes by hitting the related button in plumber mbean.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Oct 8 17:09:17 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

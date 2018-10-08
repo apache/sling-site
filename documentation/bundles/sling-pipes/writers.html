@@ -140,7 +140,14 @@
 </code></pre>
   </li>
 </ul>
-<p>will create a <code>/content/foo/bar</code> path of <code>sling:Folder</code> nodes </p>
+<p>will create a <code>/content/foo/bar</code> path of <code>sling:Folder</code> nodes</p>
+<h5>PackagePipe (<code>pkg(expr)</code>)</h5>
+<p>will create a package and add current resource as a filter. At the end of super pipe execution, will attempt to build the package - <code>sling:resourceType</code> is <code>slingPipes/package</code> - <code>expr</code> package path</p>
+<p>This example searches for folders in a given location and package them up</p>
+<pre><code>    .echo(&quot;/content/foo/bar&quot;)
+    .$(&quot;sling:Folder&quot;)
+    .pkg(&quot;/etc/packages/foobar-folders.zip&quot;)
+</code></pre>
 <h5>AuthorizablePipe (<code>auth(conf)</code>)</h5>
 <p>retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression), from the input path, output the found authorizable's resource caution this pipe <strong>can modify content</strong> in case additional configuration is added (see below)</p>
 <ul>
@@ -163,10 +170,22 @@
 <pre><code>    .auth(&quot;bindMembers&quot;,true).expr(&quot;administrators&quot;)
     .json(&#39;${one}&#39;)
     .mkdir(&#39;/content/admin-users/${two}&#39;)
+</code></pre>
+<h5>ACLPipe (<code>acls(), allow(expr), deny(expr)</code>)</h5>
+<p>either output ACL of current resource in the output bindings, or allow / deny default or configured privileges for the authorizable passed as the expression</p>
+<ul>
+  <li><code>sling:resourceType</code> is <code>slingPipes/acl</code></li>
+  <li><code>expr</code> should be an authorizable id, or void</li>
+  <li><code>allow</code> (boolean) to allow some privileges for configured authorizable</li>
+  <li><code>deny</code> (boolean) to deny some privileges for configured authorizable</li>
+</ul>
+<p>following will give bar-users authorizable the right to read on /content/foo/bar</p>
+<pre><code>    .echo(&quot;/content/foo/bar&quot;)
+    .allow(&quot;bar-users&quot;)
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">npeltier</span> on <span class="comment">Mon Jan 29 10:56:14 2018 +0100</span>
+                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Oct 8 17:09:17 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

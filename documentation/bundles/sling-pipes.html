@@ -98,9 +98,16 @@
 </code></pre>
 <p>Such sentence with that limited amount of words is enough between two sling developers to understand fully what it is doing. However, implementing this as a servlet would take a lot more words, risks of failure, complexity of deployement and would be more opaque, not talking about monitoring or execution common, but complex features you'd like to add.</p>
 <p>With Sling Pipes, what you need to develop, and what is readable by another developer is</p>
-<pre><code>    plumber.newPipe(resolver).$(&quot;[sling:resourceType=&#39;foo/bar&#39;]&quot;).write(&quot;id&quot;,3).build(&quot;/etc/demo&quot;)
+<pre><code>    plumber.newPipe(resolver).$(&quot;foo/bar&quot;).write(&quot;id&quot;,3).build(&quot;/etc/demo&quot;)
 </code></pre>
-<p>this is enough to persist a pipe in <code>/etc/demo</code> that is executable as http, java, groovy console script, or JMX. You can make it monitor it with JMX, logs, http, you'll have dry run possibility of that execution for example, or asynchronous execution. You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the <code>PipeModel</code> </p>
+<p>this is enough to persist a pipe in <code>/etc/demo</code> that is executable as http, java, groovy console script, or JMX. You can make it monitor it with JMX, logs, http, you'll have dry run possibility of that execution for example, or asynchronous execution. You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the <code>PipeModel</code></p>
+<p>you can check some introductions at different adaptTo presentations:</p>
+<h2><a href="#adaptto-introductions" name="adaptto-introductions">AdaptTo introductions</a></h2>
+<p>some presentations were made at the adaptTo conference, last two were:</p>
+<p><a href="https://adapt.to/2017/en/schedule/lightning-talks/apache-sling-pipes.html">General introduction at a 2017 lightning talk</a>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XcWMB26bMxA?start=666" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p>and <a href="https://adapt.to/2018/en/schedule/lightning-talks/whats-new-with-filters-pipes.html">latest news at a 2018 lightning talk</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LhxVE-56p2Y?start=122" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <h2><a href="#what-is-a-pipe" name="what-is-a-pipe">What is a pipe</a></h2>
 <p>A sling pipe is essentially a sling resource stream, encapsulating a well-known sling operation</p>
 <ul>
@@ -134,7 +141,7 @@
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">npeltier</span> on <span class="comment">Sat Jan 27 22:17:38 2018 +0100</span>
+                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Oct 8 17:09:17 2018 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
