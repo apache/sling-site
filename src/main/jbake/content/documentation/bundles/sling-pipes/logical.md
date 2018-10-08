@@ -28,11 +28,14 @@ executes the pipe referenced in path property
 #### Manifold
 allows parallel execution of the sub pipes listed in configuration
 
-- `sling:resourceType` is `slingPipes/filter`
+- `sling:resourceType` is `slingPipes/manifold`
 - `conf` node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)
-- `queueSize` size of the merged resource queue,
-- `numThread` thread pool size for the execution of the subpipes
-- `executionTimeout` execution time out for each sub pipe
+- `queueSize` size of the merged resource queue, default is 10000
+- `numThread` thread pool size for the execution of the subpipes, default is 5 - resource output will be ordered randomly;
+   setting it to 1 will guarantee serial execution with predictable output order (i.e. the first subpipe resources will be exhausted before the second subpipe resources are output etc.);
+   setting numThreads to 1 will have similar effects to using a container pipe, with the notable exception of output termination: 
+   whereas a container pipe chains sub pipes and will stop when any subpipe produces no output, the manifold pipe handles subpipes as independent streams and combines their output regardless of any void subpipe output
+- `executionTimeout` execution time out for each sub pipe; given in seconds; default is 24h
 
 ### FilterPipe (`grep(conf)`)
 outputs the input resource if its matches its configuration
