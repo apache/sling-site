@@ -7,19 +7,32 @@ Those pipes help assembling pipes, or modifying the resource streams
 [readers](/documentation/bundles/sling-pipes/readers.html) or [writers](/documentation/bundles/sling-pipes/writers.html)
 could create.
 
-### Container Pipe
-assemble a sequence of pipes
+
+### Super pipes
+Pipes that litterally contains sub pipes
+
+#### Container Pipe
+assemble a simple sequence of pipes
 
 - `sling:resourceType` is `slingPipes/container`
 - `conf` node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)
 
 Note that pipe builder api automatically creates one for you to chain the subpipe you are configuring.
 
-### ReferencePipe (`ref(path)`)
+#### ReferencePipe (`ref(path)`)
 executes the pipe referenced in path property
 
 - `sling:resourceType` is `slingPipes/reference`
 - `path` path of the referenced pipe
+
+#### Manifold
+allows parallel execution of the sub pipes listed in configuration
+
+- `sling:resourceType` is `slingPipes/filter`
+- `conf` node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)
+- `queueSize` size of the merged resource queue,
+- `numThread` thread pool size for the execution of the subpipes
+- `executionTimeout` execution time out for each sub pipe
 
 ### FilterPipe (`grep(conf)`)
 outputs the input resource if its matches its configuration

@@ -19,11 +19,25 @@ and would be more opaque, not talking about monitoring or execution common, but 
 
 With Sling Pipes, what you need to develop, and what is readable by another developer is
  
-        plumber.newPipe(resolver).$("[sling:resourceType='foo/bar']").write("id",3).build("/etc/demo")
+        plumber.newPipe(resolver).$("foo/bar").write("id",3).build("/etc/demo")
         
 this is enough to persist a pipe in `/etc/demo` that is executable as http, java, groovy console script, or JMX. 
 You can make it monitor it with JMX, logs, http, you'll have dry run possibility of that execution for example, or asynchronous execution. 
-You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the `PipeModel`   
+You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the `PipeModel`
+
+you can check some introductions at different adaptTo presentations:
+
+## AdaptTo introductions
+
+some presentations were made at the adaptTo conference, last two were:
+
+[General introduction at a 2017 lightning talk](https://adapt.to/2017/en/schedule/lightning-talks/apache-sling-pipes.html).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XcWMB26bMxA?start=666" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+and [latest news at a 2018 lightning talk](https://adapt.to/2018/en/schedule/lightning-talks/whats-new-with-filters-pipes.html)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LhxVE-56p2Y?start=122" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>   
 
 ## What is a pipe
 
@@ -40,6 +54,8 @@ Important bits of a pipe are:
 - its input, forced with `path` property, or because the pipe follows another one,
 - its optional expression, configured with `expr` property, that means different things depending on the pipe,
 - its configuration node, configured with `conf` node, that means different things depending on the pipe
+
+
 
 ## Get Started
 

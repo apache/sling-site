@@ -42,7 +42,7 @@ You can encapsulate the whole execution of a pipe through the `execute` methods 
 Plumber osgi service provides PipeBuilder with `newPipe(ResourceResolver resolver)` API, that gives a fluent API to quickly configure and run pipes.
 e.g. 
 
-    plumber.newPipe(resolver).xpath('//element(*,nt:unstructured)[@sling:resourceType='to/delete']").rm().run();
+    plumber.newPipe(resolver).xpath("//element(*,nt:unstructured)[@sling:resourceType='to/delete']").rm().run();
 
 will search for resource of type `to/delete` and remove them.
 
@@ -68,7 +68,7 @@ This works pretty well with a groovy console just by entering following set of i
 note that that configuration part has shortcuts for some pipes. Typically, above sample is a shorter equivalent of 
 
         plumber.newPipe(resolver)
-            .pipe('slingPipes/xpath').expr('//element(*,nt:unstructured)[@sling:resourceType='to/delete']")
+            .pipe('slingPipes/xpath').expr("//element(*,nt:unstructured)[@sling:resourceType='to/delete']")
             .pipe('slingPipes/rm').run();
 
 when available, shortcuts will be specified next to each pipe type documentation, for
@@ -86,6 +86,17 @@ Once you are happy with the pipe you have created, you should terminate the buil
 | `build()` | will build the pipe under /var/pipes/... (random node under timed base path) |
 | `run(bindings)` or `runWith(bindings...)` | will build the pipe in random location, and run it with passed bindings |
 | `runAsync(bindings)` | will do the same, but asynchronously |
+
+### Apache Felix Gogo
+
+when installing pipes bundle, [apache felix gogo](http://felix.apache.org/documentation/subprojects/apache-felix-gogo.html) commands are exposed to the console that allow you to
+- build (pipe:build or just build if no other command) 
+- run (pipe:run or just run if no other command)
+- execute (pipe:execute or just execute if no other command)
+- and print help on how to use the above
+
+the pipe is here represented as `/` character as `|` is already used by gogo console, an heavy usage of the gogo console is made in the [main page videos](http://localhost:8820/documentation/bundles/sling-pipes.html#adaptto-introductions), or you can direcly check 
+in there for sample gogo commands for [99 bottles of beer](https://github.com/npeltier/99-bottles-of-beers-with-sling) sample.
 
 ### HTTP API
 
@@ -155,4 +166,3 @@ so a breadcrumb pipe could be something like
 as soon as you add `monitored=true` flag to a pipe configuration, you'll make the given pipe monitored by JMX, giving stats, status, and an entry point
 to execute it. Note that if you don't see the pipe you just added, you might have to refresh monitored pipes by hitting the related button
 in plumber mbean.
-

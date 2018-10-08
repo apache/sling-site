@@ -139,3 +139,14 @@ feeds bindings with csv stream
         .mkdir('/content/${demo.val}')
 
 should create a tree of 3 resources /content/1, /content/2 and /content/3
+
+### Regexp pipe (`egrep(expr)`)
+feeds bindings with text input stream, parsed with a regexp
+
+- `sling:resourceType` is `slingPipes/egrep`
+- `expr` see above
+- `pattern` is a regular expression, with named group (e.g. `(?<user>.*)`) that will be used to produce the output binding names
+
+        egrep("https://sling.apache.org/")
+              .with("pattern",'src=\"/res/(?<asset>/[\\-\\w\\.\\/0-9]+)\"').name("demo")
+        .echo('/content/assets/${demo.asset}')

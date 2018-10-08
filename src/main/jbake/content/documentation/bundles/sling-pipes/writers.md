@@ -61,7 +61,18 @@ get or create path given in expression. Uses [ResourceUtil.getOrCreateResource](
 
         .mkdir("/content/foo/bar")
         
-will create a `/content/foo/bar` path of `sling:Folder` nodes  
+will create a `/content/foo/bar` path of `sling:Folder` nodes
+
+##### PackagePipe (`pkg(expr)`)
+will create a package and add current resource as a filter. At the end of super pipe execution, will attempt to build the package
+- `sling:resourceType` is `slingPipes/package`
+- `expr` package path
+
+This example searches for folders in a given location and package them up
+
+        .echo("/content/foo/bar")
+        .$("sling:Folder")
+        .pkg("/etc/packages/foobar-folders.zip")
 
 ##### AuthorizablePipe (`auth(conf)`)
 retrieve authorizable resource corresponding to the id passed in expression, or if not found (or void expression),
@@ -90,3 +101,18 @@ In this example, auth is not writing anything but makes use of bind members and 
         .auth("bindMembers",true).expr("administrators")
         .json('${one}')
         .mkdir('/content/admin-users/${two}')
+        
+##### ACLPipe (`acls(), allow(expr), deny(expr)`)
+either output ACL of current resource in the output bindings, or allow / deny default or configured privileges for the authorizable
+passed as the expression
+
+- `sling:resourceType` is `slingPipes/acl`
+- `expr` should be an authorizable id, or void
+- `allow` (boolean) to allow some privileges for configured authorizable
+- `deny` (boolean) to deny some privileges for configured authorizable
+
+following will give bar-users authorizable the right to read on /content/foo/bar
+
+        .echo("/content/foo/bar")
+        .allow("bar-users")
+

@@ -72,7 +72,7 @@ or with a set of key / value pairs
         
 [http api](/documentation/bundles/sling-pipes/execution-monitoring.html#http-api) for this is a binding parameter
     
-        -F binding='{"env":"prod"}'
+        -F bindings='{"env":"prod"}'
                  
 ## additional scripts
 
