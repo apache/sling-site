@@ -112,11 +112,11 @@
 <h4><a href="#manifold" name="manifold">Manifold</a></h4>
 <p>allows parallel execution of the sub pipes listed in configuration</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/filter</code></li>
+  <li><code>sling:resourceType</code> is <code>slingPipes/manifold</code></li>
   <li><code>conf</code> node contains child pipes' configurations, that will be configured in the order they are found (note you should use sling:OrderedFolder)</li>
-  <li><code>queueSize</code> size of the merged resource queue,</li>
-  <li><code>numThread</code> thread pool size for the execution of the subpipes</li>
-  <li><code>executionTimeout</code> execution time out for each sub pipe</li>
+  <li><code>queueSize</code> size of the merged resource queue, default is 10000</li>
+  <li><code>numThread</code> thread pool size for the execution of the subpipes, default is 5 - resource output will be ordered randomly;  setting it to 1 will guarantee serial execution with predictable output order (i.e. the first subpipe resources will be exhausted before the second subpipe resources are output etc.);  setting numThreads to 1 will have similar effects to using a container pipe, with the notable exception of output termination:  whereas a container pipe chains sub pipes and will stop when any subpipe produces no output, the manifold pipe handles subpipes as independent streams and combines their output regardless of any void subpipe output</li>
+  <li><code>executionTimeout</code> execution time out for each sub pipe; given in seconds; default is 24h</li>
 </ul>
 <h3>FilterPipe (<code>grep(conf)</code>)</h3>
 <p>outputs the input resource if its matches its configuration</p>
@@ -141,7 +141,7 @@
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Oct 8 17:09:17 2018 +0200</span>
+                    Last modified by <span class="author">Stefan Popescu</span> on <span class="comment">Mon Oct 8 19:28:20 2018 +0300</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
