@@ -143,6 +143,7 @@
                         <li><a href="/documentation/bundles/sling-query/hierarchy-operators.html">Hierarchy operators</a></li>
                         <li><a href="/documentation/tutorials-how-tos/how-to-manage-events-in-sling.html">How to Manage Jobs in Sling</a></li>
                         <li><a href="/documentation/development/ide-tooling/ide-tooling-incremental-build.html">Incremental Builds in Sling IDE tooling for Eclipse</a></li>
+                        <li><a href="/documentation/bundles/installer-provider-installhook.html">Installer Vault Package Install Hook</a></li>
                         <li><a href="/documentation/tutorials-how-tos/installing-and-upgrading-bundles.html">Installing and Upgrading Bundles</a></li>
                         <li><a href="/old-stuff/scriptengineintegration.html">Integrating Scripting Languages</a></li>
                         <li><a href="/documentation/bundles/internationalization-support-i18n.html">Internationalization Support (i18n)</a></li>
