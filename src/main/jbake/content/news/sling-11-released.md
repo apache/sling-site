@@ -25,7 +25,7 @@ The Config Admin, SCR, Event Admin, Metatype and HTTP bundles are now at the R7 
 - bundle annotations
 - activation fields for declarative services components
 
-For more details, see [A summary of the OSGi r7 relese][osgi-r7]
+For more details, see [A summary of the OSGi r7 release][osgi-r7].
 
 ## Update to HTL 1.4
 
