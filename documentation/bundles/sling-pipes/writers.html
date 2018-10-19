@@ -179,12 +179,21 @@
   <li><code>allow</code> (boolean) to allow some privileges for configured authorizable</li>
   <li><code>deny</code> (boolean) to deny some privileges for configured authorizable</li>
 </ul>
-<p>following will give bar-users authorizable the aggregate privilege (jcr:all) on /content/foo/bar  .echo("/content/foo/bar")  .allow("bar-users")</p>
-<p>following will give bar-users authorizable the specific rights to read|write on /content/foo/bar  .echo("/content/foo/bar")  .allow("bar-users").with("jcr:privileges",[jcr:read,jcr:write]))</p>
-<p>and following will deny bar-users authorizable to read on /content/foo/bar  .echo("/content/foo/bar")  .deny("bar-users")</p></section></div></div>            
+<p>following will give bar-users authorizable the aggregate privilege (jcr:all) on /content/foo/bar</p>
+<pre><code>    .echo(&quot;/content/foo/bar&quot;)
+    .allow(&quot;bar-users&quot;)
+</code></pre>
+<p>following will give bar-users authorizable the specific rights to read|write on /content/foo/bar</p>
+<pre><code>    .echo(&quot;/content/foo/bar&quot;)
+    .allow(&quot;bar-users&quot;).with(&quot;jcr:privileges&quot;,[jcr:read,jcr:write]))
+</code></pre>
+<p>and following will deny bar-users authorizable to read on /content/foo/bar</p>
+<pre><code>    .echo(&quot;/content/foo/bar&quot;)
+    .deny(&quot;bar-users&quot;)
+</code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Dinesh Chaudhary</span> on <span class="comment">Fri Oct 19 13:10:30 2018 +0530</span>
+                    Last modified by <span class="author">dichaudh</span> on <span class="comment">Fri Oct 19 18:44:17 2018 +0530</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
