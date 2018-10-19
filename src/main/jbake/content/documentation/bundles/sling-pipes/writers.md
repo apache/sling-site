@@ -111,8 +111,14 @@ passed as the expression
 - `allow` (boolean) to allow some privileges for configured authorizable
 - `deny` (boolean) to deny some privileges for configured authorizable
 
-following will give bar-users authorizable the right to read on /content/foo/bar
-
+following will give bar-users authorizable the aggregate privilege(jcr:all) that contains (jcr:read, jcr:write,jcr:readAccessControl etc) to on /content/foo/bar
         .echo("/content/foo/bar")
         .allow("bar-users")
 
+following will give bar-users authorizable the specific rights to read|write on /content/foo/bar
+        .echo("/content/foo/bar")
+        .allow("bar-users").with("jcr:privileges",[jcr:read,jcr:write]))
+
+and following will deny bar-users authorizable to read on /content/foo/bar
+        .echo("/content/foo/bar")
+        .deny("bar-users")
