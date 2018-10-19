@@ -112,13 +112,16 @@ passed as the expression
 - `deny` (boolean) to deny some privileges for configured authorizable
 
 following will give bar-users authorizable the aggregate privilege (jcr:all) on /content/foo/bar
+
         .echo("/content/foo/bar")
         .allow("bar-users")
 
 following will give bar-users authorizable the specific rights to read|write on /content/foo/bar
+
         .echo("/content/foo/bar")
         .allow("bar-users").with("jcr:privileges",[jcr:read,jcr:write]))
 
 and following will deny bar-users authorizable to read on /content/foo/bar
+
         .echo("/content/foo/bar")
         .deny("bar-users")
