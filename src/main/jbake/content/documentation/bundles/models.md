@@ -335,6 +335,8 @@ Constructor injection is supported for the adaptable itself. For example:
         private String propertyName;
     }
 
+Note: storing the original adaptable (request/resource) in a field is discouraged. Please see the note about <a href="#caching-self-reference-note">caching and self references</a> below.
+
 ## Sling Validation (since 1.2.0)
 <a name="validation" />
 *See also [SLING-4161](https://issues.apache.org/jira/browse/SLING-4161)*
@@ -588,6 +590,37 @@ When `cache = true` is specified, the adaptation result is cached regardless of 
     ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
     ModelClass object2 = modelFactory.createModel(request, ModelClass.class); // Sling Models returns the cached instance
     assert object1 == object2;
+
+<a name="caching-self-reference-note"></a>
+### A note about cache = true and using the self injector
+
+In general, it is **strongly** discouraged to store a reference to the original adaptable using the `self` injector. Using implementation version 1.4.8 or below, storing the original adaptable in a Sling Model, can cause heap space exhaustion, crashing the JVM. Starting in version 1.4.10, storing the original adaptable will not crash the JVM, but it can cause unexpected behavior (e.g. a model being created twice, when it should be cached). The issue was first reported in [SLING-7586](https://issues.apache.org/jira/browse/SLING-7586).
+
+The problem can be avoided by discarding the original adaptable when it is no longer needed. This can be done by setting affected field(s) to `null` at the end of the `@PostConstruct` annotated method:
+
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class CachableModelClass {
+        @Self
+        private SlingHttpServletRequest request;
+        
+        @PostConstruct
+        private void init() {
+          ... do something with request ...
+          
+          this.request = null;
+        }
+    }
+
+Alternatively, the same effect can be achieved using constructor injection, by not storing the reference to the adaptable:
+
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class CachableModelClass {
+        public CachableModelClass(SlingHttpServletRequest request) {
+          ... do something with request ...
+        }
+    }
 
 # Via Types (Since API 1.3.4/Implementation 1.4.0)
  
