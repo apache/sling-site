@@ -111,7 +111,7 @@ passed as the expression
 - `allow` (boolean) to allow some privileges for configured authorizable
 - `deny` (boolean) to deny some privileges for configured authorizable
 
-following will give bar-users authorizable the aggregate privilege(jcr:all) that contains (jcr:read, jcr:write,jcr:readAccessControl etc) to on /content/foo/bar
+following will give bar-users authorizable the aggregate privilege(jcr:all) on /content/foo/bar
         .echo("/content/foo/bar")
         .allow("bar-users")
 
