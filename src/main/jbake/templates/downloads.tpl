@@ -163,7 +163,7 @@ def bundles=[
   "NoSQL Couchbase Client|org.apache.sling.nosql.couchbase-client|1.0.2|Y|jar",
   "NoSQL Couchbase Resource Provider|org.apache.sling.nosql.couchbase-resourceprovider|1.1.0|Y|jar",
   "NoSQL MongoDB Resource Provider|org.apache.sling.nosql.mongodb-resourceprovider|1.1.0|Y|jar",
-  "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.0|Y|jar",
+  "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.2|Y|jar",
   "Pax Exam Utilities|org.apache.sling.paxexam.util|1.0.4|Y|jar",
   "Performance Test Utilities|org.apache.sling.performance.base|1.0.2|org.apache.sling.performance|jar",
   "Pipes|org.apache.sling.pipes|3.0.2|Y|jar",
