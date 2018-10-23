@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2018
 
+* Sling 11, Slingstart Archetype 1.0.8, JUnit Tests Teleporter 1.0.18 (23rd)
 * Sling Oak Restrictions 1.0.2 (21nd)
 * Form Based Authentication Handler 1.0.12, Starter Content 1.0.2 (19th)
 * Installer Vault Package Install Hook 1.0.2 (15th)
