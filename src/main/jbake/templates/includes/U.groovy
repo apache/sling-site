@@ -31,7 +31,7 @@ class U {
             sling_tagline : config.blog_subtitle,
             sling_minJavaVersion : "8",
             sling_minMavenVersion : "3.5.0",
-            sling_releaseVersion : "10"
+            sling_releaseVersion : "11"
         ]
 
     	// Use a closure to avoid exception on missing variable
