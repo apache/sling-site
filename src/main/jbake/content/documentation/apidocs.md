@@ -9,6 +9,7 @@ tableOfContents=false
 
 Use these links to access the API docs of the various Sling versions:
 
+* [Sling 11](/apidocs/sling11/index.html)
 * [Sling 10](/apidocs/sling10/index.html)
 * [Sling 9](/apidocs/sling9/index.html)
 * [Sling 8](/apidocs/sling8/index.html)

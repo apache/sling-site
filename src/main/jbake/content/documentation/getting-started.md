@@ -38,12 +38,6 @@ Another option is to download the latest released Apache Sling standalone applic
 Starting the Sling application creates the Sling directory name *sling* in the same directory
  from where you started the above command.
 
-### Java 9 and newer
-
-For Sling 10 it is necessary to add the `java.se.ee` module manually, so the command line invocation
-becomes
-
-    java --add-modules java.se.ee -jar org.apache.sling.starter-${sling_releaseVersion}.jar
 
 ## Sling Karaf
 

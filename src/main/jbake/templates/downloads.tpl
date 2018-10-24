@@ -12,7 +12,7 @@
 // To convert from the old svn downloads.list ust
 //    while read l; do echo "  \"$l\","; done < content/downloads.list
 // ------------------------------------------------------------------------------------------------
-def launchpadVersion="10"
+def launchpadVersion="11"
 
 def slingIDETooling=[
   "Sling IDE Tooling for Eclipse|eclipse|1.2.2|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
@@ -38,7 +38,7 @@ def bundles=[
   "Adapter Annotations|adapter-annotations|1.0.0|Y|jar",
   "API|org.apache.sling.api|2.18.4|Y|jar",
   "Auth Core|org.apache.sling.auth.core|1.4.2|Y|jar",
-  "Auth Form|org.apache.sling.auth.form|1.0.10|Y|jar",
+  "Auth Form|org.apache.sling.auth.form|1.0.12|Y|jar",
   "Authentication XING API|org.apache.sling.auth.xing.api|0.0.2|Y|jar",
   "Authentication XING Login|org.apache.sling.auth.xing.login|0.0.2|Y|jar",
   "Authentication XING OAuth|org.apache.sling.auth.xing.oauth|0.0.2|Y|jar",
@@ -140,20 +140,20 @@ def bundles=[
   "JUnit Core|org.apache.sling.junit.core|1.0.26|Y|jar",
   "JUnit Remote Tests Runners|org.apache.sling.junit.remote|1.0.12|Y|jar",
   "JUnit Scriptable Tests Provider|org.apache.sling.junit.scriptable|1.0.12|Y|jar",
-  "JUnit Tests Teleporter|org.apache.sling.junit.teleporter|1.0.16|Y|jar",
+  "JUnit Tests Teleporter|org.apache.sling.junit.teleporter|1.0.18|Y|jar",
   "JUnit Health Checks|org.apache.sling.junit.healthcheck|1.0.6|Y|jar",
   "Launchpad API|org.apache.sling.launchpad.api|1.2.0|Y|jar",
   "Launchpad Base|org.apache.sling.launchpad.base|5.6.10-2.6.26|Y|jar",
   "Launchpad Base - Application Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|Y|war",
   "Launchpad Base - Web Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|Y|war",
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2|Y|jar",
-  "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|1.0.6|Y|jar",
-  "Launchpad Test Fragment Bundle|org.apache.sling.launchpad.test-fragment|2.0.14|Y|jar",
-  "Launchpad Test Bundles|org.apache.sling.launchpad.test-bundles|0.0.4|Y|jar",
-  "Launchpad Testing|org.apache.sling.launchpad.testing|10|Y|jar",
-  "Launchpad Testing WAR|org.apache.sling.launchpad.testing-war|10|Y|jar",
-  "Launchpad Testing Services|org.apache.sling.launchpad.test-services|2.0.14|Y|jar",
-  "Launchpad Testing Services WAR|org.apache.sling.launchpad.test-services-war|2.0.14|Y|war",
+  "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|1.0.8|Y|jar",
+  "Launchpad Test Fragment Bundle|org.apache.sling.launchpad.test-fragment|2.0.16|Y|jar",
+  "Launchpad Test Bundles|org.apache.sling.launchpad.test-bundles|0.0.6|Y|jar",
+  "Launchpad Testing|org.apache.sling.launchpad.testing|11|Y|jar",
+  "Launchpad Testing WAR|org.apache.sling.launchpad.testing-war|11|Y|jar",
+  "Launchpad Testing Services|org.apache.sling.launchpad.test-services|2.0.16|Y|jar",
+  "Launchpad Testing Services WAR|org.apache.sling.launchpad.test-services-war|2.0.16|Y|war",
   "Log Tracer|org.apache.sling.tracer|1.0.6|Y|jar",
   "Models API|org.apache.sling.models.api|1.3.6|Y|jar",
   "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y|jar",
@@ -163,7 +163,7 @@ def bundles=[
   "NoSQL Couchbase Client|org.apache.sling.nosql.couchbase-client|1.0.2|Y|jar",
   "NoSQL Couchbase Resource Provider|org.apache.sling.nosql.couchbase-resourceprovider|1.1.0|Y|jar",
   "NoSQL MongoDB Resource Provider|org.apache.sling.nosql.mongodb-resourceprovider|1.1.0|Y|jar",
-  "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.0|Y|jar",
+  "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.2|Y|jar",
   "Pax Exam Utilities|org.apache.sling.paxexam.util|1.0.4|Y|jar",
   "Performance Test Utilities|org.apache.sling.performance.base|1.0.2|org.apache.sling.performance|jar",
   "Pipes|org.apache.sling.pipes|3.0.2|Y|jar",
@@ -210,7 +210,7 @@ def bundles=[
   "Settings|org.apache.sling.settings|1.3.10|Y|jar",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0|Y|jar",
   "Sling Query|org.apache.sling.query|4.0.2|Y|jar",
-  "Starter Content|org.apache.sling.starter.content|1.0.0|Y|jar",
+  "Starter Content|org.apache.sling.starter.content|1.0.2|Y|jar",
   "Starter Startup|org.apache.sling.starter.startup|1.0.6|Y|jar",
   "Superimposing Resource Provider|org.apache.sling.superimposing|0.2.0|Y|jar",
   "System Bundle Extension: Activation API|org.apache.sling.fragment.activation|1.0.2|Y|jar",

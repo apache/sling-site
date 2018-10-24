@@ -63,7 +63,7 @@ See the [repoinit documentation][repoinit] for more details.
 
 The Web Console and regular Sling login experiences have been unified, and if a user
 accesses the web console without being authenticated the configured Sling login 
-mechanism is used. By default this mechanism if the form-based one.
+mechanism is used. By default this mechanism is the form-based one.
 
 [oak-fixes]: https://issues.apache.org/jira/issues/?jql=project%20%3D%20OAK%20AND%20resolution%20is%20not%20empty%20and%20fixVersion%20in%20(1.8.0%2C%201.8.1%2C%201.8.2%2C1.8.3%2C1.8.4%2C1.8.5%2C1.8.6%2C1.8.7%2C1.8.8)%20ORDER%20BY%20priority%20DESC%2C%20updated%20DESC
 [osgi-r7]: https://blog.osgi.org/2018/02/osgi-r7-highlights-proposed-final-draft.html

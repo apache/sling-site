@@ -19,6 +19,7 @@ div(class:"menu"){
 
 	p(){
 		strong("API Docs")  br() newLine()
+		a(href:"${config.site_contextPath}apidocs/sling11/index.html", "Sling 11") br() newLine()
 		a(href:"${config.site_contextPath}apidocs/sling10/index.html", "Sling 10") br() newLine()
 		a(href:"${config.site_contextPath}apidocs/sling9/index.html", "Sling 9") br() newLine()
 		a(href:"${config.site_contextPath}documentation/apidocs.html", "All versions") br() newLine()
