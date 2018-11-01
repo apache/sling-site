@@ -30,7 +30,7 @@ In the past we staged release candidates on our local machines using a semi-manu
             <profile>
                 <id>apache-release</id>
                 <properties>
-                    <gpg.passphrase> <!-- YOUR KEY PASSPHRASE --> </gpg.passphrase>
+                    <gpg.passphrase> <!-- YOUR (encrypted) KEY PASSPHRASE --> </gpg.passphrase>
                 </properties>
             </profile>
         </profiles>
