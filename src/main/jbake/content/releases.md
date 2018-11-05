@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2018
+* Apache Sling Capabilities + Capabilities JCR 0.1.0 (5th)
+
 ## October 2018
 
 * Sling 11, Slingstart Archetype 1.0.8, JUnit Tests Teleporter 1.0.18 (23rd)

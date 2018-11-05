@@ -43,6 +43,8 @@ def bundles=[
   "Authentication XING Login|org.apache.sling.auth.xing.login|0.0.2|Y|jar",
   "Authentication XING OAuth|org.apache.sling.auth.xing.oauth|0.0.2|Y|jar",
   "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.3.2|Y|jar",
+  "Capabilities|org.apache.sling.capabilities|0.1.0|Y|jar",
+  "Capabilities JCR|org.apache.sling.capabilities.jcr|0.1.0|Y|jar",
   "Clam|org.apache.sling.clam|1.0.2|Y|jar",   
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0|Y|jar",                                                                    
   "CMS App API|org.apache.sling.cms.api|0.10.0|org.apache.sling.app.cms|jar",                                                                  
