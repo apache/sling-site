@@ -30,7 +30,7 @@ def mavenPlugins=[
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
   "Maven Sling Plugin|maven-sling-plugin|2.3.8|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.8.2|Y",
-  "HTL Maven Plugin|htl-maven-plugin|1.2.0-1.4.0|Y",
+  "HTL Maven Plugin|htl-maven-plugin|1.2.2-1.4.0|Y",
 ]
 
 def bundles=[
@@ -194,11 +194,12 @@ def bundles=[
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.3.0|Y|jar",
   "Scripting Groovy|org.apache.sling.scripting.freemarker|1.0.0|Y|jar",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.4|Y|jar",
-  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.0.22-1.4.0|Y|jar",
-  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.0.26-1.4.0|Y|jar",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.0.54-1.4.0|Y|jar",
-  "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.26|Y|jar",
-  "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.6|Y|jar",
+  "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.0.0-1.4.0|Y|jar",
+  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.1.0-1.4.0|Y|jar",
+  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.1.0-1.4.0|Y|jar",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.1.0-1.4.0|Y|jar",
+  "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.28|Y|jar",
+  "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.8|Y|jar",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.6|Y|jar",
   "Scripting Thymeleaf|org.apache.sling.scripting.thymeleaf|2.0.0|Y|jar",
   "Security|org.apache.sling.security|1.1.16|Y|jar",

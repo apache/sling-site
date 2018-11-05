@@ -7,7 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## November 2018
-* Apache Sling Capabilities + Capabilities JCR 0.1.0 (5th)
+* Capabilities 0.1.0, Capabilities JCR 0.1.0, Scripting HTL Runtime 1.0.0-1.4.0, Scripting HTL Compiler 1.1.0-1.4.0, Scripting HTL Java Compiler 1.1.0-1.4.0, Scripting HTL Engine 1.1.0-1.4.0, HTL JS Use Provider 1.0.28, HTL Models Use Provider 1.0.8, Scripting HTL Testing Content 1.0.14-1.4.0, Scripting HTL Testing 1.0.14-1.4.0, HTL Maven Plugin 1.2.2-1.4.0
+ (5th)
 
 ## October 2018
 
