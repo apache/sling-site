@@ -42,6 +42,8 @@ and replicated to [Apache organisation on GitHub](https://github.com/apache/). A
 
 To check out the Sling source code, see the instructions from  [Getting and building Sling](/documentation/development/getting-and-building-sling.html#getting-the-sling-source).
 
+For additional information see [Using Git with Sling](https://cwiki.apache.org/confluence/display/SLING/Using+Git+with+Sling).
+
 ### Web Access
 
 The source code can be accessed using either the GitHub or GitBox setup. 
