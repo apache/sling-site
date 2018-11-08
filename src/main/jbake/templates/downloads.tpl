@@ -157,7 +157,7 @@ def bundles=[
   "Launchpad Testing Services|org.apache.sling.launchpad.test-services|2.0.16|Y|jar",
   "Launchpad Testing Services WAR|org.apache.sling.launchpad.test-services-war|2.0.16|Y|war",
   "Log Tracer|org.apache.sling.tracer|1.0.6|Y|jar",
-  "Models API|org.apache.sling.models.api|1.3.6|Y|jar",
+  "Models API|org.apache.sling.models.api|1.3.8|Y|jar",
   "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y|jar",
   "Models Implementation|org.apache.sling.models.impl|1.4.10|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|1.0.8|Y|jar",
