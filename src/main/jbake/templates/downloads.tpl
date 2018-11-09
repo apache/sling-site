@@ -22,7 +22,7 @@ def slingApplication=[
   "Sling Starter Standalone|A self-runnable Sling jar|org.apache.sling.starter|.jar|${launchpadVersion}|Y",
   "Sling Starter WAR|A ready-to run Sling webapp as a war file|org.apache.sling.starter|-webapp.war|${launchpadVersion}|Y",
   "Sling Source Release|The released Sling source code|org.apache.sling.starter|-source-release.zip|${launchpadVersion}|Y",
-  "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.builder|.jar|0.10.0|org.apache.sling.app.cms",
+  "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.builder|.jar|0.11.0|org.apache.sling.app.cms",
 ]
 
 def mavenPlugins=[
@@ -47,10 +47,10 @@ def bundles=[
   "Capabilities JCR|org.apache.sling.capabilities.jcr|0.1.0|Y|jar",
   "Clam|org.apache.sling.clam|1.0.2|Y|jar",   
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0|Y|jar",                                                                    
-  "CMS App API|org.apache.sling.cms.api|0.10.0|org.apache.sling.app.cms|jar",                                                                  
-  "CMS App Core|org.apache.sling.cms.core|0.10.0|org.apache.sling.app.cms|jar",
-  "CMS App Reference|org.apache.sling.cms.reference|0.10.0|org.apache.sling.app.cms|jar",
-  "CMS App UI|org.apache.sling.cms.ui|0.10.0|org.apache.sling.app.cms|jar",                                                                    
+  "CMS App API|org.apache.sling.cms.api|0.11.0|org.apache.sling.app.cms|jar",                                                                  
+  "CMS App Core|org.apache.sling.cms.core|0.11.0|org.apache.sling.app.cms|jar",
+  "CMS App Reference|org.apache.sling.cms.reference|0.11.0|org.apache.sling.app.cms|jar",
+  "CMS App UI|org.apache.sling.cms.ui|0.11.0|org.apache.sling.app.cms|jar",                                                                    
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.2|Y|jar",
   "Commons Clam|org.apache.sling.commons.clam|1.0.2|Y|jar",
   "Commons Compiler|org.apache.sling.commons.compiler|2.3.6|Y|jar",
