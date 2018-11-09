@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2018
 
+* Distributed Event Admin 1.1.4 (9th)
 * Models API 1.3.8 (8th)
 * Capabilities 0.1.0, Capabilities JCR 0.1.0, Scripting HTL Runtime 1.0.0-1.4.0, Scripting HTL Compiler 1.1.0-1.4.0, Scripting HTL Java Compiler 1.1.0-1.4.0, Scripting HTL Engine 1.1.0-1.4.0, HTL JS Use Provider 1.0.28, HTL Models Use Provider 1.0.8, Scripting HTL Testing Content 1.0.14-1.4.0, Scripting HTL Testing 1.0.14-1.4.0, HTL Maven Plugin 1.2.2-1.4.0 (5th)
 
