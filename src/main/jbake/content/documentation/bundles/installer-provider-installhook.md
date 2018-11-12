@@ -31,7 +31,7 @@ To include the install hook into a content package, use the following code:
                         <artifactItem>
                             <groupId>org.apache.sling</groupId>
                             <artifactId>org.apache.sling.installer.provider.installhook</artifactId>
-                            <version>1.0.2</version>
+                            <version>1.0.4</version>
                         </artifactItem>
                     </artifactItems>
                     <outputDirectory>${project.build.directory}/vault-work/META-INF/vault/hooks</outputDirectory>

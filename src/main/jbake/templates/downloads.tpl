@@ -120,7 +120,7 @@ def bundles=[
   "Installer Subystems Support|org.apache.sling.installer.factory.subsystems|1.0.0|Y|jar",
   "Installer File Provider|org.apache.sling.installer.provider.file|1.1.0|Y|jar",
   "Installer JCR Provider|org.apache.sling.installer.provider.jcr|3.1.26|Y|jar",
-  "Installer Vault Package Install Hook|org.apache.sling.installer.provider.installhook|1.0.2|Y|jar",
+  "Installer Vault Package Install Hook|org.apache.sling.installer.provider.installhook|1.0.4|Y|jar",
   "javax activation|org.apache.sling.javax.activation|0.1.0|Y|jar",
   "JCR API|org.apache.sling.jcr.api|2.4.0|Y|jar",
   "JCR API Wrapper|org.apache.sling.jcr.jcr-wrapper|2.0.0|Y|jar",
