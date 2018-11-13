@@ -119,6 +119,7 @@ org.apache.sling.scripting.sightly.render
 org.apache.sling.scripting.sightly.use
 org.apache.sling.serviceuser.webconsole
 org.apache.sling.serviceusermapping
+org.apache.sling.servlets.annotations
 org.apache.sling.servlets.post
 org.apache.sling.servlets.resolver.jmx
 org.apache.sling.settings
