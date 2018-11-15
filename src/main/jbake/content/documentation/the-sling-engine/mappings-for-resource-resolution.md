@@ -46,15 +46,15 @@ Note, that these node types only help setting the properties. The implementation
 
 ## Namespace Mangling
 
-There are systems accessing Sling, which have a hard time handling URLs containing colons &ndash; `:` &ndash; in the path part correctly. Since URLs produced and supported by Sling may contain colons because JCR Item based resources may be namespaced (e.g. `jcr:content`), a special namespace mangling feature is built into the `ResourceResolver.resolve` and `ResourceResolver(map)` methods.
+There are systems accessing Sling, which have a hard time handling URLs containing colons (`:`) in the path part correctly. Since URLs produced and supported by Sling may contain colons because JCR item based resources may be namespaced (e.g. `jcr:content`), a special namespace mangling feature is built into the `ResourceResolver.resolve(...)` and `ResourceResolver.map(...)` methods.
 
-Namespace mangling operates such, that any namespace prefix identified in resource path to be mapped as an URL in the `map` methods is modified such that the prefix is enclosed in underscores and the colon removed.
+Namespace mangling operates such, that any namespace prefix identified in resource path to be mapped as an URL in the `map` methods is modified such that the prefix is enclosed in underscores and the colon is removed.
 
-*Example*: The path `/content/*a*sample/jcr:content/jcr:data.png` is modified by namespace mangling in the `map` method to get at `/content/*a*sample/*jcr*content/*jcr*data.png`.
+*Example*: The path `/content/_a_sample/jcr:content/jcr:data.png` is modified by namespace mangling in the `map` method to `/content/_a_sample/_jcr_content/_jcr_data.png`.
 
-Conversely the `resolve` methods must undo such namespace mangling to get back at the resource path. This is simple done by modifying any path such that segments starting with an underscore enclosed prefix are changed by removing the underscores and adding a colon after the prefix. There is one catch, tough: Due to the way the SlingPostServlets automatically generates names, there may be cases where the actual name would be matching this mechanism. Therefore only prefixes are modified which are actually namespace prefixes.
+Conversely, the `resolve` methods must undo such namespace mangling to get back at the resource path. This is simple done by modifying any path such that segments starting with an underscore enclosed prefix are changed by removing the underscores and adding a colon after the prefix. There is one catch, tough: Due to the way the `SlingPostServlet` automatically generates names, there may be cases where the actual name would be matching this mechanism. Therefore only prefixes are modified which are actually namespace prefixes.
 
-*Example*: The path `/content/*a*sample/*jcr*content/*jcr*data.png{*`} *is modified by namespace mangling in the* `{*}resolve{*`} *method to get* `*/content/*a*sample/jcr:content/jcr:data.png{*}{`}*. The prefix* `*\*a{*}{`}`{`} is not modified because there is no registered namespace with prefix `a`. On the other hand the prefix `{*}jcr{*`} is modified because there is of course a registered namespace with prefix `jcr`.
+*Example*: The path `/content/_a_sample/_jcr_content/_jcr_data.png` is modified by namespace mangling in the `resolve` method to get `/content/_a_sample/jcr:content/jcr:data.png`. The prefix `_a_` is not modified because there is no registered namespace with prefix `a`. On the other hand the prefix `jcr` is modified because there is of course a registered namespace with prefix `jcr`.
 
 ## Root Level Mappings
 
