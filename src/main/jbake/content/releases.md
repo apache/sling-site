@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2018
 
+* App CMS 0.11.2 (28th)
 * Testing JCR Mock 1.4.2, OSGi Mock 2.4.4 (19th)
 * Servlets Get 2.1.38 and Servlets Resolver 2.4.24 (13th)
 * Installer Vault Package Install Hook 1.0.4 (12th)
