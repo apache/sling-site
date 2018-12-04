@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## December 2018
+
+* Scripting Core 2.0.56 (4th)
+
 ## November 2018
 
 * App CMS 0.11.2 (28th)
