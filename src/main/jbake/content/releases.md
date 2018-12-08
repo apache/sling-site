@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2018
 
+* Commons ClassLoader 1.4.4, JCR ClassLoader 3.2.4 (8th)
 * Scripting Core 2.0.56 (4th)
 
 ## November 2018
