@@ -235,7 +235,7 @@ def bundles=[
   "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|2.3.4|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|2.3.4|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|2.3.4|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|2.1.0|Y|jar",
+  "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|2.1.2|Y|jar",
   "Tooling Support Install|org.apache.sling.tooling.support.install|1.0.4|Y|jar",
   "Tooling Support Source|org.apache.sling.tooling.support.source|1.0.4|Y|jar",
   "URL Rewriter|org.apache.sling.urlrewriter|0.0.2|Y|jar",
