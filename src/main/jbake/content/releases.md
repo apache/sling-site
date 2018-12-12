@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2018
 
+* Servlet GET 2.1.40 (11th)
 * Testing Sling Mock Oak 2.1.2 (11th)
 * Distribution Core 0.4.0 (10th)
 * Commons ClassLoader 1.4.4, JCR ClassLoader 3.2.4 (8th)
