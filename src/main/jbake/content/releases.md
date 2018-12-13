@@ -8,7 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2018
 
-* Capabilities 0.1.2, Capabilities JCR 0.1.2 /17th)
+* API 2.20.0, Servlets Resolver 2.5.2, Servlets Annotations 1.2.4 (18th)
+* Capabilities 0.1.2, Capabilities JCR 0.1.2 (17th)
 * JCR Base 3.0.6 (16th)
 * JCR Oak Server 1.2.2 (16th)
 * Servlet GET 2.1.40 (11th)
