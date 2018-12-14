@@ -75,6 +75,11 @@ img {
     padding: 0.5em
 }
 
+ul {
+    margin-block-end: 0em;
+    margin-inline-end: 0em;
+}
+
 .title {
     position: absolute;
     left: 1px;
@@ -125,12 +130,17 @@ img {
 .menu ul,.menu p {
     background-color: #fdf5d9;
     list-style: none;
-    padding-left: 4em;
-    margin-top: 0px;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-left: 1em;
+    margin-top: 0px; 
+    padding-bottom: .5em;
     margin-left: 0px;
     color: #4a4a43
+}
+
+.menu > ul {
+    padding-top: 1em;
+    margin-block-end: 0px;
+    margin-inline-end: 0px;
 }
 
 .menu p {
@@ -148,8 +158,6 @@ img {
 
 .menu img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .main {
