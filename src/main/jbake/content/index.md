@@ -35,7 +35,7 @@ Here are our most recent news, there are more in our [news archive](/news.html).
 <script type="text/javascript">
         $(document).ready(function() {
             $.get("/news.html", function(news) {
-                var $newsExcerpt = $(news).find('li').slice(0,5);
+                var $newsExcerpt = $(news).find('section ul li').slice(0,5);
                 $('#newsExcerpt').append($newsExcerpt);
             });
         });
