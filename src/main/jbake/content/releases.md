@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2018
 
+* JCR Base 3.0.6 (16th)
 * JCR Oak Server 1.2.2 (16th)
 * Servlet GET 2.1.40 (11th)
 * Testing Sling Mock Oak 2.1.2 (11th)
