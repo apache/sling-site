@@ -23,7 +23,7 @@ This version needs [m2eclipse-tycho](https://github.com/tesla/m2eclipse-tycho) (
 
 #### maven-bundle-plugin since version 3.2.0
 
-Natively supports incremental builds for the `manifest` goal ([FELIX-4009](https://issues.apache.org/jira/browse/FELIX-4009)) which needs to be explicitly configured as outlined in the [maven-bundle-plugin FAQ](http://felix.apache.org/documentation/faqs/apache-felix-bundle-plugin-faq.html#use-scr-metadata-generated-by-bnd-in-unit-tests). m2e-tycho is incompatible with that version, because it leads to errors like `Duplicate bundle executions found. Please remove any explicitly defined bundle executions in your pom.xml.` and `Duplicate manifest executions found. Please remove any explicitly defined manifest executions in your pom.xml.` (compare with [issue 31](https://github.com/tesla/m2eclipse-tycho/issues/31)). Therefore uninstall m2eclipse-tycho if you want to use newer versions of the `maven-bundle-plugin`.
+Natively supports incremental builds for the `manifest` goal ([FELIX-4009](https://issues.apache.org/jira/browse/FELIX-4009)) which needs to be explicitly configured as outlined in the [maven-bundle-plugin FAQ](http://felix.apache.org/documentation/faqs/apache-felix-bundle-plugin-faq.html#use-scr-metadata-generated-by-bnd-in-unit-tests). Older versions of m2e-tycho are incompatible with that version, because it leads to errors like `Duplicate bundle executions found. Please remove any explicitly defined bundle executions in your pom.xml.` and `Duplicate manifest executions found. Please remove any explicitly defined manifest executions in your pom.xml.` It is therefore recommended to install m2e-tycho version 0.9.0.201811261502 or newer. The update sites for m2e-tycho can be found at.
 
 ### bnd-maven-plugin
 
