@@ -14,6 +14,11 @@ Clone this repository, run the below Maven command, open http://localhost:8820/ 
 This allows	you to experiment with your changes before eventually publishing them.
 
 ## How to publish the website
+
+Each push to the `master` branch automatically regenerates and publishes the website to https://sling.apache.org, see
+[SLING-7180](https://issues.apache.org/jira/browse/SLING-7180) for details. Therefore there is no need to manually
+build the site. However, if you need to manually publish the website the instructions below need to be followed.
+
 Clone this repository and run the below commands or equivalent:
 
 	# Build the site and review your changes
@@ -23,8 +28,6 @@ Clone this repository and run the below commands or equivalent:
     mvn clean package -Ppublish-site -Dmsg="<describe your changes>"
 
 The [ASF's gitpubsub mechanism](https://blogs.apache.org/infra/entry/git_based_websites_available) then synchronizes that content to [http://sling.apache.org](http://sling.apache.org), usually within a few seconds. More details about the publication process can be found in the [ASF Documentation about Project sites](https://www.apache.org/dev/project-site.html). If for some reason this process fails, you can use [the self-service page from ASF Infra](https://selfserve.apache.org/) to trigger a resync of the git repo.
-
-We could automate this using a Jenkins job that's restricted to run on build nodes having the `git-websites` label, as done by [Apache PLC4X](http://plc4x.incubator.apache.org/developers/website.html). See also https://cwiki.apache.org/confluence/display/INFRA/Multibranch+Pipeline+recipies
 
 Note that the publish-scm goal might fail if you add lots of changes due to [MSCMPUB-18](https://issues.apache.org/jira/browse/MSCMPUB-18). In that scenario you have to manually perform the git operations, see for instance [this file at revision 3e58fbd7](https://github.com/apache/sling-site/blob/3e58fbd768344d90185a2123ca30afb6ec4f9000/README.md).
 
