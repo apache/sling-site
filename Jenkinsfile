@@ -13,5 +13,22 @@ pipeline {
                 sh 'mvn clean package' 
             }
         }
+
+        // based on https://cwiki.apache.org/confluence/display/INFRA/Multibranch+Pipeline+recipies
+        stage ('Deploy site') {
+            when {
+                branch 'master'
+            }
+
+            agent {
+                node {
+                    label 'git-websites'
+                }
+            }
+
+            steps {
+                sh 'mvn package -Ppublish-site -Dmsg="Automatic website deployment"'
+            }
+        }
     }
 }
