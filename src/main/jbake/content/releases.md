@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2018
 
+* Capabilities 0.1.2, Capabilities JCR 0.1.2 /17th)
 * JCR Base 3.0.6 (16th)
 * JCR Oak Server 1.2.2 (16th)
 * Servlet GET 2.1.40 (11th)
