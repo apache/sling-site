@@ -109,18 +109,69 @@
     </tr>
     <tr>
       <td><code>sling.servlet.methods</code> </td>
-      <td>The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet. </td>
+      <td>The request methods supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. If this property is missing, the value defaults to GET and HEAD, regardless of which methods are actually implemented/handled by the servlet. A value of <code>*</code> leads to a servlet being bound to all methods. </td>
     </tr>
     <tr>
       <td><code>sling.servlet.prefix</code> </td>
       <td>The prefix or numeric index to make relative paths absolute. If the value of this property is a number (int), it defines the index of the search path entries from the resource resolver to be used as the prefix. The defined search path is used as a prefix to mount this servlet. The number can be -1 which always points to the last search entry. If the specified value is higher than than the highest index of the search paths, the last entry is used. The index starts with 0. If the value of this property is a string and parseable as a number, the value is treated as if it would be a number. If the value of this property is a string starting with "/", this value is applied as a prefix, regardless of the configured search paths! If the value is anything else, it is ignored. If this property is not specified, it defaults to the default configuration of the sling servlet resolver. </td>
     </tr>
+    <tr>
+      <td><code>sling.core.servletName</code> </td>
+      <td>The name with which the servlet should be registered. Is optional. If not set being determined from either the property <code>component.name</code>, <code>service.pid</code> or <code>service.id</code> (in that order). This means that the name is always set (as at least the last property is always ensured by OSGi).</td>
+    </tr>
   </tbody>
 </table>
-<p>A <code>SlingServletResolver</code> listens for <code>Servlet</code> services and - given the correct service registration properties - provides the servlets as resources in the (virtual) resource tree. Such servlets are provided as <code>ServletResource</code> instances which adapt to the <code>javax.servlet.Servlet</code> class.</p>
 <p>For a Servlet registered as an OSGi service to be used by the Sling Servlet Resolver, either one or both of the <code>sling.servlet.paths</code> or the <code>sling.servlet.resourceTypes</code> service reference properties must be set. If neither is set, the Servlet service is ignored.</p>
 <p>Each path to be used for registration - either from the <code>sling.servlet.paths</code> property or constructed from the other <code>sling.servlet.\*</code> properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the <code>sling.servlet.prefix</code> service registration property. If this property is not set, the first entry in the <code>ResourceResolver</code> search path for the <code>ResourceResolver.getResource(String)</code> method is used as the prefix. If this entry cannot be derived, a simpe slash - <code>/</code> - is used as the prefix.</p>
 <p>If <code>sling.servlet.methods</code> is not specified, the servlet is only registered for handling GET and HEAD requests. Make sure to list all methods you want to be handled by this servlet.</p>
+<h3><a href="#servlet-resource-provider" name="servlet-resource-provider">Servlet Resource Provider</a></h3>
+<p>A <code>SlingServletResolver</code> listens for <code>Servlet</code> services and - given the correct service registration properties - provides the servlets as resources in the (virtual) resource tree. This only applies to OSGi services implementing <code>Servlet</code> but not to scripts! Each individual servlet is being provided by a dedicated service instance of <code>ServletResourceProvider</code>. The actual resource path of such resources differs for servlets registered by type and those registered by path:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Servlet registered by </th>
+      <th>Full Resource Path </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Path </td>
+      <td><code>&lt;given path&gt;.servlet</code></td>
+    </tr>
+    <tr>
+      <td>ResourceType </td>
+      <td>for each selector, extension and method combination one resource with path <code>&lt;resource type&gt;[/[&lt;selector with separator &#39;/&#39;&gt;.][&lt;extension&gt;][&lt;method&gt;]].servlet&#39;</code>.</td>
+    </tr>
+  </tbody>
+</table>
+<p>If multiple servlets are registered for the same metadata the one with the highest service ranking is returned in the virtual resource tree. The resources expose the following properties:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Property Name </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sling:resourceType</code> </td>
+      <td>the resource type to which the servlet is registered. Is equal to the absolute resource path. </td>
+    </tr>
+    <tr>
+      <td><code>sling:resourceSuperType</code> </td>
+      <td>the resource super type. Is <code>sling/bundle/resource</code> if not explicitly set. </td>
+    </tr>
+    <tr>
+      <td><code>servletName</code> </td>
+      <td>the name of the servlet </td>
+    </tr>
+    <tr>
+      <td><code>servletClass</code> </td>
+      <td>the fully-qualified class name of the underlying servlet </td>
+    </tr>
+  </tbody>
+</table>
+<p>In addition each such resource can be adapted to a <code>Servlet</code>.</p>
 <h3><a href="#caveats-when-binding-servlets-by-path" name="caveats-when-binding-servlets-by-path">Caveats when binding servlets by path</a></h3>
 <p>Binding servlets by paths has several disadvantages when compared to binding by resource types, namely:</p>
 <ul>
@@ -131,11 +182,11 @@
 </ul>
 <p>Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths. </p>
 <h3><a href="#registering-a-servlet-using-java-annotations" name="registering-a-servlet-using-java-annotations">Registering a Servlet using Java Annotations</a></h3>
-<p>The "new" (as of 2018) Sling Servlet annotations were presented by Konrad Windzus at <a href="https://adapt.to/2018/en/schedule/lightning-talks/new-sling-servlet-annotations.html">adaptTo() 2018</a>.</p>
+<p>The "new" (as of 2018) Sling Servlet annotations were presented by Konrad Windszus at <a href="https://adapt.to/2018/en/schedule/lightning-talks/new-sling-servlet-annotations.html">adaptTo() 2018</a>.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7CBjnQnrxTw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <p>If you are working with the default Apache Sling development stack you can either use </p>
 <ul>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0">bnd 4.0</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.0.0</a>),</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0">bnd 4.0</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.0.0+</a> and <code>maven-bundle-plugin 4.0.0+</code>),</li>
   <li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi R5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li>
   <li>Generic Felix SCR or Sling-specific <code>@SlingServlet</code> annotations from <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html">Apache Felix Maven SCR Plugin</a> to register your Sling servlets:</li>
 </ul>
@@ -158,7 +209,7 @@ public class MyServlet extends SlingSafeMethodsServlet {
     }
 }
 </code></pre>
-    <p>This is only supported though with if you use <code>bnd-maven-plugin</code> and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the <code>bnd-maven-plugin</code> should look like this in your <code>pom.xml</code></p>
+    <p>This is only supported though with if you use <code>bnd-maven-plugin</code> or <code>maven-bundle-plugin</code> in version 4.0.0 or newer and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the <code>bnd-maven-plugin</code> should look like this in your <code>pom.xml</code></p>
     <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;build&gt;
   ...
   &lt;plugins&gt;
@@ -288,11 +339,19 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
 <p>If a registered servlet implements the OptingServlet interface, Sling uses that servlet's <code>accepts(SlingHttpServletRequest request)</code> method to refine the servlet resolution process.</p>
 <p>In this case, the servlet is only selected for processing the current request if its <code>accept</code> method returns true.</p>
 <p>While an opting servlet seems to be a nice way of picking the right servlet to process the request, the use of an opting servlet is not recommended: the main reason is that it complicates the request processing, makes it less transparent what is going on during a request and prevents optimizations like caching the script resolution in an optimal manner. The other static options are usually sufficient for all use cases.</p>
+<h2><a href="#servlet-resolution-order" name="servlet-resolution-order">Servlet Resolution Order</a></h2>
+<p>The following order rules are being followed when trying to resolve a servlet for a given request URL and request method and multiple candidates would match. Then the following candidate is being picked (if one rule doesn't lead to one winner, the next rule is being evaluated):</p>
+<ol>
+  <li>The one with the highest number of matching selectors + extension</li>
+  <li>The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up)</li>
+  <li>The one with the highest <code>service.ranking</code> property</li>
+</ol>
+<p>In case of an <code>OptingServlet</code> not matching the next candidate is being used.</p>
 <h2><a href="#error-handler-servlet-s-or-scripts" name="error-handler-servlet-s-or-scripts">Error Handler Servlet(s) or Scripts</a></h2>
 <p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">Thu Dec 13 14:17:01 2018 +0100</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Dec 18 12:51:40 2018 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
