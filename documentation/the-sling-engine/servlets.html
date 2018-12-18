@@ -117,7 +117,7 @@
     </tr>
     <tr>
       <td><code>sling.core.servletName</code> </td>
-      <td>The name with which the servlet should be registered. Is optional. If not set being determined from either the property <code>component.name</code>, <code>service.pid</code> or <code>service.id</code> (in that order). This means that the name is always set (as at least the last property is always ensured by OSGi).</td>
+      <td>The name with which the servlet should be registered. This registration property is optional. If one is not explicitly set, the servlet's name will be determined from either the property <code>component.name</code>, <code>service.pid</code> or <code>service.id</code> (in that order). This means that the name is always set (as at least the last property is always ensured by OSGi).</td>
     </tr>
   </tbody>
 </table>
@@ -125,7 +125,7 @@
 <p>Each path to be used for registration - either from the <code>sling.servlet.paths</code> property or constructed from the other <code>sling.servlet.\*</code> properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the <code>sling.servlet.prefix</code> service registration property. If this property is not set, the first entry in the <code>ResourceResolver</code> search path for the <code>ResourceResolver.getResource(String)</code> method is used as the prefix. If this entry cannot be derived, a simpe slash - <code>/</code> - is used as the prefix.</p>
 <p>If <code>sling.servlet.methods</code> is not specified, the servlet is only registered for handling GET and HEAD requests. Make sure to list all methods you want to be handled by this servlet.</p>
 <h3><a href="#servlet-resource-provider" name="servlet-resource-provider">Servlet Resource Provider</a></h3>
-<p>A <code>SlingServletResolver</code> listens for <code>Servlet</code> services and - given the correct service registration properties - provides the servlets as resources in the (virtual) resource tree. This only applies to OSGi services implementing <code>Servlet</code> but not to scripts! Each individual servlet is being provided by a dedicated service instance of <code>ServletResourceProvider</code>. The actual resource path of such resources differs for servlets registered by type and those registered by path:</p>
+<p>A <code>ServletMounter</code> listens for <code>javax.servlet.Servlet</code> services. This only applies to OSGi services implementing <code>javax.servlet.Servlet</code>. Each individual servlet will have a dedicated service instance of <code>ServletResourceProvider</code> associated to it, which will provide <code>ServletResources</code> in the resource tree, based on the servlet's registration properties. The actual resource path of such resources differs for servlets registered by type and those registered by path:</p>
 <table>
   <thead>
     <tr>
@@ -186,7 +186,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7CBjnQnrxTw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <p>If you are working with the default Apache Sling development stack you can either use </p>
 <ul>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.0.0">bnd 4.0</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.0.0+</a> and <code>maven-bundle-plugin 4.0.0+</code>),</li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.1.0">bnd 4.1</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.1.0+</a> and <code>maven-bundle-plugin 4.1.0+</code>),</li>
   <li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi R5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li>
   <li>Generic Felix SCR or Sling-specific <code>@SlingServlet</code> annotations from <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html">Apache Felix Maven SCR Plugin</a> to register your Sling servlets:</li>
 </ul>
@@ -209,7 +209,7 @@ public class MyServlet extends SlingSafeMethodsServlet {
     }
 }
 </code></pre>
-    <p>This is only supported though with if you use <code>bnd-maven-plugin</code> or <code>maven-bundle-plugin</code> in version 4.0.0 or newer and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the <code>bnd-maven-plugin</code> should look like this in your <code>pom.xml</code></p>
+    <p>This is only supported though if you use either the <code>bnd-maven-plugin</code> or the <code>maven-bundle-plugin</code> in version 4.0.0 or newer and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the <code>bnd-maven-plugin</code> should look like this in your <code>pom.xml</code></p>
     <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;build&gt;
   ...
   &lt;plugins&gt;
@@ -236,12 +236,13 @@ public class MyServlet extends SlingSafeMethodsServlet {
   &lt;dependency&gt;
     &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
     &lt;artifactId&gt;org.apache.sling.servlets.annotations&lt;/artifactId&gt;
-    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;version&gt;1.2.4&lt;/version&gt;
   &lt;/dependency&gt;
   ...
 &lt;/dependencies&gt;
 </code></pre>
-    <p>Please refer to the <a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations/tree/master/src/main/java/org/apache/sling/servlets/annotations">Javadoc of the package</a> for other related annotations. </p>
+    <p>Please refer to the <a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations/tree/master/src/main/java/org/apache/sling/servlets/annotations">Javadoc of the package</a> for other related annotations.</p>
+    <p>Starting with version <code>1.2.4</code> of the <code>org.apache.sling.servlets.annotations</code> you can also generate a value for the <code>sling.servlet.resourceSuperType</code> registration property, by using the <code>resourceSuperType</code> annotation property (its default value is <code>sling/bundle/resource</code>). In order for the property to be taken into consideration, your Sling instance has to provide version <code>2.5.2</code> or newer of the <code>org.apache.sling.servlets.resolver</code> bundle. </p>
   </li>
   <li>
     <p>Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)</p>
@@ -351,7 +352,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
 <p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Dec 18 12:51:40 2018 +0100</span>
+                    Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">Tue Dec 18 14:29:30 2018 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
