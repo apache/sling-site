@@ -96,6 +96,10 @@
       <td>The resource type(s) supported by the servlet. The property value must either be a single String, an array of Strings or a Vector of Strings. Either this property or the <code>sling.servlet.paths</code> property must be set, or the servlet is ignored. If both are set, the servlet is registered using both ways. </td>
     </tr>
     <tr>
+      <td><code>sling.servlet.resourceSuperType</code> </td>
+      <td>The resource super type, indicating which previously registered servlet could intercept the request if the request matches the resource super type better. The property value must be a single String. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. (since version <code>2.3.0</code> of the <code>org.apache.sling.api.servlets</code> API, version <code>2.5.2</code> of the <code>org.apache.sling.servlets.resolver</code> bundle)</td>
+    </tr>
+    <tr>
       <td><code>sling.servlet.selectors</code> </td>
       <td>The request URL selectors supported by the servlet. The selectors must be configured as they would be specified in the URL that is as a list of dot-separated strings such as <em>print.a4</em>. In case this is not empty the first selector(s) (i.e. the one(s) on the left) in the request URL must match, otherwise the servlet is not executed. After that may follow arbitrarily many non-registered selectors. The property value must either be a single String, an array of Strings or a Vector of Strings. This property is only considered for the registration with <code>sling.servlet.resourceTypes</code>. </td>
     </tr>
@@ -288,7 +292,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
 <p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Oct 4 18:57:22 2018 +0200</span>
+                    Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">Thu Dec 13 14:17:01 2018 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
