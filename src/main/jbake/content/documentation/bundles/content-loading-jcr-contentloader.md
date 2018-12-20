@@ -315,5 +315,35 @@ You can also add new principals (users or groups) to the repository by adding a 
         ]
     }
 
+### ACE Restrictions (since 2.3.0)
+When adding a `security:acl` object to a content node definition in JSON you can also define restrictions on the ACEs to further filter the impact. Example:
+
+    {
+        "security:acl": [
+            { 
+                "principal": "TestUser1", 
+                "granted": [
+                    "jcr:read",
+                    "jcr:write"
+                ],
+                "restrictions": {
+                    "rep:glob": "glob1"
+                }
+            },
+            { 
+                "principal": "TestGroup1", 
+                "granted": [
+                    "jcr:modifyAccessControl"
+                ],
+                "restrictions": {
+                    "rep:itemNames": [
+                        "name1",
+                        "name2"
+                    ]
+                }
+            }
+        ]
+    }
+
 
 [i18n-json-file-based]: https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html#json-file-based

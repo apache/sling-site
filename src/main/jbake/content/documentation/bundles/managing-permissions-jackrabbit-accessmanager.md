@@ -5,13 +5,13 @@ tags=security
 ~~~~~~
 
 
-The `jackrabbit-accessmanager` bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the `jackrabbit-accessmanager` bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like `modifyAce`, `acl` and `deleteAce`.
+The `jackrabbit-accessmanager` bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the `jackrabbit-accessmanager` bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like `modifyAce`, `acl`, `eacl` and `deleteAce`.
 [TOC]
 
 ## Privileges
 
-| privilagename | description |
-|---|---|
+| Name | Description |
+|--|--|
 | jcr:read | the privilege to retrieve a node and get its properties and their values |
 | jcr:readAccessControl | the privilege to get the access control policy of a node |
 | jcr:modifyProperties | the privilege to create, modify and remove the properties of a node |
@@ -30,46 +30,50 @@ The `jackrabbit-accessmanager` bundle delivers a REST interface to manipulate us
 ## Add or modify permissions
 
 To modify the permissions for a node POST a request to `/<path-to-the-node>.modifyAce.<html or json>`. The following parameters are available:
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-* *numeric* - Place the target ACE at the specified numeric index. |
+
+| Name | Description |
+|--|--|
+| principalId | The id of the user or group to modify the access rights for |
+| order | The position of the entry within the list (see below for details) |
+| privilege@[privilege_name] | One param for each privilege to modify.  The value must be either 'granted', 'denied' or 'none'. |
+| restriction@[restriction_name] | (since 3.0.4) One param for each restriction value.  The same parameter name may be used again for multi-value restrictions.  The value is the target value of the restriction. |
+| restriction@[restriction_name]@Delete | (since 3.0.4) One param for each restriction to delete.  The parameter value is ignored and can be anything. |
+
+The `order` parameter may have the following values:
+
+| Value | Description |
+|--|--|
+| `first` | Place the target entry as the first amongst its siblings |
+| `last` | Place the target entry as the last amongst its siblings |
+| `before *xyz*` | Place the target entry immediately before the sibling whose name is *xyz* |
+| `after *xyz*` | Place the target entry immediately after the sibling whose name is *xyz* |
+| numeric | Place the target entry at the indicated numeric place amongst its siblings where *0* is equivalent to `first` and *1* means the second place |
 
 
 Responses:
 | 200 | Success |
 | 500  | Failure, HTML (or JSON) explains failure. |
+
 Example with curl:
 
     curl -FprincipalId=myuser -Fprivilege@jcr:read=granted http://localhost:8080/test/node.modifyAce.html
 
+Single value restriction example with curl:
+
+    curl -FprincipalId=myuser -Fprivilege@jcr:read=granted -Frestriction@rep:glob=child1 http://localhost:8080/test/node.modifyAce.html
+
+Multi value restriction example with curl:
+
+    curl -FprincipalId=myuser -Fprivilege@jcr:read=granted -Frestriction@rep:itemNames=name1 -Frestriction@rep:itemNames=name2 http://localhost:8080/test/node.modifyAce.html
+
+Remove existing restriction example with curl:
+
+    curl -FprincipalId=myuser -Frestriction@rep:glob@Delete=yes http://localhost:8080/test/node.modifyAce.html
 
 
 ## Delete permissions
 
 To delete permissions for a node POST a request to `/<path-to-the-node>.deleteAce.<html or json>`. The following parameters are available:
-  
-  
-  
   
 
 Responses:

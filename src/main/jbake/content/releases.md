@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2018
 
+* JCR Jackrabbit Access Manager 3.0.4, JCR ContentLoader 2.3.0 (20th)
 * API 2.20.0, Servlets Resolver 2.5.2, Servlets Annotations 1.2.4 (18th)
 * Capabilities 0.1.2, Capabilities JCR 0.1.2 (17th)
 * JCR Base 3.0.6 (16th)
