@@ -72,14 +72,14 @@
             </div><h1 class="pagetitle">
                 Managing permissions (jackrabbit.accessmanager)
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>jackrabbit-accessmanager</code> bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the <code>jackrabbit-accessmanager</code> bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like <code>modifyAce</code>, <code>acl</code> and <code>deleteAce</code>. <!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+<div class="row"><div class="small-12 columns"><section class="wrap"><p>The <code>jackrabbit-accessmanager</code> bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the <code>jackrabbit-accessmanager</code> bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like <code>modifyAce</code>, <code>acl</code>, <code>eacl</code> and <code>deleteAce</code>. <!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#privileges" name="privileges">Privileges</a></h2>
 <table>
   <thead>
     <tr>
-      <th>privilagename </th>
-      <th>description </th>
+      <th>Name </th>
+      <th>Description </th>
     </tr>
   </thead>
   <tbody>
@@ -143,11 +143,79 @@
 </table>
 <h2><a href="#add-or-modify-permissions" name="add-or-modify-permissions">Add or modify permissions</a></h2>
 <p>To modify the permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.modifyAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
-<ul>
-  <li><em>numeric</em> - Place the target ACE at the specified numeric index. |</li>
-</ul>
-<p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. | Example with curl:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>principalId </td>
+      <td>The id of the user or group to modify the access rights for </td>
+    </tr>
+    <tr>
+      <td>order </td>
+      <td>The position of the entry within the list (see below for details) </td>
+    </tr>
+    <tr>
+      <td>privilege@[privilege_name] </td>
+      <td>One param for each privilege to modify. The value must be either 'granted', 'denied' or 'none'. </td>
+    </tr>
+    <tr>
+      <td>restriction@[restriction_name] </td>
+      <td>(since 3.0.4) One param for each restriction value. The same parameter name may be used again for multi-value restrictions. The value is the target value of the restriction. </td>
+    </tr>
+    <tr>
+      <td>restriction@[restriction_name]@Delete </td>
+      <td>(since 3.0.4) One param for each restriction to delete. The parameter value is ignored and can be anything. </td>
+    </tr>
+  </tbody>
+</table>
+<p>The <code>order</code> parameter may have the following values:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Value </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>first</code> </td>
+      <td>Place the target entry as the first amongst its siblings </td>
+    </tr>
+    <tr>
+      <td><code>last</code> </td>
+      <td>Place the target entry as the last amongst its siblings </td>
+    </tr>
+    <tr>
+      <td><code>before *xyz*</code> </td>
+      <td>Place the target entry immediately before the sibling whose name is <em>xyz</em> </td>
+    </tr>
+    <tr>
+      <td><code>after *xyz*</code> </td>
+      <td>Place the target entry immediately after the sibling whose name is <em>xyz</em> </td>
+    </tr>
+    <tr>
+      <td>numeric </td>
+      <td>Place the target entry at the indicated numeric place amongst its siblings where <em>0</em> is equivalent to <code>first</code> and <em>1</em> means the second place </td>
+    </tr>
+  </tbody>
+</table>
+<p>Responses: | 200 | Success | | 500 | Failure, HTML (or JSON) explains failure. |</p>
+<p>Example with curl:</p>
 <pre><code>curl -FprincipalId=myuser -Fprivilege@jcr:read=granted http://localhost:8080/test/node.modifyAce.html
+</code></pre>
+<p>Single value restriction example with curl:</p>
+<pre><code>curl -FprincipalId=myuser -Fprivilege@jcr:read=granted -Frestriction@rep:glob=child1 http://localhost:8080/test/node.modifyAce.html
+</code></pre>
+<p>Multi value restriction example with curl:</p>
+<pre><code>curl -FprincipalId=myuser -Fprivilege@jcr:read=granted -Frestriction@rep:itemNames=name1 -Frestriction@rep:itemNames=name2 http://localhost:8080/test/node.modifyAce.html
+</code></pre>
+<p>Remove existing restriction example with curl:</p>
+<pre><code>curl -FprincipalId=myuser -Frestriction@rep:glob@Delete=yes http://localhost:8080/test/node.modifyAce.html
 </code></pre>
 <h2><a href="#delete-permissions" name="delete-permissions">Delete permissions</a></h2>
 <p>To delete permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.deleteAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
@@ -170,7 +238,7 @@ See section 16.3 of the JCR 2.0 specification for an explanation of the differen
 </div></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                    Last modified by <span class="author">Eric Norman</span> on <span class="comment">Thu Dec 20 11:13:55 2018 -0800</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

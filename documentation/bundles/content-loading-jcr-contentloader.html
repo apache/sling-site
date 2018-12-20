@@ -411,10 +411,39 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
         { &quot;name&quot;: &quot;TestGroup1&quot;, &quot;isgroup&quot;: &quot;true&quot;, &quot;members&quot;: [&quot;TestUser1&quot;], &quot;extraProp1&quot;: &quot;extraProp1Value&quot; }
     ]
 }
+</code></pre>
+<h3><a href="#ace-restrictions-since-2-3-0-" name="ace-restrictions-since-2-3-0-">ACE Restrictions (since 2.3.0)</a></h3>
+<p>When adding a <code>security:acl</code> object to a content node definition in JSON you can also define restrictions on the ACEs to further filter the impact. Example:</p>
+<pre><code>{
+    &quot;security:acl&quot;: [
+        { 
+            &quot;principal&quot;: &quot;TestUser1&quot;, 
+            &quot;granted&quot;: [
+                &quot;jcr:read&quot;,
+                &quot;jcr:write&quot;
+            ],
+            &quot;restrictions&quot;: {
+                &quot;rep:glob&quot;: &quot;glob1&quot;
+            }
+        },
+        { 
+            &quot;principal&quot;: &quot;TestGroup1&quot;, 
+            &quot;granted&quot;: [
+                &quot;jcr:modifyAccessControl&quot;
+            ],
+            &quot;restrictions&quot;: {
+                &quot;rep:itemNames&quot;: [
+                    &quot;name1&quot;,
+                    &quot;name2&quot;
+                ]
+            }
+        }
+    ]
+}
 </code></pre></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Andres Bott</span> on <span class="comment">Sun Dec 10 14:48:06 2017 +0100</span>
+                    Last modified by <span class="author">Eric Norman</span> on <span class="comment">Thu Dec 20 11:13:55 2018 -0800</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
