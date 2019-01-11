@@ -93,7 +93,7 @@ def bundles=[
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2|Y|jar",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6|Y|jar",
   "Dynamic Include|org.apache.sling.dynamic-include|3.1.2|Y|jar",
-  "Engine|org.apache.sling.engine|2.6.14|Y|jar",
+  "Engine|org.apache.sling.engine|2.6.18|Y|jar",
   "Event|org.apache.sling.event|4.2.12|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.0|Y|jar",
   "Feature Model|org.apache.sling.feature|0.1.2|Y|jar",

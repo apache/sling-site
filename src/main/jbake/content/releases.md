@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2019
+
+* Engine 2.6.18 (11th)
+
 ## December 2018
 
 * JCR Jackrabbit Access Manager 3.0.4, JCR ContentLoader 2.3.0 (20th)
