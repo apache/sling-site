@@ -126,7 +126,7 @@
   }
 }
 </code></pre>
-<p>Instead of manually creating that JSON file, the annotations from the module <a href="https://svn.apache.org/viewvc/sling/trunk/tooling/maven/adapter-annotations/">adapter-annotations</a> can be used together with the goal <code>generate-adapter-metadata</code> from the <a href="http://sling.apache.org/components/maven-sling-plugin/generate-adapter-metadata-mojo.html">Maven Sling Plugin</a> to generate it automatically (<a href="https://issues.apache.org/jira/browse/SLING-2313">SLING-2313</a>).</p>
+<p>Instead of manually creating that JSON file, the annotations from the module <a href="https://svn.apache.org/viewvc/sling/trunk/tooling/maven/adapter-annotations/">adapter-annotations</a> can be used together with the goal <code>generate-adapter-metadata</code> from the <a href="http://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html">Maven Sling Plugin</a> to generate it automatically (<a href="https://issues.apache.org/jira/browse/SLING-2313">SLING-2313</a>).</p>
 <h1><a href="#extending-adapters" name="extending-adapters">Extending Adapters</a></h1>
 <p>Sometimes an <code>Adaptable</code> implementation cannot foresee future uses and requirements. To cope with such extensibility requirements two interfaces and an abstract base class are defined:</p>
 <ul>
@@ -192,7 +192,7 @@
 <p>An example of extending the <code>SlingAdaptable</code> class will be the Sling JCR based <code>Resource</code> implementation. This way, such a resource may be adapted to a <code>SlingScript</code> by means of an appropriately programmed <code>AdapterFactory</code> (see below).</p></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">sseifert</span> on <span class="comment">Tue Dec 12 11:41:16 2017 +0100</span>
+                    Last modified by <span class="author">sseifert</span> on <span class="comment">Mon Jan 14 18:19:25 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
