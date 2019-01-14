@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2019
 
+* Servlets Post 2.3.28 (14th)
 * Engine 2.6.18 (11th)
 
 ## December 2018
