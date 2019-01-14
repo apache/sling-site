@@ -4,4 +4,4 @@ status=published
 tags=development,maven
 ~~~~~~
 
-See [Apache Maven Sling Plugin documentation](http://sling.apache.org/components/maven-sling-plugin/).
+See [Apache Sling Maven Plugin documentation](http://sling.apache.org/components/sling-maven-plugin/).

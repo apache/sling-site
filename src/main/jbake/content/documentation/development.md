@@ -37,7 +37,7 @@ Look here for more information on developper support when your are using Sling t
 
 Sling is using Apache Maven 3 as its build system. Over time we have created a number of Maven 3 plugins and gathered a whole range of knowledge about using Maven.
 
-* [Maven Sling Plugin](http://sling.apache.org/components/maven-sling-plugin/)
+* [Sling Maven Plugin](http://sling.apache.org/components/sling-maven-plugin/)
 * [HTL Maven Plugin](http://sling.apache.org/components/htl-maven-plugin/)
 * [SlingStart Maven Plugin](http://sling.apache.org/components/slingstart-maven-plugin/)
 * [Maven Launchpad Plugin](/documentation/development/maven-launchpad-plugin.html)

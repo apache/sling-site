@@ -75,7 +75,7 @@ Notes:
 
 The mode maps files and folders, and content files stored in JSON or jcr.xml files. The layout has to match the conventions of the [Apache Sling JCR Content Loader][jcr-contentloader]. The bundle header `Sling-Initial-Content` defines where and how the content should be loaded to.
 
-This mode is best use together with the [Maven Sling Plugin][maven-sling-plugin], which automatically creates the appropriate File System Resource Provider configurations for a Maven bundle project containing content structures. For each path an individual configuration is created.
+This mode is best use together with the [Maven Sling Plugin][sling-maven-plugin], which automatically creates the appropriate File System Resource Provider configurations for a Maven bundle project containing content structures. For each path an individual configuration is created.
 
 Usage - deploy OSGi bundle from current maven project and register the appropriate OSGi configuration mappings:
 
@@ -100,7 +100,7 @@ Notes:
 
 The mode maps an maven project containing an expanded content package which uses the [Jackrabbit FileVault XML layout][vaultfs] in the running Sling instance. The existing of a filter file `META-INF/vault/filter.xml` is mandatory.
 
-This mode is best use together with the [Maven Sling Plugin][maven-sling-plugin], which automatically creates the appropriate File System Resource Provider configurations. For each path defined in the filter.xml one mapping configuration is created. The include/exclude definitions are respected as well.
+This mode is best use together with the [Maven Sling Plugin][sling-maven-plugin], which automatically creates the appropriate File System Resource Provider configurations. For each path defined in the filter.xml one mapping configuration is created. The include/exclude definitions are respected as well.
 
 Usage - register the appropriate mappings:
 
@@ -122,5 +122,5 @@ Notes:
 [src-branch]: https://github.com/apache/sling-org-apache-sling-fsresource/tree/release/1.x
 [maven-central]: https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.apache.sling%22%20AND%20a%3A%22org.apache.sling.fsresource%22
 [jcr-contentloader]: content-loading-jcr-contentloader.html
-[maven-sling-plugin]: http://sling.apache.org/components/maven-sling-plugin/
+[sling-maven-plugin]: http://sling.apache.org/components/sling-maven-plugin/
 [vaultfs]: http://jackrabbit.apache.org/filevault/vaultfs.html

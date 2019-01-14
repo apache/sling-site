@@ -73,7 +73,7 @@ For example
       }
     }
 
-Instead of manually creating that JSON file, the annotations from the module [adapter-annotations](https://svn.apache.org/viewvc/sling/trunk/tooling/maven/adapter-annotations/)  can be used together with the goal `generate-adapter-metadata` from the [Maven Sling Plugin](http://sling.apache.org/components/maven-sling-plugin/generate-adapter-metadata-mojo.html) to generate it automatically ([SLING-2313](https://issues.apache.org/jira/browse/SLING-2313)).
+Instead of manually creating that JSON file, the annotations from the module [adapter-annotations](https://svn.apache.org/viewvc/sling/trunk/tooling/maven/adapter-annotations/)  can be used together with the goal `generate-adapter-metadata` from the [Maven Sling Plugin](http://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html) to generate it automatically ([SLING-2313](https://issues.apache.org/jira/browse/SLING-2313)).
 
 
 # Extending Adapters

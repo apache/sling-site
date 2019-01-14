@@ -414,7 +414,7 @@ to be updated.
 
 This is currently supported for:
 
-* `maven-sling-plugin`
+* `sling-maven-plugin`
 * `htl-maven-plugin`
 * `jspc-maven-plugin`
 * `slingstart-maven-plugin`
