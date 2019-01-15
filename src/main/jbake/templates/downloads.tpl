@@ -288,11 +288,17 @@ def downloadLink(label, artifact, version, suffix) {
 def githubLink(artifact,ghflag) {
 	if(ghflag == 'Y') {
 		artifact = artifact.replaceAll('\\.','-')
-		a(href:"https://github.com/apache/sling-${artifact}", "GitHub")
+    def url = "https://github.com/apache/sling-${artifact}"
+    // remove duplicate sling- prefix
+    url = url.replaceAll('sling-sling-','sling-')
+		a(href:url, "GitHub")
 		newLine()
 	} else if (ghflag != 'N') {
 		artifact = ghflag.replaceAll('\\.','-')
-		a(href:"https://github.com/apache/sling-${artifact}", "GitHub")
+    // remove duplicate sling- prefix
+    def url = "https://github.com/apache/sling-${artifact}"
+    url = url.replaceAll('sling-sling-','sling-')
+		a(href:url, "GitHub")
 		newLine()
 	} else {
 		yield "N/A"
