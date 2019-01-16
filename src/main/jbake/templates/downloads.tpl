@@ -219,7 +219,7 @@ def bundles=[
   "System Bundle Extension: Activation API|org.apache.sling.fragment.activation|1.0.2|Y|jar",
   "System Bundle Extension: WS APIs|org.apache.sling.fragment.ws|1.0.2|Y|jar",
   "System Bundle Extension: XML APIs|org.apache.sling.fragment.xml|1.0.2|Y|jar",
-  "Tenant|org.apache.sling.tenant|1.1.2|Y|jar",
+  "Tenant|org.apache.sling.tenant|1.1.4|Y|jar",
   "Testing Clients|org.apache.sling.testing.clients|1.2.0|Y|jar",
   "Testing Email|org.apache.sling.testing.email|1.0.0|Y|jar",
   "Testing Hamcrest|org.apache.sling.testing.hamcrest|1.0.2|Y|jar",
