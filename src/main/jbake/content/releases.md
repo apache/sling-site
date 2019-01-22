@@ -7,7 +7,7 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## January 2019
-
+* Commons HTML 1.1.0 (22nd)
 * Tenant 1.1.4 (16th)
 * Servlets Post 2.3.28, Sling Maven Plugin 2.4.0 (14th)
 * Engine 2.6.18 (11th)
