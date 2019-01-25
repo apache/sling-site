@@ -38,6 +38,8 @@ Here's a current example from the test cases mentioned above, that uses all lang
 
 The language is self-explaining but please refer to the actual test cases for details that are guaranteed to be up to date, assuming the tests pass.
 
+<pre class="language-no-highlight">
+
     create service user user1, u-ser_2
     set ACL on /libs,/apps
         allow jcr:read for user1,u-ser_2
@@ -134,6 +136,8 @@ The language is self-explaining but please refer to the actual test cases for de
     delete group since124_C
 
 
+</pre>
+
 ## Providing repoinit statements from the Sling provisioning model or other URLs
 
 All bundles required for this feature need to be active before the `SlingRepository` service starts.
@@ -141,8 +145,10 @@ All bundles required for this feature need to be active before the `SlingReposit
 From version 1.0.2 of the `org.apache.sling.jcr.repoinit` bundle, the `o.a.s.jcr.repoinit.RepositoryInitializer` component uses an OSGi 
 configuration as shown in this example to define where to read repoinit statements:
 
-    org.apache.sling.jcr.repoinit.impl.RepositoryInitializer
-      references=["model:context:/resources/provisioning/model.txt","model@repoinitTwo:context:/resources/provisioning/model.txt"]
+<pre class="language-no-highlight">
+  org.apache.sling.jcr.repoinit.impl.RepositoryInitializer
+    references=["model:context:/resources/provisioning/model.txt","model@repoinitTwo:context:/resources/provisioning/model.txt"]
+</pre>
     
 This example defines two _references_ to URLs that supply repoinit statements. Their syntax is described below.
 
@@ -159,14 +165,18 @@ At runtime this requires the `org.apache.sling.provisioning.model` bundle, versi
 The `o.a.s.jcr.repoinit` bundle can use this feature to execute `repoinit` statements provided by Sling provisioning models, as in this 
 provisioning model example fragment:
 
-    [:repoinit]
-    create path /repoinit/provisioningModelTest
+<pre class="language-no-highlight">
+  [:repoinit]
+  create path /repoinit/provisioningModelTest
 
-    create service user provisioningModelUser
+  create service user provisioningModelUser
+</pre>
 	
 To read repoinit statements from such an additional provisioning model section, the `RepositoryInitializer` configuration shown above uses references like
 
-    model@repoinitTwo:context:/resources/provisioning/model.txt
+<pre class="language-no-highlight">
+  model@repoinitTwo:context:/resources/provisioning/model.txt
+</pre>
 	
 Where _model_ means "use the provisioning model format", _repoinitTwo_ is the name of the additional section to read statements from in the provisioning 
 model (without the leading colon) and _context:/resources/..._ is the URL to use to retrieve the provisioning model.
@@ -178,7 +188,9 @@ The section name in that reference is optional and defaults to _repoinit_. If it
 ### References to URLs providing raw repoinit statements
 Using a `RepositoryInitializer` reference like in this example, with the _raw_ prefix, means that its content is passed as is to the repoinit parser:
 
-    raw:classpath://some-repoinit-file.txt
+<pre class="language-no-highlight">
+  raw:classpath://some-repoinit-file.txt
+</pre>
 	
 Which points to a `classpath:` URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.
 
