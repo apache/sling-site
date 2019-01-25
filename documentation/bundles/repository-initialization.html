@@ -94,107 +94,112 @@
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
 <p>Here's a current example from the test cases mentioned above, that uses all language features as of version 1.0.2 of the parser module. </p>
 <p>The language is self-explaining but please refer to the actual test cases for details that are guaranteed to be up to date, assuming the tests pass.</p>
-<pre><code>create service user user1, u-ser_2
-set ACL on /libs,/apps
-    allow jcr:read for user1,u-ser_2
+<pre class="language-no-highlight">
 
-    deny jcr:write for u-ser_2
-    deny jcr:lockManagement for user1
-    remove jcr:understand,some:other for u3
-end
+    create service user user1, u-ser_2
+    set ACL on /libs,/apps
+        allow jcr:read for user1,u-ser_2
 
-create service user bob_the_service
+        deny jcr:write for u-ser_2
+        deny jcr:lockManagement for user1
+        remove jcr:understand,some:other for u3
+    end
 
-set ACL on /tmp
-    allow some:otherPrivilege for bob_the_service
-end
+    create service user bob_the_service
 
-# Nodetypes inside the path apply to just that path element
-create path /content/example.com(sling:Folder)
+    set ACL on /tmp
+        allow some:otherPrivilege for bob_the_service
+    end
 
-# Nodetypes and mixins applied to just a path element
-# Specifying mixins require
-# o.a.s.repoinit.parser 1.2.0 and
-# o.a.s.jcr.repoinit 1.2.0
-create path /content/example.com(sling:Folder mixin mix:referenceable,mix:shareable)
+    # Nodetypes inside the path apply to just that path element
+    create path /content/example.com(sling:Folder)
 
-# Mixins applied to just a path element
-create path /content/example.com(mixin mix:referenceable)
+    # Nodetypes and mixins applied to just a path element
+    # Specifying mixins require
+    # o.a.s.repoinit.parser 1.2.0 and
+    # o.a.s.jcr.repoinit 1.2.0
+    create path /content/example.com(sling:Folder mixin mix:referenceable,mix:shareable)
 
-# A nodetype in front is used as the default for all path elements
-create path (nt:unstructured) /var
+    # Mixins applied to just a path element
+    create path /content/example.com(mixin mix:referenceable)
+	
+	# A nodetype in front is used as the default for all path elements
+    create path (nt:unstructured) /var
 
-set ACL for alice, bob,fred
-    # remove is currently not supported by the jcr.repoinit module
-    remove * on / 
-    allow jcr:read on /content,/var
-    deny jcr:write on /content/example.com
-    deny jcr:all on / nodetypes example:Page
-end
+    set ACL for alice, bob,fred
+        # remove is currently not supported by the jcr.repoinit module
+        remove * on / 
+        allow jcr:read on /content,/var
+        deny jcr:write on /content/example.com
+        deny jcr:all on / nodetypes example:Page
+    end
+	
+    set ACL for restrictions_examples
+        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
 
-set ACL for restrictions_examples
-    deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
-    allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
-    allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
-    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+        # empty rep:glob means "apply to this node but not its children"
+        # (requires o.a.s.jcr.repoinit 1.1.8)
+        allow jcr:something on / restriction(rep:glob)
+    end
 
-    # empty rep:glob means &quot;apply to this node but not its children&quot;
-    # (requires o.a.s.jcr.repoinit 1.1.8)
-    allow jcr:something on / restriction(rep:glob)
-end
+    # Set repository level ACL
+    # Setting repository level ACL require
+    # o.a.s.repoinit.parser 1.2.0 and
+    # o.a.s.jcr.repoinit 1.2.0
+    set repository ACL for alice,bob
+        allow jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement
+    end
+	
+	# register namespace requires 
+	# o.a.s.repoinit.parser 1.0.4
+	# and o.a.s.jcr.repoinit 1.0.2
+	register namespace ( NSprefix ) uri:someURI/v1.42
 
-# Set repository level ACL
-# Setting repository level ACL require
-# o.a.s.repoinit.parser 1.2.0 and
-# o.a.s.jcr.repoinit 1.2.0
-set repository ACL for alice,bob
-    allow jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement
-end
+	# register nodetypes in CND format
+	# (same bundle requirements as register namespaces)
+	#
+	# The optional << markers are used when embedding
+	# this in a Sling provisioning model, to avoid syntax errors
+	#
+	# The CND instructions are passed as is to the JCR
+	# modules, so the full CND syntax is supported.
+	#
+	register nodetypes
+	<<===
+	<<  <slingevent='http://sling.apache.org/jcr/event/1.0'>
+	<<
+	<<  [slingevent:Event] > nt:unstructured, nt:hierarchyNode
+	<<    - slingevent:topic (string)
+	<<    - slingevent:properties (binary)
+	===>>
 
-# register namespace requires 
-# o.a.s.repoinit.parser 1.0.4
-# and o.a.s.jcr.repoinit 1.0.2
-register namespace ( NSprefix ) uri:someURI/v1.42
+    create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a88ce31a08826899d54ef7183998b5
 
-# register nodetypes in CND format
-# (same bundle requirements as register namespaces)
-#
-# The optional &lt;&lt; markers are used when embedding
-# this in a Sling provisioning model, to avoid syntax errors
-#
-# The CND instructions are passed as is to the JCR
-# modules, so the full CND syntax is supported.
-#
-register nodetypes
-&lt;&lt;===
-&lt;&lt;  &lt;slingevent=&#39;http://sling.apache.org/jcr/event/1.0&#39;&gt;
-&lt;&lt;
-&lt;&lt;  [slingevent:Event] &gt; nt:unstructured, nt:hierarchyNode
-&lt;&lt;    - slingevent:topic (string)
-&lt;&lt;    - slingevent:properties (binary)
-===&gt;&gt;
+    # disable service user
+    create service user deprecated_service_user
+    disable service user deprecated_service_user : "Disabled user to make an example"
 
-create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a88ce31a08826899d54ef7183998b5
+    create service user the-last-one
+    
+    disable service user svc1 : "This  is the message"
 
-# disable service user
-create service user deprecated_service_user
-disable service user deprecated_service_user : &quot;Disabled user to make an example&quot;
+    # Groups are supported since version 1.2.4, SLING-8219
+    create group since124_A
+    create group since124_B with path /path_B
+    delete group since124_C
 
-create service user the-last-one
 
-disable service user svc1 : &quot;This  is the message&quot;
-
-# Groups are supported since version 1.2.4, SLING-8219
-create group since124_A
-create group since124_B with path /path_B
-delete group since124_C
-</code></pre>
+</pre>
 <h2><a href="#providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls" name="providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls">Providing repoinit statements from the Sling provisioning model or other URLs</a></h2>
 <p>All bundles required for this feature need to be active before the <code>SlingRepository</code> service starts.</p>
 <p>From version 1.0.2 of the <code>org.apache.sling.jcr.repoinit</code> bundle, the <code>o.a.s.jcr.repoinit.RepositoryInitializer</code> component uses an OSGi configuration as shown in this example to define where to read repoinit statements:</p>
-<pre><code>org.apache.sling.jcr.repoinit.impl.RepositoryInitializer
-  references=[&quot;model:context:/resources/provisioning/model.txt&quot;,&quot;model@repoinitTwo:context:/resources/provisioning/model.txt&quot;]
-</code></pre>
+<pre class="language-no-highlight">
+  org.apache.sling.jcr.repoinit.impl.RepositoryInitializer
+    references=["model:context:/resources/provisioning/model.txt","model@repoinitTwo:context:/resources/provisioning/model.txt"]
+</pre>
 <p>This example defines two <em>references</em> to URLs that supply repoinit statements. Their syntax is described below.</p>
 <p>By default the <code>RepositoryInitializer</code> uses the first URL shown in the above example, which points to the provisioning model that's embedded by default in the Sling Launchpad runnable jar.</p>
 <p>Note that previous versions of the <code>org.apache.sling.jcr.repoinit</code> bundle used different configuration parameters. From version 1.0.2 on, warnings are logged if those old parameters (_text.url,text.format,model.section.name_) are used.</p>
@@ -202,21 +207,24 @@ delete group since124_C
 <p>The <code>slingstart-maven-plugin</code>, from V1.4.2 on, allows for embedding so-called "additional sections" in the Sling provisioning model by starting their name with a colon.</p>
 <p>At runtime this requires the <code>org.apache.sling.provisioning.model</code> bundle, version 1.4.2 or later.</p>
 <p>The <code>o.a.s.jcr.repoinit</code> bundle can use this feature to execute <code>repoinit</code> statements provided by Sling provisioning models, as in this provisioning model example fragment:</p>
-<pre><code>[:repoinit]
-create path /repoinit/provisioningModelTest
+<pre class="language-no-highlight">
+  [:repoinit]
+  create path /repoinit/provisioningModelTest
 
-create service user provisioningModelUser
-</code></pre>
+  create service user provisioningModelUser
+</pre>
 <p>To read repoinit statements from such an additional provisioning model section, the <code>RepositoryInitializer</code> configuration shown above uses references like</p>
-<pre><code>model@repoinitTwo:context:/resources/provisioning/model.txt
-</code></pre>
+<pre class="language-no-highlight">
+  model@repoinitTwo:context:/resources/provisioning/model.txt
+</pre>
 <p>Where <em>model</em> means "use the provisioning model format", <em>repoinitTwo</em> is the name of the additional section to read statements from in the provisioning model (without the leading colon) and <em>context:/resources/...</em> is the URL to use to retrieve the provisioning model.</p>
 <p>In this example the URL uses the <em>context</em> scheme defined by the Sling Launchpad, but any scheme can be used provided a suitable URL handler is active.</p>
 <p>The section name in that reference is optional and defaults to <em>repoinit</em>. If it's not specified the <code>@</code> should be omitted as well.</p>
 <h3><a href="#references-to-urls-providing-raw-repoinit-statements" name="references-to-urls-providing-raw-repoinit-statements">References to URLs providing raw repoinit statements</a></h3>
 <p>Using a <code>RepositoryInitializer</code> reference like in this example, with the <em>raw</em> prefix, means that its content is passed as is to the repoinit parser:</p>
-<pre><code>raw:classpath://some-repoinit-file.txt
-</code></pre>
+<pre class="language-no-highlight">
+  raw:classpath://some-repoinit-file.txt
+</pre>
 <p>Which points to a <code>classpath:</code> URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.</p>
 <h2><a href="#providing-repoinit-statements-from-osgi-factory-configurations" name="providing-repoinit-statements-from-osgi-factory-configurations">Providing repoinit statements from OSGi factory configurations</a></h2>
 <p>From version 1.1.6 of the <code>org.apache.sling.jcr.repoinit</code> bundle, repoinit statements can also be provided by OSGi factory configurations which use the <code>org.apache.sling.jcr.repoinit.RepositoryInitializer</code> factory PID.</p>
@@ -227,7 +235,7 @@ create service user provisioningModelUser
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Jan 25 12:26:50 2019 +0100</span>
+                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Jan 25 13:01:15 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
