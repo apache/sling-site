@@ -181,6 +181,13 @@ create service user deprecated_service_user
 disable service user deprecated_service_user : &quot;Disabled user to make an example&quot;
 
 create service user the-last-one
+
+disable service user svc1 : &quot;This  is the message&quot;
+
+# Groups are supported since version 1.2.4, SLING-8219
+create group since124_A
+create group since124_B with path /path_B
+delete group since124_C
 </code></pre>
 <h2><a href="#providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls" name="providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls">Providing repoinit statements from the Sling provisioning model or other URLs</a></h2>
 <p>All bundles required for this feature need to be active before the <code>SlingRepository</code> service starts.</p>
@@ -220,7 +227,7 @@ create service user provisioningModelUser
 </ul></section></div></div>            
             <div class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Jan 24 14:52:01 2018 +0100</span>
+                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Jan 25 12:26:50 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
