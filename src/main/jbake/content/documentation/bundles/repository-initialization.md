@@ -125,6 +125,14 @@ The language is self-explaining but please refer to the actual test cases for de
     disable service user deprecated_service_user : "Disabled user to make an example"
 
     create service user the-last-one
+    
+    disable service user svc1 : "This  is the message"
+
+    # Groups are supported since version 1.2.4, SLING-8219
+    create group since124_A
+    create group since124_B with path /path_B
+    delete group since124_C
+
 
 ## Providing repoinit statements from the Sling provisioning model or other URLs
 
