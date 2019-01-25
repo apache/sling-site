@@ -38,6 +38,15 @@ is replaced by the `sling_tagline` variable if it exists, otherwise a MISSING_PA
 
 Please use a `sling.` prefix for new site-related variables in `jbake.properties`, to differentiate from JBake built-in variables.
 
+## Syntax highlighting
+The site uses [highlight.js](https://highlightjs.org/) for that.
+
+Highlighting can be disabled by specifying an unknown language in the `<pre>` blocks that are highlighted by default, like for example
+
+    <pre class="language-no-highlight">
+    This will not be highlighted.
+    </pre>
+
 ## Other Apache projects using JBake 
 It's sometimes useful to ~~steal ideas~~ get inspiration from other projects using similar tools, for now we know of:
 
