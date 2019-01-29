@@ -27,7 +27,7 @@ pipeline {
             }
 
             steps {
-                sh 'mvn package -Ppublish-site -Dmsg="Automatic website deployment"'
+                sh 'mvn clean package -Ppublish-site -Dmsg="Automatic website deployment"'
             }
         }
     }
