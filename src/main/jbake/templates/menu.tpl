@@ -5,7 +5,7 @@ nav(class:"menu"){
 		li(){
 		    strong("Documentation")
     		ul() {
-                li(){a(href:"${config.site_contextPath}documentation.html", "Main")}
+                li(){a(href:"${config.site_contextPath}documentation.html", "Overview")}
         		li(){a(href:"${config.site_contextPath}documentation/getting-started.html", "Getting Started")}
         		li(){a(href:"${config.site_contextPath}documentation/the-sling-engine.html", "The Sling Engine")}
         		li(){a(href:"${config.site_contextPath}documentation/development.html", "Development")}

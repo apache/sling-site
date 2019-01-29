@@ -317,8 +317,20 @@ pre {
     padding-bottom:1em;
 }
 
-.breadcrumbs {
+.breadcrumb {
     float:left;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+}
+
+.breadcrumb a:after {
+    padding-left: .4em;
+    padding-right: .4em;
+    content : "\BB";
+    color: #000;
+    display:inline-block;
 }
 
 .tags {

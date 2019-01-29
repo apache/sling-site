@@ -28,7 +28,7 @@ html(lang:'en'){
 			bodyContents()
 			newLine()
 
-            div(class:"footer") {
+            footer(class:"footer") {
                 lastModified()
                 include template: 'footer.tpl'
             }
