@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,14 +54,14 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                    </a><a href="/documentation/bundles.html">
                         Bundles
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/servlets.html" class="label">
@@ -919,7 +919,7 @@ of a resource without having to specify the path of each individual child resour
 <p>OSGi services of the <code>org.apache.sling.servlets.post.SlingPostOperation</code> type can be used to post process <code>PostOperation</code>s. They are called after the operation has performed its changes but before the changes are persisted (via commit). All registered SlingPostProcessors are always called in the reverse order of their service ranking (i.e. the one with the highest service ranking first).</p>
 <p>A <code>SlingPostProcessor</code> may perform additional changes or revert previous ones. It is important that the <code>SlingPostProcessor</code> does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method <code>process(SlingHttpServletRequest, List&lt;Modification&gt;)</code>.</p>
 <p>Two examples of SlingPostProcessors are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java">integration-tests</a> module.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
                 </div>                <p>
@@ -927,7 +927,7 @@ of a resource without having to specify the path of each individual child resour
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>

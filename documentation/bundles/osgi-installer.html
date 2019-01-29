@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,14 +54,14 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                    </a><a href="/documentation/bundles.html">
                         Bundles
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/installer.html" class="label">
@@ -124,7 +124,7 @@
 <p>Due to <a href="https://issues.apache.org/jira/browse/SLING-7735">SLING-7735</a>, there might be false positives being reported by the health check, in case the configuration has already been deployed with exactly the same values in the system previously. In that case the OSGi Installer might also mark the resource as <code>IGNORED</code>. If you run into such an issue, you can fix it by removing the manually overwritten configurations: Just go to <code>/system/console/configMgr</code> and delete the according configuration. That way the OSGi installer should automatically create a new configuration for the same PID based on the configuration provided by some provider with the highest prio. </p>
 <h3><a href="#limitations-of-the-health-check" name="limitations-of-the-health-check">Limitations of the health check</a></h3>
 <p>Currently the health check and the OSGi installer cannot detect if a deployed bundle/configuration has been overwritten (e.g. via API or the WebConsole). So even if an OSGi installer resource is marked as <code>INSTALLED</code> it might already have been overwritten. This limitation is tracked in <a href="https://issues.apache.org/jira/browse/SLING-7736">SLING-7736</a>.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jun 29 15:15:19 2018 +0200</span>
                 </div>                <p>
@@ -132,7 +132,7 @@
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>

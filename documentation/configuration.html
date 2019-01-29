@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,12 +54,12 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/configuration.html" class="label">
@@ -259,7 +259,7 @@
 <p>Configuration of the system entities, such as services and components, by the system administrator is supported the Configuration Admin Service. The Configuration Admin Service acts as the center for the management of the configuration data, to which GUI-based tools will connect to retrieve and update configuration data. The Configuration Admin Service is responsible for persisting the configuration data and for providing configuration consumers with the configuration data. Specifically services registered with the <code>ManagedService</code> or <code>ManagedServiceFactory</code> interfaces are updated with the configuration upon updated. The Service Component Runtime on the other hand recognizes updated configuration and provides it to the managed components as defined in the OSGi Declarative Services Specification.</p>
 <p>By default the Configuration Admin Service is installed when Sling is started for the first time. This service is used by the Service Component Runtime launching the OSGi components declared in the bundles with configuration values. The Sling Management Console provides a simple GUI to manage these configuration elements on the 'Configuration' page.</p>
 <p>For more information on the Configuration Admin Service refer to the OSGi Configuration Admin Service Specification in the OSGi Service Platform Service Compendium book.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
                 </div>                <p>
@@ -267,7 +267,7 @@
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>

@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,14 +54,14 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                    </a><a href="/documentation/bundles.html">
                         Bundles
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/publishing.html" class="label">
@@ -209,7 +209,7 @@
 </table>
 <p>As you can see from the configuration there are several possibilities to define when a pipeline should be used for a response, like paths, extensions, content types, or resource types. It is possible to specify several of them at once. In this case all conditions must be met.</p>
 <p>If a component needs a configuration, the configuration is stored in a child node which name is <em>{componentType}-{name}</em>, e.g. to configure the HTML generator (named <em>html-generator</em>), the node should have the name <em>generator-html-generator</em>. In the case that the pipeline contains the same transformer several times, the configuration child node should have the formant <em>{componentType}-{index}</em> where index is the index of the transformer starting with 1. For example if you have a pipeline with the following transformers, xslt, html-cleaner, xslt, link-checker, then the configuration nodes should be named <em>transformer-1</em> (for the first xslt), <em>transformer-html-cleaner</em>, <em>transformer-3</em> (for the second xslt), and <em>transformer-link-checker</em>.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jul 10 11:43:51 2018 +0200</span>
                 </div>                <p>
@@ -217,7 +217,7 @@
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>

@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,14 +54,14 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                    </a><a href="/documentation/bundles.html">
                         Bundles
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/configuration.html" class="label">
@@ -137,7 +137,7 @@
 <p>By default, no property inheritance takes place. That means only the properties that are stored in the configuration resource are mapped to the annotation class or returned as value map, regardless whether singleton or collection resources are returned, or if resource collection inheritance is enabled or not.</p>
 <p>By defining a property <code>sling:configPropertyInherit</code> on the configuration resource, property merging is enabled between the current configuration resource and the next resource with the same name (singleton or resource collection item) in the configuration resource lookup order. That means that all properties that are not defined on the current configuration resource are inherited from the next resources and a merged value map is used for the configuration mapping.</p>
 <p>By setting the property <code>sling:configPropertyInherit</code> on multiple configuration resources that are part of the lookup order it is possible to form deeper inheritance chains following the same rules.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
                 </div>                <p>
@@ -145,7 +145,7 @@
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>

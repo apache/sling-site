@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,16 +54,16 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                    </a><a href="/documentation/bundles.html">
                         Bundles
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles/sling-query.html">
+                    </a><a href="/documentation/bundles/sling-query.html">
                         Sling Query
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/slingquery.html" class="label">
@@ -114,7 +114,7 @@
   </tbody>
 </table>
 <p>[1] - Actually, the <code>find()</code> operation uses QUERY strategy by default, which means that the selector string is transformed to a SQL2 query. However, the transformation process is very naïve and simply skips all conditions that can't be easily transformed to SQL2 (eg. selector <code>[jcr:content/jcr:title=some title]</code> won't be transformed as it contains some subresource reference). The result of this query is then filtere manually. See <a href="methods.html#searchstrategystrategy">searchStrategy</a> for more details.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
                 </div>                <p>
@@ -122,7 +122,7 @@
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>

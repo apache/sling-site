@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,14 +54,14 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                    </a><a href="/documentation/bundles.html">
                         Bundles
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/contentdistribution.html" class="label">
@@ -271,7 +271,7 @@ org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageIm
 <p>The agent behaviour upon failed distribution request can be configured via the Retry Strategy 'retry.strategy' and 'retry.attempts' properties.</p>
 <p>With the 'none' strategy, an agent will retry distributing an item forever, blocking the queue until the distribution succeeds. The 'none' strategy guarantees the distribution order but may block the queue until someone resolves the situation.</p>
 <p>With the 'errorQueue' strategy, an agent will automatically create an additional error queue. The agent will retry up to 'retry.attempts' attempts then move the failed item to the error queue. The error queue is passive and allow to keep track of the failed distribution item for post analysis. The 'errorQueue' strategy does not guarantee the distribution order, but it guarantee that the queue is stuck for a bounded number of retries.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Sep 29 15:57:01 2017 +0200</span>
                 </div>                <p>
@@ -279,7 +279,7 @@ org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageIm
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>

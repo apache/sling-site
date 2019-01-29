@@ -24,7 +24,7 @@
             <ul>
                 <li>
                     <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Main</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="http://sling.apache.org/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
                     </ul>
                 </li><li>
                     <strong>API Docs</strong><ul>
@@ -54,14 +54,14 @@
             </ul>
         </nav>        <div class="main">
             <div class="pagenav">
-<div class="breadcrumbs">
+<div class="breadcrumb">
                     <a href="/">
                         Home
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation.html">
+                    </a><a href="/documentation.html">
                         Documentation
-                    </a>&nbsp;&raquo;&nbsp;<a href="/documentation/bundles.html">
+                    </a><a href="/documentation/bundles.html">
                         Bundles
-                    </a>&nbsp;&raquo;&nbsp;
+                    </a>
                 </div>                
 <div class="tags">
                     <a href="/tags/healthchecks.html" class="label">
@@ -291,7 +291,7 @@ servletPath = /system/health
 <p>It requires the <code>org.apache.sling.junit.core bundle</code> which provides the server-side JUnit tests infrastructure.</p>
 <p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br/>remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
 <p>To use this module, configure sets of tags at <code>/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider</code> using the standard <code>includeThisTag,-omitThatTag</code> syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html to run the corresponding Health Checks.</p></section></div></div>            
-            <div class="footer">
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">sseifert</span> on <span class="comment">Thu Mar 22 13:02:02 2018 +0100</span>
                 </div>                <p>
@@ -299,7 +299,7 @@ servletPath = /system/health
                 </p><p>
                     Copyright © 2007-2018 The Apache Software Foundation.
                 </p>
-            </div>
+            </footer>
             
         </div>
     </body>
