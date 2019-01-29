@@ -194,10 +194,10 @@ def bundles=[
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.3.0|Y|jar",
   "Scripting Groovy|org.apache.sling.scripting.freemarker|1.0.0|Y|jar",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.4|Y|jar",
-  "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.0.0-1.4.0|Y|jar",
-  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.1.0-1.4.0|Y|jar",
-  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.1.0-1.4.0|Y|jar",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.1.0-1.4.0|Y|jar",
+  "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.1.0-1.4.0|Y|jar",
+  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.1.2-1.4.0|Y|jar",
+  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.1.2-1.4.0|Y|jar",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.1.2-1.4.0|Y|jar",
   "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.28|Y|jar",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.8|Y|jar",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.6|Y|jar",
@@ -243,7 +243,7 @@ def bundles=[
   "Validation Core|org.apache.sling.validation.core|1.0.4|Y|jar",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2|Y|jar",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0|Y|jar",
-  "XSS Protection|org.apache.sling.xss|2.0.14|Y|jar",
+  "XSS Protection|org.apache.sling.xss|2.1.0|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
                                                                       

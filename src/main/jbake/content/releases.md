@@ -7,6 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## January 2019
+* XSS Protection API 2.1.0 (29th)
+* Scripting HTL Runtime 1.1.0-1.4.0, Scripting HTL Compiler 1.1.2-1.4.0, Scripting HTL Java Compiler 1.1.2-1.4.0, Scripting HTL Engine 1.1.2-1.4.0, HTL Maven Plugin 1.2.4-1.4.0 (28th)
 * XSS Protection API 2.0.14 (24th)
 * Commons HTML 1.1.0 (22nd)
 * Tenant 1.1.4 (16th)
