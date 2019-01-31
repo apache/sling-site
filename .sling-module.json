@@ -1,0 +1,11 @@
+{
+    "jenkins": {
+        "mavenGoal": "package",
+        "branches": {
+            "master": {
+                "nodeLabel": "git-websites",
+                "additionalMavenParams": "-Ppublish-site -Dmsg=\"Automatic website deployment\""
+            }
+        }
+    }
+}

@@ -214,6 +214,7 @@ If the vote passes:
         * Make sure to *not* change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!
         * Following the SVN commit you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports.
     1. Delete the old release artifacts from that same dist.apache.org svn folder (the dist directory is archived)
+    1. You will get an email from the Apache Reporter Service, which will ask you to add the information about the newly added release artifact. To simplify this task you can use the script from [https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh](https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh).
 1. Push the release to Maven Central
 	1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging*. Find your closed staging repository and select it by checking the select box. Select the *Releases* repository from the drop-down list and click *Release* from the menu above.
 	1. Once the release is promoted click on *Repositories*, select the *Releases* repository and validate that your artifacts are all there.

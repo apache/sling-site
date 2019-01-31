@@ -5,6 +5,6 @@ target
 # IDE settings
 .*
 !.gitignore
-!.sling-module.xml
+!.sling-module.json
 .DS_Store
 *.iml
