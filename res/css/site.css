@@ -337,7 +337,7 @@ pre {
     float:right;
 }
 
-.tags a {
+.tags .tag {
     background-color: #EEE;
 	padding: 0.2em;
     margin-left: 0.2em;
