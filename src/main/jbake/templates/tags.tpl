@@ -17,8 +17,8 @@ layout 'layout/main.tpl', true,
                 alltags.sort().each { tag ->
                     tag = tag.trim()
                     def count = all_content.findAll { p -> p.tags && p.tags.contains(tag) }.size()
-                    span(class:"allTagsLink") {
-                        a(href:"${config.site_contextPath}tags/${tag.replace(' ', '-')}.html", class:"label"){
+                    span(class:"tag") {
+                        a(href:"${config.site_contextPath}tags/${tag.replace(' ', '-')}.html"){
                             yield "$tag"
                             span(class:"badge","${count}")
                         }
