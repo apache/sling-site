@@ -308,6 +308,7 @@ pre {
     padding-left: 3px;
     padding-right: 3px;
 	margin-left: 3px;
+	display:inline-block;
 }
 
 .pagenav {
@@ -344,6 +345,6 @@ pre {
 	text-decoration: none;
 }
 
-.allTagsLink {
+.tags .tag:not(:last-child)  {
     padding-right:0.5em;
 }
