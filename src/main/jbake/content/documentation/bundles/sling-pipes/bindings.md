@@ -59,8 +59,11 @@ will loop twice on the pipe `example`, making available each time for the follow
 
 ## additional bindings
 
-additional bindings is a [node you add to your pipe definition](/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe.html), that
-sets bindings for the whole pipe execution.
+`additionalBindings` is a [node you add to any pipe definition](/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe.html), that
+sets its properties as bindings for this pipe's context execution.
+you can also add `additionalBindings/providers` children, that should be read-only pipes that will get executed before this pipe
+execution, to provide dynamic bindings. 
+
 You can also add some through [pipe builder api](/documentation/bundles/sling-pipes/execution-monitoring.html#pipe-builder-api)
 with a map of bindings
 
@@ -73,6 +76,8 @@ or with a set of key / value pairs
 [http api](/documentation/bundles/sling-pipes/execution-monitoring.html#http-api) for this is a binding parameter
     
         -F bindings='{"env":"prod"}'
+        
+In case a pipe needs a more dynamic binding, you can use another pipe as binding provider, 
                  
 ## additional scripts
 

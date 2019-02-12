@@ -22,8 +22,10 @@ e.g.
     
 will write `@foo1=bar1` and `@foo2=bar2` in `/content/foo`. For more complicated cases where you need a structure to be written,
 just use a JCR / Resource explorer to edit the persistence of the pipe, and create the given structured under conf.
+Note that you can use expressions in that node tree, and specifically, for a node name, parent of a tree you want to
+be conditionally written, use `$if${...}nodename` syntax, that will basically only create such tree if the expression is true.
 
-Note that using `expr` you need configuration node _not_ to be here, and {{write}} shortcut creates one systematically.
+Note that using `expr` you need configuration node _not_ to be here, and `write` shortcut creates one systematically.
 So if you want to use pipe builder and that, you'd need something like
 
         .echo('/content/destination')
