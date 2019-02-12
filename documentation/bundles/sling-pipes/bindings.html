@@ -112,7 +112,8 @@
     }         
 </code></pre>
 <h2><a href="#additional-bindings" name="additional-bindings">additional bindings</a></h2>
-<p>additional bindings is a <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe.html">node you add to your pipe definition</a>, that sets bindings for the whole pipe execution. You can also add some through <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#pipe-builder-api">pipe builder api</a> with a map of bindings</p>
+<p><code>additionalBindings</code> is a <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe.html">node you add to any pipe definition</a>, that sets its properties as bindings for this pipe's context execution. you can also add <code>additionalBindings/providers</code> children, that should be read-only pipes that will get executed before this pipe execution, to provide dynamic bindings. </p>
+<p>You can also add some through <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#pipe-builder-api">pipe builder api</a> with a map of bindings</p>
 <pre><code>    .run(bindings)
 </code></pre>
 <p>or with a set of key / value pairs</p>
@@ -121,13 +122,14 @@
 <p><a href="/documentation/bundles/sling-pipes/execution-monitoring.html#http-api">http api</a> for this is a binding parameter</p>
 <pre><code>    -F bindings=&#39;{&quot;env&quot;:&quot;prod&quot;}&#39;
 </code></pre>
+<p>In case a pipe needs a more dynamic binding, you can use another pipe as binding provider, </p>
 <h2><a href="#additional-scripts" name="additional-scripts">additional scripts</a></h2>
 <p>some times you want heavy js logic in your expression instantiation. In that case, you need to store your javascript somewhere in the JCR, and mentions the path in the <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe.html">additionalScripts MV property</a></p>
 <h2><a href="#bindings-forward" name="bindings-forward">bindings forward</a></h2>
 <p>in case a pipe references, or contain another pipe, same binding space will be used</p></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Oct 8 17:09:17 2018 +0200</span>
+                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Tue Feb 12 11:46:55 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>

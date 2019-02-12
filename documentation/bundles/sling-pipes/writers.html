@@ -88,8 +88,8 @@
 <pre><code>    .echo(&#39;/content/foo&#39;)
     .write(&#39;foo1&#39;,&#39;bar1&#39;,&#39;foo2&#39;,&#39;bar2&#39;)
 </code></pre>
-<p>will write <code>@foo1=bar1</code> and <code>@foo2=bar2</code> in <code>/content/foo</code>. For more complicated cases where you need a structure to be written, just use a JCR / Resource explorer to edit the persistence of the pipe, and create the given structured under conf.</p>
-<p>Note that using <code>expr</code> you need configuration node <em>not</em> to be here, and {{write}} shortcut creates one systematically. So if you want to use pipe builder and that, you'd need something like</p>
+<p>will write <code>@foo1=bar1</code> and <code>@foo2=bar2</code> in <code>/content/foo</code>. For more complicated cases where you need a structure to be written, just use a JCR / Resource explorer to edit the persistence of the pipe, and create the given structured under conf. Note that you can use expressions in that node tree, and specifically, for a node name, parent of a tree you want to be conditionally written, use <code>$if${...}nodename</code> syntax, that will basically only create such tree if the expression is true.</p>
+<p>Note that using <code>expr</code> you need configuration node <em>not</em> to be here, and <code>write</code> shortcut creates one systematically. So if you want to use pipe builder and that, you'd need something like</p>
 <pre><code>    .echo(&#39;/content/destination&#39;)
     .pipe(&quot;slingPipes/write&quot;).expr(&quot;/content/source&quot;)
 </code></pre>
@@ -176,7 +176,7 @@
 </code></pre></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">dichaudh</span> on <span class="comment">Fri Oct 19 18:44:17 2018 +0530</span>
+                    Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Tue Feb 12 11:46:55 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
