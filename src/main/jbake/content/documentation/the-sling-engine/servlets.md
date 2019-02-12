@@ -78,8 +78,7 @@ The following examples show example code how you can register Servlets with Slin
 1. OSGi DS 1.4 (R7) component property type annotations for Sling Servlets (recommended)
 
         ::java
-        @Component(
-        service = { Servlet.class },
+        @Component(service = { Servlet.class })
         @SlingServletResourceTypes(
             resourceTypes="/apps/my/type", 
             methods= "GET",
