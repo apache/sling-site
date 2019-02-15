@@ -168,7 +168,7 @@ def bundles=[
   "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.2|Y|jar",
   "Pax Exam Utilities|org.apache.sling.paxexam.util|1.0.4|Y|jar",
   "Performance Test Utilities|org.apache.sling.performance.base|1.0.2|org.apache.sling.performance|jar",
-  "Pipes|org.apache.sling.pipes|3.0.2|Y|jar",
+  "Pipes|org.apache.sling.pipes|3.1.0|Y|jar",
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.4|Y|jar",
   "Repoinit Parser|org.apache.sling.repoinit.parser|1.2.2|Y|jar",
   "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.0.0|Y|jar",
