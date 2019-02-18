@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2019
 
+* Scripting JSP Tag Library 2.4.0, Scripting JSP Tag Library (Compat) 1.0.0 (18th)
 * Pipes 3.1.0 (15th)
 * Testing OSGi Mock 2.4.6 (14th)
 * Feature Model 1.0.0 and Feature Model IO 1.0.0 (1st)
