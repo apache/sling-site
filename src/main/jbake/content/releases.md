@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2019
 
+* DataSource Provider 1.0.4, Resource Collection API 1.0.2, JCR ResourceResolver 3.0.18 (26th)
 * Scripting JSP Tag Library 2.4.0, Scripting JSP Tag Library (Compat) 1.0.0 (18th)
 * Pipes 3.1.0 (15th)
 * Testing OSGi Mock 2.4.6 (14th)
