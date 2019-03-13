@@ -330,6 +330,7 @@ Enjoy!
 with code signing enabled you install the right ones. If you install artifacts with the same version but not signed, Eclipse will cache
 that version indefinitely with no known workaround except setting up a new installation of Eclipse.</div>
 <p>While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see <a href="https://reference.apache.org/pmc/codesigning">Using the code signing service </a> for details.</p>
+<p>Before starting, it is recommended to run throught the <a href="https://cwiki.apache.org/confluence/display/SLING/Sling+IDE+Tooling+release+testing">Sling IDE Tooling release testing</a>, to make sure no regressions have snuck in.</p>
 <div class="note">While we sort out a proper location you will need to locally build install the <tt>codesign-maven-plugin</tt> from
 <a href="https://github.com/apache/sling-whiteboard/tree/master/codesign">https://github.com/apache/sling-whiteboard/tree/master/codesign</a>.</div>
 <p>The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.</p>
@@ -499,7 +500,7 @@ ssb   2048R/226BCE00 2016-01-21
 </ol></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">Thu Jan 31 11:42:58 2019 +0100</span>
+                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Mar 13 11:12:55 2019 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
