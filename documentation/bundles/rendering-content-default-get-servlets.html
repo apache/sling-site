@@ -85,6 +85,7 @@ page needs more work.
 <p>This provides useful functionality out of the box: JSON rendering of content for example, usually does not require custom code.</p>
 <p>This page provides an overview of these default servlets.</p>
 <p>Currently, only the <code>DefaultGetServlet</code> has configuration parameters. Those are found at <code>/system/console/configMgr/org.apache.sling.servlets.get.DefaultGetServlet</code> on a standard Sling setup, and should be self-explaining. One common use is to disable some of the default renderings listed below, as they might not be useful or desired on production systems. </p>
+<p>If not otherwise mentioned for specific renderings the servlet does not support conditional requests as specified by <a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a> (i.e. the <code>If-....</code> request headers are disregarded and the response will neither contain <code>ETag</code> nor <code>Last-Modified</code> headers).</p>
 <h1><a href="#default-renderings" name="default-renderings">Default renderings</a></h1>
 <h2><a href="#default-json-rendering" name="default-json-rendering">Default JSON rendering</a></h2>
 <p>Adding a .json extension to a request triggers the default Sling GET servlet in JSON mode, unless a more specific servlet or script is provided for the current resource.</p>
@@ -103,7 +104,7 @@ page needs more work.
 <p>Adding a <code>.xml</code> extension triggers the default XML rendering, once again unless a more specific script or servlet is registered for the current resource.</p>
 <p>That XML rendering currently uses the JCR "document view" export functionality directly, so it only supports rendering resources that are backed by JCR nodes.</p>
 <h2><a href="#streamrendererservlet" name="streamrendererservlet">StreamRendererServlet</a></h2>
-<p>Whenever the request carries the extension <code>.res</code> or no extension at all, the resource's input stream is spooled to the servlet response (leveraging <code>Resource.adaptTo(InputStream.class)</code>). This servlet supports conditional requests (<a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>) evaluating the resource's modification date from <code>Resource.getResourceMetadata().getModificationTime()</code> and range requests (<a href="https://tools.ietf.org/html/rfc7233">RFC 7233</a>).</p>
+<p>Whenever the request carries the extension <code>.res</code> or no extension at all, the resource's input stream is spooled to the servlet response (leveraging <code>Resource.adaptTo(InputStream.class)</code>). This servlet supports conditional requests (<a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>) based on the last-modified response header by evaluating the resource's modification date from <code>Resource.getResourceMetadata().getModificationTime()</code> and range requests (<a href="https://tools.ietf.org/html/rfc7233">RFC 7233</a>).</p>
 <h2><a href="#redirectservlet" name="redirectservlet">RedirectServlet</a></h2>
 <p>The <code>RedirectServlet</code> handles the <code>sling:redirect</code> resource type, using the <code>sling:target</code> property of the resource to define the redirect target, and the <code>sling:status</code> property to define the HTTP status to use (default is 302).</p>
 <p>This is not to be confused with the <code>sling:redirect</code> property used under <code>/etc/map</code>, which is described in <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></p>
@@ -206,7 +207,7 @@ curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.2&quot;
 </code></pre></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Jan 24 09:40:10 2018 +0100</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Wed Mar 13 14:37:06 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
