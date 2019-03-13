@@ -289,6 +289,9 @@ that version indefinitely with no known workaround except setting up a new insta
 
 While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see [Using the code signing service ](https://reference.apache.org/pmc/codesigning) for details.
 
+Before starting, it is recommended to run throught the [Sling IDE Tooling release testing](https://cwiki.apache.org/confluence/display/SLING/Sling+IDE+Tooling+release+testing),
+to make sure no regressions have snuck in.
+
 <div class="note">While we sort out a proper location you will need to locally build install the <tt>codesign-maven-plugin</tt> from
 <a href="https://github.com/apache/sling-whiteboard/tree/master/codesign">https://github.com/apache/sling-whiteboard/tree/master/codesign</a>.</div>
 
