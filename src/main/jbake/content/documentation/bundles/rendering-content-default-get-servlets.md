@@ -25,6 +25,8 @@ Currently, only the `DefaultGetServlet` has configuration parameters. Those are 
 and should be self-explaining. One common use is to disable some of the default renderings listed below,
 as they might not be useful or desired on production systems. 
 
+If not otherwise mentioned for specific renderings the servlet does not support conditional requests as specified by [RFC 7232](https://tools.ietf.org/html/rfc7232) (i.e. the `If-....` request headers are disregarded and the response will neither contain `ETag` nor `Last-Modified` headers).
+
 # Default renderings
 
 ## Default JSON rendering
@@ -60,7 +62,7 @@ rendering resources that are backed by JCR nodes.
 
 ## StreamRendererServlet
 
-Whenever the request carries the extension `.res` or no extension at all, the resource's input stream is spooled to the servlet response (leveraging `Resource.adaptTo(InputStream.class)`). This servlet supports conditional requests ([RFC 7232](https://tools.ietf.org/html/rfc7232)) evaluating the resource's modification date from `Resource.getResourceMetadata().getModificationTime()`  and range requests ([RFC 7233](https://tools.ietf.org/html/rfc7233)).
+Whenever the request carries the extension `.res` or no extension at all, the resource's input stream is spooled to the servlet response (leveraging `Resource.adaptTo(InputStream.class)`). This servlet supports conditional requests ([RFC 7232](https://tools.ietf.org/html/rfc7232)) based on the last-modified response header by evaluating the resource's modification date from `Resource.getResourceMetadata().getModificationTime()`  and range requests ([RFC 7233](https://tools.ietf.org/html/rfc7233)).
 
 ## RedirectServlet
 
