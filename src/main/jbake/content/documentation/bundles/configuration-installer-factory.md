@@ -99,23 +99,30 @@ or for primitives
 
 For Float and Double types the methods [Float.intBitsToFloat](https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29) and [Double.longBitsToDouble](https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble%28long%29) are being used to convert the numeric string into the correct type. These methods rely on the IEEE-754 floating-point formats described in [Single-precision floating-point format](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) and [Double-precision floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format). A more user-friendly format is not yet supported for these types ([SLING-7757](https://issues.apache.org/jira/browse/SLING-7757)).
 
-Multiple values enclosed by `[` and `]` lead to an array while those enclosed by `(` and `)` lead to a Collection in the underlying `java.util.Dictionary` of the `org.osgi.service.cm.Configuration` and vice-versa.
+Multiple values enclosed by `[` and `]` lead to an array while those enclosed by `(` and `)` lead to a `Collection` in the underlying `java.util.Dictionary` of the `org.osgi.service.cm.Configuration` and vice-versa.
 
-Although both objects and primites are supported, both lead to generating the wrapper objects (and not the primitives) in the underlying `java.util.Dictionary` of the `org.osgi.service.cm.Configuration` during deserialization (even for multivalue entries).
+Although both objects and primites are supported, in case you use single-value entries or collections the deserialization will autobox primitives.
 
 A number of such .config files exist in the Sling codebase and can be used as examples.
 
 #### Limitations
 
-* No support for Collections containing different types
+* No support for collections containing different types
 * No support for nested multivalues (arrays or Collections)
-* No write-support for primitive arrays
 
 ### Configuration Files (.cfg.json)
 
 This is only supported since Installer Configuration Factory 1.2.0 ([SLING-7787](https://issues.apache.org/jira/browse/SLING-7787)).
 
 The exact JSON format is described in the [OSGi R7 Service Configurator Spec](https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html).
+
+The only differences to the spec are outlined below
+
+* :configurator:resource-version may be used, but only version 1 is supported
+* other keys starting with `:configurator:` should not be used (in general they are validated but not further evaluated)
+  * The PID is given via the file name (the part preceeding the `.cfg.json`) instead of `:configurator:symbolic-name`
+  * There is no version support i.e. `:configurator:version` should not be used either
+
 
 #### Limitations
 
