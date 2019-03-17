@@ -229,5 +229,5 @@ More examples:
 
 [mockito-junit4-testrunner]: https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html
 [mockito-junit5-extension]: https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html
-[caconfig-mock-plugin]: https://github.com/apache/sling/blob/trunk/contrib/extensions/contextaware-config/testing/mocks/caconfig-mock-plugin/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java
-[caconfig-mock-plugin-test]: https://github.com/apache/sling/blob/trunk/contrib/extensions/contextaware-config/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java
+[caconfig-mock-plugin]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java
+[caconfig-mock-plugin-test]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java
