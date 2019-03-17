@@ -211,7 +211,7 @@ In you project define a test dependency (additionally the sling-mock dependency 
       <scope>test</scope>
     </dependency>
 
-Full example: [Apache Sling Context-Aware Configuration Mock Plugin Test](https://github.com/apache/sling/blob/trunk/testing/mocks/caconfig-mock-plugin/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java)
+Full example: [Apache Sling Context-Aware Configuration Mock Plugin Test](https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java)
 
 
 # Customizing the configuration lookup
