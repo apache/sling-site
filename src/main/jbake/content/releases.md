@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2019
 
+* Installer Factory Configuration 1.2.2 (18th)
 * Testing OSGi Mock 2.4.8 (10th)
 * Servlet Helpers 1.1.10, Testing JCR Mock 1.4.4, Testing ResourceResolver Mock 1.1.24 (7th)
 
