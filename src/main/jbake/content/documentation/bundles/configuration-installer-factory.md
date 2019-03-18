@@ -54,9 +54,9 @@ In addition the XML format defined by [java.util.Property](https://docs.oracle.c
 
 ### Configuration Files (.config)
 
-Configuration files ending in `.config` use the format of the [Apache Felix ConfigAdmin implementation](http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup) (in version 1.8.12). It allows to specify the type and cardinality of a configuration property and is not limited to string values.
+Configuration files ending in `.config` use the format of the [Apache Felix ConfigAdmin implementation](http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup) (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding.
 
-The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.
+The first line of such a file might start with a comment line (a line starting with a `#`). Comments within the file are not allowed.
 
 The format is:
 
@@ -109,6 +109,7 @@ A number of such .config files exist in the Sling codebase and can be used as ex
 
 * No support for collections containing different types
 * No support for nested multivalues (arrays or Collections)
+* No user-friendly (readable) values for floating points ([SLING-7757](https://issues.apache.org/jira/browse/SLING-7757))
 
 ### Configuration Files (.cfg.json)
 
@@ -118,7 +119,7 @@ The exact JSON format is described in the [OSGi R7 Service Configurator Spec](ht
 
 The only differences to the spec are outlined below
 
-* :configurator:resource-version may be used, but only version 1 is supported
+* `:configurator:resource-version` may be used, but only version 1 is supported
 * other keys starting with `:configurator:` should not be used (in general they are validated but not further evaluated)
   * The PID is given via the file name (the part preceeding the `.cfg.json`) instead of `:configurator:symbolic-name`
   * There is no version support i.e. `:configurator:version` should not be used either
