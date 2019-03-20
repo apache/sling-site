@@ -99,9 +99,15 @@ comment ::= &#39;#&#39; &lt;any&gt;
 ftp.port = 21
 </code></pre>
 <p>In addition the XML format defined by [java.util.Property](https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#loadFromXML(java.io.InputStream)) is supported if the file starts with the character <code>&lt;</code>.</p>
+<h4><a href="#limitations" name="limitations">Limitations</a></h4>
+<ul>
+  <li>Only String types are supported</li>
+  <li>Only ISO 8859-1 character encoding supported</li>
+  <li>No multi-values</li>
+</ul>
 <h3><a href="#configuration-files-config-" name="configuration-files-config-">Configuration Files (.config)</a></h3>
-<p>Configuration files ending in <code>.config</code> use the format of the <a href="https://github.com/apache/felix/blob/trunk/configadmin/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java">Apache Felix ConfigAdmin implementation</a>. It allows to specify the type and cardinality of a configuration property and is not limited to string values.</p>
-<p>The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.</p>
+<p>Configuration files ending in <code>.config</code> use the format of the <a href="http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup">Apache Felix ConfigAdmin implementation</a> (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding.</p>
+<p>The first line of such a file might start with a comment line (a line starting with a <code>#</code>). Comments within the file are not allowed.</p>
 <p>The format is:</p>
 <pre><code>file ::= (comment) (header) *
 comment ::= &#39;#&#39; &lt;any&gt;
@@ -110,7 +116,7 @@ prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
 symbolic-name ::= token { &#39;.&#39; token } 
 token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | &#39;_&#39; | &#39;-&#39; }
 value ::= [ type ] ( &#39;[&#39; values &#39;]&#39; | &#39;(&#39; values &#39;)&#39; | simple ) 
-values ::= simple { &#39;,&#39; simple } 
+values ::= ( simple { &#39;,&#39; simple } | &#39;\&#39; &lt;nl&gt; simple { &#39;, \&#39; &lt;nl&gt; simple } &lt;nl&gt; )
 simple ::= &#39;&quot;&#39; stringsimple &#39;&quot;&#39;
 type ::= &lt;1-char type code&gt;
 stringsimple ::= &lt;quoted string representation of the value where both &#39;&quot;&#39; and &#39;=&#39; need to be escaped&gt;
@@ -118,25 +124,58 @@ stringsimple ::= &lt;quoted string representation of the value where both &#39;&
 <p>The quoted string format is equal to the definition from HTTP 1.1 (<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html">RFC2616</a>), except that both '"' and '=' need to be escaped.</p>
 <p>The 1 character type code is one of:</p>
 <ul>
-  <li><code>T</code> : simple string</li>
-  <li><code>I</code> : Integer</li>
-  <li><code>L</code> : Long</li>
-  <li><code>F</code> : Float</li>
-  <li><code>D</code> : Double</li>
-  <li><code>X</code> : Byte</li>
-  <li><code>S</code> : Short</li>
-  <li><code>C</code> : Character</li>
-  <li><code>B</code> : Boolean</li>
+  <li><code>T</code> : <code>String</code></li>
+  <li><code>I</code> : <code>Integer</code></li>
+  <li><code>L</code> : <code>Long</code></li>
+  <li><code>F</code> : <code>Float</code></li>
+  <li><code>D</code> : <code>Double</code></li>
+  <li><code>X</code> : <code>Byte</code></li>
+  <li><code>S</code> : <code>Short</code></li>
+  <li><code>C</code> : <code>Character</code></li>
+  <li><code>B</code> : <code>Boolean</code></li>
 </ul>
-<p>For Float and Double types the methods <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29">Float.intBitsToFloat</a> and <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble%28long%29">Double.longBitsToDouble</a> are being used to convert the numeric string into the correct type. These methods rely on the IEEE 754 floating-point formats described in <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">Single-precision floating-point format</a> and <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Double-precision floating-point format</a>. A more user-friendly format is not yet supported for these types (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>).</p>
+<p>or for primitives</p>
+<ul>
+  <li><code>i</code> : <code>int</code></li>
+  <li><code>l</code> : <code>long</code></li>
+  <li><code>f</code> : <code>float</code></li>
+  <li><code>d</code> : <code>double</code></li>
+  <li><code>x</code> : <code>byte</code></li>
+  <li><code>s</code> : <code>short</code></li>
+  <li><code>c</code> : <code>char</code></li>
+  <li><code>b</code> : <code>boolean</code></li>
+</ul>
+<p>For Float and Double types the methods <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29">Float.intBitsToFloat</a> and <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble%28long%29">Double.longBitsToDouble</a> are being used to convert the numeric string into the correct type. These methods rely on the IEEE-754 floating-point formats described in <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">Single-precision floating-point format</a> and <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Double-precision floating-point format</a>. A more user-friendly format is not yet supported for these types (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>).</p>
+<p>Multiple values enclosed by <code>[</code> and <code>]</code> lead to an array while those enclosed by <code>(</code> and <code>)</code> lead to a <code>Collection</code> in the underlying <code>java.util.Dictionary</code> of the <code>org.osgi.service.cm.Configuration</code> and vice-versa.</p>
+<p>Although both objects and primites are supported, in case you use single-value entries or collections the deserialization will autobox primitives.</p>
 <p>A number of such .config files exist in the Sling codebase and can be used as examples.</p>
+<h4><a href="#limitations" name="limitations">Limitations</a></h4>
+<ul>
+  <li>No support for collections containing different types</li>
+  <li>No support for nested multivalues (arrays or Collections)</li>
+  <li>No user-friendly (readable) values for floating points (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>)</li>
+</ul>
+<h3><a href="#configuration-files-cfg-json-" name="configuration-files-cfg-json-">Configuration Files (.cfg.json)</a></h3>
+<p>This is only supported since Installer Configuration Factory 1.2.0 (<a href="https://issues.apache.org/jira/browse/SLING-7787">SLING-7787</a>).</p>
+<p>The exact JSON format is described in the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html">OSGi R7 Service Configurator Spec</a>.</p>
+<p>The only differences to the spec are outlined below</p>
+<ul>
+  <li><code>:configurator:resource-version</code> may be used, but only version 1 is supported</li>
+  <li>other keys starting with <code>:configurator:</code> should not be used (in general they are validated but not further evaluated)</li>
+  <li>The PID is given via the file name (the part preceeding the <code>.cfg.json</code>) instead of <code>:configurator:symbolic-name</code></li>
+  <li>There is no version support i.e. <code>:configurator:version</code> should not be used either</li>
+</ul>
+<h4><a href="#limitations" name="limitations">Limitations</a></h4>
+<ul>
+  <li>None known so far</li>
+</ul>
 <h1><a href="#project-info" name="project-info">Project Info</a></h1>
 <ul>
   <li>Configuration installer factory (<a href="https://github.com/apache/sling-org-apache-sling-installer-factory-configuration">org.apache.sling.installer.factory.configuration</a>)</li>
 </ul></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jun 28 10:33:26 2018 +0200</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Mar 18 16:08:32 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
