@@ -1,12 +1,10 @@
-title=Sling Health Check Tools Migration Guide		
+title=Sling Health Checks Migration Guide to Felix Health Checks		
 type=page
 status=published
 tags=healthchecks,operations
 ~~~~~~
 
 **Sling Health Checks are now deprecated**. See [Sling Health Check Tools (deprecated)](sling-health-check-tool-deprecated.html) for documentation prior to deprecation.
-
-# Migrate to Felix Health Checks
 
 ## Migrate custom checks
 
@@ -16,6 +14,7 @@ tags=healthchecks,operations
 * Add
 
 ```
+
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.healthcheck.api</artifactId>
@@ -29,6 +28,7 @@ tags=healthchecks,operations
             <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
+        
 ```
 ### Adjust Health Check Code
 
