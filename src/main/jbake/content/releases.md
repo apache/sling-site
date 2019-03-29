@@ -6,10 +6,22 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## March 2019
+
+* Installer Factory Configuration 1.2.2 (18th)
+* Testing OSGi Mock 2.4.8 (10th)
+* Servlet Helpers 1.1.10, Testing JCR Mock 1.4.4, Testing ResourceResolver Mock 1.1.24 (7th)
+
 ## February 2019
-* Feature Model 1.0.0 and Feature Model IO 1.0.0
+
+* DataSource Provider 1.0.4, Resource Collection API 1.0.2, JCR ResourceResolver 3.0.18 (26th)
+* Scripting JSP Tag Library 2.4.0, Scripting JSP Tag Library (Compat) 1.0.0 (18th)
+* Pipes 3.1.0 (15th)
+* Testing OSGi Mock 2.4.6 (14th)
+* Feature Model 1.0.0 and Feature Model IO 1.0.0 (1st)
 
 ## January 2019
+
 * XSS Protection API 2.1.0 (29th)
 * Scripting HTL Runtime 1.1.0-1.4.0, Scripting HTL Compiler 1.1.2-1.4.0, Scripting HTL Java Compiler 1.1.2-1.4.0, Scripting HTL Engine 1.1.2-1.4.0, HTL Maven Plugin 1.2.4-1.4.0 (28th)
 * XSS Protection API 2.0.14 (24th)

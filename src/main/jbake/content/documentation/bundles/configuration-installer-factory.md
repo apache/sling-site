@@ -46,11 +46,17 @@ Notice that this model only supports string properties. For example:
 
 In addition the XML format defined by [java.util.Property](https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#loadFromXML(java.io.InputStream)) is supported if the file starts with the character `<`.
 
+#### Limitations
+
+* Only String types are supported
+* Only ISO 8859-1 character encoding supported
+* No multi-values
+
 ### Configuration Files (.config)
 
-Configuration files ending in `.config` use the format of the [Apache Felix ConfigAdmin implementation](https://github.com/apache/felix/blob/trunk/configadmin/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java). It allows to specify the type and cardinality of a configuration property and is not limited to string values.
+Configuration files ending in `.config` use the format of the [Apache Felix ConfigAdmin implementation](http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup) (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding.
 
-The first line of such a file might start with a comment line (a line starting with a #). Comments within the file are not allowed.
+The first line of such a file might start with a comment line (a line starting with a `#`). Comments within the file are not allowed.
 
 The format is:
 
@@ -61,7 +67,7 @@ The format is:
     symbolic-name ::= token { '.' token } 
     token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' }
     value ::= [ type ] ( '[' values ']' | '(' values ')' | simple ) 
-    values ::= simple { ',' simple } 
+    values ::= ( simple { ',' simple } | '\' <nl> simple { ', \' <nl> simple } <nl> )
     simple ::= '"' stringsimple '"'
     type ::= <1-char type code>
     stringsimple ::= <quoted string representation of the value where both '"' and '=' need to be escaped>
@@ -70,19 +76,59 @@ The quoted string format is equal to the definition from HTTP 1.1 ([RFC2616](htt
 
 The 1 character type code is one of:
 
-* `T` : simple string
-* `I` : Integer
-* `L` : Long
-* `F` : Float
-* `D` : Double
-* `X` : Byte
-* `S` : Short
-* `C` : Character
-* `B` : Boolean
+* `T` : `String`
+* `I` : `Integer`
+* `L` : `Long`
+* `F` : `Float`
+* `D` : `Double`
+* `X` : `Byte`
+* `S` : `Short`
+* `C` : `Character`
+* `B` : `Boolean`
 
-For Float and Double types the methods [Float.intBitsToFloat](https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29) and [Double.longBitsToDouble](https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble%28long%29) are being used to convert the numeric string into the correct type. These methods rely on the IEEE 754 floating-point formats described in [Single-precision floating-point format](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) and [Double-precision floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format). A more user-friendly format is not yet supported for these types ([SLING-7757](https://issues.apache.org/jira/browse/SLING-7757)).
+or for primitives
+
+* `i` : `int`
+* `l` : `long`
+* `f` : `float`
+* `d` : `double`
+* `x` : `byte`
+* `s` : `short`
+* `c` : `char`
+* `b` : `boolean`
+
+For Float and Double types the methods [Float.intBitsToFloat](https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29) and [Double.longBitsToDouble](https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble%28long%29) are being used to convert the numeric string into the correct type. These methods rely on the IEEE-754 floating-point formats described in [Single-precision floating-point format](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) and [Double-precision floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format). A more user-friendly format is not yet supported for these types ([SLING-7757](https://issues.apache.org/jira/browse/SLING-7757)).
+
+Multiple values enclosed by `[` and `]` lead to an array while those enclosed by `(` and `)` lead to a `Collection` in the underlying `java.util.Dictionary` of the `org.osgi.service.cm.Configuration` and vice-versa.
+
+Although both objects and primites are supported, in case you use single-value entries or collections the deserialization will autobox primitives.
 
 A number of such .config files exist in the Sling codebase and can be used as examples.
+
+#### Limitations
+
+* No support for collections containing different types
+* No support for nested multivalues (arrays or Collections)
+* No user-friendly (readable) values for floating points ([SLING-7757](https://issues.apache.org/jira/browse/SLING-7757))
+
+### Configuration Files (.cfg.json)
+
+This is only supported since Installer Configuration Factory 1.2.0 ([SLING-7787](https://issues.apache.org/jira/browse/SLING-7787)).
+
+The exact JSON format is described in the [OSGi R7 Service Configurator Spec](https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html).
+
+The only differences to the spec are outlined below
+
+* `:configurator:resource-version` may be used, but only version 1 is supported
+* other keys starting with `:configurator:` should not be used (in general they are validated but not further evaluated)
+  * The PID is given via the file name (the part preceeding the `.cfg.json`) instead of `:configurator:symbolic-name`
+  * There is no version support i.e. `:configurator:version` should not be used either
+
+
+#### Limitations
+
+* None known so far
+
 
 # Project Info
 
