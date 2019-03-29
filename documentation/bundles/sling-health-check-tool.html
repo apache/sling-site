@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling :: Sling Health Check Tools Migration Guide</title>
+        <title>Apache Sling :: Sling Health Checks Migration Guide to Felix Health Checks</title>
         <link rel="icon" href="/res/favicon.ico"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
@@ -76,18 +76,24 @@
                 </div>                
                 
             </div><h1 class="pagetitle">
-                Sling Health Check Tools Migration Guide
+                Sling Health Checks Migration Guide to Felix Health Checks
             </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
 <div class="row"><div class="small-12 columns"><section class="wrap"><p><strong>Sling Health Checks are now deprecated</strong>. See <a href="sling-health-check-tool-deprecated.html">Sling Health Check Tools (deprecated)</a> for documentation prior to deprecation.</p>
-<h1><a href="#migrate-to-felix-health-checks" name="migrate-to-felix-health-checks">Migrate to Felix Health Checks</a></h1>
 <h2><a href="#migrate-custom-checks" name="migrate-custom-checks">Migrate custom checks</a></h2>
 <h3><a href="#adjust-maven-dependencies" name="adjust-maven-dependencies">Adjust maven dependencies</a></h3>
 <ul>
   <li>Remove dependencies for <code>org.apache.sling:org.apache.sling.hc.api</code> and <code>org.apache.sling:org.apache.sling.hc.annotations</code> (if used)</li>
   <li>Add</li>
 </ul>
-<p>```  <dependency>  <groupId>org.apache.felix</groupId>  <artifactId>org.apache.felix.healthcheck.api</artifactId>  <version>2.0.0</version>  <scope>provided</scope>  </dependency></p>
+<p>```</p>
 <pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+        &lt;artifactId&gt;org.apache.felix.healthcheck.api&lt;/artifactId&gt;
+        &lt;version&gt;2.0.0&lt;/version&gt;
+        &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
         &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
         &lt;artifactId&gt;org.apache.felix.healthcheck.annotation&lt;/artifactId&gt;
         &lt;version&gt;2.0.0&lt;/version&gt;
@@ -116,7 +122,7 @@
 </ul></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">georg.henzler</span> on <span class="comment">Sat Mar 30 00:47:14 2019 +0100</span>
+                    Last modified by <span class="author">georg.henzler</span> on <span class="comment">Sat Mar 30 00:56:07 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
