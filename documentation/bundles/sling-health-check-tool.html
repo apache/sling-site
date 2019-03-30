@@ -83,29 +83,28 @@
 <h3><a href="#adjust-maven-dependencies" name="adjust-maven-dependencies">Adjust maven dependencies</a></h3>
 <ul>
   <li>Remove dependencies for <code>org.apache.sling:org.apache.sling.hc.api</code> and <code>org.apache.sling:org.apache.sling.hc.annotations</code> (if used)</li>
-  <li>Add</li>
-</ul>
-<p>```</p>
-<pre><code>    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
-        &lt;artifactId&gt;org.apache.felix.healthcheck.api&lt;/artifactId&gt;
-        &lt;version&gt;2.0.0&lt;/version&gt;
-        &lt;scope&gt;provided&lt;/scope&gt;
-    &lt;/dependency&gt;
+  <li>Add the following new dependencies:
+    <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+    &lt;artifactId&gt;org.apache.felix.healthcheck.api&lt;/artifactId&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
 
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
-        &lt;artifactId&gt;org.apache.felix.healthcheck.annotation&lt;/artifactId&gt;
-        &lt;version&gt;2.0.0&lt;/version&gt;
-        &lt;scope&gt;provided&lt;/scope&gt;
-    &lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+    &lt;artifactId&gt;org.apache.felix.healthcheck.annotation&lt;/artifactId&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
 </code></pre>
-<p>```</p>
+  </li>
+</ul>
 <h3><a href="#adjust-health-check-code" name="adjust-health-check-code">Adjust Health Check Code</a></h3>
 <ul>
-  <li>Use <code>Organize Imports</code> functionality of your IDE fix the imports (mostly it is just replacing <code>org.apache.sling.hc.api</code> with <code>org.apache.felix.hc.api</code>, however the commonly used class has been moved from <code>org.apache.sling.hc.util</code> to <code>org.apache.felix.hc.api</code></li>
-  <li>For the case the annotation <code>@SlingHealthCheck</code> is used, the Felix annotations from <a href="http://svn.apache.org/viewvc/felix/trunk/healthcheck/annotation/src/main/java/org/apache/felix/hc/annotation/">org.apache.felix.healthcheck.annotation</a></li>
-  <li>there is no <code>util</code> package anymore, apart from <code>FormattingResultLog</code>, the other classes in the package were rarely used. The class <code>SimpleConstraintChecker</code> has moved to <code>org.apache.felix.hc.generalchecks.util</code> in bundle <code>generalchecks</code> (maven dependency to <code>org.apache.felix.healthcheck.generalchecks</code> needs to be added for that case). For the other classes there is no replacement.</li>
+  <li>Use the <code>Organize Imports</code> functionality of your IDE to fix the imports (mostly it is just replacing <code>org.apache.sling.hc.api</code> with <code>org.apache.felix.hc.api</code>, however the commonly used class <code>FormattingResultLog</code> has been moved from <code>org.apache.sling.hc.util</code> to <code>org.apache.felix.hc.api</code>)</li>
+  <li>For the case the annotation <code>@SlingHealthCheck</code> is used, replace that one with the new Felix annotations from <a href="http://svn.apache.org/viewvc/felix/trunk/healthcheck/annotation/src/main/java/org/apache/felix/hc/annotation/">org.apache.felix.healthcheck.annotation</a></li>
+  <li>There is no <code>util</code> package in the api bundle anymore, apart from <code>FormattingResultLog</code> the other classes in the package were rarely used. The class <code>SimpleConstraintChecker</code> has moved to <code>org.apache.felix.hc.generalchecks.util</code> in bundle <code>generalchecks</code> (maven dependency to <code>org.apache.felix.healthcheck.generalchecks</code> needs to be added for that case). For the other classes there is no replacement.</li>
   <li>For the case the property <code>hc.async.cronExpression</code> is used, the bundle <code>org.apache.servicemix.bundles.quartz</code> needs to be available at runtime (as alternative it is possible to use <code>hc.async.intervalInSec</code> now)</li>
   <li>For Health Checks using property <code>hc.warningsStickForMinutes</code>, this has been renamed to <code>hc.keepNonOkResultsStickyForSec</code> - here the unit has changed from min to sec in order to allow for second-magnitude values that can be useful for deployment scenarios</li>
 </ul>
@@ -122,7 +121,7 @@
 </ul></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">georg.henzler</span> on <span class="comment">Sat Mar 30 00:56:07 2019 +0100</span>
+                    Last modified by <span class="author">georg.henzler</span> on <span class="comment">Sat Mar 30 01:02:58 2019 +0100</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
