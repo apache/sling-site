@@ -4,7 +4,7 @@ status=published
 tags=healthchecks,operations
 ~~~~~~
 
-**Sling Health Checks are now deprecated**. See [Sling Health Check Tools (deprecated)](sling-health-check-tool-deprecated.html) for documentation prior to deprecation.
+**Sling Health Checks are deprecated** and superseded by [Felix Health Checks](http://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html). See [Sling Health Check Tools (deprecated)](sling-health-check-tool-deprecated.html) for documentation prior to deprecation.
 
 ## Migrate custom checks
 
