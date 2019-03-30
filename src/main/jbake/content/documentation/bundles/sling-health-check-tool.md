@@ -11,9 +11,7 @@ tags=healthchecks,operations
 ### Adjust maven dependencies
 
 * Remove dependencies for `org.apache.sling:org.apache.sling.hc.api` and `org.apache.sling:org.apache.sling.hc.annotations` (if used)
-* Add
-
-```
+* Add the following new dependencies:
 
         <dependency>
             <groupId>org.apache.felix</groupId>
@@ -29,12 +27,11 @@ tags=healthchecks,operations
             <scope>provided</scope>
         </dependency>
         
-```
 ### Adjust Health Check Code
 
-* Use `Organize Imports` functionality of your IDE fix the imports (mostly it is just replacing `org.apache.sling.hc.api` with `org.apache.felix.hc.api`, however the commonly used class  has been moved from `org.apache.sling.hc.util` to `org.apache.felix.hc.api` 
-* For the case the annotation `@SlingHealthCheck` is used, the Felix annotations from [org.apache.felix.healthcheck.annotation](http://svn.apache.org/viewvc/felix/trunk/healthcheck/annotation/src/main/java/org/apache/felix/hc/annotation/)
-* there is no `util` package anymore, apart from `FormattingResultLog`, the other classes in the package were rarely used. The class `SimpleConstraintChecker` has moved to `org.apache.felix.hc.generalchecks.util` in bundle `generalchecks` (maven dependency to `org.apache.felix.healthcheck.generalchecks` needs to be added for that case). For the other classes there is no replacement.
+* Use the `Organize Imports` functionality of your IDE to fix the imports (mostly it is just replacing `org.apache.sling.hc.api` with `org.apache.felix.hc.api`, however the commonly used class `FormattingResultLog` has been moved from `org.apache.sling.hc.util` to `org.apache.felix.hc.api`)
+* For the case the annotation `@SlingHealthCheck` is used, replace that one with the new Felix annotations from [org.apache.felix.healthcheck.annotation](http://svn.apache.org/viewvc/felix/trunk/healthcheck/annotation/src/main/java/org/apache/felix/hc/annotation/)
+* There is no `util` package in the api bundle anymore, apart from `FormattingResultLog` the other classes in the package were rarely used. The class `SimpleConstraintChecker` has moved to `org.apache.felix.hc.generalchecks.util` in bundle `generalchecks` (maven dependency to `org.apache.felix.healthcheck.generalchecks` needs to be added for that case). For the other classes there is no replacement.
 * For the case the property `hc.async.cronExpression` is used, the bundle `org.apache.servicemix.bundles.quartz` needs to be available at runtime (as alternative it is possible to use `hc.async.intervalInSec` now)
 * For Health Checks using property `hc.warningsStickForMinutes`, this has been renamed to `hc.keepNonOkResultsStickyForSec` - here the unit has changed from min to sec in order to allow for second-magnitude values that can be useful for deployment scenarios
 
