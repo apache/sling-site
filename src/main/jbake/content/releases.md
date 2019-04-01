@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2019
 
-* XSS Protection API 2.1.6 (1st)
+* XSS Protection API 2.1.6, Testing Sling Mock 2.3.6 (1st)
 
 ## March 2019
 
