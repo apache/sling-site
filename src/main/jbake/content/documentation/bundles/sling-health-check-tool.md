@@ -4,7 +4,7 @@ status=published
 tags=healthchecks,operations
 ~~~~~~
 
-**Sling Health Checks are deprecated** and superseded by [Felix Health Checks](http://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html). See [Sling Health Check Tools (deprecated)](sling-health-check-tool-deprecated.html) for documentation prior to deprecation.
+**The Sling Health Check Runtime is deprecated** and superseded by [Felix Health Checks](http://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html). See [Sling Health Check Tools (deprecated)](sling-health-check-tool-deprecated.html) for documentation prior to deprecation and [Sling Health Checks](sling-health-checks.html) for checks implemented against the Felix Health Checks Runtime.
 
 ## Migrate custom checks
 
@@ -29,16 +29,21 @@ tags=healthchecks,operations
         
 ### Adjust Health Check Code
 
+Typically necessary steps:
+
 * Use the `Organize Imports` functionality of your IDE to fix the imports (mostly it is just replacing `org.apache.sling.hc.api` with `org.apache.felix.hc.api`, however the commonly used class `FormattingResultLog` has been moved from `org.apache.sling.hc.util` to `org.apache.felix.hc.api`)
-* For the case the annotation `@SlingHealthCheck` is used, replace that one with the new Felix annotations from [org.apache.felix.healthcheck.annotation](http://svn.apache.org/viewvc/felix/trunk/healthcheck/annotation/src/main/java/org/apache/felix/hc/annotation/)
+* For the case the annotation `@SlingHealthCheck` is used, replace that one with the new Felix annotations from [org.apache.felix.healthcheck.annotation](https://github.com/apache/felix/blob/trunk/healthcheck/README.md#annotations-to-simplify-configuration-of-custom-health-checks)
 * There is no `util` package in the api bundle anymore, apart from `FormattingResultLog` the other classes in the package were rarely used. The class `SimpleConstraintChecker` has moved to `org.apache.felix.hc.generalchecks.util` in bundle `generalchecks` (maven dependency to `org.apache.felix.healthcheck.generalchecks` needs to be added for that case). For the other classes there is no replacement.
+
+Only necessary if the the respective feature is used:
+
 * For the case the property `hc.async.cronExpression` is used, the bundle `org.apache.servicemix.bundles.quartz` needs to be available at runtime (as alternative it is possible to use `hc.async.intervalInSec` now)
 * For Health Checks using property `hc.warningsStickForMinutes`, this has been renamed to `hc.keepNonOkResultsStickyForSec` - here the unit has changed from min to sec in order to allow for second-magnitude values that can be useful for deployment scenarios
 
 
 ## Migrate a runtime
 
-* `org.apache.sling.hc.api` - keep to ensure bundles with checks that are not yet migrated work
+* `org.apache.sling.hc.api` - keep to ensure bundles with checks that are not yet migrated work (can be removed once all bundles are migrated to new API)
 * `org.apache.sling.hc.core` - remove
 * `org.apache.sling.hc.webconsole` - remove
 * `org.apache.sling.hc.support` - keep, Sling specific health checks that don't fit anywhere else go there

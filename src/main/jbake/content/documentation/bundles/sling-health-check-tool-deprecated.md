@@ -216,15 +216,3 @@ Note that by design **the Health Checks Servlet doesn't do any access control by
 
 By default the HC servlet sends the CORS header `Access-Control-Allow-Origin: *` to allow for client-side browser integrations. The behaviour can be configured using the OSGi config property `cors.accessControlAllowOrigin` (a blank value disables the header).
 
-## Health Checks as server-side JUnit tests
-The `org.apache.sling.hc.junit.bridge` bundle makes selected Health Checks available as server-side JUnit tests. 
-
-It requires the `org.apache.sling.junit.core bundle` which provides the server-side JUnit tests infrastructure.
-
-The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them
-as part of integration testing, using the  [Sling Testing Tools](/documentation/development/sling-testing-tools.html)  
-remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.
-
-To use this module, configure sets of tags at `/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider`
-using the standard `includeThisTag,-omitThatTag` syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html 
-to run the corresponding Health Checks.
