@@ -232,9 +232,9 @@ def bundles=[
   "Testing Rules|org.apache.sling.testing.rules|1.0.8|Y|jar",
   "Testing Resource Resolver Mock|org.apache.sling.testing.resourceresolver-mock|1.1.24|Y|jar",
   "Testing Server Setup Tools|org.apache.sling.testing.serversetup|1.0.1|Y|jar",
-  "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|2.3.4|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|2.3.4|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|2.3.4|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|2.3.6|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|2.3.6|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|2.3.6|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|2.1.2|Y|jar",
   "Tooling Support Install|org.apache.sling.tooling.support.install|1.0.4|Y|jar",
   "Tooling Support Source|org.apache.sling.tooling.support.source|1.0.4|Y|jar",
@@ -243,7 +243,7 @@ def bundles=[
   "Validation Core|org.apache.sling.validation.core|1.0.4|Y|jar",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2|Y|jar",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.0|Y|jar",
-  "XSS Protection|org.apache.sling.xss|2.1.0|Y|jar",
+  "XSS Protection API|org.apache.sling.xss|2.1.6|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
                                                                       
