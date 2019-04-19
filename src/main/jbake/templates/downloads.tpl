@@ -140,7 +140,7 @@ def bundles=[
   "JUnit Tests Teleporter|org.apache.sling.junit.teleporter|1.0.18|Y|jar",
   "JUnit Health Checks|org.apache.sling.junit.healthcheck|1.0.6|Y|jar",
   "Launchpad API|org.apache.sling.launchpad.api|1.2.0|Y|jar",
-  "Launchpad Base|org.apache.sling.launchpad.base|5.6.10-2.6.26|Y|jar",
+  "Launchpad Base|org.apache.sling.launchpad.base|6.0.2-2.6.36|Y|jar",
   "Launchpad Base - Application Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|Y|war",
   "Launchpad Base - Web Launcher|org.apache.sling.launchpad.base|5.6.10-2.6.26|Y|war",
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2|Y|jar",
