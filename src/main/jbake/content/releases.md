@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2019
 
+* Content Distribution Journal Messages 0.1.0, Content Distribution Journal Core 0.1.0, Content Distribution Journal Kafka 0.1.0, Content Distribution Journal ITs 0.1.0 (22nd)
 * Health Check API 1.0.4, Health Check Support Components 1.0.6 (9th)
 * XSS Protection API 2.1.6, Testing Sling Mock 2.3.6 (1st)
 
@@ -126,10 +127,10 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## June 2018
 
 * Scripting HTL Compiler 1.0.22-1.4.0 (22nd)
-* Scripting HTL Java Compiler 1.0.24-1.4.0 (22nd) 
+* Scripting HTL Java Compiler 1.0.24-1.4.0 (22nd)
 * Scripting HTL Engine 1.0.54-1.4.0 (22nd)
 * Scripting HTL Testing Content 1.0.10-1.4.0 (22nd)
-* Scripting HTL Testing 1.0.10-1.4.0 (22nd) 
+* Scripting HTL Testing 1.0.10-1.4.0 (22nd)
 * HTL Maven Plugin 1.1.6-1.4.0 (22nd)
 * Scripting HTL REPL 1.0.6 (22nd)
 * Servlet Annotations 1.0.0 (19th)
@@ -139,8 +140,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2018
 
-* Commons Log 5.1.8 (24th) 
-* JSP Taglib 2.3.0 (22nd) 
+* Commons Log 5.1.8 (24th)
+* JSP Taglib 2.3.0 (22nd)
 * Servlets Post 2.3.26 (22nd)
 * Form Based Authentication 1.0.10 (22nd)
 * Starter Content 1.0.0 (22nd)
@@ -325,7 +326,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * HTL Maven Plugin 1.0.8 (7th)
 * Launchpad Base 5.6.6-2.6.20 (3rd)
 
-## July 2017 
+## July 2017
 
 * Resource Resolver 1.5.30 (27th)
 * Service User Mapper 1.3.4 (21th)
@@ -339,7 +340,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Discovery Oak 1.2.20 (10th)
 * Resource Resolver 1.5.26 (10th)
 
-## June 2017 
+## June 2017
 
 * Auth Core 1.4.0 (29th)
 * Event 4.2.4 (26th)
@@ -518,7 +519,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Servlets GET 2.1.20 (3rd)
 * Commons ClassLoader 1.3.8 (3rd)
 
-## January 2017 
+## January 2017
 
 * Resource Inventory 1.0.6 (31st)
 * Installer Core 3.8.2 (31st)
@@ -1809,4 +1810,3 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * API 2.0.6 (17th)
 * JCR API 2.0.4 (17th)
 * Commons LogService 2.0.6 (5th)
-

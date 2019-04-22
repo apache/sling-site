@@ -45,7 +45,7 @@ def bundles=[
   "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.3.2|Y|jar",
   "Capabilities|org.apache.sling.capabilities|0.1.2|Y|jar",
   "Capabilities JCR|org.apache.sling.capabilities.jcr|0.1.2|Y|jar",
-  "Clam|org.apache.sling.clam|1.0.2|Y|jar",   
+  "Clam|org.apache.sling.clam|1.0.2|Y|jar",
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0|Y|jar",
   "CMS App API|org.apache.sling.cms.api|0.11.2|org.apache.sling.app.cms|jar",
   "CMS App Core|org.apache.sling.cms.core|0.11.2|org.apache.sling.app.cms|jar",
@@ -92,6 +92,10 @@ def bundles=[
   "Distribution Core|org.apache.sling.distribution.core|0.4.0|Y|jar",
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2|Y|jar",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6|Y|jar",
+  "Distribution Journal Core|org.apache.sling.distribution.journal|0.1.0|Y|jar",
+  "Distribution Journal Messages|org.apache.sling.distribution.journal.messages|0.1.0|Y|jar",
+  "Distribution Journal Kafka|org.apache.sling.distribution.journal.kafka|0.1.0|Y|jar",
+  "Distribution Journal ITs|org.apache.sling.distribution.journal.it|0.1.0|Y|jar",
   "Dynamic Include|org.apache.sling.dynamic-include|3.1.2|Y|jar",
   "Engine|org.apache.sling.engine|2.6.18|Y|jar",
   "Event|org.apache.sling.event|4.2.12|Y|jar",
@@ -241,7 +245,7 @@ def bundles=[
   "XSS Protection API|org.apache.sling.xss|2.1.6|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
-                                                                      
+
 def deprecated=[
   "Auth OpenID|Not Maintained|org.apache.sling.auth.openid|1.0.4",
   "Auth Selector|Not Maintained|org.apache.sling.auth.selector|1.0.6",
@@ -423,7 +427,7 @@ layout 'layout/main.tpl', true,
 								}
 							}
 						}
-    
+
 						h2("Deprecated")
 						table(class:"table") {
 							tableHead("Artifact", "Replacement", "Version", "Binary", "Source")
