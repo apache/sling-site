@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2019
 
+* XSS Protection API 2.1.8 (24th)
 * Content Distribution Journal Messages 0.1.0, Content Distribution Journal Core 0.1.0, Content Distribution Journal Kafka 0.1.0, Content Distribution Journal ITs 0.1.0 (22nd)
 * Health Check API 1.0.4, Health Check Support Components 1.0.6 (9th)
 * XSS Protection API 2.1.6, Testing Sling Mock 2.3.6 (1st)
