@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2019
+
+* Sling Project Archetype 1.0.0 (2nd)
+
 ## April 2019
 
 * XSS Protection API 2.1.8 (24th)
