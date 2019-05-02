@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2019
+
+* Service User WebConsole 1.0.2, Repoinit Parser 1.2.4 and Repoinit JCR 1.1.10 (2nd)
+
 ## April 2019
 
 * XSS Protection API 2.1.8 (24th)
