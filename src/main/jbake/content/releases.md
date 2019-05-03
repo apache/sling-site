@@ -8,11 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2019
 
-<<<<<<< HEAD
 * Service User WebConsole 1.0.2, Repoinit Parser 1.2.4 and Repoinit JCR 1.1.10 (2nd)
-=======
 * Sling Project Archetype 1.0.0 (2nd)
->>>>>>> 0188cae8e2392307b6099a0248fc073adfcd2e24
 
 ## April 2019
 
