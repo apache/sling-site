@@ -70,7 +70,7 @@ def bundles=[
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.2|Y|jar",
   "Context-Aware Configuration API|org.apache.sling.caconfig.api|1.1.2|Y|jar",
   "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2|Y|jar",
-  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.14|Y|jar",
+  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.4.16|Y|jar",
   "Context-Aware Configuration Mock Plugin|org.apache.sling.testing.caconfig-mock-plugin|1.3.2|Y|jar",
   "Context-Aware Configuration SPI|org.apache.sling.caconfig.spi|1.3.4|Y|jar",
   "Crankstart API|org.apache.sling.crankstart.api|1.0.0|N|jar",

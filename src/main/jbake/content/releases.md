@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2019
 
+* Context-Aware Configuration Impl 1.4.16 (6th)
 * Service User WebConsole 1.0.2, Repoinit Parser 1.2.4 and Repoinit JCR 1.1.10 (2nd)
 * Sling Project Archetype 1.0.0 (2nd)
 
