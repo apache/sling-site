@@ -16,7 +16,7 @@ tags=healthchecks,operations
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.healthcheck.api</artifactId>
-            <version>2.0.0</version>
+            <version>2.0.2</version>
             <scope>provided</scope>
         </dependency>
 
