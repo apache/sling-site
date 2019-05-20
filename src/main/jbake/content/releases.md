@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2019
 
+* Sling Default POST Servlets 2.3.30, Sling Form Based Authentication Handler 1.0.14, Sling Starter Content 1.0.4
 * Sling Project Archetype 1.0.1 (10th)
 * Testing Sling Mock 2.3.10 (9th)
 * Context-Aware Configuration Impl 1.4.16, Testing Sling Mock 2.3.8, Sling Mock Oak 2.1.4 (6th)
