@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2019
 
+* Scripting Core 2.0.58 (27th)
 * Installer Health Checks 2.0.2 (24th)
 * Sling Default POST Servlets 2.3.30, Sling Form Based Authentication Handler 1.0.14, Sling Starter Content 1.0.4
 * Sling Project Archetype 1.0.1 (10th)
