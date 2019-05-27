@@ -1,20 +1,20 @@
 // TODO read links from a Markdown or other definition file?
 nav(class:"menu"){
     
-	ul() {
-		li(){
-		    strong("Documentation")
-    		ul() {
+    ul() {
+        li(){
+            strong("Documentation")
+            ul() {
                 li(){a(href:"${config.site_contextPath}documentation.html", "Overview")}
-        		li(){a(href:"${config.site_contextPath}documentation/getting-started.html", "Getting Started")}
-        		li(){a(href:"${config.site_contextPath}documentation/the-sling-engine.html", "The Sling Engine")}
-        		li(){a(href:"${config.site_contextPath}documentation/development.html", "Development")}
-        		li(){a(href:"${config.site_contextPath}documentation/bundles.html", "Bundles")}
-        		li(){a(href:"${config.site_contextPath}documentation/tutorials-how-tos.html", "Tutorials &amp; How-Tos")}
-        		li(){a(href:"${config.site_contextPath}components/", "Maven Plugins")}
-        		li(){a(href:"${config.site_contextPath}documentation/configuration.html", "Configuration")}
-    		}
-		}
+                li(){a(href:"${config.site_contextPath}documentation/getting-started.html", "Getting Started")}
+                li(){a(href:"${config.site_contextPath}documentation/the-sling-engine.html", "The Sling Engine")}
+                li(){a(href:"${config.site_contextPath}documentation/development.html", "Development")}
+                li(){a(href:"${config.site_contextPath}documentation/bundles.html", "Bundles")}
+                li(){a(href:"${config.site_contextPath}documentation/tutorials-how-tos.html", "Tutorials &amp; How-Tos")}
+                li(){a(href:"${config.site_contextPath}components/", "Maven Plugins")}
+                li(){a(href:"${config.site_contextPath}documentation/configuration.html", "Configuration")}
+            }
+        }
         li(){
             strong("API Docs")
             ul() {
@@ -77,6 +77,6 @@ nav(class:"menu"){
                 }}
             }
         }
-	}
+    }
 }
 
