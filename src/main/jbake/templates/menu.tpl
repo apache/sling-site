@@ -11,7 +11,7 @@ nav(class:"menu"){
         		li(){a(href:"${config.site_contextPath}documentation/development.html", "Development")}
         		li(){a(href:"${config.site_contextPath}documentation/bundles.html", "Bundles")}
         		li(){a(href:"${config.site_contextPath}documentation/tutorials-how-tos.html", "Tutorials &amp; How-Tos")}
-        		li(){a(href:"http://sling.apache.org/components/", "Maven Plugins")}
+        		li(){a(href:"${config.site_contextPath}components/", "Maven Plugins")}
         		li(){a(href:"${config.site_contextPath}documentation/configuration.html", "Configuration")}
     		}
 		}
@@ -27,8 +27,8 @@ nav(class:"menu"){
         li(){
             strong("Support")
             ul() {
-                li(){a(href:"http://s.apache.org/sling.wiki", "Wiki")}
-                li(){a(href:"http://s.apache.org/sling.faq", "FAQ")}
+                li(){a(href:"https://s.apache.org/sling.wiki", "Wiki")}
+                li(){a(href:"https://s.apache.org/sling.faq", "FAQ")}
                 li(){a(href:"${config.site_contextPath}sitemap.html", "Site Map")}
             }
         }
@@ -36,7 +36,7 @@ nav(class:"menu"){
             strong("Project Info")
             ul() {
                 li(){a(href:"${config.site_contextPath}downloads.cgi", "Downloads")}
-                li(){a(href:"http://www.apache.org/licenses/", "License")}
+                li(){a(href:"https://www.apache.org/licenses/", "License")}
                 li(){a(href:"${config.site_contextPath}news.html", "News")}
                 li(){a(href:"${config.site_contextPath}releases.html", "Releases")}
                 li(){a(href:"https://issues.apache.org/jira/browse/SLING", "Issue Tracker")}
@@ -56,9 +56,9 @@ nav(class:"menu"){
         li(){
             strong("Apache Software Foundation")
             ul() {
-                li(){a(href:"http://www.apache.org/foundation/thanks.html", "Thanks!")}
-                li(){a(href:"http://www.apache.org/foundation/sponsorship.html", "Become a Sponsor")}
-                li(){a(href:"http://www.apache.org/foundation/buy_stuff.html", "Buy Stuff")}  
+                li(){a(href:"https://www.apache.org/foundation/thanks.html", "Thanks!")}
+                li(){a(href:"https://www.apache.org/foundation/sponsorship.html", "Become a Sponsor")}
+                li(){a(href:"https://www.apache.org/foundation/buy_stuff.html", "Buy Stuff")}  
                 li(){a(href:"https://www.apache.org/events/current-event.html") {
                     img(
                         border:"0",
@@ -67,7 +67,7 @@ nav(class:"menu"){
                         width:"125"
                     )
                 }}
-                li(){a(href:"http://apache.org/foundation/contributing.html") {
+                li(){a(href:"https://apache.org/foundation/contributing.html") {
                     img(
                         border:"0", 
                         alt:"Support the Apache Software Foundation!", 
