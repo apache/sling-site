@@ -97,10 +97,11 @@
 <p>The setups and examples on this page show how to run fully isolated tests in separate JVMs (<a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263862/OSGi+Containers#OSGiContainers-ForkedContainer">forked container</a>) to avoid classloader issues and boot a new Sling instance per test class to have always a fresh OSGi container and JCR repository.</p>
 <h2><a href="#features" name="features">Features</a></h2>
 <ul>
-  <li>run integration tests in a <em>tailored</em> Sling instance in the <em>same module</em> (with the build artifact under test)</li>
-  <li>use different versions in build (e.g. <em>minimal</em>) and tests (e.g. <em>latest</em>)</li>
-  <li>overriding of versions</li>
-  <li>build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)</li>
+  <li>Run integration tests in a <em>tailored</em> Sling instance in the <em>same module</em> (with the build artifact under test)</li>
+  <li>Use different versions in build (e.g. <em>minimal</em>) and tests (e.g. <em>latest</em>)</li>
+  <li>Overriding of versions</li>
+  <li>Adjusting of provided <code>Option</code>s (<code>ModifiableCompositeOption</code>s – <a href="https://ops4j1.jira.com/browse/PAXEXAM-919">PAXEXAM-919</a>)</li>
+  <li>Build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)</li>
 </ul>
 <h2><a href="#getting-started" name="getting-started">Getting Started</a></h2>
 <h3><a href="#1-add-required-dependencies" name="1-add-required-dependencies">1. Add required dependencies</a></h3>
@@ -109,7 +110,7 @@
 &lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.paxexam&lt;/artifactId&gt;
-  &lt;version&gt;2.0.0&lt;/version&gt;
+  &lt;version&gt;3.0.0&lt;/version&gt;
   &lt;scope&gt;provided&lt;/scope&gt;
 &lt;/dependency&gt;
 
@@ -117,7 +118,7 @@
 &lt;dependency&gt;
   &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.felix.framework&lt;/artifactId&gt;
-  &lt;version&gt;5.6.10&lt;/version&gt;
+  &lt;version&gt;6.0.3&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 
@@ -132,31 +133,31 @@
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam&lt;/artifactId&gt;
-  &lt;version&gt;4.11.0&lt;/version&gt;
+  &lt;version&gt;4.13.1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-cm&lt;/artifactId&gt;
-  &lt;version&gt;4.11.0&lt;/version&gt;
+  &lt;version&gt;4.13.1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-container-forked&lt;/artifactId&gt;
-  &lt;version&gt;4.11.0&lt;/version&gt;
+  &lt;version&gt;4.13.1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-junit4&lt;/artifactId&gt;
-  &lt;version&gt;4.11.0&lt;/version&gt;
+  &lt;version&gt;4.13.1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-link-mvn&lt;/artifactId&gt;
-  &lt;version&gt;4.11.0&lt;/version&gt;
+  &lt;version&gt;4.13.1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
@@ -391,7 +392,7 @@ public class SimpleIT extends FreemarkerTestSupport {
 <p>For <a href="https://logback.qos.ch">Logback</a> use <code>SlingOptions#logback()</code> and add both <code>exam.properties</code> and <code>logback.xml</code> to <code>src/test/resources</code> as described in Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a>.</p></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Fri Jun 15 20:20:06 2018 +0200</span>
+                    Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Sat Jun 1 22:06:06 2019 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
