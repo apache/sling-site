@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## June 2019
+
+* Testing PaxExam 3.0.0 (1st)
+
 ## May 2019
 
 * Scripting Core 2.0.58 (27th)

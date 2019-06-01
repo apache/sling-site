@@ -17,10 +17,11 @@ The setups and examples on this page show how to run fully isolated tests in sep
 
 ## Features
 
-* run integration tests in a *tailored* Sling instance in the *same module* (with the build artifact under test)
-* use different versions in build (e.g. *minimal*) and tests (e.g. *latest*)
-* overriding of versions
-* build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)
+* Run integration tests in a *tailored* Sling instance in the *same module* (with the build artifact under test)
+* Use different versions in build (e.g. *minimal*) and tests (e.g. *latest*)
+* Overriding of versions
+* Adjusting of provided `Option`s (`ModifiableCompositeOption`s – [PAXEXAM-919](https://ops4j1.jira.com/browse/PAXEXAM-919))
+* Build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)
 
 
 ## Getting Started
@@ -34,7 +35,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
-      <version>2.0.0</version>
+      <version>3.0.0</version>
       <scope>provided</scope>
     </dependency>
 
@@ -42,7 +43,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.framework</artifactId>
-      <version>5.6.10</version>
+      <version>6.0.3</version>
       <scope>test</scope>
     </dependency>
 
@@ -57,31 +58,31 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <version>4.11.0</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-cm</artifactId>
-      <version>4.11.0</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-container-forked</artifactId>
-      <version>4.11.0</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-junit4</artifactId>
-      <version>4.11.0</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-link-mvn</artifactId>
-      <version>4.11.0</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
 
