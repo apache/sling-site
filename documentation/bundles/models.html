@@ -153,6 +153,8 @@ public class MyModel {
 }
 </code></pre>
 <p>In addition <code>ModelFactory</code> provides methods for checking whether a given class is a model at all (having the model annotation) or whether a class can be adapted from a given adaptable.</p>
+<h2><a href="#usage-in-htl" name="usage-in-htl">Usage in HTL</a></h2>
+<p><a href="../scripting/scripting-htl.html#sling-models-use-provider">Sling Models Use Provider</a> (internally uses the <code>ModelFactory</code> from above).</p>
 <h1><a href="#other-options" name="other-options">Other Options</a></h1>
 <h2><a href="#names" name="names">Names</a></h2>
 <p>If the field or method name doesn't exactly match the property name, <code>@Named</code> can be used:</p>
@@ -594,7 +596,8 @@ public class MyModel implements MyService {
   <li>a target class</li>
   <li>a map of options</li>
 </ul>
-<p>The exact semantics of the exporting will be determined by an implementation of the <code>ModelExporter</code> service interface. Sling Models currently includes a single exporter, using the Jackson framework, which is capable of serializing models as JSON or transforming them to <code>java.util.Map</code> objects.</p>
+<p>The exact semantics of the exporting will be determined by an implementation of the <code>ModelExporter</code> service interface. </p>
+<p>Sling Models currently includes a single exporter, using the Jackson framework, which is capable of serializing models as JSON or transforming them to <code>java.util.Map</code> objects. It is included in a dedicated bundle with the symbolic name <a href="https://github.com/apache/sling-org-apache-sling-models-jacksonexporter"><code>org.apache.sling.models.jacksonexporter</code></a>.</p>
 <p>In addition, model objects can have servlets automatically registered for their resource type (if it is set) using the <code>@Exporter</code> annotation. For example, a model class with the annotation</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptable = Resource.class, resourceType = &quot;myco/components/foo&quot;)
 @Exporter(name = &quot;jackson&quot;, extensions = &quot;json&quot;)
@@ -728,7 +731,7 @@ public class CachableModelClass {
 </ul></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Paul Bjorkstrand</span> on <span class="comment">Fri Oct 19 09:41:35 2018 -0500</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jun 6 08:38:20 2019 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
