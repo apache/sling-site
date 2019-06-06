@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2019
 
+* File System Resource Provider 2.1.16, Sling Maven Plugin 2.4.2 (6th)
 * Testing PaxExam 3.0.0 (1st)
 
 ## May 2019

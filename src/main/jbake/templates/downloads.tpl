@@ -28,7 +28,7 @@ def slingApplication=[
 def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0|Y",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
-  "Sling Maven Plugin|sling-maven-plugin|2.4.0|Y",
+  "Sling Maven Plugin|sling-maven-plugin|2.4.2|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.8.2|Y",
   "HTL Maven Plugin|htl-maven-plugin|1.2.2-1.4.0|Y",
 ]
@@ -107,7 +107,7 @@ def bundles=[
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.0|Y|jar",
   "Feature Flags|org.apache.sling.featureflags|1.2.2|Y|jar",
   "File Optimization|org.apache.sling.fileoptim|0.9.2|org.apache.sling.file.optimization|jar",
-  "File System Resource Provider|org.apache.sling.fsresource|2.1.14|Y|jar",
+  "File System Resource Provider|org.apache.sling.fsresource|2.1.16|Y|jar",
   "I18n|org.apache.sling.i18n|2.5.12|Y|jar",
   "HApi|org.apache.sling.hapi|1.1.0|Y|jar",
   "Health Check API|org.apache.sling.hc.api|1.0.4|Y|jar",
