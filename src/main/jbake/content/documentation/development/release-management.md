@@ -442,6 +442,6 @@ To publish the plugin documentation execute the following steps after the releas
 
 6. Commit the changes
 
-7. Publish the Sling site to production
+7. Publish the Sling site to production (should happen automatically)
 
 8. Check the results at [http://sling.apache.org/components/](http://sling.apache.org/components/)
