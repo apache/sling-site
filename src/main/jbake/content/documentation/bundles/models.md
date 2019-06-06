@@ -109,6 +109,9 @@ Since Sling Models 1.2.0 there is another way of instantiating models. The OSGi 
 
 In addition `ModelFactory` provides methods for checking whether a given class is a model at all (having the model annotation) or whether a class can be adapted from a given adaptable.
 
+## Usage in HTL
+[Sling Models Use Provider](../scripting/scripting-htl.html#sling-models-use-provider) (internally uses the `ModelFactory` from above).
+
 # Other Options
 ## Names
 If the field or method name doesn't exactly match the property name, `@Named` can be used:
@@ -495,8 +498,9 @@ programatically exported by calling the `ModelFactory` method `exportModel()`. T
 * a target class
 * a map of options
 
-The exact semantics of the exporting will be determined by an implementation of the `ModelExporter` service interface. Sling Models 
-currently includes a single exporter, using the Jackson framework, which is capable of serializing models as JSON or transforming them to `java.util.Map` objects.
+The exact semantics of the exporting will be determined by an implementation of the `ModelExporter` service interface. 
+
+Sling Models currently includes a single exporter, using the Jackson framework, which is capable of serializing models as JSON or transforming them to `java.util.Map` objects. It is included in a dedicated bundle with the symbolic name [`org.apache.sling.models.jacksonexporter`](https://github.com/apache/sling-org-apache-sling-models-jacksonexporter).
 
 In addition, model objects can have servlets automatically registered for their resource type (if it is set) using the `@Exporter` annotation. For example, a model class with the annotation
 
