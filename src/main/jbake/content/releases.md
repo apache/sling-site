@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## June 2019
 
 * Servlet Helpers 1.2.0, Testing Sling Mock 2.3.12, Testing Sling Mock Oak 2.1.6 (11th)
+* Content Distribution Journal Core 0.1.2, Content Distribution Journal Kafka 0.1.2 (10th)
 * Webconsole Security Provider 1.2.2 (7th)
 * File System Resource Provider 2.1.16, Sling Maven Plugin 2.4.2 (6th)
 * Testing PaxExam 3.0.0 (1st)
