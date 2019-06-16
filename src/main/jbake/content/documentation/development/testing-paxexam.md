@@ -36,7 +36,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
       <version>3.0.0</version>
-      <scope>provided</scope>
+      <scope>test</scope>
     </dependency>
 
     <!-- an OSGi framework -->
