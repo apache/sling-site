@@ -48,7 +48,9 @@ Everything else has been configured in the latest Sling Parent POM:
     </parent>
 
 
+## Experimental Release Management Docker Image
 
+Some the release management steps can be further automated by using the [Sling Commiter CLI Docker Image](https://github.com/apache/sling-org-apache-sling-committer-cli). The image is for now work-in-progress but has been used to drive multiple release. Please see the README file in the linked repository for usage details.
 
 ## Staging the Release Candidates
 
