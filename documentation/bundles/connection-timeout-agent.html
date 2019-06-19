@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling :: Connection Timeout Agent (org.apache.sling.fsresource)</title>
+        <link rel="icon" href="/res/favicon.ico"/>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        
+    </head>    <body>
+<div class="title">
+            <div class="logo">
+                <a href="https://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="https://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><nav class="menu">
+            <ul>
+                <li>
+                    <strong>Documentation</strong><ul>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                    </ul>
+                </li><li>
+                    <strong>API Docs</strong><ul>
+                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Support</strong><ul>
+                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Project Info</strong><ul>
+                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Source</strong><ul>
+                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Apache Software Foundation</strong><ul>
+                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li><li><a href="https://www.apache.org/events/current-event.html">
+                                <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
+                            </a></li><li><a href="https://apache.org/foundation/contributing.html">
+                                <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                            </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>        <div class="main">
+            <div class="pagenav">
+<div class="breadcrumb">
+                    <a href="/">
+                        Home
+                    </a><a href="/documentation.html">
+                        Documentation
+                    </a><a href="/documentation/bundles.html">
+                        Bundles
+                    </a>
+                </div>                
+<div class="tags">
+                    
+                </div>                
+                
+            </div><h1 class="pagetitle">
+                Connection Timeout Agent (org.apache.sling.fsresource)
+            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
+<h2><a href="#connection-timeout-agent" name="connection-timeout-agent">Connection Timeout Agent</a></h2>
+<p>This module provides a java agent that uses the <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/instrument/package-summary.html">instrumentation API</a> to add connect and read timeouts to connections made via HTTP or HTTPs. It only applies these timeouts if none were set explicitly.</p>
+<p>The agent is intended as an additional layer of control to use when running untrusted client code that may make calls without explicitly setting timeouts. It is always recommended to set timeouts in client code, rather than relying on this agent.</p>
+<p>It currently supports setting timeouts for HTTP connections done using:</p>
+<ul>
+  <li><a href="https://docs.oracle.com/javase/7/docs/api/java/net/URL.html">java.net.URL</a> and/or <a href="https://docs.oracle.com/javase/7/docs/api/java/net/URLConnection.html">java.net.URLConnection</a></li>
+  <li><a href="https://hc.apache.org/httpclient-3.x/">Apache Commons HttpClient 3.x</a></li>
+  <li><a href="https://hc.apache.org/httpcomponents-client-ga/">Apache HttpComponents Client 4.x</a></li>
+  <li><a href="https://square.github.io/okhttp/">OK Http</a></li>
+</ul>
+<h2><a href="#usage" name="usage">Usage</a></h2>
+<p>The agent can be loaded using the standard Java CLI invocation, by using the <code>-javaagent:...</code> argument.</p>
+<pre><code>java -javaagent:org.apache.sling.connection-timeout-agent-jar-with-dependencies.jar=&lt;agent-connect-timeout&gt;,&lt;agent-read-timeout&gt;[,&lt;logspec&gt;] -jar org.apache.sling.starter-11.jar
+</code></pre>
+<p>It support two mandatory arguments and an optional one:</p>
+<ul>
+  <li><code>&lt;agent-connect-timeout&gt;</code> - connection timeout in milliseconds to apply via the agent</li>
+  <li><code>&lt;agent-read-timeout&gt;</code>- read timeout in milliseconds to apply via the agent</li>
+  <li><code>&lt;logspec&gt;</code> - if set to <code>v</code>, it will enter verbose mode and print additional information to <code>System.out</code></li>
+</ul>
+<p>If started in verbose mode, output similar to the following will be printed</p>
+<pre><code>[AGENT] Preparing to install URL transformers. Configured timeouts - connectTimeout : 1000, readTimeout: 1000 
+[AGENT] All transformers installed 
+[AGENT] JavaNetTimeoutTransformer asked to transform sun/net/www/protocol/https/AbstractDelegateHttpsURLConnection 
+[AGENT] Transformation of sun/net/www/protocol/https/AbstractDelegateHttpsURLConnection complete 
+[AGENT] JavaNetTimeoutTransformer asked to transform sun/net/www/protocol/http/HttpURLConnection 
+[AGENT] Transformation of sun/net/www/protocol/http/HttpURLConnection complete 
+</code></pre>
+<p>Note that classes will be transformed when they are loaded. It is expected for a transformer for class <em>A</em> to be active but the class not to be transformed until it is actually used.</p>
+<h2><a href="#jmx" name="jmx">JMX</a></h2>
+<p>Various runtime information is exposed through a JMX MBean registered at <code>org.apache.sling.cta;ObjectType=Agent</code>. </p>
+<p><img src="/documentation/bundles/connection-timeout-agent/jmx-mbeans.png" alt="JMX MBeans" /></p>
+<h2><a href="#alternatives" name="alternatives">Alternatives</a></h2>
+<p>It is always recommended to set timeouts in the client code directly. The agent carries some risks, namely:</p>
+<ul>
+  <li>it is not transparent why and where timeouts are set and can lead to hard-to-debug scenarios</li>
+  <li>it only sets one timeout for the whole JVM, whereas various services may need different timeouts</li>
+</ul>
+<p>All HTTP client libraries offer a way of setting connect and read timeouts, and it strongly recommended to do so. Alternatively, various bundles offer a way of centrally defining timeouts, amongst them:</p>
+<ul>
+  <li><a href="https://github.com/code-distillery/httpclient-configuration-support">Code Distillery - OSGi Configuration Support for Apache HttpComponents Client</a></li>
+  <li><a href="https://caravan.wcm.io/commons/httpclient/">WCM.io Caravan - Commons HTTP Client</a></li>
+</ul>
+<h2><a href="#tested-platforms" name="tested-platforms">Tested platforms</a></h2>
+<ul>
+  <li>openjdk version "1.8.0_212"</li>
+  <li>openjdk version "11.0.2" 2019-01-15</li>
+  <li>commons-httpclient 3.1</li>
+  <li>httpclient 4.5.4</li>
+  <li>okhttp 3.14.2</li>
+</ul></section></div></div>            
+            <footer class="footer">
+<div class="revisionInfo">
+                    Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jun 19 15:07:29 2019 +0200</span>
+                </div>                <p>
+                    Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                </p><p>
+                    Copyright © 2007-2019 The Apache Software Foundation.
+                </p>
+            </footer>
+            
+        </div>
+    </body>
+</html>
