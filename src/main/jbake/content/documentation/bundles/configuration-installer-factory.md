@@ -4,7 +4,7 @@ status=published
 tags=installer
 ~~~~~~
 
-The configuration installer factory provides support for configurations to the [OSGI installer](/documentation/bundles/osgi-installer.html). The provisioning of artifacts is handled by installer providers like the file installer or the JCR installer.
+The configuration installer factory provides support for configurations to the [OSGI installer](/documentation/bundles/osgi-installer.html). The provisioning of artifacts is handled by installer providers like the [file installer](/documentation/bundles/file-installer-provider.html) or the [JCR installer](/documentation/bundles/jcr-installer-provider.html).
 
 
 ## Configurations
@@ -12,10 +12,10 @@ The configuration installer factory provides support for configurations to the [
 Configuration file names are related to the PID and factory PID. The structure of the file name is as follows:
  	 
 
-    filename ::= <pid> ( '-' <subname> )? ('.cfg'|'.config')
+    filename ::= <pid> ( ( '-' | '~' ) <subname> ) ? ( '.cfg' | '.config' | '.cfg.json')
 
  	 
-If the form is `<pid>('.cfg'|'.config')`, the file contains the properties for a Managed Service. The `<pid>` is then the PID of the Managed Service. See the Configuration Admin service for details.
+If the form is `<pid>('.cfg'|'.config'|'.cfg.json')`, the file contains the properties for a Managed Service. The `<pid>` is then the PID of the Managed Service. See the Configuration Admin service for details.
  	 
 When a Managed Service Factory is used, the situation is different. The `<pid>` part then describes the PID of the Managed Service Factory. You can pick any `<subname>`, the installer will then create an instance for the factory for each unique name. For example:
  	 
@@ -24,11 +24,13 @@ When a Managed Service Factory is used, the situation is different. The `<pid>` 
     // com.acme.xyz
     com.acme.abc-default.cfg // Managed Service Factory,
     // creates an instance for com.acme.abc
+    
+Since Installer Configuration Factory 1.2.0 ([SLING-7786](https://jira.apache.org/jira/browse/SLING-7786)) you should use the tilde `~` as separator between `<pid>` and `<subname>` instead of the `-`.
 
 
 If a configuration is modified, the file installer will write the configuration back to a file to ensure persistence across restarts (if `sling.fileinstall.writeback` is enabled). A similar writeback mechanism is supported by the [JCR installer](jcr-installer-provider.html).
 
-The code for parsing the configuration files is in [InternalResource#readDictionary](https://github.com/apache/sling-org-apache-sling-installer-core/blob/0a34e33dd26092437be5180e34979abbf9a88300/src/main/java/org/apache/sling/installer/core/impl/InternalResource.java#L221).
+The code for parsing the configuration files is in [InternalResource#readDictionary](https://github.com/apache/sling-org-apache-sling-installer-core/blob/7b2e4407baa45b79d954dd20c53bb2077c3a5e49/src/main/java/org/apache/sling/installer/core/impl/InternalResource.java#L230).
 
 ### Property Files (.cfg)
 
@@ -44,13 +46,14 @@ Notice that this model only supports string properties. For example:
     # default port
     ftp.port = 21
 
-In addition the XML format defined by [java.util.Property](https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#loadFromXML(java.io.InputStream)) is supported if the file starts with the character `<`.
+In addition the XML format defined by [java.util.Property](https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#loadFromXML%28java.io.InputStream%29) is supported if the file starts with the character `<`.
 
 #### Limitations
 
 * Only String types are supported
 * Only ISO 8859-1 character encoding supported
 * No multi-values
+* No writeback support
 
 ### Configuration Files (.config)
 
@@ -124,11 +127,19 @@ The only differences to the spec are outlined below
   * The PID is given via the file name (the part preceeding the `.cfg.json`) instead of `:configurator:symbolic-name`
   * There is no version support i.e. `:configurator:version` should not be used either
 
+#### Limitations
+
+* No writeback support yet ([SLING-8419](https://issues.apache.org/jira/browse/SLING-8419))
+
+### sling:OsgiConfig resources
+
+Only the [JCR Installer](/documentation/bundles/jcr-installer-provider.html#configuration-and-scanning) supports also configurations given as resources with properties of type `sling:OsgiConfig`. Internally those are converted directly into the Dictionary format being supported by the [OSGi Configuration Admin](https://osgi.org/javadoc/r4v42/org/osgi/service/cm/Configuration.html#update%28java.util.Dictionary%29) in [ConfigNodeConverter](https://github.com/apache/sling-org-apache-sling-installer-provider-jcr/blob/fcb77de40973672548e79f3a42c19f5decd95651/src/main/java/org/apache/sling/installer/provider/jcr/impl/ConfigNodeConverter.java#L44).
 
 #### Limitations
 
-* None known so far
-
+* Not all types supported ([SLING-2477](https://issues.apache.org/jira/browse/SLING-2477))
+* No writeback support
+* Only array multivalue support ([SLING-4183](https://issues.apache.org/jira/browse/SLING-4183))
 
 # Project Info
 
