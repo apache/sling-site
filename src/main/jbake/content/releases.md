@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2019
 
+* Installer Factory Configuration 1.2.4 (27th)
 * Launchpad Integration Tests 1.0.10 (26th)
 * Testing Sling Mock 2.3.14 (25th)
 * Auth Core 1.4.4, Servlets Resolver 2.5.6 (18th)
