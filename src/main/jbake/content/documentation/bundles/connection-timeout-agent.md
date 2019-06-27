@@ -1,4 +1,4 @@
-title=Connection Timeout Agent (org.apache.sling.fsresource)		
+title=Connection Timeout Agent		
 type=page
 status=published
 expandVariables=true
