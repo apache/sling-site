@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## July 2019
+
+* Connection Timeout Agent 1.0.0 (1st)
+
 ## June 2019
 
 * Installer Factory Configuration 1.2.4 (27th)
