@@ -27,8 +27,8 @@ nav(class:"menu"){
         li(){
             strong("Support")
             ul() {
-                li(){a(href:"https://s.apache.org/sling.wiki", "Wiki")}
-                li(){a(href:"https://s.apache.org/sling.faq", "FAQ")}
+                li(){a(href:"https://cwiki.apache.org/confluence/display/SLING", "Wiki")}
+                li(){a(href:"https://cwiki.apache.org/confluence/display/SLING/FAQ", "FAQ")}
                 li(){a(href:"${config.site_contextPath}sitemap.html", "Site Map")}
             }
         }

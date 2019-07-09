@@ -129,7 +129,7 @@ Redirect Permanent /site/usecases.html /index.html
 Redirect Permanent /site/version-policy.html /documentation/development/version-policy.html
 Redirect Permanent /site/web-console-extensions.html /documentation/bundles/web-console-extensions.html
 Redirect Permanent /site/webdav.html /documentation/development/repository-based-development.html
-Redirect Permanent /site/wiki.html http://s.apache.org/sling.wiki
+Redirect Permanent /site/wiki.html http://cwiki.apache.org/confluence/display/SLING
 Redirect Permanent /site/wrap-or-decorate-resources.html /documentation/the-sling-engine/wrap-or-decorate-resources.html
 Redirect Permanent /site/xslt-processing-pipeline.html /old-stuff/scriptengineintegration/xslt-processing-pipeline.html
 Redirect Permanent /javadoc-io.html /documentation/apidocs.html
