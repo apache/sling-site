@@ -167,8 +167,8 @@
 <h3><a href="#how-to-get-a-resourceresolver" name="how-to-get-a-resourceresolver">How to get a ResourceResolver</a></h3>
 <p>Usually you get the <code>ResourceResolver</code> via the OSGi service <code>ResourceResolverFactory</code>. This interface provides different methods to create a ResourceResolver:</p>
 <ol>
-  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)</code></a>). You must provide some authentication info details for this to work. Those are highly dependent on the implementing <code>ResourceProvider</code>. See sections below for further details which keys are supported.</li>
-  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getServiceResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getServiceResourceResolver(java.util.Map authenticationInfo)</code></a>. Can optionally be further parameterized via the authentication info key <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#SUBSERVICE"><code>sling.service.subservice</code></a>. For further details refer to <a href="../service-authentication.html">ServiceAuthentication</a>.</li>
+  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)</code></a>. You must provide some authentication info details for this to work. Those are highly dependent on the implementing <code>ResourceProvider</code>. See sections below for further details which keys are supported.</li>
+  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getServiceResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getServiceResourceResolver(java.util.Map authenticationInfo)</code></a>. Can optionally be further parameterized via the authentication info key <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#SUBSERVICE"><code>sling.service.subservice</code></a>. For further details refer to <a href="service-authentication.html">ServiceAuthentication</a>.</li>
   <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getThreadResourceResolver--"><code>ResourceResolverFactory.getThreadResourceResolver()</code></a>. Uses the resource resolver bound to the current thread.</li>
   <li>The deprecated <code>ResourceResolverFactory.getAdministrativeResourceResolver(...)</code>. Instead rather use the method 2.</li>
 </ol>
@@ -280,7 +280,7 @@
 <p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jul 9 09:43:08 2019 +0200</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jul 9 11:17:20 2019 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
