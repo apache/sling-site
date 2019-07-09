@@ -114,6 +114,15 @@ When accessing a Resource with path `/some/path/resource` the Resource provider 
 
 JCR-based Resources are provided with the default `JcrResourceProvider`. This Resource provider is always available and is always asked last. That is Resources provided by other Resource providers may never be overruled by repository based Resources.
 
+These are the authenticationInfo keys (which can be used with [`ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-)) which are supported by the `JcrResourceProvider`:
+
+| AuthenticationInfo Key | Type | Description |
+| --- | --- | --- | --- |
+| `user.jcr.session` | `javax.jcr.Session` | The session which is used for the underlying repository access. When calling `close()` on the returned `ResourceResolver` the session will not(!) be closed. |
+| `user.jcr.credentials` | `javax.jcr.Credentials` | The credentials object from which to create the new underlying JCR session
+| `user.name` | String | Optionally used with `user.password` to create simple credentials from which the Session is being created.
+| `user.impersonation` | String | User ID which should be used for impersonation via `javax.jcr.Session.impersonate(...)`. Must be combined with one of the other authentication info keys.
+
 ### Bundle-based Resources
 
 Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header `Sling-Bundle-Resources` containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).
