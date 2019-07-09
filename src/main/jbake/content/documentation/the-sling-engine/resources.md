@@ -54,6 +54,17 @@ To get at Resources, you need a `ResourceResolver`. This interface defines four 
 * Resource Enumeration: To enumerate resources and thus iterate the resource tree, the `listChildren(Resource)` method may be used. This method returns an `Iterator<Resource>` listing all resources whose path prefix is the path of the given Resource. This method will of course also cross boundaries of registered `ResourceProvider` instances to enable iterating the complete resource tree.
 * Resource Querying: Querying resources is currently only supported for JCR Resources through the `findResources(String query, String language)` and `queryResources(String query, String language)` methods. For more information see the section on [Querying Resources](#querying-resources) below.
 
+### How to get a ResourceResolver
+
+Usually you get the `ResourceResolver` via the OSGi service `ResourceResolverFactory`. This interface provides different methods to create a ResourceResolver:
+
+1. [`ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-)). You must provide some authentication info details for this to work. Those are highly dependent on the implementing `ResourceProvider`. See sections below for further details which keys are supported.
+2. [`ResourceResolverFactory.getServiceResourceResolver(java.util.Map authenticationInfo)`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getServiceResourceResolver-java.util.Map-). Can optionally be further parameterized via the authentication info key [`sling.service.subservice`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#SUBSERVICE). For further details refer to [ServiceAuthentication](../service-authentication.html).
+3. [`ResourceResolverFactory.getThreadResourceResolver()`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getThreadResourceResolver--). Uses the resource resolver bound to the current thread.
+4. The deprecated `ResourceResolverFactory.getAdministrativeResourceResolver(...)`. Instead rather use the method 2.
+
+It is crucial that each `ResourceResolver` retrieved via one of those methods is closed via [`ResourceResolver.close()`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#close--) once it is no longer used.
+
 ### Absolute Path Mapping
 
 As has been said, the absolute path mapping methods `resolve(HttpServletRequest, String)` and `resolve(String)` apply some implementation specific path matching algorithm to find a Resource. The difference between the two methods is that the former may take more properties of the `HttpServletRequest` into account when resolving the Resoure, while the latter just has an absolute path to work on.
@@ -116,12 +127,12 @@ JCR-based Resources are provided with the default `JcrResourceProvider`. This Re
 
 These are the authenticationInfo keys (which can be used with [`ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-)) which are supported by the `JcrResourceProvider`:
 
-| AuthenticationInfo Key | Type | Description |
+| AuthenticationInfo Key | Constant | Type | Description |
 | --- | --- | --- | --- |
-| `user.jcr.session` | `javax.jcr.Session` | The session which is used for the underlying repository access. When calling `close()` on the returned `ResourceResolver` the session will not(!) be closed. |
-| `user.jcr.credentials` | `javax.jcr.Credentials` | The credentials object from which to create the new underlying JCR session
-| `user.name` | String | Optionally used with `user.password` to create simple credentials from which the Session is being created.
-| `user.impersonation` | String | User ID which should be used for impersonation via `javax.jcr.Session.impersonate(...)`. Must be combined with one of the other authentication info keys.
+| `user.jcr.session` | [`JcrResourceConstants.AUTHENTICATION_INFO_SESSION`](https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_SESSION) | `javax.jcr.Session` | The session which is used for the underlying repository access. When calling `close()` on the returned `ResourceResolver` the session will not(!) be closed. |
+| `user.jcr.credentials` | [`JcrResourceConstants.AUTHENTICATION_INFO_CREDENTIALS`](https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_CREDENTIALS) | `javax.jcr.Credentials` | The credentials object from which to create the new underlying JCR session
+| `user.name` | [`ResourceResolverFcatory.AUTHENTICATION_INFO_CREDENTIALS`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER) | String | Optionally used with `user.password` to create simple credentials from which the Session is being created.
+| `user.impersonation` | [`ResourceResolverFcatory.USER_IMPERSONATION`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION) | String | User ID which should be used for impersonation via `javax.jcr.Session.impersonate(...)`. Must be combined with one of the other authentication info keys.
 
 ### Bundle-based Resources
 
