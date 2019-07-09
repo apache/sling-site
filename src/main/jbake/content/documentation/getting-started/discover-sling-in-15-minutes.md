@@ -60,7 +60,7 @@ To create a content node (nodes are a [JCR](http://jackrabbit.apache.org/) conce
     curl -u admin:admin -F"sling:resourceType=foo/bar" -F"title=some title" http://localhost:8080/content/mynode
 
 
-The resulting node can be seen at [http://localhost:8080/content/mynode.html](http://localhost:8080/content/mynode.html.path), or as json format under [http://localhost:8080/content/mynode.json](http://localhost:8080/content/mynode.json). Lets try with cURL:
+The resulting node can be seen at [http://localhost:8080/content/mynode.html](http://localhost:8080/content/mynode.html), or as json format under [http://localhost:8080/content/mynode.json](http://localhost:8080/content/mynode.json). Lets try with cURL:
 
     $ curl http://localhost:8080/content/mynode.json
 
