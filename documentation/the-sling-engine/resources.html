@@ -164,6 +164,15 @@
   <li>Resource Enumeration: To enumerate resources and thus iterate the resource tree, the <code>listChildren(Resource)</code> method may be used. This method returns an <code>Iterator&lt;Resource&gt;</code> listing all resources whose path prefix is the path of the given Resource. This method will of course also cross boundaries of registered <code>ResourceProvider</code> instances to enable iterating the complete resource tree.</li>
   <li>Resource Querying: Querying resources is currently only supported for JCR Resources through the <code>findResources(String query, String language)</code> and <code>queryResources(String query, String language)</code> methods. For more information see the section on <a href="#querying-resources">Querying Resources</a> below.</li>
 </ul>
+<h3><a href="#how-to-get-a-resourceresolver" name="how-to-get-a-resourceresolver">How to get a ResourceResolver</a></h3>
+<p>Usually you get the <code>ResourceResolver</code> via the OSGi service <code>ResourceResolverFactory</code>. This interface provides different methods to create a ResourceResolver:</p>
+<ol>
+  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)</code></a>). You must provide some authentication info details for this to work. Those are highly dependent on the implementing <code>ResourceProvider</code>. See sections below for further details which keys are supported.</li>
+  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getServiceResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getServiceResourceResolver(java.util.Map authenticationInfo)</code></a>. Can optionally be further parameterized via the authentication info key <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#SUBSERVICE"><code>sling.service.subservice</code></a>. For further details refer to <a href="../service-authentication.html">ServiceAuthentication</a>.</li>
+  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getThreadResourceResolver--"><code>ResourceResolverFactory.getThreadResourceResolver()</code></a>. Uses the resource resolver bound to the current thread.</li>
+  <li>The deprecated <code>ResourceResolverFactory.getAdministrativeResourceResolver(...)</code>. Instead rather use the method 2.</li>
+</ol>
+<p>It is crucial that each <code>ResourceResolver</code> retrieved via one of those methods is closed via <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#close--"><code>ResourceResolver.close()</code></a> once it is no longer used.</p>
 <h3><a href="#absolute-path-mapping" name="absolute-path-mapping">Absolute Path Mapping</a></h3>
 <p>As has been said, the absolute path mapping methods <code>resolve(HttpServletRequest, String)</code> and <code>resolve(String)</code> apply some implementation specific path matching algorithm to find a Resource. The difference between the two methods is that the former may take more properties of the <code>HttpServletRequest</code> into account when resolving the Resoure, while the latter just has an absolute path to work on.</p>
 <p>The general algorithm of the two methods is as follows:</p>
@@ -207,6 +216,7 @@
   <thead>
     <tr>
       <th>AuthenticationInfo Key </th>
+      <th>Constant </th>
       <th>Type </th>
       <th>Description </th>
     </tr>
@@ -214,21 +224,25 @@
   <tbody>
     <tr>
       <td><code>user.jcr.session</code> </td>
+      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_SESSION"><code>JcrResourceConstants.AUTHENTICATION_INFO_SESSION</code></a> </td>
       <td><code>javax.jcr.Session</code> </td>
       <td>The session which is used for the underlying repository access. When calling <code>close()</code> on the returned <code>ResourceResolver</code> the session will not(!) be closed. </td>
     </tr>
     <tr>
       <td><code>user.jcr.credentials</code> </td>
+      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_CREDENTIALS"><code>JcrResourceConstants.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td>
       <td><code>javax.jcr.Credentials</code> </td>
       <td>The credentials object from which to create the new underlying JCR session</td>
     </tr>
     <tr>
       <td><code>user.name</code> </td>
+      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER"><code>ResourceResolverFcatory.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td>
       <td>String </td>
       <td>Optionally used with <code>user.password</code> to create simple credentials from which the Session is being created.</td>
     </tr>
     <tr>
       <td><code>user.impersonation</code> </td>
+      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION"><code>ResourceResolverFcatory.USER_IMPERSONATION</code></a> </td>
       <td>String </td>
       <td>User ID which should be used for impersonation via <code>javax.jcr.Session.impersonate(...)</code>. Must be combined with one of the other authentication info keys.</td>
     </tr>
@@ -266,7 +280,7 @@
 <p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jul 9 09:10:59 2019 +0200</span>
+                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jul 9 09:43:08 2019 +0200</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
