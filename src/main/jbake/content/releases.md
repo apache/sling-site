@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## July 2019
 
 * Connection Timeout Agent 1.0.0 (1st)
+* Apache Sling Testing Clients 1.2.2 (9th)
 
 ## June 2019
 
