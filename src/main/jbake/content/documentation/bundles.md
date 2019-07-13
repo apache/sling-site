@@ -20,6 +20,7 @@ in their README files instead of here.
 * [Validation](/documentation/bundles/validation.html)
 * [Repository Initialization](/documentation/bundles/repository-initialization.html)
 * [Distribution](/documentation/bundles/distribution.html)
+* [Filtering Resource Streams](/documentation/bundles/resource-filter.html)
 
 ## Resource Providers
 
