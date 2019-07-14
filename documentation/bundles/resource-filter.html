@@ -78,6 +78,11 @@
 </p>
 <h2><a href="#introduction" name="introduction">Introduction</a></h2>
 <p>Resource Filter bundle provides a number of services and utilities to identify and filter resources in a resource tree.</p>
+<h2><a href="#resource-stream" name="resource-stream">Resource Stream</a></h2>
+<p><code>ResourceStream</code> is a general utility. It provides two functions. The first is access to a <code>Stream&lt;Resource&gt;</code> which traverses a resource and it's subtree. The function takes a <code>Predicate&lt;Resource&gt;</code> object which is used to select the child nodes to be part of the traversal.</p>
+<pre><code>ResourceStream rs = new ResourceStream(resource);
+</code></pre>
+<p>In addition there is a <code>getChildren(Predicate)</code> method which returns a filtered list of children of the given resource.</p>
 <h2><a href="#resource-predicate-service" name="resource-predicate-service">Resource Predicate Service</a></h2>
 <p><code>ResourcePredicate</code> is a service that allows you to convert a string that defines a simple matching requirements into a <code>Predicate&lt;Resource&gt;</code> for use with the Collections and the Streams Java API. In addition it also allows you to add parameters to the underlying context that the script will use.</p>
 <pre><code>@Reference
@@ -88,9 +93,6 @@ resourceCollection.stream().filter(predicate).forEach(
     resource -&gt; System.out.println(resource.getPath())
 );
 </code></pre>
-<h2><a href="#resource-stream" name="resource-stream">Resource Stream</a></h2>
-<p><code>ResourceStream</code> is a general utility to provide a <code>Stream&lt;Resource&gt;</code> which traverses a resource and it's subtree. The implementation takes a <code>Predicate&lt;Resource&gt;</code> object as part of the stream creation to define a branch selector that controls which children of a resource are followed.</p>
-<p>In addition there is a <code>getChildren(Predicate)</code> method which returns a filtered list of children of the given resource.</p>
 <h2><a href="#resource-filter-stream" name="resource-filter-stream">Resource Filter Stream</a></h2>
 <p><code>ResourceFilterStream</code> combines the <code>ResourceStream</code> functionality with the <code>ResourcePredicates</code> service to provide an ability to define a <code>Stream&lt;Resource&gt;</code> that follows specific child pages and looks for specific Resources as defined by the resources filter script. The ResourceStreamFilter is access by adaption.</p>
 <pre><code>ResourceFilterStream rfs = resource.adaptTo(ResourceFilterStream.class);
@@ -102,6 +104,7 @@ rfs
   .collect(Collections.toList());
 </code></pre>
 <h2><a href="#resourcefilter-scripting" name="resourcefilter-scripting">ResourceFilter Scripting</a></h2>
+<p>To ease the creation of a <code>Predicate&lt;Resource&gt;</code> a scripting implementation was developed that was designed to be visually similar to JCRSQL use of property identification where a property is compared to one or more values.</p>
 <h3><a href="#operators" name="operators">Operators</a></h3>
 <table>
   <thead>
@@ -272,11 +275,10 @@ rfs
 <p>Or you can add your own custom Function </p>
 <p>Dates are transitionally represented as a java.util.Instant which is then converted to a String in ISO-8601 format or as a Long number based on the type of comparison. The number representing the time in milliseconds since the EPOCH UTC region</p>
 <h3><a href="#functions" name="functions">Functions</a></h3>
-<p>Functions provide the ability to add additional functionality to the Filter language. A Function is written in the format</p>
+<p>Functions provide additional functionality to the Filter language. A Function is written in the format</p>
 <blockquote>
   <p>string '(' comma, separated, list() ')'</p>
 </blockquote>
-<p>All functions MUST return either a String, a Number, or an Instant. Strings are assumed to be using the default UTF encoding.</p>
 <p>OOTB Functions are:</p>
 <table>
   <thead>
@@ -320,7 +322,7 @@ rfs
 <p>The instantiation of a Resource object from the underlying ResourceResolver is a non trivial consumption of memory. When the focus of a tree traversal is obtaining information from thousands of Resources, an effective method is to extract the information as part of the stream processing or utilizing the forEach method of the ResourceStream object which allows the resource to be garbage collected in an efficient manner. </p></section></div></div>            
             <footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Jason E Bailey</span> on <span class="comment">Fri Jul 12 20:12:12 2019 -0400</span>
+                    Last modified by <span class="author">Jason E Bailey</span> on <span class="comment">Sat Jul 13 21:50:24 2019 -0400</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
