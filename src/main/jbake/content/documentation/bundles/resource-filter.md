@@ -9,6 +9,14 @@ tags=requests
 ## Introduction
 Resource Filter bundle provides a number of services and utilities to identify and filter resources in a resource tree.
 
+## Resource Stream
+`ResourceStream` is a general utility. It provides two functions. The first is access to a `Stream<Resource>` which traverses a resource and it's subtree. The function takes a `Predicate<Resource>` object which is used to select the child nodes to be part of the traversal.
+
+    ResourceStream rs = new ResourceStream(resource);
+
+In addition there is a `getChildren(Predicate)` method which returns a filtered list of children of the given resource.
+
+
 ## Resource Predicate Service
 `ResourcePredicate` is a service that allows you to convert a string that defines a simple matching requirements into a `Predicate<Resource>` for use with the Collections and the Streams Java API. In addition it also allows you to add parameters to the underlying context that the script will use.
 
@@ -19,12 +27,6 @@ Resource Filter bundle provides a number of services and utilities to identify a
     resourceCollection.stream().filter(predicate).forEach(
         resource -> System.out.println(resource.getPath())
     );
-
-## Resource Stream
-`ResourceStream` is a general utility to provide a `Stream<Resource>` which traverses a resource and it's subtree. The implementation takes a `Predicate<Resource>` object as part of the stream creation to define a branch selector that controls which children of a resource are followed.
-
-In addition there is a `getChildren(Predicate)` method which returns a filtered list of children of the given resource.
-
 
 ## Resource Filter Stream
 `ResourceFilterStream` combines the `ResourceStream` functionality with the `ResourcePredicates` service to provide an ability to define a `Stream<Resource>` that follows specific child pages and looks for specific Resources as defined by the resources filter script. The ResourceStreamFilter is access by adaption.
@@ -39,6 +41,9 @@ In addition there is a `getChildren(Predicate)` method which returns a filtered 
       .collect(Collections.toList());
 
 ## ResourceFilter Scripting
+
+To ease the creation of a `Predicate<Resource>` a scripting implementation was developed that was designed to be visually similar to JCRSQL use of property identification where a property is compared to one or more values.
+
 
 ### Operators
 
@@ -110,11 +115,9 @@ Dates are transitionally represented as a java.util.Instant which is then conver
 
 ### Functions
 
-Functions provide the ability to add additional functionality to the Filter language. A Function is written in the format
+Functions provide additional functionality to the Filter language. A Function is written in the format
 
 > string '(' comma, separated, list() ')'
-
-All functions MUST return either a String, a Number, or an Instant. Strings are assumed to be using the default UTF encoding.
 
 OOTB Functions are:
 
