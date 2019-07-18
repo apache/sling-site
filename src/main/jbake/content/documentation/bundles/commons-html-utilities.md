@@ -4,4 +4,13 @@ status=published
 tags=html,commons
 ~~~~~~
 
-The Apache Sling Commons HTML Utilities bundle provides an HTML parser which can be used to parse HTML and either generate a DOM or SAX events out of the HTML. Therefore the parser transforms the HTML into proper XHTML.
+The Apache Sling Commons HTML Utilities bundle provides multiple HTML parsers which can be used to parse HTML and generate a `Document` or events based on the type of Parser used.
+
+== Document Generation
+
+== TagSoup Based Parser
+
+
+
+
+

@@ -1,39 +1,45 @@
 yieldUnescaped '<!DOCTYPE html>'
 html(lang:'en'){
-
-	include template: "header.tpl"
-
+    include template: "header.tpl"
     body() {
-        include template: 'logos.tpl'
-        include template: 'menu.tpl'
-
-		div(class:"main") {
-            div(class:"pagenav") {
-                breadcrumbs()
-                newLine()
-                tags()
-                newLine()
+    div(class:"section"){
+        div(class:"level is-marginless") {
+            include template: 'logos.tpl'
+        }
+        div(class:"columns is-gapless") {
+            div(class:"column is-narrow sidemenu") {
+                include template: 'menu.tpl'
             }
-			
-			if(content && content.title) {
-				h1(class:"pagetitle") {
-					yield "${ content.title }"
-				}
-			}
-			
-            if (content && !"false".equals(content.tableOfContents)) {
-			    tableOfContents()
-			    newLine()
-		    }
-			bodyContents()
-			newLine()
+            div(class:"column main") {
+                div(class:"box is-shadowless is-marginless"){
+                    div(class:"level") {
+                        div(class:"pagenav") {
+                            breadcrumbs()
+                        }
+                        tags()
+                    }
 
-            footer(class:"footer") {
-                lastModified()
-                include template: 'footer.tpl'
+                    if( content ) {
+                        if(content.title) {
+                            h1(class:"title") {
+                                yield "${ content.title }"
+                            }
+                        }
+                        if (!content.tableOfContents) {
+                            tableOfContents()
+                        }
+                        div(class:"content is-marginless"){
+                            bodyContents()
+                        }
+                    }
+                }
             }
-			newLine()
+        }//columns
+        footer(class:"footer") {
+            lastModified()
+            include template: 'footer.tpl'
         }
     }
+    }//body
 }
-newLine()
+
