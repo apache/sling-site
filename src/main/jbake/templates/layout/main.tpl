@@ -25,7 +25,7 @@ html(lang:'en'){
                                 yield "${ content.title }"
                             }
                         }
-                        if (!content.tableOfContents) {
+                        if (!"false".equals(content.tableOfContents)) {
                             tableOfContents()
                         }
                         div(class:"content is-marginless"){

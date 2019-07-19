@@ -3,6 +3,7 @@ type=page
 status=published
 tags=community
 expandVariables=true
+tableOfContents=false
 ~~~~~~
 
 Apache Sling&trade; is a ${sling_tagline}.
