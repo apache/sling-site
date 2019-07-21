@@ -1,10 +1,10 @@
 body {
-    background-color: #ffffff;
+    background-color: #fcfcfc;
     color: #3b3b3b;
 }
 
 h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited {
-	color:black;
+	color:#3b3b3b;
 	text-decoration:none;
 }
 
@@ -37,7 +37,6 @@ a:hover {
 }
 
 .sidemenu ul,.sidemenu p {
-    background-color: #fdf5d9;
     color: #4a4a43
 }
 
@@ -49,15 +48,6 @@ a:hover {
     border-top: 10px solid #cde0ea;
 }
 
-.preformatted {
-    color: black;
-    background-color: #eeeeee;
-    border: solid 1px black;
-}
-
-.preformattedContent pre {
-    margin: 0em
-}
 
 table {
     border-collapse: collapse;
@@ -142,23 +132,6 @@ td {
     text-align: left;
 }
 
-blockquote {
-    font-style: italic;
-    margin: 0;
-    padding-left: 1em;
-    border-left: 1px solid black;
-}
-
-pre {
-    color: black;
-    background-color: #f0f0f0;
-    border: solid 1px #f5f5f5;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    padding: 0.5em;
-    width: 100%;
-}
-
 .draft {
 	font-size:150%;
 	font-weight:bold;
@@ -166,14 +139,18 @@ pre {
     text-align:center;
 }
 
-.footer {
-    padding-top: 1em; 
-}
-
-.tags .tag {
-    background-color: #EEE;
-}
-
 .menu-list a {
     padding: 0em;
+}
+
+code {
+    color: #000000;
+}
+
+.content pre {
+    background-color: #fcfcfc;
+}
+
+.content pre code {
+    border: 1px solid #cde0ea;
 }
