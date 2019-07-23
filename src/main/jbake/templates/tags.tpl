@@ -26,7 +26,7 @@ layout 'layout/main.tpl', true,
                                 yield "$tag"
                             }
                         }
-                        span(class:"tag is-link","${count}")
+                        span(class:"tag","${count}")
                     }
                     }
 					newLine()
