@@ -3,6 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <title>Apache Sling :: Manipulating Content - The SlingPostServlet (servlets.post)</title>
         <link rel="icon" href="/res/favicon.ico"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
@@ -10,75 +11,114 @@
         </script>
         
     </head>    <body>
-<div class="title">
-            <div class="logo">
-                <a href="https://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
-                </a>
-            </div><div class="header">
-                <a href="https://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
-                </a>
-            </div>
-        </div><nav class="menu">
-            <ul>
-                <li>
-                    <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
-                    </ul>
-                </li><li>
-                    <strong>API Docs</strong><ul>
-                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Support</strong><ul>
-                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Project Info</strong><ul>
-                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Source</strong><ul>
-                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Apache Software Foundation</strong><ul>
-                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li><li><a href="https://www.apache.org/events/current-event.html">
-                                <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
-                            </a></li><li><a href="https://apache.org/foundation/contributing.html">
-                                <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
-                            </a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>        <div class="main">
-            <div class="pagenav">
-<div class="breadcrumb">
-                    <a href="/">
-                        Home
-                    </a><a href="/documentation.html">
-                        Documentation
-                    </a><a href="/documentation/bundles.html">
-                        Bundles
+        <div class="section">
+            <div class="level is-marginless">
+<div class="logo">
+                    <a href="https://sling.apache.org">
+                        <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    </a>
+                </div><div class="header">
+                    <a href="https://www.apache.org">
+                        <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-<div class="tags">
-                    <span class="tag">
-                        <a href="/tags/servlets.html">
-                            servlets
-                        </a>
-                    </span><span class="tag">
-                        <a href="/tags/postservlet.html">
-                            postservlet
-                        </a>
-                    </span>
-                </div>                
-                
-            </div><h1 class="pagetitle">
-                Manipulating Content - The SlingPostServlet (servlets.post)
-            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
-<div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+            </div><div class="columns is-gapless">
+                <div class="column is-narrow sidemenu">
+<div class="container">
+                        <nav class="menu">
+                            <ul class="menu-list box is-shadowless is-marginless">
+                                <li>
+                                    <p class="menu-label">
+                                        <strong>Documentation</strong>
+                                    </p><ul>
+                                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>API Docs</strong>
+                                    </p><ul>
+                                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Support</strong>
+                                    </p><ul>
+                                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Project Info</strong>
+                                    </p><ul>
+                                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Source</strong>
+                                    </p><ul>
+                                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Apache Software<br>Foundation</strong>
+                                    </p><ul>
+                                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav><div class="columns is-centered">
+                            <div class="column">
+                                <a href="https://www.apache.org/events/current-event.html" class="column">
+                                    <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
+                                </a><a href="https://apache.org/foundation/contributing.html" class="column">
+                                    <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>                    
+                </div><div class="column main">
+                    <div class="box is-shadowless is-marginless">
+                        <div class="level">
+                            <div class="pagenav">
+<div class="breadcrumb">
+                                    <ul>
+                                        <li>
+                                            <a href="/">
+                                                Home
+                                            </a>
+                                        </li><li>
+                                            <a href="/documentation.html">
+                                                Documentation
+                                            </a>
+                                        </li><li>
+                                            <a href="/documentation/bundles.html">
+                                                Bundles
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                                
+                            </div><div class="tags">
+                                <span class="tag">
+                                    <a href="/tags/servlets.html">
+                                        servlets
+                                    </a>
+                                </span><span class="tag">
+                                    <a href="/tags/postservlet.html">
+                                        postservlet
+                                    </a>
+                                </span>
+                            </div>
+                        </div><h1 class="title">
+                            Manipulating Content - The SlingPostServlet (servlets.post)
+                        </h1><nav class="menu">
+                            <ul class="menu-list box is-shadowless is-paddingless">
+                                <li id="generatedToC">
+                                    <p class="menu-label">
+                                        <strong>Table of Contents</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
+<div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#multiple-ways-to-modify-content" name="multiple-ways-to-modify-content">Multiple Ways to Modify Content</a></h2>
 <p>As always in life there is more than one way to do it. So to modify content in a JCR repository underlying Sling, you have multiple options, two of which are WebDAV and the Sling default POST Servlet also called the <em>SlingPostServlet</em>. This page is about how you can modify - create, modify, copy, move, delete, import - content through the <em>SlingPostServlet</em>. In addition it also explains how to extend the SlingPostServlet with new operations.</p>
@@ -922,8 +962,11 @@ of a resource without having to specify the path of each individual child resour
 <h3><a href="#slingpostprocessor" name="slingpostprocessor">SlingPostProcessor</a></h3>
 <p>OSGi services of the <code>org.apache.sling.servlets.post.SlingPostOperation</code> type can be used to post process <code>PostOperation</code>s. They are called after the operation has performed its changes but before the changes are persisted (via commit). All registered SlingPostProcessors are always called in the reverse order of their service ranking (i.e. the one with the highest service ranking first).</p>
 <p>A <code>SlingPostProcessor</code> may perform additional changes or revert previous ones. It is important that the <code>SlingPostProcessor</code> does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method <code>process(SlingHttpServletRequest, List&lt;Modification&gt;)</code>.</p>
-<p>Two examples of SlingPostProcessors are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java">integration-tests</a> module.</p></section></div></div>            
-            <footer class="footer">
+<p>Two examples of SlingPostProcessors are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java">integration-tests</a> module.</p></section></div></div>                            
+                        </div>
+                    </div>
+                </div>
+            </div><footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
                 </div>                <p>
@@ -932,7 +975,6 @@ of a resource without having to specify the path of each individual child resour
                     Copyright © 2007-2019 The Apache Software Foundation.
                 </p>
             </footer>
-            
         </div>
     </body>
 </html>
