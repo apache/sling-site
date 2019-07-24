@@ -11,8 +11,8 @@ layout 'layout/main.tpl', true,
         },
         bodyContents: contents {
             div(class:"row"){
-                div(class:"small-12 columns"){
-                    section(class:"wrap"){
+                div(){
+                    section(){
                         yieldUnescaped U.processBody(content, config)
                     }
                 }

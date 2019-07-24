@@ -1,206 +1,65 @@
 body {
-    background-color: #ffffff;
+    background-color: #fcfcfc;
     color: #3b3b3b;
-    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 10pt;
-    line-height: 140%
-}
-
-h1,h2,h3,h4,h5,h6 {
-    font-weight: normal;
-    color: #000000;
-    line-height: 100%;
-}
-
-.tocHeading {
-	font-size:120%;
-	font-weight:bold;
-}
-
-h1 {
-    font-size: 200%;
-    font-weight: bold;
-    border-bottom: solid #EEE 1px;
-    border-top: solid #EEE 1px;
-    padding-top:.2em;
-    padding-bottom:.2em;
-}
-
-h2 {
-    font-size: 200%;
-    margin-top: 1em;
-    font-weight: normal;
-    border-top: solid #e0e0e0 1px;
-    padding-top: 0.45em;
 }
 
 h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited {
-	color:black;
+	color:#3b3b3b;
 	text-decoration:none;
-}
-
-h3 {
-    font-size: 150%
-}
-
-h4 {
-    font-size: 140%
-}
-
-h5 {
-    font-size: 130%
-}
-
-h6 {
-    font-size: 120%
-}
-
-a {
-    color: #1980af
-}
-
-a:visited {
-    color: #1980af
 }
 
 a:hover {
     color: #1faae9
 }
 
-img {
-    max-width: 100%;
-    border: solid 1px #EEE;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    padding: 0.5em
-}
-
-ul {
-    margin-block-end: 0em;
-    margin-inline-end: 0em;
-}
 
 .title {
-    position: absolute;
-    left: 1px;
-    right: 1px;
-    top: 25px;
-    height: 81px;
-    background:
-        url(https://sling.apache.org/site/media.data/gradient.png)
-        repeat-x;
-    background-position: bottom;
+    border-bottom: solid #EEE 1px;
+    border-top: solid #EEE 1px;
+    padding-top:.2em;
+    padding-bottom:.2em;
 }
 
-.title img {
-    width: auto;
-    border: none;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 0px;    
-}
 
 .logo {
-    position: absolute;
     width: 15em;
     height: 81px;
-    text-align: center;
 }
 
 .logo img {
     height: 63px;
 }
 
-.header {
-    text-align: right;
-    margin-right: 20pt;
-}
 
-.menu {
+.sidemenu {
     border-top: 10px solid #f9bb00;
-    position: absolute;
-    top: 107px;
-    left: 1px;
-    width: 15em;
-    bottom: 0px;
-    padding: 0px;
     background-color: #fcfcfc
 }
 
-.menu ul,.menu p {
-    background-color: #fdf5d9;
-    list-style: none;
-    padding-left: 1em;
-    margin-top: 0px; 
-    padding-bottom: .5em;
-    margin-left: 0px;
+.sidemenu ul,.sidemenu p {
     color: #4a4a43
 }
 
-.menu > ul {
-    padding-top: 1em;
-    margin-block-end: 0px;
-    margin-inline-end: 0px;
-}
-
-.menu p {
-    font-size: 90%;
-    margin: 0px;
-    padding: 1px;
-    padding-left: 1em;
-    padding-bottom: 1em;
-}
-
-.menu a {
-    text-decoration: none;
+.sidemenu a {
     color: #4a4a43
-}
-
-.menu img {
-    display: block;
 }
 
 .main {
-    position: absolute;
     border-top: 10px solid #cde0ea;
-    top: 107px;
-    left: 15em;
-    right: 1px;
-    margin-left: 2px;
-    padding-right: 4em;
-    padding-left: 1em;
-    padding-top: 1em;
 }
 
-.preformatted {
-    color: black;
-    background-color: #eeeeee;
-    border: solid 1px black;
-    padding: 0.5em
-}
-
-.preformattedContent pre {
-    margin: 0em
-}
 
 table {
     border-collapse: collapse;
-    margin: 5px;
 }
 
 th {
     background-color: #FDF5D9;
     border: 1px solid #DDD;
-    padding: 3px 4px;
-    text-align: left;
-    font-weight:bold;
-    font-size:90%;
-    padding: 3px 4px;
 }
 
 td {
     border: 1px solid #DDD;
-    padding: 3px 4px;
 }
 
 .note
@@ -273,23 +132,6 @@ td {
     text-align: left;
 }
 
-blockquote {
-    font-style: italic;
-    margin: 0;
-    padding-left: 1em;
-    border-left: 1px solid black;
-}
-
-pre {
-    color: black;
-    background-color: #f0f0f0;
-    border: solid 1px #f5f5f5;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    padding: 0.5em;
-    width: 100%;
-}
-
 .draft {
 	font-size:150%;
 	font-weight:bold;
@@ -297,54 +139,18 @@ pre {
     text-align:center;
 }
 
-.footer {
-    padding-top: 1em; 
+.menu-list a {
+    padding: 0em;
 }
 
-.badge {
-    border-radius: 2px;
-    background-color: #EEE;
-    text-align: center;
-    padding-left: 3px;
-    padding-right: 3px;
-	margin-left: 3px;
-	display:inline-block;
+code {
+    color: #000000;
 }
 
-.pagenav {
-    overflow:hidden
-    font-size: 70%;
-    clear:both;
-    padding-bottom:1em;
+.content pre {
+    background-color: #fcfcfc;
 }
 
-.breadcrumb {
-    float:left;
-}
-
-.breadcrumb a {
-    text-decoration: none;
-}
-
-.breadcrumb a:not(:last-child):after {
-    padding-left: .4em;
-    padding-right: .4em;
-    content : "\BB";
-    color: #000;
-    display:inline-block;
-}
-
-.tags {
-    float:right;
-}
-
-.tags .tag {
-    background-color: #EEE;
-	padding: 0.2em;
-    margin-left: 0.2em;
-	text-decoration: none;
-}
-
-.tags .tag:not(:last-child)  {
-    padding-right:0.5em;
+.content pre code {
+    border: 1px solid #cde0ea;
 }
