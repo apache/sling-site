@@ -1,9 +1,8 @@
 <!DOCTYPE html><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling :: resourceproviders</title>
+        <title>Apache Sling :: null</title>
         <link rel="icon" href="/res/favicon.ico"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
@@ -11,184 +10,158 @@
         </script>
         
     </head>    <body>
-        <div class="section">
-            <div class="level is-marginless">
-<div class="logo">
-                    <a href="https://sling.apache.org">
-                        <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
-                    </a>
-                </div><div class="header">
-                    <a href="https://www.apache.org">
-                        <img border="0" alt="Apache" src="/res/logos/apache.png"/>
-                    </a>
-                </div>                
-            </div><div class="columns is-gapless">
-                <div class="column is-narrow sidemenu">
-<div class="container">
-                        <nav class="menu">
-                            <ul class="menu-list box is-shadowless is-marginless">
-                                <li>
-                                    <p class="menu-label">
-                                        <strong>Documentation</strong>
-                                    </p><ul>
-                                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>API Docs</strong>
-                                    </p><ul>
-                                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Support</strong>
-                                    </p><ul>
-                                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Project Info</strong>
-                                    </p><ul>
-                                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Source</strong>
-                                    </p><ul>
-                                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Apache Software<br>Foundation</strong>
-                                    </p><ul>
-                                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav><div class="columns is-centered">
-                            <div class="column">
-                                <a href="https://www.apache.org/events/current-event.html" class="column">
-                                    <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
-                                </a><a href="https://apache.org/foundation/contributing.html" class="column">
-                                    <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>                    
-                </div><div class="column main">
-                    <div class="box is-shadowless is-marginless">
-                        <div class="level">
-                            <div class="pagenav">
-                                <breadcrumbs/>
-                            </div><tags/>
-                        </div><tableOfContents/><div class="content is-marginless">
-<div class="taglinks"><h2>Tagged with 'resourceproviders'</h2><div class="taglink"><a href="/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html">Accessing File System Resources (org.apache.sling.fsresource)</a></div><div class="taglink"><a href="/documentation/bundles/nosql-resource-providers.html">NoSQL Resource Providers (org.apache.sling.nosql)</a></div><h2>All tags</h2>
-                                <div class="field is-grouped is-grouped-multiline"><div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/adaptTo.html">adaptTo</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/api.html">api</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/authentication.html">authentication</a></span><span class="tag">8</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/bundles.html">bundles</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/caching.html">caching</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/commons.html">commons</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/community.html">community</a></span><span class="tag">9</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/configuration.html">configuration</a></span><span class="tag">8</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/contentdistribution.html">contentdistribution</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/contentloading.html">contentloading</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/core.html">core</a></span><span class="tag">28</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/databases.html">databases</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/development.html">development</a></span><span class="tag">28</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/discovery.html">discovery</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/distribution.html">distribution</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/documentation.html">documentation</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/downloads.html">downloads</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/eclipse.html">eclipse</a></span><span class="tag">4</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/editors.html">editors</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/embedding.html">embedding</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/error.html">error</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/errorhandling.html">errorhandling</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/events.html">events</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/exam.html">exam</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/featureflags.html">featureflags</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/featuremodel.html">featuremodel</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/formauth.html">formauth</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/git.html">git</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/github.html">github</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/groovy.html">groovy</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/healthchecks.html">healthchecks</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/htl.html">htl</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/html.html">html</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/hypermedia.html">hypermedia</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/i18n.html">i18n</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/ide.html">ide</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/installer.html">installer</a></span><span class="tag">6</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/issuetracker.html">issuetracker</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/jackrabbit.html">jackrabbit</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/jcr.html">jcr</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/jobs.html">jobs</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/jsp.html">jsp</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/junit.html">junit</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/karaf.html">karaf</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/launchers.html">launchers</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/launchpad.html">launchpad</a></span><span class="tag">6</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/logging.html">logging</a></span><span class="tag">4</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/mailinglists.html">mailinglists</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/maven.html">maven</a></span><span class="tag">10</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/metrics.html">metrics</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/mimetypes.html">mimetypes</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/mocks.html">mocks</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/models.html">models</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/modules.html">modules</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/news.html">news</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/nodetypes.html">nodetypes</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/nosql.html">nosql</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/oak.html">oak</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/obsolete.html">obsolete</a></span><span class="tag">7</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/openid.html">openid</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/operations.html">operations</a></span><span class="tag">9</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/osgi.html">osgi</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/pipes.html">pipes</a></span><span class="tag">7</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/pmc.html">pmc</a></span><span class="tag">10</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/postprocessing.html">postprocessing</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/postservlet.html">postservlet</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/publishing.html">publishing</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/repoinit.html">repoinit</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/repository.html">repository</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/requests.html">requests</a></span><span class="tag">8</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/resourcemappings.html">resourcemappings</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/resourceproviders.html">resourceproviders</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/resourceresolver.html">resourceresolver</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/resources.html">resources</a></span><span class="tag">8</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/runmodes.html">runmodes</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/scheduling.html">scheduling</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/scriptresolver.html">scriptresolver</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/scripts.html">scripts</a></span><span class="tag">7</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/security.html">security</a></span><span class="tag">5</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/serviceusers.html">serviceusers</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/servletresolver.html">servletresolver</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/servlets.html">servlets</a></span><span class="tag">6</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/slingquery.html">slingquery</a></span><span class="tag">10</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/slingstart.html">slingstart</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/sourcecode.html">sourcecode</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/testing.html">testing</a></span><span class="tag">7</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/threads.html">threads</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/thymeleaf.html">thymeleaf</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/tutorial.html">tutorial</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/tutorials.html">tutorials</a></span><span class="tag">3</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/urls.html">urls</a></span><span class="tag">2</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/validation.html">validation</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/webconsole.html">webconsole</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/xml.html">xml</a></span><span class="tag">1</span></div></div>
-                                    <div class="control"><div class="tags has-addons"><span class="tag"><a href="/tags/xslt.html">xslt</a></span><span class="tag">1</span></div></div>
-                                </div></div>                            
-                        </div>
-                    </div>
-                </div>
-            </div><footer class="footer">
+<div class="title">
+            <div class="logo">
+                <a href="https://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="https://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><nav class="menu">
+            <ul>
+                <li>
+                    <strong>Documentation</strong><ul>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                    </ul>
+                </li><li>
+                    <strong>API Docs</strong><ul>
+                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Support</strong><ul>
+                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Project Info</strong><ul>
+                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Source</strong><ul>
+                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Apache Software Foundation</strong><ul>
+                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li><li><a href="https://www.apache.org/events/current-event.html">
+                                <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
+                            </a></li><li><a href="https://apache.org/foundation/contributing.html">
+                                <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                            </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>        <div class="main">
+            <div class="pagenav">
+                <breadcrumbs/>
+                <tags/>
+                
+            </div><tableOfContents/>
+<div class="taglinks"><h2>Tagged with 'resourceproviders'</h2><div class="taglink"><a href="/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html">Accessing File System Resources (org.apache.sling.fsresource)</a></div><div class="taglink"><a href="/documentation/bundles/nosql-resource-providers.html">NoSQL Resource Providers (org.apache.sling.nosql)</a></div><div class="tags"><h2>All tags</h2><span class="tag"><a href="/tags/adaptTo.html">adaptTo<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/api.html">api<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/authentication.html">authentication<span class="badge">8</span></a></span>
+                    <span class="tag"><a href="/tags/bundles.html">bundles<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/caching.html">caching<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/commons.html">commons<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/community.html">community<span class="badge">9</span></a></span>
+                    <span class="tag"><a href="/tags/configuration.html">configuration<span class="badge">8</span></a></span>
+                    <span class="tag"><a href="/tags/contentdistribution.html">contentdistribution<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/contentloading.html">contentloading<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/core.html">core<span class="badge">28</span></a></span>
+                    <span class="tag"><a href="/tags/databases.html">databases<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/development.html">development<span class="badge">28</span></a></span>
+                    <span class="tag"><a href="/tags/discovery.html">discovery<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/distribution.html">distribution<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/documentation.html">documentation<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/downloads.html">downloads<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/eclipse.html">eclipse<span class="badge">4</span></a></span>
+                    <span class="tag"><a href="/tags/editors.html">editors<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/embedding.html">embedding<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/error.html">error<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/errorhandling.html">errorhandling<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/events.html">events<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/exam.html">exam<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/featureflags.html">featureflags<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/featuremodel.html">featuremodel<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/formauth.html">formauth<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/git.html">git<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/github.html">github<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/groovy.html">groovy<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/healthchecks.html">healthchecks<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/htl.html">htl<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/html.html">html<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/hypermedia.html">hypermedia<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/i18n.html">i18n<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/ide.html">ide<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/installer.html">installer<span class="badge">6</span></a></span>
+                    <span class="tag"><a href="/tags/issuetracker.html">issuetracker<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/jackrabbit.html">jackrabbit<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/jcr.html">jcr<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/jobs.html">jobs<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/jsp.html">jsp<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/junit.html">junit<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/karaf.html">karaf<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/launchers.html">launchers<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/launchpad.html">launchpad<span class="badge">6</span></a></span>
+                    <span class="tag"><a href="/tags/logging.html">logging<span class="badge">4</span></a></span>
+                    <span class="tag"><a href="/tags/mailinglists.html">mailinglists<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/maven.html">maven<span class="badge">10</span></a></span>
+                    <span class="tag"><a href="/tags/metrics.html">metrics<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/mimetypes.html">mimetypes<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/mocks.html">mocks<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/models.html">models<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/modules.html">modules<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/news.html">news<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/nodetypes.html">nodetypes<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/nosql.html">nosql<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/oak.html">oak<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/obsolete.html">obsolete<span class="badge">7</span></a></span>
+                    <span class="tag"><a href="/tags/openid.html">openid<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/operations.html">operations<span class="badge">9</span></a></span>
+                    <span class="tag"><a href="/tags/osgi.html">osgi<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/pipes.html">pipes<span class="badge">7</span></a></span>
+                    <span class="tag"><a href="/tags/pmc.html">pmc<span class="badge">10</span></a></span>
+                    <span class="tag"><a href="/tags/postprocessing.html">postprocessing<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/postservlet.html">postservlet<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/publishing.html">publishing<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/repoinit.html">repoinit<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/repository.html">repository<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/requests.html">requests<span class="badge">8</span></a></span>
+                    <span class="tag"><a href="/tags/resourcemappings.html">resourcemappings<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/resourceproviders.html">resourceproviders<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/resourceresolver.html">resourceresolver<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/resources.html">resources<span class="badge">8</span></a></span>
+                    <span class="tag"><a href="/tags/runmodes.html">runmodes<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/scheduling.html">scheduling<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/scriptresolver.html">scriptresolver<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/scripts.html">scripts<span class="badge">7</span></a></span>
+                    <span class="tag"><a href="/tags/security.html">security<span class="badge">5</span></a></span>
+                    <span class="tag"><a href="/tags/serviceusers.html">serviceusers<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/servletresolver.html">servletresolver<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/servlets.html">servlets<span class="badge">6</span></a></span>
+                    <span class="tag"><a href="/tags/slingquery.html">slingquery<span class="badge">10</span></a></span>
+                    <span class="tag"><a href="/tags/slingstart.html">slingstart<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/sourcecode.html">sourcecode<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/testing.html">testing<span class="badge">7</span></a></span>
+                    <span class="tag"><a href="/tags/threads.html">threads<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/thymeleaf.html">thymeleaf<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/tutorial.html">tutorial<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/tutorials.html">tutorials<span class="badge">3</span></a></span>
+                    <span class="tag"><a href="/tags/urls.html">urls<span class="badge">2</span></a></span>
+                    <span class="tag"><a href="/tags/validation.html">validation<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/webconsole.html">webconsole<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/xml.html">xml<span class="badge">1</span></a></span>
+                    <span class="tag"><a href="/tags/xslt.html">xslt<span class="badge">1</span></a></span>
+                </div></div>            
+            <footer class="footer">
                 <lastModified/><p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
                     Copyright © 2007-2019 The Apache Software Foundation.
                 </p>
             </footer>
+            
         </div>
     </body>
 </html>

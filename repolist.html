@@ -3,7 +3,6 @@
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <title>Apache Sling :: Sling Git Repositories</title>
         <link rel="icon" href="/res/favicon.ico"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
@@ -11,670 +10,639 @@
         </script>
         
     </head>    <body>
-        <div class="section">
-            <div class="level is-marginless">
-<div class="logo">
-                    <a href="https://sling.apache.org">
-                        <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
-                    </a>
-                </div><div class="header">
-                    <a href="https://www.apache.org">
-                        <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+<div class="title">
+            <div class="logo">
+                <a href="https://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="https://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><nav class="menu">
+            <ul>
+                <li>
+                    <strong>Documentation</strong><ul>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                    </ul>
+                </li><li>
+                    <strong>API Docs</strong><ul>
+                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Support</strong><ul>
+                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Project Info</strong><ul>
+                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Source</strong><ul>
+                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Apache Software Foundation</strong><ul>
+                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li><li><a href="https://www.apache.org/events/current-event.html">
+                                <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
+                            </a></li><li><a href="https://apache.org/foundation/contributing.html">
+                                <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                            </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>        <div class="main">
+            <div class="pagenav">
+<div class="breadcrumb">
+                    <a href="/">
+                        Home
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
-                <div class="column is-narrow sidemenu">
-<div class="container">
-                        <nav class="menu">
-                            <ul class="menu-list box is-shadowless is-marginless">
-                                <li>
-                                    <p class="menu-label">
-                                        <strong>Documentation</strong>
-                                    </p><ul>
-                                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>API Docs</strong>
-                                    </p><ul>
-                                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Support</strong>
-                                    </p><ul>
-                                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Project Info</strong>
-                                    </p><ul>
-                                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Source</strong>
-                                    </p><ul>
-                                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Apache Software<br>Foundation</strong>
-                                    </p><ul>
-                                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav><div class="columns is-centered">
-                            <div class="column">
-                                <a href="https://www.apache.org/events/current-event.html" class="column">
-                                    <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
-                                </a><a href="https://apache.org/foundation/contributing.html" class="column">
-                                    <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>                    
-                </div><div class="column main">
-                    <div class="box is-shadowless is-marginless">
-                        <div class="level">
-                            <div class="pagenav">
-<div class="breadcrumb">
-                                    <ul>
-                                        <li>
-                                            <a href="/">
-                                                Home
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>                                
-                            </div><div class="tags">
-                                <span class="tag">
-                                    <a href="/tags/sourcecode.html">
-                                        sourcecode
-                                    </a>
-                                </span><span class="tag">
-                                    <a href="/tags/development.html">
-                                        development
-                                    </a>
-                                </span>
-                            </div>
-                        </div><h1 class="title">
-                            Sling Git Repositories
-                        </h1><div class="content is-marginless">
-<section class="wrap"><p>This is the list of all Sling source code repositories, generated by a script found in the <a href="https://github.com/apache/sling-aggregator">sling-aggregator</a> project.</p>
+<div class="tags">
+                    <span class="tag">
+                        <a href="/tags/sourcecode.html">
+                            sourcecode
+                        </a>
+                    </span><span class="tag">
+                        <a href="/tags/development.html">
+                            development
+                        </a>
+                    </span>
+                </div>                
+                
+            </div><h1 class="pagetitle">
+                Sling Git Repositories
+            </h1><section class="wrap"><p>This is the list of all Sling source code repositories, generated by a script found in the <a href="https://github.com/apache/sling-aggregator">sling-aggregator</a> project.</p>
 <p>They should be classified in categories like 'core', 'contrib' etc. as we did in our svn repository. This is still a work in progress, if you're unsure about the status of one of these repositories please ask on our dev list.</p>
 <p>We also have specific documentation about some of these modules on the <a href="documentation/bundles.html">Bundles</a> page.</p></section><h2>Group: auth</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-auth-core.git">org-apache-sling-auth-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-form.git">org-apache-sling-auth-form</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-api.git">org-apache-sling-auth-xing-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-login.git">org-apache-sling-auth-xing-login</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-oauth.git">org-apache-sling-auth-xing-oauth</a></li>
-                            </ul>
-                            <h2>Group: bnd</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-bnd-models.git">org-apache-sling-bnd-models</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-bnd-plugins.git">org-apache-sling-bnd-plugins</a></li>
-                            </ul>
-                            <h2>Group: caconfig</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-api.git">org-apache-sling-caconfig-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-bnd-plugin.git">org-apache-sling-caconfig-bnd-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-impl.git">org-apache-sling-caconfig-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-integration-tests.git">org-apache-sling-caconfig-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-spi.git">org-apache-sling-caconfig-spi</a></li>
-                            </ul>
-                            <h2>Group: contentparser</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-api.git">org-apache-sling-contentparser-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-json.git">org-apache-sling-contentparser-json</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-testutils.git">org-apache-sling-contentparser-testutils</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml.git">org-apache-sling-contentparser-xml</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml-jcr.git">org-apache-sling-contentparser-xml-jcr</a></li>
-                            </ul>
-                            <h2>Group: crankstart</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-launcher.git">org-apache-sling-crankstart-launcher</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-model.git">org-apache-sling-crankstart-test-model</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-services.git">org-apache-sling-crankstart-test-services</a></li>
-                            </ul>
-                            <h2>Group: discovery</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-discovery-api.git">org-apache-sling-discovery-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-base.git">org-apache-sling-discovery-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-commons.git">org-apache-sling-discovery-commons</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-impl.git">org-apache-sling-discovery-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-oak.git">org-apache-sling-discovery-oak</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-standalone.git">org-apache-sling-discovery-standalone</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-support.git">org-apache-sling-discovery-support</a></li>
-                            </ul>
-                            <h2>Group: distribution</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-distribution-api.git">org-apache-sling-distribution-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-avro-serializer.git">org-apache-sling-distribution-avro-serializer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-core.git">org-apache-sling-distribution-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-it.git">org-apache-sling-distribution-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal.git">org-apache-sling-distribution-journal</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-it.git">org-apache-sling-distribution-journal-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-kafka.git">org-apache-sling-distribution-journal-kafka</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-messages.git">org-apache-sling-distribution-journal-messages</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-kryo-serializer.git">org-apache-sling-distribution-kryo-serializer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-sample.git">org-apache-sling-distribution-sample</a></li>
-                            </ul>
-                            <h2>Group: event</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-event-api.git">org-apache-sling-event-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-event-dea.git">org-apache-sling-event-dea</a></li>
-                            </ul>
-                            <h2>Group: feature</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-feature-analyser.git">org-apache-sling-feature-analyser</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions.git">org-apache-sling-feature-apiregions</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions-model.git">org-apache-sling-feature-apiregions-model</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-applicationbuilder.git">org-apache-sling-feature-applicationbuilder</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-cpconverter.git">org-apache-sling-feature-cpconverter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-diff.git">org-apache-sling-feature-diff</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git">org-apache-sling-feature-extension-apiregions</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-content.git">org-apache-sling-feature-extension-content</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-inventoryprinter.git">org-apache-sling-feature-inventoryprinter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-io.git">org-apache-sling-feature-io</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-karaf.git">org-apache-sling-feature-karaf</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-launcher.git">org-apache-sling-feature-launcher</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-modelconverter.git">org-apache-sling-feature-modelconverter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-r2f.git">org-apache-sling-feature-r2f</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-resolver.git">org-apache-sling-feature-resolver</a></li>
-                            </ul>
-                            <h2>Group: fragment</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-fragment-activation.git">org-apache-sling-fragment-activation</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-nashorn.git">org-apache-sling-fragment-nashorn</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-transaction.git">org-apache-sling-fragment-transaction</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-ws.git">org-apache-sling-fragment-ws</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-xml.git">org-apache-sling-fragment-xml</a></li>
-                            </ul>
-                            <h2>Group: hapi</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-hapi-client.git">org-apache-sling-hapi-client</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi-samplecontent.git">org-apache-sling-hapi-samplecontent</a></li>
-                            </ul>
-                            <h2>Group: hc</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-hc-annotations.git">org-apache-sling-hc-annotations</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-api.git">org-apache-sling-hc-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-core.git">org-apache-sling-hc-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-it.git">org-apache-sling-hc-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-junit-bridge.git">org-apache-sling-hc-junit-bridge</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-samples.git">org-apache-sling-hc-samples</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-support.git">org-apache-sling-hc-support</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-webconsole.git">org-apache-sling-hc-webconsole</a></li>
-                            </ul>
-                            <h2>Group: installer</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-installer-console.git">org-apache-sling-installer-console</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-core.git">org-apache-sling-installer-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-configuration.git">org-apache-sling-installer-factory-configuration</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-deploymentpackage.git">org-apache-sling-installer-factory-deploymentpackage</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-model.git">org-apache-sling-installer-factory-model</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-packages.git">org-apache-sling-installer-factory-packages</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems.git">org-apache-sling-installer-factory-subsystems</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems-base.git">org-apache-sling-installer-factory-subsystems-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-hc.git">org-apache-sling-installer-hc</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-it.git">org-apache-sling-installer-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-file.git">org-apache-sling-installer-provider-file</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-installhook.git">org-apache-sling-installer-provider-installhook</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr.git">org-apache-sling-installer-provider-jcr</a></li>
-                            </ul>
-                            <h2>Group: jcr</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-jcr-api.git">org-apache-sling-jcr-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-base.git">org-apache-sling-jcr-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-classloader.git">org-apache-sling-jcr-classloader</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentloader.git">org-apache-sling-jcr-contentloader</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentparser.git">org-apache-sling-jcr-contentparser</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-davex.git">org-apache-sling-jcr-davex</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-filetransfer.git">org-apache-sling-jcr-filetransfer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-accessmanager.git">org-apache-sling-jcr-jackrabbit-accessmanager</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-base.git">org-apache-sling-jcr-jackrabbit-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-usermanager.git">org-apache-sling-jcr-jackrabbit-usermanager</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jcr-wrapper.git">org-apache-sling-jcr-jcr-wrapper</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-js-nodetypes.git">org-apache-sling-jcr-js-nodetypes</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-oak-server.git">org-apache-sling-jcr-oak-server</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-packageinit.git">org-apache-sling-jcr-packageinit</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-registration.git">org-apache-sling-jcr-registration</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repoinit.git">org-apache-sling-jcr-repoinit</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repository-it-resource-versioning.git">org-apache-sling-jcr-repository-it-resource-versioning</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resource.git">org-apache-sling-jcr-resource</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resourcesecurity.git">org-apache-sling-jcr-resourcesecurity</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webconsole.git">org-apache-sling-jcr-webconsole</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webdav.git">org-apache-sling-jcr-webdav</a></li>
-                            </ul>
-                            <h2>Group: jobs</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it.git">org-apache-sling-jobs-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it-services.git">org-apache-sling-jobs-it-services</a></li>
-                            </ul>
-                            <h2>Group: junit</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-junit-core.git">org-apache-sling-junit-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-healthcheck.git">org-apache-sling-junit-healthcheck</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-performance.git">org-apache-sling-junit-performance</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-remote.git">org-apache-sling-junit-remote</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-scriptable.git">org-apache-sling-junit-scriptable</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-teleporter.git">org-apache-sling-junit-teleporter</a></li>
-                            </ul>
-                            <h2>Group: karaf</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-karaf-configs.git">org-apache-sling-karaf-configs</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-distribution.git">org-apache-sling-karaf-distribution</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-features.git">org-apache-sling-karaf-features</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-integration-tests.git">org-apache-sling-karaf-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-launchpad-oak-tar-integration-tests.git">org-apache-sling-karaf-launchpad-oak-tar-integration-tests</a></li>
-                            </ul>
-                            <h2>Group: launchpad</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-api.git">org-apache-sling-launchpad-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-base.git">org-apache-sling-launchpad-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-contrib-testing.git">org-apache-sling-launchpad-contrib-testing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-installer.git">org-apache-sling-launchpad-installer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests.git">org-apache-sling-launchpad-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-startupmanager.git">org-apache-sling-launchpad-startupmanager</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-bundles.git">org-apache-sling-launchpad-test-bundles</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-fragment.git">org-apache-sling-launchpad-test-fragment</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services.git">org-apache-sling-launchpad-test-services</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services-war.git">org-apache-sling-launchpad-test-services-war</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing.git">org-apache-sling-launchpad-testing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing-war.git">org-apache-sling-launchpad-testing-war</a></li>
-                            </ul>
-                            <h2>Group: models</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-models-api.git">org-apache-sling-models-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-caconfig.git">org-apache-sling-models-caconfig</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-impl.git">org-apache-sling-models-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-integration-tests.git">org-apache-sling-models-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-jacksonexporter.git">org-apache-sling-models-jacksonexporter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-validation-impl.git">org-apache-sling-models-validation-impl</a></li>
-                            </ul>
-                            <h2>Group: nosql</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-client.git">org-apache-sling-nosql-couchbase-client</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-resourceprovider.git">org-apache-sling-nosql-couchbase-resourceprovider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-generic.git">org-apache-sling-nosql-generic</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-launchpad.git">org-apache-sling-nosql-launchpad</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-mongodb-resourceprovider.git">org-apache-sling-nosql-mongodb-resourceprovider</a></li>
-                            </ul>
-                            <h2>Group: repoinit</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-it.git">org-apache-sling-repoinit-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser.git">org-apache-sling-repoinit-parser</a></li>
-                            </ul>
-                            <h2>Group: scripting</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-scripting-api.git">org-apache-sling-scripting-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker.git">org-apache-sling-scripting-bundle-tracker</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker-it.git">org-apache-sling-scripting-bundle-tracker-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-console.git">org-apache-sling-scripting-console</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-core.git">org-apache-sling-scripting-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-el-api.git">org-apache-sling-scripting-el-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-esx.git">org-apache-sling-scripting-esx</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker.git">org-apache-sling-scripting-freemarker</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy.git">org-apache-sling-scripting-groovy</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-java.git">org-apache-sling-scripting-java</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-javascript.git">org-apache-sling-scripting-javascript</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp.git">org-apache-sling-scripting-jsp</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-api.git">org-apache-sling-scripting-jsp-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-jstl.git">org-apache-sling-scripting-jsp-jstl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib.git">org-apache-sling-scripting-jsp-taglib</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib-compat.git">org-apache-sling-scripting-jsp-taglib-compat</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly.git">org-apache-sling-scripting-sightly</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler.git">org-apache-sling-scripting-sightly-compiler</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java.git">org-apache-sling-scripting-sightly-compiler-java</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider.git">org-apache-sling-scripting-sightly-js-provider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider.git">org-apache-sling-scripting-sightly-models-provider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl.git">org-apache-sling-scripting-sightly-repl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime.git">org-apache-sling-scripting-sightly-runtime</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing.git">org-apache-sling-scripting-sightly-testing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing-content.git">org-apache-sling-scripting-sightly-testing-content</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-thymeleaf.git">org-apache-sling-scripting-thymeleaf</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-xproc.git">org-apache-sling-scripting-xproc</a></li>
-                            </ul>
-                            <h2>Group: servlets</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations.git">org-apache-sling-servlets-annotations</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations-it.git">org-apache-sling-servlets-annotations-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-get.git">org-apache-sling-servlets-get</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-post.git">org-apache-sling-servlets-post</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver.git">org-apache-sling-servlets-resolver</a></li>
-                            </ul>
-                            <h2>Group: starter</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-starter-content.git">org-apache-sling-starter-content</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-docker.git">org-apache-sling-starter-docker</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-startup.git">org-apache-sling-starter-startup</a></li>
-                            </ul>
-                            <h2>Group: testing</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin.git">org-apache-sling-testing-caconfig-mock-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-clients.git">org-apache-sling-testing-clients</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-email.git">org-apache-sling-testing-email</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-hamcrest.git">org-apache-sling-testing-hamcrest</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-jcr-mock.git">org-apache-sling-testing-jcr-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-logging-mock.git">org-apache-sling-testing-logging-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-osgi-mock.git">org-apache-sling-testing-osgi-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam.git">org-apache-sling-testing-paxexam</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-resourceresolver-mock.git">org-apache-sling-testing-resourceresolver-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-rules.git">org-apache-sling-testing-rules</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-serversetup.git">org-apache-sling-testing-serversetup</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock.git">org-apache-sling-testing-sling-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock-oak.git">org-apache-sling-testing-sling-mock-oak</a></li>
-                            </ul>
-                            <h2>Group: tooling</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-install.git">org-apache-sling-tooling-support-install</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-source.git">org-apache-sling-tooling-support-source</a></li>
-                            </ul>
-                            <h2>Group: validation</h2>
-                            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-validation-api.git">org-apache-sling-validation-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-core.git">org-apache-sling-validation-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-examples.git">org-apache-sling-validation-examples</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-test-services.git">org-apache-sling-validation-test-services</a></li>
-                            </ul>
-                            <h2>Group: &lt;NO GROUP SET&gt;</h2>
-                            <ul><li><a href="https://github.com/apache/sling-adapter-annotations.git">adapter-annotations</a></li>
-                                <li><a href="https://github.com/apache/sling-aggregator.git">aggregator</a></li>
-                                <li><a href="https://github.com/apache/sling-apache-sling-jar-resource-bundle.git">apache-sling-jar-resource-bundle</a></li>
-                                <li><a href="https://github.com/apache/sling-archetype-parent.git">archetype-parent</a></li>
-                                <li><a href="https://github.com/apache/sling-bundle-archetype.git">bundle-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-htl-maven-plugin.git">htl-maven-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-ide-tooling.git">ide-tooling</a></li>
-                                <li><a href="https://github.com/apache/sling-initial-content-archetype.git">initial-content-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-jcrinstall-bundle-archetype.git">jcrinstall-bundle-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-jspc-maven-plugin.git">jspc-maven-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-launchpad-comparator.git">launchpad-comparator</a></li>
-                                <li><a href="https://github.com/apache/sling-launchpad-debian.git">launchpad-debian</a></li>
-                                <li><a href="https://github.com/apache/sling-launchpad-standalone-archetype.git">launchpad-standalone-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-launchpad-webapp-archetype.git">launchpad-webapp-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-maven-jcrocm-plugin.git">maven-jcrocm-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-maven-launchpad-plugin.git">maven-launchpad-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-maven-plugin.git">maven-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-adapter.git">org-apache-sling-adapter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-api.git">org-apache-sling-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-app-cms.git">org-apache-sling-app-cms</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-core.git">org-apache-sling-auth-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-form.git">org-apache-sling-auth-form</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-api.git">org-apache-sling-auth-xing-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-login.git">org-apache-sling-auth-xing-login</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-oauth.git">org-apache-sling-auth-xing-oauth</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-bnd-models.git">org-apache-sling-bnd-models</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-bnd-plugins.git">org-apache-sling-bnd-plugins</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-bundleresource-impl.git">org-apache-sling-bundleresource-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-api.git">org-apache-sling-caconfig-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-bnd-plugin.git">org-apache-sling-caconfig-bnd-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-impl.git">org-apache-sling-caconfig-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-integration-tests.git">org-apache-sling-caconfig-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-spi.git">org-apache-sling-caconfig-spi</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-capabilities.git">org-apache-sling-capabilities</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-capabilities-jcr.git">org-apache-sling-capabilities-jcr</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-cassandra.git">org-apache-sling-cassandra</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-clam.git">org-apache-sling-clam</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-committer-cli.git">org-apache-sling-committer-cli</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-api.git">org-apache-sling-commons-cache-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-container-test.git">org-apache-sling-commons-cache-container-test</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-ehcache.git">org-apache-sling-commons-cache-ehcache</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-impl.git">org-apache-sling-commons-cache-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-portal.git">org-apache-sling-commons-cache-portal</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-clam.git">org-apache-sling-commons-clam</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-classloader.git">org-apache-sling-commons-classloader</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-compiler.git">org-apache-sling-commons-compiler</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-contentdetection.git">org-apache-sling-commons-contentdetection</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-fsclassloader.git">org-apache-sling-commons-fsclassloader</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-html.git">org-apache-sling-commons-html</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-jcr-file.git">org-apache-sling-commons-jcr-file</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-johnzon.git">org-apache-sling-commons-johnzon</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-log.git">org-apache-sling-commons-log</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-log-webconsole.git">org-apache-sling-commons-log-webconsole</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-logservice.git">org-apache-sling-commons-logservice</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-messaging.git">org-apache-sling-commons-messaging</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-messaging-mail.git">org-apache-sling-commons-messaging-mail</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-metrics.git">org-apache-sling-commons-metrics</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-metrics-rrd4j.git">org-apache-sling-commons-metrics-rrd4j</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-mime.git">org-apache-sling-commons-mime</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-osgi.git">org-apache-sling-commons-osgi</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-scheduler.git">org-apache-sling-commons-scheduler</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-testing.git">org-apache-sling-commons-testing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-threaddump.git">org-apache-sling-commons-threaddump</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-threads.git">org-apache-sling-commons-threads</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-connection-timeout-agent.git">org-apache-sling-connection-timeout-agent</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-api.git">org-apache-sling-contentparser-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-json.git">org-apache-sling-contentparser-json</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-testutils.git">org-apache-sling-contentparser-testutils</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml.git">org-apache-sling-contentparser-xml</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml-jcr.git">org-apache-sling-contentparser-xml-jcr</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-launcher.git">org-apache-sling-crankstart-launcher</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-model.git">org-apache-sling-crankstart-test-model</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-services.git">org-apache-sling-crankstart-test-services</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-datasource.git">org-apache-sling-datasource</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-api.git">org-apache-sling-discovery-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-base.git">org-apache-sling-discovery-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-commons.git">org-apache-sling-discovery-commons</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-impl.git">org-apache-sling-discovery-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-oak.git">org-apache-sling-discovery-oak</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-standalone.git">org-apache-sling-discovery-standalone</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-support.git">org-apache-sling-discovery-support</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-api.git">org-apache-sling-distribution-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-avro-serializer.git">org-apache-sling-distribution-avro-serializer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-core.git">org-apache-sling-distribution-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-it.git">org-apache-sling-distribution-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal.git">org-apache-sling-distribution-journal</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-it.git">org-apache-sling-distribution-journal-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-kafka.git">org-apache-sling-distribution-journal-kafka</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-messages.git">org-apache-sling-distribution-journal-messages</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-kryo-serializer.git">org-apache-sling-distribution-kryo-serializer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-sample.git">org-apache-sling-distribution-sample</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-dynamic-include.git">org-apache-sling-dynamic-include</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-engine.git">org-apache-sling-engine</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-event.git">org-apache-sling-event</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-event-api.git">org-apache-sling-event-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-event-dea.git">org-apache-sling-event-dea</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-classloader-leak-detector.git">org-apache-sling-extensions-classloader-leak-detector</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-logback-groovy-fragment.git">org-apache-sling-extensions-logback-groovy-fragment</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-slf4j-mdc.git">org-apache-sling-extensions-slf4j-mdc</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-webconsolebranding.git">org-apache-sling-extensions-webconsolebranding</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-webconsolesecurityprovider.git">org-apache-sling-extensions-webconsolesecurityprovider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature.git">org-apache-sling-feature</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-analyser.git">org-apache-sling-feature-analyser</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions.git">org-apache-sling-feature-apiregions</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions-model.git">org-apache-sling-feature-apiregions-model</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-applicationbuilder.git">org-apache-sling-feature-applicationbuilder</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-cpconverter.git">org-apache-sling-feature-cpconverter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-diff.git">org-apache-sling-feature-diff</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git">org-apache-sling-feature-extension-apiregions</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-content.git">org-apache-sling-feature-extension-content</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-inventoryprinter.git">org-apache-sling-feature-inventoryprinter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-io.git">org-apache-sling-feature-io</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-karaf.git">org-apache-sling-feature-karaf</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-launcher.git">org-apache-sling-feature-launcher</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-modelconverter.git">org-apache-sling-feature-modelconverter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-r2f.git">org-apache-sling-feature-r2f</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-resolver.git">org-apache-sling-feature-resolver</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-featureflags.git">org-apache-sling-featureflags</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-file-optimization.git">org-apache-sling-file-optimization</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-activation.git">org-apache-sling-fragment-activation</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-nashorn.git">org-apache-sling-fragment-nashorn</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-transaction.git">org-apache-sling-fragment-transaction</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-ws.git">org-apache-sling-fragment-ws</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-xml.git">org-apache-sling-fragment-xml</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-fsresource.git">org-apache-sling-fsresource</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi.git">org-apache-sling-hapi</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi-client.git">org-apache-sling-hapi-client</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi-samplecontent.git">org-apache-sling-hapi-samplecontent</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-annotations.git">org-apache-sling-hc-annotations</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-api.git">org-apache-sling-hc-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-core.git">org-apache-sling-hc-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-it.git">org-apache-sling-hc-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-junit-bridge.git">org-apache-sling-hc-junit-bridge</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-samples.git">org-apache-sling-hc-samples</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-support.git">org-apache-sling-hc-support</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-webconsole.git">org-apache-sling-hc-webconsole</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-i18n.git">org-apache-sling-i18n</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-console.git">org-apache-sling-installer-console</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-core.git">org-apache-sling-installer-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-configuration.git">org-apache-sling-installer-factory-configuration</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-deploymentpackage.git">org-apache-sling-installer-factory-deploymentpackage</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-model.git">org-apache-sling-installer-factory-model</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-packages.git">org-apache-sling-installer-factory-packages</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems.git">org-apache-sling-installer-factory-subsystems</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems-base.git">org-apache-sling-installer-factory-subsystems-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-hc.git">org-apache-sling-installer-hc</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-it.git">org-apache-sling-installer-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-file.git">org-apache-sling-installer-provider-file</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-installhook.git">org-apache-sling-installer-provider-installhook</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr.git">org-apache-sling-installer-provider-jcr</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-javax-activation.git">org-apache-sling-javax-activation</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-api.git">org-apache-sling-jcr-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-base.git">org-apache-sling-jcr-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-classloader.git">org-apache-sling-jcr-classloader</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentloader.git">org-apache-sling-jcr-contentloader</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentparser.git">org-apache-sling-jcr-contentparser</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-davex.git">org-apache-sling-jcr-davex</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-filetransfer.git">org-apache-sling-jcr-filetransfer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-accessmanager.git">org-apache-sling-jcr-jackrabbit-accessmanager</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-base.git">org-apache-sling-jcr-jackrabbit-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-usermanager.git">org-apache-sling-jcr-jackrabbit-usermanager</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jcr-wrapper.git">org-apache-sling-jcr-jcr-wrapper</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-js-nodetypes.git">org-apache-sling-jcr-js-nodetypes</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-oak-server.git">org-apache-sling-jcr-oak-server</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-packageinit.git">org-apache-sling-jcr-packageinit</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-registration.git">org-apache-sling-jcr-registration</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repoinit.git">org-apache-sling-jcr-repoinit</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repository-it-resource-versioning.git">org-apache-sling-jcr-repository-it-resource-versioning</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resource.git">org-apache-sling-jcr-resource</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resourcesecurity.git">org-apache-sling-jcr-resourcesecurity</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webconsole.git">org-apache-sling-jcr-webconsole</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webdav.git">org-apache-sling-jcr-webdav</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jms.git">org-apache-sling-jms</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jmx-provider.git">org-apache-sling-jmx-provider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs.git">org-apache-sling-jobs</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it.git">org-apache-sling-jobs-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it-services.git">org-apache-sling-jobs-it-services</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-core.git">org-apache-sling-junit-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-healthcheck.git">org-apache-sling-junit-healthcheck</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-performance.git">org-apache-sling-junit-performance</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-remote.git">org-apache-sling-junit-remote</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-scriptable.git">org-apache-sling-junit-scriptable</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-teleporter.git">org-apache-sling-junit-teleporter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-configs.git">org-apache-sling-karaf-configs</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-distribution.git">org-apache-sling-karaf-distribution</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-features.git">org-apache-sling-karaf-features</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-integration-tests.git">org-apache-sling-karaf-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-launchpad-oak-tar-integration-tests.git">org-apache-sling-karaf-launchpad-oak-tar-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-api.git">org-apache-sling-launchpad-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-base.git">org-apache-sling-launchpad-base</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-contrib-testing.git">org-apache-sling-launchpad-contrib-testing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-installer.git">org-apache-sling-launchpad-installer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests.git">org-apache-sling-launchpad-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-startupmanager.git">org-apache-sling-launchpad-startupmanager</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-bundles.git">org-apache-sling-launchpad-test-bundles</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-fragment.git">org-apache-sling-launchpad-test-fragment</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services.git">org-apache-sling-launchpad-test-services</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services-war.git">org-apache-sling-launchpad-test-services-war</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing.git">org-apache-sling-launchpad-testing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing-war.git">org-apache-sling-launchpad-testing-war</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-api.git">org-apache-sling-models-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-caconfig.git">org-apache-sling-models-caconfig</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-impl.git">org-apache-sling-models-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-integration-tests.git">org-apache-sling-models-integration-tests</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-jacksonexporter.git">org-apache-sling-models-jacksonexporter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-models-validation-impl.git">org-apache-sling-models-validation-impl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-mom.git">org-apache-sling-mom</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-mongodb.git">org-apache-sling-mongodb</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-client.git">org-apache-sling-nosql-couchbase-client</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-resourceprovider.git">org-apache-sling-nosql-couchbase-resourceprovider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-generic.git">org-apache-sling-nosql-generic</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-launchpad.git">org-apache-sling-nosql-launchpad</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-mongodb-resourceprovider.git">org-apache-sling-nosql-mongodb-resourceprovider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-oak-restrictions.git">org-apache-sling-oak-restrictions</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-paxexam-util.git">org-apache-sling-paxexam-util</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-performance.git">org-apache-sling-performance</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-pipes.git">org-apache-sling-pipes</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-provisioning-model.git">org-apache-sling-provisioning-model</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-query.git">org-apache-sling-query</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-it.git">org-apache-sling-repoinit-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser.git">org-apache-sling-repoinit-parser</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-reqanalyzer.git">org-apache-sling-reqanalyzer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-editor.git">org-apache-sling-resource-editor</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-filter.git">org-apache-sling-resource-filter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-inventory.git">org-apache-sling-resource-inventory</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-presence.git">org-apache-sling-resource-presence</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resourceaccesssecurity.git">org-apache-sling-resourceaccesssecurity</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resourceaccesssecurity-it.git">org-apache-sling-resourceaccesssecurity-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resourcebuilder.git">org-apache-sling-resourcebuilder</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resourcecollection.git">org-apache-sling-resourcecollection</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resourcemerger.git">org-apache-sling-resourcemerger</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-resourceresolver.git">org-apache-sling-resourceresolver</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-rewriter.git">org-apache-sling-rewriter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-api.git">org-apache-sling-scripting-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker.git">org-apache-sling-scripting-bundle-tracker</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker-it.git">org-apache-sling-scripting-bundle-tracker-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-console.git">org-apache-sling-scripting-console</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-core.git">org-apache-sling-scripting-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-el-api.git">org-apache-sling-scripting-el-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-esx.git">org-apache-sling-scripting-esx</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker.git">org-apache-sling-scripting-freemarker</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy.git">org-apache-sling-scripting-groovy</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-java.git">org-apache-sling-scripting-java</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-javascript.git">org-apache-sling-scripting-javascript</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp.git">org-apache-sling-scripting-jsp</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-api.git">org-apache-sling-scripting-jsp-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-jstl.git">org-apache-sling-scripting-jsp-jstl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib.git">org-apache-sling-scripting-jsp-taglib</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib-compat.git">org-apache-sling-scripting-jsp-taglib-compat</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly.git">org-apache-sling-scripting-sightly</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler.git">org-apache-sling-scripting-sightly-compiler</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java.git">org-apache-sling-scripting-sightly-compiler-java</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider.git">org-apache-sling-scripting-sightly-js-provider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider.git">org-apache-sling-scripting-sightly-models-provider</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl.git">org-apache-sling-scripting-sightly-repl</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime.git">org-apache-sling-scripting-sightly-runtime</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing.git">org-apache-sling-scripting-sightly-testing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing-content.git">org-apache-sling-scripting-sightly-testing-content</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-thymeleaf.git">org-apache-sling-scripting-thymeleaf</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-xproc.git">org-apache-sling-scripting-xproc</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-security.git">org-apache-sling-security</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-serviceuser-webconsole.git">org-apache-sling-serviceuser-webconsole</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-serviceusermapper.git">org-apache-sling-serviceusermapper</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlet-helpers.git">org-apache-sling-servlet-helpers</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations.git">org-apache-sling-servlets-annotations</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations-it.git">org-apache-sling-servlets-annotations-it</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-get.git">org-apache-sling-servlets-get</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-post.git">org-apache-sling-servlets-post</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver.git">org-apache-sling-servlets-resolver</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-settings.git">org-apache-sling-settings</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-starter.git">org-apache-sling-starter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-content.git">org-apache-sling-starter-content</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-docker.git">org-apache-sling-starter-docker</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-startup.git">org-apache-sling-starter-startup</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-startupfilter.git">org-apache-sling-startupfilter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-startupfilter-disabler.git">org-apache-sling-startupfilter-disabler</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-superimposing.git">org-apache-sling-superimposing</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-tail.git">org-apache-sling-tail</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-tenant.git">org-apache-sling-tenant</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin.git">org-apache-sling-testing-caconfig-mock-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-clients.git">org-apache-sling-testing-clients</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-email.git">org-apache-sling-testing-email</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-hamcrest.git">org-apache-sling-testing-hamcrest</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-jcr-mock.git">org-apache-sling-testing-jcr-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-logging-mock.git">org-apache-sling-testing-logging-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-osgi-mock.git">org-apache-sling-testing-osgi-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam.git">org-apache-sling-testing-paxexam</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-resourceresolver-mock.git">org-apache-sling-testing-resourceresolver-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-rules.git">org-apache-sling-testing-rules</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-serversetup.git">org-apache-sling-testing-serversetup</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock.git">org-apache-sling-testing-sling-mock</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock-oak.git">org-apache-sling-testing-sling-mock-oak</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-install.git">org-apache-sling-tooling-support-install</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-source.git">org-apache-sling-tooling-support-source</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-tracer.git">org-apache-sling-tracer</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-urlrewriter.git">org-apache-sling-urlrewriter</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-api.git">org-apache-sling-validation-api</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-core.git">org-apache-sling-validation-core</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-examples.git">org-apache-sling-validation-examples</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-test-services.git">org-apache-sling-validation-test-services</a></li>
-                                <li><a href="https://github.com/apache/sling-org-apache-sling-xss.git">org-apache-sling-xss</a></li>
-                                <li><a href="https://github.com/apache/sling-parent.git">parent</a></li>
-                                <li><a href="https://github.com/apache/sling-project-archetype.git">project-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-samples.git">samples</a></li>
-                                <li><a href="https://github.com/apache/sling-scriptingbundle-maven-plugin.git">scriptingbundle-maven-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-servlet-archetype.git">servlet-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-site.git">site</a></li>
-                                <li><a href="https://github.com/apache/sling-slingfeature-maven-plugin.git">slingfeature-maven-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-slingstart-archetype.git">slingstart-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-slingstart-maven-plugin.git">slingstart-maven-plugin</a></li>
-                                <li><a href="https://github.com/apache/sling-taglib-archetype.git">taglib-archetype</a></li>
-                                <li><a href="https://github.com/apache/sling-tooling-jenkins.git">tooling-jenkins</a></li>
-                                <li><a href="https://github.com/apache/sling-tooling-release.git">tooling-release</a></li>
-                                <li><a href="https://github.com/apache/sling-tooling-scm.git">tooling-scm</a></li>
-                                <li><a href="https://github.com/apache/sling-whiteboard.git">whiteboard</a></li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div><footer class="footer">
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-auth-core.git">org-apache-sling-auth-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-form.git">org-apache-sling-auth-form</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-api.git">org-apache-sling-auth-xing-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-login.git">org-apache-sling-auth-xing-login</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-oauth.git">org-apache-sling-auth-xing-oauth</a></li>
+            </ul>
+            <h2>Group: bnd</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-bnd-models.git">org-apache-sling-bnd-models</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-bnd-plugins.git">org-apache-sling-bnd-plugins</a></li>
+            </ul>
+            <h2>Group: caconfig</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-api.git">org-apache-sling-caconfig-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-bnd-plugin.git">org-apache-sling-caconfig-bnd-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-impl.git">org-apache-sling-caconfig-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-integration-tests.git">org-apache-sling-caconfig-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-spi.git">org-apache-sling-caconfig-spi</a></li>
+            </ul>
+            <h2>Group: contentparser</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-api.git">org-apache-sling-contentparser-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-json.git">org-apache-sling-contentparser-json</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-testutils.git">org-apache-sling-contentparser-testutils</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml.git">org-apache-sling-contentparser-xml</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml-jcr.git">org-apache-sling-contentparser-xml-jcr</a></li>
+            </ul>
+            <h2>Group: crankstart</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-launcher.git">org-apache-sling-crankstart-launcher</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-model.git">org-apache-sling-crankstart-test-model</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-services.git">org-apache-sling-crankstart-test-services</a></li>
+            </ul>
+            <h2>Group: discovery</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-discovery-api.git">org-apache-sling-discovery-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-base.git">org-apache-sling-discovery-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-commons.git">org-apache-sling-discovery-commons</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-impl.git">org-apache-sling-discovery-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-oak.git">org-apache-sling-discovery-oak</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-standalone.git">org-apache-sling-discovery-standalone</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-support.git">org-apache-sling-discovery-support</a></li>
+            </ul>
+            <h2>Group: distribution</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-distribution-api.git">org-apache-sling-distribution-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-avro-serializer.git">org-apache-sling-distribution-avro-serializer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-core.git">org-apache-sling-distribution-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-it.git">org-apache-sling-distribution-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal.git">org-apache-sling-distribution-journal</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-it.git">org-apache-sling-distribution-journal-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-kafka.git">org-apache-sling-distribution-journal-kafka</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-messages.git">org-apache-sling-distribution-journal-messages</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-kryo-serializer.git">org-apache-sling-distribution-kryo-serializer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-sample.git">org-apache-sling-distribution-sample</a></li>
+            </ul>
+            <h2>Group: event</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-event-api.git">org-apache-sling-event-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-event-dea.git">org-apache-sling-event-dea</a></li>
+            </ul>
+            <h2>Group: feature</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-feature-analyser.git">org-apache-sling-feature-analyser</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions.git">org-apache-sling-feature-apiregions</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions-model.git">org-apache-sling-feature-apiregions-model</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-applicationbuilder.git">org-apache-sling-feature-applicationbuilder</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-cpconverter.git">org-apache-sling-feature-cpconverter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-diff.git">org-apache-sling-feature-diff</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git">org-apache-sling-feature-extension-apiregions</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-content.git">org-apache-sling-feature-extension-content</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-inventoryprinter.git">org-apache-sling-feature-inventoryprinter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-io.git">org-apache-sling-feature-io</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-karaf.git">org-apache-sling-feature-karaf</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-launcher.git">org-apache-sling-feature-launcher</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-modelconverter.git">org-apache-sling-feature-modelconverter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-r2f.git">org-apache-sling-feature-r2f</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-resolver.git">org-apache-sling-feature-resolver</a></li>
+            </ul>
+            <h2>Group: fragment</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-fragment-activation.git">org-apache-sling-fragment-activation</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-nashorn.git">org-apache-sling-fragment-nashorn</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-transaction.git">org-apache-sling-fragment-transaction</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-ws.git">org-apache-sling-fragment-ws</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-xml.git">org-apache-sling-fragment-xml</a></li>
+            </ul>
+            <h2>Group: hapi</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-hapi-client.git">org-apache-sling-hapi-client</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi-samplecontent.git">org-apache-sling-hapi-samplecontent</a></li>
+            </ul>
+            <h2>Group: hc</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-hc-annotations.git">org-apache-sling-hc-annotations</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-api.git">org-apache-sling-hc-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-core.git">org-apache-sling-hc-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-it.git">org-apache-sling-hc-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-junit-bridge.git">org-apache-sling-hc-junit-bridge</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-samples.git">org-apache-sling-hc-samples</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-support.git">org-apache-sling-hc-support</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-webconsole.git">org-apache-sling-hc-webconsole</a></li>
+            </ul>
+            <h2>Group: installer</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-installer-console.git">org-apache-sling-installer-console</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-core.git">org-apache-sling-installer-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-configuration.git">org-apache-sling-installer-factory-configuration</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-deploymentpackage.git">org-apache-sling-installer-factory-deploymentpackage</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-model.git">org-apache-sling-installer-factory-model</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-packages.git">org-apache-sling-installer-factory-packages</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems.git">org-apache-sling-installer-factory-subsystems</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems-base.git">org-apache-sling-installer-factory-subsystems-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-hc.git">org-apache-sling-installer-hc</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-it.git">org-apache-sling-installer-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-file.git">org-apache-sling-installer-provider-file</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-installhook.git">org-apache-sling-installer-provider-installhook</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr.git">org-apache-sling-installer-provider-jcr</a></li>
+            </ul>
+            <h2>Group: jcr</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-jcr-api.git">org-apache-sling-jcr-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-base.git">org-apache-sling-jcr-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-classloader.git">org-apache-sling-jcr-classloader</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentloader.git">org-apache-sling-jcr-contentloader</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentparser.git">org-apache-sling-jcr-contentparser</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-davex.git">org-apache-sling-jcr-davex</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-filetransfer.git">org-apache-sling-jcr-filetransfer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-accessmanager.git">org-apache-sling-jcr-jackrabbit-accessmanager</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-base.git">org-apache-sling-jcr-jackrabbit-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-usermanager.git">org-apache-sling-jcr-jackrabbit-usermanager</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jcr-wrapper.git">org-apache-sling-jcr-jcr-wrapper</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-js-nodetypes.git">org-apache-sling-jcr-js-nodetypes</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-oak-server.git">org-apache-sling-jcr-oak-server</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-packageinit.git">org-apache-sling-jcr-packageinit</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-registration.git">org-apache-sling-jcr-registration</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repoinit.git">org-apache-sling-jcr-repoinit</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repository-it-resource-versioning.git">org-apache-sling-jcr-repository-it-resource-versioning</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resource.git">org-apache-sling-jcr-resource</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resourcesecurity.git">org-apache-sling-jcr-resourcesecurity</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webconsole.git">org-apache-sling-jcr-webconsole</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webdav.git">org-apache-sling-jcr-webdav</a></li>
+            </ul>
+            <h2>Group: jobs</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it.git">org-apache-sling-jobs-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it-services.git">org-apache-sling-jobs-it-services</a></li>
+            </ul>
+            <h2>Group: junit</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-junit-core.git">org-apache-sling-junit-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-healthcheck.git">org-apache-sling-junit-healthcheck</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-performance.git">org-apache-sling-junit-performance</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-remote.git">org-apache-sling-junit-remote</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-scriptable.git">org-apache-sling-junit-scriptable</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-teleporter.git">org-apache-sling-junit-teleporter</a></li>
+            </ul>
+            <h2>Group: karaf</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-karaf-configs.git">org-apache-sling-karaf-configs</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-distribution.git">org-apache-sling-karaf-distribution</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-features.git">org-apache-sling-karaf-features</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-integration-tests.git">org-apache-sling-karaf-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-launchpad-oak-tar-integration-tests.git">org-apache-sling-karaf-launchpad-oak-tar-integration-tests</a></li>
+            </ul>
+            <h2>Group: launchpad</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-api.git">org-apache-sling-launchpad-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-base.git">org-apache-sling-launchpad-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-contrib-testing.git">org-apache-sling-launchpad-contrib-testing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-installer.git">org-apache-sling-launchpad-installer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests.git">org-apache-sling-launchpad-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-startupmanager.git">org-apache-sling-launchpad-startupmanager</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-bundles.git">org-apache-sling-launchpad-test-bundles</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-fragment.git">org-apache-sling-launchpad-test-fragment</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services.git">org-apache-sling-launchpad-test-services</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services-war.git">org-apache-sling-launchpad-test-services-war</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing.git">org-apache-sling-launchpad-testing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing-war.git">org-apache-sling-launchpad-testing-war</a></li>
+            </ul>
+            <h2>Group: models</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-models-api.git">org-apache-sling-models-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-caconfig.git">org-apache-sling-models-caconfig</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-impl.git">org-apache-sling-models-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-integration-tests.git">org-apache-sling-models-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-jacksonexporter.git">org-apache-sling-models-jacksonexporter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-validation-impl.git">org-apache-sling-models-validation-impl</a></li>
+            </ul>
+            <h2>Group: nosql</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-client.git">org-apache-sling-nosql-couchbase-client</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-resourceprovider.git">org-apache-sling-nosql-couchbase-resourceprovider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-generic.git">org-apache-sling-nosql-generic</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-launchpad.git">org-apache-sling-nosql-launchpad</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-mongodb-resourceprovider.git">org-apache-sling-nosql-mongodb-resourceprovider</a></li>
+            </ul>
+            <h2>Group: repoinit</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-it.git">org-apache-sling-repoinit-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser.git">org-apache-sling-repoinit-parser</a></li>
+            </ul>
+            <h2>Group: scripting</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-scripting-api.git">org-apache-sling-scripting-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker.git">org-apache-sling-scripting-bundle-tracker</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker-it.git">org-apache-sling-scripting-bundle-tracker-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-console.git">org-apache-sling-scripting-console</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-core.git">org-apache-sling-scripting-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-el-api.git">org-apache-sling-scripting-el-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-esx.git">org-apache-sling-scripting-esx</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker.git">org-apache-sling-scripting-freemarker</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy.git">org-apache-sling-scripting-groovy</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-java.git">org-apache-sling-scripting-java</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-javascript.git">org-apache-sling-scripting-javascript</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp.git">org-apache-sling-scripting-jsp</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-api.git">org-apache-sling-scripting-jsp-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-jstl.git">org-apache-sling-scripting-jsp-jstl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib.git">org-apache-sling-scripting-jsp-taglib</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib-compat.git">org-apache-sling-scripting-jsp-taglib-compat</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly.git">org-apache-sling-scripting-sightly</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler.git">org-apache-sling-scripting-sightly-compiler</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java.git">org-apache-sling-scripting-sightly-compiler-java</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider.git">org-apache-sling-scripting-sightly-js-provider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider.git">org-apache-sling-scripting-sightly-models-provider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl.git">org-apache-sling-scripting-sightly-repl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime.git">org-apache-sling-scripting-sightly-runtime</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing.git">org-apache-sling-scripting-sightly-testing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing-content.git">org-apache-sling-scripting-sightly-testing-content</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-thymeleaf.git">org-apache-sling-scripting-thymeleaf</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-xproc.git">org-apache-sling-scripting-xproc</a></li>
+            </ul>
+            <h2>Group: servlets</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations.git">org-apache-sling-servlets-annotations</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations-it.git">org-apache-sling-servlets-annotations-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-get.git">org-apache-sling-servlets-get</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-post.git">org-apache-sling-servlets-post</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver.git">org-apache-sling-servlets-resolver</a></li>
+            </ul>
+            <h2>Group: starter</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-starter-content.git">org-apache-sling-starter-content</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-docker.git">org-apache-sling-starter-docker</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-startup.git">org-apache-sling-starter-startup</a></li>
+            </ul>
+            <h2>Group: testing</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin.git">org-apache-sling-testing-caconfig-mock-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-clients.git">org-apache-sling-testing-clients</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-email.git">org-apache-sling-testing-email</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-hamcrest.git">org-apache-sling-testing-hamcrest</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-jcr-mock.git">org-apache-sling-testing-jcr-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-logging-mock.git">org-apache-sling-testing-logging-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-osgi-mock.git">org-apache-sling-testing-osgi-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam.git">org-apache-sling-testing-paxexam</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-resourceresolver-mock.git">org-apache-sling-testing-resourceresolver-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-rules.git">org-apache-sling-testing-rules</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-serversetup.git">org-apache-sling-testing-serversetup</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock.git">org-apache-sling-testing-sling-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock-oak.git">org-apache-sling-testing-sling-mock-oak</a></li>
+            </ul>
+            <h2>Group: tooling</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-install.git">org-apache-sling-tooling-support-install</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-source.git">org-apache-sling-tooling-support-source</a></li>
+            </ul>
+            <h2>Group: validation</h2>
+            <ul><li><a href="https://github.com/apache/sling-org-apache-sling-validation-api.git">org-apache-sling-validation-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-core.git">org-apache-sling-validation-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-examples.git">org-apache-sling-validation-examples</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-test-services.git">org-apache-sling-validation-test-services</a></li>
+            </ul>
+            <h2>Group: &lt;NO GROUP SET&gt;</h2>
+            <ul><li><a href="https://github.com/apache/sling-adapter-annotations.git">adapter-annotations</a></li>
+                <li><a href="https://github.com/apache/sling-aggregator.git">aggregator</a></li>
+                <li><a href="https://github.com/apache/sling-apache-sling-jar-resource-bundle.git">apache-sling-jar-resource-bundle</a></li>
+                <li><a href="https://github.com/apache/sling-archetype-parent.git">archetype-parent</a></li>
+                <li><a href="https://github.com/apache/sling-bundle-archetype.git">bundle-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-htl-maven-plugin.git">htl-maven-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-ide-tooling.git">ide-tooling</a></li>
+                <li><a href="https://github.com/apache/sling-initial-content-archetype.git">initial-content-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-jcrinstall-bundle-archetype.git">jcrinstall-bundle-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-jspc-maven-plugin.git">jspc-maven-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-launchpad-comparator.git">launchpad-comparator</a></li>
+                <li><a href="https://github.com/apache/sling-launchpad-debian.git">launchpad-debian</a></li>
+                <li><a href="https://github.com/apache/sling-launchpad-standalone-archetype.git">launchpad-standalone-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-launchpad-webapp-archetype.git">launchpad-webapp-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-maven-jcrocm-plugin.git">maven-jcrocm-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-maven-launchpad-plugin.git">maven-launchpad-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-maven-plugin.git">maven-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-adapter.git">org-apache-sling-adapter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-api.git">org-apache-sling-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-app-cms.git">org-apache-sling-app-cms</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-core.git">org-apache-sling-auth-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-form.git">org-apache-sling-auth-form</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-api.git">org-apache-sling-auth-xing-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-login.git">org-apache-sling-auth-xing-login</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-auth-xing-oauth.git">org-apache-sling-auth-xing-oauth</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-bnd-models.git">org-apache-sling-bnd-models</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-bnd-plugins.git">org-apache-sling-bnd-plugins</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-bundleresource-impl.git">org-apache-sling-bundleresource-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-api.git">org-apache-sling-caconfig-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-bnd-plugin.git">org-apache-sling-caconfig-bnd-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-impl.git">org-apache-sling-caconfig-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-integration-tests.git">org-apache-sling-caconfig-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-caconfig-spi.git">org-apache-sling-caconfig-spi</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-capabilities.git">org-apache-sling-capabilities</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-capabilities-jcr.git">org-apache-sling-capabilities-jcr</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-cassandra.git">org-apache-sling-cassandra</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-clam.git">org-apache-sling-clam</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-committer-cli.git">org-apache-sling-committer-cli</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-api.git">org-apache-sling-commons-cache-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-container-test.git">org-apache-sling-commons-cache-container-test</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-ehcache.git">org-apache-sling-commons-cache-ehcache</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-impl.git">org-apache-sling-commons-cache-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-cache-portal.git">org-apache-sling-commons-cache-portal</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-clam.git">org-apache-sling-commons-clam</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-classloader.git">org-apache-sling-commons-classloader</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-compiler.git">org-apache-sling-commons-compiler</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-contentdetection.git">org-apache-sling-commons-contentdetection</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-fsclassloader.git">org-apache-sling-commons-fsclassloader</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-html.git">org-apache-sling-commons-html</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-jcr-file.git">org-apache-sling-commons-jcr-file</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-johnzon.git">org-apache-sling-commons-johnzon</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-log.git">org-apache-sling-commons-log</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-log-webconsole.git">org-apache-sling-commons-log-webconsole</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-logservice.git">org-apache-sling-commons-logservice</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-messaging.git">org-apache-sling-commons-messaging</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-messaging-mail.git">org-apache-sling-commons-messaging-mail</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-metrics.git">org-apache-sling-commons-metrics</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-metrics-rrd4j.git">org-apache-sling-commons-metrics-rrd4j</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-mime.git">org-apache-sling-commons-mime</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-osgi.git">org-apache-sling-commons-osgi</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-scheduler.git">org-apache-sling-commons-scheduler</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-testing.git">org-apache-sling-commons-testing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-threaddump.git">org-apache-sling-commons-threaddump</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-commons-threads.git">org-apache-sling-commons-threads</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-connection-timeout-agent.git">org-apache-sling-connection-timeout-agent</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-api.git">org-apache-sling-contentparser-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-json.git">org-apache-sling-contentparser-json</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-testutils.git">org-apache-sling-contentparser-testutils</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml.git">org-apache-sling-contentparser-xml</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-contentparser-xml-jcr.git">org-apache-sling-contentparser-xml-jcr</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-launcher.git">org-apache-sling-crankstart-launcher</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-model.git">org-apache-sling-crankstart-test-model</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-crankstart-test-services.git">org-apache-sling-crankstart-test-services</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-datasource.git">org-apache-sling-datasource</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-api.git">org-apache-sling-discovery-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-base.git">org-apache-sling-discovery-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-commons.git">org-apache-sling-discovery-commons</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-impl.git">org-apache-sling-discovery-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-oak.git">org-apache-sling-discovery-oak</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-standalone.git">org-apache-sling-discovery-standalone</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-discovery-support.git">org-apache-sling-discovery-support</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-api.git">org-apache-sling-distribution-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-avro-serializer.git">org-apache-sling-distribution-avro-serializer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-core.git">org-apache-sling-distribution-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-it.git">org-apache-sling-distribution-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal.git">org-apache-sling-distribution-journal</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-it.git">org-apache-sling-distribution-journal-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-kafka.git">org-apache-sling-distribution-journal-kafka</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-messages.git">org-apache-sling-distribution-journal-messages</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-kryo-serializer.git">org-apache-sling-distribution-kryo-serializer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-sample.git">org-apache-sling-distribution-sample</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-dynamic-include.git">org-apache-sling-dynamic-include</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-engine.git">org-apache-sling-engine</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-event.git">org-apache-sling-event</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-event-api.git">org-apache-sling-event-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-event-dea.git">org-apache-sling-event-dea</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-classloader-leak-detector.git">org-apache-sling-extensions-classloader-leak-detector</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-logback-groovy-fragment.git">org-apache-sling-extensions-logback-groovy-fragment</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-slf4j-mdc.git">org-apache-sling-extensions-slf4j-mdc</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-webconsolebranding.git">org-apache-sling-extensions-webconsolebranding</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-extensions-webconsolesecurityprovider.git">org-apache-sling-extensions-webconsolesecurityprovider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature.git">org-apache-sling-feature</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-analyser.git">org-apache-sling-feature-analyser</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions.git">org-apache-sling-feature-apiregions</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-apiregions-model.git">org-apache-sling-feature-apiregions-model</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-applicationbuilder.git">org-apache-sling-feature-applicationbuilder</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-cpconverter.git">org-apache-sling-feature-cpconverter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-diff.git">org-apache-sling-feature-diff</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git">org-apache-sling-feature-extension-apiregions</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-extension-content.git">org-apache-sling-feature-extension-content</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-inventoryprinter.git">org-apache-sling-feature-inventoryprinter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-io.git">org-apache-sling-feature-io</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-karaf.git">org-apache-sling-feature-karaf</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-launcher.git">org-apache-sling-feature-launcher</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-modelconverter.git">org-apache-sling-feature-modelconverter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-r2f.git">org-apache-sling-feature-r2f</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-feature-resolver.git">org-apache-sling-feature-resolver</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-featureflags.git">org-apache-sling-featureflags</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-file-optimization.git">org-apache-sling-file-optimization</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-activation.git">org-apache-sling-fragment-activation</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-nashorn.git">org-apache-sling-fragment-nashorn</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-transaction.git">org-apache-sling-fragment-transaction</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-ws.git">org-apache-sling-fragment-ws</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fragment-xml.git">org-apache-sling-fragment-xml</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-fsresource.git">org-apache-sling-fsresource</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi.git">org-apache-sling-hapi</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi-client.git">org-apache-sling-hapi-client</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hapi-samplecontent.git">org-apache-sling-hapi-samplecontent</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-annotations.git">org-apache-sling-hc-annotations</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-api.git">org-apache-sling-hc-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-core.git">org-apache-sling-hc-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-it.git">org-apache-sling-hc-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-junit-bridge.git">org-apache-sling-hc-junit-bridge</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-samples.git">org-apache-sling-hc-samples</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-support.git">org-apache-sling-hc-support</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-hc-webconsole.git">org-apache-sling-hc-webconsole</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-i18n.git">org-apache-sling-i18n</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-console.git">org-apache-sling-installer-console</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-core.git">org-apache-sling-installer-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-configuration.git">org-apache-sling-installer-factory-configuration</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-deploymentpackage.git">org-apache-sling-installer-factory-deploymentpackage</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-model.git">org-apache-sling-installer-factory-model</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-packages.git">org-apache-sling-installer-factory-packages</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems.git">org-apache-sling-installer-factory-subsystems</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-factory-subsystems-base.git">org-apache-sling-installer-factory-subsystems-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-hc.git">org-apache-sling-installer-hc</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-it.git">org-apache-sling-installer-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-file.git">org-apache-sling-installer-provider-file</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-installhook.git">org-apache-sling-installer-provider-installhook</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr.git">org-apache-sling-installer-provider-jcr</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-javax-activation.git">org-apache-sling-javax-activation</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-api.git">org-apache-sling-jcr-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-base.git">org-apache-sling-jcr-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-classloader.git">org-apache-sling-jcr-classloader</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentloader.git">org-apache-sling-jcr-contentloader</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentparser.git">org-apache-sling-jcr-contentparser</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-davex.git">org-apache-sling-jcr-davex</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-filetransfer.git">org-apache-sling-jcr-filetransfer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-accessmanager.git">org-apache-sling-jcr-jackrabbit-accessmanager</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-base.git">org-apache-sling-jcr-jackrabbit-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jackrabbit-usermanager.git">org-apache-sling-jcr-jackrabbit-usermanager</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-jcr-wrapper.git">org-apache-sling-jcr-jcr-wrapper</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-js-nodetypes.git">org-apache-sling-jcr-js-nodetypes</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-oak-server.git">org-apache-sling-jcr-oak-server</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-packageinit.git">org-apache-sling-jcr-packageinit</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-registration.git">org-apache-sling-jcr-registration</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repoinit.git">org-apache-sling-jcr-repoinit</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repository-it-resource-versioning.git">org-apache-sling-jcr-repository-it-resource-versioning</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resource.git">org-apache-sling-jcr-resource</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-resourcesecurity.git">org-apache-sling-jcr-resourcesecurity</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webconsole.git">org-apache-sling-jcr-webconsole</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-webdav.git">org-apache-sling-jcr-webdav</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jms.git">org-apache-sling-jms</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jmx-provider.git">org-apache-sling-jmx-provider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs.git">org-apache-sling-jobs</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it.git">org-apache-sling-jobs-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-jobs-it-services.git">org-apache-sling-jobs-it-services</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-core.git">org-apache-sling-junit-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-healthcheck.git">org-apache-sling-junit-healthcheck</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-performance.git">org-apache-sling-junit-performance</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-remote.git">org-apache-sling-junit-remote</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-scriptable.git">org-apache-sling-junit-scriptable</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-junit-teleporter.git">org-apache-sling-junit-teleporter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-configs.git">org-apache-sling-karaf-configs</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-distribution.git">org-apache-sling-karaf-distribution</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-features.git">org-apache-sling-karaf-features</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-integration-tests.git">org-apache-sling-karaf-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-launchpad-oak-tar-integration-tests.git">org-apache-sling-karaf-launchpad-oak-tar-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-api.git">org-apache-sling-launchpad-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-base.git">org-apache-sling-launchpad-base</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-contrib-testing.git">org-apache-sling-launchpad-contrib-testing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-installer.git">org-apache-sling-launchpad-installer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests.git">org-apache-sling-launchpad-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-startupmanager.git">org-apache-sling-launchpad-startupmanager</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-bundles.git">org-apache-sling-launchpad-test-bundles</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-fragment.git">org-apache-sling-launchpad-test-fragment</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services.git">org-apache-sling-launchpad-test-services</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services-war.git">org-apache-sling-launchpad-test-services-war</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing.git">org-apache-sling-launchpad-testing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing-war.git">org-apache-sling-launchpad-testing-war</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-api.git">org-apache-sling-models-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-caconfig.git">org-apache-sling-models-caconfig</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-impl.git">org-apache-sling-models-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-integration-tests.git">org-apache-sling-models-integration-tests</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-jacksonexporter.git">org-apache-sling-models-jacksonexporter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-models-validation-impl.git">org-apache-sling-models-validation-impl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-mom.git">org-apache-sling-mom</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-mongodb.git">org-apache-sling-mongodb</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-client.git">org-apache-sling-nosql-couchbase-client</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-couchbase-resourceprovider.git">org-apache-sling-nosql-couchbase-resourceprovider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-generic.git">org-apache-sling-nosql-generic</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-launchpad.git">org-apache-sling-nosql-launchpad</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-nosql-mongodb-resourceprovider.git">org-apache-sling-nosql-mongodb-resourceprovider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-oak-restrictions.git">org-apache-sling-oak-restrictions</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-paxexam-util.git">org-apache-sling-paxexam-util</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-performance.git">org-apache-sling-performance</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-pipes.git">org-apache-sling-pipes</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-provisioning-model.git">org-apache-sling-provisioning-model</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-query.git">org-apache-sling-query</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-it.git">org-apache-sling-repoinit-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser.git">org-apache-sling-repoinit-parser</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-reqanalyzer.git">org-apache-sling-reqanalyzer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-editor.git">org-apache-sling-resource-editor</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-filter.git">org-apache-sling-resource-filter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-inventory.git">org-apache-sling-resource-inventory</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resource-presence.git">org-apache-sling-resource-presence</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resourceaccesssecurity.git">org-apache-sling-resourceaccesssecurity</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resourceaccesssecurity-it.git">org-apache-sling-resourceaccesssecurity-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resourcebuilder.git">org-apache-sling-resourcebuilder</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resourcecollection.git">org-apache-sling-resourcecollection</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resourcemerger.git">org-apache-sling-resourcemerger</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-resourceresolver.git">org-apache-sling-resourceresolver</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-rewriter.git">org-apache-sling-rewriter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-api.git">org-apache-sling-scripting-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker.git">org-apache-sling-scripting-bundle-tracker</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker-it.git">org-apache-sling-scripting-bundle-tracker-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-console.git">org-apache-sling-scripting-console</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-core.git">org-apache-sling-scripting-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-el-api.git">org-apache-sling-scripting-el-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-esx.git">org-apache-sling-scripting-esx</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker.git">org-apache-sling-scripting-freemarker</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy.git">org-apache-sling-scripting-groovy</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-java.git">org-apache-sling-scripting-java</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-javascript.git">org-apache-sling-scripting-javascript</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp.git">org-apache-sling-scripting-jsp</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-api.git">org-apache-sling-scripting-jsp-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-jstl.git">org-apache-sling-scripting-jsp-jstl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib.git">org-apache-sling-scripting-jsp-taglib</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp-taglib-compat.git">org-apache-sling-scripting-jsp-taglib-compat</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly.git">org-apache-sling-scripting-sightly</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler.git">org-apache-sling-scripting-sightly-compiler</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java.git">org-apache-sling-scripting-sightly-compiler-java</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider.git">org-apache-sling-scripting-sightly-js-provider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider.git">org-apache-sling-scripting-sightly-models-provider</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl.git">org-apache-sling-scripting-sightly-repl</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime.git">org-apache-sling-scripting-sightly-runtime</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing.git">org-apache-sling-scripting-sightly-testing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-testing-content.git">org-apache-sling-scripting-sightly-testing-content</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-thymeleaf.git">org-apache-sling-scripting-thymeleaf</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-xproc.git">org-apache-sling-scripting-xproc</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-security.git">org-apache-sling-security</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-serviceuser-webconsole.git">org-apache-sling-serviceuser-webconsole</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-serviceusermapper.git">org-apache-sling-serviceusermapper</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlet-helpers.git">org-apache-sling-servlet-helpers</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations.git">org-apache-sling-servlets-annotations</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations-it.git">org-apache-sling-servlets-annotations-it</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-get.git">org-apache-sling-servlets-get</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-post.git">org-apache-sling-servlets-post</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver.git">org-apache-sling-servlets-resolver</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-settings.git">org-apache-sling-settings</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-starter.git">org-apache-sling-starter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-content.git">org-apache-sling-starter-content</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-docker.git">org-apache-sling-starter-docker</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-starter-startup.git">org-apache-sling-starter-startup</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-startupfilter.git">org-apache-sling-startupfilter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-startupfilter-disabler.git">org-apache-sling-startupfilter-disabler</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-superimposing.git">org-apache-sling-superimposing</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-tail.git">org-apache-sling-tail</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-tenant.git">org-apache-sling-tenant</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin.git">org-apache-sling-testing-caconfig-mock-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-clients.git">org-apache-sling-testing-clients</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-email.git">org-apache-sling-testing-email</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-hamcrest.git">org-apache-sling-testing-hamcrest</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-jcr-mock.git">org-apache-sling-testing-jcr-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-logging-mock.git">org-apache-sling-testing-logging-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-osgi-mock.git">org-apache-sling-testing-osgi-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam.git">org-apache-sling-testing-paxexam</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-resourceresolver-mock.git">org-apache-sling-testing-resourceresolver-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-rules.git">org-apache-sling-testing-rules</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-serversetup.git">org-apache-sling-testing-serversetup</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock.git">org-apache-sling-testing-sling-mock</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-testing-sling-mock-oak.git">org-apache-sling-testing-sling-mock-oak</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-install.git">org-apache-sling-tooling-support-install</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-tooling-support-source.git">org-apache-sling-tooling-support-source</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-tracer.git">org-apache-sling-tracer</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-urlrewriter.git">org-apache-sling-urlrewriter</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-api.git">org-apache-sling-validation-api</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-core.git">org-apache-sling-validation-core</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-examples.git">org-apache-sling-validation-examples</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-validation-test-services.git">org-apache-sling-validation-test-services</a></li>
+                <li><a href="https://github.com/apache/sling-org-apache-sling-xss.git">org-apache-sling-xss</a></li>
+                <li><a href="https://github.com/apache/sling-parent.git">parent</a></li>
+                <li><a href="https://github.com/apache/sling-project-archetype.git">project-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-samples.git">samples</a></li>
+                <li><a href="https://github.com/apache/sling-scriptingbundle-maven-plugin.git">scriptingbundle-maven-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-servlet-archetype.git">servlet-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-site.git">site</a></li>
+                <li><a href="https://github.com/apache/sling-slingfeature-maven-plugin.git">slingfeature-maven-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-slingstart-archetype.git">slingstart-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-slingstart-maven-plugin.git">slingstart-maven-plugin</a></li>
+                <li><a href="https://github.com/apache/sling-taglib-archetype.git">taglib-archetype</a></li>
+                <li><a href="https://github.com/apache/sling-tooling-jenkins.git">tooling-jenkins</a></li>
+                <li><a href="https://github.com/apache/sling-tooling-release.git">tooling-release</a></li>
+                <li><a href="https://github.com/apache/sling-tooling-scm.git">tooling-scm</a></li>
+                <li><a href="https://github.com/apache/sling-whiteboard.git">whiteboard</a></li>
+            </ul>
+
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Jan 26 18:08:17 2018 +0100</span>
                 </div>                <p>
@@ -683,6 +651,7 @@
                     Copyright © 2007-2019 The Apache Software Foundation.
                 </p>
             </footer>
+            
         </div>
     </body>
 </html>

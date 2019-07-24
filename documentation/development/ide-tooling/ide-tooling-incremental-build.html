@@ -3,7 +3,6 @@
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <title>Apache Sling :: Incremental Builds in Sling IDE tooling for Eclipse</title>
         <link rel="icon" href="/res/favicon.ico"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
@@ -11,118 +10,77 @@
         </script>
         
     </head>    <body>
-        <div class="section">
-            <div class="level is-marginless">
-<div class="logo">
-                    <a href="https://sling.apache.org">
-                        <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
-                    </a>
-                </div><div class="header">
-                    <a href="https://www.apache.org">
-                        <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+<div class="title">
+            <div class="logo">
+                <a href="https://sling.apache.org">
+                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                </a>
+            </div><div class="header">
+                <a href="https://www.apache.org">
+                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                </a>
+            </div>
+        </div><nav class="menu">
+            <ul>
+                <li>
+                    <strong>Documentation</strong><ul>
+                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                    </ul>
+                </li><li>
+                    <strong>API Docs</strong><ul>
+                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Support</strong><ul>
+                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Project Info</strong><ul>
+                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Source</strong><ul>
+                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
+                    </ul>
+                </li><li>
+                    <strong>Apache Software Foundation</strong><ul>
+                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li><li><a href="https://www.apache.org/events/current-event.html">
+                                <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
+                            </a></li><li><a href="https://apache.org/foundation/contributing.html">
+                                <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                            </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>        <div class="main">
+            <div class="pagenav">
+<div class="breadcrumb">
+                    <a href="/">
+                        Home
+                    </a><a href="/documentation.html">
+                        Documentation
+                    </a><a href="/documentation/development.html">
+                        Development
+                    </a><a href="/documentation/development/ide-tooling.html">
+                        Sling IDE tooling for Eclipse User Guide
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
-                <div class="column is-narrow sidemenu">
-<div class="container">
-                        <nav class="menu">
-                            <ul class="menu-list box is-shadowless is-marginless">
-                                <li>
-                                    <p class="menu-label">
-                                        <strong>Documentation</strong>
-                                    </p><ul>
-                                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>API Docs</strong>
-                                    </p><ul>
-                                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Support</strong>
-                                    </p><ul>
-                                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Project Info</strong>
-                                    </p><ul>
-                                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Source</strong>
-                                    </p><ul>
-                                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
-                                    </ul>
-                                </li><li>
-                                    <p class="menu-label">
-                                        <strong>Apache Software<br>Foundation</strong>
-                                    </p><ul>
-                                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav><div class="columns is-centered">
-                            <div class="column">
-                                <a href="https://www.apache.org/events/current-event.html" class="column">
-                                    <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
-                                </a><a href="https://apache.org/foundation/contributing.html" class="column">
-                                    <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>                    
-                </div><div class="column main">
-                    <div class="box is-shadowless is-marginless">
-                        <div class="level">
-                            <div class="pagenav">
-<div class="breadcrumb">
-                                    <ul>
-                                        <li>
-                                            <a href="/">
-                                                Home
-                                            </a>
-                                        </li><li>
-                                            <a href="/documentation.html">
-                                                Documentation
-                                            </a>
-                                        </li><li>
-                                            <a href="/documentation/development.html">
-                                                Development
-                                            </a>
-                                        </li><li>
-                                            <a href="/documentation/development/ide-tooling.html">
-                                                Sling IDE tooling for Eclipse User Guide
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>                                
-                            </div><div class="tags">
-                                <span class="tag">
-                                    <a href="/tags/development.html">
-                                        development
-                                    </a>
-                                </span><span class="tag">
-                                    <a href="/tags/eclipse.html">
-                                        eclipse
-                                    </a>
-                                </span>
-                            </div>
-                        </div><h1 class="title">
-                            Incremental Builds in Sling IDE tooling for Eclipse
-                        </h1><nav class="menu">
-                            <ul class="menu-list box is-shadowless is-paddingless">
-                                <li id="generatedToC">
-                                    <p class="menu-label">
-                                        <strong>Table of Contents</strong>
-                                    </p>
-                                </li>
-                            </ul>
-                        </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+<div class="tags">
+                    <span class="tag">
+                        <a href="/tags/development.html">
+                            development
+                        </a>
+                    </span><span class="tag">
+                        <a href="/tags/eclipse.html">
+                            eclipse
+                        </a>
+                    </span>
+                </div>                
+                
+            </div><h1 class="pagetitle">
+                Incremental Builds in Sling IDE tooling for Eclipse
+            </h1><div id="generatedToC"></div><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=pagetitle],h2,h3'}); } );</script>
+<div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#overview" name="overview">Overview</a></h2>
 <p>The Sling IDE Tooling relies on the <a href="https://wiki.eclipse.org/M2E_compatible_maven_plugins">m2e incremental build support</a> for the generation of the bundle's manifest, the component descriptions as well as the metatype resources (the latter two being generated through OSGi 6 <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">component annotations</a> and <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/metatype/annotations/package-summary.html">metatype annotations</a> or through <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html">Apache Felix SCR annotations</a>). That means whenever at least one java class is touched and the auto-build in Eclipse is enabled the annotations on that class should be reevaluated. This may lead to a modification of the bundle's manifest and/or generation/modification of service description XMLs and/or Metatype resource files. Depending on which maven plugins you use you must adjust their configuration accordingly to properly support incremental builds.</p>
@@ -137,11 +95,8 @@
 <p>The <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin</a> is developed from the bnd team and is based on bnd as well. It is versioned in parallel with bnd and bndtools. It natively supports incremental builds since version 3.1.0 (<a href="https://github.com/bndtools/bnd/issues/1180">issue 1180</a>).</p>
 <h2><a href="#service-description-and-metatype-resources" name="service-description-and-metatype-resources">Service Description and Metatype Resources</a></h2>
 <p>OSGi component and metatype annotations (for OSGi 6) are natively supported through bnd (and therefore automatically generated through both maven-bundle-plugin and bnd-maven-plugin). You don't need to configure anything explicitly since version 3.0.0 of bnd (<a href="https://github.com/bndtools/bnd/issues/1041">issue 1041</a>).</p>
-<p>The maven-bundle-plugin can be optionally coupled with the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.html">maven-scr-plugin</a>. Both maven-bundle-plugin as well as bnd-maven-plugin can be optionally coupled with the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.html">scr-bnd-plugin</a>. Both approaches can be used to generate components descriptions and metatype resources out of the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html">Felix SCR annotations</a>. The recommended way for new projects though is to rely on OSGi 6 annotations. However if you need to rely on Felix SCR annotations though it is recommended to rather use the scr-bnd-plugin over the maven-scr-plugin, as the former is nicely integrated into bnd and therefore means less overhead during the build.</p></section></div></div>                            
-                        </div>
-                    </div>
-                </div>
-            </div><footer class="footer">
+<p>The maven-bundle-plugin can be optionally coupled with the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.html">maven-scr-plugin</a>. Both maven-bundle-plugin as well as bnd-maven-plugin can be optionally coupled with the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.html">scr-bnd-plugin</a>. Both approaches can be used to generate components descriptions and metatype resources out of the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html">Felix SCR annotations</a>. The recommended way for new projects though is to rely on OSGi 6 annotations. However if you need to rely on Felix SCR annotations though it is recommended to rather use the scr-bnd-plugin over the maven-scr-plugin, as the former is nicely integrated into bnd and therefore means less overhead during the build.</p></section></div></div>            
+            <footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Mon Dec 17 18:37:19 2018 +0100</span>
                 </div>                <p>
@@ -150,6 +105,7 @@
                     Copyright © 2007-2019 The Apache Software Foundation.
                 </p>
             </footer>
+            
         </div>
     </body>
 </html>
