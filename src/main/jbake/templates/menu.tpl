@@ -73,10 +73,7 @@ div(class:"container") {
                     li(){a(href:"https://www.apache.org/foundation/buy_stuff.html", "Buy Stuff")}
                 }
             }
-        }
-    }
-    div(class:"columns is-centered"){
-        div(class:"column"){
+            li(){
                 a(href:"https://www.apache.org/events/current-event.html", class:"column") {
                     img(
                         border:"0",
@@ -85,6 +82,8 @@ div(class:"container") {
                         width:"125"
                     )
                 }
+            }
+            li(){
                 a(href:"https://apache.org/foundation/contributing.html",class:"column") {
                     img(
                         border:"0", 
@@ -93,6 +92,7 @@ div(class:"container") {
                         width:"125"
                     )
                 }
+            }
         }
     }
 }
