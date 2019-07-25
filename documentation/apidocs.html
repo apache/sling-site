@@ -3,6 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <title>Apache Sling :: API Docs</title>
         <link rel="icon" href="/res/favicon.ico"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
@@ -10,72 +11,102 @@
         </script>
         
     </head>    <body>
-<div class="title">
-            <div class="logo">
-                <a href="https://sling.apache.org">
-                    <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
-                </a>
-            </div><div class="header">
-                <a href="https://www.apache.org">
-                    <img border="0" alt="Apache" src="/res/logos/apache.png"/>
-                </a>
-            </div>
-        </div><nav class="menu">
-            <ul>
-                <li>
-                    <strong>Documentation</strong><ul>
-                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
-                    </ul>
-                </li><li>
-                    <strong>API Docs</strong><ul>
-                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Support</strong><ul>
-                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Project Info</strong><ul>
-                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Source</strong><ul>
-                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
-                    </ul>
-                </li><li>
-                    <strong>Apache Software Foundation</strong><ul>
-                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li><li><a href="https://www.apache.org/events/current-event.html">
-                                <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
-                            </a></li><li><a href="https://apache.org/foundation/contributing.html">
-                                <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
-                            </a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>        <div class="main">
-            <div class="pagenav">
-<div class="breadcrumb">
-                    <a href="/">
-                        Home
-                    </a><a href="/documentation.html">
-                        Documentation
+        <div class="section">
+            <div class="level is-marginless">
+<div class="logo">
+                    <a href="https://sling.apache.org">
+                        <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    </a>
+                </div><div class="header">
+                    <a href="https://www.apache.org">
+                        <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-<div class="tags">
-                    <span class="tag">
-                        <a href="/tags/api.html">
-                            api
-                        </a>
-                    </span><span class="tag">
-                        <a href="/tags/documentation.html">
-                            documentation
-                        </a>
-                    </span>
-                </div>                
-                
-            </div><h1 class="pagetitle">
-                API Docs
-            </h1><div class="row"><div class="small-12 columns"><section class="wrap"><h2><a href="#sling-api-documentation" name="sling-api-documentation">Sling API Documentation</a></h2>
+            </div><div class="columns is-gapless">
+                <div class="column is-narrow sidemenu">
+<div class="container">
+                        <nav class="menu">
+                            <ul class="menu-list box is-shadowless is-marginless">
+                                <li>
+                                    <p class="menu-label">
+                                        <strong>Documentation</strong>
+                                    </p><ul>
+                                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>API Docs</strong>
+                                    </p><ul>
+                                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Support</strong>
+                                    </p><ul>
+                                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Project Info</strong>
+                                    </p><ul>
+                                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Source</strong>
+                                    </p><ul>
+                                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Apache Software<br>Foundation</strong>
+                                    </p><ul>
+                                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav><div class="columns is-centered">
+                            <div class="column">
+                                <a href="https://www.apache.org/events/current-event.html" class="column">
+                                    <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
+                                </a><a href="https://apache.org/foundation/contributing.html" class="column">
+                                    <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>                    
+                </div><div class="column main">
+                    <div class="box is-shadowless is-marginless">
+                        <div class="level">
+                            <div class="pagenav">
+<div class="breadcrumb">
+                                    <ul>
+                                        <li>
+                                            <a href="/">
+                                                Home
+                                            </a>
+                                        </li><li>
+                                            <a href="/documentation.html">
+                                                Documentation
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                                
+                            </div><div class="tags">
+                                <span class="tag">
+                                    <a href="/tags/api.html">
+                                        api
+                                    </a>
+                                </span><span class="tag">
+                                    <a href="/tags/documentation.html">
+                                        documentation
+                                    </a>
+                                </span>
+                            </div>
+                        </div><h1 class="title">
+                            API Docs
+                        </h1><div class="content is-marginless">
+<div class="row"><div><section><h2><a href="#sling-api-documentation" name="sling-api-documentation">Sling API Documentation</a></h2>
 <p>Use these links to access the API docs of the various Sling versions:</p>
 <ul>
   <li><a href="/apidocs/sling11/index.html">Sling 11</a></li>
@@ -88,8 +119,11 @@
 </ul>
 <p>These apply to the "big" Sling releases, but in between those we often release individual modules, including their version-specific javadocs.</p>
 <p><a href="http://www.javadoc.io/">javadocs.io</a> also provides archived javadocs for all Sling modules, and actually for all open source software hosted at Maven Central.</p>
-<p>To get the javadocs of a particular module there, use an URL like <code>http://javadoc.io/doc/{org}/{artifact}/{version}</code>, like for example <a href="http://www.javadoc.io/doc/org.apache.sling/org.apache.sling.api/2.9.0">http://www.javadoc.io/doc/org.apache.sling/org.apache.sling.api/2.9.0</a></p></section></div></div>
-            <footer class="footer">
+<p>To get the javadocs of a particular module there, use an URL like <code>http://javadoc.io/doc/{org}/{artifact}/{version}</code>, like for example <a href="http://www.javadoc.io/doc/org.apache.sling/org.apache.sling.api/2.9.0">http://www.javadoc.io/doc/org.apache.sling/org.apache.sling.api/2.9.0</a></p></section></div></div>                            
+                        </div>
+                    </div>
+                </div>
+            </div><footer class="footer">
 <div class="revisionInfo">
                     Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Oct 23 13:33:49 2018 +0200</span>
                 </div>                <p>
@@ -98,7 +132,6 @@
                     Copyright © 2007-2019 The Apache Software Foundation.
                 </p>
             </footer>
-            
         </div>
     </body>
 </html>
