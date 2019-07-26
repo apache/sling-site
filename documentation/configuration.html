@@ -178,9 +178,23 @@
       <td><code>sling.home</code> </td>
       <td>the sling context directory </td>
     </tr>
+    <tr>
+      <td><code>-a address</code> </td>
+      <td> </td>
+      <td>the interfact to bind to (use 0.0.0.0 for any) (not supported yet) </td>
+    </tr>
+    <tr>
+      <td><code>-p port</code> </td>
+      <td><code>org.osgi.service.http.port</code> </td>
+      <td>the port to listen to (default 8080) </td>
+    </tr>
+    <tr>
+      <td><code>-h</code> </td>
+      <td> </td>
+      <td>Prints a simple usage message and exits. </td>
+    </tr>
   </tbody>
 </table>
-<p>| <code>-a address</code> | -- | the interfact to bind to (use 0.0.0.0 for any) (not supported yet) | | <code>-p port</code> | <code>org.osgi.service.http.port</code> | the port to listen to (default 8080) | | <code>-h</code> | -- | Prints a simple usage message and exits. |</p>
 <p>The standalone application exits with status code 0 (zero) if Sling terminates normally, that is if the OSGi framework is stopped or if just the usage note has been displayed. If any error occurrs during command line parsing, the cause is printed to the error output and the application exists with status code 1 (one). If the OSGi framework fails to start, the cause is printed to the error output and the application exists with status code 2.</p>
 <h3><a href="#web-application" name="web-application">Web Application</a></h3>
 <p>When launching Sling as a web application using the <code>sling-servlet.war</code> or any derived Web Application archive file, the <code>sling.properties</code> file is located in the <code>WEB-INF</code> folder along with the <code>sling_install.properties</code> and JRE specific properties files.</p>
@@ -304,7 +318,7 @@
                 </div>
             </div><footer class="footer">
 <div class="revisionInfo">
-                    Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                    Last modified by <span class="author">JE Bailey</span> on <span class="comment">Fri Jul 26 08:44:24 2019 -0400</span>
                 </div>                <p>
                     Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                 </p><p>
