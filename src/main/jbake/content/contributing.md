@@ -2,6 +2,7 @@ title=Contributing
 type=page
 status=published
 tags=community
+tableOfContents=false
 ~~~~~~
 
 Thanks for choosing to contribute to Apache Sling! The following are a set of guidelines to follow when contributing to this project.
