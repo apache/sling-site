@@ -36,8 +36,10 @@ html(lang:'en'){
             }
         }//columns
         footer(class:"footer") {
-            lastModified()
-            include template: 'footer.tpl'
+            div(class:"content has-text-centered is-small"){
+                lastModified()
+                include template: 'footer.tpl'
+            }
         }
     }
     }//body

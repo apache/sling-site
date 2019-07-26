@@ -1,5 +1,5 @@
 body {
-    background-color: #fcfcfc;
+    background-color: #fff;
     color: #3b3b3b;
 }
 
@@ -33,7 +33,6 @@ a:hover {
 
 .sidemenu {
     border-top: 10px solid #f9bb00;
-    background-color: #fcfcfc
 }
 
 .sidemenu ul,.sidemenu p {
@@ -64,10 +63,6 @@ td {
 
 .note
 {
-/*
-    background-color: #FFFFCE;
-    border: 1px solid #F0C000;
-*/
     border: 1px solid #f0c000;
 	background: #ffffce url('icons/warning.gif') no-repeat 5px 5px;
 	text-align: left;
@@ -78,10 +73,6 @@ td {
 
 .warning
 {
-/*
-    background-color: #FFCCCC;
-    border: 1px solid #CC0000;
-*/
     border: 1px solid #f0c000;
 	background: #ffffce url('icons/forbidden.gif') no-repeat 5px 5px;
 	text-align: left;
@@ -92,10 +83,6 @@ td {
 
 .info
 {
-/*
-    background-color: #D8E4F1;
-    border: 1px solid #3C78B5;
-*/
     border: 1px solid #3c78b5;
 	background: #D8E4F1 url('icons/information.gif') no-repeat 5px 5px;
 	text-align: left;
@@ -106,10 +93,6 @@ td {
 
 .tip
 {
-/*
-    background-color: #DDFFDD;
-    border: 1px solid #009900;
-*/
 	border: 1px solid #090;
 	background: #dfd url('/res/icons/check.gif') no-repeat 5px 5px;
 	text-align: left;
@@ -118,19 +101,13 @@ td {
 	padding: 5px 5px 5px 28px;
 }
 
-/** Last modification information at the botton of each page */
+/** Last modification information at the bottom of each page */
 .timestamp {
     margin-top: 30px;
     font-size: 80%;
     text-align: right;
 }
 
-.footer {
-    font-size: 80%;
-    font-style: italic;
-    margin-top: 10px;
-    text-align: left;
-}
 
 .draft {
 	font-size:150%;
@@ -148,7 +125,7 @@ code {
 }
 
 .content pre {
-    background-color: #fcfcfc;
+    background-color: #fff;
 }
 
 .content pre code {
