@@ -16,14 +16,12 @@ a:hover {
 .title {
     border-bottom: solid #EEE 1px;
     border-top: solid #EEE 1px;
-    padding-top:.2em;
     padding-bottom:.2em;
 }
 
 
 .logo {
     width: 15em;
-    height: 81px;
 }
 
 .logo img {
