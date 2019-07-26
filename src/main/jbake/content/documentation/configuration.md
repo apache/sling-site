@@ -63,9 +63,9 @@ In addition the following command line arguments are accepted:
 | `-l loglevel` | `org.apache.sling.osgi.log.level` | The initial loglevel (0..4, FATAL, ERROR, WARN, INFO, DEBUG) |
 | `-f logfile` | `org.apache.sling.osgi.log.file` | The log file, "-" for stdout |
 | `-c slinghome` | `sling.home` | the sling context directory |
-| `-a address` | -- | the interfact to bind to (use 0.0.0.0 for any) (not supported yet) |
+| `-a address` |  | the interfact to bind to (use 0.0.0.0 for any) (not supported yet) |
 | `-p port` | `org.osgi.service.http.port` | the port to listen to (default 8080) |
-| `-h` | -- | Prints a simple usage message and exits. |
+| `-h` |  | Prints a simple usage message and exits. |
 
 The standalone application exits with status code 0 (zero) if Sling terminates normally, that is if the OSGi framework is stopped or if just the usage note has been displayed. If any error occurrs during command line parsing, the cause is printed to the error output and the application exists with status code 1 (one). If the OSGi framework fails to start, the cause is printed to the error output and the application exists with status code 2.
 
