@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2019
+
+* Testing OSGi Mock 2.4.10, Testing Sling Mock 2.3.16 (9th)
+
 ## July 2019
 
 * Content Parser API 2.0.0, Content Parser JSON 2.0.0, Content Parser XML 2.0.0, Content Parser XML JCR 2.0.0, Content Parser Test Utilities 2.0.0 (29th)
