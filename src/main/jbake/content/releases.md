@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2019
 
+* JCR Content Parser 1.2.8 (12th)
 * Testing OSGi Mock 2.4.10, Testing Sling Mock 2.3.16 (9th)
 
 ## July 2019
