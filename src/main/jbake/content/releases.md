@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2019
 
+* Context-Aware Configuration API 1.2.0, Context-Aware Configuration Impl 1.5.0 (19th)
 * JCR Content Parser 1.2.8 (12th)
 * Testing OSGi Mock 2.4.10, Testing Sling Mock 2.3.16 (9th)
 
