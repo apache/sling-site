@@ -129,35 +129,39 @@ com.acme.abc-default.cfg // Managed Service Factory,
 <p>Since Installer Configuration Factory 1.2.0 (<a href="https://jira.apache.org/jira/browse/SLING-7786">SLING-7786</a>) you should use the tilde <code>~</code> as separator between <code>&lt;pid&gt;</code> and <code>&lt;subname&gt;</code> instead of the <code>-</code>.</p>
 <p>If a configuration is modified, the file installer will write the configuration back to a file to ensure persistence across restarts (if <code>sling.fileinstall.writeback</code> is enabled). A similar writeback mechanism is supported by the <a href="jcr-installer-provider.html">JCR installer</a>.</p>
 <p>The code for parsing the configuration files is in <a href="https://github.com/apache/sling-org-apache-sling-installer-core/blob/7b2e4407baa45b79d954dd20c53bb2077c3a5e49/src/main/java/org/apache/sling/installer/core/impl/InternalResource.java#L230">InternalResource#readDictionary</a>.</p>
-<h3><a href="#property-files-cfg-" name="property-files-cfg-">Property Files (.cfg)</a></h3>
-<p>Configuration files ending in <code>.cfg</code> are plain property files (<code>java.util.Property</code>). The format is simple:</p>
-<pre><code>file ::= ( header | comment ) *
-header ::= &lt;header&gt; ( &#39;:&#39; | &#39;=&#39; ) &lt;value&gt; ( &#39;\&lt;nl&gt; &lt;value&gt; ) *
-comment ::= &#39;#&#39; &lt;any&gt;
+<h3><a href="#configuration-files-cfg-json-" name="configuration-files-cfg-json-">Configuration Files (.cfg.json)</a></h3>
+<p>This is the preferred way to specify configurations as it is an official format specified by OSGi in the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html">OSGi R7 Service Configurator Spec</a> and is also used by the <a href="https://github.com/apache/sling-org-apache-sling-feature/blob/master/readme.md">Feature Model</a>. The detailed JSON format is described in that specification. It allows for typed values, allowing all possible types including Collections and comments.</p>
+<p>There are some differences to the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html#service.configurator-resources">resource format specification</a> as outlined below:</p>
+<ul>
+  <li>Each file contains exactly one configuration, therefore it only contains the properties of the configuration.</li>
+  <li>Keys starting with <code>:configurator:</code> should not be used (in general they are validated but not further evaluated)</li>
+  <li>The PID is given via the file name (the part preceeding the <code>.cfg.json</code>) instead of <code>:configurator:symbolic-name</code></li>
+  <li>There is no version support i.e. <code>:configurator:version</code> should not be used either</li>
+</ul>
+<p>This is an example file</p>
+<pre><code>{
+   &quot;key&quot;: &quot;val&quot;,
+   &quot;some_number&quot;: 123,
+   // This is an integer value:
+   &quot;size:Integer&quot; : 500
+}
 </code></pre>
-<p>Notice that this model only supports string properties. For example:</p>
-<pre><code># default port
-ftp.port = 21
-</code></pre>
-<p>In addition the XML format defined by <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#loadFromXML%28java.io.InputStream%29">java.util.Property</a> is supported if the file starts with the character <code>&lt;</code>.</p>
 <h4><a href="#limitations" name="limitations">Limitations</a></h4>
 <ul>
-  <li>Only String types are supported</li>
-  <li>Only ISO 8859-1 character encoding supported</li>
-  <li>No multi-values</li>
-  <li>No writeback support</li>
+  <li>No writeback support yet (<a href="https://issues.apache.org/jira/browse/SLING-8419">SLING-8419</a>)</li>
+  <li>This is only supported since Installer Configuration Factory 1.2.0 (<a href="https://issues.apache.org/jira/browse/SLING-7787">SLING-7787</a>).</li>
 </ul>
 <h3><a href="#configuration-files-config-" name="configuration-files-config-">Configuration Files (.config)</a></h3>
-<p>Configuration files ending in <code>.config</code> use the format of the <a href="http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup">Apache Felix ConfigAdmin implementation</a> (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding.</p>
+<p>Configuration files ending in <code>.config</code> use the format of the <a href="http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup">Apache Felix ConfigAdmin implementation</a> (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding. This format is preferred over properties files and nodes stored in the repository.</p>
 <p>The first line of such a file might start with a comment line (a line starting with a <code>#</code>). Comments within the file are not allowed.</p>
 <p>The format is:</p>
 <pre><code>file ::= (comment) (header) *
 comment ::= &#39;#&#39; &lt;any&gt;
 header ::= prop &#39;=&#39; value
 prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
-symbolic-name ::= token { &#39;.&#39; token } 
+symbolic-name ::= token { &#39;.&#39; token }
 token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | &#39;_&#39; | &#39;-&#39; }
-value ::= [ type ] ( &#39;[&#39; values &#39;]&#39; | &#39;(&#39; values &#39;)&#39; | simple ) 
+value ::= [ type ] ( &#39;[&#39; values &#39;]&#39; | &#39;(&#39; values &#39;)&#39; | simple )
 values ::= ( simple { &#39;,&#39; simple } | &#39;\&#39; &lt;nl&gt; simple { &#39;, \&#39; &lt;nl&gt; simple } &lt;nl&gt; )
 simple ::= &#39;&quot;&#39; stringsimple &#39;&quot;&#39;
 type ::= &lt;1-char type code&gt;
@@ -197,22 +201,27 @@ stringsimple ::= &lt;quoted string representation of the value where both &#39;&
   <li>No support for nested multivalues (arrays or Collections)</li>
   <li>No user-friendly (readable) values for floating points (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>)</li>
 </ul>
-<h3><a href="#configuration-files-cfg-json-" name="configuration-files-cfg-json-">Configuration Files (.cfg.json)</a></h3>
-<p>This is only supported since Installer Configuration Factory 1.2.0 (<a href="https://issues.apache.org/jira/browse/SLING-7787">SLING-7787</a>).</p>
-<p>The exact JSON format is described in the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html">OSGi R7 Service Configurator Spec</a>.</p>
-<p>The only differences to the spec are outlined below</p>
-<ul>
-  <li><code>:configurator:resource-version</code> may be used, but only version 1 is supported</li>
-  <li>other keys starting with <code>:configurator:</code> should not be used (in general they are validated but not further evaluated)</li>
-  <li>The PID is given via the file name (the part preceeding the <code>.cfg.json</code>) instead of <code>:configurator:symbolic-name</code></li>
-  <li>There is no version support i.e. <code>:configurator:version</code> should not be used either</li>
-</ul>
+<h3><a href="#property-files-cfg-" name="property-files-cfg-">Property Files (.cfg)</a></h3>
+<p>Configuration files ending in <code>.cfg</code> are plain property files (<code>java.util.Property</code>). The format is simple:</p>
+<pre><code>file ::= ( header | comment ) *
+header ::= &lt;header&gt; ( &#39;:&#39; | &#39;=&#39; ) &lt;value&gt; ( &#39;\&lt;nl&gt; &lt;value&gt; ) *
+comment ::= &#39;#&#39; &lt;any&gt;
+</code></pre>
+<p>Notice that this model only supports string properties. For example:</p>
+<pre><code># default port
+ftp.port = 21
+</code></pre>
+<p>In addition the XML format defined by <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#loadFromXML%28java.io.InputStream%29">java.util.Property</a> is supported if the file starts with the character <code>&lt;</code>.</p>
 <h4><a href="#limitations" name="limitations">Limitations</a></h4>
 <ul>
-  <li>No writeback support yet (<a href="https://issues.apache.org/jira/browse/SLING-8419">SLING-8419</a>)</li>
+  <li>Only String types are supported</li>
+  <li>Only ISO 8859-1 character encoding supported</li>
+  <li>No multi-values</li>
+  <li>No writeback support</li>
 </ul>
 <h3><a href="#sling-osgiconfig-resources" name="sling-osgiconfig-resources">sling:OsgiConfig resources</a></h3>
 <p>Only the <a href="/documentation/bundles/jcr-installer-provider.html#configuration-and-scanning">JCR Installer</a> supports also configurations given as resources with properties of type <code>sling:OsgiConfig</code>. Internally those are converted directly into the Dictionary format being supported by the <a href="https://osgi.org/javadoc/r4v42/org/osgi/service/cm/Configuration.html#update%28java.util.Dictionary%29">OSGi Configuration Admin</a> in <a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr/blob/fcb77de40973672548e79f3a42c19f5decd95651/src/main/java/org/apache/sling/installer/provider/jcr/impl/ConfigNodeConverter.java#L44">ConfigNodeConverter</a>.</p>
+<p>While this way of specifying configurations in a JCR repository seems like a natural fit, it should be avoided as it neither supports all required types nor is it portable.</p>
 <h4><a href="#limitations" name="limitations">Limitations</a></h4>
 <ul>
   <li>Not all types supported (<a href="https://issues.apache.org/jira/browse/SLING-2477">SLING-2477</a>)</li>
@@ -229,7 +238,7 @@ stringsimple ::= &lt;quoted string representation of the value where both &#39;&
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jun 25 12:07:56 2019 +0200</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Mon Aug 26 14:39:36 2019 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
