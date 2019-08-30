@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2019
 
+* Commons LogService 1.1.0 (30th)
 * Starter Content 1.0.6, Dynamic Include 3.1.6, Form Based Authentication 1.0.16 (29th)
 * Context-Aware Configuration API 1.2.0, Context-Aware Configuration Impl 1.5.0 (19th)
 * JCR Content Parser 1.2.8 (12th)
