@@ -28,9 +28,10 @@ def slingApplication=[
 def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.1.0|Y",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
+  "Scripting Bundle Maven Plugin 0.1.0|scriptingbundle-maven-plugin|0.1.0|Y",
   "Sling Maven Plugin|sling-maven-plugin|2.4.2|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.8.2|Y",
-  "HTL Maven Plugin|htl-maven-plugin|1.2.2-1.4.0|Y",
+  "HTL Maven Plugin|htl-maven-plugin|1.3.0-1.4.0|Y",
 ]
 
 def bundles=[
@@ -190,6 +191,7 @@ def bundles=[
   "Sample Integration Tests|org.apache.sling.testing.samples.integrationtests|1.0.6|N|jar",
   "Sample Server-Side Tests|org.apache.sling.testing.samples.sampletests|1.0.6|N|jar",
   "Scripting API|org.apache.sling.scripting.api|2.2.0|Y|jar",
+  "Scripting Bundle Tracker|org.apache.sling.scripting.bundle.tracler|0.1.0|Y|jar",
   "Scripting Console|org.apache.sling.scripting.console|1.0.0|Y|jar",
   "Scripting Core|org.apache.sling.scripting.core|2.0.58|Y|jar",
   "Scripting EL API Wrapper|org.apache.sling.scripting.el-api|1.0.0|Y|jar",
@@ -200,10 +202,10 @@ def bundles=[
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.4.0|Y|jar",
   "Scripting Groovy|org.apache.sling.scripting.freemarker|1.0.0|Y|jar",
   "Scripting Groovy|org.apache.sling.scripting.groovy|1.0.4|Y|jar",
-  "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.1.0-1.4.0|Y|jar",
-  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.1.2-1.4.0|Y|jar",
-  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.1.2-1.4.0|Y|jar",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.1.2-1.4.0|Y|jar",
+  "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.1.2-1.4.0|Y|jar",
+  "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.2.0-1.4.0|Y|jar",
+  "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.1.4-1.4.0|Y|jar",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.2.0-1.4.0|Y|jar",
   "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.0.28|Y|jar",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.8|Y|jar",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.6|Y|jar",
