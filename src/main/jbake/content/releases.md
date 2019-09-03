@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2019
 
-* Testing PaxExam 3.1.0 (3rd)
+* Testing PaxExam 3.1.0, Commons Clam 2.0.0 (3rd)
 * Scripting HTL Runtime 1.1.2-1.4.0, Scripting HTL Compiler 1.2.0-1.4.0, Scripting HTL Java Compiler 1.1.4-1.4.0, Scripting HTL Engine 1.2.0-1.4.0, Scripting HTL JS Use Provider 1.0.30, Scripting HTL Models Use Provider 1.0.10, Scripting HTL Testing Content 1.0.16-1.4.0, Scripting HTL Testing 1.0.18-1.4.0, HTL Maven Plugin 1.3.0-1.4.0, Scripting Bundle Maven Plugin 0.1.0, Scripting Bundle Tracker 0.1.0 (1st)
 
 ## August 2019

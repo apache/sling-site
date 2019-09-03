@@ -53,7 +53,7 @@ def bundles=[
   "CMS App Reference|org.apache.sling.cms.reference|0.11.2|org.apache.sling.app.cms|jar",
   "CMS App UI|org.apache.sling.cms.ui|0.11.2|org.apache.sling.app.cms|jar",
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.4|Y|jar",
-  "Commons Clam|org.apache.sling.commons.clam|1.0.2|Y|jar",
+  "Commons Clam|org.apache.sling.commons.clam|2.0.0|Y|jar",
   "Commons Compiler|org.apache.sling.commons.compiler|2.3.6|Y|jar",
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.8|Y|jar",
   "Commons HTML|org.apache.sling.commons.html|1.1.0|Y|jar",
