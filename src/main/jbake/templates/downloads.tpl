@@ -235,7 +235,7 @@ def bundles=[
   "Testing OSGi Mock Core|org.apache.sling.testing.osgi-mock.core|2.4.10|org.apache.sling.testing.osgi-mock|jar",
   "Testing OSGi Mock JUnit 4|org.apache.sling.testing.osgi-mock.junit4|2.4.10|org.apache.sling.testing.osgi-mock|jar",
   "Testing OSGi Mock JUnit 5|org.apache.sling.testing.osgi-mock.junit5|2.4.10|org.apache.sling.testing.osgi-mock|jar",
-  "Testing PaxExam|org.apache.sling.testing.paxexam|3.0.0|Y|jar",
+  "Testing PaxExam|org.apache.sling.testing.paxexam|3.1.0|Y|jar",
   "Testing Rules|org.apache.sling.testing.rules|1.0.8|Y|jar",
   "Testing Resource Resolver Mock|org.apache.sling.testing.resourceresolver-mock|1.1.24|Y|jar",
   "Testing Server Setup Tools|org.apache.sling.testing.serversetup|1.0.1|Y|jar",
