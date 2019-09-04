@@ -46,7 +46,7 @@ def bundles=[
   "Bundle Resource Provider|org.apache.sling.bundleresource.impl|2.3.2|Y|jar",
   "Capabilities|org.apache.sling.capabilities|0.1.2|Y|jar",
   "Capabilities JCR|org.apache.sling.capabilities.jcr|0.1.2|Y|jar",
-  "Clam|org.apache.sling.clam|1.0.2|Y|jar",
+  "Clam|org.apache.sling.clam|1.1.0|Y|jar",
   "Classloader Leak Detector|org.apache.sling.extensions.classloader-leak-detector|1.0.0|Y|jar",
   "CMS App API|org.apache.sling.cms.api|0.11.2|org.apache.sling.app.cms|jar",
   "CMS App Core|org.apache.sling.cms.core|0.11.2|org.apache.sling.app.cms|jar",
