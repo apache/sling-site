@@ -130,6 +130,17 @@ Node properties can be edited in a distinct JCR properties view.
 
 ![JCR properties](ide-tooling/jcr-properties.png)
 
+#### Formatting
+
+_Available with Sling IDE Tooling for Eclipse 1.2.4 or newer (not yet released)_
+
+A context menu action is available for formatting the underlying `.content.xml` file corresponding to the selected resource. The formatter uses the exact same settings as FileVault.
+
+Due to platform limitations, it is not possible to replace the editor format action. See [Eclipse Bug 460055](https://bugs.eclipse.org/460055) for more details.
+
+![Format .content.xml action](ide-tooling/format-content-xml-action.png)
+
+
 ### filter.xml - workspace filter definition
 
 A content project does not synchronize all its contents to the workspace. Instead, it looks for a filter.xml file which defines which content is included in synchronization operations. More information about the filter.xml file format and semantics can be found at [FileVault docs - Workspace Filter](https://jackrabbit.apache.org/filevault/filter.html).
