@@ -107,7 +107,7 @@ def bundles=[
   "Feature Model Launcher|org.apache.sling.feature.launcher|1.0.0|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.0|Y|jar",
   "Feature Flags|org.apache.sling.featureflags|1.2.2|Y|jar",
-  "File Optimization|org.apache.sling.fileoptim|0.9.2|org.apache.sling.file.optimization|jar",
+  "File Optimization|org.apache.sling.fileoptim|0.9.4|org.apache.sling.file.optimization|jar",
   "File System Resource Provider|org.apache.sling.fsresource|2.1.16|Y|jar",
   "I18n|org.apache.sling.i18n|2.5.12|Y|jar",
   "HApi|org.apache.sling.hapi|1.1.0|Y|jar",

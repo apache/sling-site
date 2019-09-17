@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2019
+
+* File Optimization 0.9.4 (17th)
+
 ## July 2019
 
 * Dynamic Include 3.1.4 (11th)
