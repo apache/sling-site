@@ -34,6 +34,10 @@ def mavenPlugins=[
   "HTL Maven Plugin|htl-maven-plugin|1.3.0-1.4.0|Y",
 ]
 
+def bndPlugins=[
+  "bnd Remove Parameters from OSGi Headers Plugin|org.apache.sling.bnd.plugin.headers.parameters.remove|1.0.0|Y"
+]
+
 def bundles=[
   "Adapter|org.apache.sling.adapter|2.1.10|Y|jar",
   "Adapter Annotations|adapter-annotations|1.0.0|Y|jar",
