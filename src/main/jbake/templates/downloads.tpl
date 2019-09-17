@@ -442,6 +442,32 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
+						h2("bnd Plugins")
+						table(class:"table") {
+							tableHead("Artifact", "Version", "GitHub", "Binary", "Source")
+							tbody() {
+								bndPlugins.each { line ->
+									tr() {
+										def data = line.split("\\|")
+										td(data[0])
+										td(data[2])
+										def artifact = data[1]
+										def version = data[2]
+										def ghflag = data[3]
+										td(){
+											githubLink(artifact, ghflag)
+										}
+										td(){
+											downloadLink("bnd Plugin", artifact, version, ".jar")
+										}
+										td(){
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
+										}
+									}
+								}
+							}
+						}
+
 						h2("Deprecated")
 						table(class:"table") {
 							tableHead("Artifact", "Replacement", "Version", "Binary", "Source")
