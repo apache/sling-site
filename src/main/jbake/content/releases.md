@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2019
 
+* Starter Content 1.0.8 (20th)
 * bnd Remove Parameters from OSGi Headers Plugin 1.0.0 (17th)
 * Tooling Support Install 1.0.6 (9th)
 * Clam 1.1.0 (4th)
