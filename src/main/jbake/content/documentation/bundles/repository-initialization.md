@@ -96,6 +96,54 @@ The language is self-explaining but please refer to the actual test cases for de
     set repository ACL for alice,bob
         allow jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement
     end
+    
+    # Set repository level ACL (variant, see SLING-8619)
+    # since
+    # o.a.s.repoinit.parser 1.2.8 and
+    # o.a.s.jcr.repoinit 1.1.14
+    set ACL for alice,bob
+        allow jcr:namespaceManagement on :repository
+    end
+    
+    # Set principal-based access control (see SLING-8602)
+    # since
+    # o.a.s.repoinit.parser 1.2.8 and
+    # o.a.s.jcr.repoinit 1.1.14
+    # precondition for o.a.s.jcr.repoinit: 
+    # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
+    set principal ACL for alice,bob
+        remove * on /libs,/apps
+        allow jcr:read on /content,/var
+        deny jcr:write on /content/example.com
+        
+        # Optional nodetypes clause
+        deny jcr:lockManagement on /apps, /content nodetypes sling:Folder, nt:unstructured
+    
+        # nodetypes clause with restriction clause
+        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
+    
+        # multi value restriction
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+    
+        # multiple restrictions
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    
+        # restrictions with glob patterns
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+        allow jcr:read on / restriction(rep:glob)
+    end
+    
+    # Set principal-based access control on repository level (see SLING-8602)
+    # since
+    # o.a.s.repoinit.parser 1.2.8 and
+    # o.a.s.jcr.repoinit 1.1.14
+    # precondition for o.a.s.jcr.repoinit: 
+    # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
+    set principal ACL for alice,bob
+        allow jcr:namespaceManagement on :repository 
+    end
 	
 	# register namespace requires 
 	# o.a.s.repoinit.parser 1.0.4
