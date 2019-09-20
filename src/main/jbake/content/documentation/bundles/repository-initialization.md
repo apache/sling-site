@@ -61,7 +61,7 @@ The language is self-explaining but please refer to the actual test cases for de
     # Nodetypes and mixins applied to just a path element
     # Specifying mixins require
     # o.a.s.repoinit.parser 1.2.0 and
-    # o.a.s.jcr.repoinit 1.2.0
+    # o.a.s.jcr.repoinit 1.1.6
     create path /content/example.com(sling:Folder mixin mix:referenceable,mix:shareable)
 
     # Mixins applied to just a path element
@@ -92,7 +92,7 @@ The language is self-explaining but please refer to the actual test cases for de
     # Set repository level ACL
     # Setting repository level ACL require
     # o.a.s.repoinit.parser 1.2.0 and
-    # o.a.s.jcr.repoinit 1.2.0
+    # o.a.s.jcr.repoinit 1.1.6
     set repository ACL for alice,bob
         allow jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement
     end
