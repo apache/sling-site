@@ -116,24 +116,106 @@
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<p>Sling Scripting allows the easy development and usage of different scripting (aka templating) engines.</p>
+<h2><a href="#sling-scripting-engines" name="sling-scripting-engines">Sling Scripting Engines</a></h2>
+<p>Sling Scripting is build around Java Scripting API (JSR 223). It allows the easy development and usage of different scripting (aka templating) engines.</p>
 <p>The script engines are managed in <code>SlingScriptEngineManager</code> (<a href="https://github.com/apache/sling-org-apache-sling-scripting-core">Scripting Core</a>).</p>
-<h1><a href="#sling-scripting-engines" name="sling-scripting-engines">Sling Scripting Engines</a></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Engine </th>
+      <th>Language Name </th>
+      <th>Language Version </th>
+      <th>Names </th>
+      <th>Extensions </th>
+      <th>Mime Types </th>
+      <th>GitHub Repo(s) </th>
+      <th>Documentation </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://freemarker.apache.org">FreeMarker</a> </td>
+      <td><code>FreeMarker</code> </td>
+      <td><code>freemarker.template.Configuration#getVersion().toString()</code> </td>
+      <td><code>FreeMarker</code><br><code>freemarker</code><br>(configurable) </td>
+      <td><code>ftl</code><br>(configurable) </td>
+      <td><code>text/x-freemarker</code><br>(configurable) </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">sling-org-apache-sling-scripting-freemarker</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html#_gstringtemplateengine">Groovy (GString)</a> </td>
+      <td><code>Groovy GString</code> </td>
+      <td><code>org.codehaus.groovy.util.ReleaseInfo#getVersion()</code> </td>
+      <td><code>GString</code><br><code>gstring</code><br>(configurable) </td>
+      <td><code>gst</code><br>(configurable) </td>
+      <td>(configurable) </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy">sling-org-apache-sling-scripting-groovy</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/adobe/htl-spec">HTL</a> </td>
+      <td><code>The HTL Templating Language</code> </td>
+      <td><code>1.4</code> </td>
+      <td><code>htl</code><br><code>HTL</code><br><code>sightly</code> </td>
+      <td><code>html</code> </td>
+      <td> </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly">sling-org-apache-sling-scripting-sightly</a> </td>
+      <td><a href="/documentation/bundles/scripting/scripting-htl.html">Scripting HTL</a> </td>
+    </tr>
+    <tr>
+      <td>Java </td>
+      <td><code>Java Servlet Compiler</code> </td>
+      <td><code>1.5</code></td>
+      <td><code>java</code><br><code>Java</code> </td>
+      <td><code>java</code> </td>
+      <td> </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-scripting-java">sling-org-apache-sling-scripting-java</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>JavaScript </td>
+      <td><code>ECMAScript</code> </td>
+      <td><code>partial ECMAScript 2015 support</code> </td>
+      <td><code>rhino</code><br><code>Rhino</code><br><code>javascript</code><br><code>JavaScript</code><br><code>ecmascript</code><br><code>ECMAScript</code> </td>
+      <td><code>esp</code><br><code>ecma</code> </td>
+      <td><code>text/ecmascript</code><br><code>text/javascript</code><br><code>application/ecmascript</code><br><code>application/javascript</code> </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-scripting-javascript">sling-org-apache-sling-scripting-javascript</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://projects.eclipse.org/projects/ee4j.jsp">JSP</a> </td>
+      <td><code>Java Server Pages</code> </td>
+      <td><code>2.1</code> </td>
+      <td><code>jsp</code><br><code>JSP</code> </td>
+      <td><code>jsp</code><br><code>jspf</code><br><code>jspx</code> </td>
+      <td> </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-scripting-jsp">sling-org-apache-sling-scripting-jsp</a> </td>
+      <td><a href="/documentation/bundles/scripting/scripting-jsp.html">Scripting JSP</a> </td>
+    </tr>
+    <tr>
+      <td><a href="https://www.thymeleaf.org">Thymeleaf</a> </td>
+      <td><code>Thymeleaf</code> </td>
+      <td><code>version</code> from <a href="https://github.com/thymeleaf/thymeleaf/blob/3.0-master/src/main/resources/org/thymeleaf/thymeleaf.properties"><code>/org/thymeleaf/thymeleaf.properties</code></a> </td>
+      <td><code>Thymeleaf</code><br><code>thymeleaf</code><br>(configurable) </td>
+      <td><code>html</code><br>(configurable) </td>
+      <td><code>text/html</code><br>(configurable) </td>
+      <td><a href="https://github.com/apache/sling-org-apache-sling-scripting-thymeleaf">sling-org-apache-sling-scripting-thymeleaf</a> </td>
+      <td><a href="/documentation/bundles/scripting/scripting-thymeleaf.html">Scripting Thymeleaf</a> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Several more engines are available but experimental or no longer maintained:</p>
 <ul>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">Freemarker</a></li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy">Groovy</a></li>
-  <li><a href="/documentation/bundles/scripting/scripting-htl.html">HTL</a></li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-java">Java</a></li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-javascript">JavaScript</a></li>
-  <li><a href="/documentation/bundles/scripting/scripting-jsp.html">JSP</a></li>
+  <li>ESX</li>
   <li>JST</li>
   <li>Python</li>
   <li>Ruby</li>
   <li>Scala</li>
-  <li><a href="/documentation/bundles/scripting/scripting-thymeleaf.html">Thymeleaf</a></li>
   <li>Velocity</li>
   <li>XProc</li>
 </ul>
+<h2><a href="#scripting-variables" name="scripting-variables">Scripting variables</a></h2>
 <p>See also <a href="https://cwiki.apache.org/confluence/display/SLING/Scripting+variables">Scripting variables</a> and <a href="https://cwiki.apache.org/confluence/display/SLING/Adding+New+Scripting+Variables">Adding New Scripting Variables</a>.</p></section></div></div>                            
                         </div>
                     </div>
@@ -141,7 +223,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Thu Sep 19 16:40:31 2019 +0200</span>
+                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Sun Sep 22 13:46:08 2019 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
