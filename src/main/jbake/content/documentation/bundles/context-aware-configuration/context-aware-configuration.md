@@ -179,6 +179,28 @@ Example configuration:
             </dependency>
         </dependencies>
     </plugin>
+    
+If you use the bnd-maven-plugin and raw bnd statements, you have to configure it with this bnd statement:
+
+    #!xml
+    <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>bnd-maven-plugin/artifactId>
+        <extensions>true</extensions>
+        <configuration>
+        	<bnd><![CDATA[
+    ... 	
+	-plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin     	
+        	]]></bnd>
+        </configuration>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.caconfig.bnd-plugin</artifactId>
+                <version>1.0.2</version>
+            </dependency>
+        </dependencies>
+    </plugin>	
 
 
 # Unit Tests with Context-Aware Configuration
