@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2019
 
-* Testing Sling Mock Oak 2.1.10-1.16.0, JCR RepoInit module 1.1.14, RepoInit Parser 1.3.0, Commons MIME 2.2.2, Resource Resolver 1.6.14 (30th)
+* Testing Sling Mock Oak 2.1.10-1.16.0, JCR RepoInit module 1.1.14, RepoInit Parser 1.3.0, Commons MIME 2.2.2, Resource Resolver 1.6.14, Scripting Core 2.0.60, Scripting FreeMarker 1.0.2, Scripting Groovy 1.1.0, Scripting Thymeleaf 2.0.2 (30th)
 * Starter Content 1.0.8 (20th)
 * bnd Remove Parameters from OSGi Headers Plugin 1.0.0 (17th)
 * Tooling Support Install 1.0.6 (9th)
