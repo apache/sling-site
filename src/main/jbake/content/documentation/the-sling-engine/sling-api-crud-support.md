@@ -37,7 +37,7 @@ Update /myresource, setting the title and body:
 **Sling API CRUD**
 
     Resource myResource = resourceResolver.getResource("/myresource");
-    ModifiableValueMap properties = myNode.adaptTo(ModifiableValueMap.class);
+    ModifiableValueMap properties = myResource.adaptTo(ModifiableValueMap.class);
     properties.put("title", {TITLE});
     properties.put("body", {BODY});
     resourceResolver.commit();
