@@ -121,27 +121,27 @@
 <div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#multiple-ways-to-modify-content" name="multiple-ways-to-modify-content">Multiple Ways to Modify Content</a></h2>
-<p>As always in life there is more than one way to do it. So to modify content in a JCR repository underlying Sling, you have multiple options, two of which are WebDAV and the Sling default POST Servlet also called the <em>SlingPostServlet</em>. This page is about how you can modify - create, modify, copy, move, delete, import - content through the <em>SlingPostServlet</em>. In addition it also explains how to extend the SlingPostServlet with new operations.</p>
-<p>What is Content anyway? In the following discussion, I use the terms <em>Content</em> and <em>Item</em> interchangeably. With <em>Content</em> I just mean some data to be stored in the JCR repository to be later used as the basis for some presentation. In this sense <em>Content</em> is a rather conceptual term. <em>Item</em> is the name of the parent interface of the JCR <em>Node</em> and <em>Property</em> interfaces. When speaking of <em>Items</em> we mean some actual data stored in the repository ignoring whether the data is actually stored as a <em>Node</em> with child nodes and properties or just a single <em>Property</em>.</p>
+<p>As always in life there is more than one way to do it. So to modify content in Sling, you have multiple options, the Sling default POST Servlet also called the <em>SlingPostServlet</em> is one of them. This page is about how you can modify - create, modify, copy, move, delete, import - content through the <em>SlingPostServlet</em>. In addition it also explains how to extend the SlingPostServlet with new operations.</p>
 <h2><a href="#quickstart-creating-content" name="quickstart-creating-content">Quickstart: Creating Content</a></h2>
-<p>To create content you simply send an HTTP POST request using the path of the node to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:</p>
+<p>To create content you simply send an HTTP POST request using the path of the resource to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:</p>
 <pre><code>&lt;form method=&quot;POST&quot; action=&quot;http://host/some/new/content&quot; enctype=&quot;multipart/form-data&quot;&gt;
    &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;&quot; /&gt;
    &lt;input type=&quot;text&quot; name=&quot;text&quot; value=&quot;&quot; /&gt;
 &lt;/form&gt;
 </code></pre>
-<p>This simple form will set the <code>title</code> and <code>text</code> properties on a node at <code>/some/new/content</code>. If this node does not exist it is just created otherwise the existing content would be modified.</p>
+<p>This simple form will set the <code>title</code> and <code>text</code> properties on a resource at <code>/some/new/content</code>. If this resource does not exist it is just created otherwise the existing content would be modified.</p>
 <p>Similarly, you can do this using the <code>curl</code> command line tool:</p>
 <pre><code>$ curl -Ftitle=&quot;some title text&quot; -Ftext=&quot;some body text content&quot; http://host/some/new/content
 </code></pre>
-<p>You might want to use a specific JCR node type for a newly created node. This is possible by simply setting a <code>jcr:primaryType</code> property on the request, e.g.</p>
-<pre><code>$ curl -F&quot;jcr:primaryType=nt:unstructured&quot; -Ftitle=&quot;some title text&quot; \    
-    -Ftext=&quot;some body text content&quot; http://host/some/new/content
-</code></pre>
-<p>Similarly, you may assign JCR mixin node types using the <code>jcr:mixinTypes</code> property and a Sling resource type using the <code>sling:resourceType</code> property. For example:</p>
+<p>You might want to set a specific Sling resource type using the <code>sling:resourceType</code> property:</p>
 <pre><code>$ curl -F&quot;sling:resourceType=sling:sample&quot; -Ftitle=&quot;some title text&quot; \    
     -Ftext=&quot;some body text content&quot; http://host/some/new/content
 </code></pre>
+<p>If you deal with a JCR repository you might want to set the node type (however using Sling resource type is the preferred way):</p>
+<pre><code>$ curl -F&quot;jcr:primaryType=nt:unstructured&quot; -Ftitle=&quot;some title text&quot; \
+    -Ftext=&quot;some body text content&quot; http://host/some/new/content
+</code></pre>
+<p>Similarly, you may assign JCR mixin node types using the <code>jcr:mixinTypes</code> property.</p>
 <h2><a href="#preface-multipart-form-data-posts" name="preface-multipart-form-data-posts">Preface: multipart/form-data POSTs</a></h2>
 <p>Sometimes you might want to have the content modifications applied in a certain order. This is particularly interesting if you use fields to create child nodes and if you want to stipulate a certain child node order based on the form fields.</p>
 <p>In this case, ensure you are submitting the POST request using <code>multipart/form-data</code> encoding. This preserves the order of parameter application according to the original HTML form. To this avail, ensure to always include the <code>enctype=&quot;multipart/form-data&quot;</code> attribute with the <code>&lt;form&gt;</code> tag.</p>
@@ -171,11 +171,11 @@ of a resource without having to specify the path of each individual child resour
 </div>
 <h3><a href="#content-creation-or-modification" name="content-creation-or-modification">Content Creation or Modification</a></h3>
 <p>The simplest and most common use case, probably, is content creation and modification. We already saw an example above in the quickstart section. In this section we elaborate more on the concrete stuff.</p>
-<p>First, the request URL indicates the actual repository node to be handled. If the URL addresses an existing node, the request parameters just provide values for the properties to be set on the existing node.</p>
-<p>If the resource of the request is a synthetic resource, e.g. <code>NonExistingResource</code> or <code>StarResource</code>, a new item is created. The path (including name) of the item to be created is derived from the resource path:</p>
+<p>First, the request URL indicates the actual resource to be handled. If the URL addresses an existing resource, the request parameters just provide values for the properties to be set on the existing resource.</p>
+<p>If the resource of the request is a synthetic resource, e.g. <code>NonExistingResource</code> or <code>StarResource</code>, a new item is created. The path (including name) of the resource to be created is derived from the resource path:</p>
 <ul>
-  <li>If the resource path ends with a <code>/*</code> or <code>/</code> the name of the item is automatically created using a name creation algorithm taking into account various request parameters.</li>
-  <li>Otherwise the resource path is used as the path and name of the new item.</li>
+  <li>If the resource path ends with a <code>/*</code> or <code>/</code> the name of the resource is automatically created using a name creation algorithm taking into account various request parameters.</li>
+  <li>Otherwise the resource path is used as the path and name of the new resource.</li>
 </ul>
 <p>In both cases the path may still include selectors and extensions, which are cut off the path before finding out, what to do.</p>
 <p>To illustrate this algorithm, lets look at some examples (and check the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletCreateTest.java"><code>PostServletCreateTest</code></a> in case of doubt):</p>
@@ -219,14 +219,14 @@ of a resource without having to specify the path of each individual child resour
 </table>
 <h5><a href="#setting-property-values" name="setting-property-values">Setting Property Values</a></h5>
 <p>Setting property values is as simple as just adding a request parameter whose name is the name of the property to be set and whose value is the value to be assigned to the property. We already saw how to do this in the quick start examples above.</p>
-<p>Here is another example show a simple HTML form to create a new node with an automatically created name:</p>
+<p>Here is another example showing a simple HTML form to create a new resource with an automatically created name:</p>
 <pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
     &lt;input type=&quot;text&quot; name=&quot;title&quot; /&gt;
     &lt;input type=&quot;text&quot; name=&quot;text&quot; /&gt;
     &lt;input type=&quot;Submit&quot; /&gt;
 &lt;/form&gt;
 </code></pre>
-<p>If this form is submitted with <em>title</em> and <em>This is some Text</em> as values for the <code>title</code> and <code>text</code> fields respectively, a new node is created at the path <code>/content/page/first</code> and the <code>title</code> and <code>text</code> properties set to the respective field values. If a node at <code>/content/page/first</code> already existed before submitting the form, the <code>title</code> and <code>text</code> properties are just updated to the new values from the form fields.</p>
+<p>If this form is submitted with <em>title</em> and <em>This is some Text</em> as values for the <code>title</code> and <code>text</code> fields respectively, a new resource is created at the path <code>/content/page/first</code> and the <code>title</code> and <code>text</code> properties set to the respective field values. If a resource at <code>/content/page/first</code> already existed before submitting the form, the <code>title</code> and <code>text</code> properties are just updated to the new values from the form fields.</p>
 <p>If a parameter has multiple values, the respective property will be created as a multi-value property. So for example the command line:</p>
 <pre><code>$ curl -Fmulti=one -Fmulti=two http://host/content/page
 </code></pre>
@@ -350,7 +350,7 @@ of a resource without having to specify the path of each individual child resour
     &lt;input type=&quot;hidden&quot; name=&quot;queryIgnoreNoise@UseDefaultWhenMissing&quot; value=&quot;true&quot;/&gt;
 &lt;/form&gt;
 </code></pre>
-<h6><a href="#ignoreblanks" name="ignoreblanks">@IgnoreBlanks</a></h6>
+<h6><a href="#empty-values-ignoreblanks" name="empty-values-ignoreblanks">Empty Values / @IgnoreBlanks</a></h6>
 <p>Sometimes a form client will supply empty parameter values resulting in content being created or modified. For example submitting this form:</p>
 <pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
     &lt;input type=&quot;hidden&quot; name=&quot;stringProperty@TypeHint&quot; value=&quot;String[]&quot;/&gt;
@@ -360,18 +360,19 @@ of a resource without having to specify the path of each individual child resour
 &lt;/form&gt;
 </code></pre>
 <p>will result in multi-value String property being set to [ "foo", "bar", "" ]. Notice the blank value.</p>
-<p>Likewise submitting this form without a value entered:</p>
-<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;stringProperty@TypeHint&quot; value=&quot;String&quot;/&gt;
-    &lt;input type=&quot;text&quot; name=&quot;stringProperty&quot; value=&quot;&quot;/&gt;
-&lt;/form&gt;
-</code></pre>
-<p>will result in the single-value String property being set to an empty string.</p>
 <p>To overcome this situation the <code>@IgnoreBlanks</code> suffix may be used to consider parameters with an empty string value to be ignored during processing. That is such parameter values would be treated as if they would not be supplied.</p>
 <p>Adding</p>
 <pre><code>&lt;input type=&quot;hidden&quot; name=&quot;stringProperty@IgnoreBlanks&quot; value=&quot;true&quot;/&gt;
 </code></pre>
 <p>to the above forms will cause the multi-value property be set to the two-element value [ "foo", "bar" ] and to not modify the property at all in the second single-value example.</p>
+<p>However, single empty values are not set and always cause the property to be removed. Submitting this form without a value entered:</p>
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;stringProperty@TypeHint&quot; value=&quot;String&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stringProperty&quot; value=&quot;&quot;/&gt;
+&lt;/form&gt;
+</code></pre>
+<p>will result in the single-value String property being removed / not set.</p>
+<p>This is actually a bug in the Sling Post Servlet which has been there from the beginning and therefore can't be changed anymore as too many clients count on this behaviour. A solution for this will be provided in a future version. Please also note that the Sling Post Servlet from version 2.3.28 to 2.3.34 treat an empty value as an empty value. Therefore do not use these versions as you will get into trouble once you update to a newer version.</p>
 <h6><a href="#valuefrom" name="valuefrom">@ValueFrom</a></h6>
 <p>In some situations, an HTML form with parameters may be reused to update content. But one or more form parameters may not comply with the names expected to be used for properties. In this case a parameter suffixed with <code>@ValueFrom</code> may be set containing the name of the parameter providing the actual data to be used.</p>
 <p>Example: To set the property <code>text</code> from a form element <code>supplied_text</code>, you might use the following form:</p>
@@ -969,7 +970,7 @@ of a resource without having to specify the path of each individual child resour
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Mon Oct 14 19:13:21 2019 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
