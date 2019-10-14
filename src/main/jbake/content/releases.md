@@ -6,6 +6,11 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2019
+
+* Servlets Post 2.3.36 (10th)
+* Servlets Post 2.3.34 (6th)
+
 ## September 2019
 
 * Testing Sling Mock Oak 2.1.10-1.16.0, JCR RepoInit module 1.1.14, RepoInit Parser 1.3.0, Commons MIME 2.2.2, Resource Resolver 1.6.14, Scripting Core 2.0.60, Scripting FreeMarker 1.0.2, Scripting Groovy 1.1.0, Scripting Thymeleaf 2.0.2 (30th)

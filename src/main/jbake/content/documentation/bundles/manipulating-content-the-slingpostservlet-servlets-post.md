@@ -10,15 +10,12 @@ tags=servlets,postservlet
 
 ## Multiple Ways to Modify Content
 
-As always in life there is more than one way to do it. So to modify content in a JCR repository underlying Sling, you have multiple options, two of which are WebDAV and the Sling default POST Servlet also called the *SlingPostServlet*. This page is about how you can modify - create, modify, copy, move, delete, import - content through the *SlingPostServlet*. In addition it also explains how to extend the SlingPostServlet with new operations.
-
-
-What is Content anyway? In the following discussion, I use the terms *Content* and *Item* interchangeably. With *Content* I just mean some data to be stored in the JCR repository to be later used as the basis for some presentation. In this sense *Content* is a rather conceptual term. *Item* is the name of the parent interface of the JCR *Node* and *Property* interfaces. When speaking of *Items* we mean some actual data stored in the repository ignoring whether the data is actually stored as a *Node* with child nodes and properties or just a single *Property*.
+As always in life there is more than one way to do it. So to modify content in Sling, you have multiple options, the Sling default POST Servlet also called the *SlingPostServlet* is one of them. This page is about how you can modify - create, modify, copy, move, delete, import - content through the *SlingPostServlet*. In addition it also explains how to extend the SlingPostServlet with new operations.
 
 
 ## Quickstart: Creating Content
 
-To create content you simply send an HTTP POST request using the path of the node to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:
+To create content you simply send an HTTP POST request using the path of the resource to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:
 
 
 
@@ -29,29 +26,27 @@ To create content you simply send an HTTP POST request using the path of the nod
 
 
 
-This simple form will set the `title` and `text` properties on a node at `/some/new/content`. If this node does not exist it is just created otherwise the existing content would be modified.
+This simple form will set the `title` and `text` properties on a resource at `/some/new/content`. If this resource does not exist it is just created otherwise the existing content would be modified.
 
 Similarly, you can do this using the `curl` command line tool:
 
 
     $ curl -Ftitle="some title text" -Ftext="some body text content" http://host/some/new/content
 
-
-
-You might want to use a specific JCR node type for a newly created node. This is possible by simply setting a `jcr:primaryType` property on the request, e.g.
-
-
-    $ curl -F"jcr:primaryType=nt:unstructured" -Ftitle="some title text" \    
-        -Ftext="some body text content" http://host/some/new/content
-
-
-Similarly, you may assign JCR mixin node types using the `jcr:mixinTypes` property and a Sling resource type using the `sling:resourceType` property. For example:
+You might want to set a specific Sling resource type using the `sling:resourceType` property:
 
 
     $ curl -F"sling:resourceType=sling:sample" -Ftitle="some title text" \    
         -Ftext="some body text content" http://host/some/new/content
 
 
+If you deal with a JCR repository you might want to set the node type (however using Sling resource type is the preferred way):
+
+
+    $ curl -F"jcr:primaryType=nt:unstructured" -Ftitle="some title text" \
+        -Ftext="some body text content" http://host/some/new/content
+
+Similarly, you may assign JCR mixin node types using the `jcr:mixinTypes` property.
 
 ## Preface: multipart/form-data POSTs
 
@@ -97,12 +92,12 @@ of a resource without having to specify the path of each individual child resour
 
 The simplest and most common use case, probably, is content creation and modification. We already saw an example above in the quickstart section. In this section we elaborate more on the concrete stuff.
 
-First, the request URL indicates the actual repository node to be handled. If the URL addresses an existing node, the request parameters just provide values for the properties to be set on the existing node.
+First, the request URL indicates the actual resource to be handled. If the URL addresses an existing resource, the request parameters just provide values for the properties to be set on the existing resource.
 
-If the resource of the request is a synthetic resource, e.g. `NonExistingResource` or `StarResource`, a new item is created. The path (including name) of the item to be created is derived from the resource path:
+If the resource of the request is a synthetic resource, e.g. `NonExistingResource` or `StarResource`, a new item is created. The path (including name) of the resource to be created is derived from the resource path:
 
-* If the resource path ends with a `/*` or `/` the name of the item is automatically created using a name creation algorithm taking into account various request parameters.
-* Otherwise the resource path is used as the path and name of the new item.
+* If the resource path ends with a `/*` or `/` the name of the resource is automatically created using a name creation algorithm taking into account various request parameters.
+* Otherwise the resource path is used as the path and name of the new resource.
 
 In both cases the path may still include selectors and extensions, which are cut off the path before finding out, what to do.
 
@@ -125,7 +120,7 @@ To illustrate this algorithm, lets look at some examples (and check the [`PostSe
 
 Setting property values is as simple as just adding a request parameter whose name is the name of the property to be set and whose value is the value to be assigned to the property. We already saw how to do this in the quick start examples above.
 
-Here is another example show a simple HTML form to create a new node with an automatically created name:
+Here is another example showing a simple HTML form to create a new resource with an automatically created name:
 
     <form method="POST" action="/content/page/first" enctype="multipart/form-data">
         <input type="text" name="title" />
@@ -134,7 +129,7 @@ Here is another example show a simple HTML form to create a new node with an aut
     </form>
 
     
-If this form is submitted with *title* and *This is some Text* as values for the `title` and `text` fields respectively, a new node is created at the path `/content/page/first` and the `title` and `text` properties set to the respective field values. If a node at `/content/page/first` already existed before submitting the form, the `title` and `text` properties are just updated to the new values from the form fields.
+If this form is submitted with *title* and *This is some Text* as values for the `title` and `text` fields respectively, a new resource is created at the path `/content/page/first` and the `title` and `text` properties set to the respective field values. If a resource at `/content/page/first` already existed before submitting the form, the `title` and `text` properties are just updated to the new values from the form fields.
     
 If a parameter has multiple values, the respective property will be created as a multi-value property. So for example the command line:
     
@@ -320,7 +315,7 @@ As described above, `@DefaultValue` only takes effect if no value is provided fo
 
     
     
-###### `@IgnoreBlanks`
+###### `Empty Values / @IgnoreBlanks`
     
 Sometimes a form client will supply empty parameter values resulting in content being created or modified. For example submitting this form:
     
@@ -334,7 +329,15 @@ Sometimes a form client will supply empty parameter values resulting in content 
 
 will result in multi-value String property being set to [ "foo", "bar", "" ]. Notice the blank value.
 
-Likewise submitting this form without a value entered:
+To overcome this situation the `@IgnoreBlanks` suffix may be used to consider parameters with an empty string value to be ignored during processing. That is such parameter values would be treated as if they would not be supplied.
+
+Adding
+
+    <input type="hidden" name="stringProperty@IgnoreBlanks" value="true"/>
+
+to the above forms will cause the multi-value property be set to the two-element value [ "foo", "bar" ] and to not modify the property at all in the second single-value example.
+
+However, single empty values are not set and always cause the property to be removed. Submitting this form without a value entered:
 
     <form method="POST" action="/content/page/first" enctype="multipart/form-data">
         <input type="hidden" name="stringProperty@TypeHint" value="String"/>
@@ -342,16 +345,9 @@ Likewise submitting this form without a value entered:
     </form>
 
     
-will result in the single-value String property being set to an empty string.
+will result in the single-value String property being removed / not set.
     
-To overcome this situation the `@IgnoreBlanks` suffix may be used to consider parameters with an empty string value to be ignored during processing. That is such parameter values would be treated as if they would not be supplied.
-    
-Adding
-    
-    <input type="hidden" name="stringProperty@IgnoreBlanks" value="true"/>
-
-to the above forms will cause the multi-value property be set to the two-element value [ "foo", "bar" ] and to not modify the property at all in the second single-value example.
-
+This is actually a bug in the Sling Post Servlet which has been there from the beginning and therefore can't be changed anymore as too many clients count on this behaviour. A solution for this will be provided in a future version. Please also note that the Sling Post Servlet from version 2.3.28 to 2.3.34 treat an empty value as an empty value. Therefore do not use these versions as you will get into trouble once you update to a newer version.
 
 ###### `@ValueFrom`
 
