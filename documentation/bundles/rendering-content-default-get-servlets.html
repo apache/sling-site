@@ -244,14 +244,22 @@ curl -s &quot;http://localhost:8080/vtest.tidy.json;v=1.2&quot;
   &quot;jcr:frozenUuid&quot;: &quot;a6fd966d-917d-49e2-ba32-e7f942ff3a0f&quot;,
   &quot;jcr:uuid&quot;: &quot;3d55430b-2fa6-4562-b415-638fb6608c0e&quot;
 }
-</code></pre></section></div></div>                            
+</code></pre>
+<h2><a href="#rendering-resources-using-the-default-get-servlet" name="rendering-resources-using-the-default-get-servlet">Rendering resources using the default GET servlet</a></h2>
+<p>There are scenarios where it is useful to render a resource using the default GET servlet. However, there is no API to select a specific servlet or to force a specific extension to be used. We can still use the default GET servlet by taking advantage of the fact that it is also registered for the <em>res</em> extension. The code to do what would be:</p>
+<pre><code>Resource toRender = /* code to obtain resource here */ null;
+request
+    .getRequestDispatcher(toRender.getPath() + &quot;.res&quot;)
+    .forward(request, response);  
+</code></pre>
+<p>See also <a href="https://issues.apache.org/jira/browse/SLING-8742">SLING-8742 - Allow overriding the extension when using the RequestDispatcher</a> for a discussion on providing an API for this use case. </p></section></div></div>                            
                         </div>
                     </div>
                 </div>
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Wed Mar 13 14:37:06 2019 +0100</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Oct 15 11:30:43 2019 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
