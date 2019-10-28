@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2019
 
+* Commons Threads 3.2.20 (28th)
 * Sling Feature Maven Plugin 1.1.6 and Slingstart Maven Plugin 1.9.4 (21th)
 * Sling Feature Maven Plugin 1.1.4 (14th)
 * Servlets Post 2.3.36 (10th)
