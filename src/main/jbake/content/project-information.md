@@ -60,15 +60,14 @@ a case since the move to Git, we will clarify once that happens.
 
 ## Continuous Integration
 
-Sling builds run automatically on the [ASF's Jenkins instance](https://builds.apache.org/), triggered
-by commits.
 
-We maintain multiple build jobs, typically one or two per module. These are grouped into two views:
+The [Sling+Jenkins+Setup](https://cwiki.apache.org/confluence/display/SLING/Sling+Jenkins+Setup) wiki page describes
+the setup that runs Sling builds automatically (triggered by commits) on the 
+[ASF's Jenkins instance](https://builds.apache.org/). 
 
-* [Sling](https://builds.apache.org/view/S-Z/view/Sling/), which holds all Sling-related jobs
-* [Sling-Dashboard](https://builds.apache.org/view/S-Z/view/Sling-Dashboard/), which holds all Sling jobs needing attention, such as failed jobs.
+The [Sling Monitor](https://builds.apache.org/view/Sling-Monitor/) page lists jobs that need attention.
 
-More documentation regarding the Jenkins setup is available as wiki links from the views mentioned above.
+The [Sling Folder](https://builds.apache.org/job/Sling/) page lists all jobs.
 
 ## Documentation Repository
 The documentation website, in fact the very page that you are reading right now, is located at [The Apache Sling Site Project](https://gitbox.apache.org/repos/asf?p=sling-site.git). You can contribute without being an official project committer.
