@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2019
+
+* Sling Feature Maven Plugin 1.1.8, Feature Analysers 1.2.0, and Feature Extension Api Regions 1.1.0 (1st)
+
 ## October 2019
 
 * XSS Protection API 2.1.10 (29th)

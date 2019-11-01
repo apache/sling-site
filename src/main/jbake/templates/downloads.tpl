@@ -30,7 +30,7 @@ def mavenPlugins=[
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
   "Scripting Bundle Maven Plugin 0.1.0|scriptingbundle-maven-plugin|0.1.0|Y",
   "Sling Maven Plugin|sling-maven-plugin|2.4.2|Y",
-  "Sling Feature Maven Plugin|slingfeature-maven-plugin|1.1.6|Y",
+  "Sling Feature Maven Plugin|slingfeature-maven-plugin|1.1.8|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.9.4|Y",
   "HTL Maven Plugin|htl-maven-plugin|1.3.0-1.4.0|Y",
 ]
@@ -113,7 +113,7 @@ def bundles=[
   "Event|org.apache.sling.event|4.2.12|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.0|Y|jar",
   "Feature Model|org.apache.sling.feature|1.0.0|Y|jar",
-  "Feature Model Analyser|org.apache.sling.feature.analyser|1.0.0|Y|jar",
+  "Feature Model Analyser|org.apache.sling.feature.analyser|1.1.0|Y|jar",
   "Feature Model IO|org.apache.sling.feature.io|1.0.0|Y|jar",
   "Feature Model Launcher|org.apache.sling.feature.launcher|1.0.0|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.0|Y|jar",
