@@ -4,8 +4,9 @@ status=published
 tags=news
 tableOfContents=false
 ~~~~~~
+* The [adaptTo() 2019 conference](https://adapt.to/2019/) took place in Berlin, Germany. (September 2-4, 2019).
 * Released [Apache Sling 11](/news/sling-11-released.html) (October 23rd, 2018).
-* The [adaptTo() 2018 conference](https://adapt.to/2018/en.html) took place in Potsdam, Germany. (September 10-12, 2018).
+* The [adaptTo() 2018 conference](https://adapt.to/2018/) took place in Potsdam, Germany. (September 10-12, 2018).
 * Released [Apache Sling Pipes 2.0.2](/documentation/bundles/sling-pipes.html) (February 7th, 2018).
 * Released [Apache Sling 10](/news/sling-10-released.html) (February 6th, 2018).
 * Released [Apache Sling IDE Tooling for Eclipse 1.2.0](/news/sling-ide-tooling-12-released.html) (January 21st, 2018).
