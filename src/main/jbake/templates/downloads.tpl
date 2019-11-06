@@ -171,7 +171,7 @@ def bundles=[
   "Log Tracer|org.apache.sling.tracer|1.0.6|Y|jar",
   "Models API|org.apache.sling.models.api|1.3.8|Y|jar",
   "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y|jar",
-  "Models Implementation|org.apache.sling.models.impl|1.4.10|Y|jar",
+  "Models Implementation|org.apache.sling.models.impl|1.4.12|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|1.0.8|Y|jar",
   "NoSQL Generic Resource Provider|org.apache.sling.nosql.generic|1.1.0|Y|jar",
   "NoSQL Couchbase Client|org.apache.sling.nosql.couchbase-client|1.0.2|Y|jar",
