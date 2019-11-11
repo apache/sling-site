@@ -109,7 +109,7 @@ def bundles=[
   "Distribution Journal Kafka|org.apache.sling.distribution.journal.kafka|0.1.4|Y|jar",
   "Distribution Journal ITs|org.apache.sling.distribution.journal.it|0.1.0|Y|jar",
   "Dynamic Include|org.apache.sling.dynamic-include|3.1.6|Y|jar",
-  "Engine|org.apache.sling.engine|2.6.18|Y|jar",
+  "Engine|org.apache.sling.engine|2.6.22|Y|jar",
   "Event|org.apache.sling.event|4.2.12|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.0|Y|jar",
   "Feature Model|org.apache.sling.feature|1.0.0|Y|jar",
