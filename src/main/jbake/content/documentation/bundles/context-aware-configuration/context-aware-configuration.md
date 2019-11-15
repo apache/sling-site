@@ -156,7 +156,7 @@ If you want to access nested configurations you have to use a slash "/" as separ
 
 # Context-Aware Configuration bnd plugin
 
-A [bnd](http://bnd.bndtools.org/) plugin is provided that scans the classpath of a bundle Maven project at build time and automatically generates a `Sling-ContextAware-Configuration-Classes` bundle header for all annotation classes annotated with `@Configuration`. It can be used by both [maven-bundle-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html) and [bnd-maven-plugin](https://github.com/bndtools/bnd/tree/master/maven), as both use the bnd library internally.
+A [bnd](http://bnd.bndtools.org/) plugin is provided that scans the classpath of a bundle Maven project at build time and automatically generates a `Sling-ContextAware-Configuration-Classes` bundle header for all annotation classes annotated with `@Configuration`. It can be used by both [maven-bundle-plugin](http://felix.apache.org/components/bundle-plugin/) and [bnd-maven-plugin](https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin), as both use the bnd library internally.
 
 Example configuration:
 
