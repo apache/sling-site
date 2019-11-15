@@ -184,13 +184,12 @@ If you use the bnd-maven-plugin and raw bnd statements, you have to configure it
 
     #!xml
     <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>bnd-maven-plugin/artifactId>
-        <extensions>true</extensions>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-maven-plugin</artifactId>
         <configuration>
         	<bnd><![CDATA[
-    ... 	
-	-plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin     	
+                ...
+            	-plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin
         	]]></bnd>
         </configuration>
         <dependencies>
