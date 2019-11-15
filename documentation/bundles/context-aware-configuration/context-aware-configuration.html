@@ -224,6 +224,25 @@ public @interface MyConfig {
     &lt;/dependencies&gt;
 &lt;/plugin&gt;
 </code></pre>
+<p>If you use the bnd-maven-plugin and raw bnd statements, you have to configure it with this bnd statement:</p>
+<pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;plugin&gt;
+    &lt;groupId&gt;biz.aQute.bnd&lt;/groupId&gt;
+    &lt;artifactId&gt;bnd-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;bnd&gt;&lt;![CDATA[
+            ...
+            -plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin
+        ]]&gt;&lt;/bnd&gt;
+    &lt;/configuration&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+            &lt;artifactId&gt;org.apache.sling.caconfig.bnd-plugin&lt;/artifactId&gt;
+            &lt;version&gt;1.0.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;   
+</code></pre>
 <h1><a href="#unit-tests-with-context-aware-configuration" name="unit-tests-with-context-aware-configuration">Unit Tests with Context-Aware Configuration</a></h1>
 <p>When your code depends on Sling Context-Aware Configuration and you want to write Sling Mocks-based unit tests running against the Context-Aware configuration implementation you have to register the proper OSGi services to use them. To make this easier, a "Apache Sling Context-Aware Configuration Mock Plugin" is provided which does this job for you.</p>
 <p>Example for setting up the unit test context rule:</p>
@@ -277,7 +296,7 @@ public class MyTest {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">sseifert</span> on <span class="comment">Sun Mar 17 22:31:34 2019 +0100</span>
+                        Last modified by <span class="author">sseifert</span> on <span class="comment">Fri Nov 15 18:47:18 2019 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
