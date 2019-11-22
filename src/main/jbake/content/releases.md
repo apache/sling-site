@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2019
 
+* XSS Protection API 2.1.16, API 2.21.0 (22nd)
 * Repoinit JCR 1.1.16, Repoinit Parser 1.3.2 (19th)
 * Sling Engine 2.6.22 (11th)
 * Sling Feature Maven Plugin 1.1.10 (11th)

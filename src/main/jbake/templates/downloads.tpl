@@ -42,7 +42,7 @@ def bndPlugins=[
 def bundles=[
   "Adapter|org.apache.sling.adapter|2.1.10|Y|jar",
   "Adapter Annotations|adapter-annotations|1.0.0|Y|jar",
-  "API|org.apache.sling.api|2.20.0|Y|jar",
+  "API|org.apache.sling.api|2.21.0|Y|jar",
   "Auth Core|org.apache.sling.auth.core|1.4.4|Y|jar",
   "Auth Form|org.apache.sling.auth.form|1.0.14|Y|jar",
   "Authentication XING API|org.apache.sling.auth.xing.api|0.0.2|Y|jar",
@@ -255,7 +255,7 @@ def bundles=[
   "Validation Core|org.apache.sling.validation.core|1.0.4|Y|jar",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2|Y|jar",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.2|Y|jar",
-  "XSS Protection API|org.apache.sling.xss|2.1.10|Y|jar",
+  "XSS Protection API|org.apache.sling.xss|2.1.16|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
 
