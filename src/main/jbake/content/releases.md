@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2019
 
+* Resource Resolver 1.6.16, Servlets Resolver 2.5.8, Scripting Core 2.1.0 (27th)
 * XSS Protection API 2.1.16, API 2.21.0, App CMS 0.14.0 (22nd)
 * Repoinit JCR 1.1.16, Repoinit Parser 1.3.2 (19th)
 * Sling Engine 2.6.22 (11th)
