@@ -8,11 +8,11 @@ tags=core,resources
 
 ## What is a Resource
 
-The Resource is one of the central parts of Sling. Extending from JCR's *Everything is Content*, Sling assumes *Everthing is a Resource*. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigma of the REST architecture.
+The Resource is one of the central parts of Sling. Extending from JCR's *Everything is Content*, Sling assumes *Everthing is a Resource*. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents by so called resource providers (one of them usually the JCR Resource Provider). By doing this Sling fits very well in the paradigma of the REST architecture.
 
 ### Resource Properties
 
-Resources have a number of essentiall properties:
+Resources have a number of essential properties:
 
 | Property | Description |
 |---|---|
@@ -24,6 +24,10 @@ Resources have a number of essentiall properties:
 | Metadata | Resources in general support [`ResourceMetadata`][1] providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. |
 
 For a complete description of the `Resource` interface, please refer to the [`Resource`][2] JavaDoc.
+
+The properties are either exposed via the `ValueMap` or `ModifiableValueMap` adaptable or by calling `Resource.getValueMap()`.
+
+To get the main binary property from a given resource one can adapt it to an `InputStream`. Most resource providers return the underlying wrapper binary in that case.
 
 ### Resource Types
 
