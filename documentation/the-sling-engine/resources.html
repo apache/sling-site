@@ -121,9 +121,9 @@
 <div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#what-is-a-resource" name="what-is-a-resource">What is a Resource</a></h2>
-<p>The Resource is one of the central parts of Sling. Extending from JCR's <em>Everything is Content</em>, Sling assumes <em>Everthing is a Resource</em>. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents in the JCR Repository and resources provided by so called resource providers. By doing this Sling fits very well in the paradigma of the REST architecture.</p>
+<p>The Resource is one of the central parts of Sling. Extending from JCR's <em>Everything is Content</em>, Sling assumes <em>Everthing is a Resource</em>. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents by so called resource providers (one of them usually the JCR Resource Provider). By doing this Sling fits very well in the paradigma of the REST architecture.</p>
 <h3><a href="#resource-properties" name="resource-properties">Resource Properties</a></h3>
-<p>Resources have a number of essentiall properties:</p>
+<p>Resources have a number of essential properties:</p>
 <table>
   <thead>
     <tr>
@@ -159,6 +159,8 @@
   </tbody>
 </table>
 <p>For a complete description of the <code>Resource</code> interface, please refer to the <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a> JavaDoc.</p>
+<p>The properties are either exposed via the <code>ValueMap</code> or <code>ModifiableValueMap</code> adaptable or by calling <code>Resource.getValueMap()</code>.</p>
+<p>To get the main binary property from a given resource one can adapt it to an <code>InputStream</code>. Most resource providers return the underlying wrapper binary in that case.</p>
 <h3><a href="#resource-types" name="resource-types">Resource Types</a></h3>
 <p>The exact method of setting the resource type for a Resource depends on the actual Resource Provider. For the four main Resource Provider implementations provided by Sling, the assignments are as follows:</p>
 <table>
@@ -324,7 +326,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jul 9 11:17:20 2019 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Dec 5 16:01:11 2019 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
