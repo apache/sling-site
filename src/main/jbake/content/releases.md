@@ -17,6 +17,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Repoinit JCR 1.1.16, Repoinit Parser 1.3.2 (19th)
 * Sling Engine 2.6.22 (11th)
 * Sling Feature Maven Plugin 1.1.10 (11th)
+* Sling Models implementation 1.4.12 (6th)
 * Apache Sling Servlet Helpers 1.3.0, Testing Sling Mock 2.3.18 (4th)
 * Sling Feature Maven Plugin 1.1.8, Feature Analysers 1.2.0, and Feature Extension Api Regions 1.1.0 (1st)
 
