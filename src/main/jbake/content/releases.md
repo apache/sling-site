@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2019
 
-* JCR Resolver 3.0.20 (6th)
+* JCR Resolver 3.0.20, XSS Protection API 2.1.18, HTL Maven Plugin 1.3.2-1.4.0, Scripting JSP 2.4.0, Scripting HTL Engine 1.3.0-1.4.0, Scripting HTL JS Use Provider 1.1.0, Scripting HTL Runtime 1.2.0-1.4.0, Scripting HTL Compiler 1.2.2-1.4.0 (6th)
 
 ## November 2019
 
