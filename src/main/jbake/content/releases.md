@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## December 2019
+
+* JCR Resolver 3.0.20 (6th)
+
 ## November 2019
 
 * Resource Resolver 1.6.16, Servlets Resolver 2.5.8, Scripting Core 2.1.0 (27th)
