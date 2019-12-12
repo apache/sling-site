@@ -48,6 +48,7 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [Vault Package Install Hook](/documentation/bundles/installer-provider-installhook.html)
 
 ## Development and Utilities
+* [Commons Crypto](/documentation/bundles/commons-crypto.html)
 * [Commons Thread Pools](/documentation/bundles/apache-sling-commons-thread-pool.html)
 * [Commons HTML Utilities](/documentation/bundles/commons-html-utilities.html)
 * [MIME Type Support (commons.mime and commons.contentdetection)](/documentation/bundles/mime-type-support-commons-mime.html)
