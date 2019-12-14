@@ -6,7 +6,7 @@ tags=commons,crypto
 
 [TOC]
 
-**Commons Crypto provides a simple API to encrypt and decrypt messages and an extensible implementation based on [Jasypt](http://www.jasypt.org).**
+**[Commons Crypto](https://github.com/apache/sling-org-apache-sling-commons-crypto) provides a simple API to encrypt and decrypt messages and an extensible implementation based on [Jasypt](http://www.jasypt.org).**
 
 The Jasypt implementation and Web Console plugin are optional.
 
@@ -75,7 +75,7 @@ The plugin (`/system/console/sling-commons-crypto-encrypt`) allows message encry
 
 ## Sample configurations
 
-A module with (minimal) sample configurations can be found in [Sling's sample Git repo](https://github.com/apache/sling-samples/tree/master/sling-commons-crypto-configuration).
+A module with (minimal) sample configurations can be found in [Sling's samples Git repo](https://github.com/apache/sling-samples/tree/master/sling-commons-crypto-configuration).
 
 `org.apache.sling.commons.crypto.internal.FilePasswordProvider~sample.json`
 
