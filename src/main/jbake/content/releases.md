@@ -11,6 +11,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Scripting JSP 2.4.2 (20th)
 * Scripting JavaScript 3.1.2, HTL Maven Plugin 1.3.4-1.4.0, Scripting HTL Compiler 1.2.4-1.4.0, Scripting JSP API Wrapper 1.0.2, Scripting EL API Wrapper 1.0.2,Feature Analyser 1.2.2, OSGi Feature Maven Plugin 1.1.12 (16th)
 * JCR Resolver 3.0.20, XSS Protection API 2.1.18, HTL Maven Plugin 1.3.2-1.4.0, Scripting JSP 2.4.0, Scripting HTL Engine 1.3.0-1.4.0, Scripting HTL JS Use Provider 1.1.0, Scripting HTL Runtime 1.2.0-1.4.0, Scripting HTL Compiler 1.2.2-1.4.0, Content Distribution Journal Core 0.1.6 (6th)
+# Feature Content Package Converter 1.0.2
 
 ## November 2019
 
