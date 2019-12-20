@@ -60,6 +60,7 @@ def bundles=[
   "Commons Classloader|org.apache.sling.commons.classloader|1.4.4|Y|jar",
   "Commons Clam|org.apache.sling.commons.clam|2.0.0|Y|jar",
   "Commons Compiler|org.apache.sling.commons.compiler|2.3.6|Y|jar",
+  "Commons Crypto|org.apache.sling.commons.crypto|1.0.0|Y|jar",
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.8|Y|jar",
   "Commons HTML|org.apache.sling.commons.html|1.1.0|Y|jar",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.1.0|Y|jar",
