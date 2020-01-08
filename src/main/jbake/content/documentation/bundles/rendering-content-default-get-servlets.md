@@ -185,12 +185,11 @@ And the `;v=` URI path parameter gives access to each version (output abbreviate
       "jcr:uuid": "3d55430b-2fa6-4562-b415-638fb6608c0e"
     }
 
-## Rendering resources using the default GET servlet
+## Streaming binaries using the default GET servlet
 
-There are scenarios where it is useful to render a resource using the default GET servlet. However, there is
-no API to select a specific servlet or to force a specific extension to be used. We can still use the default 
-GET servlet by taking advantage of the fact that it is also registered for the _res_ extension. The code
-to do what would be:
+There are scenarios where it is useful to stream a binary resource using the default GET servlet. However, there is
+no API to select a specific servlet. We can still stream using the default GET servlet by taking advantage of the
+fact that it is also registered for the _res_ extension. The code to do what would be:
 
     Resource toRender = /* code to obtain resource here */ null;
     request
