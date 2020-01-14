@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2020
+* Parent 36, Bundle Parent 36, Feature Model IO 1.2.0 (14th)
+
 ## December 2019
 
 * Scripting JSP 2.4.2, Commons Crypto 1.0.0, Feature Content Package Converter (20th)
