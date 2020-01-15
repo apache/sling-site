@@ -301,7 +301,7 @@ promote the artifacts to the central Maven repository.
 <ol>
   <li>Push the release to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a>. This is only possible for PMC members (for a reasoning look at <a href="http://www.apache.org/dev/release.html#upload-ci">http://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you.
     <ol>
-      <li>Commit the released artifacts to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a> which is replicated to <a href="http://www.apache.org/dist/sling/">http://www.apache.org/dist/sling/</a> quickly via svnpubsub. See [#quick-update-of-artifacts-in-dist](the section on quick artifact updates) for a way to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check&#95;staged&#95;release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file *.asc.*).
+      <li>Commit the released artifacts to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a> which is replicated to <a href="http://www.apache.org/dist/sling/">http://www.apache.org/dist/sling/</a> quickly via svnpubsub. See <a href="#quick-update-of-artifacts-in-dist">the section on quick artifact updates</a> for a way to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check&#95;staged&#95;release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file *.asc.*).
         <ul>
           <li>Make sure to <em>not</em> change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!</li>
           <li>Following the SVN commit you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports.</li>
@@ -555,7 +555,7 @@ ssb   2048R/226BCE00 2016-01-21
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jan 15 10:12:57 2020 +0100</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jan 15 10:14:55 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
