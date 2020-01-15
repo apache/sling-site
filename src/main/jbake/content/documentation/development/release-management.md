@@ -232,12 +232,12 @@ It is possible to update the artifacts without needing to checkout or update the
 
 Assuming that we are releasing `org.apache.sling.engine 2.6.22`, we can run the following commands
 
-```
-$ cd <folder where 2.6.22 is found expanded source-release..zip>
-$ svn import -m "Release org.apache.sling.engine-2.6.22" . https://dist.apache.org/repos/dist/release/sling
 
-$ svn delete -m "Release org.apache.sling.engine-2.6.22" $(ls | sed 's/22/20/' | while read line; do echo "https://dist.apache.org/repos/dist/release/sling/$line"; done)
-```
+    $ cd <folder where 2.6.22 is found expanded source-release..zip>
+    $ svn import -m "Release org.apache.sling.engine-2.6.22" . https://dist.apache.org/repos/dist/release/sling
+
+    $ svn delete -m "Release org.apache.sling.engine-2.6.22" $(ls | sed 's/22/20/' | while read line; do echo "https://dist.apache.org/repos/dist/release/sling/$line"; done)
+
 
 This makes sure that the new artifacts are imported and the old ones are deleted.
 
