@@ -42,7 +42,7 @@ def bndPlugins=[
 def bundles=[
   "Adapter|org.apache.sling.adapter|2.1.10|Y|jar",
   "Adapter Annotations|adapter-annotations|1.0.0|Y|jar",
-  "API|org.apache.sling.api|2.21.0|Y|jar",
+  "API|org.apache.sling.api|2.22.0|Y|jar",
   "Auth Core|org.apache.sling.auth.core|1.4.4|Y|jar",
   "Auth Form|org.apache.sling.auth.form|1.0.14|Y|jar",
   "Authentication XING API|org.apache.sling.auth.xing.api|0.0.2|Y|jar",
@@ -212,7 +212,7 @@ def bundles=[
   "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.2.0-1.4.0|Y|jar",
   "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.2.4-1.4.0|Y|jar",
   "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.1.4-1.4.0|Y|jar",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.3.0-1.4.0|Y|jar",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.3.2-1.4.0|Y|jar",
   "Scripting HTL JavaScript Use Provider|org.apache.sling.scripting.sightly.js.provider|1.1.0|Y|jar",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.8|Y|jar",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.6|Y|jar",
