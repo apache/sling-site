@@ -325,8 +325,11 @@ promote the artifacts to the central Maven repository.
 <h3><a href="#quick-update-of-artifacts-in-dist" name="quick-update-of-artifacts-in-dist">Quick update of artifacts in dist</a></h3>
 <p>It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow, by using <code>svn import</code> and <code>svn delete</code> on the remote SVN repository.</p>
 <p>Assuming that we are releasing <code>org.apache.sling.engine 2.6.22</code>, we can run the following commands</p>
-<p>``` $ cd &lt;folder where 2.6.22 is found expanded source-release..zip&gt; $ svn import -m "Release org.apache.sling.engine-2.6.22" . https://dist.apache.org/repos/dist/release/sling</p>
-<p>$ svn delete -m "Release org.apache.sling.engine-2.6.22" $(ls | sed 's/22/20/' | while read line; do echo "https://dist.apache.org/repos/dist/release/sling/$line"; done) ```</p>
+<pre><code>$ cd &lt;folder where 2.6.22 is found expanded source-release..zip&gt;
+$ svn import -m &quot;Release org.apache.sling.engine-2.6.22&quot; . https://dist.apache.org/repos/dist/release/sling
+
+$ svn delete -m &quot;Release org.apache.sling.engine-2.6.22&quot; $(ls | sed &#39;s/22/20/&#39; | while read line; do echo &quot;https://dist.apache.org/repos/dist/release/sling/$line&quot;; done)
+</code></pre>
 <p>This makes sure that the new artifacts are imported and the old ones are deleted.</p>
 <h2><a href="#update-jira" name="update-jira">Update JIRA</a></h2>
 <p>Go to <a href="https://issues.apache.org/jira/plugins/servlet/project-config/SLING/versions">Manage Versions</a> section on the SLING JIRA and mark the X.Y.Z version as released setting the release date to the date the vote has been closed.</p>
@@ -552,7 +555,7 @@ ssb   2048R/226BCE00 2016-01-21
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jan 15 10:09:38 2020 +0100</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jan 15 10:12:57 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
