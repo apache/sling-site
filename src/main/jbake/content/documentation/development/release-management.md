@@ -212,7 +212,7 @@ If the vote passes:
 
 
 1. Push the release to [https://dist.apache.org/repos/dist/release/sling/](https://dist.apache.org/repos/dist/release/sling/). This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you.
-	1. Commit the released artifacts to [https://dist.apache.org/repos/dist/release/sling/](https://dist.apache.org/repos/dist/release/sling/) which is replicated to [http://www.apache.org/dist/sling/](http://www.apache.org/dist/sling/) quickly via svnpubsub. Hint: use svn import to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check&#95;staged&#95;release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file \*.asc.\*).
+	1. Commit the released artifacts to [https://dist.apache.org/repos/dist/release/sling/](https://dist.apache.org/repos/dist/release/sling/) which is replicated to [http://www.apache.org/dist/sling/](http://www.apache.org/dist/sling/) quickly via svnpubsub. See [#quick-update-of-artifacts-in-dist](the section on quick artifact updates) for a way to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check&#95;staged&#95;release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file \*.asc.\*).
         * Make sure to *not* change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!
         * Following the SVN commit you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports.
     1. Delete the old release artifacts from that same dist.apache.org svn folder (the dist directory is archived)
@@ -225,6 +225,21 @@ If the vote passes:
 1. If you think that this release is worth a news entry, update the website at  [news](/news.html)
 
 For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
+
+### Quick update of artifacts in dist
+
+It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow, by using `svn import` and `svn delete` on the remote SVN repository.
+
+Assuming that we are releasing `org.apache.sling.engine 2.6.22`, we can run the following commands
+
+```
+$ cd <folder where 2.6.22 is found expanded source-release..zip>
+$ svn import -m "Release org.apache.sling.engine-2.6.22" . https://dist.apache.org/repos/dist/release/sling
+
+$ svn delete -m "Release org.apache.sling.engine-2.6.22" $(ls | sed 's/22/20/' | while read line; do echo "https://dist.apache.org/repos/dist/release/sling/$line"; done)
+```
+
+This makes sure that the new artifacts are imported and the old ones are deleted.
 
 ## Update JIRA
 
