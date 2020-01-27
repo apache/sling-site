@@ -7,6 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## January 2020
+
+* XSS Protection API 2.2.0, Commons Metrics 1.2.8 (27th)
 * Feature Model Converter Plugin 1.0.4 (16th)
 * API 2.22.0, Scripting HTL Engine 1.3.2-1.4.0 (15th)
 * Parent 36, Bundle Parent 36, Feature Model IO 1.2.0 (14th)

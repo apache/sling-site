@@ -68,7 +68,7 @@ def bundles=[
   "Commons Log|org.apache.sling.commons.log|5.1.10|Y|jar",
   "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|1.0.0|Y|jar",
   "Commons Log Service|org.apache.sling.commons.logservice|1.1.0|Y|jar",
-  "Commons Metrics|org.apache.sling.commons.metrics|1.2.6|Y|jar",
+  "Commons Metrics|org.apache.sling.commons.metrics|1.2.8|Y|jar",
   "Commons RRD4J metrics reporter|org.apache.sling.commons.metrics-rrd4j|1.0.2|Y|jar",
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.2.2|Y|jar",
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.0|Y|jar",
@@ -258,7 +258,7 @@ def bundles=[
   "Validation Core|org.apache.sling.validation.core|1.0.4|Y|jar",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2|Y|jar",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.2|Y|jar",
-  "XSS Protection API|org.apache.sling.xss|2.1.18|Y|jar",
+  "XSS Protection API|org.apache.sling.xss|2.2.0|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
 
