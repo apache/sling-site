@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## February 2020
+
+* XSS Protection API 2.2.2 (4th)
+
 ## January 2020
 
 * Testing OSGi Mock 2.4.14, Testing ResourceResolver Mock 1.1.26, Testing Sling Mock 2.4.0 (30th)
