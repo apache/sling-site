@@ -28,6 +28,9 @@ If any of them throws an Exception, the `SlingRepository` service is not registe
 The `org.apache.sling.repoinit.parser` implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as 
 well as registering JCR namespaces and node types.
 
+As  I write this, the source code consists of [three modules](https://github.com/apache?utf8=%E2%9C%93&q=sling+repoinit): the parser, the JCR 
+repoinit adapter module and the integration tests.
+
 The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the `RepoInitGrammar.jjt` file in that module, and the automated tests provide a number of [test cases](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases) which demonstrate various features.
 
 The companion `org.apache.sling.jcr.repoinit` module implements those operations on an Oak JCR repository, using a `SlingRepositoryInitializer`
