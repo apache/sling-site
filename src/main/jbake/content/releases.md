@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2020
 
+* JCR Package Init 1.0.0 (5th)
 * XSS Protection API 2.2.2 (4th)
 
 ## January 2020
