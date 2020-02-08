@@ -46,3 +46,25 @@ For people who are completely new to contributing to an Apache Software Foundati
 [Get Involved](https://www.apache.org/foundation/getinvolved.html) page provides you with enough resources to understand how the foundation
 works and how its projects are structured - and don't hesitate to ask on our
 [mailing lists](http://sling.apache.org/project-information.html#mailing-lists)!
+
+### Testing
+
+Each Sling module comes with an automated build, usually based on Apache Maven. Your change should be covered
+by new unit tests that verify that the changes work as expected.
+
+In case your changes are more far-reaching and the module you are contributing to is part of the
+[Sling Starter](https://github.com/apache/sling-org-apache-sling-starter), it is a good idea to
+also run the Sling Starter integration tests. This can be achieved by doing the following:
+
+* Check out the [Sling Starter](https://github.com/apache/sling-org-apache-sling-starter) and 
+  [Sling Starter Integration Tests](https://github.com/apache/sling-org-apache-sling-launchpad-testing)
+  projects. This step can be skipped if you have followed the steps to checkout all Sling repositories
+  as documented at [Getting and Building Sling](/documentation/development/getting-and-building-sling.html#getting-the-sling-source)
+* Use the latest version of the bundle(s) you changed in the Sling Starter. Running `git grep ${ARTIFACT_ID}`
+  will indicate the potential places where you need to make changes
+* Run `mvn clean install` in the Sling Starter checkout. This runs a set of Smoke tests and allows the 
+  integration tests to use the version of the starter that you just built
+* Run `mvn clean install` in the Sling Starter Integration Tests checkout
+
+Additionally, and PR you submit will eventually be built by Jenkins, with additional validations on top
+of the plain Maven build.
