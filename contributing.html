@@ -113,14 +113,24 @@
   <li>open a JIRA issue and send a pull request to the <a href="https://github.com/apache/sling-whiteboard/">Apache Sling Whiteboard project</a></li>
   <li>open a JIRA issue and attach your source code to it as a zip or tar archive.</li>
 </ol>
-<p>For people who are completely new to contributing to an Apache Software Foundation project, the <a href="https://www.apache.org/foundation/getinvolved.html">Get Involved</a> page provides you with enough resources to understand how the foundation works and how its projects are structured - and don't hesitate to ask on our <a href="http://sling.apache.org/project-information.html#mailing-lists">mailing lists</a>!</p></section></div></div>                            
+<p>For people who are completely new to contributing to an Apache Software Foundation project, the <a href="https://www.apache.org/foundation/getinvolved.html">Get Involved</a> page provides you with enough resources to understand how the foundation works and how its projects are structured - and don't hesitate to ask on our <a href="http://sling.apache.org/project-information.html#mailing-lists">mailing lists</a>!</p>
+<h3><a href="#testing" name="testing">Testing</a></h3>
+<p>Each Sling module comes with an automated build, usually based on Apache Maven. Your change should be covered by new unit tests that verify that the changes work as expected.</p>
+<p>In case your changes are more far-reaching and the module you are contributing to is part of the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a>, it is a good idea to also run the Sling Starter integration tests. This can be achieved by doing the following:</p>
+<ul>
+  <li>Check out the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a> and  <a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing">Sling Starter Integration Tests</a>  projects. This step can be skipped if you have followed the steps to checkout all Sling repositories  as documented at <a href="/documentation/development/getting-and-building-sling.html#getting-the-sling-source">Getting and Building Sling</a></li>
+  <li>Use the latest version of the bundle(s) you changed in the Sling Starter. Running <code>git grep ${ARTIFACT_ID}</code>  will indicate the potential places where you need to make changes</li>
+  <li>Run <code>mvn clean install</code> in the Sling Starter checkout. This runs a set of Smoke tests and allows the  integration tests to use the version of the starter that you just built</li>
+  <li>Run <code>mvn clean install</code> in the Sling Starter Integration Tests checkout</li>
+</ul>
+<p>Additionally, and PR you submit will eventually be built by Jenkins, with additional validations on top of the plain Maven build.</p></section></div></div>                            
                         </div>
                     </div>
                 </div>
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">JE Bailey</span> on <span class="comment">Fri Jul 26 10:42:04 2019 -0400</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sat Feb 8 13:14:04 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
