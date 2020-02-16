@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2020
 
+* Content Distribution API 0.4.0, Content Distribution Core 0.4.2, Content Distribution Journal Core 0.1.8 (16th)
 * Parent 37, Bundle Parent 37 (7th)
 * JCR Package Init 1.0.0 (5th)
 * XSS Protection API 2.2.2 (4th)
