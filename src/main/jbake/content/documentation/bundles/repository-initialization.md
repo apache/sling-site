@@ -185,8 +185,17 @@ The language is self-explaining but please refer to the actual test cases for de
     create group since124_A
     create group since124_B with path /path_B
     delete group since124_C
+    
+    # ACLs on user homes, requires
+    # o.a.s.repoinit.parser 1.4.2
+    # o.a.s.jcr.repoinit 1.1.18
+    set ACL on home(alice)
+      allow jcr:read for alice, bob, carol
+    end
 
-
+    set ACL for bob
+      allow jcr:read on home(alice), /another/path, home(larry)
+    end
 </pre>
 
 ## Providing repoinit statements from the Sling provisioning model or other URLs
