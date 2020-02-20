@@ -285,8 +285,17 @@
     create group since124_A
     create group since124_B with path /path_B
     delete group since124_C
+    
+    # ACLs on user homes, requires
+    # o.a.s.repoinit.parser 1.4.2
+    # o.a.s.jcr.repoinit 1.1.18
+    set ACL on home(alice)
+      allow jcr:read for alice, bob, carol
+    end
 
-
+    set ACL for bob
+      allow jcr:read on home(alice), /another/path, home(larry)
+    end
 </pre>
 <h2><a href="#providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls" name="providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls">Providing repoinit statements from the Sling provisioning model or other URLs</a></h2>
 <p>All bundles required for this feature need to be active before the <code>SlingRepository</code> service starts.</p>
@@ -334,7 +343,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Feb 6 16:12:52 2020 +0100</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Feb 20 12:57:34 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
