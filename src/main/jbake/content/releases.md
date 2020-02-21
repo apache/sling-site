@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2020
 
+* Connection Timeout Agent 1.0.2 (21th)
 * Parent 38, Bundle Parent 38 (20th)
 * Security 1.1.18 (18th)
 * Content Distribution API 0.4.0, Content Distribution Core 0.4.2, Content Distribution Journal Core 0.1.8 (16th)

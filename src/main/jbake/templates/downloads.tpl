@@ -75,7 +75,7 @@ def bundles=[
   "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.2|Y|jar",
   "Commons Testing|org.apache.sling.commons.testing|2.1.2|Y|jar",
   "Commons Threads|org.apache.sling.commons.threads|3.2.20|Y|jar",
-  "Connection Timeout Agent|org.apache.sling.connection-timeout-agent|1.0.0|Y|jar",
+  "Connection Timeout Agent|org.apache.sling.connection-timeout-agent|1.0.2|Y|jar",
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.2|Y|jar",
   "Content Parser API|org.apache.sling.contentparser.api|2.0.0|Y|jar",
   "Content Parser JSON|org.apache.sling.contentparser.json|2.0.0|Y|jar",
