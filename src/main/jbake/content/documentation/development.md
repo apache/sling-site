@@ -12,7 +12,7 @@ which has more information on specific topics.
 
 ## Using Sling as your Development Framework
 
-Look here for more information on developper support when your are using Sling to build your own applications.
+Look here for more information on developer support when your are using Sling to build your own applications.
 
 * [Getting and Building Sling](/documentation/development/getting-and-building-sling.html)
 * [Defining and Launching a Sling based Application](/documentation/development/slingstart.html)
