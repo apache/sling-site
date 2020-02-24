@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2020
 
+* Repoinit Parser 1.4.2, Repoinit JCR 1.1.20 (24th)
 * Connection Timeout Agent 1.0.2, Repoinit JCR 1.1.18, Repoinit Parser 1.4.0 (21th)
 * Parent 38, Bundle Parent 38 (20th)
 * Security 1.1.18 (18th)
