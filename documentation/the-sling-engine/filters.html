@@ -158,7 +158,7 @@ from our integration tests shows an example Sling Filter.
       <td><code>String</code></td>
       <td><code>(-)</code> </td>
       <td>Any <code>String</code> value </td>
-      <td>Restrict the filter to paths that match the supplied regular expression. Requires Sling Engine 2.4.0. </td>
+      <td>Restrict the filter to resource paths that match the supplied regular expression. <em>This does not refer to the request path, but rather to the resolved resource path excluding selectors, extension and suffix</em> Requires Sling Engine 2.4.0. </td>
     </tr>
     <tr>
       <td><code>sling.filter.suffix.pattern</code> </td>
@@ -198,7 +198,7 @@ from our integration tests shows an example Sling Filter.
   </tbody>
 </table>
 <h2><a href="#slingservletfilter-annotation" name="slingservletfilter-annotation">SlingServletFilter Annotation</a></h2>
-<p>Coding the above being a bit tedious, <code>Apache Sling Servlets Annotations 1.1.0</code> provides handy `SlingServletFilter annotation to set those values:</p>
+<p>Coding the above being a bit tedious, <a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations/">Apache Sling Servlets Annotations</a> provides handy <code>SlingServletFilter</code> annotation to set those values:</p>
 <pre><code>...
    import org.apache.sling.servlets.annotations.SlingServletFilter;
    import org.apache.sling.servlets.annotations.SlingServletFilterScope;
@@ -364,7 +364,7 @@ Component Filters:
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Sep 17 15:01:50 2018 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Feb 28 09:32:41 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
