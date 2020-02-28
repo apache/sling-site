@@ -8,9 +8,10 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2020
 
+* OSGi Installer Core 3.10.2 (28th)
 * Servlets Resolver 2.6.0, Scripting Core 2.2.0 (27th)
 * Commons Messaging 1.0.0, Commons Messaging Mail 1.0.0 (24th)
-* Apache Sling OSGi Installer Core 3.10.0, Console 1.1.0, Packages Factory 1.0.0, JCR Installer 3.2.0, File Installer 1.2.0, Configuration Factory 1.3.0 (24th)
+* OSGi Installer Core 3.10.0, Console 1.1.0, Packages Factory 1.0.0, JCR Installer 3.2.0, File Installer 1.2.0, Configuration Factory 1.3.0 (24th)
 * Repoinit Parser 1.4.2, Repoinit JCR 1.1.20 (24th)
 * Connection Timeout Agent 1.0.2, Repoinit JCR 1.1.18, Repoinit Parser 1.4.0 (21th)
 * Parent 38, Bundle Parent 38 (20th)
