@@ -299,7 +299,7 @@ def deprecated=[
 def downloadLink(label, artifact, version, suffix) {
 	def sep = version ? "-" : ""
 	def path = "sling/${artifact}${sep}${version}${suffix}"
-	def digestsBase = "https://www.apache.org/dist/${path}"
+	def digestsBase = "https://downloads.apache.org/${path}"
 
 	a(href:"[preferred]${path}", label)
 	yield " ("
