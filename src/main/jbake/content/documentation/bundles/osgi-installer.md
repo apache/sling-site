@@ -71,6 +71,7 @@ When an update of bundles is performed through the installer, by default the ins
 An installer factory provides support for a specific artifact type, like a configuration or a deployment package etc.
 
 * [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)
+* [Content Package Installer Factory](/documentation/bundles/content-package-installer-factory.html)
 * [Subsystem Installer Factory](/documentation/bundles/subsystem-installer-factory.html)
 
 ### Providers
