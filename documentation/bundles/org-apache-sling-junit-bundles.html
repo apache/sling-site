@@ -184,7 +184,7 @@ public final TeleporterRule teleporter =
 <p>A <code>TeleporterRule.Customizer</code> is used to setup the <code>ClientSideTeleporter</code>. That customizer is instantiated dynamically based on a String passed to the <code>TeleporterRule.forClass</code> method as 2nd parameter. As an example from our <code>launchpad/integration-tests</code> module, this call</p>
 <pre><code>TeleporterRule.forClass(getClass(), &quot;Launchpad:author&quot;);
 </code></pre>
-<p>causes the <code>TeleporterRule</code> to use the <code>org.apache.sling.junit.teleporter.customizers.LaunchpadCustomizer</code> class to setup the <code>ClientSideTeleporter</code>, and passes the "author" string to it as an option. Although our current <code>LaunchpadCustomizer</code> does not use this options string, it is meant to select a specific server (of family of servers) to run the tests on.</p>
+<p>causes the <code>TeleporterRule</code> to use the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/junit/teleporter/customizers/LaunchpadCustomizer.java">org.apache.sling.junit.teleporter.customizers.LaunchpadCustomizer</a> class to setup the <code>ClientSideTeleporter</code>, and passes the "author" string to it as an option. Although our current <code>LaunchpadCustomizer</code> does not use this options string, it is meant to select a specific server (of family of servers) to run the tests on.</p>
 <p>The options string can also use a full class name instead of the <code>Launchpad</code> short form used here, if needed. The part of that string that follows the first colon is passed to the customizer as is.</p>
 <p>Using Strings for customization reduces the coupling with the <code>junit.core</code> bundle, as it does not need to know those classes which are used only on the client side when running tests. </p>
 <p>If <code>TeleporterRule.forClass(getClass())</code> is used (the method without an additional 2nd parameter) the default customizer is used (<a href="https://issues.apache.org/jira/browse/SLING-5677">SLING-5677</a>, since version 1.0.8). </p>
@@ -346,7 +346,7 @@ TEST_PASSED
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Dan Klco</span> on <span class="comment">Thu Feb 22 16:26:54 2018 -0500</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Mar 6 16:30:54 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
