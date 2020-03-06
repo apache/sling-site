@@ -124,7 +124,7 @@ based on a String passed to the `TeleporterRule.forClass` method as 2nd paramete
 
     TeleporterRule.forClass(getClass(), "Launchpad:author");
     
-causes the `TeleporterRule` to use the `org.apache.sling.junit.teleporter.customizers.LaunchpadCustomizer` class
+causes the `TeleporterRule` to use the [org.apache.sling.junit.teleporter.customizers.LaunchpadCustomizer](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/junit/teleporter/customizers/LaunchpadCustomizer.java) class
 to setup the `ClientSideTeleporter`, and passes the "author" string to it as an option. Although our current `LaunchpadCustomizer`
 does not use this options string, it is meant to select a specific server (of family of servers) to run the tests on.
 
