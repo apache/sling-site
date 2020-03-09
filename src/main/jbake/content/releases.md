@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## March 2020
+
+* Servlets Resolver 2.6.4 (9th)
+
 ## February 2020
 
 * OSGi Installer Core 3.10.2 (28th)
