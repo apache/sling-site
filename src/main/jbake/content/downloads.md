@@ -13,7 +13,7 @@ All Apache Sling products are distributed under the terms of The [Apache Softwar
 
 # How to validate the downloaded files
 
-The PGP keys at [https://www.apache.org/dist/sling/KEYS](https://www.apache.org/dist/sling/KEYS) can be used to verify the integrity of the release archives. See [https://www.apache.org/info/verification](https://www.apache.org/info/verification) for how that works.
+The PGP keys at [https://downloads.apache.org/sling/KEYS](https://downloads.apache.org/sling/KEYS) can be used to verify the integrity of the release archives. See [https://www.apache.org/info/verification](https://www.apache.org/info/verification) for how that works.
 
 # Mirrors
 
