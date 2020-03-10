@@ -51,15 +51,11 @@ The source code can be accessed using either the GitHub or GitBox setup.
 To list all modules on GitHub you can use this search query: [https://github.com/apache/?q=sling](https://github.com/apache/?q=sling), or
 see our [list of repositories](/repolist.html) on this website.
 
-### Attic
-A number of Sling modules that are not being developed further have been moved to the [Sling Attic](https://svn.apache.org/repos/asf/sling/attic/) in the svn
-repository that we used until late 2017.
-
-Now that the Sling codebase is split in multiple Git repositories, we'll probably keep such modules in place but mark them as being retired. We haven't had such
-a case since the move to Git, we will clarify once that happens.
+### Attic / deprecated modules
+See [Deprecating Sling Modules](/documentation/development/deprecating-sling-modules.html) for how we manage
+module deprecation.
 
 ## Continuous Integration
-
 
 The [Sling+Jenkins+Setup](https://cwiki.apache.org/confluence/display/SLING/Sling+Jenkins+Setup) wiki page describes
 the setup that runs Sling builds automatically (triggered by commits) on the 
