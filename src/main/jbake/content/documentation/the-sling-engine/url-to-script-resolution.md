@@ -18,7 +18,7 @@ Scripts and servlets are itself resources in Sling and thus have a resource path
 JCR repository, the resource type in a servlet component configuration or the "virtual" bundle resource path 
 (if a script is provided inside a bundle without being installed into the JCR repository). 
 
-For the whole Truth about script resolution, see the [ScriptSelectionTest](https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java) class. If you see interesting cases that are not
+For the whole Truth about script resolution, see the [ScriptSelectionTest](https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ScriptSelectionTest.java) and [ResourceCollectorTest](https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/internal/helper/ResourceCollectorTest.java) classes. If you see interesting cases that are not
 covered there, please let us know via the Sling users mailing list.
 
 TODO: explain super types, servlet path mappings, node type resource types (`my:type -> my/type`) 
@@ -61,32 +61,25 @@ The pseudo code for iterating the locations would be something like:
         } 
     } 
 
-    
-## All requests are NOT equal 
-    
-GET and HEAD request methods are treated differently than the other request methods. Only for GET and HEAD requests will the request selectors and extension be considered for script selection. For other requests the servlet or script name (without the script extension) must exactly match the request method. 
-    
-That is for a PUT request, the script must be PUT.esp or PUT.jsp. For a GET request with a request extension of html, the script name may be html.esp or GET.esp. 
-    
-## Scripts for GET requests 
-    
-Apart for supporting scripts named after the request method, scripts handling GET and HEAD requests may be named differently for Sling to support a more elaborate processing order. 
-    
+## Script naming conventions
+
 Depending on whether request selectors are considered, a script may have two forms: 
-    
-* a. Ignoring request selectors (e.g. there are none in the request URI) `{resourceTypeLabel}.{requestExtension}.{scriptExtension}` 
-* b. Handling request selectors `{selectorStringPath}.{requestExtension}.{scriptExtension}`
-    
+
+1. Ignoring request selectors (e.g. there are none in the request URI): `{resourceTypeLabel}.{requestExtension}.{requestMethod}.{scriptExtension}` 
+2. Handling request selectors: `{selectorStringPath}.{requestExtension}.{requestMethod}.{scriptExtension}`
+
 The constituents of these script names are as follows: 
-    
-* `{resourceTypeLabel}` - The last path segment of the path created from the resource type. This part is optional if the `{requestExtension}` is used in the script name. The resource type might either be set via the `sling:resourceType` property on the accessed node or if that property is not there its primary node type (property `jcr:primaryType`) is taken as fallback.
-* `{requestExtension}` - The request extension. This part may be ommitted if the request extension is "html", otherwise this part is required. If this part is ommitted, the `{resourceTypeLabel}` is required in the case of ignoring the selectors. 
-* `{scriptExtension}` - The extension, e.g. "esp" or "jsp", identifying the scripting langauage used. 
+
+* `{resourceTypeLabel}` - The last path segment of the path created from the resource type. This part is optional if the `{requestExtension}` is used in the script name. The resource type might either be set via the `sling:resourceType` property on the accessed node or if that property is not there its primary node type (property `jcr:primaryType`) is taken as fall-back.
+* `{requestExtension}` - The request extension. This part may be omitted if the request extension is `html`, otherwise this part is required. If this part is omitted, the `{resourceTypeLabel}` is required in the case of ignoring the selectors.
+* `{requestMethod}` - The request's HTTP method. This part may be omitted if the script is meant for a `GET` or a `HEAD` request. This part is required for any other HTTP method.
+* `{scriptExtension}` - The extension identifying the scripting language used. This part is mandatory. For more details about the available Script Engines and their registered extensions check the [Sling Scripting](/documentation/bundles/scripting.html) page.
 * `{selectorStringPath}` - The selector string converted to a path, along the lines of `selectorString.replace('.', '/')`. If less selectors are specified in the script name than given in the request, the script will only be taken into consideration if the given selectors are the **first** selectors in the request. This means *sel1/sel2.html.jsp* will be a candidate for the request url */content/test.sel1.sel2.sel3.html* but not for */content/test.sel3.sel1.sel2.html*. So the order of selectors is relevant!
-    
+
+
 ## Priority 
     
-The rules for script path priorization is defined as follows: 
+The rules for script path prioritization is defined as follows:
     
 * The more request selectors are matched, the better 
 * A script including the request extension matches better than one without a request extension (for html only) 
