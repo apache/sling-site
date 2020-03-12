@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2020
 
+* Commons Johnzon 1.2.0 (12th)
 * Servlets Resolver 2.6.4, Security 1.1.20 (9th)
 
 ## February 2020
