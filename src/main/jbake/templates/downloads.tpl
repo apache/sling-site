@@ -19,8 +19,8 @@ def slingIDETooling=[
 ]
 
 def slingApplication=[
-  "Sling Starter Standalone|A self-runnable Sling jar|org.apache.sling.starter|.jar|${launchpadVersion}|Y",
-  "Sling Starter WAR|A ready-to run Sling webapp as a war file|org.apache.sling.starter|-webapp.war|${launchpadVersion}|Y",
+  "Sling Starter Standalone|A self-runnable Sling jar, for experimenting and learning|org.apache.sling.starter|.jar|${launchpadVersion}|Y",
+  "Sling Starter WAR|A ready-to run Sling webapp as a war file, for experimenting and learning|org.apache.sling.starter|-webapp.war|${launchpadVersion}|Y",
   "Sling Source Release|The released Sling source code|org.apache.sling.starter|-source-release.zip|${launchpadVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.builder|.jar|0.14.0|org.apache.sling.app.cms",
 ]
