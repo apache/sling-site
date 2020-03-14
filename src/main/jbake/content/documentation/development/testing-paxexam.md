@@ -310,12 +310,12 @@ The `SimpleIT` below from [Scripting FreeMarker](https://github.com/apache/sling
     
         @Configuration
         public Option[] configuration() {
-            return new Option[]{
+            return options(
                 baseConfiguration(),
                 factoryConfiguration("org.apache.sling.resource.presence.internal.ResourcePresenter")
                     .put("path", "/apps/freemarker/page/simple/html.ftl")
                     .asOption(),
-            };
+            );
         }
     
         @Before
