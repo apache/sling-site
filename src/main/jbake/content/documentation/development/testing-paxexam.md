@@ -35,7 +35,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
-      <version>3.0.0</version>
+      <version>3.1.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -58,31 +58,31 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <version>4.13.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-cm</artifactId>
-      <version>4.13.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-container-forked</artifactId>
-      <version>4.13.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-junit4</artifactId>
-      <version>4.13.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-link-mvn</artifactId>
-      <version>4.13.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
 
@@ -136,14 +136,14 @@ Create a test class (extend `TestSupport` to use helper methods and `Option`s) a
 
     @Configuration
     public Option[] configuration() {
-        return new Option[]{
+        return options(
             baseConfiguration(), // from TestSupport
             slingQuickstart(),
             // build artifact
             testBundle("bundle.filename"), // from TestSupport
             // testing
             junitBundles()
-        };
+        );
     }
 
     protected Option slingQuickstart() {
@@ -257,13 +257,13 @@ The `FreemarkerScriptEngineFactoryIT` and `Ranked2Configuration` below from [Scr
 
         @Configuration
         public Option[] configuration() {
-            return new Option[]{
+            return options(
                 baseConfiguration(),
                 buildBundleWithBnd( // from TestSupport
                     Ranked1Configuration.class,
                     Ranked2Configuration.class
                 )
-            };
+            );
         }
     
         […]
