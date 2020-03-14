@@ -150,7 +150,7 @@
 &lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.paxexam&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.1.0&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 
@@ -173,31 +173,31 @@
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam&lt;/artifactId&gt;
-  &lt;version&gt;4.13.1&lt;/version&gt;
+  &lt;version&gt;4.13.2&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-cm&lt;/artifactId&gt;
-  &lt;version&gt;4.13.1&lt;/version&gt;
+  &lt;version&gt;4.13.2&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-container-forked&lt;/artifactId&gt;
-  &lt;version&gt;4.13.1&lt;/version&gt;
+  &lt;version&gt;4.13.2&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-junit4&lt;/artifactId&gt;
-  &lt;version&gt;4.13.1&lt;/version&gt;
+  &lt;version&gt;4.13.2&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
   &lt;artifactId&gt;pax-exam-link-mvn&lt;/artifactId&gt;
-  &lt;version&gt;4.13.1&lt;/version&gt;
+  &lt;version&gt;4.13.2&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
@@ -244,14 +244,14 @@
 <p>Create a test class (extend <code>TestSupport</code> to use helper methods and <code>Option</code>s) and provide a <em>Configuration</em> (<code>Option[]</code>) for Pax Exam:</p>
 <pre><code>@Configuration
 public Option[] configuration() {
-    return new Option[]{
+    return options(
         baseConfiguration(), // from TestSupport
         slingQuickstart(),
         // build artifact
         testBundle(&quot;bundle.filename&quot;), // from TestSupport
         // testing
         junitBundles()
-    };
+    );
 }
 
 protected Option slingQuickstart() {
@@ -350,13 +350,13 @@ public class FreemarkerScriptEngineFactoryIT extends FreemarkerTestSupport {
 
     @Configuration
     public Option[] configuration() {
-        return new Option[]{
+        return options(
             baseConfiguration(),
             buildBundleWithBnd( // from TestSupport
                 Ranked1Configuration.class,
                 Ranked2Configuration.class
             )
-        };
+        );
     }
 
     […]
@@ -429,14 +429,46 @@ public class SimpleIT extends FreemarkerTestSupport {
 </code></pre>
 <h2><a href="#logging" name="logging">Logging</a></h2>
 <p>See Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a> if logging needs to be tweaked.</p>
-<p>For <a href="https://logback.qos.ch">Logback</a> use <code>SlingOptions#logback()</code> and add both <code>exam.properties</code> and <code>logback.xml</code> to <code>src/test/resources</code> as described in Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a>.</p></section></div></div>                            
+<p>For <a href="https://logback.qos.ch">Logback</a> use <code>SlingOptions#logback()</code> and add both <code>exam.properties</code> and <code>logback.xml</code> to <code>src/test/resources</code> as described in Pax Exam's <a href="https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration">Logging Configuration</a>.</p>
+<h2><a href="#list-of-modules-using-testing-paxexam" name="list-of-modules-using-testing-paxexam">List of modules using Testing PaxExam</a></h2>
+<p><a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam">Testing PaxExam</a> is used by several <a href="https://github.com/apache/sling-org-apache-sling-testing-paxexam/network/dependents">modules</a> for integration tests:</p>
+<ul>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-capabilities">org.apache.sling.capabilities</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-capabilities-jcr">org.apache.sling.capabilities.jcr</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-clam">org.apache.sling.clam</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-clam">org.apache.sling.commons.clam</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-classloader">org.apache.sling.commons.classloader</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-contentdetection">org.apache.sling.commons.contentdetection</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-crypto">org.apache.sling.commons.crypto</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-html">org.apache.sling.commons.html</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-jcr-file">org.apache.sling.commons.jcr.file</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-messaging-mail">org.apache.sling.commons.messaging.mail</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-commons-metrics">org.apache.sling.commons.metrics</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-core">org.apache.sling.distribution.core</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-distribution-journal-it">org.apache.sling.distribution.journal.it</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-i18n">org.apache.sling.i18n</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-contentloader">org.apache.sling.jcr.contentloader</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-filetransfer">org.apache.sling.jcr.filetransfer</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-oak-server">org.apache.sling.jcr.oak.server</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-jcr-repoinit">org.apache.sling.jcr.repoinit</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-integration-tests">org.apache.sling.karaf-integration-tests</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-karaf-launchpad-oak-tar-integration-tests">org.apache.sling.karaf-launchpad-oak-tar-integration-tests</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-pipes">org.apache.sling.pipes</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-resource-presence">org.apache.sling.resource.presence</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-rewriter">org.apache.sling.rewriter</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-core">org.apache.sling.scripting.core</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">org.apache.sling.scripting.freemarker</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy">org.apache.sling.scripting.groovy</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-thymeleaf">org.apache.sling.scripting.thymeleaf</a></li>
+  <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver">org.apache.sling.servlets.resolver</a></li>
+</ul></section></div></div>                            
                         </div>
                     </div>
                 </div>
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Sun Jun 16 20:07:07 2019 +0200</span>
+                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Sat Mar 14 20:11:38 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
