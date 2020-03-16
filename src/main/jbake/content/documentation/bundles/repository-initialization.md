@@ -186,6 +186,12 @@ The language is self-explaining but please refer to the actual test cases for de
     create group since124_B with path /path_B
     delete group since124_C
     
+    # Manage principals in groups, requires
+    # o.a.s.repoinit.parser 1.5.2
+    # and o.a.s.jcr.repoinit 1.1.22
+    add user1,user2 to group grpA
+    remove user3,user5 from group grpB
+    
     # ACLs on user homes, requires
     # o.a.s.repoinit.parser 1.4.2
     # o.a.s.jcr.repoinit 1.1.18
