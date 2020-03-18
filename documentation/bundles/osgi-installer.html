@@ -131,6 +131,15 @@
 <p>In general, the OSGi installer always tries to install the highest version of a bundle if several bundles with the same symbolic name are provided. In this case higher version wins over priority. If an installed bundle is removed by a provider, for example deleted in the repository, the OSGi installer uninstall the bundle. If a bundle is removed from a provider which is currently not installed, this has no effect at all. If an installed bundle is removed and another version of this bundle is provided (a lower version), than this one is installed instead. This is basically a downgrade of the bundle. If a bundle is installed and a higher version is provided, an upgrade is performed. If an installed bundle is managed via any other OSGi tooling, like uninstalling it through the web console, the OSGi installer does no action at all!</p>
 <p>If a failure occurs during bundle installation or update, the OSGi installer will retry this as soon as another bundle has been installed. The common use case is an application installation with several bundles where one bundle depends on another. As they are installed in arbitrary order, this mechanism ensures that in the end all bundles are properly wired and installed.</p>
 <p>When all artifacts have been processed (either install, update or delete), a package refresh is automatically called.</p>
+<h3><a href="#multiversion-support" name="multiversion-support">Multiversion Support</a></h3>
+<p>Starting with Installer Core 3.11.0 the install behavior of bundles may be altered for an instance through setting the System or Framework Property <code>sling.installer.multiversion=true</code>. If this property is set the entity ID of each installable bundle also contains the version making multiple versions of the same bundle agnostic of each other. </p>
+<p>With this flag being set changes to the install candidates only affect the very same version of this bundle. This leads to the following behavior</p>
+<ul>
+  <li>additional bundles in different versions will be installed side-by-side in the osgi framework (no update of existing bundles with same symbolic name but different version)</li>
+  <li>removal of install candidates only will trigger uninstallation of the linked bundle</li>
+  <li>existing bundles will only be updated in case of an update of a SNAPSHOT artifact</li>
+</ul>
+<p>This feature when used may make cases more prominent and relevant to deal with concurrent bundles providing the same java packages which was possible through bundles with different bundlesymbolic names or by other installation mechanisms already granting the option to install concurrent versions of a bundle.</p>
 <h3><a href="#versions-and-snapshots" name="versions-and-snapshots">Versions and Snapshots</a></h3>
 <p>The OSGi installer asumes that a symbolic name and version (not a snapshot version) uniquely identifies a bundle. Obviously this is a common development requirement that a released version of an artifact never changes over time. Therefore, once a bundle with a specific version is installed, it will not be reinstalled if the corresponding artifact changes. For example, if bundle A with version 1.0 is put into the JCR repository, it gets installed. If now this jar in the repository is overwritten either with the same contents or with a different one, and this new artifact has again A as the symbolic name and version set to 1.0, nothing will happen as this exact bundle is already installed.</p>
 <p>During development, SNAPSHOT versions should be used, like 1.0.0-SNAPSHOT (using the Maven convention). If a bundle with a snapshot version is changed, it gets updated by the OSGI installer.</p>
@@ -173,7 +182,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Wed Mar 4 16:48:38 2020 +0100</span>
+                        Last modified by <span class="author">Dominik Suess</span> on <span class="comment">Wed Mar 18 11:34:04 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
