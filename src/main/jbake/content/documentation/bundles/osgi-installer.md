@@ -45,6 +45,19 @@ If a failure occurs during bundle installation or update, the OSGi installer wil
 
 When all artifacts have been processed (either install, update or delete), a package refresh is automatically called.
 
+### Multiversion Support
+
+Starting with Installer Core 3.11.0 the install behavior of bundles may be altered for an instance through setting the System or Framework Property `sling.installer.multiversion=true`.
+If this property is set the entity ID of each installable bundle also contains the version making multiple versions of the same bundle agnostic of each other. 
+
+With this flag being set changes to the install candidates only affect the very same version of this bundle. This leads to the following behavior
+
+* additional bundles in different versions will be installed side-by-side in the osgi framework (no update of existing bundles with same symbolic name but different version)
+* removal of install candidates only will trigger uninstallation of the linked bundle
+* existing bundles will only be updated in case of an update of a SNAPSHOT artifact
+
+This feature when used may make cases more prominent and relevant to deal with concurrent bundles providing the same java packages which was possible through bundles with different bundlesymbolic names or by other installation mechanisms already granting the option to install concurrent versions of a bundle.
+
 ### Versions and Snapshots
 
 The OSGi installer asumes that a symbolic name and version (not a snapshot version) uniquely identifies a bundle. Obviously this is a common development requirement that a released version of an artifact never changes over time. Therefore, once a bundle with a specific version is installed, it will not be reinstalled if the corresponding artifact changes. For example, if  bundle A with version 1.0 is put into the JCR repository, it gets installed. If now this jar in the repository is overwritten either with the same contents or with a different one, and this new artifact has again A as the symbolic name and version set to 1.0, nothing will happen as this exact bundle is already installed.
