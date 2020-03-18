@@ -45,18 +45,26 @@ If a failure occurs during bundle installation or update, the OSGi installer wil
 
 When all artifacts have been processed (either install, update or delete), a package refresh is automatically called.
 
-### Multiversion Support
+### Multi-Version Support
 
-Starting with Installer Core 3.11.0 the install behavior of bundles may be altered for an instance through setting the System or Framework Property `sling.installer.multiversion=true`.
-If this property is set the entity ID of each installable bundle also contains the version making multiple versions of the same bundle agnostic of each other. 
+For now this feature is considered **experimental**, see [SLING-9172](https://issues.apache.org/jira/browse/SLING-9172) 
+and related tickets for details.
 
-With this flag being set changes to the install candidates only affect the very same version of this bundle. This leads to the following behavior
+Starting with version 3.11.0 of the `org.apache.sling.installer.core` bundle, setting the System or Framework Property `sling.installer.multiversion=true` activates multi-version support.
 
-* additional bundles in different versions will be installed side-by-side in the osgi framework (no update of existing bundles with same symbolic name but different version)
-* removal of install candidates only will trigger uninstallation of the linked bundle
-* existing bundles will only be updated in case of an update of a SNAPSHOT artifact
+When this option is active, the entity ID of each installable bundle also contains the version, enabling multiple versions of
+the same bundle to be installed.
 
-This feature when used may make cases more prominent and relevant to deal with concurrent bundles providing the same java packages which was possible through bundles with different bundlesymbolic names or by other installation mechanisms already granting the option to install concurrent versions of a bundle.
+In this case, changes to the installable candidates only affect the very same version of this bundle, leading
+to the following behavior:
+
+* Different versions of the same bundle are installed side-by-side in the OSGi framework, instead of installing only the
+highest version of each bundle.
+* Removing an installable candidate only triggers uninstallation of the corresponding bundle version.
+* Installed bundles are only updated if have SNAPSHOT versions.
+
+This feature allows for providing multiple versions of the same Java packages, which was previously only possible
+by creating bundles with different symbolic names but providing the same packages, or by using other installation mechanisms.
 
 ### Versions and Snapshots
 
