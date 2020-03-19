@@ -157,7 +157,7 @@
     </tr>
     <tr>
       <td><code>sling.servlet.paths.strict</code> </td>
-      <td>When set to <code>true</code>, this enables <em>strict</em> selection mode for servlets bound by path. In this mode, the above <code>.extensions</code>, <code>.selectors</code> and <code>.methods</code> service properties are taken into account to select such servlets. <br> If this property is not set to <code>true</code> the behavior is unchanged from previous versions and only the <code>.paths</code> property is considered when selecting such servlets. <br>See the <a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/it/ServletSelectionIT.java">ServletSelectionIT</a> test for details. <br> Requires version 2.6.0 or later of the <code>org.apache.sling.servlets.resolver</code> module.<br>Binding resources by paths is discouraged, see <a href="#caveats-when-binding-servlets-by-path">caveats when binding servlets by path</a> below. </td>
+      <td>When set to <code>true</code>, this enables <em>strict</em> selection mode for servlets bound by path. In this mode, the above <code>.extensions</code>, <code>.selectors</code> and <code>.methods</code> service properties are taken into account to select such servlets. <br> If this property is not set to <code>true</code> the behavior is unchanged from previous versions and only the <code>.paths</code> property is considered when selecting such servlets. <br>The special value <code>.EMPTY.</code> can be used for the <code>.selectors</code> and <code>.extensions</code> properties to require the corresponding request values to be empty for the servlet to be selected. <br>See the <a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/it/ServletSelectionIT.java">ServletSelectionIT</a> test for details. <br> Requires version 2.6.0 or later of the <code>org.apache.sling.servlets.resolver</code> module.<br>Binding resources by paths is discouraged, see <a href="#caveats-when-binding-servlets-by-path">caveats when binding servlets by path</a> below. </td>
     </tr>
     <tr>
       <td><code>sling.servlet.prefix</code> </td>
@@ -403,7 +403,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Mar 12 17:19:35 2020 +0100</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Mar 19 15:17:35 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
