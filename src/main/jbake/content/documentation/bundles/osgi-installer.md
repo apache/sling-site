@@ -50,7 +50,7 @@ When all artifacts have been processed (either install, update or delete), a pac
 For now this feature is considered **experimental**, see [SLING-9172](https://issues.apache.org/jira/browse/SLING-9172) 
 and related tickets for details.
 
-Starting with version 3.11.0 of the `org.apache.sling.installer.core` bundle, setting the System or Framework Property `sling.installer.multiversion=true` activates multi-version support.
+Starting with version 3.11.0 of the `org.apache.sling.installer.core` bundle, setting the System or Framework Property `sling.installer.experimental.multiversion=true` activates multi-version support.
 
 When this option is active, the entity ID of each installable bundle also contains the version, enabling multiple versions of
 the same bundle to be installed.
