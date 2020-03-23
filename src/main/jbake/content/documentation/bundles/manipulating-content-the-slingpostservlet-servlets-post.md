@@ -390,7 +390,7 @@ The `@Delete` suffixed parameter is also special in that there need not be a cor
 
 The `@Delete` suffixed parameter in fact calls for a sub-operation, which is executed after the node addressed by the request URL is created (if needed) but before any other tasks of content creation and modification are done. Any item -- this may be a property or a node, actually -- addressed by the `@Delete` suffixed parameter is just removed if it exists. If the item does not exist, nothing happens.
 
-
+If using both `@Delete` and `@MoveFrom` in the same request please see the note below on the [interaction between these instructions](#movefrom_delete_interaction).
 
 ###### `@MoveFrom`
 
@@ -416,7 +416,19 @@ The `@MoveFrom` suffixed parameter is assumed to be single-valued. If the parame
 The `@MoveFrom` suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters `text` and `text@MoveFrom` may have unexpected results.
     
 The `@MoveFrom` suffixed parameter in fact calls for a sub-operation, which is executed after the `@Delete` sub operation but before any other tasks of content creation and modification are done.
-    
+
+<a name="movefrom_delete_interaction"></a>
+
+<div class="note">
+<b>Interaction between @MoveFrom and @Delete</b>
+<p>
+Note that using both `@MoveFrom` and `@Delete` in the same request can have undesirable side effects: If `@Delete` points
+to the name of a child node of the parent after the move, <b>that child node is deleted</b> after the move.
+See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> and the
+<a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/3da37cc963fa1367d07eb1ed2d37cb3296d6b270/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletAtMoveTest.java#L209">corresponding integration test</a>. for more info.
+</p>
+</div>
+
     
 ###### `@CopyFrom`
     
