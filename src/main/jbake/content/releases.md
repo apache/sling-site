@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2020
 
+* Slingfeature Maven Plugin 1.1.20 (23rd)
 * Repoinit Parser 1.5.2, Repoinit JCR 1.1.22 (19th)
 * Commons Johnzon 1.2.0 (12th)
 * Servlets Resolver 2.6.4, Security 1.1.20, Content Detection Support 1.0.4 (9th)
