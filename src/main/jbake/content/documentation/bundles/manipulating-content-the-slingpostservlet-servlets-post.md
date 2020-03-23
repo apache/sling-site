@@ -719,8 +719,8 @@ Other parameters for the import operation:
 For example the following command line imports the `/content/sample` page:
 
 
-    $ curl -F":operation=import" -F":contentType=json" -F":name=sample" \    
-       -F':content={ "jcr:primaryType": "nt:unstructured", "propOne" : "propOneValue", "childOne" : { "childPropOne" : true } }' \    
+    $ curl -F":operation=import" -F":contentType=json" -F":name=sample" \
+       -F':content={ "jcr:primaryType": "nt:unstructured", "p1" : "p1Value", "child1" : { "childProp1" : true } }' \
        http://host/content
 
 
@@ -739,7 +739,11 @@ For example the following form imports the `/content/sample` page:
         <input type="hidden" name=":contentType" value="json" />
         <input type="hidden" name=":nameHint" value="sample" />
     
-        <input type="text" name=":content" value="{ &quot;jcr:primaryType&quot; : &quot;nt:unstructured&quot; , &quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } }" />
+        <input type="text" name=":content" value="{
+          &quot;jcr:primaryType&quot; : &quot;nt:unstructured&quot; ,
+          &quot;propOne&quot; : &quot;propOneValue&quot;,
+          &quot;childOne&quot; : { &quot;childPropOne&quot; : true } }"
+        />
         <input type="Submit" />
     </form>
 
