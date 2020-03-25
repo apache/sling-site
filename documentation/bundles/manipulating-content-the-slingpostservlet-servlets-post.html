@@ -399,6 +399,7 @@ of a resource without having to specify the path of each individual child resour
 </code></pre>
 <p>The <code>@Delete</code> suffixed parameter is also special in that there need not be a correlated parameter without a suffix. If both -- a parameters <code>text</code> and <code>text@Delete</code> are set, the <code>text</code> property is first deleted and then filled with the new content.</p>
 <p>The <code>@Delete</code> suffixed parameter in fact calls for a sub-operation, which is executed after the node addressed by the request URL is created (if needed) but before any other tasks of content creation and modification are done. Any item -- this may be a property or a node, actually -- addressed by the <code>@Delete</code> suffixed parameter is just removed if it exists. If the item does not exist, nothing happens.</p>
+<p>If using both <code>@Delete</code> and <code>@MoveFrom</code> in the same request please see the note below on the <a href="#movefrom_delete_interaction">interaction between these instructions</a>.</p>
 <h6><a href="#movefrom" name="movefrom">@MoveFrom</a></h6>
 <p>Now, that your bright and shiny content management application has great Flash-based file upload feature you will want to be able to use the pre-uploaded files for your content with the same request as when you upload other content. For example you might have a node storing some text and an illustration you uploaded as an image file.</p>
 <p>To support this kind of functionality, the <code>@MoveFrom</code> suffixed parameter may be set to the repository path of the node to where you uploaded the image file.</p>
@@ -415,6 +416,16 @@ of a resource without having to specify the path of each individual child resour
 <p>The <code>@MoveFrom</code> suffixed parameter is assumed to be single-valued. If the parameter has multiple values it is ignored completely.</p>
 <p>The <code>@MoveFrom</code> suffixed parameter is also special in that there must not be a correlated parameter without a suffix. Thus have parameters <code>text</code> and <code>text@MoveFrom</code> may have unexpected results.</p>
 <p>The <code>@MoveFrom</code> suffixed parameter in fact calls for a sub-operation, which is executed after the <code>@Delete</code> sub operation but before any other tasks of content creation and modification are done.</p>
+<a name="movefrom_delete_interaction"></a>
+<div class="note">
+<b>Interaction between @MoveFrom and @Delete</b>
+<p>
+Note that using both `@MoveFrom` and `@Delete` in the same request can have undesirable side effects: If `@Delete` points
+to the name of a child node of the parent after the move, <b>that child node is deleted</b> after the move.
+See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> and the
+<a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/3da37cc963fa1367d07eb1ed2d37cb3296d6b270/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/PostServletAtMoveTest.java#L209">corresponding integration test</a>. for more info.
+</p>
+</div>
 <h6><a href="#copyfrom" name="copyfrom">@CopyFrom</a></h6>
 <p>Similar to the <code>@MoveFrom</code> suffix exists a <code>@CopyFrom</code> suffix. The latter works exactly the same as the former except that the item addressed by the parameter value is not moved but just copied.</p>
 <p>Example: Your Flash-based file upload stored the file on the server at <code>/tmp/upload/123</code>. You now want to store this file along with a title and a text in a newly created node. The following form may be your friend:</p>
@@ -804,8 +815,8 @@ of a resource without having to specify the path of each individual child resour
   </tbody>
 </table>
 <p>For example the following command line imports the <code>/content/sample</code> page:</p>
-<pre><code>$ curl -F&quot;:operation=import&quot; -F&quot;:contentType=json&quot; -F&quot;:name=sample&quot; \    
-   -F&#39;:content={ &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;, &quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } }&#39; \    
+<pre><code>$ curl -F&quot;:operation=import&quot; -F&quot;:contentType=json&quot; -F&quot;:name=sample&quot; \
+   -F&#39;:content={ &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;, &quot;p1&quot; : &quot;p1Value&quot;, &quot;child1&quot; : { &quot;childProp1&quot; : true } }&#39; \
    http://host/content
 </code></pre>
 <p>For example the following command line imports the <code>/content/sample</code> page without the optional name parameter:</p>
@@ -819,7 +830,11 @@ of a resource without having to specify the path of each individual child resour
     &lt;input type=&quot;hidden&quot; name=&quot;:contentType&quot; value=&quot;json&quot; /&gt;
     &lt;input type=&quot;hidden&quot; name=&quot;:nameHint&quot; value=&quot;sample&quot; /&gt;
 
-    &lt;input type=&quot;text&quot; name=&quot;:content&quot; value=&quot;{ &amp;quot;jcr:primaryType&amp;quot; : &amp;quot;nt:unstructured&amp;quot; , &amp;quot;propOne&amp;quot; : &amp;quot;propOneValue&amp;quot;, &amp;quot;childOne&amp;quot; : { &amp;quot;childPropOne&amp;quot; : true } }&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;:content&quot; value=&quot;{
+      &amp;quot;jcr:primaryType&amp;quot; : &amp;quot;nt:unstructured&amp;quot; ,
+      &amp;quot;propOne&amp;quot; : &amp;quot;propOneValue&amp;quot;,
+      &amp;quot;childOne&amp;quot; : { &amp;quot;childPropOne&amp;quot; : true } }&quot;
+    /&gt;
     &lt;input type=&quot;Submit&quot; /&gt;
 &lt;/form&gt;
 </code></pre>
@@ -970,7 +985,7 @@ of a resource without having to specify the path of each individual child resour
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Mon Oct 14 19:13:21 2019 +0200</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Mon Mar 23 17:39:14 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
