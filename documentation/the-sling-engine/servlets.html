@@ -229,6 +229,7 @@
   <li>the mapping is not transparent to a developer looking just at the repository</li>
 </ul>
 <p>Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths. </p>
+<p>The <code>sling.servlet.paths.strict</code> mode described on this page slightly improves things by enabling a stricter selection of path-bound servlets, but that's only minor improvements.</p>
 <h3><a href="#registering-a-servlet-using-java-annotations" name="registering-a-servlet-using-java-annotations">Registering a Servlet using Java Annotations</a></h3>
 <p>The "new" (as of 2018) Sling Servlet annotations were presented by Konrad Windszus at <a href="https://adapt.to/2018/en/schedule/lightning-talks/new-sling-servlet-annotations.html">adaptTo() 2018</a>.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7CBjnQnrxTw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -331,18 +332,25 @@ public class MyServlet extends SlingSafeMethodsServlet {
 <h3><a href="#automated-tests" name="automated-tests">Automated tests</a></h3>
 <p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services">launchpad/test-services</a> module contains test servlets that use various combinations of the above properties.</p>
 <p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests">launchpad/integration-tests</a> module contains a number of tests (like the [ExtensionServletTest|https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution/ExtensionServletTest.java] for example) that verify the results.</p>
-<p>Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various servlet registration mechanisms, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know!</p>
+<p>The <a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver">sling-org-apache-sling-servlets-resolver</a> module also has some tests which provide more specific information about these mechanisms.</p>
+<p>Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various servlet registration mechanisms, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, patches are welcome!</p>
 <h3><a href="#example-registration-by-path" name="example-registration-by-path">Example: Registration by Path</a></h3>
+<p>The <code>sling.servlet.paths.strict</code> mode described in the next example is preferred over this older way of mounting servlets by path, where a Servlet service with these properties:</p>
 <pre><code>sling.servlet.paths = [ &quot;/libs/sling/sample/html&quot;, &quot;/libs/sling/sample/txt&quot; ]
-sling.servlet.selectors = [ &quot;img&quot; ]
-sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot; ]
 </code></pre>
-<p>A Servlet service registered with these properties is registered under the following paths:</p>
-<ul>
-  <li><code>/libs/sling/sample/html</code></li>
-  <li><code>/libs/sling/sample/txt</code></li>
-</ul>
-<p>The registration properties <code>sling.servlet.selectors</code> and <code>sling.servlet.extensions</code> <em>are ignored</em> because the servlet is registered only by path (only <code>sling.servlet.paths</code> property is set).</p>
+<p>Is registered under the indicated paths, without requiring Resources to be present under those paths.</p>
+<p>Other <code>sling.servlet.*</code> service properties such are ignored in this mode. To take them into account, use the <code>sling.servlet.paths.strict</code> mode described in the next example.</p>
+<p>See also the <a href="#caveats-when-binding-servlets-by-path">caveats when binding servlets by path</a> .</p>
+<h3><a href="#example-registration-by-path-strict-mode" name="example-registration-by-path-strict-mode">Example: Registration by Path, strict mode</a></h3>
+<p>This strict mode was added in version 2.6.6 of the <code>org.apache.sling.servlets.resolver</code> module and is preferred over the old mode where just the path is taken into account for path-mounted servlets.</p>
+<pre><code>sling.servlet.paths = [ &quot;/libs/sling/sample/html&quot;, &quot;/libs/sling/sample/txt&quot; ]
+sling.servlet.paths.strict = true
+sling.servlet.selectors = [ &quot;.EMPTY.&quot; ]
+sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot; ]
+sling.servlet.methods = [ &quot;GET&quot; ]
+</code></pre>
+<p>The <code>sling.servlet.paths.strict</code> property has been added to allow stricter criteria for selecting path-mounted servlets.</p>
+<p>In the above example, the servlet is mounted on the indicated paths, but only if the request has one of the indicated extensions, uses the GET method and has no selectors. See the above documentation of the <code>sling.servlet.paths.strict</code> property for more information, and see also the <a href="#caveats-when-binding-servlets-by-path">caveats when binding servlets by path</a> .</p>
 <h3><a href="#example-registration-by-resource-type-etc-" name="example-registration-by-resource-type-etc-">Example: Registration by Resource Type etc.</a></h3>
 <pre><code>sling.servlet.resourceTypes = [ &quot;sling/unused&quot; ]
 sling.servlet.selectors = [ &quot;img&quot;, &quot;tab&quot; ]
@@ -403,7 +411,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Mar 19 17:02:08 2020 +0100</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Mar 25 12:55:54 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
