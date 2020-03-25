@@ -62,6 +62,9 @@ Binding servlets by paths has several disadvantages when compared to binding by 
 
 Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths. 
 
+The `sling.servlet.paths.strict` mode described on this page slightly improves things by enabling a stricter
+selection of path-bound servlets, but that's only minor improvements.
+
 ### Registering a Servlet using Java Annotations
 
 The "new" (as of 2018) Sling Servlet annotations were presented by Konrad Windszus at [adaptTo() 2018](https://adapt.to/2018/en/schedule/lightning-talks/new-sling-servlet-annotations.html).
@@ -173,23 +176,46 @@ The [launchpad/test-services](https://github.com/apache/sling-org-apache-sling-l
 
 The [launchpad/integration-tests](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests) module contains a number of tests (like the [ExtensionServletTest|https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution/ExtensionServletTest.java] for example) that verify the results.
 
-Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various servlet registration mechanisms, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, make sure to let us know!
+The [sling-org-apache-sling-servlets-resolver](https://github.com/apache/sling-org-apache-sling-servlets-resolver) module also has some tests which
+provide more specific information about these mechanisms.
+
+Such tests run as part of our continuous integration process, to demonstrate and verify the behavior of the various servlet registration mechanisms, in a way that's guaranteed to be in sync with the actual Sling core code. If you have an idea for additional tests, patches are welcome!
 
 
 ### Example: Registration by Path
 
+The `sling.servlet.paths.strict` mode described in the next example is preferred over this older
+way of mounting servlets by path, where a Servlet service with these properties:
+
     sling.servlet.paths = [ "/libs/sling/sample/html", "/libs/sling/sample/txt" ]
-    sling.servlet.selectors = [ "img" ]
+
+Is registered under the indicated paths, without requiring Resources to be present
+under those paths.
+
+Other `sling.servlet.*` service properties such are ignored in this mode. To take
+them into account, use the `sling.servlet.paths.strict` mode described in the
+next example.
+
+See also the [caveats when binding servlets by path](#caveats-when-binding-servlets-by-path) .
+
+### Example: Registration by Path, strict mode
+
+This strict mode was added in version 2.6.6 of the `org.apache.sling.servlets.resolver` module and is preferred
+over the old mode where just the path is taken into account for path-mounted servlets.
+
+    sling.servlet.paths = [ "/libs/sling/sample/html", "/libs/sling/sample/txt" ]
+    sling.servlet.paths.strict = true
+    sling.servlet.selectors = [ ".EMPTY." ]
     sling.servlet.extensions = [ "html", "txt", "json" ]
+    sling.servlet.methods = [ "GET" ]
 
+The `sling.servlet.paths.strict` property has been added to allow stricter criteria for selecting
+path-mounted servlets.
 
-A Servlet service registered with these properties is registered under the following paths:
-
-* `/libs/sling/sample/html`
-* `/libs/sling/sample/txt`
-
-The registration properties `sling.servlet.selectors` and `sling.servlet.extensions` *are ignored* because the servlet is registered only by path (only `sling.servlet.paths` property is set).
-
+In the above example, the servlet is mounted on the indicated paths, but only if the request has one
+of the indicated extensions, uses the GET method and has no selectors. See the above documentation
+of the `sling.servlet.paths.strict` property for more information, and see also the
+[caveats when binding servlets by path](#caveats-when-binding-servlets-by-path) .
 
 ### Example: Registration by Resource Type etc.
 
