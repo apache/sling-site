@@ -4,6 +4,8 @@ status=published
 tags=news
 tableOfContents=false
 ~~~~~~
+
+* Vulnerability report and fix: CVE-2020-1949: Apache Sling CMS Reflected XSS Vulnerability (March 24th, 2020), see [http://s.apache.org/CVE-2020-1949](http://s.apache.org/CVE-2020-1949)
 * The [adaptTo() 2019 conference](https://adapt.to/2019/) took place in Berlin, Germany. (September 2-4, 2019).
 * Released [Apache Sling 11](/news/sling-11-released.html) (October 23rd, 2018).
 * The [adaptTo() 2018 conference](https://adapt.to/2018/) took place in Potsdam, Germany. (September 10-12, 2018).
