@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2020
 
+* Feature Model 1.1.6 (25th)
 * App CMS 0.11.2 (24th)
 * Slingfeature Maven Plugin 1.1.20 (23rd)
 * Repoinit Parser 1.5.2, Repoinit JCR 1.1.22 (19th)
