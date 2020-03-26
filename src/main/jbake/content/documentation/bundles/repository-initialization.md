@@ -202,6 +202,22 @@ The language is self-explaining but please refer to the actual test cases for de
     set ACL for bob
       allow jcr:read on home(alice), /another/path, home(larry)
     end
+    
+    # Set node properties, requires
+    # o.a.s.repoinit.parser 1.6.2
+    # o.a.s.jcr.repoinit 1.1.24
+    #
+    # 'set' overwrites any existing value while
+    # 'default' only sets the property if not set yet
+    #
+    # The paths must exist first, see "create path"
+    set properties on /pathA, /path/B
+      set sling:ResourceType{String} to /x/y/z
+      default someInteger{Long} to 42
+      set someFlag{Boolean} to true
+      default someDate{Date} to "2020-03-19T11:39:33.437+05:30"
+      set quotedMix to "quoted", non-quoted, "the last \" one"
+    end
 </pre>
 
 ## Providing repoinit statements from the Sling provisioning model or other URLs
