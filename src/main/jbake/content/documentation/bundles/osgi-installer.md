@@ -93,7 +93,7 @@ An installer factory provides support for a specific artifact type, like a confi
 
 * [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)
 * [Content Package Installer Factory](/documentation/bundles/content-package-installer-factory.html)
-* [Subsystem Installer Factory](/documentation/bundles/subsystem-installer-factory.html)
+* [Subsystem Installer Factory (deprecated)](/documentation/bundles/subsystem-installer-factory.html)
 
 ### Providers
 

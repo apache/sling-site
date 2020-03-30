@@ -43,7 +43,7 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [OSGi Installer](/documentation/bundles/osgi-installer.html)
 * [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)
 * [Content Package Installer Factory](/documentation/bundles/content-package-installer-factory.html)
-* [Subsystem Installer Factory](/documentation/bundles/subsystem-installer-factory.html)
+* [Subsystem Installer Factory (deprecated)](/documentation/bundles/subsystem-installer-factory.html)
 * [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html)
 * [File Installer Provider](/documentation/bundles/file-installer-provider.html)
 * [Vault Package Install Hook](/documentation/bundles/installer-provider-installhook.html)
