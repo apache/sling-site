@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2020
 
+* Content Distribution Journal Core 0.1.10 (31st)
 * Feature Model 1.1.8 and Singfeature Maven Plugin 1.1.24 (29th)
 * Feature Model 1.1.6 (25th)
 * App CMS 0.11.2 (24th)
