@@ -8,6 +8,7 @@ tags=development,pmc,deprecation,github
 The following procedure is recommended to deprecate Sling Git repositories, indicating that they
 should no longer be used.
 
+ * Get consensus on our dev list or do a PMC vote, depending on the importance of the module
  * Create a branch named `maintenance` with the last version before deprecation.
  * Empty the `master` branch, keeping just `README.md` file.
  * Add the `deprecated` GitHub topic to the module, using a [.asf.yaml](https://cwiki.apache.org/confluence/display/INFRA/.asf.yaml+features+for+git+repositories) file in the `master` branch.
