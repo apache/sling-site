@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## April 2020
+
+* JCR Oak Server 1.2.4 (5th)
+
 ## March 2020
 
 * Content Distribution Journal Core 0.1.10 (31st)
