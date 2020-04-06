@@ -58,31 +58,31 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <version>4.13.2</version>
+      <version>4.13.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-cm</artifactId>
-      <version>4.13.2</version>
+      <version>4.13.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-container-forked</artifactId>
-      <version>4.13.2</version>
+      <version>4.13.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-junit4</artifactId>
-      <version>4.13.2</version>
+      <version>4.13.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-link-mvn</artifactId>
-      <version>4.13.2</version>
+      <version>4.13.3</version>
       <scope>test</scope>
     </dependency>
 
