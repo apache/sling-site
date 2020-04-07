@@ -212,7 +212,7 @@ def bundles=[
   "Scripting JSP API Wrapper|org.apache.sling.scripting.jsp-api|1.0.2|Y|jar",
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.4.0|Y|jar",
   "Scripting FreeMarker|org.apache.sling.scripting.freemarker|1.0.2|Y|jar",
-  "Scripting Groovy|org.apache.sling.scripting.groovy|1.1.0|Y|jar",
+  "Scripting Groovy|org.apache.sling.scripting.groovy|1.2.0|Y|jar",
   "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.2.0-1.4.0|Y|jar",
   "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.2.4-1.4.0|Y|jar",
   "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.1.4-1.4.0|Y|jar",
