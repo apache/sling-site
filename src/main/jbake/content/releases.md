@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2020
 
+* Slingstart Maven Plugin 1.9.10, Provisioning Model 1.8.6, Feature Model Converter 1.0.14 (9th)
 * Scripting Groovy 1.2.0 (7th)
 * OSGi Installer Packages Factory 1.0.2, JCR Installer 3.2.2, File Installer 1.2.2 (6th)
 * JCR Oak Server 1.2.4 (5th)
