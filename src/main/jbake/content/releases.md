@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2020
 
+* Auth Core 1.4.6 (12th)
 * Installer Core 3.11.2 (11th)
 * Slingstart Maven Plugin 1.9.10, Provisioning Model 1.8.6, Feature Model Converter 1.0.14 (9th)
 * Scripting Groovy 1.2.0 (7th)
