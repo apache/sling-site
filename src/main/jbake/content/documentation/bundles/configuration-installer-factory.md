@@ -53,8 +53,7 @@ This is an example file
 
 #### Limitations
 
-* No writeback support yet ([SLING-8419](https://issues.apache.org/jira/browse/SLING-8419))
-* This is only supported since Installer Configuration Factory 1.2.0 ([SLING-7787](https://issues.apache.org/jira/browse/SLING-7787)).
+* This is only supported since Installer Configuration Factory 1.2.0 .
 
 ### Configuration Files (.config)
 
