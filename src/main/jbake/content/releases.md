@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2020
 
+* App CMS 0.16.2 (20th)
 * Slingfeature Maven Plugin 1.2.0 (18th)
 * Auth Core 1.4.6 (12th)
 * Installer Core 3.11.2 (11th)
@@ -21,7 +22,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Content Distribution Journal Core 0.1.10 (31st)
 * Feature Model 1.1.8 and Singfeature Maven Plugin 1.1.24 (29th)
 * Feature Model 1.1.6 (25th)
-* App CMS 0.11.2, Installer Core 3.11.0 (24th)
+* App CMS 0.16.0, Installer Core 3.11.0 (24th)
 * Slingfeature Maven Plugin 1.1.20 (23rd)
 * Repoinit Parser 1.5.2, Repoinit JCR 1.1.22 (19th)
 * Commons Johnzon 1.2.0 (12th)
