@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2020
 
+* Slingfeature Maven Plugin 1.2.2 (22nd)
 * App CMS 0.16.2 (20th)
 * Slingfeature Maven Plugin 1.2.0 (18th)
 * Auth Core 1.4.6 (12th)
