@@ -9,17 +9,17 @@ Sling supports filtering the request processing by applying filter chains to the
 | Property | Type | Default Value | Valid Values | Description | Engine Version |
 |---|---|---|---|---|---|
 | `sling.filter.scope` | `String`, `String[]` | `(-)` | `REQUEST`, `INCLUDE`, `FORWARD`, `ERROR`, `COMPONENT` | Indication of which chain the filter should be added to. This property is required. If it is missing from the service, the service is ignored because it is assumed another consumer will be interested in using the service. Any unknown values of this property are also ignored causing the service to be completely ignored if none of the values provided by the property are valid. See below for the description of the filter chains. | |
-| `service.ranking` | `Integer` | `0` | Any `Integer` value | Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal `service.ranking` property value (explicitly set or default value of zero) will be ordered according to their `service.id` service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. ||
-| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request or content paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.7.0 |
+| `service.ranking` | `Integer` | `0` | Any `Integer` value | Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal `service.ranking` property value (explicitly set or default value of zero) will be ordered according to their `service.id` service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. | |
+| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request or content paths excluding selectors, extension and suffix that match the supplied regular expression. | >= 2.7.0 |
 | `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to content paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.6.14 - 2.6.22 |
 | `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.4.0 - 2.6.12 |
-| `sling.filter.request.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.7.0 |
-| `sling.filter.resource.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to resource paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.7.0 |
-| `sling.filter.suffix.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to requests with suffix that match the supplied regular expression. | 2.6.14 |
-| `sling.filter.selectors` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose selectors match one or more of the provided ones. | 2.6.14 |
-| `sling.filter.methods` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose methods match one or more of the provided ones. | 2.6.14 |
-| `sling.filter.resourceTypes` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose resource type match one of the provided ones. | 2.6.14 |
-| `sling.filter.extensions` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose extension matches one of the provided ones. | 2.6.14 |
+| `sling.filter.request.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request paths excluding selectors, extension and suffix that match the supplied regular expression. | >= 2.7.0 |
+| `sling.filter.resource.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to resource paths excluding selectors, extension and suffix that match the supplied regular expression. | >= 2.7.0 |
+| `sling.filter.suffix.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to requests with suffix that match the supplied regular expression. | >= 2.6.14 |
+| `sling.filter.selectors` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose selectors match one or more of the provided ones. | >= 2.6.14 |
+| `sling.filter.methods` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose methods match one or more of the provided ones. | >= 2.6.14 |
+| `sling.filter.resourceTypes` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose resource type match one of the provided ones. | >= 2.6.14 |
+| `sling.filter.extensions` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose extension matches one of the provided ones. | >= 2.6.14 |
 
 ## SlingServletFilter Annotation
 
