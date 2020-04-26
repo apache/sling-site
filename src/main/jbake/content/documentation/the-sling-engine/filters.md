@@ -4,29 +4,22 @@ status=published
 tags=core,servlets
 ~~~~~~
 
-Sling supports filter processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface.
+Sling supports filtering the request processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface. For Sling to pick up a `javax.servlet.Filter` service for filter processing some service properties must be set. Following is a table describing those properties, in the next section you learn how to best implement such filters.
 
-<div class="note">
-See <a href="https://issues.apache.org/jira/browse/SLING-1213">SLING-1213</a>,
-<a href="https://issues.apache.org/jira/browse/SLING-1734">SLING-1734</a>, and
-<a href="http://markmail.org/message/quxhm7d5s6u66crr">Registering filters with Sling</a>
- for more details. The 
-<a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/filters/NoPropertyFilter.java">NoPropertyFilter</a>
-from our integration tests shows an example Sling Filter.
-</div>
-
-For Sling to pick up a `javax.servlet.Filter` service for filter processing two service registration properties are inspected:
-
-| Property | Type | Default Value | Valid Values | Description |
-|---|---|---|---|---|
-| `sling.filter.scope` | `String`, `String[]` or `Vector<String>` | `request` | `REQUEST`, `INCLUDE`, `FORWARD`, `ERROR`, `COMPONENT` | Indication of which chain the filter should be added to. This property is required. If it is missing from the service, the service is ignored because it is assumed another consumer will be interested in using the service. Any unknown values of this property are also ignored causing the service to be completely ignored if none of the values provided by the property are valid. See below for the description of the filter chains. |
-| `service.ranking` | `Integer` | `0` | Any `Integer` value | Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal `service.ranking` property value (explicitly set or default value of zero) will be ordered according to their `service.id` service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. |
-| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to resource paths that match the supplied regular expression. *This does not refer to the request path, but rather to the resolved resource path excluding selectors, extension and suffix* Requires Sling Engine 2.4.0. |
-| `sling.filter.suffix.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to requests with suffix that match the supplied regular expression. Requires Sling Engine 2.6.14. |
-| `sling.filter.selectors` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose selectors match one or more of the provided ones. Requires Sling Engine 2.6.14. |
-| `sling.filter.methods` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose methods match one or more of the provided ones. Requires Sling Engine 2.6.14. |
-| `sling.filter.resourceTypes` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose resource type match one of the provided ones. Requires Sling Engine 2.6.14. |
-| `sling.filter.extensions` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose extension matches one of the provided ones. Requires Sling Engine 2.6.14. |
+| Property | Type | Default Value | Valid Values | Description | Engine Version |
+|---|---|---|---|---|---|
+| `sling.filter.scope` | `String`, `String[]` | `(-)` | `REQUEST`, `INCLUDE`, `FORWARD`, `ERROR`, `COMPONENT` | Indication of which chain the filter should be added to. This property is required. If it is missing from the service, the service is ignored because it is assumed another consumer will be interested in using the service. Any unknown values of this property are also ignored causing the service to be completely ignored if none of the values provided by the property are valid. See below for the description of the filter chains. | |
+| `service.ranking` | `Integer` | `0` | Any `Integer` value | Indication of where to place the filter in the filter chain. The higher the number the earlier in the filter chain. This value may span the whole range of integer values. Two filters with equal `service.ranking` property value (explicitly set or default value of zero) will be ordered according to their `service.id` service property as described in section 5.2.5, Service Properties, of the OSGi Core Specification R 4.2. ||
+| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request or content paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.7.0 |
+| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to content paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.6.14 - 2.6.22 |
+| `sling.filter.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.4.0 - 2.6.12 |
+| `sling.filter.request.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to request paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.7.0 |
+| `sling.filter.resource.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to resource paths excluding selectors, extension and suffix that match the supplied regular expression. | 2.7.0 |
+| `sling.filter.suffix.pattern` | `String`| `(-)` | Any `String` value | Restrict the filter to requests with suffix that match the supplied regular expression. | 2.6.14 |
+| `sling.filter.selectors` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose selectors match one or more of the provided ones. | 2.6.14 |
+| `sling.filter.methods` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose methods match one or more of the provided ones. | 2.6.14 |
+| `sling.filter.resourceTypes` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose resource type match one of the provided ones. | 2.6.14 |
+| `sling.filter.extensions` | `String[]`| `(-)` | Any `String` value | Restrict the filter to requests whose extension matches one of the provided ones. | 2.6.14 |
 
 ## SlingServletFilter Annotation
 
@@ -46,25 +39,25 @@ Coding the above being a bit tedious, [Apache Sling Servlets Annotations](https:
                            selectors = {"foo","bar"},
                            methods = {"GET","HEAD"})
        public class FooBarFilter implements Filter {
-       
+
            @Override
            public void init(FilterConfig filterConfig) throws ServletException {
-       
+
            }
-       
+
            @Override
            public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
                SlingHttpServletResponse slingResponse = (SlingHttpServletResponse)response;
                //will only be run on (GET|HEAD) /content/.*.foo|bar.txt|json/suffix/foo requests
                //code here can be reduced to what should actually be done in that case
-               //for other requests, this filter will not be in the call stack 
+               //for other requests, this filter will not be in the call stack
                slingResponse.addHeader("foobared", "true");
                chain.doFilter(request, slingResponse);
            }
-       
+
            @Override
            public void destroy() {
-       
+
            }
        }
 
@@ -139,22 +132,22 @@ The request traces provided at `/system/console/requests` contain information ab
 The configuration status page at `/system/console/config` includes the current list of active filters in its *Servlet Filters* category, as in this example:
 
     Current Apache Sling Servlet Filter Configuration
-    
+
     Request Filters:
     -2147483648 : class org.apache.sling.bgservlets.impl.BackgroundServletStarterFilter (2547)
     -3000 : class org.apache.sling.portal.container.internal.request.PortalFilter (2562)
     -2500 : class org.apache.sling.rewriter.impl.RewriterFilter (3365)
     -700 : class org.apache.sling.i18n.impl.I18NFilter (2334)
     0 : class org.apache.sling.engine.impl.debug.RequestProgressTrackerLogFilter (2402)
-    
+
     Error Filters:
     ---
-    
+
     Include Filters:
-    
+
     Forward Filters:
     1000 : class some.package.DebugFilter (2449)
-    
+
     Component Filters:
     -200 : class some.package.SomeComponentFilter (2583)
 
