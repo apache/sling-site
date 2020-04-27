@@ -12,6 +12,8 @@
 // To convert from the old svn downloads.list ust
 //    while read l; do echo "  \"$l\","; done < content/downloads.list
 // ------------------------------------------------------------------------------------------------
+U = new includes.U(config)
+def PIPE_SEP = "\\|"
 def launchpadVersion="11"
 
 def slingIDETooling=[
@@ -366,7 +368,7 @@ layout 'layout/main.tpl', true,
 							tbody() {
 								slingApplication.each { line ->
 									tr() {
-										def data = line.split("\\|")
+										def data = U.splitLine(line, PIPE_SEP, 6)
 										td(data[0])
 										td(data[4])
 										td(){
@@ -388,7 +390,7 @@ layout 'layout/main.tpl', true,
 							tbody() {
 								slingIDETooling.each { line ->
 									tr() {
-										def data = line.split("\\|")
+										def data = U.splitLine(line, PIPE_SEP, 3)
 										td(data[0])
 										td(data[2])
 										td(data[3])
@@ -407,7 +409,7 @@ layout 'layout/main.tpl', true,
 							tbody() {
 								bundles.each { line ->
 									tr() {
-										def data = line.split("\\|")
+										def data = U.splitLine(line, PIPE_SEP, 5)
 										td(data[0])
 										td(data[2])
 										def artifact = data[1]
@@ -434,7 +436,7 @@ layout 'layout/main.tpl', true,
 							tbody() {
 								mavenPlugins.each { line ->
 									tr() {
-										def data = line.split("\\|")
+										def data = U.splitLine(line, PIPE_SEP, 4)
 										td(data[0])
 										td(data[2])
 										def artifact = data[1]
@@ -460,7 +462,7 @@ layout 'layout/main.tpl', true,
 							tbody() {
 								bndPlugins.each { line ->
 									tr() {
-										def data = line.split("\\|")
+										def data = U.splitLine(line, PIPE_SEP, 4)
 										td(data[0])
 										td(data[2])
 										def artifact = data[1]
@@ -486,7 +488,7 @@ layout 'layout/main.tpl', true,
 							tbody() {
 								deprecated.each { line ->
 									tr() {
-										def data = line.split("\\|")
+										def data = U.splitLine(line, PIPE_SEP, 4)
 										td(data[0])
 										td(data[1])
 										td(data[3])

@@ -9,6 +9,19 @@ class U {
         def once = new runonce.OncePerBuild(jbakeConfig)
     }
 
+    def splitLine(line, separator, expectedParts) {
+        def result = line.split(separator)
+        if(result.length < expectedParts) {
+            throw new Exception(
+                "Expected " + expectedParts
+                + " parts separated with " + separator
+                + ", but got " + result.length
+                + "  in line: " + line
+            )
+        }
+        return result
+    }
+
     def processBody(content, config) {
     	def str = content.body
 
