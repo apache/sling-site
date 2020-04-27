@@ -117,8 +117,8 @@
 <div class="row"><div><section><p>The Sling Servlet Helpers bundle provides mock implementations of the <code>SlingHttpServletRequest</code>, <code>SlingHttpServletResponse</code> and related classes.</p>
 <p>Those mock implementations are meant to be used in tests and also with services like the <code>SlingRequestProcessor</code> when making requests to that service outside of an HTTP request processing context.</p>
 <p>See the <a href="https://github.com/apache/sling-org-apache-sling-servlet-helpers">automated tests</a> of the <code>servlet-helpers</code> module for more info.</p>
-<h2><a href="#usage" name="usage">Usage</a></h2>
-<h3><a href="#slinghttpservletrequest" name="slinghttpservletrequest">SlingHttpServletRequest</a></h3>
+<h2><a href="#usage" id="usage">Usage</a></h2>
+<h3><a href="#slinghttpservletrequest" id="slinghttpservletrequest">SlingHttpServletRequest</a></h3>
 <p>Example for preparing a sling request with custom request data:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling request
 MockSlingHttpServletRequest request = new MockSlingHttpServletRequest(resourceResolver);
@@ -152,7 +152,7 @@ request.addHeader(&quot;header1&quot;, &quot;value1&quot;);
 // set cookies
 request.addCookie(new Cookie(&quot;cookie1&quot;, &quot;value1&quot;));
 </code></pre>
-<h3><a href="#slinghttpservletresponse" name="slinghttpservletresponse">SlingHttpServletResponse</a></h3>
+<h3><a href="#slinghttpservletresponse" id="slinghttpservletresponse">SlingHttpServletResponse</a></h3>
 <p>Example for preparing a sling response which can collect the data that was written to it:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare sling response
 MockSlingHttpServletResponse response = new MockSlingHttpServletResponse();
@@ -176,7 +176,8 @@ assertEquals(TEST_CONTENT, response.getOutputAsString());
 
 // validate response body as binary data
 assertArrayEquals(TEST_DATA, response.getOutput());
-</code></pre></section></div></div>                            
+</code></pre>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

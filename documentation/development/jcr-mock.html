@@ -125,33 +125,33 @@
 <div class="row"><div><section><p>Mock implementation of selected JCR APIs for easier testing. It stores all data in-memory in a HashMap to ensure instantly creating and destroying of the JCR repository.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#maven-dependency" name="maven-dependency">Maven Dependency</a></h2>
+<h2><a href="#maven-dependency" id="maven-dependency">Maven Dependency</a></h2>
 <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.jcr-mock&lt;/artifactId&gt;
 &lt;/dependency&gt;
 </code></pre>
 <p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p>
-<h2><a href="#implemented-mock-features" name="implemented-mock-features">Implemented mock features</a></h2>
+<h2><a href="#implemented-mock-features" id="implemented-mock-features">Implemented mock features</a></h2>
 <p>The mock implementation supports:</p>
 <ul>
-  <li>Reading and writing all data (primitive values, arrays, binary data) via the JCR API</li>
-  <li>Creating any number of nodes and properties (stored in-memory in a hash map)</li>
-  <li>Register namespaces</li>
-  <li>Queries are supported by setting expected results for a given query</li>
+<li>Reading and writing all data (primitive values, arrays, binary data) via the JCR API</li>
+<li>Creating any number of nodes and properties (stored in-memory in a hash map)</li>
+<li>Register namespaces</li>
+<li>Queries are supported by setting expected results for a given query</li>
 </ul>
 <p>The following features are <em>not supported</em>:</p>
 <ul>
-  <li>Node types are supported in the API, but their definitions and constraints are not applied</li>
-  <li>Versioning not supported</li>
-  <li>Transactions not supported</li>
-  <li>Observation events can be registered but are ignored</li>
-  <li>Access control always grants access</li>
-  <li>Exporting/Importing data via document and system views not supported</li>
-  <li>Workspace management methods not supported</li>
+<li>Node types are supported in the API, but their definitions and constraints are not applied</li>
+<li>Versioning not supported</li>
+<li>Transactions not supported</li>
+<li>Observation events can be registered but are ignored</li>
+<li>Access control always grants access</li>
+<li>Exporting/Importing data via document and system views not supported</li>
+<li>Workspace management methods not supported</li>
 </ul>
-<h2><a href="#usage" name="usage">Usage</a></h2>
-<h3><a href="#getting-jcr-mock-objects" name="getting-jcr-mock-objects">Getting JCR mock objects</a></h3>
+<h2><a href="#usage" id="usage">Usage</a></h2>
+<h3><a href="#getting-jcr-mock-objects" id="getting-jcr-mock-objects">Getting JCR mock objects</a></h3>
 <p>The factory class <code>MockJcr</code> allows to instantiate the different mock implementations.</p>
 <p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// get session
@@ -161,7 +161,7 @@ Session session = MockJcr.newSession();
 Repository repository = MockJcr.newRepository();
 </code></pre>
 <p>The repository is empty and contains only the root node. You can use the JCR API to read or write content.</p>
-<h3><a href="#mocking-queries" name="mocking-queries">Mocking queries</a></h3>
+<h3><a href="#mocking-queries" id="mocking-queries">Mocking queries</a></h3>
 <p>If you want to test code that contains a JCR query you can simulate a query execution and set the result to return during setting up your unit test.</p>
 <p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// prepare mocked search result
@@ -173,7 +173,8 @@ MockJcr.setQueryResult(session, resultNodes);
 // return this result for a specific query
 MockJcr.setQueryResult(session, &quot;your query statement&quot;, Query.JCR_SQL2, resultNodes);
 </code></pre>
-<p>Alternatively you can use the <code>MockJcr.addQueryResultHandler</code> method to pass a callback object that allows you to return a query result after inspecting the given query object.</p></section></div></div>                            
+<p>Alternatively you can use the <code>MockJcr.addQueryResultHandler</code> method to pass a callback object that allows you to return a query result after inspecting the given query object.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

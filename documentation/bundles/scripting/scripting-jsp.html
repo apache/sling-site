@@ -122,450 +122,431 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><p>The Apache Sling JSP Scripting Engine is implemented by the <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp"><code>org.apache.sling.scripting.jsp</code></a>  bundle, based on the Jasper 2 JSP engine.</p>
-<p>On top of that Apache Sling also provides its own JSP Taglib, implemented by the  <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp-taglib"><code>org.apache.sling.scripting.jsp.taglib</code></a> bundle.</p>
-<p>The Sling Scripting JSP Taglib supports the use of Sling as an application in JSP pages. The Sling Taglib provides the  ability to invoke JSP scripts, include Resources and interact with the Sling Repository, all with JSP tags and  <a href="http://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html">Expression Language (EL)</a> functions.</p>
-<h2><a href="#use" name="use">Use</a></h2>
+<div class="row"><div><section><p>The Apache Sling JSP Scripting Engine is implemented by the <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp"><code>org.apache.sling.scripting.jsp</code></a> bundle, based on the Jasper 2 JSP engine.</p>
+<p>On top of that Apache Sling also provides its own JSP Taglib, implemented by the <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/jsp-taglib"><code>org.apache.sling.scripting.jsp.taglib</code></a> bundle.</p>
+<p>The Sling Scripting JSP Taglib supports the use of Sling as an application in JSP pages.  The Sling Taglib provides the ability to invoke JSP scripts, include Resources and interact with the Sling Repository, all with JSP tags and <a href="http://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html">Expression Language (EL)</a> functions.</p>
+<h2><a href="#use" id="use">Use</a></h2>
 <p>Using the Sling Taglib in a JSP page is as simple as including the Taglib include in your JSP, with the correct URI for the version of the Sling Taglib installed.</p>
 <pre><code>&lt;%@taglib prefix=&quot;sling&quot; uri=&quot;http://sling.apache.org/taglibs/sling&quot; %&gt;
 </code></pre>
-<p>Generally, the prefix to use is <code>sling</code>. Often applications include a global JSP file which includes the Sling Taglib and sets up all of the application variables and methods.</p>
+<p>Generally, the prefix to use is <code>sling</code>.  Often applications include a global JSP file which includes the Sling Taglib and sets up all of the application variables and methods.</p>
 <p>The Sling Taglib does not attempt to reproduce the functionality of other Tag Libraries, such as <a href="http://www.oracle.com/technetwork/java/index-jsp-135995.html">JSTL</a>; additional Tag Libraries may be required to fully leverage the Sling Taglib.</p>
-<h2><a href="#taglib-versions" name="taglib-versions">Taglib Versions</a></h2>
+<h2><a href="#taglib-versions" id="taglib-versions">Taglib Versions</a></h2>
 <p>There have been a number of releases of the Sling Taglibs, including versions with different URIs.</p>
 <table>
-  <thead>
-    <tr>
-      <th>Taglib Version </th>
-      <th>Bundle Version </th>
-      <th>URI </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1.0 </td>
-      <td>2.0.6 </td>
-      <td>http://sling.apache.org/taglibs/sling/1.0 </td>
-    </tr>
-    <tr>
-      <td>1.1 </td>
-      <td>2.1.0 </td>
-      <td>http://sling.apache.org/taglibs/sling/1.1 </td>
-    </tr>
-    <tr>
-      <td>1.2 </td>
-      <td>2.1.8 </td>
-      <td>http://sling.apache.org/taglibs/sling/1.2 </td>
-    </tr>
-    <tr>
-      <td>1.3 </td>
-      <td>2.2.0 </td>
-      <td>http://sling.apache.org/taglibs/sling </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Taglib Version </th><th> Bundle Version </th><th> URI </th></tr>
+</thead>
+<tbody>
+<tr><td> 1.0 </td><td> 2.0.6 </td><td> http://sling.apache.org/taglibs/sling/1.0 </td></tr>
+<tr><td> 1.1 </td><td> 2.1.0 </td><td> http://sling.apache.org/taglibs/sling/1.1 </td></tr>
+<tr><td> 1.2 </td><td> 2.1.8 </td><td> http://sling.apache.org/taglibs/sling/1.2 </td></tr>
+<tr><td> 1.3 </td><td> 2.2.0 </td><td> http://sling.apache.org/taglibs/sling </td></tr>
+</tbody>
 </table>
 <p>All releases from 1.3 onward are expected to use the URI <code>http://sling.apache.org/taglibs/sling</code> to ensure ease of upgrading to newer versions of the Taglib.</p>
-<h2><a href="#expression-language-functions" name="expression-language-functions">Expression Language Functions</a></h2>
+<h2><a href="#expression-language-functions" id="expression-language-functions">Expression Language Functions</a></h2>
 <p>The Sling Taglib includes a number of Expression Language Functions which can be used to access the repository.</p>
-<h3><a href="#adaptto" name="adaptto">adaptTo</a></h3>
+<h3><a href="#adaptto" id="adaptto">adaptTo</a></h3>
 <p>Adapts an Adaptable to another class.</p>
 <ul>
-  <li>Returns: <code>java.lang.Object</code></li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.adapter.Adaptable</code> - The object to adapt</li>
-      <li><code>java.lang.String</code> - The name of the class to which to adapt the adaptable</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
-</ul>
-<p><em>Example Usage</em></p>
-<pre><code>&lt;c:set var=&quot;myProperties&quot; value=&quot;${sling:adaptTo(resource,&#39;org.apache.sling.api.resource.ValueMap&#39;)}&quot; /&gt;
-</code></pre>
-<h3><a href="#encode" name="encode">encode</a></h3>
-<p>Writes properly Cross Site Scripting (XSS) encoded text to the response using the OWASP ESAPI. Supports a number of encoding modes.</p>
+<li>Returns: <code>java.lang.Object</code></li>
+<li>Accepts:
 <ul>
-  <li>Returns: <code>java.util.String</code> - An encoded text</li>
-  <li>Accepts:
-    <ul>
-      <li><code>java.lang.String</code> - The text to encode</li>
-      <li><code>java.lang.String</code> - The encoding mode, one of HTML, HTML_ATTR, XML, XML_ATTR, JS</li>
-    </ul>
-  </li>
-  <li>Since: 1.4</li>
+<li><code>org.apache.sling.api.adapter.Adaptable</code> - The object to adapt</li>
+<li><code>java.lang.String</code> - The name of the class to which to adapt the adaptable</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>${sling:encode(&#39;&lt;script&gt;alert(&quot;Bad Stuff!&quot;);&lt;/script&gt;&#39;,&#39;HTML&#39;)}
+<pre><code>&lt;c:set var=&quot;myProperties&quot; value=&quot;${sling:adaptTo(resource,'org.apache.sling.api.resource.ValueMap')}&quot; /&gt;
 </code></pre>
-<h3><a href="#findresources" name="findresources">findResources</a></h3>
+<h3><a href="#encode" id="encode">encode</a></h3>
+<p>Writes properly Cross Site Scripting (XSS) encoded text to the response using the OWASP ESAPI.   Supports a number of encoding modes.</p>
+<ul>
+<li>Returns: <code>java.util.String</code> - An encoded text</li>
+<li>Accepts:
+<ul>
+<li><code>java.lang.String</code> - The text to encode</li>
+<li><code>java.lang.String</code> - The encoding mode, one of HTML, HTML_ATTR, XML, XML_ATTR, JS</li>
+</ul>
+</li>
+<li>Since: 1.4</li>
+</ul>
+<p><em>Example Usage</em></p>
+<pre><code>${sling:encode('&lt;script&gt;alert(&quot;Bad Stuff!&quot;);&lt;/script&gt;','HTML')}
+</code></pre>
+<h3><a href="#findresources" id="findresources">findResources</a></h3>
 <p>Searches for resources using the given query formulated in the given language.</p>
 <ul>
-  <li>Returns: <code>java.util.Iterator</code> - An Iterator of Resource objects matching the query.</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.ResourceResolver</code> - The Resource Resolver to use for the query.</li>
-      <li><code>java.lang.String</code> - The query string to use to find the resources.</li>
-      <li><code>java.lang.String</code> - The language in which the query is formulated.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Returns: <code>java.util.Iterator</code> - An Iterator of Resource objects matching the query.</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.ResourceResolver</code> - The Resource Resolver to use for the query.</li>
+<li><code>java.lang.String</code> - The query string to use to find the resources.</li>
+<li><code>java.lang.String</code> - The language in which the query is formulated.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;c:forEach var=&quot;found&quot; items=&quot;${sling:findResources(resourceResolver,&#39;/jcr:root//*[jcr:contains(., &#39;Sling&#39;)] order by @jcr:score&#39;,&#39;xpath&#39;)&quot;&gt;
+<pre><code>&lt;c:forEach var=&quot;found&quot; items=&quot;${sling:findResources(resourceResolver,'/jcr:root//*[jcr:contains(., 'Sling')] order by @jcr:score','xpath')&quot;&gt;
     &lt;li&gt;${found.path}&lt;/li&gt;
 &lt;/c:forEach&gt;
 </code></pre>
-<h3><a href="#getabsoluteparent" name="getabsoluteparent">getAbsoluteParent</a></h3>
+<h3><a href="#getabsoluteparent" id="getabsoluteparent">getAbsoluteParent</a></h3>
 <p>Method for retrieving an absolute parent resource.</p>
 <ul>
-  <li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The parent resource at the specified level</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.Resource</code> - The current resource</li>
-      <li><code>java.lang.String</code> - The absolute level for the parent resource to retrieve</li>
-    </ul>
-  </li>
-  <li>Since: Bundle 2.3.0</li>
+<li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The parent resource at the specified level</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.Resource</code> - The current resource</li>
+<li><code>java.lang.String</code> - The absolute level for the parent resource to retrieve</li>
+</ul>
+</li>
+<li>Since: Bundle 2.3.0</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getAbsoluteParent(resource,&#39;2&#39;)}&quot; /&gt;
+<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getAbsoluteParent(resource,'2')}&quot; /&gt;
 </code></pre>
-<h3><a href="#getparents" name="getparents">getParents</a></h3>
+<h3><a href="#getparents" id="getparents">getParents</a></h3>
 <p>Function for retrieving all of the parent resources of a specified resource, returning them in hierarchy order.</p>
 <ul>
-  <li>Returns: <code>java.lang.Iterator</code> - an iterator of the parent resources in order</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.Resource</code> - The current resource for which to retrieve the parents</li>
-      <li><code>java.lang.String</code> - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned</li>
-    </ul>
-  </li>
-  <li>Since: Bundle 2.3.0</li>
+<li>Returns: <code>java.lang.Iterator</code> - an iterator of the parent resources in order</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.Resource</code> - The current resource for which to retrieve the parents</li>
+<li><code>java.lang.String</code> - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned</li>
+</ul>
+</li>
+<li>Since: Bundle 2.3.0</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;c:set var=&quot;parents&quot; value=&quot;${sling:getParents(resource,&#39;2&#39;)}&quot; /&gt;
+<pre><code>&lt;c:set var=&quot;parents&quot; value=&quot;${sling:getParents(resource,'2')}&quot; /&gt;
 &lt;c:forEach var=&quot;parent&quot; items=&quot;${parents}&quot;&gt;
     &lt;div&gt;${parent.path}&lt;/div&gt;
 &lt;/c:forEach&gt;
 </code></pre>
-<h3><a href="#getrelativeresource" name="getrelativeresource">getRelativeResource</a></h3>
+<h3><a href="#getrelativeresource" id="getrelativeresource">getRelativeResource</a></h3>
 <p>Gets the resource at the relative path to the provided resource.</p>
 <ul>
-  <li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The resource at the relative path.</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.Resource</code> - The resource relative to which to find the path.</li>
-      <li><code>java.lang.String</code> - The relative path at which to find the resource.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The resource at the relative path.</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.Resource</code> - The resource relative to which to find the path.</li>
+<li><code>java.lang.String</code> - The relative path at which to find the resource.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getRelativeResource(resource,&#39;jcr:content&#39;)}&quot; /&gt;
+<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getRelativeResource(resource,'jcr:content')}&quot; /&gt;
 </code></pre>
-<h3><a href="#getresource" name="getresource">getResource</a></h3>
+<h3><a href="#getresource" id="getresource">getResource</a></h3>
 <p>Method allow for the retrieval of resources.</p>
 <ul>
-  <li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The resource at the path.</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.ResourceResolver</code> - The current resource resolver.</li>
-      <li><code>java.lang.String</code> - The path at which to find the resource.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Returns: <code>org.apache.sling.api.resource.Resource</code> - The resource at the path.</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.ResourceResolver</code> - The current resource resolver.</li>
+<li><code>java.lang.String</code> - The path at which to find the resource.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getResource(resourceResolver,&#39;/content&#39;)}&quot; /&gt;
+<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getResource(resourceResolver,'/content')}&quot; /&gt;
 </code></pre>
-<h3><a href="#getvalue" name="getvalue">getValue</a></h3>
+<h3><a href="#getvalue" id="getvalue">getValue</a></h3>
 <p>Gets the value of the specified key from the ValueMap and either coerses the value into the specified type or uses the specified type as a default depending on the parameter passed in.</p>
 <p>If the third parameter is a class, the resulting value will be coersed into the class, otherwise, the third parameter is used as the default when retrieving the value from the <code>ValueMap</code>.</p>
 <ul>
-  <li>Returns: <code>java.lang.Object</code> - The value.</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.ValueMap</code> - The ValueMap from which to retrieve the value.</li>
-      <li><code>java.lang.String</code> - The key for the value to retrieve</li>
-      <li><code>java.lang.Object</code> - Either the default value or the class to which to coerce the value.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Returns: <code>java.lang.Object</code> - The value.</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.ValueMap</code> - The ValueMap from which to retrieve the value.</li>
+<li><code>java.lang.String</code> - The key for the value to retrieve</li>
+<li><code>java.lang.Object</code> - Either the default value or the class to which to coerce the value.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getValue(properties,&#39;jcr:title&#39;,resource.name)}&quot; /&gt;
+<pre><code>&lt;c:set var=&quot;content&quot; value=&quot;${sling:getValue(properties,'jcr:title',resource.name)}&quot; /&gt;
 </code></pre>
-<h3><a href="#haschildren" name="haschildren">hasChildren</a></h3>
+<h3><a href="#haschildren" id="haschildren">hasChildren</a></h3>
 <p>Return true if the specified resource has child resources.</p>
 <ul>
-  <li>Returns: <code>java.lang.Boolean</code> - True if there are child resource of the specified resource</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.Resource</code> - The resource of which to check for children.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Returns: <code>java.lang.Boolean</code> - True if there are child resource of the specified resource</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.Resource</code> - The resource of which to check for children.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;c:if test=&quot;${sling:hasChildren(resource)&quot;&gt;
     &lt;h1&gt;Do Something&lt;/h1&gt;
 &lt;/c:if&gt;
 </code></pre>
-<h3><a href="#listchildren" name="listchildren">listChildren</a></h3>
+<h3><a href="#listchildren" id="listchildren">listChildren</a></h3>
 <p>Method for allowing the invocation of the Sling Resource listChildren method.</p>
 <ul>
-  <li>Returns: <code>java.util.Iterator</code> - The children of the resource.</li>
-  <li>Accepts:
-    <ul>
-      <li><code>org.apache.sling.api.resource.Resource</code> - The resource of which to list the children.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Returns: <code>java.util.Iterator</code> - The children of the resource.</li>
+<li>Accepts:
+<ul>
+<li><code>org.apache.sling.api.resource.Resource</code> - The resource of which to list the children.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;c:forEach var=&quot;child&quot; items=&quot;${sling:listChildren(resource)&quot;&gt;
     &lt;li&gt;${child.path}&lt;/li&gt;
 &lt;/c:forEach&gt;
 </code></pre>
-<h2><a href="#tags" name="tags">Tags</a></h2>
+<h2><a href="#tags" id="tags">Tags</a></h2>
 <p>The Sling Taglib includes a number of Tags which can be used to access the repository, handle the inclusion of scripts and manage requests.</p>
-<h3><a href="#adaptto" name="adaptto">adaptTo</a></h3>
+<h3><a href="#adaptto" id="adaptto">adaptTo</a></h3>
 <p>Adapts adaptables to objects of other types.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>adaptable - The adaptable object to adapt.</li>
-      <li>adaptTo - The class name to which to adapt the adaptable.</li>
-      <li>var - The name of the variable to which to save the adapted object.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Attributes
+<ul>
+<li>adaptable - The adaptable object to adapt.</li>
+<li>adaptTo - The class name to which to adapt the adaptable.</li>
+<li>var - The name of the variable to which to save the adapted object.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:adaptTo adaptable=&quot;${resource}&quot; adaptTo=&quot;org.apache.sling.api.resource.ValueMap&quot; var=&quot;myProps&quot; /&gt;
 </code></pre>
-<h3><a href="#call" name="call">call</a></h3>
+<h3><a href="#call" id="call">call</a></h3>
 <p>Execute a script.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>flush - Whether to flush the output before including the target.</li>
-      <li>script - The script to include.</li>
-      <li>ignoreComponentHierarchy - Controls if the component hierarchy should be ignored for script resolution. If true, only the search paths are respected.</li>
-    </ul>
-  </li>
-  <li>Since: 1.2</li>
+<li>Attributes
+<ul>
+<li>flush - Whether to flush the output before including the target.</li>
+<li>script - The script to include.</li>
+<li>ignoreComponentHierarchy - Controls if the component hierarchy should be ignored for script resolution. If true, only the search paths are respected.</li>
+</ul>
+</li>
+<li>Since: 1.2</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:call script=&quot;myscript.jsp&quot; /&gt;
 </code></pre>
-<h3><a href="#defineobjects" name="defineobjects">defineObjects</a></h3>
+<h3><a href="#defineobjects" id="defineobjects">defineObjects</a></h3>
 <p>Defines regularly used scripting variables. By default the following scripting variables are defined through this tag:</p>
 <ul>
-  <li><strong>slingRequest</strong>, SlingHttpServletRequest object, providing access to the HTTP request header information - extends the standard HttpServletRequest - and provides access to Sling-specific things like resource, path info, selector, etc.</li>
-  <li><strong>slingResponse</strong>, SlingHttpServletResponse object, providing access for the HTTP response that is created by the server. This is currently the same as the HttpServletResponse from which it extends.</li>
-  <li><strong>resourceResolver</strong>, Current ResourceResolver. Same as slingRequest.getResourceResolver().</li>
-  <li><strong>sling</strong>, SlingScriptHelper, containing convenience methods for scripts, mainly sling.include('/some/other/resource') for including the responses of other resources inside this response (eg. embedding header html snippets) and sling.getService(foo.bar.Service.class) to retrieve OSGi services available in Sling (Class notation depending on scripting language).</li>
-  <li><strong>resource</strong>, current Resource to handle, depending on the URL of the request. Same as slingRequest.getResource().</li>
-  <li><strong>log</strong>, provides an SLF4J Logger for logging to the Sling log system from within scripts, eg. log.info("Executing my script").</li>
-  <li><strong>currentNode</strong>, the underlying JCR node (if there is one) of the current resource.</li>
-  <li><strong>bindings</strong>, provides access to the SlingBindings object for access to non-standard scripting variables.</li>
+<li><strong>slingRequest</strong>, SlingHttpServletRequest object, providing access to the HTTP request header information - extends the standard HttpServletRequest - and provides access to Sling-specific things like resource, path info, selector, etc.</li>
+<li><strong>slingResponse</strong>, SlingHttpServletResponse object, providing access for the HTTP response that is created by the server. This is currently the same as the HttpServletResponse from which it extends.</li>
+<li><strong>resourceResolver</strong>, Current ResourceResolver. Same as slingRequest.getResourceResolver().</li>
+<li><strong>sling</strong>, SlingScriptHelper, containing convenience methods for scripts, mainly sling.include('/some/other/resource') for including the responses of other resources inside this response (eg. embedding header html snippets) and sling.getService(foo.bar.Service.class) to retrieve OSGi services available in Sling (Class notation depending on scripting language).</li>
+<li><strong>resource</strong>, current Resource to handle, depending on the URL of the request. Same as slingRequest.getResource().</li>
+<li><strong>log</strong>, provides an SLF4J Logger for logging to the Sling log system from within scripts, eg. log.info(&quot;Executing my script&quot;).</li>
+<li><strong>currentNode</strong>, the underlying JCR node (if there is one) of the current resource.</li>
+<li><strong>bindings</strong>, provides access to the SlingBindings object for access to non-standard scripting variables.</li>
 </ul>
 <p>See also <a href="https://cwiki.apache.org/confluence/display/SLING/Scripting+variables#Scriptingvariables-JSP">Scripting variables in CMS</a></p>
 <ul>
-  <li>Attributes which allow to bind the according variables to other names than the default ones listed above.
-    <ul>
-      <li>requestName</li>
-      <li>responseName</li>
-      <li>resourceName</li>
-      <li>nodeName</li>
-      <li>logName</li>
-      <li>resourceResolverName</li>
-      <li>slingName</li>
-    </ul>
-  </li>
-  <li>Since: 1.0</li>
+<li>Attributes which allow to bind the according variables to other names than the default ones listed above.
+<ul>
+<li>requestName</li>
+<li>responseName</li>
+<li>resourceName</li>
+<li>nodeName</li>
+<li>logName</li>
+<li>resourceResolverName</li>
+<li>slingName</li>
+</ul>
+</li>
+<li>Since: 1.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:defineObjects /&gt;
 </code></pre>
-<h3><a href="#encode" name="encode">encode</a></h3>
-<p>Writes properly Cross Site Scripting (XSS) encoded text to the response using the OWASP ESAPI. Supports a number of encoding modes.</p>
+<h3><a href="#encode" id="encode">encode</a></h3>
+<p>Writes properly Cross Site Scripting (XSS) encoded text to the response using the OWASP ESAPI.   Supports a number of encoding modes.</p>
 <ul>
-  <li>Attributes:
-    <ul>
-      <li>value - The text to encode</li>
-      <li>default - a default text to use if the value is null or empty</li>
-      <li>mode - The encoding mode, one of HTML, HTML_ATTR, XML, XML_ATTR, JS</li>
-    </ul>
-  </li>
-  <li>Since: 1.4</li>
+<li>Attributes:
+<ul>
+<li>value - The text to encode</li>
+<li>default - a default text to use if the value is null or empty</li>
+<li>mode - The encoding mode, one of HTML, HTML_ATTR, XML, XML_ATTR, JS</li>
+</ul>
+</li>
+<li>Since: 1.4</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;sling:encode value=&quot;&lt;script&gt;alert(&#39;Bad Stuff!&#39;);&lt;/script&gt;&quot; mode=&quot;HTML&quot; /&gt;
+<pre><code>&lt;sling:encode value=&quot;&lt;script&gt;alert('Bad Stuff!');&lt;/script&gt;&quot; mode=&quot;HTML&quot; /&gt;
 </code></pre>
-<h3><a href="#eval" name="eval">eval</a></h3>
+<h3><a href="#eval" id="eval">eval</a></h3>
 <p>Evaluates a script invocation and includes the result in the current page.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>flush - Whether to flush the output before including the target.</li>
-      <li>script - The path to the script object to include in the current request processing. By default, the current resource is used for script resolving. This behaviour can be changed by specifying either resource, resourceType or ignoreResourceTypeHierarchy.</li>
-      <li>resource - The resource object to include in the current request processing. This attribute is optional. If it is specified, resourceType should not be used. If both are used, resource takes precedence.</li>
-      <li>resourceType - The resource type of a resource to include. This attribute is optional. If it is specified, resource should not be used. If both are used, resource takes precedence.</li>
-      <li>ignoreResourceTypeHierarchy - Prevents using the resource type hierarchy for searching a script.</li>
-    </ul>
-  </li>
-  <li>Since: 1.1</li>
+<li>Attributes
+<ul>
+<li>flush - Whether to flush the output before including the target.</li>
+<li>script - The path to the script object to include in the current request processing. By default, the current resource is used for script resolving. This behaviour can be changed by specifying either resource, resourceType or ignoreResourceTypeHierarchy.</li>
+<li>resource - The resource object to include in the current request processing. This attribute is optional. If it is specified, resourceType should not be used. If both are used, resource takes precedence.</li>
+<li>resourceType - The resource type of a resource to include. This attribute is optional. If it is specified, resource should not be used. If both are used, resource takes precedence.</li>
+<li>ignoreResourceTypeHierarchy - Prevents using the resource type hierarchy for searching a script.</li>
+</ul>
+</li>
+<li>Since: 1.1</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:eval script=&quot;myscript.jsp&quot; /&gt;
 </code></pre>
-<h3><a href="#findresources" name="findresources">findResources</a></h3>
+<h3><a href="#findresources" id="findresources">findResources</a></h3>
 <p>Tag for searching for resources using the given query formulated in the given language.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>query - The query string to find the resources.</li>
-      <li>language - The query language to use.</li>
-      <li>var - The name of the variable to which to save the resources.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Attributes
+<ul>
+<li>query - The query string to find the resources.</li>
+<li>language - The query language to use.</li>
+<li>var - The name of the variable to which to save the resources.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
-<pre><code>&lt;sling:findResources query=&quot;/jcr:root//*[jcr:contains(., &#39;Sling&#39;)] order by @jcr:score&quot; language=&quot;xpath&quot; var=&quot;resources&quot; /&gt;
+<pre><code>&lt;sling:findResources query=&quot;/jcr:root//*[jcr:contains(., 'Sling')] order by @jcr:score&quot; language=&quot;xpath&quot; var=&quot;resources&quot; /&gt;
 </code></pre>
-<h3><a href="#forward" name="forward">forward</a></h3>
+<h3><a href="#forward" id="forward">forward</a></h3>
 <p>Forwards a request to a resource rendering the current page</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>resource - The resource object to forward the request to. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
-      <li>path - The path to the resource object to forward the request to. If this path is relative it is appended to the path of the current resource whose script is forwarding the given resource. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
-      <li>resourceType - The resource type of a resource to forward. If the resource to be forwarded is specified with the path attribute, which cannot be resolved to a resource, the tag may create a synthetic resource object out of the path and this resource type. If the resource type is set the path must be the exact path to a resource object. That is, adding parameters, selectors and extensions to the path is not supported if the resource type is set.</li>
-      <li>replaceSelectors - When dispatching, replace selectors by the value provided by this option.</li>
-      <li>addSelectors - When dispatching, add the value provided by this option to the selectors.</li>
-      <li>replaceSuffix - When dispatching, replace the suffix by the value provided by this option.</li>
-    </ul>
-  </li>
-  <li>Since: 1.0</li>
+<li>Attributes
+<ul>
+<li>resource - The resource object to forward the request to. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
+<li>path - The path to the resource object to forward the request to. If this path is relative it is appended to the path of the current resource whose script is forwarding the given resource. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
+<li>resourceType - The resource type of a resource to forward. If the resource to be forwarded is specified with the path attribute, which cannot be resolved to a resource, the tag may create a synthetic resource object out of the path and this resource type. If the resource type is set the path must be the exact path to a resource object. That is, adding parameters, selectors and extensions to the path is not supported if the resource type is set.</li>
+<li>replaceSelectors - When dispatching, replace selectors by the value provided by this option.</li>
+<li>addSelectors - When dispatching, add the value provided by this option to the selectors.</li>
+<li>replaceSuffix - When dispatching, replace the suffix by the value provided by this option.</li>
+</ul>
+</li>
+<li>Since: 1.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:forward path=&quot;/content/aresource&quot; resourceType=&quot;myapp/components/display&quot; /&gt;
 </code></pre>
-<h3><a href="#getcaconfigresource" name="getcaconfigresource">getCAConfigResource</a></h3>
+<h3><a href="#getcaconfigresource" id="getcaconfigresource">getCAConfigResource</a></h3>
 <p>Retrieves Context-Aware Configuration resource for a specified resource, bucket and name.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>resource - The resource for which to retrieve CA Config</li>
-      <li>bucket - The bucket name to retrieve for the config</li>
-      <li>name - The config name to retrieve</li>
-      <li>var - The name of the variable to which to save the CA config resource.</li>
-    </ul>
-  </li>
-  <li>Since: Bundle 2.3.0</li>
+<li>Attributes
+<ul>
+<li>resource - The resource for which to retrieve CA Config</li>
+<li>bucket - The bucket name to retrieve for the config</li>
+<li>name - The config name to retrieve</li>
+<li>var -  The name of the variable to which to save the CA config resource.</li>
+</ul>
+</li>
+<li>Since: Bundle 2.3.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getCAConfigResource resource=&quot;${resource}&quot; bucket=&quot;site&quot; name=&quot;templates&quot; var=&quot;config&quot; /&gt;
 </code></pre>
-<h3><a href="#getcaconfigresources" name="getcaconfigresources">getCAConfigResources</a></h3>
+<h3><a href="#getcaconfigresources" id="getcaconfigresources">getCAConfigResources</a></h3>
 <p>Retrieves Context-Aware Configuration resources for a specified resource, bucket and name.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>resource - The resource for which to retrieve CA Configs</li>
-      <li>bucket - The bucket name to retrieve for the configs</li>
-      <li>name - The config name to retrieve</li>
-      <li>var - The name of the variable to which to save the CA config resources.</li>
-    </ul>
-  </li>
-  <li>Since: Bundle 2.3.0</li>
+<li>Attributes
+<ul>
+<li>resource - The resource for which to retrieve CA Configs</li>
+<li>bucket - The bucket name to retrieve for the configs</li>
+<li>name - The config name to retrieve</li>
+<li>var -  The name of the variable to which to save the CA config resources.</li>
+</ul>
+</li>
+<li>Since: Bundle 2.3.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getCAConfigResources resource=&quot;${resource}&quot; bucket=&quot;site&quot; name=&quot;templates&quot; var=&quot;config&quot; /&gt;
 </code></pre>
-<h3><a href="#getparent" name="getparent">getParent</a></h3>
+<h3><a href="#getparent" id="getparent">getParent</a></h3>
 <p>Retrieves the parent of the resource or the absolute parent at the level if specified.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>resource - The resource for which to retrieve the parent resource.</li>
-      <li>level - The level of the parent resource to retrieve</li>
-      <li>var - The name of the variable to which to save the parent resource.</li>
-    </ul>
-  </li>
-  <li>Since: Bundle 2.3.0</li>
+<li>Attributes
+<ul>
+<li>resource - The resource for which to retrieve the parent resource.</li>
+<li>level - The level of the parent resource to retrieve</li>
+<li>var -  The name of the variable to which to save the parent resource.</li>
+</ul>
+</li>
+<li>Since: Bundle 2.3.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getParent resource=&quot;${resource}&quot; level=&quot;2&quot; var=&quot;parent&quot; /&gt;
 </code></pre>
-<h3><a href="#getparents" name="getparents">getParents</a></h3>
+<h3><a href="#getparents" id="getparents">getParents</a></h3>
 <p>Retrieves all of the parent resources of a specified resource, returning them in hierarchy order.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>resource - The resource for which to retrieve the parent resources.</li>
-      <li>startDepth - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned</li>
-      <li>var - The name of the variable to which to save the parent resources.</li>
-    </ul>
-  </li>
-  <li>Since: Bundle 2.3.0</li>
+<li>Attributes
+<ul>
+<li>resource - The resource for which to retrieve the parent resources.</li>
+<li>startDepth - The depth at which to start, for example given a path of: /content/page1/page2/page3 and a start depth of 3, the parents page2/page3 would be returned</li>
+<li>var -  The name of the variable to which to save the parent resources.</li>
+</ul>
+</li>
+<li>Since: Bundle 2.3.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getProperties properties=&quot;${properties}&quot; key=&quot;jcr:title&quot; defaultValue=&quot;${resource.name}&quot; var=&quot;title&quot; /&gt;
 </code></pre>
-<h3><a href="#getresource" name="getresource">getResource</a></h3>
+<h3><a href="#getresource" id="getresource">getResource</a></h3>
 <p>Retrieves resources based on either an absolute path or a relative path and a base resource.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>base - The base resource under which to retrieve the child resource, will only be considered if a relative path is specified.</li>
-      <li>path - The path of the resource to retrieve, if relative, the base resource must be specified.</li>
-      <li>var - The name of the variable to which to save the resource.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Attributes
+<ul>
+<li>base - The base resource under which to retrieve the child resource, will only be considered if a relative path is specified.</li>
+<li>path - The path of the resource to retrieve, if relative, the base resource must be specified.</li>
+<li>var - The name of the variable to which to save the resource.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:getResource base=&quot;${resource}&quot; path=&quot;jcr:content&quot; var=&quot;content&quot; /&gt;
 </code></pre>
-<h3><a href="#include" name="include">include</a></h3>
+<h3><a href="#include" id="include">include</a></h3>
 <p>Includes a resource rendering into the current page.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>flush - Whether to flush the output before including the target.</li>
-      <li>resource - The resource object to include in the current request processing. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
-      <li>path - The path to the resource object to include in the current request processing. If this path is relative it is appended to the path of the current resource whose script is including the given resource. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
-      <li>resourceType - The resource type of a resource to include. If the resource to be included is specified with the path attribute, which cannot be resolved to a resource, the tag may create a synthetic resource object out of the path and this resource type. If the resource type is set the path must be the exact path to a resource object. That is, adding parameters, selectors and extensions to the path is not supported if the resource type is set.</li>
-      <li>replaceSelectors - When dispatching, replace selectors by the value provided by this option.</li>
-      <li>addSelectors - When dispatching, add the value provided by this option to the selectors.</li>
-      <li>replaceSuffix - When dispatching, replace the suffix by the value provided by this option.</li>
-      <li>scope - If var is specified, what scope to store the variable in. (Since 1.3)</li>
-      <li>var - variable name to store the resulting markup into (Since 1.3)</li>
-    </ul>
-  </li>
-  <li>Since: 1.0</li>
+<li>Attributes
+<ul>
+<li>flush - Whether to flush the output before including the target.</li>
+<li>resource - The resource object to include in the current request processing. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
+<li>path - The path to the resource object to include in the current request processing. If this path is relative it is appended to the path of the current resource whose script is including the given resource. Either resource or path must be specified. If both are specified, the resource takes precedences.</li>
+<li>resourceType - The resource type of a resource to include. If the resource to be included is specified with the path attribute, which cannot be resolved to a resource, the tag may create a synthetic resource object out of the path and this resource type. If the resource type is set the path must be the exact path to a resource object. That is, adding parameters, selectors and extensions to the path is not supported if the resource type is set.</li>
+<li>replaceSelectors - When dispatching, replace selectors by the value provided by this option.</li>
+<li>addSelectors - When dispatching, add the value provided by this option to the selectors.</li>
+<li>replaceSuffix - When dispatching, replace the suffix by the value provided by this option.</li>
+<li>scope - If var is specified, what scope to store the variable in. (Since 1.3)</li>
+<li>var - variable name to store the resulting markup into (Since 1.3)</li>
+</ul>
+</li>
+<li>Since: 1.0</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:include path=&quot;/content/aresource&quot; resourceType=&quot;myapp/components/display&quot; /&gt;
 </code></pre>
-<h3><a href="#listchildren" name="listchildren">listChildren</a></h3>
+<h3><a href="#listchildren" id="listchildren">listChildren</a></h3>
 <p>Lists the children of a Sling Resource.</p>
 <ul>
-  <li>Attributes
-    <ul>
-      <li>resource - The resource for which to retrieve the children.</li>
-      <li>var - The name of the variable to which to save the child resources.</li>
-    </ul>
-  </li>
-  <li>Since: 1.3</li>
+<li>Attributes
+<ul>
+<li>resource - The resource for which to retrieve the children.</li>
+<li>var - The name of the variable to which to save the child resources.</li>
+</ul>
+</li>
+<li>Since: 1.3</li>
 </ul>
 <p><em>Example Usage</em></p>
 <pre><code>&lt;sling:listChildren resource=&quot;${resource}&quot; var=&quot;children&quot; /&gt;
-</code></pre></section></div></div>                            
+</code></pre>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

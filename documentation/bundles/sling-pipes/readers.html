@@ -123,140 +123,141 @@
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row"><div><section><p>those are pipes that will spit out resources, without modifying them. They are usually combined with <a href="/documentation/bundles/sling-pipes/logical.html">logical</a> and/or <a href="/documentation/bundles/sling-pipes/writers.html">write</a> pipes</p>
-<h3>Base pipe (<code>echo(path)</code>)</h3>
+<h3><a href="#base-pipe-echopath" id="base-pipe-echopath">Base pipe (<code>echo(path)</code>)</a></h3>
 <p>outputs what is in input (so what is configured in path).</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/base</code></li>
+<li><code>sling:resourceType</code> is <code>slingPipes/base</code></li>
 </ul>
 <p>It's handy to set the input of a given sequence in a talkative manner:</p>
-<pre><code>    echo(&#39;/content/foo&#39;)
-    .write(&#39;bar&#39;,true)
+<pre><code>    echo('/content/foo')
+    .write('bar',true)
 </code></pre>
 <p>is easier to read, more obvious also than</p>
-<pre><code>    write(&#39;bar&#39;,true).with(&#39;path&#39;,&#39;/content/foo&#39;)
+<pre><code>    write('bar',true).with('path','/content/foo')
 </code></pre>
-<h3>XPathPipe (<code>xpath(expr)</code>)</h3>
+<h3><a href="#xpathpipe-xpathexpr" id="xpathpipe-xpathexpr">XPathPipe (<code>xpath(expr)</code>)</a></h3>
 <p>retrieve resources resulting of an xpath query</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/xpath</code></li>
-  <li><code>expr</code> should be a valid xpath query
-    <pre><code>xpath(&#39;/jcr:root/content/foo//element(*,nt:unstructured)[@sling:resourceType=&quot;foo/bar&quot;]&#39;)
-.write(&#39;foo&#39;,&#39;bar&#39;)
+<li><code>sling:resourceType</code> is <code>slingPipes/xpath</code></li>
+<li><code>expr</code> should be a valid xpath query
+<pre><code>xpath('/jcr:root/content/foo//element(*,nt:unstructured)[@sling:resourceType=&quot;foo/bar&quot;]')
+.write('foo','bar')
 </code></pre>
-  </li>
+</li>
 </ul>
-<h3>TraversePipe (<code>traverse()</code>)</h3>
+<h3><a href="#traversepipe-traverse" id="traversepipe-traverse">TraversePipe (<code>traverse()</code>)</a></h3>
 <p>traverse current input resource's tree, outputing, as resources, either the node of the tree, either its properties</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/traverse</code>,</li>
-  <li><code>breadthFirst</code> the tree visit will be done deep first, unless this flag is set to true,</li>
-  <li><code>depth</code> max depth the visit should go to,</li>
-  <li><code>properties</code> is a flag mentioning the pipe should traverse node's property,</li>
-  <li><code>nameGlobs</code> filters the property that should get outputed</li>
+<li><code>sling:resourceType</code> is <code>slingPipes/traverse</code>,</li>
+<li><code>breadthFirst</code> the tree visit will be done deep first, unless this flag is set to true,</li>
+<li><code>depth</code> max depth the visit should go to,</li>
+<li><code>properties</code> is a flag mentioning the pipe should traverse node's property,</li>
+<li><code>nameGlobs</code> filters the property that should get outputed</li>
 </ul>
-<h3><a href="#multipropertypipe" name="multipropertypipe">MultiPropertyPipe</a></h3>
+<h3><a href="#multipropertypipe" id="multipropertypipe">MultiPropertyPipe</a></h3>
 <p>iterates through values of input multi value property and write them to bindings</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/multiProperty</code></li>
-  <li><code>path</code> should be the path of a mv property (if no input)</li>
+<li><code>sling:resourceType</code> is <code>slingPipes/multiProperty</code></li>
+<li><code>path</code> should be the path of a mv property (if no input)</li>
 </ul>
-<h2><a href="#sling-query-pipes" name="sling-query-pipes">Sling Query Pipes</a></h2>
+<h2><a href="#sling-query-pipes" id="sling-query-pipes">Sling Query Pipes</a></h2>
 <p>Sling Query shares with Sling Pipes the same objective to write more concise (and efficient) code for most common operations. Below are the most common <a href="/documentation/bundles/sling-query.html">Sling Query</a> methods as reader pipes.</p>
-<h3>Find Pipe (<code>$(expr)</code>)</h3>
+<h3><a href="#find-pipe-expr" id="find-pipe-expr">Find Pipe (<code>$(expr)</code>)</a></h3>
 <p>executes <a href="/documentation/bundles/sling-query/methods.html#findselector">find</a>(expression) that searches through the subtree below the current input resource</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/find</code></li>
-  <li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a>
-    <pre><code>echo(&quot;/content/foo&quot;)
+<li><code>sling:resourceType</code> is <code>slingPipes/find</code></li>
+<li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a>
+<pre><code>echo(&quot;/content/foo&quot;)
 .$(&quot;nt:unstructured[sling:resourceType=foo/bar]&quot;)
-.write(&#39;foo&#39;,&#39;bar&#39;)
+.write('foo','bar')
 </code></pre>
-  </li>
+</li>
 </ul>
-<h3>Children Pipe (<code>children(expr)</code>)</h3>
+<h3><a href="#children-pipe-childrenexpr" id="children-pipe-childrenexpr">Children Pipe (<code>children(expr)</code>)</a></h3>
 <p>executes <a href="/documentation/bundles/sling-query/methods.html#childrenselector">children</a>(expression) that searches through the immediate children of the current input resource)</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/children</code></li>
-  <li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a></li>
+<li><code>sling:resourceType</code> is <code>slingPipes/children</code></li>
+<li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a></li>
 </ul>
-<h3>Siblings Pipe (<code>siblings(expr)</code>)</h3>
+<h3><a href="#siblings-pipe-siblingsexpr" id="siblings-pipe-siblingsexpr">Siblings Pipe (<code>siblings(expr)</code>)</a></h3>
 <p>executes <a href="/documentation/bundles/sling-query/methods.html#siblings-selector-">siblings</a>(expression) that searches through siblings of current input resource</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
-  <li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a></li>
+<li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
+<li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a></li>
 </ul>
-<h3>Parent Pipe (<code>parent()</code>)</h3>
+<h3><a href="#parent-pipe-parent" id="parent-pipe-parent">Parent Pipe (<code>parent()</code>)</a></h3>
 <p>executes <a href="/documentation/bundles/sling-query/methods.html#parent-">parent</a>() that retrieves current parent</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/parent</code></li>
+<li><code>sling:resourceType</code> is <code>slingPipes/parent</code></li>
 </ul>
-<h3>Closest Pipe (<code>closest(expr)</code>)</h3>
+<h3><a href="#closest-pipe-closestexpr" id="closest-pipe-closestexpr">Closest Pipe (<code>closest(expr)</code>)</a></h3>
 <p>executes <a href="/documentation/bundles/sling-query/methods.html#closest-selector-">closest</a>(expression) that searches the closest parent resource of current input resource</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
-  <li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a>
-    <pre><code>.$(&quot;nt:unstructured[sling:resourceType=foo/bar]&quot;)
-.closest(&#39;jcr:content&#39;)
+<li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
+<li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a>
+<pre><code>.$(&quot;nt:unstructured[sling:resourceType=foo/bar]&quot;)
+.closest('jcr:content')
 </code></pre>
-  </li>
+</li>
 </ul>
 <p>will find <code>jcr:content</code> nodes that have <code>foo/bar</code> typed resource somewhere in their tree</p>
-<h3>Parents Pipe (<code>parents(expr)</code>)</h3>
+<h3><a href="#parents-pipe-parentsexpr" id="parents-pipe-parentsexpr">Parents Pipe (<code>parents(expr)</code>)</a></h3>
 <p>executes <a href="/documentation/bundles/sling-query/methods.html#parents-selector-">parents</a>(expression) that searches all the parents of the current input resource</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
-  <li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a></li>
+<li><code>sling:resourceType</code> is <code>slingPipes/slingQuery</code></li>
+<li><code>expr</code> mandatory property, contains Sling Query <a href="/documentation/bundles/sling-query/selectors.html">selector string</a></li>
 </ul>
-<h2><a href="#inputstream-reader-pipes" name="inputstream-reader-pipes">InputStream reader pipes</a></h2>
+<h2><a href="#inputstream-reader-pipes" id="inputstream-reader-pipes">InputStream reader pipes</a></h2>
 <p>those are specific reader pipes, that read information an input stream from defined in expr configuration, that can be:</p>
 <ul>
-  <li>a remote located file (starting with http),</li>
-  <li>a file located in the repository (existing file stored in the repository),</li>
-  <li>a file passed as request parameter with <code>pipes_inputFile</code> as parameter name (in that case, expr can be empty)</li>
-  <li>direct data stream in the expression</li>
+<li>a remote located file (starting with http),</li>
+<li>a file located in the repository (existing file stored in the repository),</li>
+<li>a file passed as request parameter with <code>pipes_inputFile</code> as parameter name (in that case, expr can be empty)</li>
+<li>direct data stream in the expression</li>
 </ul>
-<h3>JsonPipe (<code>json(expr)</code>)</h3>
+<h3><a href="#jsonpipe-jsonexpr" id="jsonpipe-jsonexpr">JsonPipe (<code>json(expr)</code>)</a></h3>
 <p>feeds bindings with json stream</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
-  <li><code>expr</code> see above</li>
-  <li><code>valuePath</code> json path like expression that defines where the json value we care about is. E.g. <code>$.items[2]</code> considers root is an object and that we want the 3rd item of items array, located at <code>items</code> key of the root object.</li>
+<li><code>sling:resourceType</code> is <code>slingPipes/json</code></li>
+<li><code>expr</code> see above</li>
+<li><code>valuePath</code> json path like expression that defines where the json value we care about is. E.g. <code>$.items[2]</code> considers root is an object and that we want the 3rd item of items array, located at <code>items</code> key of the root object.</li>
 </ul>
 <p>In case the json value is an array, the pipe will loop over the array elements, and output each one in the binding. Output resource remains each time the input one.</p>
-<pre><code>    .json(&#39;{items:[{val:1},{val:2},{val:3}]}&#39;).with(&#39;valuePath&#39;,&#39;$.items&#39;).name(&#39;demo&#39;)
-    .mkdir(&#39;/content/${demo.val}&#39;)
+<pre><code>    .json('{items:[{val:1},{val:2},{val:3}]}').with('valuePath','$.items').name('demo')
+    .mkdir('/content/${demo.val}')
 </code></pre>
 <p>should create a tree of 3 resources /content/1, /content/2 and /content/3.</p>
 <p>An interesting usage of the JSON pipe can also be to loop over an array of Strings like</p>
-<pre><code>    .json(&#39;[&quot;/content/mySite/page1&quot;,&quot;/content/mySite/page2&quot;,&quot;/content/mySite/page3&quot;]&#39;)
-    .echo(&#39;${one}&#39;)
+<pre><code>    .json('[&quot;/content/mySite/page1&quot;,&quot;/content/mySite/page2&quot;,&quot;/content/mySite/page3&quot;]')
+    .echo('${one}')
     .children(&quot;jcr:content&quot;)
     .write(&quot;update&quot;,&quot;something&quot;)
 </code></pre>
-<h3>CsvPipe (<code>csv(expr)</code>)</h3>
+<h3><a href="#csvpipe-csvexpr" id="csvpipe-csvexpr">CsvPipe (<code>csv(expr)</code>)</a></h3>
 <p>feeds bindings with csv stream</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/csv</code></li>
-  <li><code>expr</code> see above</li>
-  <li><code>separator</code> separator character, default being comma <code>,</code>
-    <pre><code>.csv(&#39;idx,val\n1,1\n2,2\n3,3&#39;).name(&#39;demo&#39;)
-.mkdir(&#39;/content/${demo.val}&#39;)
+<li><code>sling:resourceType</code> is <code>slingPipes/csv</code></li>
+<li><code>expr</code> see above</li>
+<li><code>separator</code> separator character, default being comma <code>,</code>
+<pre><code>.csv('idx,val\n1,1\n2,2\n3,3').name('demo')
+.mkdir('/content/${demo.val}')
 </code></pre>
-  </li>
+</li>
 </ul>
 <p>should create a tree of 3 resources /content/1, /content/2 and /content/3</p>
-<h3>Regexp pipe (<code>egrep(expr)</code>)</h3>
+<h3><a href="#regexp-pipe-egrepexpr" id="regexp-pipe-egrepexpr">Regexp pipe (<code>egrep(expr)</code>)</a></h3>
 <p>feeds bindings with text input stream, parsed with a regexp</p>
 <ul>
-  <li><code>sling:resourceType</code> is <code>slingPipes/egrep</code></li>
-  <li><code>expr</code> see above</li>
-  <li><code>pattern</code> is a regular expression, with named group (e.g. <code>(?&lt;user&gt;.*)</code>) that will be used to produce the output binding names
-    <pre><code>egrep(&quot;https://sling.apache.org/&quot;)
-      .with(&quot;pattern&quot;,&#39;src=\&quot;/res/(?&lt;asset&gt;/[\\-\\w\\.\\/0-9]+)\&quot;&#39;).name(&quot;demo&quot;)
-.echo(&#39;/content/assets/${demo.asset}&#39;)
+<li><code>sling:resourceType</code> is <code>slingPipes/egrep</code></li>
+<li><code>expr</code> see above</li>
+<li><code>pattern</code> is a regular expression, with named group (e.g. <code>(?&lt;user&gt;.*)</code>) that will be used to produce the output binding names
+<pre><code>egrep(&quot;https://sling.apache.org/&quot;)
+      .with(&quot;pattern&quot;,'src=\&quot;/res/(?&lt;asset&gt;/[\\-\\w\\.\\/0-9]+)\&quot;').name(&quot;demo&quot;)
+.echo('/content/assets/${demo.asset}')
 </code></pre>
-  </li>
-</ul></section></div></div>                            
+</li>
+</ul>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

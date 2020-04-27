@@ -115,11 +115,11 @@
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row"><div><section><p>The configuration installer factory provides support for configurations to the <a href="/documentation/bundles/osgi-installer.html">OSGI installer</a>. The provisioning of artifacts is handled by installer providers like the <a href="/documentation/bundles/file-installer-provider.html">file installer</a> or the <a href="/documentation/bundles/jcr-installer-provider.html">JCR installer</a>.</p>
-<h2><a href="#configurations" name="configurations">Configurations</a></h2>
+<h2><a href="#configurations" id="configurations">Configurations</a></h2>
 <p>Configuration file names are related to the PID and factory PID. The structure of the file name is as follows:</p>
-<pre><code>filename ::= &lt;pid&gt; ( ( &#39;-&#39; | &#39;~&#39; ) &lt;subname&gt; ) ? ( &#39;.cfg&#39; | &#39;.config&#39; | &#39;.cfg.json&#39;)
+<pre><code>filename ::= &lt;pid&gt; ( ( '-' | '~' ) &lt;subname&gt; ) ? ( '.cfg' | '.config' | '.cfg.json')
 </code></pre>
-<p>If the form is <code>&lt;pid&gt;(&#39;.cfg&#39;|&#39;.config&#39;|&#39;.cfg.json&#39;)</code>, the file contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p>
+<p>If the form is <code>&lt;pid&gt;('.cfg'|'.config'|'.cfg.json')</code>, the file contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p>
 <p>When a Managed Service Factory is used, the situation is different. The <code>&lt;pid&gt;</code> part then describes the PID of the Managed Service Factory. You can pick any <code>&lt;subname&gt;</code>, the installer will then create an instance for the factory for each unique name. For example:</p>
 <pre><code>com.acme.xyz.cfg // configuration for Managed Service
 // com.acme.xyz
@@ -129,14 +129,14 @@ com.acme.abc-default.cfg // Managed Service Factory,
 <p>Since Installer Configuration Factory 1.2.0 (<a href="https://jira.apache.org/jira/browse/SLING-7786">SLING-7786</a>) you should use the tilde <code>~</code> as separator between <code>&lt;pid&gt;</code> and <code>&lt;subname&gt;</code> instead of the <code>-</code>.</p>
 <p>If a configuration is modified, the file installer will write the configuration back to a file to ensure persistence across restarts (if <code>sling.fileinstall.writeback</code> is enabled). A similar writeback mechanism is supported by the <a href="jcr-installer-provider.html">JCR installer</a>.</p>
 <p>The code for parsing the configuration files is in <a href="https://github.com/apache/sling-org-apache-sling-installer-core/blob/7b2e4407baa45b79d954dd20c53bb2077c3a5e49/src/main/java/org/apache/sling/installer/core/impl/InternalResource.java#L230">InternalResource#readDictionary</a>.</p>
-<h3><a href="#configuration-files-cfg-json-" name="configuration-files-cfg-json-">Configuration Files (.cfg.json)</a></h3>
+<h3><a href="#configuration-files-cfgjson" id="configuration-files-cfgjson">Configuration Files (.cfg.json)</a></h3>
 <p>This is the preferred way to specify configurations as it is an official format specified by OSGi in the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html">OSGi R7 Service Configurator Spec</a> and is also used by the <a href="https://github.com/apache/sling-org-apache-sling-feature/blob/master/readme.md">Feature Model</a>. The detailed JSON format is described in that specification. It allows for typed values, allowing all possible types including Collections and comments.</p>
 <p>There are some differences to the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html#service.configurator-resources">resource format specification</a> as outlined below:</p>
 <ul>
-  <li>Each file contains exactly one configuration, therefore it only contains the properties of the configuration.</li>
-  <li>Keys starting with <code>:configurator:</code> should not be used (in general they are validated but not further evaluated)</li>
-  <li>The PID is given via the file name (the part preceeding the <code>.cfg.json</code>) instead of <code>:configurator:symbolic-name</code></li>
-  <li>There is no version support i.e. <code>:configurator:version</code> should not be used either</li>
+<li>Each file contains exactly one configuration, therefore it only contains the properties of the configuration.</li>
+<li>Keys starting with <code>:configurator:</code> should not be used (in general they are validated but not further evaluated)</li>
+<li>The PID is given via the file name (the part preceeding the <code>.cfg.json</code>) instead of <code>:configurator:symbolic-name</code></li>
+<li>There is no version support i.e. <code>:configurator:version</code> should not be used either</li>
 </ul>
 <p>This is an example file</p>
 <pre><code>{
@@ -146,91 +146,92 @@ com.acme.abc-default.cfg // Managed Service Factory,
    &quot;size:Integer&quot; : 500
 }
 </code></pre>
-<h4><a href="#limitations" name="limitations">Limitations</a></h4>
+<h4><a href="#limitations" id="limitations">Limitations</a></h4>
 <ul>
-  <li>This is only supported since Installer Configuration Factory 1.2.0 .</li>
+<li>This is only supported since Installer Configuration Factory 1.2.0 .</li>
 </ul>
-<h3><a href="#configuration-files-config-" name="configuration-files-config-">Configuration Files (.config)</a></h3>
+<h3><a href="#configuration-files-config" id="configuration-files-config">Configuration Files (.config)</a></h3>
 <p>Configuration files ending in <code>.config</code> use the format of the <a href="http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup">Apache Felix ConfigAdmin implementation</a> (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding. This format is preferred over properties files and nodes stored in the repository.</p>
 <p>The first line of such a file might start with a comment line (a line starting with a <code>#</code>). Comments within the file are not allowed.</p>
 <p>The format is:</p>
 <pre><code>file ::= (comment) (header) *
-comment ::= &#39;#&#39; &lt;any&gt;
-header ::= prop &#39;=&#39; value
+comment ::= '#' &lt;any&gt;
+header ::= prop '=' value
 prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
-symbolic-name ::= token { &#39;.&#39; token }
-token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | &#39;_&#39; | &#39;-&#39; }
-value ::= [ type ] ( &#39;[&#39; values &#39;]&#39; | &#39;(&#39; values &#39;)&#39; | simple )
-values ::= ( simple { &#39;,&#39; simple } | &#39;\&#39; &lt;nl&gt; simple { &#39;, \&#39; &lt;nl&gt; simple } &lt;nl&gt; )
-simple ::= &#39;&quot;&#39; stringsimple &#39;&quot;&#39;
+symbolic-name ::= token { '.' token }
+token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' }
+value ::= [ type ] ( '[' values ']' | '(' values ')' | simple )
+values ::= ( simple { ',' simple } | '\' &lt;nl&gt; simple { ', \' &lt;nl&gt; simple } &lt;nl&gt; )
+simple ::= '&quot;' stringsimple '&quot;'
 type ::= &lt;1-char type code&gt;
-stringsimple ::= &lt;quoted string representation of the value where both &#39;&quot;&#39; and &#39;=&#39; need to be escaped&gt;
+stringsimple ::= &lt;quoted string representation of the value where both '&quot;' and '=' need to be escaped&gt;
 </code></pre>
-<p>The quoted string format is equal to the definition from HTTP 1.1 (<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html">RFC2616</a>), except that both '"' and '=' need to be escaped.</p>
+<p>The quoted string format is equal to the definition from HTTP 1.1 (<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html">RFC2616</a>), except that both '&quot;' and '=' need to be escaped.</p>
 <p>The 1 character type code is one of:</p>
 <ul>
-  <li><code>T</code> : <code>String</code></li>
-  <li><code>I</code> : <code>Integer</code></li>
-  <li><code>L</code> : <code>Long</code></li>
-  <li><code>F</code> : <code>Float</code></li>
-  <li><code>D</code> : <code>Double</code></li>
-  <li><code>X</code> : <code>Byte</code></li>
-  <li><code>S</code> : <code>Short</code></li>
-  <li><code>C</code> : <code>Character</code></li>
-  <li><code>B</code> : <code>Boolean</code></li>
+<li><code>T</code> : <code>String</code></li>
+<li><code>I</code> : <code>Integer</code></li>
+<li><code>L</code> : <code>Long</code></li>
+<li><code>F</code> : <code>Float</code></li>
+<li><code>D</code> : <code>Double</code></li>
+<li><code>X</code> : <code>Byte</code></li>
+<li><code>S</code> : <code>Short</code></li>
+<li><code>C</code> : <code>Character</code></li>
+<li><code>B</code> : <code>Boolean</code></li>
 </ul>
 <p>or for primitives</p>
 <ul>
-  <li><code>i</code> : <code>int</code></li>
-  <li><code>l</code> : <code>long</code></li>
-  <li><code>f</code> : <code>float</code></li>
-  <li><code>d</code> : <code>double</code></li>
-  <li><code>x</code> : <code>byte</code></li>
-  <li><code>s</code> : <code>short</code></li>
-  <li><code>c</code> : <code>char</code></li>
-  <li><code>b</code> : <code>boolean</code></li>
+<li><code>i</code> : <code>int</code></li>
+<li><code>l</code> : <code>long</code></li>
+<li><code>f</code> : <code>float</code></li>
+<li><code>d</code> : <code>double</code></li>
+<li><code>x</code> : <code>byte</code></li>
+<li><code>s</code> : <code>short</code></li>
+<li><code>c</code> : <code>char</code></li>
+<li><code>b</code> : <code>boolean</code></li>
 </ul>
 <p>For Float and Double types the methods <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html#intBitsToFloat%28int%29">Float.intBitsToFloat</a> and <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html#longBitsToDouble%28long%29">Double.longBitsToDouble</a> are being used to convert the numeric string into the correct type. These methods rely on the IEEE-754 floating-point formats described in <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">Single-precision floating-point format</a> and <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Double-precision floating-point format</a>. A more user-friendly format is not yet supported for these types (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>).</p>
 <p>Multiple values enclosed by <code>[</code> and <code>]</code> lead to an array while those enclosed by <code>(</code> and <code>)</code> lead to a <code>Collection</code> in the underlying <code>java.util.Dictionary</code> of the <code>org.osgi.service.cm.Configuration</code> and vice-versa.</p>
 <p>Although both objects and primites are supported, in case you use single-value entries or collections the deserialization will autobox primitives.</p>
 <p>A number of such .config files exist in the Sling codebase and can be used as examples.</p>
-<h4><a href="#limitations" name="limitations">Limitations</a></h4>
+<h4><a href="#limitations" id="limitations">Limitations</a></h4>
 <ul>
-  <li>No support for collections containing different types</li>
-  <li>No support for nested multivalues (arrays or Collections)</li>
-  <li>No user-friendly (readable) values for floating points (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>)</li>
+<li>No support for collections containing different types</li>
+<li>No support for nested multivalues (arrays or Collections)</li>
+<li>No user-friendly (readable) values for floating points (<a href="https://issues.apache.org/jira/browse/SLING-7757">SLING-7757</a>)</li>
 </ul>
-<h3><a href="#property-files-cfg-" name="property-files-cfg-">Property Files (.cfg)</a></h3>
+<h3><a href="#property-files-cfg" id="property-files-cfg">Property Files (.cfg)</a></h3>
 <p>Configuration files ending in <code>.cfg</code> are plain property files (<code>java.util.Property</code>). The format is simple:</p>
 <pre><code>file ::= ( header | comment ) *
-header ::= &lt;header&gt; ( &#39;:&#39; | &#39;=&#39; ) &lt;value&gt; ( &#39;\&lt;nl&gt; &lt;value&gt; ) *
-comment ::= &#39;#&#39; &lt;any&gt;
+header ::= &lt;header&gt; ( ':' | '=' ) &lt;value&gt; ( '\&lt;nl&gt; &lt;value&gt; ) *
+comment ::= '#' &lt;any&gt;
 </code></pre>
 <p>Notice that this model only supports string properties. For example:</p>
 <pre><code># default port
 ftp.port = 21
 </code></pre>
 <p>In addition the XML format defined by <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#loadFromXML%28java.io.InputStream%29">java.util.Property</a> is supported if the file starts with the character <code>&lt;</code>.</p>
-<h4><a href="#limitations" name="limitations">Limitations</a></h4>
+<h4><a href="#limitations" id="limitations">Limitations</a></h4>
 <ul>
-  <li>Only String types are supported</li>
-  <li>Only ISO 8859-1 character encoding supported</li>
-  <li>No multi-values</li>
-  <li>No writeback support</li>
+<li>Only String types are supported</li>
+<li>Only ISO 8859-1 character encoding supported</li>
+<li>No multi-values</li>
+<li>No writeback support</li>
 </ul>
-<h3><a href="#sling-osgiconfig-resources" name="sling-osgiconfig-resources">sling:OsgiConfig resources</a></h3>
+<h3><a href="#slingosgiconfig-resources" id="slingosgiconfig-resources">sling:OsgiConfig resources</a></h3>
 <p>Only the <a href="/documentation/bundles/jcr-installer-provider.html#configuration-and-scanning">JCR Installer</a> supports also configurations given as resources with properties of type <code>sling:OsgiConfig</code>. Internally those are converted directly into the Dictionary format being supported by the <a href="https://osgi.org/javadoc/r4v42/org/osgi/service/cm/Configuration.html#update%28java.util.Dictionary%29">OSGi Configuration Admin</a> in <a href="https://github.com/apache/sling-org-apache-sling-installer-provider-jcr/blob/fcb77de40973672548e79f3a42c19f5decd95651/src/main/java/org/apache/sling/installer/provider/jcr/impl/ConfigNodeConverter.java#L44">ConfigNodeConverter</a>.</p>
 <p>While this way of specifying configurations in a JCR repository seems like a natural fit, it should be avoided as it neither supports all required types nor is it portable.</p>
-<h4><a href="#limitations" name="limitations">Limitations</a></h4>
+<h4><a href="#limitations" id="limitations">Limitations</a></h4>
 <ul>
-  <li>Not all types supported (<a href="https://issues.apache.org/jira/browse/SLING-2477">SLING-2477</a>)</li>
-  <li>No writeback support</li>
-  <li>Only array multivalue support (<a href="https://issues.apache.org/jira/browse/SLING-4183">SLING-4183</a>)</li>
+<li>Not all types supported (<a href="https://issues.apache.org/jira/browse/SLING-2477">SLING-2477</a>)</li>
+<li>No writeback support</li>
+<li>Only array multivalue support (<a href="https://issues.apache.org/jira/browse/SLING-4183">SLING-4183</a>)</li>
 </ul>
-<h1><a href="#project-info" name="project-info">Project Info</a></h1>
+<h1><a href="#project-info" id="project-info">Project Info</a></h1>
 <ul>
-  <li>Configuration installer factory (<a href="https://github.com/apache/sling-org-apache-sling-installer-factory-configuration">org.apache.sling.installer.factory.configuration</a>)</li>
-</ul></section></div></div>                            
+<li>Configuration installer factory (<a href="https://github.com/apache/sling-org-apache-sling-installer-factory-configuration">org.apache.sling.installer.factory.configuration</a>)</li>
+</ul>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

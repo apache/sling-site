@@ -118,34 +118,35 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><h3>Child operator (<code>parent &gt; child</code>)</h3>
+<div class="row"><div><section><h3><a href="#child-operator-parent-child" id="child-operator-parent-child">Child operator (<code>parent &gt; child</code>)</a></h3>
 <p>Select all direct child resources specified by <code>child</code> of resources specified by <code>parent</code></p>
 <pre><code>// find all richtext components placed directly into parsys resources
-$(resource).find(&#39;foundation/components/parsys &gt; foundation/components/richtext&#39;)
+$(resource).find('foundation/components/parsys &gt; foundation/components/richtext')
 // alternative version
-$(resource).find(&#39;foundation/components/parsys&#39;).children(&#39;foundation/components/richtext&#39;)
+$(resource).find('foundation/components/parsys').children('foundation/components/richtext')
 </code></pre>
-<h3>Descendant operator (<code>ancestor descendant</code>)</h3>
+<h3><a href="#descendant-operator-ancestor-descendant" id="descendant-operator-ancestor-descendant">Descendant operator (<code>ancestor descendant</code>)</a></h3>
 <p>Select all resources that are <code>descendant</code>s of a given <code>ancestor</code></p>
 <pre><code>// find all resources containing `someAttribute` on the `cq:Page`s being direct children of the resource
-$(resource).children(&#39;cq:Page [someAttribute]&#39;)
+$(resource).children('cq:Page [someAttribute]')
 // alternative version
-$(resource).children(&#39;cq:Page&#39;).find(&#39;[someAttribute]&#39;)
+$(resource).children('cq:Page').find('[someAttribute]')
 </code></pre>
-<h3>Next adjacent operator (<code>prev + next</code>)</h3>
+<h3><a href="#next-adjacent-operator-prev-next" id="next-adjacent-operator-prev-next">Next adjacent operator (<code>prev + next</code>)</a></h3>
 <p>Selects all next resources matching <code>next</code> that are immediately preceded by a sibling <code>prev</code></p>
 <pre><code>// find next sibling of the cq:Page containing the resource
-$(resource).closest(&#39;cq:Page + cq:Page&#39;)
+$(resource).closest('cq:Page + cq:Page')
 // alternative version
-$(resource).closest(&#39;cq:Page&#39;).next(&#39;cq:Page&#39;)
+$(resource).closest('cq:Page').next('cq:Page')
 </code></pre>
-<h3>Next siblings operator (<code>prev ~ siblings</code>)</h3>
+<h3><a href="#next-siblings-operator-prev-siblings" id="next-siblings-operator-prev-siblings">Next siblings operator (<code>prev ~ siblings</code>)</a></h3>
 <p>Selects all sibling resources that follow after the <code>prev</code> element, have the same parent, and match the filtering <code>siblings</code> selector</p>
 <pre><code>// find all siblings of the cq:Page containing the resource
-$(resource).closest(&#39;cq:Page ~ cq:Page&#39;)
+$(resource).closest('cq:Page ~ cq:Page')
 // alternative version
-$(resource).closest(&#39;cq:Page&#39;).nextAll(&#39;cq:Page&#39;)
-</code></pre></section></div></div>                            
+$(resource).closest('cq:Page').nextAll('cq:Page')
+</code></pre>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

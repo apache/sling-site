@@ -123,14 +123,14 @@
 <p>So, on 11. Dec. 2008 Paul King of the Groovy Team has deployed a [first RC1 Snapshot of Groovy 1.6]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.6-RC-1-SNAPSHOT/groovy-all-1.6-RC-1-20081211.113737-1.jar.path }}) which contains all the required OSGi bundle manifest headers as well das the JSR-233 <code>ScriptEngine</code> to use the <code>groovy-all.jar</code> unmodified with Sling. So just go ahead, grab the Groovy-All 1.6 RC 1 SNAPSHOT deploy it into your Sling instance and enjoy the fun of Groovy.</p>
 <p>If you want to be on verge of development, you might want to go for Groovy 1.7: The second SNAPSHOT of beta-1 also contains the required headers and classes and may as well be used unmodified in Sling. You may download it here: <code>[groovy-all-1.7-beta-1-20081210.120632-2.jar]({{ refs.http://snapshots.repository.codehaus.org/org/codehaus/groovy/groovy-all/1.7-beta-1-SNAPSHOT/groovy-all-1.7-beta-1-20081210.120632-2.jar.path }})</code>.</p>
 <p>To deploy the bundle go to the Bundles page, for example at http://localhost:8080/system/console/bundles of the Apache Felix Web Console select the bundle file to upload, check the <em>Start</em> check box and click <em>Install or Update</em> button.</p>
-<p>You may check, whether the Groovy ScriptEngine has been "accepted" by Sling, by going to the Script Engines page of the Apache Felix Web Console. You should see the entry for Groovy there, somthing like this:</p>
+<p>You may check, whether the Groovy ScriptEngine has been &quot;accepted&quot; by Sling, by going to the Script Engines page of the Apache Felix Web Console. You should see the entry for Groovy there, somthing like this:</p>
 <pre><code>Groovy Scripting Engine, 2.0
   Language      Groovy,
   Extensions    groovy
   MIME Types    application/x-groovy
   Names         groovy, Groovy
 </code></pre>
-<h2><a href="#testing" name="testing">Testing</a></h2>
+<h2><a href="#testing" id="testing">Testing</a></h2>
 <p>To test create a simple Groovy script, for example</p>
 <pre><code>response.setContentType(&quot;text/plain&quot;);
 response.setCharacterEncoding(&quot;UTF-8&quot;);
@@ -151,12 +151,13 @@ Hello World !
 This is Groovy Speaking
 You requested Resource JcrNodeResource, type=nt:folder, path=/sample (yes, this is a GString)
 </code></pre>
-<h2><a href="#references" name="references">References</a></h2>
+<h2><a href="#references" id="references">References</a></h2>
 <ul>
-  <li>[SLING-315]({{ refs.https://issues.apache.org/jira/browse/SLING-315.path }}) -- The initial Sling issue proposing the addition of a Groovy ScriptEngine to Sling.</li>
-  <li>[Groovy Support in Apache Sling]({{ refs.http://markmail.org/message/7sqscr5y2mbk6jko.path }}) -- A short thread on turning the Groovy <code>groovy-all.jar</code> into an OSGi Bundle.</li>
-  <li>[Groovy in Apache Sling]({{ refs.http://markmail.org/message/47n2ow2jlo553jvk.path }}) -- Thread on adding the <code>DynamicImport-Package</code> header to the Groovy bundle manifest.</li>
-</ul></section></div></div>                            
+<li>[SLING-315]({{ refs.https://issues.apache.org/jira/browse/SLING-315.path }}) -- The initial Sling issue proposing the addition of a Groovy ScriptEngine to Sling.</li>
+<li>[Groovy Support in Apache Sling]({{ refs.http://markmail.org/message/7sqscr5y2mbk6jko.path }}) -- A short thread on turning the Groovy <code>groovy-all.jar</code> into an OSGi Bundle.</li>
+<li>[Groovy in Apache Sling]({{ refs.http://markmail.org/message/47n2ow2jlo553jvk.path }}) -- Thread on adding the <code>DynamicImport-Package</code> header to the Groovy bundle manifest.</li>
+</ul>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

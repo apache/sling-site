@@ -114,12 +114,12 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><h2><a href="#overview" name="overview">Overview</a></h2>
+<div class="row"><div><section><h2><a href="#overview" id="overview">Overview</a></h2>
 <p>The Installer Vault Package Install Hook allows to install bundles and configurations synchronously during vault package installation by feeding them directly to the <a href="/documentation/bundles/osgi-installer.html">OSGI Installer core</a>. That way <a href="http://jackrabbit.apache.org/filevault/properties.html">vault package dependencies</a> can be used to not only depend on content of a package, but also on configurations and bundles contained in a package (the installer install hook has to be added to the package the dependency points to). The mechanism is useful for scenarios when a package contains custom oak restrictions (e.g. <a href="/documentationbundles/sling-oak-restrictions.html">Sling Oak Restrictions</a>) or other install hook(s) that use the install hook package property (e.g. <code>installhook.myhook.class</code>) to reference OSGi services that are provided by another bundle. Also see <a href="https://issues.apache.org/jira/browse/SLING-7790">SLING-7790</a></p>
 <p>NOTE: When using with a package that should be usable with both the <a href="https://sling.apache.org/documentation/development/feature-model.html">Feature Model</a> (usually without the <a href="https://sling.apache.org/documentation/bundles/osgi-installer.html">OSGi Installer</a>) and <a href="https://sling.apache.org/documentation/development/slingstart.html">Provisioning Model</a> (usually with the OSGi Installer), ensure you use version 1.1.0 of this hook that will auto-detect its environment and only become active when the OSGi Installer is present (see <a href="https://issues.apache.org/jira/browse/SLING-8948">SLING-8948</a>)</p>
-<h2><a href="#installation-process" name="installation-process">Installation Process</a></h2>
+<h2><a href="#installation-process" id="installation-process">Installation Process</a></h2>
 <p>The Installer Vault Package Install Hook scans through the contained files and installs bundles (extension <code>jar</code>) and OSGi configurations with extension <code>config</code> (<code>conf</code> and node configurations are not supported). Runmode folders (e.g. <code>install.publish</code> or <code>config.author</code>) are supported. To perform the installation, the hook registers the installable resources to the OSGi installer core with the exact same digest as the JCR installer would do (hence the JCR installer that will also process the resource but without causing any change as the digest matches). Files that are already installed are ignored (this is checked using <a href="http://sling.apache.org/apidocs/sling10/org/apache/sling/installer/api/info/InfoProvider.html">InfoProvider.html</a>)</p>
-<h2><a href="#configuration" name="configuration">Configuration</a></h2>
+<h2><a href="#configuration" id="configuration">Configuration</a></h2>
 <p>To include the install hook into a content package, use the following code:</p>
 <pre><code>&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
@@ -147,41 +147,18 @@
 </code></pre>
 <p>The following package properties are supported (only <code>installPathRegex</code> is required):</p>
 <table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Value</th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>installPathRegex</code> </td>
-      <td>Regex, e.g. <code>/apps/myproj/.*</code> or <code>/apps/myproj/install/mybundle-1.0.0.jar</code> </td>
-      <td>Regex to match all bundles/configurations to be installed synchronously, . Note: The JCR installer will pick up paths that are not matched asynchronously</td>
-    </tr>
-    <tr>
-      <td><code>maxWaitForOsgiInstallerInSec</code> </td>
-      <td>defaults to 60 sec </td>
-      <td>Maximum wait time until installation is successful </td>
-    </tr>
-    <tr>
-      <td><code>waitForOsgiEventsQuietInSec</code> </td>
-      <td>defaults to 1 sec </td>
-      <td>Time to wait for OSGi events to go quiet. Default normally works well for bundles, for certain configurations that trigger restart of bundles this can be increased. </td>
-    </tr>
-    <tr>
-      <td><code>osgiInstallerPriority</code> </td>
-      <td>defaults to 2000 </td>
-      <td>Priority, by default higher than the standard installation priority of the JCR installer to ensure bundles/configs from this mechanism take higher priority </td>
-    </tr>
-    <tr>
-      <td><code>installhook.installer.class</code> </td>
-      <td><code>org.apache.sling.installer.provider.installhook.OsgiInstallerHookOsgiInstallerHookEntry</code> </td>
-      <td>Alternative to including the hook in package, however then the bundle <code>org.apache.sling.installer.provider.installhook</code> needs to be installed as prerequisite </td>
-    </tr>
-  </tbody>
-</table></section></div></div>                            
+<thead>
+<tr><th> Property  </th><th> Value</th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>installPathRegex</code> </td><td> Regex, e.g. <code>/apps/myproj/.*</code> or <code>/apps/myproj/install/mybundle-1.0.0.jar</code> </td><td> Regex to match all bundles/configurations to be installed synchronously, . Note: The JCR installer will pick up paths that are not matched asynchronously</td></tr>
+<tr><td> <code>maxWaitForOsgiInstallerInSec</code> </td><td> defaults to 60 sec </td><td> Maximum wait time until installation is successful </td></tr>
+<tr><td> <code>waitForOsgiEventsQuietInSec</code> </td><td> defaults to 1 sec </td><td> Time to wait for OSGi events to go quiet. Default normally works well for bundles, for certain configurations that trigger restart of bundles this can be increased. </td></tr>
+<tr><td> <code>osgiInstallerPriority</code> </td><td> defaults to 2000 </td><td> Priority, by default higher than the standard installation priority of the JCR installer to ensure bundles/configs from this mechanism take higher priority  </td></tr>
+<tr><td> <code>installhook.installer.class</code> </td><td> <code>org.apache.sling.installer.provider.installhook.OsgiInstallerHookOsgiInstallerHookEntry</code> </td><td> Alternative to including the hook in package, however then the bundle <code>org.apache.sling.installer.provider.installhook</code> needs to be installed as prerequisite </td></tr>
+</tbody>
+</table>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

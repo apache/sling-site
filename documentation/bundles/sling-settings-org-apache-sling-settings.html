@@ -118,45 +118,25 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><h1><a href="#overview" name="overview">Overview</a></h1>
+<div class="row"><div><section><h1><a href="#overview" id="overview">Overview</a></h1>
 <p>The Sling Settings Bundle exposes the <code>SlingSettingsService</code> which allows access to the following information pertinent to a Sling instance:</p>
 <table>
-  <thead>
-    <tr>
-      <th>Method </th>
-      <th>Bundle Context Property </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>String getSlingId()</code> </td>
-      <td>(-) </td>
-      <td>A unique identifier of the running Sling instance. This value is created when Sling is first started and may be used to identify the instance, for example if multiple Sling instances are running on top of a Jackrabbit Repository Cluster </td>
-    </tr>
-    <tr>
-      <td><code>String getSlingHomePath()</code> </td>
-      <td><code>sling.home</code> </td>
-      <td>The absolute filesystem path to the directory where Sling stores all its content </td>
-    </tr>
-    <tr>
-      <td><code>URL getSlingHome()</code> </td>
-      <td><code>sling.home.url</code> </td>
-      <td>The Sling Home path as an <code>java.net.URL</code> instance </td>
-    </tr>
-    <tr>
-      <td><code>Set&lt;String&gt; getRunModes()</code> </td>
-      <td><code>sling.run.modes</code> </td>
-      <td>The active Run Modes of the running Sling instance </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Method </th><th> Bundle Context Property </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>String getSlingId()</code> </td><td> (-) </td><td> A unique identifier of the running Sling instance. This value is created when Sling is first started and may be used to identify the instance, for example if multiple Sling instances are running on top of a Jackrabbit Repository Cluster </td></tr>
+<tr><td> <code>String getSlingHomePath()</code> </td><td> <code>sling.home</code> </td><td> The absolute filesystem path to the directory where Sling stores all its content </td></tr>
+<tr><td> <code>URL getSlingHome()</code> </td><td> <code>sling.home.url</code> </td><td> The Sling Home path as an <code>java.net.URL</code> instance </td></tr>
+<tr><td> <code>Set&lt;String&gt; getRunModes()</code> </td><td> <code>sling.run.modes</code> </td><td> The active Run Modes of the running Sling instance </td></tr>
+</tbody>
 </table>
 <p>The new Sling Settings Bundle replaces the former <code>org.apache.sling.runmode</code> bundle and the <code>SlingSettingsService</code> previously provided by the Sling Engine bundle, as it also implements the run modes logic.</p>
-<h2><a href="#selecting-the-active-run-modes" name="selecting-the-active-run-modes">Selecting the active run modes</a></h2>
-<p>The run modes are selected based on the <code>sling.run.modes</code> property (the "selection property"), specified in the Sling settings file or as a command-line parameter (which takes precedence), out of the valid run modes defined by the properties described below. The value is a String which contains a list of comma-separated run modes. If a run mode is given here which is not contained in any group of valid run modes (given in <code>sling.run.mode.install.options</code> or <code>sling.run.mode.options</code>) it is always active, on the other hand run modes which are contained in any of the predefined groups may be modified/removed (see below for the details).</p>
+<h2><a href="#selecting-the-active-run-modes" id="selecting-the-active-run-modes">Selecting the active run modes</a></h2>
+<p>The run modes are selected based on the <code>sling.run.modes</code> property (the &quot;selection property&quot;), specified in the Sling settings file or as a command-line parameter (which takes precedence), out of the valid run modes defined by the properties described below. The value is a String which contains a list of comma-separated run modes. If a run mode is given here which is not contained in any group of valid run modes (given in <code>sling.run.mode.install.options</code> or <code>sling.run.mode.options</code>) it is always active, on the other hand run modes which are contained in any of the predefined groups may be modified/removed (see below for the details).</p>
 <p>Using <code>-Dsling.run.modes=foo,bar</code> on the JVM command-line, for example, activates the <em>foo</em> and <em>bar</em> run modes if that combination is valid.</p>
 <p>The absolute truth about run modes definition and selection is found in the <a href="https://github.com/apache/sling-org-apache-sling-settings/blob/master/src/test/java/org/apache/sling/settings/impl/RunModeImplTest.java">RunModeImplTest</a> which should be self-explaining.</p>
-<h2><a href="#defining-valid-run-modes" name="defining-valid-run-modes">Defining valid run modes</a></h2>
+<h2><a href="#defining-valid-run-modes" id="defining-valid-run-modes">Defining valid run modes</a></h2>
 <p>Since <a href="https://issues.apache.org/jira/browse/SLING-2662">SLING-2662</a> the valid run modes are defined by the <code>sling.run.mode.options</code> and <code>sling.run.mode.install.options</code> configuration properties, usually defined in the <code>sling.properties</code> file or in the provisioning model of a Sling Launchpad instance.</p>
 <p>The <code>sling.run.mode.install.options</code> property is only used on the first startup on the Sling instance and the run modes that it defines cannot be changed later.</p>
 <p>The <code>sling.run.mode.options</code> property on the other hand is used at each startup, so the run modes that it defines can be changed between executions of a given Sling instance.</p>
@@ -166,56 +146,35 @@
 <p>where <em>comma-separated run modes form a group</em>. The individual groups are separated by a pipe character (<code>|</code>, which is not an OR operation, it's just as separator). A group defines a number of run modes which are <strong>mutually exclusive</strong>. It means once a group is defined, exactly one run mode will be active from that group.</p>
 <p>The example from above consists out of 3 different groups</p>
 <ol>
-  <li><code>red,green,blue</code></li>
-  <li><code>one</code></li>
-  <li><code>moon,mars</code></li>
+<li><code>red,green,blue</code></li>
+<li><code>one</code></li>
+<li><code>moon,mars</code></li>
 </ol>
-<p>The rules for determining the active run modes from the selected run mode (<code>sling.run.modes</code>) and the run mode options (<code>sling.run.mode.install.options</code> and <code>sling.run.mode.options</code>) are as follows : </p>
+<p>The rules for determining the active run modes from the selected run mode (<code>sling.run.modes</code>) and the run mode options (<code>sling.run.mode.install.options</code> and <code>sling.run.mode.options</code>) are as follows :</p>
 <ol>
-  <li>If none of the run modes in the options are selected, the first one from each group in the options is activated by default.</li>
-  <li>If one is selected from a group in the options, this is active.</li>
-  <li>If several are selected from one group in the options, the first one from the list of valid run modes is used.</li>
-  <li>If the selected run mode is not mentioned in any of the option groups it is active</li>
+<li>If none of the run modes in the options are selected, the first one from each group in the options is activated by default.</li>
+<li>If one is selected from a group in the options, this is active.</li>
+<li>If several are selected from one group in the options, the first one from the list of valid run modes is used.</li>
+<li>If the selected run mode is not mentioned in any of the option groups it is active</li>
 </ol>
 <p>Examples</p>
 <pre><code>sling.run.mode.options=a,b|c,d,e
 </code></pre>
 <table>
-  <thead>
-    <tr>
-      <th>User defined run modes (e.g. via property <code>sling.run.modes</code>) </th>
-      <th>Effectively active run modes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>(none) </td>
-      <td><code>a,c</code></td>
-    </tr>
-    <tr>
-      <td><code>a</code> </td>
-      <td><code>a,c</code></td>
-    </tr>
-    <tr>
-      <td><code>b</code> </td>
-      <td><code>b,c</code></td>
-    </tr>
-    <tr>
-      <td><code>a,b</code> </td>
-      <td><code>a,c</code></td>
-    </tr>
-    <tr>
-      <td><code>a,d</code> </td>
-      <td><code>a,d</code></td>
-    </tr>
-    <tr>
-      <td><code>a,e,f</code> </td>
-      <td><code>a,e</code></td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th>User defined run modes (e.g. via property <code>sling.run.modes</code>) </th><th> Effectively active run modes</th></tr>
+</thead>
+<tbody>
+<tr><td>(none) </td><td> <code>a,c</code></td></tr>
+<tr><td><code>a</code> </td><td> <code>a,c</code></td></tr>
+<tr><td><code>b</code> </td><td> <code>b,c</code></td></tr>
+<tr><td><code>a,b</code> </td><td> <code>a,c</code></td></tr>
+<tr><td><code>a,d</code> </td><td> <code>a,d</code></td></tr>
+<tr><td><code>a,e,f</code> </td><td> <code>a,e</code></td></tr>
+</tbody>
 </table>
 <p>Remember to look at the <code>RunModeImplTest</code> mentioned above for details, and feel free to enhance it with useful examples.</p>
-<h3><a href="#getting-the-run-modes-of-the-sling-instance" name="getting-the-run-modes-of-the-sling-instance">Getting the Run Modes of the Sling instance</a></h3>
+<h3><a href="#getting-the-run-modes-of-the-sling-instance" id="getting-the-run-modes-of-the-sling-instance">Getting the Run Modes of the Sling instance</a></h3>
 <p>The <code>SlingSettings</code> service provides the Run Modes of the running Sling instance as in this example:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->SlingSettings settings = ...get from BundleContext...
 Set&lt;String&gt; currentRunModes = settings.getRunModes();
@@ -226,7 +185,8 @@ if(expectedRunModes.removeAll(currentRunModes)) {
   // is active
 }
 </code></pre>
-<p>Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.</p></section></div></div>                            
+<p>Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

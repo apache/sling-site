@@ -120,206 +120,142 @@
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#what-is-a-resource" name="what-is-a-resource">What is a Resource</a></h2>
+<h2><a href="#what-is-a-resource" id="what-is-a-resource">What is a Resource</a></h2>
 <p>The Resource is one of the central parts of Sling. Extending from JCR's <em>Everything is Content</em>, Sling assumes <em>Everthing is a Resource</em>. Thus Sling is maintaining a virtual tree of resources, which is a merger of the actual contents by so called resource providers (one of them usually the JCR Resource Provider). By doing this Sling fits very well in the paradigma of the REST architecture.</p>
-<h3><a href="#resource-properties" name="resource-properties">Resource Properties</a></h3>
+<h3><a href="#resource-properties" id="resource-properties">Resource Properties</a></h3>
 <p>Resources have a number of essential properties:</p>
 <table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Path </td>
-      <td>Resources are part of a Resource Tree. As such each Resource has a path which is formed by concatenating the names of all Resources along the root to the Resource separated by a slash. Ok, really, this is much like a URL path or a file system path where the slash (<code>/</code>) is the separator character. </td>
-    </tr>
-    <tr>
-      <td>Name </td>
-      <td>The name of the Resource is the last element (or segment) in the path. </td>
-    </tr>
-    <tr>
-      <td>Resource Type </td>
-      <td>Each resource has a resource type which is used by the Servlet and Script resolver to find the appropriate Servlet or Script to handle the request for the Resource. </td>
-    </tr>
-    <tr>
-      <td>Resource Super Type </td>
-      <td>The (optional explicit) super type of the Resource. See the section <em>Resource Types</em> below for more details. </td>
-    </tr>
-    <tr>
-      <td>Adapters </td>
-      <td>Resources are always <code>Adaptable</code> and therefore can be adapted to a different view. See the section <em>Resource Adapters</em> below for more details. </td>
-    </tr>
-    <tr>
-      <td>Metadata </td>
-      <td>Resources in general support <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html"><code>ResourceMetadata</code></a> providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Property </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> Path </td><td> Resources are part of a Resource Tree. As such each Resource has a path which is formed by concatenating the names of all Resources along the root to the Resource separated by a slash. Ok, really, this is much like a URL path or a file system path where the slash (<code>/</code>) is the separator character. </td></tr>
+<tr><td> Name </td><td> The name of the Resource is the last element (or segment) in the path. </td></tr>
+<tr><td> Resource Type </td><td> Each resource has a resource type which is used by the Servlet and Script resolver to find the appropriate Servlet or Script to handle the request for the Resource. </td></tr>
+<tr><td> Resource Super Type </td><td> The (optional explicit) super type of the Resource. See the section <em>Resource Types</em> below for more details. </td></tr>
+<tr><td> Adapters </td><td> Resources are always <code>Adaptable</code> and therefore can be adapted to a different view. See the section <em>Resource Adapters</em> below for more details. </td></tr>
+<tr><td> Metadata </td><td> Resources in general support <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html"><code>ResourceMetadata</code></a> providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. </td></tr>
+</tbody>
 </table>
 <p>For a complete description of the <code>Resource</code> interface, please refer to the <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a> JavaDoc.</p>
 <p>The properties are either exposed via the <code>ValueMap</code> or <code>ModifiableValueMap</code> adaptable or by calling <code>Resource.getValueMap()</code>.</p>
 <p>To get the main binary property from a given resource one can adapt it to an <code>InputStream</code>. Most resource providers return the underlying wrapper binary in that case.</p>
-<h3><a href="#resource-types" name="resource-types">Resource Types</a></h3>
+<h3><a href="#resource-types" id="resource-types">Resource Types</a></h3>
 <p>The exact method of setting the resource type for a Resource depends on the actual Resource Provider. For the four main Resource Provider implementations provided by Sling, the assignments are as follows:</p>
 <table>
-  <thead>
-    <tr>
-      <th>Provider </th>
-      <th>Resource Type </th>
-      <th>Resource Super Type </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>JCR </td>
-      <td>The value of the <code>sling:resourceType</code> property or the primary node type if the property is not set (a namespace separator colon is replaced by a slash, e.g. the <code>nt:file</code> primary node type is mapped to the <code>nt/file</code> resource type </td>
-      <td>The value of the <code>sling:resourceSuperType</code> of the Resource node or resource super type of the resource pointed to by the resource type (when accessed with <code>ResourceResolver.getResource(String)</code> </td>
-    </tr>
-    <tr>
-      <td>File System </td>
-      <td>File based resources are of type <code>nt/file</code>; folder based resources are of type <code>nt/folder</code> corresponding to the respective JCR primary node type </td>
-      <td>none </td>
-    </tr>
-    <tr>
-      <td>Bundle </td>
-      <td>File based resources are of type <code>nt/file</code>; folder based resources are of type <code>nt/folder</code> corresponding to the respective JCR primary node type </td>
-      <td>none </td>
-    </tr>
-    <tr>
-      <td>Servlet </td>
-      <td>The absolute path of the resource appended with the suffix <code>.servlet</code> </td>
-      <td><code>sling/bundle/resource</code> </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Provider </th><th> Resource Type </th><th> Resource Super Type </th></tr>
+</thead>
+<tbody>
+<tr><td> JCR </td><td> The value of the <code>sling:resourceType</code> property or the primary node type if the property is not set (a namespace separator colon is replaced by a slash, e.g. the <code>nt:file</code> primary node type is mapped to the <code>nt/file</code> resource type </td><td> The value of the <code>sling:resourceSuperType</code> of the Resource node or resource super type of the resource pointed to by the resource type (when accessed with <code>ResourceResolver.getResource(String)</code> </td></tr>
+<tr><td> File System </td><td> File based resources are of type <code>nt/file</code>; folder based resources are of type <code>nt/folder</code> corresponding to the respective JCR primary node type </td><td> none </td></tr>
+<tr><td> Bundle </td><td> File based resources are of type <code>nt/file</code>; folder based resources are of type <code>nt/folder</code> corresponding to the respective JCR primary node type </td><td> none </td></tr>
+<tr><td> Servlet </td><td> The absolute path of the resource appended with the suffix <code>.servlet</code> </td><td> <code>sling/bundle/resource</code> </td></tr>
+</tbody>
 </table>
 <p>Resource Types form a type hierarchy much like Java classes form a type hierarchy. Each resource type has a resource super type, either explicitly defined as for example for JCR or Servlet Resources or implicitly. The implicit Resource Super Type is at the same time the root Resource Type much like the <code>java.lang.Object</code> class is called <code>sling/servlet/default</code> (for historical reasons). The <code>sling/servlet/default</code> Resource Type is the only type without a super type.</p>
-<h3><a href="#adapters" name="adapters">Adapters</a></h3>
+<h3><a href="#adapters" id="adapters">Adapters</a></h3>
 <p>The object types to which Resources may be adapted mostly depends on the Resource Provider providing the resource. For example all JCR node based resources always adapt to <code>javax.jcr.Node</code> objects.</p>
 <p>If the actual Resource object class implementation extends from the <code>SlingAdaptable</code> class, then in addition all <code>AdapterFactory</code> services adapting <code>Resource</code> objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html"><code>AbstractResource</code></a> which guarantees the Resource implementation to extend from <code>SlingAdaptable</code> and thus supporting Adapter Factories.</p>
-<h2><a href="#how-to-get-a-resource" name="how-to-get-a-resource">How to get a Resource</a></h2>
+<h2><a href="#how-to-get-a-resource" id="how-to-get-a-resource">How to get a Resource</a></h2>
 <p>To get at Resources, you need a <code>ResourceResolver</code>. This interface defines four kinds of methods to access resources:</p>
 <ul>
-  <li>Absolute Path Mapping Resource Resolution: The <code>resolve(HttpServletRequest, String)</code> and <code>resolve(String)</code> methods are called to apply some implementation specific path matching algorithm to find a Resource. These methods are mainly used to map external paths - such as path components of request URLs - to Resources. To support creating external paths usable in an URL a third method <code>map(String)</code> is defined, which allows for round-tripping.</li>
-  <li>Absolute or Relative Path Resolution (including search path): The <code>getResource(String path)</code> and <code>getResource(Resource base, String path)</code> methods may be used to access a resource with an absolute path directly. If it can't be found the path is assumed to be relative and the search path retrieved from <code>getSearchPath()</code> is used to retrieve the resource. This mechanism is similar to resolving a programm with the <code>PATH</code> environment variable in your favourite operating system.</li>
-  <li>Resource Enumeration: To enumerate resources and thus iterate the resource tree, the <code>listChildren(Resource)</code> method may be used. This method returns an <code>Iterator&lt;Resource&gt;</code> listing all resources whose path prefix is the path of the given Resource. This method will of course also cross boundaries of registered <code>ResourceProvider</code> instances to enable iterating the complete resource tree.</li>
-  <li>Resource Querying: Querying resources is currently only supported for JCR Resources through the <code>findResources(String query, String language)</code> and <code>queryResources(String query, String language)</code> methods. For more information see the section on <a href="#querying-resources">Querying Resources</a> below.</li>
+<li>Absolute Path Mapping Resource Resolution: The <code>resolve(HttpServletRequest, String)</code> and <code>resolve(String)</code> methods are called to apply some implementation specific path matching algorithm to find a Resource. These methods are mainly used to map external paths - such as path components of request URLs - to Resources. To support creating external paths usable in an URL a third method <code>map(String)</code> is defined, which allows for round-tripping.</li>
+<li>Absolute or Relative Path Resolution (including search path): The <code>getResource(String path)</code> and <code>getResource(Resource base, String path)</code> methods may be used to access a resource with an absolute path directly. If it can't be found the path is assumed to be relative and the search path retrieved from <code>getSearchPath()</code> is used to retrieve the resource. This mechanism is similar to resolving a programm with the <code>PATH</code> environment variable in your favourite operating system.</li>
+<li>Resource Enumeration: To enumerate resources and thus iterate the resource tree, the <code>listChildren(Resource)</code> method may be used. This method returns an <code>Iterator&lt;Resource&gt;</code> listing all resources whose path prefix is the path of the given Resource. This method will of course also cross boundaries of registered <code>ResourceProvider</code> instances to enable iterating the complete resource tree.</li>
+<li>Resource Querying: Querying resources is currently only supported for JCR Resources through the <code>findResources(String query, String language)</code> and <code>queryResources(String query, String language)</code> methods. For more information see the section on <a href="#querying-resources">Querying Resources</a> below.</li>
 </ul>
-<h3><a href="#how-to-get-a-resourceresolver" name="how-to-get-a-resourceresolver">How to get a ResourceResolver</a></h3>
+<h3><a href="#how-to-get-a-resourceresolver" id="how-to-get-a-resourceresolver">How to get a ResourceResolver</a></h3>
 <p>Usually you get the <code>ResourceResolver</code> via the OSGi service <code>ResourceResolverFactory</code>. This interface provides different methods to create a ResourceResolver:</p>
 <ol>
-  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)</code></a>. You must provide some authentication info details for this to work. Those are highly dependent on the implementing <code>ResourceProvider</code>. See sections below for further details which keys are supported.</li>
-  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getServiceResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getServiceResourceResolver(java.util.Map authenticationInfo)</code></a>. Can optionally be further parameterized via the authentication info key <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#SUBSERVICE"><code>sling.service.subservice</code></a>. For further details refer to <a href="service-authentication.html">ServiceAuthentication</a>.</li>
-  <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getThreadResourceResolver--"><code>ResourceResolverFactory.getThreadResourceResolver()</code></a>. Uses the resource resolver bound to the current thread.</li>
-  <li>The deprecated <code>ResourceResolverFactory.getAdministrativeResourceResolver(...)</code>. Instead rather use the method 2.</li>
+<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)</code></a>. You must provide some authentication info details for this to work. Those are highly dependent on the implementing <code>ResourceProvider</code>. See sections below for further details which keys are supported.</li>
+<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getServiceResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getServiceResourceResolver(java.util.Map authenticationInfo)</code></a>. Can optionally be further parameterized via the authentication info key <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#SUBSERVICE"><code>sling.service.subservice</code></a>. For further details refer to <a href="service-authentication.html">ServiceAuthentication</a>.</li>
+<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getThreadResourceResolver--"><code>ResourceResolverFactory.getThreadResourceResolver()</code></a>. Uses the resource resolver bound to the current thread.</li>
+<li>The deprecated <code>ResourceResolverFactory.getAdministrativeResourceResolver(...)</code>. Instead rather use the method 2.</li>
 </ol>
 <p>It is crucial that each <code>ResourceResolver</code> retrieved via one of those methods is closed via <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#close--"><code>ResourceResolver.close()</code></a> once it is no longer used.</p>
-<h3><a href="#absolute-path-mapping" name="absolute-path-mapping">Absolute Path Mapping</a></h3>
+<h3><a href="#absolute-path-mapping" id="absolute-path-mapping">Absolute Path Mapping</a></h3>
 <p>As has been said, the absolute path mapping methods <code>resolve(HttpServletRequest, String)</code> and <code>resolve(String)</code> apply some implementation specific path matching algorithm to find a Resource. The difference between the two methods is that the former may take more properties of the <code>HttpServletRequest</code> into account when resolving the Resoure, while the latter just has an absolute path to work on.</p>
 <p>The general algorithm of the two methods is as follows:</p>
 <ol>
-  <li>Call <code>HttpServletRequest.getScheme(), .getServerName(), getServerPort</code> to get an absolute path out of the request URL: [scheme]/[host].[port][path] (<code>resolve(HttpServletRequest, String)</code> method only, which)</li>
-  <li>Check whether any virtual path matches the absolute path. If such a match exists, the next step is entered with the match.</li>
-  <li>Apply a list of mappings in order to create a mapped path. The first mapped path resolving to a Resource is assumed success and the Resource found is returned.</li>
-  <li>If no mapping created a mapped path addressing an existing Resource, the method fails and returns a <code>NonExistingResource</code> (for the<br/><code>resolve(String)</code> and <code>resolve(HttpServletRequest,String)</code>) or null (for the <code>getResource(String path)</code> and <code>getResource(Resource base, String path)</code> methods).</li>
+<li>Call <code>HttpServletRequest.getScheme(), .getServerName(), getServerPort</code> to get an absolute path out of the request URL: [scheme]/[host].[port][path] (<code>resolve(HttpServletRequest, String)</code> method only, which)</li>
+<li>Check whether any virtual path matches the absolute path. If such a match exists, the next step is entered with the match.</li>
+<li>Apply a list of mappings in order to create a mapped path. The first mapped path resolving to a Resource is assumed success and the Resource found is returned.</li>
+<li>If no mapping created a mapped path addressing an existing Resource, the method fails and returns a <code>NonExistingResource</code> (for the<br />
+<code>resolve(String)</code> and <code>resolve(HttpServletRequest,String)</code>) or null (for the <code>getResource(String path)</code> and <code>getResource(Resource base, String path)</code> methods).</li>
 </ol>
 <p>The virtual path mapping may be used to create shortcut URLs for otherwise long and complicated URLs. An example of such an URL might be the main administrative page of a CMS system. So, administrators may access the root of the web application and directed to the main administrative page.</p>
 <p>The path mapping functionality may be used to hide internal resource organization from the request URL space. For example to better control the structure of your repository, you might decide to store all accessible data inside a <code>/content</code> subtree. To hide this fact from the users, a mapping may be defined to prefix all incoming paths with <code>/content</code> to get at the actual Resource.</p>
 <p>The <code>map(String)</code> applies the path mapping algorithm in the reverse order. That is, first the path mappings are reversed and then any virtual mappings are checked. So, a path <code>/content/sample</code> might be mapped <code>/sample</code> to revers the <code>/content</code> prefixing. Or the main administrative page - say <code>/system/admin/main.html</code> - may be mapped to the virtual URL <code>/</code>.</p>
 <p>More details on mappings can be found at <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a>.</p>
-<h3><a href="#relative-path-resolution" name="relative-path-resolution">Relative Path Resolution</a></h3>
+<h3><a href="#relative-path-resolution" id="relative-path-resolution">Relative Path Resolution</a></h3>
 <p>Sometimes it is required to resolve relative paths to Resources. An example of such a use case is Script and Servlet resolution which starts with a relative path consisting of the Resource type, optional selectors and the request extension or method name. By scanning a search path for these relative paths a system provided Resource may be overwritten with some user defined implementation.</p>
 <p>Consider for example, the system would provide a Servlet to render Resources of type <code>nt:file</code>. This Servlet would be registered under the path <code>/libs/nt/file/html</code>. For a certain web application, this default HTML rendering might not be appropriate, so a Script is created as <code>/apps/nt/file/html.jsp</code> with a customized HTML rendering. By defining the search path to be <code>[/apps,/libs]</code> the Servlet resolver would call the <code>ResourceResolver.getResource(String)</code> method with the relative path <code>nt/file/html</code> and be provided with the first matching resource - <code>/apps/nt/file/html.jsp</code> in this example.</p>
 <p>Of course the search path is not used for absolute path arguments.</p>
-<h3><a href="#querying-resources" name="querying-resources">Querying Resources</a></h3>
+<h3><a href="#querying-resources" id="querying-resources">Querying Resources</a></h3>
 <p>For convenience the <code>ResourceResolver</code> provides two Resource querying methods <code>findResources</code> and <code>queryResources</code> both methods take as arguments a JCR query string and a query language name. These parameters match the parameter definition of the <code>QueryManager.createQuery(String statement, String language)</code> method of the JCR API.</p>
 <p>The return value of these two methods differ in the use case:</p>
 <ul>
-  <li><code>findResources</code> returns an <code>Iteratory&lt;Resource&gt;</code> of all Resources matching the query. This method is comparable to calling <code>getNodes()</code> on the <code>QueryResult</code> returned from executing the JCR query.</li>
-  <li><code>queryResources</code> returns an <code>Iterator&lt;Map&lt;String, Object&gt;&gt;</code>. Each entry in the iterator is a <code>Map&lt;String, Object</code> representing a JCR result <code>Row</code> in the <code>RowIterator</code> returned from executing the JCR query. The map is indexed by the column name and the value of each entry is the value of the named column as a Java Object.</li>
+<li><code>findResources</code> returns an <code>Iteratory&lt;Resource&gt;</code> of all Resources matching the query. This method is comparable to calling <code>getNodes()</code> on the <code>QueryResult</code> returned from executing the JCR query.</li>
+<li><code>queryResources</code> returns an <code>Iterator&lt;Map&lt;String, Object&gt;&gt;</code>. Each entry in the iterator is a <code>Map&lt;String, Object</code> representing a JCR result <code>Row</code> in the <code>RowIterator</code> returned from executing the JCR query. The map is indexed by the column name and the value of each entry is the value of the named column as a Java Object.</li>
 </ul>
 <p>These methods are convenience methods to more easily post queries to the repository and to handle results in very straight forward way using only standard Java functionality.</p>
 <p>Please note, that Resource querying is currently only supported for repository based Resources. These query methods are not reflected in the <code>ResourceProvider</code> interface used to inject non-repository Resources into the Resource tree.</p>
-<h2><a href="#providing-resources" name="providing-resources">Providing Resources</a></h2>
+<h2><a href="#providing-resources" id="providing-resources">Providing Resources</a></h2>
 <p>The virtual Resource tree to which the the Resource accessor methods <code>resolve</code> and <code>getResource</code> provide access is implemented by a collection of registered <code>ResourceProvider</code> instances. The main Resource provider is of course the repository based <code>JcrResourceProvider</code> which supports Node and Property based resources. This Resource provider is always available in Sling. Further Resource providers may or may not exist.</p>
 <p>Each Resource provider is registered as an OSGi service with a required service registration property <code>provider.roots</code>. This is a multi-value String property listing the absolute paths Resource tree entries serving as roots to provided subtrees. For example, if a Resource provider is registered with the service registration property <code>provider.roots</code> set to <em>/some/root</em>, all paths starting with <code>/some/root</code> are first looked up in the given Resource Provider.</p>
 <p>When looking up a Resource in the registered Resource providers, the <code>ResourceResolver</code> applies a longest prefix matching algorithm to find the best match. For example consider three Resource provider registered as follows:</p>
 <ul>
-  <li>JCR Resource provider as <code>/</code></li>
-  <li>Resource provider R1 as <code>/some</code></li>
-  <li>Resource provider R2 as <code>/some/path</code></li>
+<li>JCR Resource provider as <code>/</code></li>
+<li>Resource provider R1 as <code>/some</code></li>
+<li>Resource provider R2 as <code>/some/path</code></li>
 </ul>
 <p>When accessing a Resource with path <code>/some/path/resource</code> the Resource provider <em>R2</em> is first asked. If that cannot provide the resource, Resource provider <em>R1</em> is asked and finally the JCR Resource provider is asked. The first Resource provider having a Resource with the requested path will be used.</p>
-<h3><a href="#jcr-based-resources" name="jcr-based-resources">JCR-based Resources</a></h3>
+<h3><a href="#jcr-based-resources" id="jcr-based-resources">JCR-based Resources</a></h3>
 <p>JCR-based Resources are provided with the default <code>JcrResourceProvider</code>. This Resource provider is always available and is always asked last. That is Resources provided by other Resource providers may never be overruled by repository based Resources.</p>
 <p>These are the authenticationInfo keys (which can be used with <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#getResourceResolver-java.util.Map-"><code>ResourceResolverFactory.getResourceResolver(java.util.Map authenticationInfo)</code></a>) which are supported by the <code>JcrResourceProvider</code>:</p>
 <table>
-  <thead>
-    <tr>
-      <th>AuthenticationInfo Key </th>
-      <th>Constant </th>
-      <th>Type </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>user.jcr.session</code> </td>
-      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_SESSION"><code>JcrResourceConstants.AUTHENTICATION_INFO_SESSION</code></a> </td>
-      <td><code>javax.jcr.Session</code> </td>
-      <td>The session which is used for the underlying repository access. When calling <code>close()</code> on the returned <code>ResourceResolver</code> the session will not(!) be closed. </td>
-    </tr>
-    <tr>
-      <td><code>user.jcr.credentials</code> </td>
-      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_CREDENTIALS"><code>JcrResourceConstants.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td>
-      <td><code>javax.jcr.Credentials</code> </td>
-      <td>The credentials object from which to create the new underlying JCR session</td>
-    </tr>
-    <tr>
-      <td><code>user.name</code> </td>
-      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER"><code>ResourceResolverFcatory.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td>
-      <td>String </td>
-      <td>Optionally used with <code>user.password</code> to create simple credentials from which the Session is being created.</td>
-    </tr>
-    <tr>
-      <td><code>user.impersonation</code> </td>
-      <td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION"><code>ResourceResolverFcatory.USER_IMPERSONATION</code></a> </td>
-      <td>String </td>
-      <td>User ID which should be used for impersonation via <code>javax.jcr.Session.impersonate(...)</code>. Must be combined with one of the other authentication info keys.</td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> AuthenticationInfo Key </th><th> Constant </th><th> Type </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>user.jcr.session</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_SESSION"><code>JcrResourceConstants.AUTHENTICATION_INFO_SESSION</code></a> </td><td> <code>javax.jcr.Session</code> </td><td> The session which is used for the underlying repository access. When calling <code>close()</code> on the returned <code>ResourceResolver</code> the session will not(!) be closed. </td></tr>
+<tr><td> <code>user.jcr.credentials</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_CREDENTIALS"><code>JcrResourceConstants.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td><td> <code>javax.jcr.Credentials</code> </td><td> The credentials object from which to create the new underlying JCR session</td></tr>
+<tr><td> <code>user.name</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER"><code>ResourceResolverFcatory.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td><td> String </td><td> Optionally used with <code>user.password</code> to create simple credentials from which the Session is being created.</td></tr>
+<tr><td> <code>user.impersonation</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION"><code>ResourceResolverFcatory.USER_IMPERSONATION</code></a> </td><td> String </td><td> User ID which should be used for impersonation via <code>javax.jcr.Session.impersonate(...)</code>. Must be combined with one of the other authentication info keys.</td></tr>
+</tbody>
 </table>
-<h3><a href="#bundle-based-resources" name="bundle-based-resources">Bundle-based Resources</a></h3>
+<h3><a href="#bundle-based-resources" id="bundle-based-resources">Bundle-based Resources</a></h3>
 <p>Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header <code>Sling-Bundle-Resources</code> containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).</p>
-<p>The <code>BundleResourceProvider</code> supporting bundle-based Resources provides directories as Resources of type <code>nt:folder</code> and files as Resources of type <code>nt:file</code>. This matches the default primary node types intended to be used for directories and files in JCR repositories. </p>
+<p>The <code>BundleResourceProvider</code> supporting bundle-based Resources provides directories as Resources of type <code>nt:folder</code> and files as Resources of type <code>nt:file</code>. This matches the default primary node types intended to be used for directories and files in JCR repositories.</p>
 <p>For details see <a href="/documentation/bundles/bundle-resources-extensions-bundleresource.html">Bundle Resource.</a></p>
-<h3><a href="#servlet-resources" name="servlet-resources">Servlet Resources</a></h3>
+<h3><a href="#servlet-resources" id="servlet-resources">Servlet Resources</a></h3>
 <p>Servlet Resources are registered by the Servlet Resolver bundle for Servlets registered as OSGi services. See <a href="/documentation/the-sling-engine/servlets.html">Servlet Resolution</a> for information on how Servlet Resources are provided.</p>
-<h3><a href="#file-system-resources" name="file-system-resources">File System Resources</a></h3>
-<p>The Filesystem Resource Provider provides access to the operating system's filesystem through the Sling ResourceResolver. Multiple locations may be mapped into the resource tree by configuring the filesystem location and the resource tree root path for each location to be mapped. </p>
+<h3><a href="#file-system-resources" id="file-system-resources">File System Resources</a></h3>
+<p>The Filesystem Resource Provider provides access to the operating system's filesystem through the Sling ResourceResolver. Multiple locations may be mapped into the resource tree by configuring the filesystem location and the resource tree root path for each location to be mapped.</p>
 <p>For details see <a href="/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html">File System Resources</a>.</p>
-<h3><a href="#merged-resources" name="merged-resources">Merged Resources</a></h3>
+<h3><a href="#merged-resources" id="merged-resources">Merged Resources</a></h3>
 <p>The merged resource provider exposes a view on merged resources from multiple locations.</p>
 <p>For details see <a href="/documentation/bundles/resource-merger.html">Resource Merger</a>.</p>
-<h3><a href="#custom-resource-providers" name="custom-resource-providers">Custom Resource providers</a></h3>
+<h3><a href="#custom-resource-providers" id="custom-resource-providers">Custom Resource providers</a></h3>
 <p>Custom ResourceProvider services can be used to integrate your own custom resources in the Sling resource tree.</p>
 <p>For a simple example of that, see the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/resourceprovider">PlanetResourceProvider</a> used in our integration tests.</p>
-<h2><a href="#writeable-resources" name="writeable-resources">Writeable Resources</a></h2>
+<h2><a href="#writeable-resources" id="writeable-resources">Writeable Resources</a></h2>
 <p>Sling now supports full CRUD functionality on Resources, without necessarily having to go through the JCR API.</p>
 <p>The advantage is that this works for any ResourceProvider that supports the required operations.</p>
 <p>See the testSimpleCRUD method in <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/serversidetests/WriteableResourcesTest.java">WriteableResourcesTest</a> for a basic example of how that works. More details can be found at <a href="/documentation/the-sling-engine/sling-api-crud-support.html">Sling API CRUD Support</a>.</p>
-<h2><a href="#resource-observation" name="resource-observation">Resource Observation</a></h2>
+<h2><a href="#resource-observation" id="resource-observation">Resource Observation</a></h2>
 <p>To be notified whenever certain resources or their properties have been modified/added/removed there are different possibilities</p>
-<h3><a href="#resource-observation-api-resourcechangelistener-" name="resource-observation-api-resourcechangelistener-">Resource Observation API (ResourceChangeListener)</a></h3>
+<h3><a href="#resource-observation-api-resourcechangelistener" id="resource-observation-api-resourcechangelistener">Resource Observation API (ResourceChangeListener)</a></h3>
 <p><em>This API is only available since Sling API 2.11.0 (<a href="https://issues.apache.org/jira/browse/SLING-4751">SLING-4751</a>).</em></p>
-<p>Register an OSGi service for <a href="https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java"><code>org.apache.sling.api.resource.observation.ResourceChangeListener</code></a> to be notified about local changes. To be also notified about external changes (i.e. changes triggered by another Sling instance leveraging a clustered repository make sure that your service implementation also implements the marker interface <a href="https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java"><code>org.apache.sling.api.resource.observation.ExternalResourceChangeListener</code></a>. The interface <code>ExternalResourceChangeListener</code> is not supposed to be registered with OSGi though. Certain properties can be used to restrict subscription to only a subset of events.</p>
-<h3><a href="#osgi-event-admin" name="osgi-event-admin">OSGi Event Admin</a></h3>
-<p>Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html"><code>org.osgi.service.event.EventHandler</code></a>. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html"><code>org.apache.sling.api.SlingConstants</code></a> starting with the prefix <code>TOPIC_</code>. </p>
+<p>Register an OSGi service for <a href="https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java"><code>org.apache.sling.api.resource.observation.ResourceChangeListener</code></a> to be notified about local changes. To be also notified about external changes (i.e. changes triggered by another Sling instance leveraging a clustered repository  make sure that your service implementation also implements the marker interface <a href="https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java"><code>org.apache.sling.api.resource.observation.ExternalResourceChangeListener</code></a>. The interface <code>ExternalResourceChangeListener</code> is not supposed to be registered with OSGi though. Certain properties can be used to restrict subscription to only a subset of events.</p>
+<h3><a href="#osgi-event-admin" id="osgi-event-admin">OSGi Event Admin</a></h3>
+<p>Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html"><code>org.osgi.service.event.EventHandler</code></a>. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html"><code>org.apache.sling.api.SlingConstants</code></a> starting with the prefix <code>TOPIC_</code>.</p>
 <p>You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the <a href="/apache-sling-eventing-and-job-handling.html#basic-principles">event attribute <code>event.application</code></a>, which is only set in case the event was triggered from an external resource modification (compare with <a href="https://sling.apache.org/apidocs/sling9/org/apache/sling/event/dea/DEAConstants.html"><code>DEAConstants</code></a> and try to reuse the constant from there).</p>
 <p>The OSGi event handlers may be <a href="http://felix.apache.org/documentation/subprojects/apache-felix-event-admin.html#configuration">blacklisted by Apache Felix</a> in case the processing takes too long. Therefore dispatch all long-lasting operations to a new thread or start a new Sling Job.</p>
-<h2><a href="#wrap-decorate-resources" name="wrap-decorate-resources">Wrap/Decorate Resources</a></h2>
-<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p></section></div></div>                            
+<h2><a href="#wrapdecorate-resources" id="wrapdecorate-resources">Wrap/Decorate Resources</a></h2>
+<p>The Sling API provides an easy way to wrap or decorate a resource before returning. Details see <a href="/documentation/the-sling-engine/wrap-or-decorate-resources.html">Wrap or Decorate Resources</a>.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

@@ -122,126 +122,55 @@
 <p>With the exception of the Sling setup properties (<code>sling.home</code>, <code>sling.launchpad</code>, and <code>sling.properties</code>) all properties can be set on the command line using the <code>-D</code> command line option or in the <code>sling.properties</code> file. Properties defined on the command line or in the <code>web.xml</code> file always overwrite properties in the <code>sling.properties</code> file.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#sling-setup-properties" name="sling-setup-properties">Sling Setup Properties</a></h2>
+<h2><a href="#sling-setup-properties" id="sling-setup-properties">Sling Setup Properties</a></h2>
 <table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Default Value </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>sling.home</code> </td>
-      <td><code>sling</code> </td>
-      <td>Path to the main Sling Directory; relative path is resolved against current working directory as defined in the <code>user.dir</code> system property. Can also be set with the <code>-c</code> command line option. </td>
-      <td>Launchpad </td>
-    </tr>
-    <tr>
-      <td><code>sling.launchpad</code> </td>
-      <td><code>${sling.home}</code> </td>
-      <td>Location for the Sling launchpad JAR file and the startup folder containing bundles to be installed by the Bootstrap Installer. Can also be set with the <code>-i</code> command line option. </td>
-      <td>Launchpad </td>
-    </tr>
-    <tr>
-      <td><code>sling.properties</code> </td>
-      <td><code>${sling.home}/sling.properties</code> </td>
-      <td>Path to the <code>sling.properties</code> file; relative path is resolved against <code>${sling.home}</code> </td>
-      <td>Launchpad </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Property </th><th> Default Value </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>sling.home</code> </td><td> <code>sling</code> </td><td> Path to the main Sling Directory; relative path is resolved against current working directory as defined in the <code>user.dir</code> system property. Can also be set with the <code>-c</code> command line option. </td><td> Launchpad </td></tr>
+<tr><td> <code>sling.launchpad</code> </td><td> <code>${sling.home}</code> </td><td> Location for the Sling launchpad JAR file and the startup folder containing bundles to be installed by the Bootstrap Installer. Can also be set with the <code>-i</code> command line option. </td><td> Launchpad </td></tr>
+<tr><td> <code>sling.properties</code> </td><td> <code>${sling.home}/sling.properties</code> </td><td> Path to the <code>sling.properties</code> file; relative path is resolved against <code>${sling.home}</code> </td><td> Launchpad </td></tr>
+</tbody>
 </table>
-<h2><a href="#server-control-port-properties" name="server-control-port-properties">Server Control Port Properties</a></h2>
+<h2><a href="#server-control-port-properties" id="server-control-port-properties">Server Control Port Properties</a></h2>
 <table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Default Value </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>sling.control.socket</code> </td>
-      <td><code>127.0.0.1:0</code> </td>
-      <td>Specification of the control port. Can also be set with the <code>-j</code> command line option. This property is only used by the Standalone Sling Application. </td>
-      <td>Launchpad </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Property </th><th> Default Value </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>sling.control.socket</code> </td><td> <code>127.0.0.1:0</code> </td><td> Specification of the control port. Can also be set with the <code>-j</code> command line option. This property is only used by the Standalone Sling Application. </td><td> Launchpad </td></tr>
+<tr><td> <code>sling.control.action</code> </td><td> -- </td><td> Action to execute. This is the same as specifying <code>start</code>, <code>status</code>, or <code>stop</code> on the command line. This property is only used by the Standalone Sling Application. </td><td> Launchpad </td></tr>
+</tbody>
 </table>
-<p>| <code>sling.control.action</code> | -- | Action to execute. This is the same as specifying <code>start</code>, <code>status</code>, or <code>stop</code> on the command line. This property is only used by the Standalone Sling Application. | Launchpad |</p>
-<h2><a href="#logging-configuration" name="logging-configuration">Logging Configuration</a></h2>
+<h2><a href="#logging-configuration" id="logging-configuration">Logging Configuration</a></h2>
 <p>Logging configuration defined by these properties sets up initial configuration for the Sling Commons Log bundle. This configuration is used as long as there is no configuration from the Configuration Admin Service for the service PID <code>org.apache.sling.commons.log.LogManager</code>.</p>
 <table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Default Value </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>org.apache.sling.commons.log.level</code> </td>
-      <td><code>INFO</code> </td>
-      <td>Sets the initial logging level of the root logger. This may be any of the defined logging levels <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, or <code>ERROR</code>. This property can also be set with the <code>-l</code> command line option. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file</code> </td>
-      <td><code>${sling.home}/logs/error.log</code> </td>
-      <td>Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to System.out. This property can also be set with the <code>-f</code> command line option. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file.number</code> </td>
-      <td><code>5</code> </td>
-      <td>The number of rotated files to keep. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.file.size</code> </td>
-      <td><code>&#39;.&#39;yyyy-MM-dd</code> </td>
-      <td>Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section <a href="http://sling.apache.org/site/logging.html#Logging-LogFileRotation">Log File Rotation</a> for full details on log file rotation. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.sling.commons.log.pattern</code> </td>
-      <td><code>{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* [{2}] {3} {5}</code> </td>
-      <td>The MessageFormat pattern to use for formatting log messages with the root logger. </td>
-    </tr>
-    <tr>
-      <td>org.apache.sling.commons.log.julenabled </td>
-      <td><code>false</code> </td>
-      <td>Enables the java.util.logging support. </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Property </th><th> Default Value </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>org.apache.sling.commons.log.level</code> </td><td> <code>INFO</code> </td><td> Sets the initial logging level of the root logger. This may be any of the defined logging levels <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, or <code>ERROR</code>.  This property can also be set with the <code>-l</code> command line option. </td></tr>
+<tr><td> <code>org.apache.sling.commons.log.file</code> </td><td> <code>${sling.home}/logs/error.log</code> </td><td> Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to System.out. This property can also be set with the <code>-f</code> command line option. </td></tr>
+<tr><td> <code>org.apache.sling.commons.log.file.number</code> </td><td> <code>5</code> </td><td> The number of rotated files to keep. </td></tr>
+<tr><td> <code>org.apache.sling.commons.log.file.size</code> </td><td> <code>'.'yyyy-MM-dd</code> </td><td> Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section <a href="http://sling.apache.org/site/logging.html#Logging-LogFileRotation">Log File Rotation</a> for full details on log file rotation. </td></tr>
+<tr><td> <code>org.apache.sling.commons.log.pattern</code> </td><td> <code>{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* [{2}] {3} {5}</code> </td><td> The MessageFormat pattern to use for formatting log messages with the root logger. </td></tr>
+<tr><td> org.apache.sling.commons.log.julenabled </td><td> <code>false</code> </td><td> Enables the java.util.logging support. </td></tr>
+</tbody>
 </table>
 <p>See <a href="http://sling.apache.org/site/logging.html">Logging</a> for full information on configuring the Sling Logging system.</p>
-<h2><a href="#http-service-properties" name="http-service-properties">Http Service Properties</a></h2>
+<h2><a href="#http-service-properties" id="http-service-properties">Http Service Properties</a></h2>
 <table>
-  <thead>
-    <tr>
-      <th>Property </th>
-      <th>Default Value </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>org.apache.felix.http.context_path</code> </td>
-      <td><code>/</code> </td>
-      <td>The servlet context path for the Http Service of the embedded servlet container. This property requires support by the Http Service bundle. </td>
-    </tr>
-    <tr>
-      <td><code>org.apache.felix.http.host</code> </td>
-      <td><code>0.0.0.0</code> </td>
-      <td>The host interface to bind the HTTP Server to. This property requires support by the Http Service bundle. </td>
-    </tr>
-    <tr>
-      <td><code>org.osgi.service.http.port</code> </td>
-      <td>8080 </td>
-      <td>The port to listen on for HTTP requests. This property requires support by the Http Service bundle. </td>
-    </tr>
-  </tbody>
-</table></section></div></div>                            
+<thead>
+<tr><th> Property </th><th> Default Value </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>org.apache.felix.http.context_path</code> </td><td> <code>/</code> </td><td> The servlet context path for the Http Service of the embedded servlet container. This property requires support by the Http Service bundle. </td></tr>
+<tr><td> <code>org.apache.felix.http.host</code> </td><td> <code>0.0.0.0</code> </td><td> The host interface to bind the HTTP Server to. This property requires support by the Http Service bundle. </td></tr>
+<tr><td> <code>org.osgi.service.http.port</code> </td><td> 8080 </td><td> The port to listen on for HTTP requests. This property requires support by the Http Service bundle. </td></tr>
+</tbody>
+</table>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

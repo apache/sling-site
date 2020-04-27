@@ -129,7 +129,7 @@
 <div class="row"><div><section><p>Mock implementation of selected OSGi APIs for easier testing.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#maven-dependency" name="maven-dependency">Maven Dependency</a></h2>
+<h2><a href="#maven-dependency" id="maven-dependency">Maven Dependency</a></h2>
 <p>For JUnit 5:</p>
 <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
@@ -145,39 +145,39 @@
 <p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p>
 <p>There are two major version ranges available:</p>
 <ul>
-  <li>osgi-mock 1.x: compatible with OSGi R4 and above, JUnit 4</li>
-  <li>osgi-mock 2.x: compatible with OSGi R6 and above, JUnit 4 and JUnit 5</li>
+<li>osgi-mock 1.x: compatible with OSGi R4 and above, JUnit 4</li>
+<li>osgi-mock 2.x: compatible with OSGi R6 and above, JUnit 4 and JUnit 5</li>
 </ul>
-<h2><a href="#implemented-mock-features" name="implemented-mock-features">Implemented mock features</a></h2>
+<h2><a href="#implemented-mock-features" id="implemented-mock-features">Implemented mock features</a></h2>
 <p>The mock implementation supports:</p>
 <ul>
-  <li>Instantiating OSGi <code>Bundle</code>, <code>BundleContext</code> and <code>ComponentContext</code> objects and navigate between them.</li>
-  <li>Register OSGi SCR services and get references to service instances</li>
-  <li>Supports reading OSGi SCR metadata from <code>/OSGI-INF/&lt;pid&gt;.xml</code> and from <code>/OSGI-INF/serviceComponents.xml</code></li>
-  <li>Apply service properties/component configuration provided in unit test and from SCR metadata</li>
-  <li>Inject SCR dependencies - static and dynamic</li>
-  <li>Call lifecycle methods for activating, deactivating or modifying SCR components</li>
-  <li>Service and bundle listener implementation</li>
-  <li>Mock implementation of <code>LogService</code> which logs to SLF4J in JUnit context</li>
-  <li>Mock implementation of <code>EventAdmin</code> which supports <code>EventHandler</code> services</li>
-  <li>Mock implementation of <code>ConfigAdmin</code></li>
-  <li>Context Plugins</li>
+<li>Instantiating OSGi <code>Bundle</code>, <code>BundleContext</code> and <code>ComponentContext</code> objects and navigate between them.</li>
+<li>Register OSGi SCR services and get references to service instances</li>
+<li>Supports reading OSGi SCR metadata from <code>/OSGI-INF/&lt;pid&gt;.xml</code> and from <code>/OSGI-INF/serviceComponents.xml</code></li>
+<li>Apply service properties/component configuration provided in unit test and from SCR metadata</li>
+<li>Inject SCR dependencies - static and dynamic</li>
+<li>Call lifecycle methods for activating, deactivating or modifying SCR components</li>
+<li>Service and bundle listener implementation</li>
+<li>Mock implementation of <code>LogService</code> which logs to SLF4J in JUnit context</li>
+<li>Mock implementation of <code>EventAdmin</code> which supports <code>EventHandler</code> services</li>
+<li>Mock implementation of <code>ConfigAdmin</code></li>
+<li>Context Plugins</li>
 </ul>
 <p>Since osgi-mock 2.0.0:</p>
 <ul>
-  <li>Support OSGi R6 and Declarative Services 1.3: Field-based reference bindings and component property types</li>
+<li>Support OSGi R6 and Declarative Services 1.3: Field-based reference bindings and component property types</li>
 </ul>
-<h2><a href="#usage" name="usage">Usage</a></h2>
+<h2><a href="#usage" id="usage">Usage</a></h2>
 <p>The <code>OsgiContext</code> object provides access to mock implementations of:</p>
 <ul>
-  <li>OSGi Component Context</li>
-  <li>OSGi Bundle Context</li>
+<li>OSGi Component Context</li>
+<li>OSGi Bundle Context</li>
 </ul>
 <p>Additionally it supports:</p>
 <ul>
-  <li>Registering and activating OSGi services and inject dependencies</li>
+<li>Registering and activating OSGi services and inject dependencies</li>
 </ul>
-<h3><a href="#junit-5-osgi-context-junit-extension" name="junit-5-osgi-context-junit-extension">JUnit 5: OSGi Context JUnit Extension</a></h3>
+<h3><a href="#junit-5-osgi-context-junit-extension" id="junit-5-osgi-context-junit-extension">JUnit 5: OSGi Context JUnit Extension</a></h3>
 <p>The OSGi mock context can be injected into a JUnit test using a custom JUnit extension named <code>OsgiContextExtension</code>. This extension takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p>
 <p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->@ExtendWith(OsgiContextExtension.class)
@@ -200,7 +200,7 @@ public class ExampleTest {
 }
 </code></pre>
 <p>It is possible to combine such a unit test with a <code>@ExtendWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html">Mockito JUnit Jupiter Extension</a>.</p>
-<h3><a href="#junit-4-osgi-context-junit-rule" name="junit-4-osgi-context-junit-rule">JUnit 4: OSGi Context JUnit Rule</a></h3>
+<h3><a href="#junit-4-osgi-context-junit-rule" id="junit-4-osgi-context-junit-rule">JUnit 4: OSGi Context JUnit Rule</a></h3>
 <p>The OSGi mock context can be injected into a JUnit test using a custom JUnit rule named <code>OsgiContext</code>. This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p>
 <p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->public class ExampleTest {
@@ -223,7 +223,7 @@ public class ExampleTest {
 }
 </code></pre>
 <p>It is possible to combine such a unit test with a <code>@RunWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html">Mockito JUnit Runner</a>.</p>
-<h3><a href="#getting-osgi-mock-objects" name="getting-osgi-mock-objects">Getting OSGi mock objects</a></h3>
+<h3><a href="#getting-osgi-mock-objects" id="getting-osgi-mock-objects">Getting OSGi mock objects</a></h3>
 <p>The factory class <code>MockOsgi</code> allows to instantiate the different mock implementations.</p>
 <p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// get bundle context
@@ -241,7 +241,7 @@ bundleContext.registerService(MyClass.class, myService, properties);
 ServiceReference ref = bundleContext.getServiceReference(MyClass.class.getName());
 MyClass service = bundleContext.getService(ref);
 </code></pre>
-<h3><a href="#activation-and-dependency-injection" name="activation-and-dependency-injection">Activation and Dependency Injection</a></h3>
+<h3><a href="#activation-and-dependency-injection" id="activation-and-dependency-injection">Activation and Dependency Injection</a></h3>
 <p>It is possible to simulate OSGi service activation, deactivation and dependency injection and the mock implementation tries to to its best to execute all as expected for an OSGi environment.</p>
 <p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// get bundle context
@@ -263,10 +263,10 @@ MockOsgi.deactivate(service);
 </code></pre>
 <p>Please note:</p>
 <ul>
-  <li>You should ensure that you register you services in the correct order of their dependency chain. Only dynamic references will be handled automatically independent of registration order.</li>
-  <li>The injectServices, activate and deactivate Methods can only work properly when the SCR XML metadata files are preset in the classpath at <code>/OSGI-INF</code>. They are generated automatically by the Maven SCR plugin, but might be missing if your clean and build the project within your IDE (e.g. Eclipse). In this case you have to compile the project again with maven and can run the tests - or use a Maven IDE Integration like m2eclipse.</li>
+<li>You should ensure that you register you services in the correct order of their dependency chain. Only dynamic references will be handled automatically independent of registration order.</li>
+<li>The injectServices, activate and deactivate Methods can only work properly when the SCR XML metadata files are preset in the classpath at <code>/OSGI-INF</code>. They are generated automatically by the Maven SCR plugin, but might be missing if your clean and build the project within your IDE (e.g. Eclipse). In this case you have to compile the project again with maven and can run the tests - or use a Maven IDE Integration like m2eclipse.</li>
 </ul>
-<h3><a href="#provide-your-own-configuration-via-configadmin" name="provide-your-own-configuration-via-configadmin">Provide your own configuration via ConfigAdmin</a></h3>
+<h3><a href="#provide-your-own-configuration-via-configadmin" id="provide-your-own-configuration-via-configadmin">Provide your own configuration via ConfigAdmin</a></h3>
 <p>If you want to provide your own configuration to an OSGi service that you do not register and activate itself in the mock context you can provide your own custom OSGi configuration via the mock implementation of the <code>ConfigAdmin</code> service.</p>
 <p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->
@@ -276,18 +276,19 @@ Dictionary&lt;String, Object&gt; props = new Hashtable&lt;String, Object&gt;();
 props.put(&quot;prop1&quot;, &quot;value1&quot;);
 myServiceConfig.update(props);
 </code></pre>
-<h3><a href="#context-plugins" name="context-plugins">Context Plugins</a></h3>
-<p>OSGi Mocks supports "Context Plugins" that hook into the lifecycle of each test run and can prepare test setup before or after the other setUp actions, and execute test tear down code before or after the other tearDown action.</p>
+<h3><a href="#context-plugins" id="context-plugins">Context Plugins</a></h3>
+<p>OSGi Mocks supports &quot;Context Plugins&quot; that hook into the lifecycle of each test run and can prepare test setup before or after the other setUp actions, and execute test tear down code before or after the other tearDown action.</p>
 <p>To define a plugin implement the <code>org.apache.sling.testing.mock.osgi.context.ContextPlugin&lt;OsgiContextImpl&gt;</code> interface. For convenience it is recommended to extend the abstract class <code>org.apache.sling.testing.mock.osgi.context.AbstractContextPlugin&lt;OsgiContextImpl&gt;</code>. These plugins can be used with OSGi Mock context, but also with context instances deriving from it like Sling Mocks and AEM Mocks. In most cases you would just override the <code>afterSetUp</code> method. In this method you can register additional OSGi services or do other preparation work. It is recommended to define a constant pointing to a singleton of a plugin instance for using it.</p>
 <p>To use a plugin in your unit test class, use the <code>OsgiContextBuilder</code> class instead of directly instantiating the <code>OsgiContext</code>class. This allows you in a fluent style to configure more options, with the <code>plugin(...)</code> method you can add one or more plugins.</p>
-<p>Example: </p>
+<p>Example:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->OsgiContext context = new OsgiContextBuilder().plugin(MY_PLUGIN).build();
 </code></pre>
 <p>More examples:</p>
 <ul>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java">Apache Sling Context-Aware Configuration Mock Plugin</a></li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java">Apache Sling Context-Aware Configuration Mock Plugin Test</a></li>
-</ul></section></div></div>                            
+<li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java">Apache Sling Context-Aware Configuration Mock Plugin</a></li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java">Apache Sling Context-Aware Configuration Mock Plugin Test</a></li>
+</ul>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

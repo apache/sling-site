@@ -117,7 +117,7 @@
 <div class="row"><div><section><p>This page is about how we do and don't do dependency management in the Sling project.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
+<h2><a href="#introduction" id="introduction">Introduction</a></h2>
 <p>Maven provides projects with a nice feature called dependency management. In Sling we currently use this feature to declare the non-Sling dependencies of modules in the parent POM.</p>
 <p>After working with this some time and trying to upgrade various dependencies we came to the conclusion, that using Maven dependency management is not going to work out in the Sling scenario.</p>
 <p>Why ? Maven's dependency management is aimed at traditional applicaitons, which are glued together statically during the build process. For this environment, dependency management is a great thing, since it guarantees a consistent application setup.</p>
@@ -126,94 +126,40 @@
 <p>When using Maven dependency management, upgrading any dependencies in the parent POM may automatically increase the version numbers in the <code>Import-Package</code> headers and hence may cause any such bundle to fail resolution if deployed - even though the bundle did not change and does not really require a new version of the dependency.</p>
 <p>So, in the case of OSGi deployment, Maven's dependency management actually interferes with the OSGi framework dependency management.</p>
 <p>As a consequence, I suggest we drop dependency management in the parent POM (almost) completely and state the following.</p>
-<h2><a href="#dependency-management" name="dependency-management">Dependency Management</a></h2>
+<h2><a href="#dependency-management" id="dependency-management">Dependency Management</a></h2>
 <p>The parent POM only does dependency management for build time dependencies and a very limited number of API dependencies used Sling wide. These dependencies are:</p>
 <ul>
-  <li>All plugin dependencies. That is <code>pluginManagement</code> is still used. Maven plugins are actually build time dependencies and therefore have no influence on the actual deployment.</li>
-  <li>Dependencies on commonly used testing environment helpers. Test helper classes are also build time dependencies used to run the unit and integration tests. As such, they may well be managed.</li>
-  <li>Sling makes a small number of assumptions about the environment, which we codify in the dependency management: The minimum version number of the OSGi specificaiton used, the Servlet API version and the JCR API version.</li>
+<li>All plugin dependencies. That is <code>pluginManagement</code> is still used. Maven plugins are actually build time dependencies and therefore have no influence on the actual deployment.</li>
+<li>Dependencies on commonly used testing environment helpers. Test helper classes are also build time dependencies used to run the unit and integration tests. As such, they may well be managed.</li>
+<li>Sling makes a small number of assumptions about the environment, which we codify in the dependency management: The minimum version number of the OSGi specificaiton used, the Servlet API version and the JCR API version.</li>
 </ul>
 <p>The <code>&lt;dependencyManagement&gt;</code> element currently contains the following managed dependencies:</p>
 <table>
-  <thead>
-    <tr>
-      <th>Group ID </th>
-      <th>Artifact ID </th>
-      <th>Version </th>
-      <th>Scope </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>org.osgi </td>
-      <td>org.osgi.core </td>
-      <td>4.1.0 </td>
-      <td>provided </td>
-    </tr>
-    <tr>
-      <td>org.osgi </td>
-      <td>org.osgi.compendium </td>
-      <td>4.1.0 </td>
-      <td>provided </td>
-    </tr>
-    <tr>
-      <td>javax.servlet </td>
-      <td>servlet-api </td>
-      <td>2.4 </td>
-      <td>provided </td>
-    </tr>
-    <tr>
-      <td>javax.jcr </td>
-      <td>jcr </td>
-      <td>1.0 </td>
-      <td>provided </td>
-    </tr>
-    <tr>
-      <td>org.slf4j </td>
-      <td>slf4j-api </td>
-      <td>1.5.2 </td>
-      <td>provided </td>
-    </tr>
-    <tr>
-      <td>org.apache.felix </td>
-      <td>org.apache.felix.scr.annotations </td>
-      <td>1.9.8 </td>
-      <td>provided </td>
-    </tr>
-    <tr>
-      <td>biz.aQute </td>
-      <td>bndlib </td>
-      <td>1.50.0 </td>
-      <td>provided </td>
-    </tr>
-    <tr>
-      <td>junit </td>
-      <td>junit </td>
-      <td>4.11 </td>
-      <td>test </td>
-    </tr>
-    <tr>
-      <td>org.jmock </td>
-      <td>jmock-junit4 </td>
-      <td>2.5.1 </td>
-      <td>test </td>
-    </tr>
-    <tr>
-      <td>org.slf4j </td>
-      <td>slf4j-simple </td>
-      <td>1.5.2 </td>
-      <td>test </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Group ID </th><th> Artifact ID </th><th> Version </th><th> Scope </th></tr>
+</thead>
+<tbody>
+<tr><td> org.osgi </td><td> org.osgi.core </td><td> 4.1.0 </td><td> provided </td></tr>
+<tr><td> org.osgi </td><td> org.osgi.compendium </td><td> 4.1.0 </td><td> provided </td></tr>
+<tr><td> javax.servlet </td><td> servlet-api </td><td> 2.4 </td><td> provided </td></tr>
+<tr><td> javax.jcr </td><td> jcr </td><td> 1.0 </td><td> provided </td></tr>
+<tr><td> org.slf4j </td><td> slf4j-api </td><td> 1.5.2 </td><td> provided </td></tr>
+<tr><td> org.apache.felix </td><td> org.apache.felix.scr.annotations </td><td> 1.9.8 </td><td> provided </td></tr>
+<tr><td> biz.aQute </td><td> bndlib </td><td> 1.50.0 </td><td> provided </td></tr>
+<tr><td> junit </td><td> junit </td><td> 4.11 </td><td> test </td></tr>
+<tr><td> org.jmock </td><td> jmock-junit4 </td><td> 2.5.1 </td><td> test </td></tr>
+<tr><td> org.slf4j </td><td> slf4j-simple </td><td> 1.5.2 </td><td> test </td></tr>
+</tbody>
 </table>
 <p>All dependencies per module are fully described in terms of version, scope, and classifier by the respective project.</p>
 <p>The version of the module dependency should be selected according to the following rule: The lowest version providing the functionality required by the module (or bundle). By required functionality we bascially mean provided API.</p>
 <p>Generally there is a constant flow of releases of dependent libraries. In general this should not cause the dependency version number of a using module to be increased. There is one exception though: If the fixed library version contains a bug fix, which has an influence on the operation of the module, an increase in the version number is indicated and should also be applied.</p>
-<h2><a href="#references" name="references">References</a></h2>
+<h2><a href="#references" id="references">References</a></h2>
 <ul>
-  <li><a href="http://markmail.org/message/5qpmsukdk4mdacdy">Dependency Management</a> -- Discussion thread about reducing Maven Dependency Management</li>
-  <li><a href="https://issues.apache.org/jira/browse/SLING-811">SLING-811</a> -- The actual issue governing the changes to the project descriptors</li>
-</ul></section></div></div>                            
+<li><a href="http://markmail.org/message/5qpmsukdk4mdacdy">Dependency Management</a> -- Discussion thread about reducing Maven Dependency Management</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-811">SLING-811</a> -- The actual issue governing the changes to the project descriptors</li>
+</ul>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

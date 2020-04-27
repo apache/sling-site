@@ -135,151 +135,102 @@
 <p>The Form Based AuthenticationHandler has two authentication phases: The first phase is presenting a login form to the user and passing the entered user name and password to the server. The second phase is storing successful authentication in a Cookie or an HTTP Session.</p>
 <p>The implementation of the Form Based Authentication Handler follows the guidelines of the Servlet API 2.4 specification for <em>Form Based Authentication</em> in section SRV.12.5.3. Specifically the following requirements are implemented:</p>
 <ul>
-  <li>For the initial form submission, the request URL must end with <code>/j_security_check</code> and the user name and password names must be <code>j_username</code> and <code>j_password</code>, resp.</li>
-  <li>The authentication type as returned by <code>HttpServletRequest.getAuthType()</code> is set to <code>HttpServletRequest.FORM_AUTH</code>.</li>
+<li>For the initial form submission, the request URL must end with <code>/j_security_check</code> and the user name and password names must be <code>j_username</code> and <code>j_password</code>, resp.</li>
+<li>The authentication type as returned by <code>HttpServletRequest.getAuthType()</code> is set to <code>HttpServletRequest.FORM_AUTH</code>.</li>
 </ul>
 <p>The Form Based Authentication Handler is maintained in the <a href="https://github.com/apache/sling-org-apache-sling-auth-form">the Sling repo</a>.</p>
-<h3><a href="#authenticationhandler-implementation" name="authenticationhandler-implementation">AuthenticationHandler implementation</a></h3>
+<h3><a href="#authenticationhandler-implementation" id="authenticationhandler-implementation">AuthenticationHandler implementation</a></h3>
 <ul>
-  <li><code>extractCredentials</code> -- Prepares credentials for the form entered data or from the Cookie or HTTP Session attribute. Returns <code>null</code> if neither data is provided in the request</li>
-  <li><code>requestCredentials</code> -- Redirects the client (browser) to the login form</li>
-  <li><code>dropCredentials</code> -- Remove the Cookie or remove the HTTP Session attribute</li>
+<li><code>extractCredentials</code> -- Prepares credentials for the form entered data or from the Cookie or HTTP Session attribute. Returns <code>null</code> if neither data is provided in the request</li>
+<li><code>requestCredentials</code> -- Redirects the client (browser) to the login form</li>
+<li><code>dropCredentials</code> -- Remove the Cookie or remove the HTTP Session attribute</li>
 </ul>
-<h3><a href="#authenticationfeedbackhandler-implementation" name="authenticationfeedbackhandler-implementation">AuthenticationFeedbackHandler implementation</a></h3>
+<h3><a href="#authenticationfeedbackhandler-implementation" id="authenticationfeedbackhandler-implementation">AuthenticationFeedbackHandler implementation</a></h3>
 <ul>
-  <li><code>authenticationFailed</code> -- Remove the Cookie or remove the HTTP Session attribute</li>
-  <li><code>authenticationSucceeded</code> -- Set (or update) the Cookie or HTTP Session attribute</li>
+<li><code>authenticationFailed</code> -- Remove the Cookie or remove the HTTP Session attribute</li>
+<li><code>authenticationSucceeded</code> -- Set (or update) the Cookie or HTTP Session attribute</li>
 </ul>
-<h3><a href="#phase-1-form-submission" name="phase-1-form-submission">Phase 1: Form Submission</a></h3>
+<h3><a href="#phase-1-form-submission" id="phase-1-form-submission">Phase 1: Form Submission</a></h3>
 <p>The login form submitted in phase 1 to validate the user name and password must be provided in an HTTP <code>POST</code> request to an URL whose last segment is <code>j_security_check</code>. The request is ignored as a form submission if either the method is not <code>POST</code> or the last segment is no <code>j_security_check</code>.</p>
 <p>The form is rendered by redirecting the client to the URL indicated by the <code>form.login.form</code> configuration parameter. This redirection request may accompanyied by the following parameters:</p>
 <ul>
-  <li><code>resource</code> -- The resource to which the user should be redirected after successful login. This request parameter should be submitted back to the server as the <code>resource</code> parameter.</li>
-  <li><code>j_reason</code> -- This parameter indicates the reason for rendering the login form. If this parameter is set, it is set to <code>INVALID_CREDENTIALS</code> indicating a previous form submission presented invalid username and password or <code>TIMEOUT</code> indicating a login session has timed out. The login form servlet/script can present the user with an appropriate message.</li>
+<li><code>resource</code> -- The resource to which the user should be redirected after successful login. This request parameter should be submitted back to the server as the <code>resource</code> parameter.</li>
+<li><code>j_reason</code> -- This parameter indicates the reason for rendering the login form. If this parameter is set, it is set to <code>INVALID_CREDENTIALS</code> indicating a previous form submission presented invalid username and password or <code>TIMEOUT</code> indicating a login session has timed out. The login form servlet/script can present the user with an appropriate message.</li>
 </ul>
 <p>The Form Based Authentication Handlers supports the following request parameters submitted by the HTML form:</p>
 <ul>
-  <li><code>j_username</code> -- Name of the user to authenticate</li>
-  <li><code>j_password</code> -- Password to authenticate the user</li>
-  <li><code>j_validate</code> -- Flag indicating whether to just validate the credentials</li>
-  <li><code>resource</code> -- The location to go to on successful login</li>
-  <li><code>sling.auth.redirect</code> -- The location to redirect to on successful login</li>
+<li><code>j_username</code> -- Name of the user to authenticate</li>
+<li><code>j_password</code> -- Password to authenticate the user</li>
+<li><code>j_validate</code> -- Flag indicating whether to just validate the credentials</li>
+<li><code>resource</code> -- The location to go to on successful login</li>
+<li><code>sling.auth.redirect</code> -- The location to redirect to on successful login</li>
 </ul>
 <p>The <code>j_username</code> and <code>j_password</code> parameters are used to create a JCR <code>SimpleCredentials</code> object to log into the JCR Repository.</p>
 <p>The <code>j_validate</code> parameter may be used to implement login form submission using AJAX. If this parameter is set to <code>true</code> (case-insensitive) the credentials are used to login and after success or failure to return a status code:</p>
 <table>
-  <thead>
-    <tr>
-      <th>Status </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>200 OK</code> </td>
-      <td>Authentication succeeded; credentials are valid for login; the Cookie or HTTP Session attribute is now set </td>
-    </tr>
-    <tr>
-      <td><code>403 FORBIDDEN</code> </td>
-      <td>Authentication failed; credentials are invalid for login; the Cookie or HTTP Session attribute is not set (if it was set, it is now cleared) </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Status </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>200 OK</code> </td><td> Authentication succeeded; credentials are valid for login; the Cookie or HTTP Session attribute is now set </td></tr>
+<tr><td> <code>403 FORBIDDEN</code> </td><td> Authentication failed; credentials are invalid for login; the Cookie or HTTP Session attribute is not set (if it was set, it is now cleared) </td></tr>
+</tbody>
 </table>
 <p>If the <code>j_validate</code> parameter is not set or is set to any value other than <code>true</code>, the request processing depends on authentication success or failure:</p>
 <table>
-  <thead>
-    <tr>
-      <th>Authentication </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Success </td>
-      <td>Client is redirected to the authenticated resource; the Cookie or HTTP Session attribute is now set. </td>
-    </tr>
-    <tr>
-      <td>Failure </td>
-      <td>The request is redirected to the login form again; the Cookie or HTTP Session attribute is not set (if it was set, it is now cleared) </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Authentication </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> Success </td><td> Client is redirected to the authenticated resource; the Cookie or HTTP Session attribute is now set. </td></tr>
+<tr><td> Failure </td><td> The request is redirected to the login form again; the Cookie or HTTP Session attribute is not set (if it was set, it is now cleared) </td></tr>
+</tbody>
 </table>
 <p>The <code>resource</code> and <code>sling.auth.redirect</code> parameters provide similar functionality but with differing historical backgrounds. The <code>resource</code> parameter is based on the <code>resource</code> request attribute which is set by the login servlet to indicate the original target resource the client desired when it was forced to authenticate. The <code>sling.auth.redirect</code> parameter can be used by clients (applications like cURL or plain HTML forms) to request being redirected after successful login. If both parameters are set, the <code>sling.auth.redirect</code> parameter takes precedence.</p>
 <p>The Form Based Authentication Handler contains a <a href="https://github.com/apache/sling-org-apache-sling-auth-form/blob/master/src/main/java/org/apache/sling/auth/form/impl/AuthenticationFormServlet.java">default form servlet</a> and <a href="https://github.com/apache/sling-org-apache-sling-auth-form/blob/master/src/main/resources/org/apache/sling/auth/form/impl/login.html">HTML form template</a>.</p>
-<h3><a href="#phase-2-authenticated-requests" name="phase-2-authenticated-requests">Phase 2: Authenticated Requests</a></h3>
+<h3><a href="#phase-2-authenticated-requests" id="phase-2-authenticated-requests">Phase 2: Authenticated Requests</a></h3>
 <p>After the successful authentication of the user in phase 1, the authentication state is stored in a Cookie or an HTTP Session. The stored value is a security token with the following contents:</p>
 <pre><code>HmacSHA1(securetoken, &lt;securetokennumber&gt;&lt;expirytime&gt;@&lt;userID&gt;)@&lt;securetokennumber&gt;&lt;expirytime&gt;@&lt;userID&gt;
 </code></pre>
 <p>The <code>securetoken</code> and <code>securetokennumber</code> are related in that an table of secure tokens is maintained where the <code>securetoken</code> is an entry in the table and the <code>securetokennumber</code> is the index in of the token in the table.</p>
 <p>The secure tokens are refreshed periodically causing the authentication state stored in the Cookie or the HTTP Session to be updated peridocally. This periodic update has two advantages:</p>
 <ul>
-  <li>Login sessions time out after some period of inactivity: If a request is handled for an authentication state whose expiry time has passed, the request is considered unauthenticated.</li>
-  <li>If a Cookie would be stolen or an HTTP Session be hijacked, the authentication state expires within a reasonable amount of time to try to prevent stealing the authentication.</li>
+<li>Login sessions time out after some period of inactivity: If a request is handled for an authentication state whose expiry time has passed, the request is considered unauthenticated.</li>
+<li>If a Cookie would be stolen or an HTTP Session be hijacked, the authentication state expires within a reasonable amount of time to try to prevent stealing the authentication.</li>
 </ul>
 <p>The authentication state may be transmitted with a Cookie which is configured as follows:</p>
 <ul>
-  <li><em>Cookie Path</em> -- Set to the servlet context path</li>
-  <li><em>Domain</em> -- See below</li>
-  <li><em>Age</em> -- Set to -1 to indicate a session Cookie</li>
-  <li><em>Secure</em> -- Set to the value returned by the <code>ServletRequest.isSecure()</code> method</li>
+<li><em>Cookie Path</em> -- Set to the servlet context path</li>
+<li><em>Domain</em> -- See below</li>
+<li><em>Age</em> -- Set to -1 to indicate a session Cookie</li>
+<li><em>Secure</em> -- Set to the value returned by the <code>ServletRequest.isSecure()</code> method</li>
 </ul>
 <p>If the authentication state is kept in an HTTP Session the setup of the session ID cookie is maintained by the servlet container and is outside of the control of the Form Based AuthenticationHandler.</p>
-<h3><a href="#configuration" name="configuration">Configuration</a></h3>
+<h3><a href="#configuration" id="configuration">Configuration</a></h3>
 <p>The Form Based Authentication Handler is configured with configuration provided by the OSGi Configuration Admin Service using the <code>org.apache.sling.formauth.FormAuthenticationHandler</code> service PID.</p>
 <table>
-  <thead>
-    <tr>
-      <th>Parameter </th>
-      <th>Default </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>form.login.form</code> </td>
-      <td><code>/system/sling/form/login</code> </td>
-      <td>The URL (without any context path prefix) to redirect the client to to present the login form. </td>
-    </tr>
-    <tr>
-      <td><code>form.auth.storage</code> </td>
-      <td><code>cookie</code> </td>
-      <td>The type of storage used to provide the authentication state. Valid values are <code>cookie</code> and <code>session</code>. The default value also applies if any setting other than the supported values is configured. </td>
-    </tr>
-    <tr>
-      <td><code>form.auth.name</code> </td>
-      <td><code>sling.formauth</code> </td>
-      <td>The name of the Cookie or HTTP Session attribute providing the authentication state. </td>
-    </tr>
-    <tr>
-      <td><code>form.auth.timeout</code> </td>
-      <td><code>30</code> </td>
-      <td>The number of minutes after which a login session times out. This value is used as the expiry time set in the authentication data. </td>
-    </tr>
-    <tr>
-      <td><code>form.credentials.name</code> </td>
-      <td><code>sling.formauth</code> </td>
-      <td>The name of the <code>SimpleCredentials</code> attribute used to provide the authentication data to the <code>LoginModulePlugin</code>. </td>
-    </tr>
-    <tr>
-      <td><code>form.token.file</code> </td>
-      <td><code>cookie-tokens.bin</code> </td>
-      <td>The name of the file used to persist the security tokens. </td>
-    </tr>
-    <tr>
-      <td><code>form.default.cookie.domain</code> </td>
-      <td> </td>
-      <td>The domain on which cookies will be set, unless overridden in the <code>AuthenticationInfo</code> object. </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Parameter </th><th> Default </th><th> Description </th></tr>
+</thead>
+<tbody>
+<tr><td> <code>form.login.form</code> </td><td> <code>/system/sling/form/login</code> </td><td> The URL (without any context path prefix) to redirect the client to to present the login form. </td></tr>
+<tr><td> <code>form.auth.storage</code> </td><td> <code>cookie</code> </td><td> The type of storage used to provide the authentication state. Valid values are <code>cookie</code> and <code>session</code>. The default value also applies if any setting other than the supported values is configured. </td></tr>
+<tr><td> <code>form.auth.name</code> </td><td> <code>sling.formauth</code> </td><td> The name of the Cookie or HTTP Session attribute providing the authentication state. </td></tr>
+<tr><td> <code>form.auth.timeout</code> </td><td> <code>30</code> </td><td>The number of minutes after which a login session times out. This value is used as the expiry time set in the authentication data. </td></tr>
+<tr><td> <code>form.credentials.name</code> </td><td> <code>sling.formauth</code> </td><td> The name of the <code>SimpleCredentials</code> attribute used to provide the authentication data to the <code>LoginModulePlugin</code>. </td></tr>
+<tr><td> <code>form.token.file</code> </td><td> <code>cookie-tokens.bin</code> </td><td> The name of the file used to persist the security tokens. </td></tr>
+<tr><td> <code>form.default.cookie.domain</code> </td><td> </td><td> The domain on which cookies will be set, unless overridden in the <code>AuthenticationInfo</code> object. </td></tr>
+</tbody>
 </table>
 <p><em>Note:</em> The <code>form.token.file</code> parameter currently refers to a file stored in the file system. If the path is a relative path, the file is either stored in the Authentication Handler bundle private data area or -- if not possible -- below the location indicated by the <code>sling.home</code> framework property or -- if <code>sling.home</code> is not set -- the current working directory. In the future this file may be store in the JCR Repository to support clustering scenarios.</p>
-<h3><a href="#security-considerations" name="security-considerations">Security Considerations</a></h3>
+<h3><a href="#security-considerations" id="security-considerations">Security Considerations</a></h3>
 <p>Form Based Authentication has some limitations in terms of security:</p>
 <ol>
-  <li>User name and password are transmitted in plain text in the initial form submission.</li>
-  <li>The Cookie used to provide the authentication state or the HTTP Session ID may be stolen.</li>
+<li>User name and password are transmitted in plain text in the initial form submission.</li>
+<li>The Cookie used to provide the authentication state or the HTTP Session ID may be stolen.</li>
 </ol>
-<p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p></section></div></div>                            
+<p>To prevent eavesdroppers from sniffing the credentials or stealing the Cookie a secure transport layer should be used such as TLS/SSL, VPN or IPSec.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

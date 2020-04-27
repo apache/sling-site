@@ -123,45 +123,48 @@
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row"><div><section><p>The authentication process involves a number of actors contributing to the concepts, the API and the particular implementations.</p>
-<h2><a href="#osgi-http-service-specification" name="osgi-http-service-specification">OSGi Http Service Specification</a></h2>
+<h2><a href="#osgi-http-service-specification" id="osgi-http-service-specification">OSGi Http Service Specification</a></h2>
 <p>The main support for authentication is defined by the OSGi Http Service specification. This specification defines how an OSGi application can register servlets and resources to build web applications. As part of the servlet and/or resource registration a <code>HttpContext</code> may be provided, which allows for additional support.</p>
 <p>The main method of interest to the authentication process is the <code>handleSecurity</code> method. This is called by the OSGi Http Service implementation before the registered servlet is called. Its intent is to authenticate the request and to provide authentication information for the request object: the authentication type and the remote user name.</p>
 <p>The Sling Auth Core bundle provides the <code>AuthenticationSupport</code> service which may be used to the implement the <code>HttpContext.handleSecurity</code> method.</p>
-<h2><a href="#sling-engine" name="sling-engine">Sling Engine</a></h2>
+<h2><a href="#sling-engine" id="sling-engine">Sling Engine</a></h2>
 <p>The Sling Engine implements the main entry point into the Sling system by means of the <code>SlingMainServlet</code>. This servlet is registered with the OSGi Http Service and provides a custom <code>HttpContext</code> whose <code>handleSecurity</code> method is implemented by the <code>AuthenticationSupport</code> service.</p>
 <p>When the request hits the <code>service</code> method of the Sling Main Servlet, the resource resolver provided by the <code>AuthenticationSupport</code> service is retrieved from the request attributes and used as the resource resolver for the request.</p>
 <p>That's all there is for the Sling Engine to do with respect to authentication.</p>
-<h2><a href="#sling-auth-core" name="sling-auth-core">Sling Auth Core</a></h2>
+<h2><a href="#sling-auth-core" id="sling-auth-core">Sling Auth Core</a></h2>
 <p>The support for authenticating client requests is implemented in the Sling Auth Core bundle. As such this bundle provides three areas of support</p>
 <ul>
-  <li><code>AuthenticationHandler</code> service interface. This is implemented by services providing functionality to extract credentials from HTTP requests.</li>
-  <li><code>Authenticator</code> service interface. This is implemented by the <code>SlingAuthenticator</code> class in the Sling Auth Core bundle and provides applications with entry points to login and logout.</li>
-  <li><code>AuthenticationSupport</code> service interface. This is implemented by the <code>SlingAuthenticator</code> class in the Sling Auth Core bundle and allows applications registering with the OSGi HTTP Service to make use of the Sling authentication infrastructure.</li>
+<li><code>AuthenticationHandler</code> service interface. This is implemented by services providing functionality to extract credentials from HTTP requests.</li>
+<li><code>Authenticator</code> service interface. This is implemented by the <code>SlingAuthenticator</code> class in the Sling Auth Core bundle and provides applications with entry points to login and logout.</li>
+<li><code>AuthenticationSupport</code> service interface. This is implemented by the <code>SlingAuthenticator</code> class in the Sling Auth Core bundle and allows applications registering with the OSGi HTTP Service to make use of the Sling authentication infrastructure.</li>
 </ul>
-<h2><a href="#jcr-repository" name="jcr-repository">JCR Repository</a></h2>
+<h2><a href="#jcr-repository" id="jcr-repository">JCR Repository</a></h2>
 <p>The actual process of logging into the repository and provided a <code>Session</code> is implementation dependent. In the case of Jackrabbit extensibility is provided by configuration of the Jackrabbit repository by means of an interface and two helper classes:</p>
 <ul>
-  <li><code>LoginModule</code> -- The interface to be implemented to provide login processing plugins</li>
-  <li><code>AbstractLoginModule</code> -- A an abstract base class implementation of the <code>LoginModule</code> interface.</li>
-  <li><code>DefaultLoginModule</code> -- The default implementation of the <code>AbstractLoginModule</code> provided by Jackabbit. This login module takes <code>SimpleCredentials</code> and uses the repository to lookup the users, validate the credentials and providing the <code>Principal</code> representing the user towards the repository.</li>
+<li><code>LoginModule</code> -- The interface to be implemented to provide login processing plugins</li>
+<li><code>AbstractLoginModule</code> -- A an abstract base class implementation of the <code>LoginModule</code> interface.</li>
+<li><code>DefaultLoginModule</code> -- The default implementation of the <code>AbstractLoginModule</code> provided by Jackabbit. This login module takes <code>SimpleCredentials</code> and uses the repository to lookup the users, validate the credentials and providing the <code>Principal</code> representing the user towards the repository.</li>
 </ul>
 <p>The Sling Jackrabbit Embedded Repository bundle provides additional plugin interfaces to extend the login process dynamically using OSGi services. To this avail the bundle configures a <code>LoginModule</code> with the provided default Jackrabbit configuration supporting these plugins:</p>
 <ul>
-  <li><code>LoginModulePlugin</code> -- The main service interface. Plugins must implement this interface to be able to extend the login process.</li>
-  <li><code>AuthenticationPlugin</code> -- Helper interface for the <code>LoginModulePlugin</code>.</li>
+<li><code>LoginModulePlugin</code> -- The main service interface. Plugins must implement this interface to be able to extend the login process.</li>
+<li><code>AuthenticationPlugin</code> -- Helper interface for the <code>LoginModulePlugin</code>.</li>
 </ul>
-<h2><a href="#sling-applications" name="sling-applications">Sling Applications</a></h2>
+<h2><a href="#sling-applications" id="sling-applications">Sling Applications</a></h2>
 <p>Sling Applications requiring authenticated requests should not care about how authentication is implemented. To support such functionality the <code>Authenticator</code> service is provided with two methods:</p>
 <ul>
-  <li>
-  <p><code>login</code> -- allows the application to ensure requests are authenticated. This involves selecting an <code>AuthenticationHandler</code> to request credentials for authentication.</p></li>
-  <li>
-  <p><code>logout</code> -- allows the application to forget about any authentication. This involves selecting an <code>AuthenticationHandler</code> to forget about credentials in the request.</p></li>
+<li>
+<p><code>login</code> -- allows the application to ensure requests are authenticated. This involves selecting an <code>AuthenticationHandler</code> to request credentials for authentication.</p>
+</li>
+<li>
+<p><code>logout</code> -- allows the application to forget about any authentication. This involves selecting an <code>AuthenticationHandler</code> to forget about credentials in the request.</p>
+</li>
 </ul>
 <p>Sling Applications should never directly use any knowledge of any authentication handler or directly call into an authentication handler. This will certainly break the application and cause unexpected behaviour.</p>
 <div class="info">
 If you want to know whether a request is authenticated or not, you can inspect the result of the <code>HttpServletRequest.getAuthType</code> method: If this method returns <code>null</code> the request is not authenticated.
-</div></section></div></div>                            
+</div>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

@@ -124,49 +124,50 @@
 <p>The <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolver/errorhandler/ErrorHandlingTest.java">ErrorHandlingTest</a> in our integration tests suite provides working examples of various error handling scenarios.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#resetting-the-response" name="resetting-the-response">Resetting the Response</a></h2>
+<h2><a href="#resetting-the-response" id="resetting-the-response">Resetting the Response</a></h2>
 <p>Errorhandler scripts and servlets are script with the current response. Before setting the status and writing to the response such handlers should do the following:</p>
 <ul>
-  <li>Check whether the response has been committed or not</li>
-  <li>If the response has not been committed:
-    <ul>
-      <li>Reset the response</li>
-      <li>Set the status code (use <code>HttpServletResponse.setStatus</code>)</li>
-      <li>Set the response content type and character encoding (provided text data is sent back)</li>
-    </ul>
-  </li>
-  <li>If the response has already been committed:
-    <ul>
-      <li>Do not try to reset since this would cause an <code>IllegalStateException</code>. Also the writer may not be available.</li>
-      <li>The best that might be done in this case is just log a message at warning or error level along with information about the failure.</li>
-    </ul>
-  </li>
+<li>Check whether the response has been committed or not</li>
+<li>If the response has not been committed:
+<ul>
+<li>Reset the response</li>
+<li>Set the status code (use <code>HttpServletResponse.setStatus</code>)</li>
+<li>Set the response content type and character encoding (provided text data is sent back)</li>
 </ul>
-<h2><a href="#http-status-codes" name="http-status-codes">HTTP Status Codes</a></h2>
+</li>
+<li>If the response has already been committed:
+<ul>
+<li>Do not try to reset since this would cause an <code>IllegalStateException</code>. Also the writer may not be available.</li>
+<li>The best that might be done in this case is just log a message at warning or error level along with information about the failure.</li>
+</ul>
+</li>
+</ul>
+<h2><a href="#http-status-codes" id="http-status-codes">HTTP Status Codes</a></h2>
 <p>The Sling engine implements the <code>HttpServletResponse.sendError</code> methods by calling the <code>ErrorHandler.handleError(int status, String message, SlingHttpServletRequest request, SlingHttpServletResponse response)</code> method.</p>
 <p>The Servlet Resolver bundle implementation looks up a script to handle the status code as follows:</p>
 <ul>
-  <li>The status code is converted to a string and used as the request extension. Any request extensions, selectors or suffixes from the actual request are ignored.</li>
-  <li>The same resource type hierarchy is followed to find the script as for regular script resolution. The difference is that for error handler scripts <code>sling/servlet/errorhandler</code> is used as the implied base resource type (as opposed to <code>sling/servlet/default</code> for regular script resolution.</li>
+<li>The status code is converted to a string and used as the request extension. Any request extensions, selectors or suffixes from the actual request are ignored.</li>
+<li>The same resource type hierarchy is followed to find the script as for regular script resolution. The difference is that for error handler scripts <code>sling/servlet/errorhandler</code> is used as the implied base resource type (as opposed to <code>sling/servlet/default</code> for regular script resolution.</li>
 </ul>
 <p><strong>Examples:</strong></p>
 <ul>
-  <li>An application provider my provide a default handler for the 404/NOT FOUND status. This script might be located in <code>/libs/sling/servlet/errorhandler/404.jsp</code>.</li>
-  <li>An programmer might provide a handler for the 403/FORBIDDEN status in <code>/apps/sling/servlet/errorhandler/403.esp</code>.</li>
+<li>An application provider my provide a default handler for the 404/NOT FOUND status. This script might be located in <code>/libs/sling/servlet/errorhandler/404.jsp</code>.</li>
+<li>An programmer might provide a handler for the 403/FORBIDDEN status in <code>/apps/sling/servlet/errorhandler/403.esp</code>.</li>
 </ul>
-<h2><a href="#uncaught-throwables" name="uncaught-throwables">Uncaught Throwables</a></h2>
+<h2><a href="#uncaught-throwables" id="uncaught-throwables">Uncaught Throwables</a></h2>
 <p>To handle uncaught Throwables the simple name (<code>Class.getSimpleName()</code>) of the <code>Throwable</code> class is used as request extension. Similarly to the Java try-catch clauses the class hierarchy is supported. That is to handle an uncaught <code>FileNotFoundException</code>, the names <code>FileNotFoundException</code>, <code>IOException</code>, <code>Exception</code>, <code>Throwable</code> are checked for a Servlet and the first one found is then used. Again, the Serlvet may be a Servlet registered as an OSGi service or may be a plain script stored in the JCR repository or provided through some custom Resource provider.</p>
 <p><strong>Example:</strong> To register a catch-all handler for any uncaught Throwables you might create a script <code>/apps/sling/servlet/errorhandler/Throwable.esp</code>.</p>
 <p><strong>Note:</strong> If no script or servlet to handle an uncaught <code>Throwable</code> is registered, the default handler kicks in, which sends back a 500/INTERNAL SERVER ERROR response containing the <code>Throwable</code> and the stack trace. This response is <strong>not</strong> handled by the HTTP Status Code handling described above because the response status is sent using <code>HttpServletResponse.setStatus(int, String)</code>. To prevent this default response you have to implement a catch-all handler for the <code>Throwable</code> class as shown in the example.</p>
-<h2><a href="#default-handler" name="default-handler">Default Handler</a></h2>
+<h2><a href="#default-handler" id="default-handler">Default Handler</a></h2>
 <p>The Sling Servlet Resolver bundle provides a default error handler servlet which is used if the algorithms described above do not resolve to a handler script or servlet. The provided error handler servlet does the following:</p>
 <ul>
-  <li>Print a descriptive message, which is the <code>javax.servlet.error.message</code> request attribute by default</li>
-  <li>Print a stacktrace if the <code>javax.servlet.error.exception</code> is set</li>
-  <li>Dump the request progress tracker</li>
+<li>Print a descriptive message, which is the <code>javax.servlet.error.message</code> request attribute by default</li>
+<li>Print a stacktrace if the <code>javax.servlet.error.exception</code> is set</li>
+<li>Dump the request progress tracker</li>
 </ul>
 <p>Starting with Sling Servlet Resolver version 2.0.10 the default error handler servlet is looked up using the string <code>default</code> as the request extension and the provided default servlet is registered as <code>&lt;prefix&gt;/sling/servlet/errorhandler/default.servlet</code> where <prefix> is the last entry in the resource resolver search path, <code>/libs</code> by default.</p>
-<p>Thus to overwrite the default error handler servlet provide a servlet or script for the <code>default</code> extension, for example <code>/apps/sling/servlet/errorhandler/default.groovy</code>.</p></section></div></div>                            
+<p>Thus to overwrite the default error handler servlet provide a servlet or script for the <code>default</code> extension, for example <code>/apps/sling/servlet/errorhandler/default.groovy</code>.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

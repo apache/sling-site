@@ -122,8 +122,8 @@
 </p>
 <p><strong><a href="https://github.com/apache/sling-org-apache-sling-commons-crypto">Commons Crypto</a> provides a simple API to encrypt and decrypt messages and an extensible implementation based on <a href="http://www.jasypt.org">Jasypt</a>.</strong></p>
 <p>The Jasypt implementation and Web Console plugin are optional.</p>
-<h2><a href="#api" name="api">API</a></h2>
-<h3><a href="#crypto-service" name="crypto-service">Crypto Service</a></h3>
+<h2><a href="#api" id="api">API</a></h2>
+<h3><a href="#crypto-service" id="crypto-service">Crypto Service</a></h3>
 <p>Encrypt a secret message (e.g. service password) and decrypt the ciphertext. The used crypto method is up to the implementation.</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->public interface CryptoService {
 
@@ -139,7 +139,7 @@
 )
 private volatile CryptoService cryptoService;
 </code></pre>
-<h3><a href="#password-provider" name="password-provider">Password Provider</a></h3>
+<h3><a href="#password-provider" id="password-provider">Password Provider</a></h3>
 <p>Password providers are useful when dealing with password-based encryption (PBE, see also <a href="https://tools.ietf.org/html/rfc2898">RFC 2898</a>).</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->public interface PasswordProvider {
 
@@ -147,18 +147,18 @@ private volatile CryptoService cryptoService;
 
 }
 </code></pre>
-<h4><a href="#file-password-provider" name="file-password-provider">File Password Provider</a></h4>
+<h4><a href="#file-password-provider" id="file-password-provider">File Password Provider</a></h4>
 <p>The file-based password provider reads the password for encryption/decryption from a given file.</p>
-<img src="commons-crypto/FilePasswordProvider~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver">
-<h2><a href="#jasypt-implementation" name="jasypt-implementation">Jasypt implementation</a></h2>
+<p><img src="commons-crypto/FilePasswordProvider~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
+<h2><a href="#jasypt-implementation" id="jasypt-implementation">Jasypt implementation</a></h2>
 <p>The Commons Crypto module provides a crypto service implementation based on the <a href="http://www.jasypt.org">Jasypt</a> <code>StandardPBEStringEncryptor</code>.</p>
 <p>The <code>JasyptStandardPBEStringCryptoService</code> requires at least a password provider and an initialization vector (IV) generator (<code>IvGenerator</code>) to set up the internal <code>StandardPBEStringEncryptor</code>.</p>
-<img src="commons-crypto/JasyptStandardPBEStringCryptoService~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver">
-<img src="commons-crypto/JasyptRandomIvGeneratorRegistrar~sample.png" alt="JasyptRandomIvGeneratorRegistrar Sample Configuration" style="width: 50%; border: 1px solid silver">
-<h2><a href="#web-console-plugin" name="web-console-plugin">Web Console Plugin</a></h2>
+<p><img src="commons-crypto/JasyptStandardPBEStringCryptoService~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
+<p><img src="commons-crypto/JasyptRandomIvGeneratorRegistrar~sample.png" alt="JasyptRandomIvGeneratorRegistrar Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
+<h2><a href="#web-console-plugin" id="web-console-plugin">Web Console Plugin</a></h2>
 <p>The plugin (<code>/system/console/sling-commons-crypto-encrypt</code>) allows message encryption with a selected crypto service.</p>
-<img src="commons-crypto/sling-commons-crypto-encrypt-webconsole-plugin.png" alt="Sling Commons Crypto Encrypt Web Console Plugin" style="width: 50%; border: 1px solid silver">
-<h2><a href="#sample-configurations" name="sample-configurations">Sample configurations</a></h2>
+<p><img src="commons-crypto/sling-commons-crypto-encrypt-webconsole-plugin.png" alt="Sling Commons Crypto Encrypt Web Console Plugin" style="width: 50%; border: 1px solid silver"></p>
+<h2><a href="#sample-configurations" id="sample-configurations">Sample configurations</a></h2>
 <p>A module with (minimal) sample configurations can be found in <a href="https://github.com/apache/sling-samples/tree/master/sling-commons-crypto-configuration">Sling's samples Git repo</a>.</p>
 <p><code>org.apache.sling.commons.crypto.internal.FilePasswordProvider~sample.json</code></p>
 <pre><code>{
@@ -179,7 +179,8 @@ private volatile CryptoService cryptoService;
   &quot;names&quot;: [&quot;sample&quot;], // names is optional
   &quot;algorithm&quot;: &quot;PBEWITHHMACSHA512ANDAES_256&quot;
 }
-</code></pre></section></div></div>                            
+</code></pre>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

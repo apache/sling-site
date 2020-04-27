@@ -125,103 +125,70 @@
 <div class="row"><div><section><p>The Apache Sling HTL Scripting Engine, <a href="https://issues.apache.org/jira/browse/SLING-6028">formerly known as Sightly</a>, is the reference implementation of the <a href="https://github.com/Adobe-Marketing-Cloud/htl-spec">HTML Template Language</a>.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h1><a href="#modules" name="modules">Modules</a></h1>
+<h1><a href="#modules" id="modules">Modules</a></h1>
 <p>The Sling implementation is comprised of the following modules:</p>
 <ol>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler"><code>org.apache.sling.scripting.sightly.compiler</code></a> - provides support for compiling HTML Template Language scripts into an Abstract Syntax Tree</li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java"><code>org.apache.sling.scripting.sightly.compiler.java</code></a> - provides support for transpiling the Abstract Syntax Tree produced by the <code>org.apache.sling.scripting.sightly.compiler</code> module into Java source code</li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly"><code>org.apache.sling.scripting.sightly</code></a> - the HTL Scripting Engine bundle</li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider"><code>org.apache.sling.scripting.sightly.js.provider</code></a> - the HTL JavaScript Use Provider, implementing support for the <code>use</code> JavaScript function</li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider"><code>org.apache.sling.scripting.sightly.models.provider</code></a> - <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a> Use Provider</li>
-  <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl"><code>org.apache.sling.scripting.sightly.repl</code></a> - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts</li>
-  <li><a href="https://github.com/apache/sling-htl-maven-plugin"><code>htl-maven-plugin</code></a> - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time</li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler"><code>org.apache.sling.scripting.sightly.compiler</code></a> - provides support for compiling HTML Template Language scripts into an Abstract Syntax Tree</li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java"><code>org.apache.sling.scripting.sightly.compiler.java</code></a> - provides support for transpiling the Abstract Syntax Tree produced by the <code>org.apache.sling.scripting.sightly.compiler</code> module into Java source code</li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly"><code>org.apache.sling.scripting.sightly</code></a> - the HTL Scripting Engine bundle</li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-js-provider"><code>org.apache.sling.scripting.sightly.js.provider</code></a> - the HTL JavaScript Use Provider, implementing support for the <code>use</code> JavaScript function</li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-models-provider"><code>org.apache.sling.scripting.sightly.models.provider</code></a> - <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a> Use Provider</li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl"><code>org.apache.sling.scripting.sightly.repl</code></a> - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts</li>
+<li><a href="https://github.com/apache/sling-htl-maven-plugin"><code>htl-maven-plugin</code></a> - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time</li>
 </ol>
-<h1><a href="#the-use-api" name="the-use-api">The Use-API</a></h1>
+<h1><a href="#the-use-api" id="the-use-api">The Use-API</a></h1>
 <p>The <a href="https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/1.2/SPECIFICATION.md#4-use-api">HTML Template Language Specification</a> explicitly defines two ways of implementing support for business logic objects:</p>
 <ol>
-  <li>
-    <p>Java Use-API, through POJOs, that may optionally implement an <code>init</code> method:</p>
-    <pre><code>/**
+<li>
+<p>Java Use-API, through POJOs, that may optionally implement an <code>init</code> method:</p>
+<pre><code>/**
  * Initialises the Use bean.
  *
  * @param bindings All bindings available to the HTL scripts.
  **/
 public void init(javax.script.Bindings bindings);
 </code></pre>
-  </li>
-  <li>
-    <p>JavaScript Use-API, by using a standardised use function</p>
-    <pre><code>/**
- * In the following example &#39;/libs/dep1.js&#39; and &#39;dep2.js&#39; are optional
- * dependencies needed for this script&#39;s execution. Dependencies can
+</li>
+<li>
+<p>JavaScript Use-API, by using a standardised use function</p>
+<pre><code>/**
+ * In the following example '/libs/dep1.js' and 'dep2.js' are optional
+ * dependencies needed for this script's execution. Dependencies can
  * be specified using an absolute path or a relative path to this
- * script&#39;s own path.
+ * script's own path.
  *
  * If no dependencies are needed the dependencies array can be omitted.
  */
-use([&#39;dep1.js&#39;, &#39;dep2.js&#39;], function (Dep1, Dep2) {
+use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
     // implement processing
 
-    // define this Use object&#39;s behaviour
+    // define this Use object's behaviour
     return {
         propertyName: propertyValue
         functionName: function () {}
     }
 });
 </code></pre>
-  </li>
+</li>
 </ol>
 <p>The HTL implementation from Sling provides the basic POJO support through the <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java"><code>org.apache.sling.scripting.sightly.pojo.Use</code></a> interface and the <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java"><code>JavaUseProvider</code></a>, whereas the <code>use</code> function is implemented by the <code>org.apache.sling.scripting.sightly.js.provider</code> bundle.</p>
 <p>However, the Sling implementation provides a few extensions to the Use-API.</p>
-<h2><a href="#sling-specific-use-api-extensions" name="sling-specific-use-api-extensions">Sling-specific Use-API Extensions</a></h2>
+<h2><a href="#sling-specific-use-api-extensions" id="sling-specific-use-api-extensions">Sling-specific Use-API Extensions</a></h2>
 <p>A full HTL installation provides the following Use Providers, in the order of their priority (the higher the service ranking value, the higher the priority):</p>
 <table>
-  <thead>
-    <tr>
-      <th>Service Ranking </th>
-      <th>Use Provider </th>
-      <th>Bundle </th>
-      <th>Functionality </th>
-      <th>Observations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>100</td>
-      <td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/RenderUnitProvider.java"><code>RenderUnitProvider</code></a></td>
-      <td><code>org.apache.sling.scripting.sightly</code></td>
-      <td colspan="2">support for loading HTL templates through <code>data-sly-use</code></td>
-    </tr>
-    <tr>
-      <td>95</td>
-      <td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/models-use-provider/src/main/java/org/apache/sling/scripting/sightly/models/impl/SlingModelsUseProvider.java"><code>SlingModelsUseProvider</code></a></td>
-      <td><code>org.apache.sling.scripting.sightly.models.provider</code></td>
-      <td colspan="2">support for loading <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a></td>
-    </tr>
-    <tr>
-      <td>90</td>
-      <td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java"><code>JavaUseProvider</code></a></td>
-      <td><code>org.apache.sling.scripting.sightly</code></td>
-      <td>support for loading Java objects such as: <ol><li>OSGi services</li><li>POJOs adaptable from <code>SlingHttpServletRequest</code> or <code>Resource</code></li><li>POJOs that implement <code>Use</code></li></ol></td>
-      <td>The POJOs can be exported by bundles or can be backed by <code>Resources</code>. In the latter case the POJOs' package names should correspond to the backing resource's path; invalid Java characters which are valid path elements should be replaced by an underscore - <code>_</code>.</td>
-    </tr>
-    <tr>
-      <td>80</td>
-      <td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/js-use-provider/src/main/java/org/apache/sling/scripting/sightly/js/impl/JsUseProvider.java"><code>JsUseProvider</code></a></td>
-      <td><code>org.apache.sling.scripting.sightly.js.provider</code></td>
-      <td>support for loading objects defined through the JavaScript <code>use</code> function</td>
-      <td>The <code>org.apache.sling.scripting.sightly.js.provider</code> also provides a trimmed down <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/js-use-provider/src/main/resources/SLING-INF/libs/sling/sightly/js">asynchronous implementation</a> of the <code>Resource</code> API. However this was deprecated in <a href="https://issues.apache.org/jira/browse/SLING-4964">SLING-4964</a> (version 1.0.8 of the bundle) in favour of the synchronous API provided by the <code>org.apache.sling.scripting.javascript</code> bundle.</td>
-    </tr>
-    <tr>
-      <td>0 </td>
-      <td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/ScriptUseProvider.java"><code>ScriptUseProvider</code></a></td>
-      <td><code>org.apache.sling.scripting.sightly</code></td>
-      <td colspan="2">support for loading objects returned by scripts interpreted by other Script Engines available on the platform</td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th>Service Ranking  </th><th> Use Provider    </th><th> Bundle                 </th><th> Functionality     </th><th>Observations</th></tr>
+</thead>
+<tbody>
+<tr><td>100</td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/RenderUnitProvider.java"><code>RenderUnitProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td colspan="2">support for loading HTL templates through <code>data-sly-use</code></td></tr>
+<tr><td>95</td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/models-use-provider/src/main/java/org/apache/sling/scripting/sightly/models/impl/SlingModelsUseProvider.java"><code>SlingModelsUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly.models.provider</code></td><td colspan="2">support for loading <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a></td></tr>
+<tr><td>90</td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java"><code>JavaUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td>support for loading Java objects such as: <ol><li>OSGi services</li><li>POJOs adaptable from <code>SlingHttpServletRequest</code> or <code>Resource</code></li><li>POJOs that implement <code>Use</code></li></ol></td><td>The POJOs can be exported by bundles or can be backed by <code>Resources</code>. In the latter case the POJOs' package names should correspond to the backing resource's path; invalid Java characters which are valid path elements should be replaced by an underscore - <code>_</code>.</td></tr>
+<tr><td>80</td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/js-use-provider/src/main/java/org/apache/sling/scripting/sightly/js/impl/JsUseProvider.java"><code>JsUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly.js.provider</code></td><td>support for loading objects defined through the JavaScript <code>use</code> function</td><td>The <code>org.apache.sling.scripting.sightly.js.provider</code> also provides a trimmed down <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/js-use-provider/src/main/resources/SLING-INF/libs/sling/sightly/js">asynchronous implementation</a> of the <code>Resource</code> API. However this was deprecated in <a href="https://issues.apache.org/jira/browse/SLING-4964">SLING-4964</a> (version 1.0.8 of the bundle) in favour of the synchronous API provided by the <code>org.apache.sling.scripting.javascript</code> bundle.</td></tr>
+<tr><td>0  </td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/ScriptUseProvider.java"><code>ScriptUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td colspan="2">support for loading objects returned by scripts interpreted by other Script Engines available on the platform</td></tr>
+</tbody>
 </table>
 <p>The <code>service.ranking</code> value of each Use Provider is configurable, allowing for fine tuning of the order in which the providers are queried when <code>data-sly-use</code> is called. However, in order to not affect core functionality the <code>RenderUnitProvider</code> should always have the highest ranking. If you need to configure the providers' service ranking head over to the configuration console at <a href="http://localhost:8080/system/console/configMgr">http://localhost:8080/system/console/configMgr</a>.</p>
-<h3><a href="#global-objects" name="global-objects">Global Objects</a></h3>
+<h3><a href="#global-objects" id="global-objects">Global Objects</a></h3>
 <p>The following global objects are available to all Use objects, either as a request attribute or as a property made available in the <code>javax.script.Bindings</code> map or attached to the <code>this</code> context of the <code>use</code> function:</p>
 <pre><code>    currentNode         // javax.jcr.Node
     currentSession      // javax.jcr.Session
@@ -235,7 +202,7 @@ use([&#39;dep1.js&#39;, &#39;dep2.js&#39;], function (Dep1, Dep2) {
     response            // org.apache.sling.api.SlingHttpServletResponse
     sling               // org.apache.sling.api.scripting.SlingScriptHelper
 </code></pre>
-<h3><a href="#sling-models-use-provider" name="sling-models-use-provider">Sling Models Use Provider</a></h3>
+<h3><a href="#sling-models-use-provider" id="sling-models-use-provider">Sling Models Use Provider</a></h3>
 <p>Loading a Sling Model can be done with the following code:</p>
 <pre><code>    &lt;div data-sly-use.model3=&quot;org.example.models.Model3&quot;&gt;
         ${model3.shine}
@@ -243,9 +210,9 @@ use([&#39;dep1.js&#39;, &#39;dep2.js&#39;], function (Dep1, Dep2) {
 </code></pre>
 <p>Depending on the implementation the above code would either load the implementation with the highest service ranking of <code>Model3</code> if <code>org.example.models.Model3</code> is an interface, or would load the model <code>org.example.models.Model3</code> if this is a concrete implementation.</p>
 <p>It's important to note that this use provider will only load models that are adaptable from <code>SlingHttpServletRequest</code> or <code>Resource</code>.</p>
-<h4><a href="#passing-parameters" name="passing-parameters">Passing parameters</a></h4>
+<h4><a href="#passing-parameters" id="passing-parameters">Passing parameters</a></h4>
 <p>Passed parameters will be made available to the Sling Model as request attributes. Assuming the following markup:</p>
-<pre><code>    &lt;div data-sly-use.model3=&quot;${&#39;org.example.models.Model3&#39; @ colour=&#39;red&#39;, path=resource.path}&quot;&gt;
+<pre><code>    &lt;div data-sly-use.model3=&quot;${'org.example.models.Model3' @ colour='red', path=resource.path}&quot;&gt;
         ${model3.shine}
     &lt;/div&gt;
 </code></pre>
@@ -260,9 +227,9 @@ use([&#39;dep1.js&#39;, &#39;dep2.js&#39;], function (Dep1, Dep2) {
         private String path;
     }
 </code></pre>
-<h3><a href="#java-use-provider" name="java-use-provider">Java Use Provider</a></h3>
+<h3><a href="#java-use-provider" id="java-use-provider">Java Use Provider</a></h3>
 <p>The Java Use Provider can be used to load OSGi services, objects exported by bundles or backed by a <code>Resource</code>.</p>
-<h4><a href="#resource-backed-java-classes" name="resource-backed-java-classes">Resource-backed Java classes</a></h4>
+<h4><a href="#resource-backed-java-classes" id="resource-backed-java-classes">Resource-backed Java classes</a></h4>
 <p>When objects are backed by <code>Resources</code> the Java Use Provider will automatically handle the compilation of these classes. The classes' package names should correspond to the path of the backing resource, making sure to replace illegal Java characters with underscores - <code>_</code>.</p>
 <p><strong>Example:</strong> Assuming the following content structure:</p>
 <pre><code>    └── apps
@@ -285,9 +252,9 @@ use([&#39;dep1.js&#39;, &#39;dep2.js&#39;], function (Dep1, Dep2) {
     &lt;/html&gt;
 </code></pre>
 <p>The advantage of loading a bean using just the simple class name (e.g. <code>data-sly-use.page=&quot;PageBean&quot;</code>) is that an inheriting component can overlay the <code>PageBean.java</code> file and provide a different logic. In this case the package name of the <code>PageBean</code> class will automatically be derived from the calling script's parent path (e.g. <code>apps.my_project.components.page</code>) - the bean doesn't even have to specify it. However, keep in mind that loading a bean this way is slower than providing the fully qualified class name, since the provider has to check if there is a backing resource. At the same time, loading an object using its fully qualified class name will not allow overriding it by inheriting components.</p>
-<h4><a href="#passing-parameters" name="passing-parameters">Passing parameters</a></h4>
+<h4><a href="#passing-parameters" id="passing-parameters">Passing parameters</a></h4>
 <p>Passed parameters will be made available to the Use object as request attributes and, if the object implements the <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java"><code>org.apache.sling.scripting.sightly.pojo.Use</code></a> interface, through the <code>javax.script.Bindings</code> passed to the <code>init</code> method. Assuming the following markup:</p>
-<pre><code>    &lt;div data-sly-use.useObject=&quot;${&#39;org.example.use.MyUseObject&#39; @ colour=&#39;red&#39;, year=2016}&quot;&gt;
+<pre><code>    &lt;div data-sly-use.useObject=&quot;${'org.example.use.MyUseObject' @ colour='red', year=2016}&quot;&gt;
         ${useObject.shine}
     &lt;/div&gt;
 </code></pre>
@@ -353,7 +320,7 @@ public class RequestAdapterFactory implements AdapterFactory {
     }
 }
 </code></pre>
-<h3><a href="#javascript-use-provider" name="javascript-use-provider">JavaScript Use Provider</a></h3>
+<h3><a href="#javascript-use-provider" id="javascript-use-provider">JavaScript Use Provider</a></h3>
 <p>The JavaScript Use Provider allows loading objects created through the <code>use</code> function, by evaluating scripts passed to <code>data-sly-use</code>. The JavaScript files are evaluated server-side by the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino">Rhino</a> scripting engine, through the <code>org.apache.sling.scripting.javascript</code> implementation bundle. This allows you to mix JavaScript API with the Java API exported by the platform. For more details about how you can access Java APIs from within JavaScript please check the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Scripting_Java#Accessing_Java_Packages_and_Classes">Rhino Java Scripting guide</a>.</p>
 <p><strong>Example:</strong> Assuming the following content structure:</p>
 <pre><code>    └── apps
@@ -376,7 +343,7 @@ public class RequestAdapterFactory implements AdapterFactory {
     &lt;/html&gt;
 </code></pre>
 <p>Similar to the Java Use Provider, loading the script using a relative path allows inheriting components to overlay just the Use script, without having to also overlay the calling HTL script.</p>
-<h4><a href="#global-objects" name="global-objects">Global Objects</a></h4>
+<h4><a href="#global-objects" id="global-objects">Global Objects</a></h4>
 <p>Besides the global objects available to all Use Providers, the JavaScript Use Provider also provides the following global objects available in the context of the <code>use</code> function:</p>
 <pre><code>console         // basic wrapper on top of log, but without formatting / throwable support
 exports         // basic Java implementation of CommonJS - http://requirejs.org/docs/commonjs.html
@@ -388,17 +355,17 @@ sightly         // the namespace object under which the asynchronous Resource-AP
 use             // the use function
 </code></pre>
 <p>With the exception of the <code>console</code> and <code>use</code> objects, all the other global objects implemented by the JavaScript Use Provider are present in order to support the asynchronous Resource-API implemented by <code>org.apache.sling.scripting.sightly.js.provider</code>. However, this was deprecated starting with version 1.0.8 - see <a href="https://issues.apache.org/jira/browse/SLING-4964">SLING-4964</a>.</p>
-<h4><a href="#passing-parameters" name="passing-parameters">Passing parameters</a></h4>
+<h4><a href="#passing-parameters" id="passing-parameters">Passing parameters</a></h4>
 <p>Passed parameters will be made available to the Use object as properties of <code>this</code>. Assuming the following markup:</p>
-<pre><code>    &lt;div data-sly-use.logic=&quot;${&#39;logic.js&#39; @ colour=&#39;red&#39;, year=2017}&quot;&gt;
-        My colour is ${logic.colour ? logic.colour : &#39;not important&#39;} and I&#39;m from ${logic.year}
+<pre><code>    &lt;div data-sly-use.logic=&quot;${'logic.js' @ colour='red', year=2017}&quot;&gt;
+        My colour is ${logic.colour ? logic.colour : 'not important'} and I'm from ${logic.year}
     &lt;/div&gt;
 </code></pre>
 <p>the object would be able to access the parameters like:</p>
 <pre><code>    use(function() {
-        &#39;use strict&#39;;
+        'use strict';
 
-        var colour = this.colour || &#39;&#39;;
+        var colour = this.colour || '';
         var year = this.year || new Date().getFullYear();
 
         return {
@@ -407,7 +374,7 @@ use             // the use function
         }
     });
 </code></pre>
-<h4><a href="#caveats" name="caveats">Caveats</a></h4>
+<h4><a href="#caveats" id="caveats">Caveats</a></h4>
 <p>Since these scripts are evaluated server-side, by compiling JavaScript to Java, you need to pay attention when comparing primitive objects using the strict equal operator (<code>===</code>) since comparisons between JavaScript and Java objects with the same apparent value will return <code>false</code> (this also applies to the strict not-equal operator - <code>!==</code>).</p>
 <p>Assuming the following HTL script:</p>
 <pre><code>    &lt;ol data-sly-use.obj=&quot;logic.js&quot; data-sly-list=&quot;${obj}&quot;&gt;
@@ -421,51 +388,51 @@ use             // the use function
 
         return [
             {
-                code: &#39;new java.lang.String(&quot;apples&quot;) === &quot;apples&quot;&#39;,
+                code: 'new java.lang.String(&quot;apples&quot;) === &quot;apples&quot;',
                 result: new java.lang.String(&quot;apples&quot;) === &quot;apples&quot;
             },
             {
-                code: &#39;new java.lang.String(&quot;apples&quot;) == &quot;apples&quot;&#39;,
+                code: 'new java.lang.String(&quot;apples&quot;) == &quot;apples&quot;',
                 result: new java.lang.String(&quot;apples&quot;) == &quot;apples&quot;
             },
             {
-                code: &#39;new java.lang.String(&quot;apples&quot;) !== &quot;apples&quot;&#39;,
+                code: 'new java.lang.String(&quot;apples&quot;) !== &quot;apples&quot;',
                 result: new java.lang.String(&quot;apples&quot;) !== &quot;apples&quot;
             },
             {
-                code: &#39;new java.lang.String(&quot;apples&quot;) != &quot;apples&quot;&#39;,
+                code: 'new java.lang.String(&quot;apples&quot;) != &quot;apples&quot;',
                 result: new java.lang.String(&quot;apples&quot;) != &quot;apples&quot;
             },
             {
-                code: &#39;new java.lang.Integer(1) === 1&#39;,
+                code: 'new java.lang.Integer(1) === 1',
                 result: new java.lang.Integer(1) === 1
             },
             {
-                code: &#39;new java.lang.Integer(1) == 1&#39;,
+                code: 'new java.lang.Integer(1) == 1',
                 result: new java.lang.Integer(1) == 1
             },
             {
-                code: &#39;new java.lang.Integer(1) !== 1&#39;,
+                code: 'new java.lang.Integer(1) !== 1',
                 result: new java.lang.Integer(1) !== 1
             },
             {
-                code: &#39;new java.lang.Integer(1) != 1&#39;,
+                code: 'new java.lang.Integer(1) != 1',
                 result: new java.lang.Integer(1) != 1
             },
             {
-                code: &#39;java.lang.Boolean.TRUE === true&#39;,
+                code: 'java.lang.Boolean.TRUE === true',
                 result: java.lang.Boolean.TRUE === true
             },
             {
-                code: &#39;java.lang.Boolean.TRUE == true&#39;,
+                code: 'java.lang.Boolean.TRUE == true',
                 result: java.lang.Boolean.TRUE == true
             },
             {
-                code: &#39;java.lang.Boolean.TRUE !== true&#39;,
+                code: 'java.lang.Boolean.TRUE !== true',
                 result: java.lang.Boolean.TRUE !== true
             },
             {
-                code: &#39;java.lang.Boolean.TRUE != true&#39;,
+                code: 'java.lang.Boolean.TRUE != true',
                 result: java.lang.Boolean.TRUE != true
             }
         ];
@@ -494,13 +461,13 @@ use             // the use function
        ...
     }
 
-    myObject ? &#39;this&#39; : &#39;that&#39;
+    myObject ? 'this' : 'that'
     //should be replaced by
-    myObject != null ? &#39;this&#39; : &#39;that&#39;
+    myObject != null ? 'this' : 'that'
 </code></pre>
-<h3><a href="#script-use-provider" name="script-use-provider">Script Use Provider</a></h3>
+<h3><a href="#script-use-provider" id="script-use-provider">Script Use Provider</a></h3>
 <p>The Script Use Provider allows loading objects evaluated by other script engines available on the platform. The same loading considerations as for the Java and JavaScript Use Providers apply.</p>
-<h3><a href="#picking-the-best-use-provider-for-a-project" name="picking-the-best-use-provider-for-a-project">Picking the best Use Provider for a project</a></h3>
+<h3><a href="#picking-the-best-use-provider-for-a-project" id="picking-the-best-use-provider-for-a-project">Picking the best Use Provider for a project</a></h3>
 <p>The following table summarises the pros and cons for each Use Provider, with the obvious exception of the Render Unit Use Provider.</p>
 <table>
     <tr>
@@ -534,43 +501,44 @@ use             // the use function
             <ul>
                 <li>lacks flexibility in terms of component overlaying</li>
             </ul>
-
-            <p>Use-objects backed by <code>Resources</code>:</p>
-            <ul>
-                <li>cannot extend other Java objects</li>
-                <li>the Java project might need a different setup to allow running unit tests, since the objects will be deployed like content</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>JavaScript Use Provider</td>
-        <td>
-            <ul>
-                <li>allows JavaScript developers to develop component logic</li>
-                <li>can be reused through the dependency mechanism provided by the <code>use</code> function</li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li>harder to test and debug, relying mostly on end-to-end testing and console logging</li>
-                <li>slower to execute than both Sling Models and Java Use-API objects</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Script Use Provider</td>
-        <td>
-            <ul>
-                <li>allows the usage of Use objects evaluated by other Script Engines available in the platform</li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li>like in the case of the JavaScript Use Provider, the performance is influenced by the Script Engine's implementation</li>
-            </ul>
-        </td>
-    </tr>
-</table></section></div></div>                            
+<pre><code>        &lt;p&gt;Use-objects backed by &lt;code&gt;Resources&lt;/code&gt;:&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;cannot extend other Java objects&lt;/li&gt;
+            &lt;li&gt;the Java project might need a different setup to allow running unit tests, since the objects will be deployed like content&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;JavaScript Use Provider&lt;/td&gt;
+    &lt;td&gt;
+        &lt;ul&gt;
+            &lt;li&gt;allows JavaScript developers to develop component logic&lt;/li&gt;
+            &lt;li&gt;can be reused through the dependency mechanism provided by the &lt;code&gt;use&lt;/code&gt; function&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;ul&gt;
+            &lt;li&gt;harder to test and debug, relying mostly on end-to-end testing and console logging&lt;/li&gt;
+            &lt;li&gt;slower to execute than both Sling Models and Java Use-API objects&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;Script Use Provider&lt;/td&gt;
+    &lt;td&gt;
+        &lt;ul&gt;
+            &lt;li&gt;allows the usage of Use objects evaluated by other Script Engines available in the platform&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;ul&gt;
+            &lt;li&gt;like in the case of the JavaScript Use Provider, the performance is influenced by the Script Engine's implementation&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+</table>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

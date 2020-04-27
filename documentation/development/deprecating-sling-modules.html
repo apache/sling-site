@@ -120,30 +120,31 @@
                         </h1><div class="content is-marginless">
 <div class="row"><div><section><p>The following procedure is recommended to deprecate Sling Git repositories, indicating that they should no longer be used.</p>
 <ul>
-  <li>Get consensus on our dev list or do a PMC vote, depending on the importance of the module</li>
-  <li>Create a branch named <code>maintenance</code> with the last version before deprecation.</li>
-  <li>Empty the <code>master</code> branch, keeping just <code>README.md</code> file.</li>
-  <li>Add the <code>deprecated</code> GitHub topic to the module, using a <a href="https://cwiki.apache.org/confluence/display/INFRA/.asf.yaml+features+for+git+repositories">.asf.yaml</a> file in the <code>master</code> branch.</li>
+<li>Get consensus on our dev list or do a PMC vote, depending on the importance of the module</li>
+<li>Create a branch named <code>maintenance</code> with the last version before deprecation.</li>
+<li>Empty the <code>master</code> branch, keeping just <code>README.md</code> file.</li>
+<li>Add the <code>deprecated</code> GitHub topic to the module, using a <a href="https://cwiki.apache.org/confluence/display/INFRA/.asf.yaml+features+for+git+repositories">.asf.yaml</a> file in the <code>master</code> branch.</li>
 </ul>
 <p>Deprecated modules can then be found with a GitHub query, see below.</p>
 <p>The reasoning is that keeping just a <code>README</code> file makes it obvious that the repository is deprecated, and having the <code>maintenance</code> branch makes it easy to get the deprecated code and even make maintenance releases if desired.</p>
 <p>A deprecated module can be un-deprecated if the Sling PMC agrees to do that, technically it just means reverting the changes made by this procedure.</p>
-<h2><a href="#readme-file-contents-for-deprecated-repositories" name="readme-file-contents-for-deprecated-repositories">README file contents for deprecated repositories</a></h2>
+<h2><a href="#readme-file-contents-for-deprecated-repositories" id="readme-file-contents-for-deprecated-repositories">README file contents for deprecated repositories</a></h2>
 <p>The <code>README</code> file should contain:</p>
 <ul>
-  <li>The Sling logo.</li>
-  <li>A link to <a href="https://sling.apache.org">sling.apache.org</a>.</li>
-  <li>The module name with the <em>(deprecated)</em> mention.</li>
-  <li>A link to the replacement module(s) if any.</li>
-  <li>A mention of the <code>maintenance</code> branch, optionally with a link to it, but make sure that link is correct if copying the <code>README</code> from another module.</li>
+<li>The Sling logo.</li>
+<li>A link to <a href="https://sling.apache.org">sling.apache.org</a>.</li>
+<li>The module name with the <em>(deprecated)</em> mention.</li>
+<li>A link to the replacement module(s) if any.</li>
+<li>A mention of the <code>maintenance</code> branch, optionally with a link to it, but make sure that link is correct if copying the <code>README</code> from another module.</li>
 </ul>
 <p>For examples, see the list of deprecated repositories below.</p>
-<h2><a href="#see-also" name="see-also">See Also</a></h2>
+<h2><a href="#see-also" id="see-also">See Also</a></h2>
 <ul>
-  <li><a href="https://github.com/search?q=topic%3Asling+topic%3Adeprecated+org%3Aapache">List of deprecated Sling repositories</a> based on a GitHub query.</li>
-  <li><a href="https://cwiki.apache.org/confluence/display/SLING/Using+Git+with+Sling#UsingGitwithSling-Boilerplatefiles">Using Git with Sling boilerplate files</a>.</li>
-  <li>The previously used <a href="https://svn.apache.org/repos/asf/sling/attic/">svn attic</a> is where older deprecated modules are found.</li>
-</ul></section></div></div>                            
+<li><a href="https://github.com/search?q=topic%3Asling+topic%3Adeprecated+org%3Aapache">List of deprecated Sling repositories</a> based on a GitHub query.</li>
+<li><a href="https://cwiki.apache.org/confluence/display/SLING/Using+Git+with+Sling#UsingGitwithSling-Boilerplatefiles">Using Git with Sling boilerplate files</a>.</li>
+<li>The previously used <a href="https://svn.apache.org/repos/asf/sling/attic/">svn attic</a> is where older deprecated modules are found.</li>
+</ul>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

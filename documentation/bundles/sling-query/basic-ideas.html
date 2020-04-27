@@ -118,14 +118,14 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><h3><a href="#collections" name="collections">Collections</a></h3>
+<div class="row"><div><section><h3><a href="#collections" id="collections">Collections</a></h3>
 <p><code>SlingQuery</code> class represents a collection of resources. Basic collection can be created explicitly via a dollar method:</p>
 <pre><code>$(resource1, resource2, resource3)
 </code></pre>
 <p>Above method creates a new <code>SlingQuery</code> object that consists of 3 resources. This object implements <code>Iterable&lt;Resource&gt;</code> interface, so can be used in foreach statements directly:</p>
 <pre><code>for (Resource resource in $(...)) { }
 </code></pre>
-<h3><a href="#operations" name="operations">Operations</a></h3>
+<h3><a href="#operations" id="operations">Operations</a></h3>
 <p><code>SlingQuery</code> class defines a number of methods which can be used to transform current collection into a new one. Following code:</p>
 <pre><code>$(resource1, resource2).parent()
 </code></pre>
@@ -138,19 +138,19 @@
 <p>Methods can be chained to create more complex query. Eg. following code will return last direct child of the <code>resource</code>:</p>
 <pre><code>$(resource).children().last();
 </code></pre>
-<h4><a href="#laziness" name="laziness">Laziness</a></h4>
+<h4><a href="#laziness" id="laziness">Laziness</a></h4>
 <p>All operations are lazy (except <code>prev()</code> and sometimes <code>not()</code>). It means that <code>SlingQuery</code> won't read any resources until it's actually necessary. Example:</p>
 <pre><code>$(resource).children().children().first();
 </code></pre>
 <p><code>children().children()</code> construction reads all grand-children of the given resource. However, the last method limits the output to the first found resource. As a result, <code>SlingQuery</code> won't iterate over all children and grand-children, but it will simply take the first child of the <code>resource</code> and return its first child.</p>
-<h4><a href="#immutability" name="immutability">Immutability</a></h4>
-<p><code>SlingQuery</code> object is immutable and each operation creates a new one. We can "freeze" some collection before performing more operations on it:</p>
+<h4><a href="#immutability" id="immutability">Immutability</a></h4>
+<p><code>SlingQuery</code> object is immutable and each operation creates a new one. We can &quot;freeze&quot; some collection before performing more operations on it:</p>
 <pre><code>SlingQuery children = $(resource).children();
 SlingQuery firstChild = children.first();
 for (Resource child : children) { /* will display all children */ }
 for (Resource child : firstChild) { /* will display the first child */ }
 </code></pre>
-<h3><a href="#selectors" name="selectors">Selectors</a></h3>
+<h3><a href="#selectors" id="selectors">Selectors</a></h3>
 <p>Some operations may take an additional string selector parameter that defines a filtering. Selector could be used to define resource type, resource attributes and additional modifiers. Example selector could look like this:</p>
 <pre><code>&quot;cq:Page&quot;
 </code></pre>
@@ -170,7 +170,8 @@ for (Resource child : firstChild) { /* will display the first child */ }
 &quot;[property=value][property2=value2]&quot; // two attributes
 &quot;:even&quot; // modifier
 &quot;:even:not(:first)&quot; // two modifiers, the second one is nested
-</code></pre></section></div></div>                            
+</code></pre>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

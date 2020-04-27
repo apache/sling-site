@@ -116,14 +116,14 @@
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#introduction" name="introduction">Introduction</a></h2>
+<h2><a href="#introduction" id="introduction">Introduction</a></h2>
 <p>Resource Filter bundle provides a number of services and utilities to identify and filter resources in a resource tree.</p>
-<h2><a href="#resource-stream" name="resource-stream">Resource Stream</a></h2>
+<h2><a href="#resource-stream" id="resource-stream">Resource Stream</a></h2>
 <p><code>ResourceStream</code> is a general utility. It provides two functions. The first is access to a <code>Stream&lt;Resource&gt;</code> which traverses a resource and it's subtree. The function takes a <code>Predicate&lt;Resource&gt;</code> object which is used to select the child nodes to be part of the traversal.</p>
 <pre><code>ResourceStream rs = new ResourceStream(resource);
 </code></pre>
 <p>In addition there is a <code>getChildren(Predicate)</code> method which returns a filtered list of children of the given resource.</p>
-<h2><a href="#resource-predicate-service" name="resource-predicate-service">Resource Predicate Service</a></h2>
+<h2><a href="#resource-predicate-service" id="resource-predicate-service">Resource Predicate Service</a></h2>
 <p><code>ResourcePredicate</code> is a service that allows you to convert a string that defines a simple matching requirements into a <code>Predicate&lt;Resource&gt;</code> for use with the Collections and the Streams Java API. In addition it also allows you to add parameters to the underlying context that the script will use.</p>
 <pre><code>@Reference
 ResourcePredicates rp;
@@ -133,233 +133,110 @@ resourceCollection.stream().filter(predicate).forEach(
     resource -&gt; System.out.println(resource.getPath())
 );
 </code></pre>
-<h2><a href="#resource-filter-stream" name="resource-filter-stream">Resource Filter Stream</a></h2>
+<h2><a href="#resource-filter-stream" id="resource-filter-stream">Resource Filter Stream</a></h2>
 <p><code>ResourceFilterStream</code> combines the <code>ResourceStream</code> functionality with the <code>ResourcePredicates</code> service to provide an ability to define a <code>Stream&lt;Resource&gt;</code> that follows specific child pages and looks for specific Resources as defined by the resources filter script. The ResourceStreamFilter is access by adaption.</p>
 <pre><code>ResourceFilterStream rfs = resource.adaptTo(ResourceFilterStream.class);
 
 rfs
-  .setBranchSelector(&quot;[jcr:primaryType] == &#39;cq:Page&#39;&quot;)
-  .setChildSelector(&quot;[jcr:content/sling:resourceType] != &#39;apps/components/page/folder&#39;&quot;)
+  .setBranchSelector(&quot;[jcr:primaryType] == 'cq:Page'&quot;)
+  .setChildSelector(&quot;[jcr:content/sling:resourceType] != 'apps/components/page/folder'&quot;)
   .stream()
   .collect(Collections.toList());
 </code></pre>
-<h2><a href="#resourcefilter-scripting" name="resourcefilter-scripting">ResourceFilter Scripting</a></h2>
+<h2><a href="#resourcefilter-scripting" id="resourcefilter-scripting">ResourceFilter Scripting</a></h2>
 <p>To ease the creation of a <code>Predicate&lt;Resource&gt;</code> a scripting implementation was developed that was designed to be visually similar to JCRSQL use of property identification where a property is compared to one or more values.</p>
-<h3><a href="#operators" name="operators">Operators</a></h3>
+<h3><a href="#operators" id="operators">Operators</a></h3>
 <table>
-  <thead>
-    <tr>
-      <th>Name </th>
-      <th>Comparison Type </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>and </td>
-      <td>NA </td>
-      <td>Logical AND </td>
-    </tr>
-    <tr>
-      <td>&amp;&amp; </td>
-      <td>NA </td>
-      <td>Logical AND </td>
-    </tr>
-    <tr>
-      <td>or </td>
-      <td>NA </td>
-      <td>Logical OR </td>
-    </tr>
-    <tr>
-      <td>&#124;&#124; </td>
-      <td>NA </td>
-      <td>Logical OR </td>
-    </tr>
-    <tr>
-      <td>== </td>
-      <td>String </td>
-      <td>Equal operator for Strings </td>
-    </tr>
-    <tr>
-      <td>&lt; </td>
-      <td>Number </td>
-      <td>Less than operator for Numbers </td>
-    </tr>
-    <tr>
-      <td>&lt;= </td>
-      <td>Number </td>
-      <td>Less than or equal operator for Numbers </td>
-    </tr>
-    <tr>
-      <td>&gt; </td>
-      <td>Number </td>
-      <td>Greater than operator for Numbers </td>
-    </tr>
-    <tr>
-      <td>&gt;= </td>
-      <td>Number </td>
-      <td>Greater than or equal operator for Numbers </td>
-    </tr>
-    <tr>
-      <td>!= </td>
-      <td>String </td>
-      <td>Is not equal to for Strings </td>
-    </tr>
-    <tr>
-      <td>~= </td>
-      <td>String - Regex </td>
-      <td>Regex match against String </td>
-    </tr>
-    <tr>
-      <td>less than </td>
-      <td>Number </td>
-      <td>less than operator for Numbers </td>
-    </tr>
-    <tr>
-      <td>greater than </td>
-      <td>Number </td>
-      <td>greater than operator for Numbers </td>
-    </tr>
-    <tr>
-      <td>is </td>
-      <td>String </td>
-      <td>Equal operator for Strings </td>
-    </tr>
-    <tr>
-      <td>is not </td>
-      <td>String </td>
-      <td>Is not equal operator for Strings </td>
-    </tr>
-    <tr>
-      <td>like </td>
-      <td>String - Regex </td>
-      <td>Regex match against String </td>
-    </tr>
-    <tr>
-      <td>is like </td>
-      <td>String - Regex </td>
-      <td>Regex match against String </td>
-    </tr>
-    <tr>
-      <td>not like </td>
-      <td>String - Regex </td>
-      <td>Regex does not match String </td>
-    </tr>
-    <tr>
-      <td>contains </td>
-      <td>String[] </td>
-      <td>String[] contains all of items </td>
-    </tr>
-    <tr>
-      <td>contains not </td>
-      <td>String[] </td>
-      <td>String[] does not contain all of the items </td>
-    </tr>
-    <tr>
-      <td>contains any </td>
-      <td>String[] </td>
-      <td>String[] contains at least one of items </td>
-    </tr>
-    <tr>
-      <td>contains not any </td>
-      <td>String[] </td>
-      <td>String[] does not contain any of the items </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Name        </th><th> Comparison Type </th><th> Description                                </th></tr>
+</thead>
+<tbody>
+<tr><td> and              </td><td> NA              </td><td> Logical AND                                </td></tr>
+<tr><td> &amp;&amp;               </td><td> NA              </td><td> Logical AND                                </td></tr>
+<tr><td> or               </td><td> NA              </td><td> Logical OR                                 </td></tr>
+<tr><td>||      </td><td> NA              </td><td> Logical OR                                 </td></tr>
+<tr><td> ==               </td><td> String          </td><td> Equal operator for Strings                 </td></tr>
+<tr><td> &lt;                </td><td> Number          </td><td> Less than operator for Numbers             </td></tr>
+<tr><td> &lt;=               </td><td> Number          </td><td> Less than or equal operator for Numbers    </td></tr>
+<tr><td> &gt;                </td><td> Number          </td><td> Greater than operator for Numbers          </td></tr>
+<tr><td> &gt;=               </td><td> Number          </td><td> Greater than or equal operator for Numbers </td></tr>
+<tr><td> !=               </td><td> String          </td><td> Is not equal to for Strings                </td></tr>
+<tr><td> ~=               </td><td> String - Regex  </td><td> Regex match against String                 </td></tr>
+<tr><td> less than        </td><td> Number          </td><td> less than operator for Numbers             </td></tr>
+<tr><td> greater than     </td><td> Number          </td><td> greater than operator for Numbers          </td></tr>
+<tr><td> is               </td><td> String          </td><td> Equal operator for Strings                 </td></tr>
+<tr><td> is not           </td><td> String          </td><td> Is not equal operator for Strings          </td></tr>
+<tr><td> like             </td><td> String - Regex  </td><td> Regex match against String                 </td></tr>
+<tr><td> is like          </td><td> String - Regex  </td><td> Regex match against String                 </td></tr>
+<tr><td> not like         </td><td> String - Regex  </td><td> Regex does not match String                </td></tr>
+<tr><td> contains         </td><td> String[]        </td><td> String[] contains all of items             </td></tr>
+<tr><td> contains not     </td><td> String[]        </td><td> String[] does not contain all of the items </td></tr>
+<tr><td> contains any     </td><td> String[]        </td><td> String[] contains at least one of items    </td></tr>
+<tr><td> contains not any </td><td> String[]        </td><td> String[] does not contain any of the items </td></tr>
+</tbody>
 </table>
-<h3><a href="#logical-operators" name="logical-operators">Logical Operators</a></h3>
+<h3><a href="#logical-operators" id="logical-operators">Logical Operators</a></h3>
 <p>The 'and' and 'or' operators are logical operators that string together conditions. 'And' operators take precedence. 'Or' operators evaluate from left to right</p>
-<h3><a href="#values" name="values">Values</a></h3>
+<h3><a href="#values" id="values">Values</a></h3>
 <p>Values for comparison are obtained through multiple methods</p>
 <table>
-  <thead>
-    <tr>
-      <th>Method </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Literal </td>
-      <td>Single(') or double (") quoted text in the query will be interpreted as a String. Boolean values of <em>true</em> and <em>false</em> will be translated to a String. </td>
-    </tr>
-    <tr>
-      <td>Property </td>
-      <td>A String between square brackets '[',']'s will be interpreted as a property value and will be retrieved from the Resource using the get method </td>
-    </tr>
-    <tr>
-      <td>Function </td>
-      <td>A string followed by parens containing an optional comma separated list of values. </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Method       </th><th> Description                               </th></tr>
+</thead>
+<tbody>
+<tr><td> Literal      </td><td> Single(') or double (&quot;) quoted text in the query will be interpreted as a String. Boolean values of <em>true</em> and <em>false</em> will be translated to a String. </td></tr>
+<tr><td> Property     </td><td> A String between square brackets '[',']'s will be interpreted as a property value and will be retrieved from the Resource using the get method </td></tr>
+<tr><td> Function     </td><td> A string followed by parens containing an optional comma separated list of values. </td></tr>
+</tbody>
 </table>
-<h3><a href="#types" name="types">Types</a></h3>
+<h3><a href="#types" id="types">Types</a></h3>
 <p>All types are converted to either a String or a Number. For direct equivalence the comparison is done as a String. For relational comparisons the object will be adapted to a number.</p>
-<h3><a href="#dates-instants" name="dates-instants">Dates/Instants</a></h3>
+<h3><a href="#datesinstants" id="datesinstants">Dates/Instants</a></h3>
 <p>Dates are special, there are multiple ways to enter a date.</p>
 <p>In line, as part of the query, a date can be identified as a string that conforms to a standard ISO-8601 date time.</p>
 <blockquote>
-  <p>'2013-08-08T16:32:59.000'</p>
-  <p>'2013-08-08T16:32:59'</p>
-  <p>'2013-08-08T16:32'</p>
+<p>'2013-08-08T16:32:59.000'</p>
+<p>'2013-08-08T16:32:59'</p>
+<p>'2013-08-08T16:32'</p>
 </blockquote>
 <p>Are all valid date representations that are defaulting to the UTC timezone.</p>
 <p>For a ISO8601 date with timezone offset use the date function.</p>
 <blockquote>
-  <p>date('2013-08-08T16:32:59.000+02:00')</p>
+<p>date('2013-08-08T16:32:59.000+02:00')</p>
 </blockquote>
 <p>If you need a different date format then the date function can accommodate that</p>
 <blockquote>
-  <p>date('2013-08-08','yyyy-MM-dd')</p>
+<p>date('2013-08-08','yyyy-MM-dd')</p>
 </blockquote>
-<p>Or you can add your own custom Function </p>
+<p>Or you can add your own custom Function</p>
 <p>Dates are transitionally represented as a java.util.Instant which is then converted to a String in ISO-8601 format or as a Long number based on the type of comparison. The number representing the time in milliseconds since the EPOCH UTC region</p>
-<h3><a href="#functions" name="functions">Functions</a></h3>
+<h3><a href="#functions" id="functions">Functions</a></h3>
 <p>Functions provide additional functionality to the Filter language. A Function is written in the format</p>
 <blockquote>
-  <p>string '(' comma, separated, list() ')'</p>
+<p>string '(' comma, separated, list() ')'</p>
 </blockquote>
 <p>OOTB Functions are:</p>
 <table>
-  <thead>
-    <tr>
-      <th>Name </th>
-      <th>Arguments </th>
-      <th>Returns </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>name </td>
-      <td>none </td>
-      <td>String </td>
-      <td>Provides the name of the resource </td>
-    </tr>
-    <tr>
-      <td>date </td>
-      <td>0 - 2 </td>
-      <td>Instant </td>
-      <td>First argument is string representation of the date, second argument is a standard Java DateFormat representation of the value. No argument returns the current time. </td>
-    </tr>
-    <tr>
-      <td>path </td>
-      <td>none </td>
-      <td>String </td>
-      <td>path of the tested resource </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Name  </th><th> Arguments </th><th> Returns </th><th> Description                                                    </th></tr>
+</thead>
+<tbody>
+<tr><td> name  </td><td> none      </td><td> String  </td><td> Provides the name of the resource                              </td></tr>
+<tr><td> date  </td><td> 0 - 2     </td><td> Instant </td><td> First argument is string representation of the date, second argument is a standard Java DateFormat representation of the value. No argument returns the current time. </td></tr>
+<tr><td> path  </td><td> none      </td><td> String  </td><td> path of the tested resource        </td></tr>
+</tbody>
 </table>
-<h3><a href="#parameters" name="parameters">Parameters</a></h3>
+<h3><a href="#parameters" id="parameters">Parameters</a></h3>
 <p>The ResourceFilter and ResourceFilteStream can have key value pairs added so that the values may be used as part of the script resolution. Parameters are accessed by using the dollar sign '$'</p>
 <pre><code>rfs.setBranchSelector(&quot;[jcr:content/sling:resourceType] != $type&quot;).addParam(&quot;type&quot;,&quot;apps/components/page/folder&quot;);
 </code></pre>
-<h2><a href="#optimizing-traversals" name="optimizing-traversals">Optimizing Traversals</a></h2>
+<h2><a href="#optimizing-traversals" id="optimizing-traversals">Optimizing Traversals</a></h2>
 <p>Similar to indexing in a query there are strategies that you can do within a tree traversal so that traversals can be done in an efficient manner across a large number of resources. The following strategies will assist in traversal optimization.</p>
-<h3><a href="#limit-traversal-paths" name="limit-traversal-paths">Limit traversal paths</a></h3>
+<h3><a href="#limit-traversal-paths" id="limit-traversal-paths">Limit traversal paths</a></h3>
 <p>In a naive implementation of a tree traversal the traversal occurs across all nodes in the tree regardless of the ability of the tree structure to support the nodes that are being looked for. An example of this is a tree of Page resources that have have a child node of jcr:content which contains a subtree of data to define the page structure. If the jcr:content node is not capable of having a child resource of type Page and the goal of the traversal is to identify Page resources that match a specific criteria then the traversal of the jcr:content node can not lead to additional matches. Using this knowledge of the resource structure, you can improve performance by adding a branch selector that prevents the traversal from proceeding down a non productive path</p>
-<h3><a href="#limit-memory-consumption" name="limit-memory-consumption">Limit memory consumption</a></h3>
-<p>The instantiation of a Resource object from the underlying ResourceResolver is a non trivial consumption of memory. When the focus of a tree traversal is obtaining information from thousands of Resources, an effective method is to extract the information as part of the stream processing or utilizing the forEach method of the ResourceStream object which allows the resource to be garbage collected in an efficient manner. </p></section></div></div>                            
+<h3><a href="#limit-memory-consumption" id="limit-memory-consumption">Limit memory consumption</a></h3>
+<p>The instantiation of a Resource object from the underlying ResourceResolver is a non trivial consumption of memory. When the focus of a tree traversal is obtaining information from thousands of Resources, an effective method is to extract the information as part of the stream processing or utilizing the forEach method of the ResourceStream object which allows the resource to be garbage collected in an efficient manner.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

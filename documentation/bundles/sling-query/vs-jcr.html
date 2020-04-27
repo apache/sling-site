@@ -122,42 +122,19 @@
 <p>Purpose of the SlingQuery is to provide a convenient way to traverse resource tree. All SlingQuery operations are eventually transformed into a series of <code>listChildren()</code> and <code>getParent()</code> operations [1].</p>
 <p>As a rule of thumb - if you have a complex Java loop reading resource children or parents and processing them somehow, rewritting it to SlingQuery will be a good choice. If you have a recursive method trying to get some resource ancestor, using SlingQuery will be a good choice. On the other hand, if you have a large resource subtree and want to find all <code>cq:Page</code>s, using SlingQuery is a bad choice.</p>
 <table>
-  <thead>
-    <tr>
-      <th>Description </th>
-      <th>JCR query </th>
-      <th>SlingQuery </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>You have a complex logic using Sling Resource API </td>
-      <td>(-) </td>
-      <td>Yes! </td>
-    </tr>
-    <tr>
-      <td>You want to find resource ancestor </td>
-      <td>(-) </td>
-      <td>Yes! </td>
-    </tr>
-    <tr>
-      <td>You want to find all descendants with given attribute </td>
-      <td>Yes! </td>
-      <td>(-) </td>
-    </tr>
-    <tr>
-      <td>You want to find all descendants of given type </td>
-      <td>Yes! </td>
-      <td>(-) </td>
-    </tr>
-    <tr>
-      <td>You'd like to get ordered results </td>
-      <td>Yes! </td>
-      <td>(-) </td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th> Description                                           </th><th> JCR query </th><th> SlingQuery </th></tr>
+</thead>
+<tbody>
+<tr><td> You have a complex logic using Sling Resource API     </td><td> (-)       </td><td> Yes!       </td></tr>
+<tr><td> You want to find resource ancestor                    </td><td> (-)       </td><td> Yes!       </td></tr>
+<tr><td> You want to find all descendants with given attribute </td><td> Yes!      </td><td> (-)        </td></tr>
+<tr><td> You want to find all descendants of given type        </td><td> Yes!      </td><td> (-)        </td></tr>
+<tr><td> You'd like to get ordered results                     </td><td> Yes!      </td><td> (-)        </td></tr>
+</tbody>
 </table>
-<p>[1] - Actually, the <code>find()</code> operation uses QUERY strategy by default, which means that the selector string is transformed to a SQL2 query. However, the transformation process is very naïve and simply skips all conditions that can't be easily transformed to SQL2 (eg. selector <code>[jcr:content/jcr:title=some title]</code> won't be transformed as it contains some subresource reference). The result of this query is then filtere manually. See <a href="methods.html#searchstrategystrategy">searchStrategy</a> for more details.</p></section></div></div>                            
+<p>[1] - Actually, the <code>find()</code> operation uses QUERY strategy by default, which means that the selector string is transformed to a SQL2 query. However, the transformation process is very naïve and simply skips all conditions that can't be easily transformed to SQL2 (eg. selector <code>[jcr:content/jcr:title=some title]</code> won't be transformed as it contains some subresource reference). The result of this query is then filtere manually. See <a href="methods.html#searchstrategystrategy">searchStrategy</a> for more details.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>

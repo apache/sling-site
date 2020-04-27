@@ -121,35 +121,36 @@
 <div class="row"><div><section><p>Mock for the resource resolver / factory for easier testing. It uses an in-memory map for storing the resource data, and supports reading, writing and a certain level of transaction and eventing support.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
-<h2><a href="#maven-dependency" name="maven-dependency">Maven Dependency</a></h2>
+<h2><a href="#maven-dependency" id="maven-dependency">Maven Dependency</a></h2>
 <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
   &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
   &lt;artifactId&gt;org.apache.sling.testing.resourceresolver-mock&lt;/artifactId&gt;
 &lt;/dependency&gt;
 </code></pre>
 <p>See latest version on the <a href="/downloads.cgi">downloads page</a>.</p>
-<h2><a href="#implemented-mock-features" name="implemented-mock-features">Implemented mock features</a></h2>
+<h2><a href="#implemented-mock-features" id="implemented-mock-features">Implemented mock features</a></h2>
 <p>The mock implementation supports:</p>
 <ul>
-  <li>All read and write operations of the Sling Resource API</li>
-  <li>Mimics transactions using via commit()/revert() methods</li>
-  <li>OSGi events for adding/changing/removing resources</li>
-  <li>The implementation tries to be as close as possible to the behavior of the JCR resource implementation e.g. concerning date and binary handling</li>
+<li>All read and write operations of the Sling Resource API</li>
+<li>Mimics transactions using via commit()/revert() methods</li>
+<li>OSGi events for adding/changing/removing resources</li>
+<li>The implementation tries to be as close as possible to the behavior of the JCR resource implementation e.g. concerning date and binary handling</li>
 </ul>
 <p>The following features are <em>not supported</em>:</p>
 <ul>
-  <li>Authentication not supported ("login" always possible with null authentication info)</li>
-  <li>Querying with queryResources/findResources not supported (always returns empty result set)</li>
-  <li>Sling Mapping is not supported</li>
-  <li>Resolving resource super types</li>
+<li>Authentication not supported (&quot;login&quot; always possible with null authentication info)</li>
+<li>Querying with queryResources/findResources not supported (always returns empty result set)</li>
+<li>Sling Mapping is not supported</li>
+<li>Resolving resource super types</li>
 </ul>
-<h2><a href="#usage" name="usage">Usage</a></h2>
+<h2><a href="#usage" id="usage">Usage</a></h2>
 <p>To create a mocked resource resolver:</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->MockResourceResolverFactory factory = new MockResourceResolverFactory();
 ResourceResolver resolver = factory.getResourceResolver(null);
 </code></pre>
 <p>With the resolver you can use all Sling Resource features including reading and writing data using the Sling API.</p>
-<p>You cannot do any operations that require the JCR API because no JCR is underlying and adapting to JCR objects will just return null.</p></section></div></div>                            
+<p>You cannot do any operations that require the JCR API because no JCR is underlying and adapting to JCR objects will just return null.</p>
+</section></div></div>                            
                         </div>
                     </div>
                 </div>
