@@ -4,6 +4,9 @@
 // downloads page work. Basically, we provide a downloads.html page with a few placeholders
 // and a form to select the download mirrog, and a downloads.cgi page which wraps the apache.org
 // download logic CGI.
+//
+// To test this page in a local build, open http://localhost:8820/downloads.html - the navigation
+// link points to the .cgi variant which doesn't work locally.
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
@@ -280,7 +283,7 @@ def deprecated=[
   "Health Check Integration Tests|Migrated to Apache Felix Health Checks|org.apache.sling.hc.it|1.0.4",
   "Health Check Samples|Migrated to Apache Felix Health Checks|org.apache.sling.hc.samples|1.0.6",
   "Health Check Webconsole|Migrated to Apache Felix Health Checks|org.apache.sling.hc.webconsole|1.1.2",
-  "Installer Subystems Support|org.apache.sling.installer.factory.subsystems|1.0.0",
+  "Installer Subystems Support|TODO moved here in commit b8c5ff0e2, please indicate why|org.apache.sling.installer.factory.subsystems|1.0.0",
   "JCR Compiler|Replaced with FS ClassLoader|org.apache.sling.jcr.compiler|2.1.0",
   "JCR Jackrabbit Server|Replaced with Apache Jackrabbit Oak|org.apache.sling.jcr.jackrabbit.server|2.3.0",
   "JCR Prefs|Replaced with CA Configs|org.apache.sling.jcr.prefs|1.0.0",
