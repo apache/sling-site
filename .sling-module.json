@@ -4,7 +4,7 @@
         "branches": {
             "master": {
                 "nodeLabel": "git-websites",
-                "additionalMavenParams": "-Ppublish-site -Dmsg=\"Automatic website deployment\""
+                "additionalMavenParams": "-Ppublish-site -Dmsg=\"Automatic website deployment from $BUILD_URL\""
             }
         }
     }
