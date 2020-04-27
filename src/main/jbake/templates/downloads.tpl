@@ -105,7 +105,7 @@ def bundles=[
   "Discovery Impl|org.apache.sling.discovery.impl|1.2.12|Y|jar",
   "Discovery Commons|org.apache.sling.discovery.commons|1.0.20|Y|jar",
   "Discovery Base|org.apache.sling.discovery.base|2.0.8|Y|jar",
-  "Discovery Oak|org.apache.sling.discovery.oak|1.2.28|Y|jar",
+  "Discovery Oak|org.apache.sling.discovery.oak|1.2.30|Y|jar",
   "Discovery Standalone|org.apache.sling.discovery.standalone|1.0.2|Y|jar",
   "Discovery Support|org.apache.sling.discovery.support|1.0.4|Y|jar",
   "Distributed Event Admin|org.apache.sling.event.dea|1.1.4|Y|jar",

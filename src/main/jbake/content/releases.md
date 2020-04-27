@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2020
 
+* Discovery Oak 1.2.30 (27th)
 * Commons Metrics RRD4J 1.0.4 (24th)
 * Slingfeature Maven Plugin 1.2.2 (22nd)
 * App CMS 0.16.2 (20th)
