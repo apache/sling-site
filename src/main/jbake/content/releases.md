@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2020
 
+* Feature Model 1.2.0 (30th)
 * Engine 2.7.2 (29th)
 * Discovery Oak 1.2.30 (27th)
 * Commons Metrics RRD4J 1.0.4 (24th)
