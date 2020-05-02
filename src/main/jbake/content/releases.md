@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2020
+
+* Installer Core 3.11.4 (2nd)
+
 ## April 2020
 
 * Feature Model 1.2.0 (30th)
