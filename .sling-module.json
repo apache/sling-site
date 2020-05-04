@@ -1,7 +1,7 @@
 {
     "jenkins": {
         "mavenGoal": "package",
-        "sonarQubeUseAdditionalMavenParams": false,
+        "sonarQubeEnabled": false,
         "branches": {
             "master": {
                 "nodeLabel": "git-websites",
