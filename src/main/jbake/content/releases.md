@@ -6,8 +6,15 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2020
+
+* Installer Core 3.11.4, Testing JCR Mock 1.4.6, Testing OSGi Mock 2.4.16, Testing Sling Mock 2.5.0, Testing Sling Mock Oak 2.1.10-1.16.0 (2nd)
+
 ## April 2020
 
+* Feature Model 1.2.0 (30th)
+* Engine 2.7.2 (29th)
+* Discovery Oak 1.2.30 (27th)
 * Commons Metrics RRD4J 1.0.4 (24th)
 * Slingfeature Maven Plugin 1.2.2 (22nd)
 * App CMS 0.16.2 (20th)
