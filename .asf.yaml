@@ -1,0 +1,7 @@
+github:
+  description: "Apache Sling Website"
+  homepage: "https://sling.apache.org/"
+  labels:
+    - sling
+    - website
+    - jbake
