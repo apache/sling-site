@@ -6,5 +6,6 @@ target
 .*
 !.gitignore
 !.sling-module.json
+!.asf.yaml
 .DS_Store
 *.iml
