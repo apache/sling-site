@@ -54,6 +54,8 @@ It's sometimes useful to ~~steal ideas~~ get inspiration from other projects usi
  * Tamaya - https://github.com/apache/incubator-tamaya-site
  * OpenNLP - https://github.com/apache/opennlp-site
  * Incubator - https://github.com/apache/incubator
+ 
+And [this query for the `jbake` topic](https://github.com/search?q=topic%3Ajbake+org%3Aapache&type=Repositories) might find others.
 
 ## JBake and other technotes
 * Currently using 2.6.5 via the `jbake-maven-plugin`, see under `/bin`, docs at http://jbake.org/docs/2.6.5
