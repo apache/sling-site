@@ -14,25 +14,25 @@ Content Packages must be provided with extension `.zip`. They will be automatica
 
 As of version 1.0.4 the bundle requires a service user mapping to function correctly. An example mapping, using the provisioning model is
 
-```
-  org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-installer-factories
-    user.mapping=[
-      "org.apache.sling.installer.factory.packages\=sling-package-install"
-    ]
-```
+
+    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-installer-factories
+      user.mapping=[
+        "org.apache.sling.installer.factory.packages\=sling-package-install"
+      ]
+
 
 The service user requires needs access to all locations which are covered by packages and to `/etc/packages` itself.
 
 A sample user configuration using repoinit is
 
-```
-create service user sling-package-install
 
-set ACL for sling-package-install
-    allow  jcr:all     on  /
-    allow  jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository
-end
-```
+    create service user sling-package-install
+
+    set ACL for sling-package-install
+        allow  jcr:all     on  /
+        allow  jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository
+    end
+
 
 # Project Info
 
