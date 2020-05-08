@@ -122,6 +122,7 @@
                                         <li><a href="/documentation/bundles/content-distribution.html">Content Distribution (org.apache.sling.distribution)</a></li>
                                         <li><a href="/documentation/bundles/content-loading-jcr-contentloader.html">Content Loading and Nodetype Support (jcr.contentloader)</a></li>
                                         <li><a href="/documentation/bundles/content-package-installer-factory.html">Content Package Installer Factory</a></li>
+                                        <li><a href="/documentation/development/content-packages.html">Content-Package based development</a></li>
                                         <li><a href="/contributing.html">Contributing</a></li>
                                         <li><a href="/documentation/bundles/sling-health-checks.html">Custom Sling Health Checks</a></li>
                                         <li><a href="/documentation/bundles/datasource-providers.html">DataSource Provider</a></li>
