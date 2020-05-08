@@ -158,9 +158,16 @@
 <p>After starting up Sling, the resulting file can then be deployed with</p>
 <pre><code>$ npx slingpackager upload &lt;content-package.zip&gt; -i
 </code></pre>
+<h3><a href="#composum-ui" id="composum-ui">Composum UI</a></h3>
+<p>The Composum package manager allows performing multiple operations through its user interface. To access the package manager, ensure that you are logged in to the Sling Starter and then navigate to the Composum Package Manager at <a href="http://localhost:8080/bin/packages.html">http://localhost:8080/bin/packages.html</a>.</p>
+<p>Some of the possible operations are:</p>
+<ul>
+<li>building content packages from existing content</li>
+<li>uploading and installing existing content packages</li>
+<li>uninstalling existing content packages</li>
+</ul>
 <h3><a href="#notes" id="notes">Notes</a></h3>
-<p>Inspecting the content package reveals that is is just a ZIP file with additional metadata.</p>
-<p>After deploying the content package, ensure that you are logged in to the Sling Starter, and then navigate to the Composum Package Manager at <a href="http://localhost:8080/bin/packages.html">http://localhost:8080/bin/packages.html</a>. You will see the content package as listed and will be able, for instance, to uninstall it.</p>
+<p>Inspecting the content package reveals that is is just a ZIP file with additional metadata. Of definite interest are the manifest - <code>META-INF/MANIFEST.MF</code> and the filter definition - <code>META-INF/vault/filter.xml</code>.</p>
 <p>The <a href="/documentation/development/ide-tooling.html">Sling IDE Tooling</a> has support for exporting and importing content incrementally to a Sling instance, and can be used alongside the Maven-based tooling.</p>
 <h2><a href="#installing-a-content-package-at-build-time" id="installing-a-content-package-at-build-time">Installing a content package at build time</a></h2>
 <p>For the content package to be installed at build time, it must be available in a Maven repository at the time when the Sling application is built.</p>
@@ -185,7 +192,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri May 8 15:49:05 2020 +0200</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri May 8 16:52:13 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
