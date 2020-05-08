@@ -66,12 +66,19 @@ After starting up Sling, the resulting file can then be deployed with
 
     $ npx slingpackager upload <content-package.zip> -i
  
+### Composum UI
+
+The Composum package manager allows performing multiple operations through its user interface. To access the package manager, ensure that you are logged in to the Sling Starter and then navigate to the Composum Package Manager at [http://localhost:8080/bin/packages.html](http://localhost:8080/bin/packages.html).
+
+Some of the possible operations are:
+
+- building content packages from existing content
+- uploading and installing existing content packages
+- uninstalling existing content packages
 
 ### Notes
 
-Inspecting the content package reveals that is is just a ZIP file with additional metadata. 
-
-After deploying the content package, ensure that you are logged in to the Sling Starter, and then navigate to the Composum Package Manager at [http://localhost:8080/bin/packages.html](http://localhost:8080/bin/packages.html). You will see the content package as listed and will be able, for instance, to uninstall it.
+Inspecting the content package reveals that is is just a ZIP file with additional metadata. Of definite interest are the manifest - `META-INF/MANIFEST.MF` and the filter definition - `META-INF/vault/filter.xml`.
 
 The [Sling IDE Tooling](/documentation/development/ide-tooling.html) has support for exporting and importing content incrementally to a Sling instance, and can be used alongside the Maven-based tooling.
 
