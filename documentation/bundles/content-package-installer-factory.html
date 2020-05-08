@@ -119,11 +119,20 @@
 <p>Content Packages must be provided with extension <code>.zip</code>. They will be automatically installed/uninstalled via the <a href="https://jackrabbit.apache.org/filevault/apidocs/org/apache/jackrabbit/vault/packaging/JcrPackageManager.html">JcrPackageManager API</a>. The (un-)installation behaviour can be further tweaked via the OSGi configuration provided for PID <code>org.apache.sling.installer.factory.packages.impl.PackageTransformer</code></p>
 <h2><a href="#configuration" id="configuration">Configuration</a></h2>
 <p>As of version 1.0.4 the bundle requires a service user mapping to function correctly. An example mapping, using the provisioning model is</p>
-<p><code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-installer-factories user.mapping=[ &quot;org.apache.sling.installer.factory.packages\=sling-package-install&quot; ]</code></p>
+<pre><code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-installer-factories
+  user.mapping=[
+    &quot;org.apache.sling.installer.factory.packages\=sling-package-install&quot;
+  ]
+</code></pre>
 <p>The service user requires needs access to all locations which are covered by packages and to <code>/etc/packages</code> itself.</p>
 <p>A sample user configuration using repoinit is</p>
-<p>``` create service user sling-package-install</p>
-<p>set ACL for sling-package-install allow  jcr:all     on  / allow  jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository end ```</p>
+<pre><code>create service user sling-package-install
+
+set ACL for sling-package-install
+    allow  jcr:all     on  /
+    allow  jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository
+end
+</code></pre>
 <h1><a href="#project-info" id="project-info">Project Info</a></h1>
 <ul>
 <li>Content package installer factory (<a href="https://github.com/apache/sling-org-apache-sling-installer-factory-packages">org.apache.sling.installer.factory.packages</a>)</li>
@@ -135,7 +144,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri May 8 12:39:22 2020 +0200</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri May 8 13:16:01 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
