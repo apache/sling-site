@@ -16,6 +16,7 @@ Look here for more information on developer support when your are using Sling to
 
 * [Getting and Building Sling](/documentation/development/getting-and-building-sling.html)
 * [Defining and Launching a Sling based Application](/documentation/development/slingstart.html)
+* [Content-Package based development](/documentation/development/content-packages.html)
 * [Embedding Sling](/documentation/development/embedding-sling.html)
 * [Logging](/documentation/development/logging.html)
 * [Client Request Logging](/documentation/development/client-request-logging.html)

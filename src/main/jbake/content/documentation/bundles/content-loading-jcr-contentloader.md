@@ -4,7 +4,7 @@ status=published
 tags=contentloading,nodetypes
 ~~~~~~
 
-Apache Sling provides support for initial content loading into a repository and for registering node types. The `sling-jcr-contentloader` bundle provides loading of content from a bundle into the repository and the `sling-jcr-base` bundle provides node type registration.
+Apache Sling provides support for initial content loading into a repository and for registering node types. The `sling-jcr-contentloader` bundle provides loading of content from a bundle into the repository and the `sling-jcr-base` bundle provides node type registration. See [Content-Package based development](/documentation/development/content-packages.html) for an alternative for deploying content to the repository.
 
 ## Initial Content Loading
 
