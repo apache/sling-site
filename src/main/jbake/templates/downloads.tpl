@@ -137,7 +137,7 @@ def bundles=[
   "Installer Core|org.apache.sling.installer.core|3.11.4|Y|jar",
   "Installer Configuration Support|org.apache.sling.installer.factory.configuration|1.3.2|Y|jar",
   "Installer Console|org.apache.sling.installer.console|1.1.0|Y|jar",
-  "Installer Content Package Support|org.apache.sling.installer.factory.packages|1.0.2|Y|jar",
+  "Installer Content Package Support|org.apache.sling.installer.factory.packages|1.0.4|Y|jar",
   "Installer Factory Feature Model|org.apache.sling.installer.factory.model|0.3.0|Y|jar",
   "Installer File Provider|org.apache.sling.installer.provider.file|1.2.2|Y|jar",
   "Installer Health Checks|org.apache.sling.installer.hc|2.0.2|Y|jar",
