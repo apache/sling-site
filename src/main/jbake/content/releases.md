@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2020
 
+* Archetype Parent 6 (12th)
 * Slingfeature Maven Plugin 1.3.0, Installer Packages Factory 1.0.4, Form Based Authentication 1.0.20 (11th)
 * Installer Factory Feature Model 0.3.0 (6th)
 * Installer Factory Feature Model 0.2.0, Slingfeature Maven Plugin 1.2.4, Slingstart Maven Plugin 1.9.12 (3rd)
