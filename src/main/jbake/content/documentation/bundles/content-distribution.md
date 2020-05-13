@@ -45,6 +45,18 @@ The example below distributes the path `/content/sample1`
 
     $ curl -v -u admin:admin http://localhost:8080/libs/sling/distribution/services/agents/publish -d 'action=ADD' -d 'path=/content/sample1'
 
+#### Events
+
+The following OSGi [events|https://github.com/apache/sling-org-apache-sling-distribution-api/blob/master/src/main/java/org/apache/sling/distribution/event] will be raised during the forward distribution process.
+
+| Event                                                     | Instance |
+| --------------------------------------------------------- | -------- |
+| `org/apache/sling/distribution/agent/package/created`     | source   |
+| `org/apache/sling/distribution/agent/package/queued`      | source   |
+| `org/apache/sling/distribution/agent/package/distributed` | source   |
+| `org/apache/sling/distribution/agent/package/dropped`     | source   |
+| `org/apache/sling/distribution/importer/package/imported`    | target   |
+
 ### Reverse distribution
 
 A reverse distribution setup allows one to transfer content from a farm of source instances to a target instance. That is done by pulling the content from source instances into the target instance.
@@ -65,15 +77,15 @@ A reverse distribution setup allows one to transfer content from a farm of sourc
             packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse"]
 
 * on source instance: one queue agent and one exporter for that agent
-            
+
         org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
             name="reverse"
-            
+
         org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse
             name="reverse"
             agent.target="(name=reverse)"
-            
-            
+
+
 #### Trigger reverse distribution
 
 Reverse distribution can be triggered by sending a `POST` HTTP request to the agent resource on the target instance with the parameter `action=PULL`.
@@ -105,19 +117,19 @@ A sync distribution setup allows one to synchronize content in a farm of instanc
 
 
 * on each farm instance: one local exporter and one local importer
-            
+
         org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
             name="reverse"
-            
+
         org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse
             name="reverse"
             agent.target="(name=reverse)"
-          
+
         org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default
             name="reverse"
             agent.target="(name=reverse)"
 
-            
+
 
 
 ### Multidatacenter sync distribution
@@ -145,17 +157,17 @@ A multidatacenter sync distribution setup allows one to synchronize content in a
             packageExporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/exporters/reverse", "http://localhost:4504/libs/sling/distribution/services/exporters/reverse"]
             packageImporter.endpoints=["http://localhost:4503/libs/sling/distribution/services/importers/default", "http://localhost:4504/libs/sling/distribution/services/importers/default"]
             passiveQueues=["dc2queue", "dc3queue"]
-            
+
         org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-dc2queue
             name="dc2queue"
             agent.target="(name=intradcsync)"
             queue="dc2queue"
-            
+
         org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-dc3queue
             name="dc3queue"
             agent.target="(name=intradcsync)"
             queue="dc3queue"
-            
+
         org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-interdcsync           
             name="interdcsync"
             packageExporter.endpoints=["http://localhost:5502/libs/sling/distribution/services/exporters/dc1queue", "http://localhost:6502/libs/sling/distribution/services/exporters/dc1queue"]
@@ -163,14 +175,14 @@ A multidatacenter sync distribution setup allows one to synchronize content in a
 
 
 * on each farm instance: one local exporter and one local importer
-            
+
         org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-reverse.json            
             name="reverse"
-            
+
         org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-reverse
             name="reverse"
             agent.target="(name=reverse)"
-          
+
         org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-default
             name="default"
 
