@@ -170,7 +170,8 @@
 <li><a href="/documentation/bundles/jcr-installer-provider.html">JCR Installer Provider</a></li>
 </ul>
 <h2><a href="#health-check" id="health-check">Health Check</a></h2>
-<p>The OSGi installer provides a <a href="/documentation/bundles/sling-health-check-tool.html">Sling Health Check</a> which validates that the processed OSGi installer resources have the correct state (<a href="https://issues.apache.org/jira/browse/SLING-5888">SLING-5888</a>). By default it will only check resources with a URL prefix <code>jcrinstall:/apps/</code>, so only the resources being provided through the <a href="/documentation/bundles/jcr-installer-provider.html">JCR Installer Provider</a> initially located below the repository resource <code>/apps/</code> are considered. The health check will fail in the following cases:</p>
+<p>The OSGi installer provides a <a href="/documentation/bundles/sling-health-check-tool.html">Sling Health Check</a> which validates that the processed OSGi installer resources have the correct state (<a href="https://issues.apache.org/jira/browse/SLING-5888">SLING-5888</a>). By default it will only check resources with a URL prefix <code>jcrinstall:/apps/</code>, so only the resources being provided through the <a href="/documentation/bundles/jcr-installer-provider.html">JCR Installer Provider</a> initially located below the repository resource <code>/apps/</code> are considered.</p>
+<p>The health check will fail in the following cases: * Bundles Installation Failure * Configuration Installation Failure</p>
 <h3><a href="#bundles-installation-failure" id="bundles-installation-failure">Bundles Installation Failure</a></h3>
 <p>The checked bundle was not installed because it has been installed in a newer version from some other location (might even be through some other provider). For further details please look at the OSGi Installer console at <code>/system/console/osgi-installer</code> and check for all bundles with the given symbolic name (=OSGi installer's resource id) and their according URLs.</p>
 <h3><a href="#configuration-installation-failure" id="configuration-installation-failure">Configuration Installation Failure</a></h3>
@@ -185,7 +186,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Mar 30 20:56:18 2020 +0200</span>
+                        Last modified by <span class="author">Wim Symons</span> on <span class="comment">Fri May 15 10:56:40 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
