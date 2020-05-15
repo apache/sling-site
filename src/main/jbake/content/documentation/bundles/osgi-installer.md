@@ -106,7 +106,10 @@ A provider provides artifacts, e.g. by scanning a directory or a database etc.
 
 The OSGi installer provides a [Sling Health Check](/documentation/bundles/sling-health-check-tool.html) which validates that the processed OSGi installer resources have the correct state ([SLING-5888](https://issues.apache.org/jira/browse/SLING-5888)).
 By default it will only check resources with a URL prefix `jcrinstall:/apps/`, so only the resources being provided through the [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html) initially located below the repository resource `/apps/` are considered.
+
 The health check will fail in the following cases:
+* Bundles Installation Failure
+* Configuration Installation Failure
 
 ### Bundles Installation Failure
 
