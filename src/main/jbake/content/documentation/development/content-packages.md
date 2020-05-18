@@ -34,11 +34,19 @@ For Javascript projects, the suport consists of the [Sling Packager](https://git
 
 ### Maven projects
 
-The [Sling Project Archetype](https://github.com/apache/sling-project-archetype) creates a multi-module project that includes content packages as part of its output. To use it, run the following command
+There are two options for getting started with content package projects via Maven.
+
+The first one is the [Sling Project Archetype](https://github.com/apache/sling-project-archetype), which creates a multi-module project that includes content packages as part of its output. To use it, run the following command
 
     $ mvn archetype:generate -Dfilter=org.apache.sling:sling-project-archetype
 
 then select the latest version of the archetype and fill in the required information.
+
+The second one is [Content-Package Archetype](https://github.com/apache/sling-content-package-archetype) , which creates a single content package. Similar to the `sling-project-archetype`, generating a project only requires:
+
+    $ mvn archetype:generate -Dfilter=org.apache.sling:sling-content-archetype
+
+Using one archetype or the other is largely a matter of preference. The `sling-project-archetype` takes a more batteries-included approach, while the `sling-content-archetype` creates only a minimal content package.
 
 ### Node projects
 
