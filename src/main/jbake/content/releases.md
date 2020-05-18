@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2020
 
+* Sling Project Archetype 1.0.4, Sling Kickstart Project 0.0.2, Sling Kickstart Maven Plugin 0.0.2 (18th) 
 * Parent 39, Bundle Parent 39, JAR Resource Bundle 1.0.2 (14th)
 * Archetype Parent 6 (12th)
 * Slingfeature Maven Plugin 1.3.0, Installer Packages Factory 1.0.4, Form Based Authentication 1.0.20 (11th)
