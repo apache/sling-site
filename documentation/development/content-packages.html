@@ -137,10 +137,15 @@
 <p>For Javascript projects, the suport consists of the <a href="https://github.com/apache/sling-slingpackager/">Sling Packager</a>.</p>
 <h2><a href="#creating-a-content-package" id="creating-a-content-package">Creating a content package</a></h2>
 <h3><a href="#maven-projects" id="maven-projects">Maven projects</a></h3>
-<p>The <a href="https://github.com/apache/sling-project-archetype">Sling Project Archetype</a> creates a multi-module project that includes content packages as part of its output. To use it, run the following command</p>
+<p>There are two options for getting started with content package projects via Maven.</p>
+<p>The first one is the <a href="https://github.com/apache/sling-project-archetype">Sling Project Archetype</a>, which creates a multi-module project that includes content packages as part of its output. To use it, run the following command</p>
 <pre><code>$ mvn archetype:generate -Dfilter=org.apache.sling:sling-project-archetype
 </code></pre>
 <p>then select the latest version of the archetype and fill in the required information.</p>
+<p>The second one is <a href="https://github.com/apache/sling-content-package-archetype">Content-Package Archetype</a> , which creates a single content package. Similar to the <code>sling-project-archetype</code>, generating a project only requires:</p>
+<pre><code>$ mvn archetype:generate -Dfilter=org.apache.sling:sling-content-archetype
+</code></pre>
+<p>Using one archetype or the other is largely a matter of preference. The <code>sling-project-archetype</code> takes a more batteries-included approach, while the <code>sling-content-archetype</code> creates only a minimal content package.</p>
 <h3><a href="#node-projects" id="node-projects">Node projects</a></h3>
 <p>An example project using the Sling Packager can be found at <a href="https://github.com/peregrine-cms/simple-sling-vue-example">peregrine-cms/simple-sling-vue-example</a> on GitHub.</p>
 <h2><a href="#deploying-a-content-package-at-runtime" id="deploying-a-content-package-at-runtime">Deploying a content package at runtime</a></h2>
@@ -192,7 +197,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri May 8 16:52:13 2020 +0200</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Mon May 18 13:30:50 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
