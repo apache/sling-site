@@ -1,7 +1,7 @@
 title=Content-Package based development
 type=page
 status=published
-tags=development
+tags=development,contentloading
 ~~~~~~
 
 # Content-Package based development
