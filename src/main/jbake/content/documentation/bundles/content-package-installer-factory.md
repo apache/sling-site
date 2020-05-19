@@ -1,7 +1,7 @@
 title=Content Package Installer Factory		
 type=page
 status=published
-tags=installer
+tags=installer,contentloading
 ~~~~~~
 
 The content package installer factory provides support for [Jackrabbit FileVault Content Packages](https://jackrabbit.apache.org/filevault/index.html) to the [OSGI installer](/documentation/bundles/osgi-installer.html). The provisioning of artifacts is handled by installer providers like the [file installer](/documentation/bundles/file-installer-provider.html) or the [JCR installer](/documentation/bundles/jcr-installer-provider.html).
