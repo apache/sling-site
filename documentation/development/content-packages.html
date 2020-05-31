@@ -175,8 +175,10 @@
 <li>uploading and installing existing content packages</li>
 <li>uninstalling existing content packages</li>
 </ul>
+<h3><a href="#osgi-installer" id="osgi-installer">OSGi Installer</a></h3>
+<p>Installing packages through the <a href="../bundles/osgi-installer.html">OSGi installer</a> is supported via the <a href="../bundles/content-package-installer-factory.html">Content Package Installer Factory</a>.</p>
 <h3><a href="#notes" id="notes">Notes</a></h3>
-<p>Inspecting the content package reveals that is is just a ZIP file with additional metadata. Of definite interest are the manifest - <code>META-INF/MANIFEST.MF</code> and the filter definition - <code>META-INF/vault/filter.xml</code>.</p>
+<p>Inspecting the content package reveals that is is just a ZIP file with additional metadata. Of definite interest are the manifest - <code>META-INF/MANIFEST.MF</code> and the filter definition - <code>META-INF/vault/filter.xml</code>. More information can be found at <a href="https://jackrabbit.apache.org/filevault/metadata.html">https://jackrabbit.apache.org/filevault/metadata.html</a>.</p>
 <p>The <a href="/documentation/development/ide-tooling.html">Sling IDE Tooling</a> has support for exporting and importing content incrementally to a Sling instance, and can be used alongside the Maven-based tooling.</p>
 <h2><a href="#installing-a-content-package-at-build-time" id="installing-a-content-package-at-build-time">Installing a content package at build time</a></h2>
 <p>For the content package to be installed at build time, it must be available in a Maven repository at the time when the Sling application is built.</p>
@@ -201,7 +203,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Tue May 19 12:56:22 2020 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Sun May 31 16:30:05 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
