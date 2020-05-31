@@ -84,9 +84,13 @@ Some of the possible operations are:
 - uploading and installing existing content packages
 - uninstalling existing content packages
 
+### OSGi Installer
+
+Installing packages through the [OSGi installer](../bundles/osgi-installer.html) is supported via the [Content Package Installer Factory](../bundles/content-package-installer-factory.html).
+
 ### Notes
 
-Inspecting the content package reveals that is is just a ZIP file with additional metadata. Of definite interest are the manifest - `META-INF/MANIFEST.MF` and the filter definition - `META-INF/vault/filter.xml`.
+Inspecting the content package reveals that is is just a ZIP file with additional metadata. Of definite interest are the manifest - `META-INF/MANIFEST.MF` and the filter definition - `META-INF/vault/filter.xml`. More information can be found at <https://jackrabbit.apache.org/filevault/metadata.html>.
 
 The [Sling IDE Tooling](/documentation/development/ide-tooling.html) has support for exporting and importing content incrementally to a Sling instance, and can be used alongside the Maven-based tooling.
 
