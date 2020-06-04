@@ -76,7 +76,7 @@ After starting up Sling, the resulting file can then be deployed with
  
 ### Composum UI
 
-The Composum package manager allows performing multiple operations through its user interface. To access the package manager, ensure that you are logged in to the Sling Starter and then navigate to the Composum Package Manager at [http://localhost:8080/bin/packages.html](http://localhost:8080/bin/packages.html).
+The [Composum package manager](https://www.composum.com/home/nodes/pckgmgr.html) allows performing multiple operations through its user interface. To access the package manager, ensure that you are logged in to the Sling Starter and then navigate to the Composum Package Manager at [http://localhost:8080/bin/packages.html](http://localhost:8080/bin/packages.html).
 
 Some of the possible operations are:
 
