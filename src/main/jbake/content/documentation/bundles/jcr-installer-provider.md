@@ -16,23 +16,27 @@ In addition every node of type `sling:OsgiConfig` is provided as a configuration
 
 The JCR installer provider does not check or scan the artifacts itself, the detection and installation is deferred to the OSGi installer.
 
-### Runmode Support
+## Run Mode Support
 
-The JCR installer supports run modes for installing artifacts. By default folders named `install` are checked for artifacts. If Apache Sling is started with one (or more run modes), all folders named `install.[RUNMODE]` are scanned as well. To be precise, the folder name can be followed by any number of run modes separated by dot (`.`). For example, if started with run modes `dev`, `a1`, and `public`, folders like `install.dev`, `install.a1`, `install.public` are searched as well as `install.dev.a1`, or `install.a1.dev`.
+The JCR installer supports [run modes](sling-settings-org-apache-sling-settings.html) for installing artifacts. By default folders named `install` are checked for artifacts. If Apache Sling is started with one (or more run modes), all folders named `install.[RUNMODE]` are scanned as well. To be precise, the folder name can be followed by any number of run modes separated by dot (`.`). For example, if started with run modes `dev`, `a1`, and `public`, folders like `install.dev`, `install.a1`, `install.public` are searched as well as `install.dev.a1`, or `install.a1.dev`.
 
 Artifacts from folders with a run mode get a higher priority. For example by default, an `install` folder underneath `/libs` gets the priority `50`. For each run mode in the folder name, this priority is increased by `1`, so `install.dev` has `51` and `install.a1.dev` has `52`.
 
-### Start Level Support
+## Start Level Support
 
 If the parent folder of a bundle has a name which is a number, this is used as the start level (when installing the bundle for the first time, compare with [SLING-2011](https://issues.apache.org/jira/browse/SLING-2011)). So e.g. a bundle in the path `/libs/sling/install/15/somebundle.jar` is having the start level `15`. 
 
-# Write Back Support
+## Write Back Support
 
 The JCR installer supports writing back of configurations which are changed by some other ways, e.g by using the Apache Felix web console. If this is a new configuration which was not originally stored in the repository, a new configuration is stored under `/apps/sling/install`. The highest search path is used together with a configurable folder (`sling/install` in this case).
 If a configuration is changed which already exists in the repository, then it depends where the original configuration is stored. If its under `/libs` a new configuration at the same path under `/apps` is created. Otherwise the configuration is directly modified.
 As JCR properties do not support all Java primitive types like Integer, the write back does not generate a node of type `sling:OsgiConfig` in the repository but a .config file as described in [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html).
 
 Write back can be turned off by configuration.
+
+## Pausing the provider
+
+In version 3.1.8 ([SLING-3747](https://issues.apache.org/jira/browse/SLING-3747)) a mechanism has been added which pauses the scanning of artifacts. Whenever there is at least one child node below `/system/sling/installer/jcr/pauseInstallation` (path configurable), the provider will be paused i.e. not provide any artifacts to the OSGi installer. This is reasonable to do while executing operations which rely on certain services not being restarted. Every deployment of new bundles and configurations might potentially lead to restarts of existing services, e.g. due to new bundles being picked up by the [Dynamic Class Loader Provider](https://lists.apache.org/thread.html/57d56e31da3c1cb743cf524e0c85e46959f3af9ed946f2c4a41d33c0@%3Cdev.sling.apache.org%3E) or new OSGi configurations leading to restarts of (transitively) bound services).
 
 # Example
 Here's a quick walkthrough of the JCR installer functionality.
