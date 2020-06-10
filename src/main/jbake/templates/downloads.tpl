@@ -185,6 +185,7 @@ def bundles=[
   "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y|jar",
   "Models Implementation|org.apache.sling.models.impl|1.4.12|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|1.0.8|Y|jar",
+  "Models Validation Implementation|org.apache.sling.models.validation-impl|1.0.0|Y|jar",
   "NoSQL Generic Resource Provider|org.apache.sling.nosql.generic|1.1.0|Y|jar",
   "NoSQL Couchbase Client|org.apache.sling.nosql.couchbase-client|1.0.2|Y|jar",
   "NoSQL Couchbase Resource Provider|org.apache.sling.nosql.couchbase-resourceprovider|1.1.0|Y|jar",

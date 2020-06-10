@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## June 2020
+
+* Models Validation Implementation 1.0.0 (10th)
+
 ## May 2020
 
 * Installer Factory Feature 0.4.0 (28th)
