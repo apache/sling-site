@@ -148,10 +148,11 @@ The language is self-explaining but please refer to the actual test cases for de
         allow jcr:namespaceManagement on :repository 
     end
 	
-	# register namespace requires 
-	# o.a.s.repoinit.parser 1.0.4
-	# and o.a.s.jcr.repoinit 1.0.2
-	register namespace ( NSprefix ) uri:someURI/v1.42
+    # register namespace requires 
+    # o.a.s.repoinit.parser 1.0.4
+    # and o.a.s.jcr.repoinit 1.0.2
+    # below registers a namespace with the prefix 'myprefix' and the uri 'http://my.prefix/content/v1.42'.
+    register namespace ( myprefix ) http://my.prefix/content/v1.42
 
 	# register nodetypes in CND format
 	# (same bundle requirements as register namespaces)
