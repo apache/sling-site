@@ -250,7 +250,8 @@ end
 # register namespace requires 
 # o.a.s.repoinit.parser 1.0.4
 # and o.a.s.jcr.repoinit 1.0.2
-register namespace ( NSprefix ) uri:someURI/v1.42
+# below registers a namespace with the prefix 'myprefix' and the uri 'http://my.prefix/content/v1.42'.
+register namespace ( myprefix ) http://my.prefix/content/v1.42
 
 # register nodetypes in CND format
 # (same bundle requirements as register namespaces)
@@ -365,7 +366,7 @@ end
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Mar 26 12:33:34 2020 +0100</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Fri Jun 12 14:22:46 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
