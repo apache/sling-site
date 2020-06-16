@@ -39,6 +39,16 @@ is replaced by the `sling_tagline` variable if it exists, otherwise a MISSING_PA
 
 Please use a `sling.` prefix for new site-related variables in `jbake.properties`, to differentiate from JBake built-in variables.
 
+## Front Matter
+A number of Markdown front matter variables are taken into account, here's an example:
+
+    title=Tutorials & How-Tos               
+    type=page
+    status=published
+    tags=tutorials,beginner
+    tableOfContents=false
+    ~~~~~~
+
 ## Syntax highlighting
 The site uses [highlight.js](https://highlightjs.org/) for that.
 
