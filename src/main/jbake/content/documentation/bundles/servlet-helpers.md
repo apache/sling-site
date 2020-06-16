@@ -1,7 +1,7 @@
 title=Sling Servlet Helpers and Internal Requests
 type=page
 status=published
-tags=servlets,requests
+tags=servlets,requests,scripts,servletresolver
 ~~~~~~
 
 The [Sling Servlet Helpers](https://github.com/apache/sling-org-apache-sling-servlet-helpers) 
