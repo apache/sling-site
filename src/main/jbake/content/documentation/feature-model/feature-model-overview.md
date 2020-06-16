@@ -1,24 +1,44 @@
-title=Feature Model Documentation Overview
+title=Feature Model
 type=page
 status=published
 tags=feature model,osgi,project,guide,howtos
 ~~~~~~
 
-## Guide to a Feature Model
+## A How-To Guide to Feature Models
 
-This document is the landing page for the guides about Feature Models and other
-references.
+The Sling Feature Model provides a new approach for assembling applications and is intended to replace the Sling Provisioning Model. 
+Both approaches accomplish the same goal of defining and assembling OSGi-based applications, however, the Feature Model 
+is more robust and is not coupled to Sling. It addresses application packaging concerns by allowing all aspects of an application 
+(e.g., bundles, configuration, framework properties, capabilities, requirements and custom artifacts) to be defined declaratively.
 
-## Feature Model Guides
+### Key Concepts
 
-* [How To Start Sling with Kickstart](/documentation/feature-model/howtos/kickstart.md)
-* [Deep Dive into Create Sling Feature Model](/documentation/feature-model/howtos/create-sling-fm.md)
-* [How To Create Sling Feature Archive](/documentation/feature-model/howtos/create-sling-far.md)
-* [How to Create Sling Composite Node Store](/documentation/feature-model/howtos/create-sling-composite.md)
+* Features - Central entity of the Feature Model used to logically group metadata, configuration, bundles and 
+  extensions to represent a system module or subsystem. 
+* Feature Extension - An extension point for adding new capabilities to the Feature Model. 
+* Feature Archives - Packages one or more features and dependencies to simplify the distribution of an application.
+* Feature Reference Files - A text descriptor file with a list of features.
+* Feature Aggregation - A method for packaging multiple features into a single feature.
 
-## Feature Model Readme Files
+### About this How-To
 
-This is a list of all Feature Model Read Me files that are available
+<div style="background: #cde0ea; padding: 14px; border-left: 10px solid #f9bb00;">
+
+This how-to is designed to be a progressive tutorial in which each how-to builds on the previous. It's recommended
+that you start on the first and work your way through them consecutively. 
+</div>
+
+
+## Exploring Feature Models by Example
+
+* [How To Start Sling with the Kickstarter](/documentation/feature-model/howtos/kickstart.html)
+* [How to Create a Custom Feature Model Project](/documentation/feature-model/howtos/sling-with-custom-project.html)
+* [How to Create a Sling Composite Node Store](/documentation/feature-model/howtos/create-sling-composite.html)
+* [How to Convert a Provisioning Model to a Feature Model](/documentation/feature-model/howtos/create-sling-fm.html)
+
+## Advanced Reading
+
+Want to know more? Take a look at the README files for the projects in the Feature Model ecosystem.
 
 * [Feature Model](https://github.com/apache/sling-org-apache-sling-feature/blob/master/readme.md)
 * [Feature Docs](https://github.com/apache/sling-org-apache-sling-feature/blob/master/docs/features.md)
@@ -28,3 +48,4 @@ This is a list of all Feature Model Read Me files that are available
 * [Feature Aggregation](https://github.com/apache/sling-org-apache-sling-feature/blob/master/docs/aggregation.md)
 * [SlingFeature Maven Plugin](https://github.com/apache/sling-slingfeature-maven-plugin)
 * [Feature Launcher](https://github.com/apache/sling-org-apache-sling-feature-launcher)
+* [Kickstarter](https://github.com/apache/sling-org-apache-sling-kickstart/blob/master/Readme.md)
