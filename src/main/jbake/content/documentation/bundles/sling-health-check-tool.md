@@ -32,7 +32,7 @@ tags=healthchecks,operations
 Typically necessary steps:
 
 * Use the `Organize Imports` functionality of your IDE to fix the imports (mostly it is just replacing `org.apache.sling.hc.api` with `org.apache.felix.hc.api`, however the commonly used class `FormattingResultLog` has been moved from `org.apache.sling.hc.util` to `org.apache.felix.hc.api`)
-* For the case the annotation `@SlingHealthCheck` is used, replace that one with the new Felix annotations from [org.apache.felix.healthcheck.annotation](https://github.com/apache/felix/blob/trunk/healthcheck/README.md#annotations-to-simplify-configuration-of-custom-health-checks)
+* For the case the annotation `@SlingHealthCheck` is used, replace that one with the new Felix annotations from [org.apache.felix.healthcheck.annotation](https://github.com/apache/felix-dev/blob/master/healthcheck/)
 * There is no `util` package in the api bundle anymore, apart from `FormattingResultLog` the other classes in the package were rarely used. The class `SimpleConstraintChecker` has moved to `org.apache.felix.hc.generalchecks.util` in bundle `generalchecks` (maven dependency to `org.apache.felix.healthcheck.generalchecks` needs to be added for that case). For the other classes there is no replacement.
 
 Only necessary if the the respective feature is used:
