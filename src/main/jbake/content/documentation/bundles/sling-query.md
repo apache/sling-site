@@ -1,7 +1,7 @@
 title=Sling Query		
 type=page
 status=published
-tags=slingquery
+tags=slingquery,query
 ~~~~~~
 
 SlingQuery is a Sling resource tree traversal tool inspired by the [jQuery](http://api.jquery.com/category/traversing/tree-traversal/) JavaScript API.

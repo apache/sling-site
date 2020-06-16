@@ -1,7 +1,7 @@
 title=Resource Filter		
 type=page
 status=published
-tags=requests
+tags=requests,query
 ~~~~~~
 
 [TOC]
