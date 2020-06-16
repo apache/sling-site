@@ -62,7 +62,7 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html)
 * [Sling Pipes](/documentation/bundles/sling-pipes.html)
 * [Sling Metrics](/documentation/bundles/metrics.html)
-* [Servlet Helpers](/documentation/bundles/servlet-helpers.html)
+* [Servlet Helpers and Internal Requests](/documentation/bundles/servlet-helpers.html)
 * [Context-Aware Configuration](/documentation/bundles/context-aware-configuration/context-aware-configuration.html)
 * [HApi - Hypermedia API tools](/documentation/bundles/hapi.html)
 * [Capabilities](https://github.com/apache/sling-org-apache-sling-capabilities)
@@ -74,6 +74,7 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [XML Support](/documentation/bundles/xml-support.html)
 * [Sling Resource Editor](/documentation/bundles/resource-editor.html)
 * [Sling Dynamic Include (org.apache.sling.dynamic-include)](/documentation/bundles/dynamic-includes.html)
+* [GraphQL Core and Samples](/documentation/bundles/graphql-core.html)
 
 ## Troubleshooting
 * [Request Processing Analyzer (org.apache.sling.reqanalyzer)](/documentation/bundles/request-analysis.html)
