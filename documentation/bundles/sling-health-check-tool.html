@@ -144,7 +144,7 @@
 <p>Typically necessary steps:</p>
 <ul>
 <li>Use the <code>Organize Imports</code> functionality of your IDE to fix the imports (mostly it is just replacing <code>org.apache.sling.hc.api</code> with <code>org.apache.felix.hc.api</code>, however the commonly used class <code>FormattingResultLog</code> has been moved from <code>org.apache.sling.hc.util</code> to <code>org.apache.felix.hc.api</code>)</li>
-<li>For the case the annotation <code>@SlingHealthCheck</code> is used, replace that one with the new Felix annotations from <a href="https://github.com/apache/felix/blob/trunk/healthcheck/README.md#annotations-to-simplify-configuration-of-custom-health-checks">org.apache.felix.healthcheck.annotation</a></li>
+<li>For the case the annotation <code>@SlingHealthCheck</code> is used, replace that one with the new Felix annotations from <a href="https://github.com/apache/felix-dev/blob/master/healthcheck/">org.apache.felix.healthcheck.annotation</a></li>
 <li>There is no <code>util</code> package in the api bundle anymore, apart from <code>FormattingResultLog</code> the other classes in the package were rarely used. The class <code>SimpleConstraintChecker</code> has moved to <code>org.apache.felix.hc.generalchecks.util</code> in bundle <code>generalchecks</code> (maven dependency to <code>org.apache.felix.healthcheck.generalchecks</code> needs to be added for that case). For the other classes there is no replacement.</li>
 </ul>
 <p>Only necessary if the the respective feature is used:</p>
@@ -170,7 +170,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">georg.henzler</span> on <span class="comment">Mon May 20 09:09:06 2019 +0200</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Tue Jun 16 17:34:02 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
