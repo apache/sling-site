@@ -1,7 +1,7 @@
 title=How to Convert a Provisioning Model to a Feature Model
 type=page
 status=published
-tags=feature model,sling,kickstarter
+tags=featuremodel,sling,kickstarter
 ~~~~~~
 
 ### About this How-To

@@ -1,7 +1,7 @@
 title=How to Create a Composite NodeStore 
 type=page
 status=published
-tags=feature model,sling,kickstarter
+tags=featuremodel,sling,kickstarter
 ~~~~~~
 
 ### About this How-To
@@ -86,7 +86,7 @@ Let's take a quick look at what will happen behind the scenes as we work through
 
 <div style="background: #fff3cd; padding: 14px; border-left: 10px solid #ffeeba;">
 
-**TODO:** Update instructions to use the binary release.
+**Note:** These instructions will be updated to use the binary release once an official Sling Feature Model JSON file is released.
 
 </div>
 
@@ -162,7 +162,7 @@ Since this is a read-write repository path, you should receive an _HTTP 200 OK_ 
     < HTTP/1.1 500 Server Error
     ...
 
-You should now receive an _HTTP 500 error_ response. So, even as the admin user, you can't write to the `/apps` section of the repository. 
+You should now receive an _HTTP 500 error_ response. So, even as the admin user you can't write to the `/apps` section of the repository. 
 
 
 ## Mission Accomplished

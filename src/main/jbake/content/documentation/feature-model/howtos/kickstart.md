@@ -1,7 +1,7 @@
 title=How to Start Sling with the Kickstarter
 type=page
 status=published
-tags=feature model,sling,kickstarter
+tags=featuremodel,sling,kickstarter
 ~~~~~~
 
 ### About this How-To

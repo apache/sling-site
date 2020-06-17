@@ -13,6 +13,8 @@ evolves.
 See [https://github.com/apache/sling-org-apache-sling-feature](https://github.com/apache/sling-org-apache-sling-feature) for more information
 about the Feature Model.
 
+See the [Feature Model How-To Guide](/documentation/feature-model/feature-model-overview.html) for practical examples.
+
 ### The Feature Model
 
 As said above the Feature Model is an *OSGi** version of the Sling Provisioning Model.
