@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling :: How to Create a Custom Feature Model Project</title>
+        <link rel="icon" href="/res/favicon.ico"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        
+    </head>    <body>
+        <div class="section">
+            <div class="level is-marginless">
+<div class="logo">
+                    <a href="https://sling.apache.org">
+                        <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    </a>
+                </div><div class="header">
+                    <a href="https://www.apache.org">
+                        <img border="0" alt="Apache" src="/res/logos/apache.png"/>
+                    </a>
+                </div>                
+            </div><div class="columns is-gapless">
+                <div class="column is-narrow sidemenu">
+<div class="container">
+                        <nav class="menu">
+                            <ul class="menu-list box is-shadowless is-marginless">
+                                <li>
+                                    <p class="menu-label">
+                                        <strong>Documentation</strong>
+                                    </p><ul>
+                                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>API Docs</strong>
+                                    </p><ul>
+                                        <li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Support</strong>
+                                    </p><ul>
+                                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Site Map</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Project Info</strong>
+                                    </p><ul>
+                                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Source</strong>
+                                    </p><ul>
+                                        <li><a href="https://github.com/apache/?utf8=%E2%9C%93&q=sling">GitHub</a></li><li><a href="https://gitbox.apache.org/repos/asf?s=sling">Git at Apache</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Apache Software<br>Foundation</strong>
+                                    </p><ul>
+                                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li>
+                                    </ul>
+                                </li><li>
+                                    <a href="https://www.apache.org/events/current-event.html" class="column">
+                                        <img border="0" alt="Current ASF Events" src="https://www.apache.org/events/current-event-125x125.png" width="125"/>
+                                    </a>
+                                </li><li>
+                                    <a href="https://apache.org/foundation/contributing.html" class="column">
+                                        <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div><div class="column main">
+                    <div class="box is-shadowless is-marginless">
+                        <div class="level">
+                            <div class="pagenav">
+<div class="breadcrumb">
+                                    <ul>
+                                        <li>
+                                            <a href="/">
+                                                Home
+                                            </a>
+                                        </li><li>
+                                            <a href="/documentation.html">
+                                                Documentation
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                                
+                            </div><div class="tags">
+                                <span class="tag">
+                                    <a href="/tags/featuremodel.html">
+                                        featuremodel
+                                    </a>
+                                </span><span class="tag">
+                                    <a href="/tags/sling.html">
+                                        sling
+                                    </a>
+                                </span><span class="tag">
+                                    <a href="/tags/kickstarter.html">
+                                        kickstarter
+                                    </a>
+                                </span>
+                            </div>
+                        </div><h1 class="title">
+                            How to Create a Custom Feature Model Project
+                        </h1><nav class="menu">
+                            <ul class="menu-list box is-shadowless is-paddingless">
+                                <li id="generatedToC">
+                                    <p class="menu-label">
+                                        <strong>Table of Contents</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
+<div class="row"><div><section><h3><a href="#about-this-how-to" id="about-this-how-to">About this How-To</a></h3>
+<div style="background: #cde0ea; padding: 14px; border-left: 10px solid #f9bb00;">
+<h4><a href="#what-well-explore" id="what-well-explore">What we'll explore:</a></h4>
+<ul>
+<li>Create a sample Sling bundle project</li>
+<li>Update the Maven POM to add Feature Model support to the project</li>
+<li>Launch our sample application with the Kickstarter</li>
+</ul>
+<h4><a href="#what-you-should-know" id="what-you-should-know">What you should know:</a></h4>
+<ul>
+<li>Skill Level: Intermediate</li>
+<li>Environment: Windows/Unix</li>
+<li>Time: 20 minutes</li>
+</ul>
+</div>
+<ul>
+<li>Back To: <a href="/documentation/feature-model/howtos/kickstart.html">How to Start Sling with the Kickstarter</a></li>
+<li>Back Home: <a href="/documentation/feature-model/feature-model-overview.html">Feature Model</a></li>
+</ul>
+<h3><a href="#prerequisites" id="prerequisites">Prerequisites</a></h3>
+<p>In order to follow this how-to you'll need the following on your computer:</p>
+<ul>
+<li>Java 8</li>
+<li>Maven 3</li>
+<li>Bash shell</li>
+</ul>
+<h3><a href="#whats-the-sling-feature-model" id="whats-the-sling-feature-model">What's the Sling Feature Model</a></h3>
+<p>The Sling Feature Model provides a robust approach for configuring and assembling OSGi-based applications. Here are some of its high-level capabilities:</p>
+<ul>
+<li>Declarative description of an entire application or part of an application</li>
+<li>Support for aggregating Feature Models into a single Feature Model for simpler packaging and distribution</li>
+<li>Easy application startup through the Feature Launcher or the Kickstarter</li>
+</ul>
+<h3><a href="#whats-a-feature-model-project" id="whats-a-feature-model-project">What's a Feature Model project</a></h3>
+<p>A Feature Model project is a standard Maven project with the following additional features:</p>
+<ul>
+<li>Sling Feature Maven Plugin</li>
+<li>Kickstarter launch profile</li>
+</ul>
+<h3><a href="#step-1-create-a-sling-bundle-project" id="step-1-create-a-sling-bundle-project">Step 1: Create a Sling bundle project</a></h3>
+<p>Let's start by creating a simple Sling project using the traditional Maven <a href="/documentation/development/maven-archetypes.html#sling-jcrinstall-bundle-archetype-1">Sling Bundle Archetype</a>.</p>
+<pre><code>$  mvn -X archetype:generate -DarchetypeGroupId=org.apache.sling -DarchetypeArtifactId=sling-bundle-archetype \
+  -DgroupId=org.apache.sling.example \
+  -DartifactId=feature-model-sample \
+  -Dversion=1.0.0-SNAPSHOT \
+  -Dpackage=org.apache.sling.example
+$ cd feature-model-sample 
+</code></pre>
+<div style="background: #cde0ea; padding: 14px; border-left: 10px solid #f9bb00;">
+<p><strong>Note:</strong> There are plans to introduce a Maven archetype that will create a Maven project with support for Feature Models.</p>
+</div>
+<h3><a href="#step-2-update-the-pom" id="step-2-update-the-pom">Step 2: Update the POM</a></h3>
+<p>Now, let's update the POM and add a few elements to layer on support for Feature Models.</p>
+<p><strong>1.</strong> Add the following to the <code>&lt;properties&gt;</code> element.</p>
+<pre><code>&lt;slingfeature-maven-plugin.version&gt;1.3.4&lt;/slingfeature-maven-plugin.version&gt;
+&lt;sling-kickstart-maven-plugin.version&gt;0.0.2&lt;/sling-kickstart-maven-plugin.version&gt;
+&lt;oak.version&gt;1.26.0&lt;/oak.version&gt;
+</code></pre>
+<p><strong>2.</strong> Add the <a href="https://sling.apache.org/components/slingfeature-maven-plugin/plugin-info.html">Sling Feature Maven Plugin</a>  under <code>&lt;build&gt;</code> -&gt; <code>&lt;plugins&gt;</code>.</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+    &lt;artifactId&gt;slingfeature-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;${slingfeature-maven-plugin.version}&lt;/version&gt;
+    &lt;extensions&gt;true&lt;/extensions&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;create-fm&lt;/id&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;include-artifact&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;aggregate-configuration&lt;/id&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;aggregate-features&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;aggregates&gt;
+                    &lt;aggregate&gt;
+                        &lt;classifier&gt;feature_model_sample&lt;/classifier&gt;
+                        &lt;filesInclude&gt;**/*.json&lt;/filesInclude&gt;
+                        &lt;title&gt;Sling Sample Feature Model&lt;/title&gt;
+                    &lt;/aggregate&gt;
+                &lt;/aggregates&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;install-fm&lt;/id&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;attach-features&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>The Sling Feature Maven Plugin is responsible for creating a Feature Model JSON file for your project.  The only pieces that change from project to project are the <code>&lt;classifier&gt;</code> and <code>&lt;title&gt;</code> element values. Set these values to something descriptive for your project. The classifier value will be used as part of the Feature Model JSON filename: <code>target/slingfeature-tmp/feature-</code><em>classifier</em><code>.json</code></p>
+<div style="background: #cde0ea; padding: 14px; border-left: 10px solid #f9bb00; margin-bottom: 1em;">
+<p>Make a note of <code>target/slingfeature-tmp/feature-feature_model_sample.json</code> as this path will be used in the next section.</p>
+</div>
+<p><strong>3.</strong> Add a Maven profile called <code>launch</code>  under <code>&lt;project&gt;</code> -&gt; <code>&lt;profiles&gt;</code>.</p>
+<pre><code>&lt;profile&gt;
+    &lt;id&gt;launch&lt;/id&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+                &lt;artifactId&gt;sling-kickstart-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;${sling-kickstart-maven-plugin.version}&lt;/version&gt;
+                &lt;extensions&gt;true&lt;/extensions&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;start-sling&lt;/id&gt;
+                        &lt;phase&gt;install&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;start&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+                &lt;configuration&gt;
+                    &lt;launchpadDependency&gt;
+                        &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+                        &lt;artifactId&gt;org.apache.sling.kickstart&lt;/artifactId&gt;
+                        &lt;version&gt;0.0.3-SNAPSHOT&lt;/version&gt;
+                    &lt;/launchpadDependency&gt;
+                    &lt;parallelExecution&gt;false&lt;/parallelExecution&gt;
+                    &lt;keepLaunchpadRunning&gt;true&lt;/keepLaunchpadRunning&gt;
+                    &lt;servers&gt;
+                        &lt;server&gt;
+                            &lt;port&gt;8080&lt;/port&gt;
+                            &lt;controlPort&gt;8081&lt;/controlPort&gt;
+                            &lt;additionalFeatureFile&gt;
+                                target/slingfeature-tmp/feature-feature_model_sample.json
+                            &lt;/additionalFeatureFile&gt;
+                            &lt;debug&gt;true&lt;/debug&gt;
+                        &lt;/server&gt;
+                    &lt;/servers&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/profile&gt;
+</code></pre>
+<p>This profile is responsible for starting your application using the Kickstarter. Simply, set the <code>&lt;additionalFeatureFile&gt;</code> to the file in your target directory that contains your application's Feature Model JSON.</p>
+<h3><a href="#step-4-launch-your-application" id="step-4-launch-your-application">Step 4: Launch your application</a></h3>
+<pre><code>$ mvn clean install -Plaunch 
+</code></pre>
+<p>Now, log into Sling and visit the System Console. You should see your bundle (<code>feature-model-sample</code>) listed.</p>
+<h2><a href="#mission-accomplished" id="mission-accomplished">Mission Accomplished</a></h2>
+<div style="background: #cde0ea; padding: 14px; border-left: 10px solid #f9bb00; margin-bottom: 1em;">
+<h4><a href="#what-we-learned" id="what-we-learned">What we learned:</a></h4>
+<ul>
+<li>How to update a traditional Sling bundle project to support Feature Models</li>
+<li>How to start your project with the Kickstarter</li>
+</ul>
+</div>
+<p>Well, that was fun. We'll revisit this sample project soon, But first, let's see how the Feature Model can help us handle complex application configurations. In the next section, we'll take a look at the Composite NodeStore and how to configure it with the Feature Model.</p>
+<div style="background: #cde0ea; padding: 14px; border-left: 10px solid #f9bb00; margin-bottom: 1em;">
+<ul>
+<li>Next Up: <a href="/documentation/feature-model/howtos/create-sling-composite.html">How to Create a Sling Composite Node Store</a></li>
+<li>Back To: <a href="/documentation/feature-model/feature-model-overview.html">Feature Model Home</a></li>
+</ul>
+</div>
+</section></div></div>                            
+                        </div>
+                    </div>
+                </div>
+            </div><footer class="footer">
+                <div class="content has-text-centered is-small">
+<div class="revisionInfo">
+                        Last modified by <span class="author">Gaston Gonzalez</span> on <span class="comment">Wed Jun 17 10:11:28 2020 -0700</span>
+                    </div>                    <p>
+                        Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                    </p><p>
+                        Copyright © 2007-2020 The Apache Software Foundation.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

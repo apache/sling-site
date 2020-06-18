@@ -129,6 +129,43 @@
 <div class="row"><div><section><p>The OSGi Feature Model, created in 2018, is meant to replace the Sling Provisioning Model as the primary way of defining and assembling Sling applications.</p>
 <p>Compared to the Provisioning Model, the Feature Model is richer and more general, and might evolve into an OSGi standard. It has been created in Sling as that's its primary audience for now, but might move elsewhere as it evolves.</p>
 <p>See <a href="https://github.com/apache/sling-org-apache-sling-feature">https://github.com/apache/sling-org-apache-sling-feature</a> for more information about the Feature Model.</p>
+<p>See the <a href="/documentation/feature-model/feature-model-overview.html">Feature Model How-To Guide</a> for practical examples.</p>
+<h3><a href="#the-feature-model" id="the-feature-model">The Feature Model</a></h3>
+<p>As said above the Feature Model is an <em>OSGi</em>* version of the Sling Provisioning Model.</p>
+<p>OSGi bundles can be installed on an OSGi container but there is a much more to it to install it onto an application or create an application. The Feature Model provides these additional parts necessary to build applications by defining the dependencies, properties, configuration and setup actions.</p>
+<p>It is important to note that a Feature Model does <strong>not have to contain all parts</strong> and some of them can be just providing for example configurations to customize a module or to override a configuration provided by another Feature Model.</p>
+<p>A Feature Model provides:</p>
+<ul>
+<li>A unique Identifier</li>
+<li>Title, Description, Vendor etc</li>
+<li>Bundle Dependencies</li>
+<li>Framework Properties</li>
+<li>Configurations</li>
+<li>Repo(sitory)-init statements</li>
+</ul>
+<p>Some of these parts are handled by Feature Model Extensions so that they can be loaded if required.</p>
+<p>Because Feature Model can be easily aggregated basically every bundle can provide their own feature model which then can be aggregated into a bigger module or application (like Sling).</p>
+<h3><a href="#feature-model-ecosystem" id="feature-model-ecosystem">Feature Model Ecosystem</a></h3>
+<p>The Feature Model Ecosystem is comprised of these parts:</p>
+<ul>
+<li>Feature Model (JSon file)</li>
+<li>Feature Model Maven Plugin (sling-slingfeature-maven-plugin)</li>
+<li>Feature Launcher</li>
+<li>Feature Model Extension (provides handling for additional Feature Model parts)</li>
+<li>Feature Model Converters (Content Package or Provisioning Model to Feature Models)</li>
+<li>Feature Model Converter Maven Plugins (Maven Plugin wrapper for Converters)</li>
+<li>Maven Repository / Cache</li>
+</ul>
+<h3><a href="#feature-model-and-maven-repository" id="feature-model-and-maven-repository">Feature Model and Maven Repository</a></h3>
+<p>If not inside a project Feature Models and other Artifact created from processing Feature Models are stored in the local Maven Repository. They may or may not be stored in the same location as the project.</p>
+<p>This allows the Feature Aggregator and/or Launcher to obtain Feature Models from other sources than just the current project without to know anything about the project(s) that provide them.</p>
+<h3><a href="#aggregration" id="aggregration">Aggregration</a></h3>
+<p>The most important principal of Feature Model is that fact that they can be aggregated into bigger modules or entire applications. This applies to all part of a Feature Model and resolving conflicts.</p>
+<p>Aggregation to generate consolidated Feature Models is done by the <strong>Feature Model Maven Plugin</strong> (sling-slingfeature-maven-plugin) which takes a list of Feature Modules and then creates a new Feature Model with all aggregates in it. It also provides the ability to mark a Feature Model as complete or final, provide artifact, variable, configuration and framwork property overwrites. Feature Models can added as files, by their classifiers or as Maven dependencies.</p>
+<p>Overwrites are used to decide which version of a conflicting element is added to the aggregate.</p>
+<h3><a href="#feature-reference-files" id="feature-reference-files">Feature Reference Files</a></h3>
+<p>A <strong>text file</strong> that contains a list of <strong>Maven Ids</strong> or <strong>Maven Urls</strong> of Feature Models which then can be used as a reference to include all of the listed Feature Models. So instead of listing all the desired Feature Models a single Feature Reference file with all of the Feature Models listed is enough.</p>
+<p>Feature Reference Files can be added for example by adding it as <strong>Selection</strong> with type <strong>REFS_INCLUDE</strong>.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -136,7 +173,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed May 9 15:15:57 2018 +0200</span>
+                        Last modified by <span class="author">Gaston Gonzalez</span> on <span class="comment">Wed Jun 17 10:11:28 2020 -0700</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
