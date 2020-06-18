@@ -1,4 +1,4 @@
-title=Repository Initalization
+title=Repository Initialization
 type=page
 status=published
 tags=repoinit,jcr,repository
