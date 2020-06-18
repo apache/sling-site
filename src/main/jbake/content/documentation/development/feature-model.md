@@ -10,14 +10,20 @@ Compared to the Provisioning Model, the Feature Model is richer and more general
 standard. It has been created in Sling as that's its primary audience for now, but might move elsewhere as it
 evolves.
 
-See [https://github.com/apache/sling-org-apache-sling-feature](https://github.com/apache/sling-org-apache-sling-feature) for more information
-about the Feature Model.
+This page provides a high-level overview of the Feature Model.
 
-See the [Feature Model How-To Guide](/documentation/feature-model/feature-model-overview.html) for practical examples.
+See the [main sling-org-apache-sling-feature repository](https://github.com/apache/sling-org-apache-sling-feature) for more 
+technical information about the Feature Model. 
+A [number of other modules](https://github.com/search?q=topic%3Asling+topic%3Aosgi-feature-model+topic%3Aosgi+org%3Aapache&type=Repositories)
+provide additional functionality related to the Feature Model.
+
+The [Feature Model How-To Guide](/documentation/feature-model/feature-model-howto.html) provides a progressive tutorial
+and concrete examples.
 
 ### The Feature Model
 
-As said above the Feature Model is an *OSGi** version of the Sling Provisioning Model.
+As said above the Feature Model is an *OSGi* version of the Sling Provisioning Model, which at its core
+is independent from Sling.
 
 OSGi bundles can be installed on an OSGi container but there is a much more to it to install it onto
 an application or create an application. The Feature Model provides these additional parts necessary
@@ -43,7 +49,8 @@ which then can be aggregated into a bigger module or application (like Sling).
 
 ### Feature Model Ecosystem
 
-The Feature Model Ecosystem is comprised of these parts:
+The [Feature Model Ecosystem](https://github.com/search?q=topic%3Asling+topic%3Aosgi-feature-model+topic%3Aosgi+org%3Aapache&type=Repositories)
+is mostly comprised of the following parts:
 
 * Feature Model (JSon file)
 * Feature Model Maven Plugin (sling-slingfeature-maven-plugin)

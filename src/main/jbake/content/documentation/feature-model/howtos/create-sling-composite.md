@@ -1,4 +1,4 @@
-title=How to Create a Composite NodeStore 
+title=How to Create a Composite NodeStore with the Feature Model
 type=page
 status=published
 tags=featuremodel,sling,kickstarter
@@ -22,7 +22,7 @@ tags=featuremodel,sling,kickstarter
 </div>
 
 * Back To: [How to Create a Custom Feature Model Project](/documentation/feature-model/howtos/sling-with-custom-project.html)
-* Back Home: [Feature Model](/documentation/feature-model/feature-model-overview.html)
+* Back to the: [Feature Model How-To Guide](/documentation/feature-model/feature-model-howto.html)
 
 ### Prerequisites
 

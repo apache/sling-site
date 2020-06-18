@@ -22,7 +22,7 @@ tags=featuremodel,sling,kickstarter
 </div>
 
 * Back To: [How to Create a Composite NodeStore](/documentation/feature-model/howtos/create-sling-composite.html)
-* Back Home: [Feature Model](/documentation/feature-model/feature-model-overview.html)
+* Back to the: [Feature Model How-To Guide](/documentation/feature-model/feature-model-howto.html)
 
 
 ### Prerequisites

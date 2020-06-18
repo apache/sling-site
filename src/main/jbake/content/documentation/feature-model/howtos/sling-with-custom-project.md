@@ -23,8 +23,7 @@ tags=featuremodel,sling, kickstarter
 </div>
 
 * Back To: [How to Start Sling with the Kickstarter](/documentation/feature-model/howtos/kickstart.html)
-* Back Home: [Feature Model](/documentation/feature-model/feature-model-overview.html)
-
+* Back to the: [Feature Model How-To Guide](/documentation/feature-model/feature-model-howto.html)
 
 ### Prerequisites
 
@@ -210,6 +209,6 @@ it with the Feature Model.
 <div style="background: #cde0ea; padding: 14px; border-left: 10px solid #f9bb00; margin-bottom: 1em;">
 
 * Next Up: [How to Create a Sling Composite Node Store](/documentation/feature-model/howtos/create-sling-composite.html)
-* Back To: [Feature Model Home](/documentation/feature-model/feature-model-overview.html)
+* Back to the: [Feature Model How-To Guide](/documentation/feature-model/feature-model-howto.html)
 
 </div>
