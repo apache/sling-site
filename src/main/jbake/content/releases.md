@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2020
 
-* Commons Log 5.1.12, Dynamic Include 3.2.0, Auth Core 1.4.8 (22th)
+* Commons Log 5.1.12, Dynamic Include 3.2.0, Auth Core 1.4.8, JCR Resource 3.0.22 (22th)
 * GraphQL Core 0.0.2, Servlet Helpers 1.4.2 (18th)
 * Models Validation Implementation 1.0.0 (10th)
 
