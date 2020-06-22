@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2020
 
+* Scripting HTL Compiler 1.2.6-1.4.0, Scripting HTL Engine 1.4.0-1.4.0, Scripting HTL Java Compiler 1.2.0-1.4.0, JSPC Maven Plugin 2.2.0, HTL Maven Plugin 2.0.0-1.4.0, Scripting Core 2.3.0, Scripting HTL JS Use Provider 1.2.0, Servlets Resolver 2.7.0, Commons Compiler 2.4.0, Scripting Bundle Maven Plugin 0.2.0, Scripting JSP 2.5.0, Scripting HTL Runtime 1.2.2-1.4.0 (22th)
 * Commons Log 5.1.12, Dynamic Include 3.2.0, Auth Core 1.4.8, JCR Resource 3.0.22 (22th)
 * GraphQL Core 0.0.2, Servlet Helpers 1.4.2 (18th)
 * Models Validation Implementation 1.0.0 (10th)
