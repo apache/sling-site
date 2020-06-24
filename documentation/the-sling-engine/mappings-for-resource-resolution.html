@@ -284,7 +284,72 @@ for (String segment: segments) {
     }
 }
 </code></pre>
-<h2><a href="#rebuild-the-vanity-bloom-filter" id="rebuild-the-vanity-bloom-filter">Rebuild The Vanity Bloom Filter</a></h2>
+<h2><a href="#string-interpolation-for-etcmap" id="string-interpolation-for-etcmap">String Interpolation for /etc/map</a></h2>
+<p>Setting up <code>/etc/map</code> for different instances like <em>dev, stage, qa and production</em> was time consuming and error prone due to copy-n-paste errors.</p>
+<p>With <a href="https://issues.apache.org/jira/browse/SLING-7768">SLING-7768</a> Sling now supports String Interpolation under <code>/etc/map</code>.</p>
+<p>With this it is possible to add placeholders to <strong>sling:match</strong> entries to adapt them to different environments.</p>
+<p>The values are either provided by System, Bundle Context or String Interpolation Configuration values.</p>
+<p>The placeholders have this format: <strong>$['type':'name';default='default value']</strong>.</p>
+<p>The type can be:</p>
+<ul>
+<li><strong>env</strong>: take from the System Properties</li>
+<li><strong>prop</strong>: taken from the Bundle Context Properties</li>
+<li>otherwise: taken from the String Interpolation Configuration</li>
+</ul>
+<p>With this it is possible to create a single set of <code>/etc/map</code> definitions and then adjust the actual values of an instance by an OSGi configuration.</p>
+<p><strong>Note</strong>: the placeholder <strong>must be placed</strong> into a <strong>sling:match</strong> entry and cannot be the JCR Node name, as some of the characters are not allowed.</p>
+<h3><a href="#setting-up-etcmap-interpolation" id="setting-up-etcmap-interpolation">Setting up /etc/map interpolation</a></h3>
+<p>The Substitution Configuration can be found in the OSGi Configuration as <strong>Apache Sling String Interpolation Provider</strong>.</p>
+<p>The property <strong>Placeholder Values</strong> takes a list of <strong>key=value</strong> entries where each of them map a variable with its actual value.</p>
+<p>In our little introduction we add an entry of <strong>phv.default.host.name=localhost</strong>. Save the configuration for now. Before going on make sure that you know Mapping Location configuration in the OSGi configuration of <strong>Apache Sling Resource Resolver Factory</strong>.</p>
+<p>Now go to <strong>composum</strong> and go to that node. If it does not exist then create one.</p>
+<p>The mapping should look like this:</p>
+<ul>
+<li>etc
+<ul>
+<li>map
+<ul>
+<li>http
+<ul>
+<li>my-mapping
+<ul>
+<li>sling:match=$[phv.fq.host.name].8080</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Opening the page <strong>http://localhost:8080/starter/index.html</strong> should work just fine.</p>
+<p>This is a mapping from System Properties with a default:</p>
+<ul>
+<li>etc
+<ul>
+<li>map
+<ul>
+<li>http
+<ul>
+<li>my-mapping
+<ul>
+<li>sling:match=$[env:phv.fq.host.name;default=localhost].8080</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><a href="#testing-etcmap-interpolation" id="testing-etcmap-interpolation">Testing /etc/map interpolation</a></h3>
+<p>Now got back to the String Interpolation configuration and change the value to <strong>qa.author.acme.com</strong> and save it.</p>
+<p>For local testing open your <strong>hosts</strong> file (/etc/hosts on Unix) and add a line like this: <code>127.0.0.1 qa.author.acme.com</code> save it and test with <code>ping qa.author.acme.com</code> to make sure the name resolves. Now you should be able to open the same page with: <strong>http://qa.author.acme.com/starter/index.html</strong>.</p>
+<p>Now do the same with <strong>phv.fq.host.name=staging.author.acme.com</strong>.</p>
+<p>The String Interpolation works with any part of the etc-map tree.</p>
+<h2><a href="#rebuilding-the-vanity-bloom-filter" id="rebuilding-the-vanity-bloom-filter">Rebuilding The Vanity Bloom Filter</a></h2>
 <p><a href="https://issues.apache.org/jira/browse/SLING-4216">SLING-4216</a> introduced the usage of a bloom filter in order to resolve long startup time with many vanityPath entries. The bloom filter is handled automatically by the Sling framework. In some cases though, as changing the maximum number of vanity bloom filter bytes, a rebuild of the vanity bloom filter is needed.</p>
 <p>In order to rebuild vanity bloom filter:</p>
 <ul>
@@ -303,7 +368,7 @@ for (String segment: segments) {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Nov 15 12:57:41 2018 +0100</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Jun 24 14:37:56 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
