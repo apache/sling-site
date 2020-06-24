@@ -205,7 +205,90 @@ The following pseudo code shows this algorithm assuming the path is absolute:
         }
     }
 
-## Rebuild The Vanity Bloom Filter 
+## String Interpolation for /etc/map
+
+Setting up `/etc/map` for different instances like _dev, stage,
+qa and production_ was time consuming and error prone due to copy-n-paste
+errors.
+
+With [SLING-7768](https://issues.apache.org/jira/browse/SLING-7768) Sling
+now supports String Interpolation under `/etc/map`.
+
+With this it is possible to add placeholders to **sling:match** entries
+to adapt them to different environments.
+
+The values are either provided by System, Bundle Context or String Interpolation
+Configuration values.
+
+The placeholders have this format: **$['type':'name';default='default value']**.
+
+The type can be:
+
+ * **env**: take from the System Properties
+ * **prop**: taken from the Bundle Context Properties
+ * otherwise: taken from the String Interpolation Configuration
+
+With this it is possible to create a single set of `/etc/map` definitions and
+then adjust the actual values of an instance by an OSGi configuration.
+
+**Note**: the placeholder **must be placed** into a **sling:match** entry
+and cannot be the JCR Node name, as some of the characters are not allowed.
+
+### Setting up /etc/map interpolation
+
+The Substitution Configuration can be found in the OSGi Configuration
+as **Apache Sling String Interpolation Provider**.
+
+The property **Placeholder Values** takes a list of **key=value** entries 
+where each of them map a variable with its actual value.
+
+In our little introduction we add an entry of
+**phv.default.host.name=localhost**. Save the configuration for now.
+Before going on make sure that you know Mapping Location configuration
+in the OSGi configuration of **Apache Sling Resource Resolver Factory**.
+
+Now go to **composum** and go to that node. If it does not exist then create
+one. 
+
+The mapping should look like this:
+
+* etc
+    * map
+        * http
+            * my-mapping
+                * sling:match=$\[phv.fq.host.name\].8080
+            
+Opening the page **http://localhost:8080/starter/index.html** should
+work just fine.
+
+This is a mapping from System Properties with a default:
+
+* etc
+    * map
+        * http
+            * my-mapping
+                * sling:match=$\[env:phv.fq.host.name;default=localhost\].8080
+
+### Testing /etc/map interpolation
+
+Now got back to the String Interpolation configuration and change the value
+to **qa.author.acme.com** and save it.
+
+For local testing open your **hosts** file (/etc/hosts on Unix) and add a
+line like this:
+```
+127.0.0.1 qa.author.acme.com
+```
+save it and test with `ping qa.author.acme.com` to make sure the name
+resolves.
+Now you should be able to open the same page with:
+**http://qa.author.acme.com/starter/index.html**.
+
+Now do the same with **phv.fq.host.name=staging.author.acme.com**.
+
+The String Interpolation works with any part of the etc-map tree.
+
+## Rebuilding The Vanity Bloom Filter 
 
 [SLING-4216](https://issues.apache.org/jira/browse/SLING-4216) introduced the usage of a bloom filter in order to resolve long startup time with many vanityPath entries.
 The bloom filter is handled automatically by the Sling framework. In some cases though, as changing the maximum number of vanity bloom filter bytes, a rebuild of the vanity bloom filter is needed.
