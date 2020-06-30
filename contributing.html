@@ -117,8 +117,11 @@
 <h3><a href="#git" id="git">Git</a></h3>
 <h4><a href="#commit-meesages" id="commit-meesages">Commit meesages</a></h4>
 <p>For non-trivial commits a Jira issue is required. Once the Jira issue is created, the commit message must include the Jira issue key and the summary as the first line, followed by an optional description of the fix. For example:</p>
-<p>``` SLING-1234 - Fix NPE in FooImpl</p>
-<p>When the FooImpl is reconfigured the bar field can be set to null, so check against null values. ```</p>
+<pre><code>SLING-1234 - Fix NPE in FooImpl
+
+When the FooImpl is reconfigured the bar field can be set to null, so check
+against null values.
+</code></pre>
 <h4><a href="#pull-request-changes" id="pull-request-changes">Pull request changes</a></h4>
 <p>When iterating on a GitHub pull request a single commit can receive multiple follow-up fixes. To help preserve a linear history and to make changes easy to follow, please squash the changes in a single commit and force-push to the GitHub branch.</p>
 <h3><a href="#testing" id="testing">Testing</a></h3>
@@ -138,7 +141,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Jun 30 12:47:56 2020 +0200</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Jun 30 13:17:59 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
