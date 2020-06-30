@@ -54,12 +54,10 @@ works and how its projects are structured - and don't hesitate to ask on our
 For non-trivial commits a Jira issue is required. Once the Jira issue is created, the commit message must include the Jira issue key
 and the summary as the first line, followed by an optional description of the fix. For example:
 
-```
-SLING-1234 - Fix NPE in FooImpl
+    SLING-1234 - Fix NPE in FooImpl
 
-When the FooImpl is reconfigured the bar field can be set to null, so check
-against null values.
-```
+    When the FooImpl is reconfigured the bar field can be set to null, so check
+    against null values.
 
 #### Pull request changes
 
