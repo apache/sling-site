@@ -47,6 +47,26 @@ For people who are completely new to contributing to an Apache Software Foundati
 works and how its projects are structured - and don't hesitate to ask on our
 [mailing lists](http://sling.apache.org/project-information.html#mailing-lists)!
 
+### Git
+
+#### Commit meesages
+
+For non-trivial commits a Jira issue is required. Once the Jira issue is created, the commit message must include the Jira issue key
+and the summary as the first line, followed by an optional description of the fix. For example:
+
+```
+SLING-1234 - Fix NPE in FooImpl
+
+When the FooImpl is reconfigured the bar field can be set to null, so check
+against null values.
+```
+
+#### Pull request changes
+
+When iterating on a GitHub pull request a single commit can receive multiple follow-up fixes. To help preserve
+a linear history and to make changes easy to follow, please squash the changes in a single commit and force-push
+to the GitHub branch.
+
 ### Testing
 
 Each Sling module comes with an automated build, usually based on Apache Maven. Your change should be covered
