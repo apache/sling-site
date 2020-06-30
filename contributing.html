@@ -114,6 +114,13 @@
 <li>open a JIRA issue and attach your source code to it as a zip or tar archive.</li>
 </ol>
 <p>For people who are completely new to contributing to an Apache Software Foundation project, the <a href="https://www.apache.org/foundation/getinvolved.html">Get Involved</a> page provides you with enough resources to understand how the foundation works and how its projects are structured - and don't hesitate to ask on our <a href="http://sling.apache.org/project-information.html#mailing-lists">mailing lists</a>!</p>
+<h3><a href="#git" id="git">Git</a></h3>
+<h4><a href="#commit-meesages" id="commit-meesages">Commit meesages</a></h4>
+<p>For non-trivial commits a Jira issue is required. Once the Jira issue is created, the commit message must include the Jira issue key and the summary as the first line, followed by an optional description of the fix. For example:</p>
+<p>``` SLING-1234 - Fix NPE in FooImpl</p>
+<p>When the FooImpl is reconfigured the bar field can be set to null, so check against null values. ```</p>
+<h4><a href="#pull-request-changes" id="pull-request-changes">Pull request changes</a></h4>
+<p>When iterating on a GitHub pull request a single commit can receive multiple follow-up fixes. To help preserve a linear history and to make changes easy to follow, please squash the changes in a single commit and force-push to the GitHub branch.</p>
 <h3><a href="#testing" id="testing">Testing</a></h3>
 <p>Each Sling module comes with an automated build, usually based on Apache Maven. Your change should be covered by new unit tests that verify that the changes work as expected.</p>
 <p>In case your changes are more far-reaching and the module you are contributing to is part of the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a>, it is a good idea to also run the Sling Starter integration tests. This can be achieved by doing the following:</p>
@@ -131,7 +138,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Sat Feb 8 13:14:04 2020 +0100</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Jun 30 12:47:56 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
