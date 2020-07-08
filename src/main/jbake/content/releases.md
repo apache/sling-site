@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## July 2020
+
+* Content-Package to Feature Model Converter 1.0.10 (8th)
+
 ## June 2020
 * Slingfeature Maven Plugin 1.3.8 (29th)
 * Content Distribution Journal Messages 0.1.8, Content Distribution Journal Core 0.1.16, Content Distribution Journal ITs 0.1.2 (23rd)
