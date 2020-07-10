@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2020
 
+* Feature Launcher Maven Plugin 0.1.0 (10th)
 * Content-Package to Feature Model Converter 1.0.10 (8th)
 
 ## June 2020
