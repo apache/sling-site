@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2020
 
+* Servlets Resolver 2.7.2, JSPC Maven Plugin 2.2.2, Scripting Bundle Maven Plugin 0.2.2 (13th)
 * Feature Launcher Maven Plugin 0.1.0, GraphQL Core 0.0.4 (10th)
 * Content-Package to Feature Model Converter 1.0.10 (8th)
 
