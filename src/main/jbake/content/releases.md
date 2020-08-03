@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2020
+
+* Feature Model 1.2.6, Feature Model Analyser 1.3.6, Slingfeature Maven Plugin 1.3.14 (3rd)
+
 ## July 2020
 
 * JUnit Core 1.0.30, JUnit Tests Teleporter 1.0.22, Scripting HTL JS Use Provider 1.2.2, Servlets Resolver 2.7.4 (21th)
