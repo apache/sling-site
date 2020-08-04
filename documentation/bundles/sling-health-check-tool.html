@@ -127,7 +127,7 @@
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
     &lt;artifactId&gt;org.apache.felix.healthcheck.api&lt;/artifactId&gt;
-    &lt;version&gt;2.0.2&lt;/version&gt;
+    &lt;version&gt;2.0.4&lt;/version&gt;
     &lt;scope&gt;provided&lt;/scope&gt;
 &lt;/dependency&gt;
 
@@ -149,8 +149,8 @@
 </ul>
 <p>Only necessary if the the respective feature is used:</p>
 <ul>
-<li>For the case the property <code>hc.async.cronExpression</code> is used, the bundle <code>org.apache.servicemix.bundles.quartz</code> needs to be available at runtime (as alternative it is possible to use <code>hc.async.intervalInSec</code> now)</li>
 <li>For Health Checks using property <code>hc.warningsStickForMinutes</code>, this has been renamed to <code>hc.keepNonOkResultsStickyForSec</code> - here the unit has changed from min to sec in order to allow for second-magnitude values that can be useful for deployment scenarios</li>
+<li>For the case the property <code>hc.async.cronExpression</code> is used, the bundle <code>org.apache.servicemix.bundles.quartz</code> may be added to use quartz for cron expressions (in the same way as it was the case for the Sling Health Checks). If the bundle is not present, a simple cron trigger implementation included in <code>org.apache.felix.healthcheck.core</code> will be used instead, see <a href="https://issues.apache.org/jira/browse/FELIX-6265">FELIX-6265</a> for details.</li>
 </ul>
 <h2><a href="#migrate-a-runtime" id="migrate-a-runtime">Migrate a runtime</a></h2>
 <ul>
@@ -170,7 +170,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Tue Jun 16 17:34:02 2020 +0200</span>
+                        Last modified by <span class="author">georg.henzler</span> on <span class="comment">Tue Aug 4 13:45:41 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
