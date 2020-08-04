@@ -16,7 +16,7 @@ tags=healthchecks,operations
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.healthcheck.api</artifactId>
-            <version>2.0.2</version>
+            <version>2.0.4</version>
             <scope>provided</scope>
         </dependency>
 
@@ -37,8 +37,8 @@ Typically necessary steps:
 
 Only necessary if the the respective feature is used:
 
-* For the case the property `hc.async.cronExpression` is used, the bundle `org.apache.servicemix.bundles.quartz` needs to be available at runtime (as alternative it is possible to use `hc.async.intervalInSec` now)
 * For Health Checks using property `hc.warningsStickForMinutes`, this has been renamed to `hc.keepNonOkResultsStickyForSec` - here the unit has changed from min to sec in order to allow for second-magnitude values that can be useful for deployment scenarios
+* For the case the property `hc.async.cronExpression` is used, the bundle `org.apache.servicemix.bundles.quartz` may be added to use quartz for cron expressions (in the same way as it was the case for the Sling Health Checks). If the bundle is not present, a simple cron trigger implementation included in `org.apache.felix.healthcheck.core` will be used instead, see [FELIX-6265](https://issues.apache.org/jira/browse/FELIX-6265) for details.
 
 
 ## Migrate a runtime
