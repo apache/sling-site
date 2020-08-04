@@ -11,6 +11,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Settings 1.4.0, File Installer 1.3.0, JCR Installer 3.3.0, Feature Model 1.2.6, Feature Model Analyser 1.3.6, Slingfeature Maven Plugin 1.3.14 (3rd)
 * JCR Jackrabbit Access Manager 3.0.6 (3rd)
 * Commons Johnzon 1.2.4 (3rd)
+* JCR Jackrabbit User Manager 2.2.10 (4th)
 
 ## July 2020
 
