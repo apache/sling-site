@@ -11,4 +11,4 @@ tableOfContents=false
  * [Installing and Upgrading Bundles](tutorials-how-tos/installing-and-upgrading-bundles.html)
  * [Jackrabbit Persistence](tutorials-how-tos/jackrabbit-persistence.html)
  * [Testing Sling-based applications](tutorials-how-tos/testing-sling-based-applications.html)
- 
+ * [Feature Model How-To Guide](feature-model/feature-model-howto.html)
