@@ -128,7 +128,7 @@
 <li><strong>Extension</strong> - The string after the last dot after the resource path in the request URL but before the end of the request URL or the next slash after the resource path in the request URL is the extension.</li>
 <li><strong>Suffix</strong> - If the request URL contains a slash character after the resource path and optional selectors and extension, the path starting with the slash up to the end of the request URL is the suffix path. Otherwise, the suffix path is empty. Note, that after the resource path at least a dot must be in the URL to let Sling detect the suffix.</li>
 </ol>
-<p>In addition since <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848</a> there may be one or multiple <strong>request path parameters</strong>  passed in the form <code>;&lt;key&gt;='&lt;value&gt;'</code>. Those request path parameters are only supported directly after the <em>Resource Path</em> or after the <em>Extension</em>. The value needs to be enclosed in <code>'</code> if it contains a <code>.</code> and is not located after the extension. It is up to the <a href="resource.html#providing-resources-1">Resource Provider</a> to decide for what those parameters are being used.</p>
+<p>In addition since <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848</a> there may be one or multiple <strong>request path parameters</strong>  passed in the form <code>;&lt;key&gt;=&lt;value&gt;</code>. Those request path parameters are only supported directly after the <em>Resource Path</em> or after the <em>Extension</em>. The value needs to be enclosed in <code>'</code> if it contains a <code>.</code> and is not located after the extension. It is up to the <a href="resources.html#providing-resources-1">Resource Provider</a> to decide for what purpose those parameters are being used and which ones are supported at all.</p>
 <p>The decomposed parts can be accessed through the <code>RequestPathInfo</code> object, which is retrieved via <a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/SlingHttpServletRequest.html#getRequestPathInfo--">SlingHttpServletRequest.getPathInfo()</a>.</p>
 <p>There's a cheat sheet in Adobe's AEM documentation at <a href="https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html">https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html</a> available to get you familiar with the URL decomposition of Sling.</p>
 <h1><a href="#examples" id="examples">Examples</a></h1>
@@ -168,7 +168,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Aug 6 10:00:58 2020 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Aug 6 12:32:47 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
