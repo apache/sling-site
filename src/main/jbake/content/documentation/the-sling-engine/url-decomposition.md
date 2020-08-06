@@ -15,8 +15,8 @@ Otherwise (for a path not matching any existing resource) the resource path ends
 1. **Extension** - The string after the last dot after the resource path in the request URL but before the end of the request URL or the next slash after the resource path in the request URL is the extension. 
 1. **Suffix** - If the request URL contains a slash character after the resource path and optional selectors and extension, the path starting with the slash up to the end of the request URL is the suffix path. Otherwise, the suffix path is empty. Note, that after the resource path at least a dot must be in the URL to let Sling detect the suffix.
 
-In addition since [SLING-848](https://issues.apache.org/jira/browse/SLING-848) there may be one or multiple **request path parameters**  passed in the form `;<key>='<value>'`. Those request path parameters are only supported directly after the *Resource Path* or after the *Extension*. The value needs to be enclosed in `'` if it contains a `.` and is not located after the extension.
-It is up to the [Resource Provider](resource.html#providing-resources-1) to decide for what those parameters are being used.
+In addition since [SLING-848](https://issues.apache.org/jira/browse/SLING-848) there may be one or multiple **request path parameters**  passed in the form `;<key>=<value>`. Those request path parameters are only supported directly after the *Resource Path* or after the *Extension*. The value needs to be enclosed in `'` if it contains a `.` and is not located after the extension.
+It is up to the [Resource Provider](resources.html#providing-resources-1) to decide for what purpose those parameters are being used and which ones are supported at all.
 
 The decomposed parts can be accessed through the `RequestPathInfo` object, which is retrieved via [SlingHttpServletRequest.getPathInfo()](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/SlingHttpServletRequest.html#getRequestPathInfo--).
 
