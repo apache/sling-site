@@ -138,6 +138,13 @@ These are the authenticationInfo keys (which can be used with [`ResourceResolver
 | `user.name` | [`ResourceResolverFcatory.AUTHENTICATION_INFO_CREDENTIALS`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER) | String | Optionally used with `user.password` to create simple credentials from which the Session is being created.
 | `user.impersonation` | [`ResourceResolverFcatory.USER_IMPERSONATION`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION) | String | User ID which should be used for impersonation via `javax.jcr.Session.impersonate(...)`. Must be combined with one of the other authentication info keys.
 
+There is support for the following [path parameters](url-decomposition.html):
+
+Path Parameter | Example Value | Description | Since 
+ --- | --- | --- | ---
+| `v` | `1.0` | Retrieves the underlying JCR node from the [version history](https://docs.adobe.com/docs/en/spec/jcr/2.0/15_Versioning.html) leveraging the version label given in the value. | [SLING-848](https://issues.apache.org/jira/browse/SLING-848)
+
+
 ### Bundle-based Resources
 
 Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header `Sling-Bundle-Resources` containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).
