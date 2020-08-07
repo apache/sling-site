@@ -125,7 +125,13 @@
 <div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#configuration" id="configuration">Configuration</a></h2>
-<p>The resource resolution (mapping a request path to a resource in Sling's resource tree) can be influenced in different ways: - Root Level Mappings - Alias Configurations - Vanity Path Configurations - Namespace Mangling</p>
+<p>The resource resolution (mapping a request path to a resource in Sling's resource tree) can be influenced in different ways:</p>
+<ul>
+<li>Root Level Mappings</li>
+<li>Alias Configurations</li>
+<li>Vanity Path Configurations</li>
+<li>Namespace Mangling</li>
+</ul>
 <h2><a href="#root-level-mappings" id="root-level-mappings">Root Level Mappings</a></h2>
 <p>The mapping of request URLs to resources is mainly configured in a configuration tree which is (by default) located below <code>/etc/map</code>. While the actual location can be configured with the property <code>resource.resolver.map.location</code> of the OSGi configuration <code>org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl</code>, it is suggested to leave the default value.</p>
 <p>When dealing with the resource resolution we have a number of properties influencing the process:</p>
@@ -343,7 +349,7 @@ for (String segment: segments) {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Fri Aug 7 07:53:28 2020 +0200</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Fri Aug 7 15:34:21 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
