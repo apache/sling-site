@@ -9,6 +9,7 @@ tags=core,resources,resourcemappings
 ## Configuration
 
 The resource resolution (mapping a request path to a resource in Sling's resource tree) can be influenced in different ways:
+
 - Root Level Mappings
 - Alias Configurations
 - Vanity Path Configurations
