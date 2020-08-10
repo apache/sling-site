@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2020
 
-* Scripting HTL JS Use Provider 1.2.4 (10th)
+* Scripting HTL JS Use Provider 1.2.4, JCR Base 3.1.4 (10th)
 * Commons OSGi 2.4.2 (9th)
 * Settings 1.4.0, File Installer 1.3.0, JCR Installer 3.3.0, Feature Model 1.2.6, Feature Model Analyser 1.3.6, Slingfeature Maven Plugin 1.3.14, XSS Protection API 2.2.6 (3rd)
 * JCR Jackrabbit Access Manager 3.0.6 (3rd)
