@@ -109,7 +109,7 @@ def bundles=[
   "Discovery Base|org.apache.sling.discovery.base|2.0.8|Y|jar",
   "Discovery Oak|org.apache.sling.discovery.oak|1.2.30|Y|jar",
   "Discovery Standalone|org.apache.sling.discovery.standalone|1.0.2|Y|jar",
-  "Discovery Support|org.apache.sling.discovery.support|1.0.4|Y|jar",
+  "Discovery Support|org.apache.sling.discovery.support|1.0.6|Y|jar",
   "Distributed Event Admin|org.apache.sling.event.dea|1.1.4|Y|jar",
   "Distribution API|org.apache.sling.distribution.api|0.4.0|Y|jar",
   "Distribution Core|org.apache.sling.distribution.core|0.4.2|Y|jar",
