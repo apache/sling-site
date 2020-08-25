@@ -32,6 +32,8 @@ Several more engines are available but experimental or no longer maintained:
 * Velocity
 * XProc
 
+Code for really old modules might be found in the [svn attic](https://svn.apache.org/repos/asf/sling/attic).
+
 ## Scripting variables
 
 See also [Scripting variables](https://cwiki.apache.org/confluence/display/SLING/Scripting+variables) and [Adding New Scripting Variables](https://cwiki.apache.org/confluence/display/SLING/Adding+New+Scripting+Variables).
