@@ -329,10 +329,18 @@ for (String segment: segments) {
 <h2><a href="#interactions-between-mappings-and-authentication-requirements" id="interactions-between-mappings-and-authentication-requirements">Interactions between mappings and authentication requirements</a></h2>
 <p>The <a href="/documentation/the-sling-engine/authentication.html">Sling authentication</a> mechanism works by registering authentication requirements for paths which are protected. Normally these authentication requirements transparently apply to child resources as well due to the hierarchical nature of the paths used.</p>
 <p>Additional mappings complicate the situation, therefore additional authentication requirements are automatically registered by Sling. For instance, assuming the following repository structure:</p>
-<p><code>/content +-- parent +-- sling:alias = &quot;secret&quot; +-- child</code></p>
+<pre><code>/content
+    +-- parent
+        +-- sling:alias = &quot;secret&quot;
+        +-- child
+</code></pre>
 <p>and that <code>/content/parent</code> is a protected resource, authentication requirements will automatically be registered for both <code>/content/parent</code> and <code>/content/secret</code>.</p>
 <p>One scenario where authentication requirements will not be registered properly is when the child of a protected resource has an external vanity path ( or resource mapping ) that is not a descendant of an existing authentication requirement, such as:</p>
-<p><code>/content +-- parent +-- child +-- sling:vanityPath = &quot;/vanity&quot;</code></p>
+<pre><code>/content
+    +-- parent
+        +-- child
+            +-- sling:vanityPath = &quot;/vanity&quot;
+</code></pre>
 <p>In this scenario no authentication requirement will be registered for <code>/vanity</code>, which lead to the resource being accessible without authentication. If registering mappings for children of protected resources is desired, the following precautions must be taken:</p>
 <ul>
 <li>use external redirects. These will instruct the client to generate a new HTTP request, which will be properly handled by the Sling authentication</li>
@@ -362,7 +370,7 @@ for (String segment: segments) {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Aug 25 10:34:25 2020 +0200</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Aug 25 10:48:37 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
