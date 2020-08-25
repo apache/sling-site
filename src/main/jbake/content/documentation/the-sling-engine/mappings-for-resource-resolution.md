@@ -279,6 +279,37 @@ In order to rebuild vanity bloom filter:
 * delete the vanityBloomFilter.txt file
 * start Apache Sling (this might take few minutes, depending on how many vanity path entries are present)
 
+## Interactions between mappings and authentication requirements
+
+The [Sling authentication](/documentation/the-sling-engine/authentication.html) mechanism works by registering authentication requirements for paths which are protected. Normally these authentication requirements transparently apply to child resources as well due to the hierarchical nature of the paths used.
+
+Additional mappings complicate the situation, therefore additional authentication requirements are automatically registered by Sling. For instance, assuming the following repository structure:
+
+```
+/content
+    +-- parent
+        +-- sling:alias = "secret"
+        +-- child
+```
+
+and that `/content/parent` is a protected resource, authentication requirements will automatically be registered for both `/content/parent` and `/content/secret`.
+
+One scenario where authentication requirements will not be registered properly is when the child of a protected resource has an external vanity path ( or resource mapping ) that is not a descendant of an existing authentication requirement, such as:
+
+```
+/content
+    +-- parent
+        +-- child
+            +-- sling:vanityPath = "/vanity"
+```
+
+In this scenario no authentication requirement will be registered for `/vanity`, which lead to the resource being accessible without authentication. If registering mappings for children of protected resources is desired, the following precautions must be taken:
+
+- use external redirects. These will instruct the client to generate a new HTTP request, which will be properly handled by the Sling authentication
+- manually set up authentication reqiurements for internal mappings
+
+For an in-depth discussion on the matter, see [SLING-9622 - Avoid registration of auth requirements for aliases and vanity paths](https://issues.apache.org/jira/browse/SLING-9622).
+
 ## Namespace Mangling
 
 There are systems accessing Sling, which have a hard time handling URLs containing colons (`:`) in the path part correctly. Since URLs produced and supported by Sling may contain colons as JCR based resources may be namespaced (e.g. `jcr:content`), a special namespace mangling feature is built into the `ResourceResolver.resolve(...)` and `ResourceResolver.map(...)` methods.
