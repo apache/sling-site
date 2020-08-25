@@ -285,23 +285,20 @@ The [Sling authentication](/documentation/the-sling-engine/authentication.html) 
 
 Additional mappings complicate the situation, therefore additional authentication requirements are automatically registered by Sling. For instance, assuming the following repository structure:
 
-```
-/content
-    +-- parent
-        +-- sling:alias = "secret"
-        +-- child
-```
+    /content
+        +-- parent
+            +-- sling:alias = "secret"
+            +-- child
+
 
 and that `/content/parent` is a protected resource, authentication requirements will automatically be registered for both `/content/parent` and `/content/secret`.
 
 One scenario where authentication requirements will not be registered properly is when the child of a protected resource has an external vanity path ( or resource mapping ) that is not a descendant of an existing authentication requirement, such as:
 
-```
-/content
-    +-- parent
-        +-- child
-            +-- sling:vanityPath = "/vanity"
-```
+    /content
+        +-- parent
+            +-- child
+                +-- sling:vanityPath = "/vanity"
 
 In this scenario no authentication requirement will be registered for `/vanity`, which lead to the resource being accessible without authentication. If registering mappings for children of protected resources is desired, the following precautions must be taken:
 
