@@ -16,7 +16,8 @@ This allows	you to experiment with your changes before eventually publishing the
 ## How to publish the website
 
 Each push to the `master` branch automatically regenerates and publishes the website to https://sling.apache.org, see
-[SLING-7180](https://issues.apache.org/jira/browse/SLING-7180) for details. The corresponding Jenkins job is at https://builds.apache.org/job/Sling/job/sling-site/job/master/
+[SLING-7180](https://issues.apache.org/jira/browse/SLING-7180) for details. The corresponding Jenkins job is linked from the "build"
+badge at the top of this file.
 
 However, if for some reason you need to manually publish the website the instructions below need to be followed.
 
