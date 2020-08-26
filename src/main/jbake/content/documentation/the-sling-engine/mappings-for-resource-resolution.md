@@ -293,6 +293,8 @@ Additional mappings complicate the situation, therefore additional authenticatio
 
 and that `/content/parent` is a protected resource, authentication requirements will automatically be registered for both `/content/parent` and `/content/secret`.
 
+<div class="note">Although the section below uses vanity paths, it applies equally to mappings set up in <code>/etc/map</code></div>
+
 One scenario where authentication requirements will not be registered properly is when the child of a protected resource has an external vanity path ( or resource mapping ) that is not a descendant of an existing authentication requirement, such as:
 
     /content
@@ -305,7 +307,7 @@ In this scenario no authentication requirement will be registered for `/vanity`,
 - use external redirects. These will instruct the client to generate a new HTTP request, which will be properly handled by the Sling authentication
 - manually set up authentication reqiurements for internal mappings
 
-For an in-depth discussion on the matter, see [SLING-9622 - Avoid registration of auth requirements for aliases and vanity paths](https://issues.apache.org/jira/browse/SLING-9622).
+For an in-depth discussion on the matter, see [SLING-9622 - Avoid registration of auth requirements for aliases and vanity paths](https://issues.apache.org/jira/browse/SLING-9622) and also [SLING-9689 - Handle authentication requirements for children of protected resources when internal mappings](https://issues.apache.org/jira/browse/SLING-9689) for plans of improving the situation.
 
 ## Namespace Mangling
 
