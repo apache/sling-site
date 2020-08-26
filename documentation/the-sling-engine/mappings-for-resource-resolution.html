@@ -335,6 +335,7 @@ for (String segment: segments) {
         +-- child
 </code></pre>
 <p>and that <code>/content/parent</code> is a protected resource, authentication requirements will automatically be registered for both <code>/content/parent</code> and <code>/content/secret</code>.</p>
+<div class="note">Although the section below uses vanity paths, it applies equally to mappings set up in <code>/etc/map</code></div>
 <p>One scenario where authentication requirements will not be registered properly is when the child of a protected resource has an external vanity path ( or resource mapping ) that is not a descendant of an existing authentication requirement, such as:</p>
 <pre><code>/content
     +-- parent
@@ -346,7 +347,7 @@ for (String segment: segments) {
 <li>use external redirects. These will instruct the client to generate a new HTTP request, which will be properly handled by the Sling authentication</li>
 <li>manually set up authentication reqiurements for internal mappings</li>
 </ul>
-<p>For an in-depth discussion on the matter, see <a href="https://issues.apache.org/jira/browse/SLING-9622">SLING-9622 - Avoid registration of auth requirements for aliases and vanity paths</a>.</p>
+<p>For an in-depth discussion on the matter, see <a href="https://issues.apache.org/jira/browse/SLING-9622">SLING-9622 - Avoid registration of auth requirements for aliases and vanity paths</a> and also <a href="https://issues.apache.org/jira/browse/SLING-9689">SLING-9689 - Handle authentication requirements for children of protected resources when internal mappings</a> for plans of improving the situation.</p>
 <h2><a href="#namespace-mangling" id="namespace-mangling">Namespace Mangling</a></h2>
 <p>There are systems accessing Sling, which have a hard time handling URLs containing colons (<code>:</code>) in the path part correctly. Since URLs produced and supported by Sling may contain colons as JCR based resources may be namespaced (e.g. <code>jcr:content</code>), a special namespace mangling feature is built into the <code>ResourceResolver.resolve(...)</code> and <code>ResourceResolver.map(...)</code> methods.</p>
 <p>Namespace mangling operates such, that any namespace prefix identified in a resource path to be mapped as an URL in the <code>map</code> methods is modified such that the prefix is enclosed in underscores and the colon is removed.</p>
@@ -370,7 +371,7 @@ for (String segment: segments) {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Tue Aug 25 10:48:37 2020 +0200</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Aug 26 11:24:38 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
