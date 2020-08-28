@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2020
 
+* Auth Core 1.5.0, Resource Resolver 1.7.0 (28th)
 * JCR Oak Server 1.2.6 (27th)
 * Scripting Core 2.3.2, Servlets Resolver 2.7.8, Scripting HTL JS Use Provider 1.2.6, Scripting HTL Engine 1.4.2-1.4.0 (24th)
 * Servlets Resolver 2.7.6 (19th)
