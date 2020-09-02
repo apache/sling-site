@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2020
+
+* Testing Sling Mock 2.6.0 (2nd)
+
 ## August 2020
 
 * Auth Core 1.5.0, Resource Resolver 1.7.0 (28th)
