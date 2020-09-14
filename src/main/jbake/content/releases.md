@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2020
 
-* Testing Sling Mock 2.6.2 (14th)
+* Testing Sling Mock 2.6.2, OSGi Feature Maven Plugin 1.3.16, Feature Model Launcher 1.1.6, Feature Model 1.2.8 (14th)
 * Feature Model Analyser 1.3.8 (8th)
 * Testing Sling Mock 2.6.0 (2nd)
 
