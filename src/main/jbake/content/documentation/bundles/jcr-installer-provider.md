@@ -20,7 +20,9 @@ The JCR installer provider does not check or scan the artifacts itself, the dete
 
 The JCR installer supports [run modes](sling-settings-org-apache-sling-settings.html) for installing artifacts. By default folders named `install` are checked for artifacts. If Apache Sling is started with one (or more run modes), all folders named `install.[RUNMODE]` are scanned as well. To be precise, the folder name can be followed by any number of run modes separated by dot (`.`). For example, if started with run modes `dev`, `a1`, and `public`, folders like `install.dev`, `install.a1`, `install.public` are searched as well as `install.dev.a1`, or `install.a1.dev`.
 
-Artifacts from folders with a run mode get a higher priority. For example by default, an `install` folder underneath `/libs` gets the priority `50`. For each run mode in the folder name, this priority is increased by `1`, so `install.dev` has `51` and `install.a1.dev` has `52`.
+Since version 3.3.0 of the JCR Installer bundle ([SLING-9031](https://issues.apache.org/jira/browse/SLING-9031) and [SLING-8548](https://issues.apache.org/jira/browse/SLING-8548)) advanced run mode support has been added, so that folder names in the form `install.[RUNMODESPEC]` are supported. `RUNMODESPEC` is defined in [Sling Settings](/documentation/bundles/sling-settings-org-apache-sling-settings.html#decisions-based-on-run-modes).
+
+Artifacts from folders with a run mode get a higher priority. For example by default, an `install` folder underneath `/libs` gets the priority `50`. For each matching run mode in the folder name, this priority is increased by `1`, so `install.dev` has `51` and `install.a1.dev` has `52`.
 
 ## Start Level Support
 

@@ -17,7 +17,7 @@ The Sling Settings Bundle exposes the `SlingSettingsService` which allows access
 
 The new Sling Settings Bundle replaces the former `org.apache.sling.runmode` bundle and the `SlingSettingsService` previously provided by the Sling Engine bundle, as it also implements the run modes logic.
 
-## Selecting the active run modes
+# Selecting the active run modes
 The run modes are selected based on the `sling.run.modes` property (the "selection property"), specified in the Sling settings file or as a command-line parameter (which takes precedence), out of the valid run modes defined by the properties described below. The value is a String which contains a list of comma-separated run modes. If a run mode is given here which is not contained in any group of valid run modes (given in `sling.run.mode.install.options` or `sling.run.mode.options`) it is always active, on the other hand run modes which are contained in any of the predefined groups may be modified/removed (see below for the details).
 
 Using `-Dsling.run.modes=foo,bar` on the JVM command-line, for example, activates the *foo* and *bar* run modes if that combination is valid.
@@ -65,7 +65,7 @@ User defined run modes (e.g. via property `sling.run.modes`) | Effectively activ
 
 Remember to look at the `RunModeImplTest` mentioned above for details, and feel free to enhance it with useful examples.
 
-### Getting the Run Modes of the Sling instance
+# Getting the Run Modes of the Sling instance
 
 The `SlingSettings` service provides the Run Modes of the running Sling instance as in this example:
 
@@ -80,3 +80,20 @@ The `SlingSettings` service provides the Run Modes of the running Sling instance
     }
 	
 Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.
+
+# Decisions based on Run Modes
+
+Since version 1.4.0 ([SLING-9031](https://issues.apache.org/jira/browse/SLING-9031) and [SLING-8548](https://issues.apache.org/jira/browse/SLING-8548)) of the Sling Settings bundle there is support for checking a run mode spec against the currently active run modes.
+
+The run mode spec grammar is as follows
+
+    run mode spec ::= disjunctions
+    disjunctions ::= conjunctions { "," conjunctions }
+    conjunctions ::= conjunction { '.' conjunction }
+    conjunction ::= notrunmode | runmode
+    notrunmode ::= '-' runmode
+
+It supports OR (`,`) and AND (`.`) combinations of run modes and negations with `-` .
+
+Programmatically this can be used via `SlingSettings.getBestRunModeMatchCountFromSpec(String runModeSpec)`.
+

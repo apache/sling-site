@@ -32,9 +32,11 @@ Configurations are handled by the [Configuration Installer Factory](/documentati
 
 Custom artifacts are handled by the OSGi installer depending on the installed plugins. Have a look at the OSGi installer and its plugins for more information.
 
-## Runmode Support
+## Run Mode Support
 
-The file installer supports run modes for installing artifacts (added with [SLING-4478](https://issues.apache.org/jira/browse/SLING-4478)). Within the scanned directory, a folder prefixed with "install." and followed by one or more run modes (separated by ".") will only be considered if all the respective run modes are active. For example artifacts below a folder named `install.a1.dev` are only taken into account if the run modes `a1` and `dev` are both active. 
+The file installer supports run modes for installing artifacts (added with [SLING-4478](https://issues.apache.org/jira/browse/SLING-4478)). Within the scanned directory, a folder prefixed with `install.` and followed by one or more run modes (separated by `.`) will only be considered if all the respective run modes are active. For example artifacts below a folder named `install.a1.dev` are only taken into account if the run modes `a1` and `dev` are both active. 
+
+Since version 1.3.0 of the File Installer bundle ([SLING-9031](https://issues.apache.org/jira/browse/SLING-9031) and [SLING-8548](https://issues.apache.org/jira/browse/SLING-8548)) advanced run mode support has been added, so that folder names in the form `install.[RUNMODESPEC]` are supported. `RUNMODESPEC` is defined in [Sling Settings](/documentation/bundles/sling-settings-org-apache-sling-settings.html#decisions-based-on-run-modes).
 
 You can even combine start level and run mode support. Just pay attention that the run mode foldername must be set on a direct child folder of `sling.fileinstall.dir` while the start level must be set directly on the parent folder of the artifact you want to install. E.g. `<sling.fileinstall.dir>/install.a1.dev/3/mybundle.jar` will only be considered if both run modes `a1` and `dev` are set. If this is the case then the according artifact will be installed in start level 3.
 
