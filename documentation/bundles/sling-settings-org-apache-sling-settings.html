@@ -132,7 +132,7 @@
 </tbody>
 </table>
 <p>The new Sling Settings Bundle replaces the former <code>org.apache.sling.runmode</code> bundle and the <code>SlingSettingsService</code> previously provided by the Sling Engine bundle, as it also implements the run modes logic.</p>
-<h2><a href="#selecting-the-active-run-modes" id="selecting-the-active-run-modes">Selecting the active run modes</a></h2>
+<h1><a href="#selecting-the-active-run-modes" id="selecting-the-active-run-modes">Selecting the active run modes</a></h1>
 <p>The run modes are selected based on the <code>sling.run.modes</code> property (the &quot;selection property&quot;), specified in the Sling settings file or as a command-line parameter (which takes precedence), out of the valid run modes defined by the properties described below. The value is a String which contains a list of comma-separated run modes. If a run mode is given here which is not contained in any group of valid run modes (given in <code>sling.run.mode.install.options</code> or <code>sling.run.mode.options</code>) it is always active, on the other hand run modes which are contained in any of the predefined groups may be modified/removed (see below for the details).</p>
 <p>Using <code>-Dsling.run.modes=foo,bar</code> on the JVM command-line, for example, activates the <em>foo</em> and <em>bar</em> run modes if that combination is valid.</p>
 <p>The absolute truth about run modes definition and selection is found in the <a href="https://github.com/apache/sling-org-apache-sling-settings/blob/master/src/test/java/org/apache/sling/settings/impl/RunModeImplTest.java">RunModeImplTest</a> which should be self-explaining.</p>
@@ -174,7 +174,7 @@
 </tbody>
 </table>
 <p>Remember to look at the <code>RunModeImplTest</code> mentioned above for details, and feel free to enhance it with useful examples.</p>
-<h3><a href="#getting-the-run-modes-of-the-sling-instance" id="getting-the-run-modes-of-the-sling-instance">Getting the Run Modes of the Sling instance</a></h3>
+<h1><a href="#getting-the-run-modes-of-the-sling-instance" id="getting-the-run-modes-of-the-sling-instance">Getting the Run Modes of the Sling instance</a></h1>
 <p>The <code>SlingSettings</code> service provides the Run Modes of the running Sling instance as in this example:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->SlingSettings settings = ...get from BundleContext...
 Set&lt;String&gt; currentRunModes = settings.getRunModes();
@@ -186,6 +186,17 @@ if(expectedRunModes.removeAll(currentRunModes)) {
 }
 </code></pre>
 <p>Getting run modes in this way is usually not needed, it's better to define bundles or configurations that are only valid in specific run modes, rather than making decisions in code based on run modes.</p>
+<h1><a href="#decisions-based-on-run-modes" id="decisions-based-on-run-modes">Decisions based on Run Modes</a></h1>
+<p>Since version 1.4.0 (<a href="https://issues.apache.org/jira/browse/SLING-9031">SLING-9031</a> and <a href="https://issues.apache.org/jira/browse/SLING-8548">SLING-8548</a>) of the Sling Settings bundle there is support for checking a run mode spec against the currently active run modes.</p>
+<p>The run mode spec grammar is as follows</p>
+<pre><code>run mode spec ::= disjunctions
+disjunctions ::= conjunctions { &quot;,&quot; conjunctions }
+conjunctions ::= conjunction { '.' conjunction }
+conjunction ::= notrunmode | runmode
+notrunmode ::= '-' runmode
+</code></pre>
+<p>It supports OR (<code>,</code>) and AND (<code>.</code>) combinations of run modes and negations with <code>-</code> .</p>
+<p>Programmatically this can be used via <code>SlingSettings.getBestRunModeMatchCountFromSpec(String runModeSpec)</code>.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -193,7 +204,7 @@ if(expectedRunModes.removeAll(currentRunModes)) {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">Tue Jul 17 21:15:24 2018 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Sep 18 17:26:30 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>

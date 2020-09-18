@@ -122,7 +122,8 @@
 <p>The JCR installer provider does not check or scan the artifacts itself, the detection and installation is deferred to the OSGi installer.</p>
 <h2><a href="#run-mode-support" id="run-mode-support">Run Mode Support</a></h2>
 <p>The JCR installer supports <a href="sling-settings-org-apache-sling-settings.html">run modes</a> for installing artifacts. By default folders named <code>install</code> are checked for artifacts. If Apache Sling is started with one (or more run modes), all folders named <code>install.[RUNMODE]</code> are scanned as well. To be precise, the folder name can be followed by any number of run modes separated by dot (<code>.</code>). For example, if started with run modes <code>dev</code>, <code>a1</code>, and <code>public</code>, folders like <code>install.dev</code>, <code>install.a1</code>, <code>install.public</code> are searched as well as <code>install.dev.a1</code>, or <code>install.a1.dev</code>.</p>
-<p>Artifacts from folders with a run mode get a higher priority. For example by default, an <code>install</code> folder underneath <code>/libs</code> gets the priority <code>50</code>. For each run mode in the folder name, this priority is increased by <code>1</code>, so <code>install.dev</code> has <code>51</code> and <code>install.a1.dev</code> has <code>52</code>.</p>
+<p>Since version 3.3.0 of the JCR Installer bundle (<a href="https://issues.apache.org/jira/browse/SLING-9031">SLING-9031</a> and <a href="https://issues.apache.org/jira/browse/SLING-8548">SLING-8548</a>) advanced run mode support has been added, so that folder names in the form <code>install.[RUNMODESPEC]</code> are supported. <code>RUNMODESPEC</code> is defined in <a href="/documentation/bundles/sling-settings-org-apache-sling-settings.html#decisions-based-on-run-modes">Sling Settings</a>.</p>
+<p>Artifacts from folders with a run mode get a higher priority. For example by default, an <code>install</code> folder underneath <code>/libs</code> gets the priority <code>50</code>. For each matching run mode in the folder name, this priority is increased by <code>1</code>, so <code>install.dev</code> has <code>51</code> and <code>install.a1.dev</code> has <code>52</code>.</p>
 <h2><a href="#start-level-support" id="start-level-support">Start Level Support</a></h2>
 <p>If the parent folder of a bundle has a name which is a number, this is used as the start level (when installing the bundle for the first time, compare with <a href="https://issues.apache.org/jira/browse/SLING-2011">SLING-2011</a>). So e.g. a bundle in the path <code>/libs/sling/install/15/somebundle.jar</code> is having the start level <code>15</code>.</p>
 <h2><a href="#write-back-support" id="write-back-support">Write Back Support</a></h2>
@@ -216,7 +217,7 @@ curl -X MKCOL  http://admin:admin@localhost:8080/apps/jcrtest/install
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jun 4 17:45:40 2020 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Sep 18 17:26:30 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
