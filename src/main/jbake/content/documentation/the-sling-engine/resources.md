@@ -27,7 +27,7 @@ For a complete description of the `Resource` interface, please refer to the [`Re
 
 The properties are either exposed via the `ValueMap` or `ModifiableValueMap` adaptable or by calling `Resource.getValueMap()`.
 
-To get the main binary property from a given resource one can adapt it to an `InputStream`. Most resource providers return the underlying wrapper binary in that case.
+To get the *main* binary property from a given resource one can adapt it to an `InputStream`. Most resource providers return the underlying wrapper binary in that case. For arbitrary binary properties one must use the `ValueMap` which will return `InputStream` for such properties.
 
 ### Resource Types
 
@@ -144,6 +144,14 @@ Path Parameter | Example Value | Description | Since
  --- | --- | --- | ---
 | `v` | `1.0` | Retrieves the underlying JCR node from the [version history](https://docs.adobe.com/docs/en/spec/jcr/2.0/15_Versioning.html) leveraging the version label given in the value. | [SLING-848](https://issues.apache.org/jira/browse/SLING-848)
 
+#### Main Binary Property
+
+The main binary property (i.e. the one being exposed by `Resource.adaptTo(InputStream.class)`) is determined like follows:
+
+1. `jcr:data` is such a property exists, otherwise
+2. the primary item of the underlying node (as defined by [Node.getPrimaryItem()](https://docs.adobe.com/docs/en/spec/jsr170/javadocs/jcr-2.0/javax/jcr/Node.html#getPrimaryItem())).
+
+For node type `nt:file` the property is looked up in the child node `jcr:content` for both cases. For all other node types it is looked up in the underlying node of the current resource.
 
 ### Bundle-based Resources
 
