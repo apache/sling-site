@@ -27,7 +27,7 @@ For a complete description of the `Resource` interface, please refer to the [`Re
 
 The properties are either exposed via the `ValueMap` or `ModifiableValueMap` adaptable or by calling `Resource.getValueMap()`.
 
-To get the *main* binary property from a given resource one can adapt it to an `InputStream`. Most resource providers return the underlying wrapper binary in that case. For arbitrary binary properties one must use the `ValueMap` which will return `InputStream` for such properties.
+To get the *main* binary property from a given resource one can adapt it to an `InputStream`. Most resource providers return the underlying wrapper binary in that case. The handling of arbitrary binary properties is resource provider specific (some expose lazy `InputStreams` others may not support binary properties via `ValueMap` at all).
 
 ### Resource Types
 
@@ -144,7 +144,9 @@ Path Parameter | Example Value | Description | Since
  --- | --- | --- | ---
 | `v` | `1.0` | Retrieves the underlying JCR node from the [version history](https://docs.adobe.com/docs/en/spec/jcr/2.0/15_Versioning.html) leveraging the version label given in the value. | [SLING-848](https://issues.apache.org/jira/browse/SLING-848)
 
-#### Main Binary Property
+#### Binary Support
+
+Binary properties are exposed as `InputStream` in the resource's `ValueMap`. That input stream only needs to be closed in case one reads from it. This prevents always checking the `ValueMap` for dangling `InputStream` properties.
 
 The main binary property (i.e. the one being exposed by `Resource.adaptTo(InputStream.class)`) is determined like follows:
 
