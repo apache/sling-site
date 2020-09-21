@@ -139,7 +139,7 @@
 </table>
 <p>For a complete description of the <code>Resource</code> interface, please refer to the <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a> JavaDoc.</p>
 <p>The properties are either exposed via the <code>ValueMap</code> or <code>ModifiableValueMap</code> adaptable or by calling <code>Resource.getValueMap()</code>.</p>
-<p>To get the <em>main</em> binary property from a given resource one can adapt it to an <code>InputStream</code>. Most resource providers return the underlying wrapper binary in that case. For arbitrary binary properties one must use the <code>ValueMap</code> which will return <code>InputStream</code> for such properties.</p>
+<p>To get the <em>main</em> binary property from a given resource one can adapt it to an <code>InputStream</code>. Most resource providers return the underlying wrapper binary in that case. The handling of arbitrary binary properties is resource provider specific (some expose lazy <code>InputStreams</code> others may not support binary properties via <code>ValueMap</code> at all).</p>
 <h3><a href="#resource-types" id="resource-types">Resource Types</a></h3>
 <p>The exact method of setting the resource type for a Resource depends on the actual Resource Provider. For the four main Resource Provider implementations provided by Sling, the assignments are as follows:</p>
 <table>
@@ -234,7 +234,8 @@
 <tr><td> <code>v</code> </td><td> <code>1.0</code> </td><td> Retrieves the underlying JCR node from the <a href="https://docs.adobe.com/docs/en/spec/jcr/2.0/15_Versioning.html">version history</a> leveraging the version label given in the value. </td><td> <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848</a></td></tr>
 </tbody>
 </table>
-<h4><a href="#main-binary-property" id="main-binary-property">Main Binary Property</a></h4>
+<h4><a href="#binary-support" id="binary-support">Binary Support</a></h4>
+<p>Binary properties are exposed as <code>InputStream</code> in the resource's <code>ValueMap</code>. That input stream only needs to be closed in case one reads from it. This prevents always checking the <code>ValueMap</code> for dangling <code>InputStream</code> properties.</p>
 <p>The main binary property (i.e. the one being exposed by <code>Resource.adaptTo(InputStream.class)</code>) is determined like follows:</p>
 <ol>
 <li><code>jcr:data</code> is such a property exists, otherwise</li>
@@ -278,7 +279,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Sep 21 09:12:52 2020 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Sep 21 10:02:03 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
