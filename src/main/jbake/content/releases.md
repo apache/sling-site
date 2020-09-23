@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2020
 
+* Sling Kickstart Project 0.0.8, Sling Kickstart Maven Plugin 0.0.8 (23rd) 
 * JCR Oak Server 1.2.8 (14th)
 * Testing Sling Mock 2.6.2, OSGi Feature Maven Plugin 1.3.16, Feature Model Launcher 1.1.6, Feature Model 1.2.8, Content-Package to Feature Model Converter 1.0.14 (14th)
 * Feature Model Analyser 1.3.8 (8th)
