@@ -7,7 +7,7 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## September 2020
-
+* Apache Sling Server Setup Tools 1.0.2, Apache Sling Testing Clients 2.0.4 (27th)
 * Sling API 2.23.0 (26th) 
 * Sling Kickstart Project 0.0.8, Sling Kickstart Maven Plugin 0.0.8 (23rd) 
 * JCR Oak Server 1.2.8 (14th)
