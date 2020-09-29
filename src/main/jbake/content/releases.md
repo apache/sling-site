@@ -7,9 +7,10 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## September 2020
-* Apache Sling Server Setup Tools 1.0.2, Apache Sling Testing Clients 2.0.4 (27th)
-* Sling API 2.23.0 (26th) 
-* Sling Kickstart Project 0.0.8, Sling Kickstart Maven Plugin 0.0.8 (23rd) 
+* Scripting Core 2.3.4, Scripting HTL Compiler 1.2.8-1.4.0, Scripting HTL Java Compiler 1.2.2-1.4.0, Scripting HTL Engine 1.4.4-1.4.0, Scripting HTL Runtime 1.2.4-1.4.0, HTL Maven Plugin 2.0.2-1.4.0 (29th) 
+* Server Setup Tools 1.0.2, Testing Clients 2.0.4 (27th)
+* API 2.23.0 (26th) 
+* Kickstart Project 0.0.8, Kickstart Maven Plugin 0.0.8 (23rd) 
 * JCR Oak Server 1.2.8 (14th)
 * Testing Sling Mock 2.6.2, OSGi Feature Maven Plugin 1.3.16, Feature Model Launcher 1.1.6, Feature Model 1.2.8, Content-Package to Feature Model Converter 1.0.14 (14th)
 * Feature Model Analyser 1.3.8 (8th)
