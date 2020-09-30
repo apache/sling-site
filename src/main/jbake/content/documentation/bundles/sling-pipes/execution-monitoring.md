@@ -100,7 +100,15 @@ in there for sample gogo commands for [99 bottles of beer](https://github.com/np
 
 ### HTTP API
 
+#### Build & Run Pipe from command line
+
+now you can run same commands as gogo commands directly from your command line tool, using either 
+pipe_cmd parameter and `echo /content | write child/foo=bar` value. Either you can use `pipe_cmdfile` with several 
+pipes in there. In that case `cmd_line_N` where `N` is the nth effective pipe of your script is a binding added
+with the corresponding pipe path (useful for using reference pipes).  
+
 #### Pipe HTTP Request bits 
+If the pipe already exists in your repository you can run it following up below constraints 
 
 | request bit | Explanation |
 |---|---|

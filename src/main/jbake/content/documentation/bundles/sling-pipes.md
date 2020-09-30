@@ -25,6 +25,10 @@ this is enough to persist a pipe in `/etc/demo` that is executable as http, java
 You can monitor it with JMX, logs, http, you'll have dry run possibility of that execution for example, or asynchronous execution. 
 You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the `PipeModel`
 
+or, if you are testing things from the command line, using a curl script named "pipe"
+
+        pipe "$ foo/bar | write id 3" 
+
 you can check some introductions at different adaptTo presentations:
 
 ## AdaptTo introductions

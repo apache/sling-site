@@ -4,8 +4,11 @@ status=published
 tags=pipes
 ~~~~~~
 
-in order to make things interesting, most of the configuration strings are javascript template 
-strings, hence valid js expressions reusing bindings (from configuration, or other pipes).
+in order to make things interesting, most of the configuration strings are expressions 
+strings, hence valid JEXL expressions reusing bindings (from configuration, or other pipes). 
+They work the same as JS expressions, except you can't add full JS files. 
+
+You can also set whatever scripting engine you want per pipe (including nashorn, rhino, groovy, ...)
 
 ## configuration expression
 
