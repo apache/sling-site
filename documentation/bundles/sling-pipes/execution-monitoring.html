@@ -204,7 +204,10 @@
 <p>when installing pipes bundle, <a href="http://felix.apache.org/documentation/subprojects/apache-felix-gogo.html">apache felix gogo</a> commands are exposed to the console that allow you to - build (pipe:build or just build if no other command) - run (pipe:run or just run if no other command) - execute (pipe:execute or just execute if no other command) - and print help on how to use the above</p>
 <p>the pipe is here represented as <code>/</code> character as <code>|</code> is already used by gogo console, an heavy usage of the gogo console is made in the <a href="http://localhost:8820/documentation/bundles/sling-pipes.html#adaptto-introductions">main page videos</a>, or you can direcly check in there for sample gogo commands for <a href="https://github.com/npeltier/99-bottles-of-beers-with-sling">99 bottles of beer</a> sample.</p>
 <h3><a href="#http-api" id="http-api">HTTP API</a></h3>
+<h4><a href="#build-run-pipe-from-command-line" id="build-run-pipe-from-command-line">Build &amp; Run Pipe from command line</a></h4>
+<p>now you can run same commands as gogo commands directly from your command line tool, using either pipe_cmd parameter and <code>echo /content | write child/foo=bar</code> value. Either you can use <code>pipe_cmdfile</code> with several pipes in there. In that case <code>cmd_line_N</code> where <code>N</code> is the nth effective pipe of your script is a binding added with the corresponding pipe path (useful for using reference pipes).</p>
 <h4><a href="#pipe-http-request-bits" id="pipe-http-request-bits">Pipe HTTP Request bits</a></h4>
+<p>If the pipe already exists in your repository you can run it following up below constraints</p>
 <table>
 <thead>
 <tr><th> request bit </th><th> Explanation </th></tr>
@@ -269,7 +272,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Mon Oct 8 17:09:17 2018 +0200</span>
+                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Wed Sep 30 16:12:41 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>

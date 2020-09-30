@@ -124,6 +124,9 @@
 <pre><code>    plumber.newPipe(resolver).$(&quot;foo/bar&quot;).write(&quot;id&quot;,3).build(&quot;/etc/demo&quot;)
 </code></pre>
 <p>this is enough to persist a pipe in <code>/etc/demo</code> that is executable as http, java, groovy console script, or JMX. You can monitor it with JMX, logs, http, you'll have dry run possibility of that execution for example, or asynchronous execution. You could also use a pipe to create a java-free json or csv servlet, or a list component whose list possibilities are pipes accessed through the <code>PipeModel</code></p>
+<p>or, if you are testing things from the command line, using a curl script named &quot;pipe&quot;</p>
+<pre><code>    pipe &quot;$ foo/bar | write id 3&quot; 
+</code></pre>
 <p>you can check some introductions at different adaptTo presentations:</p>
 <h2><a href="#adaptto-introductions" id="adaptto-introductions">AdaptTo introductions</a></h2>
 <p>some presentations were made at the adaptTo conference, last two were:</p>
@@ -169,7 +172,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Stefan Popescu</span> on <span class="comment">Mon Oct 8 19:28:20 2018 +0300</span>
+                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Wed Sep 30 16:12:41 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
