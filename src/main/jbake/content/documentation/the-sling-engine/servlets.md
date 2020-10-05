@@ -283,6 +283,11 @@ Finally, if not even a registered default Servlet may be resolved for the reques
 * If an `NonExistingResource` was created for the request the `DefaultServlet` sends a 404 (Not Found)
 * Otherwise the `DefaultServlet` sends a 500 (Internal Server Error), because normally at least a `NonExistingResource` should be created
 
+## Bundled Scripts
+
+Version 2.7.0 of the `org.apache.sling.servlets.resolver` bundle supports providing immutable scripts via OSGi bundles and optionally precompiling them.
+
+See [that module's README file](https://github.com/apache/sling-org-apache-sling-servlets-resolver) for more information.
 
 ## OptingServlet interface
 
