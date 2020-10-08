@@ -6,7 +6,12 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2020
+
+* Scripting FreeMarker 1.0.4 (8th) 
+
 ## September 2020
+
 * Scripting Core 2.3.4, Scripting HTL Compiler 1.2.8-1.4.0, Scripting HTL Java Compiler 1.2.2-1.4.0, Scripting HTL Engine 1.4.4-1.4.0, Scripting HTL Runtime 1.2.4-1.4.0, HTL Maven Plugin 2.0.2-1.4.0 (29th) 
 * Server Setup Tools 1.0.2, Testing Clients 2.0.4 (27th)
 * API 2.23.0 (26th) 
