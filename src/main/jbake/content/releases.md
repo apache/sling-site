@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2020
 
+* GraphQL Core 0.0.6, Scripting HTL Compiler 1.2.10-1.4.0 (9th)
 * Scripting FreeMarker 1.0.4 (8th) 
 
 ## September 2020
