@@ -117,13 +117,64 @@
 <div class="row"><div><section><p>The <code>jackrabbit-accessmanager</code> bundle delivers a REST interface to manipulate users permissions in the JCR. After installing the <code>jackrabbit-accessmanager</code> bundle the REST services are exposed under the path of the node where you will manipulate the permissions for a user with a specific selector like <code>modifyAce</code>, <code>acl</code>, <code>eacl</code> and <code>deleteAce</code>. <!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#privileges" id="privileges">Privileges</a></h2>
-<p>| Name | Description | |--|--| | jcr:read | the privilege to retrieve a node and get its properties and their values | | jcr:readAccessControl | the privilege to get the access control policy of a node | | jcr:modifyProperties | the privilege to create, modify and remove the properties of a node | | jcr:addChildNodes | the privilege to create child nodes of a node | | jcr:removeChildNodes | the privilege to remove child nodes of a node | | jcr:removeNode | the privilege to remove a node | | jcr:write | an aggregate privilege that contains: jcr:modifyProperties  jcr:addChildNodes  jcr:removeNode  jcr:removeChildNodes | | jcr:modifyAccessControl | the privilege to modify the access control policies of a node | | jcr:lockManagement | the privilege to lock and unlock a node | | jcr:versionManagement | the privilege to perform versioning operations on a node | | jcr:nodeTypeManagement | the privilege to add and remove mixin node types and change the primary node type of a node | | jcr:retentionManagement | the privilege to perform retention management operations on a node | | jcr:lifecycleManagement | the privilege to perform lifecycle operations on a node | | jcr:all | an aggregate privilege that contains all predefined privileges |</p>
+<table>
+<thead>
+<tr><th>Name </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td>jcr:read </td><td> the privilege to retrieve a node and get its properties and their values</td></tr>
+<tr><td>jcr:readAccessControl </td><td> the privilege to get the access control policy of a node</td></tr>
+<tr><td>jcr:modifyProperties </td><td> the privilege to create, modify and remove the properties of a node</td></tr>
+<tr><td>jcr:addChildNodes </td><td> the privilege to create child nodes of a node</td></tr>
+<tr><td>jcr:removeChildNodes </td><td> the privilege to remove child nodes of a node</td></tr>
+<tr><td>jcr:removeNode </td><td> the privilege to remove a node</td></tr>
+<tr><td>jcr:write </td><td> an aggregate privilege that contains: jcr:modifyProperties  jcr:addChildNodes  jcr:removeNode  jcr:removeChildNodes</td></tr>
+<tr><td>jcr:modifyAccessControl </td><td> the privilege to modify the access control policies of a node</td></tr>
+<tr><td>jcr:lockManagement </td><td> the privilege to lock and unlock a node</td></tr>
+<tr><td>jcr:versionManagement </td><td> the privilege to perform versioning operations on a node</td></tr>
+<tr><td>jcr:nodeTypeManagement </td><td> the privilege to add and remove mixin node types and change the primary node type of a node</td></tr>
+<tr><td>jcr:retentionManagement </td><td> the privilege to perform retention management operations on a node</td></tr>
+<tr><td>jcr:lifecycleManagement </td><td> the privilege to perform lifecycle operations on a node</td></tr>
+<tr><td>jcr:all </td><td> an aggregate privilege that contains all predefined privileges</td></tr>
+</tbody>
+</table>
 <h2><a href="#add-or-modify-permissions" id="add-or-modify-permissions">Add or modify permissions</a></h2>
 <p>To modify the permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.modifyAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
-<p>| Name | Description | |--|--| | principalId | The id of the user or group to modify the access rights for | | order | The position of the entry within the list (see below for details) | | privilege@[privilege_name] | One param for each privilege to modify.  The value must be either 'granted', 'denied' or 'none'. | | restriction@[restriction_name] | (since 3.0.4) One param for each restriction value.  The same parameter name may be used again for multi-value restrictions.  The value is the target value of the restriction. | | restriction@[restriction_name]@Delete | (since 3.0.4) One param for each restriction to delete.  The parameter value is ignored and can be anything. |</p>
+<table>
+<thead>
+<tr><th>Name </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td>principalId </td><td> The id of the user or group to modify the access rights for</td></tr>
+<tr><td>order </td><td> The position of the entry within the list (see below for details)</td></tr>
+<tr><td>privilege@[privilege_name] </td><td> One param for each privilege to modify.  The value must be either 'granted', 'denied' or 'none'.</td></tr>
+<tr><td>restriction@[restriction_name] </td><td> (since 3.0.4) One param for each restriction value.  The same parameter name may be used again for multi-value restrictions.  The value is the target value of the restriction.</td></tr>
+<tr><td>restriction@[restriction_name]@Delete </td><td> (since 3.0.4) One param for each restriction to delete.  The parameter value is ignored and can be anything.</td></tr>
+</tbody>
+</table>
 <p>The <code>order</code> parameter may have the following values:</p>
-<p>| Value | Description | |--|--| | <code>first</code> | Place the target entry as the first amongst its siblings | | <code>last</code> | Place the target entry as the last amongst its siblings | | <code>before *xyz*</code> | Place the target entry immediately before the sibling whose name is <em>xyz</em> | | <code>after *xyz*</code> | Place the target entry immediately after the sibling whose name is <em>xyz</em> | | numeric | Place the target entry at the indicated numeric place amongst its siblings where <em>0</em> is equivalent to <code>first</code> and <em>1</em> means the second place |</p>
-<p>Responses: | 200 | Success | | 500  | Failure, HTML (or JSON) explains failure. |</p>
+<table>
+<thead>
+<tr><th>Value </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>first</code> </td><td> Place the target entry as the first amongst its siblings</td></tr>
+<tr><td><code>last</code> </td><td> Place the target entry as the last amongst its siblings</td></tr>
+<tr><td><code>before *xyz*</code> </td><td> Place the target entry immediately before the sibling whose name is <em>xyz</em></td></tr>
+<tr><td><code>after *xyz*</code> </td><td> Place the target entry immediately after the sibling whose name is <em>xyz</em></td></tr>
+<tr><td>numeric </td><td> Place the target entry at the indicated numeric place amongst its siblings where <em>0</em> is equivalent to <code>first</code> and <em>1</em> means the second place</td></tr>
+</tbody>
+</table>
+<p>Responses:</p>
+<table>
+<thead>
+<tr><th>Status Code </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td>200 </td><td> Success</td></tr>
+<tr><td>500 </td><td> Failure, HTML (or JSON) explains failure.</td></tr>
+</tbody>
+</table>
 <p>Example with curl:</p>
 <pre><code>curl -FprincipalId=myuser -Fprivilege@jcr:read=granted http://localhost:8080/test/node.modifyAce.html
 </code></pre>
@@ -138,7 +189,25 @@
 </code></pre>
 <h2><a href="#delete-permissions" id="delete-permissions">Delete permissions</a></h2>
 <p>To delete permissions for a node POST a request to <code>/&lt;path-to-the-node&gt;.deleteAce.&lt;html or json&gt;</code>. The following parameters are available:</p>
-<p>Responses: | 200 | Success | | 500  | Failure, HTML (or JSON) explains failure. | Example with curl:</p>
+<table>
+<thead>
+<tr><th>Parameter Name </th><th> Required </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>:applyTo</code> </td><td> yes </td><td> An array of ids of the user or group whose permissions are to be deleted.</td></tr>
+</tbody>
+</table>
+<p>Responses:</p>
+<table>
+<thead>
+<tr><th>Status Code </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td>200 </td><td> Success</td></tr>
+<tr><td>500 </td><td> Failure, HTML (or JSON) explains failure.</td></tr>
+</tbody>
+</table>
+<p>Example with curl:</p>
 <pre><code>curl -F:applyTo=myuser http://localhost:8080/test/node.deleteAce.html
 </code></pre>
 <h2><a href="#get-permissions" id="get-permissions">Get permissions</a></h2>
@@ -162,7 +231,7 @@ See section 16.3 of the JCR 2.0 specification for an explanation of the differen
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">Thu Dec 20 11:13:55 2018 -0800</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">Sun Oct 11 15:16:16 2020 -0700</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
