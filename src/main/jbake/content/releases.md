@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2020
 
+* Server Setup Tools 1.0.4, Testing Clients 2.0.6 (14th)
 * Feature Model Extension API Regions 1.1.10, Commons Johnzon 1.2.6, Parent 40, Bundle Parent 40 (12th)
 * Slingfeature Maven Plugin 1.4.2 (11th)
 * GraphQL Core 0.0.6, Scripting HTL Compiler 1.2.10-1.4.0 (9th)
