@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2020
 
+* Scripting JavaScript 3.1.4 (19th)
 * Slingfeature Maven Plugin 1.4.4 (19th)
 * JCR Base 3.1.6 (15th)
 * Server Setup Tools 1.0.4, Testing Clients 2.0.6 (14th)
