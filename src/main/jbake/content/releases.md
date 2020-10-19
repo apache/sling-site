@@ -14,7 +14,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Feature Model Extension API Regions 1.1.10, Commons Johnzon 1.2.6, Parent 40, Bundle Parent 40 (12th)
 * Slingfeature Maven Plugin 1.4.2 (11th)
 * GraphQL Core 0.0.6, Scripting HTL Compiler 1.2.10-1.4.0 (9th)
-* Scripting FreeMarker 1.0.4 (8th) 
+* Scripting FreeMarker 1.0.4, Models Impl 1.4.14 (8th)
 
 ## September 2020
 
