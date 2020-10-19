@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2020
 
+* Slingfeature Maven Plugin 1.4.4 (19th)
 * JCR Base 3.1.6 (15th)
 * Server Setup Tools 1.0.4, Testing Clients 2.0.6 (14th)
 * Feature Model Extension API Regions 1.1.10, Commons Johnzon 1.2.6, Parent 40, Bundle Parent 40 (12th)
