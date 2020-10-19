@@ -464,7 +464,7 @@ This majority vote is open for at least 72 hours
 <li>update the news page and the download pages</li>
 <li>update the Eclipse Marketplace listing</li>
 </ol>
-<h2><a href="#appendix-a-create-and-add-your-key-to-peopleapacheorg" id="appendix-a-create-and-add-your-key-to-peopleapacheorg">Appendix A: Create and Add your key to people.apache.org</a></h2>
+<h2><a href="#appendix-a-create-and-add-your-key-to-peopleapacheorg-and-httpsdownloadsapacheorgslingkeys" id="appendix-a-create-and-add-your-key-to-peopleapacheorg-and-httpsdownloadsapacheorgslingkeys">Appendix A: Create and Add your key to people.apache.org and https://downloads.apache.org/sling/KEYS</a></h2>
 <p>Considering that you are using a *nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:</p>
 <ol>
 <li>
@@ -515,7 +515,17 @@ ssb   2048R/226BCE00 2016-01-21
 </li>
 </ol>
 </li>
+<li>
+<p>Now add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>, e.g. via</p>
+<pre><code>$ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
+$ cd sling
+$ svn up KEYS
+</code></pre>
+</li>
 </ol>
+<p>Then edit the <code>KEYS</code> file with your favourite editor and afterwards</p>
+<pre><code>    $ svn commit -m &quot;my key added&quot; KEYS
+</code></pre>
 <h2><a href="#appendix-b-deploy-maven-plugin-documentation-if-applicable" id="appendix-b-deploy-maven-plugin-documentation-if-applicable">Appendix B: Deploy Maven plugin documentation (if applicable)</a></h2>
 <p>When releasing a Maven plugin, the Maven-generated documentation published under <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a> needs to be updated.</p>
 <p>This is currently supported for:</p>
@@ -564,7 +574,7 @@ ssb   2048R/226BCE00 2016-01-21
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Jan 15 10:14:55 2020 +0100</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Oct 19 12:43:43 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
