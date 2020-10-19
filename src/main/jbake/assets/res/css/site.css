@@ -48,6 +48,7 @@ a:hover {
 
 .main {
     border-top: 10px solid #cde0ea;
+    max-width: 1000px;
 }
 
 

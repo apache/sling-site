@@ -266,7 +266,10 @@ releases which are just announced on our [news](/news.html) page.
     
     The Apache Sling team is pleased to announce the release of Apache Sling ABC version X.Y.Z
     
-    Apache Sling is a web framework that uses a Java Content Repository, such as Apache Jackrabbit, to store and manage content. Sling applications use either scripts or Java servlets, selected based on simple name conventions, to process HTTP requests in a RESTful way.
+    Apache Sling is a web framework that uses a Java Content Repository, such as Apache 
+    Jackrabbit, to store and manage content.  Sling applications use either scripts or 
+    Java servlets, selected based on simple name conventions, to process HTTP requests 
+    in a RESTful way.
     
     <<insert short description of the sub-project>>
     
