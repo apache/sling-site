@@ -385,7 +385,7 @@ Once the release has passed, the following must be done:
 1. update the news page and the download pages
 1. update the Eclipse Marketplace listing
 
-## Appendix A: Create and Add your key to people.apache.org
+## Appendix A: Create and Add your key to people.apache.org and https://downloads.apache.org/sling/KEYS
 
 Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:
 
@@ -428,6 +428,17 @@ Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and
     
             $ gpg --keyserver pool.sks-keyservers.net --send-key <key-id>
         
+1. Now add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>, e.g. via 
+
+        $ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
+        $ cd sling
+        $ svn up KEYS
+
+   Then edit the `KEYS` file with your favourite editor and afterwards
+   
+        $ svn commit -m "my key added" KEYS
+
+
 ## Appendix B: Deploy Maven plugin documentation (if applicable)
 
 When releasing a Maven plugin, the Maven-generated documentation published under [http://sling.apache.org/components/](http://sling.apache.org/components/) needs
