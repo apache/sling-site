@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2020
 
+* JCR Jackrabbit User Manager 2.2.12, JCR Jackrabbit Access Manager 3.0.8 (19th)
 * Scripting JavaScript 3.1.4 (19th)
 * Slingfeature Maven Plugin 1.4.4 (19th)
 * JCR Base 3.1.6 (15th)
