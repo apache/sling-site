@@ -398,18 +398,6 @@ Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and
 
     When gpg asks for e-mail linked the key you *MUST USE* the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY"
 
-1. Add the key to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc)
-
-    1. Type the following command replacing the word `<e-mail>` with your Apache's one (&lt;committer&gt;@apache.org) to get the key signature
-    
-            $ gpg --fingerprint <e-mail>
-            
-        The key signature is in the output following the `Key fingerprint = ` part.
-       
-    1. Add the key signature into the field 'OpenPGP Public Key Primary Fingerprint' in your profile at [https://id.apache.org](https://id.apache.org).
-    
-    1. You are *DONE*, but to see the changes on [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc) you may need to wait a few hours;
-
 1. You also have to add your public key either on `pool.sks-keyservers.net` or `pgp.mit.edu` (for the staging repository). To do so you can follow these steps:
     1. Extract the key id from all the secret keys stored in the system:
 
@@ -430,8 +418,20 @@ Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and
     1. Send the key towards e.g. `pool.sks-keyservers.net` via
     
             $ gpg --keyserver pool.sks-keyservers.net --send-key <key-id>
+
+1. Add the key to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc)
+
+    1. Type the following command replacing the word `<e-mail>` with your Apache's one (&lt;committer&gt;@apache.org) to get the key signature
+    
+            $ gpg --fingerprint <e-mail>
+            
+        The key signature is in the output following the `Key fingerprint = ` part.
+       
+    1. Add the key signature into the field 'OpenPGP Public Key Primary Fingerprint' in your profile at [https://id.apache.org](https://id.apache.org).
+    
+    1. You are *DONE*, but to see the changes on [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc) you may need to wait a few hours;
         
-1. Now add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>, e.g. via 
+1. Now send an email to dev@sling.apache.org requesting a PMC member to add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>, e.g. via 
 
         $ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
         $ cd sling
