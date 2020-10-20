@@ -477,23 +477,6 @@ This majority vote is open for at least 72 hours
 <p>When gpg asks for e-mail linked the key you <em>MUST USE</em> the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you <em>SHOULD USE</em> &quot;CODE SIGNING KEY&quot;</p>
 </li>
 <li>
-<p>Add the key to <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a></p>
-<ol>
-<li>
-<p>Type the following command replacing the word <code>&lt;e-mail&gt;</code> with your Apache's one (&lt;committer&gt;@apache.org) to get the key signature</p>
-<pre><code>$ gpg --fingerprint &lt;e-mail&gt;
-</code></pre>
-<p>The key signature is in the output following the <code>Key fingerprint =</code> part.</p>
-</li>
-<li>
-<p>Add the key signature into the field 'OpenPGP Public Key Primary Fingerprint' in your profile at <a href="https://id.apache.org">https://id.apache.org</a>.</p>
-</li>
-<li>
-<p>You are <em>DONE</em>, but to see the changes on <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a> you may need to wait a few hours;</p>
-</li>
-</ol>
-</li>
-<li>
 <p>You also have to add your public key either on <code>pool.sks-keyservers.net</code> or <code>pgp.mit.edu</code> (for the staging repository). To do so you can follow these steps:</p>
 <ol>
 <li>
@@ -519,7 +502,24 @@ ssb   2048R/226BCE00 2016-01-21
 </ol>
 </li>
 <li>
-<p>Now add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>, e.g. via</p>
+<p>Add the key to <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a></p>
+<ol>
+<li>
+<p>Type the following command replacing the word <code>&lt;e-mail&gt;</code> with your Apache's one (&lt;committer&gt;@apache.org) to get the key signature</p>
+<pre><code>$ gpg --fingerprint &lt;e-mail&gt;
+</code></pre>
+<p>The key signature is in the output following the <code>Key fingerprint =</code> part.</p>
+</li>
+<li>
+<p>Add the key signature into the field 'OpenPGP Public Key Primary Fingerprint' in your profile at <a href="https://id.apache.org">https://id.apache.org</a>.</p>
+</li>
+<li>
+<p>You are <em>DONE</em>, but to see the changes on <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a> you may need to wait a few hours;</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Now send an email to dev@sling.apache.org requesting a PMC member to add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>, e.g. via</p>
 <pre><code>$ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
 $ cd sling
 $ svn up KEYS
@@ -577,7 +577,7 @@ $ svn up KEYS
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Cris Rockwell</span> on <span class="comment">Mon Oct 19 14:19:17 2020 -0400</span>
+                        Last modified by <span class="author">Cris Rockwell</span> on <span class="comment">Mon Oct 19 14:29:19 2020 -0400</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
