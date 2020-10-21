@@ -117,7 +117,7 @@
 <div class="row"><div><section><p>This is an overview of the Sling bundles that provide support for server-side JUnit tests.</p>
 <p>The Maven modules below <a href="https://github.com/apache/sling-samples/tree/master/testing"><code>sling-samples/testing</code></a> provide different examples including HTTP-based and server-side teleported tests in a bundle module, running against a full Sling instance setup in the same Maven module.</p>
 <h2><a href="#orgapacheslingjunitcore-server-side-junit-tests-support" id="orgapacheslingjunitcore-server-side-junit-tests-support">org.apache.sling.junit.core: server-side JUnit tests support</a></h2>
-<p>This bundle provides a <code>JUnitServlet</code> that runs JUnit tests found in bundles.</p>
+<p>This bundle provides a <code>JUnitServlet</code> that runs JUnit tests found in bundles. Both JUnit 4 tests and (optionally) JUnit 5 tests (aka Jupiter) are supported.</p>
 <div class="warning">
 Note that the JUnitServlet does not require authentication, so it would allow any client to run tests. The servlet can be disabled by configuration if needed, but in general the `/system` path should not be accessible to website visitors anyway.
 </div>
@@ -127,6 +127,54 @@ For tighter integration with Sling, the alternate `SlingJUnitServlet` is registe
 <p>To make tests available to that servlet, the bundle that contains them must point to them with a <code>Sling-Test-Regexp</code> bundle header that defines a regular expression that matches the test class names, like for example:</p>
 <pre><code>Sling-Test-Regexp=com.example.*ServerSideTest
 </code></pre>
+<h3><a href="#junit-4-support" id="junit-4-support">JUnit 4 Support</a></h3>
+<p>All that is required is the installation of the the Apache Sling JUnit Core bundle. The bundle exports the packages <code>junit.*</code>, <code>org.junit.*</code> and additionally <code>org.hamcrest.*</code>.</p>
+<p>Note however that the <code>org.junit.platform.*</code> packages, which contain the generic testing platform developed for JUnit 5, are NOT exported.</p>
+<p>If you want to run JUnit 4 tests side-by-side with JUnit 5 tests, please refer to the next section.</p>
+<h3><a href="#junit-5-support-since-version-110" id="junit-5-support-since-version-110">JUnit 5 Support (since version 1.1.0)</a></h3>
+<p>The Apache Sling JUnit Core bundle has a number of optional imports. JUnit 5 support is automatically enabled when these optional imports are satisfied.</p>
+<p>Note that a restart of the Apache Sling JUnit Core bundle is required if the optional dependencies are installed after the bundle was resolved.</p>
+<p>The next sections provide a high level overview of the JUnit 5 architecture and list the additional bundles that must be deployed in order to run tests on the JUnit Platform.</p>
+<h4><a href="#background-on-junit-5" id="background-on-junit-5">Background on JUnit 5</a></h4>
+<p>JUnit 5 is composed of three main components, each of which is composed of several bundles:</p>
+<blockquote>
+<p><strong>JUnit 5 = <em>JUnit Platform</em> + <em>JUnit Jupiter</em> + <em>JUnit Vintage</em></strong></p>
+</blockquote>
+<p>Source: <a href="https://junit.org/junit5/docs/current/user-guide/#overview-what-is-junit-5">JUnit 5 User Guide - What is JUnit 5?</a></p>
+<p><a href="#junit-platform">JUnit Platform</a>: a generic platform for launching testing frameworks that defines the <code>TestEngine</code> API, an extension point for hooking in arbitrary ways of describing tests.</p>
+<p><a href="#bundles-for-the-junit-jupiter-engine-junit-5">JUnit Jupiter</a>: a <code>TestEngine</code> that can run Jupiter based tests  on the platform. I.e. it runs tests that are coloquially referred to as JUnit 5 tests.</p>
+<p><a href="#bundles-for-the-junit-vintage-engine-junit-4">JUnit Vintage</a>: a <code>TestEngine</code> that can run JUnit 3 and JUnit 4 based tests on the platform.</p>
+<h4><a href="#junit-platform" id="junit-platform">JUnit Platform</a></h4>
+<p>The optional imports of the Apache Sling JUnit Core bundle are for the JUnit Platform. The bundle is agnostic of the actual <code>TestEngine</code> implementations.The following four bundles need to be deployed:</p>
+<ul>
+<li>org.opentest4j:opentest4j</li>
+<li>org.junit.platform:junit-platform-commons</li>
+<li>org.junit.platform:junit-platform-engine</li>
+<li>org.junit.platform:junit-platform-launcher</li>
+</ul>
+<div class="note">
+Note: `junit-platform-commons` version 1.7.0 cannot be deployed using Sling's OSGi Installer, due to [junit5 issue #2438](https://github.com/junit-team/junit5/issues/2438). Other JUnit5 bundles _may_ be affected by the same issue.
+</div> 
+<p>However, in order to run tests at least one implementation of <code>org.junit.platform.engine.TestEngine</code> needs to be available. Both <a href="#bundles-for-the-junit-jupiter-engine-junit-5">JUnit Jupiter</a> and <a href="#bundles-for-the-junit-vintage-engine-junit-4">JUnit Vintage</a> provide a test engine, so at least one of the two needs to be deployed.</p>
+<p>Custom or other other 3rd party <code>TestEngine</code> implementations should be able to hook in transparently, provided they are advertised using Java's <code>ServiceLoader</code> mechanism. Apache Sling Junit Core takes care of detecting test engines in other installed bundles and automatically makes them available for test execution.</p>
+<h4><a href="#bundles-for-the-junit-jupiter-engine-junit-5" id="bundles-for-the-junit-jupiter-engine-junit-5">Bundles for the JUnit Jupiter Engine (JUnit 5)</a></h4>
+<p>The JUnit Jupiter engine enables the new Jupiter style (or JUnit 5 style) for writing unit tests.</p>
+<p>In addition to the <a href="#junit-platform">JUnit Platform bundles</a> the following bundles need to be deployed:</p>
+<ul>
+<li>org.junit.jupiter:junit-jupiter-api</li>
+<li>org.junit.jupiter:junit-jupiter-engine</li>
+<li>(optional) org.junit.jupiter:junit-jupiter-params</li>
+<li>(optional) org.junit.jupiter:junit-jupiter-migrationsupport</li>
+</ul>
+<h4><a href="#bundles-for-the-junit-vintage-engine-junit-4" id="bundles-for-the-junit-vintage-engine-junit-4">Bundles for the JUnit Vintage Engine (JUnit 4)</a></h4>
+<p>The JUnit Vintage engine provides a backwards compatibility layer to allow running JUnit 4 tests on the new JUnit Platform.</p>
+<p>In addition to the <a href="#junit-platform">JUnit Platform bundles</a> the following bundle needs to be deployed:</p>
+<ul>
+<li>org.junit.vintage:junit-vintage-engine</li>
+</ul>
+<div class="note">
+Note: the JUnit Vintage engine is only required if JUnit 4 and JUnit 5 tests should be executed side-by-side. For plain JUnit 4 support _only_ the Apache Sling JUnit Core bundle needs to be installed. For plain Jupiter (or JUnit 5) tests, see [JUnit Jupiter](#bundles-for-the-junit-jupiter-engine-junit-5).
+</div> 
 <h3><a href="#the-teleporterrule" id="the-teleporterrule">The TeleporterRule</a></h3>
 <p>The <code>TeleporterRule</code> supplied by this bundle (since V1.0.12) makes it easy to write such tests, as it takes care of all the mechanics of</p>
 <ol>
@@ -256,7 +304,7 @@ TEST_PASSED
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Fri Mar 6 16:30:54 2020 +0100</span>
+                        Last modified by <span class="author">Julian Sedding</span> on <span class="comment">Wed Oct 21 12:05:13 2020 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
