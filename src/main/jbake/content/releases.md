@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2020
 
+* JCR Oak Server 1.2.10 (24th)
 * Models Implementation 1.4.16 (23rd)
 * JUnit Core 1.1.0 (20th)
 * JCR Jackrabbit User Manager 2.2.12, JCR Jackrabbit Access Manager 3.0.8 (19th)
