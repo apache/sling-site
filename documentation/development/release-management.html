@@ -519,14 +519,14 @@ ssb   2048R/226BCE00 2016-01-21
 </ol>
 </li>
 <li>
-<p>Now send an email to dev@sling.apache.org requesting a PMC member to add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>, e.g. via</p>
+<p>Now add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>. This is only possible for PMC members (for a reasoning look at <a href="http://www.apache.org/dev/release.html#upload-ci">http://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via</p>
 <pre><code>$ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
 $ cd sling
 $ svn up KEYS
 </code></pre>
 </li>
 </ol>
-<p>Then edit the <code>KEYS</code> file with your favourite editor and afterwards</p>
+<p>Add the public key to <code>KEYS</code> file with your favourite editor and afterwards</p>
 <pre><code>    $ svn commit -m &quot;my key added&quot; KEYS
 </code></pre>
 <h2><a href="#appendix-b-deploy-maven-plugin-documentation-if-applicable" id="appendix-b-deploy-maven-plugin-documentation-if-applicable">Appendix B: Deploy Maven plugin documentation (if applicable)</a></h2>
@@ -577,7 +577,7 @@ $ svn up KEYS
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Cris Rockwell</span> on <span class="comment">Mon Oct 19 14:29:19 2020 -0400</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Oct 27 16:07:42 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>

@@ -122,15 +122,15 @@
 <h1><a href="#best-location-for-health-checks" id="best-location-for-health-checks">Best location for Health Checks</a></h1>
 <p>It is best practice to place health check next to the functionality they check. Also documentation of those check should be provided along with the documentation of the functionality.</p>
 <p>The below checks are exceptions to that rule as they are generic in what they check (but still require Sling features, that's whey they are not in Apache Felix).</p>
-<h1><a href="#apache-sling-health-check-support-module" id="apache-sling-health-check-support-module">Apache Sling Health Check Support Module</a></h1>
+<h1><a href="#apache-sling-health-check-support-bundle" id="apache-sling-health-check-support-bundle">Apache Sling Health Check Support Bundle</a></h1>
 <table>
 <thead>
 <tr><th>Check </th><th> PID </th><th> Factory </th><th> Description</th></tr>
 </thead>
 <tbody>
-<tr><td>Default Logins Check </td><td> org.apache.sling.hc.support.DefaultLoginsHealthCheck </td><td> yes </td><td> Set a list of default logins in config array <code>logins</code> separed by <code>:</code>, e.g. <code>author:author</code></td></tr>
-<tr><td>Scripted Check </td><td> org.apache.felix.hc.generalchecks.ScriptedHealthCheck </td><td> yes </td><td> Allows to run an arbitrary script in the same way as the Scripted Check from from Apache Felix bundle <a href="https://github.com/apache/felix/blob/trunk/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box">general checks</a>, except that this check allows to use files being loaded from JCR by using a <code>scriptUrl</code> with prefix <code>jcr:</code>, e.g. <code>jcr:/apps/ops/my-custom-check.groovy</code></td></tr>
-<tr><td>Request Status Health Check </td><td> <em>Deprecated</em> </td><td>  </td><td> Use instead the corresponding check from <a href="https://github.com/apache/felix/blob/trunk/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box">general checks</a></td></tr>
+<tr><td>Default Logins Check </td><td> org.apache.sling.hc.support.DefaultLoginsHealthCheck </td><td> yes </td><td> Set a list of default logins in config array <code>logins</code> separated by <code>:</code>, e.g. <code>author:author</code></td></tr>
+<tr><td>Scripted Check </td><td> org.apache.sling.hc.support.impl.ScriptedHealthCheck </td><td> yes </td><td> Allows to run an arbitrary script in the same way as the Scripted Check <code>org.apache.felix.hc.generalchecks.ScriptedHealthCheck</code> from Apache Felix bundle <a href="https://github.com/apache/felix-dev/blob/master/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box">general checks</a>, except that this check allows to use files being loaded from JCR by using a <code>scriptUrl</code> with prefix <code>jcr:</code>, e.g. <code>jcr:/apps/ops/my-custom-check.groovy</code></td></tr>
+<tr><td>Request Status Health Check </td><td> <em>Deprecated</em> </td><td>  </td><td> Use instead the corresponding check from <a href="https://github.com/apache/felix-dev/blob/master/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box">general checks</a></td></tr>
 </tbody>
 </table>
 <h1><a href="#health-checks-as-server-side-junit-tests" id="health-checks-as-server-side-junit-tests">Health Checks as server-side JUnit tests</a></h1>
@@ -146,7 +146,7 @@ remote testing utilities, and also as plain Health Checks for monitoring or trou
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">georg.henzler</span> on <span class="comment">Wed Apr 3 20:32:51 2019 +0200</span>
+                        Last modified by <span class="author">georg.henzler</span> on <span class="comment">Tue Oct 27 23:34:03 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
