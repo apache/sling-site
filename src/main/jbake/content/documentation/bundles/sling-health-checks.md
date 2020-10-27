@@ -12,13 +12,13 @@ It is best practice to place health check next to the functionality they check. 
 
 The below checks are exceptions to that rule as they are generic in what they check (but still require Sling features, that's whey they are not in Apache Felix).
 
-# Apache Sling Health Check Support Module
+# Apache Sling Health Check Support Bundle
 
 Check | PID | Factory | Description  
 --- | --- | --- | ---
-Default Logins Check | org.apache.sling.hc.support.DefaultLoginsHealthCheck | yes | Set a list of default logins in config array `logins` separed by `:`, e.g. `author:author` 
-Scripted Check | org.apache.felix.hc.generalchecks.ScriptedHealthCheck | yes | Allows to run an arbitrary script in the same way as the Scripted Check from from Apache Felix bundle [general checks](https://github.com/apache/felix/blob/trunk/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box), except that this check allows to use files being loaded from JCR by using a `scriptUrl` with prefix `jcr:`, e.g. `jcr:/apps/ops/my-custom-check.groovy`
-Request Status Health Check | *Deprecated* |  | Use instead the corresponding check from [general checks](https://github.com/apache/felix/blob/trunk/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box)
+Default Logins Check | org.apache.sling.hc.support.DefaultLoginsHealthCheck | yes | Set a list of default logins in config array `logins` separated by `:`, e.g. `author:author` 
+Scripted Check | org.apache.sling.hc.support.impl.ScriptedHealthCheck | yes | Allows to run an arbitrary script in the same way as the Scripted Check `org.apache.felix.hc.generalchecks.ScriptedHealthCheck` from Apache Felix bundle [general checks](https://github.com/apache/felix-dev/blob/master/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box), except that this check allows to use files being loaded from JCR by using a `scriptUrl` with prefix `jcr:`, e.g. `jcr:/apps/ops/my-custom-check.groovy`
+Request Status Health Check | *Deprecated* |  | Use instead the corresponding check from [general checks](https://github.com/apache/felix-dev/blob/master/healthcheck/README.md#general-purpose-health-checks-available-out-of-the-box)
 
 # Health Checks as server-side JUnit tests
 The `org.apache.sling.hc.junit.bridge` bundle makes selected Health Checks available as server-side JUnit tests. 
