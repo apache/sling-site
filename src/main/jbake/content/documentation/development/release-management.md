@@ -431,13 +431,13 @@ Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and
     
     1. You are *DONE*, but to see the changes on [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc) you may need to wait a few hours;
         
-1. Now send an email to dev@sling.apache.org requesting a PMC member to add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>, e.g. via 
+1. Now add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>. This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via
 
         $ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
         $ cd sling
         $ svn up KEYS
 
-   Then edit the `KEYS` file with your favourite editor and afterwards
+   Add the public key to `KEYS` file with your favourite editor and afterwards
    
         $ svn commit -m "my key added" KEYS
 
