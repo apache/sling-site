@@ -4,7 +4,7 @@ status=published
 tags=karaf
 ~~~~~~
 
-**NOTE:** Tested and built with Apache Karaf 4.2.0
+**NOTE:** Tested and built with Apache Karaf 4.3.0
 
 ## Sling Karaf Features
 
@@ -35,12 +35,16 @@ A [distribution](https://karaf.apache.org/manual/latest/#_custom_distributions) 
 
     karaf@root()> feature:repo-add mvn:org.apache.sling/org.apache.sling.karaf-features/0.1.1-SNAPSHOT/xml/features
 
-3) Install a Sling Quickstart feature, e.g. `sling-quickstart-oak-tar` or `sling-quickstart-oak-mongo` (requires a running and configured MongoDB):
+3) Sling requires OSGi R7 [Http Service](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.html) and [Http Whiteboard Service](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html), e.g. [Apache Felix HTTP Service](https://github.com/apache/felix-dev/tree/master/http):
+
+    karaf@root()> feature:install felix-http
+
+4) Install a Sling Quickstart feature, e.g. `sling-quickstart-oak-tar` or `sling-quickstart-oak-mongo` (requires a running and configured MongoDB):
 
     karaf@root()> feature:install sling-quickstart-oak-tar
 
-4) Install Starter Content (feature includes [Composum](https://github.com/ist-dresden/composum)):
+5) Install Starter Content (feature includes [Composum](https://github.com/ist-dresden/composum)):
 
     karaf@root()> feature:install sling-starter-content
 
-5) Browse to [http://localhost:8181/](http://localhost:8181/⁠).
+6) Browse to [http://localhost:8181/](http://localhost:8181/).
