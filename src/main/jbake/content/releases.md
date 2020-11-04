@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2020
+
+* Sling Kickstart Launcher 0.0.12 (3rd)
+
 ## October 2020
 
 * JCR Oak Server 1.2.10 (24th)

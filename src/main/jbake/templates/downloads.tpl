@@ -170,7 +170,7 @@ def bundles=[
   "JUnit Scriptable Tests Provider|org.apache.sling.junit.scriptable|1.0.12|Y|jar",
   "JUnit Tests Teleporter|org.apache.sling.junit.teleporter|1.0.22|Y|jar",
   "JUnit Health Checks|org.apache.sling.junit.healthcheck|1.0.6|Y|jar",
-  "Kickstart Project|org.apache.sling.kickstart|0.0.8|Y|jar",
+  "Kickstart Project|org.apache.sling.kickstart|0.0.12|Y|jar",
   "Launchpad API|org.apache.sling.launchpad.api|1.2.0|Y|jar",
   "Launchpad Base|org.apache.sling.launchpad.base|6.0.2-2.6.36|Y|jar",
   "Launchpad Base - Application Launcher|org.apache.sling.launchpad.base|6.0.2-2.6.36|Y|war",
