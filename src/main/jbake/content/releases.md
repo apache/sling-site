@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2020
 
+* Sling JCR ContentLoader 2.4.0 (6th)
 * Sling Kickstart Launcher 0.0.12 (3rd)
 
 ## October 2020
