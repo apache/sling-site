@@ -7,7 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## November 2020
-                         
+
+* GraphQL Core 0.0.8 (9th)      
 * XSS Protection API 2.2.8 (9th)
 * Sling JCR ContentLoader 2.4.0 (6th)
 * Sling Kickstart Launcher 0.0.12 (3rd)
