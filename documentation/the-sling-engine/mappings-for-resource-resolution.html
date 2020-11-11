@@ -275,9 +275,9 @@ for (String segment: segments) {
 <p>The placeholders have this format: <strong>$['type':'name';default='default value']</strong>.</p>
 <p>The type can be:</p>
 <ul>
-<li><strong>env</strong>: take from the System Properties</li>
-<li><strong>prop</strong>: taken from the Bundle Context Properties</li>
-<li>otherwise: taken from the String Interpolation Configuration</li>
+<li><strong>env</strong>: taken from the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-">Environment Variables</a></li>
+<li><strong>prop</strong>: taken from the <a href="https://docs.osgi.org/javadoc/r6/core/org/osgi/framework/BundleContext.html#getProperty(java.lang.String)">Bundle Context Properties</a> (first evaluates OSGi Framework Properties, then System Properties)</li>
+<li><strong>config</strong>: taken from the String Interpolation Configuration</li>
 </ul>
 <p>With this it is possible to create a single set of <code>/etc/map</code> definitions and then adjust the actual values of an instance by an OSGi configuration.</p>
 <p><strong>Note</strong>: the placeholder <strong>must be placed</strong> into a <strong>sling:match</strong> entry and cannot be the JCR Node name, as some of the characters are not allowed.</p>
@@ -371,7 +371,7 @@ for (String segment: segments) {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">Wed Aug 26 11:24:38 2020 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Wed Nov 11 19:55:39 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
