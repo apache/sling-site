@@ -187,9 +187,9 @@ The placeholders have this format: **$['type':'name';default='default value']**.
 
 The type can be:
 
- * **env**: take from the System Properties
- * **prop**: taken from the Bundle Context Properties
- * otherwise: taken from the String Interpolation Configuration
+ * **env**: taken from the [Environment Variables](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
+ * **prop**: taken from the [Bundle Context Properties](https://docs.osgi.org/javadoc/r6/core/org/osgi/framework/BundleContext.html#getProperty(java.lang.String)) (first evaluates OSGi Framework Properties, then System Properties) 
+ * **config**: taken from the String Interpolation Configuration
 
 With this it is possible to create a single set of `/etc/map` definitions and then adjust the actual values of an instance by an OSGi configuration.
 
