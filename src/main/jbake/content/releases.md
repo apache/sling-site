@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2020
 
+* Settings 1.4.2 (15th)
 * GraphQL Core 0.0.8 (9th)      
 * XSS Protection API 2.2.8 (9th)
 * Sling JCR ContentLoader 2.4.0 (6th)
