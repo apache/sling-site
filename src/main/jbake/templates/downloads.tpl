@@ -50,7 +50,8 @@ def bndPlugins=[
 
 def bundles=[
   "Adapter|org.apache.sling.adapter|2.1.10|Y|jar",
-  "Adapter Annotations (JSON)|adapter-annotations|1.0.0|Y|jar",
+  "Adapter Annotations (JSON) 1.x|adapter-annotations|1.0.0|Y|jar",
+  "Adapter Annotations 2.x|org.apache.sling.adapter.annotations|2.0.0|Y|jar",
   "API|org.apache.sling.api|2.23.0|Y|jar",
   "Auth Core|org.apache.sling.auth.core|1.5.0|Y|jar",
   "Form Based Authentication|org.apache.sling.auth.form|1.0.20|Y|jar",

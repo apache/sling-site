@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2020
 
+* Adapter Annotations 2.0.0 (16th)
 * Settings 1.4.2 (15th)
 * GraphQL Core 0.0.8 (9th)      
 * XSS Protection API 2.2.8 (9th)
