@@ -217,7 +217,7 @@ def bundles=[
   "Scripting Bundle Tracker|org.apache.sling.scripting.bundle.tracler|0.1.0|Y|jar",
   "Scripting Console|org.apache.sling.scripting.console|1.0.0|Y|jar",
   "Scripting Core|org.apache.sling.scripting.core|2.3.4|Y|jar",
-  "Scripting EL API Wrapper|org.apache.sling.scripting.el-api|1.0.2|Y|jar",
+  "Scripting EL API Wrapper|org.apache.sling.scripting.el-api|1.0.4|Y|jar",
   "Scripting Java|org.apache.sling.scripting.java|2.1.2|Y|jar",
   "Scripting JavaScript|org.apache.sling.scripting.javascript|3.1.4|Y|jar",
   "Scripting JSP|org.apache.sling.scripting.jsp|2.5.0|Y|jar",
