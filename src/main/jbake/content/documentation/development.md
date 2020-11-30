@@ -60,4 +60,5 @@ Last but not least, here is some more information on how we ourselves are workin
 * [Release Management](/documentation/development/release-management.html)
 * [Deprecating Sling Modules](/documentation/development/deprecating-sling-modules.html)
 * [Maven Usage](/documentation/development/maven-usage.html)
+* [Build Setup](/project-information.html#continuous-integration) 
 * To run our integration tests suite see the [launchpad/testing module README](https://github.com/apache/sling-org-apache-sling-launchpad-testing/blob/master/README.md) and the [launchpad/integration-tests README](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/README.md) for how to run individual integration tests. We use the [sling-IT](https://issues.apache.org/jira/issues/?jql=labels%20%3D%20sling-IT) label in JIRA for known issues with our integration tests.

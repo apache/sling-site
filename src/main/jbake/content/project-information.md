@@ -65,6 +65,9 @@ The [Sling Monitor](https://builds.apache.org/view/Sling-Monitor/) page lists jo
 
 The [Sling Folder](https://builds.apache.org/job/Sling/) page lists all jobs.
 
+In any case you wish to customize the jenkins build of a module, just add a `.sling-module.json` at the root of your project,
+with overriden values listed in Jenkins [Sling module descriptor](https://cwiki.apache.org/confluence/display/SLING/Sling+module+descriptor).
+
 ## Documentation Repository
 The documentation website, in fact the very page that you are reading right now, is located at [The Apache Sling Site Project](https://gitbox.apache.org/repos/asf?p=sling-site.git). You can contribute without being an official project committer.
 
