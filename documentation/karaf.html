@@ -128,13 +128,16 @@
 <p>3) Sling requires OSGi R7 <a href="https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.html">Http Service</a> and <a href="https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html">Http Whiteboard Service</a>, e.g. <a href="https://github.com/apache/felix-dev/tree/master/http">Apache Felix HTTP Service</a>:</p>
 <pre><code>karaf@root()&gt; feature:install felix-http
 </code></pre>
-<p>4) Install a Sling Quickstart feature, e.g. <code>sling-quickstart-oak-tar</code> or <code>sling-quickstart-oak-mongo</code> (requires a running and configured MongoDB):</p>
+<p>4) Install custom or <a href="#sling-karaf-configs">default configurations for Sling</a>:</p>
+<pre><code>karaf@root()&gt; feature:install sling-configs
+</code></pre>
+<p>5) Install a Sling Quickstart feature, e.g. <code>sling-quickstart-oak-tar</code> or <code>sling-quickstart-oak-mongo</code> (requires a running and configured MongoDB):</p>
 <pre><code>karaf@root()&gt; feature:install sling-quickstart-oak-tar
 </code></pre>
-<p>5) Install Starter Content (feature includes <a href="https://github.com/ist-dresden/composum">Composum</a>):</p>
+<p>6) Install Starter Content (feature includes <a href="https://github.com/ist-dresden/composum">Composum</a>):</p>
 <pre><code>karaf@root()&gt; feature:install sling-starter-content
 </code></pre>
-<p>6) Browse to <a href="http://localhost:8181/">http://localhost:8181/</a>.</p>
+<p>7) Browse to <a href="http://localhost:8181/">http://localhost:8181/</a>.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -142,7 +145,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Sun Nov 1 12:58:21 2020 +0100</span>
+                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">Fri Dec 4 00:05:08 2020 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
