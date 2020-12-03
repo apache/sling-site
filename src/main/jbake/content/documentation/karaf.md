@@ -39,12 +39,16 @@ A [distribution](https://karaf.apache.org/manual/latest/#_custom_distributions) 
 
     karaf@root()> feature:install felix-http
 
-4) Install a Sling Quickstart feature, e.g. `sling-quickstart-oak-tar` or `sling-quickstart-oak-mongo` (requires a running and configured MongoDB):
+4) Install custom or [default configurations for Sling](#sling-karaf-configs):
+
+    karaf@root()> feature:install sling-configs
+
+5) Install a Sling Quickstart feature, e.g. `sling-quickstart-oak-tar` or `sling-quickstart-oak-mongo` (requires a running and configured MongoDB):
 
     karaf@root()> feature:install sling-quickstart-oak-tar
 
-5) Install Starter Content (feature includes [Composum](https://github.com/ist-dresden/composum)):
+6) Install Starter Content (feature includes [Composum](https://github.com/ist-dresden/composum)):
 
     karaf@root()> feature:install sling-starter-content
 
-6) Browse to [http://localhost:8181/](http://localhost:8181/).
+7) Browse to [http://localhost:8181/](http://localhost:8181/).
