@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## December 2020
+
+* JCR Web Console Plugin 1.1.0 (8th)
+
 ## November 2020
 
 * Scripting EL Api 1.0.4 (27th)

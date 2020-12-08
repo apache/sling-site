@@ -163,7 +163,7 @@ def bundles=[
   "JCR Registration|org.apache.sling.jcr.registration|1.0.6|Y|jar",
   "JCR Resource|org.apache.sling.jcr.resource|3.0.22|Y|jar",
   "JCR Resource Security|org.apache.sling.jcr.resourcesecurity|1.0.2|Y|jar",
-  "JCR Web Console Plugin|org.apache.sling.jcr.webconsole|1.0.2|Y|jar",
+  "JCR Web Console Plugin|org.apache.sling.jcr.webconsole|1.1.0|Y|jar",
   "JMX Resource Provider|org.apache.sling.jmx.provider|1.0.2|Y|jar",
   "JCR WebDAV|org.apache.sling.jcr.webdav|2.3.8|Y|jar",
   "JUnit Core|org.apache.sling.junit.core|1.1.0|Y|jar",
