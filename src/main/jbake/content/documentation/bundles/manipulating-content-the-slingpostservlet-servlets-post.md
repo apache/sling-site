@@ -848,6 +848,13 @@ By default the SlingPostServlet sets response status according to the status of 
 To not send the actual response status back to the client, the `:status` request parameter should be set to `browser`. If this parameter is not set, is empty, is set to `standard` or to any other value, the actual status code is sent back to the client.
 
 
+### `:sendError`
+
+By default the SlingPostServlet generates an error response based on a template and does not use the normal Sling error handling. If this parameter is specified with the value of `true` the normal error handling using Sling's error handlers will be used.
+
+This allows to use custom error handlers for POST requests.
+
+
 ## Response format
 
 The SlingPostServlet produces a basic HTTP response body, listing the response status, what changes have been made, and other meta-data about the result of the POST request.
