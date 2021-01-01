@@ -359,20 +359,20 @@ def tableHead(String [] headers) {
 // ------------------------------------------------------------------------------------------------
 layout 'layout/main.tpl', true,
         projects: projects,
-        tags : contents {
-            include template: 'tags-brick.tpl'
+        breadcrumbs : contents {
+            include template : 'breadcrumbs-brick.tpl'
         },
-        lastModified: contents {
-            include template : 'lastmodified-brick.tpl'
+        tableOfContents : contents {
+            include template : 'toc-brick.tpl'
         },
         bodyContents: contents {
 
             div(class:"row"){
                 div(class:"small-12 columns"){
                     section(class:"wrap"){
-                        yieldUnescaped content.body
+                        yieldUnescaped U.processBody(content, config)
 
-						h2("Sling Application")
+						h3("Sling Application")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Provides", "Package")
 							tbody() {
@@ -394,7 +394,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h2("Sling IDE Tooling")
+						h3("Sling IDE Tooling")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Update Site")
 							tbody() {
@@ -413,7 +413,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h2("Sling Components")
+						h3("Sling Components")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Binary", "Source")
 							tbody() {
@@ -440,7 +440,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h2("Maven Plugins")
+						h3("Maven Plugins")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Binary", "Source")
 							tbody() {
@@ -466,7 +466,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h2("bnd Plugins")
+						h3("bnd Plugins")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Binary", "Source")
 							tbody() {
@@ -492,7 +492,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h2("Deprecated")
+						h3("Deprecated")
 						table(class:"table") {
 							tableHead("Artifact", "Replacement", "Version", "Binary", "Source")
 							tbody() {
@@ -517,4 +517,10 @@ layout 'layout/main.tpl', true,
                     }
                 }
             }
+        },
+        tags : contents {
+            include template: 'tags-brick.tpl'
+        },
+        lastModified: contents {
+            include template : 'lastmodified-brick.tpl'
         }
