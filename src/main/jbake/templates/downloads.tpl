@@ -45,6 +45,8 @@ def mavenPlugins=[
 ]
 
 def bndPlugins=[
+  "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2|Y",
+  "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y",
   "bnd Remove Parameters from OSGi Headers Plugin|org.apache.sling.bnd.plugin.headers.parameters.remove|1.0.0|Y"
 ]
 
@@ -94,7 +96,6 @@ def bundles=[
   "Content Parser XML JCR|org.apache.sling.contentparser.xml-jcr|2.0.0|Y|jar",
   "Content Parser Test Utilities|org.apache.sling.contentparser.testutils|2.0.0|Y|jar",
   "Context-Aware Configuration API|org.apache.sling.caconfig.api|1.2.0|Y|jar",
-  "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2|Y|jar",
   "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.5.0|Y|jar",
   "Context-Aware Configuration Mock Plugin|org.apache.sling.testing.caconfig-mock-plugin|1.3.2|Y|jar",
   "Context-Aware Configuration SPI|org.apache.sling.caconfig.spi|1.3.4|Y|jar",
@@ -186,7 +187,6 @@ def bundles=[
   "Launchpad Testing Services WAR|org.apache.sling.launchpad.test-services-war|2.0.16|Y|war",
   "Log Tracer|org.apache.sling.tracer|1.0.6|Y|jar",
   "Models API|org.apache.sling.models.api|1.3.8|Y|jar",
-  "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y|jar",
   "Models Implementation|org.apache.sling.models.impl|1.4.16|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|1.0.8|Y|jar",
   "Models Validation Implementation|org.apache.sling.models.validation-impl|1.0.0|Y|jar",
