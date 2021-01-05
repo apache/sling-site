@@ -79,7 +79,15 @@
                     <div class="box is-shadowless is-marginless">
                         <div class="level">
                             <div class="pagenav">
-                                <breadcrumbs/>
+<div class="breadcrumb">
+                                    <ul>
+                                        <li>
+                                            <a href="/">
+                                                Home
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                                
                             </div><div class="tags">
                                 <span class="tag">
                                     <a href="/tags/downloads.html">
@@ -97,14 +105,35 @@
                             </div>
                         </div><h1 class="title">
                             Downloads
-                        </h1><div class="content is-marginless">
-<div class="row"><div class="small-12 columns"><section class="wrap"><p>To get the latest development release of Apache Sling, you can check out the Source Code and Getting and Building Sling yourself. Otherwise, the releases below are available for download. To install, just download and extract.</p>
-<p>Older releases are available at <a href="http://archive.apache.org/dist/sling/">http://archive.apache.org/dist/sling/</a> .</p>
-<p>All Apache Sling products are distributed under the terms of The <a href="http://apache.org/licenses/">Apache Software License</a> (version 2.0). See our license, or the LICENSE file included in each distribution.</p>
-<h1><a href="#how-to-validate-the-downloaded-files" id="how-to-validate-the-downloaded-files">How to validate the downloaded files</a></h1>
+                        </h1><nav class="menu">
+                            <ul class="menu-list box is-shadowless is-paddingless">
+                                <li id="generatedToC">
+                                    <p class="menu-label">
+                                        <strong>Table of Contents</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
+<div class="row"><div class="small-12 columns"><section class="wrap"><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+</p>
+<h1><a href="#overview" id="overview">Overview</a></h1>
+<p>To get the latest development release of Apache Sling, you can <a href="documentation/development/getting-and-building-sling.html">check out the source code and build Sling yourself</a>. Otherwise, the releases below are available for download. To install, just download and extract.</p>
+<p>All Apache Sling products are distributed under the terms of the <a href="http://apache.org/licenses/">Apache Software License</a> (version 2.0). See our license, or the LICENSE file included in each distribution.</p>
+<p>For each module the following artifact types are provided</p>
+<ol>
+<li>Main binary</li>
+<li>Zip archive with complete project source code (classifier <code>source-release</code>)</li>
+<li>Jar archive with source files of classes contained in 1. (classifier <code>sources</code>)</li>
+<li>Jar archive containing <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/javadoc/">javadoc</a>( (classifier <code>javadoc</code>)</li>
+</ol>
+<p>All those artifacts are accompanied by an according <code>*.asc</code> file containing the PGP signature.</p>
+<h1><a href="#downloads" id="downloads">Downloads</a></h1>
+<h2><a href="#how-to-validate-downloaded-files" id="how-to-validate-downloaded-files">How to validate downloaded files</a></h2>
 <p>The PGP keys at <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> can be used to verify the integrity of the release archives. See <a href="https://www.apache.org/info/verification">https://www.apache.org/info/verification</a> for how that works.</p>
-<h1><a href="#mirrors" id="mirrors">Mirrors</a></h1>
-<p>Use the links below to download binary or source distributions of Apache Sling from one of our mirrors.</p>
+<h2><a href="#maven-central" id="maven-central">Maven Central</a></h2>
+<p>All Sling modules are provided from <a href="https://search.maven.org/search?q=g:org.apache.sling">Maven Central with groupId <code>org.apache.sling</code></a>.</p>
+<h2><a href="#apache-mirrors" id="apache-mirrors">Apache Mirrors</a></h2>
+<p>Use the links below to download binary or source distributions of Apache Sling from one of our ASF mirrors.</p>
 <p>You are currently using <strong>[preferred]</strong>. If you encounter a problem with this mirror, please select another mirror. If all mirrors are failing, there are backup mirrors (at the end of the mirrors list) that should be available. If the mirror displayed above is labeled <em>preferred</em>, then please reload this page by [downloads.cgi](clicking here)</p>
 <form action="[location]" method="get" id="SelectMirror">
 <p>Other mirrors: </p>
@@ -120,7 +149,8 @@
 [end]
 </select>
 <input type="submit" value="Change"></input>
-<h2>Sling Application</h2><table class="table"><thead>
+<p>Older releases are available at <a href="http://archive.apache.org/dist/sling/">http://archive.apache.org/dist/sling/</a>.</p>
+<h3>Sling Application</h3><table class="table"><thead>
                                                 <tr>
                                                     <th>Artifact</th><th>Version</th><th>GitHub</th><th>Provides</th><th>Package</th>
                                                 </tr>
@@ -134,12 +164,12 @@
                                                     </td><td>A reference CMS App built on Apache Sling</td><td><a href="[preferred]sling/org.apache.sling.cms.builder-0.16.2.jar">org.apache.sling.cms.builder-0.16.2.jar</a> (<a href="https://downloads.apache.org/sling/org.apache.sling.cms.builder-0.16.2.jar.asc">asc</a>, <a href="https://downloads.apache.org/sling/org.apache.sling.cms.builder-0.16.2.jar.sha1">sha1</a>)
                                                     </td></tr><tr><td>Sling Feature Model converter</td><td>1.0.14</td><td><a href="https://github.com/apache/sling-org-apache-sling-feature-cpconverter">GitHub</a>
                                                     </td><td>A CLI tool for converting from content packages to feature model files</td><td><a href="[preferred]sling/org.apache.sling.feature.cpconverter-1.0.14.zip">org.apache.sling.feature.cpconverter-1.0.14.zip</a> (<a href="https://downloads.apache.org/sling/org.apache.sling.feature.cpconverter-1.0.14.zip.asc">asc</a>, <a href="https://downloads.apache.org/sling/org.apache.sling.feature.cpconverter-1.0.14.zip.sha1">sha1</a>)
-                                                    </td></tr></tbody></table><h2>Sling IDE Tooling</h2><table class="table"><thead>
+                                                    </td></tr></tbody></table><h3>Sling IDE Tooling</h3><table class="table"><thead>
                                                 <tr>
                                                     <th>Artifact</th><th>Version</th><th>Provides</th><th>Update Site</th>
                                                 </tr>
                                             </thead><tbody><tr><td>Sling IDE Tooling for Eclipse</td><td>1.2.2</td><td>A p2 update site which can be installed in Eclipse.</td><td><a href="[preferred]sling/eclipse/1.2.2">Update site</a> (<a href="https://downloads.apache.org/sling/eclipse/1.2.2.asc">asc</a>, <a href="https://downloads.apache.org/sling/eclipse/1.2.2.sha1">sha1</a>)
-                                                    </td></tr></tbody></table><h2>Sling Components</h2><table class="table"><thead>
+                                                    </td></tr></tbody></table><h3>Sling Components</h3><table class="table"><thead>
                                                 <tr>
                                                     <th>Artifact</th><th>Version</th><th>GitHub</th><th>Binary</th><th>Source</th>
                                                 </tr>
@@ -808,7 +838,7 @@
                                                     </td><td><a href="[preferred]sling/org.apache.sling.xss-2.2.8-source-release.zip">Source ZIP</a> (<a href="https://downloads.apache.org/sling/org.apache.sling.xss-2.2.8-source-release.zip.asc">asc</a>, <a href="https://downloads.apache.org/sling/org.apache.sling.xss-2.2.8-source-release.zip.sha1">sha1</a>)
                                                     </td></tr><tr><td>XSS Protection Compat</td><td>1.1.0</td><td>N/A</td><td><a href="[preferred]sling/org.apache.sling.xss.compat-1.1.0.jar">Bundle</a> (<a href="https://downloads.apache.org/sling/org.apache.sling.xss.compat-1.1.0.jar.asc">asc</a>, <a href="https://downloads.apache.org/sling/org.apache.sling.xss.compat-1.1.0.jar.sha1">sha1</a>)
                                                     </td><td><a href="[preferred]sling/org.apache.sling.xss.compat-1.1.0-source-release.zip">Source ZIP</a> (<a href="https://downloads.apache.org/sling/org.apache.sling.xss.compat-1.1.0-source-release.zip.asc">asc</a>, <a href="https://downloads.apache.org/sling/org.apache.sling.xss.compat-1.1.0-source-release.zip.sha1">sha1</a>)
-                                                    </td></tr></tbody></table><h2>Maven Plugins</h2><table class="table"><thead>
+                                                    </td></tr></tbody></table><h3>Maven Plugins</h3><table class="table"><thead>
                                                 <tr>
                                                     <th>Artifact</th><th>Version</th><th>GitHub</th><th>Binary</th><th>Source</th>
                                                 </tr>
@@ -842,7 +872,7 @@
                                                     </td></tr><tr><td>Sling Kickstart Maven Plugin</td><td>0.0.8</td><td><a href="https://github.com/apache/sling-kickstart-maven-plugin">GitHub</a>
                                                     </td><td><a href="[preferred]sling/sling-kickstart-maven-plugin-0.0.8.jar">Maven Plugin</a> (<a href="https://downloads.apache.org/sling/sling-kickstart-maven-plugin-0.0.8.jar.asc">asc</a>, <a href="https://downloads.apache.org/sling/sling-kickstart-maven-plugin-0.0.8.jar.sha1">sha1</a>)
                                                     </td><td><a href="[preferred]sling/sling-kickstart-maven-plugin-0.0.8-source-release.zip">Source ZIP</a> (<a href="https://downloads.apache.org/sling/sling-kickstart-maven-plugin-0.0.8-source-release.zip.asc">asc</a>, <a href="https://downloads.apache.org/sling/sling-kickstart-maven-plugin-0.0.8-source-release.zip.sha1">sha1</a>)
-                                                    </td></tr></tbody></table><h2>bnd Plugins</h2><table class="table"><thead>
+                                                    </td></tr></tbody></table><h3>bnd Plugins</h3><table class="table"><thead>
                                                 <tr>
                                                     <th>Artifact</th><th>Version</th><th>GitHub</th><th>Binary</th><th>Source</th>
                                                 </tr>
@@ -855,7 +885,7 @@
                                                     </td></tr><tr><td>bnd Remove Parameters from OSGi Headers Plugin</td><td>1.0.0</td><td><a href="https://github.com/apache/sling-org-apache-sling-bnd-plugin-headers-parameters-remove">GitHub</a>
                                                     </td><td><a href="[preferred]sling/org.apache.sling.bnd.plugin.headers.parameters.remove-1.0.0.jar">bnd Plugin</a> (<a href="https://downloads.apache.org/sling/org.apache.sling.bnd.plugin.headers.parameters.remove-1.0.0.jar.asc">asc</a>, <a href="https://downloads.apache.org/sling/org.apache.sling.bnd.plugin.headers.parameters.remove-1.0.0.jar.sha1">sha1</a>)
                                                     </td><td><a href="[preferred]sling/org.apache.sling.bnd.plugin.headers.parameters.remove-1.0.0-source-release.zip">Source ZIP</a> (<a href="https://downloads.apache.org/sling/org.apache.sling.bnd.plugin.headers.parameters.remove-1.0.0-source-release.zip.asc">asc</a>, <a href="https://downloads.apache.org/sling/org.apache.sling.bnd.plugin.headers.parameters.remove-1.0.0-source-release.zip.sha1">sha1</a>)
-                                                    </td></tr></tbody></table><h2>Deprecated</h2><table class="table"><thead>
+                                                    </td></tr></tbody></table><h3>Deprecated</h3><table class="table"><thead>
                                                 <tr>
                                                     <th>Artifact</th><th>Replacement</th><th>Version</th><th>Binary</th><th>Source</th>
                                                 </tr>
@@ -918,7 +948,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Tue Mar 10 12:09:46 2020 +0100</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Tue Jan 5 12:39:43 2021 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
