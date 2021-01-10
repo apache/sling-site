@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2021
+
+* Testing Sling Mock 2.7.0, Testing OSGi Mock 2.4.18
+
 ## December 2020
 
 * JCR Web Console Plugin 1.1.0 (8th)
