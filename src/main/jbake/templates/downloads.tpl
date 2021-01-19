@@ -209,7 +209,7 @@ def bundles=[
   "Resource Merger|org.apache.sling.resourcemerger|1.3.8|Y|jar",
   "Resource Presence|org.apache.sling.resource.presence|0.0.2|Y|jar",
   "Resource Resolver|org.apache.sling.resourceresolver|1.7.2|Y|jar",
-  "Rewriter|org.apache.sling.rewriter|1.2.2|Y|jar",
+  "Rewriter|org.apache.sling.rewriter|1.3.0|Y|jar",
   "Failing Server-Side Tests|org.apache.sling.testing.samples.failingtests|1.0.6|N|jar",
   "Sample Integration Tests|org.apache.sling.testing.samples.integrationtests|1.0.6|N|jar",
   "Sample Server-Side Tests|org.apache.sling.testing.samples.sampletests|1.0.6|N|jar",

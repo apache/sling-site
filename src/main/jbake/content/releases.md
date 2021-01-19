@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2021
 
-* Resource Resolver 1.7.2, Installer Configuration Factory 1.3.4, Servlets POST 2.4.2 (19th)
+* Resource Resolver 1.7.2, Installer Configuration Factory 1.3.4, Servlets POST 2.4.2, Rewriter 1.3.0 (19th)
 * Testing JCR Mock 1.5.0, ResourceResolver Mock 1.2.0, OSGi Mock 3.0.0, Sling Mock 3.0.0 (16th)
 * Testing Sling Mock 2.7.0, Testing OSGi Mock 2.4.18 (10th)
 
