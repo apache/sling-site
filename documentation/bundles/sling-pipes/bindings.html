@@ -126,9 +126,7 @@
 <h2><a href="#output-binding" id="output-binding">output binding</a></h2>
 <p>each single pipe has to declare an output binding at the same time it outputs a resource. The binding will be named as the name of the pipe outputing it. If a pipe as been created as a sub pipe of a container with pipe builder api, it will have default name of &quot;one&quot;, &quot;two&quot;, ... depending on its position in the pipe, you can override the name with <code>.name(...)</code> api.</p>
 <p>so following pipe</p>
-<pre><code>    .echo('/content/foo')
-    .children('nt:unstructured').name('example')
-    .write('jcr:description','this node property prop = ${example.prop}')
+<pre><code>    echo /content/foo | children nt:unstructured @ name example | write jcr:description='this node property prop = ${example.prop}'
 </code></pre>
 <p>with following <code>/content/foo</code> tree</p>
 <pre><code>    { 
@@ -170,6 +168,8 @@
 <p>some times you want heavy js logic in your expression instantiation. In that case, you need to store your javascript somewhere in the JCR, and mentions the path in the <a href="/documentation/bundles/sling-pipes/execution-monitoring.html#jcr-persistence-of-a-pipe.html">additionalScripts MV property</a></p>
 <h2><a href="#bindings-forward" id="bindings-forward">bindings forward</a></h2>
 <p>in case a pipe references, or contain another pipe, same binding space will be used</p>
+<h2><a href="#context-aware-configuration" id="context-aware-configuration">Context Aware configuration</a></h2>
+<p>there is the possibility to use <a href="https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html">context aware configurations</a> in the bindings like the following: <code>caconfig.pipeName.bucket.property</code> where <code>pipeName</code> is a pipe name, bucket &amp; property typical ca configuration accessors.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -177,7 +177,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Wed Sep 30 16:12:41 2020 +0200</span>
+                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Thu Jan 28 17:14:27 2021 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>

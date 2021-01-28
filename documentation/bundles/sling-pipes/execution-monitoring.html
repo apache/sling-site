@@ -137,9 +137,9 @@
 <tr><th> Configuration child node </th><th> Explanation </th></tr>
 </thead>
 <tbody>
-<tr><td> <code>conf</code> </td><td> optional, contains addition configuration of the pipe (depending on the type) </td></tr>
+<tr><td> <code>conf</code> </td><td> optional, contains addition configuration of the pipe (depending on the type) </td></tr>
 <tr><td> <code>additionalBinding</code>  </td><td> set &quot;global&quot; <a href="/documentation/bundles/sling-pipes/bindings.html">bindings</a> (property=value) in pipe execution </td></tr>
-<tr><td> <code>writer</code> </td><td> set a writer with key / value property being label, and value of each added entry. Those values can be <a href="/documentation/bundles/sling-pipes/bindings.html">expressions</a> </td></tr>
+<tr><td> <code>writer</code> </td><td> set a writer with key / value property being label, and value of each added entry. Those values can be <a href="/documentation/bundles/sling-pipes/bindings.html">expressions</a> </td></tr>
 </tbody>
 </table>
 <h3><a href="#java" id="java">Java</a></h3>
@@ -216,7 +216,7 @@
 <tr><td> request path </td><td> path of a pipe configuration resource (see above), or a resource of type <code>slingPipes/plumber</code> with a path parameter indicating the pipe configuration resource path.</td></tr>
 <tr><td> request method </td><td> <code>GET</code> or <code>POST</code>. Note that <code>GET</code> will not work on pipe modifying content (unless you are using a <code>dryRun</code>) </td></tr>
 <tr><td> request extension </td><td> <code>.json</code> or <code>.csv</code> </td></tr>
-<tr><td> request selectors </td><td> you can add <code>status</code> to get status on a currently executed pipe</td></tr>
+<tr><td> request selectors </td><td> you can add <code>status</code> to get status on a currently executed pipe</td></tr>
 </tbody>
 </table>
 <h5><a href="#pipe-http-request-parameter" id="pipe-http-request-parameter">Pipe HTTP Request parameter</a></h5>
@@ -225,7 +225,7 @@
 <tr><th> request parameter </th><th> Explanation </th></tr>
 </thead>
 <tbody>
-<tr><td> <code>size</code> </td><td> size of the returned excerpt. Default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter. 0 value will return all the items </td></tr>
+<tr><td> <code>size</code> </td><td> size of the returned excerpt. Default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter. 0 value will return all the items </td></tr>
 <tr><td> <code>binding</code> </td><td> json object of global bindings you want to add for the execution of the pipe e.g. <code>{testBinding:'foo'}</code> </td></tr>
 <tr><td> <code>writer</code> </td><td> you can configure output of your servlet, with <code>writer</code> parameter, a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. This will be entries of your json output, or headers and values of your csv output, e.g <code>{&quot;user&quot;:&quot;${user.fullName}&quot;}</code> </td></tr>
 <tr><td> <code>dryRun=true</code> </td><td> if parameter dryRun is set to true, and the executed pipe is supposed to modify content, it will log (at best it can) the change it <em>would</em> have done, without doing anything </td></tr>
@@ -272,7 +272,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Wed Sep 30 16:12:41 2020 +0200</span>
+                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">Thu Jan 28 17:14:27 2021 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
