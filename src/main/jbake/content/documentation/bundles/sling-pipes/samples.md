@@ -8,7 +8,7 @@ tags=pipes
 
 those are samples built with pipebuilder api you can 
 
-### echo | $ | children | write
+### echo | $ | children | write
 write repository user prefix Ms/Mr depending on gender
 
       echo('/home/users')

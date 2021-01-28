@@ -28,9 +28,7 @@ name of "one", "two", ... depending on its position in the pipe, you can overrid
  
 so following pipe
 
-        .echo('/content/foo')
-        .children('nt:unstructured').name('example')
-        .write('jcr:description','this node property prop = ${example.prop}')
+        echo /content/foo | children nt:unstructured @ name example | write jcr:description='this node property prop = ${example.prop}'
         
 with following `/content/foo` tree
 
@@ -91,4 +89,7 @@ in the JCR, and mentions the path in the [additionalScripts MV property](/docume
 
 in case a pipe references, or contain another pipe, same binding space will be used
 
- 
+## Context Aware configuration 
+
+there is the possibility to use [context aware configurations](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html)
+ in the bindings like the following: `caconfig.pipeName.bucket.property` where `pipeName` is a pipe name, bucket & property typical ca configuration accessors.

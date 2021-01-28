@@ -18,9 +18,9 @@ A pipe configuration is ultimately a jcr node, with properties (varying a lot de
 
 | Configuration child node | Explanation |
 |---|---|
-| `conf` | optional, contains addition configuration of the pipe (depending on the type) |
+| `conf` | optional, contains addition configuration of the pipe (depending on the type) |
 | `additionalBinding`  | set "global" [bindings](/documentation/bundles/sling-pipes/bindings.html) (property=value) in pipe execution |
-| `writer` | set a writer with key / value property being label, and value of each added entry. Those values can be [expressions](/documentation/bundles/sling-pipes/bindings.html) | 
+| `writer` | set a writer with key / value property being label, and value of each added entry. Those values can be [expressions](/documentation/bundles/sling-pipes/bindings.html) | 
 
 ### Java
 
@@ -115,14 +115,13 @@ If the pipe already exists in your repository you can run it following up below 
 | request path | path of a pipe configuration resource (see above), or a resource of type `slingPipes/plumber` with a path parameter indicating the pipe configuration resource path.|
 | request method | `GET` or `POST`. Note that `GET` will not work on pipe modifying content (unless you are using a `dryRun`) |
 | request extension | `.json` or `.csv` |
-| request selectors | you can add `status` to get status on a currently executed pipe|
-
+| request selectors | you can add `status` to get status on a currently executed pipe|
 
 ##### Pipe HTTP Request parameter
 
 | request parameter | Explanation |
 |---|---|
-| `size` | size of the returned excerpt. Default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter. 0 value will return all the items |
+| `size` | size of the returned excerpt. Default response is truncated to 10 items, if you need more (or less), you can modify that settings with the size parameter. 0 value will return all the items |
 | `binding` | json object of global bindings you want to add for the execution of the pipe e.g. `{testBinding:'foo'}` |
 | `writer` | you can configure output of your servlet, with `writer` parameter, a json object as a pattern to the result you want to have. The values of the json object are expressions and can reuse each pipe's subpipe binding. This will be entries of your json output, or headers and values of your csv output, e.g `{"user":"${user.fullName}"}` |
 | `dryRun=true` | if parameter dryRun is set to true, and the executed pipe is supposed to modify content, it will log (at best it can) the change it *would* have done, without doing anything |              
