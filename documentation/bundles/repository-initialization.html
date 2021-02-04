@@ -148,6 +148,8 @@ set ACL on /libs,/apps
 
     deny jcr:write for u-ser_2
     deny jcr:lockManagement for user1
+
+    # remove does not work so far, SLING-9090
     remove jcr:understand,some:other for u3
 end
 
@@ -173,7 +175,7 @@ create path /content/example.com(mixin mix:referenceable)
 create path (nt:unstructured) /var
 
 set ACL for alice, bob,fred
-    # remove is currently not supported by the jcr.repoinit module
+    # remove does not work so far, SLING-9090
     remove * on / 
     allow jcr:read on /content,/var
     deny jcr:write on /content/example.com
@@ -214,7 +216,10 @@ end
 # precondition for o.a.s.jcr.repoinit: 
 # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
 set principal ACL for alice,bob
+
+    # remove does not work so far, SLING-9090
     remove * on /libs,/apps
+
     allow jcr:read on /content,/var
     deny jcr:write on /content/example.com
     
@@ -290,6 +295,8 @@ delete group since124_C
 # o.a.s.repoinit.parser 1.5.2
 # and o.a.s.jcr.repoinit 1.1.22
 add user1,user2 to group grpA
+
+# remove does not work so far, SLING-9090
 remove user3,user5 from group grpB
 
 # ACLs on user homes, requires
@@ -366,7 +373,7 @@ end
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Jun 18 10:47:31 2020 +0200</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Feb 4 11:33:25 2021 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
