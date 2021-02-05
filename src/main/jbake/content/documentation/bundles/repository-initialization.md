@@ -218,15 +218,33 @@ The language is self-explaining but please refer to the actual test cases for de
     # 'set' overwrites any existing value while
     # 'default' only sets the property if not set yet
     #
+    # Supported Types (in curly brackets) are:
+    #   String, Long, Double, Date, Boolean
+    # Note: if no type is provide the default is String
+    #
     # The paths must exist first, see "create path"
     set properties on /pathA, /path/B
       set sling:ResourceType{String} to /x/y/z
       default someInteger{Long} to 42
       set someFlag{Boolean} to true
+      # Date must in ISO8601 Format
       default someDate{Date} to "2020-03-19T11:39:33.437+05:30"
       set quotedMix to "quoted", non-quoted, "the last \" one"
+      # Multi-value properties are created by a comma separated list
+      set aStringMultiValue to "one", "two", "three"
+      set aLongMultiValue{Long} to 1, 2, 3
     end
 </pre>
+
+### Notes on Repository Initializer Config Files
+
+If the Repository Initializer is defined inside a **.config** file then according to the .config file
+definition found [here](/documentation/bundles/configuration-installer-factory.html#configuration-files-config)
+these rules apply:
+
+* Quotes that start / end a String literal need to be escaped with a backslash like this: **\\\"**
+* Quotes inside a String literal need to be escapped with a double backslash like this: **\\\\\"**
+* Equals Sign inside a String need to be escaped with a backslash like this: **\\=**
 
 ## Providing repoinit statements from the Sling provisioning model or other URLs
 
