@@ -317,16 +317,31 @@ end
 # 'set' overwrites any existing value while
 # 'default' only sets the property if not set yet
 #
+# Supported Types (in curly brackets) are:
+#   String, Long, Double, Date, Boolean
+# Note: if no type is provide the default is String
+#
 # The paths must exist first, see &quot;create path&quot;
 set properties on /pathA, /path/B
   set sling:ResourceType{String} to /x/y/z
   default someInteger{Long} to 42
   set someFlag{Boolean} to true
+  # Date must in ISO8601 Format
   default someDate{Date} to &quot;2020-03-19T11:39:33.437+05:30&quot;
   set quotedMix to &quot;quoted&quot;, non-quoted, &quot;the last \&quot; one&quot;
+  # Multi-value properties are created by a comma separated list
+  set aStringMultiValue to &quot;one&quot;, &quot;two&quot;, &quot;three&quot;
+  set aLongMultiValue{Long} to 1, 2, 3
 end
 </code></pre>
 </pre>
+<h3><a href="#notes-on-repository-initializer-config-files" id="notes-on-repository-initializer-config-files">Notes on Repository Initializer Config Files</a></h3>
+<p>If the Repository Initializer is defined inside a <strong>.config</strong> file then according to the .config file definition found <a href="/documentation/bundles/configuration-installer-factory.html#configuration-files-config">here</a> these rules apply:</p>
+<ul>
+<li>Quotes that start / end a String literal need to be escaped with a backslash like this: <strong>\&quot;</strong></li>
+<li>Quotes inside a String literal need to be escapped with a double backslash like this: <strong>\\&quot;</strong></li>
+<li>Equals Sign inside a String need to be escaped with a backslash like this: <strong>\=</strong></li>
+</ul>
 <h2><a href="#providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls" id="providing-repoinit-statements-from-the-sling-provisioning-model-or-other-urls">Providing repoinit statements from the Sling provisioning model or other URLs</a></h2>
 <p>All bundles required for this feature need to be active before the <code>SlingRepository</code> service starts.</p>
 <p>From version 1.0.2 of the <code>org.apache.sling.jcr.repoinit</code> bundle, the <code>o.a.s.jcr.repoinit.RepositoryInitializer</code> component uses an OSGi configuration as shown in this example to define where to read repoinit statements:</p>
@@ -373,7 +388,7 @@ end
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Feb 4 11:33:25 2021 +0100</span>
+                        Last modified by <span class="author">Andreas Schaefer</span> on <span class="comment">Fri Feb 5 09:36:19 2021 -0800</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
