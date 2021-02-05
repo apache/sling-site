@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## February 2021
+
+* JCR Maintenance 1.0.0 (5th)
+
 ## January 2021
 
 * Resource Resolver 1.7.2, Installer Configuration Factory 1.3.4, Servlets POST 2.4.2, Rewriter 1.3.0 (19th)
