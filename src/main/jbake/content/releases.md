@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2021
 
+* JCR Package Init 1.0.2 (8th)
 * JCR Maintenance 1.0.0 (5th)
 
 ## January 2021
