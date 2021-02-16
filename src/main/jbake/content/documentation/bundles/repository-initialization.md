@@ -50,7 +50,7 @@ The language is self-explaining but please refer to the actual test cases for de
         deny jcr:write for u-ser_2
         deny jcr:lockManagement for user1
 
-        # remove does not work so far, SLING-9090
+        # See note [1] below
         remove jcr:understand,some:other for u3
     end
 
@@ -76,7 +76,7 @@ The language is self-explaining but please refer to the actual test cases for de
     create path (nt:unstructured) /var
 
     set ACL for alice, bob,fred
-        # remove does not work so far, SLING-9090
+        # See note [1] below
         remove * on / 
         allow jcr:read on /content,/var
         deny jcr:write on /content/example.com
@@ -118,7 +118,7 @@ The language is self-explaining but please refer to the actual test cases for de
     # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
     set principal ACL for alice,bob
 
-        # remove does not work so far, SLING-9090
+        # See note [1] below
         remove * on /libs,/apps
 
         allow jcr:read on /content,/var
@@ -196,8 +196,6 @@ The language is self-explaining but please refer to the actual test cases for de
     # o.a.s.repoinit.parser 1.5.2
     # and o.a.s.jcr.repoinit 1.1.22
     add user1,user2 to group grpA
-
-    # remove does not work so far, SLING-9090
     remove user3,user5 from group grpB
     
     # ACLs on user homes, requires
@@ -235,6 +233,11 @@ The language is self-explaining but please refer to the actual test cases for de
       set aLongMultiValue{Long} to 1, 2, 3
     end
 </pre>
+
+### Notes on the above examples
+
+* [1] Although the repoinit language includes a `remove` statement, it is **not** generally supported by the current version of the `o.a.s.jcr.repoinit` module. Only the `remove *`
+variant is supported starting with `o.a.s.jcr.repoinit V1.1.34`.
 
 ### Notes on Repository Initializer Config Files
 
