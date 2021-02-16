@@ -149,7 +149,7 @@ set ACL on /libs,/apps
     deny jcr:write for u-ser_2
     deny jcr:lockManagement for user1
 
-    # remove does not work so far, SLING-9090
+    # See note [1] below
     remove jcr:understand,some:other for u3
 end
 
@@ -175,7 +175,7 @@ create path /content/example.com(mixin mix:referenceable)
 create path (nt:unstructured) /var
 
 set ACL for alice, bob,fred
-    # remove does not work so far, SLING-9090
+    # See note [1] below
     remove * on / 
     allow jcr:read on /content,/var
     deny jcr:write on /content/example.com
@@ -217,7 +217,7 @@ end
 # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
 set principal ACL for alice,bob
 
-    # remove does not work so far, SLING-9090
+    # See note [1] below
     remove * on /libs,/apps
 
     allow jcr:read on /content,/var
@@ -295,8 +295,6 @@ delete group since124_C
 # o.a.s.repoinit.parser 1.5.2
 # and o.a.s.jcr.repoinit 1.1.22
 add user1,user2 to group grpA
-
-# remove does not work so far, SLING-9090
 remove user3,user5 from group grpB
 
 # ACLs on user homes, requires
@@ -335,6 +333,10 @@ set properties on /pathA, /path/B
 end
 </code></pre>
 </pre>
+<h3><a href="#notes-on-the-above-examples" id="notes-on-the-above-examples">Notes on the above examples</a></h3>
+<ul>
+<li>[1] Although the repoinit language includes a <code>remove</code> statement, it is <strong>not</strong> generally supported by the current version of the <code>o.a.s.jcr.repoinit</code> module. Only the <code>remove *</code> variant is supported starting with <code>o.a.s.jcr.repoinit V1.1.34</code>.</li>
+</ul>
 <h3><a href="#notes-on-repository-initializer-config-files" id="notes-on-repository-initializer-config-files">Notes on Repository Initializer Config Files</a></h3>
 <p>If the Repository Initializer is defined inside a <strong>.config</strong> file then according to the .config file definition found <a href="/documentation/bundles/configuration-installer-factory.html#configuration-files-config">here</a> these rules apply:</p>
 <ul>
@@ -388,7 +390,7 @@ end
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Andreas Schaefer</span> on <span class="comment">Fri Feb 5 09:36:19 2021 -0800</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Tue Feb 16 16:12:35 2021 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
