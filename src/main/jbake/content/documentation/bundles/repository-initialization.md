@@ -177,6 +177,8 @@ The language is self-explaining but please refer to the actual test cases for de
 	<<    - slingevent:properties (binary)
 	===>>
 
+    # encrpyted passwords at currently not supported by o.a.s.jcr.repoinit
+    # which only supports plain text ones, see SLING-6219
     create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a88ce31a08826899d54ef7183998b5
 
     # disable service user
