@@ -7,8 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## February 2021
-
-* XSS Protection API 2.2.10 (19th)
+* XSS Protection API 2.2.10, Repoinit JCR V1.1.34 (19th)
+* Repoinit Parser 1.6.6, Repoinit JCR V1.1.32 (16th)
 * JCR Package Init 1.0.2 (8th)
 * JCR Maintenance 1.0.0 (5th)
 
