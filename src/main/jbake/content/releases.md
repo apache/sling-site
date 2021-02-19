@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2021
 
+* XSS Protection API 2.2.10 (19th)
 * JCR Package Init 1.0.2 (8th)
 * JCR Maintenance 1.0.0 (5th)
 
