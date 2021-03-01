@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2021
 
-* XSS Protection API 2.2.12 (1st)
+* XSS Protection API 2.2.12, Parent 41, Bundle Parent 41 (1st)
 
 ## February 2021
 * XSS Protection API 2.2.10, Repoinit JCR V1.1.34 (19th)
