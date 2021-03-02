@@ -4,7 +4,10 @@ status=published
 tags=core,servlets
 ~~~~~~
 
-Sling supports filtering the request processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface. For Sling to pick up a `javax.servlet.Filter` service for filter processing some service properties must be set. Following is a table describing those properties, in the next section you learn how to best implement such filters.
+Sling supports filtering the request processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface. 
+An implementation will have to resume the filtering and rendering process by calling the `doFilter` method of the `FilterChain` object. It must call it one and only once. Calling it more than once will break the rendering process,
+with an ArrayIndexOutOfBoundException (<= 2.7.4) or IllegalStateException (> 2.7.4).
+For Sling to pick up a `javax.servlet.Filter` service for filter processing some service properties must be set. Following is a table describing those properties, in the next section you learn how to best implement such filters.
 
 | Property | Type | Default Value | Valid Values | Description | Engine Version |
 |---|---|---|---|---|---|
