@@ -87,7 +87,7 @@ An example code for scheduling a job looks like this:
         private JobManager jobManager;
 
         public void startScheduledJob() {
-            ScheduleBuilder scheduleBuilder = jobManager.startJob("my/special/jobtopic").schedule();
+            ScheduleBuilder scheduleBuilder = jobManager.createJob("my/special/jobtopic").schedule();
             scheduleBuilder.daily(0,0); // execute daily at midnight
             if (scheduleBuilder.add() == null) {
                 // something went wrong here, use scheduleBuilder.add(List<String>) instead to get further information about the error
