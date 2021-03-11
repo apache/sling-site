@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2021
 
+* i18n 2.5.16 (11th)
 * XSS Protection API 2.2.12, Parent 41, Bundle Parent 41 (1st)
 
 ## February 2021
