@@ -252,6 +252,14 @@
 <li><code>en</code></li>
 </ol>
 <p>In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale). The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.</p>
+<h4><a href="#locate-non-jcr-based-resourcebundle-resources" id="locate-non-jcr-based-resourcebundle-resources">Locate non JCR based ResourceBundle resources</a></h4>
+<p>Since version 2.5.16 the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that a bundle can declare certain paths that should be traversed to locate ResourceBundle resources.</p>
+<p>For example, the bundle providing the ResourceBundle resources can define something like this:</p>
+<pre><code>Require-Capability: osgi.extender;filter:=&quot;(&amp;(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version&lt;=1.0.0)(!(version&gt;=2.0.0)))&quot;
+
+Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/libs/i18n/path123&quot;;depth=1
+</code></pre>
+<p>The &quot;Provide-Capability&quot; instruction defines which (csv) resource paths to traverse via the &quot;paths&quot; clause and how deep to drill down via the optional &quot;depth&quot; clause (depth=1 by default) looking for candidates.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -259,7 +267,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">Thu Mar 11 15:24:49 2021 -0800</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
