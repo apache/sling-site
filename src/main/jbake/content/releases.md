@@ -8,10 +8,12 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2021
 
+* Testing JCR Mock 1.5.2, OSGi Mock 3.1.0, Sling Mock 3.0.2 (12th)
 * i18n 2.5.16 (11th)
 * XSS Protection API 2.2.12, Parent 41, Bundle Parent 41 (1st)
 
 ## February 2021
+
 * XSS Protection API 2.2.10, Repoinit JCR V1.1.34 (19th)
 * Repoinit Parser 1.6.6, Repoinit JCR V1.1.32 (16th)
 * JCR Package Init 1.0.2 (8th)
