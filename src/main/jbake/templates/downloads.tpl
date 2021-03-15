@@ -207,7 +207,7 @@ def bundles=[
   "Resource Collection|org.apache.sling.resourcecollection|1.0.2|Y|jar",
   "Resource Filter|org.apache.sling.resource.filter|1.0.0|Y|jar",
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8|Y|jar",
-  "Resource Merger|org.apache.sling.resourcemerger|1.3.8|Y|jar",
+  "Resource Merger|org.apache.sling.resourcemerger|1.4.0|Y|jar",
   "Resource Presence|org.apache.sling.resource.presence|0.0.2|Y|jar",
   "Resource Resolver|org.apache.sling.resourceresolver|1.7.2|Y|jar",
   "Rewriter|org.apache.sling.rewriter|1.3.0|Y|jar",
