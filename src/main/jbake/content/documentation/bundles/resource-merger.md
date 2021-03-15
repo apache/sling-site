@@ -34,10 +34,33 @@ The `CRUDMergingResourceProvider` not only gives read-access to the merged resou
 
 Property Name | Type | Description
 ------------- | ---- | ---------
-sling:hideProperties | String[] | Hides the properties with the given names. `*` hides all properties (since version 1.3.2 the wildcard only affects underlying properties and no longer local ones, see also [SLING-5468](https://issues.apache.org/jira/browse/SLING-5468)).
-sling:hideChildren| String[] | Hides the child resources with the given names. `*` hides all child resources (since version 1.3.2 the wildcard only affects underlying child resources and no longer local ones, see also [SLING-5468](https://issues.apache.org/jira/browse/SLING-5468)). If one value starts with `!` this is a negation (which means the property with the given value should not be hidden). Since by default nothing is hidden the negation is only useful if you specify multiple values for this property. E.g. giving the values `[!child1,*]` hides all children except for the one with the name `child1`. If you have a resource name starting with `!` you must escape it with an additional `!` in front if you want to reference it in `sling:hideChildren`, e.g. `!!child1` means that the resource with the name `!child1` should be hidden.
+sling:hideProperties | String[] | Hides the properties matching the given names. The exact syntax is described below.
+sling:hideChildren| String[] | Hides the child resources with the given names.  The exact syntax is described below.
 sling:hideResource | Boolean | If `true` then the resource with the name which contains this property should not be exposed!
 sling:orderBefore | String | Contains the name of the preceding sibling resource. This is influencing the order of resources when calling e.g. `Resource.listChildren()` or `Resource.getChildren()` on the merged resource. This is only necessary if the default child resource order is not sufficient (see below).
+
+## sling:hideProperties/hideChildren syntax
+Both properties `sling:hideProperties` and `sling:hideChildren` take multiple string values which either act as allow list or as deny list.
+They are treated as deny list if the first value is starting with an odd number of `!` otherwise as allow list. 
+
+In case negated (odd number of leader `!` ) and non-negated values are mixed in one property the first one determines the list type, and all values of the other type are just skipped!
+
+For deny lists an implicit wildcard is assumed, i.e. everything is allowed except for the names given in negated form. Giving an explicit wildcard (`*`) is optional and does not change the semantics.
+
+Each value can either be `*` which is treated as wildcard (i.e. matches all names) or a string with no placeholders. That string is unescaped by removing half of the leading `!` characters. That allows to negate arbitrary item names (even ones starting with one or multiple `!`).
+
+Escaped Value | Unescaped Value | Is negated
+--- | --- | ---
+!name | name | yes
+name | name | no
+!!name | !name | no
+!!!name | !name | yes
+!!!!name!test | !!name!test | no
+
+The matching algorithm just compares the item name (either resource or property name) with each of the given unescaped values. It matches if at least one is equal from an allow list or none is equal from a deny list.
+ 
+Since version 1.3.2 the wildcard only affects underlying child resources and no longer local ones, see also [SLING-5468](https://issues.apache.org/jira/browse/SLING-5468).
+
 
 # Child Resource Order
 
