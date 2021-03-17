@@ -74,14 +74,7 @@ div(class:"container") {
                 }
             }
             li(){
-                a(href:"https://www.apache.org/events/current-event.html", class:"column") {
-                    img(
-                        border:"0",
-                        alt:"Current ASF Events",
-                        src:"https://www.apache.org/events/current-event-125x125.png",
-                        width:"125"
-                    )
-                }
+                a(class:"acevent","data-format":"square","data-event":"random") {}
             }
             li(){
                 a(href:"https://apache.org/foundation/contributing.html",class:"column") {
