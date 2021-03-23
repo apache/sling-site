@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2021
 
+* Testing OSGi Mock 3.1.2 (23th)
 * Resource Merger 1.4.0 (15th)
 * Testing JCR Mock 1.5.2, OSGi Mock 3.1.0, Sling Mock 3.0.2 (12th)
 * i18n 2.5.16 (11th)
