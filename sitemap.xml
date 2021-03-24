@@ -207,7 +207,7 @@
                                         <li><a href="/releases.html">Releases</a></li>
                                         <li><a href="/documentation/bundles/rendering-content-default-get-servlets.html">Rendering Content - Default GET Servlets</a></li>
                                         <li><a href="/documentation/development/repository-based-development.html">Repository Based Development</a></li>
-                                        <li><a href="/documentation/bundles/repository-initialization.html">Repository Initialization</a></li>
+                                        <li><a href="/documentation/bundles/repository-initialization.html">Repository Initialization (repoinit)</a></li>
                                         <li><a href="/documentation/the-sling-engine/request-listeners.html">Request Listeners</a></li>
                                         <li><a href="/documentation/the-sling-engine/request-parameters.html">Request Parameter Handling in Sling</a></li>
                                         <li><a href="/old-stuff/request-processing.html">Request Processing</a></li>
