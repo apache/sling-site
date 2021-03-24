@@ -331,6 +331,17 @@ set properties on /pathA, /path/B
   set aStringMultiValue to &quot;one&quot;, &quot;two&quot;, &quot;three&quot;
   set aLongMultiValue{Long} to 1, 2, 3
 end
+
+# Set properties on users or groups, SLING-10192
+# 'set' overwrites any existing value while
+# 'default' only sets the property if not set yet
+set properties on authorizable(bob), authorizable(grpB)/nested
+  set someString{String} to /x/y/z
+  default someInteger{Long} to 42
+  set someFlag{Boolean} to true
+  default someDate{Date} to &quot;2020-03-19T11:39:33.437+05:30&quot;
+  set quotedMix to &quot;quoted&quot;, non-quoted, &quot;the last \&quot; one&quot;
+end
 </code></pre>
 </pre>
 <h3><a href="#notes-on-the-above-examples" id="notes-on-the-above-examples">Notes on the above examples</a></h3>
@@ -390,7 +401,7 @@ end
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Thu Feb 18 11:43:19 2021 +0100</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Mar 24 10:25:27 2021 +0100</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
