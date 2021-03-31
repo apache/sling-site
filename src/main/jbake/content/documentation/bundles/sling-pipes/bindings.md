@@ -8,7 +8,8 @@ in order to make things interesting, most of the configuration strings are expre
 strings, hence valid JEXL expressions reusing bindings (from configuration, or other pipes). 
 They work the same as JS expressions, except you can't add full JS files. 
 
-You can also set whatever scripting engine you want per pipe (including nashorn, rhino, groovy, ...)
+You can also set whatever scripting engine you want per pipe (including nashorn, rhino, groovy, ...) by setting, at the
+root pipe level, the property `engine` to the engine name (as it's registered) you wish.
 
 ## configuration expression
 
