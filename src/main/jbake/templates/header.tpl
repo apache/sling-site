@@ -7,6 +7,9 @@ head {
 	link(rel:"stylesheet", href:"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css") newLine()
 	link(rel:"stylesheet", href:"${config.site_contextPath}res/css/site.css") newLine()
 	
+	// Apache current events
+	yieldUnescaped "<script src='https://www.apachecon.com/event-images/snippet.js'></script>"
+
 	// highlightjs.org
 	link(rel:'stylesheet', href:'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css') newLine()
 	yieldUnescaped "<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>"

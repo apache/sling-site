@@ -1,4 +1,4 @@
-title=Repository Initialization
+title=Repository Initialization (repoinit)
 type=page
 status=published
 tags=repoinit,jcr,repository
@@ -233,6 +233,17 @@ The language is self-explaining but please refer to the actual test cases for de
       # Multi-value properties are created by a comma separated list
       set aStringMultiValue to "one", "two", "three"
       set aLongMultiValue{Long} to 1, 2, 3
+    end
+    
+    # Set properties on users or groups, SLING-10192
+    # 'set' overwrites any existing value while
+    # 'default' only sets the property if not set yet
+    set properties on authorizable(bob), authorizable(grpB)/nested
+      set someString{String} to /x/y/z
+      default someInteger{Long} to 42
+      set someFlag{Boolean} to true
+      default someDate{Date} to "2020-03-19T11:39:33.437+05:30"
+      set quotedMix to "quoted", non-quoted, "the last \" one"
     end
 </pre>
 

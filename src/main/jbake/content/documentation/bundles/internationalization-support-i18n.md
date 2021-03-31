@@ -176,3 +176,16 @@ So for the locale `de-DE-MAC` the fallback order would be
 
 In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale).
 The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.
+
+#### Locate non JCR based ResourceBundle resources
+
+Since version 2.5.16 the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that a bundle can declare certain paths that should be traversed to locate ResourceBundle resources.
+
+For example, the bundle providing the ResourceBundle resources can define something like this:
+
+    Require-Capability: osgi.extender;filter:="(&(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version<=1.0.0)(!(version>=2.0.0)))"
+    
+    Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths="/libs/i18n/path123";depth=1
+
+The "Provide-Capability" instruction defines which (csv) resource paths to traverse via the "paths" clause and how deep to drill down via the optional "depth" clause (depth=1 by default) looking for candidates.
+
