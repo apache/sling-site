@@ -393,71 +393,70 @@ The Script Use Provider allows loading objects evaluated by other script engines
 The following table summarises the pros and cons for each Use Provider, with the obvious exception of the Render Unit Use Provider.
 
 <table>
-    <tr>
-       <th>Use Provider</th>
-       <th>Advantages</th>
-       <th>Disadvantages</th>
-    </tr>
-    <tr>
-        <td>Sling Models Use Provider</td>
-        <td><ul><li>convenient injection annotations for data retrieval</li><li>easy to extend from other Sling Models</li><li>simple setup for unit testing</li></ul></td>
-        <td><ul><li>lacks flexibility in terms of component overlaying, relying on <code>service.ranking</code> configurations; this was solved for Sling Models 1.3.0 by <a href="https://issues.apache.org/jira/browse/SLING-5992">SLING-5992</a></li></ul></td>
-    </tr>
-    <tr>
-        <td>Java Use Provider</td>
-        <td>
-            <p>Use-objects provided through bundles:</p>
-            <ul>
-                <li>faster to initialise and execute than Sling Models for similar code</li>
-                <li>easy to extend from other similar Use-objects</li>
-                <li>simple setup for unit testing</li>
-            </ul>
-            <p>Use-objects backed by <code>Resources</code>:</p>
-            <ul>
-                <li>faster to initialise and execute than Sling Models for similar code</li>
-                <li>easy to override from inheriting components through search path overlay or by using the <code>sling:resourceSuperType</code> property, allowing for greater flexibility</li>
-                <li>business logic for components sits next to the HTL scripts where the objects are used</li>
-            </ul>
-        </td>
-        <td>
-            <p>Use-objects provided through bundles:</p>
-            <ul>
-                <li>lacks flexibility in terms of component overlaying</li>
-            </ul>
-
-            <p>Use-objects backed by <code>Resources</code>:</p>
-            <ul>
-                <li>cannot extend other Java objects</li>
-                <li>the Java project might need a different setup to allow running unit tests, since the objects will be deployed like content</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>JavaScript Use Provider</td>
-        <td>
-            <ul>
-                <li>allows JavaScript developers to develop component logic</li>
-                <li>can be reused through the dependency mechanism provided by the <code>use</code> function</li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li>harder to test and debug, relying mostly on end-to-end testing and console logging</li>
-                <li>slower to execute than both Sling Models and Java Use-API objects</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Script Use Provider</td>
-        <td>
-            <ul>
-                <li>allows the usage of Use objects evaluated by other Script Engines available in the platform</li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li>like in the case of the JavaScript Use Provider, the performance is influenced by the Script Engine's implementation</li>
-            </ul>
-        </td>
-    </tr>
+  <tr>
+   <th>Use Provider</th>
+   <th>Advantages</th>
+   <th>Disadvantages</th>
+  </tr>
+  <tr>
+    <td>Sling Models Use Provider</td>
+    <td><ul><li>convenient injection annotations for data retrieval</li><li>easy to extend from other Sling Models</li><li>simple setup for unit testing</li></ul></td>
+    <td><ul><li>lacks flexibility in terms of component overlaying, relying on <code>service.ranking</code> configurations; this was solved for Sling Models 1.3.0 by <a href="https://issues.apache.org/jira/browse/SLING-5992">SLING-5992</a></li></ul></td>
+  </tr>
+  <tr>
+    <td>Java Use Provider</td>
+    <td>
+      <p>Use-objects provided through bundles:</p>
+      <ul>
+        <li>faster to initialise and execute than Sling Models for similar code</li>
+        <li>easy to extend from other similar Use-objects</li>
+        <li>simple setup for unit testing</li>
+      </ul>
+      <p>Use-objects backed by <code>Resources</code>:</p>
+      <ul>
+        <li>faster to initialise and execute than Sling Models for similar code</li>
+        <li>easy to override from inheriting components through search path overlay or by using the <code>sling:resourceSuperType</code> property, allowing for greater flexibility</li>
+        <li>business logic for components sits next to the HTL scripts where the objects are used</li>
+      </ul>
+    </td>
+    <td>
+      <p>Use-objects provided through bundles:</p>
+      <ul>
+        <li>lacks flexibility in terms of component overlaying</li>
+      </ul>
+      <p>Use-objects backed by <code>Resources</code>:</p>
+      <ul>
+        <li>cannot extend other Java objects</li>
+        <li>the Java project might need a different setup to allow running unit tests, since the objects will be deployed like content</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+  <td>JavaScript Use Provider</td>
+  <td>
+    <ul>
+      <li>allows JavaScript developers to develop component logic</li>
+      <li>can be reused through the dependency mechanism provided by the <code>use</code> function</li>
+    </ul>
+  </td>
+  <td>
+    <ul>
+      <li>harder to test and debug, relying mostly on end-to-end testing and console logging</li>
+      <li>slower to execute than both Sling Models and Java Use-API objects</li>
+    </ul>
+  </td>
+  </tr>
+  <tr>
+    <td>Script Use Provider</td>
+    <td>
+      <ul>
+        <li>allows the usage of Use objects evaluated by other Script Engines available in the platform</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>like in the case of the JavaScript Use Provider, the performance is influenced by the Script Engine's implementation</li>
+      </ul>
+    </td>
+  </tr>
 </table>
