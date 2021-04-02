@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## April 2021
+
+* Feature Model 1.2.22, Feature Model Extension Api Regions 1.2.0, Slingfeature Maven Plugin 1.5.0 (2nd)
+
 ## March 2021
 
 * Testing OSGi Mock 3.1.2 (23th)
