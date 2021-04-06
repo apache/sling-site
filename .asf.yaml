@@ -5,3 +5,5 @@ github:
     - sling
     - website
     - jbake
+publish:
+  whoami: asf-site
