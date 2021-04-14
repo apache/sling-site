@@ -37,7 +37,7 @@ The companion `org.apache.sling.jcr.repoinit` module implements those operations
 registered by default with a service ranking of 100. It also provides a `JcrRepoInitOpsProcessor` service to explicitly apply the output
 of the repoinit parser to a JCR repository.
 
-Here's a current example from the test cases mentioned above, that uses all language features as of version 1.0.2 of the parser module. 
+Here's a current example [from the test cases mentioned above](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases/test-99.txt), that uses all language features as of version 1.0.2 of the parser module. 
 
 The language is self-explaining but please refer to the actual test cases for details that are guaranteed to be up to date, assuming the tests pass.
 
@@ -188,6 +188,12 @@ The language is self-explaining but please refer to the actual test cases for de
     create service user the-last-one
     
     disable service user svc1 : "This  is the message"
+    
+    # Delete users
+    delete user userA
+    delete user userB_listsAreNotSupported
+    delete service user svcA
+    delete service user svcB,svcC
 
     # Groups are supported since version 1.2.4, SLING-8219
     create group since124_A
