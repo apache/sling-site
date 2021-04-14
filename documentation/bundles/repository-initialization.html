@@ -137,7 +137,7 @@
 <p>As  I write this, the source code consists of <a href="https://github.com/apache?utf8=%E2%9C%93&amp;q=sling+repoinit">three modules</a>: the parser, the JCR repoinit adapter module and the integration tests.</p>
 <p>The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the <code>RepoInitGrammar.jjt</code> file in that module, and the automated tests provide a number of <a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases">test cases</a> which demonstrate various features.</p>
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
-<p>Here's a current example from the test cases mentioned above, that uses all language features as of version 1.0.2 of the parser module.</p>
+<p>Here's a current example <a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases/test-99.txt">from the test cases mentioned above</a>, that uses all language features as of version 1.0.2 of the parser module.</p>
 <p>The language is self-explaining but please refer to the actual test cases for details that are guaranteed to be up to date, assuming the tests pass.</p>
 <pre class="language-no-highlight">
 <pre><code>create service user user1, u-ser_2
@@ -286,6 +286,12 @@ create service user the-last-one
 
 disable service user svc1 : &quot;This  is the message&quot;
 
+# Delete users
+delete user userA
+delete user userB_listsAreNotSupported
+delete service user svcA
+delete service user svcB,svcC
+
 # Groups are supported since version 1.2.4, SLING-8219
 create group since124_A
 create group since124_B with path /path_B
@@ -401,7 +407,7 @@ end
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Mar 24 11:24:14 2021 +0100</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Wed Apr 14 12:54:29 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
