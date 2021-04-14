@@ -188,6 +188,12 @@ The language is self-explaining but please refer to the actual test cases for de
     create service user the-last-one
     
     disable service user svc1 : "This  is the message"
+    
+    # Delete users
+    delete user userA
+    delete user userB_listsAreNotSupported
+    delete service user svcA
+    delete service user svcB,svcC
 
     # Groups are supported since version 1.2.4, SLING-8219
     create group since124_A
