@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2021
 
+* Junit Core 1.1.2 (13th)
 * Feature Model 1.2.22, Feature Model Extension Api Regions 1.2.0, Slingfeature Maven Plugin 1.5.0 (2nd)
 
 ## March 2021
