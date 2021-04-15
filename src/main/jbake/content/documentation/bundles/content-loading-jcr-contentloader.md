@@ -1,10 +1,10 @@
-title=Content Loading and Nodetype/Namespace Support (jcr.contentloader)		
+title=Content Loading and Node Type/Namespace Support (jcr.contentloader)		
 type=page
 status=published
 tags=contentloading,nodetypes
 ~~~~~~
 
-Apache Sling provides support for initial content loading into a repository and for registering node types. The [`sling-jcr-contentloader`](https://github.com/apache/sling-org-apache-sling-jcr-contentloader) bundle provides loading of content from a bundle into the repository and the [`sling-jcr-base`](https://github.com/apache/sling-org-apache-sling-jcr-base) bundle provides node type and namespace registration. See [Content-Package based development](/documentation/development/content-packages.html) for an alternative for deploying content to the repository.
+Apache Sling provides support for initial content loading into a repository and for registering node types and namespaces. The [`sling-jcr-contentloader`](https://github.com/apache/sling-org-apache-sling-jcr-contentloader) bundle provides loading of content from a bundle into the repository and the [`sling-jcr-base`](https://github.com/apache/sling-org-apache-sling-jcr-base) bundle provides node type and namespace registration. See [Content-Package based development](/documentation/development/content-packages.html) for an alternative for deploying content to the repository.
 
 ## Initial Content Loading
 
