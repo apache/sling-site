@@ -356,11 +356,8 @@
 <div class="warning">
 Support for re-registration of node types is relatively limited. In Jackrabbit, for example, only "trivial" changes are allowed.
 </div>
-<h3><a href="#namespace-defition" id="namespace-defition">Namespace Defition</a></h3>
+<h3><a href="#namespace-definitions" id="namespace-definitions">Namespace Definitions</a></h3>
 <p>Instead of using a CND file for defining namespace one can use the bundle header <code>Sling-Namespaces</code> as well. It contains a comma-separated list of <code>&lt;prefix&gt;=&lt;uri&gt;</code> strings. Those are processed in <a href="https://github.com/apache/sling-org-apache-sling-jcr-base/blob/66be360910c265473799635fcac0e23895898913/src/main/java/org/apache/sling/jcr/base/internal/loader/Loader.java#L192"><code>org.apache.sling.content.jcr.base.internal.loader.Loader</code></a>.</p>
-<h2><a href="#automated-tests" id="automated-tests">Automated tests</a></h2>
-<p>The initial content found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-content/tree/master/src/main/resources/content/sling-test">sling-test folder of the launchpad initial content</a> is verified by the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java">InitialContentTest</a> when running the <em>launchpad testing</em> integration tests.</p>
-<p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p>
 <h2><a href="#acls-and-principals" id="acls-and-principals">ACLs and Principals</a></h2>
 <p><strong>Note:</strong> Creating system users is not supported by contentloader, you should use repoinit instead. Repoinit also allows to set ACLs. See <a href="repository-initialization.html">SlingRepositoryInitializer</a> for more information.</p>
 <p>By adding a <code>security:acl</code> object to a content node definition in JSON you can define an ACL for this node. For each array entry in this example an ACE is added. Example:</p>
@@ -416,6 +413,9 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
     ]
 }
 </code></pre>
+<h2><a href="#automated-tests" id="automated-tests">Automated tests</a></h2>
+<p>The initial content found in the <a href="https://https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/resources/SLING-INF">SLING-INF folder of the launchpad test services</a> is verified by the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java">InitialContentTest</a> when running the <em>launchpad testing</em> integration tests.</p>
+<p>Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -423,7 +423,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Apr 15 08:54:14 2021 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Apr 15 09:09:42 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
