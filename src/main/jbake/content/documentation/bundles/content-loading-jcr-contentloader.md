@@ -261,6 +261,7 @@ Example for the content descriptor:
     </node>
     
 
+
 ## Declared Node Type and Namespace Registration
 
 The `sling-jcr-base` bundle provides low-level repository operations which are at the heart of the functionality of Sling:
@@ -281,17 +282,10 @@ Starting with revision 911430, re-registration of existing node types is enabled
 Support for re-registration of node types is relatively limited. In Jackrabbit, for example, only "trivial" changes are allowed.
 </div>
 
-### Namespace Defition
+### Namespace Definitions
 
 Instead of using a CND file for defining namespace one can use the bundle header `Sling-Namespaces` as well. It contains a comma-separated list of `<prefix>=<uri>` strings. 
 Those are processed in [`org.apache.sling.content.jcr.base.internal.loader.Loader`](https://github.com/apache/sling-org-apache-sling-jcr-base/blob/66be360910c265473799635fcac0e23895898913/src/main/java/org/apache/sling/jcr/base/internal/loader/Loader.java#L192).
-
-## Automated tests
-
-The initial content found in the [sling-test folder of the launchpad initial content](https://github.com/apache/sling-org-apache-sling-launchpad-content/tree/master/src/main/resources/content/sling-test) is verified by the [InitialContentTest](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java) when running the *launchpad testing* integration tests.
-
-Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.
-
 
 ## ACLs and Principals
 
@@ -355,3 +349,9 @@ When adding a `security:acl` object to a content node definition in JSON you can
 
 
 [i18n-json-file-based]: https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html#json-file-based
+
+## Automated tests
+
+The initial content found in the [SLING-INF folder of the launchpad test services](https://https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/resources/SLING-INF) is verified by the [InitialContentTest](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java) when running the *launchpad testing* integration tests.
+
+Those tests can be used as verified examples of initial content loading. Contributions are welcome to improve the coverage of those tests.
