@@ -1,10 +1,10 @@
-title=Content Loading and Nodetype Support (jcr.contentloader)		
+title=Content Loading and Nodetype/Namespace Support (jcr.contentloader)		
 type=page
 status=published
 tags=contentloading,nodetypes
 ~~~~~~
 
-Apache Sling provides support for initial content loading into a repository and for registering node types. The `sling-jcr-contentloader` bundle provides loading of content from a bundle into the repository and the `sling-jcr-base` bundle provides node type registration. See [Content-Package based development](/documentation/development/content-packages.html) for an alternative for deploying content to the repository.
+Apache Sling provides support for initial content loading into a repository and for registering node types. The [`sling-jcr-contentloader`](https://github.com/apache/sling-org-apache-sling-jcr-contentloader) bundle provides loading of content from a bundle into the repository and the [`sling-jcr-base`](https://github.com/apache/sling-org-apache-sling-jcr-base) bundle provides node type and namespace registration. See [Content-Package based development](/documentation/development/content-packages.html) for an alternative for deploying content to the repository.
 
 ## Initial Content Loading
 
@@ -220,7 +220,7 @@ By default, the `sling-jcr-contentloader` bundle tries to extract certain file t
 
 ### File name escaping
 
-When the node name you want to import with the JCR ContentLoader contains characters that are not allowed in typical file systems (e.g. a ":" is not allowed on windows file systems), you can URL-encode the file name. It uses the [Java URLDecoder](https://docs.oracle.com/javase/8/docs/api/java/net/URLDecoder.html) internally.
+When the node name you want to import with the JCR ContentLoader contains characters that are not allowed in typical file systems (e.g. a ":" is not allowed on windows file systems), you can URL-encode the file name. It uses the [Java URLDecoder](https://docs.oracle.com/javase/8/docs/api/java/net/URLDecoder.html) with UTF-8 character encoding internally.
 
 Example: `jcr%3Acontent.txt` will be loaded into a node named `jcr:content.txt`.
 
@@ -261,24 +261,32 @@ Example for the content descriptor:
     </node>
     
 
-## Declared Node Type Registration
+## Declared Node Type and Namespace Registration
 
 The `sling-jcr-base` bundle provides low-level repository operations which are at the heart of the functionality of Sling:
-* *Node Type Definitions* \- The class `org.apache.sling.content.jcr.base.NodeTypeLoader` provides methods to register custom node types with a repository given a repository session and a node type definition file in CND format. This class is also used by this bundle to register node types on behalf of other bundles.
 
-Bundles may list node type definition files in CND format in the `Sling-Nodetypes` bundle header. This header is a comma-separated list of resources in the respective bundle. Each resource is taken and fed to the `NodeTypeLoader` to define the node types.
+### Node Type and Namespace Definitions (CND)
+
+The class `org.apache.sling.content.jcr.base.NodeTypeLoader` provides methods to register custom node types and namespace with a repository given a repository session and a node type definition file in [CND format](https://jackrabbit.apache.org/jcr/node-type-notation.html). This class is also used by this bundle to register node types on behalf of other bundles.
+
+Bundles may list node type definition files in CND format in the `Sling-Nodetypes` bundle header. This header is a comma-separated list of resource names in the respective bundle. Each resource is taken and fed to the `NodeTypeLoader` to define the node types.
 
 After a bundle has entered the *resolved* state, the node types listed in the `Sling-Nodetypes` bundle header are registered with the repository.
 
 Node types installed by this mechanism will never be removed again by the `sling-jcr-base` bundle. 
 
-Starting with revision 911430, re-registration of existing node types is enabled by default. To disable this, add `;rereigster:=false` to the resource names for which re-registration should be disabled.
+Starting with revision 911430, re-registration of existing node types is enabled by default. To disable this, add `;reregister:=false` to the resource names for which re-registration should be disabled.
 
 <div class="warning">
 Support for re-registration of node types is relatively limited. In Jackrabbit, for example, only "trivial" changes are allowed.
 </div>
 
-### Automated tests
+### Namespace Defition
+
+Instead of using a CND file for defining namespace one can use the bundle header `Sling-Namespaces` as well. It contains a comma-separated list of `<prefix>=<uri>` strings. 
+Those are processed in [`org.apache.sling.content.jcr.base.internal.loader.Loader`](https://github.com/apache/sling-org-apache-sling-jcr-base/blob/66be360910c265473799635fcac0e23895898913/src/main/java/org/apache/sling/jcr/base/internal/loader/Loader.java#L192).
+
+## Automated tests
 
 The initial content found in the [sling-test folder of the launchpad initial content](https://github.com/apache/sling-org-apache-sling-launchpad-content/tree/master/src/main/resources/content/sling-test) is verified by the [InitialContentTest](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/InitialContentTest.java) when running the *launchpad testing* integration tests.
 
