@@ -256,6 +256,8 @@ Close all issues associated with the released version.
 If the released module was already included in the Sling Starter, or if a new release should be included in it,
 update the [Starter Module](https://github.com/apache/sling-org-apache-sling-starter)'s feature model accordingly.
 
+Please note that this might fail the jenkins if a newly uploaded artifact is not yet mirrored.
+
 ## Create an Announcement
 
 We usually do such announcements only for "important" releases, as opposed to small individual module
