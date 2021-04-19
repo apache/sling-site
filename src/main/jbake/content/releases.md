@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2021
 
+* JCR Maintenance 1.0.2 (19th)
 * Event Support 4.2.18 (19th)
 * Resource Resolver 1.7.4 (15th)
 * Junit Core 1.1.2 (13th)
