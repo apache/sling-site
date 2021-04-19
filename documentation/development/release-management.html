@@ -336,6 +336,7 @@ $ svn delete -m &quot;Release org.apache.sling.engine-2.6.22&quot; $(ls | sed 's
 <p>Close all issues associated with the released version.</p>
 <h2><a href="#update-the-sling-starter-module" id="update-the-sling-starter-module">Update the Sling Starter Module</a></h2>
 <p>If the released module was already included in the Sling Starter, or if a new release should be included in it, update the <a href="https://github.com/apache/sling-org-apache-sling-starter">Starter Module</a>'s feature model accordingly.</p>
+<p>Please note that this might fail the jenkins if a newly uploaded artifact is not yet mirrored.</p>
 <h2><a href="#create-an-announcement" id="create-an-announcement">Create an Announcement</a></h2>
 <p>We usually do such announcements only for &quot;important&quot; releases, as opposed to small individual module releases which are just announced on our <a href="/news.html">news</a> page.</p>
 <pre><code>To: &quot;Sling Developers List&quot; &lt;dev@sling.apache.org&gt;, &quot;Apache Announcements&quot; &lt;announce@apache.org&gt;
@@ -575,7 +576,7 @@ $ svn up KEYS
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">Mon Nov 9 11:58:45 2020 +0100</span>
+                        Last modified by <span class="author">Stefan Egli</span> on <span class="comment">Mon Apr 19 15:48:09 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
