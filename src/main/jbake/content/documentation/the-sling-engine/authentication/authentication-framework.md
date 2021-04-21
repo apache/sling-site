@@ -17,6 +17,7 @@ This page describes how the `SlingAuthenticator` class provides the `Authenticat
 
 The `SlingAuthenticator` class is an internal class of the `org.apache.sling.auth.core` bundle and implements the `Authenticator` and `AuthenticationSupport` services.
 
+The API mentioned in this document and its implementation is part of the [Apache Sling Auth Core](https://github.com/apache/sling-org-apache-sling-auth-core) bundle.
 
 ## AuthenticationSupport
 
