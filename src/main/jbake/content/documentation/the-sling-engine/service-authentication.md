@@ -101,7 +101,7 @@ The first part is a new OSGi Service `ServiceUserMapper`. The
 `ServiceUserMapper` service allows for mapping *Service IDs* comprised of
 the *Service Names* defined by the providing bundles and optional *Subservice Name*
 to ResourceResolver and/or JCR Repository principal names ([SLING-6939](https://issues.apache.org/jira/browse/SLING-6963)) or 
-user IDs ([SLING-6939](https://issues.apache.org/jira/browse/SLING-6963)). This mapping is configurable
+user IDs ([SLING-10321](https://issues.apache.org/jira/browse/SLING-10321)). This mapping is configurable
 such that system administrators are in full control of assigning users to services.
 
 The `ServiceUserMapper` defines the following API:
@@ -110,7 +110,7 @@ The `ServiceUserMapper` defines the following API:
     Iterable<String> getServicePrincipalNames(Bundle bundle, String subServiceName);
      
 The alternative API (getting service user ID as shown below) has been deprecated for security reasons and will be removed
-in future releases. See [SLING-6939](https://issues.apache.org/jira/browse/SLING-6963) for details.
+in future releases. See [SLING-10321](https://issues.apache.org/jira/browse/SLING-10321) for details.
 
     #!java
     @Deprecated
@@ -195,7 +195,7 @@ named `user.mapping` getting a String array as value where each entry must stick
 
     <service-name>[:<subservice-name>]="["<principal name of a JCR system user>{","<principal name of a JCR system user>}"]"   
 
-The alternative mapping by ID has been deprecated (see: [SLING-6939](https://issues.apache.org/jira/browse/SLING-6963)) and
+The alternative mapping by ID has been deprecated (see: [SLING-10321](https://issues.apache.org/jira/browse/SLING-10321)) and
 will be disabled in the future.
 
     <service-name>[:<subservice-name>]=<id of a JCR system user>
