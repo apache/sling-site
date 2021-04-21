@@ -100,7 +100,7 @@ described above consists of three parts:
 The first part is a new OSGi Service `ServiceUserMapper`. The
 `ServiceUserMapper` service allows for mapping *Service IDs* comprised of
 the *Service Names* defined by the providing bundles and optional *Subservice Name*
-to ResourceResolver and/or JCR Repository principal names ([SLING-6939](https://issues.apache.org/jira/browse/SLING-6963)) or 
+to ResourceResolver and/or JCR Repository principal names ([SLING-6963](https://issues.apache.org/jira/browse/SLING-6963)) or 
 user IDs ([SLING-10321](https://issues.apache.org/jira/browse/SLING-10321)). This mapping is configurable
 such that system administrators are in full control of assigning users to services.
 
@@ -188,7 +188,7 @@ service. The additional Subservice Name may be provided with the
 ### Service User Mappings
 
 For each service/subservice name combination an according mapping needs to be provided. The mapping binds a service 
-name/subservice name to one or many principal names (since version 1.3.4, see [SLING-6939](https://issues.apache.org/jira/browse/SLING-6963)).
+name/subservice name to one or many principal names (since version 1.3.4, see [SLING-6963](https://issues.apache.org/jira/browse/SLING-6963)).
 This is configured through an OSGi configuration for the factory configuration with PID `org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended` 
 (added in [SLING-3578](https://issues.apache.org/jira/browse/SLING-3578)). There you can set one configuration property 
 named `user.mapping` getting a String array as value where each entry must stick to the following format:
