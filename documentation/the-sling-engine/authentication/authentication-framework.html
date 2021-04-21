@@ -129,6 +129,7 @@
 </ul>
 <p>This page describes how the <code>SlingAuthenticator</code> class provides the <code>AuthenticationSupport</code> and  <code>Authenticator</code> services. For a description of the <code>AuthenticationHandler</code> service interface and the interaction between the <code>SlingAuthenticator</code> and the <code>AuthenticationHandler</code> services refer to the <a href="/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html">AuthenticationHandler</a> page.</p>
 <p>The <code>SlingAuthenticator</code> class is an internal class of the <code>org.apache.sling.auth.core</code> bundle and implements the <code>Authenticator</code> and <code>AuthenticationSupport</code> services.</p>
+<p>The API mentioned in this document and its implementation is part of the <a href="https://github.com/apache/sling-org-apache-sling-auth-core">Apache Sling Auth Core</a> bundle.</p>
 <h2><a href="#authenticationsupport" id="authenticationsupport">AuthenticationSupport</a></h2>
 <p>The <code>AuthenticationSupport</code> service interface defines a single method: <code>handleSecurity</code>. This method is intended to be called by the <code>handleSecurity</code> method of any <code>HttpContext</code> implementation wishing to make use of the Sling Authentication Framework.</p>
 <p>The Sling Authenticator implementation selects an <code>AuthenticationHandler</code> service appropriate for the request and calls the <code>AuthenticationHandler.extractCredentials</code> method to extract the credentials from the request. If no credentials could be extracted, the Sling Authenticator either admits the request as an anonymous request or requests authentication from the client by calling its own <code>login</code> method.</p>
@@ -234,7 +235,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 13 11:08:10 2018 +0200</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">Wed Apr 21 09:15:03 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
