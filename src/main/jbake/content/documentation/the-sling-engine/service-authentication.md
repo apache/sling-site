@@ -27,7 +27,7 @@ with special users properly configured to support those services.
 
 The solution presented here serves the following goals:
 
-* Prevent over-use and abuse of administrative ResourceResolvers and/ro JCR Sessions
+* Prevent over-use and abuse of administrative ResourceResolvers and/or JCR Sessions
 * Allow services access to ResourceResolvers and/or JCR Sessions without
 requiring to hard-code or configure passwords
 * Allow services to use *service users* which have been specially
@@ -100,15 +100,23 @@ described above consists of three parts:
 The first part is a new OSGi Service `ServiceUserMapper`. The
 `ServiceUserMapper` service allows for mapping *Service IDs* comprised of
 the *Service Names* defined by the providing bundles and optional *Subservice Name*
-to ResourceResolver and/or JCR Repository user IDs or principals ([SLING-6939](https://issues.apache.org/jira/browse/SLING-6963)). This mapping is configurable
+to ResourceResolver and/or JCR Repository principal names ([SLING-6963](https://issues.apache.org/jira/browse/SLING-6963)) or 
+user IDs ([SLING-10321](https://issues.apache.org/jira/browse/SLING-10321)). This mapping is configurable
 such that system administrators are in full control of assigning users to services.
 
 The `ServiceUserMapper` defines the following API:
 
     #!java
+    Iterable<String> getServicePrincipalNames(Bundle bundle, String subServiceName);
+     
+The alternative API (getting service user ID as shown below) has been deprecated for security reasons and will be removed
+in future releases. See [SLING-10321](https://issues.apache.org/jira/browse/SLING-10321) for details.
+
+    #!java
+    @Deprecated
     String getServiceUserID(Bundle bundle, String subServiceName);
     
-The implementation uses two fallbacks in case no mapping can be found for the given subServiceName
+The implementation uses the following fallbacks in case no mapping can be found for the given subServiceName:
 
 1. Use user/principal mapping for the serviceName only (not considering subServiceName)
 1. Use default user (if one is configured in the OSGi configuration for PID `	org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl`).
@@ -116,6 +124,25 @@ The implementation uses two fallbacks in case no mapping can be found for the gi
 
 In addition a service named `ServiceUserMapped` is registered for each bundle and subservice name for which a service user mapping is explicitly configured ([SLING-4312](https://issues.apache.org/jira/browse/SLING-4312)).  By explicitly defining a (static) reference towards `ServiceUserMapped` one can defer starting the service until that service user mapping is available.
 Please note, that the two last default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work prior to version 1.4.4 ([SLING-7930](https://issues.apache.org/jira/browse/SLING-7930)). Also since version 1.4.4 the `ServiceUserMapped` is only registered in case there is a valid user/principal found in the underlying repository which is given in the mapping ([SLING-7930](https://issues.apache.org/jira/browse/SLING-7930)).
+
+#### Validators `ServicePrincipalsValidator` and `ServiceUserValidator`
+
+The API defines two interfaces to validate principal names and user IDs defined in service user mappings each with a 
+single method. The default `ServiceUserMapper` implementation allows to configure the set of required implementations that 
+need to be consulted to verify the validity of a given mapping.
+
+`ServicePrincipalsValidator` validates mappings by principal names
+   
+     #!java
+     boolean isValid(Iterable<String> servicePrincipalNames, String serviceName, String subServiceName);
+
+`ServiceUserValidator` validates mappings by user ID
+
+     #!java
+     boolean isValid(String serviceUserId, String serviceName, String subServiceName)
+
+Module _sling-org-apache-sling-jcr-resource_ defines `JcrSystemUserValidator` implementing both interfaces, which makes 
+sure all mapped principal names or user IDs refer to an existing JCR system user. 
 
 ### `ResourceResolverFactory`
 
@@ -138,7 +165,9 @@ with support for Service Authentication: Now new API is required, though
 but additional properties are defined to convey the service to authenticate
 for.
 
-The default implementation leverages `ServiceUserMapper.getServiceUserID()` to resolve the right user id and throws a `LoginException` in case no mapping has been setup (and none of the fallbacks returned a user id != `null` either).
+The default implementation leverages `ServiceUserMapper.getServicePrincipalNames()` (and as fallback the deprecated 
+`ServiceUserMapper.getServiceID()`) to resolve the principal names (fallback userID) and throws a `LoginException` in 
+case no mapping has been setup (and none of the fallbacks described returned a valid user id either).
 
 ### `SlingRepository`
 
@@ -158,14 +187,30 @@ service. The additional Subservice Name may be provided with the
 
 ### Service User Mappings
 
-For each service/subservice name combination an according mapping needs to be provided. The mapping binds a service name/subservice name to a JCR system user or a principal (since version 1.3.4, see [SLING-6939](https://issues.apache.org/jira/browse/SLING-6963)).
-This is configured through an OSGi configuration for the factory configuration with PID `org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended` (added in [SLING-3578](https://issues.apache.org/jira/browse/SLING-3578)). There you can set one configuration property named `user.mapping` getting a String array as value where each entry must stick to the following format:
+For each service/subservice name combination an according mapping needs to be provided. The mapping binds a service 
+name/subservice name to one or many principal names (since version 1.3.4, see [SLING-6963](https://issues.apache.org/jira/browse/SLING-6963)).
+This is configured through an OSGi configuration for the factory configuration with PID `org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended` 
+(added in [SLING-3578](https://issues.apache.org/jira/browse/SLING-3578)). There you can set one configuration property 
+named `user.mapping` getting a String array as value where each entry must stick to the following format:
 
-    <service-name>[:<subservice-name>]=<authorizable id of a JCR system user>|"["<principal name>{","<principal name>}"]"
+    <service-name>[:<subservice-name>]="["<principal name of a JCR system user>{","<principal name of a JCR system user>}"]"   
+
+The alternative mapping by ID has been deprecated (see: [SLING-10321](https://issues.apache.org/jira/browse/SLING-10321)) and
+will be disabled in the future.
+
+    <service-name>[:<subservice-name>]=<id of a JCR system user>
     
-The principal based mapping (enclosed in square brackets) is in general faster than the authorizable id based one. Also it allows to directly reference multiple principals which are all considered to calculate the access rights for the configured service session/resource resolver. The principal based mapping does not consider group memberships of the underlying users, though.
+The principal based mapping (enclosed in square brackets) is in general faster than the id based variant. 
+It allows to directly reference multiple service user principals and avoids resolving group memberships. This provides 
+full control over effective permissions granted to the service and prevents privilege escalations through changing group permissions. 
 
-The according user/principal must exist at the point in time where `ResourceResolverFactory.getServiceResourceResolver(...)` or `SlingRepository.loginService(...)` is called. If you rely on one of those methods in your `activate` method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service `ServiceUserMapped` (see Section `ServiceUserMapper` above for details), optionally with a target filter on property `subServiceName` (in case such a subservice name is used). The service `ServiceUserMapped` does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components. 
+The JCR system user whose principal name or ID is mapped must exist at the point in time where `ResourceResolverFactory.getServiceResourceResolver(...)` 
+or `SlingRepository.loginService(...)` is called. If you rely on one of those methods in your `activate` method of an 
+OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping 
+is in place. For that you can reference the OSGi service `ServiceUserMapped` (see Section `ServiceUserMapper` above for details), 
+optionally with a target filter on property `subServiceName` (in case such a subservice name is used). 
+The service `ServiceUserMapped` does not expose any methods but is only a marker interface exclusively used to defer 
+starting of other OSGi components. 
 
 Example OSGi DS Component
 
