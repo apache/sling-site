@@ -216,6 +216,7 @@ def bundles=[
   "Sample Integration Tests|org.apache.sling.testing.samples.integrationtests|1.0.6|N|jar",
   "Sample Server-Side Tests|org.apache.sling.testing.samples.sampletests|1.0.6|N|jar",
   "Scripting API|org.apache.sling.scripting.api|2.2.0|Y|jar",
+  "Scripting SPI|org.apache.sling.scripting.spi|1.0.2|Y|jar",
   "Scripting Bundle Tracker|org.apache.sling.scripting.bundle.tracler|0.1.0|Y|jar",
   "Scripting Console|org.apache.sling.scripting.console|1.0.0|Y|jar",
   "Scripting Core|org.apache.sling.scripting.core|2.3.4|Y|jar",

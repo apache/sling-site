@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2021
 
+* Scripting SPI 1.0.2 (26th)
 * Auth Core (1.5.2) (21st)
 * JCR Maintenance 1.0.2 (19th)
 * Event Support 4.2.18 (19th)
