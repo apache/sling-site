@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2021
 
+* Bundle Resource Provider 2.3.4 (26th)
 * Scripting SPI 1.0.2 (26th)
 * Auth Core (1.5.2) (21st)
 * JCR Maintenance 1.0.2 (19th)
