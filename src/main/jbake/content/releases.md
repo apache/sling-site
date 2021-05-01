@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2021
+
+* Repoinit Parser 1.6.8, Feature Analyser 1.3.24, Feature Extension Api Regions 1.2.2, Slingfeature Maven Plugin 1.5.2 (1st)
+
 ## April 2021
 
 * Bundle Resource Provider 2.3.4 (26th)
