@@ -33,7 +33,7 @@ A [distribution](https://karaf.apache.org/manual/latest/#_custom_distributions) 
 
 2) Add the Apache Sling features repository (not necessary when using _Sling's Karaf Distribution_):
 
-    karaf@root()> feature:repo-add mvn:org.apache.sling/org.apache.sling.karaf-features/0.1.1-SNAPSHOT/xml/features
+    karaf@root()> feature:repo-add mvn:org.apache.sling/org.apache.sling.karaf-features/0.2.0-SNAPSHOT/xml/features
 
 3) Sling requires OSGi R7 [Http Service](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.html) and [Http Whiteboard Service](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html), e.g. [Apache Felix HTTP Service](https://github.com/apache/felix-dev/tree/master/http):
 
