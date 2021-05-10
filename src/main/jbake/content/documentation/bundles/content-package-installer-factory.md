@@ -33,6 +33,7 @@ A sample user configuration using repoinit is
         allow  jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository
     end
 
+In addition it is necessary to list the service user in the OSGi configuration for PID `org.apache.jackrabbit.vault.packaging.impl.PackagingImpl` to allow execution of [Install Hooks](https://jackrabbit.apache.org/filevault/installhooks.html).
 
 # Project Info
 
