@@ -152,7 +152,26 @@ The language is self-explaining but please refer to the actual test cases for de
     set principal ACL for alice,bob
         allow jcr:namespaceManagement on :repository 
     end
-	
+
+    # Remove access control policy by path (see SLING-10299)
+    # since 
+    # o.a.s.repoinit.parser 1.6.10 and 
+    # o.a.s.jcr.repoinit 1.1.36
+    delete ACL on /content, :repository, home(alice)
+
+    # Remove access control policy by principal (see SLING-10299)
+    # Note, this will result in the removal of all path-based access control entries for the specified principal(s).
+    # since 
+    # o.a.s.repoinit.parser 1.6.10 and 
+    # o.a.s.jcr.repoinit 1.1.36
+    delete ACL for alice,bob
+
+    # Remove principal-based access control policy (see SLING-10299)
+    # since 
+    # o.a.s.repoinit.parser 1.6.10 and 
+    # o.a.s.jcr.repoinit 1.1.36
+    delete principal ACL for alice,bob
+
     # register namespace requires 
     # o.a.s.repoinit.parser 1.0.4
     # and o.a.s.jcr.repoinit 1.0.2
