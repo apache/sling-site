@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2021
 
+* Scripting JSP 2.5.2, Scripting HTL Testing 1.0.30-1.4.0, Scripting Core 2.3.6, Scripting HTL Engine 1.4.8-1.4.0, Scripting Bundle Maven Plugin 0.3.0, Servlets Resolver 2.7.14, Scripting HTL Testing Content 1.0.28-1.4.0 (11th)
 * API 2.23.4 (4th)
 * Repoinit Parser 1.6.8, Feature Analyser 1.3.24, Feature Extension Api Regions 1.2.2, Slingfeature Maven Plugin 1.5.2 (1st)
 
