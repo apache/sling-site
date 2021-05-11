@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.apache.sling.scriptingbundle.maven.plugin"},{"l":"org.apache.sling.scriptingbundle.maven.plugin.capability"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.apache.sling.scriptingbundle.plugin.bnd"},{"l":"org.apache.sling.scriptingbundle.plugin.capability"},{"l":"org.apache.sling.scriptingbundle.plugin.maven"},{"l":"org.apache.sling.scriptingbundle.plugin.processor"}]
