@@ -7,6 +7,7 @@ tags=resources
 ## Introduction
 
 The Sling API provides an easy way to wrap or decorate a resource before returning. Use cases for this could for example be
+
 * overwrite resource type/resource super type (for example based on the resource path)
 * add metadata
 

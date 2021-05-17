@@ -21,7 +21,7 @@ Which provide the ability to create and delete resources as well as the addition
 
 ## Comparing Sling API CRUD to Sling Post Servlet
 
-Here are some examples of common operations performed using the Sling Post Servlet and Sling API CRUD support.  Note, the examples are derived from the [SlingPostServlet Cheatsheet](http://dev.day.com/content/ddc/blog/2008/07/cheatsheet/_jcr_content/images/cheatsheet/back.png).
+Here are some examples of common operations performed using the Sling Post Servlet and Sling API CRUD support.  Note, the examples are derived from the cheat sheet in Adobe's AEM documentation at [https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html).
 
 ### Updating a Property
 
