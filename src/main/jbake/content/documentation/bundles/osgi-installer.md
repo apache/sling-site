@@ -108,6 +108,7 @@ The OSGi installer provides a [Sling Health Check](/documentation/bundles/sling-
 By default it will only check resources with a URL prefix `jcrinstall:/apps/`, so only the resources being provided through the [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html) initially located below the repository resource `/apps/` are considered.
 
 The health check will fail in the following cases:
+
 * Bundles Installation Failure
 * Configuration Installation Failure
 
