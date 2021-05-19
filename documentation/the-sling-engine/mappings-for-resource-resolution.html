@@ -304,7 +304,12 @@ for (String segment: segments) {
 <p>In general, the number of aliases have a direct impact on the performance of the resource resolution - as basically all possible permutations of paths for a resource have to be tested against the incoming request path. By default a cache is used to speed up handling aliases during resolving resources. It is highly recommended to have this cache enabled to avoid slowing down request performance. However, the cache might have an impact on startup time and on the alias update time if the number of aliases is huge (over 10000).</p>
 <p>The cache can be disabled by setting the property <code>resource.resolver.optimize.alias.resolution</code> of the OSGi configuration <code>org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl</code> to <code>false</code>.</p>
 <h3><a href="#limitation-of-slingalias-for-principal-with-a-limited-access" id="limitation-of-slingalias-for-principal-with-a-limited-access">Limitation of <code>sling:alias</code> for Principal with a limited access</a></h3>
-<p>Assuming there is * An User named <code>testuser</code> * An ACE with deny <code>jcr:all</code> in <code>/</code> for <code>everyone</code> * An ACE with allow <code>jcr:read</code> in <code>/content</code> for <code>testuser</code></p>
+<p>Assuming there is</p>
+<ul>
+<li>An User named <code>testuser</code></li>
+<li>An ACE with deny <code>jcr:all</code> in <code>/</code> for <code>everyone</code></li>
+<li>An ACE with allow <code>jcr:read</code> in <code>/content</code> for <code>testuser</code></li>
+</ul>
 <p>If the <code>sling:alias</code> property (e.g. <code>myalias</code>) is set directly in <code>/content</code>, the User <code>testuser</code> will not be able to address the resource <code>/content</code> in an URL as <code>/myalias</code>. Instead if the <code>sling:alias</code> property is set in any resource under <code>/content</code> (e.g. <code>/content/visitors</code>) the <code>sling:alias</code> feature will work as usual.</p>
 <h2><a href="#vanity-path-configuration" id="vanity-path-configuration">Vanity Path Configuration</a></h2>
 <p>While an alias can provide a variation for a resource name, a vanity path can provide an alternative path for a resource. The following properties can be set on a resource:</p>
@@ -369,7 +374,7 @@ for (String segment: segments) {
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Wed Nov 11 19:55:39 2020 +0100</span>
+                        Last modified by <span class="author">Aravindo Wingeier</span> on <span class="comment">Wed May 19 11:36:27 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
