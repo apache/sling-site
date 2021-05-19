@@ -250,6 +250,7 @@ The cache can be disabled by setting the property `resource.resolver.optimize.al
 ### Limitation of `sling:alias` for Principal with a limited access
 
 Assuming there is
+
 * An User named `testuser`
 * An ACE with deny `jcr:all` in `/` for `everyone`
 * An ACE with allow `jcr:read` in `/content` for `testuser`

@@ -20,7 +20,7 @@ It is up to the [Resource Provider](resources.html#providing-resources) to decid
 
 The decomposed parts can be accessed through the `RequestPathInfo` object, which is retrieved via [SlingHttpServletRequest.getPathInfo()](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/SlingHttpServletRequest.html#getRequestPathInfo--).
 
-There's a cheat sheet in Adobe's AEM documentation at [https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html](https://docs.adobe.com/docs/en/aem/6-2/develop/platform/sling-cheatsheet.html) available to get you familiar with the URL decomposition of Sling.
+There's a cheat sheet in Adobe's AEM documentation at [https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html) available to get you familiar with the URL decomposition of Sling.
 
 # Examples #
 Assume there is a Resource at `/a/b`, which has no children.
