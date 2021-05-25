@@ -280,7 +280,7 @@ def bundles=[
   "Validation Core|org.apache.sling.validation.core|1.0.4|Y|jar",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2|Y|jar",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.2|Y|jar",
-  "XSS Protection API|org.apache.sling.xss|2.2.12|Y|jar",
+  "XSS Protection API|org.apache.sling.xss|2.2.14|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
 
