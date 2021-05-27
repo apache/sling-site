@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2021
 
+* Feature Extension Api Regions 1.2.8 (27th)
 * Auth Core 1.5.4, XSS Protection API 2.2.14, GraphQL Core 0.0.10 (25th)
 * App CMS 1.0.2 (20th)
 * Scripting JSP 2.5.2, Scripting HTL Testing 1.0.30-1.4.0, Scripting Core 2.3.6, Scripting HTL Engine 1.4.8-1.4.0, Scripting Bundle Maven Plugin 0.3.0, Servlets Resolver 2.7.14, Scripting HTL Testing Content 1.0.28-1.4.0, Resource Resolver 1.7.6 (11th)
