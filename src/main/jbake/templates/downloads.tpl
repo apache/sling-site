@@ -28,7 +28,7 @@ def slingApplication=[
   "Sling Starter WAR|A ready-to run Sling webapp as a war file, for experimenting and learning|org.apache.sling.starter|-webapp.war|${launchpadVersion}|Y",
   "Sling Source Release|The released Sling source code|org.apache.sling.starter|-source-release.zip|${launchpadVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.feature|.jar|1.0.2|org.apache.sling.app.cms",
-  "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.0.14|Y",
+  "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.1.2|Y",
 ]
 
 def mavenPlugins=[
