@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2021
 
+* Feature Extension Api Regions 1.2.10 (31st)
 * Feature Extension Api Regions 1.2.8 (27th)
 * Auth Core 1.5.4, XSS Protection API 2.2.14, GraphQL Core 0.0.10 (25th)
 * App CMS 1.0.2 (20th)
