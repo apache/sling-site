@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## June 2021
+
+* Event Support 4.2.20 (3rd)
+
 ## May 2021
 
 * Feature Extension Api Regions 1.2.10 (31st)
