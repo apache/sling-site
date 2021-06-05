@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2021
 
+* Parent and Bundle Parent 43 (5th)
 * Event Support 4.2.20 (3rd)
 
 ## May 2021
