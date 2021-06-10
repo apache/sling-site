@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2021
 
+* Servlet Annotations 1.2.6, JCR Package Init 1.0.4 (10th)
 * Discovery Commons 1.0.24, Base 2.0.10, Oak 1.2.34 (7th)
 * Resource Resolver 1.7.8 (7th)
 * Parent and Bundle Parent 43 (5th)
