@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## June 2021
 
 * Form Based Authentication 1.0.24 (11th)
+* Post Servlet 2.4.4 (10th)
 * JCR Jackrabbit User Manager 2.2.14, JCR Jackrabbit Access Manager 3.0.10 (10th)
 * Servlet Annotations 1.2.6, JCR Package Init 1.0.4 (10th)
 * Discovery Commons 1.0.24, Base 2.0.10, Oak 1.2.34 (7th)
