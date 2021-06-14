@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2021
 
+* Event Support 4.2.22 (14th)
 * Scripting Java 2.1.6 (14th)
 * Form Based Authentication 1.0.24 (11th)
 * Post Servlet 2.4.4 (10th)
