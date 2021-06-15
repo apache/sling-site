@@ -347,33 +347,4 @@ For [Logback](https://logback.qos.ch) use `SlingOptions#logback()` and add both 
 
 ## List of modules using Testing PaxExam
 
-[Testing PaxExam](https://github.com/apache/sling-org-apache-sling-testing-paxexam) is used by several [modules](https://github.com/apache/sling-org-apache-sling-testing-paxexam/network/dependents) for integration tests:
-
-* [org.apache.sling.capabilities](https://github.com/apache/sling-org-apache-sling-capabilities)
-* [org.apache.sling.capabilities.jcr](https://github.com/apache/sling-org-apache-sling-capabilities-jcr)
-* [org.apache.sling.clam](https://github.com/apache/sling-org-apache-sling-clam)
-* [org.apache.sling.commons.clam](https://github.com/apache/sling-org-apache-sling-commons-clam)
-* [org.apache.sling.commons.classloader](https://github.com/apache/sling-org-apache-sling-commons-classloader)
-* [org.apache.sling.commons.contentdetection](https://github.com/apache/sling-org-apache-sling-commons-contentdetection)
-* [org.apache.sling.commons.crypto](https://github.com/apache/sling-org-apache-sling-commons-crypto)
-* [org.apache.sling.commons.html](https://github.com/apache/sling-org-apache-sling-commons-html)
-* [org.apache.sling.commons.jcr.file](https://github.com/apache/sling-org-apache-sling-commons-jcr-file)
-* [org.apache.sling.commons.messaging.mail](https://github.com/apache/sling-org-apache-sling-commons-messaging-mail)
-* [org.apache.sling.commons.metrics](https://github.com/apache/sling-org-apache-sling-commons-metrics)
-* [org.apache.sling.distribution.core](https://github.com/apache/sling-org-apache-sling-distribution-core)
-* [org.apache.sling.distribution.journal.it](https://github.com/apache/sling-org-apache-sling-distribution-journal-it)
-* [org.apache.sling.i18n](https://github.com/apache/sling-org-apache-sling-i18n)
-* [org.apache.sling.jcr.contentloader](https://github.com/apache/sling-org-apache-sling-jcr-contentloader)
-* [org.apache.sling.jcr.filetransfer](https://github.com/apache/sling-org-apache-sling-jcr-filetransfer)
-* [org.apache.sling.jcr.oak.server](https://github.com/apache/sling-org-apache-sling-jcr-oak-server)
-* [org.apache.sling.jcr.repoinit](https://github.com/apache/sling-org-apache-sling-jcr-repoinit)
-* [org.apache.sling.karaf-integration-tests](https://github.com/apache/sling-org-apache-sling-karaf-integration-tests)
-* [org.apache.sling.karaf-launchpad-oak-tar-integration-tests](https://github.com/apache/sling-org-apache-sling-karaf-launchpad-oak-tar-integration-tests)
-* [org.apache.sling.pipes](https://github.com/apache/sling-org-apache-sling-pipes)
-* [org.apache.sling.resource.presence](https://github.com/apache/sling-org-apache-sling-resource-presence)
-* [org.apache.sling.rewriter](https://github.com/apache/sling-org-apache-sling-rewriter)
-* [org.apache.sling.scripting.core](https://github.com/apache/sling-org-apache-sling-scripting-core)
-* [org.apache.sling.scripting.freemarker](https://github.com/apache/sling-org-apache-sling-scripting-freemarker)
-* [org.apache.sling.scripting.groovy](https://github.com/apache/sling-org-apache-sling-scripting-groovy)
-* [org.apache.sling.scripting.thymeleaf](https://github.com/apache/sling-org-apache-sling-scripting-thymeleaf)
-* [org.apache.sling.servlets.resolver](https://github.com/apache/sling-org-apache-sling-servlets-resolver)
+[Testing PaxExam](https://github.com/apache/sling-org-apache-sling-testing-paxexam) is used by [several modules](https://github.com/apache/sling-org-apache-sling-testing-paxexam/network/dependents) for integration tests.
