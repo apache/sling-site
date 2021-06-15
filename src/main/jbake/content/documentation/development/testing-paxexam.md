@@ -103,12 +103,9 @@ Configure the build artifact (bundle) to use in integration testing in `pom.xml`
         </executions>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <systemProperties>
-            <property>
-              <name>bundle.filename</name>
-              <value>${basedir}/target/${project.build.finalName}.jar</value>
-            </property>
-          </systemProperties>
+          <systemPropertyVariables combine.children="append">
+            <bundle.filename>${basedir}/target/${project.build.finalName}.jar</bundle.filename>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
 
@@ -181,6 +178,12 @@ To use a version from project (`pom.xml`) use `setVersionFromProject(String, Str
 See Pax Exam's [Logging Configuration](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration) if logging needs to be tweaked.
 
 For [Logback](https://logback.qos.ch) use `SlingOptions#logback()` and add both `exam.properties` and `logback.xml` to `src/test/resources` as described in Pax Exam's [Logging Configuration](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration).
+
+
+## Code Coverage
+
+Code Coverage with [JaCoCo](https://www.eclemma.org/jacoco/) is configured by default in profile `jacoco-report` since Sling Parent 40.
+No additional configuration is required for Pax Exam since Testing PaxExam 4.0.
 
 
 ## Examples
