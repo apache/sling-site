@@ -176,6 +176,13 @@ To use a version from project (`pom.xml`) use `setVersionFromProject(String, Str
     SlingOptions.versionResolver.setVersionFromProject(SLING_GROUP_ID, "org.apache.sling.jcr.oak.server");
 
 
+## Logging
+
+See Pax Exam's [Logging Configuration](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration) if logging needs to be tweaked.
+
+For [Logback](https://logback.qos.ch) use `SlingOptions#logback()` and add both `exam.properties` and `logback.xml` to `src/test/resources` as described in Pax Exam's [Logging Configuration](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration).
+
+
 ## Examples
 
 ### Set up a tailored Sling instance
@@ -336,13 +343,6 @@ The `SimpleIT` below from [Scripting FreeMarker](https://github.com/apache/sling
         }
     
     }
-
-
-## Logging
-
-See Pax Exam's [Logging Configuration](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration) if logging needs to be tweaked.
-
-For [Logback](https://logback.qos.ch) use `SlingOptions#logback()` and add both `exam.properties` and `logback.xml` to `src/test/resources` as described in Pax Exam's [Logging Configuration](https://ops4j1.jira.com/wiki/spaces/PAXEXAM4/pages/54263891/Logging+Configuration).
 
 
 ## List of modules using Testing PaxExam
