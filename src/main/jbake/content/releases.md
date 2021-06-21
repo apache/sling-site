@@ -7,6 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## June 2021
+
+* Distribution API 0.5.0 (21st)
 * Repoinit Parser 1.6.10, Repoinit JCR V1.1.36 (21st)
 * Event Support 4.2.22 (14th)
 * Scripting Java 2.1.6 (14th)
