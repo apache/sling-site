@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2021
 
+* JUnit Core 1.1.6 (27th)
 * ResourceResolver Mock 1.2.2 (24th)
 * Distribution API 0.5.0 (21st)
 * Repoinit Parser 1.6.10, Repoinit JCR V1.1.36 (21st)
