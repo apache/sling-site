@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## July 2021
+
+* Content Distribution Journal Messages 0.3.0, Content Distribution Core 0.4.6 (2nd)
+
 ## June 2021
 
 * JUnit Core 1.1.6 (27th)
