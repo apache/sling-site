@@ -18,10 +18,6 @@ layout 'layout/main.tpl', true,
         include template : 'lastmodified-brick.tpl'
     },
     bodyContents: contents {
-        section(class:"wrap"){
-            yieldUnescaped U.processBody(content, config)
-        }
-        
         def filename = "${config.repolist_path}"
         def file = new File(filename)
         def repos = new XmlSlurper().parse(file)
@@ -29,10 +25,12 @@ layout 'layout/main.tpl', true,
         Set groups = []
 
         // Get the groups
+        def reposCount = 0;
         repos.'**'.findAll { 
             node -> 
             node.name() == 'project' }*.each() {
                 p ->
+                reposCount++
                 def group = p.attributes().groups
                 if(group) {
                     groups.add(group)
@@ -43,6 +41,14 @@ layout 'layout/main.tpl', true,
         groups=groups.toSorted()
         groups.add(NOGROUP)
 
+        // Mardown + computed summary
+        section(class:"wrap"){
+            yieldUnescaped U.processBody(content, config)
+            p() {
+                yield("A total of ${reposCount} repositories are listed below, in ${groups.size()} groups.")
+            }
+        }
+
         // List projects by group
         groups.each() {
             group ->
@@ -51,15 +57,18 @@ layout 'layout/main.tpl', true,
             }
             newLine()
             
-            ul() {
+            ul(class:"repolist") {
                 repos.'**'.findAll { 
                     node -> 
-                    node.name() == 'project' && (node.attributes().groups == group || group == NOGROUP &&   !node.attributes().hasProperty('groups'))
+                    node.name() == 'project' && (group == NOGROUP ? !node.attributes().groups : node.attributes().groups == group)
                 }*.each() {
                     p -> 
-                    li() {
+                    li(class:"module") {
                         a(href:"${config.sling_github_baseURL}${p.attributes().name}") {
                             yield("${p.attributes().path}")
+                        }
+                        span(class:"description") {
+                            yield(" - ${p.attributes().description}")
                         }
                     }
                     newLine()
