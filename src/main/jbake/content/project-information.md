@@ -18,15 +18,19 @@ This document provides an overview of the various documents and links that are p
 
 ## Mailing Lists
 
-These are the mailing lists that have been established for this project. For each list, there is a subscribe, unsubscribe, and an archive link.
+The following english-speaking mailing lists that have been established for this project. For each list, there is a subscribe,
+unsubscribe, and an archive link.
 
 The Sling Users List is the preferred way of getting help with Sling. However, you can also [Ask a Sling question on StackOverflow](http://stackoverflow.com/questions/ask?tags=sling) if you prefer.
 
-| Name | Subscribe | Unsubscribe | Post | Archive | Other Archives |
+Please subscribe before posting messages to these lists. If you don't, your messages are likely to be delayed, as we need to moderate them,
+or maybe even lost in the flow of spam that we get from non-subscribed senders.
+
+| Name | Subscribe | Unsubscribe | Post | ASF Archive | Other Archives |
 |---|---|---|---|---|---|
-| Sling Users List | [Subscribe](mailto:users-subscribe@sling.apache.org) | [Unsubscribe](mailto:users-unsubscribe@sling.apache.org) | users at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?users@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/users@sling.apache.org/) [MarkMail](http://sling.markmail.org) [Nabble](http://apache-sling.73963.n3.nabble.com/Sling-Users-f73968.html) |
-| Sling Developers List | [Subscribe](mailto:dev-subscribe@sling.apache.org) | [Unsubscribe](mailto:dev-unsubscribe@sling.apache.org) | dev at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?dev@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/dev@sling.apache.org/) [MarkMail](http://sling.markmail.org) [Nabble](http://apache-sling.73963.n3.nabble.com/Sling-Dev-f73966.html) |
-| Sling Source Control List | [Subscribe](mailto:commits-subscribe@sling.apache.org) | [Unsubscribe](mailto:commits-unsubscribe@sling.apache.org) | | [lists.apache.org](https://lists.apache.org/list.html?commits@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/commits@sling.apache.org/) [MarkMail](http://sling.markmail.org) |
+| Users List | [Subscribe](mailto:users-subscribe@sling.apache.org) | [Unsubscribe](mailto:users-unsubscribe@sling.apache.org) | users at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?users@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/users@sling.apache.org/) |
+| Developers List | [Subscribe](mailto:dev-subscribe@sling.apache.org) | [Unsubscribe](mailto:dev-unsubscribe@sling.apache.org) | dev at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?dev@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/dev@sling.apache.org/) |
+| Commit Events List | [Subscribe](mailto:commits-subscribe@sling.apache.org) | [Unsubscribe](mailto:commits-unsubscribe@sling.apache.org) | <automated> | [lists.apache.org](https://lists.apache.org/list.html?commits@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/commits@sling.apache.org/) |
 
 
 ## Issue Tracking
