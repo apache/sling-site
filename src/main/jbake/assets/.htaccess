@@ -24,6 +24,9 @@ AddDefaultCharset utf-8
 ErrorDocument 403 /errors/403.html
 ErrorDocument 404 /errors/404.html
 
+# Prevent git folder from being downloaded
+RedirectMatch 404 /\.git
+
 # Redirects for various historical pages
 Redirect Permanent /downloads.html /downloads.cgi
 Redirect Permanent /media.html /
