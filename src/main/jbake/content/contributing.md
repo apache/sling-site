@@ -33,14 +33,21 @@ known. If not, please create a JIRA issue in which you try to describe to the be
 improvement that you would like to contribute. There are many recommendations on the Web on how to write a good bug report, like
 [Haje Jan Kamps' How to write the perfect bug report](https://medium.com/@Haje/how-to-write-the-perfect-bug-report-6430f5a45cd) blog post.
 
-If pull requests are familiar to you, the next step is to open one against one of our modules. More details about how the
-project is structured in terms of repositories can be read on the
+If pull requests are familiar to you, the next step is to open one against one of our modules. If creating a pull request from your
+own repository, setting the
+_[allow edits from maintainers](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork)_
+option is convenient as it allows us to update your fork as the pull request evolves.
+
+More details about how the project is structured in terms of repositories can be read on the
 [Getting and Building Sling](/documentation/development/getting-and-building-sling.html) page.
 
 For relatively large contributions (e.g. new modules), we recommend one of the following two approaches:
 
 1. open a JIRA issue and send a pull request to the [Apache Sling Whiteboard project](https://github.com/apache/sling-whiteboard/)
 2. open a JIRA issue and attach your source code to it as a zip or tar archive.
+
+In any case it's good to discuss larger contributions on our developers mailing list before starting their implementation, to help align
+your goals and software design with the Sling community.
 
 For people who are completely new to contributing to an Apache Software Foundation project, the
 [Get Involved](https://www.apache.org/foundation/getinvolved.html) page provides you with enough resources to understand how the foundation
@@ -49,7 +56,7 @@ works and how its projects are structured - and don't hesitate to ask on our
 
 ### Git
 
-#### Commit meesages
+#### Commit messages
 
 For non-trivial commits a Jira issue is required. Once the Jira issue is created, the commit message must include the Jira issue key
 and the summary as the first line, followed by an optional description of the fix. For example:
@@ -62,13 +69,14 @@ and the summary as the first line, followed by an optional description of the fi
 #### Pull request changes
 
 When iterating on a GitHub pull request a single commit can receive multiple follow-up fixes. To help preserve
-a linear history and to make changes easy to follow, please squash the changes in a single commit and force-push
-to the GitHub branch.
+a linear history and to make changes easy to follow, please squash the changes in a single commit before merging,
+which the GitHub pull request page now offers as an option.
 
 ### Testing
 
 Each Sling module comes with an automated build, usually based on Apache Maven. Your change should be covered
-by new unit tests that verify that the changes work as expected.
+by new unit tests that verify that the changes work as expected. Building with the Maven `jacoco-report` profile
+active provides a test coverage report at `target/site/jacoco-merged/index.html` .
 
 In case your changes are more far-reaching and the module you are contributing to is part of the
 [Sling Starter](https://github.com/apache/sling-org-apache-sling-starter), it is a good idea to
