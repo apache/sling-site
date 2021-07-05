@@ -18,13 +18,13 @@ This document provides an overview of the various documents and links that are p
 
 ## Mailing Lists
 
-The following english-speaking mailing lists that have been established for this project. For each list, there is a subscribe,
+The following English-speaking mailing lists have been established for this project. For each list, there is a subscribe,
 unsubscribe, and an archive link.
 
 The Sling Users List is the preferred way of getting help with Sling. However, you can also [Ask a Sling question on StackOverflow](http://stackoverflow.com/questions/ask?tags=sling) if you prefer.
 
 Please subscribe before posting messages to these lists. If you don't, your messages are likely to be delayed, as we need to moderate them,
-or maybe even lost in the flow of spam that we get from non-subscribed senders.
+or maybe even become lost in the flow of spam that we get from non-subscribed senders.
 
 | Name | Subscribe | Unsubscribe | Post | ASF Archive | Other Archives |
 |---|---|---|---|---|---|
