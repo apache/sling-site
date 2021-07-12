@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2021
 
-* Scripting JSP 2.5.4, JSPC Maven Plugin 2.3.0 (12th)
+* Scripting JSP 2.5.4, JSPC Maven Plugin 2.3.0, GraphQL Core 0.0.12 (12th)
 * Content Distribution Journal Messages 0.3.0, Content Distribution Core 0.4.6 (2nd)
 
 ## June 2021
