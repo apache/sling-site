@@ -48,11 +48,17 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [File Installer Provider](/documentation/bundles/file-installer-provider.html)
 * [Vault Package Install Hook](/documentation/bundles/installer-provider-installhook.html)
 
-## Development and Utilities
+## Commons
+
+Libraries and utilities which are not reliant on Sling.
+
 * [Commons Crypto](/documentation/bundles/commons-crypto.html)
-* [Commons Thread Pools](/documentation/bundles/apache-sling-commons-thread-pool.html)
 * [Commons HTML Utilities](/documentation/bundles/commons-html-utilities.html)
+* [Sling Metrics](/documentation/bundles/metrics.html)
 * [MIME Type Support (commons.mime and commons.contentdetection)](/documentation/bundles/mime-type-support-commons-mime.html)
+* [Commons Thread Pools](/documentation/bundles/apache-sling-commons-thread-pool.html)
+
+## Development and Utilities
 * [Scripting](/documentation/bundles/scripting.html)
 * [Sling Settings (org.apache.sling.settings)](/documentation/bundles/sling-settings-org-apache-sling-settings.html)
 * [Caching Services](/documentation/bundles/caching-services.html)
@@ -61,7 +67,6 @@ The OSGi installer is a very flexible and powerful service to manage provisionin
 * [Sling Query Library](/documentation/bundles/sling-query.html)
 * [Junit Server-Side Tests Support](/documentation/bundles/org-apache-sling-junit-bundles.html)
 * [Sling Pipes](/documentation/bundles/sling-pipes.html)
-* [Sling Metrics](/documentation/bundles/metrics.html)
 * [Servlet Helpers and Internal Requests](/documentation/bundles/servlet-helpers.html)
 * [Context-Aware Configuration](/documentation/bundles/context-aware-configuration/context-aware-configuration.html)
 * [HApi - Hypermedia API tools](/documentation/bundles/hapi.html)
