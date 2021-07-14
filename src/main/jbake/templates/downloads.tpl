@@ -217,6 +217,7 @@ def bundles=[
   "Resource Resolver|org.apache.sling.resourceresolver|1.7.8|Y|jar",
   "Rewriter|org.apache.sling.rewriter|1.3.0|Y|jar",
   "Failing Server-Side Tests|org.apache.sling.testing.samples.failingtests|1.0.6|N|jar",
+  "SAML2 Service Provider|org.apache.sling.auth.saml2|0.2.6|Y|jar",
   "Sample Integration Tests|org.apache.sling.testing.samples.integrationtests|1.0.6|N|jar",
   "Sample Server-Side Tests|org.apache.sling.testing.samples.sampletests|1.0.6|N|jar",
   "Scripting API|org.apache.sling.scripting.api|2.2.0|Y|jar",
