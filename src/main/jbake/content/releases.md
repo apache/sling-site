@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2021
 
+* Scripting SPI 1.0.4 (19th)
 * Content Distribution Journal Core 0.1.18, Content Distribution Journal Kafka 0.2.0, Archetype Parent 7 (16th)
 * SAML2 Service Provider 0.2.6 (13th)
 * Scripting JSP 2.5.4, JSPC Maven Plugin 2.3.0, GraphQL Core 0.0.12 (12th)
