@@ -247,7 +247,7 @@ def bundles=[
   "Servlet Annotations|org.apache.sling.servlets.annotations|1.2.6|Y|jar",
   "Servlet Helpers|org.apache.sling.servlet-helpers|1.4.2|Y|jar",
   "Servlets Get|org.apache.sling.servlets.get|2.1.40|Y|jar",
-  "Servlets Post|org.apache.sling.servlets.post|2.4.4|Y|jar",
+  "Servlets Post|org.apache.sling.servlets.post|2.4.6|Y|jar",
   "Servlets Resolver|org.apache.sling.servlets.resolver|2.7.14|Y|jar",
   "Settings|org.apache.sling.settings|1.4.2|Y|jar",
   "Sitemap|org.apache.sling.sitemap|1.0.2|Y|jar",

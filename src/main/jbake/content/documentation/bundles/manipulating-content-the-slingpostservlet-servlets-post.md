@@ -503,6 +503,9 @@ For example the `:nameHint` value *A quick brown Fox ...* is filtered to become 
 
 After generating and filtering the name it is further guaranteed that the name is unique: If a node of the same name as just generated from the algorithm already exists below the same parent node a numeric index is appended to the new node name to make it unique.
 
+*Since Version 2.4.6*
+
+The [@ValueFrom](#valuefrom) suffix may be used on the various name parameters if you wish the value to come from some other field in the form. See: ([SLING-10610](https://issues.apache.org/jira/browse/SLING-10610))
 
 ##### Response Status
 

@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2021
 
+* Servlets Post 2.4.6 (21st)
 * Auth Core 1.5.6 (19th)
 * Scripting SPI 1.0.4 (19th)
 * Content Distribution Journal Core 0.1.18, Content Distribution Journal Kafka 0.2.0, Archetype Parent 7 (16th)
