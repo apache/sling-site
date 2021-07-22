@@ -4,7 +4,7 @@ status=published
 tags=scripts,htl
 ~~~~~~
 
-The Apache Sling HTL Scripting Engine, [formerly known as Sightly](https://issues.apache.org/jira/browse/SLING-6028), is the reference implementation of the [HTML Template Language](https://github.com/Adobe-Marketing-Cloud/htl-spec).
+The Apache Sling HTL Scripting Engine, [formerly known as Sightly](https://issues.apache.org/jira/browse/SLING-6028), is the reference implementation of the [HTML Template Language 1.4](https://github.com/Adobe-Marketing-Cloud/htl-spec).
 
 [TOC]
 
@@ -20,7 +20,7 @@ The Sling implementation is comprised of the following modules:
 6. [`org.apache.sling.scripting.sightly.repl`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl) - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts
 7. [`htl-maven-plugin`](https://github.com/apache/sling-htl-maven-plugin) - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time
 
-# The Use-API
+## The Use-API
 
 The [HTML Template Language Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/1.2/SPECIFICATION.md#4-use-api) explicitly defines two ways of implementing support for business logic objects:
 
@@ -56,9 +56,30 @@ The [HTML Template Language Specification](https://github.com/Adobe-Marketing-Cl
 
 The HTL implementation from Sling provides the basic POJO support through the [`org.apache.sling.scripting.sightly.pojo.Use`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java) interface and the [`JavaUseProvider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java), whereas the `use` function is implemented by the `org.apache.sling.scripting.sightly.js.provider` bundle.
 
-However, the Sling implementation provides a few extensions to the Use-API.
+# Extensions of the HTL Specification
 
-## Sling-specific Use-API Extensions
+The Sling HTL Scripting engine fully complies with the [HTML Template Language Specification 1.4](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md). In addition it adds some extensions which are not part of the specification. 
+
+## Expression Options
+
+### Format Date
+
+In addition to the regular patterns defined in [HTL Spec 1.2.2.2](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates) the following special formatting patterns are supported ([SLING-9983](https://issues.apache.org/jira/browse/SLING-9983)) for formatting dates only (disregarding time) in a decent format for the used locale.
+*The result depends on the JDK version though, as it changed fundamentally with [JDK 8](https://openjdk.java.net/jeps/252), and even afterwards the [CLDR releases](http://cldr.unicode.org/index/downloads) implemented in the different JDK versions differ quite substantially.*
+
+
+Pattern | Description | Example (for Locale en_US)
+--- | --- | ---
+`short` | A short representation of the date (disregarding time), typically numeric | 10/26/85
+`medium` | A medium representation of the date (disregarding time), with some detail | Oct 26, 1985 
+`long` | A long representation of the date (disregarding time), with lots of detail | October 26, 1985
+`full` | The full represenation of the date (disregarding time), with the most detail | Saturday, October 26, 1985
+`default` | Is equal to `medium` | Oct 26, 1985 
+
+
+## Use-API Extensions
+
+The Sling implementation provides a few extensions to the Use-API.
 
 A full HTL installation provides the following Use Providers, in the order of their priority (the higher the service ranking value, the higher the priority):
 
