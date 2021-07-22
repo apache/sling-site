@@ -119,6 +119,10 @@
             <scmBranch>asf-site</scmBranch>
             <localCheckout>true</localCheckout>
             <tryUpdate>true</tryUpdate>
+            <!-- the setting for website publication must not be removed: https://cwiki.apache.org/confluence/display/INFRA/git+-+.asf.yaml+features#Git.asf.yamlfeatures-WebSiteDeploymentServiceforGitRepositories -->
+            <ignorePathsToDelete>
+                <ignore>.asf.yaml</ignore>
+            </ignorePathsToDelete>
         </configuration>
       </plugin>
       <plugin>
