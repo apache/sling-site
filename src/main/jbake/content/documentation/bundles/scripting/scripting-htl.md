@@ -20,7 +20,7 @@ The Sling implementation is comprised of the following modules:
 6. [`org.apache.sling.scripting.sightly.repl`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl) - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts
 7. [`htl-maven-plugin`](https://github.com/apache/sling-htl-maven-plugin) - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time
 
-## The Use-API
+# The Use-API
 
 The [HTML Template Language Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/1.2/SPECIFICATION.md#4-use-api) explicitly defines two ways of implementing support for business logic objects:
 
@@ -65,7 +65,7 @@ The Sling HTL Scripting engine fully complies with the [HTML Template Language S
 ### Format Date
 
 In addition to the regular patterns defined in [HTL Spec 1.2.2.2](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates) the following special formatting patterns are supported ([SLING-9983](https://issues.apache.org/jira/browse/SLING-9983)) for formatting dates only (disregarding time) in a decent format for the used locale.
-*The result depends on the JDK version though, as it changed fundamentally with [JDK 8](https://openjdk.java.net/jeps/252), and even afterwards the [CLDR releases](http://cldr.unicode.org/index/downloads) implemented in the different JDK versions differ quite substantially.*
+*The resulting format depends on the JDK version though, as it changed fundamentally with [JDK 8](https://openjdk.java.net/jeps/252), and even afterwards the different [CLDR releases](http://cldr.unicode.org/index/downloads) implemented in the different JDK versions differ quite substantially.*
 
 
 Pattern | Description | Example (for Locale en_US)
@@ -74,7 +74,11 @@ Pattern | Description | Example (for Locale en_US)
 `medium` | A medium representation of the date (disregarding time), with some detail | Oct 26, 1985 
 `long` | A long representation of the date (disregarding time), with lots of detail | October 26, 1985
 `full` | The full represenation of the date (disregarding time), with the most detail | Saturday, October 26, 1985
-`default` | Is equal to `medium` | Oct 26, 1985 
+`default` | Is equal to `medium` | Oct 26, 1985
+
+Those pattern values are case-insensitive.
+
+The implementation uses [`DateTimeFormatter.ofLocalizedDate(FormatStyle)`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ofLocalizedDate-java.time.format.FormatStyle-) for formatting those dates.
 
 
 ## Use-API Extensions
