@@ -135,3 +135,12 @@ code {
 .content pre code {
     border: 1px solid #cde0ea;
 }
+
+.footnoteLink {
+    size:80%;
+    color: grey;
+}
+
+.digestLinks {
+    font-size: 80%;
+}
