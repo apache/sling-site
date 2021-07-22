@@ -324,11 +324,15 @@ def downloadLink(label, artifact, version, suffix) {
 	def digestsBase = "https://downloads.apache.org/${path}"
 
 	a(href:"[preferred]${path}", label)
-	yield " ("
-	a(href:"${digestsBase}.asc", "asc")
-	yield ", "
-	a(href:"${digestsBase}.sha1", "sha1")
-	yield ")"
+  span(class:"digestLinks") {
+    yield(" (")
+    a(href:"${digestsBase}.asc", "asc")
+    yield ", "
+    a(href:"${digestsBase}.sha1", "sha1")
+    yield ", "
+    a(href:"${digestsBase}.sha512", "sha512")
+    yield(")")
+  }
 	newLine()
 }
 
@@ -363,6 +367,17 @@ def tableHead(String [] headers) {
 
 }
 
+def sectionHeader(String title) {
+  h3(title)
+  div(class:"footnoteLink") {
+    yield("Not all sha* links work (")
+    a(href:"https://issues.apache.org/jira/browse/SLING-7534") { 
+      yield "SLING-7534"
+    }
+    yield("), sha512 is preferred if available")
+  }
+}
+
  // ------------------------------------------------------------------------------------------------
 // Downloads page layout
 // ------------------------------------------------------------------------------------------------
@@ -381,7 +396,7 @@ layout 'layout/main.tpl', true,
                     section(class:"wrap"){
                         yieldUnescaped U.processBody(content, config)
 
-						h3("Sling Application")
+						sectionHeader("Sling Application")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Provides", "Package")
 							tbody() {
@@ -403,7 +418,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h3("Sling IDE Tooling")
+						sectionHeader("Sling IDE Tooling")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "Provides", "Update Site")
 							tbody() {
@@ -422,7 +437,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h3("Sling Components")
+						sectionHeader("Sling Components")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Binary", "Source")
 							tbody() {
@@ -449,7 +464,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h3("Maven Plugins")
+						sectionHeader("Maven Plugins")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Binary", "Source")
 							tbody() {
@@ -475,7 +490,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h3("bnd Plugins")
+						sectionHeader("bnd Plugins")
 						table(class:"table") {
 							tableHead("Artifact", "Version", "GitHub", "Binary", "Source")
 							tbody() {
@@ -501,7 +516,7 @@ layout 'layout/main.tpl', true,
 							}
 						}
 
-						h3("Deprecated")
+						sectionHeader("Deprecated")
 						table(class:"table") {
 							tableHead("Artifact", "Replacement", "Version", "Binary", "Source")
 							tbody() {
