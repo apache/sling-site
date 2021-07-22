@@ -318,7 +318,7 @@ def deprecated=[
 // ------------------------------------------------------------------------------------------------
 // Utilities
 // ------------------------------------------------------------------------------------------------
-def downloadLink(label, artifact, version, suffix) {
+def downloadLink(label, artifact, version, suffix, includeSHA512=false) {
 	def sep = version ? "-" : ""
 	def path = "sling/${artifact}${sep}${version}${suffix}"
 	def digestsBase = "https://downloads.apache.org/${path}"
@@ -329,8 +329,10 @@ def downloadLink(label, artifact, version, suffix) {
     a(href:"${digestsBase}.asc", "asc")
     yield ", "
     a(href:"${digestsBase}.sha1", "sha1")
-    yield ", "
-    a(href:"${digestsBase}.sha512", "sha512")
+    if(includeSHA512) {
+      yield ", "
+      a(href:"${digestsBase}.sha512", "sha512")
+    }
     yield(")")
   }
 	newLine()
@@ -370,7 +372,7 @@ def tableHead(String [] headers) {
 def sectionHeader(String title) {
   h3(title)
   div(class:"footnoteLink") {
-    yield("Not all sha* links work (")
+    yield("Not all sha* links work for source zip archives,  (")
     a(href:"https://issues.apache.org/jira/browse/SLING-7534") { 
       yield "SLING-7534"
     }
@@ -457,7 +459,7 @@ layout 'layout/main.tpl', true,
 											downloadLink("Bundle", artifact, version, "." + extension)
 										}
 										td(){
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
 										}
 									}
 								}
@@ -483,7 +485,7 @@ layout 'layout/main.tpl', true,
 											downloadLink("Maven Plugin", artifact, version, ".jar")
 										}
 										td(){
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
 										}
 									}
 								}
@@ -509,7 +511,7 @@ layout 'layout/main.tpl', true,
 											downloadLink("bnd Plugin", artifact, version, ".jar")
 										}
 										td(){
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
 										}
 									}
 								}
@@ -532,7 +534,7 @@ layout 'layout/main.tpl', true,
 											downloadLink("Bundle", artifact, version, ".jar")
 										}
 										td(){
-											downloadLink("Source ZIP", artifact, version, "-source-release.zip")
+											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
 										}
 									}
 								}
