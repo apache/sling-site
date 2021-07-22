@@ -15,9 +15,9 @@ All Apache Sling products are distributed under the terms of the [Apache Softwar
 For each module the following artifact types are provided
 
 1. Main binary
-1. Zip archive with complete project source code (classifier `source-release`)
-1. Jar archive with source files of classes contained in 1. (classifier `sources`)
-1. Jar archive containing [javadoc](https://docs.oracle.com/javase/7/docs/technotes/guides/javadoc/)( (classifier `javadoc`)
+1. Zip archive with complete project source code according to [ASF rules](https://www.apache.org/legal/release-policy.html) (classifier `source-release`), including LICENSE and NOTICE file.
+1. Jar archive with source files of classes contained in 1., necessary for automatic downloads from IDEs (classifier `sources`), requirement of [Maven Central](https://central.sonatype.org/publish/requirements/#supply-javadoc-and-sources)
+1. Jar archive containing [javadoc](https://docs.oracle.com/javase/7/docs/technotes/guides/javadoc/)(classifier `javadoc`), requirement of [Maven Central](https://central.sonatype.org/publish/requirements/#supply-javadoc-and-sources)
 
 All those artifacts are accompanied by an according `*.asc` file containing the PGP signature.
 
