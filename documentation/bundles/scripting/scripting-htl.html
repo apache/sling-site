@@ -134,7 +134,7 @@
 <li><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-repl"><code>org.apache.sling.scripting.sightly.repl</code></a> - HTL Read-Eval-Print Loop Environment (REPL), useful for quickly prototyping scripts</li>
 <li><a href="https://github.com/apache/sling-htl-maven-plugin"><code>htl-maven-plugin</code></a> - M2Eclipse compatible HTL Maven Plugin that provides support for validating HTML Template Language scripts from projects during build time</li>
 </ol>
-<h2><a href="#the-use-api" id="the-use-api">The Use-API</a></h2>
+<h1><a href="#the-use-api" id="the-use-api">The Use-API</a></h1>
 <p>The <a href="https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/1.2/SPECIFICATION.md#4-use-api">HTML Template Language Specification</a> explicitly defines two ways of implementing support for business logic objects:</p>
 <ol>
 <li>
@@ -174,7 +174,7 @@ use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
 <p>The Sling HTL Scripting engine fully complies with the <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md">HTML Template Language Specification 1.4</a>. In addition it adds some extensions which are not part of the specification.</p>
 <h2><a href="#expression-options" id="expression-options">Expression Options</a></h2>
 <h3><a href="#format-date" id="format-date">Format Date</a></h3>
-<p>In addition to the regular patterns defined in <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates">HTL Spec 1.2.2.2</a> the following special formatting patterns are supported (<a href="https://issues.apache.org/jira/browse/SLING-9983">SLING-9983</a>) for formatting dates only (disregarding time) in a decent format for the used locale. <em>The result depends on the JDK version though, as it changed fundamentally with <a href="https://openjdk.java.net/jeps/252">JDK 8</a>, and even afterwards the <a href="http://cldr.unicode.org/index/downloads">CLDR releases</a> implemented in the different JDK versions differ quite substantially.</em></p>
+<p>In addition to the regular patterns defined in <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates">HTL Spec 1.2.2.2</a> the following special formatting patterns are supported (<a href="https://issues.apache.org/jira/browse/SLING-9983">SLING-9983</a>) for formatting dates only (disregarding time) in a decent format for the used locale. <em>The resulting format depends on the JDK version though, as it changed fundamentally with <a href="https://openjdk.java.net/jeps/252">JDK 8</a>, and even afterwards the different <a href="http://cldr.unicode.org/index/downloads">CLDR releases</a> implemented in the different JDK versions differ quite substantially.</em></p>
 <table>
 <thead>
 <tr><th>Pattern </th><th> Description </th><th> Example (for Locale en_US)</th></tr>
@@ -187,6 +187,8 @@ use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
 <tr><td><code>default</code> </td><td> Is equal to <code>medium</code> </td><td> Oct 26, 1985</td></tr>
 </tbody>
 </table>
+<p>Those pattern values are case-insensitive.</p>
+<p>The implementation uses <a href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ofLocalizedDate-java.time.format.FormatStyle-"><code>DateTimeFormatter.ofLocalizedDate(FormatStyle)</code></a> for formatting those dates.</p>
 <h2><a href="#use-api-extensions" id="use-api-extensions">Use-API Extensions</a></h2>
 <p>The Sling implementation provides a few extensions to the Use-API.</p>
 <p>A full HTL installation provides the following Use Providers, in the order of their priority (the higher the service ranking value, the higher the priority):</p>
@@ -559,7 +561,7 @@ use             // the use function
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jul 22 20:24:45 2021 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jul 22 22:58:41 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
