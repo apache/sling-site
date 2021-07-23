@@ -62,6 +62,11 @@ The Sling HTL Scripting engine fully complies with the [HTML Template Language S
 
 ## Expression Options
 
+### I18n
+
+In addition to the options defined in [HTL Spec 1.2.3](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#123-i18n) the option `basename` is supported to set the basename of the used [Sling i18n Resource bundle](../internationalization-support-i18n.html#resourcebundle-with-base-names) ([SLING-5314](https://issues.apache.org/jira/browse/SLING-5314)).
+
+
 ### Format Date
 
 In addition to the regular patterns defined in [HTL Spec 1.2.2.2](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates) the following special formatting patterns are supported ([SLING-9983](https://issues.apache.org/jira/browse/SLING-9983)) for formatting dates only (disregarding time) in a decent format for the used locale.
