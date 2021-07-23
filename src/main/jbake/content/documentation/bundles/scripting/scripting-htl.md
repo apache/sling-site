@@ -56,6 +56,29 @@ The [HTML Template Language Specification](https://github.com/Adobe-Marketing-Cl
 
 The HTL implementation from Sling provides the basic POJO support through the [`org.apache.sling.scripting.sightly.pojo.Use`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java) interface and the [`JavaUseProvider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java), whereas the `use` function is implemented by the `org.apache.sling.scripting.sightly.js.provider` bundle.
 
+# Type conversions
+
+The HTL Specification talks about the following types which are supported to be used with native Java types. The conversion rules are outlined in the table below.
+
+HTL Type | Conversion from Java Type | Code Link
+--- | --- | --- 
+`Boolean` | `java.lang.Boolean` (no conversion necessary). In addition it returns `true` for every other Java object except for `null`, `java.lang.Number` having value `0`, empty String, array, Collection, Map, Iterator or Iterable's iterator  | [`ObjectModel.toBoolean(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/6cbd676a8875af756e6e43b38c39ba9e4784dc4e/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L151)
+`String` | Almost every type via `Object.toString()`
+`Date` | `java.util.Date`, `java.util.Calendar`
+`Number` | `java.lang.Number`, every other type first converted to `java.lang.String` and then converted to Number via [`NumberUtils.createNumber(String)`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/math/NumberUtils.html#createNumber-java.lang.String-). | [`ObjectModel.toNumber(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/6cbd676a8875af756e6e43b38c39ba9e4784dc4e/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L204)
+`Collection` | Empty list for everything except for <br/>arrays, Collections, Iterators and Iterables (converted to List) and `java.lang.String` or `java.lang.Number` (a list containing a single item). For `java.util.Map` the key set is used.  | [`ObjectModel.toCollection(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/6cbd676a8875af756e6e43b38c39ba9e4784dc4e/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L277)
+`Map` |
+`Enum` |
+
+## Support for Optional
+
+...
+
+## JavaScript
+
+As the HTL Engine in Sling is a Java implementation even the objects provided by the JS Use Provider are first converted into native Java types. The type conversion from JS to Java is done with [Rhino](https://github.com/mozilla/rhino), afterwards the semantics from the table above are used.
+
+
 # Extensions of the HTL Specification
 
 The Sling HTL Scripting engine fully complies with the [HTML Template Language Specification 1.4](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md). In addition it adds some extensions which are not part of the specification. 
