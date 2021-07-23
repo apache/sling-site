@@ -5,27 +5,6 @@
 # Apache Sling Website
 This repository contains the content of the http://sling.apache.org/ website, which moved in September 2017 from the Apache CMS to this JBake-generated site.
 
-## Publishing Process
-
-The publishing process consists out of 2 steps:
-
-```
-Original: master branch (markdown files)
-
-   |  
-   |   JBake execution via Jenkins or local Maven Build
-  \|/  
-
-1. asf-site branch (html files)
-
-   |
-   |   via ASF gitpubsub, controlled via .asf.yaml
-  \|/  
-
-2. https://sling.apache.org
-```
-
-
 ## How to build and stage the site locally  
 Clone this repository, run the below Maven command, open http://localhost:8820/ and enjoy.
 
@@ -35,11 +14,32 @@ This allows	you to experiment with your changes before eventually publishing the
 
 ## How to publish the website
 
+The publishing process consists out of 2 steps:
+
+```
+Original: master branch (markdown files)
+
+   |  
+   |   Build site via Jenkins or local Maven Build
+  \|/  
+
+1. asf-site branch (html files)
+
+   |
+   |   Publish via ASF gitpubsub, controlled via .asf.yaml
+  \|/  
+
+2. https://sling.apache.org
+```
+
 Each push to the `master` branch automatically regenerates and publishes the website to https://sling.apache.org, see
 [SLING-7180](https://issues.apache.org/jira/browse/SLING-7180) for details. The corresponding Jenkins job is linked from the "build"
 badge at the top of this file.
+Note that the publish-scm goal might fail if you add lots of changes due to [MSCMPUB-18](https://issues.apache.org/jira/browse/MSCMPUB-18). In that scenario you have to manually perform the git operations, see for instance [this file at revision 3e58fbd7](https://github.com/apache/sling-site/blob/3e58fbd768344d90185a2123ca30afb6ec4f9000/README.md).
 
-However, if for some reason you need to manually publish the website the instructions below need to be followed.
+The [ASF's gitpubsub mechanism](https://blogs.apache.org/infra/entry/git_based_websites_available) then synchronizes that content to [http://sling.apache.org](http://sling.apache.org), usually within a few seconds. More details about the publication process can be found in the [ASF Documentation about Project sites](https://www.apache.org/dev/project-site.html). If for some reason this process fails, you can use [the self-service page from ASF Infra](https://selfserve.apache.org/) to trigger a resync of the git repo.
+
+However, if for some reason you need to manually publish the website to the `asf-site` branch the following instructions can be used:
 
 Clone this repository and run the below commands or equivalent:
 
@@ -49,9 +49,6 @@ Clone this repository and run the below commands or equivalent:
     # deploy the site
     mvn clean package -Ppublish-site -Dmsg="<describe your changes>"
 
-The [ASF's gitpubsub mechanism](https://blogs.apache.org/infra/entry/git_based_websites_available) then synchronizes that content to [http://sling.apache.org](http://sling.apache.org), usually within a few seconds. More details about the publication process can be found in the [ASF Documentation about Project sites](https://www.apache.org/dev/project-site.html). If for some reason this process fails, you can use [the self-service page from ASF Infra](https://selfserve.apache.org/) to trigger a resync of the git repo.
-
-Note that the publish-scm goal might fail if you add lots of changes due to [MSCMPUB-18](https://issues.apache.org/jira/browse/MSCMPUB-18). In that scenario you have to manually perform the git operations, see for instance [this file at revision 3e58fbd7](https://github.com/apache/sling-site/blob/3e58fbd768344d90185a2123ca30afb6ec4f9000/README.md).
 
 ## Variables in page content
 Adding `expandVariables=true` to a page's front matter enables simple variables replacement, see the `pageVariables` map in
