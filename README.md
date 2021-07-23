@@ -3,8 +3,28 @@
 &#32;[![Build Status](https://ci-builds.apache.org/job/Sling/job/modules/job/sling-site/job/master/badge/icon)](https://ci-builds.apache.org/job/Sling/job/modules/job/sling-site/job/master/)&#32;[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=apache_sling-site&metric=alert_status)](https://sonarcloud.io/dashboard?id=apache_sling-site) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # Apache Sling Website
-This repository contains the content of the http://sling.apache.org/ website, which moved in September 2017 from
-the Apache CMS to this JBake-generated site.
+This repository contains the content of the http://sling.apache.org/ website, which moved in September 2017 from the Apache CMS to this JBake-generated site.
+
+## Publishing Process
+
+The publishing process consists out of 2 steps:
+
+```
+Original: master branch (markdown files)
+
+   |  
+   |   JBake execution via Jenkins or local Maven Build
+  \|/  
+
+1. asf-site branch (html files)
+
+   |
+   |   via ASF gitpubsub, controlled via .asf.yaml
+  \|/  
+
+2. https://sling.apache.org
+```
+
 
 ## How to build and stage the site locally  
 Clone this repository, run the below Maven command, open http://localhost:8820/ and enjoy.
