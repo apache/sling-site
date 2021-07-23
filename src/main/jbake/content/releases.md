@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2021
 
+* App CMS 1.0.4 (23rd)
 * Servlets Resolver 2.8.0 (22nd)
 * Launchpad Base 2.7.4 (22nd)
 * Servlets Post 2.4.6 (21st)
