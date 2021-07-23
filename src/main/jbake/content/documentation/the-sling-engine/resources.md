@@ -155,6 +155,21 @@ The main binary property (i.e. the one being exposed by `Resource.adaptTo(InputS
 
 For node type `nt:file` the property is looked up in the child node `jcr:content` for both cases. For all other node types it is looked up in the underlying node of the current resource.
 
+#### Resource Metadata
+
+The resource metadata exposed in `Resource.getResourceMetadata` get their value from JCR properties
+
+Metadata Property | Backed by
+--- | --- | ---
+`sling.contentType` | JCR property `jcr:mimeType`
+`sling.characterEncoding` | JCR property `jcr:encoding`
+`sling.creationTime` | JCR property `jcr:created`
+`sling.modificationTime` | JCR property `jcr:lastModified`
+`sling.contentLength` | The content length of the JCR property `jcr:data` or alternatively the primary item of the underlying Node (according to its node type definition)
+
+For binary nodes all properties except `jcr:created` are retrieved from the child node `jcr:content`
+
+
 ### Bundle-based Resources
 
 Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header `Sling-Bundle-Resources` containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).
