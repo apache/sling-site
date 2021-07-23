@@ -1,3 +1,4 @@
 # https://cwiki.apache.org/confluence/display/INFRA/Git+-+.asf.yaml+features#Git.asf.yamlfeatures-WebSiteDeploymentServiceforGitRepositories
+# https://infra.apache.org/project-site.html
 publish:
   whoami: asf-site
