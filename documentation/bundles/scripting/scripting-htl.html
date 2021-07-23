@@ -173,6 +173,8 @@ use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
 <h1><a href="#extensions-of-the-htl-specification" id="extensions-of-the-htl-specification">Extensions of the HTL Specification</a></h1>
 <p>The Sling HTL Scripting engine fully complies with the <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md">HTML Template Language Specification 1.4</a>. In addition it adds some extensions which are not part of the specification.</p>
 <h2><a href="#expression-options" id="expression-options">Expression Options</a></h2>
+<h3><a href="#i18n" id="i18n">I18n</a></h3>
+<p>In addition to the options defined in <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#123-i18n">HTL Spec 1.2.3</a> the option <code>basename</code> is supported to set the basename of the used <a href="../internationalization-support-i18n.html#resourcebundle-with-base-names">Sling i18n Resource bundle</a> (<a href="https://issues.apache.org/jira/browse/SLING-5314">SLING-5314</a>).</p>
 <h3><a href="#format-date" id="format-date">Format Date</a></h3>
 <p>In addition to the regular patterns defined in <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates">HTL Spec 1.2.2.2</a> the following special formatting patterns are supported (<a href="https://issues.apache.org/jira/browse/SLING-9983">SLING-9983</a>) for formatting dates only (disregarding time) in a decent format for the used locale. <em>The resulting format depends on the JDK version though, as it changed fundamentally with <a href="https://openjdk.java.net/jeps/252">JDK 8</a>, and even afterwards the different <a href="http://cldr.unicode.org/index/downloads">CLDR releases</a> implemented in the different JDK versions differ quite substantially.</em></p>
 <table>
@@ -561,7 +563,7 @@ use             // the use function
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Thu Jul 22 22:58:41 2021 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Fri Jul 23 16:51:05 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
