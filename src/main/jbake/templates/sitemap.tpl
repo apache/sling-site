@@ -1,36 +1,9 @@
-def printSection(def linkPrefix, def sectionFolderUri, def sectionChildren) {
-    if (!sectionChildren) {
-        return
-    }
-    // comment "found ${sectionChildren.size()} children below '${sectionFolderUri}'"
-    ul {
-        // iterate over all direct children of rootUri
-        sectionChildren.findAll( { page -> !page.uri.substring(sectionFolderUri.length()).contains('/') } ).sort( { page -> page.title } ).each { page -> 
-            li {
-                a (href:"${linkPrefix}${page.uri}") {
-                   yield page.title
-                }
-                newLine()
-                String subsectionFolderUri = page.uri.substring(0, page.uri.length() - '.html'.length()) + '/'
-                // comment "subsectionFolderUri: '${subsectionFolderUri}'"
-                printSection(linkPrefix, subsectionFolderUri, sectionChildren.findAll( child -> child.uri.startsWith(subsectionFolderUri) ))
-            }
-            newLine()
+xmlDeclaration()
+urlset( xmlns:'http://www.sitemaps.org/schemas/sitemap/0.9', 'xmlns:xsi':'http://www.w3.org/2001/XMLSchema-instance', 'xsi:schemaLocation':'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'){
+    published_content.each {content ->
+        url {
+            loc("${config.site_host}${config.site_contextPath}${content.uri}")
+            lastmod("${content.date.format('yyyy-MM-dd')}")
         }
     }
 }
-
-
-layout 'layout/main.tpl', true,
-        projects: projects,
-        bodyContents: contents {
-
-            div(class:"sitemap"){
-                section(class:"wrap"){
-					ul {
-					    // published_content is just a list of https://github.com/jbake-org/jbake/blob/master/jbake-core/src/main/java/org/jbake/model/DocumentModel.java items
-						printSection(config.site_contextPath, '', published_content)
-					}
-                }
-            }
-        }
