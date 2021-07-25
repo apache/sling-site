@@ -15,6 +15,7 @@ html(lang:'en'){
                     div(class:"level") {
                         div(class:"pagenav") {
                             breadcrumbs()
+                            edit()
                         }
                         tags()
                     }
