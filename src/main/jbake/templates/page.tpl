@@ -6,6 +6,9 @@ layout 'layout/main.tpl', true,
         breadcrumbs : contents {
             include template : 'breadcrumbs-brick.tpl'
         },
+        edit : contents {
+            include template : 'edit-brick.tpl'
+        },
         tableOfContents : contents {
             include template : 'toc-brick.tpl'
         },
