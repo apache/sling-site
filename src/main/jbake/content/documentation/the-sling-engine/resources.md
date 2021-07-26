@@ -157,7 +157,7 @@ For node type `nt:file` the property is looked up in the child node `jcr:content
 
 #### Resource Metadata
 
-The resource metadata exposed in `Resource.getResourceMetadata` get their value from JCR properties:
+The resource metadata exposed in `Resource.getResourceMetadata` get their values from JCR properties:
 
 Metadata Property | Backed by
 --- | --- | ---
