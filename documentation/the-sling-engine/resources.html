@@ -240,6 +240,21 @@
 <li>the primary item of the underlying node (as defined by <a href="https://docs.adobe.com/docs/en/spec/jsr170/javadocs/jcr-2.0/javax/jcr/Node.html#getPrimaryItem()">Node.getPrimaryItem()</a>).</li>
 </ol>
 <p>For node type <code>nt:file</code> the property is looked up in the child node <code>jcr:content</code> for both cases. For all other node types it is looked up in the underlying node of the current resource.</p>
+<h4><a href="#resource-metadata" id="resource-metadata">Resource Metadata</a></h4>
+<p>The resource metadata exposed in <code>Resource.getResourceMetadata</code> get their values from JCR properties:</p>
+<table>
+<thead>
+<tr><th>Metadata Property </th><th> Backed by</th></tr>
+</thead>
+<tbody>
+<tr><td><code>sling.contentType</code> </td><td> JCR property <code>jcr:mimeType</code></td></tr>
+<tr><td><code>sling.characterEncoding</code> </td><td> JCR property <code>jcr:encoding</code></td></tr>
+<tr><td><code>sling.creationTime</code> </td><td> JCR property <code>jcr:created</code></td></tr>
+<tr><td><code>sling.modificationTime</code> </td><td> JCR property <code>jcr:lastModified</code></td></tr>
+<tr><td><code>sling.contentLength</code> </td><td> The content length of the JCR property <code>jcr:data</code> or alternatively the primary item of the underlying Node (according to its node type definition)</td></tr>
+</tbody>
+</table>
+<p>For binary nodes all properties except <code>jcr:created</code> are retrieved from the child node <code>jcr:content</code>.</p>
 <h3><a href="#bundle-based-resources" id="bundle-based-resources">Bundle-based Resources</a></h3>
 <p>Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header <code>Sling-Bundle-Resources</code> containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).</p>
 <p>The <code>BundleResourceProvider</code> supporting bundle-based Resources provides directories as Resources of type <code>nt:folder</code> and files as Resources of type <code>nt:file</code>. This matches the default primary node types intended to be used for directories and files in JCR repositories.</p>
@@ -277,7 +292,7 @@
             </div><footer class="footer">
                 <div class="content has-text-centered is-small">
 <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Sep 21 10:02:03 2020 +0200</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">Mon Jul 26 10:24:21 2021 +0200</span>
                     </div>                    <p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
