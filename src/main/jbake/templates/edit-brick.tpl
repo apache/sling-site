@@ -1,8 +1,8 @@
-div(class:"edit") {
-    def prefix = 'https://github.com/apache/sling-site/edit/master/src/main/jbake/'
+div(class:"editpagelink") {
     // relativize absolute content.file path
     def relativeSourcePath = config.sourceFolder.toPath().relativize(java.nio.file.Paths.get(content.file))
-    a(href:"${prefix}${relativeSourcePath}") {
-        yield "Edit"
+    yield "This page can be edited on GitHub at "
+    a(href:"${config.sling_github_baseEditingURL}${relativeSourcePath}") {
+        yield "${relativeSourcePath}"
     }
 }

@@ -15,7 +15,6 @@ html(lang:'en'){
                     div(class:"level") {
                         div(class:"pagenav") {
                             breadcrumbs()
-                            edit()
                         }
                         tags()
                     }
@@ -38,6 +37,7 @@ html(lang:'en'){
         }//columns
         footer(class:"footer") {
             div(class:"content has-text-centered is-small"){
+                edit()
                 lastModified()
                 include template: 'footer.tpl'
             }
