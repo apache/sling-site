@@ -157,7 +157,7 @@ For node type `nt:file` the property is looked up in the child node `jcr:content
 
 #### Resource Metadata
 
-The resource metadata exposed in `Resource.getResourceMetadata` get their value from JCR properties
+The resource metadata exposed in `Resource.getResourceMetadata` get their value from JCR properties:
 
 Metadata Property | Backed by
 --- | --- | ---
@@ -167,7 +167,7 @@ Metadata Property | Backed by
 `sling.modificationTime` | JCR property `jcr:lastModified`
 `sling.contentLength` | The content length of the JCR property `jcr:data` or alternatively the primary item of the underlying Node (according to its node type definition)
 
-For binary nodes all properties except `jcr:created` are retrieved from the child node `jcr:content`
+For binary nodes all properties except `jcr:created` are retrieved from the child node `jcr:content`.
 
 
 ### Bundle-based Resources
