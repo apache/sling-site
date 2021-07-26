@@ -5,6 +5,8 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
+* Our documentation pages now have an edit link in their footer: patches, which are very welcome, are now easier than ever!
+* The new [hierarchical sitemap](./sitemap.html) helps you find the right page, along with the existing [tags pages](./tags/development.html).
 * Released [Apache Sling Adapter Annotations 2.0](https://github.com/apache/sling-org-apache-sling-adapter-annotations), a new module that implements OSGi DS 1.4 component property type annotations for Sling Adapters.
 * The virtual adaptTo() 2020 conference took place in September and [video recordings will be available soon](https://adapt.to/2020/en/schedule.html).
 * Vulnerability report and fix: CVE-2020-1949: Apache Sling CMS Reflected XSS Vulnerability (March 24th, 2020), see [http://s.apache.org/CVE-2020-1949](http://s.apache.org/CVE-2020-1949)
