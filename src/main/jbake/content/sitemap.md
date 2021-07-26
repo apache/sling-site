@@ -1,4 +1,4 @@
 title=Sitemap		
-type=sitemap
+type=htmlsitemap
 status=published
 ~~~~~~
