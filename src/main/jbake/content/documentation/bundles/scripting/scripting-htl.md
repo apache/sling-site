@@ -62,17 +62,19 @@ The HTL Specification talks about the following types which are supported to be 
 
 HTL Type | Conversion from Java Type | Code Link
 --- | --- | --- 
-`Boolean` | `java.lang.Boolean` (no conversion necessary). In addition it returns `true` for every other Java object except for `null`, `java.lang.Number` having value `0`, empty String, array, Collection, Map, Iterator or Iterable's iterator  | [`ObjectModel.toBoolean(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/6cbd676a8875af756e6e43b38c39ba9e4784dc4e/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L151)
-`String` | Almost every type via `Object.toString()`
-`Date` | `java.util.Date`, `java.util.Calendar`
-`Number` | `java.lang.Number`, every other type first converted to `java.lang.String` and then converted to Number via [`NumberUtils.createNumber(String)`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/math/NumberUtils.html#createNumber-java.lang.String-). | [`ObjectModel.toNumber(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/6cbd676a8875af756e6e43b38c39ba9e4784dc4e/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L204)
-`Collection` | Empty list for everything except for <br/>arrays, Collections, Iterators and Iterables (converted to List) and `java.lang.String` or `java.lang.Number` (a list containing a single item). For `java.util.Map` the key set is used.  | [`ObjectModel.toCollection(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/6cbd676a8875af756e6e43b38c39ba9e4784dc4e/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L277)
+`Boolean` | `java.lang.Boolean` (no conversion necessary). In addition it returns `true` for every other Java object except for `null`, `java.lang.Number` having value `0`, empty String, array, Collection, Map, Iterator or Iterable's iterator  | [`ObjectModel.toBoolean(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/org.apache.sling.scripting.sightly.runtime-1.2.4-1.4.0/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L151)
+`String` | Almost every type via `Object.toString()`. `Collections` are handled differently, by joining their elements. | [`ObjectModel.toString(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/org.apache.sling.scripting.sightly.runtime-1.2.4-1.4.0/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L238)
+`Date` | `java.util.Date`, `java.util.Calendar` |
+`Number` | `java.lang.Number`, every other type first converted to `java.lang.String` and then converted to Number via [`NumberUtils.createNumber(String)`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/math/NumberUtils.html#createNumber-java.lang.String-). | [`ObjectModel.toNumber(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/org.apache.sling.scripting.sightly.runtime-1.2.4-1.4.0/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L204)
+`Collection` | Empty list for everything except for <br/>arrays, Collections, Iterators and Iterables (converted to List) and `java.lang.String` or `java.lang.Number` (a list containing a single item). For `java.util.Map` the key set is used.  | [`ObjectModel.toCollection(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/org.apache.sling.scripting.sightly.runtime-1.2.4-1.4.0/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L277)
 `Map` |
 `Enum` |
 
 ## Support for Optional
 
-...
+Starting with [SLING-8228](https://issues.apache.org/jira/browse/SLING-8228), `java.util.Optional` objects are expanded before being passed
+to the conversion methods provided by the
+[`org.apache.sling.scripting.sightly.render.ObjectModel`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/org.apache.sling.scripting.sightly.runtime-1.2.4-1.4.0/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java).
 
 ## JavaScript
 
