@@ -67,6 +67,10 @@ Mapping `html` to Thymeleaf 3.0:
       "html=Thymeleaf:3.0"
     ]
 
+## Bundled Scripts
+
+Scripts may also be provided in OSGi bundles (precompiled or embedded) since [Sling Servlet Resolver 2.7.0](https://github.com/apache/sling-org-apache-sling-servlets-resolver#bundled-scripts).
+
 ## Script encoding
 
 All scripts backed by Sling resources get their character encoding from the [character encoding set in the resource metadata](../the-sling-engine/resources.html#resource-properties). For JCR based resources this is retrieved from the underlying `jcr:encoding` JCR property. If not set it will fall back to UTF-8.
