@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2021
 
+* Feature Model 1.2.28, Feature Model Extension Api Regions 1.3.8, Slingfeature Maven Plugin 1.5.10 (29th)
 * Resource Resolver 1.7.10 (24th)
 * App CMS 1.0.4 (23rd)
 * Servlets Resolver 2.8.0 (22nd)
