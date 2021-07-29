@@ -166,6 +166,8 @@
   &quot;html=Thymeleaf:3.0&quot;
 ]
 </code></pre>
+<h2><a href="#bundled-scripts" id="bundled-scripts">Bundled Scripts</a></h2>
+<p>Scripts may also be provided in OSGi bundles (precompiled or embedded) since <a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver#bundled-scripts">Sling Servlet Resolver 2.7.0</a>.</p>
 <h2><a href="#script-encoding" id="script-encoding">Script encoding</a></h2>
 <p>All scripts backed by Sling resources get their character encoding from the <a href="../the-sling-engine/resources.html#resource-properties">character encoding set in the resource metadata</a>. For JCR based resources this is retrieved from the underlying <code>jcr:encoding</code> JCR property. If not set it will fall back to UTF-8.</p>
 <p>Every script evaluation in the context of a request sets the response's character encoding to UTF-8 (if the request accepts content types starting with <code>text/</code>)</p>
@@ -182,7 +184,7 @@
                             content/documentation/bundles/scripting.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-07-26</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-07-29</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
