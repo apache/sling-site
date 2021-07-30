@@ -64,11 +64,20 @@ layout 'layout/main.tpl', true,
                 }*.each() {
                     p -> 
                     li(class:"module") {
+                        a(
+                            class:"buildBadge", 
+                            title:"build details for ${p.attributes().path}",
+                            href:"https://ci-builds.apache.org/job/Sling/job/modules/job/sling-${p.attributes().path}/job/master/"
+                        ) {
+                            img(src:"https://ci-builds.apache.org/job/Sling/job/modules/job/sling-${p.attributes().path}/job/master/badge/icon?style=ball-24x24")
+                        }
+                        yield(" ")
+                        span(class:"description") {
+                            yield("${p.attributes().description}")
+                        }
+                        yield(" - ")
                         a(href:"${config.sling_github_baseURL}${p.attributes().name}") {
                             yield("${p.attributes().path}")
-                        }
-                        span(class:"description") {
-                            yield(" - ${p.attributes().description}")
                         }
                     }
                     newLine()

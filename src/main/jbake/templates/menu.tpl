@@ -35,7 +35,7 @@ div(class:"container") {
                 ul() {
                     li(){a(href:"https://s.apache.org/sling.wiki", "Wiki")}
                     li(){a(href:"https://s.apache.org/sling.faq", "FAQ")}
-                    li(){a(href:"${config.site_contextPath}sitemap.html", "Site Map")}
+                    li(){a(href:"${config.site_contextPath}sitemap.html", "Sitemap")}
                 }
             }
             li(){

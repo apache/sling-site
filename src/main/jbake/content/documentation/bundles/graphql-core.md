@@ -1,4 +1,4 @@
-title=Sling GraphQL Core and Samples
+title=Sling GraphQL Support
 type=page
 status=published
 tags=graphql,content,query
@@ -15,3 +15,5 @@ for more information.
 The [GraphQL Sample Website module](https://github.com/apache/sling-samples/tree/master/org.apache.sling.graphql.samples.website)
 provides a complete sample which uses GraphQL queries (and Handlebars templates) on both the server and client sides,
 to demonstrate the various modes that the GraphQL Core module supports.
+
+Other Sling GraphQL modules can be listed with [this GitHub repository query](https://github.com/search?q=topic%3Asling+topic%3Agraphql+org%3Aapache&type=Repositories).

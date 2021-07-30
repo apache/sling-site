@@ -144,3 +144,10 @@ code {
 .digestLinks {
     font-size: 80%;
 }
+
+ul.repolist {
+    list-style-type: none;
+    color: #060;
+    margin: 0;
+    padding: 0;
+}

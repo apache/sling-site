@@ -23,6 +23,8 @@ systems.
 Our [Getting Started](/documentation/getting-started.html) page will help you
 start playing with Sling.
 
+If you want to jump straight into the code, see our [list of repositories](/repolist.html).
+
 Discussions about Sling happen on our mailing lists, see our 
 [Project Information](/project-information.html) page for more info.
 
