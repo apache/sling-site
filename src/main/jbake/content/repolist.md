@@ -19,5 +19,8 @@ the Sonar analysis failing with Java 11 for older modules.
 
 If you're unsure about the status of one of these repositories please ask on our dev list.
 
+All repositories have names which start with `sling-` so you can also list them
+with a [GitHub query](https://github.com/apache/?utf8=%E2%9C%93&q=sling).
+
 We also have specific documentation about some of these modules on the
 [Bundles](documentation/bundles.html) page.
