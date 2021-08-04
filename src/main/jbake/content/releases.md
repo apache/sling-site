@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2021
+* Servlets Resolver 2.8.0 (4th)
+
 ## July 2021
 
 * Parent and Bundle Parent 44 (30th)
