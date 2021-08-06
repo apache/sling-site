@@ -7,7 +7,9 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## August 2021
-* Servlets Resolver 2.8.0 (4th)
+
+* Feature Model Analyser 1.3.30 (6th)
+* Servlets Resolver 2.8.2 (4th)
 
 ## July 2021
 

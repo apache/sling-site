@@ -131,7 +131,7 @@ def bundles=[
   "Event|org.apache.sling.event|4.2.22|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.0|Y|jar",
   "Feature Model|org.apache.sling.feature|1.2.2i8|Y|jar",
-  "Feature Model Analyser|org.apache.sling.feature.analyser|1.3.24|Y|jar",
+  "Feature Model Analyser|org.apache.sling.feature.analyser|1.3.30|Y|jar",
   "Feature Model Launcher|org.apache.sling.feature.launcher|1.1.6|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.14|Y|jar",
   "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.1.4|Y|jar",
