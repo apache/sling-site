@@ -13,23 +13,28 @@ Configuration file names are related to the PID and factory PID. The structure o
 
     filename ::= <pid> ( ( '-' | '~' ) <subname> ) ? ( '.cfg' | '.config' | '.cfg.json')
 
-
-If the form is `<pid>('.cfg'|'.config'|'.cfg.json')`, the file contains the properties for a Managed Service. The `<pid>` is then the PID of the Managed Service. See the Configuration Admin service for details.
-
-When a Managed Service Factory is used, the situation is different. The `<pid>` part then describes the PID of the Managed Service Factory. You can pick any `<subname>`, the installer will then create an instance for the factory for each unique name. For example:
+Singleton configurations are defined using a filename that consists of the PID followed by the extension, defining the format of the file (see below). For factory configurations the filename has three parts, the factory PID, a subname and the extension. The subname is separated by a tilde (prefered) or dash from the factory PID. You can pick any `<subname>`, the installer will then create an instance for the factory for each unique name. For example:
 
 
-    com.acme.xyz.cfg // configuration for Managed Service
+    com.acme.xyz.cfg // singleton configuration
     // com.acme.xyz
-    com.acme.abc-default.cfg // Managed Service Factory,
-    // creates an instance for com.acme.abc
+    com.acme.abc-default.cfg // factory configuration
+    // creates an instance for com.acme.abc named default
 
-Since Installer Configuration Factory 1.2.0 ([SLING-7786](https://jira.apache.org/jira/browse/SLING-7786)) you should use the tilde `~` as separator between `<pid>` and `<subname>` instead of the `-`.
+Since Installer Configuration Factory 1.2.0 ([SLING-7786](https://jira.apache.org/jira/browse/SLING-7786)) you should use the tilde `~` as separator between `<pid>` and `<subname>` instead of the `-` (dash).
 
 
-If a configuration is modified, the file installer will write the configuration back to a file to ensure persistence across restarts (if `sling.fileinstall.writeback` is enabled). A similar writeback mechanism is supported by the [JCR installer](jcr-installer-provider.html).
+If a configuration is modified, the file installer will write the configuration back to a file to ensure persistence across restarts and to allow to share the configuration update with other instances (if `sling.fileinstall.writeback` is enabled). A similar writeback mechanism is supported by the [JCR installer](jcr-installer-provider.html).
 
 The code for parsing the configuration files is in [InternalResource#readDictionary](https://github.com/apache/sling-org-apache-sling-installer-core/blob/7b2e4407baa45b79d954dd20c53bb2077c3a5e49/src/main/java/org/apache/sling/installer/core/impl/InternalResource.java#L230).
+
+### Merging of Configurations
+
+By default, if multiple configurations for the same PID or factory PID plus subname are found, these configurations are not merged.
+
+Starting with Installer Configuration Factory 1.4.0, a new framework property has been introduced to enable merging of configurations: `sling.installer.config.mergeSchemes`. If this is set, for example to `launchpad` then all configurations from launchpad act as default configurations. When now a configuration from a different location - for example the repository is installed - that configuration is first merged with the default configuration. Similar, for write back only the properties with different configuration values than the default configuration are written back.
+
+Enabling this feature is a change in behaviour and must be used with care. Howver, it bridges the current difference between launchpad based Sling applications and feature model based applications. While the feature model usually merges configurations, launchpad based applications do not. Enabling the above property closes that gap.
 
 ### Configuration Files (.cfg.json)
 
