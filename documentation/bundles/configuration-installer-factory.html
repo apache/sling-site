@@ -117,16 +117,19 @@
 <p>Configuration file names are related to the PID and factory PID. The structure of the file name is as follows:</p>
 <pre><code>filename ::= &lt;pid&gt; ( ( '-' | '~' ) &lt;subname&gt; ) ? ( '.cfg' | '.config' | '.cfg.json')
 </code></pre>
-<p>If the form is <code>&lt;pid&gt;('.cfg'|'.config'|'.cfg.json')</code>, the file contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p>
-<p>When a Managed Service Factory is used, the situation is different. The <code>&lt;pid&gt;</code> part then describes the PID of the Managed Service Factory. You can pick any <code>&lt;subname&gt;</code>, the installer will then create an instance for the factory for each unique name. For example:</p>
-<pre><code>com.acme.xyz.cfg // configuration for Managed Service
+<p>Singleton configurations are defined using a filename that consists of the PID followed by the extension, defining the format of the file (see below). For factory configurations the filename has three parts, the factory PID, a subname and the extension. The subname is separated by a tilde (prefered) or dash from the factory PID. You can pick any <code>&lt;subname&gt;</code>, the installer will then create an instance for the factory for each unique name. For example:</p>
+<pre><code>com.acme.xyz.cfg // singleton configuration
 // com.acme.xyz
-com.acme.abc-default.cfg // Managed Service Factory,
-// creates an instance for com.acme.abc
+com.acme.abc-default.cfg // factory configuration
+// creates an instance for com.acme.abc named default
 </code></pre>
-<p>Since Installer Configuration Factory 1.2.0 (<a href="https://jira.apache.org/jira/browse/SLING-7786">SLING-7786</a>) you should use the tilde <code>~</code> as separator between <code>&lt;pid&gt;</code> and <code>&lt;subname&gt;</code> instead of the <code>-</code>.</p>
-<p>If a configuration is modified, the file installer will write the configuration back to a file to ensure persistence across restarts (if <code>sling.fileinstall.writeback</code> is enabled). A similar writeback mechanism is supported by the <a href="jcr-installer-provider.html">JCR installer</a>.</p>
+<p>Since Installer Configuration Factory 1.2.0 (<a href="https://jira.apache.org/jira/browse/SLING-7786">SLING-7786</a>) you should use the tilde <code>~</code> as separator between <code>&lt;pid&gt;</code> and <code>&lt;subname&gt;</code> instead of the <code>-</code> (dash).</p>
+<p>If a configuration is modified, the file installer will write the configuration back to a file to ensure persistence across restarts and to allow to share the configuration update with other instances (if <code>sling.fileinstall.writeback</code> is enabled). A similar writeback mechanism is supported by the <a href="jcr-installer-provider.html">JCR installer</a>.</p>
 <p>The code for parsing the configuration files is in <a href="https://github.com/apache/sling-org-apache-sling-installer-core/blob/7b2e4407baa45b79d954dd20c53bb2077c3a5e49/src/main/java/org/apache/sling/installer/core/impl/InternalResource.java#L230">InternalResource#readDictionary</a>.</p>
+<h3><a href="#merging-of-configurations" id="merging-of-configurations">Merging of Configurations</a></h3>
+<p>By default, if multiple configurations for the same PID or factory PID plus subname are found, these configurations are not merged.</p>
+<p>Starting with Installer Configuration Factory 1.4.0, a new framework property has been introduced to enable merging of configurations: <code>sling.installer.config.mergeSchemes</code>. If this is set, for example to <code>launchpad</code> then all configurations from launchpad act as default configurations. When now a configuration from a different location - for example the repository is installed - that configuration is first merged with the default configuration. Similar, for write back only the properties with different configuration values than the default configuration are written back.</p>
+<p>Enabling this feature is a change in behaviour and must be used with care. Howver, it bridges the current difference between launchpad based Sling applications and feature model based applications. While the feature model usually merges configurations, launchpad based applications do not. Enabling the above property closes that gap.</p>
 <h3><a href="#configuration-files-cfgjson" id="configuration-files-cfgjson">Configuration Files (.cfg.json)</a></h3>
 <p>This is the preferred way to specify configurations as it is an official format specified by OSGi in the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html">OSGi R7 Service Configurator Spec</a> and is also used by the <a href="https://github.com/apache/sling-org-apache-sling-feature/blob/master/readme.md">Feature Model</a>. The detailed JSON format is described in that specification. It allows for typed values, allowing all possible types including Collections and comments.</p>
 <p>There are some differences to the <a href="https://osgi.org/specification/osgi.cmpn/7.0.0/service.configurator.html#service.configurator-resources">resource format specification</a> as outlined below:</p>
@@ -240,7 +243,7 @@ ftp.port = 21
                             content/documentation/bundles/configuration-installer-factory.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2020-04-14</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2021-08-06</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
