@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2021
 
+* Scripting HTL Compiler 1.2.14-1.4.0, Scripting HTL Runtime 1.2.6-1.4.0 (7th)
 * Feature Model Analyser 1.3.30 (6th)
 * Servlets Resolver 2.8.2 (4th)
 
