@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2021
 
+* Scripting Core 2.4.0 (11th)
 * Installer Core 3.12.0, Installer Factory Configuration 1.4.0, Installer Factory Feature 0.6.0 (10th)
 * Scripting HTL Compiler 1.2.14-1.4.0, Scripting HTL Runtime 1.2.6-1.4.0 (7th)
 * Feature Model Analyser 1.3.30 (6th)
