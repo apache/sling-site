@@ -6,8 +6,18 @@ tags=servlets,core
 
 [TOC]
 
-See also [URL to Script Resolution](/documentation/the-sling-engine/url-to-script-resolution.html) which explains how Sling maps URLs 
-to a script or and servlet.
+## Servlet Resolving
+
+First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the `sling:resourceType` property 
+which defines the resource type of that resource. Using this resource type (which is usually a relative resource path, 
+eg. "myblog/comment"), scripts or servlets are looked up. For more details about how the initial resource is identified for a specific request URL look at [URL decomposition](/documentation/the-sling-engine/url-decomposition.html).
+
+Servlets and scripts are themselves resources in Sling and thus have a resource path: this is either the location in the 
+resource repository, the resource type in a servlet component configuration or the "virtual" bundle resource path 
+(if a script is provided inside a bundle without being installed into the JCR repository). 
+
+For details on which script/servlet is selected in case there are multiple candidates refer to the sections below.
+
 
 ## Servlet Registration
 
@@ -261,17 +271,6 @@ situation by making sure to drop the servlet instance once it is destroyed.
 The mechanism helping the provider here is the OSGi Service Factory.
 
 
-
-## Scripts are Servlets
-
-The Sling API defines a `SlingScript` interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the `scripting/core` bundle in the `DefaultSlingScript` class which also implements the `javax.servlet.Servlet`.
-
-To further simplify the access to scripts from the Resource tree, the `scripting/core` bundle registers an `AdapterFactory` to adapt Resources to Scripts and Servlets (the `SlingScriptAdapterFactory`). In fact the adapter factory returns instances of the `DefaultSlingScript` class for both Scripts and Servlets.
-
-From the perspective of the Servlet resolver, scripts and servlets are handled exactly the same. In fact, internally, Sling only handles with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script.
-
-
-
 ## Default Servlet(s)
 
 As explained in the Resolution Process section above, a default Servlet is selected if no servlet (or script) for the current resource type can be found. To make the provisioning of a default Servlet as versatile as provisioning per resource type Servlets (or scripts), the default Servlet is selected with just a special resource type `sling/servlet/default`.
@@ -283,11 +282,9 @@ Finally, if not even a registered default Servlet may be resolved for the reques
 * If an `NonExistingResource` was created for the request the `DefaultServlet` sends a 404 (Not Found)
 * Otherwise the `DefaultServlet` sends a 500 (Internal Server Error), because normally at least a `NonExistingResource` should be created
 
-## Bundled Scripts
+## Scripts
 
-Version 2.7.0 of the `org.apache.sling.servlets.resolver` bundle supports providing immutable scripts via OSGi bundles and optionally precompiling them.
-
-See [that module's README file](https://github.com/apache/sling-org-apache-sling-servlets-resolver) for more information.
+Scripts are internally handled like servlet, details are described in [Sling Scripting](/documentation/bundles/scripting.html).
 
 ## OptingServlet interface
 
@@ -302,10 +299,18 @@ While an opting servlet seems to be a nice way of picking the right servlet to p
 The following order rules are being followed when trying to resolve a servlet for a given request URL and request method and multiple candidates would match. Then the following candidate is being picked (if one rule doesn't lead to one winner, the next rule is being evaluated):
 
 1. The one with the highest number of matching selectors + extension
-2. The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up)
+2. The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up), refer to section [Resource Type Inheritance](#Resource Type Inheritance) for more details
 3. The one with the highest `service.ranking` property
 
 In case of an `OptingServlet` not matching the next candidate is being used.
+
+### Resource Type Inheritance 
+
+While not exactly part of our discussion, resource type inheritance as implemented for [SLING-278](https://issues.apache.org/jira/browse/SLING-278) plays a vital role in servlet resolution. 
+
+Each resource type may have a resource super type, which may be defined in various ways. One example is having a `sling:resourceSuperType` property in the node addressed by the resource type. See [http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html](http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html) and [SLING-278](http://issues.apache.org/jira/browse/SLING-278) for more details. 
+
+If a resource type has no explicit resource super type, the resource super type is assumed to be "sling/servlet/default". That is the resource type used for default script selection is also acting as a basic resource type much like java.lang.Object does for other types in the Java language. 
 
 
 ## Error Handler Servlet(s) or Scripts
