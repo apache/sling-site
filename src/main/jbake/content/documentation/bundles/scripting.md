@@ -10,7 +10,7 @@ tags=scripts
 
 Sling Scripting is build around Java Scripting API (JSR 223). It allows the easy development and usage of different scripting (aka templating) engines.
 
-The script engines are managed in `SlingScriptEngineManager` ([Scripting Core](https://github.com/apache/sling-org-apache-sling-scripting-core)).
+The script engines are managed in `SlingScriptEngineManager` ([Scripting Core][8]).
 
 | Engine | Language Name | Language Version | Names | Extensions | Mime Types | GitHub Repo(s) | Documentation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -36,7 +36,7 @@ Code for really old modules might be found in the [svn attic](https://svn.apache
 
 ### Mapping script extensions to engines
 
-Since version `2.0.60` [Scripting Core](https://github.com/apache/sling-org-apache-sling-scripting-core) supports the mapping of extensions to engines in content ([SLING-4330](https://issues.apache.org/jira/browse/SLING-4330)).
+Since version `2.0.60` [Scripting Core][8] supports the mapping of extensions to engines in content ([SLING-4330](https://issues.apache.org/jira/browse/SLING-4330)).
 
 This is required when registering more than one script engine for a single script extension (e.g. using HTL for *vendor-related* scripts in `/libs` and Thymeleaf for *project-related* scripts in `/apps`, both using extension `html`).
 
@@ -69,7 +69,7 @@ Mapping `html` to Thymeleaf 3.0:
 
 ## Scripts are Servlets
 
-The Sling API defines a `SlingScript` interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the `scripting/core` bundle in the `DefaultSlingScript` class which also implements the `javax.servlet.Servlet`.
+The Sling API defines a `SlingScript` interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the [Scripting Core bundle][8] in the `DefaultSlingScript` class which also implements the `javax.servlet.Servlet`.
 
 To further simplify the access to scripts from the Resource tree, the `scripting/core` bundle registers an `AdapterFactory` to adapt Resources to Scripts and Servlets (the `SlingScriptAdapterFactory`). In fact the adapter factory returns instances of the `DefaultSlingScript` class for both Scripts and Servlets.
 
@@ -136,6 +136,7 @@ context. As such, scripts should be handled like code:
 
   
 ### Technical Background
+
 Being built around a [`BundleTrackerCustomizer`][2], the `org.apache.sling.servlets.resolver.internal.bundle.BundledScriptTracker`
 monitors the instance's bundles wired to the `org.apache.sling.servlets.resolver` bundle and scans the ones providing a `sling.servlet`
 [capability][3]. The wiring is created by placing a `Require-Capability` header in the bundles that provide the `sling.servlet` capability:
@@ -180,7 +181,7 @@ The integration tests for bundled scripts are provided by the [`org.apache.sling
 
 ## Script resolution order
 
-The [same rules as for servlets][6] are being followed but in addition keep in mind that bundled scripts are prefered over resource scripts.
+The [same rules as for servlets][6] are being followed but in addition keep in mind that bundled scripts (as well as servlets) are prefered over resource scripts.
 
 ### Example for resource script
 
@@ -222,3 +223,4 @@ See also [Scripting variables](https://cwiki.apache.org/confluence/display/SLING
 [5]: #resource-script-naming-conventions
 [6]: /documentation/the-sling-engine/servlets.html##servlet-resolution-order
 [7]: /documentation/the-sling-engine/servlets.html
+[8]: https://github.com/apache/sling-org-apache-sling-scripting-core
