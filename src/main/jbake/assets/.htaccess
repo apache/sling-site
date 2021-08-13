@@ -34,6 +34,8 @@ Redirect Permanent /plugins.html /
 Redirect Permanent /documentation/the-sling-engine/eventing-and-jobs.html /documentation/bundles/apache-sling-eventing-and-job-handling.html
 Redirect Permanent /documentation/bundles/scripting/scripting-sightly.html /documentation/bundles/scripting/scripting-htl.html
 
+Redirect Permanent /res/favicon.ico /favicon.ico
+
 # Add redirects from /site to the CMS-managed content here, after verifying that /site pages have been converted correctly
 # Please keep entries in alphabetical order
 Redirect Permanent /site/46-line-blog.html /documentation/tutorials-how-tos/46-line-blog.html
