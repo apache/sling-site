@@ -10,7 +10,7 @@ tags=servlets,core
 
 First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the `sling:resourceType` property 
 which defines the resource type of that resource. Using this resource type (which is usually a relative resource path, 
-eg. "myblog/comment"), scripts or servlets are looked up. For more details about how the initial resource is identified for a specific request URL look at [URL decomposition](/documentation/the-sling-engine/url-decomposition.html).
+eg. "myblog/comment"), servlets (or scripts) are looked up. For more details about how the initial resource is identified for a specific request URL look at [URL decomposition](/documentation/the-sling-engine/url-decomposition.html).
 
 Servlets and scripts are themselves resources in Sling and thus have a resource path: this is either the location in the 
 resource repository, the resource type in a servlet component configuration or the "virtual" bundle resource path 
@@ -21,7 +21,7 @@ For details on which script/servlet is selected in case there are multiple candi
 
 ## Servlet Registration
 
-Servlets can be registered as OSGi services. The following service reference properties are evaluated for Servlets defined as OSGi services of type `javax.servlet.Servlet` (all those property names are defined in `org.apache.sling.api.servlets.ServletResolverConstants` (since API 2.15.2) or `org.apache.sling.servlets.resolver.internal.ServletResolverConstants` (before API 2.15.2)):
+Servlets can be registered as OSGi services. The following service reference properties are evaluated for Servlets defined as OSGi services of type `javax.servlet.Servlet` (all those property names are defined in `org.apache.sling.api.servlets.ServletResolverConstants` (since API 2.15.2) or `org.apache.sling.servlets.resolver.internal.ServletResolverConstants` (before API 2.15.2):
 
 | Name | Description |
 | --- | --- |
@@ -306,11 +306,11 @@ In case of an `OptingServlet` not matching the next candidate is being used.
 
 ### Resource Type Inheritance 
 
-While not exactly part of our discussion, resource type inheritance as implemented for [SLING-278](https://issues.apache.org/jira/browse/SLING-278) plays a vital role in servlet resolution. 
+Resource type inheritance as implemented for [SLING-278](https://issues.apache.org/jira/browse/SLING-278) plays a vital role in servlet resolution. 
 
-Each resource type may have a resource super type, which may be defined in various ways. One example is having a `sling:resourceSuperType` property in the node addressed by the resource type. See [http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html](http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html) and [SLING-278](http://issues.apache.org/jira/browse/SLING-278) for more details. 
+Each resource type may have a resource super type, which may be defined in various ways. One example is having a `sling:resourceSuperType` property in the node addressed by the resource type. See [http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html](http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html) and [SLING-278](http://issues.apache.org/jira/browse/SLING-278) for more details. Also the servlet (or script) itself may define a resource super type (which is only used in case the request resource does not define one).
 
-If a resource type has no explicit resource super type, the resource super type is assumed to be "sling/servlet/default". That is the resource type used for default script selection is also acting as a basic resource type much like java.lang.Object does for other types in the Java language. 
+If a resource type has no explicit resource super type, the resource super type is assumed to be `sling/servlet/default`. That is the resource type used for default script selection is also acting as a basic resource type much like `java.lang.Object` does for other types in the Java language. 
 
 
 ## Error Handler Servlet(s) or Scripts

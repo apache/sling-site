@@ -181,7 +181,7 @@ The integration tests for bundled scripts are provided by the [`org.apache.sling
 
 ## Script resolution order
 
-The [same rules as for servlets][6] are being followed but in addition keep in mind that bundled scripts (as well as servlets) are prefered over resource scripts.
+The [same rules as for servlets][6] are being followed but in addition keep in mind that bundled scripts (as well as servlets) are prefered over resource scripts (in case there are multiple equally ranked candidates left after all other criteria). 
 
 ### Example for resource script
 
