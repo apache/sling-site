@@ -17,22 +17,22 @@ This allows	you to experiment with your changes before eventually publishing the
 The publishing process consists out of 2 steps:
 
 ```
-Original: master branch (markdown files)
+Original: master branch (mainly markdown files)
 
    |  
-   |   Build site via Jenkins or local Maven Build
+   |   1. Build site via Jenkins or local Maven Build
   \|/  
 
-1. asf-site branch (html files)
+asf-site branch (mainly JBake-generated html files)
 
    |
-   |   Publish via ASF gitpubsub, controlled via .asf.yaml
+   |   2. Publish via ASF gitpubsub, controlled via .asf.yaml
   \|/  
 
-2. https://sling.apache.org
+https://sling.apache.org
 ```
 
-Each push to the `master` branch automatically regenerates and publishes the website to https://sling.apache.org, see
+Each push to the `master` branch automatically regenerates and publishes the website to <https://sling.apache.org>, see
 [SLING-7180](https://issues.apache.org/jira/browse/SLING-7180) for details. The corresponding Jenkins job is linked from the "build"
 badge at the top of this file.
 Note that the publish-scm goal might fail if you add lots of changes due to [MSCMPUB-18](https://issues.apache.org/jira/browse/MSCMPUB-18). In that scenario you have to manually perform the git operations, see for instance [this file at revision 3e58fbd7](https://github.com/apache/sling-site/blob/3e58fbd768344d90185a2123ca30afb6ec4f9000/README.md).
