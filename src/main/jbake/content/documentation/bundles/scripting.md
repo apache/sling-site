@@ -101,6 +101,9 @@ The pseudo code for iterating the locations would be something like:
         } 
     } 
 
+All [resource providers][10] may contribute scripts (this includes particularly the `JcrResourceProvider` but also `BundleResourceProvider`)
+
+
 ### Resource script naming conventions
 
 Depending on whether request selectors are considered, a script may have two forms: 
@@ -119,7 +122,7 @@ The constituents of these script names are as follows:
 
 ## Bundled Scripts
 
-Scripts may also be provided in OSGi bundles (precompiled or embedded) since [Sling Servlet Resolver 2.7.0](https://github.com/apache/sling-org-apache-sling-servlets-resolver#bundled-scripts) through the org.apache.sling.servlets.resolver.bundle.tracker API in addition to classical Resource based scripts.
+Next to using [Bundle Resources][9] which allow to place resource scripts in bundles, scripts may also be provided in OSGi bundles directly (precompiled or embedded) since [Sling Servlet Resolver 2.7.0](https://github.com/apache/sling-org-apache-sling-servlets-resolver#bundled-scripts) through the `org.apache.sling.servlets.resolver.bundle.tracker` API.
 
 Although traditionally scripts are deployed as content stored in the search paths of a Sling instance, this leaves very little
 room for script evolution in a backwards compatible way. Furthermore, versioning scripts is a difficult process if the only
@@ -162,6 +165,7 @@ type bound servlet will also be registered, which will be automatically wired to
 mentioned service registrations are managed automatically by the `BundledScriptTracker`.
 
 ### So how do I deploy my scripts?
+
 Short answer: exactly like you deploy your code, preferably right next to it. Pack your scripts using the following conventions:
 
   1. create a `src/main/resources/javax.script` folder in your bundle (if you want to embed the scripts as they are) or just put the
@@ -224,3 +228,5 @@ See also [Scripting variables](https://cwiki.apache.org/confluence/display/SLING
 [6]: /documentation/the-sling-engine/servlets.html##servlet-resolution-order
 [7]: /documentation/the-sling-engine/servlets.html
 [8]: https://github.com/apache/sling-org-apache-sling-scripting-core
+[9]: bundle-resources-extensions-bundleresource.html
+[10]: /documentation/the-sling-engine/resources.html#providing-resources
