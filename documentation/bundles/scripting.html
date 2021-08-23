@@ -166,8 +166,99 @@
   &quot;html=Thymeleaf:3.0&quot;
 ]
 </code></pre>
+<h2><a href="#scripts-are-servlets" id="scripts-are-servlets">Scripts are Servlets</a></h2>
+<p>The Sling API defines a <code>SlingScript</code> interface which is used to represent (executable) scripts inside of Sling. This interface is implemented in the <a href="https://github.com/apache/sling-org-apache-sling-scripting-core">Scripting Core bundle</a> in the <code>DefaultSlingScript</code> class which also implements the <code>javax.servlet.Servlet</code>.</p>
+<p>To further simplify the access to scripts from the Resource tree, the <code>scripting/core</code> bundle registers an <code>AdapterFactory</code> to adapt Resources to Scripts and Servlets (the <code>SlingScriptAdapterFactory</code>). In fact the adapter factory returns instances of the <code>DefaultSlingScript</code> class for both Scripts and Servlets.</p>
+<p>From the perspective of the <a href="/documentation/the-sling-engine/servlets.html">Servlet resolver</a>, scripts and servlets are handled exactly the same. In fact, internally, Sling only deals with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script.</p>
+<h2><a href="#resource-scripts" id="resource-scripts">Resource Scripts</a></h2>
+<p>Scripts are looked up in a series of resource resolver locations defined by the <code>ResourceResolver.getSearchPath()</code> and the resource type (and resource super types) of the requested resource:</p>
+<pre><code>{scriptPathPrefix}/{resourceTypePath} 
+</code></pre>
+<p>The pseudo code for iterating the locations would be something like:</p>
+<pre><code>var type = resource.getResourceType(); 
+while (type != null) { 
+    for (String root: resourceResolver.getSearchPath()) { 
+        String path = root + type.toPath(); 
+        findScriptsIn(path); 
+    } 
+
+    if (type == defaultServlet) { 
+        type = null; 
+    } else { 
+        type = getResourceSuperType(type); 
+        if (type == null) { 
+            type = defaultServlet; 
+        } 
+    } 
+} 
+</code></pre>
+<p>All <a href="/documentation/the-sling-engine/resources.html#providing-resources">resource providers</a> may contribute scripts (this includes particularly the <code>JcrResourceProvider</code> but also <code>BundleResourceProvider</code>)</p>
+<h3><a href="#resource-script-naming-conventions" id="resource-script-naming-conventions">Resource script naming conventions</a></h3>
+<p>Depending on whether request selectors are considered, a script may have two forms:</p>
+<ol>
+<li>Ignoring request selectors (e.g. there are none in the request URI): <code>{resourceTypeLabel}.{requestExtension}.{requestMethod}.{scriptExtension}</code></li>
+<li>Handling request selectors: <code>{selectorStringPath}.{requestExtension}.{requestMethod}.{scriptExtension}</code></li>
+</ol>
+<p>The constituents of these script names are as follows:</p>
+<ul>
+<li><code>{resourceTypeLabel}</code> - The last path segment of the path created from the resource type. This part is optional if the <code>{requestExtension}</code> is used in the script name. The resource type might either be set via the <code>sling:resourceType</code> property on the accessed node or if that property is not there its primary node type (property <code>jcr:primaryType</code>) is taken as fall-back.</li>
+<li><code>{requestExtension}</code> - The request extension. This part may be omitted if the request extension is <code>html</code>, otherwise this part is required. If this part is omitted, the <code>{resourceTypeLabel}</code> is required in the case of ignoring the selectors.</li>
+<li><code>{requestMethod}</code> - The request's HTTP method. This part may be omitted if the script is meant for a <code>GET</code> or a <code>HEAD</code> request. This part is required for any other HTTP method.</li>
+<li><code>{scriptExtension}</code> - The extension identifying the scripting language used. This part is mandatory. For more details about the available Script Engines and their registered extensions check the <a href="/documentation/bundles/scripting.html">Sling Scripting</a> page.</li>
+<li><code>{selectorStringPath}</code> - The selector string converted to a path, along the lines of <code>selectorString.replace('.', '/')</code>. If less selectors are specified in the script name than given in the request, the script will only be taken into consideration if the given selectors are the <strong>first</strong> selectors in the request. This means <em>sel1/sel2.html.jsp</em> will be a candidate for the request url <em>/content/test.sel1.sel2.sel3.html</em> but not for <em>/content/test.sel3.sel1.sel2.html</em>. So the order of selectors is relevant!</li>
+</ul>
 <h2><a href="#bundled-scripts" id="bundled-scripts">Bundled Scripts</a></h2>
-<p>Scripts may also be provided in OSGi bundles (precompiled or embedded) since <a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver#bundled-scripts">Sling Servlet Resolver 2.7.0</a>.</p>
+<p>Next to using <a href="bundle-resources-extensions-bundleresource.html">Bundle Resources</a> which allow to place resource scripts in bundles, scripts may also be provided in OSGi bundles directly (precompiled or embedded) since <a href="https://github.com/apache/sling-org-apache-sling-servlets-resolver#bundled-scripts">Sling Servlet Resolver 2.7.0</a> through the <code>org.apache.sling.servlets.resolver.bundle.tracker</code> API.</p>
+<p>Although traditionally scripts are deployed as content stored in the search paths of a Sling instance, this leaves very little room for script evolution in a backwards compatible way. Furthermore, versioning scripts is a difficult process if the only mechanism to do this is the <code>sling:resourceType</code> property, since consumers (content nodes or other resource types) have then to explicitly mention the version expected to be executed.</p>
+<p>Scripts should not be considered content, since their only purpose is to actually generate the rendering for a certain content structure. They are not consumed by users, but rather by the Sling Engine itself and have very little meaning outside this context. As such, scripts should be handled like code:</p>
+<ol>
+<li>they <em>provide an HTTP API</em>;</li>
+<li>they can evolve in a <a href="https://semver.org/"><em>semantical</em>  way</a>;</li>
+<li>they have a <em>developer audience</em>.</li>
+</ol>
+<h3><a href="#technical-background" id="technical-background">Technical Background</a></h3>
+<p>Being built around a <a href="https://osgi.org/javadoc/r6/core/org/osgi/util/tracker/BundleTrackerCustomizer.html"><code>BundleTrackerCustomizer</code></a>, the <code>org.apache.sling.servlets.resolver.internal.bundle.BundledScriptTracker</code> monitors the instance's bundles wired to the <code>org.apache.sling.servlets.resolver</code> bundle and scans the ones providing a <code>sling.servlet</code> <a href="http://docs.osgi.org/specification/osgi.core/7.0.0/framework.module.html#d0e2821" title="Bundle Capabilities">capability</a>. The wiring is created by placing a <code>Require-Capability</code> header in the bundles that provide the <code>sling.servlet</code> capability:</p>
+<p><code>osgi.extender;filter:=&quot;(&amp;(osgi.extender=sling.scripting)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;</code></p>
+<p>A <code>sling.servlet</code> capability has almost the same attributes as the properties required to <a href="/documentation/the-sling-engine/servlets.html#servlet-registration">register a servlet on the Sling platform</a>:</p>
+<ol>
+<li><code>sling.servlet.resourceTypes:List</code> - mandatory; defines the provided resource type; its value is a list of resource types</li>
+<li><code>sling.servlet.selectors:List</code> - optional; defines the list of selectors that this resource type can handle;</li>
+<li><code>sling.servlet.extensions:List</code> - optional; defines the list of extensions that this resource type can handle;</li>
+<li><code>sling.servlet.methods:List</code> - optional; defines the list of HTTP methods that this resource type can handle;</li>
+<li><code>version:Version</code> - optional; defines the version of the provided <code>resourceType</code>;</li>
+<li><code>extends:String</code> - optional; defines which resource type it extends; the version range of the extended resource type is defined in a <code>Require-Capability</code>.</li>
+</ol>
+<p>The <code>BundledScriptTracker</code> will register a Sling Servlet with the appropriate properties for each <code>sling.servlet</code> capability. The servlets will be registered using the bundle context of the bundle providing the <code>sling.servlet</code> capability, making sure to expose the different versions of a resource type as part of the registered servlet's properties. On top of this, a plain resource type bound servlet will also be registered, which will be automatically wired to the highest version of the <code>resourceType</code>. All the mentioned service registrations are managed automatically by the <code>BundledScriptTracker</code>.</p>
+<h3><a href="#so-how-do-i-deploy-my-scripts" id="so-how-do-i-deploy-my-scripts">So how do I deploy my scripts?</a></h3>
+<p>Short answer: exactly like you deploy your code, preferably right next to it. Pack your scripts using the following conventions:</p>
+<ol>
+<li>create a <code>src/main/resources/javax.script</code> folder in your bundle (if you want to embed the scripts as they are) or just put the scripts in <code>src/main/scripts</code> if you want to precompiled them (e.g. JSP and HTL);</li>
+<li>each folder under the above folders will identify a <code>resourceType</code>;</li>
+<li>inside each <code>resourceType</code> folder you can optionally create a <code>Version</code> folder; this has to follow the Semantic Versioning constraints described at <a href="https://semver.org/">1</a>;</li>
+<li>add your scripts, using the same <a href="#resource-script-naming-conventions">naming conventions that you were used to from before</a>;</li>
+<li>manually define your provide and require capabilities; just kidding; add the <a href="https://github.com/apache/sling-scriptingbundle-maven-plugin"><code>scriptingbundle-maven-plugin</code></a> to your build section and add its required properties in the <code>maven-bundle-plugin</code>'s instructions (check <a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker-it/tree/master/examples/">these examples</a>);</li>
+<li><code>mvn clean sling:install</code>.</li>
+</ol>
+<h3><a href="#integration-tests" id="integration-tests">Integration Tests</a></h3>
+<p>The integration tests for bundled scripts are provided by the <a href="https://github.com/apache/sling-org-apache-sling-scripting-bundle-tracker-it"><code>org.apache.sling.scripting.bundle.tracker.it</code></a> project.</p>
+<h2><a href="#script-resolution-order" id="script-resolution-order">Script resolution order</a></h2>
+<p>The <a href="/documentation/the-sling-engine/servlets.html##servlet-resolution-order">same rules as for servlets</a> are being followed but in addition keep in mind that bundled scripts (as well as servlets) are prefered over resource scripts (in case there are multiple equally ranked candidates left after all other criteria).</p>
+<h3><a href="#example-for-resource-script" id="example-for-resource-script">Example for resource script</a></h3>
+<p>Let's consider the following script paths for a request of a resource whose resource type is <code>sling\sample</code> and the request selectors are <em>print.a4</em> and the request extension is <em>html</em>:</p>
+<ol>
+<li>GET.esp</li>
+<li>sample.esp</li>
+<li>html.esp</li>
+<li>print.esp</li>
+<li>print/a4.esp</li>
+<li>print.html.esp</li>
+<li>print/a4.html.esp</li>
+<li>a4.html.esp</li>
+<li>a4/print.html.esp</li>
+</ol>
+<p>The priority of script selection would be (starting with the best one):</p>
+<p><code>(7) - (5) - (6) - (4) - (3) - (2) - (1).</code></p>
+<p>Note that (5) is a better match than (6) because it matches more selectors even though (6) has an extension match where (5) does not. (8) is not a candidate because it does not include the first selector (print) and (9) is not a candidate because it has the wrong order of selectors.</p>
 <h2><a href="#script-encoding" id="script-encoding">Script encoding</a></h2>
 <p>All scripts backed by Sling resources get their character encoding from the <a href="../the-sling-engine/resources.html#resource-properties">character encoding set in the resource metadata</a>. For JCR based resources this is retrieved from the underlying <code>jcr:encoding</code> JCR property. If not set it will fall back to UTF-8.</p>
 <p>Every script evaluation in the context of a request sets the response's character encoding to UTF-8 (if the request accepts content types starting with <code>text/</code>)</p>
@@ -184,7 +275,7 @@
                             content/documentation/bundles/scripting.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-07-29</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-08-23</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
