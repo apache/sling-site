@@ -225,7 +225,7 @@ See also [Scripting variables](https://cwiki.apache.org/confluence/display/SLING
 [3]: http://docs.osgi.org/specification/osgi.core/7.0.0/framework.module.html#d0e2821 "Bundle Capabilities"
 [4]: /documentation/the-sling-engine/servlets.html#servlet-registration
 [5]: #resource-script-naming-conventions
-[6]: /documentation/the-sling-engine/servlets.html##servlet-resolution-order
+[6]: /documentation/the-sling-engine/servlets.html#servlet-resolution-order
 [7]: /documentation/the-sling-engine/servlets.html
 [8]: https://github.com/apache/sling-org-apache-sling-scripting-core
 [9]: bundle-resources-extensions-bundleresource.html
