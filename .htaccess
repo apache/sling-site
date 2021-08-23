@@ -35,6 +35,8 @@ Redirect Permanent /documentation/the-sling-engine/eventing-and-jobs.html /docum
 Redirect Permanent /documentation/bundles/scripting/scripting-sightly.html /documentation/bundles/scripting/scripting-htl.html
 Redirect Permanent /documentation/the-sling-engine/url-to-script-resolution.html /documentation/the-sling-engine/servlets.html
 
+Redirect Permanent /res/favicon.ico /favicon.ico
+
 # Add redirects from /site to the CMS-managed content here, after verifying that /site pages have been converted correctly
 # Please keep entries in alphabetical order
 Redirect Permanent /site/46-line-blog.html /documentation/tutorials-how-tos/46-line-blog.html
