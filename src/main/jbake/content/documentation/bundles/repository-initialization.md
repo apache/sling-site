@@ -37,245 +37,11 @@ The companion `org.apache.sling.jcr.repoinit` module implements those operations
 registered by default with a service ranking of 100. It also provides a `JcrRepoInitOpsProcessor` service to explicitly apply the output
 of the repoinit parser to a JCR repository.
 
-Here's a current example [from the test cases mentioned above](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases/test-99.txt), that uses all language features as of version 1.0.2 of the parser module. 
+The language is mostly self-explaining, the test suite listed below in Appendix A exposes
+all language constructs and options.
 
-The language is self-explaining but please refer to the actual test cases for details that are guaranteed to be up to date, assuming the tests pass.
-
-<pre class="language-no-highlight">
-
-    create service user user1, u-ser_2
-    set ACL on /libs,/apps
-        allow jcr:read for user1,u-ser_2
-
-        deny jcr:write for u-ser_2
-        deny jcr:lockManagement for user1
-
-        # See note [1] below
-        remove jcr:understand,some:other for u3
-    end
-
-    create service user bob_the_service
-
-    set ACL on /tmp
-        allow some:otherPrivilege for bob_the_service
-    end
-
-    # Nodetypes inside the path apply to just that path element
-    create path /content/example.com(sling:Folder)
-
-    # Nodetypes and mixins applied to just a path element
-    # Specifying mixins require
-    # o.a.s.repoinit.parser 1.2.0 and
-    # o.a.s.jcr.repoinit 1.1.6
-    create path /content/example.com(sling:Folder mixin mix:referenceable,mix:shareable)
-
-    # Mixins applied to just a path element
-    create path /content/example.com(mixin mix:referenceable)
-	
-	# A nodetype in front is used as the default for all path elements
-    create path (nt:unstructured) /var
-
-    set ACL for alice, bob,fred
-        # See note [1] below
-        remove * on / 
-        allow jcr:read on /content,/var
-        deny jcr:write on /content/example.com
-        deny jcr:all on / nodetypes example:Page
-    end
-	
-    set ACL for restrictions_examples
-        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
-        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
-        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
-        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
-
-        # empty rep:glob means "apply to this node but not its children"
-        # (requires o.a.s.jcr.repoinit 1.1.8)
-        allow jcr:something on / restriction(rep:glob)
-    end
-
-    # Set repository level ACL
-    # Setting repository level ACL require
-    # o.a.s.repoinit.parser 1.2.0 and
-    # o.a.s.jcr.repoinit 1.1.6
-    set repository ACL for alice,bob
-        allow jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement
-    end
-    
-    # Set repository level ACL (variant, see SLING-8619)
-    # since
-    # o.a.s.repoinit.parser 1.2.8 and
-    # o.a.s.jcr.repoinit 1.1.14
-    set ACL for alice,bob
-        allow jcr:namespaceManagement on :repository
-    end
-    
-    # Set principal-based access control (see SLING-8602)
-    # since
-    # o.a.s.repoinit.parser 1.2.8 and
-    # o.a.s.jcr.repoinit 1.1.14
-    # precondition for o.a.s.jcr.repoinit: 
-    # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
-    set principal ACL for alice,bob
-
-        # See note [1] below
-        remove * on /libs,/apps
-
-        allow jcr:read on /content,/var
-        deny jcr:write on /content/example.com
-        
-        # Optional nodetypes clause
-        deny jcr:lockManagement on /apps, /content nodetypes sling:Folder, nt:unstructured
-    
-        # nodetypes clause with restriction clause
-        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
-    
-        # multi value restriction
-        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
-    
-        # multiple restrictions
-        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
-    
-        # restrictions with glob patterns
-        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
-        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
-        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
-        allow jcr:read on / restriction(rep:glob)
-    end
-    
-    # Set principal-based access control on repository level (see SLING-8602)
-    # since
-    # o.a.s.repoinit.parser 1.2.8 and
-    # o.a.s.jcr.repoinit 1.1.14
-    # precondition for o.a.s.jcr.repoinit: 
-    # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
-    set principal ACL for alice,bob
-        allow jcr:namespaceManagement on :repository 
-    end
-
-    # Remove access control policy by path (see SLING-10299)
-    # since 
-    # o.a.s.repoinit.parser 1.6.10 and 
-    # o.a.s.jcr.repoinit 1.1.36
-    delete ACL on /content, :repository, home(alice)
-
-    # Remove access control policy by principal (see SLING-10299)
-    # Note, this will result in the removal of all path-based access control entries for the specified principal(s).
-    # since 
-    # o.a.s.repoinit.parser 1.6.10 and 
-    # o.a.s.jcr.repoinit 1.1.36
-    delete ACL for alice,bob
-
-    # Remove principal-based access control policy (see SLING-10299)
-    # since 
-    # o.a.s.repoinit.parser 1.6.10 and 
-    # o.a.s.jcr.repoinit 1.1.36
-    delete principal ACL for alice,bob
-
-    # register namespace requires 
-    # o.a.s.repoinit.parser 1.0.4
-    # and o.a.s.jcr.repoinit 1.0.2
-    # below registers a namespace with the prefix 'myprefix' and the uri 'http://my.prefix/content/v1.42'.
-    register namespace ( myprefix ) http://my.prefix/content/v1.42
-
-	# register nodetypes in CND format
-	# (same bundle requirements as register namespaces)
-	#
-	# The optional << markers are used when embedding
-	# this in a Sling provisioning model, to avoid syntax errors
-	#
-	# The CND instructions are passed as is to the JCR
-	# modules, so the full CND syntax is supported.
-	#
-	register nodetypes
-	<<===
-	<<  <slingevent='http://sling.apache.org/jcr/event/1.0'>
-	<<
-	<<  [slingevent:Event] > nt:unstructured, nt:hierarchyNode
-	<<    - slingevent:topic (string)
-	<<    - slingevent:properties (binary)
-	===>>
-
-    # encrpyted passwords at currently not supported by o.a.s.jcr.repoinit
-    # which only supports plain text ones, see SLING-6219
-    create user demoUser with password {SHA-256} dc460da4ad72c482231e28e688e01f2778a88ce31a08826899d54ef7183998b5
-
-    # disable service user
-    create service user deprecated_service_user
-    disable service user deprecated_service_user : "Disabled user to make an example"
-
-    create service user the-last-one
-    
-    disable service user svc1 : "This  is the message"
-    
-    # Delete users
-    delete user userA
-    delete user userB_listsAreNotSupported
-    delete service user svcA
-    delete service user svcB,svcC
-
-    # Groups are supported since version 1.2.4, SLING-8219
-    create group since124_A
-    create group since124_B with path /path_B
-    delete group since124_C
-    
-    # Manage principals in groups, requires
-    # o.a.s.repoinit.parser 1.5.2
-    # and o.a.s.jcr.repoinit 1.1.22
-    add user1,user2 to group grpA
-    remove user3,user5 from group grpB
-    
-    # ACLs on user homes, requires
-    # o.a.s.repoinit.parser 1.4.2
-    # o.a.s.jcr.repoinit 1.1.18
-    set ACL on home(alice)
-      allow jcr:read for alice, bob, carol
-    end
-
-    set ACL for bob
-      allow jcr:read on home(alice), /another/path, home(larry)
-    end
-    
-    # Set node properties, requires
-    # o.a.s.repoinit.parser 1.6.2
-    # o.a.s.jcr.repoinit 1.1.24
-    #
-    # 'set' overwrites any existing value while
-    # 'default' only sets the property if not set yet
-    #
-    # Supported Types (in curly brackets) are:
-    #   String, Long, Double, Date, Boolean
-    # Note: if no type is provide the default is String
-    #
-    # The paths must exist first, see "create path"
-    set properties on /pathA, /path/B
-      set sling:ResourceType{String} to /x/y/z
-      default someInteger{Long} to 42
-      set someFlag{Boolean} to true
-      # Date must in ISO8601 Format
-      default someDate{Date} to "2020-03-19T11:39:33.437+05:30"
-      set quotedMix to "quoted", non-quoted, "the last \" one"
-      # Multi-value properties are created by a comma separated list
-      set aStringMultiValue to "one", "two", "three"
-      set aLongMultiValue{Long} to 1, 2, 3
-    end
-    
-    # Set properties on users or groups, SLING-10192
-    # 'set' overwrites any existing value while
-    # 'default' only sets the property if not set yet
-    set properties on authorizable(bob), authorizable(grpB)/nested
-      set someString{String} to /x/y/z
-      default someInteger{Long} to 42
-      set someFlag{Boolean} to true
-      default someDate{Date} to "2020-03-19T11:39:33.437+05:30"
-      set quotedMix to "quoted", non-quoted, "the last \" one"
-    end
-</pre>
-
-### Notes on the above examples
-
-* [1] Although the repoinit language includes a `remove` statement, it is **not** generally supported by the current version of the `o.a.s.jcr.repoinit` module. Only the `remove *`
-variant is supported starting with `o.a.s.jcr.repoinit V1.1.34`.
+A [jbang script in the Sling whiteboard repository](https://github.com/apache/sling-whiteboard/blob/master/jbang/RepoinitValidator.java) can be used to test the syntax of repoinit statements by
+running a specific version of the repoinit parser on them.
 
 ### Notes on Repository Initializer Config Files
 
@@ -353,4 +119,507 @@ Such configurations have two optional fields:
   * A multi-value `references` field with each value providing the URL (as a String) of raw repoinit statements.
   * A multi-value `scripts` field with each value providing repoinit statements as plain text in a String.
 
-   
+# Appendix
+
+## Appendix A: repoinit syntax: parser test scenarios
+A concatenation of all test scenarios from the
+[repoinit parser module](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases)
+follows.
+
+Assuming that test suite is complete, this exposes all the language constructs
+and options, with descriptive comments where needed. If something's unclear, please
+ask or provide patches for these tests to make them easier to understand.
+
+The following output is generated by the [concatenate-test-scenarios.sh](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/concatenate-test-scenarios.sh) script found in the
+repoinit parser repository.
+
+### Repoinit parser test scenarios
+
+    
+    # test-1.txt
+    
+    create service user bob,alice, tom21
+    create service user lonesome
+    create service user pathA with path some/relative/path
+    create service user pathA with path /some/absolute/path
+    
+    # test-2.txt
+    
+    create service user Mark-21
+    delete service user Leonardo,Winston_32
+    
+    # test-3.txt
+    
+    #
+    # single-word
+    # We're testing the comments now
+    # This is A COMMENT with other things like 12, 34
+    # And now for a tag, <ok> ?
+    # And some punctuation: .,;-_[]+"*ç%&/()=?^`"
+       # Also with leading whitespace.
+    
+    # blank lines work, of course   
+    create service user comments_test_passed
+    
+    # test-4.txt
+    
+    # trailing comments test
+    create service user comments_test_passed
+    # something
+    
+    # test-5.txt
+    
+    # trailing comments test without following blank lines
+    create service user comments_test_passed
+    # something
+    
+    # test-10.txt
+    
+    # Set ACL example from SLING-5355
+    # Without the "with glob" option, we're not planning to support
+    # that at this time. 
+    set ACL on /libs,/apps, /, /content/example.com/some-other_path
+        remove * for user1,user2
+        allow jcr:read for user1,user2
+        allow privilege_without_namespace for user4
+    
+        deny jcr:write,something:else,another:one for user2
+        deny jcr:lockManagement for user1
+        deny jcr:modifyProperties for user2 restriction(rep:itemNames,prop1,prop2)
+    end
+    
+    set ACL on /no-indentation
+    allow jcr:read for userA,userB
+    end
+    
+    # test-11.txt
+    
+    # Test multiple remove lines
+    # Although the repoinit language includes a remove statement,
+    # it is not generally supported by the current version of the
+    # o.a.s.jcr.repoinit module. Only the "remove *" variant is
+    # supported starting with o.a.s.jcr.repoinit V1.1.34
+    set ACL on /libs,/apps
+        remove * for user1,user2
+        allow jcr:read for user1,user2
+    
+        remove * for another
+        allow x:y for another
+    
+        remove jcr:ACL for userTestingSpecificRemove
+    end
+    
+    # test-12.txt
+    
+    # Test path-centric Set Acl with options (SLING-6423)
+    set ACL on /libs,/apps (ACLOptions=merge)
+        remove * for user1,user2
+        allow jcr:read for user1,user2
+    
+        remove * for another
+        allow x:y for another
+    end
+    
+    # Multiple options
+    set ACL on /libs,/apps (ACLOptions=mergePreserve,someOtherOption,someOther123,namespaced:option)
+        remove * for user1,user2
+        allow jcr:read for user1,user2
+    
+        remove * for another
+        allow x:y for another
+    end
+    
+    # test-13.txt
+    
+    # Test for repository-level ACL (SLING-7061), requires
+    # o.a.s.repoinit.parser 1.2.0, o.a.s.jcr.repoinit 1.1.6
+    set repository ACL for user1,user2
+        remove *
+        allow jcr:read,jcr:lockManagement
+        deny jcr:write
+    end
+    
+    # test-14.txt
+    
+    # Test allowed path characters, see SLING-6774
+    set ACL on /one:name,/two+name,/three@name
+        remove * for user1
+        allow jcr:read for user1
+    end
+    
+    # test-15.txt
+    
+    # Mixing paths and repo-level ACL
+    set ACL on /content,:repository
+        allow jcr:all for user1
+    end
+    
+    # test-20.txt
+    
+    # Various "create path" tests
+    create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder
+    create path /one/two/three
+    create path /three/four(nt:folk)/five(nt:jazz)/six
+    create path (nt:x) /seven/eight/nine
+    create path /one(mixin nt:art)/step(mixin nt:dance)/two/steps
+    create path (nt:foxtrot) /one/step(mixin nt:dance)/two/steps
+    create path /one/step(mixin nt:dance,nt:art)/two/steps
+    create path /one/step(nt:foxtrot mixin nt:dance)/two/steps
+    create path /one/step(nt:foxtrot mixin nt:dance,nt:art)/two/steps
+    create path /one:and/step/two:and/steps
+    create path /one@home/step/two@home/steps
+    create path /one+tap/step/two+tap/steps
+    
+    # test-30.txt
+    
+    # Test the principal-centered ACL syntax
+    
+    set ACL for user1,u2
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    
+        deny jcr:write on /apps
+        
+        # Optional nodetypes clause
+        deny jcr:lockManagement on /apps, /content nodetypes sling:Folder, nt:unstructured
+        # nodetypes clause with restriction clause
+        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
+        remove jcr:understand,some:other on /apps
+    
+        # multi value restriction
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+    
+        # multiple restrictions
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    
+        # restrictions with glob patterns
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+    
+        allow jcr:something on / restriction(rep:glob)
+    end
+    
+    # test-31.txt
+    
+    # Principal-centered ACL syntax with options (SLING-6423)
+    set ACL for user1,u2 (ACLOptions=mergePreserve)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    
+    # With multiple options
+    set ACL for user1,u2 (ACLOptions=mergePreserve,someOtherOption,someOther123,namespaced:option)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    
+    # test-32.txt
+    
+    # repo-level permissions in "set ACL for"
+    set ACL for user1
+        allow jcr:all on :repository,/content
+    end
+    
+    # test-33.txt
+    
+    # Set principal-based access control (see SLING-8602), requires
+    # o.a.s.repoinit.parser 1.2.8 and
+    # o.a.s.jcr.repoinit 1.1.14
+    # precondition for o.a.s.jcr.repoinit: 
+    # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
+    
+    set principal ACL for principal1,principal2
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    
+        deny jcr:write on /apps
+    
+        # Optional nodetypes clause
+        deny jcr:lockManagement on /apps, /content nodetypes sling:Folder, nt:unstructured
+        # nodetypes clause with restriction clause
+        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
+        remove jcr:understand,some:other on /apps
+    
+        # multi value restriction
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+    
+        # multiple restrictions
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    
+        # restrictions with glob patterns
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+    
+        allow jcr:something on / restriction(rep:glob)
+    end
+    
+    # Principal-baesd ACL syntax with options (SLING-6423)
+    set principal ACL for principal1,principal2 (ACLOptions=mergePreserve)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    
+    # With multiple options
+    set principal ACL for principal1,principal2 (ACLOptions=mergePreserve,someOtherOption,someOther123,namespaced:option)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    
+    # repository level
+    set principal ACL for principal1,principal2
+        allow jcr:namespaceManagement on :repository 
+    end
+    
+    set principal ACL for principal1
+        allow jcr:all on :repository,/content
+    end
+    
+    # test-34.txt
+    
+    # Functions at the beginning of path names (SLING-8757)
+    
+    set ACL on home(alice)
+      allow jcr:one for alice, bob, carol
+    end
+    
+    set ACL on home(jack),/tmp/a,functionNamesAreFree(bobby)
+      allow jcr:two for alice
+    end
+    
+    set ACL for fred
+      allow jcr:three on /one,home(Alice123),/tmp
+    end
+    
+    set ACL on /a/b,home(jack),/tmp/a,square(bobby)
+      allow jcr:four for alice
+    end
+    
+    set ACL for austin
+      allow jcr:five on /one,home(Alice123),/tmp
+    end
+    
+    set ACL on home(  spacesAreOk )
+      allow jcr:six for spaceman
+    end
+    
+    set ACL on home(alice)/sub/folder, /anotherPath, home(fred)/root
+      allow jcr:seven for mercury
+    end
+    
+    # test-40.txt
+    
+    # Register namespaces, requires
+    # o.a.s.repoinit.parser 1.0.4
+    # and o.a.s.jcr.repoinit 1.0.2
+    register namespace (foo) uri:some-uri/V/1.0
+    register namespace ( prefix_with-other.things ) andSimpleURI
+    
+    # test-42.txt
+    
+    # Register privileges
+    register privilege withoutabstract_withoutaggregates
+    register privilege ns:withoutabstract_withoutaggregatesNS
+    register abstract privilege withabstract_withoutaggregates
+    register abstract privilege ns:withabstract_withoutaggregatesNS
+    
+    register privilege withoutabstract_withaggregate with bla
+    register privilege withoutabstract_withaggregates with bla,blub
+    register privilege withoutabstract_withaggregates with bla,ns:namespacedA
+    register privilege ns:withoutabstract_withaggregates with bla,ns:namespacedB
+    
+    register abstract privilege withabstract_withaggregate with foo
+    register abstract privilege withabstract_withaggregates with foo,bar
+    register abstract privilege withabstract_withaggregates with foo,ns:namespacedC
+    register abstract privilege ns:withabstract_withaggregates with foo,ns:namespacedD
+    
+    register privilege priv with declared_aggregate_priv1,declared_aggregate_priv2
+    register privilege priv with declared_aggregate_priv1,namespaced:_priv4
+    
+    # test-50.txt
+    
+    # Embedded CNDs for nodetype definitions
+    
+    register nodetypes
+    <<===
+        <slingevent='http://sling.apache.org/jcr/event/1.0'>
+        <nt='http://www.jcp.org/jcr/nt/1.0'>
+        <mix='http://www.jcp.org/jcr/mix/1.0'>
+        
+        [slingevent:Event] > nt:unstructured, nt:hierarchyNode
+          - slingevent:topic (string)
+          - slingevent:application (string)
+          - slingevent:created (date)
+          - slingevent:properties (binary)
+          
+        [slingevent:Job] > slingevent:Event, mix:lockable
+          - slingevent:processor (string)
+          - slingevent:id (string)
+          - slingevent:finished (date)
+         
+        [slingevent:TimedEvent] > slingevent:Event, mix:lockable
+          - slingevent:processor (string)
+          - slingevent:id (string)
+          - slingevent:expression (string)
+          - slingevent:date (date)
+          - slingevent:period (long)
+    ===>>
+    
+    register nodetypes
+    <<===
+    Just one line, not indented
+    ===>>
+    
+    register nodetypes
+    <<===
+    << Using line prefixes
+    << to avoid conflicts with Sling provisioning model parser
+    ===>>
+    
+    # test-60.txt
+    
+    # Create/delete users
+    
+    delete user userB
+    create user userB
+    
+    create user userC with password some_password
+    create user userD with password {SHA-256}dc460da4ad72c
+    
+    create user userE with password {someEncoding} afdgwdsdf
+    
+    create user one_with-more-chars.ok:/123456 with password {encoding_with.ok-:/12345} pw-with.ok-:/13456
+    
+    create user userF with path /thePathF
+    create user userG with path /thePathG with password {theEncoding} userGpwd
+    create user userH with path thePathH
+    create user userJ with path thePathJ with password {theEncoding} userJpwd
+    
+    # test-61.txt
+    
+    # Disable service users
+    disable service user svcA : "This message explains why it's disabled.  Whitespace   is  preserved."
+    disable service user svcB : "Testing escaped double \"quote\" in this string."
+    disable service user svcC : "Testing escaped backslash \\ in this string."
+    disable service user svcD : "Testing quoted escaped backslash \"\\\" in this string."
+    disable service user svcE : "Testing unescaped single backslash \ in this string."
+    
+    # test-62.txt
+    
+    # Create groups
+    create group groupa
+    create group groupb with path /thePathF
+    
+    # test-63.txt
+    
+    # Delete groups
+    delete group groupa
+    
+    # test-64.txt
+    
+    # Add members to groups
+    add user1,user2 to group grpA
+    
+    # test-65.txt
+    
+    # Remove members from group
+    remove user3,user5 from group grpB
+    
+    # test-66.txt
+    
+    # Add and remove group members
+    add user1,user2 to group grpA
+    add user3 to group grpB
+    add user4,user5 to group grpB
+    remove user1 from group grpA
+    remove user3,user5 from group grpB
+    
+    # test-67.txt
+    
+    # Set properties
+    set properties on /pathA, /path/B
+      set sling:ResourceType{String} to /x/y/z
+      set cq:allowedTemplates to /d/e/f/*, m/n/*
+      default someInteger{Long} to 42
+      set aDouble{Double} to 3.14
+      set someFlag{Boolean} to true
+      default someDate{Date} to "2020-03-19T11:39:33.437+05:30"
+      set customSingleValueStringProp to test
+      set customSingleValueQuotedStringProp to "hello, you!"
+      set customMultiValueStringProp to test1, test2
+      default threeValues to test1, test2, test3
+      set quotedA to "Here's a \"double quoted string\" with suffix"
+      set quotedMix to "quoted", non-quoted, "the last \" one"
+    end
+    
+    set properties on /single/path
+      set someString to "some string"
+    end
+    
+    set properties on /test/curly/brackets
+      set curlyBracketsAndDoubleQuotes{String} to "{\"one, two\":\"three, four\"}"
+      set curlyBracketsAndSingleQuotes{String} to "{'five, six':'seven,eight'}"
+    end
+    
+    set properties on /endkeyword
+      # using "end" instead of "endS" below causes parsing to fail
+      set endS to one
+      set two to endS
+    end
+    
+    set properties on /blankLinesInList
+      set one to two
+    
+      set two to four
+    
+      set three to five
+    end
+    
+    # SLING-10252: set properties on the user or group profile
+    set properties on authorizable(bob)
+      set stringProp to "hello, you!"
+    end
+    set properties on authorizable(bob)/nested
+      set stringProp to "hello, you nested!"
+    end
+    
+    set properties on authorizable(bob), authorizable(alice)
+      set stringProp to "hello, you again!"
+    end
+    set properties on authorizable(bob)/nested, authorizable(alice)/nested
+      set stringProp to "hello, you nested again!"
+    end
+    
+    # test-68.txt
+    
+    # SLING-9857: "with forced path" option
+    create user A with path /path/user/A
+    create user AF with forced path /path/user/AF
+    
+    create service user B with path /path/service/B
+    create service user BF with forced path /path/service/BF
+    
+    create group G with path /path/group/G
+    create group GF with forced path /path/group/GF
+    
+    # test-69.txt
+    
+    # Disable users, with various messages
+    disable user A : "This message explains why it's disabled.  Whitespace   is  preserved."
+    disable user uB : "Testing escaped double \"quote\" in this string."
+    disable user userC : "Testing escaped backslash \\ in this string."
+    disable user D : "Testing quoted escaped backslash \"\\\" in this string."
+    disable user E : "Testing unescaped single backslash \ in this string."
+    
+    # test-70.txt
+    
+    # Remove AC policies entirely (not just individual entries)
+    delete ACL for ana
+    delete ACL for alice, aida
+    delete ACL on :repository, home(anni), functionNamesAreFree(aendu)
+    delete ACL on /, /var, /etc
+    delete ACL on /content
+    delete principal ACL for ada, amy
+    delete principal ACL for adi
+    
