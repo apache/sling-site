@@ -540,8 +540,11 @@ delete user userB
 create user userB
 
 create user userC with password some_password
-create user userD with password {SHA-256}dc460da4ad72c
 
+# Although the following syntax is valid for encrpyted passwords,
+# the o.a.s.jcr.repoinit module only supports plain text
+# ones, see SLING-6219
+create user userD with password {SHA-256}dc460da4ad72c
 create user userE with password {someEncoding} afdgwdsdf
 
 create user one_with-more-chars.ok:/123456 with password {encoding_with.ok-:/12345} pw-with.ok-:/13456
@@ -689,7 +692,7 @@ delete principal ACL for adi
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-08-24</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-08-25</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
