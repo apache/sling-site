@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2021
 
+* Parent and Bundle Parent 45 (30th)
 * Event Support 4.2.24 (16th)
 * Content Distribution Journal Core 0.1.20 (13rd)
 * Scripting HTL Engine 1.4.12-1.4.0, Scripting HTL Testing Content 1.0.30-1.4.0 (11th)
