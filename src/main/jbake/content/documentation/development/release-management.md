@@ -402,26 +402,7 @@ Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash yo
 
     When gpg asks for e-mail linked the key you *MUST USE* the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY"
 
-1. You also have to add your public key either on `pool.sks-keyservers.net` or `pgp.mit.edu` (for the staging repository). To do so you can follow these steps:
-    1. Extract the key id from all the secret keys stored in the system:
-
-            $ gpg --list-secret-keys.
-        
-        The output is something like this
-       
-            gpg --list-secret-keys
-            /Users/konradwindszus/.gnupg/secring.gpg
-            ----------------------------------------
-
-            sec   2048R/455ECC7C 2016-01-21
-            uid                  Konrad Windszus <kwin@apache.org>
-            ssb   2048R/226BCE00 2016-01-21
-       
-        The key id in this case is `455ECC7C`.
-       
-    1. Send the key towards e.g. `pool.sks-keyservers.net` via
-    
-            $ gpg --keyserver pool.sks-keyservers.net --send-key <key-id>
+1. It's also good to upload your key to a public key server, see the [https://infra.apache.org/release-signing.html](ASF release signing page) for more info.
 
 1. Add the key to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc)
 
