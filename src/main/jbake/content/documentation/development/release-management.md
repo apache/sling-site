@@ -402,7 +402,7 @@ Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash yo
 
     When gpg asks for e-mail linked the key you *MUST USE* the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY"
 
-1. It's also good to upload your key to a public key server, see the [https://infra.apache.org/release-signing.html](ASF release signing page) for more info.
+1. It's also good to upload your key to a public key server, see the [ASF Infrastructure Release Signing](https://infra.apache.org/release-signing.html) page for more info.
 
 1. Add the key to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc)
 
