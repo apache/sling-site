@@ -15,7 +15,7 @@ Most of the hard work of preparing and deploying the release is done by Maven.
 ## Prerequisites
 
 * To prepare or perform a release you *MUST BE* at least be an Apache Sling Committer.
-* Each and every release must be signed; therefore the public key should be cross signed by other Apache committers (not required but suggested) and this public key should be added to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc) and either on pool.sks-keyservers.net or pgp.mit.edu (See Appendix A)
+* Each release must be signed, see _Appendix A_ below about creating and registering your key.
 * Make sure you have all [Apache servers](http://maven.apache.org/developers/committer-settings.html) defined in your `settings.xml`
 * See Appendix B for Maven and SCM credentials
 
@@ -387,9 +387,14 @@ Once the release has passed, the following must be done:
 1. update the news page and the download pages
 1. update the Eclipse Marketplace listing
 
-## Appendix A: Create and Add your key to people.apache.org and https://downloads.apache.org/sling/KEYS
+## Appendix A: Creating and registering your PGP key
 
-Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:
+Each Sling release must be signed, and the corresponding keys must be available at [https://downloads.apache.org/sling/KEYS](https://downloads.apache.org/sling/KEYS) .
+
+This page only provides minimal information, the canonical reference for this is the
+[ASF Infrastructure Release Signing](https://infra.apache.org/release-signing.html) page.
+
+Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:
 
 1. Create a public/private pair key:
 
