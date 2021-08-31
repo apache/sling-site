@@ -477,29 +477,7 @@ This majority vote is open for at least 72 hours
 <p>When gpg asks for e-mail linked the key you <em>MUST USE</em> the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you <em>SHOULD USE</em> &quot;CODE SIGNING KEY&quot;</p>
 </li>
 <li>
-<p>You also have to add your public key either on <code>pool.sks-keyservers.net</code> or <code>pgp.mit.edu</code> (for the staging repository). To do so you can follow these steps:</p>
-<ol>
-<li>
-<p>Extract the key id from all the secret keys stored in the system:</p>
-<pre><code>$ gpg --list-secret-keys.
-</code></pre>
-<p>The output is something like this</p>
-<pre><code>gpg --list-secret-keys
-/Users/konradwindszus/.gnupg/secring.gpg
-----------------------------------------
-
-sec   2048R/455ECC7C 2016-01-21
-uid                  Konrad Windszus &lt;kwin@apache.org&gt;
-ssb   2048R/226BCE00 2016-01-21
-</code></pre>
-<p>The key id in this case is <code>455ECC7C</code>.</p>
-</li>
-<li>
-<p>Send the key towards e.g. <code>pool.sks-keyservers.net</code> via</p>
-<pre><code>$ gpg --keyserver pool.sks-keyservers.net --send-key &lt;key-id&gt;
-</code></pre>
-</li>
-</ol>
+<p>It's also good to upload your key to a public key server, see the [https://infra.apache.org/release-signing.html](ASF release signing page) for more info.</p>
 </li>
 <li>
 <p>Add the key to <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a></p>
