@@ -123,7 +123,7 @@
 <h2><a href="#prerequisites" id="prerequisites">Prerequisites</a></h2>
 <ul>
 <li>To prepare or perform a release you <em>MUST BE</em> at least be an Apache Sling Committer.</li>
-<li>Each and every release must be signed; therefore the public key should be cross signed by other Apache committers (not required but suggested) and this public key should be added to <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a> and either on pool.sks-keyservers.net or pgp.mit.edu (See Appendix A)</li>
+<li>Each release must be signed, see <em>Appendix A</em> below about creating and registering your key.</li>
 <li>Make sure you have all <a href="http://maven.apache.org/developers/committer-settings.html">Apache servers</a> defined in your <code>settings.xml</code></li>
 <li>See Appendix B for Maven and SCM credentials</li>
 </ul>
@@ -465,8 +465,10 @@ This majority vote is open for at least 72 hours
 <li>update the news page and the download pages</li>
 <li>update the Eclipse Marketplace listing</li>
 </ol>
-<h2><a href="#appendix-a-create-and-add-your-key-to-peopleapacheorg-and-httpsdownloadsapacheorgslingkeys" id="appendix-a-create-and-add-your-key-to-peopleapacheorg-and-httpsdownloadsapacheorgslingkeys">Appendix A: Create and Add your key to people.apache.org and https://downloads.apache.org/sling/KEYS</a></h2>
-<p>Considering that you are using a *nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:</p>
+<h2><a href="#appendix-a-creating-and-registering-your-pgp-key" id="appendix-a-creating-and-registering-your-pgp-key">Appendix A: Creating and registering your PGP key</a></h2>
+<p>Each Sling release must be signed, and the corresponding keys must be available at <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> .</p>
+<p>This page only provides minimal information, the canonical reference for this is the <a href="https://infra.apache.org/release-signing.html">ASF Infrastructure Release Signing</a> page.</p>
+<p>Assuming you are using a *nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:</p>
 <ol>
 <li>
 <p>Create a public/private pair key:</p>
@@ -579,7 +581,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-06-10</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-08-31</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
