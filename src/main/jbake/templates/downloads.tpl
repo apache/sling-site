@@ -34,7 +34,7 @@ def slingApplication=[
 def mavenPlugins=[
   "JSPC Maven Plugin|jspc-maven-plugin|2.3.0|Y",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
-  "Scripting Bundle Maven Plugin 0.3.0|scriptingbundle-maven-plugin|0.3.0|Y",
+  "Scripting Bundle Maven Plugin 0.4.0|scriptingbundle-maven-plugin|0.4.0|Y",
   "Sling Maven Plugin|sling-maven-plugin|2.4.2|Y",
   "Sling Feature Maven Plugin|slingfeature-maven-plugin|1.5.10|Y",
   "Sling Feature Converter Maven Plugin|sling-feature-converter-maven-plugin|1.0.4|Y",
@@ -47,7 +47,8 @@ def mavenPlugins=[
 def bndPlugins=[
   "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2|Y",
   "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y",
-  "bnd Remove Parameters from OSGi Headers Plugin|org.apache.sling.bnd.plugin.headers.parameters.remove|1.0.0|Y"
+  "bnd Remove Parameters from OSGi Headers Plugin|org.apache.sling.bnd.plugin.headers.parameters.remove|1.0.0|Y",
+  "Scripting Bundle (Maven) Plugin 0.4.0|scriptingbundle-maven-plugin|0.4.0|Y"
 ]
 
 def bundles=[

@@ -1,0 +1,4 @@
+org.apache.sling.scriptingbundle.plugin.bnd
+org.apache.sling.scriptingbundle.plugin.capability
+org.apache.sling.scriptingbundle.plugin.maven
+org.apache.sling.scriptingbundle.plugin.processor
