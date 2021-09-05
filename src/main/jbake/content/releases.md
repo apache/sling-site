@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2021
 
+* Feature Model Extension Api Regions 1.4.0 (5th)
 * Scripting Bundle Maven Plugin 0.4.0 (3rd)
 * Testing OSGi Mock 3.1.4, Testing JCR Mock 1.5.4, Testing Sling Mock 3.1.0, Sling Testing Sling Mock Oak 3.0.0-1.16.0, File System Resource Provider 2.2.0 (2nd)
 
