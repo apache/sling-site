@@ -147,7 +147,7 @@ def bundles=[
   "Health Check Support|org.apache.sling.hc.support|1.0.6|Y|jar",
   "Health Check JUnit Bridge|org.apache.sling.hc.junit.bridge|1.0.2|Y|jar",
   "Installer Core|org.apache.sling.installer.core|3.12.0|Y|jar",
-  "Installer Configuration Support|org.apache.sling.installer.factory.configuration|1.4.0|Y|jar",
+  "Installer Configuration Support|org.apache.sling.installer.factory.configuration|1.4.2|Y|jar",
   "Installer Console|org.apache.sling.installer.console|1.1.0|Y|jar",
   "Installer Content Package Support|org.apache.sling.installer.factory.packages|1.0.4|Y|jar",
   "Installer Factory Feature Model|org.apache.sling.installer.factory.model|0.6.0|Y|jar",
