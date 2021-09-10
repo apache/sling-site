@@ -402,21 +402,7 @@ Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash yo
 
     When gpg asks for e-mail linked the key you *MUST USE* the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY"
 
-1. It's also good to upload your key to a public key server, see the [ASF Infrastructure Release Signing](https://infra.apache.org/release-signing.html) page for more info.
-
-1. Add the key to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc)
-
-    1. Type the following command replacing the word `<e-mail>` with your Apache's one (&lt;committer&gt;@apache.org) to get the key signature
-    
-            $ gpg --fingerprint <e-mail>
-            
-        The key signature is in the output following the `Key fingerprint = ` part.
-       
-    1. Add the key signature into the field 'OpenPGP Public Key Primary Fingerprint' in your profile at [https://id.apache.org](https://id.apache.org).
-    
-    1. You are *DONE*, but to see the changes on [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc) you may need to wait a few hours;
-        
-1. Now add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>. This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via
+1. Add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>. This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via
 
         $ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
         $ cd sling
@@ -426,6 +412,7 @@ Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash yo
    
         $ svn commit -m "my key added" KEYS
 
+1. It's also good to upload your key to a public key server, see the [ASF Infrastructure Release Signing](https://infra.apache.org/release-signing.html) page for more info.
 
 ## Appendix B: Deploy Maven plugin documentation (if applicable)
 
