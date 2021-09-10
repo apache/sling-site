@@ -477,27 +477,7 @@ This majority vote is open for at least 72 hours
 <p>When gpg asks for e-mail linked the key you <em>MUST USE</em> the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you <em>SHOULD USE</em> &quot;CODE SIGNING KEY&quot;</p>
 </li>
 <li>
-<p>It's also good to upload your key to a public key server, see the <a href="https://infra.apache.org/release-signing.html">ASF Infrastructure Release Signing</a> page for more info.</p>
-</li>
-<li>
-<p>Add the key to <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a></p>
-<ol>
-<li>
-<p>Type the following command replacing the word <code>&lt;e-mail&gt;</code> with your Apache's one (&lt;committer&gt;@apache.org) to get the key signature</p>
-<pre><code>$ gpg --fingerprint &lt;e-mail&gt;
-</code></pre>
-<p>The key signature is in the output following the <code>Key fingerprint =</code> part.</p>
-</li>
-<li>
-<p>Add the key signature into the field 'OpenPGP Public Key Primary Fingerprint' in your profile at <a href="https://id.apache.org">https://id.apache.org</a>.</p>
-</li>
-<li>
-<p>You are <em>DONE</em>, but to see the changes on <a href="https://people.apache.org/keys/group/sling.asc">https://people.apache.org/keys/group/sling.asc</a> you may need to wait a few hours;</p>
-</li>
-</ol>
-</li>
-<li>
-<p>Now add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>. This is only possible for PMC members (for a reasoning look at <a href="http://www.apache.org/dev/release.html#upload-ci">http://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via</p>
+<p>Add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>. This is only possible for PMC members (for a reasoning look at <a href="http://www.apache.org/dev/release.html#upload-ci">http://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via</p>
 <pre><code>$ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
 $ cd sling
 $ svn up KEYS
@@ -507,6 +487,9 @@ $ svn up KEYS
 <p>Add the public key to <code>KEYS</code> file with your favourite editor and afterwards</p>
 <pre><code>    $ svn commit -m &quot;my key added&quot; KEYS
 </code></pre>
+<ol>
+<li>It's also good to upload your key to a public key server, see the <a href="https://infra.apache.org/release-signing.html">ASF Infrastructure Release Signing</a> page for more info.</li>
+</ol>
 <h2><a href="#appendix-b-deploy-maven-plugin-documentation-if-applicable" id="appendix-b-deploy-maven-plugin-documentation-if-applicable">Appendix B: Deploy Maven plugin documentation (if applicable)</a></h2>
 <p>When releasing a Maven plugin, the Maven-generated documentation published under <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a> needs to be updated.</p>
 <p>This is currently supported for:</p>
@@ -559,7 +542,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-08-31</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-09-10</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
