@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2021
 
+* Testing Testing Sling Mock 3.1.2 (16th)
 * Installer Factory Configuration 1.4.2 (9th)
 * Feature Model Extension Api Regions 1.4.0 (5th)
 * Scripting Bundle Maven Plugin 0.4.0 (3rd)
