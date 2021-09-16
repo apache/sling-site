@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2021-09-16</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2021-09-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/release-management.html</loc><lastmod>2021-09-10</lastmod>
@@ -110,8 +112,6 @@
         <loc>https://sling.apache.org/documentation/bundles/org-apache-sling-junit-bundles.html</loc><lastmod>2020-10-22</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/nosql-resource-providers.html</loc><lastmod>2017-09-29</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2019-06-06</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/mime-type-support-commons-mime.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
