@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2021
 
+* Feature Analyser 1.4.0 and Sling Feature Maven Plugin 1.5.16 (17th)
 * Testing Testing Sling Mock 3.1.2 (16th)
 * Installer Factory Configuration 1.4.2 (9th)
 * Feature Model Extension Api Regions 1.4.0 (5th)
