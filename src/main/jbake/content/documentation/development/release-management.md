@@ -15,6 +15,7 @@ Most of the hard work of preparing and deploying the release is done by Maven.
 ## Prerequisites
 
 * To prepare or perform a release you *MUST BE* at least be an Apache Sling Committer.
+* Try to update to the most recent parent release prior to doing a release
 * Each release must be signed, see _Appendix A_ below about creating and registering your key.
 * Make sure you have all [Apache servers](http://maven.apache.org/developers/committer-settings.html) defined in your `settings.xml`
 * See Appendix B for Maven and SCM credentials
