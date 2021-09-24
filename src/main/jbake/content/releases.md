@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2021
 
-* Parent 46, Bundle Parent 46 (24th)
+* Parent 46, Bundle Parent 46, Commons Threads 3.2.22 (24th)
 * Feature Analyser 1.4.0 and Sling Feature Maven Plugin 1.5.16 (17th)
 * Testing Testing Sling Mock 3.1.2 (16th)
 * Installer Factory Configuration 1.4.2 (9th)
