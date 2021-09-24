@@ -199,7 +199,7 @@ for (MapEntry entry: mapEntries) {
 }
 </code></pre>
 <p>At the end of the loop, <code>result</code> contains the mapped path or <code>null</code> if no entry matches the request <code>path</code>.</p>
-<p><strong>NOTE:</strong> Since the entries in the <code>/etc/map</code> are also used to reverse map any resource paths to URLs, using regular expressions with wildcards in the Root Level Mappings prevent the respective entries from being used for reverse mappings. Therefor, it is strongly recommended to not use regular expression matching, unless you have a strong need.</p>
+<p><strong>NOTE:</strong> Since the entries in the <code>/etc/map</code> are also used to reverse map any resource paths to URLs, using regular expressions with wildcards in the Root Level Mappings prevent the respective entries from being used for reverse mappings. Therefore, it is strongly recommended to not use regular expression matching, unless you have a strong need.</p>
 <h4><a href="#regular-expressions-for-reverse-mappings" id="regular-expressions-for-reverse-mappings">Regular Expressions for Reverse Mappings</a></h4>
 <p>By default using regular expressions with wildcards will prevent to use the mapping entry for reverse mappings (see above).</p>
 <p>There is one exception though: If there is a <code>sling:internalRedirect</code> property containing a regular expression the map entry will be <em>exclusively used for reverse mappings</em> (i.e. used only for <code>ResourceResolver.map(...)</code>) (see also <a href="https://issues.apache.org/jira/browse/SLING-2560">SLING-2560</a>). The same resource may carry a <code>sling:match</code> property with wildcards and groups referring to the groups being defined in the <code>sling:internalRedirect</code> property.</p>
@@ -378,7 +378,7 @@ for (String segment: segments) {
                             content/documentation/the-sling-engine/mappings-for-resource-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Aravindo Wingeier</span> on <span class="comment">2021-05-19</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2021-09-24</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
