@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2021
 
+* Scripting Bundle Maven Plugin 0.5.0 (27th)
 * Engine 2.7.10 (25th)
 * Parent 46, Bundle Parent 46, Commons Threads 3.2.22 (24th)
 * Feature Analyser 1.4.0 and Sling Feature Maven Plugin 1.5.16 (17th)
