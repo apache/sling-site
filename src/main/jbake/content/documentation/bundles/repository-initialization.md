@@ -256,7 +256,19 @@ repoinit parser repository.
     # test-20.txt
     
     # Various "create path" tests
+    
+    # Nodetypes:
+    # A nodetype in brackets right after "create path", like
+    # sling:Folder below, sets the default type for all path
+    # segments of this statement.
+    # A nodetype in brackets at the end of a path segment, like
+    # nt:unstructured below, applies just to that path segment.
+    # If no specific nodetype is set, the repository uses its
+    # default based on node type definitions.
+    
     create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder
+    
+    # more tests and examples
     create path /one/two/three
     create path /three/four(nt:folk)/five(nt:jazz)/six
     create path (nt:x) /seven/eight/nine
@@ -327,6 +339,8 @@ repoinit parser repository.
     # o.a.s.jcr.repoinit 1.1.14
     # precondition for o.a.s.jcr.repoinit: 
     # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
+    # Also, this only works for users selected by the Jackrabbit/Oak FilterProvider, see
+    # https://jackrabbit.apache.org/oak/docs/security/authorization/principalbased.html#configuration
     
     set principal ACL for principal1,principal2
         remove * on /libs,/apps
@@ -354,7 +368,7 @@ repoinit parser repository.
         allow jcr:something on / restriction(rep:glob)
     end
     
-    # Principal-baesd ACL syntax with options (SLING-6423)
+    # Principal-based ACL syntax with options (SLING-6423)
     set principal ACL for principal1,principal2 (ACLOptions=mergePreserve)
         remove * on /libs,/apps
         allow jcr:read on /content
