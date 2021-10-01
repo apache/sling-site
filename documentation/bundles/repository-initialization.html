@@ -312,7 +312,19 @@ end
 # test-20.txt
 
 # Various &quot;create path&quot; tests
+
+# Nodetypes:
+# A nodetype in brackets right after &quot;create path&quot;, like
+# sling:Folder below, sets the default type for all path
+# segments of this statement.
+# A nodetype in brackets at the end of a path segment, like
+# nt:unstructured below, applies just to that path segment.
+# If no specific nodetype is set, the repository uses its
+# default based on node type definitions.
+
 create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder
+
+# more tests and examples
 create path /one/two/three
 create path /three/four(nt:folk)/five(nt:jazz)/six
 create path (nt:x) /seven/eight/nine
@@ -383,6 +395,8 @@ end
 # o.a.s.jcr.repoinit 1.1.14
 # precondition for o.a.s.jcr.repoinit: 
 # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
+# Also, this only works for users selected by the Jackrabbit/Oak FilterProvider, see
+# https://jackrabbit.apache.org/oak/docs/security/authorization/principalbased.html#configuration
 
 set principal ACL for principal1,principal2
     remove * on /libs,/apps
@@ -410,7 +424,7 @@ set principal ACL for principal1,principal2
     allow jcr:something on / restriction(rep:glob)
 end
 
-# Principal-baesd ACL syntax with options (SLING-6423)
+# Principal-based ACL syntax with options (SLING-6423)
 set principal ACL for principal1,principal2 (ACLOptions=mergePreserve)
     remove * on /libs,/apps
     allow jcr:read on /content
@@ -692,7 +706,7 @@ delete principal ACL for adi
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-08-25</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-10-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
