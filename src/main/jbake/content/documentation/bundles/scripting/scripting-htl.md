@@ -85,6 +85,18 @@ Those pattern values are case-insensitive.
 
 The implementation uses [`DateTimeFormatter.ofLocalizedDate(FormatStyle)`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ofLocalizedDate-java.time.format.FormatStyle-) for formatting those dates.
 
+### Format String
+
+In addition to the variable-element placeholder replacement as given by the examples in the [HTL Spec 1.4](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#examples), [SLING-10654](https://issues.apache.org/jira/browse/SLING-10654) adds support for complex argument types using [ICU Message Formatting](https://unicode-org.github.io/icu/userguide/format_parse/messages/).
+
+When the icu4j bundle is available at runtime, pattterns that contain complex argument types, will automatically be processed using the [icu4j `MessageFormat` class](https://unicode-org.github.io/icu-docs/apidoc/dev/icu4j/com/ibm/icu/text/MessageFormat.html). This adds support for select and plural formats for example, but it also allows for individual argument formatting.
+
+    ${ '{0, plural, one{# result} other{# results}}' @format=properties.result }
+    ${ '{0, plural, one{# výsledek} few{# výsledky} other{# výsledků}}' @format=properties.result }
+
+Other than for the regular variable-element placeholder replacement, parameters passed to the format option are not converted to any other type. If they do not match the pattern an IllegalArgumentException may be throw. 
+
+Is the *icu4j* bundle not available at runtime, only simple variable-element placeholder will be replaced and expessions that use complex argument types will be removed. 
 
 ## Use-API Extensions
 
