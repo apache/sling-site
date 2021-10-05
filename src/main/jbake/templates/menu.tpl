@@ -35,7 +35,7 @@ div(class:"container") {
                 ul() {
                     li(){a(href:"https://s.apache.org/sling.wiki", "Wiki")}
                     li(){a(href:"https://s.apache.org/sling.faq", "FAQ")}
-                    li(){a(href:"${config.site_contextPath}sitemap.html", "Site Map")}
+                    li(){a(href:"${config.site_contextPath}sitemap.html", "Sitemap")}
                 }
             }
             li(){
@@ -59,7 +59,7 @@ div(class:"container") {
                     strong("Source")
                 }
                 ul() {
-                    li(){a(href:"https://github.com/apache/?utf8=%E2%9C%93&q=sling", "GitHub")}
+                    li(){a(href:"${config.site_contextPath}repolist.html", "Repositories")}
                     li(){a(href:"https://gitbox.apache.org/repos/asf?s=sling", "Git at Apache")}
                 }
             }

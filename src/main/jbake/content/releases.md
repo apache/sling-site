@@ -6,8 +6,34 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2021
+
+* Scripting Bundle Maven Plugin 0.5.0, Testing Clients 2.0.10 (27th)
+* Engine 2.7.10 (25th)
+* Parent 46, Bundle Parent 46, Commons Threads 3.2.22 (24th)
+* Feature Analyser 1.4.0 and Sling Feature Maven Plugin 1.5.16 (17th)
+* Testing Testing Sling Mock 3.1.2 (16th)
+* Installer Factory Configuration 1.4.2 (9th)
+* Feature Model Extension Api Regions 1.4.0 (5th)
+* Scripting Bundle Maven Plugin 0.4.0 (3rd)
+* Testing OSGi Mock 3.1.4, Testing JCR Mock 1.5.4, Testing Sling Mock 3.1.0, Sling Testing Sling Mock Oak 3.0.0-1.16.0, File System Resource Provider 2.2.0 (2nd)
+
+## August 2021
+
+* Parent 45, Bundle Parent 45 and Thumbnails 1.0.0 (30th)
+* Event Support 4.2.24 (16th)
+* Content Distribution Journal Core 0.1.20 (13rd)
+* Scripting HTL Engine 1.4.12-1.4.0, Scripting HTL Testing Content 1.0.30-1.4.0 (11th)
+* Scripting Core 2.4.0 (11th)
+* Installer Core 3.12.0, Installer Factory Configuration 1.4.0, Installer Factory Feature 0.6.0 (10th)
+* Scripting HTL Compiler 1.2.14-1.4.0, Scripting HTL Runtime 1.2.6-1.4.0 (7th)
+* Feature Model Analyser 1.3.30 (6th)
+* Servlets Resolver 2.8.2 (4th)
+
 ## July 2021
 
+* Parent and Bundle Parent 44 (30th)
+* Feature Model 1.2.28, Feature Model Extension Api Regions 1.3.8, Slingfeature Maven Plugin 1.5.10 (29th)
 * Resource Resolver 1.7.10 (24th)
 * App CMS 1.0.4 (23rd)
 * Servlets Resolver 2.8.0 (22nd)

@@ -11,7 +11,16 @@ the [sling-aggregator](https://github.com/apache/sling-aggregator) project, wher
 you can also find instructions on how to checkout all repositories using the
 `repo` tool.
 
+The colored balls indicate the build status using the Jenkins conventions: blue is
+a stable build, orange is unstable, red means failure and grey indicates a disabled build.
+
+As I write this, many builds are unstable due to [SLING-10691](https://issues.apache.org/jira/browse/SLING-10691),
+the Sonar analysis failing with Java 11 for older modules.
+
 If you're unsure about the status of one of these repositories please ask on our dev list.
+
+All repositories have names which start with `sling-` so you can also list them
+with a [GitHub query](https://github.com/apache/?utf8=%E2%9C%93&q=sling).
 
 We also have specific documentation about some of these modules on the
 [Bundles](documentation/bundles.html) page.

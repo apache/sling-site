@@ -15,7 +15,8 @@ Most of the hard work of preparing and deploying the release is done by Maven.
 ## Prerequisites
 
 * To prepare or perform a release you *MUST BE* at least be an Apache Sling Committer.
-* Each and every release must be signed; therefore the public key should be cross signed by other Apache committers (not required but suggested) and this public key should be added to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc) and either on pool.sks-keyservers.net or pgp.mit.edu (See Appendix A)
+* Try to update to the most recent parent release prior to doing a release
+* Each release must be signed, see _Appendix A_ below about creating and registering your key.
 * Make sure you have all [Apache servers](http://maven.apache.org/developers/committer-settings.html) defined in your `settings.xml`
 * See Appendix B for Maven and SCM credentials
 
@@ -387,9 +388,14 @@ Once the release has passed, the following must be done:
 1. update the news page and the download pages
 1. update the Eclipse Marketplace listing
 
-## Appendix A: Create and Add your key to people.apache.org and https://downloads.apache.org/sling/KEYS
+## Appendix A: Creating and registering your PGP key
 
-Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:
+Each Sling release must be signed, and the corresponding keys must be available at [https://downloads.apache.org/sling/KEYS](https://downloads.apache.org/sling/KEYS) .
+
+This page only provides minimal information, the canonical reference for this is the
+[ASF Infrastructure Release Signing](https://infra.apache.org/release-signing.html) page.
+
+Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following commands:
 
 1. Create a public/private pair key:
 
@@ -397,40 +403,7 @@ Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and
 
     When gpg asks for e-mail linked the key you *MUST USE* the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY"
 
-1. You also have to add your public key either on `pool.sks-keyservers.net` or `pgp.mit.edu` (for the staging repository). To do so you can follow these steps:
-    1. Extract the key id from all the secret keys stored in the system:
-
-            $ gpg --list-secret-keys.
-        
-        The output is something like this
-       
-            gpg --list-secret-keys
-            /Users/konradwindszus/.gnupg/secring.gpg
-            ----------------------------------------
-
-            sec   2048R/455ECC7C 2016-01-21
-            uid                  Konrad Windszus <kwin@apache.org>
-            ssb   2048R/226BCE00 2016-01-21
-       
-        The key id in this case is `455ECC7C`.
-       
-    1. Send the key towards e.g. `pool.sks-keyservers.net` via
-    
-            $ gpg --keyserver pool.sks-keyservers.net --send-key <key-id>
-
-1. Add the key to [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc)
-
-    1. Type the following command replacing the word `<e-mail>` with your Apache's one (&lt;committer&gt;@apache.org) to get the key signature
-    
-            $ gpg --fingerprint <e-mail>
-            
-        The key signature is in the output following the `Key fingerprint = ` part.
-       
-    1. Add the key signature into the field 'OpenPGP Public Key Primary Fingerprint' in your profile at [https://id.apache.org](https://id.apache.org).
-    
-    1. You are *DONE*, but to see the changes on [https://people.apache.org/keys/group/sling.asc](https://people.apache.org/keys/group/sling.asc) you may need to wait a few hours;
-        
-1. Now add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>. This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via
+1. Add your public key to <https://downloads.apache.org/sling/KEYS> by adding it via SVN to <https://dist.apache.org/repos/dist/release/sling/KEYS>. This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via
 
         $ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
         $ cd sling
@@ -440,6 +413,7 @@ Considering that you are using a \*nix system with a working OpenSSH, GnuPG, and
    
         $ svn commit -m "my key added" KEYS
 
+1. It's also good to upload your key to a public key server, see the [ASF Infrastructure Release Signing](https://infra.apache.org/release-signing.html) page for more info.
 
 ## Appendix B: Deploy Maven plugin documentation (if applicable)
 

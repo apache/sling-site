@@ -93,7 +93,7 @@ To illustrate the matching and replacement is applied according to the following
 
 At the end of the loop, `result` contains the mapped path or `null` if no entry matches the request `path`.
 
-**NOTE:** Since the entries in the `/etc/map` are also used to reverse map any resource paths to URLs, using regular expressions with wildcards in the Root Level Mappings prevent the respective entries from being used for reverse mappings. Therefor, it is strongly recommended to not use regular expression matching, unless you have a strong need.
+**NOTE:** Since the entries in the `/etc/map` are also used to reverse map any resource paths to URLs, using regular expressions with wildcards in the Root Level Mappings prevent the respective entries from being used for reverse mappings. Therefore, it is strongly recommended to not use regular expression matching, unless you have a strong need.
 
 #### Regular Expressions for Reverse Mappings
 
