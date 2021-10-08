@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2021
 
+* HTL Maven Plugin 2.0.4-1.4.0 (8th)
 * Sitemap 1.0.4 (4th)
 
 ## September 2021

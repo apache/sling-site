@@ -40,7 +40,7 @@ def mavenPlugins=[
   "Sling Feature Converter Maven Plugin|sling-feature-converter-maven-plugin|1.0.4|Y",
   "Sling Feature Launcher Maven Plugin|sling-feature-launcher-maven-plugin|0.1.0|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.9.12|Y",
-  "HTL Maven Plugin|htl-maven-plugin|2.0.2-1.4.0|Y",
+  "HTL Maven Plugin|htl-maven-plugin|2.0.4-1.4.0|Y",
   "Sling Kickstart Maven Plugin|sling-kickstart-maven-plugin|0.0.8|Y",
 ]
 
