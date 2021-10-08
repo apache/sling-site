@@ -18,6 +18,9 @@ This archetype generates a Maven project which will build an OSGi bundle that su
 
 This archetype will create a Sling project that can be deployed on the Sling 12. In contrast to the Apache Sling Maven Archetypes this one is geared towards creating a full project and not just a single module. See the [sling-project-archetype github repo](https://github.com/apache/sling-project-archetype) for more details.
 
+### org.apache.sling.cms.archetype
+
+The Apache Sling CMS Project Archetype creates a simple project structure with common dependencies for you to use to create custom applications on Apache Sling CMS. See the [sling-cms docs](https://github.com/apache/sling-org-apache-sling-app-cms/blob/master/docs/project-archetype.md) for more details.
 
 ### sling-bundle-archetype (deprecated)
 
