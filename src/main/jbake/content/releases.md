@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2021
 
+* Commons Log 5.1.14 (14th)
 * XSS Protection API 2.2.16 (11th)
 * HTL Maven Plugin 2.0.4-1.4.0 (8th)
 * Sitemap 1.0.4 (4th)
