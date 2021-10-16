@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2021
 
+* Javax Activation 0.3.0 (16th)
 * Commons Log 5.1.14 (14th)
 * XSS Protection API 2.2.16 (11th)
 * HTL Maven Plugin 2.0.4-1.4.0 (8th)
