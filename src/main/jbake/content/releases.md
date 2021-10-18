@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2021
 
+* Commons Crypto 1.1.0 (18th)
 * Javax Activation 0.3.0 (16th)
 * Commons Log 5.1.14 (14th)
 * XSS Protection API 2.2.16 (11th)
