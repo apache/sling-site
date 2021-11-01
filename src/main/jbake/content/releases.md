@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2021
+
+* Commons Messaging 1.0.2, Commons Content Analyzing 1.0.0, Commons Content Processing 1.0.0 (1st)
+
 ## October 2021
 
 * Commons Crypto 1.1.0 (18th)
