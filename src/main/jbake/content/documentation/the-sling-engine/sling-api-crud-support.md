@@ -13,10 +13,10 @@ As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD
  * [`void delete(Resource resource) throws PersistenceException`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#delete-org.apache.sling.api.resource.Resource-)
  * [`Resource create(Resource parent, String name, Map<String, Object> properties) throws PersistenceException`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#create-org.apache.sling.api.resource.Resource-java.lang.String-java.util.Map-)
  * [`void revert()`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#revert--)
- * [`void commit()` throws PersistenceException](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#commit--)
+ * [`void commit() throws PersistenceException`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#commit--)
  * [`boolean hasChanges()`](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#hasChanges--)
  * [`void refresh()`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#refresh--)
- * `orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException`(since [API 2.24.0](https://issues.apache.org/jira/browse/SLING-7975))
+ * `orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException` (since [API 2.24.0](https://issues.apache.org/jira/browse/SLING-7975))
  
 Those methods provide the ability to create and delete resources as well. In addition you can adapt a `Resource` to a `ModifiableValueMap` interface which is similar to the `ValueMap` interface, but allows for updating properties on a resource.
 
