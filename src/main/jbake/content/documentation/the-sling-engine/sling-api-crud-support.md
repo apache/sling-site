@@ -26,7 +26,7 @@ Here are some examples of common operations performed using the Sling Post Servl
 
 ## Updating a Property
 
-Update /myresource, setting the title and body:
+Update `/myresource`, setting the title and body:
 
 **Sling Post Servlet**
 
@@ -45,7 +45,7 @@ Update /myresource, setting the title and body:
     
 ## Create New Resource
 
-Create a new resource below /myresource
+Create a new resource below `/myresource`
 
 **Sling Post Servlet**
 
@@ -81,7 +81,7 @@ Remove the property title
 
 ## Copy a Resource
 
-Copy the resource /myresource to /myresource2
+Copy the resource `/myresource` to `/myresource2`
 
 **Sling Post Servlet**
 
@@ -99,7 +99,7 @@ Copy the resource /myresource to /myresource2
 
 ## Move a Resource
 
-Move the resource /myresource2 to /myresource3
+Move the resource `/myresource2` to `/myresource3`
 
 **Sling Post Servlet**
 
@@ -137,7 +137,7 @@ Set the property date to a particular date
 
 ## Delete a Resource
 
-Delete the resource /myresource
+Delete the resource `/myresource`
 
 **Sling Post Servlet**
 
@@ -153,7 +153,7 @@ Delete the resource /myresource
 
 ## Order a Resource
 
-Delete the resource /myresource
+Reorder the resource `/myresource` before sibling node `child1`
 
 **Sling Post Servlet**
 
@@ -163,8 +163,8 @@ Delete the resource /myresource
     
 **Sling API CRUD**
     
-    Resource myResource = resourceResolver.getResource("/myresource");
-    resourceResolver.orderBefore(myResource, "child2", "child1");
+    Resource myResource = resourceResolver.getResource("/");
+    resourceResolver.orderBefore(myResource, "myresource", "child1");
     resourceResolver.commit();
 
 
@@ -179,7 +179,7 @@ The classes implementing the following types are supported directly when setting
 
  * [Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html)
  * [InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
- * [Node](http://www.day.com/maven/javax.jcr/javadocs/jcr-2.0/javax/jcr/Node.html)
+ * [Node](https://s.apache.org/jcr-2.0-javadoc/javax/jcr/Node.html)
  * [BigDecimal](http://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html)
  * [Long](http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html)
  * [Short](http://docs.oracle.com/javase/8/docs/api/java/lang/Short.html)
