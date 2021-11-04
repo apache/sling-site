@@ -5,6 +5,7 @@ tags=security
 ~~~~~~
 
 # Summary
+
 The `ResourceAccessSecurity` service allows to restrict access to resources. The access can be granted or denied for read, create, update, delete and order resources actions.
 
 The `ResourceAccessSecurity` interface defines a service API which is used in two different context: 
@@ -20,7 +21,7 @@ In the context of the application, this service might be used to add additional 
 
 # Default Implementation
 
-To use the `ResourceAccessSecurity` service just rely on the default implementation provided by the [`resourceaccesssecurity `bundle][resourceaccesssecurity]. This adds an implementation of the `ResourceAccessSecurity` service for the provider context (“provider”) and also the application context (“application”).
+To use the `ResourceAccessSecurity` service just rely on the default implementation provided by the [`resourceaccesssecurity `bundle][resourceaccesssecurity]. This adds an implementation of the `ResourceAccessSecurity` service for the provider context (`provider`) and also the application context (`application`).
 
 Furthermore this implementation of `ResourceAccessSecurity` defines a service provider interface (SPI) named `ResourceAccessGate`. This is the service interface which you can implement and register to control the access to particular resources.
 
@@ -30,10 +31,10 @@ The `ResourceAccessGate` interface defines an SPI which can be used to make some
 
 Name     |  Description | Default 
 ----------------- | -------------| ----- 
-`path`              | regexp to define on which paths the service should be called | `.*` 
-`operations`        | set of operations on which the service should be called. Allowed string values: `read`,`create`,`update`,`delete`,`execute`,`order-children`. The value `order-children` is only supported since version 1.2.0 ([SLING-7975](https://issues.apache.org/jira/browse/SLING-7975)) | `{ "read","create","update","delete","execute","order-children"}` (all operations)
-`finaloperations`   | set of operations on which the service answer is final and no further service should be called, except the GateResult is GateResult.CANT_DECIDE. Allows the same values as `operations`. | (none)
-`context`          | The resource access gate can either have the context `provider`. In this case the gate is only applied to resource providers requesting the security checks. Or the context can be `application`. In this case the access gate is invoked for the whole resource tree. If the property is missing or invalid, the service is ignored. | -
+`path`              | Regular expression to restrict on which paths the service should be called | `.*` 
+`operations`        | Set of operations on which the service should be called. Allowed string values: `read`,`create`,`update`,`delete`,`execute`,`order-children`. The value `order-children` is only supported since version 1.1.0 ([SLING-7975](https://issues.apache.org/jira/browse/SLING-7975)) | `{ "read","create","update","delete","execute","order-children"}` (all operations)
+`finaloperations`   | Set of operations on which the service answer is final and no further service should be called, except the GateResult is GateResult.CANT_DECIDE. Allows the same values as `operations`. | (none)
+`context`          | The resource access gate can either have the context `provider` in which case the gate is only applied to resource providers requesting the security checks or the context `application` in which case the access gate is invoked for the whole resource tree. If the property is missing or invalid, the service is ignored. | (none)
 
 ## How to implement `ResourceAccessGate`
 
@@ -63,6 +64,7 @@ You have to register the `ResourceAccessGate` with service properties outlined a
 Tip: We do not recommend to mix up application and provider context in the same application. This can lead to confusing configurations in the ResourceAccessGate implementations.
 
 ## GateResult
+
 GateResult does have three states:
 
   1. `GateResult.GRANTED`
@@ -77,7 +79,7 @@ There is an implementation of `ResourceAccessGate` provided by [bundle `org.apac
 
 ## Limitations
 
-By now the implementation is complete for securing access on resource level for CRUD operations. It is not yet ready to allow fine granular access rights on values of a resource. So at the moment the `canReadValue, canUpdateValue, canDeleteValue` and `canCreateValue` on `ResourceAccessGate` methods are ignored ([SLING-10906](https://issues.apache.org/jira/browse/SLING-10906)).
+By now the implementation is complete for securing access on resource level for CRUD operations. It is not yet ready to allow fine granular access rights on properties/values of a resource. So at the moment the `canReadValue, canUpdateValue, canDeleteValue` and `canCreateValue` on `ResourceAccessGate` methods are ignored ([SLING-10906](https://issues.apache.org/jira/browse/SLING-10906)).
 
 
 [jcr-resourcesecurity]: https://github.com/apache/sling-org-apache-sling-jcr-resourcesecurity
