@@ -124,10 +124,10 @@
 <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#delete-org.apache.sling.api.resource.Resource-"><code>void delete(Resource resource) throws PersistenceException</code></a></li>
 <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#create-org.apache.sling.api.resource.Resource-java.lang.String-java.util.Map-"><code>Resource create(Resource parent, String name, Map&lt;String, Object&gt; properties) throws PersistenceException</code></a></li>
 <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#revert--"><code>void revert()</code></a></li>
-<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#commit--"><code>void commit()</code> throws PersistenceException</a></li>
+<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#commit--"><code>void commit() throws PersistenceException</code></a></li>
 <li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#hasChanges--"><code>boolean hasChanges()</code></a></li>
 <li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#refresh--"><code>void refresh()</code></a></li>
-<li><code>orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException</code>(since <a href="https://issues.apache.org/jira/browse/SLING-7975">API 2.24.0</a>)</li>
+<li><code>orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException</code> (since <a href="https://issues.apache.org/jira/browse/SLING-7975">API 2.24.0</a>)</li>
 </ul>
 <p>Those methods provide the ability to create and delete resources as well. In addition you can adapt a <code>Resource</code> to a <code>ModifiableValueMap</code> interface which is similar to the <code>ValueMap</code> interface, but allows for updating properties on a resource.</p>
 <h1><a href="#examples" id="examples">Examples</a></h1>
