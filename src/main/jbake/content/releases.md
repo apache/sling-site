@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## November 2021
 
 * Commons Messaging 1.0.2, Commons Content Analyzing 1.0.0, Commons Content Processing 1.0.0 (1st)
+* i18n 2.5.18 (6th)
 
 ## October 2021
 

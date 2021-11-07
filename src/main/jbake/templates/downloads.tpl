@@ -143,7 +143,7 @@ def bundles=[
   "File Optimization|org.apache.sling.fileoptim|0.9.2|org.apache.sling.file.optimization|jar",
   "File System Resource Provider|org.apache.sling.fsresource|2.2.0|Y|jar",
   "GraphQL Core|org.apache.sling.graphql.core|0.0.12|Y|jar",
-  "I18n|org.apache.sling.i18n|2.5.16|Y|jar",
+  "I18n|org.apache.sling.i18n|2.5.18|Y|jar",
   "HApi|org.apache.sling.hapi|1.1.0|Y|jar",
   "Health Check API|org.apache.sling.hc.api|1.0.4|Y|jar",
   "Health Check Support|org.apache.sling.hc.support|1.0.6|Y|jar",
