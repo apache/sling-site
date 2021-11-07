@@ -30,10 +30,11 @@ For JUnit 4:
 See latest version on the [downloads page](/downloads.cgi).
 
 
-There are two major version ranges available:
+There are three major version ranges available:
 
 * sling-mock 1.x: compatible with older Sling versions from 2014 (Sling API 2.4 and above), JUnit 4
-* sling-mock 2.x: compatible with Sling versions from 2016 (Sling API 2.11 and above), JUnit 4 and JUnit 5
+* sling-mock 2.x: compatible with Sling versions from 2016 (Sling API 2.11 and above), since 2.4.0 with Sling versions from 2017 (Sling API 2.16.2 and above, [SLING-8978](https://issues.apache.org/jira/browse/SLING-8978)), JUnit 4 and JUnit 5 
+* sling-mock 3.x: compatible with Sling versions from 2018 (Sling API 1.16.4 and above, [SLING-10045](https://issues.apache.org/jira/browse/SLING-10045)), JUnit 4 and JUnit 5
 
 
 ## Implemented mock features
