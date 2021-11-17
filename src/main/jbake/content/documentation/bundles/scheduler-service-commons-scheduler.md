@@ -4,7 +4,7 @@ status=published
 tags=scheduling
 ~~~~~~
 
-The scheduler is a service for scheduling other services/jobs (it uses the open source Quartz library). The scheduler can be used in two ways, by registering the job through the scheduler API and by leveraging the whiteboard pattern that is supported by the scheduler. In most cases the whiteboard pattern is preferred
+The scheduler is a service for scheduling other services/jobs (it uses the [open source Quartz library](https://www.quartz-scheduler.org/)). The scheduler can be used in two ways, by registering the job through the scheduler API and by leveraging the whiteboard pattern that is supported by the scheduler. In most cases the whiteboard pattern is preferred.
 
 <div class="note">
 The notion of Job used in this context is a different one than the one used for <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a>. The main difference is that a scheduler's job is not persisted.
@@ -16,7 +16,7 @@ The following examples show you how to define and schedule a job by leveraging t
 
 ### Scheduling with a cron expression
 
-The cron expression format is described in the [Quartz Cron Documentation](http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html#format) and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute). 
+The cron expression format is described in the [Quartz Cron Documentation](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/tutorial-lesson-06.html) and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute). 
 
 The following job is executed every minute by setting *scheduler.expression* to the cron expression `0 * * * * ?`:
 
