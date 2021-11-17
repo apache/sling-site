@@ -200,9 +200,14 @@
 </code></pre>
 <h3><a href="#regexp-pipe-egrep-expr" id="regexp-pipe-egrep-expr">Regexp pipe (<code>egrep &lt;expr&gt;</code>)</a></h3>
 <p>feeds bindings with text input stream, parsed with a regexp <code>pattern</code>, that is a regular expression, with named group (e.g. <code>(?&lt;user&gt;.*)</code>) that will be used to produce the output binding names</p>
-<pre><code>    egrep http://some.site.com @ pattern=/res/(?&lt;asset&gt;/[\-\w\.\/0-9]+) @ name demo
+<pre><code>    egrep http://some.site.com @ with pattern=/res/(?&lt;asset&gt;/[\-\w\.\/0-9]+) @ name demo
     | echo /content/assets
     | write test=demo.asset
+</code></pre>
+<p>If the regex should be applied directly to the value of the expression rather than fetching the input from the url, property <code>url_mode=as_is</code> can be configured</p>
+<pre><code>    | json [&quot;https://sling.apache.org/&quot;,&quot;http://sling.apache.org/&quot;] @name domain
+    | egrep ${domain} @ with pattern=(?&lt;httpspattern&gt;https.*) with url_mode=as_is @ name httpsDomains
+    | write test=${httpsDomains.httpspattern}
 </code></pre>
 </section></div></div>                            
                         </div>
@@ -215,7 +220,7 @@
                             content/documentation/bundles/sling-pipes/readers.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">2021-01-28</span>
+                        Last modified by <span class="author">Ben Zahler</span> on <span class="comment">2021-10-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>

@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/readers.html</loc><lastmod>2021-10-01</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/development/sling-mock.html</loc><lastmod>2021-11-17</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/scheduler-service-commons-scheduler.html</loc><lastmod>2021-11-17</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html</loc><lastmod>2021-11-15</lastmod>
@@ -78,8 +82,6 @@
         <loc>https://sling.apache.org/documentation/bundles/sling-pipes/writers.html</loc><lastmod>2021-01-28</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-pipes/samples.html</loc><lastmod>2021-01-28</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/readers.html</loc><lastmod>2021-01-28</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-pipes/logical.html</loc><lastmod>2021-01-28</lastmod>
     </url><url>
@@ -232,8 +234,6 @@
         <loc>https://sling.apache.org/documentation/development/maven-usage.html</loc><lastmod>2017-11-22</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/osgi-mock.html</loc><lastmod>2019-03-17</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/development/sling-mock.html</loc><lastmod>2018-10-05</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/feature-model/howtos/create-sling-composite.html</loc><lastmod>2020-06-18</lastmod>
     </url><url>
