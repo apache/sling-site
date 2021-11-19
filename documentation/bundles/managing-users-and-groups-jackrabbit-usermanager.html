@@ -143,12 +143,25 @@
 <p>If a non-existing user is requested a <code>404/NOT FOUND</code> status is sent back.</p>
 <h2><a href="#create-user" id="create-user">Create user</a></h2>
 <p>To create a new user POST a request to <code>/system/userManager/user.create.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<p>One of these to resolve the user name:</p>
+<table>
+<thead>
+<tr><th>Parameter Name </th><th> Required </th><th> Since Version </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>:name</code> </td><td> no </td><td> </td><td> The value is the exact name to use</td></tr>
+<tr><td><code>:name@ValueFrom</code> </td><td> no </td><td> 2.2.16 </td><td> The value is the name of another submitted parameter whose value is the exact name to use</td></tr>
+<tr><td><code>:nameHint</code> </td><td> no </td><td> 2.2.16 </td><td> The value is filtered, trimmed and made unique</td></tr>
+<tr><td><code>:nameHint@ValueFrom</code> </td><td> no </td><td> 2.2.16 </td><td> The value is the name of another submitted parameter whose value is filtered, trimmed and made unique</td></tr>
+<tr><td><code>otherwise</code> </td><td> </td><td> 2.2.16 </td><td> Try the value of any server-side configured &quot;principalNameHints&quot; parameter to treat as a hint that is filtered, trimmed and made unique</td></tr>
+</tbody>
+</table>
+<p>... and these ...</p>
 <table>
 <thead>
 <tr><th>Parameter Name </th><th> Required </th><th> Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>:name</code> </td><td> yes </td><td> The name of the new user</td></tr>
 <tr><td><code>pwd</code> </td><td> yes </td><td> The password of the new user</td></tr>
 <tr><td><code>pwdConfirm</code> </td><td> yes </td><td> The password of the new user (must be equal to the value of <code>pwd</code>)</td></tr>
 <tr><td><code>&lt;anyproperty&gt;</code> </td><td> no </td><td> Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td></tr>
@@ -286,12 +299,25 @@
 <p>If a non-existing group is requested a 404/NOT FOUND status is sent back.</p>
 <h2><a href="#create-group" id="create-group">Create group</a></h2>
 <p>To create a new group POST a request to <code>/system/userManager/group.create.&lt;html or json&gt;</code>. The following parameters are available:</p>
+<p>One of these to resolve the group name:</p>
+<table>
+<thead>
+<tr><th>Parameter Name </th><th> Required </th><th> Since Version </th><th> Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>:name</code> </td><td> no </td><td> </td><td> The value is the exact name to use</td></tr>
+<tr><td><code>:name@ValueFrom</code> </td><td> no </td><td> 2.2.16 </td><td> The value is the name of another submitted parameter whose value is the exact name to use</td></tr>
+<tr><td><code>:nameHint</code> </td><td> no </td><td> 2.2.16 </td><td> The value is filtered, trimmed and made unique</td></tr>
+<tr><td><code>:nameHint@ValueFrom</code> </td><td> no </td><td> 2.2.16 </td><td> The value is the name of another submitted parameter whose value is filtered, trimmed and made unique</td></tr>
+<tr><td><code>otherwise</code> </td><td>  </td><td> 2.2.16 </td><td> Try the value of any server-side configured &quot;principalNameHints&quot; parameter to treat as a hint that is filtered, trimmed and made unique</td></tr>
+</tbody>
+</table>
+<p>... and these ...</p>
 <table>
 <thead>
 <tr><th>Parameter Name </th><th> Required </th><th> Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>:name</code> </td><td> yes </td><td> The name of the new group</td></tr>
 <tr><td><code>&lt;anyproperty&gt;</code> </td><td> no </td><td> Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 (<a href="https://issues.apache.org/jira/browse/SLING-6747">SLING-6747</a>).</td></tr>
 </tbody>
 </table>
@@ -406,6 +432,41 @@
     }
 %&gt;
 </code></pre>
+<h2><a href="#generating-principal-names-from-a-hint" id="generating-principal-names-from-a-hint">Generating principal names from a hint</a></h2>
+<p><em>Since Version 2.2.16</em></p>
+<p>For use cases where the exact principalName value isn't critical, a unique value can be auto-generated from some other hint. With a generated unique princpalName, the end user doesn't have to keep retrying to find a value that hasn't been used already.</p>
+<p>With the default behavior, the principalName value would be determined by locating the first request parameter that is a match of one of the choices in the following order:</p>
+<p>1. <strong>:name</strong> - value is the exact name to use</p>
+<pre><code>curl -F:name=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+</code></pre>
+<p>2. <strong>:name@ValueFrom</strong> - value is the name of another submitted parameter whose value is the exact name to use</p>
+<pre><code>curl -F:name@ValueFrom=displayName -FdisplayName=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+</code></pre>
+<p>3. <strong>:nameHint</strong> - value is filtered, trimmed and made unique</p>
+<pre><code>curl -F:nameHint=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+</code></pre>
+<p>4. <strong>:nameHint@ValueFrom</strong> - value is the name of another submitted parameter whose value is filtered, trimmed and made unique</p>
+<pre><code>curl -F:nameHint@ValueFrom=displayName -FdisplayName=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+</code></pre>
+<p>5. <strong>otherwise</strong>, try the value of any server-side configured &quot;principalNameHints&quot; parameters to treat as a hint that is filtered, trimmed and made unique</p>
+<pre><code>curl -FdisplayName=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+</code></pre>
+<h4><a href="#customizing-how-principal-names-are-generated-from-a-hint" id="customizing-how-principal-names-are-generated-from-a-hint">Customizing how principal names are generated from a hint</a></h4>
+<p><em>Since Version 2.2.16</em></p>
+<p>The default implementation of <em>PrincipalNameGenerator</em> may be adjusted via configuration to define a length limit and define which request parameters should be considered as hint candidates.</p>
+<p>For example:</p>
+<pre><code>&quot;org.apache.sling.jackrabbit.usermanager.PrincipalNameGenerator&quot;:{
+    &quot;principalNameMaxLength&quot;: 50,
+    &quot;principalNameHints&quot;: [
+        &quot;displayName&quot;
+    ]
+}
+</code></pre>
+<p>Additionally, the following service interfaces may be implemented by a custom OSGi component in order to influence how a principalName is generated from a hint. Whichever registered OSGi service that has the highest <em>service.ranking</em> value will be used.</p>
+<ol>
+<li><strong>org.apache.sling.jackrabbit.usermanager.PrincipalNameFilter</strong> - An implementation of this service interface allows for filtering what characters are allowed in a generated principal name</li>
+<li><strong>org.apache.sling.jackrabbit.usermanager.PrincipalNameGenerator</strong> - An implementation of this service interface allows to fully customize principal name generation</li>
+</ol>
 </section></div></div>                            
                         </div>
                     </div>
@@ -417,7 +478,7 @@
                             content/documentation/bundles/managing-users-and-groups-jackrabbit-usermanager.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2017-11-22</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2021-11-19</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
