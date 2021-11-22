@@ -190,9 +190,8 @@ For details see [File System Resources](/documentation/bundles/accessing-filesys
 
 ### Merged Resources
 
-The merged resource provider exposes a view on merged resources from multiple locations.
-
-For details see [Resource Merger](/documentation/bundles/resource-merger.html).
+The merged resource provider exposes a view on merged resources from multiple locations. For details see [Resource Merger](/documentation/bundles/resource-merger.html).
+Another approach is taken by the [Superimposing Resource Provider](https://github.com/apache/sling-org-apache-sling-superimposing).
 
 ### Custom Resource providers
 Custom ResourceProvider services can be used to integrate your own custom resources in the Sling resource tree.
