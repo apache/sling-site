@@ -163,8 +163,8 @@ Reorder the resource `/myresource` before sibling node `child1`
     
 **Sling API CRUD**
     
-    Resource myResource = resourceResolver.getResource("/");
-    resourceResolver.orderBefore(myResource, "myresource", "child1");
+    Resource parentResource = resourceResolver.getResource("/");
+    resourceResolver.orderBefore(parentResource, "myresource", "child1");
     resourceResolver.commit();
 
 
