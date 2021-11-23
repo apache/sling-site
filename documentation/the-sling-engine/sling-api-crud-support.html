@@ -239,8 +239,8 @@ resourceResolver.commit();
 &lt;/form&gt;
 </code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource = resourceResolver.getResource(&quot;/&quot;);
-resourceResolver.orderBefore(myResource, &quot;myresource&quot;, &quot;child1&quot;);
+<pre><code>Resource parentResource = resourceResolver.getResource(&quot;/&quot;);
+resourceResolver.orderBefore(parentResource, &quot;myresource&quot;, &quot;child1&quot;);
 resourceResolver.commit();
 </code></pre>
 <h1><a href="#value-class-support" id="value-class-support">Value Class Support</a></h1>
@@ -272,7 +272,7 @@ resourceResolver.commit();
                             content/documentation/the-sling-engine/sling-api-crud-support.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-11-04</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-11-23</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
