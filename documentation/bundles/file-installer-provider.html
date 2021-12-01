@@ -120,9 +120,10 @@
 <tr><th>Property</th><th>Default</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>sling.fileinstall.dir</code></td><td> </td><td>The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts</td></tr>
+<tr><td><code>sling.fileinstall.dir</code></td><td> </td><td>The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts.</td></tr>
 <tr><td><code>sling.fileinstall.interval</code></td><td>5000 ms</td><td>Number of milliseconds between 2 polls of the directory</td></tr>
-<tr><td><code>sling.fileinstall.writeback</code></td><td>true</td><td>If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system.</td></tr>
+<tr><td><code>sling.fileinstall.writeback</code></td><td>true</td><td>If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system in case this property is set to <code>true</code>.</td></tr>
+<tr><td><code>sling.fileinstall.dir.autocreate</code></td><td>false</td><td>Automatically creates the directories given in <code>sling.fileinstall.dir</code> in case they don't exist yet (including non-existing parent directories) if set to <code>true</code>. Only available since version 1.3.4 <a href="https://issues.apache.org/jira/browse/SLING-7504">SLING-7504</a>.</td></tr>
 </tbody>
 </table>
 <h2><a href="#bundles" id="bundles">Bundles</a></h2>
@@ -151,7 +152,7 @@
                             content/documentation/bundles/file-installer-provider.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2020-09-18</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-12-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
