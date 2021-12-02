@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## December 2021
+
+* Testing OSGi Mock 3.2.0, Sling Mock 3.2.0, Sling Mock Oak 3.1.0-1.40.0, Context-Aware Configuration Mock Plugin 1.3.4 (2nd)
+
 ## November 2021
 
 * JCR Jackrabbit User Manager 2.2.16 (18th)
@@ -28,7 +32,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Engine 2.7.10 (25th)
 * Parent 46, Bundle Parent 46, Commons Threads 3.2.22 (24th)
 * Feature Analyser 1.4.0 and Sling Feature Maven Plugin 1.5.16 (17th)
-* Testing Testing Sling Mock 3.1.2 (16th)
+* Testing Sling Mock 3.1.2 (16th)
 * Installer Factory Configuration 1.4.2 (9th)
 * Feature Model Extension Api Regions 1.4.0 (5th)
 * Scripting Bundle Maven Plugin 0.4.0 (3rd)
