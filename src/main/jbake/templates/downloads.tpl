@@ -153,7 +153,7 @@ def bundles=[
   "Installer Console|org.apache.sling.installer.console|1.1.0|Y|jar",
   "Installer Content Package Support|org.apache.sling.installer.factory.packages|1.0.4|Y|jar",
   "Installer Factory Feature Model|org.apache.sling.installer.factory.model|0.6.0|Y|jar",
-  "Installer File Provider|org.apache.sling.installer.provider.file|1.3.0|Y|jar",
+  "Installer File Provider|org.apache.sling.installer.provider.file|1.3.4|Y|jar",
   "Installer Health Checks|org.apache.sling.installer.hc|2.0.2|Y|jar",
   "Installer JCR Provider|org.apache.sling.installer.provider.jcr|3.3.0|Y|jar",
   "Installer Vault Package Install Hook|org.apache.sling.installer.provider.installhook|1.0.4|Y|jar",
