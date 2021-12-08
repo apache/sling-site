@@ -58,7 +58,7 @@ Depending on the bundle entry found in the location indicated by the Sling-Initi
 
 ### Directories
 
-Unless a node with the name of the directory already exists or has been defined in an XML or JSON descriptor file (see below) a directory is created as a node with the primary node type "nt:folder" in the repository.
+Unless a node with the name of the directory already exists or has been defined in an XML or JSON descriptor file (see below) a directory is created as a node with the primary node type `sling:Folder` in the repository (which has no restrictions in terms of child nodes and properties).
 
 ### Files
 
