@@ -176,7 +176,7 @@
 </ol>
 <p>Depending on the bundle entry found in the location indicated by the Sling-Initial-Content bundle manifest header, nodes are created (and/or updated) as follows:</p>
 <h3><a href="#directories" id="directories">Directories</a></h3>
-<p>Unless a node with the name of the directory already exists or has been defined in an XML or JSON descriptor file (see below) a directory is created as a node with the primary node type &quot;nt:folder&quot; in the repository.</p>
+<p>Unless a node with the name of the directory already exists or has been defined in an XML or JSON descriptor file (see below) a directory is created as a node with the primary node type <code>sling:Folder</code> in the repository (which has no restrictions in terms of child nodes and properties).</p>
 <h3><a href="#files" id="files">Files</a></h3>
 <p>Unless a node with the name of the file already exists or has been defined in an XML or JSON descriptor file (see below) a file is created as two nodes in the repository. The node bearing the name of the file itself is created with the primary node type &quot;nt:file&quot;. Underneath this file node, a resource node with the primary node type &quot;nt:resource&quot; is created, which is set to the contents of the file.</p>
 <p>The MIME type is derived from the file name extension by first trying to resolve it from the Bundle entry URL. If this does not resolve to a MIME type, the Sling MIME type resolution service is used to try to find a mime type. If all fals, the MIME type is defaulted to &quot;application/octet-stream&quot;.  </p>
@@ -427,7 +427,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
                             content/documentation/bundles/content-loading-jcr-contentloader.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-04-15</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-12-08</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
