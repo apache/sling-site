@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2021
 
-* Models API 1.4.0, Models Implementation 1.5.0, Models Jackson Exporter 1.1.0, Models Validation Impl 1.1.0, Context-Aware Configuration Mock Plugin 1.3.6 (10th)
+* Models API 1.4.0, Models Implementation 1.5.0, Models Jackson Exporter 1.1.0, Models Validation Impl 1.1.0, Testing OSGi Mock 3.2.2, Context-Aware Configuration Mock Plugin 1.3.6 (10th)
 * Testing OSGi Mock 3.2.0, Sling Mock 3.2.0, Sling Mock Oak 3.1.0-1.40.0, Context-Aware Configuration Mock Plugin 1.3.4 (2nd)
 * Testing ResourceResolver Mock 1.2.4, Sling Mock 3.2.2 (6th)
 
