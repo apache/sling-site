@@ -87,7 +87,7 @@ def bundles=[
   "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|1.0.0|Y|jar",
   "Commons Log Service|org.apache.sling.commons.logservice|1.1.0|Y|jar",
   "Commons Messaging|org.apache.sling.commons.messaging|1.0.2|Y|jar",
-  "Commons Messaging Mail|org.apache.sling.commons.messaging.mail|1.0.0|Y|jar",
+  "Commons Messaging Mail|org.apache.sling.commons.messaging.mail|2.0.0|Y|jar",
   "Commons Metrics|org.apache.sling.commons.metrics|1.2.8|Y|jar",
   "Commons RRD4J metrics reporter|org.apache.sling.commons.metrics-rrd4j|1.0.4|Y|jar",
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.2.2|Y|jar",
