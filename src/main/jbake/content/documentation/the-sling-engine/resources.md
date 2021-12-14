@@ -226,13 +226,13 @@ Property | Description
 
 ### OSGi Event based resource changes (deprecated)
 
-Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`.
+Resource events are sent out via the OSGi Event Admin. You can subscribe to those events by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event(s). The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`.
 
 You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the [event attribute `event.application`](/apache-sling-eventing-and-job-handling.html#basic-principles), which is only set in case the event was triggered from an external resource modification (compare with [`DEAConstants`](https://sling.apache.org/apidocs/sling9/org/apache/sling/event/dea/DEAConstants.html) and try to reuse the constant from there).
 
 The OSGi event handlers may be [blacklisted by Apache Felix](http://felix.apache.org/documentation/subprojects/apache-felix-event-admin.html#configuration) in case the processing takes too long. Therefore dispatch all long-lasting operations to a new thread or start a new Sling Job.
 
-This approach is deprecated in favor of the ResourceChangeListener described above, because the the ResourceChangeListeners allows the implementation to listen only to specific events of the repository, while the OSGI event-based approach needs to create OSGI events for **all** repository events. To ease the transition the implementation will warn whenever an listener is registered which listens for the Resource (`org/apache/sling/api/resource/Resource/*`) or ResourceProvider (`org/apache/sling/api/resource/ResourceProvider/*`) topics.
+This approach is deprecated in favor of the ResourceChangeListener described above, because the the ResourceChangeListeners allows the implementation to send out only relevant events (i.e. those which have subscribers), while the OSGI event based approach needs to create OSGI events for **all** repository events. To ease the transition the implementation will warn whenever an listener is registered which listens for the Resource (`org/apache/sling/api/resource/Resource/*`) or ResourceProvider (`org/apache/sling/api/resource/ResourceProvider/*`) topics.
 
 ## Wrap/Decorate Resources
 
