@@ -20,6 +20,8 @@ Many Sling projects want to be able to create model objects - POJOs which are au
 * Work with existing Sling infrastructure (i.e. not require changes to other bundles).
 
 # Basic Usage
+## Model Classes
+
 In the simplest case, the class is annotated with `@Model` and the adaptable class. Fields which need to be injected are annotated with `@Inject`:
 
     ::java
@@ -54,6 +56,35 @@ Constructor injection is also supported (as of Sling Models 1.1.0):
     }
 
 Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation is mandatory for injectors that require a name for resolving the injection.
+
+Constructors may use any visibility modifier (as of Sling Models 1.5.0):
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public class PrivateConstructorModel {    
+        @Inject
+        private PrivateConstructorModel() {
+          // constructor code
+        }
+    }
+
+    @Model(adaptables=Resource.class)
+    public class ProtectedConstructorModel {    
+        @Inject
+        protected ProtectedConstructorModel() {
+          // constructor code
+        }
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PackagePrivateConstructorModel {    
+        @Inject
+        PackagePrivateConstructorModel() {
+          // constructor code
+        }
+    }
+
+## Bundle Manifest Configuration
 
 In order for these classes to be picked up, there is a header which must be added to the bundle's manifest:
 
