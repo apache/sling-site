@@ -57,7 +57,7 @@ Constructor injection is also supported (as of Sling Models 1.1.0):
 
 Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation is mandatory for injectors that require a name for resolving the injection.
 
-Constructors may use any visibility modifier (as of Sling Models 1.5.0):
+Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https://issues.apache.org/jira/browse/SLING-8069)):
 
     ::java
     @Model(adaptables=Resource.class)
