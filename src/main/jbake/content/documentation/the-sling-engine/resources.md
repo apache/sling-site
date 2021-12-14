@@ -215,13 +215,13 @@ To be notified whenever certain resources or their properties have been modified
 *This API is only available since Sling API 2.11.0 ([SLING-4751](https://issues.apache.org/jira/browse/SLING-4751)).*
 
 Register an OSGi service for [`org.apache.sling.api.resource.observation.ResourceChangeListener`][6] to be notified about local changes. To be also notified about external changes (i.e. changes triggered by another Sling instance leveraging a clustered repository  make sure that your service implementation also implements the marker interface [`org.apache.sling.api.resource.observation.ExternalResourceChangeListener`][7]. The interface `ExternalResourceChangeListener` is not supposed to be registered with OSGi though.
-It is possible already at a registration level to specify, which events in which path you are interested. For this attach these properties as OSGI properties to your implementing service (all of them are multi-value):
+It is possible to specify already during registration which events in which paths you are interested in. To use this just set these service properties in your implementing OSGi service (all of them are multi-value strings):
 
 Property | Description
 --- | ---
 [ResourceChangeListener.PATHS](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PATHS)| denote the path (including sub paths) in which you are interested in. This property is required.
 [ResourceChangeListener.CHANGES](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#CHANGES)| the type of changes you are interested in (optional)
-[ResourceChhangeListener.PROPERTY_NAMES_HINT](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PROPERTY_NAMES_HINT)| optional property to specify interested on changes certain sling properties.
+[ResourceChhangeListener.PROPERTY_NAMES_HINT](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PROPERTY_NAMES_HINT)| filte r only for events affecting the properties with the given names (optional)
 
 
 ### OSGi Event based resource changes (deprecated)
