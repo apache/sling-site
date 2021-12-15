@@ -127,6 +127,7 @@
 <li>Work with existing Sling infrastructure (i.e. not require changes to other bundles).</li>
 </ul>
 <h1><a href="#basic-usage" id="basic-usage">Basic Usage</a></h1>
+<h2><a href="#model-classes" id="model-classes">Model Classes</a></h2>
 <p>In the simplest case, the class is annotated with <code>@Model</code> and the adaptable class. Fields which need to be injected are annotated with <code>@Inject</code>:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
 public class MyModel {
@@ -135,7 +136,35 @@ public class MyModel {
     private String propertyName;
 }
 </code></pre>
-<p>In this case, a property named &quot;propertyName&quot; will be looked up from the Resource (after first adapting it to a <code>ValueMap</code>) and it is injected.</p>
+<p>In this case, a property named &quot;propertyName&quot; will be looked up from the Resource (after first adapting it to a <code>ValueMap</code>) and it is injected. Fields can use any visibility modifier:</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
+public class PublicFieldModel {
+
+    @Inject
+    public String publicField;
+}
+
+@Model(adaptables=Resource.class)
+public class ProtectedFieldModel {
+
+    @Inject
+    protected String protectedField;
+}
+
+@Model(adaptables=Resource.class)
+public class PrivateFieldModel {
+
+    @Inject
+    private String privateField;
+}
+
+@Model(adaptables=Resource.class)
+public class PackagePrivateFieldModel {
+
+    @Inject
+    String packagePrivateField;
+}
+</code></pre>
 <p>For an interface, it is similar:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
 public interface MyModel {
@@ -144,6 +173,7 @@ public interface MyModel {
     String getPropertyName();
 }
 </code></pre>
+<p>Interface methods must be <code>public</code>. Even though private interface methods have been available since Java 9, Sling Models uses Dynamic Proxies to instantiate the interfaces, which does not work with private interface methods. Additionally, while default interface methods will work with interface injection, the default implementation (in the interface) is currently not used, and will not be executed.</p>
 <p>Constructor injection is also supported (as of Sling Models 1.1.0):</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
 public class MyModel {    
@@ -154,6 +184,40 @@ public class MyModel {
 }
 </code></pre>
 <p>Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a <code>@Named</code> annotation is mandatory for injectors that require a name for resolving the injection.</p>
+<p>Constructors may use any visibility modifier (as of <a href="https://issues.apache.org/jira/browse/SLING-8069">Sling Models 1.5.0</a>):</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
+public class PublicConstructorModel {    
+    @Inject
+    public PublicConstructorModel() {
+      // constructor code
+    }
+}
+
+@Model(adaptables=Resource.class)
+public class ProtectedConstructorModel {    
+    @Inject
+    protected ProtectedConstructorModel() {
+      // constructor code
+    }
+}
+
+@Model(adaptables=Resource.class)
+public class PrivateConstructorModel {    
+    @Inject
+    private PrivateConstructorModel() {
+      // constructor code
+    }
+}
+
+@Model(adaptables=Resource.class)
+public class PackagePrivateConstructorModel {    
+    @Inject
+    PackagePrivateConstructorModel() {
+      // constructor code
+    }
+}
+</code></pre>
+<h2><a href="#bundle-manifest-configuration" id="bundle-manifest-configuration">Bundle Manifest Configuration</a></h2>
 <p>In order for these classes to be picked up, there is a header which must be added to the bundle's manifest:</p>
 <pre><code>&lt;Sling-Model-Packages&gt;
   org.apache.sling.models.it.models
@@ -603,7 +667,7 @@ public class CachableModelClass {
                             content/documentation/bundles/models.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Stefan Seifert</span> on <span class="comment">2021-09-16</span>
+                        Last modified by <span class="author">paul-bjorkstrand</span> on <span class="comment">2021-12-15</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>

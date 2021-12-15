@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2021-12-15</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2021-12-14</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/resources.html</loc><lastmod>2021-12-14</lastmod>
@@ -30,8 +32,6 @@
         <loc>https://sling.apache.org/documentation/bundles/repository-initialization.html</loc><lastmod>2021-10-01</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/release-management.html</loc><lastmod>2021-09-21</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2021-09-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/scripting.html</loc><lastmod>2021-08-23</lastmod>
     </url><url>
