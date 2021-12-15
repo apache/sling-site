@@ -32,7 +32,37 @@ In the simplest case, the class is annotated with `@Model` and the adaptable cla
         private String propertyName;
     }
 
-In this case, a property named "propertyName" will be looked up from the Resource (after first adapting it to a `ValueMap`) and it is injected.
+In this case, a property named "propertyName" will be looked up from the Resource (after first adapting it to a `ValueMap`) and it is injected. Fields can use any visibility modifier:
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public class PublicFieldModel {
+    
+        @Inject
+        public String publicField;
+    }
+
+    @Model(adaptables=Resource.class)
+    public class ProtectedFieldModel {
+    
+        @Inject
+        protected String protectedField;
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PrivateFieldModel {
+    
+        @Inject
+        private String privateField;
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PackagePrivateFieldModel {
+    
+        @Inject
+        String packagePrivateField;
+    }
+
  
 For an interface, it is similar:
 
@@ -43,6 +73,8 @@ For an interface, it is similar:
 	    @Inject
 	    String getPropertyName();
 	}
+
+Interface methods must be `public`. Even though private interface methods have been available since Java 9, Sling Models uses Dynamic Proxies to instantiate the interfaces, which does not work with private interface methods. Additionally, while default interface methods will work with interface injection, the default implementation (in the interface) is currently not used, and will not be executed.
 
 Constructor injection is also supported (as of Sling Models 1.1.0):
 
@@ -61,9 +93,9 @@ Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https:/
 
     ::java
     @Model(adaptables=Resource.class)
-    public class PrivateConstructorModel {    
+    public class PublicConstructorModel {    
         @Inject
-        private PrivateConstructorModel() {
+        public PublicConstructorModel() {
           // constructor code
         }
     }
@@ -72,6 +104,14 @@ Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https:/
     public class ProtectedConstructorModel {    
         @Inject
         protected ProtectedConstructorModel() {
+          // constructor code
+        }
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PrivateConstructorModel {    
+        @Inject
+        private PrivateConstructorModel() {
           // constructor code
         }
     }
