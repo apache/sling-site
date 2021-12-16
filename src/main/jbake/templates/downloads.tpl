@@ -277,7 +277,7 @@ def bundles=[
   "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|3.2.2|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|3.2.2|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|3.2.2|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|3.1.0-1.40.0|Y|jar",
+  "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|3.1.2-1.40.0|Y|jar",
   "Thumbnails|org.apache.sling.thumbnails|1.0.0|Y|jar",
   "Tooling Support Install|org.apache.sling.tooling.support.install|1.0.6|Y|jar",
   "Tooling Support Source|org.apache.sling.tooling.support.source|1.0.4|Y|jar",

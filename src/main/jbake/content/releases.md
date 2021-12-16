@@ -11,6 +11,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Commons Log 5.2.0, Starter Content 1.0.10 (14th)
 * Testing Clients 3.0.4 (13th)
 * Feature Analyser 1.5.2, Feature Extension Apiregion 1.4.2, Commons Messaging Mail 2.0.0 (12th)
+* Mock Oak 3.1.2-1.40.0 (11th)
 * Models API 1.4.0, Models Implementation 1.5.0, Models Jackson Exporter 1.1.0, Models Validation Impl 1.1.0, Testing OSGi Mock 3.2.2, Context-Aware Configuration Mock Plugin 1.3.6 (10th)
 * Testing OSGi Mock 3.2.0, Sling Mock 3.2.0, Sling Mock Oak 3.1.0-1.40.0, Context-Aware Configuration Mock Plugin 1.3.4 (2nd)
 * Testing ResourceResolver Mock 1.2.4, Sling Mock 3.2.2 (6th)
