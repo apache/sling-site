@@ -10,7 +10,7 @@ https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228) and affects Log4j
 (exclusive). It is also known under the *Log4Shell* name.
 
 Apache Sling modules use the [Simple Logging Facade for Java](http://www.slf4j.org) (slf4j) for logging, backed by the [Sling Commons Log
-bundle](https://github.dev/apache/sling-org-apache-sling-commons-log/). There are no Sling modules using versions of Log4j
+bundle](https://github.com/apache/sling-org-apache-sling-commons-log/). There are no Sling modules using versions of Log4j
 affected by *Log4Shell*. The Sling Starter and Sling CMS applications do not include any vulnerable version of the Log4j library.
 
 Applications built on top of Apache Sling are not impacted by CVE-2021-44228, provided they do not deploy
