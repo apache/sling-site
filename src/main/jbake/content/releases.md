@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2021
 
+* Context-Aware Configuration Impl 1.5.2 (20th)
 * Models Jackson Exporter 1.1.2 (18th)
 * Commons Log 5.2.0, Starter Content 1.0.10 (14th)
 * Testing Clients 3.0.4 (13th)

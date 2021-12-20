@@ -103,7 +103,7 @@ def bundles=[
   "Content Parser XML JCR|org.apache.sling.contentparser.xml-jcr|2.0.0|Y|jar",
   "Content Parser Test Utilities|org.apache.sling.contentparser.testutils|2.0.0|Y|jar",
   "Context-Aware Configuration API|org.apache.sling.caconfig.api|1.2.0|Y|jar",
-  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.5.0|Y|jar",
+  "Context-Aware Configuration Impl|org.apache.sling.caconfig.impl|1.5.2|Y|jar",
   "Context-Aware Configuration Mock Plugin|org.apache.sling.testing.caconfig-mock-plugin|1.3.6|Y|jar",
   "Context-Aware Configuration SPI|org.apache.sling.caconfig.spi|1.3.4|Y|jar",
   "Crankstart API|org.apache.sling.crankstart.api|1.0.0|N|jar",
