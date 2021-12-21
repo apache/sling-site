@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2021
 
+* Feature Launcher Maven Plugin 0.1.2 (21th)
 * Content Distribution Journal Core 0.1.22, Content Distribution Core 0.4.8 (21st)
 * Context-Aware Configuration Impl 1.5.2, JCR ContentLoader 2.5.0 (20th)
 * Models Jackson Exporter 1.1.2 (18th)
