@@ -242,7 +242,7 @@ def bundles=[
   "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.4.14-1.4.0|Y|jar",
   "Scripting HTL JS Use Provider|org.apache.sling.scripting.sightly.js.provider|1.2.6|Y|jar",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.8|Y|jar",
-  "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.6|Y|jar",
+  "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.10|Y|jar",
   "Scripting Thymeleaf|org.apache.sling.scripting.thymeleaf|2.0.2|Y|jar",
   "Security|org.apache.sling.security|1.1.20|Y|jar",
   "Service User Mapper|org.apache.sling.serviceusermapper|1.4.2|Y|jar",
