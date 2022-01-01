@@ -236,7 +236,7 @@ The code implementing a service that simultaneously executes the job based on 3 
 
 ## Using dedicated thread pools
 
-By default all scheduled jobs use the default thread pool of Sling (as provided by [Apache Sling Commons Thread Pool](/documentation/bundles/apache-sling-commons-thread-pool.html)). But it also possible to specify that a different thread pool is used. This requires 2 steps: The thread pool must be explicitly allowed to be used and then the job must be configured to be used. An optional 3rd step is to configure the thread pool.
+By default all scheduled jobs use the default thread pool of Sling (as provided by [Apache Sling Commons Thread Pool](/documentation/bundles/apache-sling-commons-thread-pool.html)). But it is possible to define that a different thread pool to be used. This requires 2 steps: The thread pool must be explicitly allowed to be used and then the job must be configured accordingly. An optional 3rd step is to configure the thread pool.
 
 ### Allow a thread pool to be used by the scheduler
 You need to add the name of the threadpool to the OSGI property ```allowedPoolNames``` of the "Apache Sling Scheduler" service (pid: ```	org.apache.sling.commons.scheduler.impl.QuartzScheduler```).
@@ -247,11 +247,9 @@ The way how you configure the thread pool to use depends on the way you schedule
 
 If you use the whiteboard pattern, just add an additional property to the definition:
 
-    @property(name=Scheduler.PROPERTY_SCHEDULER_THREAD_POOL,value="my-thread-pool")
-
-to the other annotations.
+    @Property(name=Scheduler.PROPERTY_SCHEDULER_THREAD_POOL,value="my-thread-pool")
 
 If you use the scheduler API, you can specify the thread pool name via [SchedulingOptions.threadPoolName()](https://sling.apache.org/apidocs/sling11/org/apache/sling/commons/scheduler/ScheduleOptions.html#threadPoolName-java.lang.String-).
 
 ### Configure the thread pool
-By default the Scheduler will create [Thread Pools](/documentation/bundles/apache-sling-commons-thread-pool.html) with default settings (5 threads at maximum). But you can also configure them explicitly and adjust them to your needs; for this you need to instantiate the "Apache Sling Thread Pool Configuration" service factory and provide the name of the thread-pool as value of the OSGI property ```name```.
+By default the Scheduler will create [Thread Pools](/documentation/bundles/apache-sling-commons-thread-pool.html) with default settings (5 threads at maximum). But you can also configure them explicitly and adjust them to your needs; for this you need to instantiate the "Apache Sling Thread Pool Configuration" service factory and provide the name of the threadpool as value of the OSGI property ```name```.
