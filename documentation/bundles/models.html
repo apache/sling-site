@@ -481,6 +481,7 @@ public class MyModel {
 <tr><td>Child Resources    </td><td> <code>child-resources</code>       </td><td> 3000                </td><td> 1.0.0                                    </td><td> Gets a child resource by name. </td><td> <code>Resource</code> objects </td><td> no </td><td> none </td><td> if a parameterized type <code>List</code> or <code>Collection</code> is passed, a <code>List&lt;Resource&gt;</code> is returned (the contents of which may be adapted to the target type) filled with all child resources of the resource looked up by the given name.</td></tr>
 <tr><td>Request Attributes </td><td> <code>request-attributes</code>    </td><td> 4000                </td><td> 1.0.0                                    </td><td> Get a request attribute by name. </td><td> <code>ServletRequest</code> objects </td><td> no </td><td> no conversion is done </td><td> If a parameterized type is passed, the request attribute must be of a compatible type of the parameterized type.</td></tr>
 <tr><td>OSGi Services      </td><td> <code>osgi-services</code>         </td><td> 5000                </td><td> 1.0.0                                    </td><td> Lookup services based on class name. Since Sling Models Impl 1.2.8 (<a href="https://issues.apache.org/jira/browse/SLING-5664">SLING-5664</a>) the service with the highest service ranking is returned. In case multiple services are returned, they are ordered descending by their service ranking (i.e. the one with the highest ranking first). </td><td> Any object </td><td> yes </td><td> yes </td><td> Parameterized <code>List</code> and <code>Collection</code> injection points are injected by getting an array of the services and creating an unmodifiable <code>List</code> from the array.</td></tr>
+<tr><td>Context-Aware Configuration </td><td> <code>caconfig</code>     </td><td> 6000                </td><td>                                          </td><td> Lookup context-aware configuration. See <a href="#context-aware-configuration">Context-Aware Configuration</a>. </td><td> Any object </td><td> yes </td><td> yes </td><td> If a parameterized type <code>List</code> or <code>Collection</code> is used, a configuration collection is looked up.</td></tr>
 <tr><td>Resource Path      </td><td> <code>resource-path</code>         </td><td> 2500                </td><td> 1.1.0                                    </td><td> Injects one or multiple resources. The resource paths are either given by <code>@Path</code> annotations, the element <code>path</code> or <code>paths</code> of the annotation <code>@ResourcePath</code> or by paths given through a resource property being referenced by either <code>@Named</code> or element <code>name</code> of the annotation <code>@ResourcePath</code>. </td><td> <code>Resource</code> or <code>SlingHttpServletRequest</code> objects </td><td> yes </td><td> yes </td><td> none</td></tr>
 <tr><td>Self               </td><td> <code>self</code>                  </td><td> <code>Integer.MAX_VALUE</code> </td><td> 1.1.0                                    </td><td> Injects the adaptable object itself (if the class of the field matches or is a supertype). If the @Self annotation is present it is tried to adapt the adaptable to the field type.  </td><td> Any object </td><td> yes </td><td> none </td><td> none</td></tr>
 <tr><td>Sling Object       </td><td> <code>sling-object</code>          </td><td> <code>Integer.MAX_VALUE</code> </td><td> 1.1.0                                    </td><td> Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper. This works only if the adaptable can get the according information, i.e. all objects are available via <code>SlingHttpServletRequest</code> while <code>ResourceResolver</code> can only resolve the <code>ResourceResolver</code> object and nothing else. A discussion around this limitation can be found at <a href="https://issues.apache.org/jira/browse/SLING-4083">SLING-4083</a>. Also <code>Resource</code>s can only be injected if the according injector-specific annotation is used (<code>@SlingObject</code>). </td><td> <code>Resource</code>, <code>ResourceResolver</code> or <code>SlingHttpServletRequest</code> objects (not all objects can be resolved by all adaptables).  </td><td> yes </td><td> none </td><td> none</td></tr>
@@ -506,12 +507,40 @@ public class MyModel {
 <tr><td><code>@RequestAttribute</code> </td><td> <code>injectionStrategy</code>, <code>name</code> and <code>via</code>   </td><td> <code>request-attributes</code> </td><td> Injects a request attribute by name. If <code>name</code> is not set the name is derived from the method/field name.</td></tr>
 <tr><td><code>@ResourcePath</code>     </td><td> <code>injectionStrategy</code>, <code>path</code>, and <code>name</code> </td><td> <code>resource-path</code> </td><td> Injects a resource either by path or by reading a property with the given name.</td></tr>
 <tr><td><code>@OSGiService</code>      </td><td> <code>injectionStrategy</code>, <code>filter</code>           </td><td> <code>osgi-services</code> </td><td> Injects an OSGi service by type. The <code>filter</code> can be used give an OSGi service filter.</td></tr>
+<tr><td><code>@ContextAwareConfiguration</code> </td><td> <code>injectionStrategy</code>, <code>name</code>    </td><td> <code>caconfig</code> </td><td> Lookup context-aware configuration. See <a href="#context-aware-configuration">Context-Aware Configuration</a>.</td></tr>
 <tr><td><code>@Self</code>             </td><td> <code>injectionStrategy</code>                     </td><td> <code>self</code> </td><td> Injects the adaptable itself. If the field type does not match with the adaptable it is tried to adapt the adaptable to the requested type.</td></tr>
 <tr><td><code>@SlingObject</code>      </td><td> <code>injectionStrategy</code>                     </td><td> <code>sling-object</code> </td><td>Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper</td></tr>
 </tbody>
 </table>
 <h2><a href="#hints" id="hints">Hints</a></h2>
 <p>Those annotations replace <code>@Via</code>, <code>@Filter</code>, <code>@Named</code>, <code>@Optional</code>, <code>@Required</code>, <code>@Source</code> and <code>@Inject</code>. Instead of using the deprecated annotation element <code>optional</code> you should rather use <code>injectionStrategy</code> with the values <code>DEFAULT</code>, <code>OPTIONAL</code> or <code>REQUIRED</code> (see also <a href="https://issues.apache.org/jira/browse/SLING-4155">SLING-4155</a>). <code>@Default</code> may still be used in addition to the injector-specific annotation to set default values. All elements given above are optional.</p>
+<h2><a href="#context-aware-configuration" id="context-aware-configuration">Context-Aware Configuration</a></h2>
+<p>Since <a href="https://issues.apache.org/jira/browse/SLING-7256">SLING-7256</a> it is possible to inject <a href="https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html">Context-Aware Configuration</a> directly in Sling Models.</p>
+<p>To use it, the following additional bundles are required (with given minimal version):</p>
+<ul>
+<li>Apache Sling Context-Aware Configuration Implementation 1.6.0 (<code>org.apache.sling.caconfig.impl</code>)</li>
+<li>Apache Sling Context-Aware Configuration SPI 1.4.0 (<code>org.apache.sling.caconfig.spi</code>)</li>
+<li>Apache Sling Context-Aware Configuration API 1.1.2 (<code>org.apache.sling.caconfig.api</code>)</li>
+<li>Apache Sling Models Context-Aware Configuration 1.0.0 (<code>org.apache.sling.models.caconfig</code>) - this bundle contains both the <code>@ContextAwareConfiguration</code> injector annotation and the injector implementation.</li>
+</ul>
+<p>Usage example for injecting a single Context-Aware configuration looked up in context of the current resource (<code>SingleConfig</code> is an annotation class describing the context-aware configuration):</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
+public class SingleConfigModel {
+
+    @ContextAwareConfiguration
+    private SingleConfig config;
+
+}
+</code></pre>
+<p>Example for injecting a configuration list (<code>ListConfig</code> is an annotation class configured as context-aware configuration list):</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
+public class ListConfigModel implements ListConfigGetter&lt;ListConfig&gt; {
+
+    @ContextAwareConfiguration
+    private List&lt;ListConfig&gt; configList;
+}
+</code></pre>
+<p>For more examples, see <a href="https://github.com/apache/sling-org-apache-sling-models-caconfig/tree/master/src/test/java/org/apache/sling/models/caconfig/example/model">example models from unit tests</a>.</p>
 <h2><a href="#custom-annotations" id="custom-annotations">Custom Annotations</a></h2>
 <p>To create a custom annotation, implement the <code>org.apache.sling.models.spi.injectorspecific.StaticInjectAnnotationProcessorFactory</code> interface. This interface may be implemented by the same class as implements an injector, but this is not strictly necessary. Please refer to the <a href="https://github.com/apache/sling-org-apache-sling-models-impl/tree/master/src/main/java/org/apache/sling/models/impl/injectors">injectors in Git</a> for examples.</p>
 <h1><a href="#specifying-an-alternate-adapter-class-since-110" id="specifying-an-alternate-adapter-class-since-110">Specifying an Alternate Adapter Class (since 1.1.0)</a></h1>
@@ -667,7 +696,7 @@ public class CachableModelClass {
                             content/documentation/bundles/models.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">paul-bjorkstrand</span> on <span class="comment">2021-12-15</span>
+                        Last modified by <span class="author">Stefan Seifert</span> on <span class="comment">2022-01-03</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
