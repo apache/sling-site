@@ -543,7 +543,7 @@ Example for injecting a configuration list (`ListConfig` is an annotation class 
 
     ::java
     @Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
-    public class ListConfigModel implements ListConfigGetter<ListConfig> {
+    public class ListConfigModel {
 
         @ContextAwareConfiguration
         private List<ListConfig> configList;
