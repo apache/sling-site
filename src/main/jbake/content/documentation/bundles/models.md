@@ -479,9 +479,11 @@ Value Map          | `valuemap`              | 2000                | 1.0.0      
 Child Resources    | `child-resources`       | 3000                | 1.0.0                                    | Gets a child resource by name. | `Resource` objects | no | none | if a parameterized type `List` or `Collection` is passed, a `List<Resource>` is returned (the contents of which may be adapted to the target type) filled with all child resources of the resource looked up by the given name.
 Request Attributes | `request-attributes`    | 4000                | 1.0.0                                    | Get a request attribute by name. | `ServletRequest` objects | no | no conversion is done | If a parameterized type is passed, the request attribute must be of a compatible type of the parameterized type.
 OSGi Services      | `osgi-services`         | 5000                | 1.0.0                                    | Lookup services based on class name. Since Sling Models Impl 1.2.8 ([SLING-5664](https://issues.apache.org/jira/browse/SLING-5664)) the service with the highest service ranking is returned. In case multiple services are returned, they are ordered descending by their service ranking (i.e. the one with the highest ranking first). | Any object | yes | yes | Parameterized `List` and `Collection` injection points are injected by getting an array of the services and creating an unmodifiable `List` from the array.
+Context-Aware Configuration | `caconfig`     | 6000                |                                          | Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration). | Any object | yes | yes | If a parameterized type `List` or `Collection` is used, a configuration collection is looked up.
 Resource Path      | `resource-path`         | 2500                | 1.1.0                                    | Injects one or multiple resources. The resource paths are either given by `@Path` annotations, the element `path` or `paths` of the annotation `@ResourcePath` or by paths given through a resource property being referenced by either `@Named` or element `name` of the annotation `@ResourcePath`. | `Resource` or `SlingHttpServletRequest` objects | yes | yes | none
 Self               | `self`                  | `Integer.MAX_VALUE` | 1.1.0                                    | Injects the adaptable object itself (if the class of the field matches or is a supertype). If the @Self annotation is present it is tried to adapt the adaptable to the field type.  | Any object | yes | none | none
 Sling Object       | `sling-object`          | `Integer.MAX_VALUE` | 1.1.0                                    | Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper. This works only if the adaptable can get the according information, i.e. all objects are available via `SlingHttpServletRequest` while `ResourceResolver` can only resolve the `ResourceResolver` object and nothing else. A discussion around this limitation can be found at [SLING-4083](https://issues.apache.org/jira/browse/SLING-4083). Also `Resource`s can only be injected if the according injector-specific annotation is used (`@SlingObject`). | `Resource`, `ResourceResolver` or `SlingHttpServletRequest` objects (not all objects can be resolved by all adaptables).  | yes | none | none
+
 
 # Injector-specific Annotations
 
@@ -504,6 +506,7 @@ Annotation          | Supported Optional Elements    | Injector | Description
 `@RequestAttribute` | `injectionStrategy`, `name` and `via`   | `request-attributes` | Injects a request attribute by name. If `name` is not set the name is derived from the method/field name.
 `@ResourcePath`     | `injectionStrategy`, `path`, and `name` | `resource-path` | Injects a resource either by path or by reading a property with the given name.
 `@OSGiService`      | `injectionStrategy`, `filter`           | `osgi-services` | Injects an OSGi service by type. The `filter` can be used give an OSGi service filter.
+`@ContextAwareConfiguration` | `injectionStrategy`, `name`    | `caconfig` | Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration).
 `@Self`             | `injectionStrategy`                     | `self` | Injects the adaptable itself. If the field type does not match with the adaptable it is tried to adapt the adaptable to the requested type.
 `@SlingObject`      | `injectionStrategy`                     | `sling-object` |Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper
 
@@ -513,6 +516,41 @@ Those annotations replace `@Via`, `@Filter`, `@Named`, `@Optional`, `@Required`,
 Instead of using the deprecated annotation element `optional` you should rather use `injectionStrategy` with the values `DEFAULT`, `OPTIONAL` or `REQUIRED` (see also [SLING-4155](https://issues.apache.org/jira/browse/SLING-4155)).
 `@Default` may still be used in addition to the injector-specific annotation to set default values. All elements given above are optional.
  
+## Context-Aware Configuration
+
+Since [SLING-7256](https://issues.apache.org/jira/browse/SLING-7256) it is possible to inject 
+[Context-Aware Configuration](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html) directly in Sling Models.
+
+To use it, the following additional bundles are required (with given minimal version):
+
+* Apache Sling Context-Aware Configuration Implementation 1.6.0 (`org.apache.sling.caconfig.impl`)
+* Apache Sling Context-Aware Configuration SPI 1.4.0 (`org.apache.sling.caconfig.spi`)
+* Apache Sling Context-Aware Configuration API 1.1.2 (`org.apache.sling.caconfig.api`)
+* Apache Sling Models Context-Aware Configuration 1.0.0 (`org.apache.sling.models.caconfig`) - this bundle contains both the `@ContextAwareConfiguration` injector annotation and the injector implementation.
+
+Usage example for injecting a single Context-Aware configuration looked up in context of the current resource (`SingleConfig` is an annotation class describing the context-aware configuration):
+
+    ::java
+    @Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
+    public class SingleConfigModel {
+
+        @ContextAwareConfiguration
+        private SingleConfig config;
+
+    }
+
+Example for injecting a configuration list (`ListConfig` is an annotation class configured as context-aware configuration list):
+
+    ::java
+    @Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
+    public class ListConfigModel implements ListConfigGetter<ListConfig> {
+
+        @ContextAwareConfiguration
+        private List<ListConfig> configList;
+    }
+
+For more examples, see [example models from unit tests](https://github.com/apache/sling-org-apache-sling-models-caconfig/tree/master/src/test/java/org/apache/sling/models/caconfig/example/model).
+
 ## Custom Annotations
 
 To create a custom annotation, implement the `org.apache.sling.models.spi.injectorspecific.StaticInjectAnnotationProcessorFactory` interface.
