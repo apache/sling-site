@@ -534,7 +534,7 @@ public class SingleConfigModel {
 </code></pre>
 <p>Example for injecting a configuration list (<code>ListConfig</code> is an annotation class configured as context-aware configuration list):</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
-public class ListConfigModel implements ListConfigGetter&lt;ListConfig&gt; {
+public class ListConfigModel {
 
     @ContextAwareConfiguration
     private List&lt;ListConfig&gt; configList;
