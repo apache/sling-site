@@ -1,4 +1,4 @@
-title=Scheduler Service (commons scheduler)		
+title=Scheduler Service (commons scheduler)
 type=page
 status=published
 tags=scheduling
@@ -10,19 +10,19 @@ The scheduler is a service for scheduling other services/jobs (it uses the [open
 The notion of Job used in this context is a different one than the one used for <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a>. The main difference is that a scheduler's job is not persisted.
 </div>
 
-## Examples of jobs that are scheduled by leveraging the whiteboard pattern 
+## Examples of jobs that are scheduled by leveraging the whiteboard pattern
 
 The following examples show you how to define and schedule a job by leveraging the whiteboard pattern.
 
 ### Scheduling with a cron expression
 
-The cron expression format is described in the [Quartz Cron Documentation](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/tutorial-lesson-06.html) and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute). 
+The cron expression format is described in the [Quartz Cron Documentation](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/tutorial-lesson-06.html) and requires either 6 or 7 fields separated by white space. The first field always indicates the second (not the minute).
 
 The following job is executed every minute by setting *scheduler.expression* to the cron expression `0 * * * * ?`:
 
 
     package sling.docu.examples;
-    
+
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
     import org.apache.felix.scr.annotations.Component;
@@ -33,10 +33,10 @@ The following job is executed every minute by setting *scheduler.expression* to 
     @Service(value = Runnable.class)
     @Property( name = "scheduler.expression", value = "0 * * * * ?")
     public class ScheduledCronJob implements Runnable {
-    
+
     	/** Default log. */
         protected final Logger log = LoggerFactory.getLogger(this.getClass());
-        
+
         public void run() {
         	log.info("Executing a cron job (job#1) through the whiteboard pattern");
         }
@@ -44,27 +44,27 @@ The following job is executed every minute by setting *scheduler.expression* to 
     }
 
 
-### Scheduling at periodic times 
+### Scheduling at periodic times
 
 The following job is executed every ten seconds by setting *scheduler.period* to *10*:
 
 
     package sling.docu.examples;
-    
+
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
     import org.apache.felix.scr.annotations.Component;
     import org.apache.felix.scr.annotations.Service;
     import org.apache.felix.scr.annotations.Property;
-    
+
     @Component
     @Service(value = Runnable.class)
     @Property( name = "scheduler.period", longValue = 10)
     public class ScheduledPeriodicJob implements Runnable {
-    
+
     	/** Default log. */
         protected final Logger log = LoggerFactory.getLogger(this.getClass());
-        
+
         public void run() {
         	log.info("Executing a perodic job (job#2) through the whiteboard pattern");
         }
@@ -82,7 +82,7 @@ By default, jobs can be concurrently executed. To prevent this, set the *schedul
 ### Scheduling the job just once in a cluster
 
 If the same code/same services is executed on multiple nodes within a cluster, the same job might be scheduled on each instance. If this is not desired, the job can either be bound to the leader of the topology or a single instance (which one this is, is not further defined):
-  
+
     @Property(name="scheduler.runOn", value="LEADER");
 
 or
@@ -150,34 +150,34 @@ The code implementing a service that simultaneously executes the job based on 3 
 
 
     package sling.docu.examples;
-    
+
     import java.io.Serializable;
     import java.util.Date;
     import java.util.HashMap;
     import java.util.Map;
-    
+
     import org.apache.sling.commons.scheduler.Scheduler;
     import org.osgi.service.component.ComponentContext;
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
     import org.apache.felix.scr.annotations.Component;
     import org.apache.felix.scr.annotations.Reference;
-    
+
     /**
      *  This service executes scheduled jobs
-     *  
+     *
      */
     @Component
     public class HelloWorldScheduledService {
-    	
+
         /** Default log. */
         protected final Logger log = LoggerFactory.getLogger(this.getClass());
-        
+
         /** The scheduler for rescheduling jobs. */
         @Reference
         private Scheduler scheduler;
-        
-    
+
+
         protected void activate(ComponentContext componentContext) throws Exception {
             //case 1: with addJob() method: executes the job every minute
         	String schedulingExpression = "0 * * * * ?";
@@ -194,7 +194,7 @@ The code implementing a service that simultaneously executes the job based on 3 
             } catch (Exception e) {
                 job1.run();
             }
-        	
+
             //case 2: with addPeriodicJob(): executes the job every 3 minutes
             String jobName2 = "case2";
         	long period = 180;
@@ -209,7 +209,7 @@ The code implementing a service that simultaneously executes the job based on 3 
             } catch (Exception e) {
                 job2.run();
             }
-    
+
             //case 3: with fireJobAt(): executes the job at a specific date (date of deployment + delay of 30 seconds)
             String jobName3 = "case3";
         	final long delay = 30*1000;
@@ -227,13 +227,29 @@ The code implementing a service that simultaneously executes the job based on 3 
                 job3.run();
             }
         }
-    
+
         protected void deactivate(ComponentContext componentContext) {
             log.info("Deactivated, goodbye!");
         }
-    
+
     }
 
+## Using dedicated thread pools
+
+By default all scheduled jobs use the default thread pool of Sling (as provided by [Apache Sling Commons Thread Pool](/documentation/bundles/apache-sling-commons-thread-pool.html)). But it is possible to define that a different thread pool to be used. This requires 2 steps: The thread pool must be explicitly allowed to be used and then the job must be configured accordingly. An optional 3rd step is to configure the thread pool.
+
+### Allow a thread pool to be used by the scheduler
+You need to add the name of the threadpool to the OSGI property ```allowedPoolNames``` of the "Apache Sling Scheduler" service (pid: ```	org.apache.sling.commons.scheduler.impl.QuartzScheduler```).
 
 
+### Specify the name of the thread pool when scheduling a job
+The way how you configure the thread pool to use depends on the way you schedule the job.
 
+If you use the whiteboard pattern, just add an additional property to the definition:
+
+    @Property(name=Scheduler.PROPERTY_SCHEDULER_THREAD_POOL,value="my-thread-pool")
+
+If you use the scheduler API, you can specify the thread pool name via [SchedulingOptions.threadPoolName()](https://sling.apache.org/apidocs/sling11/org/apache/sling/commons/scheduler/ScheduleOptions.html#threadPoolName-java.lang.String-).
+
+### Configure the thread pool
+By default the Scheduler will create [Thread Pools](/documentation/bundles/apache-sling-commons-thread-pool.html) with default settings (5 threads at maximum). But you can also configure them explicitly and adjust them to your needs; for this you need to instantiate the "Apache Sling Thread Pool Configuration" service factory and provide the name of the threadpool as value of the OSGI property ```name```.
