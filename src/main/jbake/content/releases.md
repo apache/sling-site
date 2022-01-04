@@ -6,6 +6,11 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+
+## January 2022
+
+* Testing Clients (4th)
+
 ## December 2021
 
 * Feature Launcher Maven Plugin 0.1.2, Scripting HTL REPL 1.0.10 (21th)
