@@ -25,8 +25,9 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * File Installer 1.3.4 (29th)
 * JCR Jackrabbit User Manager 2.2.16 (18th)
 * API 2.24.0, Resource Resolver 1.8.0, Engine 2.8.0, Adapter 2.2.0, Servlets Resolver 2.9.0, Servlets Post 2.5.0, Resource Access Security 1.1.0, JCR Resource 3.1.0, JCR Resource Security 1.1.0, Scripting Sightly Engine 1.4.14-1.4.0 (12th)
-* Commons Messaging 1.0.2, Commons Content Analyzing 1.0.0, Commons Content Processing 1.0.0 (1st)
+* App CMS 1.1.0 (10th)
 * i18n 2.5.18 (6th)
+* Commons Messaging 1.0.2, Commons Content Analyzing 1.0.0, Commons Content Processing 1.0.0 (1st)
 
 ## October 2021
 
