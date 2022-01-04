@@ -225,7 +225,7 @@ If the vote passes:
 1. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl).
 1. If you think that this release is worth a news entry, update the website at  [news](/news.html)
 
-For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
+For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
 
 ### Quick update of artifacts in dist
 
