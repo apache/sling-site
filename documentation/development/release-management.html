@@ -320,7 +320,7 @@ promote the artifacts to the central Maven repository.
 <li>Update the download page on the website at <a href="/downloads.cgi">downloads</a> to point to the new release. For this you need to modify the <a href="https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl">according Groovy Template</a>.</li>
 <li>If you think that this release is worth a news entry, update the website at  <a href="/news.html">news</a></li>
 </ol>
-<p>For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.</p>
+<p>For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.</p>
 <h3><a href="#quick-update-of-artifacts-in-dist" id="quick-update-of-artifacts-in-dist">Quick update of artifacts in dist</a></h3>
 <p>It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow, by using <code>svn import</code> and <code>svn delete</code> on the remote SVN repository.</p>
 <p>Assuming that we are releasing <code>org.apache.sling.engine 2.6.22</code> and the old version artifact names start with <code>org.apache.sling.engine-2.6.20</code>, we can run the following commands</p>
@@ -543,7 +543,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-09-21</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2022-01-04</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
