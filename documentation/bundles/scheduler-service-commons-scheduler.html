@@ -136,7 +136,7 @@ public class ScheduledCronJob implements Runnable {
 
 	/** Default log. */
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-    
+
     public void run() {
     	log.info(&quot;Executing a cron job (job#1) through the whiteboard pattern&quot;);
     }
@@ -160,7 +160,7 @@ public class ScheduledPeriodicJob implements Runnable {
 
 	/** Default log. */
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-    
+
     public void run() {
     	log.info(&quot;Executing a perodic job (job#2) through the whiteboard pattern&quot;);
     }
@@ -227,18 +227,18 @@ import org.apache.felix.scr.annotations.Reference;
 
 /**
  *  This service executes scheduled jobs
- *  
+ *
  */
 @Component
 public class HelloWorldScheduledService {
-	
+
     /** Default log. */
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-    
+
     /** The scheduler for rescheduling jobs. */
     @Reference
     private Scheduler scheduler;
-    
+
 
     protected void activate(ComponentContext componentContext) throws Exception {
         //case 1: with addJob() method: executes the job every minute
@@ -256,7 +256,7 @@ public class HelloWorldScheduledService {
         } catch (Exception e) {
             job1.run();
         }
-    	
+
         //case 2: with addPeriodicJob(): executes the job every 3 minutes
         String jobName2 = &quot;case2&quot;;
     	long period = 180;
@@ -296,6 +296,18 @@ public class HelloWorldScheduledService {
 
 }
 </code></pre>
+<h2><a href="#using-dedicated-thread-pools" id="using-dedicated-thread-pools">Using dedicated thread pools</a></h2>
+<p>By default all scheduled jobs use the default thread pool of Sling (as provided by <a href="/documentation/bundles/apache-sling-commons-thread-pool.html">Apache Sling Commons Thread Pool</a>). But it is possible to define that a different thread pool to be used. This requires 2 steps: The thread pool must be explicitly allowed to be used and then the job must be configured accordingly. An optional 3rd step is to configure the thread pool.</p>
+<h3><a href="#allow-a-thread-pool-to-be-used-by-the-scheduler" id="allow-a-thread-pool-to-be-used-by-the-scheduler">Allow a thread pool to be used by the scheduler</a></h3>
+<p>You need to add the name of the threadpool to the OSGI property <code>allowedPoolNames</code> of the &quot;Apache Sling Scheduler&quot; service (pid: <code>org.apache.sling.commons.scheduler.impl.QuartzScheduler</code>).</p>
+<h3><a href="#specify-the-name-of-the-thread-pool-when-scheduling-a-job" id="specify-the-name-of-the-thread-pool-when-scheduling-a-job">Specify the name of the thread pool when scheduling a job</a></h3>
+<p>The way how you configure the thread pool to use depends on the way you schedule the job.</p>
+<p>If you use the whiteboard pattern, just add an additional property to the definition:</p>
+<pre><code>@Property(name=Scheduler.PROPERTY_SCHEDULER_THREAD_POOL,value=&quot;my-thread-pool&quot;)
+</code></pre>
+<p>If you use the scheduler API, you can specify the thread pool name via <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/commons/scheduler/ScheduleOptions.html#threadPoolName-java.lang.String-">SchedulingOptions.threadPoolName()</a>.</p>
+<h3><a href="#configure-the-thread-pool" id="configure-the-thread-pool">Configure the thread pool</a></h3>
+<p>By default the Scheduler will create <a href="/documentation/bundles/apache-sling-commons-thread-pool.html">Thread Pools</a> with default settings (5 threads at maximum). But you can also configure them explicitly and adjust them to your needs; for this you need to instantiate the &quot;Apache Sling Thread Pool Configuration&quot; service factory and provide the name of the threadpool as value of the OSGI property <code>name</code>.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -307,7 +319,7 @@ public class HelloWorldScheduledService {
                             content/documentation/bundles/scheduler-service-commons-scheduler.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-11-17</span>
+                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2022-01-04</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
