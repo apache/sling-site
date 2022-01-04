@@ -9,7 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2022
 
-* Testing Clients (4th)
+* Testing Clients 3.0.6 (4th)
 
 ## December 2021
 
