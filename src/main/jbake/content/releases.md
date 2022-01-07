@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2022
 
+* Context-Aware Configuration API 1.3.0, Context-Aware Configuration SPI 1.4.0, Context-Aware Configuration Impl 1.6.0, Models Context-Aware Configuration 1.0.0, Context-Aware Configuration Mock Plugin 1.4.0 (7th)
 * Testing Clients 3.0.6 (4th)
 
 ## December 2021
