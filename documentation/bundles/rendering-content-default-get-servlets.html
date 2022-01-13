@@ -143,6 +143,7 @@ page needs more work.
 <p>That XML rendering currently uses the JCR &quot;document view&quot; export functionality directly, so it only supports rendering resources that are backed by JCR nodes.</p>
 <h2><a href="#streamrendererservlet" id="streamrendererservlet">StreamRendererServlet</a></h2>
 <p>Whenever the request carries the extension <code>.res</code> or no extension at all, the resource's input stream is spooled to the servlet response (leveraging <code>Resource.adaptTo(InputStream.class)</code>). This servlet supports conditional requests (<a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>) based on the last-modified response header by evaluating the resource's modification date from <code>Resource.getResourceMetadata().getModificationTime()</code>  and range requests (<a href="https://tools.ietf.org/html/rfc7233">RFC 7233</a>).</p>
+<p>In case the underlying resource's InputStream is an <a href="https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/external/ExternalizableInputStream.java">ExternalizableInputStream</a> instead a redirect towards its URI is triggered (<a href="https://issues.apache.org/jira/browse/SLING-7140">SLING-7140</a>).</p>
 <h2><a href="#redirectservlet" id="redirectservlet">RedirectServlet</a></h2>
 <p>The <code>RedirectServlet</code> handles the <code>sling:redirect</code> resource type, using the <code>sling:target</code> property of the resource to define the redirect target, and the <code>sling:status</code> property to define the HTTP status to use (default is 302).</p>
 <p>This is not to be confused with the <code>sling:redirect</code> property used under <code>/etc/map</code>, which is described in <a href="/documentation/the-sling-engine/mappings-for-resource-resolution.html">Mappings for Resource Resolution</a></p>
@@ -262,7 +263,7 @@ request
                             content/documentation/bundles/rendering-content-default-get-servlets.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2020-01-08</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-01-13</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
