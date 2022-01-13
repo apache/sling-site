@@ -64,6 +64,8 @@ rendering resources that are backed by JCR nodes.
 
 Whenever the request carries the extension `.res` or no extension at all, the resource's input stream is spooled to the servlet response (leveraging `Resource.adaptTo(InputStream.class)`). This servlet supports conditional requests ([RFC 7232](https://tools.ietf.org/html/rfc7232)) based on the last-modified response header by evaluating the resource's modification date from `Resource.getResourceMetadata().getModificationTime()`  and range requests ([RFC 7233](https://tools.ietf.org/html/rfc7233)).
 
+In case the underlying resource's InputStream is an [ExternalizableInputStream](https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/external/ExternalizableInputStream.java) instead a redirect towards its URI is triggered ([SLING-7140](https://issues.apache.org/jira/browse/SLING-7140)).
+
 ## RedirectServlet
 
 The `RedirectServlet` handles the `sling:redirect` resource type, using the `sling:target` property of the
