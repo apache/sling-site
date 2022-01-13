@@ -218,8 +218,8 @@
 <tbody>
 <tr><td> <code>user.jcr.session</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_SESSION"><code>JcrResourceConstants.AUTHENTICATION_INFO_SESSION</code></a> </td><td> <code>javax.jcr.Session</code> </td><td> The session which is used for the underlying repository access. When calling <code>close()</code> on the returned <code>ResourceResolver</code> the session will not(!) be closed. </td></tr>
 <tr><td> <code>user.jcr.credentials</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_CREDENTIALS"><code>JcrResourceConstants.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td><td> <code>javax.jcr.Credentials</code> </td><td> The credentials object from which to create the new underlying JCR session</td></tr>
-<tr><td> <code>user.name</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER"><code>ResourceResolverFcatory.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td><td> String </td><td> Optionally used with <code>user.password</code> to create simple credentials from which the Session is being created.</td></tr>
-<tr><td> <code>user.impersonation</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION"><code>ResourceResolverFcatory.USER_IMPERSONATION</code></a> </td><td> String </td><td> User ID which should be used for impersonation via <code>javax.jcr.Session.impersonate(...)</code>. Must be combined with one of the other authentication info keys.</td></tr>
+<tr><td> <code>user.name</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER"><code>ResourceResolverFactory.AUTHENTICATION_INFO_CREDENTIALS</code></a> </td><td> String </td><td> Optionally used with <code>user.password</code> to create simple credentials from which the Session is being created.</td></tr>
+<tr><td> <code>user.impersonation</code> </td><td> <a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION"><code>ResourceResolverFactory.USER_IMPERSONATION</code></a> </td><td> String </td><td> User ID which should be used for impersonation via <code>javax.jcr.Session.impersonate(...)</code>. Must be combined with one of the other authentication info keys.</td></tr>
 </tbody>
 </table>
 <p>There is support for the following <a href="url-decomposition.html">path parameters</a>:</p>
@@ -305,7 +305,7 @@
                             content/documentation/the-sling-engine/resources.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2021-12-14</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-01-13</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
