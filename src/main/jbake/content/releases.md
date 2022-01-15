@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2022
 
+* Commons Log 5.4.0 (15th)
 * XSS Protection API 2.2.18, Dynamic Include 3.3.0 (14th)
 * Context-Aware Configuration API 1.3.0, Context-Aware Configuration SPI 1.4.0, Context-Aware Configuration Impl 1.6.0, Models Context-Aware Configuration 1.0.0, Context-Aware Configuration Mock Plugin 1.4.0 (7th)
 * Testing Clients 3.0.6 (4th)
@@ -18,6 +19,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 * Feature Launcher Maven Plugin 0.1.2, Scripting HTL REPL 1.0.10 (21th)
 * Content Distribution Journal Core 0.1.22, Content Distribution Core 0.4.8 (21st)
+* Commons Log 5.3.0 (20th)
 * Context-Aware Configuration Impl 1.5.2, JCR ContentLoader 2.5.0 (20th)
 * Models Jackson Exporter 1.1.2 (18th)
 * Commons Log 5.2.0, Starter Content 1.0.10 (14th)
