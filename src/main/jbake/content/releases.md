@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2022
 
+* Feature Analyser 1.6.0, Feaute Extension Apiregion 1.5.0, Sling Feature Maven Plugin 1.6.0 (27th)
 * JCR Resource 3.2.0, Parent and Bundle Parent 47 (22nd)
 * ResourceResolver 1.8.2 (19th)
 * Feature Model 1.2.30, Security 1.1.22, Sling Feature Maven Plugin 1.5.18, Feature Launcher 1.2.0, Feature Extension Apiregion 1.4.4, Commons Log 5.4.0 (15th)
