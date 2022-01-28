@@ -16,8 +16,7 @@ Being an Apache project, Apache Sling adheres to the Apache Software Foundation'
 
 Before contributing to the project, please make sure you understand the
 [requirements and implications of contributing to the Apache Software Foundation](https://www.apache.org/foundation/how-it-works/legal.html).
-An [Apache iCLA](https://www.apache.org/licenses/icla.pdf) is welcome if you start contributing regularly, and required if you later become
-a committer.
+An [Apache iCLA](https://www.apache.org/licenses/icla.pdf) is welcome if you start contributing regularly, and required if you later become a committer.
 
 ## How to contribute
 
@@ -34,7 +33,7 @@ If pull requests are familiar to you, the next step is to open one against [one 
 
 More details about how the project is structured in terms of repositories can be read on the [Getting and Building Sling](/documentation/development/getting-and-building-sling.html) page.
 
-If you want to get involved into Sling development, we marked a number of issues in Jira with the label ["good-first-issue"](https://issues.apache.org/jira/browse/SLING-5767?jql=status%20%3D%20Open%20AND%20labels%20%3D%20easy-first-issue); we consider them a good starting point into Sling development. Just assign the ticket to you and create a pull request to address it. We provide you feedback and help you to get your contribution into Sling.
+If you want to get involved into Sling development, we marked a number of issues in JIRA with the label ["good-first-issue"](https://issues.apache.org/jira/browse/SLING-5767?jql=project%20%3D%20SLING%20AND%20status%20%3D%20Open%20AND%20labels%20in%20(easy-first-issue%2C%20good-first-issue)); we consider them a good starting point into Sling development. Just assign the ticket to you and create a pull request to address it. We provide you feedback and help you to get your contribution into Sling.
 
 For relatively large contributions (e.g. new modules), we recommend one of the following two approaches:
 
