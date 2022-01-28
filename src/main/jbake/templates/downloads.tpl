@@ -88,7 +88,7 @@ def bundles=[
   "Commons Log Service|org.apache.sling.commons.logservice|1.1.0|Y|jar",
   "Commons Messaging|org.apache.sling.commons.messaging|1.0.2|Y|jar",
   "Commons Messaging Mail|org.apache.sling.commons.messaging.mail|2.0.0|Y|jar",
-  "Commons Metrics|org.apache.sling.commons.metrics|1.2.8|Y|jar",
+  "Commons Metrics|org.apache.sling.commons.metrics|1.2.10|Y|jar",
   "Commons RRD4J metrics reporter|org.apache.sling.commons.metrics-rrd4j|1.0.4|Y|jar",
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.2.2|Y|jar",
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.2|Y|jar",
@@ -378,7 +378,7 @@ def sectionHeader(String title) {
   h3(title)
   div(class:"footnoteLink") {
     yield("Not all sha* links work for source zip archives,  (")
-    a(href:"https://issues.apache.org/jira/browse/SLING-7534") { 
+    a(href:"https://issues.apache.org/jira/browse/SLING-7534") {
       yield "SLING-7534"
     }
     yield("), sha512 is preferred if available")

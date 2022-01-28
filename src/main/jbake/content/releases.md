@@ -9,7 +9,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2022
 
-* Feature Analyser 1.6.0, Feaute Extension Apiregion 1.5.0, Sling Feature Maven Plugin 1.6.0 (27th)
+* Commons Metrics 1.2.10 (28th)
+* Feature Analyser 1.6.0, Feauture Extension Apiregion 1.5.0, Sling Feature Maven Plugin 1.6.0 (27th)
 * JCR Resource 3.2.0, Parent and Bundle Parent 47 (22nd)
 * ResourceResolver 1.8.2 (19th)
 * Feature Model 1.2.30, Security 1.1.22, Sling Feature Maven Plugin 1.5.18, Feature Launcher 1.2.0, Feature Extension Apiregion 1.4.4, Commons Log 5.4.0 (15th)
@@ -160,7 +161,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Scripting EL Api 1.0.4 (27th)
 * Adapter Annotations 2.0.0 (16th)
 * Settings 1.4.2 (15th)
-* GraphQL Core 0.0.8 (9th)      
+* GraphQL Core 0.0.8 (9th)
 * XSS Protection API 2.2.8 (9th)
 * Sling JCR ContentLoader 2.4.0 (6th)
 * Sling Kickstart Launcher 0.0.12 (3rd)
@@ -182,10 +183,10 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2020
 
-* Scripting Core 2.3.4, Scripting HTL Compiler 1.2.8-1.4.0, Scripting HTL Java Compiler 1.2.2-1.4.0, Scripting HTL Engine 1.4.4-1.4.0, Scripting HTL Runtime 1.2.4-1.4.0, HTL Maven Plugin 2.0.2-1.4.0 (29th) 
+* Scripting Core 2.3.4, Scripting HTL Compiler 1.2.8-1.4.0, Scripting HTL Java Compiler 1.2.2-1.4.0, Scripting HTL Engine 1.4.4-1.4.0, Scripting HTL Runtime 1.2.4-1.4.0, HTL Maven Plugin 2.0.2-1.4.0 (29th)
 * Server Setup Tools 1.0.2, Testing Clients 2.0.4 (27th)
-* API 2.23.0 (26th) 
-* Kickstart Project 0.0.8, Kickstart Maven Plugin 0.0.8 (23rd) 
+* API 2.23.0 (26th)
+* Kickstart Project 0.0.8, Kickstart Maven Plugin 0.0.8 (23rd)
 * JCR Oak Server 1.2.8 (14th)
 * Testing Sling Mock 2.6.2, OSGi Feature Maven Plugin 1.3.16, Feature Model Launcher 1.1.6, Feature Model 1.2.8, Content-Package to Feature Model Converter 1.0.14 (14th)
 * Feature Model Analyser 1.3.8 (8th)
@@ -223,7 +224,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## May 2020
 
 * Installer Factory Feature 0.4.0 (28th)
-* Sling Project Archetype 1.0.4, Sling Kickstart Project 0.0.2, Sling Kickstart Maven Plugin 0.0.2 (18th) 
+* Sling Project Archetype 1.0.4, Sling Kickstart Project 0.0.2, Sling Kickstart Maven Plugin 0.0.2 (18th)
 * Parent 39, Bundle Parent 39, JAR Resource Bundle 1.0.2 (14th)
 * Archetype Parent 6 (12th)
 * Slingfeature Maven Plugin 1.3.0, Installer Packages Factory 1.0.4, Form Based Authentication 1.0.20 (11th)
