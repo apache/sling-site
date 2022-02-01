@@ -254,7 +254,7 @@ def bundles=[
   "Servlets Post|org.apache.sling.servlets.post|2.5.0|Y|jar",
   "Servlets Resolver|org.apache.sling.servlets.resolver|2.9.0|Y|jar",
   "Settings|org.apache.sling.settings|1.4.2|Y|jar",
-  "Sitemap|org.apache.sling.sitemap|1.0.4|Y|jar",
+  "Sitemap|org.apache.sling.sitemap|1.0.6|Y|jar",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0|Y|jar",
   "Sling Query|org.apache.sling.query|4.0.2|Y|jar",
   "Starter Content|org.apache.sling.starter.content|1.0.10|Y|jar",

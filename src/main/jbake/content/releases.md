@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## February 2022
+
+* Sitemap 1.0.6 (1st)
 
 ## January 2022
 
