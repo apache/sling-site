@@ -135,8 +135,8 @@
 <p>When dealing with the resource resolution we have a number of properties influencing the process:</p>
 <ul>
 <li><code>sling:match</code> – This property when set on a resource in the <code>/etc/map</code> tree (see below) defines a partial regular expression which is used instead of the resource's name to match the incoming request. This property is only needed if the regular expression includes characters which are not valid JCR name characters. The list of invalid characters for JCR names is: <code>/, :, [, ], *, ', &quot;, \, |</code> and any whitespace except blank space. In addition a name without a name space may not be <code>.</code> or <code>..</code> and a blank space is only allowed inside the name.</li>
-<li><code>sling:redirect</code> – This property when set on a resource in the <code>/etc/map</code> tree (see below) causes a redirect response to be sent to the client, which causes the client to send in a new request with the modified location. The value of this property is applied to the actual request and sent back as the value of <code>Location</code> response header.</li>
-<li><code>sling:status</code> – This property defines the HTTP status code sent to the client with the <code>sling:redirect</code> response. If this property is not set, it defaults to 302 (Found). Other status codes supported are 300 (Multiple Choices), 301 (Moved Permanently), 303 (See Other), and 307 (Temporary Redirect).</li>
+<li><code>sling:redirect</code> – This property when set on a resource in the <code>/etc/map</code> tree (see below) causes a redirect response to be sent to the client, which causes the client to send in a new request with the modified location. The value of this property is applied to the actual request and sent back as the value of <code>Location</code> response header field.</li>
+<li><code>sling:status</code> – This property defines the HTTP status code sent to the client with the <code>sling:redirect</code> response. If this property is not set, it defaults to 302 (Found). Other status codes supported are 300 (Multiple Choices), 301 (Moved Permanently), 303 (See Other), 307 (Temporary Redirect), and 308 (Permanent Redirect).</li>
 <li><code>sling:internalRedirect</code> – This property when set on a resource in the <code>/etc/map</code> tree (see below) causes the current path to be modified internally to continue with resource resolution. This is a multi-value property, i.e. multiple paths can be given here, which are tried one after another until one resolved to a resource.</li>
 </ul>
 <p>Root Level Mappings apply to the request at large including the scheme, host, port and uri path. To accomplish this a path is constructed from the request like this <code>{scheme}/{host}.{port}/{uri_path}</code>. This string is then matched against mapping entries below <code>/etc/map</code> which are structured in the content analogously. The longest matching entry string is used and the replacement, that is the redirection property, is applied.</p>
@@ -315,8 +315,8 @@ for (String segment: segments) {
 <p>While an alias can provide a variation for a resource name, a vanity path can provide an alternative path for a resource. The following properties can be set on a resource:</p>
 <ul>
 <li><code>sling:vanityPath</code> – This property when set on any resource defines an alternative path to address the resource.</li>
-<li><code>sling:redirect</code> – This boolean property when set to <code>true</code> on a resource with a vanity path causes a redirect response to be sent to the client, which causes the client to send in a new request with the modified location. The value of the <code>sling:vanitaPath</code> property is applied to the actual request and sent back as the value of the <code>Location</code> response header.</li>
-<li><code>sling:redirectStatus</code> – This property defines the HTTP status code sent to the client with the <code>sling:redirect</code> response. If this property is not set, it defaults to 302 (Found). Other status codes supported are 300 (Multiple Choices), 301 (Moved Permanently), 303 (See Other), and 307 (Temporary Redirect).</li>
+<li><code>sling:redirect</code> – This boolean property when set to <code>true</code> on a resource with a vanity path causes a redirect response to be sent to the client, which causes the client to send in a new request with the modified location. The value of the <code>sling:vanityPath</code> property is applied to the actual request and sent back as the value of the <code>Location</code> response header field.</li>
+<li><code>sling:redirectStatus</code> – This property defines the HTTP status code sent to the client with the <code>sling:redirect</code> response. If this property is not set, it defaults to 302 (Found). Other status codes supported are 300 (Multiple Choices), 301 (Moved Permanently), 303 (See Other), 307 (Temporary Redirect), and 308 (Permanent Redirect).</li>
 <li><code>sling:vanityOrder</code> – It might happen that several resources in the resource tree specify the same vanity path. In that case the one with the highest order is used. This property can be used to set such an order.</li>
 </ul>
 <h3><a href="#rebuilding-the-vanity-bloom-filter" id="rebuilding-the-vanity-bloom-filter">Rebuilding The Vanity Bloom Filter</a></h3>
@@ -363,7 +363,7 @@ for (String segment: segments) {
 <p>To ease with the definition of redirects and aliases when using nodes in a JCR repository, the following node types are defined:</p>
 <ul>
 <li><code>sling:ResourceAlias</code> – This mixin node type defines the <code>sling:alias</code> property and may be attached to any node, which does not otherwise allow setting a property named <code>sling:alias</code></li>
-<li><code>sling:MappingSpec</code> – This mixin node type defines the <code>sling:match</code>, <code>sling:redirect</code>, <code>sling:status</code>, and <code>sling:internaleRedirect</code> properties to define a matching and redirection inside the <code>/etc/map</code> hierarchy.</li>
+<li><code>sling:MappingSpec</code> – This mixin node type defines the <code>sling:match</code>, <code>sling:redirect</code>, <code>sling:status</code>, and <code>sling:internalRedirect</code> properties to define a matching and redirection inside the <code>/etc/map</code> hierarchy.</li>
 <li><code>sling:Mapping</code> – Primary node type which may be used to easily construct entries in the <code>/etc/map</code> tree. The node type extends the <code>sling:MappingSpec</code> mixin node type to allow setting the required matching and redirection. In addition the <code>sling:Resource</code> mixin node type is extended to allow setting a resource type and the <code>nt:hierarchyNode</code> node type is extended to allow locating nodes of this node type below <code>nt:folder</code> nodes.</li>
 </ul>
 <p>Note, that these node types only help setting the properties. The implementation itself only cares for the properties and their values and not for any of these node types.</p>
@@ -378,7 +378,7 @@ for (String segment: segments) {
                             content/documentation/the-sling-engine/mappings-for-resource-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2021-11-15</span>
+                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2022-02-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
