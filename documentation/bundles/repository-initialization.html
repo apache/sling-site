@@ -640,6 +640,13 @@ set properties on /endkeyword
   set two to endS
 end
 
+set properties on /forcedMultiValue
+  set singleMultiValue{String[]} to &quot;single&quot;
+  set emptyMultiValue{String[]} to
+  set singleLongMultiValue{Long[]} to 1243
+  set emptyLongMultiValue{Long[]} to
+end
+
 set properties on /blankLinesInList
   set one to two
 
@@ -694,6 +701,45 @@ delete ACL on /, /var, /etc
 delete ACL on /content
 delete principal ACL for ada, amy
 delete principal ACL for adi
+
+# test-71.txt
+
+# Support quoted Group IDs
+create group &quot;Test Group&quot;
+create group &quot;Test Group With Spaces&quot; with path /thePathF
+delete group &quot;Test Group&quot;
+set ACL on /content
+    allow jcr:read for &quot;Test Group&quot;,user1
+end
+set ACL on /content
+    allow jcr:read for &quot;Test Group- Cool People&quot;,&quot;Test Group&quot;,user1
+end
+set ACL for user1,&quot;Test Group&quot;,u2
+    allow jcr:read on /content
+end
+set principal ACL for user1,&quot;Test Group&quot; (ACLOptions=mergePreserve)
+    remove * on /libs,/apps
+    allow jcr:read on /content
+end
+set ACL on /test (ACLOptions=merge)
+    remove * for user1,&quot;Test Group&quot;,user2
+end
+set properties on authorizable(bob), authorizable(&quot;Test Group&quot;)
+  set stringProp to &quot;hello, you again!&quot;
+end
+set properties on authorizable(bob)/nested, authorizable(&quot;Test Group&quot;)/nested
+  set stringProp to &quot;hello, you nested again!&quot;
+end
+add user1,&quot;Test Group 2000&quot;,user2 to group &quot;Parent Group&quot;
+remove user1,&quot;Test Group 2000&quot;,user2 from group &quot;Parent Group&quot;
+
+# Test other escaped characters 
+create group &quot;Tab	Group&quot;
+create group &quot;Untrimmed Group &quot;
+create group &quot; Really Untrimmed Group &quot;
+create group &quot;Group\With\Backslash&quot;
+create group &quot;Group
+Newline&quot;
 </code></pre>
 </section></div></div>                            
                         </div>
@@ -706,7 +752,7 @@ delete principal ACL for adi
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2021-10-01</span>
+                        Last modified by <span class="author">Dan Klco</span> on <span class="comment">2022-02-04</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
