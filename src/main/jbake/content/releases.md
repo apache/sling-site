@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2022
 
+* Repoinit Parser 1.6.12 (3rd)
 * Sitemap 1.0.6 (1st)
 
 ## January 2022
