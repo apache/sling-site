@@ -491,6 +491,14 @@
 <li><strong>org.apache.sling.jackrabbit.usermanager.PrincipalNameFilter</strong> - An implementation of this service interface allows for filtering what characters are allowed in a generated principal name</li>
 <li><strong>org.apache.sling.jackrabbit.usermanager.PrincipalNameGenerator</strong> - An implementation of this service interface allows to fully customize principal name generation</li>
 </ol>
+<h4><a href="#enabling-the-option-to-expose-nested-authorizable-property-containers-as-child-resources" id="enabling-the-option-to-expose-nested-authorizable-property-containers-as-child-resources">Enabling the option to expose nested authorizable property containers as child resources</a></h4>
+<p><em>Since Version 2.2.18</em></p>
+<p>By default, the nested authorizable property containers are not exposed as child resources.  This behavior may be enabled via configuration.</p>
+<p>For example:</p>
+<pre><code>&quot;org.apache.sling.jackrabbit.usermanager.impl.resource.AuthorizableResourceProvider&quot;:{
+    &quot;resources.for.nested.properties&quot;:true
+}
+</code></pre>
 </section></div></div>                            
                         </div>
                     </div>
