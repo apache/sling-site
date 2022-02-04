@@ -62,11 +62,17 @@ Parameter Name | Required | Since Version | Description
 
 ... and these ...
 
-Parameter Name | Required | Description
---- | --- | --- 
-`pwd` | yes | The password of the new user
-`pwdConfirm` | yes | The password of the new user (must be equal to the value of `pwd`)  
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`pwd` | yes | | The password of the new user
+`pwdConfirm` | yes | | The password of the new user (must be equal to the value of `pwd`)  
+`:disabled` | no | 2.1.1 | If `true` disables the user to block further login attempts. If `false` enables a disabled user.
+`:disabledReason` | no | 2.1.1 |Specifies the reason why a user has been disabled.  
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747))
   
 
 Responses:
@@ -87,12 +93,19 @@ Example with curl:
 
 To update an existing user POST a request to `/system/userManager/user/username.update.<html or json>`. You can NOT update the username or the password (see Change Password below) only the additional properties are updateable through this URL. The following parameters are available:
   
-Parameter Name | Required | Description
---- | --- | --- 
-`:disabled` | no | (since version 2.1.1) If `true` disables the user to block further login attempts. If `false` enables a disabled user.
-`:disabledReason` | no | Specifies the reason why a user has been disabled.  
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)). 
-`<anyproperty>@Delete` | no | Properties with @Delete at the end of the name will be deleted in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)). 
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`:disabled` | no | 2.1.1 | If `true` disables the user to block further login attempts. If `false` enables a disabled user.
+`:disabledReason` | no | 2.1.1 | Specifies the reason why a user has been disabled.  
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<anyproperty>@Delete` | no | | Non-nested properties with @Delete at the end of the name will be deleted in the JCR. 
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the nested storage node properties at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+`<relPath>/<anyproperty>@Delete` | no | 2.2.6 | Nested properties with @Delete at the end of the name will be deleted at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
   
 Responses:
 
@@ -216,9 +229,13 @@ Parameter Name | Required | Since Version | Description
 
 ... and these ...
 
-Parameter Name | Required | Description
---- | --- | --- 
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747))
   
 Responses:
 
@@ -238,12 +255,19 @@ Example with curl:
 
 To update an existing group POST a request to `/system/userManager/group/groupname.update.<html or json>`. You can NOT update the name of the group only the additional properties are updateable. The following parameters are available:
   
-Parameter Name | Required | Description
---- | --- | --- 
-`:member` | no | user(s) (name or URI) to add to the group as a member. Can also be an array of users.
-`:member@Delete` | no | user(s) (name or URI) to remove from the group. Can also be an array of users. 
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
-`<anyproperty>@Delete` | no | Properties with @Delete at the end of the name will be deleted in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)). 
+Parameter Name | Required | Since Version | Description
+--- | --- | ---  | --- 
+`:member` | no | | user(s) (name or URI) to add to the group as a member. Can also be an array of users.
+`:member@Delete` | no | | user(s) (name or URI) to remove from the group. Can also be an array of users. 
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<anyproperty>@Delete` | no | | Non-nested properties with @Delete at the end of the name will be deleted in the JCR. 
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the nested storage node properties at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+`<relPath>/<anyproperty>@Delete` | no | 2.2.6 | Nested properties with @Delete at the end of the name will be deleted at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
   
 Responses:
 
