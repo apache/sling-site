@@ -405,3 +405,15 @@ Additionally, the following service interfaces may be implemented by a custom OS
 2. **org.apache.sling.jackrabbit.usermanager.PrincipalNameGenerator** - An implementation of this service interface allows to fully customize principal name generation
 
 
+#### Enabling the option to expose nested authorizable property containers as child resources
+
+*Since Version 2.2.18*
+
+By default, the nested authorizable property containers are not exposed as child resources.  This behavior may be enabled via configuration.
+
+For example:
+
+    "org.apache.sling.jackrabbit.usermanager.impl.resource.AuthorizableResourceProvider":{
+        "resources.for.nested.properties":true
+    }
+
