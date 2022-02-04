@@ -584,6 +584,13 @@ repoinit parser repository.
       set two to endS
     end
     
+    set properties on /forcedMultiValue
+      set singleMultiValue{String[]} to "single"
+      set emptyMultiValue{String[]} to
+      set singleLongMultiValue{Long[]} to 1243
+      set emptyLongMultiValue{Long[]} to
+    end
+    
     set properties on /blankLinesInList
       set one to two
     
@@ -639,3 +646,43 @@ repoinit parser repository.
     delete principal ACL for ada, amy
     delete principal ACL for adi
     
+    # test-71.txt
+    
+    # Support quoted Group IDs
+    create group "Test Group"
+    create group "Test Group With Spaces" with path /thePathF
+    delete group "Test Group"
+    set ACL on /content
+        allow jcr:read for "Test Group",user1
+    end
+    set ACL on /content
+        allow jcr:read for "Test Group- Cool People","Test Group",user1
+    end
+    set ACL for user1,"Test Group",u2
+        allow jcr:read on /content
+    end
+    set principal ACL for user1,"Test Group" (ACLOptions=mergePreserve)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    set ACL on /test (ACLOptions=merge)
+        remove * for user1,"Test Group",user2
+    end
+    set properties on authorizable(bob), authorizable("Test Group")
+      set stringProp to "hello, you again!"
+    end
+    set properties on authorizable(bob)/nested, authorizable("Test Group")/nested
+      set stringProp to "hello, you nested again!"
+    end
+    add user1,"Test Group 2000",user2 to group "Parent Group"
+    remove user1,"Test Group 2000",user2 from group "Parent Group"
+    
+    # Test other escaped characters 
+    create group "Tab	Group"
+    create group "Untrimmed Group "
+    create group " Really Untrimmed Group "
+    create group "Group\With\Backslash"
+    create group "Group
+    Newline"
+    
+
