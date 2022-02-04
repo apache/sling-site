@@ -1,4 +1,4 @@
-title=Managing users and groups (jackrabbit.usermanager)		
+title=Managing users and groups (jackrabbit.usermanager)
 type=page
 status=published
 tags=security
@@ -356,6 +356,19 @@ Example:
     %>
 
 
+## Changing the root path for usermanager resources
+
+*Since Version 2.2.12*
+
+By default, the usermanager resources are provided under the /system/userManager path.  This location may be changed via configuration.
+
+For example:
+
+    "org.apache.sling.jackrabbit.usermanager.impl.resource.AuthorizableResourceProvider":{
+        "provider.root":"/people",
+    }
+
+
 ## Generating principal names from a hint
 
 *Since Version 2.2.16*
@@ -405,7 +418,7 @@ Additionally, the following service interfaces may be implemented by a custom OS
 2. **org.apache.sling.jackrabbit.usermanager.PrincipalNameGenerator** - An implementation of this service interface allows to fully customize principal name generation
 
 
-#### Enabling the option to expose nested authorizable property containers as child resources
+## Enabling the option to expose nested authorizable property containers as child resources
 
 *Since Version 2.2.18*
 
