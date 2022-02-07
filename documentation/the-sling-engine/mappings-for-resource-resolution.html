@@ -321,14 +321,7 @@ for (String segment: segments) {
 </ul>
 <h3><a href="#rebuilding-the-vanity-bloom-filter" id="rebuilding-the-vanity-bloom-filter">Rebuilding The Vanity Bloom Filter</a></h3>
 <p><a href="https://issues.apache.org/jira/browse/SLING-4216">SLING-4216</a> introduced the usage of a bloom filter in order to resolve long startup time with many vanityPath entries. The bloom filter is handled automatically by the Sling framework. In some cases though, as changing the maximum number of vanity bloom filter bytes, a rebuild of the vanity bloom filter is needed.</p>
-<p>In order to rebuild vanity bloom filter:</p>
-<ul>
-<li>stop Apache Sling</li>
-<li>locate the org.apache.sling.resourceresolver bundle in the file system (e.g. $SLING_HOME/felix/bundleXX)</li>
-<li>locate the vanityBloomFilter.txt file in the file system (e.g. $SLING_HOME/felix/bundleXX/data/vanityBloomFilter.txt)</li>
-<li>delete the vanityBloomFilter.txt file</li>
-<li>start Apache Sling (this might take few minutes, depending on how many vanity path entries are present)</li>
-</ul>
+<p>In order to rebuild vanity bloom filter you need to stop and restart Apache Sling (this might take few minutes, depending on how many vanity path entries are present)</p>
 <h2><a href="#interactions-between-mappings-and-authentication-requirements" id="interactions-between-mappings-and-authentication-requirements">Interactions between mappings and authentication requirements</a></h2>
 <p>The <a href="/documentation/the-sling-engine/authentication.html">Sling authentication</a> mechanism works by registering authentication requirements for paths which are protected. Normally these authentication requirements transparently apply to child resources as well due to the hierarchical nature of the paths used.</p>
 <p>Additional mappings complicate the situation, therefore additional authentication requirements are automatically registered by Sling. For instance, assuming the following repository structure:</p>
@@ -378,7 +371,7 @@ for (String segment: segments) {
                             content/documentation/the-sling-engine/mappings-for-resource-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2022-02-01</span>
+                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2022-02-07</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
