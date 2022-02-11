@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/development/slingstart.html</loc><lastmod>2022-02-11</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-02-09</lastmod>
     </url><url>
         <loc>https://sling.apache.org/contributing.html</loc><lastmod>2022-02-07</lastmod>
@@ -190,8 +192,6 @@
         <loc>https://sling.apache.org/documentation/development/null-analysis.html</loc><lastmod>2018-08-18</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/resourceresolver-mock.html</loc><lastmod>2017-09-29</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/development/slingstart.html</loc><lastmod>2018-05-09</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/feature-model/feature-model-howto.html</loc><lastmod>2020-06-18</lastmod>
     </url><url>
