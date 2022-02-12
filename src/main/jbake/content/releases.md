@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2022
 
+* Tenant 1.1.6 and Resource Resolver 1.8.4 (12th)
 * Scripting HTL Engine 1.4.16-1.4.0 (9th)
 * JCR Jackrabbit User Manager 2.2.18 (4th)
 * Repoinit Parser 1.6.12 (3rd)
