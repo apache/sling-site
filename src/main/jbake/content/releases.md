@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2022
 
+* Sling Security 1.1.24 (18th)
 * Rewriter 1.3.2 (17th)
 * Scripting Core 2.4.4 (14th)
 * Tenant 1.1.6 and Resource Resolver 1.8.4 (12th)
