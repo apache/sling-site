@@ -92,7 +92,7 @@ First prepare your POMs for release:
     * You can continue to use `mvn release:prepare` and `mvn release:perform` on other sub-projects as necessary on the same machine and they will be combined in the same staging repository - this is useful when making a release of multiple Sling modules.
 
 1. Close the staging repository:
-    * Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
+    * Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging Repositories* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
 
 1. Verify the staged artifacts
     * If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then redo (see [Redoing release perform](#redoing-release-perform)) or rollback your release (see *Canceling the Release*) and repeat the process
@@ -197,7 +197,7 @@ If the vote is successful, you need to promote and distribute the release - see 
 If the vote fails, or you decide to redo the release:
 
 1. Remove the release tag from Git (`git push --delete origin ${tagName}`)
-1. Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select *Close*). Right click on this repository and select *Drop*.
+1. Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging Repositories* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select *Close*). Right click on this repository and select *Drop*.
 1. Remove the old version from Jira
     1. Create a new version in Jira with a version number following the one of the cancelled release
     1. Move all issues with the fix version set to the cancelled release to the next version
@@ -219,8 +219,8 @@ If the vote passes:
     1. Delete the old release artifacts from that same dist.apache.org svn folder (the dist directory is archived)
     1. You will get an email from the Apache Reporter Service, which will ask you to add the information about the newly added release artifact. To simplify this task you can use the script from [https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh](https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh).
 1. Push the release to Maven Central
-	1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging*. Find your closed staging repository and select it by checking the select box. Select the *Releases* repository from the drop-down list and click *Release* from the menu above.
-	1. Once the release is promoted click on *Repositories*, select the *Releases* repository and validate that your artifacts are all there.
+	1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging Repositories*. Find your closed staging repository and select it by checking the select box. Click *Release* from the menu above and confirm.
+	1. Once the release is promoted click on *Repositories* on the left, select the *Releases* repository and validate that your artifacts are all there.
 1. Update the releases section on the website at [releases](/releases.html).
 1. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl).
 1. If you think that this release is worth a news entry, update the website at  [news](/news.html)
@@ -233,7 +233,7 @@ It is possible to update the artifacts without needing to checkout or update the
 
 Assuming that we are releasing `org.apache.sling.engine 2.6.22` and the old version artifact names start with `org.apache.sling.engine-2.6.20`, we can run the following commands
 
-    $ cd <folder where 2.6.22 is found expanded source-release..zip>
+    $ cd <folder where 2.6.22 is found>
     $ svn import -m "Release org.apache.sling.engine-2.6.22" . https://dist.apache.org/repos/dist/release/sling
     $ svn delete -m "Remove old version org.apache.sling.engine-2.6.20" $(svn ls https://dist.apache.org/repos/dist/release/sling/ | grep org.apache.sling.engine-2.6.20 | while read line; do echo "https://dist.apache.org/repos/dist/release/sling/$line"; done)
 
