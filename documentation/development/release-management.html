@@ -197,7 +197,7 @@ $ mvn release:prepare
 <li>
 <p>Close the staging repository:</p>
 <ul>
-<li>Login to <a href="https://repository.apache.org">https://repository.apache.org</a> using your Apache credentials. Click on <em>Staging</em> on the left. Then click on <em>org.apache.sling</em> in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select <em>Close</em>. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything</li>
+<li>Login to <a href="https://repository.apache.org">https://repository.apache.org</a> using your Apache credentials. Click on <em>Staging Repositories</em> on the left. Then click on <em>org.apache.sling</em> in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select <em>Close</em>. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything</li>
 </ul>
 </li>
 <li>
@@ -279,7 +279,7 @@ promote the artifacts to the central Maven repository.
 <p>If the vote fails, or you decide to redo the release:</p>
 <ol>
 <li>Remove the release tag from Git (<code>git push --delete origin ${tagName}</code>)</li>
-<li>Login to <a href="https://repository.apache.org">https://repository.apache.org</a> using your Apache credentials. Click on <em>Staging</em> on the left. Then click on <em>org.apache.sling</em> in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select <em>Close</em>). Right click on this repository and select <em>Drop</em>.</li>
+<li>Login to <a href="https://repository.apache.org">https://repository.apache.org</a> using your Apache credentials. Click on <em>Staging Repositories</em> on the left. Then click on <em>org.apache.sling</em> in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select <em>Close</em>). Right click on this repository and select <em>Drop</em>.</li>
 <li>Remove the old version from Jira
 <ol>
 <li>Create a new version in Jira with a version number following the one of the cancelled release</li>
@@ -312,8 +312,8 @@ promote the artifacts to the central Maven repository.
 </li>
 <li>Push the release to Maven Central
 <ol>
-<li>Login to <a href="https://repository.apache.org">https://repository.apache.org</a> with your Apache SVN credentials. Click on <em>Staging</em>. Find your closed staging repository and select it by checking the select box. Select the <em>Releases</em> repository from the drop-down list and click <em>Release</em> from the menu above.</li>
-<li>Once the release is promoted click on <em>Repositories</em>, select the <em>Releases</em> repository and validate that your artifacts are all there.</li>
+<li>Login to <a href="https://repository.apache.org">https://repository.apache.org</a> with your Apache SVN credentials. Click on <em>Staging Repositories</em>. Find your closed staging repository and select it by checking the select box. Click <em>Release</em> from the menu above and confirm.</li>
+<li>Once the release is promoted click on <em>Repositories</em> on the left, select the <em>Releases</em> repository and validate that your artifacts are all there.</li>
 </ol>
 </li>
 <li>Update the releases section on the website at <a href="/releases.html">releases</a>.</li>
@@ -324,7 +324,7 @@ promote the artifacts to the central Maven repository.
 <h3><a href="#quick-update-of-artifacts-in-dist" id="quick-update-of-artifacts-in-dist">Quick update of artifacts in dist</a></h3>
 <p>It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow, by using <code>svn import</code> and <code>svn delete</code> on the remote SVN repository.</p>
 <p>Assuming that we are releasing <code>org.apache.sling.engine 2.6.22</code> and the old version artifact names start with <code>org.apache.sling.engine-2.6.20</code>, we can run the following commands</p>
-<pre><code>$ cd &lt;folder where 2.6.22 is found expanded source-release..zip&gt;
+<pre><code>$ cd &lt;folder where 2.6.22 is found&gt;
 $ svn import -m &quot;Release org.apache.sling.engine-2.6.22&quot; . https://dist.apache.org/repos/dist/release/sling
 $ svn delete -m &quot;Remove old version org.apache.sling.engine-2.6.20&quot; $(svn ls https://dist.apache.org/repos/dist/release/sling/ | grep org.apache.sling.engine-2.6.20 | while read line; do echo &quot;https://dist.apache.org/repos/dist/release/sling/$line&quot;; done)
 </code></pre>
@@ -543,7 +543,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2022-01-04</span>
+                        Last modified by <span class="author">angela</span> on <span class="comment">2022-02-18</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
