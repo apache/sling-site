@@ -6,7 +6,7 @@ tags=launchpad
 
 The Sling 12 release contains numerous improvements, such as official Java 17 support, complete migration to the [OSGi Feature Model](/documentation/development/feature-model.html], and various performance improvements and updates.
 
-Read on to see more details about the invididual improvements. To find out more about running Sling, see our [getting started page](/documentation/getting-started.html).
+Read on to see more details about the individual improvements. To find out more about running Sling, see our [getting started page](/documentation/getting-started.html).
 
 ## Official support for Java 17
 
@@ -39,13 +39,13 @@ Applications based on Apache Sling are encouraged to evaluate migrating to the O
 
 ## Support for content-package development
 
-The Sling Starter fully supports developmentt based on content packages. Content packages may be defined in the feature model, deployed via an HTTP API or using the Composum UI.
+The Sling Starter fully supports development based on content packages. Content packages may be defined in the feature model, deployed via an HTTP API or using the Composum UI.
 
 See [Content-package based development](/documentation/development/content-packages.html) for more details.
 
 ## Java API for ordering resources
 
-The Sling `ResourceResolver` had gained a new `orderBefore` method that can be used to order child resources. Support needs to be added by various `ResourceProvider` implementations. Notably, the JCR ResourceProvider has have support for this method.
+The Sling `ResourceResolver` had gained a new `orderBefore` method that can be used to order child resources. Support needs to be added by various `ResourceProvider` implementations. Notably, the JCR ResourceProvider has support for this method.
 
 ## Scripting enhancements
 
