@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2022
 
+* ResourceResolver Mocks 1.2.6 (25th)
 * Content Distribution API 0.6.0 (21st)
 * Sling Security 1.1.24 (18th)
 * Rewriter 1.3.2 (17th)
