@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/news/sling-12-released.html</loc><lastmod>2022-03-02</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/repository-initialization.html</loc><lastmod>2022-03-02</lastmod>
     </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-02-25</lastmod>
@@ -213,13 +215,13 @@
     </url><url>
         <loc>https://sling.apache.org/links.html</loc><lastmod>2019-07-26</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/news/sling-ide-tooling-11-released.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/news/sling-launchpad-9-released.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/run-modes-org-apache-sling-runmode.html</loc><lastmod>2018-07-17</lastmod>
+        <loc>https://sling.apache.org/old-stuff/request-processing.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/servlet-resolution.html</loc><lastmod>2018-07-13</lastmod>
+        <loc>https://sling.apache.org/old-stuff/scriptengineintegration.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/project-information/project-license.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/project-information/apache-sling-community-roles-and-processes.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/hierarchy-operators.html</loc><lastmod>2018-01-04</lastmod>
     </url><url>
@@ -261,15 +263,13 @@
     </url><url>
         <loc>https://sling.apache.org/media.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/news/sling-ide-tooling-12-released.html</loc><lastmod>2018-01-21</lastmod>
+        <loc>https://sling.apache.org/news/sling-ide-tooling-11-released.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/assembly.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/old-stuff/run-modes-org-apache-sling-runmode.html</loc><lastmod>2018-07-17</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/scriptengineintegration/groovy-support.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/old-stuff/servlet-resolution.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/sling-api.html</loc><lastmod>2018-07-13</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/project-information/project-team.html</loc><lastmod>2018-07-13</lastmod>
+        <loc>https://sling.apache.org/project-information/project-license.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/methods.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
@@ -313,15 +313,15 @@
     </url><url>
         <loc>https://sling.apache.org/news/sling-10-released.html</loc><lastmod>2018-02-06</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/news/sling-launchpad-8-released.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/news/sling-ide-tooling-12-released.html</loc><lastmod>2018-01-21</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/launch-sling.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/old-stuff/assembly.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/scriptengineintegration/xslt-processing-pipeline.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/old-stuff/scriptengineintegration/groovy-support.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/old-stuff/sling-api.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/project-information/security.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/project-information/project-team.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/modifiers.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
@@ -365,13 +365,15 @@
     </url><url>
         <loc>https://sling.apache.org/news/sling-11-released.html</loc><lastmod>2018-10-23</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/news/sling-launchpad-9-released.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/news/sling-launchpad-8-released.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/request-processing.html</loc><lastmod>2018-07-13</lastmod>
+        <loc>https://sling.apache.org/old-stuff/launch-sling.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/scriptengineintegration.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/old-stuff/scriptengineintegration/xslt-processing-pipeline.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/project-information/apache-sling-community-roles-and-processes.html</loc><lastmod>2017-09-29</lastmod>
+        <loc>https://sling.apache.org/old-stuff.html</loc><lastmod>2017-09-29</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/project-information/security.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/sitemap.html</loc><lastmod>2021-07-26</lastmod>
     </url><url>
