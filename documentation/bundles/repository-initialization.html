@@ -133,8 +133,8 @@
 <p>They are called in increasing order of their <code>service.ranking</code> service property, which needs to be an <code>Integer</code> as usual.</p>
 <p>If any of them throws an Exception, the <code>SlingRepository</code> service is not registered.</p>
 <h2><a href="#the-repoinit-repository-initialization-language" id="the-repoinit-repository-initialization-language">The 'repoinit' Repository Initialization Language</a></h2>
-<p>The <code>org.apache.sling.repoinit.parser</code> implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as well as registering JCR namespaces and node types.</p>
-<p>As  I write this, the source code consists of <a href="https://github.com/apache?utf8=%E2%9C%93&amp;q=sling+repoinit">three modules</a>: the parser, the JCR repoinit adapter module and the integration tests.</p>
+<p>The <code>org.apache.sling.repoinit.parser</code> implements a mini-language meant to create paths, service users and manage access control in a content repository, as well as registering JCR namespaces, node types and privileges. Defining access control content consists of setting and deleting policies of type access control lists (ACL) for which individual access control entries (ACE) can be added and removed.</p>
+<p>The source code consists of <a href="https://github.com/apache?utf8=%E2%9C%93&amp;q=sling+repoinit">two modules</a>: the parser and the JCR repoinit adapter module.</p>
 <p>The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the <code>RepoInitGrammar.jjt</code> file in that module, and the automated tests provide a number of <a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases">test cases</a> which demonstrate various features.</p>
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
 <p>The language is mostly self-explaining, the test suite listed below in Appendix A exposes all language constructs and options.</p>
@@ -477,6 +477,44 @@ set ACL on home(alice)/sub/folder, /anotherPath, home(fred)/root
   allow jcr:seven for mercury
 end
 
+# test-35.txt
+
+# Removal of individual access control entries (see SLING-11160), requires
+# o.a.s.repoinit.parser 1.6.14 and
+# o.a.s.jcr.repoinit 1.1.38
+
+# remove entries by path
+
+remove ACE on /libs,/apps, /, /content/example.com/some-other_path
+    allow jcr:read for user1,user2
+    allow privilege_without_namespace for user4
+    deny jcr:write,something:else,another:one for user2
+    deny jcr:lockManagement for user1
+    deny jcr:modifyProperties for user2 restriction(rep:itemNames,prop1,prop2)
+end
+
+# remove entries by principal
+
+remove ACE for user1,u2
+    allow jcr:read on /content
+    allow jcr:addChildNodes, jcr:modifyProperties on /content restriction(rep:glob)
+    deny jcr:read on /etc, /var restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+end
+
+# remove principal-based entries
+
+remove principal ACE for principal1,principal2
+    allow jcr:read on /content
+    deny jcr:modifyProperties on /apps, /content restriction(rep:itemNames,prop1,prop2)
+    allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+    allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
+    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
+    allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+    allow jcr:something on / restriction(rep:glob)
+    allow jcr:all on :repository,home(alice)
+end
+
 # test-40.txt
 
 # Register namespaces, requires
@@ -752,7 +790,7 @@ Newline&quot;
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Dan Klco</span> on <span class="comment">2022-02-04</span>
+                        Last modified by <span class="author">angela</span> on <span class="comment">2022-03-02</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     </p><p>
