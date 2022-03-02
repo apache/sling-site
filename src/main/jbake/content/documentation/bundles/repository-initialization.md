@@ -25,11 +25,12 @@ They are called in increasing order of their `service.ranking` service property,
 If any of them throws an Exception, the `SlingRepository` service is not registered.
     
 ## The 'repoinit' Repository Initialization Language
-The `org.apache.sling.repoinit.parser` implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as 
-well as registering JCR namespaces and node types.
+The `org.apache.sling.repoinit.parser` implements a mini-language meant to create paths, service users and manage access control in a content repository, as 
+well as registering JCR namespaces, node types and privileges. Defining access control content consists of setting and 
+deleting policies of type access control lists (ACL) for which individual access control entries (ACE) can be added and removed.
 
-As  I write this, the source code consists of [three modules](https://github.com/apache?utf8=%E2%9C%93&q=sling+repoinit): the parser, the JCR 
-repoinit adapter module and the integration tests.
+The source code consists of [two modules](https://github.com/apache?utf8=%E2%9C%93&q=sling+repoinit): the parser and the JCR 
+repoinit adapter module.
 
 The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the `RepoInitGrammar.jjt` file in that module, and the automated tests provide a number of [test cases](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases) which demonstrate various features.
 
@@ -419,6 +420,44 @@ repoinit parser repository.
     
     set ACL on home(alice)/sub/folder, /anotherPath, home(fred)/root
       allow jcr:seven for mercury
+    end
+    
+    # test-35.txt
+    
+    # Removal of individual access control entries (see SLING-11160), requires
+    # o.a.s.repoinit.parser 1.6.14 and
+    # o.a.s.jcr.repoinit 1.1.38
+    
+    # remove entries by path
+    
+    remove ACE on /libs,/apps, /, /content/example.com/some-other_path
+        allow jcr:read for user1,user2
+        allow privilege_without_namespace for user4
+        deny jcr:write,something:else,another:one for user2
+        deny jcr:lockManagement for user1
+        deny jcr:modifyProperties for user2 restriction(rep:itemNames,prop1,prop2)
+    end
+    
+    # remove entries by principal
+    
+    remove ACE for user1,u2
+        allow jcr:read on /content
+        allow jcr:addChildNodes, jcr:modifyProperties on /content restriction(rep:glob)
+        deny jcr:read on /etc, /var restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    end
+    
+    # remove principal-based entries
+    
+    remove principal ACE for principal1,principal2
+        allow jcr:read on /content
+        deny jcr:modifyProperties on /apps, /content restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+        allow jcr:something on / restriction(rep:glob)
+        allow jcr:all on :repository,home(alice)
     end
     
     # test-40.txt
