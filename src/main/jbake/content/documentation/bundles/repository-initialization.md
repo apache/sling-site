@@ -29,8 +29,8 @@ The `org.apache.sling.repoinit.parser` implements a mini-language meant to creat
 well as registering JCR namespaces, node types and privileges. Defining access control content consists of setting and 
 deleting policies of type access control lists (ACL) for which individual access control entries (ACE) can be added and removed.
 
-The source code consists of [three modules](https://github.com/apache?utf8=%E2%9C%93&q=sling+repoinit): the parser, the JCR 
-repoinit adapter module and the integration tests.
+The source code consists of [two modules](https://github.com/apache?utf8=%E2%9C%93&q=sling+repoinit): the parser and the JCR 
+repoinit adapter module.
 
 The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the `RepoInitGrammar.jjt` file in that module, and the automated tests provide a number of [test cases](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases) which demonstrate various features.
 
