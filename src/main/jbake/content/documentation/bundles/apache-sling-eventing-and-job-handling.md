@@ -40,8 +40,8 @@ While older versions of the job handling were based on sending and receiving eve
 A job consists of two parts, the job topic describing the nature of the job and the payload which is a key value map of serializable objects. A client can initiate a job by calling the *JobManager.addJob* method:
 
         import org.apache.sling.jobs.JobManager;
-        import org.apache.felix.scr.annotations.Component;
-        import org.apache.felix.scr.annotations.Reference;
+        import org.osgi.service.component.annotations.Component;
+        import org.osgi.service.component.annotations.Reference;
         import java.util.Map;
         import java.util.HashMap;
         
@@ -77,20 +77,25 @@ An example code for scheduling a job looks like this:
 
     import org.apache.sling.jobs.JobManager;
     import org.apache.sling.event.jobs.JobBuilder.ScheduleBuilder;
-    import org.apache.felix.scr.annotations.Component;
-    import org.apache.felix.scr.annotations.Reference;
+    import org.osgi.service.component.annotations.Component;
+    import org.osgi.service.component.annotations.Reference;
 
-    @Component
+    @Component(immediate=true)
     public class MyComponent {
+
+        private static final String TOPIC = "midnight/job/topic";
 
         @Reference
         private JobManager jobManager;
 
         public void startScheduledJob() {
-            ScheduleBuilder scheduleBuilder = jobManager.createJob("my/special/jobtopic").schedule();
-            scheduleBuilder.daily(0,0); // execute daily at midnight
-            if (scheduleBuilder.add() == null) {
-                // something went wrong here, use scheduleBuilder.add(List<String>) instead to get further information about the error
+            if (JobManager.getJobScheduledJobs(TOPIC,1,null) == null) {
+                // only add the jobs if it is not yet scheduled
+                ScheduleBuilder scheduleBuilder = jobManager.createJob(TOPIC).schedule();
+                scheduleBuilder.daily(0,0); // execute daily at midnight
+                if (scheduleBuilder.add() == null) {
+                    // something went wrong here, use scheduleBuilder.add(List<String>) instead to get further information about the error
+	            }
             }
         }
     }
@@ -103,14 +108,13 @@ Internally the scheduled Jobs use the [Commons Scheduler Service](/documentation
 
 A job consumer is a service consuming and processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:
 
-        import org.apache.felix.scr.annotations.Component;
-        import org.apache.felix.scr.annotations.Service;
+        import org.osgi.service.component.annotations.Component;
         import org.apache.sling.event.jobs.Job;
         import org.apache.sling.event.jobs.consumer.JobConsumer;
 
-        @Component
-        @Service(value={JobConsumer.class})
-        @Property(name=JobConsumer.PROPERTY_TOPICS, value="my/special/jobtopic",)
+        @Component(service=JobConsumer.class, property= {
+        	JobConsumer.PROPERTY_TOPICS + "=my/special/jobtopic"
+        })
         public class MyJobConsumer implements JobConsumer {
 
             public JobResult process(final Job job) {
@@ -124,15 +128,14 @@ The consumer can either return *JobResult.OK* indicating that the job has been p
 If the job consumer needs more features like providing progress information or adding more information of the processing,*JobExecutor* should be implemented.      
 A job executor is a service processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:
 
-        import org.apache.felix.scr.annotations.Component;
-        import org.apache.felix.scr.annotations.Service;
+        import org.osgi.service.component.annotations.Component;
         import org.apache.sling.event.jobs.Job;
         import org.apache.sling.event.jobs.consumer.JobExecutor;
         import org.apache.sling.event.jobs.consumer.JobExecutionContext;
 
-        @Component
-        @Service(value={JobExecutor.class})
-        @Property(name=JobExecutor.PROPERTY_TOPICS, value="my/special/jobtopic",)
+        @Component(service=JobExecutor.class, property={
+        	JobExecutor.PROPERTY_TOPICS + "=my/special/jobtopic"
+        })
         public class MyJobExecutor implements JobExecutor {
 
             public JobExecutionResult process(final Job job, JobExecutionContext context)
@@ -142,7 +145,7 @@ A job executor is a service processing a job. It registers itself as an OSGi ser
                 context.getJobContext().initProgress(n, -1);
                 context.getJobContext().log("Job initialized");
                 
-                //increament progress by 2 steps
+                //increment progress by 2 steps
                 context.getJobContext().incrementProgressCount(2);
                 context.getJobContext().log("2 steps completed.");
                 
@@ -215,9 +218,15 @@ The job manager ensures that a job is processed exactly once. However, the clien
 
 If a user action results in the creation of a job, the thread processing the user action can directly create the job. This ensures that even in a clustered scenario the job is created only once.
 
-#### Jobs based on observation / events
+#### Jobs in a clustered environment
 
-If an observation event or any other OSGi event results in the creation of a job, special care needs to be taken in a clustered installation to avoid the job is created on all cluster instances. The easiest way to avoid this, is to use the topology api and make sure the job is only created on the leader instance.
+Jobs are shared within all cluster members; if an observation event or any other OSGi event results in the creation of a job, special care needs to be taken to avoid that the job is created on all cluster instances. The easiest way to avoid this, is to use the topology API and make sure the job is only created on the leader instance.
+
+Also attention should be spent when registering scheduled jobs; the API does not prevent you to register multiple instances of the same job for the same time. But typically this is not desired, but instead that event should be executed only once in the cluster at the specified time. To achieve this behavior always check if a job for the desired topic is already registered; and only in case it is not schedule that job. See the example at [Scheduled Jobs](#scheduled-jobs-1). 
+
+You should not unschedule such a job in `@Deactivate` method of an OSGI Component. In a clustered environment with nodes starting and stopping in an often unexpected order and time this could lead to situations where the job is not scheduled and therefor not executed.
+
+
 
   
 ## Distributed Events
