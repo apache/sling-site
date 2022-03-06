@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/karaf.html</loc><lastmod>2022-03-06</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-pipes.html</loc><lastmod>2022-03-04</lastmod>
     </url><url>
         <loc>https://sling.apache.org/news/sling-12-released.html</loc><lastmod>2022-03-02</lastmod>
@@ -76,8 +78,6 @@
         <loc>https://sling.apache.org/documentation/the-sling-engine/wrap-or-decorate-resources.html</loc><lastmod>2021-05-19</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/content-package-installer-factory.html</loc><lastmod>2021-05-10</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/karaf.html</loc><lastmod>2021-05-10</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/service-authentication.html</loc><lastmod>2021-04-21</lastmod>
     </url><url>
