@@ -6,6 +6,11 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## March 2022
+
+Apache Sling Repoinit Parser 1.6.14 (7th)
+Apache Sling Repoinit JCR 1.1.38 (7th)
+
 ## February 2022
 
 * ResourceResolver Mocks 1.2.6 (25th)
