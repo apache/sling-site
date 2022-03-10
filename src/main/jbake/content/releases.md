@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2022
 
-* Starter Content 1.0.12 (10th)
+* Starter Content 1.0.12, Event 4.3.0 (10th)
 * Repoinit Parser 1.6.14, Repoinit JCR 1.1.38 (7th)
 
 ## February 2022
