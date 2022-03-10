@@ -9,8 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## March 2022
 
 * Starter Content 1.0.12 (10th)
-Apache Sling Repoinit Parser 1.6.14 (7th)
-Apache Sling Repoinit JCR 1.1.38 (7th)
+* Repoinit Parser 1.6.14, Repoinit JCR 1.1.38 (7th)
 
 ## February 2022
 
