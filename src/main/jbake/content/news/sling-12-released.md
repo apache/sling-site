@@ -57,7 +57,7 @@ The Sling Starter includes the Freemarker and Thymeleaf engines out-of-the-box.
 
 Java and HTL scripts may now be precompiled for better runtime performance and build-time checks.
 
-## Improvements in runmode support
+## Improvements in run mode support
 
 The Apache Sling Settings bundle now supports the OR (`,`) and AND (`.`) combinations of run modes and negations with `-` .
 
@@ -78,3 +78,7 @@ The repository maintenance bundle has been added to the Sling Starter. This allo
 ## Version updates
 
 Multiple bundles have been updated to the latest versions. On top of other improvements listed in this page we have added the Sling `resource.filter` bundle and no longer include commons-lang 2 in the Sling Starter.
+
+### OSGi Core R8 compliance
+
+Sling Starter ships with [Apache Felix 7](https://felix.apache.org/documentation/index.html) which implements [OSGi Core R8](https://docs.osgi.org/specification/osgi.core/8.0.0/) fully. In addition it comes with Felix SCR 2.2.0 which implements [Declarative Services 1.5](https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html) (part of OSGi Compendium R8).
