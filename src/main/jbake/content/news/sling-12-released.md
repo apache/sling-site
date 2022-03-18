@@ -37,6 +37,14 @@ The Sling Starter is now built and launched with the [OSGi Feature Model](/docum
 
 Applications based on Apache Sling are encouraged to evaluate migrating to the OSGi feature model.
 
+### New mechanism for launching the Sling Starter
+
+The OSGi feature model does not support creating WAR files. The Sling Starter therefore no longer produces WAR files. The currently produced artifacts are:
+
+* the [`apache/sling:12` docker image](https://hub.docker.com/r/apache/sling)
+* individual feature model files which define the bundles and configurations of the Sling Starter in JSON format
+* aggregate feature model files which contain include all the artifacts needed to launch Sling
+
 ## Support for content-package development
 
 The Sling Starter fully supports development based on content packages. Content packages may be defined in the feature model, deployed via an HTTP API or using the Composum UI.
