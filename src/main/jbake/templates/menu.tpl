@@ -22,6 +22,7 @@ div(class:"container") {
                     strong("API Docs")
                 }
                 ul() {
+                    li(){a(href:"${config.site_contextPath}apidocs/sling12/index.html", "Sling 12")}
                     li(){a(href:"${config.site_contextPath}apidocs/sling11/index.html", "Sling 11")}
                     li(){a(href:"${config.site_contextPath}apidocs/sling10/index.html", "Sling 10")}
                     li(){a(href:"${config.site_contextPath}apidocs/sling9/index.html", "Sling 9")}
