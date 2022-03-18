@@ -299,7 +299,7 @@ The `slingstart-maven-plugin` introduces two new packaging types:
 A model can reference other slingstart or slingfeature artifacts. When such an artifact is reference, the type needs to be specified, for example:
 
     [artifacts]
-        org.apache.sling/org.apache.sling.starter/${sling_releaseVersion}/slingstart
+        org.apache.sling/org.apache.sling.starter/11/slingstart
         org.apache.sling/org.apache.sling.launchpad.test-bundles/0.0.4/slingfeature
 
 The resulting model is a merged model, starting with the dependencies and then merging in the current model.
