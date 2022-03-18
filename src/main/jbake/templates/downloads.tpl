@@ -17,17 +17,18 @@
 // ------------------------------------------------------------------------------------------------
 U = new includes.U(config)
 def PIPE_SEP = "\\|"
-def launchpadVersion="11"
+def starterVersion="12"
 
 def slingIDETooling=[
   "Sling IDE Tooling for Eclipse|eclipse|1.2.2|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[
-  "Sling Starter Standalone|A self-runnable Sling jar, for experimenting and learning|org.apache.sling.starter|.jar|${launchpadVersion}|Y",
-  "Sling Starter WAR|A ready-to run Sling webapp as a war file, for experimenting and learning|org.apache.sling.starter|-webapp.war|${launchpadVersion}|Y",
-  "Sling Source Release|The released Sling source code|org.apache.sling.starter|-source-release.zip|${launchpadVersion}|Y",
+  "Sling Starter Feature Archive (Oak-Tar)|A self-container feature archive, for experimenting and learning. Requires the Feature Model Launcher (see below) |org.apache.sling.starter|-oak_mongo_far.far|${starterVersion}|Y",
+  "Sling Starter Feature Archive (Oak-Mongo)|A self-container feature archive, for experimenting and learning. Requires the Feature Model Launcher (see below) |org.apache.sling.starter|-oak_tar_far.far|${starterVersion}|Y",
+  "Sling Starter Source Release|The released Sling Starter source code|org.apache.sling.starter|-source-release.zip|${starterVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.feature|.jar|1.1.0|org.apache.sling.app.cms",
+  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|1.2.0|.jar|Y",
   "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.1.2|Y",
 ]
 
@@ -135,7 +136,6 @@ def bundles=[
   "Event API|org.apache.sling.event.api|1.0.0|Y|jar",
   "Feature Model|org.apache.sling.feature|1.2.30|Y|jar",
   "Feature Model Analyser|org.apache.sling.feature.analyser|1.6.2|Y|jar",
-  "Feature Model Launcher|org.apache.sling.feature.launcher|1.2.0|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.14|Y|jar",
   "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.1.4|Y|jar",
   "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|1.5.0|Y|jar",
