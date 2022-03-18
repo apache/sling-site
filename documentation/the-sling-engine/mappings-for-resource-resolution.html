@@ -303,14 +303,20 @@ for (String segment: segments) {
 <p>In our little introduction we add an entry of <strong>phv.default.host.name=localhost</strong>. Save the configuration for now. Before going on make sure that you know Mapping Location configuration in the OSGi configuration of <strong>Apache Sling Resource Resolver Factory</strong>.</p>
 <p>Now go to <strong>composum</strong> and go to that node. If it does not exist then create one.</p>
 <p>The mapping should look like this:</p>
-<ul>
-<li>etc * map * http * my-mapping * sling:match=$[phv.fq.host.name].8080</li>
-</ul>
+<pre><code>* etc
+    * map
+        * http
+            * my-mapping
+                * sling:match=$\[phv.fq.host.name\].8080
+</code></pre>
 <p>Opening the page <strong>http://localhost:8080/starter/index.html</strong> should work just fine.</p>
 <p>This is a mapping from System Properties with a default:</p>
-<ul>
-<li>etc * map * http * my-mapping * sling:match=$[env:phv.fq.host.name;default=localhost].8080</li>
-</ul>
+<pre><code>* etc
+    * map
+        * http
+            * my-mapping
+                * sling:match=$\[env:phv.fq.host.name;default=localhost\].8080
+</code></pre>
 <h3><a href="#testing-etcmap-interpolation" id="testing-etcmap-interpolation">Testing /etc/map interpolation</a></h3>
 <p>Now got back to the String Interpolation configuration and change the value to <strong>qa.author.acme.com</strong> and save it.</p>
 <p>For local testing open your <strong>hosts</strong> file (/etc/hosts on Unix) and add a line like this: <code>127.0.0.1 qa.author.acme.com</code> save it and test with <code>ping qa.author.acme.com</code> to make sure the name resolves. Now you should be able to open the same page with: <strong>http://qa.author.acme.com/starter/index.html</strong>.</p>

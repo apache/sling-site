@@ -213,13 +213,10 @@
 </li>
 </ul>
 <p>While the following request will still require authentication</p>
+<pre><code>* /system/sling/login-test 
+</code></pre>
 <ul>
-<li>
-<p>/system/sling/login-test</p>
-</li>
-<li>
-<p>An authentication handler may register itself with the service registration property <code>sling.auth.requirements = &quot;-/apps/sample/loginform&quot;</code> to ensure the login form can be rendered without requiring authentication.</p>
-</li>
+<li>An authentication handler may register itself with the service registration property <code>sling.auth.requirements = &quot;-/apps/sample/loginform&quot;</code> to ensure the login form can be rendered without requiring authentication.</li>
 </ul>
 <h2><a href="#authenticator-implementation" id="authenticator-implementation">Authenticator implementation</a></h2>
 <p>The implementation of the <code>Authenticator</code> interface is similar for both methods:</p>

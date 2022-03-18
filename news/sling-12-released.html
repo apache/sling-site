@@ -145,6 +145,13 @@
 <h2><a href="#migration-to-the-feature-model" id="migration-to-the-feature-model">Migration to the feature model</a></h2>
 <p>The Sling Starter is now built and launched with the [OSGi Feature Model](/documentation/development/feature-model.html]. This aligns our tooling with the upstream OSGi specification work from <a href="https://github.com/osgi/design/blob/master/rfps/rfp-0188-Features.pdf">RFP 188</a> and <a href="https://github.com/osgi/design/tree/master/rfcs/rfc0241">RFC 241</a> and provides significant additional tooling around composing, analysing, and launching Sling applications.</p>
 <p>Applications based on Apache Sling are encouraged to evaluate migrating to the OSGi feature model.</p>
+<h3><a href="#new-mechanism-for-launching-the-sling-starter" id="new-mechanism-for-launching-the-sling-starter">New mechanism for launching the Sling Starter</a></h3>
+<p>The OSGi feature model does not support creating WAR files. The Sling Starter therefore no longer produces WAR files. The currently produced artifacts are:</p>
+<ul>
+<li>the <a href="https://hub.docker.com/r/apache/sling"><code>apache/sling:12</code> docker image</a></li>
+<li>individual feature model files which define the bundles and configurations of the Sling Starter in JSON format</li>
+<li>aggregate feature model files which contain include all the artifacts needed to launch Sling</li>
+</ul>
 <h2><a href="#support-for-content-package-development" id="support-for-content-package-development">Support for content-package development</a></h2>
 <p>The Sling Starter fully supports development based on content packages. Content packages may be defined in the feature model, deployed via an HTTP API or using the Composum UI.</p>
 <p>See <a href="/documentation/development/content-packages.html">Content-package based development</a> for more details.</p>
@@ -182,7 +189,7 @@
                             content/news/sling-12-released.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-03-11</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2022-03-18</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
