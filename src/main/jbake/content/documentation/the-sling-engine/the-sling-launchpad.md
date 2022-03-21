@@ -6,6 +6,12 @@ tags=launchpad,launchers
 
 [TOC]
 
+<div class="note">
+    This documentation was relevant for the Sling Starter and Lauchpad until version 11. Starting with Sling 12 the
+    Sling Starter is assembled and launched using the <a href="/documentation/development/feature-model.html">OSGi Feature Model</a>.
+    It is recommended that new projects use the OSGi Feature Model instead of the Sling Launchpad.
+</div>
+
 This tries to explain how exactly the Sling Launchpad works, what constitutes the Sling Launchpad and how you can use the Sling Launchpad to custom create you Sling launchers. For a view behind the scenes of the Sling Launchpad Base module (the actual launcher) you might want to refer to the [Embedding Sling](/documentation/development/embedding-sling.html) page.
 
 
@@ -78,7 +84,7 @@ For additional security, do not allow the control port to be opened on an extern
 
 Here's an example session where a Sling Standalone Application is started with the control port active:
 
-    $ java -jar target/org.apache.sling.starter-${sling_releaseVersion}.jar start
+    $ java -jar target/org.apache.sling.starter-11.jar start
     05.04.2016 11:50:45.003 *INFO * [main] Setting sling.home=sling (default)
     05.04.2016 11:50:45.006 *INFO * [main] Starting Apache Sling in /foo/sling/launchpad/builder/sling
 	...
