@@ -17,6 +17,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2022
 
+* Content-Package to Feature Model Converter 1.1.14 (25th)
 * Starter 12, Feature Model Analyser 1.6.2, Sling Feature Maven Plugin 1.6.2 (18th)
 * Discovery Commons 1.0.26, Base 2.0.12, Oak 1.2.36 (14th)
 * Launchpad Testing 12, Launchpad Integration Tests 12, Launchpad Testing Services 12, Launchpad Testing Fragment Bundle 12 (14th)
