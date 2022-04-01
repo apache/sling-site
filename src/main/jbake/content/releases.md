@@ -6,6 +6,11 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## April 2022
+
+* Sling Feature Marven Plugin 1.6.4 (1st)
+* API 2.25.0, Engine 2.9.0, Servlets Resolver 2.9.4, Scripting Sightly 1.4.18-1.4.0 (1st)
+
 ## March 2022
 
 * Starter 12, Feature Model Analyser 1.6.2, Sling Feature Maven Plugin 1.6.2 (18th)
