@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2022
 
+* JSPC Maven Plugin 2.3.4 (12th)
 * JCR Jackrabbit User Manager 2.2.20 (8th)
 * Scripting Core 2.4.6 (5th)
 * Sling Feature Marven Plugin 1.6.4 (1st)
