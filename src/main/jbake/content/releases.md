@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2022
 
+* Sling Content Distribution API 0.7.0 (29th)
 * Commons Metrics RRD4J 1.0.6 (26th)
 * Installer Factory Feature 0.7.0 (23rd)
 * JSPC Maven Plugin 2.3.4 (12th)
