@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2022
+
+* Query 4.0.4 (2nd)
+
 ## April 2022
 
 * Sling Content Distribution API 0.7.0 (29th)
