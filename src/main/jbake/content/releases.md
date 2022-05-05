@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2022
 
+* JCR Jackrabbit User Manager 2.2.22 (5th)
 * Models API 1.4.2, Models Implementation 1.5.2, Content Distribution Journal Messages 0.5.0 (3rd)
 * Query 4.0.4 (2nd)
 
