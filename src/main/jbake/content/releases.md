@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2022
 
+* Resource Resolver 1.8.6 (9th)
 * Testing JCR Mock 1.6.0, Testing ResourceResolver Mock 1.3.0, Testing OSGi Mock 3.3.0, Testing Sling Mock 3.3.0 (9th)
 * JCR Jackrabbit User Manager 2.2.22 (5th)
 * Models API 1.4.2, Models Implementation 1.5.2, Content Distribution Journal Messages 0.5.0 (3rd)
