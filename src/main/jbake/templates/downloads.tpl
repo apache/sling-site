@@ -126,7 +126,7 @@ def bundles=[
   "Distribution Core|org.apache.sling.distribution.core|0.5.0|Y|jar",
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2|Y|jar",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6|Y|jar",
-  "Distribution Journal Core|org.apache.sling.distribution.journal|0.1.24|Y|jar",
+  "Distribution Journal Core|org.apache.sling.distribution.journal|0.1.26|Y|jar",
   "Distribution Journal Messages|org.apache.sling.distribution.journal.messages|0.5.0|Y|jar",
   "Distribution Journal Kafka|org.apache.sling.distribution.journal.kafka|0.3.0|Y|jar",
   "Distribution Journal ITs|org.apache.sling.distribution.journal.it|0.1.2|Y|jar",
