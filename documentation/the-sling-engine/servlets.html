@@ -363,7 +363,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
 <ol>
 <li>The one with the highest number of matching selectors + extension</li>
 <li>The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up), refer to section <a href="#resource-type-inheritance">Resource Type Inheritance</a> for more details</li>
-<li>The one with the highest <code>service.ranking</code> property</li>
+<li>The one with the highest service ranking according to <a href="https://docs.osgi.org/specification/osgi.core/8.0.0/framework.service.html#framework.service.servicerankingorder">OSGi Core 8 Chapter 5.2.6</a></li>
 </ol>
 <p>In case of an <code>OptingServlet</code> not matching the next candidate is being used.</p>
 <h3><a href="#resource-type-inheritance" id="resource-type-inheritance">Resource Type Inheritance</a></h3>
