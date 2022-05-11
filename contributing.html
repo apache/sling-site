@@ -147,10 +147,9 @@ against null values.
 <p>Each Sling module comes with an automated build, usually based on Apache Maven. Your change should be covered by new unit tests that verify that the changes work as expected. Building with the Maven <code>jacoco-report</code> profile active provides a test coverage report at <code>target/site/jacoco-merged/index.html</code> .</p>
 <p>In case your changes are more far-reaching and the module you are contributing to is part of the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a>, it is a good idea to also run the Sling Starter integration tests. This can be achieved by doing the following:</p>
 <ul>
-<li>Check out the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a> and <a href="https://github.com/apache/sling-org-apache-sling-launchpad-testing">Sling Starter Integration Tests</a> projects. This step can be skipped if you have followed the steps to checkout all Sling repositories as documented at <a href="/documentation/development/getting-and-building-sling.html#getting-the-sling-source">Getting and Building Sling</a></li>
+<li>Check out the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a> project. This step can be skipped if you have followed the steps to checkout all Sling repositories as documented at <a href="/documentation/development/getting-and-building-sling.html#getting-the-sling-source">Getting and Building Sling</a></li>
 <li>Use the latest version of the bundle(s) you changed in the Sling Starter. Running <code>git grep ${ARTIFACT_ID}</code> will indicate the potential places where you need to make changes</li>
-<li>Run <code>mvn clean install</code> in the Sling Starter checkout. This runs a set of Smoke tests and allows the integration tests to use the version of the starter that you just built</li>
-<li>Run <code>mvn clean install</code> in the Sling Starter Integration Tests checkout</li>
+<li>Run <code>mvn clean verify</code> in the Sling Starter checkout. This runs the full set of integration tests that we use for Sling modules.</li>
 </ul>
 <p>Additionally, and PR you submit will eventually be built by Jenkins, with additional validations on top of the plain Maven build.</p>
 </section></div></div>                            
@@ -164,7 +163,7 @@ against null values.
                             content/contributing.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Joerg Hoh</span> on <span class="comment">2022-02-07</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2022-05-11</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
