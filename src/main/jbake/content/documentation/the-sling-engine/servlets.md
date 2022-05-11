@@ -300,7 +300,7 @@ The following order rules are being followed when trying to resolve a servlet fo
 
 1. The one with the highest number of matching selectors + extension
 2. The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up), refer to section [Resource Type Inheritance](#resource-type-inheritance) for more details
-3. The one with the highest `service.ranking` property
+3. The one with the highest service ranking according to [OSGi Core 8 Chapter 5.2.6](https://docs.osgi.org/specification/osgi.core/8.0.0/framework.service.html#framework.service.servicerankingorder)
 
 In case of an `OptingServlet` not matching the next candidate is being used.
 
