@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2022
 
+* Feature Extension API Region 1.6.0 (15th)
 * Scripting Core 2.4.8, Scripting JSP 2.6.0, Servlets Resolver 2.9.6 (14th)
 * Resource Resolver 1.8.6, Content Distribution Journal Core 0.1.26 (9th)
 * Testing JCR Mock 1.6.0, Testing ResourceResolver Mock 1.3.0, Testing OSGi Mock 3.3.0, Testing Sling Mock 3.3.0 (9th)
