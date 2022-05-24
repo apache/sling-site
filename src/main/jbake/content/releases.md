@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2022
 
+* XSS Protection API 2.2.20 (24th)
 * Event 4.3.2 (23rd)
 * Content Package to Feature Model Converter 1.1.16 (20th)
 * Feature Extension API Region 1.6.0 (15th)
