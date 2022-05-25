@@ -167,8 +167,8 @@
 <p>You could conceive that all these functions serve different purposes and thus should have different access rights to the repository to persist messages while they are being processed.</p>
 <p>Using the Service Authentication framework, the Mail Transfer System would be consituting the <code>mta</code> service. The sub systems would be called <code>smtp</code>, <code>queue</code>, and <code>deliver</code>.</p>
 <p>Thus the SMTP server daemon would be represented by a user for the <code>mta:smtp</code> Service.  queueing with <code>mta:queue</code>, and delivery with <code>mta:deliver</code>.</p>
-<h2><a href="#implementation" id="implementation">Implementation</a></h2>
-<p>The implementation in Sling of the <em>Service Authentication</em> concept described above consists of three parts:</p>
+<h2><a href="#implementationapi" id="implementationapi">Implementation/API</a></h2>
+<p>The implementation in Sling of the <em>Service Authentication</em> concept described above consists of the following parts which provide the API for service authentication:</p>
 <h3><a href="#serviceusermapper" id="serviceusermapper"><code>ServiceUserMapper</code></a></h3>
 <p>The first part is a new OSGi Service <code>ServiceUserMapper</code>. The <code>ServiceUserMapper</code> service allows for mapping <em>Service IDs</em> comprised of the <em>Service Names</em> defined by the providing bundles and optional <em>Subservice Name</em> to ResourceResolver and/or JCR Repository principal names (<a href="https://issues.apache.org/jira/browse/SLING-6963">SLING-6963</a>) or user IDs (<a href="https://issues.apache.org/jira/browse/SLING-10321">SLING-10321</a>). This mapping is configurable such that system administrators are in full control of assigning users to services.</p>
 <p>The <code>ServiceUserMapper</code> defines the following API:</p>
@@ -184,8 +184,9 @@ String getServiceUserID(Bundle bundle, String subServiceName);
 <li>Use default user (if one is configured in the OSGi configuration for PID <code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl</code>).</li>
 <li>Use default mapping (if it is enabled in the OSGi configuration for PID <code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl</code>) which looks up a user with id <code>serviceuser--&lt;bundleId&gt;[--&lt;subservice-name&gt;]</code> (since Service User Mapper 1.3.0, <a href="https://issues.apache.org/jira/browse/SLING-6772">SLING-6227</a>).</li>
 </ol>
+<h3><a href="#serviceusermapped" id="serviceusermapped"><code>ServiceUserMapped</code></a></h3>
 <p>In addition a service named <code>ServiceUserMapped</code> is registered for each bundle and subservice name for which a service user mapping is explicitly configured (<a href="https://issues.apache.org/jira/browse/SLING-4312">SLING-4312</a>).  By explicitly defining a (static) reference towards <code>ServiceUserMapped</code> one can defer starting the service until that service user mapping is available. Please note, that the two last default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work prior to version 1.4.4 (<a href="https://issues.apache.org/jira/browse/SLING-7930">SLING-7930</a>). Also since version 1.4.4 the <code>ServiceUserMapped</code> is only registered in case there is a valid user/principal found in the underlying repository which is given in the mapping (<a href="https://issues.apache.org/jira/browse/SLING-7930">SLING-7930</a>).</p>
-<h4><a href="#validators-serviceprincipalsvalidator-and-serviceuservalidator" id="validators-serviceprincipalsvalidator-and-serviceuservalidator">Validators <code>ServicePrincipalsValidator</code> and <code>ServiceUserValidator</code></a></h4>
+<h3><a href="#validators-serviceprincipalsvalidator-and-serviceuservalidator" id="validators-serviceprincipalsvalidator-and-serviceuservalidator">Validators <code>ServicePrincipalsValidator</code> and <code>ServiceUserValidator</code></a></h3>
 <p>The API defines two interfaces to validate principal names and user IDs defined in service user mappings each with a single method. The default <code>ServiceUserMapper</code> implementation allows to configure the set of required implementations that need to be consulted to verify the validity of a given mapping.</p>
 <p><code>ServicePrincipalsValidator</code> validates mappings by principal names</p>
 <pre><code> <!-- TODO syntax marker (#!java) disabled --> boolean isValid(Iterable&lt;String&gt; servicePrincipalNames, String serviceName, String subServiceName);
@@ -287,7 +288,7 @@ whitelist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
                             content/documentation/the-sling-engine/service-authentication.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">angela</span> on <span class="comment">2021-04-21</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-05-25</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
