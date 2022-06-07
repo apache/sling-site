@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-06-07</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/web-console-extensions.html</loc><lastmod>2022-05-31</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/osgi-installer.html</loc><lastmod>2022-05-31</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-05-27</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/service-authentication.html</loc><lastmod>2022-05-25</lastmod>
     </url><url>
