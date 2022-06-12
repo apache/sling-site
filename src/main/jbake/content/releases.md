@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2022
 
+* Maven Enforcer Rules 1.0.0 (12th)
 * (Bundle) Parent 48 and Installer WebConsole Plugin 1.0.4 (7th)
 
 ## May 2022
