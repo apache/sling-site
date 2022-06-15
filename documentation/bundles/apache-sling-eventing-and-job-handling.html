@@ -159,20 +159,20 @@
     import org.osgi.service.component.annotations.Reference;
     import java.util.Map;
     import java.util.HashMap;
-    
+
     @Component
     public class MyComponent {
-    
+
         @Reference
         private JobManager jobManager;
-        
+
         public void startJob() {
             final Map&lt;String, Object&gt; props = new HashMap&lt;String, Object&gt;();
             props.put(&quot;item1&quot;, &quot;/something&quot;);
             props.put(&quot;count&quot;, 5);
-            
+
             jobManager.addJob(&quot;my/special/jobtopic&quot;, props);
-        }        
+        }
     }
 </code></pre>
 <p>The job topic follows the conventions for the topic of an OSGi event. All objects in the payload must be serializable and publically available (exported by a bundle). This is required as the job is persisted and unmarshalled before processing.</p>
@@ -196,8 +196,9 @@ public class MyComponent {
     private JobManager jobManager;
 
     public void startScheduledJob() {
-        if (JobManager.getJobScheduledJobs(TOPIC,1,null) == null) {
-            // only add the jobs if it is not yet scheduled
+        Collection&lt;ScheduledJobInfo&gt; myJobs = jobManager.getScheduledJobs(TOPIC, 1, null);
+        if (myJobs.empty()) {
+            // daily invocation not yet scheduled
             ScheduleBuilder scheduleBuilder = jobManager.createJob(TOPIC).schedule();
             scheduleBuilder.daily(0,0); // execute daily at midnight
             if (scheduleBuilder.add() == null) {
@@ -208,6 +209,13 @@ public class MyComponent {
 }
 </code></pre>
 <p>Internally the scheduled Jobs use the <a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Commons Scheduler Service</a>. But in addition they are persisted (by default below <code>/var/eventing/scheduled-jobs</code>) and survive therefore even server restarts. When the scheduled time is reached, the job is automatically added as regular Sling Job through the <code>JobManager</code>.</p>
+<p><strong>NOTE</strong>: A scheduled job is not automatically un-scheduled, but you have to remove it when it's no longer needed.</p>
+<pre><code>  public void stopScheduledJob() {
+      Collection&lt;ScheduledJobInfo&gt; myJobs = jobManager.getScheduledJobs(TOPIC, 10, null);
+      myJobs.foreach(sji -&gt; sji.unschedule());
+  }
+</code></pre>
+<p>Therefor it is best to check upfront, if the scheduling already exists. Only it does not yet exist you should register it (like shown above).</p>
 <h3><a href="#job-consumers" id="job-consumers">Job Consumers</a></h3>
 <p>A job consumer is a service consuming and processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:</p>
 <pre><code>    import org.osgi.service.component.annotations.Component;
@@ -227,8 +235,7 @@ public class MyComponent {
 </code></pre>
 <p>The consumer can either return <em>JobResult.OK</em> indicating that the job has been processed, <em>JobResult.FAILED</em> indicating the processing failed, but can be retried or <em>JobResult.CANCEL</em> the processing has failed permanently.</p>
 <h3><a href="#job-executors" id="job-executors">Job Executors</a></h3>
-<p>If the job consumer needs more features like providing progress information or adding more information of the processing,<em>JobExecutor</em> should be implemented.<br />
-A job executor is a service processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:</p>
+<p>If the job consumer needs more features like providing progress information or adding more information of the processing,<em>JobExecutor</em> should be implemented. A job executor is a service processing a job. It registers itself as an OSGi service together with a property defining which topics this consumer can process:</p>
 <pre><code>    import org.osgi.service.component.annotations.Component;
     import org.apache.sling.event.jobs.Job;
     import org.apache.sling.event.jobs.consumer.JobExecutor;
@@ -241,24 +248,24 @@ A job executor is a service processing a job. It registers itself as an OSGi ser
 
         public JobExecutionResult process(final Job job, JobExecutionContext context)
             //process the job and return the result
-            
+
             //initialize job progress with n number of steps
             context.getJobContext().initProgress(n, -1);
             context.getJobContext().log(&quot;Job initialized&quot;);
-            
+          
             //increment progress by 2 steps
             context.getJobContext().incrementProgressCount(2);
             context.getJobContext().log(&quot;2 steps completed.&quot;);
-            
+
             //stop processing if job was cancelled
             if(context.isStopped()) {
                 context.getJobContext().log(&quot;Job Stopped after 4 steps.&quot;);
                 return context.result().message(resultMessage).cancelled();
             }
-            
+
             //add job log
             context.getJobContext().log(&quot;Job finished.&quot;);
-            
+
             return context.result().message(resultMessage).succeeded();
         }
     }
@@ -330,7 +337,7 @@ A job executor is a service processing a job. It registers itself as an OSGi ser
                             content/documentation/bundles/apache-sling-eventing-and-job-handling.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2022-03-17</span>
+                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2022-06-15</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
