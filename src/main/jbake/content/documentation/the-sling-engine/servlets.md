@@ -299,8 +299,8 @@ While an opting servlet seems to be a nice way of picking the right servlet to p
 The following order rules are being followed when trying to resolve a servlet for a given request URL and request method and multiple candidates would match. Then the following candidate is being picked (if one rule doesn't lead to one winner, the next rule is being evaluated):
 
 1. The one with the highest number of matching selectors + extension
-2. The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up), refer to section [Resource Type Inheritance (#resource-type-inheritance) for more details
-3. The one with the highest `service.ranking` property
+2. The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up), refer to section [Resource Type Inheritance](#resource-type-inheritance) for more details
+3. The one with the highest service ranking according to [OSGi Core 8 Chapter 5.2.6](https://docs.osgi.org/specification/osgi.core/8.0.0/framework.service.html#framework.service.servicerankingorder)
 
 In case of an `OptingServlet` not matching the next candidate is being used.
 

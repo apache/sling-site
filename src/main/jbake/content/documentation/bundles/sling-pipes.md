@@ -64,6 +64,6 @@ and have a look at some [other samples](/documentation/bundles/sling-pipes/sampl
 ## Compatibility
 For running this tool on a sling instance you need:
 
-- java 8 (Nashorn is used for expression)
+- java 8 (Nashorn is used for expression) for version < 4.0.0, for 4.0.0+ you are good with upper java versions
 - slingQuery (3.0.0) (used in SlingQueryPipe)
 - jackrabbit api (2.7.5+) (used in AuthorizablePipe)

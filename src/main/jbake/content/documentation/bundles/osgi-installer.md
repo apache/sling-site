@@ -4,7 +4,7 @@ status=published
 tags=installer
 ~~~~~~
 
-# Overview
+## Overview
 
 The OSGi installer is a central service for handling installs, updates and uninstall of "artifacts". By default, the installer supports bundles and has an extension for handling configurations for the OSGi configuration admin.
 
@@ -19,11 +19,12 @@ As the OSGi installer itself is not performing the actual install, update or rem
 It's possible to add own providers, transformers and installer factories to support custom scenarios.
 
 ## API
+
 The installer API is defined by the `org.apache.sling.installer.api` package 
 of the [org.apache.sling.installer.core](https://github.com/apache/sling-org-apache-sling-installer-core) module. The main
 interface is the `OsgiInstaller` with which installable resources can be registered.
 
-The [installer integration tests][1] module can be useful to understand the details of how the installer works.
+The [installer integration tests](https://github.com/apache/sling-org-apache-sling-installer-it) module can be useful to understand the details of how the installer works.
 
 ## Artifact Handling
 
@@ -101,6 +102,12 @@ A provider provides artifacts, e.g. by scanning a directory or a database etc.
 
 * [File Installer Provider](/documentation/bundles/file-installer-provider.html)
 * [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html)
+
+## Web Console
+
+The [Felix Web Console](https://felix.apache.org/documentation/subprojects/apache-felix-web-console.html) tab at `/system/console/osgi-installer` exposes a history of all processed OSGi installer resources. In addition the tab at `/system/console/osgi-installer-config-printer` expose serializations of current OSGi configurations (further details at [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html#web-console-plugin-configuration-printer)).
+
+These tabs are provided through Felix Web Console plugins provided by the [dedicated bundle `org.apache.sling.installer.console`](https://github.com/apache/sling-org-apache-sling-installer-console).
 
 ## Health Check
 

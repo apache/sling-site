@@ -17,31 +17,33 @@
 // ------------------------------------------------------------------------------------------------
 U = new includes.U(config)
 def PIPE_SEP = "\\|"
-def launchpadVersion="11"
+def starterVersion="12"
 
 def slingIDETooling=[
   "Sling IDE Tooling for Eclipse|eclipse|1.2.2|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[
-  "Sling Starter Standalone|A self-runnable Sling jar, for experimenting and learning|org.apache.sling.starter|.jar|${launchpadVersion}|Y",
-  "Sling Starter WAR|A ready-to run Sling webapp as a war file, for experimenting and learning|org.apache.sling.starter|-webapp.war|${launchpadVersion}|Y",
-  "Sling Source Release|The released Sling source code|org.apache.sling.starter|-source-release.zip|${launchpadVersion}|Y",
+  "Sling Starter Feature Archive (Oak-Tar)|A self-container feature archive, for experimenting and learning. Requires the Feature Model Launcher (see below) |org.apache.sling.starter|-oak_mongo_far.far|${starterVersion}|Y|apache/sling:${starterVersion}",
+  "Sling Starter Feature Archive (Oak-Mongo)|A self-container feature archive, for experimenting and learning. Requires the Feature Model Launcher (see below) |org.apache.sling.starter|-oak_tar_far.far|${starterVersion}|Y|apache/sling:${starterVersion}",
+  "Sling Starter Source Release|The released Sling Starter source code|org.apache.sling.starter|-source-release.zip|${starterVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.feature|.jar|1.1.0|org.apache.sling.app.cms",
-  "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.1.2|Y",
+  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.2.0|Y",
+  "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.1.14|Y",
 ]
 
 def mavenPlugins=[
-  "JSPC Maven Plugin|jspc-maven-plugin|2.3.0|Y",
+  "JSPC Maven Plugin|jspc-maven-plugin|2.3.4|Y",
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
   "Scripting Bundle Maven Plugin|scriptingbundle-maven-plugin|0.5.0|Y",
   "Sling Maven Plugin|sling-maven-plugin|2.4.2|Y",
-  "Sling Feature Maven Plugin|slingfeature-maven-plugin|1.6.0|Y",
+  "Sling Feature Maven Plugin|slingfeature-maven-plugin|1.6.4|Y",
   "Sling Feature Converter Maven Plugin|sling-feature-converter-maven-plugin|1.0.4|Y",
   "Sling Feature Launcher Maven Plugin|sling-feature-launcher-maven-plugin|0.1.2|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.9.12|Y",
   "HTL Maven Plugin|htl-maven-plugin|2.0.4-1.4.0|Y",
   "Sling Kickstart Maven Plugin|sling-kickstart-maven-plugin|0.0.8|Y",
+  "Maven Enforcer Rules|maven-enforcer-rules|1.0.0|Y",
 ]
 
 def bndPlugins=[
@@ -55,7 +57,7 @@ def bundles=[
   "Adapter|org.apache.sling.adapter|2.2.0|Y|jar",
   "Adapter Annotations (JSON) 1.x|adapter-annotations|1.0.0|Y|jar",
   "Adapter Annotations 2.x|org.apache.sling.adapter.annotations|2.0.0|Y|jar",
-  "API|org.apache.sling.api|2.20.0|Y|jar",
+  "API|org.apache.sling.api|2.25.4|Y|jar",
   "Auth Core|org.apache.sling.auth.core|1.5.6|Y|jar",
   "Form Based Authentication|org.apache.sling.auth.form|1.0.24|Y|jar",
   "Authentication XING API|org.apache.sling.auth.xing.api|0.0.2|Y|jar",
@@ -83,13 +85,13 @@ def bundles=[
   "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.8|Y|jar",
   "Commons HTML|org.apache.sling.commons.html|1.1.0|Y|jar",
   "Commons Johnzon|org.apache.sling.commons.johnzon|1.2.6|Y|jar",
-  "Commons Log|org.apache.sling.commons.log|5.4.0|Y|jar",
+  "Commons Log|org.apache.sling.commons.log|5.4.2|Y|jar",
   "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|1.0.0|Y|jar",
   "Commons Log Service|org.apache.sling.commons.logservice|1.1.0|Y|jar",
   "Commons Messaging|org.apache.sling.commons.messaging|1.0.2|Y|jar",
   "Commons Messaging Mail|org.apache.sling.commons.messaging.mail|2.0.0|Y|jar",
   "Commons Metrics|org.apache.sling.commons.metrics|1.2.10|Y|jar",
-  "Commons RRD4J metrics reporter|org.apache.sling.commons.metrics-rrd4j|1.0.4|Y|jar",
+  "Commons Metrics RRD4J|org.apache.sling.commons.metrics-rrd4j|1.0.6|Y|jar",
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.2.2|Y|jar",
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.2|Y|jar",
   "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.2|Y|jar",
@@ -115,30 +117,29 @@ def bundles=[
   "DataSource Provider|org.apache.sling.datasource|1.0.4|Y|jar",
   "Discovery API|org.apache.sling.discovery.api|1.0.4|Y|jar",
   "Discovery Impl|org.apache.sling.discovery.impl|1.2.12|Y|jar",
-  "Discovery Commons|org.apache.sling.discovery.commons|1.0.24|Y|jar",
-  "Discovery Base|org.apache.sling.discovery.base|2.0.10|Y|jar",
-  "Discovery Oak|org.apache.sling.discovery.oak|1.2.34|Y|jar",
+  "Discovery Commons|org.apache.sling.discovery.commons|1.0.26|Y|jar",
+  "Discovery Base|org.apache.sling.discovery.base|2.0.12|Y|jar",
+  "Discovery Oak|org.apache.sling.discovery.oak|1.2.36|Y|jar",
   "Discovery Standalone|org.apache.sling.discovery.standalone|1.0.2|Y|jar",
   "Discovery Support|org.apache.sling.discovery.support|1.0.6|Y|jar",
   "Distributed Event Admin|org.apache.sling.event.dea|1.1.4|Y|jar",
-  "Distribution API|org.apache.sling.distribution.api|0.6.0|Y|jar",
-  "Distribution Core|org.apache.sling.distribution.core|0.4.8|Y|jar",
+  "Distribution API|org.apache.sling.distribution.api|0.7.0|Y|jar",
+  "Distribution Core|org.apache.sling.distribution.core|0.5.0|Y|jar",
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2|Y|jar",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6|Y|jar",
-  "Distribution Journal Core|org.apache.sling.distribution.journal|0.1.22|Y|jar",
-  "Distribution Journal Messages|org.apache.sling.distribution.journal.messages|0.4.0|Y|jar",
+  "Distribution Journal Core|org.apache.sling.distribution.journal|0.1.26|Y|jar",
+  "Distribution Journal Messages|org.apache.sling.distribution.journal.messages|0.5.0|Y|jar",
   "Distribution Journal Kafka|org.apache.sling.distribution.journal.kafka|0.3.0|Y|jar",
   "Distribution Journal ITs|org.apache.sling.distribution.journal.it|0.1.2|Y|jar",
   "Dynamic Include|org.apache.sling.dynamic-include|3.3.0|Y|jar",
-  "Engine|org.apache.sling.engine|2.8.0|Y|jar",
-  "Event|org.apache.sling.event|4.2.24|Y|jar",
+  "Engine|org.apache.sling.engine|2.9.0|Y|jar",
+  "Event|org.apache.sling.event|4.3.2|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.0|Y|jar",
   "Feature Model|org.apache.sling.feature|1.2.30|Y|jar",
-  "Feature Model Analyser|org.apache.sling.feature.analyser|1.6.0|Y|jar",
-  "Feature Model Launcher|org.apache.sling.feature.launcher|1.2.0|Y|jar",
+  "Feature Model Analyser|org.apache.sling.feature.analyser|1.6.4|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.14|Y|jar",
-  "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.1.4|Y|jar",
-  "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|1.5.0|Y|jar",
+  "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.1.16|Y|jar",
+  "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|1.6.0|Y|jar",
   "Feature Flags|org.apache.sling.featureflags|1.2.2|Y|jar",
   "File Optimization|org.apache.sling.fileoptim|0.9.2|org.apache.sling.file.optimization|jar",
   "File System Resource Provider|org.apache.sling.fsresource|2.2.0|Y|jar",
@@ -152,7 +153,7 @@ def bundles=[
   "Installer Configuration Support|org.apache.sling.installer.factory.configuration|1.4.2|Y|jar",
   "Installer Console|org.apache.sling.installer.console|1.1.0|Y|jar",
   "Installer Content Package Support|org.apache.sling.installer.factory.packages|1.0.4|Y|jar",
-  "Installer Factory Feature Model|org.apache.sling.installer.factory.model|0.6.0|Y|jar",
+  "Installer Factory Feature Model|org.apache.sling.installer.factory.feature|0.7.0|Y|jar",
   "Installer File Provider|org.apache.sling.installer.provider.file|1.3.4|Y|jar",
   "Installer Health Checks|org.apache.sling.installer.hc|2.0.2|Y|jar",
   "Installer JCR Provider|org.apache.sling.installer.provider.jcr|3.3.0|Y|jar",
@@ -166,7 +167,7 @@ def bundles=[
   "JCR Content Parser|org.apache.sling.jcr.contentparser|1.2.8|Y|jar",
   "JCR DavEx|org.apache.sling.jcr.davex|1.3.10|Y|jar",
   "JCR Jackrabbit AccessManager|org.apache.sling.jcr.jackrabbit.accessmanager|3.0.10|Y|jar",
-  "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|2.2.18|Y|jar",
+  "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|2.2.22|Y|jar",
   "JCR Maintenance|org.apache.sling.jcr.maintenance|1.0.2|Y|jar",
   "JCR Oak Server|org.apache.sling.jcr.oak.server|1.2.10|Y|jar",
   "JCR Package Init|org.apache.sling.jcr.packageinit|1.0.4|Y|jar",
@@ -187,16 +188,16 @@ def bundles=[
   "Launchpad Base - Application Launcher|org.apache.sling.launchpad.base|7.0.1-2.7.4|Y|war",
   "Launchpad Base - Web Launcher|org.apache.sling.launchpad.base|7.0.1-2.7.4|Y|war",
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2|Y|jar",
-  "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|1.0.10|Y|jar",
-  "Launchpad Test Fragment Bundle|org.apache.sling.launchpad.test-fragment|2.0.16|Y|jar",
+  "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|12|Y|jar",
+  "Launchpad Test Fragment Bundle|org.apache.sling.launchpad.test-fragment|12|Y|jar",
   "Launchpad Test Bundles|org.apache.sling.launchpad.test-bundles|0.0.6|Y|jar",
-  "Launchpad Testing|org.apache.sling.launchpad.testing|11|Y|jar",
+  "Launchpad Testing|org.apache.sling.launchpad.testing|12|Y|jar",
   "Launchpad Testing WAR|org.apache.sling.launchpad.testing-war|11|Y|jar",
-  "Launchpad Testing Services|org.apache.sling.launchpad.test-services|2.0.16|Y|jar",
+  "Launchpad Testing Services|org.apache.sling.launchpad.test-services|12|Y|jar",
   "Launchpad Testing Services WAR|org.apache.sling.launchpad.test-services-war|2.0.16|Y|war",
   "Log Tracer|org.apache.sling.tracer|1.0.6|Y|jar",
-  "Models API|org.apache.sling.models.api|1.4.0|Y|jar",
-  "Models Implementation|org.apache.sling.models.impl|1.5.0|Y|jar",
+  "Models API|org.apache.sling.models.api|1.4.2|Y|jar",
+  "Models Implementation|org.apache.sling.models.impl|1.5.2|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|1.1.2|Y|jar",
   "Models Validation Implementation|org.apache.sling.models.validation-impl|1.1.0|Y|jar",
   "Models Context-Aware Configuration|org.apache.sling.models.caconfig|1.0.0|Y|jar",
@@ -209,8 +210,8 @@ def bundles=[
   "Performance Test Utilities|org.apache.sling.performance.base|1.0.2|org.apache.sling.performance|jar",
   "Pipes|org.apache.sling.pipes|4.0.0|Y|jar",
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.6|Y|jar",
-  "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.36|Y|jar",
-  "Repoinit Parser|org.apache.sling.repoinit.parser|1.6.12|Y|jar",
+  "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.38|Y|jar",
+  "Repoinit Parser|org.apache.sling.repoinit.parser|1.6.14|Y|jar",
   "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.1.0|Y|jar",
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.4|Y|jar",
   "Resource Collection|org.apache.sling.resourcecollection|1.0.2|Y|jar",
@@ -218,7 +219,7 @@ def bundles=[
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8|Y|jar",
   "Resource Merger|org.apache.sling.resourcemerger|1.4.0|Y|jar",
   "Resource Presence|org.apache.sling.resource.presence|0.0.2|Y|jar",
-  "Resource Resolver|org.apache.sling.resourceresolver|1.8.4|Y|jar",
+  "Resource Resolver|org.apache.sling.resourceresolver|1.9.0|Y|jar",
   "Rewriter|org.apache.sling.rewriter|1.3.2|Y|jar",
   "Failing Server-Side Tests|org.apache.sling.testing.samples.failingtests|1.0.6|N|jar",
   "SAML2 Service Provider|org.apache.sling.auth.saml2|0.2.6|Y|jar",
@@ -228,11 +229,11 @@ def bundles=[
   "Scripting SPI|org.apache.sling.scripting.spi|1.0.4|Y|jar",
   "Scripting Bundle Tracker|org.apache.sling.scripting.bundle.tracler|0.1.0|Y|jar",
   "Scripting Console|org.apache.sling.scripting.console|1.0.0|Y|jar",
-  "Scripting Core|org.apache.sling.scripting.core|2.4.4|Y|jar",
+  "Scripting Core|org.apache.sling.scripting.core|2.4.8|Y|jar",
   "Scripting EL API Wrapper|org.apache.sling.scripting.el-api|1.0.4|Y|jar",
   "Scripting Java|org.apache.sling.scripting.java|2.1.6|Y|jar",
   "Scripting JavaScript|org.apache.sling.scripting.javascript|3.1.4|Y|jar",
-  "Scripting JSP|org.apache.sling.scripting.jsp|2.5.4|Y|jar",
+  "Scripting JSP|org.apache.sling.scripting.jsp|2.6.0|Y|jar",
   "Scripting JSP API Wrapper|org.apache.sling.scripting.jsp-api|1.0.2|Y|jar",
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.4.0|Y|jar",
   "Scripting FreeMarker|org.apache.sling.scripting.freemarker|1.0.4|Y|jar",
@@ -240,7 +241,7 @@ def bundles=[
   "Scripting HTL Runtime|org.apache.sling.scripting.sightly.runtime|1.2.6-1.4.0|Y|jar",
   "Scripting HTL Compiler|org.apache.sling.scripting.sightly.compiler|1.2.14-1.4.0|Y|jar",
   "Scripting HTL Java Compiler|org.apache.sling.scripting.sightly.compiler.java|1.2.2-1.4.0|Y|jar",
-  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.4.16-1.4.0|Y|jar",
+  "Scripting HTL Engine|org.apache.sling.scripting.sightly|1.4.18-1.4.0|Y|jar",
   "Scripting HTL JS Use Provider|org.apache.sling.scripting.sightly.js.provider|1.2.6|Y|jar",
   "Scripting HTL Sling Models Use Provider|org.apache.sling.scripting.sightly.models.provider|1.0.8|Y|jar",
   "Scripting HTL REPL|org.apache.sling.scripting.sightly.repl|1.0.10|Y|jar",
@@ -252,12 +253,12 @@ def bundles=[
   "Servlet Helpers|org.apache.sling.servlet-helpers|1.4.2|Y|jar",
   "Servlets Get|org.apache.sling.servlets.get|2.1.40|Y|jar",
   "Servlets Post|org.apache.sling.servlets.post|2.5.0|Y|jar",
-  "Servlets Resolver|org.apache.sling.servlets.resolver|2.9.0|Y|jar",
+  "Servlets Resolver|org.apache.sling.servlets.resolver|2.9.6|Y|jar",
   "Settings|org.apache.sling.settings|1.4.2|Y|jar",
   "Sitemap|org.apache.sling.sitemap|1.0.6|Y|jar",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0|Y|jar",
-  "Sling Query|org.apache.sling.query|4.0.2|Y|jar",
-  "Starter Content|org.apache.sling.starter.content|1.0.10|Y|jar",
+  "Sling Query|org.apache.sling.query|4.0.4|Y|jar",
+  "Starter Content|org.apache.sling.starter.content|1.0.12|Y|jar",
   "Superimposing Resource Provider|org.apache.sling.superimposing|0.2.0|Y|jar",
   "System Bundle Extension: Activation API|org.apache.sling.fragment.activation|1.0.2|Y|jar",
   "System Bundle Extension: WS APIs|org.apache.sling.fragment.ws|1.0.2|Y|jar",
@@ -266,18 +267,18 @@ def bundles=[
   "Testing Clients|org.apache.sling.testing.clients|3.0.12|Y|jar",
   "Testing Email|org.apache.sling.testing.email|1.0.0|Y|jar",
   "Testing Hamcrest|org.apache.sling.testing.hamcrest|1.0.2|Y|jar",
-  "Testing JCR Mock|org.apache.sling.testing.jcr-mock|1.5.4|Y|jar",
+  "Testing JCR Mock|org.apache.sling.testing.jcr-mock|1.6.0|Y|jar",
   "Testing Logging Mock|org.apache.sling.testing.logging-mock|2.0.0|Y|jar",
-  "Testing OSGi Mock Core|org.apache.sling.testing.osgi-mock.core|3.2.2|org.apache.sling.testing.osgi-mock|jar",
-  "Testing OSGi Mock JUnit 4|org.apache.sling.testing.osgi-mock.junit4|3.2.2|org.apache.sling.testing.osgi-mock|jar",
-  "Testing OSGi Mock JUnit 5|org.apache.sling.testing.osgi-mock.junit5|3.2.2|org.apache.sling.testing.osgi-mock|jar",
+  "Testing OSGi Mock Core|org.apache.sling.testing.osgi-mock.core|3.3.0|org.apache.sling.testing.osgi-mock|jar",
+  "Testing OSGi Mock JUnit 4|org.apache.sling.testing.osgi-mock.junit4|3.3.0|org.apache.sling.testing.osgi-mock|jar",
+  "Testing OSGi Mock JUnit 5|org.apache.sling.testing.osgi-mock.junit5|3.3.0|org.apache.sling.testing.osgi-mock|jar",
   "Testing PaxExam|org.apache.sling.testing.paxexam|3.1.0|Y|jar",
   "Testing Rules|org.apache.sling.testing.rules|2.0.0|Y|jar",
-  "Testing Resource Resolver Mock|org.apache.sling.testing.resourceresolver-mock|1.2.6|Y|jar",
+  "Testing Resource Resolver Mock|org.apache.sling.testing.resourceresolver-mock|1.3.0|Y|jar",
   "Testing Server Setup Tools|org.apache.sling.testing.serversetup|1.0.4|Y|jar",
-  "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|3.2.2|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|3.2.2|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|3.2.2|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|3.3.0|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|3.3.0|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|3.3.0|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|3.1.2-1.40.0|Y|jar",
   "Thumbnails|org.apache.sling.thumbnails|1.0.0|Y|jar",
   "Tooling Support Install|org.apache.sling.tooling.support.install|1.0.6|Y|jar",
@@ -287,7 +288,7 @@ def bundles=[
   "Validation Core|org.apache.sling.validation.core|1.0.4|Y|jar",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2|Y|jar",
   "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.2|Y|jar",
-  "XSS Protection API|org.apache.sling.xss|2.2.18|Y|jar",
+  "XSS Protection API|org.apache.sling.xss|2.2.20|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
 
@@ -363,6 +364,11 @@ def githubLink(artifact,ghflag) {
 	}
 }
 
+def dockerHubLink(image) {
+    image = image.replaceAll(':.*$', '') // remove version for the link
+    a(href:"https://hub.docker.com/r/${image}", "Docker Image")
+}
+
 def tableHead(String [] headers) {
 	thead() {
 		tr() {
@@ -418,6 +424,10 @@ layout 'layout/main.tpl', true,
 										td(data[1])
 										def artifact = "${data[2]}-${data[4]}${data[3]}"
 										td(){
+											if (data.size() == 7) {
+											     dockerHubLink(data[6])
+											     yield(", ")
+											}
 											downloadLink(artifact, artifact, "", "")
 										}
 									}

@@ -6,6 +6,46 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## June 2022
+
+* API 2.25.4 and Commons Log 5.4.2 (13th)
+* Maven Enforcer Rules 1.0.0 (12th)
+* (Bundle) Parent 48 and Installer WebConsole Plugin 1.0.4 (7th)
+
+## May 2022
+
+* Resource Resolver 1.9.0 (27th)
+* XSS Protection API 2.2.20 (24th)
+* Event 4.3.2 (23rd)
+* Content Package to Feature Model Converter 1.1.16 (20th)
+* Feature Extension API Region 1.6.0 (15th)
+* Scripting Core 2.4.8, Scripting JSP 2.6.0, Servlets Resolver 2.9.6 (14th)
+* Resource Resolver 1.8.6, Content Distribution Journal Core 0.1.26 (9th)
+* Testing JCR Mock 1.6.0, Testing ResourceResolver Mock 1.3.0, Testing OSGi Mock 3.3.0, Testing Sling Mock 3.3.0 (9th)
+* JCR Jackrabbit User Manager 2.2.22 (5th)
+* Models API 1.4.2, Models Implementation 1.5.2, Content Distribution Journal Messages 0.5.0 (3rd)
+* Query 4.0.4 (2nd)
+
+## April 2022
+
+* Sling Content Distribution API 0.7.0 (29th)
+* Commons Metrics RRD4J 1.0.6 (26th)
+* Installer Factory Feature 0.7.0 (23rd)
+* JSPC Maven Plugin 2.3.4 (12th)
+* JCR Jackrabbit User Manager 2.2.20 (8th)
+* Scripting Core 2.4.6 (5th)
+* Sling Feature Maven Plugin 1.6.4 (1st)
+* API 2.25.0, Engine 2.9.0, Servlets Resolver 2.9.4, Scripting Sightly 1.4.18-1.4.0 (1st)
+
+## March 2022
+
+* Content-Package to Feature Model Converter 1.1.14 (25th)
+* Starter 12, Feature Model Analyser 1.6.2, Sling Feature Maven Plugin 1.6.2 (18th)
+* Discovery Commons 1.0.26, Base 2.0.12, Oak 1.2.36 (14th)
+* Launchpad Testing 12, Launchpad Integration Tests 12, Launchpad Testing Services 12, Launchpad Testing Fragment Bundle 12 (14th)
+* Starter Content 1.0.12, Event 4.3.0 (10th)
+* Repoinit Parser 1.6.14, Repoinit JCR 1.1.38 (7th)
+
 ## February 2022
 
 * ResourceResolver Mocks 1.2.6 (25th)

@@ -5,67 +5,34 @@ tags=logging,operations
 ~~~~~~
 
 <div class="note">
-This document is for the new (November 2013) 4.x release of the Sling Commons Log components. Refer to
-<a href="http://sling.apache.org/documentation/legacy/logging.html">Logging 3.x</a> for older versions.
+Please make sure to always use the latest release of Apache Sling Commons Log. Check [Sling Releases](https://downloads.apache.org/sling/) for the latest available version.
 </div>
 
 [TOC]
 
 ## Introduction
 
-Logging in Sling is supported by the `org.apache.sling.commons.log` bundle, which is one of the first bundles installed
+Logging in Sling is supported by three bundles:
+
+* `org.apache.felix.log` : This is an implementation of the OSGi Log Service specification and providers OSGi services like the `LogService` and `LogReader` services
+* `org.apache.sling.commons.log` : This bundle contains [logback](https://logback.qos.ch/) and allows to configure logback logging based on OSGi configurations or logback XML. It also supports registering of some logback services via the OSGi service registry.
+* `org.apache.sling.commons.logservice` : This bundle binds (SLF4J)](http://www.slf4j.org) to the OSGi log service.
 and started by the Sling Launcher. This bundle along with other bundles manages the Sling Logging and provides the
 following features:
 
-* Implements the OSGi Log Service Specification and registers the `LogService` and `LogReader` services
-* Exports three commonly used logging APIs:
-  * [Simple Logging Facade for Java (SLF4J)](http://www.slf4j.org)
-  * [Apache Commons Logging](http://jakarta.apache.org/commons/logging)
-  * [log4j](http://logging.apache.org/log4j/index.html)
-  * [java.util.logging](http://download.oracle.com/javase/6/docs/api/java/util/logging/package-summary.html)
-* Configures logging through Logback which is integrated with the OSGi environment
-* Allows logging to be configured both via editing Logback xml or via OSGi Configurations
+Additionally, the latest version of (SLF4J)](http://www.slf4j.org) should be installed as bundles as well as any bridge for other logging frameworks.
+
+## Important Changes
+
+This document describes the latest version. For older releases have a look at <a href="http://sling.apache.org/documentation/legacy/logging.html">Logging 3.x</a>.
+
+The latest release of commons log includes the latest version of logback.
 
 ### v5.0.0 release
 
-With Sling Log 5.0.0. release the webconsole support has been moved to a 
-different bundle named Sling Commons Log WebConsole (org.apache.sling.commons.log.webconsole:1.0.0)
+With Sling Commons Log 5.0.0. release the webconsole support has been moved to a different bundle named Sling Commons Log WebConsole (org.apache.sling.commons.log.webconsole)
 
-Also with this release Logback 1.1.7 version is embedded and thus it requires 
-slf4j-api:1.7.15. See [SLING-6144][SLING-6144] for details
-
-## WebConsole Plugin
-
-The Web Console Plugin supports the following features:
-
-* Display the list of loggers which have levels or appenders configured.
-* List the file appenders with the location of current active log files.
-* Show the contents of LogBack config files.
-* Show the contents of various Logback config fragments.
-* Show Logback Status logs.
-* Inline edit the Logger setting
-* Configure Logger with content assist for logger names
-* Provides links to log file content allows log file content to be viewed from Web UI
-
-<img src="sling-log-support.png" />
-
-## WebTail
-
-The Web Console Plugin also supports tailing of the current active log files.
-It generates link to all active log files which can be used to see there content
-from within the browser. The url used is like
-
-```
-http://localhost:8080/system/console/slinglog/tailer.txt?tail=1000&grep=lucene&name=%2Flogs%2Ferror.log
-```
-
-It supports following parameters
-
-* `name` - Appender name like _/logs/error.log_
-* `tail` - Number of lines to include in dump. -1 to include whole file
-* `grep` - Filter the log lines based on `grep` value which can be
-    * Simple string phrase - In this case search is done in case insensitive way via String.contains
-    * regex - In this case the search would be done via regex pattern matching
+Also with this release Logback 1.1.7 version is embedded and thus it requires at least slf4j-api:1.7.15. See [SLING-6144][SLING-6144] for details
 
 ## Initial Configuration
 
@@ -108,7 +75,6 @@ The following properties may be set:
 | `org.apache.sling.commons.log.pattern` | `String` | \{0,date,dd.MM.yyyy HH:mm:ss.SSS\} \*\{4\}\* \{2\} \{3\} \{5\} | The `java.util.MessageFormat` pattern to use for formatting log messages with the root logger. This is a `java.util.MessageFormat` pattern supporting up to six arguments: \{0\} The timestamp of type `java.util.Date`, \{1\} the log marker, \{2\} the name of the current thread, \{3\} the name of the logger, \{4\} the log level and \{5\} the actual log message. If the log call includes a Throwable, the stacktrace is just appended to the message regardless of the pattern. |
 | `org.apache.sling.commons.log.names` | `String[]` |  | A list of logger names to which this configuration applies. |
 | `org.apache.sling.commons.log.additiv` | `Boolean` | false | If set to false then logs from these loggers would not be sent to any appender attached higher in the hierarchy |
-
 
 Note that multiple Logger Configurations may refer to the same Log Writer Configuration. If no Log Writer Configuration
 exists whose file name matches the file name set on the Logger Configuration an implicit Log Writer Configuration
@@ -183,6 +149,39 @@ When using Size Rotation, the `org.apache.sling.commons.log.file.number` defines
 to keep. For example to keep 5 old log files indexed by 0 through 4, set the `org.apache.sling.commons.log.file.number`
 to `5` (which happens to be the default).
 
+## WebConsole Plugin
+
+The Web Console Plugin supports the following features:
+
+* Display the list of loggers which have levels or appenders configured.
+* List the file appenders with the location of current active log files.
+* Show the contents of LogBack config files.
+* Show the contents of various Logback config fragments.
+* Show Logback Status logs.
+* Inline edit the Logger setting
+* Configure Logger with content assist for logger names
+* Provides links to log file content allows log file content to be viewed from Web UI
+
+<img src="sling-log-support.png" />
+
+## WebTail
+
+The Web Console Plugin also supports tailing of the current active log files.
+It generates link to all active log files which can be used to see there content
+from within the browser. The url used is like
+
+```
+http://localhost:8080/system/console/slinglog/tailer.txt?tail=1000&grep=lucene&name=%2Flogs%2Ferror.log
+```
+
+It supports following parameters
+
+* `name` - Appender name like _/logs/error.log_
+* `tail` - Number of lines to include in dump. -1 to include whole file
+* `grep` - Filter the log lines based on `grep` value which can be
+    * Simple string phrase - In this case search is done in case insensitive way via String.contains
+    * regex - In this case the search would be done via regex pattern matching
+
 ## Logback Integration
 
 Logback integration provides following features
@@ -193,6 +192,8 @@ Logback integration provides following features
 * Support providing Logback configuration as fragments through OSGi Service Registry
 * Support for referring to Appenders registered as OSGi services from with Logback config
 * Exposes Logback runtime state through the Felix WebConsole Plugin
+
+Note, that for all loggers configured via OSGi configurations (see above) certain characters are escaped when outputting the log message and the exception message. For example newline and carriage return are replaced with an underscore.
 
 The following sections provide more details.
 
