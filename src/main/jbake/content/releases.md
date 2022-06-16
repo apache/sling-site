@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2022
 
+* Feature Model Extension API Region 1.6.2 (16th)
 * API 2.25.4 and Commons Log 5.4.2 (13th)
 * Maven Enforcer Rules 1.0.0 (12th)
 * (Bundle) Parent 48 and Installer WebConsole Plugin 1.0.4 (7th)
