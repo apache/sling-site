@@ -43,7 +43,7 @@ def mavenPlugins=[
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.9.12|Y",
   "HTL Maven Plugin|htl-maven-plugin|2.0.4-1.4.0|Y",
   "Sling Kickstart Maven Plugin|sling-kickstart-maven-plugin|0.0.8|Y",
-  "Maven Enforcer Rules|maven-enforcer-rules|1.0.0|Y",
+  "Maven Enforcer Rules|maven-enforcer-rules|1.1.0|Y",
 ]
 
 def bndPlugins=[
