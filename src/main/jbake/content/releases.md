@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2022
 
+* Event 4.3.6 (27th)
 * Maven Enforcer Rules 1.1.0 (27th)
 * Feature Model Extension API Region 1.6.2 (16th)
 * API 2.25.4 and Commons Log 5.4.2 (13th)
