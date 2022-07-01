@@ -145,13 +145,21 @@ against null values.
 <p>When iterating on a GitHub pull request a single commit can receive multiple follow-up fixes. To help preserve a linear history and to make changes easy to follow, please squash the changes in a single commit before merging, which the GitHub pull request page now offers as an option.</p>
 <h3><a href="#testing" id="testing">Testing</a></h3>
 <p>Each Sling module comes with an automated build, usually based on Apache Maven. Your change should be covered by new unit tests that verify that the changes work as expected. Building with the Maven <code>jacoco-report</code> profile active provides a test coverage report at <code>target/site/jacoco-merged/index.html</code> .</p>
-<p>In case your changes are more far-reaching and the module you are contributing to is part of the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a>, it is a good idea to also run the Sling Starter integration tests. This can be achieved by doing the following:</p>
+<p>The PR you submit will eventually be built by Jenkins, with additional validations on top of the plain Maven build.</p>
+<h4><a href="#running-the-sling-starter-integration-tests" id="running-the-sling-starter-integration-tests">Running the Sling Starter integration tests</a></h4>
+<p>In case your changes are more far-reaching and the module you are contributing to is part of the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a>, it is a good idea to also run the Sling Starter integration tests.</p>
+<h5><a href="#modules-using-the-sling-parent-pom-49-or-newer" id="modules-using-the-sling-parent-pom-49-or-newer">Modules using the Sling Parent POM 49 or newer</a></h5>
+<p>Sling modules using a recent version of the Parent POM are now able to automatically run the Starter ITs with the current version of the module. This is done by building your module while passing the <code>starter-its.starter.version</code> pointing to the Starter version you want to test with.</p>
+<p>The snippet below shows how to achieve this for the current development Starter version:</p>
+<p><code>mvn clean verify -Dstarter-its.starter.version=13-SNAPSHOT</code></p>
+<h5><a href="#modules-using-an-older-sling-parent-pom" id="modules-using-an-older-sling-parent-pom">Modules using an older Sling Parent POM</a></h5>
+<p>For modules using an older parent POM, the Sling Starter must be manually patched to run the latest version of the bundle. The steps to do that are:</p>
 <ul>
+<li>Build the bundle that includes your changes using <code>mvn clean install</code></li>
 <li>Check out the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a> project. This step can be skipped if you have followed the steps to checkout all Sling repositories as documented at <a href="/documentation/development/getting-and-building-sling.html#getting-the-sling-source">Getting and Building Sling</a></li>
-<li>Use the latest version of the bundle(s) you changed in the Sling Starter. Running <code>git grep ${ARTIFACT_ID}</code> will indicate the potential places where you need to make changes</li>
+<li>Use the latest version of the bundle(s) you changed in the Sling Starter. Running <code>git grep ARTIFACT_ID</code> will indicate the potential places where you need to make changes</li>
 <li>Run <code>mvn clean verify</code> in the Sling Starter checkout. This runs the full set of integration tests that we use for Sling modules.</li>
 </ul>
-<p>Additionally, and PR you submit will eventually be built by Jenkins, with additional validations on top of the plain Maven build.</p>
 </section></div></div>                            
                         </div>
                     </div>
@@ -163,7 +171,7 @@ against null values.
                             content/contributing.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2022-05-11</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2022-07-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
