@@ -147,7 +147,7 @@ def bundles=[
   "I18n|org.apache.sling.i18n|2.5.18|Y|jar",
   "HApi|org.apache.sling.hapi|1.1.0|Y|jar",
   "Health Check API|org.apache.sling.hc.api|1.0.4|Y|jar",
-  "Health Check Support|org.apache.sling.hc.support|1.0.6|Y|jar",
+  "Health Check Support|org.apache.sling.hc.support|1.0.8|Y|jar",
   "Health Check JUnit Bridge|org.apache.sling.hc.junit.bridge|1.0.2|Y|jar",
   "Installer Core|org.apache.sling.installer.core|3.12.0|Y|jar",
   "Installer Configuration Support|org.apache.sling.installer.factory.configuration|1.4.2|Y|jar",

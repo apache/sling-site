@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## July 2022
+
+* Health Check Support 1.0.8 (1st)
+
 ## June 2022
 
 * Event 4.3.6 (27th)
