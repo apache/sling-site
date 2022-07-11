@@ -355,6 +355,16 @@ create path /one:and/step/two:and/steps
 create path /one@home/step/two@home/steps
 create path /one+tap/step/two+tap/steps
 
+# this is to cover an edge case: SLING-11384 (create root node with primary type)
+create path /(nt:x)
+
+# SLING-10740 - Repoinit create path statement with properties
+create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder2 with properties
+  set sling:ResourceType{String} to /x/y/z
+  set cq:allowedTemplates to /d/e/f/*, m/n/*
+  default someInteger{Long} to 42
+end
+
 # test-30.txt
 
 # Test the principal-centered ACL syntax
@@ -538,8 +548,11 @@ end
 # Register namespaces, requires
 # o.a.s.repoinit.parser 1.0.4
 # and o.a.s.jcr.repoinit 1.0.2
+# Quoted Namespaces requires
+# o.a.s.repoinit.parser 1.6.16
 register namespace (foo) uri:some-uri/V/1.0
 register namespace ( prefix_with-other.things ) andSimpleURI
+register namespace (foo2) &quot;uri:some-uri/V/1.1/test#&quot;
 
 # test-42.txt
 
@@ -808,7 +821,7 @@ Newline&quot;
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">angela</span> on <span class="comment">2022-03-02</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2022-07-11</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
