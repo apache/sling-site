@@ -221,7 +221,7 @@ Property | Description
 --- | ---
 [ResourceChangeListener.PATHS](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PATHS)| denote the path (including sub paths) in which you are interested in. This property is required.
 [ResourceChangeListener.CHANGES](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#CHANGES)| the type of changes you are interested in (optional)
-[ResourceChhangeListener.PROPERTY_NAMES_HINT](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PROPERTY_NAMES_HINT)| filte r only for events affecting the properties with the given names (optional)
+[ResourceChangeListener.PROPERTY_NAMES_HINT](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PROPERTY_NAMES_HINT)| filter only for events affecting the properties with the given names (optional)
 
 
 ### OSGi Event based resource changes (deprecated)
