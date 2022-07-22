@@ -141,7 +141,7 @@
 </code></pre>
 <p>will write <code>@foo1='bar1'</code>, <code>@foo2=2</code>, <code>@foo3=true</code>, <a href="/documentation/bundles/sling-pipes/bindings.html"><code>@foo4=${one.old}</code></a>, and @foo5 being a Date property in <code>/content/foo</code>.</p>
 <p>Another handy usage is to copy whole tree sections, using the expr configuration</p>
-<pre><code>    echo /content/foo | write @ expr /content/tree/to/copy
+<pre><code>    echo /content/tree/to/copy/to | write @ expr /content/tree/to/copy/from
 </code></pre>
 <p>Finally, for more complicated cases where you need a structure to be written, you can use  JCR / Resource explorer to edit the &quot;compiled&quot; persistence of the pipe, and create the given structured under conf. - <code>sling:resourceType</code> is <code>slingPipes/write</code> - <code>conf</code> node tree that will be copied to the current input of the pipe, each property's names and value will be written to the input resource. Input resource will be outputed. Note that properties that will be evaluated (in an expression) as <code>null</code> for a given input resource will be removed from it. E.g. <code>./conf/some/node@prop=${null}</code> will add <code>./conf/some/node</code> structure if not in current input resource, but remove its <code>prop</code> property if any).</p>
 <p>Note that you can use expressions in that node tree, and specifically, for a node name, parent of a tree you want to be conditionally written, use <code>$if${...}nodename</code> syntax, that will basically only create such tree if the expression is true.</p>
@@ -228,7 +228,7 @@
                             content/documentation/bundles/sling-pipes/writers.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">2021-01-28</span>
+                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">2022-07-22</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
