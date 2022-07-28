@@ -29,6 +29,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * XSS Protection API 2.2.20 (24th)
 * Event 4.3.2 (23rd)
 * Content Package to Feature Model Converter 1.1.16 (20th)
+* JCR Oak Server 1.3.0 (19th)
 * Feature Extension API Region 1.6.0 (15th)
 * Scripting Core 2.4.8, Scripting JSP 2.6.0, Servlets Resolver 2.9.6 (14th)
 * Resource Resolver 1.8.6, Content Distribution Journal Core 0.1.26 (9th)
