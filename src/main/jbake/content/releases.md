@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2022
 
+* Installer Health Checks 2.1.0 (28th)
 * Engine 2.9.2 (18th)
 * Feature Model Analyser 1.6.6, Sling Feature Maven Plugin 1.6.6 (17th)
 * Repoinit Parser 1.7.0, Repoinit JCR 1.1.40 (11th)
