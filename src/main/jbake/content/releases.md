@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2022
+* Discovery Commons 1.0.28, Base 2.0.14, Oak 1.2.40 (3rd)
+
 ## July 2022
 
 * Installer Health Checks 2.1.0 (28th)
