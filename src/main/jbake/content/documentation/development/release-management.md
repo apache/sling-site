@@ -217,12 +217,12 @@ If the vote passes:
         * Make sure to *not* change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!
     1. Delete the old release artifacts from that same dist.apache.org svn folder (the dist directory is archived)
 1. Push the release to Maven Central
-	1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging Repositories*. Find your closed staging repository and select it by checking the select box. Click *Release* from the menu above and confirm.
-	1. Once the release is promoted click on *Repositories* on the left, select the *Releases* repository and validate that your artifacts are all there.
-        1. Following the release promotion you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports. To simplify this task you can use the script from [https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh](https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh).
-1. Update the releases section on the website at [releases](/releases.html).
-1. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl).
-1. If you think that this release is worth a news entry, update the website at  [news](/news.html)
+    1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging Repositories*. Find your closed staging repository and select it by checking the select box. Click *Release* from the menu above and confirm.
+    2. Once the release is promoted click on *Repositories* on the left, select the *Releases* repository and validate that your artifacts are all there.
+3. Following the release promotion you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports. To simplify this task you can use the script from [https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh](https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh).
+2. Update the releases section on the website at [releases](/releases.html).
+3. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl).
+4. If you think that this release is worth a news entry, update the website at  [news](/news.html)
 
 For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
 
