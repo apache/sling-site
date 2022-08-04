@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## August 2022
 * Discovery Commons 1.0.28, Base 2.0.14, Oak 1.2.40 (3rd)
 * Commons Metrics 1.2.12 (3rd)
+* Extensions Webconsole Security Provider 1.2.6 (4th)
 
 ## July 2022
 
