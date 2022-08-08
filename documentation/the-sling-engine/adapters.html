@@ -187,10 +187,8 @@
 }
 </code></pre>
 <h2><a href="#adapter-annotations" id="adapter-annotations">Adapter Annotations</a></h2>
-<blockquote>
-<p>TODO this section needs to be updated for the new <a href="https://github.com/apache/sling-org-apache-sling-adapter-annotations">sling-org-apache-sling-adapter-annotations</a> module, see <a href="https://issues.apache.org/jira/browse/SLING-9890">SLING-9890</a></p>
-</blockquote>
-<p>Instead of manually creating the JSON file described in the previous section, the annotations from the module <a href="https://svn.apache.org/viewvc/sling/trunk/tooling/maven/adapter-annotations/">adapter-annotations</a>  can be used together with the goal <code>generate-adapter-metadata</code> from the <a href="http://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html">Maven Sling Plugin</a> to generate it automatically (<a href="https://issues.apache.org/jira/browse/SLING-2313">SLING-2313</a>).</p>
+<p>The <a href="https://github.com/apache/sling-adapter-annotations">Adapter Annotations</a> provide OSGi DS 1.4 component property types that ease implementing <code>Adaptable</code> services.</p>
+<p>For adaptable implementations not provided by a dedicated OSGi service implementing <code>Adaptable</code> you should consider creating the JSON file described in the previous section with the help of the annotations from the module <a href="https://github.com/apache/sling-adapter-annotations">Adapter Annotations (JSON)</a> which are evaluated by goal <code>generate-adapter-metadata</code> from the <a href="http://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html">Maven Sling Plugin</a> (<a href="https://issues.apache.org/jira/browse/SLING-2313">SLING-2313</a>).</p>
 <h1><a href="#extending-adapters" id="extending-adapters">Extending Adapters</a></h1>
 <p>Sometimes an <code>Adaptable</code> implementation cannot foresee future uses and requirements. To cope with such extensibility requirements two interfaces and an abstract base class are defined:</p>
 <ul>
@@ -265,7 +263,7 @@
                             content/documentation/the-sling-engine/adapters.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2020-11-10</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-08-08</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
