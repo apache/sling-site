@@ -75,7 +75,7 @@ For example
 
 ## Adapter Annotations
 
-The [Adapter Annotations](https://github.com/apache/sling-adapter-annotations) provide OSGi DS 1.4 component property types that ease implementing `Adaptable` services.
+The [Adapter Annotations](https://github.com/apache/sling-org-apache-sling-adapter-annotations) provide OSGi DS 1.4 component property types that ease implementing `Adaptable` services.
 
 For adaptable implementations not provided by a dedicated OSGi service implementing `Adaptable` you should consider creating the JSON file described in the previous section with the help of the annotations from the module [Adapter Annotations (JSON)](https://github.com/apache/sling-adapter-annotations) which are evaluated by goal `generate-adapter-metadata` from the [Maven Sling Plugin](http://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html) ([SLING-2313](https://issues.apache.org/jira/browse/SLING-2313)).
 
