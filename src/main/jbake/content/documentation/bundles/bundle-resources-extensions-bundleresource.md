@@ -35,6 +35,15 @@ Files and directories are mapped into the resource tree as regular `Resource` in
 
    * Regular files are assigned the `nt:file` resource type
    * Directories are assigned the `nt:folder` resource type
+   
+The default resource type is stored under the `sling:resourceType` property and can be accessed using the value map. You can change this behavior by adding `skipSettingResourceTypeProperty` flag to the manifest:
+
+    ...
+    Sling-Bundle-Resources: /products;skipSettingResourceTypeProperty:=true
+    ...
+    
+After setting the flag, `Resource.getResourceType()` will still return valid resource type.
+
 
 # Defining Resources Through JSON
 
