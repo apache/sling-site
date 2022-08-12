@@ -8,11 +8,10 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2022
 
-* Parent and Bundle Parent 49 (8th)
-* Discovery Commons 1.0.28, Base 2.0.14, Oak 1.2.40 (3rd)
-* Commons Metrics 1.2.12 (3rd)
-* Extensions Webconsole Security Provider 1.2.6 (4th)
 * Models Context-Aware Configuration 1.0.2, Engine 2.10.2, Scripting HTL Testing 1.0.32-1.4.0, Resource Resolver 1.10.0, Scripting HTL JS Use Provider 1.2.8, Scripting HTL Engine 1.4.20-1.4.0, Servlets Resolver 2.9.8, API 2.26.0 (12th)
+* Parent and Bundle Parent 49 (8th)
+* Extensions Webconsole Security Provider 1.2.6 (4th)
+* Discovery Commons 1.0.28, Base 2.0.14, Oak 1.2.40, Commons Metrics 1.2.12 (3rd)
 
 ## July 2022
 
