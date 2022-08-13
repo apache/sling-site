@@ -84,6 +84,12 @@ The Sling HTL Scripting engine fully complies with the [HTML Template Language S
 
 ## Expression Options
 
+
+### Display Context
+
+In addition to the contexts defined in [HTL Spec 1.2.1](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#121-display-context) a context with name `jsonString` is supported which escapes a text according to the JSON string grammar defined by [ECMA-404](https://www.ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf) in chapter 9 ([SLING-11538](https://issues.apache.org/jira/browse/SLING-11538)).
+
+
 ### I18n
 
 In addition to the options defined in [HTL Spec 1.2.3](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#123-i18n) the option `basename` is supported to set the basename of the used [Sling i18n Resource bundle](../internationalization-support-i18n.html#resourcebundle-with-base-names) ([SLING-5314](https://issues.apache.org/jira/browse/SLING-5314)).
