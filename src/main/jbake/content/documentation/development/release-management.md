@@ -419,27 +419,19 @@ Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash yo
 When releasing a Maven plugin, the Maven-generated documentation published under [http://sling.apache.org/components/](http://sling.apache.org/components/) needs
 to be updated.
 
-This is currently supported for:
-
-* `sling-maven-plugin`
-* `htl-maven-plugin`
-* `jspc-maven-plugin`
-* `slingstart-maven-plugin`
-* `slingfeature-maven-plugin`
-
 To publish the plugin documentation execute the following steps after the release:
 
 1. Checkout the release tag of the released plugin (or reset your workspace)
 
-2. Build and stage the maven site of the plugin locally.
+2. Build the Maven site of the plugin locally.
    
-        $ mvn clean site:site site:stage
+        $ mvn clean site:site
 
-3. Checkout the Sling website and navigate to the 'components' directory
+3. Checkout the Sling website
 
         $ git clone https://github.com/apache/sling-site.git
 
-4. Replace the content of the existing folder `src/main/jbake/assets/components/<plugin-name>` with the generated maven site from `target/staging`
+4. Replace the content of the existing folder `src/main/jbake/assets/components/<plugin-name>` with the generated Maven site from `target/site`
 
 5. Create a new folder `src/main/jbake/assets/components/<plugin-name>-archives/<plugin-name>-<version>` and copy the generated maven site there as well
 
