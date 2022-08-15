@@ -2,7 +2,7 @@
 // Sling downloads page
 // http://www.apache.org/dev/release-download-pages.html explains how the apache.org mirrored
 // downloads page work. Basically, we provide a downloads.html page with a few placeholders
-// and a form to select the download mirrog, and a downloads.cgi page which wraps the apache.org
+// and a form to select the download mirrorjcr, and a downloads.cgi page which wraps the apache.org
 // download logic CGI.
 //
 // To test this page in a local build, open http://localhost:8820/downloads.html - the navigation
@@ -167,7 +167,7 @@ def bundles=[
   "JCR Content Parser|org.apache.sling.jcr.contentparser|1.2.8|Y|jar",
   "JCR DavEx|org.apache.sling.jcr.davex|1.3.10|Y|jar",
   "JCR Jackrabbit AccessManager|org.apache.sling.jcr.jackrabbit.accessmanager|3.0.10|Y|jar",
-  "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|2.2.22|Y|jar",
+  "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|2.2.24|Y|jar",
   "JCR Maintenance|org.apache.sling.jcr.maintenance|1.0.2|Y|jar",
   "JCR Oak Server|org.apache.sling.jcr.oak.server|1.3.0|Y|jar",
   "JCR Package Init|org.apache.sling.jcr.packageinit|1.0.4|Y|jar",
