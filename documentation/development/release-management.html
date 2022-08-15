@@ -510,31 +510,23 @@ $ svn up KEYS
 </ol>
 <h2><a href="#appendix-b-deploy-maven-plugin-documentation-if-applicable" id="appendix-b-deploy-maven-plugin-documentation-if-applicable">Appendix B: Deploy Maven plugin documentation (if applicable)</a></h2>
 <p>When releasing a Maven plugin, the Maven-generated documentation published under <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a> needs to be updated.</p>
-<p>This is currently supported for:</p>
-<ul>
-<li><code>sling-maven-plugin</code></li>
-<li><code>htl-maven-plugin</code></li>
-<li><code>jspc-maven-plugin</code></li>
-<li><code>slingstart-maven-plugin</code></li>
-<li><code>slingfeature-maven-plugin</code></li>
-</ul>
 <p>To publish the plugin documentation execute the following steps after the release:</p>
 <ol>
 <li>
 <p>Checkout the release tag of the released plugin (or reset your workspace)</p>
 </li>
 <li>
-<p>Build and stage the maven site of the plugin locally.</p>
-<pre><code>$ mvn clean site:site site:stage
+<p>Build the Maven site of the plugin locally.</p>
+<pre><code>$ mvn clean site:site
 </code></pre>
 </li>
 <li>
-<p>Checkout the Sling website and navigate to the 'components' directory</p>
+<p>Checkout the Sling website</p>
 <pre><code>$ git clone https://github.com/apache/sling-site.git
 </code></pre>
 </li>
 <li>
-<p>Replace the content of the existing folder <code>src/main/jbake/assets/components/&lt;plugin-name&gt;</code> with the generated maven site from <code>target/staging</code></p>
+<p>Replace the content of the existing folder <code>src/main/jbake/assets/components/&lt;plugin-name&gt;</code> with the generated Maven site from <code>target/site</code></p>
 </li>
 <li>
 <p>Create a new folder <code>src/main/jbake/assets/components/&lt;plugin-name&gt;-archives/&lt;plugin-name&gt;-&lt;version&gt;</code> and copy the generated maven site there as well</p>
@@ -560,7 +552,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Joerg Hoh</span> on <span class="comment">2022-08-03</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-08-15</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
