@@ -300,7 +300,7 @@ use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
     &lt;/html&gt;
 </code></pre>
 <p>The advantage of loading a bean using just the simple class name (e.g. <code>data-sly-use.page=&quot;PageBean&quot;</code>) is that an inheriting component can overlay the <code>PageBean.java</code> file and provide a different logic. In this case the package name of the <code>PageBean</code> class will automatically be derived from the calling script's parent path (e.g. <code>apps.my_project.components.page</code>) - the bean doesn't even have to specify it. However, keep in mind that loading a bean this way is slower than providing the fully qualified class name, since the provider has to check if there is a backing resource. At the same time, loading an object using its fully qualified class name will not allow overriding it by inheriting components.</p>
-<h4><a href="#passing-parameters" id="passing-parameters">Passing parameters</a></h4>
+<h4><a href="#passing-parameters-to-java-use-objects" id="passing-parameters-to-java-use-objects">Passing parameters to Java Use-objects</a></h4>
 <p>Passed parameters will be made available to the Use object as request attributes and, if the object implements the <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly-compiler-java/blob/master/src/main/java/org/apache/sling/scripting/sightly/pojo/Use.java"><code>org.apache.sling.scripting.sightly.pojo.Use</code></a> interface, through the <code>javax.script.Bindings</code> passed to the <code>init</code> method. Assuming the following markup:</p>
 <pre><code>    &lt;div data-sly-use.useObject=&quot;${'org.example.use.MyUseObject' @ colour='red', year=2016}&quot;&gt;
         ${useObject.shine}
@@ -414,7 +414,7 @@ sightly         // the namespace object under which the asynchronous Resource-AP
 use             // the use function
 </code></pre>
 <p>With the exception of the <code>console</code> and <code>use</code> objects, all the other global objects implemented by the JavaScript Use Provider are present in order to support the asynchronous Resource-API implemented by <code>org.apache.sling.scripting.sightly.js.provider</code>. However, this was deprecated starting with version 1.0.8 - see <a href="https://issues.apache.org/jira/browse/SLING-4964">SLING-4964</a>.</p>
-<h4><a href="#passing-parameters" id="passing-parameters">Passing parameters</a></h4>
+<h4><a href="#passing-parameters-to-javascript-use-objects" id="passing-parameters-to-javascript-use-objects">#### Passing parameters to JavaScript Use-objects</a></h4>
 <p>Passed parameters will be made available to the Use object as properties of <code>this</code>. Assuming the following markup:</p>
 <pre><code>    &lt;div data-sly-use.logic=&quot;${'logic.js' @ colour='red', year=2017}&quot;&gt;
         My colour is ${logic.colour ? logic.colour : 'not important'} and I'm from ${logic.year}
@@ -600,7 +600,7 @@ use             // the use function
                             content/documentation/bundles/scripting/scripting-htl.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">2022-08-17</span>
+                        Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">2022-08-18</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
