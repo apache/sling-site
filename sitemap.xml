@@ -3,23 +3,23 @@
     <url>
         <loc>https://sling.apache.org/documentation/bundles/scripting/scripting-htl.html</loc><lastmod>2022-08-18</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/resource-merger.html</loc><lastmod>2022-08-06</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2022-08-18</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-08-15</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/release-management.html</loc><lastmod>2022-08-15</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/adapters.html</loc><lastmod>2022-08-08</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/resource-merger.html</loc><lastmod>2022-08-06</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/writers.html</loc><lastmod>2022-07-22</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/the-sling-engine/resources.html</loc><lastmod>2022-07-18</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/contributing.html</loc><lastmod>2022-07-01</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/basic-ideas.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-pipes.html</loc><lastmod>2022-03-04</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/writers.html</loc><lastmod>2022-07-22</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-pipes/samples.html</loc><lastmod>2021-01-28</lastmod>
     </url><url>
@@ -68,8 +68,6 @@
         <loc>https://sling.apache.org/documentation/bundles/org-apache-sling-junit-bundles.html</loc><lastmod>2020-10-22</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/nosql-resource-providers.html</loc><lastmod>2017-09-29</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2022-01-03</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/mime-type-support-commons-mime.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
@@ -352,6 +350,8 @@
         <loc>https://sling.apache.org/documentation/the-sling-engine/default-mapping-and-rendering.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/filters.html</loc><lastmod>2021-03-02</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/the-sling-engine/resources.html</loc><lastmod>2022-07-18</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/sling-properties.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
