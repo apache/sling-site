@@ -181,7 +181,7 @@ Since Sling Models 1.2.0 there is another way of instantiating models. The OSGi 
 In addition `ModelFactory` provides methods for checking whether a given class is a model at all (having the model annotation) or whether a class can be adapted from a given adaptable.
 
 ## Usage in HTL
-[Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#sling-models-use-provider) (internally uses the `ModelFactory` from above).
+[Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#java-use-provider-1) (internally uses the `ModelFactory` from above).
 
 # Other Options
 ## Names
