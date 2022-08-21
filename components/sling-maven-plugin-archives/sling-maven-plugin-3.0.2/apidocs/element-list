@@ -1,0 +1,4 @@
+org.apache.sling.maven.bundlesupport
+org.apache.sling.maven.bundlesupport.deploy
+org.apache.sling.maven.bundlesupport.deploy.method
+org.apache.sling.maven.bundlesupport.fsresource
