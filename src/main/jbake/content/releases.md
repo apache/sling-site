@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2022
 
+* Content-Package to Feature Model Converter 1.1.18 (22th)
 * Sling Maven Plugin 3.0.2 (21st)
 * JCR Jackrabbit User Manager 2.2.24 (15th)
 * Models Context-Aware Configuration 1.0.2, Engine 2.10.2, Scripting HTL Testing 1.0.32-1.4.0, Resource Resolver 1.10.0, Scripting HTL JS Use Provider 1.2.8, Scripting HTL Engine 1.4.20-1.4.0, Servlets Resolver 2.9.8, API 2.26.0 (12th)
