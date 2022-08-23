@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2022
 
+* API 2.27.0, JCR Jackrabbit User Manager 2.2.26 (23rd)
 * Content-Package to Feature Model Converter 1.1.18 (22th)
 * Sling Maven Plugin 3.0.2 (21st)
 * JCR Jackrabbit User Manager 2.2.24 (15th)
