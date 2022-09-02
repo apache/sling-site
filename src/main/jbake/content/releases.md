@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2022
+
+* Testing ResourceResolver Mock 1.4.0, OSGi Mock 3.3.2, Sling Mock 3.4.0 (2nd)
+
 ## August 2022
 
 * API 2.27.0, JCR Jackrabbit User Manager 2.2.26 (23rd)
