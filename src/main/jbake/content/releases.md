@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2022
 
-* Testing ResourceResolver Mock 1.4.0, OSGi Mock 3.3.2, Sling Mock 3.4.0 (2nd)
+* Testing ResourceResolver Mock 1.4.0, OSGi Mock 3.3.2, Sling Mock 3.4.0, GraphQL Core 0.0.14 (2nd)
 
 ## August 2022
 
