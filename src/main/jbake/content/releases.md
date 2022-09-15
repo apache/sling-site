@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2022
 
+* Testing Sling Mock 3.4.2, Testing Sling Mock Oak 3.1.4-1.40.0 (15th)
 * Engine 2.11.0 (12th)
 * Testing ResourceResolver Mock 1.4.0, OSGi Mock 3.3.2, Sling Mock 3.4.0, GraphQL Core 0.0.14 (2nd)
 
