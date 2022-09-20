@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2022
 
+* Auth Core 1.5.8 and Service User Mapper 1.5.6 (20th)
 * Rewriter 1.3.4 (19th)
 * Testing Sling Mock 3.4.2, Testing Sling Mock Oak 3.1.4-1.40.0 (15th)
 * Engine 2.11.0 (12th)
