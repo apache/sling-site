@@ -809,6 +809,16 @@ create group &quot; Really Untrimmed Group &quot;
 create group &quot;Group\With\Backslash&quot;
 create group &quot;Group
 Newline&quot;
+
+# test-72.txt
+
+add mixin mix:one to /thePath1
+add mixin mix:one,mix:two to /thePath1,/thePath2
+add mixin mix:three, mix:four to /thePath3, /thePath4
+
+remove mixin mix:one from /thePath1
+remove mixin mix:one,mix:two from /thePath1,/thePath2
+remove mixin mix:three, mix:four from /thePath3, /thePath4
 </code></pre>
 </section></div></div>                            
                         </div>
@@ -821,7 +831,7 @@ Newline&quot;
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2022-07-11</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2022-09-23</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
