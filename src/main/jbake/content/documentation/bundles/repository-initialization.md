@@ -737,4 +737,14 @@ repoinit parser repository.
     create group "Group
     Newline"
     
+    # test-72.txt
+    
+    add mixin mix:one to /thePath1
+    add mixin mix:one,mix:two to /thePath1,/thePath2
+    add mixin mix:three, mix:four to /thePath3, /thePath4
+    
+    remove mixin mix:one from /thePath1
+    remove mixin mix:one,mix:two from /thePath1,/thePath2
+    remove mixin mix:three, mix:four from /thePath3, /thePath4
+    
 
