@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2022
 
+* Engine 2.12.0 (26th)
 * Repoinit Parser 1.8.0, Repoinit JCR 1.1.42, Feature Model Analyser 1.6.8, Slingfeature Maven Plugin 1.6.8 (23rd)
 * Auth Core 1.5.8 and Service User Mapper 1.5.6 (20th)
 * Rewriter 1.3.4 (19th)
