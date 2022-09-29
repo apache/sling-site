@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2022
 
+* Auth Core 1.6.0, JUnit Scriptable Tests Provider 1.0.14 (29th)
 * Testing Clients 3.0.16, Jcr Resource 3.2.2 (28th)
 * Engine 2.12.0 (26th)
 * Repoinit Parser 1.8.0, Repoinit JCR 1.1.42, Feature Model Analyser 1.6.8, Slingfeature Maven Plugin 1.6.8 (23rd)
