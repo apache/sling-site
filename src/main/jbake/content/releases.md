@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2022
+
+* XSS Protection API 2.3.0 (4th)
+
 ## September 2022
 
 * Auth Core 1.6.0, JUnit Scriptable Tests Provider 1.0.14 (29th)
