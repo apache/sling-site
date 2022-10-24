@@ -85,7 +85,7 @@ The Sling HTL Scripting engine fully complies with the [HTML Template Language S
 ## Expression Options
 
 
-### Display Context
+### Display Context (supported since HTL Engine 1.4.22-1.4.0)
 
 In addition to the contexts defined in [HTL Spec 1.2.1](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#121-display-context) a context with name `jsonString` is supported which escapes a text according to the JSON string grammar defined by [ECMA-404](https://www.ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf) in chapter 9 ([SLING-11538](https://issues.apache.org/jira/browse/SLING-11538)).
 
