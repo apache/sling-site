@@ -215,6 +215,8 @@ use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
 <h3><a href="#data-sly-include" id="data-sly-include"><code>data-sly-include</code></a></h3>
 <p>The <a href="https://issues.apache.org/jira/browse/SLING-5812"><code>requestAttributes</code> option</a> can be used to pass a <code>Map</code> with objects to the request attributes.</p>
 <h2><a href="#expression-options" id="expression-options">Expression Options</a></h2>
+<h3><a href="#display-context-supported-since-htl-engine-1422-140" id="display-context-supported-since-htl-engine-1422-140">Display Context (supported since HTL Engine 1.4.22-1.4.0)</a></h3>
+<p>In addition to the contexts defined in <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#121-display-context">HTL Spec 1.2.1</a> a context with name <code>jsonString</code> is supported which escapes a text according to the JSON string grammar defined by <a href="https://www.ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf">ECMA-404</a> in chapter 9 (<a href="https://issues.apache.org/jira/browse/SLING-11538">SLING-11538</a>).</p>
 <h3><a href="#i18n" id="i18n">I18n</a></h3>
 <p>In addition to the options defined for <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#123-i18n">i18n</a> the <code>basename</code> option can be used to set the basename of the used <a href="../internationalization-support-i18n.html#resourcebundle-with-base-names">Sling i18n Resource bundle</a> (<a href="https://issues.apache.org/jira/browse/SLING-5314">SLING-5314</a>).</p>
 <h3><a href="#format-date" id="format-date">Format Date</a></h3>
@@ -600,7 +602,7 @@ use             // the use function
                             content/documentation/bundles/scripting/scripting-htl.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">2022-08-18</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-10-24</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
