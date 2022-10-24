@@ -95,6 +95,12 @@ The [`requestAttributes` option](https://issues.apache.org/jira/browse/SLING-581
 
 ## Expression Options
 
+
+### Display Context (supported since HTL Engine 1.4.22-1.4.0)
+
+In addition to the contexts defined in [HTL Spec 1.2.1](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#121-display-context) a context with name `jsonString` is supported which escapes a text according to the JSON string grammar defined by [ECMA-404](https://www.ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf) in chapter 9 ([SLING-11538](https://issues.apache.org/jira/browse/SLING-11538)).
+
+
 ### I18n
 
 In addition to the options defined for [i18n](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#123-i18n) the `basename` option can be used to set the basename of the used [Sling i18n Resource bundle](../internationalization-support-i18n.html#resourcebundle-with-base-names) ([SLING-5314](https://issues.apache.org/jira/browse/SLING-5314)).
