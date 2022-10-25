@@ -133,15 +133,16 @@ In order for these classes to be picked up, there is a header which must be adde
 	</Sling-Model-Packages>
 
 This header must contain all packages which contain model classes or interfaces. However, subpackages need not be listed
-individually, e.g. the header above will also pick up model classes in `org.apache.sling.models.it.models.sub`. Multiple packages
-can be listed in a comma-separated list (any whitespace will be removed):
+individually, e.g. the header above will also pick up model classes in `org.apache.sling.models.it.models.sub`.
+However, wildcard characters like `*` are not supported. 
+Multiple packages can be listed in a comma-separated list (any whitespace will be removed):
 
     <Sling-Model-Packages>
       org.apache.sling.models.it.models,
       org.apache.sling.other.models
     </Sling-Model-Packages>
 
-Alternatively it is possible to list all classes individually that are Sling Models classes via the `Sling-Model-Classes` header.
+Alternatively it is possible to list all classes individually that are Sling Models classes via the `Sling-Model-Classes` header. Again, wildcard characters like `*` are not supported. 
 
 If you use the Sling Models bnd plugin all required bundle headers are generated automatically at build time (see chapter 'Registration of Sling Models classes via bnd plugin' below).
 
