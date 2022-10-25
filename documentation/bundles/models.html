@@ -241,13 +241,13 @@ public class PackagePrivateConstructorModel {
   org.apache.sling.models.it.models
 &lt;/Sling-Model-Packages&gt;
 </code></pre>
-<p>This header must contain all packages which contain model classes or interfaces. However, subpackages need not be listed individually, e.g. the header above will also pick up model classes in <code>org.apache.sling.models.it.models.sub</code>. Multiple packages can be listed in a comma-separated list (any whitespace will be removed):</p>
+<p>This header must contain all packages which contain model classes or interfaces. However, subpackages need not be listed individually, e.g. the header above will also pick up model classes in <code>org.apache.sling.models.it.models.sub</code>. However, wildcard characters like <code>*</code> are not supported. Multiple packages can be listed in a comma-separated list (any whitespace will be removed):</p>
 <pre><code>&lt;Sling-Model-Packages&gt;
   org.apache.sling.models.it.models,
   org.apache.sling.other.models
 &lt;/Sling-Model-Packages&gt;
 </code></pre>
-<p>Alternatively it is possible to list all classes individually that are Sling Models classes via the <code>Sling-Model-Classes</code> header.</p>
+<p>Alternatively it is possible to list all classes individually that are Sling Models classes via the <code>Sling-Model-Classes</code> header. Again, wildcard characters like <code>*</code> are not supported.</p>
 <p>If you use the Sling Models bnd plugin all required bundle headers are generated automatically at build time (see chapter 'Registration of Sling Models classes via bnd plugin' below).</p>
 <h1><a href="#client-code" id="client-code">Client Code</a></h1>
 <h2><a href="#adaptto" id="adaptto">adaptTo()</a></h2>
@@ -714,7 +714,7 @@ public class CachableModelClass {
                             content/documentation/bundles/models.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">2022-08-18</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-10-25</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
