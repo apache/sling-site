@@ -235,6 +235,14 @@ use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
 </table>
 <p>Those pattern values are case-insensitive.</p>
 <p>The implementation uses <a href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ofLocalizedDate-java.time.format.FormatStyle-"><code>DateTimeFormatter.ofLocalizedDate(FormatStyle)</code></a> for formatting those dates.</p>
+<h3><a href="#format-string-supported-since-htl-engine-1422-140" id="format-string-supported-since-htl-engine-1422-140">Format String (supported since HTL Engine 1.4.22-1.4.0)</a></h3>
+<p>In addition to the variable-element placeholder replacement as given by the examples in the <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#examples">HTL Spec 1.4</a>, <a href="https://issues.apache.org/jira/browse/SLING-10654">SLING-10654</a> adds optional support for complex argument types using <a href="https://unicode-org.github.io/icu/userguide/format_parse/messages/">ICU Message Formatting</a>.</p>
+<p>When the <a href="https://github.com/unicode-org/icu/releases">icu4j bundle</a> is available at runtime, pattterns that contain complex argument types will automatically be formatted using the icu4j <a href="https://unicode-org.github.io/icu-docs/apidoc/dev/icu4j/com/ibm/icu/text/MessageFormat.html"><code>MessageFormat</code></a>. This adds for example support for select and plural formats:</p>
+<pre><code>${ '{0, plural, one{# result} other{# results}}' @format=properties.result }
+${ '{0, plural, one{# výsledek} few{# výsledky} other{# výsledků}}' @format=properties.result }
+</code></pre>
+<p>Other than for the regular variable-element placeholder replacement, parameters passed to the format option are not converted to any other type. If they do not match the pattern an <code>IllegalArgumentException</code> may be throw.</p>
+<p>If the icu4j bundle is not available at runtime, only simple variable-element placeholders will be replaced and expessions that use complex argument types will be removed.</p>
 <h2><a href="#use-api-extensions" id="use-api-extensions">Use-API Extensions</a></h2>
 <p>The Sling implementation provides a few extensions to the Use-API.</p>
 <p>A full HTL installation provides the following Use Providers, in the order of their priority (the higher the service ranking value, the higher the priority):</p>
@@ -602,7 +610,7 @@ use             // the use function
                             content/documentation/bundles/scripting/scripting-htl.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-10-24</span>
+                        Last modified by <span class="author">Dirk Rudolph</span> on <span class="comment">2022-10-26</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
