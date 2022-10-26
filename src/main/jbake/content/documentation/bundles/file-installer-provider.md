@@ -13,9 +13,10 @@ The file installer can be configured with these framework (system) properties:
  	 
 |Property|Default|Description|
 |---|---|---|
-|`sling.fileinstall.dir`| |The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts|
+|`sling.fileinstall.dir`| |The name/path of the directories to watch. Several directories can be specified by using a comma separated list. Each directory might have arbitrarily many sub directories (even nested ones) which may contain the artifacts.|
 |`sling.fileinstall.interval`|5000 ms|Number of milliseconds between 2 polls of the directory|
-|`sling.fileinstall.writeback`|true|If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system.|
+|`sling.fileinstall.writeback`|true|If the file provider supports writeback of changed artifacts, e.g. if a configuration is changed through Config Admin the change is written back to the file system in case this property is set to `true`.|
+|`sling.fileinstall.dir.autocreate`|false|Automatically creates the directories given in `sling.fileinstall.dir` in case they don't exist yet (including non-existing parent directories) if set to `true`. Only available since version 1.3.4 [SLING-7504](https://issues.apache.org/jira/browse/SLING-7504).|
 
 ## Bundles
 

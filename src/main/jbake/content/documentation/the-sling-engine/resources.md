@@ -1,4 +1,4 @@
-title=Resources		
+title=Resources
 type=page
 status=published
 tags=core,resources
@@ -78,8 +78,8 @@ The general algorithm of the two methods is as follows:
 1. Call `HttpServletRequest.getScheme(), .getServerName(), getServerPort` to get an absolute path out of the request URL: \[scheme\]/\[host\].\[port\]\[path\] (`resolve(HttpServletRequest, String)` method only, which)
 1. Check whether any virtual path matches the absolute path. If such a match exists, the next step is entered with the match.
 1. Apply a list of mappings in order to create a mapped path. The first mapped path resolving to a Resource is assumed success and the Resource found is returned.
-1. If no mapping created a mapped path addressing an existing Resource, the method fails and returns a `NonExistingResource` (for the  
-`resolve(String)` and `resolve(HttpServletRequest,String)`) or null (for the `getResource(String path)` 
+1. If no mapping created a mapped path addressing an existing Resource, the method fails and returns a `NonExistingResource` (for the
+`resolve(String)` and `resolve(HttpServletRequest,String)`) or null (for the `getResource(String path)`
 and `getResource(Resource base, String path)` methods).
 
 The virtual path mapping may be used to create shortcut URLs for otherwise long and complicated URLs. An example of such an URL might be the main administrative page of a CMS system. So, administrators may access the root of the web application and directed to the main administrative page.
@@ -135,12 +135,12 @@ These are the authenticationInfo keys (which can be used with [`ResourceResolver
 | --- | --- | --- | --- |
 | `user.jcr.session` | [`JcrResourceConstants.AUTHENTICATION_INFO_SESSION`](https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_SESSION) | `javax.jcr.Session` | The session which is used for the underlying repository access. When calling `close()` on the returned `ResourceResolver` the session will not(!) be closed. |
 | `user.jcr.credentials` | [`JcrResourceConstants.AUTHENTICATION_INFO_CREDENTIALS`](https://sling.apache.org/apidocs/sling11/org/apache/sling/jcr/resource/api/JcrResourceConstants.html#AUTHENTICATION_INFO_CREDENTIALS) | `javax.jcr.Credentials` | The credentials object from which to create the new underlying JCR session
-| `user.name` | [`ResourceResolverFcatory.AUTHENTICATION_INFO_CREDENTIALS`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER) | String | Optionally used with `user.password` to create simple credentials from which the Session is being created.
-| `user.impersonation` | [`ResourceResolverFcatory.USER_IMPERSONATION`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION) | String | User ID which should be used for impersonation via `javax.jcr.Session.impersonate(...)`. Must be combined with one of the other authentication info keys.
+| `user.name` | [`ResourceResolverFactory.AUTHENTICATION_INFO_CREDENTIALS`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER) | String | Optionally used with `user.password` to create simple credentials from which the Session is being created.
+| `user.impersonation` | [`ResourceResolverFactory.USER_IMPERSONATION`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolverFactory.html#USER_IMPERSONATION) | String | User ID which should be used for impersonation via `javax.jcr.Session.impersonate(...)`. Must be combined with one of the other authentication info keys.
 
 There is support for the following [path parameters](url-decomposition.html):
 
-Path Parameter | Example Value | Description | Since 
+Path Parameter | Example Value | Description | Since
  --- | --- | --- | ---
 | `v` | `1.0` | Retrieves the underlying JCR node from the [version history](https://docs.adobe.com/docs/en/spec/jcr/2.0/15_Versioning.html) leveraging the version label given in the value. | [SLING-848](https://issues.apache.org/jira/browse/SLING-848)
 
@@ -174,7 +174,7 @@ For binary nodes all properties except `jcr:created` are retrieved from the chil
 
 Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header `Sling-Bundle-Resources` containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).
 
-The `BundleResourceProvider` supporting bundle-based Resources provides directories as Resources of type `nt:folder` and files as Resources of type `nt:file`. This matches the default primary node types intended to be used for directories and files in JCR repositories. 
+The `BundleResourceProvider` supporting bundle-based Resources provides directories as Resources of type `nt:folder` and files as Resources of type `nt:file`. This matches the default primary node types intended to be used for directories and files in JCR repositories.
 
 For details see [Bundle Resource.](/documentation/bundles/bundle-resources-extensions-bundleresource.html)
 
@@ -184,15 +184,14 @@ Servlet Resources are registered by the Servlet Resolver bundle for Servlets reg
 
 ### File System Resources
 
-The Filesystem Resource Provider provides access to the operating system's filesystem through the Sling ResourceResolver. Multiple locations may be mapped into the resource tree by configuring the filesystem location and the resource tree root path for each location to be mapped. 
+The Filesystem Resource Provider provides access to the operating system's filesystem through the Sling ResourceResolver. Multiple locations may be mapped into the resource tree by configuring the filesystem location and the resource tree root path for each location to be mapped.
 
 For details see [File System Resources](/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html).
 
 ### Merged Resources
 
-The merged resource provider exposes a view on merged resources from multiple locations.
-
-For details see [Resource Merger](/documentation/bundles/resource-merger.html).
+The merged resource provider exposes a view on merged resources from multiple locations. For details see [Resource Merger](/documentation/bundles/resource-merger.html).
+Another approach is taken by the [Superimposing Resource Provider](https://github.com/apache/sling-org-apache-sling-superimposing).
 
 ### Custom Resource providers
 Custom ResourceProvider services can be used to integrate your own custom resources in the Sling resource tree.
@@ -216,15 +215,24 @@ To be notified whenever certain resources or their properties have been modified
 *This API is only available since Sling API 2.11.0 ([SLING-4751](https://issues.apache.org/jira/browse/SLING-4751)).*
 
 Register an OSGi service for [`org.apache.sling.api.resource.observation.ResourceChangeListener`][6] to be notified about local changes. To be also notified about external changes (i.e. changes triggered by another Sling instance leveraging a clustered repository  make sure that your service implementation also implements the marker interface [`org.apache.sling.api.resource.observation.ExternalResourceChangeListener`][7]. The interface `ExternalResourceChangeListener` is not supposed to be registered with OSGi though.
-Certain properties can be used to restrict subscription to only a subset of events.
+It is possible to specify already during registration which events in which paths you are interested in. To use this just set these service properties in your implementing OSGi service (all of them are multi-value strings):
 
-### OSGi Event Admin
+Property | Description
+--- | ---
+[ResourceChangeListener.PATHS](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PATHS)| denote the path (including sub paths) in which you are interested in. This property is required.
+[ResourceChangeListener.CHANGES](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#CHANGES)| the type of changes you are interested in (optional)
+[ResourceChangeListener.PROPERTY_NAMES_HINT](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PROPERTY_NAMES_HINT)| filter only for events affecting the properties with the given names (optional)
 
-Resource events are sent out via the OSGi Event Admin. You can subscribe to those event by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event. The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`. 
+
+### OSGi Event based resource changes (deprecated)
+
+Resource events are sent out via the OSGi Event Admin. You can subscribe to those events by registering an OSGi service for [`org.osgi.service.event.EventHandler`][8]. Several properties should be used to restrict the subscription to only the relevant event(s). The event topics which are used for resources are listed as constants in [`org.apache.sling.api.SlingConstants`][9] starting with the prefix `TOPIC_`.
 
 You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the [event attribute `event.application`](/apache-sling-eventing-and-job-handling.html#basic-principles), which is only set in case the event was triggered from an external resource modification (compare with [`DEAConstants`](https://sling.apache.org/apidocs/sling9/org/apache/sling/event/dea/DEAConstants.html) and try to reuse the constant from there).
 
 The OSGi event handlers may be [blacklisted by Apache Felix](http://felix.apache.org/documentation/subprojects/apache-felix-event-admin.html#configuration) in case the processing takes too long. Therefore dispatch all long-lasting operations to a new thread or start a new Sling Job.
+
+This approach is deprecated in favor of the ResourceChangeListener described above, because the the ResourceChangeListeners allows the implementation to send out only relevant events (i.e. those which have subscribers), while the OSGI event based approach needs to create OSGI events for **all** repository events. To ease the transition the implementation will warn whenever an listener is registered which listens for the Resource (`org/apache/sling/api/resource/Resource/*`) or ResourceProvider (`org/apache/sling/api/resource/ResourceProvider/*`) topics.
 
 ## Wrap/Decorate Resources
 

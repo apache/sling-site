@@ -113,6 +113,12 @@ should create a tree of 3 resources /content/1, /content/2 and /content/3. You c
 feeds bindings with text input stream, parsed with a regexp `pattern`, that is a regular expression, with named 
 group (e.g. `(?<user>.*)`) that will be used to produce the output binding names
 
-        egrep http://some.site.com @ pattern=/res/(?<asset>/[\-\w\.\/0-9]+) @ name demo
+        egrep http://some.site.com @ with pattern=/res/(?<asset>/[\-\w\.\/0-9]+) @ name demo
         | echo /content/assets
         | write test=demo.asset
+
+If the regex should be applied directly to the value of the expression rather than fetching the input from the url, property `url_mode=as_is` can be configured
+
+        | json ["https://sling.apache.org/","http://sling.apache.org/"] @name domain
+        | egrep ${domain} @ with pattern=(?<httpspattern>https.*) with url_mode=as_is @ name httpsDomains
+        | write test=${httpsDomains.httpspattern}

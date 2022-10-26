@@ -6,13 +6,152 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2022
+
+* Content-Package to Feature Model Converter 1.1.20 (16th)
+* XSS Protection API 2.3.0 (4th)
+
+## September 2022
+
+* Auth Core 1.6.0, JUnit Scriptable Tests Provider 1.0.14 (29th)
+* Testing Clients 3.0.16, Jcr Resource 3.2.2 (28th)
+* Engine 2.12.0 (26th)
+* Repoinit Parser 1.8.0, Repoinit JCR 1.1.42, Feature Model Analyser 1.6.8, Slingfeature Maven Plugin 1.6.8 (23rd)
+* Auth Core 1.5.8 and Service User Mapper 1.5.6 (20th)
+* Rewriter 1.3.4 (19th)
+* Testing Sling Mock 3.4.2, Testing Sling Mock Oak 3.1.4-1.40.0 (15th)
+* Engine 2.11.0 (12th)
+* Testing ResourceResolver Mock 1.4.0, OSGi Mock 3.3.2, Sling Mock 3.4.0, GraphQL Core 0.0.14 (2nd)
+
+## August 2022
+
+* API 2.27.0, JCR Jackrabbit User Manager 2.2.26 (23rd)
+* Content-Package to Feature Model Converter 1.1.18 (22th)
+* Sling Maven Plugin 3.0.2 (21st)
+* JCR Jackrabbit User Manager 2.2.24 (15th)
+* Models Context-Aware Configuration 1.0.2, Engine 2.10.2, Scripting HTL Testing 1.0.32-1.4.0, Resource Resolver 1.10.0, Scripting HTL JS Use Provider 1.2.8, Scripting HTL Engine 1.4.20-1.4.0, Servlets Resolver 2.9.8, API 2.26.0 (12th)
+* Parent and Bundle Parent 49 (8th)
+* Extensions Webconsole Security Provider 1.2.6 (4th)
+* Discovery Commons 1.0.28, Base 2.0.14, Oak 1.2.40, Commons Metrics 1.2.12 (3rd)
+
+## July 2022
+
+* Installer Health Checks 2.1.0 (28th)
+* Engine 2.9.2 (18th)
+* Feature Model Analyser 1.6.6, Sling Feature Maven Plugin 1.6.6 (17th)
+* Repoinit Parser 1.7.0, Repoinit JCR 1.1.40 (11th)
+* Testing Sling Mock 3.3.2 (5th)
+* Health Check Support 1.0.8 (1st)
+
+## June 2022
+
+* Event 4.3.6 (27th)
+* Maven Enforcer Rules 1.1.0 (27th)
+* Feature Model Extension API Region 1.6.2 (16th)
+* API 2.25.4 and Commons Log 5.4.2 (13th)
+* Maven Enforcer Rules 1.0.0 (12th)
+* (Bundle) Parent 48 and Installer WebConsole Plugin 1.0.4 (7th)
+
+## May 2022
+
+* Resource Resolver 1.9.0 (27th)
+* XSS Protection API 2.2.20 (24th)
+* Event 4.3.2 (23rd)
+* Content Package to Feature Model Converter 1.1.16 (20th)
+* JCR Oak Server 1.3.0 (19th)
+* Feature Extension API Region 1.6.0 (15th)
+* Scripting Core 2.4.8, Scripting JSP 2.6.0, Servlets Resolver 2.9.6 (14th)
+* Resource Resolver 1.8.6, Content Distribution Journal Core 0.1.26 (9th)
+* Testing JCR Mock 1.6.0, Testing ResourceResolver Mock 1.3.0, Testing OSGi Mock 3.3.0, Testing Sling Mock 3.3.0 (9th)
+* JCR Jackrabbit User Manager 2.2.22 (5th)
+* Models API 1.4.2, Models Implementation 1.5.2, Content Distribution Journal Messages 0.5.0 (3rd)
+* Query 4.0.4 (2nd)
+
+## April 2022
+
+* Sling Content Distribution API 0.7.0 (29th)
+* Commons Metrics RRD4J 1.0.6 (26th)
+* Installer Factory Feature 0.7.0 (23rd)
+* JSPC Maven Plugin 2.3.4 (12th)
+* JCR Jackrabbit User Manager 2.2.20 (8th)
+* Scripting Core 2.4.6 (5th)
+* Sling Feature Maven Plugin 1.6.4 (1st)
+* API 2.25.0, Engine 2.9.0, Servlets Resolver 2.9.4, Scripting Sightly 1.4.18-1.4.0 (1st)
+
+## March 2022
+
+* Content-Package to Feature Model Converter 1.1.14 (25th)
+* Starter 12, Feature Model Analyser 1.6.2, Sling Feature Maven Plugin 1.6.2 (18th)
+* Discovery Commons 1.0.26, Base 2.0.12, Oak 1.2.36 (14th)
+* Launchpad Testing 12, Launchpad Integration Tests 12, Launchpad Testing Services 12, Launchpad Testing Fragment Bundle 12 (14th)
+* Starter Content 1.0.12, Event 4.3.0 (10th)
+* Repoinit Parser 1.6.14, Repoinit JCR 1.1.38 (7th)
+
+## February 2022
+
+* ResourceResolver Mocks 1.2.6 (25th)
+* Content Distribution API 0.6.0 (21st)
+* Sling Security 1.1.24 (18th)
+* Rewriter 1.3.2 (17th)
+* Scripting Core 2.4.4 (14th)
+* Tenant 1.1.6 and Resource Resolver 1.8.4 (12th)
+* Scripting HTL Engine 1.4.16-1.4.0 (9th)
+* JCR Jackrabbit User Manager 2.2.18 (4th)
+* Repoinit Parser 1.6.12 (3rd)
+* Sitemap 1.0.6 (1st)
+
+## January 2022
+
+* Commons Metrics 1.2.10 (28th)
+* Feature Analyser 1.6.0, Feauture Extension Apiregion 1.5.0, Sling Feature Maven Plugin 1.6.0 (27th)
+* JCR Resource 3.2.0, Parent and Bundle Parent 47 (22nd)
+* ResourceResolver 1.8.2 (19th)
+* Feature Model 1.2.30, Security 1.1.22, Sling Feature Maven Plugin 1.5.18, Feature Launcher 1.2.0, Feature Extension Apiregion 1.4.4, Commons Log 5.4.0 (15th)
+* XSS Protection API 2.2.18, Dynamic Include 3.3.0 (14th)
+* Context-Aware Configuration API 1.3.0, Context-Aware Configuration SPI 1.4.0, Context-Aware Configuration Impl 1.6.0, Models Context-Aware Configuration 1.0.0, Context-Aware Configuration Mock Plugin 1.4.0 (7th)
+* Testing Clients 3.0.6 (4th)
+* Distribution Journal Messages 0.4.0, Distribution Journal Kafka 0.3.0
+
+## December 2021
+
+* Feature Launcher Maven Plugin 0.1.2, Scripting HTL REPL 1.0.10 (21th)
+* Content Distribution Journal Core 0.1.22, Content Distribution Core 0.4.8 (21st)
+* Commons Log 5.3.0 (20th)
+* Context-Aware Configuration Impl 1.5.2, JCR ContentLoader 2.5.0 (20th)
+* Models Jackson Exporter 1.1.2 (18th)
+* Commons Log 5.2.0, Starter Content 1.0.10 (14th)
+* Testing Clients 3.0.4 (13th)
+* Feature Analyser 1.5.2, Feature Extension Apiregion 1.4.2, Commons Messaging Mail 2.0.0 (12th)
+* Mock Oak 3.1.2-1.40.0 (11th)
+* Models API 1.4.0, Models Implementation 1.5.0, Models Jackson Exporter 1.1.0, Models Validation Impl 1.1.0, Testing OSGi Mock 3.2.2, Context-Aware Configuration Mock Plugin 1.3.6 (10th)
+* Testing OSGi Mock 3.2.0, Sling Mock 3.2.0, Sling Mock Oak 3.1.0-1.40.0, Context-Aware Configuration Mock Plugin 1.3.4 (2nd)
+* Testing ResourceResolver Mock 1.2.4, Sling Mock 3.2.2 (6th)
+
+## November 2021
+
+* File Installer 1.3.4 (29th)
+* JCR Jackrabbit User Manager 2.2.16 (18th)
+* API 2.24.0, Resource Resolver 1.8.0, Engine 2.8.0, Adapter 2.2.0, Servlets Resolver 2.9.0, Servlets Post 2.5.0, Resource Access Security 1.1.0, JCR Resource 3.1.0, JCR Resource Security 1.1.0, Scripting Sightly Engine 1.4.14-1.4.0 (12th)
+* App CMS 1.1.0 (10th)
+* i18n 2.5.18 (6th)
+* Commons Messaging 1.0.2, Commons Content Analyzing 1.0.0, Commons Content Processing 1.0.0 (1st)
+
+## October 2021
+
+* Commons Crypto 1.1.0 (18th)
+* Javax Activation 0.3.0 (16th)
+* Commons Log 5.1.14 (14th)
+* XSS Protection API 2.2.16 (11th)
+* HTL Maven Plugin 2.0.4-1.4.0 (8th)
+* Sitemap 1.0.4 (4th)
+
 ## September 2021
 
 * Scripting Bundle Maven Plugin 0.5.0, Testing Clients 2.0.10 (27th)
 * Engine 2.7.10 (25th)
 * Parent 46, Bundle Parent 46, Commons Threads 3.2.22 (24th)
 * Feature Analyser 1.4.0 and Sling Feature Maven Plugin 1.5.16 (17th)
-* Testing Testing Sling Mock 3.1.2 (16th)
+* Testing Sling Mock 3.1.2 (16th)
 * Installer Factory Configuration 1.4.2 (9th)
 * Feature Model Extension Api Regions 1.4.0 (5th)
 * Scripting Bundle Maven Plugin 0.4.0 (3rd)
@@ -44,6 +183,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Content Distribution Journal Core 0.1.18, Content Distribution Journal Kafka 0.2.0, Archetype Parent 7 (16th)
 * SAML2 Service Provider 0.2.6 (13th)
 * Scripting JSP 2.5.4, JSPC Maven Plugin 2.3.0, GraphQL Core 0.0.12 (12th)
+* Sitemap 1.0.2 (8th)
 * Content Distribution Journal Messages 0.3.0, Content Distribution Core 0.4.6 (2nd)
 
 ## June 2021
@@ -114,7 +254,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Scripting EL Api 1.0.4 (27th)
 * Adapter Annotations 2.0.0 (16th)
 * Settings 1.4.2 (15th)
-* GraphQL Core 0.0.8 (9th)      
+* GraphQL Core 0.0.8 (9th)
 * XSS Protection API 2.2.8 (9th)
 * Sling JCR ContentLoader 2.4.0 (6th)
 * Sling Kickstart Launcher 0.0.12 (3rd)
@@ -136,10 +276,10 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2020
 
-* Scripting Core 2.3.4, Scripting HTL Compiler 1.2.8-1.4.0, Scripting HTL Java Compiler 1.2.2-1.4.0, Scripting HTL Engine 1.4.4-1.4.0, Scripting HTL Runtime 1.2.4-1.4.0, HTL Maven Plugin 2.0.2-1.4.0 (29th) 
+* Scripting Core 2.3.4, Scripting HTL Compiler 1.2.8-1.4.0, Scripting HTL Java Compiler 1.2.2-1.4.0, Scripting HTL Engine 1.4.4-1.4.0, Scripting HTL Runtime 1.2.4-1.4.0, HTL Maven Plugin 2.0.2-1.4.0 (29th)
 * Server Setup Tools 1.0.2, Testing Clients 2.0.4 (27th)
-* API 2.23.0 (26th) 
-* Kickstart Project 0.0.8, Kickstart Maven Plugin 0.0.8 (23rd) 
+* API 2.23.0 (26th)
+* Kickstart Project 0.0.8, Kickstart Maven Plugin 0.0.8 (23rd)
 * JCR Oak Server 1.2.8 (14th)
 * Testing Sling Mock 2.6.2, OSGi Feature Maven Plugin 1.3.16, Feature Model Launcher 1.1.6, Feature Model 1.2.8, Content-Package to Feature Model Converter 1.0.14 (14th)
 * Feature Model Analyser 1.3.8 (8th)
@@ -177,7 +317,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## May 2020
 
 * Installer Factory Feature 0.4.0 (28th)
-* Sling Project Archetype 1.0.4, Sling Kickstart Project 0.0.2, Sling Kickstart Maven Plugin 0.0.2 (18th) 
+* Sling Project Archetype 1.0.4, Sling Kickstart Project 0.0.2, Sling Kickstart Maven Plugin 0.0.2 (18th)
 * Parent 39, Bundle Parent 39, JAR Resource Bundle 1.0.2 (14th)
 * Archetype Parent 6 (12th)
 * Slingfeature Maven Plugin 1.3.0, Installer Packages Factory 1.0.4, Form Based Authentication 1.0.20 (11th)

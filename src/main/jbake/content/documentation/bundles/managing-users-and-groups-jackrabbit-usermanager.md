@@ -1,4 +1,4 @@
-title=Managing users and groups (jackrabbit.usermanager)		
+title=Managing users and groups (jackrabbit.usermanager)
 type=page
 status=published
 tags=security
@@ -50,13 +50,31 @@ If a non-existing user is requested a `404/NOT FOUND` status is sent back.
 
 To create a new user POST a request to `/system/userManager/user.create.<html or json>`. The following parameters are available:
   
-Parameter Name | Required | Description
---- | --- | --- 
-`:name` | yes | The name of the new user
-`pwd` | yes | The password of the new user
-`pwdConfirm` | yes | The password of the new user (must be equal to the value of `pwd`)  
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+One of these to resolve the user name:
+
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`:name` | no | | The value is the exact name to use
+`:name@ValueFrom` | no | 2.2.16 | The value is the name of another submitted parameter whose value is the exact name to use
+`:nameHint` | no | 2.2.16 | The value is filtered, trimmed and made unique
+`:nameHint@ValueFrom` | no | 2.2.16 | The value is the name of another submitted parameter whose value is filtered, trimmed and made unique
+`otherwise` | | 2.2.16 | Try the value of any server-side configured "principalNameHints" parameter to treat as a hint that is filtered, trimmed and made unique
+
+... and these ...
+
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`pwd` | yes | | The password of the new user
+`pwdConfirm` | yes | | The password of the new user (must be equal to the value of `pwd`)  
+`:disabled` | no | 2.1.1 | If `true` disables the user to block further login attempts. If `false` enables a disabled user.
+`:disabledReason` | no | 2.1.1 |Specifies the reason why a user has been disabled.  
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747))
   
+
 Responses:
 
 Status Code | Description
@@ -75,12 +93,19 @@ Example with curl:
 
 To update an existing user POST a request to `/system/userManager/user/username.update.<html or json>`. You can NOT update the username or the password (see Change Password below) only the additional properties are updateable through this URL. The following parameters are available:
   
-Parameter Name | Required | Description
---- | --- | --- 
-`:disabled` | no | (since version 2.1.1) If `true` disables the user to block further login attempts. If `false` enables a disabled user.
-`:disabledReason` | no | Specifies the reason why a user has been disabled.  
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)). 
-`<anyproperty>@Delete` | no | Properties with @Delete at the end of the name will be deleted in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)). 
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`:disabled` | no | 2.1.1 | If `true` disables the user to block further login attempts. If `false` enables a disabled user.
+`:disabledReason` | no | 2.1.1 | Specifies the reason why a user has been disabled.  
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<anyproperty>@Delete` | no | | Non-nested properties with @Delete at the end of the name will be deleted in the JCR. 
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the nested storage node properties at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+`<relPath>/<anyproperty>@Delete` | no | 2.2.6 | Nested properties with @Delete at the end of the name will be deleted at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
   
 Responses:
 
@@ -192,11 +217,25 @@ If a non-existing group is requested a 404/NOT FOUND status is sent back.
 
 To create a new group POST a request to `/system/userManager/group.create.<html or json>`. The following parameters are available:
   
-  
-Parameter Name | Required | Description
---- | --- | --- 
-`:name` | yes | The name of the new group 
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+One of these to resolve the group name:
+
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`:name` | no | | The value is the exact name to use
+`:name@ValueFrom` | no | 2.2.16 | The value is the name of another submitted parameter whose value is the exact name to use
+`:nameHint` | no | 2.2.16 | The value is filtered, trimmed and made unique
+`:nameHint@ValueFrom` | no | 2.2.16 | The value is the name of another submitted parameter whose value is filtered, trimmed and made unique
+`otherwise` |  | 2.2.16 | Try the value of any server-side configured "principalNameHints" parameter to treat as a hint that is filtered, trimmed and made unique
+
+... and these ...
+
+Parameter Name | Required | Since Version | Description
+--- | --- | --- | --- 
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747))
   
 Responses:
 
@@ -216,12 +255,19 @@ Example with curl:
 
 To update an existing group POST a request to `/system/userManager/group/groupname.update.<html or json>`. You can NOT update the name of the group only the additional properties are updateable. The following parameters are available:
   
-Parameter Name | Required | Description
---- | --- | --- 
-`:member` | no | user(s) (name or URI) to add to the group as a member. Can also be an array of users.
-`:member@Delete` | no | user(s) (name or URI) to remove from the group. Can also be an array of users. 
-`<anyproperty>` | no | Additional parameters will be stored as node properties in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
-`<anyproperty>@Delete` | no | Properties with @Delete at the end of the name will be deleted in the JCR. Nested properties are supported since 2.2.6 ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)). 
+Parameter Name | Required | Since Version | Description
+--- | --- | ---  | --- 
+`:member` | no | | user(s) (name or URI) to add to the group as a member. Can also be an array of users.
+`:member@Delete` | no | | user(s) (name or URI) to remove from the group. Can also be an array of users. 
+`jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the storage node properties in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<anyproperty>` | no | | Additional non-nested parameters will be stored as node properties in the JCR.
+`<anyproperty>@Delete` | no | | Non-nested properties with @Delete at the end of the name will be deleted in the JCR. 
+`<relPath>/jcr:primaryType` | no | 2.2.18 | Specifies the primary type for a new nested storage node at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType` | no | 2.2.18 | Adds a mixin type to the nested storage node properties at the relative path  in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/jcr:mixinType@Delete` | no | 2.2.18 | Removes a mixin type from the nested storage node properties at the relative path in the JCR. ([SLING-11023](https://issues.apache.org/jira/browse/SLING-11023))
+`<relPath>/<anyproperty>` | no | 2.2.6 | Additional parameters will be stored as nested node properties at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
+`<relPath>/<anyproperty>@Delete` | no | 2.2.6 | Nested properties with @Delete at the end of the name will be deleted at the relative path in the JCR. ([SLING-6747](https://issues.apache.org/jira/browse/SLING-6747)).
   
 Responses:
 
@@ -308,3 +354,79 @@ Example:
             //TODO: draw your UI that allows the user to update the group memebership here
         }
     %>
+
+
+## Changing the root path for usermanager resources
+
+*Since Version 2.2.12*
+
+By default, the usermanager resources are provided under the /system/userManager path.  This location may be changed via configuration.
+
+For example:
+
+    "org.apache.sling.jackrabbit.usermanager.impl.resource.AuthorizableResourceProvider":{
+        "provider.root":"/people",
+    }
+
+
+## Generating principal names from a hint
+
+*Since Version 2.2.16*
+
+For use cases where the exact principalName value isn't critical, a unique value can be auto-generated from some other hint. With a generated unique princpalName, the end user doesn't have to keep retrying to find a value that hasn't been used already.
+
+With the default behavior, the principalName value would be determined by locating the first request parameter that is a match of one of the choices in the following order:
+
+1\. **:name** - value is the exact name to use
+
+    curl -F:name=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+
+2\. **:name@ValueFrom** - value is the name of another submitted parameter whose value is the exact name to use
+
+    curl -F:name@ValueFrom=displayName -FdisplayName=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+
+3\. **:nameHint** - value is filtered, trimmed and made unique
+
+    curl -F:nameHint=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+
+4\. **:nameHint@ValueFrom** - value is the name of another submitted parameter whose value is filtered, trimmed and made unique
+
+    curl -F:nameHint@ValueFrom=displayName -FdisplayName=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+
+5\. **otherwise**, try the value of any server-side configured "principalNameHints" parameters to treat as a hint that is filtered, trimmed and made unique
+
+    curl -FdisplayName=myuser -Fpwd=password -FpwdConfirm=password http://localhost:8080/system/userManager/user.create.html
+
+#### Customizing how principal names are generated from a hint
+
+*Since Version 2.2.16*
+
+The default implementation of *PrincipalNameGenerator* may be adjusted via configuration to define a length limit and define which request parameters should be considered as hint candidates.
+
+For example:
+
+    "org.apache.sling.jackrabbit.usermanager.PrincipalNameGenerator":{
+        "principalNameMaxLength": 50,
+        "principalNameHints": [
+            "displayName"
+        ]
+    }
+
+Additionally, the following service interfaces may be implemented by a custom OSGi component in order to influence how a principalName is generated from a hint. Whichever registered OSGi service that has the highest *service.ranking* value will be used.
+
+1. **org.apache.sling.jackrabbit.usermanager.PrincipalNameFilter** - An implementation of this service interface allows for filtering what characters are allowed in a generated principal name
+2. **org.apache.sling.jackrabbit.usermanager.PrincipalNameGenerator** - An implementation of this service interface allows to fully customize principal name generation
+
+
+## Enabling the option to expose nested authorizable property containers as child resources
+
+*Since Version 2.2.18*
+
+By default, the nested authorizable property containers are not exposed as child resources.  This behavior may be enabled via configuration.
+
+For example:
+
+    "org.apache.sling.jackrabbit.usermanager.impl.resource.AuthorizableResourceProvider":{
+        "resources.for.nested.properties":true
+    }
+

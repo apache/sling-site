@@ -90,10 +90,10 @@ Thus the SMTP server daemon would be represented by a user for the
 `mta:smtp` Service.  queueing with `mta:queue`, and delivery with `mta:deliver`.  
 
 
-## Implementation
+## Implementation/API
 
 The implementation in Sling of the *Service Authentication* concept
-described above consists of three parts:
+described above consists of the following parts which provide the API for service authentication:
 
 ### `ServiceUserMapper`
 
@@ -122,10 +122,12 @@ The implementation uses the following fallbacks in case no mapping can be found 
 1. Use default user (if one is configured in the OSGi configuration for PID `	org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl`).
 1. Use default mapping (if it is enabled in the OSGi configuration for PID `	org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl`) which looks up a user with id `serviceuser--<bundleId>[--<subservice-name>]` (since Service User Mapper 1.3.0, [SLING-6227](https://issues.apache.org/jira/browse/SLING-6772)).
 
+### `ServiceUserMapped`
+
 In addition a service named `ServiceUserMapped` is registered for each bundle and subservice name for which a service user mapping is explicitly configured ([SLING-4312](https://issues.apache.org/jira/browse/SLING-4312)).  By explicitly defining a (static) reference towards `ServiceUserMapped` one can defer starting the service until that service user mapping is available.
 Please note, that the two last default mappings are not represented as a ServiceUserMapped service and therefore the above mentioned reference does not work prior to version 1.4.4 ([SLING-7930](https://issues.apache.org/jira/browse/SLING-7930)). Also since version 1.4.4 the `ServiceUserMapped` is only registered in case there is a valid user/principal found in the underlying repository which is given in the mapping ([SLING-7930](https://issues.apache.org/jira/browse/SLING-7930)).
 
-#### Validators `ServicePrincipalsValidator` and `ServiceUserValidator`
+### Validators `ServicePrincipalsValidator` and `ServiceUserValidator`
 
 The API defines two interfaces to validate principal names and user IDs defined in service user mappings each with a 
 single method. The default `ServiceUserMapper` implementation allows to configure the set of required implementations that 

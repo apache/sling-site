@@ -37,7 +37,7 @@ Servlets can be registered as OSGi services. The following service reference pro
 
 For a Servlet registered as an OSGi service to be used by the Sling Servlet Resolver, either one or both of the `sling.servlet.paths` or the `sling.servlet.resourceTypes` service reference properties must be set. If neither is set, the Servlet service is ignored.
 
-Each path to be used for registration - either from the `sling.servlet.paths` property or constructed from the other `sling.servlet.\*` properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the `sling.servlet.prefix` service registration property. If this property is not set, the first entry in the `ResourceResolver` search path for the `ResourceResolver.getResource(String)` method is used as the prefix. If this entry cannot be derived, a simpe slash - `/` \- is used as the prefix.
+Each path to be used for registration - either from the `sling.servlet.paths` property or constructed from the other `sling.servlet.*` properties - must be absolute. Any relative path is made absolute by prefixing it with a root path. This prefix may be set with the `sling.servlet.prefix` service registration property. If this property is not set, the first entry in the `ResourceResolver` search path for the `ResourceResolver.getResource(String)` method is used as the prefix. If this entry cannot be derived, a simpe slash - `/` \- is used as the prefix.
 
 If `sling.servlet.methods` is not specified, the servlet is only registered for handling GET and HEAD requests. Make sure to list all methods you want to be handled by this servlet.
 
@@ -299,8 +299,8 @@ While an opting servlet seems to be a nice way of picking the right servlet to p
 The following order rules are being followed when trying to resolve a servlet for a given request URL and request method and multiple candidates would match. Then the following candidate is being picked (if one rule doesn't lead to one winner, the next rule is being evaluated):
 
 1. The one with the highest number of matching selectors + extension
-2. The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up), refer to section [Resource Type Inheritance](#Resource Type Inheritance) for more details
-3. The one with the highest `service.ranking` property
+2. The one which is registered to a resource type closest to the requested one (when traversing the resource type hierarchy up), refer to section [Resource Type Inheritance](#resource-type-inheritance) for more details
+3. The one with the highest service ranking according to [OSGi Core 8 Chapter 5.2.6](https://docs.osgi.org/specification/osgi.core/8.0.0/framework.service.html#framework.service.servicerankingorder)
 
 In case of an `OptingServlet` not matching the next candidate is being used.
 
@@ -308,7 +308,7 @@ In case of an `OptingServlet` not matching the next candidate is being used.
 
 Resource type inheritance as implemented for [SLING-278](https://issues.apache.org/jira/browse/SLING-278) plays a vital role in servlet resolution. 
 
-Each resource type may have a resource super type, which may be defined in various ways. One example is having a `sling:resourceSuperType` property in the node addressed by the resource type. See [http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html](http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html) and [SLING-278](http://issues.apache.org/jira/browse/SLING-278) for more details. Also the servlet (or script) itself may define a resource super type (which is only used in case the request resource does not define one).
+Each resource type may have a resource super type, which may be defined in various ways. One example is having a `sling:resourceSuperType` property in the resource addressed by the resource type. See [http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html](http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html) and [SLING-278](http://issues.apache.org/jira/browse/SLING-278) for more details. Also the servlet (or script) itself may define a resource super type (which is only used in case the request resource does not define one).
 
 If a resource type has no explicit resource super type, the resource super type is assumed to be `sling/servlet/default`. That is the resource type used for default script selection is also acting as a basic resource type much like `java.lang.Object` does for other types in the Java language. 
 

@@ -4,13 +4,7 @@ status=published
 tags=development,pmc
 ~~~~~~
 
-Sling releases (and SNAPSHOTS) are deployed to the [Nexus repository](http://repository.apache.org) instead of the traditional deployment via the Maven 2 mirrors source on `people.apache.org`. This makes the release process much leaner and simpler. In addtion we can benefit from the Apache Parent POM 6, which has most of the release profile setup built-in.
-
-Most of the hard work of preparing and deploying the release is done by Maven.
-
 [TOC]
-
-
 
 ## Prerequisites
 
@@ -92,7 +86,7 @@ First prepare your POMs for release:
     * You can continue to use `mvn release:prepare` and `mvn release:perform` on other sub-projects as necessary on the same machine and they will be combined in the same staging repository - this is useful when making a release of multiple Sling modules.
 
 1. Close the staging repository:
-    * Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
+    * Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging Repositories* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
 
 1. Verify the staged artifacts
     * If you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then redo (see [Redoing release perform](#redoing-release-perform)) or rollback your release (see *Canceling the Release*) and repeat the process
@@ -197,7 +191,7 @@ If the vote is successful, you need to promote and distribute the release - see 
 If the vote fails, or you decide to redo the release:
 
 1. Remove the release tag from Git (`git push --delete origin ${tagName}`)
-1. Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select *Close*). Right click on this repository and select *Drop*.
+1. Login to [https://repository.apache.org](https://repository.apache.org) using your Apache credentials. Click on *Staging Repositories* on the left. Then click on *org.apache.sling* in the list of repositories. In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select *Close*). Right click on this repository and select *Drop*.
 1. Remove the old version from Jira
     1. Create a new version in Jira with a version number following the one of the cancelled release
     1. Move all issues with the fix version set to the cancelled release to the next version
@@ -215,17 +209,16 @@ If the vote passes:
 1. Push the release to [https://dist.apache.org/repos/dist/release/sling/](https://dist.apache.org/repos/dist/release/sling/). This is only possible for PMC members (for a reasoning look at [http://www.apache.org/dev/release.html#upload-ci](http://www.apache.org/dev/release.html#upload-ci)). If you are not a PMC member, please ask one to do the upload for you.
 	1. Commit the released artifacts to [https://dist.apache.org/repos/dist/release/sling/](https://dist.apache.org/repos/dist/release/sling/) which is replicated to [http://www.apache.org/dist/sling/](http://www.apache.org/dist/sling/) quickly via svnpubsub. See [the section on quick artifact updates](#quick-update-of-artifacts-in-dist) for a way to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check&#95;staged&#95;release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file \*.asc.\*).
         * Make sure to *not* change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!
-        * Following the SVN commit you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports.
     1. Delete the old release artifacts from that same dist.apache.org svn folder (the dist directory is archived)
-    1. You will get an email from the Apache Reporter Service, which will ask you to add the information about the newly added release artifact. To simplify this task you can use the script from [https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh](https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh).
 1. Push the release to Maven Central
-	1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging*. Find your closed staging repository and select it by checking the select box. Select the *Releases* repository from the drop-down list and click *Release* from the menu above.
-	1. Once the release is promoted click on *Repositories*, select the *Releases* repository and validate that your artifacts are all there.
-1. Update the releases section on the website at [releases](/releases.html).
-1. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl).
-1. If you think that this release is worth a news entry, update the website at  [news](/news.html)
+    1. Login to [https://repository.apache.org](https://repository.apache.org) with your Apache SVN credentials. Click on *Staging Repositories*. Find your closed staging repository and select it by checking the select box. Click *Release* from the menu above and confirm.
+    2. Once the release is promoted click on *Repositories* on the left, select the *Releases* repository and validate that your artifacts are all there.
+3. Following the release promotion you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports. To simplify this task you can use the script from [https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh](https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh).
+2. Update the releases section on the website at [releases](/releases.html).
+3. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl).
+4. If you think that this release is worth a news entry, update the website at  [news](/news.html)
 
-For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
+For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
 
 ### Quick update of artifacts in dist
 
@@ -233,7 +226,7 @@ It is possible to update the artifacts without needing to checkout or update the
 
 Assuming that we are releasing `org.apache.sling.engine 2.6.22` and the old version artifact names start with `org.apache.sling.engine-2.6.20`, we can run the following commands
 
-    $ cd <folder where 2.6.22 is found expanded source-release..zip>
+    $ cd <folder where 2.6.22 is found>
     $ svn import -m "Release org.apache.sling.engine-2.6.22" . https://dist.apache.org/repos/dist/release/sling
     $ svn delete -m "Remove old version org.apache.sling.engine-2.6.20" $(svn ls https://dist.apache.org/repos/dist/release/sling/ | grep org.apache.sling.engine-2.6.20 | while read line; do echo "https://dist.apache.org/repos/dist/release/sling/$line"; done)
 
@@ -420,27 +413,19 @@ Assuming you are using a \*nix system with a working OpenSSH, GnuPG, and bash yo
 When releasing a Maven plugin, the Maven-generated documentation published under [http://sling.apache.org/components/](http://sling.apache.org/components/) needs
 to be updated.
 
-This is currently supported for:
-
-* `sling-maven-plugin`
-* `htl-maven-plugin`
-* `jspc-maven-plugin`
-* `slingstart-maven-plugin`
-* `slingfeature-maven-plugin`
-
 To publish the plugin documentation execute the following steps after the release:
 
 1. Checkout the release tag of the released plugin (or reset your workspace)
 
-2. Build and stage the maven site of the plugin locally.
+2. Build the Maven site of the plugin locally.
    
-        $ mvn clean site:site site:stage
+        $ mvn clean site:site
 
-3. Checkout the Sling website and navigate to the 'components' directory
+3. Checkout the Sling website
 
         $ git clone https://github.com/apache/sling-site.git
 
-4. Replace the content of the existing folder `src/main/jbake/assets/components/<plugin-name>` with the generated maven site from `target/staging`
+4. Replace the content of the existing folder `src/main/jbake/assets/components/<plugin-name>` with the generated Maven site from `target/site`
 
 5. Create a new folder `src/main/jbake/assets/components/<plugin-name>-archives/<plugin-name>-<version>` and copy the generated maven site there as well
 

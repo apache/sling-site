@@ -20,6 +20,8 @@ Many Sling projects want to be able to create model objects - POJOs which are au
 * Work with existing Sling infrastructure (i.e. not require changes to other bundles).
 
 # Basic Usage
+## Model Classes
+
 In the simplest case, the class is annotated with `@Model` and the adaptable class. Fields which need to be injected are annotated with `@Inject`:
 
     ::java
@@ -30,7 +32,37 @@ In the simplest case, the class is annotated with `@Model` and the adaptable cla
         private String propertyName;
     }
 
-In this case, a property named "propertyName" will be looked up from the Resource (after first adapting it to a `ValueMap`) and it is injected.
+In this case, a property named "propertyName" will be looked up from the Resource (after first adapting it to a `ValueMap`) and it is injected. Fields can use any visibility modifier:
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public class PublicFieldModel {
+    
+        @Inject
+        public String publicField;
+    }
+
+    @Model(adaptables=Resource.class)
+    public class ProtectedFieldModel {
+    
+        @Inject
+        protected String protectedField;
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PrivateFieldModel {
+    
+        @Inject
+        private String privateField;
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PackagePrivateFieldModel {
+    
+        @Inject
+        String packagePrivateField;
+    }
+
  
 For an interface, it is similar:
 
@@ -41,6 +73,8 @@ For an interface, it is similar:
 	    @Inject
 	    String getPropertyName();
 	}
+
+Interface methods must be `public`. Even though private interface methods have been available since Java 9, Sling Models uses Dynamic Proxies to instantiate the interfaces, which does not work with private interface methods. Additionally, while default interface methods will work with interface injection, the default implementation (in the interface) is currently not used, and will not be executed.
 
 Constructor injection is also supported (as of Sling Models 1.1.0):
 
@@ -55,6 +89,43 @@ Constructor injection is also supported (as of Sling Models 1.1.0):
 
 Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation is mandatory for injectors that require a name for resolving the injection.
 
+Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https://issues.apache.org/jira/browse/SLING-8069)):
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public class PublicConstructorModel {    
+        @Inject
+        public PublicConstructorModel() {
+          // constructor code
+        }
+    }
+
+    @Model(adaptables=Resource.class)
+    public class ProtectedConstructorModel {    
+        @Inject
+        protected ProtectedConstructorModel() {
+          // constructor code
+        }
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PrivateConstructorModel {    
+        @Inject
+        private PrivateConstructorModel() {
+          // constructor code
+        }
+    }
+
+    @Model(adaptables=Resource.class)
+    public class PackagePrivateConstructorModel {    
+        @Inject
+        PackagePrivateConstructorModel() {
+          // constructor code
+        }
+    }
+
+## Bundle Manifest Configuration
+
 In order for these classes to be picked up, there is a header which must be added to the bundle's manifest:
 
 	<Sling-Model-Packages>
@@ -62,15 +133,16 @@ In order for these classes to be picked up, there is a header which must be adde
 	</Sling-Model-Packages>
 
 This header must contain all packages which contain model classes or interfaces. However, subpackages need not be listed
-individually, e.g. the header above will also pick up model classes in `org.apache.sling.models.it.models.sub`. Multiple packages
-can be listed in a comma-separated list (any whitespace will be removed):
+individually, e.g. the header above will also pick up model classes in `org.apache.sling.models.it.models.sub`.
+However, wildcard characters like `*` are not supported. 
+Multiple packages can be listed in a comma-separated list (any whitespace will be removed):
 
     <Sling-Model-Packages>
       org.apache.sling.models.it.models,
       org.apache.sling.other.models
     </Sling-Model-Packages>
 
-Alternatively it is possible to list all classes individually that are Sling Models classes via the `Sling-Model-Classes` header.
+Alternatively it is possible to list all classes individually that are Sling Models classes via the `Sling-Model-Classes` header. Again, wildcard characters like `*` are not supported. 
 
 If you use the Sling Models bnd plugin all required bundle headers are generated automatically at build time (see chapter 'Registration of Sling Models classes via bnd plugin' below).
 
@@ -110,7 +182,7 @@ Since Sling Models 1.2.0 there is another way of instantiating models. The OSGi 
 In addition `ModelFactory` provides methods for checking whether a given class is a model at all (having the model annotation) or whether a class can be adapted from a given adaptable.
 
 ## Usage in HTL
-[Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#sling-models-use-provider) (internally uses the `ModelFactory` from above).
+[Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#java-use-provider-1) (internally uses the `ModelFactory` from above).
 
 # Other Options
 ## Names
@@ -408,9 +480,11 @@ Value Map          | `valuemap`              | 2000                | 1.0.0      
 Child Resources    | `child-resources`       | 3000                | 1.0.0                                    | Gets a child resource by name. | `Resource` objects | no | none | if a parameterized type `List` or `Collection` is passed, a `List<Resource>` is returned (the contents of which may be adapted to the target type) filled with all child resources of the resource looked up by the given name.
 Request Attributes | `request-attributes`    | 4000                | 1.0.0                                    | Get a request attribute by name. | `ServletRequest` objects | no | no conversion is done | If a parameterized type is passed, the request attribute must be of a compatible type of the parameterized type.
 OSGi Services      | `osgi-services`         | 5000                | 1.0.0                                    | Lookup services based on class name. Since Sling Models Impl 1.2.8 ([SLING-5664](https://issues.apache.org/jira/browse/SLING-5664)) the service with the highest service ranking is returned. In case multiple services are returned, they are ordered descending by their service ranking (i.e. the one with the highest ranking first). | Any object | yes | yes | Parameterized `List` and `Collection` injection points are injected by getting an array of the services and creating an unmodifiable `List` from the array.
+Context-Aware Configuration | `caconfig`     | 6000                |                                          | Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration). | Any object | yes | yes | If a parameterized type `List` or `Collection` is used, a configuration collection is looked up.
 Resource Path      | `resource-path`         | 2500                | 1.1.0                                    | Injects one or multiple resources. The resource paths are either given by `@Path` annotations, the element `path` or `paths` of the annotation `@ResourcePath` or by paths given through a resource property being referenced by either `@Named` or element `name` of the annotation `@ResourcePath`. | `Resource` or `SlingHttpServletRequest` objects | yes | yes | none
 Self               | `self`                  | `Integer.MAX_VALUE` | 1.1.0                                    | Injects the adaptable object itself (if the class of the field matches or is a supertype). If the @Self annotation is present it is tried to adapt the adaptable to the field type.  | Any object | yes | none | none
 Sling Object       | `sling-object`          | `Integer.MAX_VALUE` | 1.1.0                                    | Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper. This works only if the adaptable can get the according information, i.e. all objects are available via `SlingHttpServletRequest` while `ResourceResolver` can only resolve the `ResourceResolver` object and nothing else. A discussion around this limitation can be found at [SLING-4083](https://issues.apache.org/jira/browse/SLING-4083). Also `Resource`s can only be injected if the according injector-specific annotation is used (`@SlingObject`). | `Resource`, `ResourceResolver` or `SlingHttpServletRequest` objects (not all objects can be resolved by all adaptables).  | yes | none | none
+
 
 # Injector-specific Annotations
 
@@ -433,6 +507,7 @@ Annotation          | Supported Optional Elements    | Injector | Description
 `@RequestAttribute` | `injectionStrategy`, `name` and `via`   | `request-attributes` | Injects a request attribute by name. If `name` is not set the name is derived from the method/field name.
 `@ResourcePath`     | `injectionStrategy`, `path`, and `name` | `resource-path` | Injects a resource either by path or by reading a property with the given name.
 `@OSGiService`      | `injectionStrategy`, `filter`           | `osgi-services` | Injects an OSGi service by type. The `filter` can be used give an OSGi service filter.
+`@ContextAwareConfiguration` | `injectionStrategy`, `name`    | `caconfig` | Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration).
 `@Self`             | `injectionStrategy`                     | `self` | Injects the adaptable itself. If the field type does not match with the adaptable it is tried to adapt the adaptable to the requested type.
 `@SlingObject`      | `injectionStrategy`                     | `sling-object` |Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper
 
@@ -442,6 +517,41 @@ Those annotations replace `@Via`, `@Filter`, `@Named`, `@Optional`, `@Required`,
 Instead of using the deprecated annotation element `optional` you should rather use `injectionStrategy` with the values `DEFAULT`, `OPTIONAL` or `REQUIRED` (see also [SLING-4155](https://issues.apache.org/jira/browse/SLING-4155)).
 `@Default` may still be used in addition to the injector-specific annotation to set default values. All elements given above are optional.
  
+## Context-Aware Configuration
+
+Since [SLING-7256](https://issues.apache.org/jira/browse/SLING-7256) it is possible to inject 
+[Context-Aware Configuration](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html) directly in Sling Models.
+
+To use it, the following additional bundles are required (with given minimal version):
+
+* Apache Sling Context-Aware Configuration Implementation 1.6.0 (`org.apache.sling.caconfig.impl`)
+* Apache Sling Context-Aware Configuration SPI 1.4.0 (`org.apache.sling.caconfig.spi`)
+* Apache Sling Context-Aware Configuration API 1.1.2 (`org.apache.sling.caconfig.api`)
+* Apache Sling Models Context-Aware Configuration 1.0.0 (`org.apache.sling.models.caconfig`) - this bundle contains both the `@ContextAwareConfiguration` injector annotation and the injector implementation.
+
+Usage example for injecting a single Context-Aware configuration looked up in context of the current resource (`SingleConfig` is an annotation class describing the context-aware configuration):
+
+    ::java
+    @Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
+    public class SingleConfigModel {
+
+        @ContextAwareConfiguration
+        private SingleConfig config;
+
+    }
+
+Example for injecting a configuration list (`ListConfig` is an annotation class configured as context-aware configuration list):
+
+    ::java
+    @Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
+    public class ListConfigModel {
+
+        @ContextAwareConfiguration
+        private List<ListConfig> configList;
+    }
+
+For more examples, see [example models from unit tests](https://github.com/apache/sling-org-apache-sling-models-caconfig/tree/master/src/test/java/org/apache/sling/models/caconfig/example/model).
+
 ## Custom Annotations
 
 To create a custom annotation, implement the `org.apache.sling.models.spi.injectorspecific.StaticInjectAnnotationProcessorFactory` interface.

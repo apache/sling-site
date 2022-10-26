@@ -20,7 +20,7 @@ See latest version on the [downloads page](/downloads.cgi).
 
 ## Usage
 
-The class `org.apache.sling.testing.hamcrest.ResourceMatchers` is the main entry point. It contains static methods that can be used to create assertions.
+The class [`org.apache.sling.testing.hamcrest.ResourceMatchers`](https://github.com/apache/sling-org-apache-sling-testing-hamcrest/blob/master/src/main/java/org/apache/sling/hamcrest/ResourceMatchers.java) is the main entry point. It contains static methods that can be used to create assertions.
 
     #!java
     import static org.apache.sling.hamcrest.ResourceMatchers.resourceOfType;

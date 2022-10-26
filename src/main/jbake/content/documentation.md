@@ -17,7 +17,7 @@ The documentation is split into different parts:
    * [Tutorials & How-Tos](/documentation/tutorials-how-tos.html)
    * [Wiki](http://cwiki.apache.org/SLING/)
    * [Configuration](/documentation/configuration.html)
-   * [API Doc](http://sling.apache.org/apidocs/sling8/index.html)
+   * [API Documentation](/documentation/apidocs.html), the javadoc of the API exposed by Sling
 
 
 # How you can contribute

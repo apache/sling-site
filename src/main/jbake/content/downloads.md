@@ -31,29 +31,9 @@ The PGP keys at [https://downloads.apache.org/sling/KEYS](https://downloads.apac
 
 All Sling modules are provided from [Maven Central with groupId `org.apache.sling`](https://search.maven.org/search?q=g:org.apache.sling).
 
-## Apache Mirrors
+## Older Releases
 
-Use the links below to download binary or source distributions of Apache Sling from one of our ASF mirrors.
-
-You are currently using **[preferred]**. If you encounter a problem with
-this mirror, please select another mirror. If all mirrors are failing,
-there are backup mirrors (at the end of the mirrors list) that should be
-available. If the mirror displayed above is labeled *preferred*, then
-please reload this page by [downloads.cgi](clicking here)
-
-<form action="[location]" method="get" id="SelectMirror">
-<p>Other mirrors: </p>
-<select name="Preferred">
-[if-any http]
-[for http]<option value="[http]">[http]</option>[end]
-[end]
-[if-any ftp]
-[for ftp]<option value="[ftp]">[ftp]</option>[end]
-[end]
-[if-any backup]
-[for backup]<option value="[backup]">[backup] (backup)</option>[end]
-[end]
-</select>
-<input type="submit" value="Change"></input>
+The links on this page point to the latest Apache Sling releases, provided
+by the ASF's [CDN distribution services](https://blogs.apache.org/foundation/entry/apache-software-foundation-moves-to).
 
 Older releases are available at [http://archive.apache.org/dist/sling/](http://archive.apache.org/dist/sling/).

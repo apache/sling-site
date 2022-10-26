@@ -7,9 +7,8 @@ tags=slingstart,maven,launchers
 [TOC]
 
 <div class="note">
-    The <a href="/documentation/development/feature-model.html">OSGi Feature Model</a> is
-    meant to eventually replace the Sling Provisioning Model. If you are starting a new Sling project, please ask on
-    the Sling developers list about the status of the Feature Model to figure out which is best suited to your needs.
+    The <a href="/documentation/development/feature-model.html">OSGi Feature Model</a> has superseded the provisioning
+    model and is used by the Sling Starter as of version 12. It is recommended that new projects use the OSGi Feature Model.
 </div>
 
 The Apache Sling provisioning model is a model to describe OSGi based application. It can also be used to define a partial application aka feature (or subsystem in OSGi terms).
@@ -300,7 +299,7 @@ The `slingstart-maven-plugin` introduces two new packaging types:
 A model can reference other slingstart or slingfeature artifacts. When such an artifact is reference, the type needs to be specified, for example:
 
     [artifacts]
-        org.apache.sling/org.apache.sling.starter/${sling_releaseVersion}/slingstart
+        org.apache.sling/org.apache.sling.starter/11/slingstart
         org.apache.sling/org.apache.sling.launchpad.test-bundles/0.0.4/slingfeature
 
 The resulting model is a merged model, starting with the dependencies and then merging in the current model.

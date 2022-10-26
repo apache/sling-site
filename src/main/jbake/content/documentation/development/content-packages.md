@@ -64,7 +64,7 @@ After starting up Sling, the resulting file can then be deployed using the wcmio
 
     $ mvn wcmio-content-package:install
    
-### Node projects
+### Node.js projects
 
 Content packages are built with
 

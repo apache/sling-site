@@ -5,6 +5,8 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
+* Released [Apache Sling 12](/news/sling-12-released.html) (March 18th, 2022).
+* Security Advisory: [Apache Sling advisory regarding CVE-2021-44228 and LOGBACK-1591](./security/log4shell.html)
 * Our documentation pages now have an edit link in their footer: patches, which are very welcome, are now easier than ever!
 * The new [hierarchical sitemap](./sitemap.html) helps you find the right page, along with the existing [tags pages](./tags/development.html).
 * Released [Apache Sling Adapter Annotations 2.0](https://github.com/apache/sling-org-apache-sling-adapter-annotations), a new module that implements OSGi DS 1.4 component property type annotations for Sling Adapters.

@@ -25,11 +25,12 @@ They are called in increasing order of their `service.ranking` service property,
 If any of them throws an Exception, the `SlingRepository` service is not registered.
     
 ## The 'repoinit' Repository Initialization Language
-The `org.apache.sling.repoinit.parser` implements a mini-language meant to create paths, service users and Access Control Lists in a content repository, as 
-well as registering JCR namespaces and node types.
+The `org.apache.sling.repoinit.parser` implements a mini-language meant to create paths, service users and manage access control in a content repository, as 
+well as registering JCR namespaces, node types and privileges. Defining access control content consists of setting and 
+deleting policies of type access control lists (ACL) for which individual access control entries (ACE) can be added and removed.
 
-As  I write this, the source code consists of [three modules](https://github.com/apache?utf8=%E2%9C%93&q=sling+repoinit): the parser, the JCR 
-repoinit adapter module and the integration tests.
+The source code consists of [two modules](https://github.com/apache?utf8=%E2%9C%93&q=sling+repoinit): the parser and the JCR 
+repoinit adapter module.
 
 The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the `RepoInitGrammar.jjt` file in that module, and the automated tests provide a number of [test cases](https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases) which demonstrate various features.
 
@@ -281,6 +282,16 @@ repoinit parser repository.
     create path /one@home/step/two@home/steps
     create path /one+tap/step/two+tap/steps
     
+    # this is to cover an edge case: SLING-11384 (create root node with primary type)
+    create path /(nt:x)
+    
+    # SLING-10740 - Repoinit create path statement with properties
+    create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder2 with properties
+      set sling:ResourceType{String} to /x/y/z
+      set cq:allowedTemplates to /d/e/f/*, m/n/*
+      default someInteger{Long} to 42
+    end
+    
     # test-30.txt
     
     # Test the principal-centered ACL syntax
@@ -421,13 +432,54 @@ repoinit parser repository.
       allow jcr:seven for mercury
     end
     
+    # test-35.txt
+    
+    # Removal of individual access control entries (see SLING-11160), requires
+    # o.a.s.repoinit.parser 1.6.14 and
+    # o.a.s.jcr.repoinit 1.1.38
+    
+    # remove entries by path
+    
+    remove ACE on /libs,/apps, /, /content/example.com/some-other_path
+        allow jcr:read for user1,user2
+        allow privilege_without_namespace for user4
+        deny jcr:write,something:else,another:one for user2
+        deny jcr:lockManagement for user1
+        deny jcr:modifyProperties for user2 restriction(rep:itemNames,prop1,prop2)
+    end
+    
+    # remove entries by principal
+    
+    remove ACE for user1,u2
+        allow jcr:read on /content
+        allow jcr:addChildNodes, jcr:modifyProperties on /content restriction(rep:glob)
+        deny jcr:read on /etc, /var restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    end
+    
+    # remove principal-based entries
+    
+    remove principal ACE for principal1,principal2
+        allow jcr:read on /content
+        deny jcr:modifyProperties on /apps, /content restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+        allow jcr:something on / restriction(rep:glob)
+        allow jcr:all on :repository,home(alice)
+    end
+    
     # test-40.txt
     
     # Register namespaces, requires
     # o.a.s.repoinit.parser 1.0.4
     # and o.a.s.jcr.repoinit 1.0.2
+    # Quoted Namespaces requires
+    # o.a.s.repoinit.parser 1.6.16
     register namespace (foo) uri:some-uri/V/1.0
     register namespace ( prefix_with-other.things ) andSimpleURI
+    register namespace (foo2) "uri:some-uri/V/1.1/test#"
     
     # test-42.txt
     
@@ -584,6 +636,13 @@ repoinit parser repository.
       set two to endS
     end
     
+    set properties on /forcedMultiValue
+      set singleMultiValue{String[]} to "single"
+      set emptyMultiValue{String[]} to
+      set singleLongMultiValue{Long[]} to 1243
+      set emptyLongMultiValue{Long[]} to
+    end
+    
     set properties on /blankLinesInList
       set one to two
     
@@ -639,3 +698,53 @@ repoinit parser repository.
     delete principal ACL for ada, amy
     delete principal ACL for adi
     
+    # test-71.txt
+    
+    # Support quoted Group IDs
+    create group "Test Group"
+    create group "Test Group With Spaces" with path /thePathF
+    delete group "Test Group"
+    set ACL on /content
+        allow jcr:read for "Test Group",user1
+    end
+    set ACL on /content
+        allow jcr:read for "Test Group- Cool People","Test Group",user1
+    end
+    set ACL for user1,"Test Group",u2
+        allow jcr:read on /content
+    end
+    set principal ACL for user1,"Test Group" (ACLOptions=mergePreserve)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    set ACL on /test (ACLOptions=merge)
+        remove * for user1,"Test Group",user2
+    end
+    set properties on authorizable(bob), authorizable("Test Group")
+      set stringProp to "hello, you again!"
+    end
+    set properties on authorizable(bob)/nested, authorizable("Test Group")/nested
+      set stringProp to "hello, you nested again!"
+    end
+    add user1,"Test Group 2000",user2 to group "Parent Group"
+    remove user1,"Test Group 2000",user2 from group "Parent Group"
+    
+    # Test other escaped characters 
+    create group "Tab	Group"
+    create group "Untrimmed Group "
+    create group " Really Untrimmed Group "
+    create group "Group\With\Backslash"
+    create group "Group
+    Newline"
+    
+    # test-72.txt
+    
+    add mixin mix:one to /thePath1
+    add mixin mix:one,mix:two to /thePath1,/thePath2
+    add mixin mix:three, mix:four to /thePath3, /thePath4
+    
+    remove mixin mix:one from /thePath1
+    remove mixin mix:one,mix:two from /thePath1,/thePath2
+    remove mixin mix:three, mix:four from /thePath3, /thePath4
+    
+
