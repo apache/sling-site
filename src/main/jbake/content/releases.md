@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2022
 
+* Content-Package to Feature Model Converter 1.1.22 (31st)
 * Feature Model 1.3.0 (31st)
 * Content-Package to Feature Model Converter 1.1.20 (16th)
 * XSS Protection API 2.3.0 (4th)

@@ -138,7 +138,7 @@ def bundles=[
   "Feature Model|org.apache.sling.feature|1.3.0|Y|jar",
   "Feature Model Analyser|org.apache.sling.feature.analyser|1.6.8|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.14|Y|jar",
-  "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.1.20|Y|jar",
+  "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.1.22|Y|jar",
   "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|1.6.2|Y|jar",
   "Feature Flags|org.apache.sling.featureflags|1.2.2|Y|jar",
   "File Optimization|org.apache.sling.fileoptim|0.9.2|org.apache.sling.file.optimization|jar",
