@@ -6,6 +6,11 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+
+## November 2022
+
+* App CMS 1.1.2 (1st)
+
 ## October 2022
 
 * Discovery Oak 1.2.42 (31st)
