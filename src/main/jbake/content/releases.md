@@ -9,7 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2022
 
-* Engine 2.12.2 (14th)
+* Engine 2.12.2, JCR Resource 3.2.4 (14th)
 * App CMS 1.1.2 (1st)
 
 ## October 2022
