@@ -161,34 +161,40 @@ repository.
 
 Resource resolver types currently supported:
 
-**RESOURCERESOLVER_MOCK (default)**
+**RESOURCERESOLVER_MOCK** (default)
 
 * Simulates an In-Memory resource tree, does not provide adaptions to JCR API.
-* Based on the [Sling resourceresolver-mock implementation][resourceresolver-mock] implementation
+* Based on the [Sling resourceresolver-mock implementation][resourceresolver-mock] implementation.
 * You can use it to make sure the code you want to test does not contain references to JCR API.
 * Behaves slightly different from JCR resource mapping e.g. handling binary and date values.
 * This resource resolver type is very fast because data is stored in memory and no JCR mapping is applied.
 
+**RESOURCEPROVIDER_MOCK**
+
+* Same as RESOURCERESOLVER_MOCK, but uses the productive [Sling Resource Resolver implementation][resourceresolver] with a mocked resource provider implementation
+* Allows using multiple resource providers and loading folders for JSON or FileVault XML content.
+* This resource resolver type is still quite fast, but has a bit more overhead than RESOURCERESOLVER_MOCK.
+
 **JCR_MOCK**
 
-* Based on the [JCR Mocks][jcr-mock] implementation
-* Uses the productive [Sling JCR resource provider implementation][jcr-resource] internally to do the Resource-JCR mapping
-* Is quite fast because data is stored only in-memory
+* Based on the [JCR Mocks][jcr-mock] implementation.
+* Uses the productive [Sling JCR resource provider implementation][jcr-resource] internally to do the Resource-JCR mapping.
+* Is quite fast because data is stored only in-memory.
 
 **NONE**
 
-* Uses the productive Sling resource factory implementation without any ResourceProvider. You have to register one yourself to do anything useful with it.
+* Uses the productive [Sling Resource Resolver implementation][resourceresolver] without any ResourceProvider. You have to register one yourself to do anything useful with it.
 * The performance of this resource resolver type depends on the resource provider registered.
 * This is useful if you want to test your own resource provides mapped to root without any JCR.
 
 **JCR_OAK**
 
-* Uses a real JCR Jackrabbit Oak implementation based on the `MemoryNodeStore`
-* Full JCR/Sling features supported e.g. observations manager, transactions, versioning
-* Uses the productive [Sling JCR resource provider implementation][jcr-resource] internally to do the Resource-JCR mapping
-* Takes some seconds for startup on the first access
+* Uses a real JCR Jackrabbit Oak implementation based on the `MemoryNodeStore`.
+* Full JCR/Sling features supported e.g. observations manager, transactions, versioning.
+* Uses the productive [Sling JCR resource provider implementation][jcr-resource] internally to do the Resource-JCR mapping.
+* Takes some seconds for startup on the first access.
 * Node types defined in OSGi bundle header 'Sling-Nodetypes' found in MANIFEST.MF files in the classpath are registered automatically.
-* Lucene indexing is not included, thus fulltext search queries will return no result
+* Lucene indexing is not included, thus fulltext search queries will return no result.
 
 To use this type you have to declare an additional dependency in your test project:
 
@@ -200,32 +206,6 @@ To use this type you have to declare an additional dependency in your test proje
     </dependency>
 
 See latest version on the [downloads page](/downloads.cgi).
-
-**JCR_JACKRABBIT**
-
-* Uses a real JCR Jackrabbit implementation (not Oak) as provided by [sling/commons/testing][sling-commons-testing]
-* Full JCR/Sling features supported e.g. observations manager, transactions, versioning
-* Uses the productive [Sling JCR resource provider implementation][jcr-resource] internally to do the Resource-JCR mapping
-* Takes some seconds for startup on the first access 
-* Node types defined in OSGi bundle header 'Sling-Nodetypes' found in MANIFEST.MF files in the classpath are registered automatically.
-
-To use this type you have to declare an additional dependency in your test project:
-
-    #!xml
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.sling-mock-jackrabbit</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-See latest version on the [downloads page](/downloads.cgi).
-
-_Remarks on the JCR_JACKRABBIT type:_
-
-* The repository is not cleared for each unit test, so make sure to use a unique node path for each unit test. You may use the `uniquePath()` helper object of the SlingContext rule for this.
-* The [sling/commons/testing][sling-commons-testing] dependency introduces a lot of further dependencies from
-  jackrabbit and others, be careful that they do not conflict and are imported in the right order in your test project
-
 
 
 ### Sling Resource Resolver
@@ -503,6 +483,7 @@ More examples:
 [jcr-mock]: /documentation/development/jcr-mock.html
 [resourceresolver-mock]: /documentation/development/resourceresolver-mock.html
 [jcr-resource]: https://github.com/apache/sling-org-apache-sling-jcr-resource
+[resourceresolver]: https://github.com/apache/sling-org-apache-sling-resourceresolver
 [sling-commons-testing]: https://github.com/apache/sling-org-apache-sling-commons-testing
 [mockito-junit4-testrunner]: https://www.javadoc.io/page/org.mockito/mockito-core/latest/org/mockito/junit/MockitoJUnitRunner.html
 [mockito-junit5-extension]: https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html

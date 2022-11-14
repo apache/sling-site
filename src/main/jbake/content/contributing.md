@@ -3,6 +3,7 @@ type=page
 status=published
 tags=community
 tableOfContents=false
+expandVariables=true
 ~~~~~~
 
 Thanks for choosing to contribute to Apache Sling! The following are a set of guidelines to follow when contributing to this project.
@@ -69,19 +70,35 @@ Each Sling module comes with an automated build, usually based on Apache Maven. 
 by new unit tests that verify that the changes work as expected. Building with the Maven `jacoco-report` profile
 active provides a test coverage report at `target/site/jacoco-merged/index.html` .
 
+The PR you submit will eventually be built by Jenkins, with additional validations on top
+of the plain Maven build.
+
+#### Running the Sling Starter integration tests
+
 In case your changes are more far-reaching and the module you are contributing to is part of the
 [Sling Starter](https://github.com/apache/sling-org-apache-sling-starter), it is a good idea to
-also run the Sling Starter integration tests. This can be achieved by doing the following:
+also run the Sling Starter integration tests.
 
-* Check out the [Sling Starter](https://github.com/apache/sling-org-apache-sling-starter) and
-  [Sling Starter Integration Tests](https://github.com/apache/sling-org-apache-sling-launchpad-testing)
-  projects. This step can be skipped if you have followed the steps to checkout all Sling repositories
+##### Modules using the Sling Parent POM 49 or newer
+
+Sling modules using a recent version of the Parent POM are now able to automatically run the Starter ITs with the
+current version of the module. This is done by building your module while passing the `starter-its.starter.version`
+pointing to the Starter version you want to test with.
+
+The snippet below shows how to achieve this for the current development Starter version:
+
+`mvn clean verify -Dstarter-its.starter.version=${sling_snapshotVersion}`
+
+##### Modules using an older Sling Parent POM
+
+For modules using an older parent POM, the Sling Starter must be manually patched to run the latest version of the bundle. The steps
+to do that are:
+
+* Build the bundle that includes your changes using `mvn clean install`
+* Check out the [Sling Starter](https://github.com/apache/sling-org-apache-sling-starter) project.
+  This step can be skipped if you have followed the steps to checkout all Sling repositories
   as documented at [Getting and Building Sling](/documentation/development/getting-and-building-sling.html#getting-the-sling-source)
-* Use the latest version of the bundle(s) you changed in the Sling Starter. Running `git grep ${ARTIFACT_ID}`
+* Use the latest version of the bundle(s) you changed in the Sling Starter. Running `git grep ARTIFACT_ID`
   will indicate the potential places where you need to make changes
-* Run `mvn clean install` in the Sling Starter checkout. This runs a set of Smoke tests and allows the
-  integration tests to use the version of the starter that you just built
-* Run `mvn clean install` in the Sling Starter Integration Tests checkout
-
-Additionally, and PR you submit will eventually be built by Jenkins, with additional validations on top
-of the plain Maven build.
+* Run `mvn clean verify` in the Sling Starter checkout. This runs the full set of integration tests that
+  we use for Sling modules.

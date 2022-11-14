@@ -17,7 +17,7 @@ will write `@foo1='bar1'`, `@foo2=2`, `@foo3=true`, [`@foo4=${one.old}`](/docume
  
 Another handy usage is to copy whole tree sections, using the expr configuration
 
-        echo /content/foo | write @ expr /content/tree/to/copy
+        echo /content/tree/to/copy/to | write @ expr /content/tree/to/copy/from
 
 Finally, for more complicated cases where you need a structure to be written, you can use  JCR / Resource explorer to edit the 
 "compiled" persistence of the pipe, and create the given structured under conf.

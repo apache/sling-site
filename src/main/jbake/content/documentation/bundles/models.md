@@ -133,15 +133,16 @@ In order for these classes to be picked up, there is a header which must be adde
 	</Sling-Model-Packages>
 
 This header must contain all packages which contain model classes or interfaces. However, subpackages need not be listed
-individually, e.g. the header above will also pick up model classes in `org.apache.sling.models.it.models.sub`. Multiple packages
-can be listed in a comma-separated list (any whitespace will be removed):
+individually, e.g. the header above will also pick up model classes in `org.apache.sling.models.it.models.sub`.
+However, wildcard characters like `*` are not supported. 
+Multiple packages can be listed in a comma-separated list (any whitespace will be removed):
 
     <Sling-Model-Packages>
       org.apache.sling.models.it.models,
       org.apache.sling.other.models
     </Sling-Model-Packages>
 
-Alternatively it is possible to list all classes individually that are Sling Models classes via the `Sling-Model-Classes` header.
+Alternatively it is possible to list all classes individually that are Sling Models classes via the `Sling-Model-Classes` header. Again, wildcard characters like `*` are not supported. 
 
 If you use the Sling Models bnd plugin all required bundle headers are generated automatically at build time (see chapter 'Registration of Sling Models classes via bnd plugin' below).
 
@@ -181,7 +182,7 @@ Since Sling Models 1.2.0 there is another way of instantiating models. The OSGi 
 In addition `ModelFactory` provides methods for checking whether a given class is a model at all (having the model annotation) or whether a class can be adapted from a given adaptable.
 
 ## Usage in HTL
-[Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#sling-models-use-provider) (internally uses the `ModelFactory` from above).
+[Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#java-use-provider-1) (internally uses the `ModelFactory` from above).
 
 # Other Options
 ## Names

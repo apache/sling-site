@@ -84,6 +84,14 @@ For example:
 
 You can overwrite that behaviour by leveraging the `sling:orderBefore` property.
 
+# Resource Type Handling
+
+When resources are merged into a new resource, the resource type of the merged resource is set to the resource type of the last resource used for merging (see Resource Picks). 
+
+The resource super type is set to the merged value of the 'sling:resourceType' property - if it exists and its value is not the same as the resource type.
+
+In addition, the 'sling:resourceType' property in the returned value map is set to the resource type of the merged resource. Similar, the 'sling:resourceSuperType' property is set to the resource super type (if not null).
+
 # Resource Pickers
 
 ## Merging Resource Picker (Overlay approach)

@@ -282,6 +282,16 @@ repoinit parser repository.
     create path /one@home/step/two@home/steps
     create path /one+tap/step/two+tap/steps
     
+    # this is to cover an edge case: SLING-11384 (create root node with primary type)
+    create path /(nt:x)
+    
+    # SLING-10740 - Repoinit create path statement with properties
+    create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder2 with properties
+      set sling:ResourceType{String} to /x/y/z
+      set cq:allowedTemplates to /d/e/f/*, m/n/*
+      default someInteger{Long} to 42
+    end
+    
     # test-30.txt
     
     # Test the principal-centered ACL syntax
@@ -465,8 +475,11 @@ repoinit parser repository.
     # Register namespaces, requires
     # o.a.s.repoinit.parser 1.0.4
     # and o.a.s.jcr.repoinit 1.0.2
+    # Quoted Namespaces requires
+    # o.a.s.repoinit.parser 1.6.16
     register namespace (foo) uri:some-uri/V/1.0
     register namespace ( prefix_with-other.things ) andSimpleURI
+    register namespace (foo2) "uri:some-uri/V/1.1/test#"
     
     # test-42.txt
     
@@ -723,5 +736,15 @@ repoinit parser repository.
     create group "Group\With\Backslash"
     create group "Group
     Newline"
+    
+    # test-72.txt
+    
+    add mixin mix:one to /thePath1
+    add mixin mix:one,mix:two to /thePath1,/thePath2
+    add mixin mix:three, mix:four to /thePath3, /thePath4
+    
+    remove mixin mix:one from /thePath1
+    remove mixin mix:one,mix:two from /thePath1,/thePath2
+    remove mixin mix:three, mix:four from /thePath3, /thePath4
     
 

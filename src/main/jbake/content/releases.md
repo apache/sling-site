@@ -6,6 +6,75 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+
+## November 2022
+
+* Engine 2.12.2, JCR Resource 3.2.4 (14th)
+* App CMS 1.1.2 (1st)
+
+## October 2022
+
+* Discovery Oak 1.2.42 (31st)
+* Feature Model 1.3.0, XSS Protection API 2.3.2 (31st)
+* Content-Package to Feature Model Converter 1.1.20 (16th)
+* XSS Protection API 2.3.0 (4th)
+
+## September 2022
+
+* Auth Core 1.6.0, JUnit Scriptable Tests Provider 1.0.14 (29th)
+* Testing Clients 3.0.16, Jcr Resource 3.2.2 (28th)
+* Engine 2.12.0 (26th)
+* Repoinit Parser 1.8.0, Repoinit JCR 1.1.42, Feature Model Analyser 1.6.8, Slingfeature Maven Plugin 1.6.8 (23rd)
+* Auth Core 1.5.8 and Service User Mapper 1.5.6 (20th)
+* Rewriter 1.3.4 (19th)
+* Testing Sling Mock 3.4.2, Testing Sling Mock Oak 3.1.4-1.40.0 (15th)
+* Engine 2.11.0 (12th)
+* Testing ResourceResolver Mock 1.4.0, OSGi Mock 3.3.2, Sling Mock 3.4.0, GraphQL Core 0.0.14 (2nd)
+
+## August 2022
+
+* API 2.27.0, JCR Jackrabbit User Manager 2.2.26 (23rd)
+* Content-Package to Feature Model Converter 1.1.18 (22th)
+* Sling Maven Plugin 3.0.2 (21st)
+* JCR Jackrabbit User Manager 2.2.24 (15th)
+* Models Context-Aware Configuration 1.0.2, Engine 2.10.2, Scripting HTL Testing 1.0.32-1.4.0, Resource Resolver 1.10.0, Scripting HTL JS Use Provider 1.2.8, Scripting HTL Engine 1.4.20-1.4.0, Servlets Resolver 2.9.8, API 2.26.0 (12th)
+* Parent and Bundle Parent 49 (8th)
+* Extensions Webconsole Security Provider 1.2.6 (4th)
+* Discovery Commons 1.0.28, Base 2.0.14, Oak 1.2.40, Commons Metrics 1.2.12 (3rd)
+
+## July 2022
+
+* Installer Health Checks 2.1.0 (28th)
+* Engine 2.9.2 (18th)
+* Feature Model Analyser 1.6.6, Sling Feature Maven Plugin 1.6.6 (17th)
+* Repoinit Parser 1.7.0, Repoinit JCR 1.1.40 (11th)
+* Testing Sling Mock 3.3.2 (5th)
+* Health Check Support 1.0.8 (1st)
+
+## June 2022
+
+* Event 4.3.6 (27th)
+* Maven Enforcer Rules 1.1.0 (27th)
+* Feature Model Extension API Region 1.6.2 (16th)
+* API 2.25.4 and Commons Log 5.4.2 (13th)
+* Maven Enforcer Rules 1.0.0 (12th)
+* (Bundle) Parent 48 and Installer WebConsole Plugin 1.0.4 (7th)
+
+## May 2022
+
+* Resource Resolver 1.9.0 (27th)
+* XSS Protection API 2.2.20 (24th)
+* Event 4.3.2 (23rd)
+* Content Package to Feature Model Converter 1.1.16 (20th)
+* JCR Oak Server 1.3.0 (19th)
+* Feature Extension API Region 1.6.0 (15th)
+* Scripting Core 2.4.8, Scripting JSP 2.6.0, Servlets Resolver 2.9.6 (14th)
+* Resource Resolver 1.8.6, Content Distribution Journal Core 0.1.26 (9th)
+* Testing JCR Mock 1.6.0, Testing ResourceResolver Mock 1.3.0, Testing OSGi Mock 3.3.0, Testing Sling Mock 3.3.0 (9th)
+* JCR Jackrabbit User Manager 2.2.22 (5th)
+* Models API 1.4.2, Models Implementation 1.5.2, Content Distribution Journal Messages 0.5.0 (3rd)
+* Query 4.0.4 (2nd)
+
 ## April 2022
 
 * Sling Content Distribution API 0.7.0 (29th)
@@ -14,7 +83,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * JSPC Maven Plugin 2.3.4 (12th)
 * JCR Jackrabbit User Manager 2.2.20 (8th)
 * Scripting Core 2.4.6 (5th)
-* Sling Feature Marven Plugin 1.6.4 (1st)
+* Sling Feature Maven Plugin 1.6.4 (1st)
 * API 2.25.0, Engine 2.9.0, Servlets Resolver 2.9.4, Scripting Sightly 1.4.18-1.4.0 (1st)
 
 ## March 2022

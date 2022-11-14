@@ -33,7 +33,6 @@
     <repos.list.url>https://raw.githubusercontent.com/apache/sling-aggregator/master/default.xml</repos.list.url>
     <downloads.dir>${project.build.directory}/downloads</downloads.dir>
     <repos.list.fullpath>${downloads.dir}/github-repositories.xml</repos.list.fullpath>
-    <flexmark.version>0.62.2</flexmark.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -43,41 +42,7 @@
       <plugin>
         <groupId>org.jbake</groupId>
         <artifactId>jbake-maven-plugin</artifactId>
-        <version>0.3.5</version>
-
-        <!-- dependencies -->
-        <dependencies>
-         <!-- the following are only optional dependencies of jbake-core and
-               therefore need to be listed explicitly here to be loaded.
-               The versions should be the same as listed in jbake-core (listed in 
-               https://github.com/jbake-org/jbake/blob/master/gradle.properties and referenced in
-               https://github.com/jbake-org/jbake/blob/master/jbake-core/build.gradle).
-               Compare with https://github.com/jbake-org/jbake-maven-plugin/issues/14.
-          -->
-          <!-- for parsing MD -->
-          <dependency>
-            <groupId>com.vladsch.flexmark</groupId>
-            <artifactId>flexmark</artifactId>
-            <version>${flexmark.version}</version>
-          </dependency>
-          <!-- for supporting MD pegdown extensions -->
-          <dependency>
-            <groupId>com.vladsch.flexmark</groupId>
-            <artifactId>flexmark-profile-pegdown</artifactId>
-            <version>${flexmark.version}</version>
-          </dependency>
-          <!-- for supporting groovy templates with extension tpl -->
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-templates</artifactId>
-            <version>3.0.7</version>
-          </dependency>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-dateutil</artifactId>
-            <version>3.0.7</version>
-          </dependency>
-        </dependencies>
+        <version>2.7.0-rc.6</version>
 
         <executions>
           <execution>
@@ -88,6 +53,20 @@
             </goals>
           </execution>
         </executions>
+        <dependencies>
+            <!-- add exclusions to prevent using old jffi version: https://github.com/jbake-org/jbake/issues/769 -->
+            <dependency>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctorj</artifactId>
+                <version>2.5.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
