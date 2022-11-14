@@ -66,10 +66,10 @@ Name | Since | Description
 `privilege@[privilege_name]` | | One param for each privilege to modify.  The value must be either 'allow', 'deny' or 'none'.  For backward compatibility, 'granted' or 'denied' are accepted as aliases for 'allow' or 'deny'.
 `restriction@[restriction_name]` | 3.0.4 | One param for each restriction value.  The same parameter name may be used again for multi-value restrictions.  The value is the target value of the restriction.
 `restriction@[restriction_name]@Delete` | 3.0.4 | One param for each restriction to delete.  The parameter value is ignored and can be anything.
-`privilege@[privilege_name]@Delete` | 3.0.12 | One param for each privilege to delete. The parameter value must be either 'allow', 'deny' or 'all' to specify which state to delete from.
-`restriction@[privilege_name]@[restriction_name]@Allow` | 3.0.12 | One param for each restriction value to apply to the 'allow' privilege. The same parameter name may be used again for multi-value restrictions. The value is the target value of the restriction to be set.
-`restriction@[privilege_name]@[restriction_name]@Deny` | 3.0.12 | One param for each restriction value to apply to the 'deny' privilege. The same parameter name may be used again for multi-value restrictions. The value is the target value of the restriction to be set.
-`restriction@[privilege_name]@[restriction_name]@Delete` | 3.0.12 | One param for each restriction to delete. The parameter value must be either 'allow', 'deny' or 'all' to specify which state to delete from.
+`privilege@[privilege_name]@Delete` | 3.1.0 | One param for each privilege to delete. The parameter value must be either 'allow', 'deny' or 'all' to specify which state to delete from.
+`restriction@[privilege_name]@[restriction_name]@Allow` | 3.1.0 | One param for each restriction value to apply to the 'allow' privilege. The same parameter name may be used again for multi-value restrictions. The value is the target value of the restriction to be set.
+`restriction@[privilege_name]@[restriction_name]@Deny` | 3.1.0 | One param for each restriction value to apply to the 'deny' privilege. The same parameter name may be used again for multi-value restrictions. The value is the target value of the restriction to be set.
+`restriction@[privilege_name]@[restriction_name]@Delete` | 3.1.0 | One param for each restriction to delete. The parameter value must be either 'allow', 'deny' or 'all' to specify which state to delete from.
 
 The `order` parameter may have the following values:
 
@@ -82,7 +82,7 @@ The `order` parameter may have the following values:
 numeric | Place the target entry at the indicated numeric place amongst its siblings where *0* is equivalent to `first` and *1* means the second place
 
 #### Parameters Conflict Resolution
-*since version 3.0.12 for [SLING-11243](https://issues.apache.org/jira/browse/SLING-11243)*
+*since version 3.1.0 for [SLING-11243](https://issues.apache.org/jira/browse/SLING-11243)*
 
 The request parameters may be ambiguous or create a conflict.  Below is the steps that are taken to resolve conflicts:
 
@@ -122,7 +122,7 @@ Allow privilege with restrictions on descendant privilege example:
 
 
 ### Add or modify principal based permissions
-*since version 3.0.12 for [SLING-11272](https://issues.apache.org/jira/browse/SLING-11272)*
+*since version 3.1.0 for [SLING-11272](https://issues.apache.org/jira/browse/SLING-11272)*
 
 To modify the principal based permissions for a node POST a request to `/<path-to-the-node>.modifyPAce.<html or json>`. The following parameters are available:
 
@@ -132,9 +132,9 @@ Name | Since | Description
 `privilege@[privilege_name]` | | One param for each privilege to modify.  The value must be 'allow' or 'none'.
 `restriction@[restriction_name]` | 3.0.4 | One param for each restriction value.  The same parameter name may be used again for multi-value restrictions.  The value is the target value of the restriction.
 `restriction@[restriction_name]@Delete` | 3.0.4 | One param for each restriction to delete.  The parameter value is ignored and can be anything.
-`privilege@[privilege_name]@Delete` | 3.0.12 | One param for each privilege to delete. The parameter value must be 'allow'.
-`restriction@[privilege_name]@[restriction_name]@Allow` | 3.0.12 | One param for each restriction value to apply to the 'allow' privilege. The same parameter name may be used again for multi-value restrictions. The value is the target value of the restriction to be set.
-`restriction@[privilege_name]@[restriction_name]@Delete` | 3.0.12 | One param for each restriction to delete. The parameter value must be 'allow' to specify which state to delete from.
+`privilege@[privilege_name]@Delete` | 3.1.0 | One param for each privilege to delete. The parameter value must be 'allow'.
+`restriction@[privilege_name]@[restriction_name]@Allow` | 3.1.0 | One param for each restriction value to apply to the 'allow' privilege. The same parameter name may be used again for multi-value restrictions. The value is the target value of the restriction to be set.
+`restriction@[privilege_name]@[restriction_name]@Delete` | 3.1.0 | One param for each restriction to delete. The parameter value must be 'allow' to specify which state to delete from.
 
 NOTE: The resource path for a principal based entry does not need to exist yet to be set.  Also, a special resource path of `/:repository` can be used for setting repo-level permissions.
 
@@ -174,7 +174,7 @@ Example with curl:
     curl -F:applyTo=myuser http://localhost:8080/test/node.deleteAce.html
 
 ### Delete principal based permissions
-*since version 3.0.12 for [SLING-11272](https://issues.apache.org/jira/browse/SLING-11272)*
+*since version 3.1.0 for [SLING-11272](https://issues.apache.org/jira/browse/SLING-11272)*
 
 To delete principal based permissions for a node POST a request to `/<path-to-the-node>.deletePAce.<html or json>`. The following parameters are available:
   
@@ -223,7 +223,7 @@ See section 16.3 of the JCR 2.0 specification for an explanation of the differen
 
 
 ### Defined Permissions Entry
-*since version 3.0.12 for [SLING-11271](https://issues.apache.org/jira/browse/SLING-11271)*
+*since version 3.1.0 for [SLING-11271](https://issues.apache.org/jira/browse/SLING-11271)*
 
 To get the permissions bound to a particular node for a specific person in a json format, send a GET request to `/<path-to-the-node>.ace.json?pid=[principalId]`. 
 
@@ -245,7 +245,7 @@ Example:
 
 
 ### Effective Permissions Entry
-*since version 3.0.12 for [SLING-11271](https://issues.apache.org/jira/browse/SLING-11271)*
+*since version 3.1.0 for [SLING-11271](https://issues.apache.org/jira/browse/SLING-11271)*
 
 To get the permissions which are effective for a particular node and for a specific person in a json format, send a GET request to `/<path-to-the-node>.eace.json?pid=[principalId]`. 
 
@@ -267,7 +267,7 @@ Example:
 
 
 ### Defined Principal Based Permissions Entry
-*since version 3.0.12 for [SLING-11272](https://issues.apache.org/jira/browse/SLING-11272)*
+*since version 3.1.0 for [SLING-11272](https://issues.apache.org/jira/browse/SLING-11272)*
 
 To get the principal based permissions which are defined for a particular node and for a specific person in a json format, send a GET request to `/<path-to-the-node>.pace.json?pid=[principalId]`. 
 
@@ -289,7 +289,7 @@ Example:
 
 
 ## Migration from 3.x version
-*since version 3.0.12 for [SLING-11233](https://issues.apache.org/jira/browse/SLING-11233)*
+*since version 3.1.0 for [SLING-11233](https://issues.apache.org/jira/browse/SLING-11233)*
 
 In the previous versions, the restriction details in the ACL json output could be ambiguous in some situations.  For [SLING-11233](https://issues.apache.org/jira/browse/SLING-11233) the 
 JSON output structure was changed. The previous "granted/denied/restrictions" items in each ACE were replaced with a "privileges" structure whose items are the allow or deny privileges.  Each privilege now has a "deny" and/or "allow" child whose value is either true (no restrictions) or an array of restrictions + values.
