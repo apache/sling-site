@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2022
 
+* JCR Jackrabbit Access Manager 3.1.0 (17th)
 * Engine 2.12.2, JCR Resource 3.2.4 (14th)
 * App CMS 1.1.2 (1st)
 
