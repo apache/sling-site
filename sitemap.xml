@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html</loc><lastmod>2022-11-18</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/project-information/project-team.html</loc><lastmod>2022-10-31</lastmod>
     </url><url>
         <loc>https://sling.apache.org/old-stuff/scriptengineintegration/groovy-support.html</loc><lastmod>2017-09-29</lastmod>
@@ -130,8 +132,6 @@
         <loc>https://sling.apache.org/documentation/bundles/resource-merger.html</loc><lastmod>2022-08-06</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/osgi-installer.html</loc><lastmod>2022-05-31</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html</loc><lastmod>2020-10-11</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/dynamic-includes.html</loc><lastmod>2018-09-12</lastmod>
     </url><url>
