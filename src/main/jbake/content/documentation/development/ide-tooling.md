@@ -18,6 +18,8 @@ There is an optional feature which relies on m2eclipse. For now it only provides
 
 The links to the latest update site, including a permanent URL which stays up to date, are listed on the [Download page, IDE tooling section](/downloads.cgi#ide-tooling). There are also zipped update sites available from download for the latest version.
 
+The latest unstable build from the master branch is available from <https://nightlies.apache.org/sling/eclipse/> which can be used as Eclipse update site location as well.
+
 ### Building from source
 
 The update sites are provided as a convenience for users that do not wish to build the project themselves. Building the project only requires a recent Maven installation. The project can be checked out from [https://github.com/apache/sling-ide-tooling](https://github.com/apache/sling-ide-tooling). Once you have obtained the source code, it is enough to run
