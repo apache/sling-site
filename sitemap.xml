@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-11-25</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/project-information/project-team.html</loc><lastmod>2022-10-31</lastmod>
     </url><url>
         <loc>https://sling.apache.org/old-stuff/sling-api.html</loc><lastmod>2018-07-13</lastmod>
@@ -92,8 +94,6 @@
         <loc>https://sling.apache.org/documentation/bundles/commons-crypto.html</loc><lastmod>2019-12-14</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/apache-sling-commons-thread-pool.html</loc><lastmod>2022-01-10</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-11-22</lastmod>
     </url><url>
         <loc>https://sling.apache.org/project-information/project-license.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
