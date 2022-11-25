@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2022
 
+* Models Impl 1.5.4 (25nd)
 * Feature Launcher Maven Plugin 0.1.4, Health Check Support 1.0.10 (22nd)
 * Content-Package to Feature Model Converter 1.1.24 (21th)
 * JCR Jackrabbit Access Manager 3.1.0 (17th)
