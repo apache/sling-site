@@ -18,7 +18,7 @@ There is an optional feature which relies on m2eclipse. For now it only provides
 
 The links to the latest update site, including a permanent URL which stays up to date, are listed on the [Download page, IDE tooling section](/downloads.cgi#ide-tooling). There are also zipped update sites available from download for the latest version.
 
-The latest unstable build from the master branch is available from <https://nightlies.apache.org/sling/eclipse/> which can be used as Eclipse update site location as well.
+The latest **unstable** build from the master branch is available from <https://nightlies.apache.org/sling/eclipse/> which can be used as Eclipse update site location as well. *These builds are only thought for testing purposes as they are neither formally approved nor tested and may contain bugs. End-users must use the latest stable update site from above instead.*
 
 ### Building from source
 
