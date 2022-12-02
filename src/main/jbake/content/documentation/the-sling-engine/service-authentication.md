@@ -205,6 +205,7 @@ will be disabled in the future.
 The principal based mapping (enclosed in square brackets) is in general faster than the id based variant. 
 It allows to directly reference multiple service user principals and avoids resolving group memberships. This provides 
 full control over effective permissions granted to the service and prevents privilege escalations through changing group permissions. 
+*Keep in mind, though, that the principal mapping won't inherit any permissions from group memberships*.
 
 The JCR system user whose principal name or ID is mapped must exist at the point in time where `ResourceResolverFactory.getServiceResourceResolver(...)` 
 or `SlingRepository.loginService(...)` is called. If you rely on one of those methods in your `activate` method of an 
