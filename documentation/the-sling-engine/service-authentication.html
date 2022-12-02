@@ -217,7 +217,7 @@ String getServiceUserID(Bundle bundle, String subServiceName);
 <p>The alternative mapping by ID has been deprecated (see: <a href="https://issues.apache.org/jira/browse/SLING-10321">SLING-10321</a>) and will be disabled in the future.</p>
 <pre><code>&lt;service-name&gt;[:&lt;subservice-name&gt;]=&lt;id of a JCR system user&gt;
 </code></pre>
-<p>The principal based mapping (enclosed in square brackets) is in general faster than the id based variant. It allows to directly reference multiple service user principals and avoids resolving group memberships. This provides full control over effective permissions granted to the service and prevents privilege escalations through changing group permissions.</p>
+<p>The principal based mapping (enclosed in square brackets) is in general faster than the id based variant. It allows to directly reference multiple service user principals and avoids resolving group memberships. This provides full control over effective permissions granted to the service and prevents privilege escalations through changing group permissions. <em>Keep in mind, though, that the principal mapping won't inherit any permissions from group memberships</em>.</p>
 <p>The JCR system user whose principal name or ID is mapped must exist at the point in time where <code>ResourceResolverFactory.getServiceResourceResolver(...)</code> or <code>SlingRepository.loginService(...)</code> is called. If you rely on one of those methods in your <code>activate</code> method of an OSGi component you should make sure that you defer starting your OSGi component until the according service user mapping is in place. For that you can reference the OSGi service <code>ServiceUserMapped</code> (see Section <code>ServiceUserMapper</code> above for details), optionally with a target filter on property <code>subServiceName</code> (in case such a subservice name is used). The service <code>ServiceUserMapped</code> does not expose any methods but is only a marker interface exclusively used to defer starting of other OSGi components.</p>
 <p>Example OSGi DS Component</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Component(
@@ -288,7 +288,7 @@ whitelist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
                             content/documentation/the-sling-engine/service-authentication.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-05-25</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-12-02</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
