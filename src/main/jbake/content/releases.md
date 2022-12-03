@@ -7,6 +7,10 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 
+## December 2022
+
+* Engine 2.13.0 and Servlets Resolver 2.9.10 (3rd)
+
 ## November 2022
 
 * Tooling Support Install & Source 1.1.0 (28th)
