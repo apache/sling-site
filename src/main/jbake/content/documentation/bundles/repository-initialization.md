@@ -6,7 +6,7 @@ tags=repoinit,jcr,repository
 
 The `SlingRepositoryInitializer` mechanism (short: repoinit) allows for running code before the `SlingRepository` service is registered. This is useful for initialization and content migration purposes.
 
-Starting with version 1.1.40 of the bundle `org.apache.sling.jcr.repoinit` repoinit scripts are safely executed also in environments with a shared repository; this is implemented by a retry-mechanism with random delays.
+Starting with version 1.1.40 of the bundle `org.apache.sling.jcr.repoinit` repoinit scripts are safely executed also in environments with a shared repository; this is implemented by a retry-mechanism with randomized delays.
 
 ## SlingRepositoryInitializer
 The `SlingRepositoryInitializer` is a very simple service interface, available from version 2.4.0 of the `org.apache.sling.jcr.api` and `org.apache.sling.jcr.base` bundles.
