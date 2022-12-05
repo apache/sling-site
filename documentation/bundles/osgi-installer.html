@@ -143,6 +143,20 @@
 <h2><a href="#artifact-handling" id="artifact-handling">Artifact Handling</a></h2>
 <p>Once an artifact is detected by a transformer, it gets a unique id. By default a bundle gets the symbolic name as the unique identifier and a configuration the PID. In addition to this id, an artifact gets a priority information from the provider. The priority is used if an artifact with the same id is provided several times from different locations. For example if a file system provider is scanning two directories and an artifact with the same id (like a configuration) is added to both directories, one should have precedence over the other. This is handled by the priority.</p>
 <p>Artifacts with the same unique id are grouped and then sorted by priority and maybe other artifact dependent metadata like the bundle version. Only the first artifact in this sorted group is tried to be applied!</p>
+<h3><a href="#priorities" id="priorities">Priorities</a></h3>
+<p>When multiple resources with the same id are provided the one with the <em>highest priority</em> is installed.</p>
+<table>
+<thead>
+<tr><th>Provider </th><th> Base priority </th><th> Priority boost per matching run mode</th></tr>
+</thead>
+<tbody>
+<tr><td>Launchpad </td><td> 50 </td><td> 5</td></tr>
+<tr><td>JCR Installer </td><td> 100 (libs), 200 (apps), configurable via OSGi) </td><td> 1</td></tr>
+<tr><td>File Installer </td><td> 100 </td><td> 1</td></tr>
+</tbody>
+</table>
+<p>The priority is always calculated from the base priority and the priority boost according to the formula:</p>
+<p><code>priority = &lt;base priority&gt; + (&lt;priory boost&gt; * &lt;no of matching run modes))</code></p>
 <h2><a href="#bundle-handling" id="bundle-handling">Bundle Handling</a></h2>
 <p>In general, the OSGi installer always tries to install the highest version of a bundle if several bundles with the same symbolic name are provided. In this case higher version wins over priority. If an installed bundle is removed by a provider, for example deleted in the repository, the OSGi installer uninstall the bundle. If a bundle is removed from a provider which is currently not installed, this has no effect at all. If an installed bundle is removed and another version of this bundle is provided (a lower version), than this one is installed instead. This is basically a downgrade of the bundle. If a bundle is installed and a higher version is provided, an upgrade is performed. If an installed bundle is managed via any other OSGi tooling, like uninstalling it through the web console, the OSGi installer does no action at all!</p>
 <p>If a failure occurs during bundle installation or update, the OSGi installer will retry this as soon as another bundle has been installed. The common use case is an application installation with several bundles where one bundle depends on another. As they are installed in arbitrary order, this mechanism ensures that in the end all bundles are properly wired and installed.</p>
@@ -161,7 +175,7 @@
 <h3><a href="#versions-and-snapshots" id="versions-and-snapshots">Versions and Snapshots</a></h3>
 <p>The OSGi installer asumes that a symbolic name and version (not a snapshot version) uniquely identifies a bundle. Obviously this is a common development requirement that a released version of an artifact never changes over time. Therefore, once a bundle with a specific version is installed, it will not be reinstalled if the corresponding artifact changes. For example, if  bundle A with version 1.0 is put into the JCR repository, it gets installed. If now this jar in the repository is overwritten either with the same contents or with a different one, and this new artifact has again A as the symbolic name and version set to 1.0, nothing will happen as this exact bundle is already installed.</p>
 <p>During development, SNAPSHOT versions should be used, like 1.0.0-SNAPSHOT (using the Maven convention). If a bundle with a snapshot version is changed, it gets updated by the OSGI installer.</p>
-<h2><a href="#start-level-handling" id="start-level-handling">Start Level Handling</a></h2>
+<h3><a href="#start-level-handling" id="start-level-handling">Start Level Handling</a></h3>
 <p>The OSGi installer supports handling of start levels for bundles. If the provided bundle artifacts contain a start level information the bundle is installed with that start level, otherwise the default start level is used. Therefore, for initial provisioning to make use of start levels, the OSGi installer and the corresponding provider (see below) should run at a very low start level, probably at 1. This ensure that the bundles with a start level are started with respect to the start level.</p>
 <p>When an update of bundles is performed through the installer, by default the installer stays in the current start level and updates the bundles. However, if bundles at low start levels are affected, this might result in a lot of churn going on. Therefore, the OSGi installer can be configured to use a more intelligent start level handling:</p>
 <ul>
@@ -182,8 +196,9 @@
 <h3><a href="#providers" id="providers">Providers</a></h3>
 <p>A provider provides artifacts, e.g. by scanning a directory or a database etc.</p>
 <ul>
-<li><a href="/documentation/bundles/file-installer-provider.html">File Installer Provider</a></li>
-<li><a href="/documentation/bundles/jcr-installer-provider.html">JCR Installer Provider</a></li>
+<li><a href="/documentation/bundles/file-installer-provider.html">File Installer Provider</a>, scheme <code>fileinstall</code> followed by the MD5 of the config directory</li>
+<li><a href="/documentation/bundles/jcr-installer-provider.html">JCR Installer Provider</a>, scheme <code>jcrinstall</code></li>
+<li><a href="https://github.com/apache/sling-org-apache-sling-launchpad-installer">Launchpad Provider</a>, scheme <code>launchpad</code></li>
 </ul>
 <h2><a href="#web-console" id="web-console">Web Console</a></h2>
 <p>The <a href="https://felix.apache.org/documentation/subprojects/apache-felix-web-console.html">Felix Web Console</a> tab at <code>/system/console/osgi-installer</code> exposes a history of all processed OSGi installer resources. In addition the tab at <code>/system/console/osgi-installer-config-printer</code> expose serializations of current OSGi configurations (further details at <a href="/documentation/bundles/configuration-installer-factory.html#web-console-plugin-configuration-printer">Configuration Installer Factory</a>).</p>
@@ -213,7 +228,7 @@
                             content/documentation/bundles/osgi-installer.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-05-31</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-12-05</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
