@@ -33,6 +33,20 @@ In addition to this id, an artifact gets a priority information from the provide
 
 Artifacts with the same unique id are grouped and then sorted by priority and maybe other artifact dependent metadata like the bundle version. Only the first artifact in this sorted group is tried to be applied!
 
+### Priorities
+
+When multiple resources with the same id are provided the one with the *highest priority* is installed.
+
+Provider | Base priority | Priority boost per matching run mode
+------ | ----- | ----
+Launchpad | 50 | 5
+JCR Installer | 100 (libs), 200 (apps), configurable via OSGi) | 1
+File Installer | 100 | 1
+
+The priority is always calculated from the base priority and the priority boost according to the formula:
+
+`priority = <base priority> + (<priory boost> * <no of matching run modes))`
+
 ## Bundle Handling
 
 In general, the OSGi installer always tries to install the highest version of a bundle if several bundles with the same symbolic name are provided. In this case higher version wins over priority.
@@ -73,7 +87,7 @@ The OSGi installer asumes that a symbolic name and version (not a snapshot versi
 
 During development, SNAPSHOT versions should be used, like 1.0.0-SNAPSHOT (using the Maven convention). If a bundle with a snapshot version is changed, it gets updated by the OSGI installer.
 
-## Start Level Handling
+### Start Level Handling
 
 The OSGi installer supports handling of start levels for bundles. If the provided bundle artifacts contain a start level information the bundle is installed with that start level, otherwise the default start level is used.
 Therefore, for initial provisioning to make use of start levels, the OSGi installer and the corresponding provider (see below) should run at a very low start level, probably at 1. This ensure that the bundles with a start level are started with respect to the start level.
@@ -100,8 +114,10 @@ An installer factory provides support for a specific artifact type, like a confi
 
 A provider provides artifacts, e.g. by scanning a directory or a database etc.
 
-* [File Installer Provider](/documentation/bundles/file-installer-provider.html)
-* [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html)
+* [File Installer Provider](/documentation/bundles/file-installer-provider.html), scheme `fileinstall` followed by the MD5 of the config directory
+* [JCR Installer Provider](/documentation/bundles/jcr-installer-provider.html), scheme `jcrinstall`
+* [Launchpad Provider](https://github.com/apache/sling-org-apache-sling-launchpad-installer), scheme `launchpad`
+
 
 ## Web Console
 
