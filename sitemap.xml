@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/links.html</loc><lastmod>2022-12-06</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/osgi-installer.html</loc><lastmod>2022-12-05</lastmod>
     </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2022-12-05</lastmod>
@@ -206,8 +208,6 @@
         <loc>https://sling.apache.org/news/sling-launchpad-9-released.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/news/sling-12-released.html</loc><lastmod>2022-03-18</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/links.html</loc><lastmod>2019-07-26</lastmod>
     </url><url>
         <loc>https://sling.apache.org/errors/403.html</loc><lastmod>2017-10-07</lastmod>
     </url><url>
