@@ -31,11 +31,8 @@ Here are some links to other resources
 ## Sling Presentations and Screencasts
 
    * [Presentations tagged with "sling" at slideshare](http://www.slideshare.net/tag/sling) 
-
-The following screencasts demonstrate Day Software's CRX quickstart product, powered by Sling:
-
-   * [First Steps with CRX Quickstart](http://dev.day.com/microsling/content/blogs/main/firststeps1.html)
-   * [TheServerSide.com in 15 minutes](http://dev.day.com/microsling/content/blogs/main/firststeps2.html)
+   * [Videos from adaptTo conferences at YouTube](https://www.youtube.com/c/adaptTo)
+   * [Talks from adaptTo conferences](https://adapt.to/2021/en/archive.html).
 
 ## From ApacheCon EU 08
 
