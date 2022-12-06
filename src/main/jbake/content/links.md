@@ -8,6 +8,8 @@ tableOfContents=false
 Here are some links to other resources
 
 ## Articles
+   * [Is Adobe AEM a valid Content Services Platform? Part one](https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-blogs/is-adobe-aem-a-valid-content-services-platform-part-one-by-yuri/ba-p/559647) - by Yuri Simione on Adobe Experience League Blog site
+   * [Is Adobe AEM a valid Content Services Platform? Part two](https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-blogs/is-adobe-aem-a-valid-content-services-platform-part-two-by-yuri/ba-p/559648) - by Yuri Simione on Adobe Experience League Blog site
    * [Java Content Repository: The Best Of Both Worlds](http://java.dzone.com/articles/java-content-repository-best) - by Bertrand Delacretaz on Javalobby - uses the Sling HTTP interface to demonstrate JCR features.
    * [Accessing Relational Data as SLING RESTful URLs](http://www.lucamasini.net/Home/sling-and-cq5/accessing-relational-data-as-sling-restful-urls) - by Luca Masini
    * [Your First Day With Sakai Nakamura](http://confluence.sakaiproject.org/display/KERNDOC/Your+First+Day+With+Sakai+Nakamura) - Sakai Nakamura is based on Sling, that introductory article has very good explanations of REST and Sling basics, and on why hierarchies are useful on the Web.
