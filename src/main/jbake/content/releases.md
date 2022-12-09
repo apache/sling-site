@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2022
 
+* Feature Launcher 1.2.2, Feature Extension Apiregions 1.6.4, Webconsole Security Provider 1.2.8 (9th)
 * Testing Clients 3.0.18 (8th)
 * Testing OSGi Mock 3.3.4, Scripting HTL Engine 1.4.22-1.4.0 (5th)
 * Engine 2.13.0 and Servlets Resolver 2.9.10 (3rd)

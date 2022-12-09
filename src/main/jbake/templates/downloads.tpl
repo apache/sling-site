@@ -28,7 +28,7 @@ def slingApplication=[
   "Sling Starter Feature Archive (Oak-Mongo)|A self-container feature archive, for experimenting and learning. Requires the Feature Model Launcher (see below) |org.apache.sling.starter|-oak_tar_far.far|${starterVersion}|Y|apache/sling:${starterVersion}",
   "Sling Starter Source Release|The released Sling Starter source code|org.apache.sling.starter|-source-release.zip|${starterVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.feature|.jar|1.1.2|org.apache.sling.app.cms",
-  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.2.0|Y",
+  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.2.2|Y",
   "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.1.24|Y",
 ]
 
@@ -139,7 +139,7 @@ def bundles=[
   "Feature Model Analyser|org.apache.sling.feature.analyser|1.6.8|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.14|Y|jar",
   "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.1.24|Y|jar",
-  "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|1.6.2|Y|jar",
+  "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|1.6.4|Y|jar",
   "Feature Flags|org.apache.sling.featureflags|1.2.2|Y|jar",
   "File Optimization|org.apache.sling.fileoptim|0.9.2|org.apache.sling.file.optimization|jar",
   "File System Resource Provider|org.apache.sling.fsresource|2.2.0|Y|jar",
@@ -287,7 +287,7 @@ def bundles=[
   "Validation API|org.apache.sling.validation.api|1.0.0|Y|jar",
   "Validation Core|org.apache.sling.validation.core|1.0.4|Y|jar",
   "Web Console Branding|org.apache.sling.extensions.webconsolebranding|1.0.2|Y|jar",
-  "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.6|Y|jar",
+  "Web Console Security Provider|org.apache.sling.extensions.webconsolesecurityprovider|1.2.8|Y|jar",
   "XSS Protection API|org.apache.sling.xss|2.3.2|Y|jar",
   "XSS Protection Compat|org.apache.sling.xss.compat|1.1.0|N|jar"
 ]
