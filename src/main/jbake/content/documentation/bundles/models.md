@@ -610,7 +610,7 @@ programatically exported by calling the `ModelFactory` method `exportModel()`. T
 
 The exact semantics of the exporting will be determined by an implementation of the `ModelExporter` service interface. 
 
-Sling Models currently includes a single exporter, using the Jackson framework, which is capable of serializing models as JSON or transforming them to `java.util.Map` objects. It is included in a dedicated bundle with the symbolic name [`org.apache.sling.models.jacksonexporter`](https://github.com/apache/sling-org-apache-sling-models-jacksonexporter).
+Sling Models currently includes a single exporter, using the Jackson framework, which is capable of serializing models as JSON or transforming them to `java.util.Map` objects. It is included in a dedicated bundle with the symbolic name [`org.apache.sling.models.jacksonexporter`](https://github.com/apache/sling-org-apache-sling-models-jacksonexporter). It supports the option key `tidy` (which will auto indent the returned JSON for better readability)
 
 In addition, model objects can have servlets automatically registered for their resource type (if it is set) using the `@Exporter` annotation. For example, a model class with the annotation
 
@@ -622,6 +622,7 @@ results in the registration of a servlet with the resource type and extension sp
 through the `@Exporter` annotation's `selector` attribute). When this servlet is invoked, the `Resource` will be adapted to the 
 model, exported as a `java.lang.String` (via the named Exporter) and then returned to the client. The `ExportServlet` only supports models for adaptable `org.apache.sling.api.resource.Resource` or `org.apache.sling.api.SlingHttpServletRequest`. If a model is adaptable from both the `Resource` is used.
 
+The ExportServlet allows to pass options to the exporter either via additional selectors (which just get the String value `"true"` in the used options map) or via regular request parameters (which are added to the options map with the given value or just with the String value `"true"` in case the request parameter didn't carry a value). 
 
 # Registration of Sling Models classes via bnd plugin
 
