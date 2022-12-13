@@ -620,7 +620,7 @@ In addition, model objects can have servlets automatically registered for their 
 
 results in the registration of a servlet with the resource type and extension specified and a selector of 'model' (overridable 
 through the `@Exporter` annotation's `selector` attribute). When this servlet is invoked, the `Resource` will be adapted to the 
-model, exported as a `java.lang.String` (via the named Exporter) and then returned to the client.
+model, exported as a `java.lang.String` (via the named Exporter) and then returned to the client. The `ExportServlet` only supports models for adaptable `org.apache.sling.api.resource.Resource` or `org.apache.sling.api.SlingHttpServletRequest`. If a model is adaptable from both the `Resource` is used.
 
 
 # Registration of Sling Models classes via bnd plugin
