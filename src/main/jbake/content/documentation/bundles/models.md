@@ -267,7 +267,7 @@ OSGi injection can be filtered:
 	@Model(adaptables=SlingHttpServletRequest.class)
 	public class MyModel {
 	 
-	    @OSGiInjector
+	    @OSGiService
 	    private PrintWriter out;
 	 
 	    @OSGiInjector(name="log")
@@ -284,7 +284,7 @@ Lists and arrays are supported by some injectors. For the details look at the ta
 	@Model(adaptables=Resource.class)
 	public class MyModel {
 	 
-	    @Inject
+	    @OsgiService
 	    private List<Servlet> servlets;
 	}
 
@@ -294,7 +294,7 @@ List injection for *child resources* works by injecting grand child resources (s
 	@Model(adaptables=Resource.class)
 	public class MyModel {
 
-	    @@ChildResource
+	    @ChildResource
 	    private List<Resource> addresses;
 	}
 
@@ -397,8 +397,7 @@ The only implementation for this Sling Models validation service is leveraging [
 
 ## Caching adaptions
 
-By default, Sling Models do not do any caching of the adaptation result and every request for a model class will
-result in a new instance of the model class. However, there are two notable cases when the adaptation result can be cached. The first case is when the adaptable extends the `SlingAdaptable` base class. Most significantly, this is the case for many `Resource` adaptables as `AbstractResource` extends `SlingAdaptable`.  `SlingAdaptable` implements a caching mechanism such that multiple invocations of `adaptTo()` will return the same object. For example:
+By default, Sling Models do not do any caching of the adaptation result and every request for a model class will result in a new instance of the model class. However, there are two notable cases when the adaptation result can be cached. The first case is when the adaptable extends the `SlingAdaptable` base class. Most significantly, this is the case for many `Resource` adaptables as `AbstractResource` extends `SlingAdaptable`.  `SlingAdaptable` implements a caching mechanism such that multiple invocations of `adaptTo()` will return the same object. For example:
 
     ::java
     // assume that resource is an instance of some subclass of AbstractResource
