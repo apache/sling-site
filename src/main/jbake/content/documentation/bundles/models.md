@@ -85,6 +85,14 @@ Because the name of a constructor argument parameter cannot be detected via the 
 
 Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https://issues.apache.org/jira/browse/SLING-8069)).
 
+## @Model and adaptable types
+
+While technically it is possible to provide any class implementing the `Adaptable` interface as the `adaptable` parameter to the `@Model` annotation, the Sling Model Framework and the default injectors is mostly built under the assumption that the adaption is done from a Sling Resource. Some injectors also support adaption from a `SlingHttpServletRequest` object, but normally this is then converted into a adaption of the resource of the request.
+
+When building custom Sling Models, it's advised to just support the adaption from a Sling Resource, because this allows to use the Sling Model in the most flexible way, both in a reqeust context and also outside of it.
+
+
+
 ## Bundle Manifest Configuration
 
 In order for these classes to be picked up, there is a header which must be added to the bundle's manifest:
@@ -154,12 +162,13 @@ Please see [Sling Models Use Provider](/documentation/bundles/scripting/scriptin
 
 In the above cases just the `@ValueMapValue` annotation was used, but there other available injectors. For each injector there is a specialized annotation available. For the optional parameters see the next section.
 
+
 Injector Name  | Annotation          | Supported Optional Elements    | Description   | Array Support   | Parametrized Type Support
 ----- | -----------------   | ------------------------------ |------------------------- | --------------- | ---------------------------
 Scripting Bindings|`@ScriptVariable`   | `injectionStrategy` and `name`          | Injects the script variable defined via [Sling Bindings](https://cwiki.apache.org/confluence/display/SLING/Scripting+variables). If `name` is not set the name is derived from the method/field name.  | no conversion is done |  If a parameterized type is passed, the bindings value must be of a compatible type of the parameterized type.
-ValueMap | `@ValueMapValue`    | `injectionStrategy`, `name` and `via`   | Injects a `ValueMap` value. If `via` is not set, it will automatically take `resource` if the adaptable is the `SlingHttpServletRequest`. If `name` is not set the name is derived from the method/field name. | Primitive arrays wrapped/unwrapped as necessary. Wrapper object arrays are unwrapped/wrapped as necessary. | Parameterized `List` and `Collection` injection points are injected by getting an array of the component type and creating an unmodifiable `List` from the array.
-Child Resource | `@ChildResource`    | `injectionStrategy`, `name` and `via`   | Injects a child resource by name. If `via` is not set, it will automatically take `resource` if the adaptable is the `SlingHttpServletRequest`. If `name` is not set the name is derived from the method/field name. | none  | if a parameterized type `List` or `Collection` is passed, a `List<Resource>` is returned (the contents of which may be adapted to the target type) filled with all child resources of the resource looked up by the given name.
-Request Attribute | `@RequestAttribute` | `injectionStrategy`, `name` and `via`   | Injects a request attribute by name. If `name` is not set the name is derived from the method/field name. | no conversion is done | If a parameterized type is passed, the request attribute must be of a compatible type of the parameterized type.
+ValueMap | `@ValueMapValue`    | `injectionStrategy`, `name`   | Injects a `ValueMap` value taken from the adapted resource (either taking from the adapted resource or the resource of the adapted SlingHttpServletRequest). If `name` is not set the name is derived from the method/field name. | Primitive arrays wrapped/unwrapped as necessary. Wrapper object arrays are unwrapped/wrapped as necessary. | Parameterized `List` and `Collection` injection points are injected by getting an array of the component type and creating an unmodifiable `List` from the array.
+Child Resource | `@ChildResource`    | `injectionStrategy`, `name`   | Injects a child resource by name (taken from the adapted resource (either taking from the adapted resource or the resource of the adapted SlingHttpServletRequest). If `name` is not set the name is derived from the method/field name. | none  | if a parameterized type `List` or `Collection` is passed, a `List<Resource>` is returned (the contents of which may be adapted to the target type) filled with all child resources of the resource looked up by the given name.
+Request Attribute | `@RequestAttribute` | `injectionStrategy`, `name`    | Injects a request attribute by name, it requires the the adaptable is a `SlingHttpServletRequest` . If `name` is not set the name is derived from the method/field name. | no conversion is done | If a parameterized type is passed, the request attribute must be of a compatible type of the parameterized type.
 Resource path | `@ResourcePath`     | `injectionStrategy`, `path`, and `name` |Injects a resource either by path or by reading a property with the given name. | yes | none
 OSGi service | `@OSGiService`      | `injectionStrategy`, `filter`           | Injects an OSGi service by type (and the optional filter) | yes | Parameterized `List` and `Collection` injection points are injected by getting an array of the services and creating an unmodifiable `List` from the array.
 Context-Aware Configuration | `@ContextAwareConfiguration` | `injectionStrategy`, `name`    |  Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration) below. | yes | If a parameterized type `List` or `Collection` is used, a configuration collection is looked up.
@@ -207,33 +216,6 @@ To still mark some fields/methods as being mandatory while relying on `defaultIn
 
 `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL` parameters are only evaluated when using the `defaultInjectionStrategy = DefaultInjectionStrategy.REQUIRED` (which is the default), `injectionStrategy=InjectionStrategy.REQUIRED` parameters only if using `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL`.
 
-## Via 
-In some cases, a different object should be used as the adaptable instead of the original adaptable. This can be done
-using the `via` parameter. By default, this can be done using a JavaBean property of the adaptable:
-
-	::java
-	@Model(adaptables=SlingHttpServletRequest.class)
-	public interface MyModel {
-	 
-	    // will return request.getResource().getValueMap().get("propertyName", String.class)
-	    @ValueMapValue(via="resource")
-	    String getPropertyName();
-	} 
-
-
-A different strategy can be used to define the adaptable by specifying a `type` attribute:
-
-    ::java
-    @Model(adaptables=Resource.class)
-    public interface MyModel {
-
-		// will return resource.getChild("jcr:content").getValueMap().get("propertyName", String.class)
-        @Inject @Via(value = "jcr:content", type = ChildResource.class)
-        String getPropertyName();
-
-    }
-
-See the [Via Types](#via-types-since-api-134implementation-140) section below for details on the included types for `@Via`.
 
 
 ## Names
@@ -635,28 +617,6 @@ If you want to generate a bundle header compliant with Sling Models < 1.3.4 (i.e
 
 
 
-# Via Types
- 
-As discussed in the [Via](#via) section above, it is possible to select a different adaptable than the original value using the `@Via` annotation. The following standard types are provided (all types are in the package `org.apache.sling.models.annotations.via`, available since API 1.3.4, Implementation 1.4.0)
-
-`@Via` type value             | Description
------------------------------ | ------------------------------ 
-`BeanProperty`  (default)     | Uses a JavaBean property from the adaptable.
-`ChildResource`               | Uses a child resource from the adaptable, assuming the adaptable is a `Resource`. In case the adaptable is a `SlingHttpServletRequest` uses a wrapper overwriting the `getResource()` to point to the given child resource ([SLING-7321](https://issues.apache.org/jira/browse/SLING-7321)).
-`ForcedResourceType`          | Creates a wrapped resource with the provided resource type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
-`ResourceSuperType`           | Creates a wrapped resource with the resource type set to the adaptable's resource super type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
-
-
-Defining your own type for the `@Via` annotation is a two step process. The first step is to create a marker class implementing the `@ViaProviderType` annotation. This class can be entirely empty, e.g.
-
-    ::java
-    public class MyCustomProviderType implements ViaProviderType {}
-
-The second step is to create an OSGi service implementing the `ViaProvider` interface. This interface defines two methods:
-
-* `getType()` should return the marker class. 
-* `getAdaptable()` should return the new adaptable or `ViaProvider.ORIGINAL` to indicate that the original adaptable should be used.
-
 
 # Discouraged annotations
 
@@ -691,3 +651,56 @@ For these reasons the injector-specific annotations have been created, and this 
 
 `@Path`
 :   only used together with the resource-path injector to specify the path of a resource
+
+## Via  
+
+In some cases, a different object should be used as the adaptable instead of the original adaptable. This can be done
+using the `via` parameter.
+
+While this feature does also work with the injector-specfic annotations above, it's use is discouraged because it's barely used and just increases the complexity of the models.
+
+ By default, this can be done using a JavaBean property of the adaptable:
+
+	::java
+	@Model(adaptables=SlingHttpServletRequest.class)
+	public interface MyModel {
+	 
+	    // will return request.getResource().getValueMap().get("propertyName", String.class)
+	    @Inject(via="resource")
+	    String getPropertyName();
+	} 
+
+
+A different strategy can be used to define the adaptable by specifying a `type` attribute:
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public interface MyModel {
+
+		// will return resource.getChild("jcr:content").getValueMap().get("propertyName", String.class)
+        @Inject @Via(value = "jcr:content", type = ChildResource.class)
+        String getPropertyName();
+
+    }
+
+## Via Types
+ 
+The following standard types are provided (all types are in the package `org.apache.sling.models.annotations.via`, available since API 1.3.4, Implementation 1.4.0)
+
+`@Via` type value             | Description
+----------------------------- | ------------------------------ 
+`BeanProperty`  (default)     | Uses a JavaBean property from the adaptable.
+`ChildResource`               | Uses a child resource from the adaptable, assuming the adaptable is a `Resource`. In case the adaptable is a `SlingHttpServletRequest` uses a wrapper overwriting the `getResource()` to point to the given child resource ([SLING-7321](https://issues.apache.org/jira/browse/SLING-7321)).
+`ForcedResourceType`          | Creates a wrapped resource with the provided resource type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
+`ResourceSuperType`           | Creates a wrapped resource with the resource type set to the adaptable's resource super type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
+
+
+Defining your own type for the `@Via` annotation is a two step process. The first step is to create a marker class implementing the `@ViaProviderType` annotation. This class can be entirely empty, e.g.
+
+    ::java
+    public class MyCustomProviderType implements ViaProviderType {}
+
+The second step is to create an OSGi service implementing the `ViaProvider` interface. This interface defines two methods:
+
+* `getType()` should return the marker class. 
+* `getAdaptable()` should return the new adaptable or `ViaProvider.ORIGINAL` to indicate that the original adaptable should be used.
