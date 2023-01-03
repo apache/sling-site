@@ -87,7 +87,7 @@ Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https:/
 
 ## @Model and adaptable types
 
-While technically it is possible to provide any class implementing the `Adaptable` interface as the `adaptable` parameter to the `@Model` annotation, the Sling Model Framework and the default injectors is mostly built under the assumption that the adaption is done from a Sling Resource. Some injectors also support adaption from a `SlingHttpServletRequest` object, but normally this is then converted into a adaption of the resource of the request.
+While technically it is possible to provide any class implementing the `Adaptable` interface as the `adaptable` parameter to the `@Model` annotation, the Sling Model Framework and the default injectors is mostly built under the assumption that the adaption is done from a Sling Resource. All injectors also support adaption from a `SlingHttpServletRequest` object, but normally this is then converted into a adaption of the resource of the request. The only exception on the default injectors is the "Request Attribute" injector, which requires that the model is adapted from a SlingHttpServletRequest.
 
 When building custom Sling Models, it's advised to just support the adaption from a Sling Resource (if you don't need information from a request object), because this allows to use the Sling Model in the most flexible way, both in a request context and also outside of it.
 
