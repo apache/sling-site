@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2023
+
+* App CMS 1.1.4 (1st)
 
 ## December 2022
 
