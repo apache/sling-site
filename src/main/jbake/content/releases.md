@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2023
 
+* Feature Model Launcher 1.2.4 (9th)
 * App CMS 1.1.4 (1st)
 
 ## December 2022
