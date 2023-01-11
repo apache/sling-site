@@ -7,59 +7,53 @@ tags=models
 [TOC]
 
 Many Sling projects want to be able to create model objects - POJOs which are automatically mapped from Sling objects, typically resources, but also request objects. Sometimes these POJOs need OSGi services as well.
-
-# Design Goals
-
-* Entirely annotation driven. "Pure" POJOs.
-* Use standard annotations where possible.
-* Pluggable
-* OOTB, support resource properties (via ValueMap), SlingBindings, OSGi services, request attributes
-* Adapt multiple objects - minimal required Resource and SlingHttpServletRequest
-* Client doesn't know/care that these objects are different than any other adapter factory
-* Support both classes and interfaces.
-* Work with existing Sling infrastructure (i.e. not require changes to other bundles).
+Sling Models provide an easy way to achieve this, integrating into the already existing pattern and infrastructure provided by Sling.
 
 # Basic Usage
 ## Model Classes
 
-In the simplest case, the class is annotated with `@Model` and the adaptable class. Fields which need to be injected are annotated with `@Inject`:
+In the simplest case, the model class is annotated with `@Model` and the adaptable class. Fields which need to be injected are annotated with `@ValueMapValue`:
 
     ::java
+    import org.apache.sling.api.resource.Resource;
+    import org.apache.sling.models.annotations.Model;
+    import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
     @Model(adaptables=Resource.class)
     public class MyModel {
     
-        @Inject
+        @ValueMapValue
         private String propertyName;
     }
 
-In this case, a property named "propertyName" will be looked up from the Resource (after first adapting it to a `ValueMap`) and it is injected. Fields can use any visibility modifier:
+In this case, a property named `propertyName` will be looked up from the Resource (after first adapting it to a `ValueMap`) and it is injected. Fields can use any visibility modifier:
 
     ::java
     @Model(adaptables=Resource.class)
     public class PublicFieldModel {
     
-        @Inject
+        @ValueMapValue
         public String publicField;
     }
 
     @Model(adaptables=Resource.class)
     public class ProtectedFieldModel {
     
-        @Inject
+        @ValueMapValue
         protected String protectedField;
     }
 
     @Model(adaptables=Resource.class)
     public class PrivateFieldModel {
     
-        @Inject
+        @ValueMapValue
         private String privateField;
     }
 
     @Model(adaptables=Resource.class)
     public class PackagePrivateFieldModel {
     
-        @Inject
+        @ValueMapValue
         String packagePrivateField;
     }
 
@@ -70,7 +64,7 @@ For an interface, it is similar:
 	@Model(adaptables=Resource.class)
 	public interface MyModel {
 	 
-	    @Inject
+	    @ValueMapValue
 	    String getPropertyName();
 	}
 
@@ -89,40 +83,13 @@ Constructor injection is also supported (as of Sling Models 1.1.0):
 
 Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation is mandatory for injectors that require a name for resolving the injection.
 
-Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https://issues.apache.org/jira/browse/SLING-8069)):
+Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https://issues.apache.org/jira/browse/SLING-8069)).
 
-    ::java
-    @Model(adaptables=Resource.class)
-    public class PublicConstructorModel {    
-        @Inject
-        public PublicConstructorModel() {
-          // constructor code
-        }
-    }
+## @Model and adaptable types
 
-    @Model(adaptables=Resource.class)
-    public class ProtectedConstructorModel {    
-        @Inject
-        protected ProtectedConstructorModel() {
-          // constructor code
-        }
-    }
+When defining a Sling Model class, the `adaptables` parameter to the `@Model` annotation is mostly determined by the injectors being used. The provided class must satisfy the needs of all injectors (for the details see [the table below](#available-injectors-1)). For example if the model class only uses the `ValueMap` injector, the adaptables parameter can be a `Resource`, a `SlingHttpServletRequest` or both. But if the `Request Attribute` injector is used, only an adaptable of the type `SlingHttpServletRequest` will work.
 
-    @Model(adaptables=Resource.class)
-    public class PrivateConstructorModel {    
-        @Inject
-        private PrivateConstructorModel() {
-          // constructor code
-        }
-    }
-
-    @Model(adaptables=Resource.class)
-    public class PackagePrivateConstructorModel {    
-        @Inject
-        PackagePrivateConstructorModel() {
-          // constructor code
-        }
-    }
+In order to increase the reuse it's advised to stick to `Resource` as adaptables if possible, as such a model can be used in the context of request and outside of it. 
 
 ## Bundle Manifest Configuration
 
@@ -144,9 +111,12 @@ Multiple packages can be listed in a comma-separated list (any whitespace will b
 
 Alternatively it is possible to list all classes individually that are Sling Models classes via the `Sling-Model-Classes` header. Again, wildcard characters like `*` are not supported. 
 
-If you use the Sling Models bnd plugin all required bundle headers are generated automatically at build time (see chapter 'Registration of Sling Models classes via bnd plugin' below).
+If you use the Sling Models bnd plugin all required bundle headers are generated automatically at build time, see chapter [Registration of Sling Models classes via bnd plugin](#registration-of-sling-models-classes-via-bnd-plugin-1) below.
 
 # Client Code
+
+There are multiple ways to instantiate Sling Models.
+
 ## adaptTo()
 
 Client code doesn't need to be aware that Sling Models is being used. It just uses the Sling Adapter framework:
@@ -165,10 +135,11 @@ Or
 	${sling:adaptTo(resource, 'org.apache.sling.models.it.models.MyModel')}
 
 As with other AdapterFactories, if the adaptation can't be made for any reason, `adaptTo()` returns null.
-## ModelFactory (since 1.2.0)
+
+## ModelFactory
 *See also  [SLING-3709](https://issues.apache.org/jira/browse/SLING-3709)*
 
-Since Sling Models 1.2.0 there is another way of instantiating models. The OSGi service `ModelFactory` provides a method for instantiating a model that throws exceptions. This is not allowed by the Javadoc contract of the adaptTo method. That way `null` checks are not necessary and it is easier to see why instantiation of the model failed.
+Since Sling Models 1.2.0 there is another way of instantiating models. The OSGi service `ModelFactory` provides a method for instantiating a model that throws exceptions. This is not allowed by the Javadoc contract of the `adaptTo()` method. That way `null` checks are not necessary and it is easier to see why instantiation of the model failed.
 
     ::java
 	try {
@@ -179,92 +150,122 @@ Since Sling Models 1.2.0 there is another way of instantiating models. The OSGi 
         // See the javadoc of the ModelFactory for which Exception can be expected here
     }
 
-In addition `ModelFactory` provides methods for checking whether a given class is a model at all (having the model annotation) or whether a class can be adapted from a given adaptable.
+In addition `ModelFactory` provides methods for checking whether a given class is a model at all (having the model annotation) or whether a class can be adapted from a given adaptable. 
 
 ## Usage in HTL
-[Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#java-use-provider-1) (internally uses the `ModelFactory` from above).
+Please see [Sling Models Use Provider](/documentation/bundles/scripting/scripting-htl.html#java-use-provider-1); internally it uses the `ModelFactory` from above.
 
-# Other Options
-## Names
-If the field or method name doesn't exactly match the property name, `@Named` can be used:
 
-	::java
-	@Model(adaptables=Resource.class)
-	public class MyModel {
-	 
-	    @Inject @Named("secondPropertyName")
-	    private String otherName;
-	} 
- 
+# Available injectors
+
+In the above cases just the `@ValueMapValue` annotation was used, but there other available injectors. For each injector there is a specialized annotation available. For the optional parameters see the next section.
+
+
+Title | Injector Name  | Annotation          | Supported Optional Elements    | Description   | Applicable to (including  using `@Via`) | Array Support   | Parametrized Type Support
+----- | -----------------   | ------------------------------ |------------------------- | --------------- | ---------------------------
+Scripting Bindings|`script-bindings` | `@ScriptVariable`   | `injectionStrategy` and `name`          | Injects the script variable defined via [Sling Bindings](https://cwiki.apache.org/confluence/display/SLING/Scripting+variables). If `name` is not set the name is derived from the method/field name.  | A ServletRequest object which has the `Sling Bindings` attribute defined | no conversion is done |  If a parameterized type is passed, the bindings value must be of a compatible type of the parameterized type.
+ValueMap | `valuemap` | `@ValueMapValue`    | `injectionStrategy`, `name`   | Injects a `ValueMap` value taken from the adapted resource (either taking from the adapted resource or the resource of the adapted SlingHttpServletRequest). If `name` is not set the name is derived from the method/field name. |Any object which is or can be adapted to a `ValueMap` |  Primitive arrays wrapped/unwrapped as necessary. Wrapper object arrays are unwrapped/wrapped as necessary. | Parameterized `List` and `Collection` injection points are injected by getting an array of the component type and creating an unmodifiable `List` from the array.
+Child Resource | `child-resources` | `@ChildResource`    | `injectionStrategy`, `name`   | Injects a child resource by name (taken from the adapted resource (either taking from the adapted resource or the resource of the adapted SlingHttpServletRequest). If `name` is not set the name is derived from the method/field name. | `Resource` objects  |  none  | if a parameterized type `List` or `Collection` is passed, a `List<Resource>` is returned (the contents of which may be adapted to the target type) filled with all child resources of the resource looked up by the given name.
+Request Attribute | `request-attributes` | `@RequestAttribute` | `injectionStrategy`, `name`    | Injects a request attribute by name, it requires the the adaptable is a `SlingHttpServletRequest` . If `name` is not set the name is derived from the method/field name. | `ServletRequest` objects | no conversion is done | If a parameterized type is passed, the request attribute must be of a compatible type of the parameterized type.
+Resource path | `resource-path` | `@ResourcePath`     | `injectionStrategy`, `path`, and `name` |Injects a resource either by path or by reading a property with the given name. | `Resource` or `SlingHttpServletRequest` objects | yes | none
+OSGi service | `osgi-services` | `@OSGiService`      | `injectionStrategy`, `filter`           | Injects an OSGi service by type (and the optional filter) | Any object | yes | Parameterized `List` and `Collection` injection points are injected by getting an array of the services and creating an unmodifiable `List` from the array.
+Context-Aware Configuration | `ca-config` | `@ContextAwareConfiguration` | `injectionStrategy`, `name`    |  Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration) below. | Any object | yes | If a parameterized type `List` or `Collection` is used, a configuration collection is looked up.
+Self | `self` | `@Self`             | `injectionStrategy`                     |  Injects the adaptable itself. If the field type does not match with the adaptable it is tried to adapt the adaptable to the requested type. | any object | none | none
+Sling Object | `sling-object` | `@SlingObject`      | `injectionStrategy`                     | Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper | `Resource`, `ResourceResolver` or `SlingHttpServletRequest` objects (not all objects can be resolved by all adaptables).  | none | none
+
+# Parameters to the Injectors
+
+Injectors can support optional parameters as listed in the above table
+
 ## Optional and Required
-`@Inject`ed fields/methods are assumed to be required. To mark them as optional, use `@Optional`:
 
-	::java
-	@Model(adaptables=Resource.class)
-	public class MyModel {
-	 
-	    @Inject @Optional
-	    private String otherName;
-	}
+Injected fields/methods are assumed to be required. To mark them as optional, there are 2 options:
 
-If a majority of `@Inject`ed fields/methods are optional, it is possible (since Sling Models API 1.0.2/Impl 1.0.6) to change the default injection
-strategy by using adding `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL` to the `@Model` annotation:
+* add the parameter `injectionStrategy=InjectionStrategy.OPTIONAL` to the annotation
+* or wrap the type into an `Optional`
+
+It is recommended to use the approach using the `Optional` type, because then this "optionality" is also expressed in the type system.
+
+    ::java
+    import java.util.Optional;
+
+    @Model(adaptables=Resource.class)
+    public class MyModel {
+
+	    @ValueMapValue(injectionStrategy=InjectionStrategy.OPTIONAL)
+	    private String optionalProperty;
+
+        @ValueMapValue
+        private Optional<String> anotherOptionalProperty;
+    }
+Please note, that even injections marked as optional are always tried. It is just that any failure to inject a value does not lead to the termination of the creation of the SlingModel, but instead it continues, leaving the field value/return value at the default value (as provided by the `@Default` annotation) or at the default value of the used type.
+
+If a majority of injected fields/methods are optional, it is possible (since Sling Models API 1.0.2/Impl 1.0.6) to change the default injection strategy by using adding `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL` to the `@Model` annotation:
 
 	::java
 	@Model(adaptables=Resource.class, defaultInjectionStrategy=DefaultInjectionStrategy.OPTIONAL)
 	public class MyModel {
 
-	    @Inject
+        @ValueMapValue
+        private String optionalProperty;
+	}
+
+To still mark some fields/methods as being mandatory while relying on `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL` for all other fields, the parameter `injectionStrategy=InjectionStrategy.REQUIRED` can be used.
+
+`defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL` parameters are only evaluated when using the `defaultInjectionStrategy = DefaultInjectionStrategy.REQUIRED` (which is the default), `injectionStrategy=InjectionStrategy.REQUIRED` parameters only if using `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL`.
+
+
+
+
+## Names
+If the field or method name doesn't exactly match the property name, the parameter `name` can be used:
+
+	::java
+	@Model(adaptables=Resource.class)
+	public class MyModel {
+	 
+	    @ValueMapValue(name="secondPropertyName")
 	    private String otherName;
-	}
-
-To still mark some fields/methods as being mandatory while relying on `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL` for all other fields, the annotation `@Required` can be used.
-
-`@Optional` annotations are only evaluated when using the `defaultInjectionStrategy = DefaultInjectionStrategy.REQUIRED` (which is the default), `@Required` annotations only if using `defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL`.
-
-## Defaults
-A default value can be provided (for Strings & primitives):
-
-	::java
-	@Model(adaptables=Resource.class)
-	public class MyModel {
-	 
-	    @Inject @Default(values="defaultValue")
-	    private String name;
-	}
-
-Defaults can also be arrays:
-
-	::java
-	@Model(adaptables=Resource.class)
-	public class MyModel {
-	 
-	    @Inject @Default(intValues={1,2,3,4})
-	    private int[] integers;
-	}
-
-
-OSGi services can be injected:
-
-	::java
-	@Model(adaptables=Resource.class)
-	public class MyModel {
-	 
-	    @Inject
-	    private ResourceResolverFactory resourceResolverFactory;
 	} 
 
- 
-In this case, the name is not used -- only the class name.
+In this case the value of the property named `secondPropertyName` would be taken from the ValueMap.
 
-## Collections
-Lists and arrays are supported by some injectors. For the details look at the table given in [Available Injectors](#available-injectors):
+
+## Path
+The `@ResourcePath` injector supports the parameter `path` to inject a resource with the given parameter:   
+
+    ::java
+    @Model(adaptables=Resource.class) {
+
+        @ResourcePath(path="/libs")
+        Resource libs;
+    }
+
+## OSGi Service Filters
+OSGi injection can be filtered:
+
+	::java
+	@Model(adaptables=SlingHttpServletRequest.class)
+	public class MyModel {
+	 
+	    @OSGiService
+	    private PrintWriter out;
+	 
+	    @OSGiInjector(name="log")
+	    private Logger logger;
+	 
+	    @OsgiInjector(filter="paths=/bin/something")
+	    private List<Servlet> servlets;
+	}
+
+## Collection support
+Lists and arrays are supported by some injectors. For the details look at the table given in [Available Injectors](#available-injectors-1):
 
 	::java
 	@Model(adaptables=Resource.class)
 	public class MyModel {
 	 
-	    @Inject
+	    @OsgiService
 	    private List<Servlet> servlets;
 	}
 
@@ -274,7 +275,7 @@ List injection for *child resources* works by injecting grand child resources (s
 	@Model(adaptables=Resource.class)
 	public class MyModel {
 
-	    @Inject
+	    @ChildResource
 	    private List<Resource> addresses;
 	}
 
@@ -290,60 +291,44 @@ Is suitable for a resource structure such as:
 
 In this case, the `addresses` `List` will contain `address1` and `address2`.
  
-## OSGi Service Filters
-OSGi injection can be filtered:
+# Defaults
+A default value can provided (for String and primitives)
 
-	::java
-	@Model(adaptables=SlingHttpServletRequest.class)
-	public class MyModel {
-	 
-	    @Inject
-	    private PrintWriter out;
-	 
-	    @Inject
-	    @Named("log")
-	    private Logger logger;
-	 
-	    @Inject
-	    @Filter("(paths=/bin/something)")
-	    private List<Servlet> servlets;
-	}
+    ::java
+    @Model(adaptables=Resource.class)
+    public class MyModel {
 
-## PostConstruct Methods 
-The `@PostConstruct` annotation can be used to add methods which are invoked upon completion of all injections:
+        @ValueMapValue
+        @Default(values="defaultValue")
+        private String name;
+    }
 
-	::java
-	@Model(adaptables=SlingHttpServletRequest.class)
-	public class MyModel {
-	 
-	    @Inject
-	    private PrintWriter out;
-	 
-	    @Inject
-	    @Named("log")
-	    private Logger logger;
-	 
-	    @PostConstruct
-	    protected void sayHello() {
-	         logger.info("hello");
-	    }
-	}
+Defaults can also be arrays:
 
-`@PostConstruct` methods in a super class will be invoked first. If a `@PostConstruct` method exists in a subclass with the same name as in the parent class, only the subclass method will be invoked. This is the case regardless of the scope of either method.
+    ::java
+    @Model(adaptables=Resource.class)
+    public class MyModel {
 
-Since Sling Models Implementation 1.4.6, `@PostConstruct` methods may return a `false` boolean value in which case the model creation will fail without logging any exception
-(a message will be logged at the `DEBUG` level).
+        @ValueMapValue
+        @Default(intValues={1,2,3,4})
+        private int[] integers;
+    }
 
-## Via 
+# Via  
+
 In some cases, a different object should be used as the adaptable instead of the original adaptable. This can be done
-using the `@Via` annotation. By default, this can be done using a JavaBean property of the adaptable:
+using the `via` parameter.
+
+While this feature does also work with the injector-specfic annotations above, it's use is discouraged because it's barely used and just increases the complexity of the models.
+
+ By default, this can be done using a JavaBean property of the adaptable:
 
 	::java
 	@Model(adaptables=SlingHttpServletRequest.class)
 	public interface MyModel {
 	 
 	    // will return request.getResource().getValueMap().get("propertyName", String.class)
-	    @Inject @Via("resource")
+	    @Inject(via="resource")
 	    String getPropertyName();
 	} 
 
@@ -360,35 +345,71 @@ A different strategy can be used to define the adaptable by specifying a `type` 
 
     }
 
-See the [Via Types](#via-types-since-api-134implementation-140) section below for details on the included types for `@Via`.
+## Via Types
+ 
+The following standard types are provided (all types are in the package `org.apache.sling.models.annotations.via`, available since API 1.3.4, Implementation 1.4.0)
 
-## Source
-If there is ambiguity where a given injection could be handled by more than one injector, the `@Source` annotation can be used to define which injector is responsible:
+`@Via` type value             | Description
+----------------------------- | ------------------------------ 
+`BeanProperty`  (default)     | Uses a JavaBean property from the adaptable.
+`ChildResource`               | Uses a child resource from the adaptable, assuming the adaptable is a `Resource`. In case the adaptable is a `SlingHttpServletRequest` uses a wrapper overwriting the `getResource()` to point to the given child resource ([SLING-7321](https://issues.apache.org/jira/browse/SLING-7321)).
+`ForcedResourceType`          | Creates a wrapped resource with the provided resource type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
+`ResourceSuperType`           | Creates a wrapped resource with the resource type set to the adaptable's resource super type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
+
+
+Defining your own type for the `@Via` annotation is a two step process. The first step is to create a marker class implementing the `@ViaProviderType` annotation. This class can be entirely empty, e.g.
+
+    ::java
+    public class MyCustomProviderType implements ViaProviderType {}
+
+The second step is to create an OSGi service implementing the `ViaProvider` interface. This interface defines two methods:
+
+* `getType()` should return the marker class. 
+* `getAdaptable()` should return the new adaptable or `ViaProvider.ORIGINAL` to indicate that the original adaptable should be used.
+
+
+
+# PostConstruct Methods 
+The `@PostConstruct` annotation can be used to add methods which are invoked upon completion of all injections:
 
 	::java
 	@Model(adaptables=SlingHttpServletRequest.class)
-	public interface MyModel {
+	public class MyModel {
 	 
-	    // Ensure that "resource" is retrived from the bindings, not a request attribute 
-	    @Inject @Source("script-bindings")
-	    Resource getResource();
-	} 
+	    @SlingObject
+	    private PrintWriter out;
+	 
+	    @OsgiInjector(name="log")
+	    private Logger logger;
+	 
+	    @PostConstruct
+	    protected void sayHello() {
+	         logger.info("hello");
+	    }
+	}
 
-## Adaptations
+`@PostConstruct` methods in a super class will be invoked first. If a `@PostConstruct` method exists in a subclass with the same name as in the parent class, only the subclass method will be invoked. This is the case regardless of the scope of either method.
+
+Since Sling Models Implementation 1.4.6, `@PostConstruct` methods may return a `false` boolean value in which case the model creation will fail without logging any exception
+(a message will be logged at the `DEBUG` level).
+
+
+#  Adaptations and nesting Sling Models
 If the injected object does not match the desired type and the object implements the `Adaptable` interface, Sling Models will try to adapt it. This provides the ability to create rich object graphs. For example:
 
 	::java
 	@Model(adaptables=Resource.class)
 	public interface MyModel {
 	 
-	    @Inject
+	    @ChildResource
 	    ImageModel getImage();
 	}
-	
+
+    ::java
 	@Model(adaptables=Resource.class)
 	public interface ImageModel {
 	 
-	    @Inject
+	    @ValueMapvalue
 	    String getPath();
 	}
 
@@ -406,118 +427,117 @@ Constructor injection is supported for the adaptable itself. For example:
 
         private final Resource resource;
 
-        @Inject
+        @ValueMapValue
         private String propertyName;
     }
 
 Note: storing the original adaptable (request/resource) in a field is discouraged. Please see the note about <a href="#caching-self-reference-note">caching and self references</a> below.
 
-## Sling Validation (since 1.2.0)
+# Sling Validation
 <a name="validation" />
 *See also [SLING-4161](https://issues.apache.org/jira/browse/SLING-4161)*
 
 
-You can use the attribute `validation` on the Model annotation to call a validation service on the resource being used by the Sling model. That attribute supports three different values:
+Since API version 1.2.0 you can use the attribute `validation` on the Model annotation to call a validation service on the resource being used by the Sling model. That attribute supports three different values:
 
-  Value |  Description |  Invalid validation model |  No validation model found |  Resource invalid according to model
+  Value |  Description |  Invalid validation model |  No validation model found |  Resource invalid according to validation model
   ----- | ------- | ------------- | -------------| ---------
  `DISABLED` (default) | don't validate the resource bound to the Model | Model instantiated | Model instantiated  | Model instantiated  
  `REQUIRED` | enforce validation of the resource bound to the Model | Model not instantiated | Model not instantiated | Model not instantiated
  `OPTIONAL` | validate the resource bound to the Model (if a validation model is found) | Model not instantiated | Model instantiated | Model not instantiated
 
-In case the model is not instantiated an appropriate error message is logged (if `adaptTo()` is used) or an appropriate exception is thrown (if `ModelFactory.createModel()` is used).
+In case the model is not instantiated an appropriate error message is logged (if `adaptTo()` is used) or an appropriate exception is thrown if `ModelFactory.createModel()` is used.
 
 The only implementation for this Sling Models validation service is leveraging [Sling Validation](/documentation/bundles/validation.html) and is located in the bundle [org.apache.sling.models.validation-impl](https://github.com/apache/sling-org-apache-sling-models-validation-impl). Validation is only working on models which are adapted from either `Resource` or `SlingHttpServletRequest` and if the Sling Validation Bundle is deployed.
 
-# Custom Injectors
+# Performance
 
-To create a custom injector, simply implement the `org.apache.sling.models.spi.Injector` interface and register your implementation with the OSGi service registry. Please refer to the [standard injectors in Git](https://github.com/apache/sling-org-apache-sling-models-impl/tree/master/src/main/java/org/apache/sling/models/impl/injectors) for examples.
+## Caching adaptions
 
-Injectors are invoked in order of their service ranking, from lowest to highest. See the table below for the rankings of the standard injectors.
+By default, Sling Models do not do any caching of the adaptation result and every request for a model class will result in a new instance of the model class. However, there are two notable cases when the adaptation result can be cached. The first case is when the adaptable extends the `SlingAdaptable` base class. Most significantly, this is the case for many `Resource` adaptables as `AbstractResource` extends `SlingAdaptable`.  `SlingAdaptable` implements a caching mechanism such that multiple invocations of `adaptTo()` will return the same object. For example:
 
-# Annotation Reference
-`@Model`
-:   declares a model class or interface
+    ::java
+    // assume that resource is an instance of some subclass of AbstractResource
+    ModelClass object1 = resource.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = resource.adaptTo(ModelClass.class); // SlingAdaptable returns the cached instance
+    assert object1 == object2;
 
-`@Inject`
-:   marks a field or method as injectable
+While this is true for `AbstractResource` subclasses, it is notably **not** the case for `SlingHttpServletRequest` as this class does not extend `SlingAdaptable`. So:
 
-`@Named`
-:   declare a name for the injection (otherwise, defaults based on field or method name).
+    ::java
+    // assume that request is some SlingHttpServletRequest object
+    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = request.adaptTo(ModelClass.class); // creates another new instance of ModelClass
+    assert object1 != object2;
 
-`@Optional`
-:   marks a field or method injection as optional
-
-`@Source`
-:   explictly tie an injected field or method to a particular injector (by name). Can also be on other annotations.
-
-`@Filter`
-:   an OSGi service filter
-
-`@PostConstruct`
-:   methods to call upon model option creation (only for model classes)
-
-`@Via`
-:   change the adaptable as the source of the injection
-
-`@Default`
-:   set default values for a field or method
-
-`@Path`
-:   only used together with the resource-path injector to specify the path of a resource
-
-`@Exporters`/`@Exporter`/`@ExporterOptions`/`@ExporterOption`
-:   See Exporter Framework section below
-
-In addition all [injector-specific annotations](#injector-specific-annotations).
-
-# Available Injectors
-
-Title              |  Name (for `@Source`)   | Service Ranking     | Available Since (Implementation Version) | Description  | Applicable To (including using `@Via`) | Accepts Null Name? | Array Support | Parameterized Type Support
------------------  | ----------------------- | ------------------- | ---------------------------------------- | ------------ | -------------------------------------- | ------------------ | ------------- | --------------------------
-Script Bindings    | `script-bindings`       | 1000                | 1.0.0                                    | Lookup objects in the script bindings object by name. | A ServletRequest object which has the `Sling Bindings` attribute defined | no | no conversion is done | If a parameterized type is passed, the bindings value must be of a compatible type of the parameterized type.
-Value Map          | `valuemap`              | 2000                | 1.0.0                                    | Gets a property from a `ValueMap` by name. | Any object which is or can be adapted to a `ValueMap`| no | Primitive arrays wrapped/unwrapped as necessary. Wrapper object arrays are unwrapped/wrapped as necessary. | Parameterized `List` and `Collection` injection points are injected by getting an array of the component type and creating an unmodifiable `List` from the array.
-Child Resources    | `child-resources`       | 3000                | 1.0.0                                    | Gets a child resource by name. | `Resource` objects | no | none | if a parameterized type `List` or `Collection` is passed, a `List<Resource>` is returned (the contents of which may be adapted to the target type) filled with all child resources of the resource looked up by the given name.
-Request Attributes | `request-attributes`    | 4000                | 1.0.0                                    | Get a request attribute by name. | `ServletRequest` objects | no | no conversion is done | If a parameterized type is passed, the request attribute must be of a compatible type of the parameterized type.
-OSGi Services      | `osgi-services`         | 5000                | 1.0.0                                    | Lookup services based on class name. Since Sling Models Impl 1.2.8 ([SLING-5664](https://issues.apache.org/jira/browse/SLING-5664)) the service with the highest service ranking is returned. In case multiple services are returned, they are ordered descending by their service ranking (i.e. the one with the highest ranking first). | Any object | yes | yes | Parameterized `List` and `Collection` injection points are injected by getting an array of the services and creating an unmodifiable `List` from the array.
-Context-Aware Configuration | `caconfig`     | 6000                |                                          | Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration). | Any object | yes | yes | If a parameterized type `List` or `Collection` is used, a configuration collection is looked up.
-Resource Path      | `resource-path`         | 2500                | 1.1.0                                    | Injects one or multiple resources. The resource paths are either given by `@Path` annotations, the element `path` or `paths` of the annotation `@ResourcePath` or by paths given through a resource property being referenced by either `@Named` or element `name` of the annotation `@ResourcePath`. | `Resource` or `SlingHttpServletRequest` objects | yes | yes | none
-Self               | `self`                  | `Integer.MAX_VALUE` | 1.1.0                                    | Injects the adaptable object itself (if the class of the field matches or is a supertype). If the @Self annotation is present it is tried to adapt the adaptable to the field type.  | Any object | yes | none | none
-Sling Object       | `sling-object`          | `Integer.MAX_VALUE` | 1.1.0                                    | Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper. This works only if the adaptable can get the according information, i.e. all objects are available via `SlingHttpServletRequest` while `ResourceResolver` can only resolve the `ResourceResolver` object and nothing else. A discussion around this limitation can be found at [SLING-4083](https://issues.apache.org/jira/browse/SLING-4083). Also `Resource`s can only be injected if the according injector-specific annotation is used (`@SlingObject`). | `Resource`, `ResourceResolver` or `SlingHttpServletRequest` objects (not all objects can be resolved by all adaptables).  | yes | none | none
+Since API version 1.3.4, Sling Models *can* cache an adaptation result, regardless of the adaptable by specifying `cache = true` on the `@Model` annotation.
 
 
-# Injector-specific Annotations
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class ModelClass {}
 
-*Introduced with [SLING-3499](https://issues.apache.org/jira/browse/SLING-3499) in Sling Models Impl 1.0.6*
+    ...
 
-Sometimes it is desirable to use customized annotations which aggregate the standard annotations described above. This will generally have
-the following advantages over using the standard annotations:
+    // assume that request is some SlingHttpServletRequest object
+    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = request.adaptTo(ModelClass.class); // Sling Models returns the cached instance
+    assert object1 == object2;
 
- * Less code to write (only one annotation is necessary in most of the cases)
- * More robust (in case of name collisions among the different injectors, you make sure that the right injector is used)
- * Better IDE support (because the annotations provide elements for each configuration which is available for that specific injector, i.e. `filter` only for OSGi services)
+When `cache = true` is specified, the adaptation result is cached regardless of how the adaptation is done:
 
-The follow annotations are provided which are tied to specific injectors:
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class ModelClass {}
 
-Annotation          | Supported Optional Elements    | Injector | Description
------------------   | ------------------------------ |-------------------------
-`@ScriptVariable`   | `injectionStrategy` and `name`          | `script-bindings` | Injects the script variable defined via [Sling Bindings](https://cwiki.apache.org/confluence/display/SLING/Scripting+variables). If `name` is not set the name is derived from the method/field name. 
-`@ValueMapValue`    | `injectionStrategy`, `name` and `via`   | `valuemap` | Injects a `ValueMap` value. If `via` is not set, it will automatically take `resource` if the adaptable is the `SlingHttpServletRequest`. If `name` is not set the name is derived from the method/field name.
-`@ChildResource`    | `injectionStrategy`, `name` and `via`   | `child-resources` | Injects a child resource by name. If `via` is not set, it will automatically take `resource` if the adaptable is the `SlingHttpServletRequest`. If `name` is not set the name is derived from the method/field name.
-`@RequestAttribute` | `injectionStrategy`, `name` and `via`   | `request-attributes` | Injects a request attribute by name. If `name` is not set the name is derived from the method/field name.
-`@ResourcePath`     | `injectionStrategy`, `path`, and `name` | `resource-path` | Injects a resource either by path or by reading a property with the given name.
-`@OSGiService`      | `injectionStrategy`, `filter`           | `osgi-services` | Injects an OSGi service by type. The `filter` can be used give an OSGi service filter.
-`@ContextAwareConfiguration` | `injectionStrategy`, `name`    | `caconfig` | Lookup context-aware configuration. See [Context-Aware Configuration](#context-aware-configuration).
-`@Self`             | `injectionStrategy`                     | `self` | Injects the adaptable itself. If the field type does not match with the adaptable it is tried to adapt the adaptable to the requested type.
-`@SlingObject`      | `injectionStrategy`                     | `sling-object` |Injects commonly used sling objects if the field matches with the class: request, response, resource resolver, current resource, SlingScriptHelper
+    ...
 
-## Hints
+    // assume that request is some SlingHttpServletRequest object
+    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
+    ModelClass object2 = modelFactory.createModel(request, ModelClass.class); // Sling Models returns the cached instance
+    assert object1 == object2;
 
-Those annotations replace `@Via`, `@Filter`, `@Named`, `@Optional`, `@Required`, `@Source` and `@Inject`. 
-Instead of using the deprecated annotation element `optional` you should rather use `injectionStrategy` with the values `DEFAULT`, `OPTIONAL` or `REQUIRED` (see also [SLING-4155](https://issues.apache.org/jira/browse/SLING-4155)).
-`@Default` may still be used in addition to the injector-specific annotation to set default values. All elements given above are optional.
+<a name="caching-self-reference-note"></a>
+## A note about cache = true and using the self injector
+
+In general, it is **strongly** discouraged to store a reference to the original adaptable using the `self` injector. Using implementation version 1.4.8 or below, storing the original adaptable in a Sling Model, can cause heap space exhaustion, crashing the JVM. Starting in version 1.4.10, storing the original adaptable will not crash the JVM, but it can cause unexpected behavior (e.g. a model being created twice, when it should be cached). The issue was first reported in [SLING-7586](https://issues.apache.org/jira/browse/SLING-7586).
+
+The problem can be avoided by discarding the original adaptable when it is no longer needed. This can be done by setting affected field(s) to `null` at the end of the `@PostConstruct` annotated method:
+
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class CachableModelClass {
+        @Self
+        private SlingHttpServletRequest request;
+        
+        @PostConstruct
+        private void init() {
+          ... do something with request ...
+          
+          this.request = null;
+        }
+    }
+
+Alternatively, the same effect can be achieved using constructor injection, by not storing the reference to the adaptable:
+
+    ::java
+    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
+    public class CachableModelClass {
+        public CachableModelClass(SlingHttpServletRequest request) {
+          ... do something with request ...
+        }
+    }
+
+## Other performance aspects 
+
+Given the ease of creating Sling Models and their features, performance can get a problem; the following aspects should be considered:
+
+* When a Sling Model is created, all injections are at least tried, and depending on the injector the performance impact might vary. So model classes with many injections are always slower than smaller models with less injections. In such situations it can make sense to have specialized Sling Models which just cover a single aspect needed in a special situation.
+* The support of adaptions can lead to situations, that the instantiation of a single Sling Model can lead to the creation of a whole graph of Sling Models ([see above](#adaptations-and-nesting-sling-models-1)); this is not always required and can lead to severe performance problems. Also in this situations the use of more specialized Sling Models can help which do not always trigger the instantation of this graph.
+
+
  
-## Context-Aware Configuration
+# Context-Aware Configuration
 
 Since [SLING-7256](https://issues.apache.org/jira/browse/SLING-7256) it is possible to inject 
 [Context-Aware Configuration](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html) directly in Sling Models.
@@ -552,17 +572,26 @@ Example for injecting a configuration list (`ListConfig` is an annotation class 
 
 For more examples, see [example models from unit tests](https://github.com/apache/sling-org-apache-sling-models-caconfig/tree/master/src/test/java/org/apache/sling/models/caconfig/example/model).
 
-## Custom Annotations
+# Custom Injectors
+
+To create a custom injector, simply implement the `org.apache.sling.models.spi.Injector` interface and register your implementation with the OSGi service registry. Please refer to the [standard injectors in Git](https://github.com/apache/sling-org-apache-sling-models-impl/tree/master/src/main/java/org/apache/sling/models/impl/injectors) for examples.
+
+
+# Custom Annotations
 
 To create a custom annotation, implement the `org.apache.sling.models.spi.injectorspecific.StaticInjectAnnotationProcessorFactory` interface.
 This interface may be implemented by the same class as implements an injector, but this is not strictly necessary. Please refer to the
 [injectors in Git](https://github.com/apache/sling-org-apache-sling-models-impl/tree/master/src/main/java/org/apache/sling/models/impl/injectors) for examples.
  
-# Specifying an Alternate Adapter Class (since 1.1.0)
+
+
+
+
+# Specifying an alternate Adapter Class
 
 By default, each model class is registered using its own implementation class as adapter. If the class has additional interfaces this is not relevant.
 
-The `@Model` annotations provides an optional `adapters` attribute which allows specifying under which type(s) the model
+Since Sling Models API version 1.1.0 the `@Model` annotation provides an optional `adapters` attribute which allows specifying under which type(s) the model
 implementation should be registered in the Models Adapter Factory. Prior to *Sling Models Impl 1.3.10* only the given class names
 are used as adapter classes, since 1.3.10 the implementation class is always being registered implicitly as adapter as well (see [SLING-6658](https://issues.apache.org/jira/browse/SLING-6658)). 
 With this attribute it is possible to register the model
@@ -586,9 +615,9 @@ SPI interface which could use context to determine which implementation can be c
 content path context. If multiple implementations of the `ImplementationPicker` interface are present, they are queried
 one after another in order of their service ranking property, the first one that picks an implementation wins.
 
-# Associating a Model Class with a Resource Type (since 1.3.0)
+# Associating a Model Class with a Resource Type
 
-The `@Model` annotation provides an optional `resourceType` attribute which allows for model classes to be associated with one or
+Since API version 1.3.0 The `@Model` annotation provides an optional `resourceType` attribute which allows for model classes to be associated with one or
 more resource types. This is used in three different ways.
 
 In the case of multiple model classes implementing the same interface, the class with the "closest" resource type will be used when
@@ -598,9 +627,9 @@ The `ModelFactory` service interface has methods `Object getModelFromResource(Re
 
 The resource type is also used as part of the Exporter framework (see next section).
 
-# Exporter Framework (since 1.3.0)
+# Exporter Framework
 
-Sling Models objects can be exported to arbitrary Java objects through the Sling Models Exporter framework. Model objects can be
+Since API version 1.3.0 Sling Models objects can be exported to arbitrary Java objects through the Sling Models Exporter framework. Model objects can be
 programatically exported by calling the `ModelFactory` method `exportModel()`. This method takes as its arguments:
 
 * the model object
@@ -660,102 +689,31 @@ If you want to generate a bundle header compliant with Sling Models < 1.3.4 (i.e
         </instructions>
     </configuration>
 
-# Caching
-
-By default, Sling Models do not do any caching of the adaptation result and every request for a model class will
-result in a new instance of the model class. However, there are two notable cases when the adaptation result can be cached. The first case is when the adaptable extends the `SlingAdaptable` base class. Most significantly, this is the case for many `Resource` adaptables as `AbstractResource` extends `SlingAdaptable`.  `SlingAdaptable` implements a caching mechanism such that multiple invocations of `adaptTo()` will return the same object. For example:
-
-    ::java
-    // assume that resource is an instance of some subclass of AbstractResource
-    ModelClass object1 = resource.adaptTo(ModelClass.class); // creates new instance of ModelClass
-    ModelClass object2 = resource.adaptTo(ModelClass.class); // SlingAdaptable returns the cached instance
-    assert object1 == object2;
-
-While this is true for `AbstractResource` subclasses, it is notably **not** the case for `SlingHttpServletRequest` as this class does not extend `SlingAdaptable`. So:
-
-    ::java
-    // assume that request is some SlingHttpServletRequest object
-    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
-    ModelClass object2 = request.adaptTo(ModelClass.class); // creates another new instance of ModelClass
-    assert object1 != object2;
-
-Since API version 1.3.4, Sling Models *can* cache an adaptation result, regardless of the adaptable by specifying `cache = true` on the `@Model` annotation.
 
 
-    ::java
-    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
-    public class ModelClass {}
 
-    ...
 
-    // assume that request is some SlingHttpServletRequest object
-    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
-    ModelClass object2 = request.adaptTo(ModelClass.class); // Sling Models returns the cached instance
-    assert object1 == object2;
+# Discouraged annotations
 
-When `cache = true` is specified, the adaptation result is cached regardless of how the adaptation is done:
+In earlier versions of Sling Models the use of the annotation `@Inject` was suggested and documented; but over time it turned out that it had 2 major issues:
 
-    ::java
-    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
-    public class ModelClass {}
+* This injection iterated through all available injectors and injected the first non-null value provided by an injector. This lead to unpredictable behavior, although the order is well-defined. Also @Source would have helped but it was rarely used.
+* Also this turned out to be a performance bottleneck, especially if (optional) injections were not succesful, and then all other injectors have to be tried.
 
-    ...
+For these reasons the injector-specific annotations have been created, and this documentation strongly recommends to use them. For the sake of completeness these discouraged annotations are still covered here briefly, but they should no longer be used.
 
-    // assume that request is some SlingHttpServletRequest object
-    ModelClass object1 = request.adaptTo(ModelClass.class); // creates new instance of ModelClass
-    ModelClass object2 = modelFactory.createModel(request, ModelClass.class); // Sling Models returns the cached instance
-    assert object1 == object2;
 
-<a name="caching-self-reference-note"></a>
-### A note about cache = true and using the self injector
+`@Inject`
+:   marks a field or method as injectable
 
-In general, it is **strongly** discouraged to store a reference to the original adaptable using the `self` injector. Using implementation version 1.4.8 or below, storing the original adaptable in a Sling Model, can cause heap space exhaustion, crashing the JVM. Starting in version 1.4.10, storing the original adaptable will not crash the JVM, but it can cause unexpected behavior (e.g. a model being created twice, when it should be cached). The issue was first reported in [SLING-7586](https://issues.apache.org/jira/browse/SLING-7586).
+`@Named`
+:   declare a name for the injection (otherwise, defaults based on field or method name).
 
-The problem can be avoided by discarding the original adaptable when it is no longer needed. This can be done by setting affected field(s) to `null` at the end of the `@PostConstruct` annotated method:
+`@Optional`
+:   marks a field or method injection as optional
 
-    ::java
-    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
-    public class CachableModelClass {
-        @Self
-        private SlingHttpServletRequest request;
-        
-        @PostConstruct
-        private void init() {
-          ... do something with request ...
-          
-          this.request = null;
-        }
-    }
+`@Filter`
+:   an OSGi service filter
 
-Alternatively, the same effect can be achieved using constructor injection, by not storing the reference to the adaptable:
-
-    ::java
-    @Model(adaptable = SlingHttpServletRequest.class, cache = true)
-    public class CachableModelClass {
-        public CachableModelClass(SlingHttpServletRequest request) {
-          ... do something with request ...
-        }
-    }
-
-# Via Types (Since API 1.3.4/Implementation 1.4.0)
- 
-As discussed in the [Via](#via) section above, it is possible to select a different adaptable than the original value using the `@Via` annotation. The following standard types are provided (all types are in the package `org.apache.sling.models.annotations.via`)
-
-`@Via` type value             | Description
------------------------------ | ------------------------------ 
-`BeanProperty`  (default)     | Uses a JavaBean property from the adaptable.
-`ChildResource`               | Uses a child resource from the adaptable, assuming the adaptable is a `Resource`. In case the adaptable is a `SlingHttpServletRequest` uses a wrapper overwriting the `getResource()` to point to the given child resource ([SLING-7321](https://issues.apache.org/jira/browse/SLING-7321)).
-`ForcedResourceType`          | Creates a wrapped resource with the provided resource type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
-`ResourceSuperType`           | Creates a wrapped resource with the resource type set to the adaptable's resource super type. If the adaptable is a `SlingHttpServletRequest`, a wrapped request is created as well to contain the wrapped resource.
-
-## Custom Via Type
-
-Defining your own type for the `@Via` annotation is a two step process. The first step is to create a marker class implementing the `@ViaProviderType` annotation. This class can be entirely empty, e.g.
-
-    ::java
-    public class MyCustomProviderType implements ViaProviderType {}
-
-The second step is to create an OSGi service implementing the `ViaProvider` interface. This interface defines two methods:
-
-* `getType()` should return the marker class. 
-* `getAdaptable()` should return the new adaptable or `ViaProvider.ORIGINAL` to indicate that the original adaptable should be used.
+`@Path`
+:   only used together with the resource-path injector to specify the path of a resource
