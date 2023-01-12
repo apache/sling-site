@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2023
 
-* XSS Protection API 2.3.4 (30th)
+* XSS Protection API 2.3.4, Repoinit Parser 1.9.0, Repoinit JCR 1.1.44 and Repoinit FileVault Validator 1.0.0 (30th)
 * Testing Rules 2.0.2 (18th)
 * Testing Sling Mock Oak 3.1.8-1.44.0 (16th)
 * Feature Model Launcher 1.2.4 (9th)

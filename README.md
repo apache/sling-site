@@ -6,7 +6,7 @@
 This repository contains the content of the http://sling.apache.org/ website, which moved in September 2017 from the Apache CMS to this JBake-generated site.
 
 ## How to build and stage the site locally  
-Clone this repository, run the below Maven command, open http://localhost:8820/ and enjoy.
+Clone this repository, run the below Maven command, open <http://localhost:8820/> and enjoy.
 
     mvn clean package -Prun-site
 	

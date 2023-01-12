@@ -6,6 +6,15 @@ tags=repoinit,jcr,repository
 
 The `SlingRepositoryInitializer` mechanism (short: repoinit) allows for running code before the `SlingRepository` service is registered. This is useful for initialization and content migration purposes.
 
+The code (in form of statements) being executed through repoinit ensures that the repository has a certain state.
+In case the repository cannot be set up as being mandated through the repoinit statements the startup of the repository **fails**.
+This may happen in case the existing parent nodes have node type restrictions which don't allow for the new repository state or in general when the existing node/property state is conflicting with the target one.
+
+For historical reasons two statements deviate from that by not failing in case the desired repository state cannot be achieved:
+
+1. `create path` will not touch/modify existing nodes (i.e. does neither adjust primary nor mixin types if they differ), therefore it has been deprecated and replaced by `ensure nodes` (SLING-11736)[https://issues.apache.org/jira/browse/SLING-11736]
+1. `set principal ACL` will not fail in case the principal ACL cannot be applied for whatever reason, therefore it has been deprecated and replaced by `ensure princial ACL` (SLING-10281)[https://issues.apache.org/jira/browse/SLING-10281]
+
 Starting with version 1.1.40 of the bundle `org.apache.sling.jcr.repoinit` repoinit scripts are safely executed also in environments with a shared repository; this is implemented by a retry-mechanism with randomized delays.
 
 ## SlingRepositoryInitializer
@@ -20,9 +29,11 @@ Services that implement this interface are called when setting up the JCR-based 
 They are called in increasing order of their `service.ranking` service property, which needs to be an `Integer` as usual.
 
 If any of them throws an Exception, the `SlingRepository` service is not registered.
-    
+
+This mechanism is used under the hood by repoinit.
+
 ## The 'repoinit' Repository Initialization Language
-The `org.apache.sling.repoinit.parser` implements a mini-language meant to create paths, service users and manage access control in a content repository, as 
+The `org.apache.sling.repoinit.parser` implements a mini-language meant to create nodes, properties, service users and manage access control in a content repository, as 
 well as registering JCR namespaces, node types and privileges. Defining access control content consists of setting and 
 deleting policies of type access control lists (ACL) for which individual access control entries (ACE) can be added and removed.
 
@@ -38,18 +49,36 @@ of the repoinit parser to a JCR repository.
 The language is mostly self-explaining, the test suite listed below in Appendix A exposes
 all language constructs and options.
 
-A [jbang script in the Sling whiteboard repository](https://github.com/apache/sling-whiteboard/blob/master/jbang/RepoinitValidator.java) can be used to test the syntax of repoinit statements by
-running a specific version of the repoinit parser on them.
+## Validating repoinit statements
 
-### Notes on Repository Initializer Config Files
+There are multiple means to validate the syntax of repoinit statements (only leveraging the parser, but not the actual JCR Repoinit implementation) outlined below.
 
-If the Repository Initializer is defined inside a **.config** file then according to the .config file
-definition found [here](/documentation/bundles/configuration-installer-factory.html#configuration-files-config)
-these rules apply:
+### FileVault Validator
 
-* Quotes that start / end a String literal need to be escaped with a backslash like this: **\\\"**
-* Quotes inside a String literal need to be escapped with a double backslash like this: **\\\\\"**
-* Equals Sign inside a String need to be escaped with a backslash like this: **\\=**
+There is a [FileVault validator](https://jackrabbit.apache.org/filevault/validation.html) for repoinit OSGi configurations (contained in FileVault Content Packages) in repository [sling-org-apache-sling-repoinit-filevault-validator](https://github.com/apache/sling-org-apache-sling-repoinit-filevault-validator). Further details on how to use it can be found in its [readme file](https://github.com/apache/sling-org-apache-sling-repoinit-filevault-validator/blob/master/README.md).
+
+### JBang Script
+
+A [jbang script in the Sling whiteboard repository](https://github.com/apache/sling-whiteboard/blob/master/jbang/RepoinitValidator.java) can be used to test the syntax of repoinit statements by running a specific version of the repoinit parser on them.
+
+### Web Console Plugin
+
+There is a [Felix Web Console Plugin in the Sling whiteboard repository](https://github.com/apache/sling-whiteboard/tree/master/org.apache.sling.repoinit.webconsole) which allows to validate and optionally also execute repoinit statements.
+
+
+
+## Providing repoinit statements from OSGi factory configurations
+
+From version 1.1.6 of the `org.apache.sling.jcr.repoinit` bundle, repoinit statements can also be provided by OSGi factory
+configurations which use the `org.apache.sling.jcr.repoinit.RepositoryInitializer` factory PID.
+
+Such configurations have two optional fields:
+
+  * A multi-value `references` field with each value providing the URL (as a String) of raw repoinit statements.
+  * A multi-value `scripts` field with each value providing repoinit statements as plain text in a String.
+
+Any of the serialization formats for OSGi configurations can be used, but it is important to consider the escaping rules outlined at [OSGi Configurations Serialization Formats](/documentation/bundles/configuration-installer-factory.html#configuration-serialization-formats).
+
 
 ## Providing repoinit statements from the Sling provisioning model or other URLs
 
@@ -107,16 +136,6 @@ Using a `RepositoryInitializer` reference like in this example, with the _raw_ p
 	
 Which points to a `classpath:` URL to provide the raw repoinit statements in this example, but again any valid URL scheme can be used.
 
-## Providing repoinit statements from OSGi factory configurations
-
-From version 1.1.6 of the `org.apache.sling.jcr.repoinit` bundle, repoinit statements can also be provided by OSGi factory
-configurations which use the `org.apache.sling.jcr.repoinit.RepositoryInitializer` factory PID.
-
-Such configurations have two optional fields:
-
-  * A multi-value `references` field with each value providing the URL (as a String) of raw repoinit statements.
-  * A multi-value `scripts` field with each value providing repoinit statements as plain text in a String.
-
 # Appendix
 
 ## Appendix A: repoinit syntax: parser test scenarios
@@ -132,7 +151,7 @@ The following output is generated by the [concatenate-test-scenarios.sh](https:/
 repoinit parser repository.
 
 ### Repoinit parser test scenarios
-    
+
     # test-1.txt
     
     create service user bob,alice, tom21
@@ -253,10 +272,13 @@ repoinit parser repository.
     
     # test-20.txt
     
-    # Various "create path" tests
+    # Various "ensure nodes" tests (SLING-11736)
+    # requires
+    # o.a.s.repoinit.parser 1.9.0 and
+    # o.a.s.jcr.repoinit 1.1.44
     
     # Nodetypes:
-    # A nodetype in brackets right after "create path", like
+    # A nodetype in brackets right after "ensure nodes", like
     # sling:Folder below, sets the default type for all path
     # segments of this statement.
     # A nodetype in brackets at the end of a path segment, like
@@ -264,26 +286,26 @@ repoinit parser repository.
     # If no specific nodetype is set, the repository uses its
     # default based on node type definitions.
     
-    create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder
+    ensure nodes (sling:Folder) /var/discovery(nt:unstructured)/somefolder
     
     # more tests and examples
-    create path /one/two/three
-    create path /three/four(nt:folk)/five(nt:jazz)/six
-    create path (nt:x) /seven/eight/nine
-    create path /one(mixin nt:art)/step(mixin nt:dance)/two/steps
-    create path (nt:foxtrot) /one/step(mixin nt:dance)/two/steps
-    create path /one/step(mixin nt:dance,nt:art)/two/steps
-    create path /one/step(nt:foxtrot mixin nt:dance)/two/steps
-    create path /one/step(nt:foxtrot mixin nt:dance,nt:art)/two/steps
-    create path /one:and/step/two:and/steps
-    create path /one@home/step/two@home/steps
-    create path /one+tap/step/two+tap/steps
+    ensure nodes /one/two/three
+    ensure nodes /three/four(nt:folk)/five(nt:jazz)/six
+    ensure nodes (nt:x) /seven/eight/nine
+    ensure nodes /one(mixin nt:art)/step(mixin nt:dance)/two/steps
+    ensure nodes (nt:foxtrot) /one/step(mixin nt:dance)/two/steps
+    ensure nodes /one/step(mixin nt:dance,nt:art)/two/steps
+    ensure nodes /one/step(nt:foxtrot mixin nt:dance)/two/steps
+    ensure nodes /one/step(nt:foxtrot mixin nt:dance,nt:art)/two/steps
+    ensure nodes /one:and/step/two:and/steps
+    ensure nodes /one@home/step/two@home/steps
+    ensure nodes /one+tap/step/two+tap/steps
     
     # this is to cover an edge case: SLING-11384 (create root node with primary type)
-    create path /(nt:x)
+    ensure nodes /(nt:x)
     
-    # SLING-10740 - Repoinit create path statement with properties
-    create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder2 with properties
+    # SLING-10740 - Repoinit ensure nodes statement with properties
+    ensure nodes (sling:Folder) /var/discovery(nt:unstructured)/somefolder2 with properties
       set sling:ResourceType{String} to /x/y/z
       set cq:allowedTemplates to /d/e/f/*, m/n/*
       default someInteger{Long} to 42
@@ -342,15 +364,16 @@ repoinit parser repository.
     
     # test-33.txt
     
-    # Set principal-based access control (see SLING-8602), requires
-    # o.a.s.repoinit.parser 1.2.8 and
-    # o.a.s.jcr.repoinit 1.1.14
+    # Set principal-based access control (see SLING-8602 and SLING-10281), requires
+    # o.a.s.repoinit.parser 1.9.0 and
+    # o.a.s.jcr.repoinit 1.1.44
     # precondition for o.a.s.jcr.repoinit: 
     # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
     # Also, this only works for users selected by the Jackrabbit/Oak FilterProvider, see
     # https://jackrabbit.apache.org/oak/docs/security/authorization/principalbased.html#configuration
+    # mostly a copy of test-33 but with "ensure" prefix instead of "set"
     
-    set principal ACL for principal1,principal2
+    ensure principal ACL for principal1,principal2
         remove * on /libs,/apps
         allow jcr:read on /content
     
@@ -377,23 +400,23 @@ repoinit parser repository.
     end
     
     # Principal-based ACL syntax with options (SLING-6423)
-    set principal ACL for principal1,principal2 (ACLOptions=mergePreserve)
+    ensure principal ACL for principal1,principal2 (ACLOptions=mergePreserve)
         remove * on /libs,/apps
         allow jcr:read on /content
     end
     
     # With multiple options
-    set principal ACL for principal1,principal2 (ACLOptions=mergePreserve,someOtherOption,someOther123,namespaced:option)
+    ensure principal ACL for principal1,principal2 (ACLOptions=mergePreserve,someOtherOption,someOther123,namespaced:option)
         remove * on /libs,/apps
         allow jcr:read on /content
     end
     
     # repository level
-    set principal ACL for principal1,principal2
+    ensure principal ACL for principal1,principal2
         allow jcr:namespaceManagement on :repository 
     end
     
-    set principal ACL for principal1
+    ensure principal ACL for principal1
         allow jcr:all on :repository,/content
     end
     
@@ -744,4 +767,99 @@ repoinit parser repository.
     remove mixin mix:one,mix:two from /thePath1,/thePath2
     remove mixin mix:three, mix:four from /thePath3, /thePath4
     
+    # test-73.txt
+    
+    # Various "create path" tests
+    # as "create path" does not modify existing nodes it is deprecated and "ensure nodes" should be used instead
+    
+    # Nodetypes:
+    # A nodetype in brackets right after "create path", like
+    # sling:Folder below, sets the default type for all path
+    # segments of this statement.
+    # A nodetype in brackets at the end of a path segment, like
+    # nt:unstructured below, applies just to that path segment.
+    # If no specific nodetype is set, the repository uses its
+    # default based on node type definitions.
+    
+    create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder
+    
+    # more tests and examples
+    create path /one/two/three
+    create path /three/four(nt:folk)/five(nt:jazz)/six
+    create path (nt:x) /seven/eight/nine
+    create path /one(mixin nt:art)/step(mixin nt:dance)/two/steps
+    create path (nt:foxtrot) /one/step(mixin nt:dance)/two/steps
+    create path /one/step(mixin nt:dance,nt:art)/two/steps
+    create path /one/step(nt:foxtrot mixin nt:dance)/two/steps
+    create path /one/step(nt:foxtrot mixin nt:dance,nt:art)/two/steps
+    create path /one:and/step/two:and/steps
+    create path /one@home/step/two@home/steps
+    create path /one+tap/step/two+tap/steps
+    
+    # this is to cover an edge case: SLING-11384 (create root node with primary type)
+    create path /(nt:x)
+    
+    # SLING-10740 - Repoinit create path statement with properties
+    create path (sling:Folder) /var/discovery(nt:unstructured)/somefolder2 with properties
+      set sling:ResourceType{String} to /x/y/z
+      set cq:allowedTemplates to /d/e/f/*, m/n/*
+      default someInteger{Long} to 42
+    end
+    
+    # test-74.txt
+    
+    # Set principal-based access control (see SLING-8602), requires
+    # o.a.s.repoinit.parser 1.2.8 and
+    # o.a.s.jcr.repoinit 1.1.14
+    # precondition for o.a.s.jcr.repoinit: 
+    # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
+    # Also, this only works for users selected by the Jackrabbit/Oak FilterProvider, see
+    # https://jackrabbit.apache.org/oak/docs/security/authorization/principalbased.html#configuration
+    # Deprecated: Use "ensure principal ACL" instead as "set principal ACL" is not failing if it cannot be applied
+    set principal ACL for principal1,principal2
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    
+        deny jcr:write on /apps
+    
+        # Optional nodetypes clause
+        deny jcr:lockManagement on /apps, /content nodetypes sling:Folder, nt:unstructured
+        # nodetypes clause with restriction clause
+        deny jcr:modifyProperties on /apps, /content nodetypes sling:Folder, nt:unstructured restriction(rep:itemNames,prop1,prop2)
+        remove jcr:understand,some:other on /apps
+    
+        # multi value restriction
+        allow jcr:addChildNodes on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured)
+    
+        # multiple restrictions
+        allow jcr:modifyProperties on /apps restriction(rep:ntNames,sling:Folder,nt:unstructured) restriction(rep:itemNames,prop1,prop2)
+    
+        # restrictions with glob patterns
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat,/cat/,cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,cat/,*,*cat)
+        allow jcr:addChildNodes on /apps,/content restriction(rep:glob,/cat/*,*/cat,*cat/*)
+    
+        allow jcr:something on / restriction(rep:glob)
+    end
+    
+    # Principal-based ACL syntax with options (SLING-6423)
+    set principal ACL for principal1,principal2 (ACLOptions=mergePreserve)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    
+    # With multiple options
+    set principal ACL for principal1,principal2 (ACLOptions=mergePreserve,someOtherOption,someOther123,namespaced:option)
+        remove * on /libs,/apps
+        allow jcr:read on /content
+    end
+    
+    # repository level
+    set principal ACL for principal1,principal2
+        allow jcr:namespaceManagement on :repository 
+    end
+    
+    set principal ACL for principal1
+        allow jcr:all on :repository,/content
+    end
 
