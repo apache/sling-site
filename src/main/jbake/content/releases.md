@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2023
 
+* Testing Rules 2.0.2 (18th)
 * Testing Sling Mock Oak 3.1.8-1.44.0 (16th)
 * Feature Model Launcher 1.2.4 (9th)
 * App CMS 1.1.4 (1st)
