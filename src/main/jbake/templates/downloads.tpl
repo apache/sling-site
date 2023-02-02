@@ -233,7 +233,7 @@ def bundles=[
   "Scripting EL API Wrapper|org.apache.sling.scripting.el-api|1.0.4|Y|jar",
   "Scripting Java|org.apache.sling.scripting.java|2.1.6|Y|jar",
   "Scripting JavaScript|org.apache.sling.scripting.javascript|3.1.4|Y|jar",
-  "Scripting JSP|org.apache.sling.scripting.jsp|2.6.0|Y|jar",
+  "Scripting JSP|org.apache.sling.scripting.jsp|2.6.2|Y|jar",
   "Scripting JSP API Wrapper|org.apache.sling.scripting.jsp-api|1.0.2|Y|jar",
   "Scripting JSP Taglib|org.apache.sling.scripting.jsp.taglib|2.4.0|Y|jar",
   "Scripting FreeMarker|org.apache.sling.scripting.freemarker|1.0.4|Y|jar",

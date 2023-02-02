@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## February 2023
+
+* Scripting JSP 2.6.2 (2nd)
+
 ## January 2023
 
 * XSS Protection API 2.3.4, Repoinit Parser 1.9.0, Repoinit JCR 1.1.44 and Repoinit FileVault Validator 1.0.0 (30th)
