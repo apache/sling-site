@@ -5,7 +5,8 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
-* Vulnerability report and fix: CVE-2022-46769: Apache Sling CMS Reflected XSS Vulnerability (January 1st, 2022), see [http://s.apache.org/CVE-2022-46769](http://s.apache.org/CVE-2022-46769)
+* Vulnerability report and fix: VE-2023-22849: Apache Sling App CMS: XSS in CMS Reference / UI Components (Feb 3rd, 2023), see [https://www.cve.org/CVERecord?id=CVE-2023-22849](https://www.cve.org/CVERecord?id=CVE-2023-22849)
+* Vulnerability report and fix: CVE-2022-46769: Apache Sling CMS Reflected XSS Vulnerability (January 1st, 2022), see [https://www.cve.org/CVERecord?id=CVE-2022-46769](https://www.cve.org/CVERecord?id=CVE-2022-46769)
 * Vulnerability report and fix: CVE-2022-43670: Apache Sling CMS Reflected XSS Vulnerability (November 1st, 2022), see [http://s.apache.org/CVE-2022-43670](http://s.apache.org/CVE-2022-43670)
 * Released [Apache Sling 12](/news/sling-12-released.html) (March 18th, 2022).
 * Security Advisory: [Apache Sling advisory regarding CVE-2021-44228 and LOGBACK-1591](./security/log4shell.html)

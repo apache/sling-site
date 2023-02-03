@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2023
 
+* App CMS 1.1.6 (3rd)
 * Scripting JSP 2.6.2 (2nd)
 
 ## January 2023
