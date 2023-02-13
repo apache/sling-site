@@ -28,7 +28,7 @@ def slingApplication=[
   "Sling Starter Feature Archive (Oak-Mongo)|A self-container feature archive, for experimenting and learning. Requires the Feature Model Launcher (see below) |org.apache.sling.starter|-oak_tar_far.far|${starterVersion}|Y|apache/sling:${starterVersion}",
   "Sling Starter Source Release|The released Sling Starter source code|org.apache.sling.starter|-source-release.zip|${starterVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.feature|.jar|1.1.6|org.apache.sling.app.cms",
-  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.2.4|Y",
+  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.3.0|Y",
   "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.3.0|Y",
 ]
 
