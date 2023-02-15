@@ -90,7 +90,7 @@ When resources are merged into a new resource, the resource type of the merged r
 
 The resource super type is set to the merged value of the 'sling:resourceType' property - if it exists and its value is not the same as the resource type.
 
-In addition, the 'sling:resourceType' property in the returned value map is set to the resource type of the merged resource. Similar, the 'sling:resourceSuperType' property is set to the resource super type (if not null).
+However, the 'sling:resourceType' and 'sling:resourceSuperType' property in the returned value map might not reflect these values. These are purely set based on the merging of the properties of the merged resources. For example, if the last resource does not set the 'sling:resourceType' property, then Resource#getResourceType() will return a different value than the property.
 
 # Resource Pickers
 
