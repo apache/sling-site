@@ -199,7 +199,7 @@ resulting order: child1, child5, child2, child3, child4
 <h1><a href="#resource-type-handling" id="resource-type-handling">Resource Type Handling</a></h1>
 <p>When resources are merged into a new resource, the resource type of the merged resource is set to the resource type of the last resource used for merging (see Resource Picks).</p>
 <p>The resource super type is set to the merged value of the 'sling:resourceType' property - if it exists and its value is not the same as the resource type.</p>
-<p>In addition, the 'sling:resourceType' property in the returned value map is set to the resource type of the merged resource. Similar, the 'sling:resourceSuperType' property is set to the resource super type (if not null).</p>
+<p>However, the 'sling:resourceType' and 'sling:resourceSuperType' property in the returned value map might not reflect these values. These are purely set based on the merging of the properties of the merged resources. For example, if the last resource does not set the 'sling:resourceType' property, then Resource#getResourceType() will return a different value than the property.</p>
 <h1><a href="#resource-pickers" id="resource-pickers">Resource Pickers</a></h1>
 <h2><a href="#merging-resource-picker-overlay-approach" id="merging-resource-picker-overlay-approach">Merging Resource Picker (Overlay approach)</a></h2>
 <table>
@@ -292,7 +292,7 @@ resulting order: child1, child5, child2, child3, child4
                             content/documentation/bundles/resource-merger.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2022-08-06</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2023-02-15</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
