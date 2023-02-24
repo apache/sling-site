@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2023
 
+* Engine 2.14.0 (24th)
 * I18N 2.6.2 (20th)
 * JCR Base 3.1.12 (14th)
 * Feature Model Analyser 2.0.0, Feature Model API Regions Extension 2.0.0, Feature Model Diff Tool 0.1.0, Content-Package to Feature Model Converter 1.3.0, JCR ContentLoader 2.6.0, Feature Model 2.0.0, Feature Model Launcher 1.3.0 (13th)
