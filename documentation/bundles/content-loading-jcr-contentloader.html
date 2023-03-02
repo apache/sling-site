@@ -170,6 +170,7 @@
 <tr><td> <code>path</code> </td><td> <code>path:=<em>/target/location</em></code> </td><td> <code>/</code> </td><td> The path directive specifies the target node where initial content will be loaded. If the path does not exist yet in the repository, it is created by the content loader. The intermediate nodes are of type <code>sling:Folder</code>. </td></tr>
 <tr><td> <code>checkin</code> </td><td> <code>checkin:=(true|false)</code> </td><td> <code>false</code> </td><td> The checkin directive specifies whether versionable nodes should be checked in. </td></tr>
 <tr><td> <code>ignoreImportProviders</code> </td><td> <code>ignoreImportProviders:=list of extensions</code> </td><td> <code>empty</code> </td><td> This directive can be used to not run one of the configured extractors (see below). </td></tr>
+<tr><td> <code>requireImportProvider</code> </td><td> <code>requireImportProvider:=list of extensions</code> </td><td> <code>empty</code> </td><td> (since 2.6.0) This directive can be used to wait to load the files until an import provider for the specified extensions is available. See <a href="https://issues.apache.org/jira/browse/SLING-11203">SLING-11203</a> </td></tr>
 </tbody>
 </table>
 <p>Examples of these directives within <code>Sling-Initial-Content</code> header entries:</p>
@@ -445,7 +446,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
                             content/documentation/bundles/content-loading-jcr-contentloader.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-12-08</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2023-03-02</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
