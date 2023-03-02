@@ -35,6 +35,7 @@ It is possible to modify the intial content loading default behaviour by using c
 | `path` | <code>path:=*/target/location*</code> | `/` | The path directive specifies the target node where initial content will be loaded. If the path does not exist yet in the repository, it is created by the content loader. The intermediate nodes are of type `sling:Folder`. |
 | `checkin` | <code>checkin:=(true&#124;false)</code> | `false` | The checkin directive specifies whether versionable nodes should be checked in. |
 | `ignoreImportProviders` | `ignoreImportProviders:=list of extensions` | `empty` | This directive can be used to not run one of the configured extractors (see below). |
+| `requireImportProvider` | `requireImportProvider:=list of extensions` | `empty` | (since 2.6.0) This directive can be used to wait to load the files until an import provider for the specified extensions is available. See [SLING-11203](https://issues.apache.org/jira/browse/SLING-11203) |
 
 Examples of these directives within `Sling-Initial-Content` header entries:
 
