@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2023
 
+* Servlet Helpers 1.4.4 (11th)
 * Testing JCR Mock 1.6.4 (6th)
 * Testing JCR Mock 1.6.2 (1st)
 
