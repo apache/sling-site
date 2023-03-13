@@ -60,7 +60,7 @@ Example:
 
     -Dsling.caconfig.override.my-config/sub1/property1=123
     -D"sling.caconfig.override.my-config/property1=[\"value 1\",\"value 2\"]"
-    -D"sling.caconfig.override.[/content/region1]x.y.z.MyConfig={\"prop1\"=\"value1\",\"prop2\"=[1,2,3],\"prop3\"=true,\"prop4\"=1.23}"
+    -D"sling.caconfig.override.[/content/region1]x.y.z.MyConfig={\"prop1\":\"value1\",\"prop2\":[1,2,3],\"prop3\":true,\"prop4\":1.23}"
 
 This provider is not active by default, it has to be activated via OSGi configuration ("Apache Sling Context-Aware System Property Configuration Override Provider").
 
