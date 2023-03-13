@@ -41,7 +41,7 @@ Override string examples with real values:
     my-config/sub1/property1="value 1"
     my-config/property1=["value 1","value 2"]
     my-config/property1=123
-    x.y.z.MyConfig={"prop1"="value1","prop2"=[1,2,3],"prop3"=true,"prop4"=1.23}
+    x.y.z.MyConfig={"prop1":"value1","prop2":[1,2,3],"prop3":true,"prop4":1.23}
     [/content/region1]my-config/property1="value 1"
     [/content/region1]my-config/sub1={"prop1":"value 1"}
 
