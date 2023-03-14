@@ -214,7 +214,7 @@ def bundles=[
   "Repoinit Parser|org.apache.sling.repoinit.parser|1.9.0|Y|jar",
   "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.1.0|Y|jar",
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.4|Y|jar",
-  "Resource Collection|org.apache.sling.resourcecollection|1.0.2|Y|jar",
+  "Resource Collection|org.apache.sling.resourcecollection|1.0.4|Y|jar",
   "Resource Filter|org.apache.sling.resource.filter|1.0.0|Y|jar",
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8|Y|jar",
   "Resource Merger|org.apache.sling.resourcemerger|1.4.0|Y|jar",
