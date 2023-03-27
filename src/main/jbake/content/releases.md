@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2023
 
+* Testing OSGi Mock 3.3.6, Sling Mock 3.4.4 (27th)
 * Testing JCR Mock 1.6.6 (23rd)
 * Resource Merger 1.4.2 (17th)
 * Resource Collections 1.0.4 (14th)
