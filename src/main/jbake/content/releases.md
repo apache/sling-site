@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2023
 
+* Models API 1.5.0, Models Implementation 1.6.0, Context-Aware Configuration Mock Plugin 1.4.2 (31th)
 * Testing OSGi Mock 3.3.6, Sling Mock 3.4.4 (27th)
 * Testing JCR Mock 1.6.6 (23rd)
 * Resource Merger 1.4.2 (17th)
