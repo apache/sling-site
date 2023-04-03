@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## April 2023
+
+* Discovery Oak 1.2.44, Event 4.3.8 (3rd)
+
 ## March 2023
 
 * Models API 1.5.0, Models Implementation 1.6.0, Context-Aware Configuration Mock Plugin 1.4.2 (31th)
