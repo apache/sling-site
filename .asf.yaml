@@ -1,12 +1,19 @@
-# Note than an .asf.yaml file is also needed
-# in the asf-site branch that's used for the
-# live website. See https://infra-reports.apache.org/site-source/
 github:
   description: "Apache Sling Website"
   homepage: "https://sling.apache.org/"
   labels:
-    - sling
-    - website
-    - jbake
+  - "sling"
+  - "website"
+  - "jbake"
+  autolink_jira:
+  - "SLING"
+  - "OAK"
+  - "JCR"
+  - "JCRVLT"
+  - "INFRA"
+  - "FELIX"
+  - "MNG"
 publish:
-  whoami: asf-site
+  whoami: "asf-site"
+notifications:
+  jira_options: "link"
