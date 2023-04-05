@@ -161,7 +161,7 @@ def bundles=[
   "javax activation|org.apache.sling.javax.activation|0.3.0|Y|jar",
   "JCR API|org.apache.sling.jcr.api|2.4.0|Y|jar",
   "JCR API Wrapper|org.apache.sling.jcr.jcr-wrapper|2.0.0|Y|jar",
-  "JCR Base|org.apache.sling.jcr.base|3.1.12|Y|jar",
+  "JCR Base|org.apache.sling.jcr.base|3.1.14|Y|jar",
   "JCR ClassLoader|org.apache.sling.jcr.classloader|3.2.4|Y|jar",
   "JCR Content Loader|org.apache.sling.jcr.contentloader|2.5.0|Y|jar",
   "JCR Content Parser|org.apache.sling.jcr.contentparser|1.2.8|Y|jar",
