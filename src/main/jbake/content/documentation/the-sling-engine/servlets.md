@@ -316,3 +316,8 @@ If a resource type has no explicit resource super type, the resource super type 
 ## Error Handler Servlet(s) or Scripts
 
 Error handling support is described on the [Errorhandling](/documentation/the-sling-engine/errorhandling.html) page.
+
+## OSGi HTTP Whiteboard Servlets
+
+For certain edge cases even in an OSGi runtime running Sling certain servlets are still registered leveraging the [OSGi HTTP Whiteboard](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html) instead of leveraging the Sling servlet registration outlined above.
+Note though, that whenever the Sling engine bundle is deployed it registers a Servlet with the OSGi HTTP Whiteboard for path `/` which will take precedence by default over all other servlets registered through OSGi Http Whiteboad leveraging the *default* servlet context (SLING-11677)[https://issues.apache.org/jira/browse/SLING-11677]. Therefore, all servlets registered via OSGi HTTP Whiteboard need to be registered with a custom context having a `service.ranking` higher than the one from the Sling Main servlet (`0`).
