@@ -6,6 +6,7 @@ tableOfContents=false
 ~~~~~~
 
 * Vulnerability report and fix: CVE-2022-45064: Apache Sling Engine: Include-based XSS (April 12th, 2023), see [https://www.cve.org/CVERecord?id=CVE-2022-45064](https://www.cve.org/CVERecord?id=CVE-2022-45064)
+* Vulnerability report and fix: CVE-2023-26513: Apache Sling Resource Merger: Requests to certain paths managed by the Apache Sling Resource Merger can lead to DoS (Mar 20th, 2023), see [https://www.cve.org/CVERecord?id=CVE-2023-26513](https://www.cve.org/CVERecord?id=CVE-2023-26513)
 * Vulnerability report and fix: CVE-2023-25621: Apache Sling does not allow to handle i18n content in a secure way (Feb 23rd, 2023), see [https://www.cve.org/CVERecord?id=CVE-2023-25621](https://www.cve.org/CVERecord?id=CVE-2023-25621)
 * Vulnerability report and fix: CVE-2023-25141: Apache Sling JCR Base JNDI injection (February 14th, 2023), see [https://www.cve.org/CVERecord?id=CVE-2023-25141](https://www.cve.org/CVERecord?id=CVE-2023-25141)
 * Vulnerability report and fix: CVE-2023-22849: Apache Sling App CMS: XSS in CMS Reference / UI Components (Feb 3rd, 2023), see [https://www.cve.org/CVERecord?id=CVE-2023-22849](https://www.cve.org/CVERecord?id=CVE-2023-22849)
