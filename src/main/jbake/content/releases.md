@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2023
 
+* Testing Servlet Helpers 1.4.6, JCR Mock 1.6.8, Sling Mock 3.4.6 (27rd)
 * GraphQL Corea 0.0.20 (25th)
 * XSS Protection API 2.3.6 (9th)
 * JCR Base 3.1.14 (5th)

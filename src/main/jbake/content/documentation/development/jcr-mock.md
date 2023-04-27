@@ -75,3 +75,37 @@ Example:
     MockJcr.setQueryResult(session, "your query statement", Query.JCR_SQL2, resultNodes);
 
 Alternatively you can use the `MockJcr.addQueryResultHandler` method to pass a callback object that allows you to return a query result after inspecting the given query object.
+
+### Mocking node type management
+
+*Since Version 1.6.8*
+
+If you want to test code that interacts with node types you can simulate real node type definitions while setting up your unit test.
+
+Example:
+
+    String[] cndResourcesToLoad = new String[] {
+            "/org/apache/jackrabbit/oak/builtin_nodetypes.cnd",
+            "/your/test/nodetypes.cnd"
+    };
+    for (String resourceName : cndResourcesToLoad) {
+        URL cndUrl = getClass().getResource(resourceName);
+        if (cndUrl == null) {
+            fail("Failed to load CND nodetypes resource: " + resourceName);
+        }
+        try (Reader reader = new InputStreamReader(cndUrl.openStream())) {
+            MockJcr.loadNodeTypeDefs(session, reader);
+        }
+    }
+
+### Mocking access control manager
+
+*Since Version 1.6.8*
+
+If you want to test code that interacts with the access control manager you can set your own mock implementation while setting up your unit test.
+
+Example:
+
+    AccessControlManager acm = Mockito.mock(AccessControlManager.class);
+    MockJcr.setAccessControlManager(jcrSession, acm);
+
