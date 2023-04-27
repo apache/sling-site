@@ -190,6 +190,31 @@ MockJcr.setQueryResult(session, resultNodes);
 MockJcr.setQueryResult(session, &quot;your query statement&quot;, Query.JCR_SQL2, resultNodes);
 </code></pre>
 <p>Alternatively you can use the <code>MockJcr.addQueryResultHandler</code> method to pass a callback object that allows you to return a query result after inspecting the given query object.</p>
+<h3><a href="#mocking-node-type-management" id="mocking-node-type-management">Mocking node type management</a></h3>
+<p><em>Since Version 1.6.8</em></p>
+<p>If you want to test code that interacts with node types you can simulate real node type definitions while setting up your unit test.</p>
+<p>Example:</p>
+<pre><code>String[] cndResourcesToLoad = new String[] {
+        &quot;/org/apache/jackrabbit/oak/builtin_nodetypes.cnd&quot;,
+        &quot;/your/test/nodetypes.cnd&quot;
+};
+for (String resourceName : cndResourcesToLoad) {
+    URL cndUrl = getClass().getResource(resourceName);
+    if (cndUrl == null) {
+        fail(&quot;Failed to load CND nodetypes resource: &quot; + resourceName);
+    }
+    try (Reader reader = new InputStreamReader(cndUrl.openStream())) {
+        MockJcr.loadNodeTypeDefs(session, reader);
+    }
+}
+</code></pre>
+<h3><a href="#mocking-access-control-manager" id="mocking-access-control-manager">Mocking access control manager</a></h3>
+<p><em>Since Version 1.6.8</em></p>
+<p>If you want to test code that interacts with the access control manager you can set your own mock implementation while setting up your unit test.</p>
+<p>Example:</p>
+<pre><code>AccessControlManager acm = Mockito.mock(AccessControlManager.class);
+MockJcr.setAccessControlManager(jcrSession, acm);
+</code></pre>
 </section></div></div>                            
                         </div>
                     </div>
@@ -201,7 +226,7 @@ MockJcr.setQueryResult(session, &quot;your query statement&quot;, Query.JCR_SQL2
                             content/documentation/development/jcr-mock.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2017-09-29</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2023-04-27</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
