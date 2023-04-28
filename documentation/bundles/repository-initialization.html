@@ -142,8 +142,8 @@
 <p>The code (in form of statements) being executed through repoinit ensures that the repository has a certain state. In case the repository cannot be set up as being mandated through the repoinit statements the startup of the repository <strong>fails</strong>. This may happen in case the existing parent nodes have node type restrictions which don't allow for the new repository state or in general when the existing node/property state is conflicting with the target one.</p>
 <p>For historical reasons two statements deviate from that by not failing in case the desired repository state cannot be achieved:</p>
 <ol>
-<li><code>create path</code> will not touch/modify existing nodes (i.e. does neither adjust primary nor mixin types if they differ), therefore it has been deprecated and replaced by <code>ensure nodes</code> (SLING-11736)[https://issues.apache.org/jira/browse/SLING-11736]</li>
-<li><code>set principal ACL</code> will not fail in case the principal ACL cannot be applied for whatever reason, therefore it has been deprecated and replaced by <code>ensure princial ACL</code> (SLING-10281)[https://issues.apache.org/jira/browse/SLING-10281]</li>
+<li><code>create path</code> will not touch/modify existing nodes (i.e. does neither adjust primary nor mixin types if they differ), therefore it has been deprecated and replaced by <code>ensure nodes</code> <a href="https://issues.apache.org/jira/browse/SLING-11736">SLING-11736</a></li>
+<li><code>set principal ACL</code> will not fail in case the principal ACL cannot be applied for whatever reason, therefore it has been deprecated and replaced by <code>ensure princial ACL</code> <a href="https://issues.apache.org/jira/browse/SLING-10281">SLING-10281</a></li>
 </ol>
 <p>Starting with version 1.1.40 of the bundle <code>org.apache.sling.jcr.repoinit</code> repoinit scripts are safely executed also in environments with a shared repository; this is implemented by a retry-mechanism with randomized delays.</p>
 <h2><a href="#slingrepositoryinitializer" id="slingrepositoryinitializer">SlingRepositoryInitializer</a></h2>
@@ -938,7 +938,7 @@ end
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-01-30</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-04-28</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
