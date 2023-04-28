@@ -66,7 +66,8 @@ This is an example file
 
 #### Limitations
 
-* This is only supported since Installer Configuration Factory 1.2.0 .
+* This is only supported since Installer Configuration Factory 1.2.0
+* No support of multiline String values ([SLING-10217](https://issues.apache.org/jira/browse/SLING-10217)), therefore, for repoinit rather use `.config`.
 
 ### Configuration Files (.config)
 
