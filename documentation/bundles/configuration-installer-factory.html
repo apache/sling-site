@@ -171,7 +171,8 @@ com.acme.abc-default.cfg // factory configuration
 </code></pre>
 <h4><a href="#limitations" id="limitations">Limitations</a></h4>
 <ul>
-<li>This is only supported since Installer Configuration Factory 1.2.0 .</li>
+<li>This is only supported since Installer Configuration Factory 1.2.0</li>
+<li>No support of multiline String values (<a href="https://issues.apache.org/jira/browse/SLING-10217">SLING-10217</a>), therefore, for repoinit rather use <code>.config</code>.</li>
 </ul>
 <h3><a href="#configuration-files-config" id="configuration-files-config">Configuration Files (.config)</a></h3>
 <p>Configuration files ending in <code>.config</code> use the format of the <a href="http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup">Apache Felix ConfigAdmin implementation</a> (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding. This format is preferred over properties files and nodes stored in the repository.</p>
@@ -267,7 +268,7 @@ ftp.port = 21
                             content/documentation/bundles/configuration-installer-factory.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-08-16</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-04-28</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
