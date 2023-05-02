@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2023
+
+* Sling Mock 3.4.8 (2nd)
+
 ## April 2023
 
 * Testing Servlet Helpers 1.4.6, JCR Mock 1.6.8, Sling Mock 3.4.6, Rewriter 1.3.6 (27rd)
