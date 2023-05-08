@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2023
 
+* Content-Package to Feature Model Converter 1.3.2 (8th)
 * Sling Mock 3.4.8 (2nd)
 
 ## April 2023
