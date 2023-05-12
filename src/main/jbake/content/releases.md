@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2023
 
+* Event API 1.0.4, Event 4.3.12 (11th)
 * Content-Package to Feature Model Converter 1.3.2 (8th)
 * Sling Mock 3.4.8 (2nd)
 
