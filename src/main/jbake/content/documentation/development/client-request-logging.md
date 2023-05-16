@@ -6,6 +6,8 @@ tags=requests,operations,logging
 
 Sling provides extensive support to log various information at the before and after processing client requests. Out of the box, there are two loggers configured to write traditional `access.log` and `request.log` files. In addition more logging can be configured by providing OSGi Configuration Admin configuration.
 
+Although this request logging is implemented in a Servlet Filter for OSGi HTTP Whiteboard, this filter is bound to the Sling Servlet Context Helper and therefore only ever logs requests which are answered by the Sling Main servlet (but not requests targetting any servlets leveraging another Servlet Context Helper). Also due to the request processing order outlined in [OSGi HTTP Whiteboard Chapter 140.2.5 Security Handling](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html#d0e119664) it will not log requests which do not pass the [Sling Authentication](/documentation/the-sling-engine/authentication.html).
+
 ## Traditional access.log and request.log Files
 
 In the Web Console configure the *Apache Sling Request Logger* (PID=`org.apache.sling.engine.impl.log.RequestLogger`) configuration.
@@ -52,7 +54,7 @@ In the Sling Web Console locate the Configuration page (`/system/console/configM
 
 #### Log Format Specification
 
-The log format specification generally follows the [definition of the `format` argument for the `LogFormat` and `CustomLog` directives of Apache httpd](http://httpd.apache.org/docs/current/mod/mod_log_config.html). Please see the below table for details and exceptions.
+The log format specification generally follows the [definition of the `format` argument for the `LogFormat` and `CustomLog` directives of Apache httpd](https://httpd.apache.org/docs/current/mod/mod_log_config.html). Please see the below table for details and exceptions.
 
 The characteristics of the request itself are logged by placing "%" directives in the format string, which are replaced in the log file by the values as follows:
 
