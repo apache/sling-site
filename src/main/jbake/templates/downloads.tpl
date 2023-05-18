@@ -57,7 +57,7 @@ def bundles=[
   "Adapter|org.apache.sling.adapter|2.2.0|Y|jar",
   "Adapter Annotations (JSON) 1.x|adapter-annotations|1.0.0|Y|jar",
   "Adapter Annotations 2.x|org.apache.sling.adapter.annotations|2.0.0|Y|jar",
-  "API|org.apache.sling.api|2.27.0|Y|jar",
+  "API|org.apache.sling.api|2.27.2|Y|jar",
   "Auth Core|org.apache.sling.auth.core|1.6.0|Y|jar",
   "Form Based Authentication|org.apache.sling.auth.form|1.0.24|Y|jar",
   "Authentication XING API|org.apache.sling.auth.xing.api|0.0.2|Y|jar",
