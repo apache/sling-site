@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2023
 
+* Sling Security 1.2.0 (22nd)
 * Testing JCR Mock 1.6.10, OSGi Mock 3.3.8, ResourceResolver Mock 1.4.2, Sling Mock 3.4.10, Sling Mock Oak 3.1.10-1.44.0, Context-Aware Configuration Mock Plugin 1.5.0, OSGi Installer Configuration Factory 1.4.4, OSGi Installer Console 1.1.2 (19th)
 * Sling API 2.27.2 (18th)
 * Event API 1.0.4, Event 4.3.12 (11th)
