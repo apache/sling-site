@@ -132,7 +132,7 @@ Propose a vote on the dev list with the closed issues, the issues left, and the 
     https://repository.apache.org/content/repositories/orgapachesling-[YOUR REPOSITORY ID]/
     
     You can use this UNIX script to download the release and verify the signatures:
-    https://gitbox.apache.org/repos/asf?p=sling-tooling-release.git;a=blob;f=check_staged_release.sh;hb=HEAD
+    https://raw.githubusercontent.com/apache/sling-tooling-release/master/check_staged_release.sh
     
     Usage:
     sh check_staged_release.sh [YOUR REPOSITORY ID] /tmp/sling-staging
