@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2023
 
+* OSGi Feature Maven Plugin 1.7.0 (5th)
 * Models Implementation 1.6.4 (2nd)
 
 ## May 2023
