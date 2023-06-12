@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2023
 
+* Engine 2.15.2 (12th)
 * Feature Model API Regions Runtime Fragment 1.1.10 (11th)
 * Servlets Resolver 2.9.12 (7th)
 * OSGi Feature Maven Plugin 1.7.0 (5th)
