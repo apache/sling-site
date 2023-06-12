@@ -21,17 +21,17 @@ For each module the following artifact types are provided
 
 All those artifacts are accompanied by an according `*.asc` file containing the PGP signature.
 
-# Downloads
-
-## How to validate downloaded files
+# How to validate downloaded files
 
 The PGP keys at [https://downloads.apache.org/sling/KEYS](https://downloads.apache.org/sling/KEYS) can be used to verify the integrity of the release archives. See [https://www.apache.org/info/verification](https://www.apache.org/info/verification) for how that works.
+
+# Download servers
 
 ## Maven Central
 
 All Sling modules are provided from [Maven Central with groupId `org.apache.sling`](https://search.maven.org/search?q=g:org.apache.sling).
 
-## Older Releases
+## Apache
 
 The links on this page point to the latest Apache Sling releases, provided
 by the ASF's [CDN distribution services](https://blogs.apache.org/foundation/entry/apache-software-foundation-moves-to).
