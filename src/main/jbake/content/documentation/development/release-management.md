@@ -123,10 +123,7 @@ Propose a vote on the dev list with the closed issues, the issues left, and the 
     Hi,
     
     We solved N issues in this release:
-    https://issues.apache.org/jira/browse/SLING/fixforversion/...
-    
-    There are still some outstanding issues:
-    https://issues.apache.org/jira/browse/SLING/component/...
+    https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310710&version=[YOUR JIRA RELEASE VERSION ID]&styleName=Text
     
     Staging repository:
     https://repository.apache.org/content/repositories/orgapachesling-[YOUR REPOSITORY ID]/
