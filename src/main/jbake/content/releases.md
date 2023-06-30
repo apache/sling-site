@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2023
 
+* Context-Aware Configuration Mock Plugin 1.5.2 (30th)
 * Engine 2.15.2 (12th)
 * Feature Model API Regions Runtime Fragment 1.1.10 (11th)
 * Servlets Resolver 2.9.12 (7th)
