@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## July 2023
+
+* XSS Protection API 2.3.8 (3rd)
+
 ## June 2023
 
 * Context-Aware Configuration Mock Plugin 1.5.2 (30th)
