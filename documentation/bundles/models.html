@@ -135,7 +135,9 @@
 <p>Many Sling projects want to be able to create model objects - POJOs which are automatically mapped from Sling objects, typically resources, but also request objects. Sometimes these POJOs need OSGi services as well. Sling Models provide an easy way to achieve this, integrating into the already existing pattern and infrastructure provided by Sling.</p>
 <h1><a href="#basic-usage" id="basic-usage">Basic Usage</a></h1>
 <h2><a href="#model-classes" id="model-classes">Model Classes</a></h2>
-<p>In the simplest case, the model class is annotated with <code>@Model</code> and the adaptable class. Fields which need to be injected are annotated with <code>@ValueMapValue</code>:</p>
+<p>In the simplest case, the model class is annotated with <code>@Model</code> and the adaptable class.</p>
+<h3><a href="#field-injection" id="field-injection">Field Injection</a></h3>
+<p>Fields which need to be injected are annotated with <code>@ValueMapValue</code>:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -176,6 +178,7 @@ public class PackagePrivateFieldModel {
     String packagePrivateField;
 }
 </code></pre>
+<h3><a href="#method-injection-on-interface-only-models" id="method-injection-on-interface-only-models">Method Injection (on interface only models)</a></h3>
 <p>For an interface, it is similar:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
 public interface MyModel {
@@ -185,18 +188,19 @@ public interface MyModel {
 }
 </code></pre>
 <p>Interface methods must be <code>public</code>. Even though private interface methods have been available since Java 9, Sling Models uses Dynamic Proxies to instantiate the interfaces, which does not work with private interface methods. Additionally, while default interface methods will work with interface injection, the default implementation (in the interface) is currently not used, and will not be executed.</p>
-<p>Constructor injection is also supported (as of Sling Models 1.1.0):</p>
+<h3><a href="#constructor-injection" id="constructor-injection">Constructor Injection</a></h3>
+<p>Constructor injection is also supported (as of <a href="https://issues.apache.org/jira/browse/SLING-3716">Sling Models 1.1.0</a>):</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Model(adaptables=Resource.class)
 public class MyModel {    
     @Inject
-    public MyModel(@Named(&quot;propertyName&quot;) String propertyName) {
+    public MyModel(@ValueMapValue(name=&quot;propertyName&quot;) String propertyName) {
       // constructor code
     }
 }
 </code></pre>
-<p>Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a <code>@Named</code> annotation is mandatory for injectors that require a name for resolving the injection.</p>
+<p>Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a <code>@Named</code> annotation (or a <code>name</code> element on injector specific annotations) is mandatory for injectors that require a name for resolving the injection. In order for a constructor to be used for injection <em>it has to be annotated on method level with <code>@Inject</code></em>. In addition using injector-specific annotations on parameter level is supported.</p>
 <p>Constructors may use any visibility modifier (as of <a href="https://issues.apache.org/jira/browse/SLING-8069">Sling Models 1.5.0</a>).</p>
-<h2><a href="#model-and-adaptable-types" id="model-and-adaptable-types">@Model and adaptable types</a></h2>
+<h2><a href="#model-and-adaptable-types" id="model-and-adaptable-types">@Model and Adaptable Types</a></h2>
 <p>When defining a Sling Model class, the <code>adaptables</code> parameter to the <code>@Model</code> annotation is mostly determined by the injectors being used. The provided class must satisfy the needs of all injectors (for the details see <a href="#available-injectors-1">the table below</a>). For example if the model class only uses the <code>ValueMap</code> injector, the adaptables parameter can be a <code>Resource</code>, a <code>SlingHttpServletRequest</code> or both. But if the <code>Request Attribute</code> injector is used, only an adaptable of the type <code>SlingHttpServletRequest</code> will work.</p>
 <p>In order to increase the reuse it's advised to stick to <code>Resource</code> as adaptables if possible, as such a model can be used in the context of request and outside of it.</p>
 <h2><a href="#bundle-manifest-configuration" id="bundle-manifest-configuration">Bundle Manifest Configuration</a></h2>
@@ -660,7 +664,7 @@ public class MyModel implements MyService {
                             content/documentation/bundles/models.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Joerg Hoh</span> on <span class="comment">2023-01-28</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-07-08</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
