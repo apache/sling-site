@@ -12,7 +12,11 @@ Sling Models provide an easy way to achieve this, integrating into the already e
 # Basic Usage
 ## Model Classes
 
-In the simplest case, the model class is annotated with `@Model` and the adaptable class. Fields which need to be injected are annotated with `@ValueMapValue`:
+In the simplest case, the model class is annotated with `@Model` and the adaptable class. 
+
+### Field Injection
+
+Fields which need to be injected are annotated with `@ValueMapValue`:
 
     ::java
     import org.apache.sling.api.resource.Resource;
@@ -57,7 +61,8 @@ In this case, a property named `propertyName` will be looked up from the Resourc
         String packagePrivateField;
     }
 
- 
+### Method Injection (on interface only models)
+
 For an interface, it is similar:
 
 	::java
@@ -70,22 +75,25 @@ For an interface, it is similar:
 
 Interface methods must be `public`. Even though private interface methods have been available since Java 9, Sling Models uses Dynamic Proxies to instantiate the interfaces, which does not work with private interface methods. Additionally, while default interface methods will work with interface injection, the default implementation (in the interface) is currently not used, and will not be executed.
 
-Constructor injection is also supported (as of Sling Models 1.1.0):
+### Constructor Injection
+
+Constructor injection is also supported (as of [Sling Models 1.1.0](https://issues.apache.org/jira/browse/SLING-3716)):
 
     ::java
     @Model(adaptables=Resource.class)
     public class MyModel {    
         @Inject
-        public MyModel(@Named("propertyName") String propertyName) {
+        public MyModel(@ValueMapValue(name="propertyName") String propertyName) {
           // constructor code
         }
     }
 
-Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation is mandatory for injectors that require a name for resolving the injection.
+Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation (or a `name` element on injector specific annotations) is mandatory for injectors that require a name for resolving the injection.
+In order for a constructor to be used for injection *it has to be annotated on method level with `@Inject`*. In addition using injector-specific annotations on parameter level is supported.
 
 Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https://issues.apache.org/jira/browse/SLING-8069)).
 
-## @Model and adaptable types
+## @Model and Adaptable Types
 
 When defining a Sling Model class, the `adaptables` parameter to the `@Model` annotation is mostly determined by the injectors being used. The provided class must satisfy the needs of all injectors (for the details see [the table below](#available-injectors-1)). For example if the model class only uses the `ValueMap` injector, the adaptables parameter can be a `Resource`, a `SlingHttpServletRequest` or both. But if the `Request Attribute` injector is used, only an adaptable of the type `SlingHttpServletRequest` will work.
 
