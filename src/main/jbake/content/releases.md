@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2023
 
+* Parent & Bundle Parent 50, Maven Enforcer Rules 1.2.0 (8th)
 * XSS Protection API 2.3.8 (3rd)
 
 ## June 2023
