@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2023
 
+* OSGi Feature Maven Plugin 1.7.2, Feature Launcher Maven Plugin 0.1.6 (10th)
 * Parent & Bundle Parent 50, Maven Enforcer Rules 1.2.0 (8th)
 * XSS Protection API 2.3.8 (3rd)
 
