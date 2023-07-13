@@ -1,4 +1,4 @@
-title=Errorhandling		
+title=Error Handling
 type=page
 status=published
 tags=core,errorhandling
@@ -17,8 +17,15 @@ working examples of various error handling scenarios.
 
 ## Resetting the Response
 
-Errorhandler scripts and servlets are script with the current response. Before setting
-the status and writing to the response such handlers should do the following:
+Before an ErrorHandler is invoked by the Sling Engine, the response is resetted. This removes all headers and potentially written content. If the response can't be reset, e.g. when it is already partially committed to the client, no ErrorHandler will be invoked. In this case the response will be committed as-is.
+
+As the response is reset by Sling Engine, an ErrorHandler *must not* reset the response again. Especially as there might be error filters being invoked before the ErrorHandler.
+
+### Resetting the Respone when using Sling Engine before release 2.15.0
+
+**Note:** This is only relevant when you are using an older version of Sling Engine before release 2.15.0
+
+If you are using an older Sling Engine version, an ErrorHandler must reset the response and do the following:
 
 * Check whether the response has been committed or not
 * If the response has not been committed:
