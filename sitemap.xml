@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://sling.apache.org/releases.html</loc><lastmod>2023-07-10</lastmod>
+        <loc>https://sling.apache.org/documentation/development/testing-paxexam.html</loc><lastmod>2023-07-13</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/releases.html</loc><lastmod>2023-07-13</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2023-07-08</lastmod>
     </url><url>
@@ -118,8 +120,6 @@
         <loc>https://sling.apache.org/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/getting-started/discover-sling-in-15-minutes.html</loc><lastmod>2019-07-09</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/development/testing-paxexam.html</loc><lastmod>2021-06-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/osgi-mock.html</loc><lastmod>2019-03-17</lastmod>
     </url><url>
