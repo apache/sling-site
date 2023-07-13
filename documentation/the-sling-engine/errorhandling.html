@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en">
 <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>Apache Sling :: Errorhandling</title>
+        <title>Apache Sling :: Error Handling</title>
         <link rel="icon" href="/favicon.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="/res/css/site.css"/>
@@ -124,7 +124,7 @@
                                 </span>
                             </div>
                         </div><h1 class="title">
-                            Errorhandling
+                            Error Handling
                         </h1><nav class="menu">
                             <ul class="menu-list box is-shadowless is-paddingless">
                                 <li id="generatedToC">
@@ -141,7 +141,11 @@
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#resetting-the-response" id="resetting-the-response">Resetting the Response</a></h2>
-<p>Errorhandler scripts and servlets are script with the current response. Before setting the status and writing to the response such handlers should do the following:</p>
+<p>Before an ErrorHandler is invoked by the Sling Engine, the response is resetted. This removes all headers and potentially written content. If the response can't be reset, e.g. when it is already partially committed to the client, no ErrorHandler will be invoked. In this case the response will be committed as-is.</p>
+<p>As the response is reset by Sling Engine, an ErrorHandler <em>must not</em> reset the response again. Especially as there might be error filters being invoked before the ErrorHandler.</p>
+<h3><a href="#resetting-the-respone-when-using-sling-engine-before-release-2150" id="resetting-the-respone-when-using-sling-engine-before-release-2150">Resetting the Respone when using Sling Engine before release 2.15.0</a></h3>
+<p><strong>Note:</strong> This is only relevant when you are using an older version of Sling Engine before release 2.15.0</p>
+<p>If you are using an older Sling Engine version, an ErrorHandler must reset the response and do the following:</p>
 <ul>
 <li>Check whether the response has been committed or not</li>
 <li>If the response has not been committed:
@@ -194,7 +198,7 @@
                             content/documentation/the-sling-engine/errorhandling.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">2023-03-02</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2023-07-13</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
