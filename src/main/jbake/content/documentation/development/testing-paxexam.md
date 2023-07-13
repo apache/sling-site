@@ -22,6 +22,7 @@ The setups and examples on this page show how to run fully isolated tests in sep
 * Overriding of versions
 * Adjusting of provided `Option`s (`ModifiableCompositeOption`s – [PAXEXAM-919](https://ops4j1.jira.com/browse/PAXEXAM-919))
 * Build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)
+* Start Docker containers via Testcontainers
 
 
 ## Getting Started
@@ -35,7 +36,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
-      <version>3.1.0</version>
+      <version>4.0.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -43,7 +44,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.framework</artifactId>
-      <version>6.0.3</version>
+      <version>7.0.5</version>
       <scope>test</scope>
     </dependency>
 
