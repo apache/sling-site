@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2023
 
+* Sling Models Jacksonexporter 1.1.4 (18th)
 * Project Archetype 1.0.12 (17th)
 * Testing PaxExam 4.0.0, Scripting Groovy 1.3.0, Parent & Bundle Parent 51 (13th)
 * OSGi Feature Maven Plugin 1.7.2, Feature Launcher Maven Plugin 0.1.6 (10th)
