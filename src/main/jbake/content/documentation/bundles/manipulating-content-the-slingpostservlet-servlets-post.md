@@ -185,7 +185,7 @@ Example 1: Upload an image to a node named `image` below `/content/page`:
 
 Example 2: Upload a file as a node of type `nt:file` below `/content/folder`:
 
-    <form method="POST" action="/content/page" enctype="multipart/form-data">
+    <form method="POST" action="/content/folder" enctype="multipart/form-data">
         <input type="file" name="*" />
         <input type="hidden" name="*@TypeHint" value="nt:file" />
         <input type="Submit" />
