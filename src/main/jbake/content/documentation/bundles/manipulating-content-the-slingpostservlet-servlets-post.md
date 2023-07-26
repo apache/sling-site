@@ -159,7 +159,7 @@ This is demonstrated by the [SlingAutoPropertiesTest](https://github.com/apache/
 
 ##### File Uploads
 
-A simple cURL command to upload a simple text file:
+A simple cURL command to upload a text file:
 
     $ curl -u <user>:<pass> -T path/to/file.txt http://<host>/path/to/file.txt
     
