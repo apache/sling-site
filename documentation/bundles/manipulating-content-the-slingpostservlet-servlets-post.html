@@ -243,7 +243,10 @@ of a resource without having to specify the path of each individual child resour
 </ul>
 <p>This is demonstrated by the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingAutoPropertiesTest.java">SlingAutoPropertiesTest</a> which is part of our launchpad integration tests.</p>
 <h5><a href="#file-uploads" id="file-uploads">File Uploads</a></h5>
-<p>File uploads are typically done using the <code>&lt;input type=&quot;file&quot;&quot;/&gt;</code> element of an HTML form and ensuring the correct form encoding. The SlingPostServlet handles uploaded files specially, in that the file data is not simply written into a property, but a node is actually created with three properties:</p>
+<p>A simple cURL command to upload a text file:</p>
+<pre><code>$ curl -u &lt;user&gt;:&lt;pass&gt; -T path/to/file.txt http://&lt;host&gt;/path/to/file.txt
+</code></pre>
+<p>Otherwise, file uploads are typically done using the <code>&lt;input type=&quot;file&quot;&quot;/&gt;</code> element of an HTML form and ensuring the correct form encoding. The SlingPostServlet handles uploaded files specially, in that the file data is not simply written into a property, but a node is actually created with three properties:</p>
 <ul>
 <li><code>jcr:data</code> -- The actual file contents</li>
 <li><code>jcr:lastModified</code> -- The time stamp of processing the uploaded file</li>
@@ -263,7 +266,7 @@ of a resource without having to specify the path of each individual child resour
 &lt;/form&gt;
 </code></pre>
 <p>Example 2: Upload a file as a node of type <code>nt:file</code> below <code>/content/folder</code>:</p>
-<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page&quot; enctype=&quot;multipart/form-data&quot;&gt;
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/folder&quot; enctype=&quot;multipart/form-data&quot;&gt;
     &lt;input type=&quot;file&quot; name=&quot;*&quot; /&gt;
     &lt;input type=&quot;hidden&quot; name=&quot;*@TypeHint&quot; value=&quot;nt:file&quot; /&gt;
     &lt;input type=&quot;Submit&quot; /&gt;
@@ -786,7 +789,7 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
                             content/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2021-07-21</span>
+                        Last modified by <span class="author">bfoster-discovery</span> on <span class="comment">2023-07-26</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
