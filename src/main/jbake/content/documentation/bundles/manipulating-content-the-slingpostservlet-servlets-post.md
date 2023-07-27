@@ -158,8 +158,12 @@ following property names _if they are supplied with empty values in such a reque
 This is demonstrated by the [SlingAutoPropertiesTest](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingAutoPropertiesTest.java) which is part of our launchpad integration tests.
 
 ##### File Uploads
+
+A simple cURL command to upload a text file:
+
+    $ curl -u <user>:<pass> -T path/to/file.txt http://<host>/path/to/file.txt
     
-File uploads are typically done using the `<input type="file""/>` element of an HTML form and ensuring the correct form encoding. The SlingPostServlet handles uploaded files specially, in that the file data is not simply written into a property, but a node is actually created with three properties:
+Otherwise, file uploads are typically done using the `<input type="file""/>` element of an HTML form and ensuring the correct form encoding. The SlingPostServlet handles uploaded files specially, in that the file data is not simply written into a property, but a node is actually created with three properties:
     
 * `jcr:data` -- The actual file contents
 * `jcr:lastModified` -- The time stamp of processing the uploaded file
@@ -185,7 +189,7 @@ Example 1: Upload an image to a node named `image` below `/content/page`:
 
 Example 2: Upload a file as a node of type `nt:file` below `/content/folder`:
 
-    <form method="POST" action="/content/page" enctype="multipart/form-data">
+    <form method="POST" action="/content/folder" enctype="multipart/form-data">
         <input type="file" name="*" />
         <input type="hidden" name="*@TypeHint" value="nt:file" />
         <input type="Submit" />
@@ -915,3 +919,4 @@ OSGi services of the `org.apache.sling.servlets.post.SlingPostOperation` type ca
 A `SlingPostProcessor` may perform additional changes or revert previous ones. It is important that the `SlingPostProcessor` does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method `process(SlingHttpServletRequest, List<Modification>)`.
 
 Two examples of SlingPostProcessors are found in the [test-services](https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post) module, with the corresponding test code in the [integration-tests](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java) module.
+
