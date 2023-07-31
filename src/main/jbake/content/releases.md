@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2023
 
+* Sling GraphQL Core 0.0.22 (30th)
 * Launchpad Base 7.0.5-2.7.8 (24th)
 * Auth Core 1.6.2, Commons Johnzon 1.2.16 (23rd)
 * Sling Models Jacksonexporter 1.1.4 (18th)
