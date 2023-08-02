@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2023
+
+* Engine 2.15.4 (2nd)
+
 ## July 2023
 
 * Resource Merger 1.4.4 (31st)
