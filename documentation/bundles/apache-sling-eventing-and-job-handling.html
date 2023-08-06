@@ -209,7 +209,7 @@ public class MyComponent {
 }
 </code></pre>
 <p>Internally the scheduled Jobs use the <a href="/documentation/bundles/scheduler-service-commons-scheduler.html">Commons Scheduler Service</a>. But in addition they are persisted (by default below <code>/var/eventing/scheduled-jobs</code>) and survive therefore even server restarts. When the scheduled time is reached, the job is automatically added as regular Sling Job through the <code>JobManager</code>.</p>
-<p><strong>NOTE</strong>: A scheduled job is not automatically un-scheduled, but you have to remove it when it's no longer needed.</p>
+<p><strong>NOTE</strong>: A scheduled job is only automatically unscheduled, when it's scheduled for a specific date. Periodic jobs (using a CRON expression) are not automatically unscheduled, but you have to remove it when it's no longer needed.</p>
 <pre><code>  public void stopScheduledJob() {
       Collection&lt;ScheduledJobInfo&gt; myJobs = jobManager.getScheduledJobs(TOPIC, 10, null);
       myJobs.foreach(sji -&gt; sji.unschedule());
@@ -337,7 +337,7 @@ public class MyComponent {
                             content/documentation/bundles/apache-sling-eventing-and-job-handling.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2022-06-15</span>
+                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2023-08-06</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
