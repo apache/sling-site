@@ -104,7 +104,7 @@ An example code for scheduling a job looks like this:
 
 Internally the scheduled Jobs use the [Commons Scheduler Service](/documentation/bundles/scheduler-service-commons-scheduler.html). But in addition they are persisted (by default below `/var/eventing/scheduled-jobs`) and survive therefore even server restarts. When the scheduled time is reached, the job is automatically added as regular Sling Job through the `JobManager`.
 
-**NOTE**: A scheduled job is not automatically un-scheduled, but you have to remove it when it's no longer needed.
+**NOTE**: A scheduled job is only automatically unscheduled, when it's scheduled for a specific date. Periodic jobs (using a CRON expression) are not automatically unscheduled, but you have to remove it when it's no longer needed.
 
       public void stopScheduledJob() {
           Collection<ScheduledJobInfo> myJobs = jobManager.getScheduledJobs(TOPIC, 10, null);
