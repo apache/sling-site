@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2023
 
+* Tracer 1.0.8 (7th)
 * Engine 2.15.4 (2nd)
 
 ## July 2023
