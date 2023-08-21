@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2023
 
-* Testing ResourceResolver Mock 1.4.4, Testing OSGi Mock 3.3.10, Testing Sling Mock 3.4.12 (21st)
+* Service User Mapper 1.5.8, Testing ResourceResolver Mock 1.4.4, Testing OSGi Mock 3.3.10, Testing Sling Mock 3.4.12 (21st)
 * Servlets Resolver 2.9.14 (8th)
 * Tracer 1.0.8 (7th)
 * Engine 2.15.4 (2nd)
