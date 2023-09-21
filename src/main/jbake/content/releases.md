@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2023
+
+* Sling GraphQL Core 0.0.24 (21st)
+
 ## August 2023
 
 * Engine 2.15.6, Service User Mapper 1.5.8, Testing ResourceResolver Mock 1.4.4, Testing OSGi Mock 3.3.10, Testing Sling Mock 3.4.12 (21st)
