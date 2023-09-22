@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2023
 
+* Content-Package to Feature Model Converter 1.3.4 (22th)
 * Resource Resolver 1.11.0 (22nd)
 * Sling GraphQL Core 0.0.24 (21st)
 
