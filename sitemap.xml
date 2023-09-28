@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation.html</loc><lastmod>2023-09-28</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/development/maventipsandtricks.html</loc><lastmod>2023-09-28</lastmod>
     </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2023-09-27</lastmod>
@@ -341,8 +343,6 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/content-loading-jcr-contentloader.html</loc><lastmod>2023-03-02</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation.html</loc><lastmod>2022-03-17</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/jcr-installer-provider.html</loc><lastmod>2020-09-18</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/discovery-api-and-impl.html</loc><lastmod>2018-07-17</lastmod>
@@ -377,7 +377,7 @@
     </url><url>
         <loc>https://sling.apache.org/sitemap.html</loc><lastmod>2021-07-26</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/repolist.html</loc><lastmod>2021-08-04</lastmod>
+        <loc>https://sling.apache.org/repolist.html</loc><lastmod>2023-09-28</lastmod>
     </url><url>
         <loc>https://sling.apache.org/downloads.html</loc><lastmod>2023-06-12</lastmod>
     </url>
