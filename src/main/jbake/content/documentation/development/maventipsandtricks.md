@@ -1,4 +1,4 @@
-title=MavenTipsAndTricks		
+title=Maven Tips And Tricks		
 type=page
 status=published
 tags=development,maven
