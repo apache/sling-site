@@ -1,7 +1,7 @@
 title=Documentation		
 type=page
 status=published
-tags=documentation,community,pmc
+tags=documentation,community,pmc,modules
 ~~~~~~
 
 [TOC]
@@ -19,6 +19,18 @@ The documentation is split into different parts:
    * [Configuration](/documentation/configuration.html)
    * [API Documentation](/documentation/apidocs.html), the javadoc of the API exposed by Sling
 
+# More than 300 modules. No kidding.
+
+As our [list of Git repositories](/repolist.html) indicates, Sling consists of more than
+300 modules.
+
+Their importance and maturity varies, and we do our best to keep this information up to date,
+[marking modules as deprecated](/documentation/development/deprecating-sling-modules.html) once
+they stop being useful.
+
+Some of these modules have their documentation in their Git repositories, linked from
+the [repositories list page](/repolist.html), while others have at least part of
+their documentation [on this website](documentation/bundles.html).
 
 # How you can contribute
 

@@ -1,7 +1,7 @@
 title=Sling Git Repositories
 type=repolist
 status=published
-tags=sourcecode,development,git
+tags=sourcecode,development,git,modules
 tableOfContents=false
 instructions=To sync this with new repositories, rebuild the default.xml file at https://github.com/apache/sling-aggregator and rebuild the website
 ~~~~~~
