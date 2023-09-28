@@ -211,7 +211,7 @@ def bundles=[
   "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.2|Y|jar",
   "Pax Exam Utilities|org.apache.sling.paxexam.util|1.0.4|Y|jar",
   "Performance Test Utilities|org.apache.sling.performance.base|1.0.2|org.apache.sling.performance|jar",
-  "Pipes|org.apache.sling.pipes|4.0.0|Y|jar",
+  "Pipes|org.apache.sling.pipes|4.5.0|Y|jar",
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.6|Y|jar",
   "Project Archetype|sling-project-archetype|1.0.12|Y|jar",
   "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.44|Y|jar",
