@@ -144,7 +144,7 @@ def bundles=[
   "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|2.0.0|Y|jar",
   "Feature Model Content Extension|org.apache.sling.feature.extension.content|1.0.12|Y|jar",
   "Feature Flags|org.apache.sling.featureflags|1.2.2|Y|jar",
-  "File Optimization|org.apache.sling.fileoptim|0.9.2|org.apache.sling.file.optimization|jar",
+  "File Optimization|org.apache.sling.fileoptim|0.9.4|org.apache.sling.file.optimization|jar",
   "File System Resource Provider|org.apache.sling.fsresource|2.2.0|Y|jar",
   "GraphQL Core|org.apache.sling.graphql.core|0.0.24|Y|jar",
   "I18n|org.apache.sling.i18n|2.6.2|Y|jar",
