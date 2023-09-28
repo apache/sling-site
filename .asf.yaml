@@ -13,6 +13,8 @@ github:
   - "INFRA"
   - "FELIX"
   - "MNG"
+  features:
+    issues: true
 publish:
   whoami: "asf-site"
 notifications:
