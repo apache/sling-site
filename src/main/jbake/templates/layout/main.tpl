@@ -24,7 +24,7 @@ html(lang:'en'){
 
                     if( content ) {
                         if(content.title) {
-                            h1(class:"title","data-pagefind-body":true) {
+                            h1(class:"title") {
                                 yield "${ content.title }"
                             }
                         }

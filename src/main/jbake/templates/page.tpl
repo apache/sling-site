@@ -20,6 +20,10 @@ layout 'layout/main.tpl', true,
                     }
                 }
             }
+            // pagefind doesn't seem to index the title that it finds, include it here, invisible
+            div("data-pagefind-body":"true","data-pagefind-weight":"7.0","style":"display:none;") {
+                yield " - ( ${ content.title } )"
+            }
         },
         tags : contents {
             include template : 'tags-brick.tpl'
