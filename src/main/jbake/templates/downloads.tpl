@@ -166,7 +166,7 @@ def bundles=[
   "JCR API Wrapper|org.apache.sling.jcr.jcr-wrapper|2.0.0|Y|jar",
   "JCR Base|org.apache.sling.jcr.base|3.1.14|Y|jar",
   "JCR ClassLoader|org.apache.sling.jcr.classloader|3.2.4|Y|jar",
-  "JCR Content Loader|org.apache.sling.jcr.contentloader|2.5.0|Y|jar",
+  "JCR Content Loader|org.apache.sling.jcr.contentloader|2.6.0|Y|jar",
   "JCR Content Parser|org.apache.sling.jcr.contentparser|1.2.8|Y|jar",
   "JCR DavEx|org.apache.sling.jcr.davex|1.3.10|Y|jar",
   "JCR Jackrabbit AccessManager|org.apache.sling.jcr.jackrabbit.accessmanager|3.1.0|Y|jar",
