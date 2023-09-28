@@ -95,7 +95,7 @@ def bundles=[
   "Commons Metrics RRD4J|org.apache.sling.commons.metrics-rrd4j|1.0.6|Y|jar",
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.2.2|Y|jar",
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.2|Y|jar",
-  "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.2|Y|jar",
+  "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.12|Y|jar",
   "Commons Testing|org.apache.sling.commons.testing|2.1.2|Y|jar",
   "Commons Threads|org.apache.sling.commons.threads|3.2.22|Y|jar",
   "Connection Timeout Agent|org.apache.sling.connection-timeout-agent|1.0.2|Y|jar",
