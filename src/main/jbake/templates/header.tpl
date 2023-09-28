@@ -35,4 +35,14 @@ head {
 	</script>
 	<!-- End Matomo Code -->
 	'''
+
+	yieldUnescaped "<link href='/pagefind/pagefind-ui.css' rel='stylesheet'>"
+	yieldUnescaped "<script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>"
+	yieldUnescaped '''
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
+	'''
 }

@@ -6,6 +6,9 @@ html(lang:'en'){
         div(class:"level is-marginless") {
             include template: 'logos.tpl'
         }
+        section(class:"searchbox level is-marginless") {
+            div(id:"searchbox") {}
+        }
         div(class:"columns is-gapless") {
             div(class:"column is-narrow sidemenu") {
                 include template: 'menu.tpl'

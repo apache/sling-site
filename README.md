@@ -12,6 +12,10 @@ Clone this repository, run the below Maven command, open <http://localhost:8820/
 	
 This allows	you to experiment with your changes before eventually publishing them.
 
+To also activate the site search feature, use
+
+    mvn clean package -Ppagefind,run-site
+
 ## How to publish the website
 
 The publishing process consists out of 2 steps:
@@ -75,6 +79,11 @@ Highlighting can be disabled by specifying an unknown language in the `<pre>` bl
     <pre class="language-no-highlight">
     This will not be highlighted.
     </pre>
+
+## Site search
+
+The site search is based on [Pagefind](https://pagefind.app/), which is also used by the ASF
+[community](https://community.apache.org/) and [www](https://www.apache.org/) websites. Searching the source code for "pagefind" shows how the integration works.
 
 ## Other Apache projects using JBake 
 It's sometimes useful to ~~steal ideas~~ get inspiration from other projects using similar tools, for now we know of:

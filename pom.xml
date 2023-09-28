@@ -35,6 +35,12 @@
     <repos.list.fullpath>${downloads.dir}/github-repositories.xml</repos.list.fullpath>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Must match the JBake output folder -->
+    <pagefind.site.folder>${project.build.directory}/${project.artifactId}-${project.version}</pagefind.site.folder>
+
+    <!-- pagefind needs to run after compile and before package... -->
+    <pagefind.maven.phase>test</pagefind.maven.phase>
   </properties>
 
   <build>
@@ -210,6 +216,44 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>pagefind</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.14.0</version>
+                        <configuration>
+                            <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
+                            <installDirectory>${project.build.directory}</installDirectory>
+                            <workingDirectory>${project.build.directory}</workingDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>Install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <phase>${pagefind.maven.phase}</phase>
+                                <configuration>
+                                    <nodeVersion>v20.7.0</nodeVersion>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>Build pagefind index</id>
+                                <goals>
+                                    <goal>npx</goal>
+                                </goals>
+                                <phase>${pagefind.maven.phase}</phase>
+                                <configuration>
+                                    <arguments>pagefind --site ${pagefind.site.folder}</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
-
 </project>

@@ -13,7 +13,7 @@ layout 'layout/main.tpl', true,
             include template : 'toc-brick.tpl'
         },
         bodyContents: contents {
-            div(class:"row"){
+            div(class:"row","data-pagefind-body":true){
                 div(){
                     section(){
                         yieldUnescaped U.processBody(content, config)
