@@ -329,7 +329,7 @@ promote the artifacts to the central Maven repository.
 </li>
 <li>Following the release promotion you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports. To simplify this task you can use the script from <a href="https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh">https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh</a>.</li>
 <li>Update the releases section on the website at <a href="/releases.html">releases</a>.</li>
-<li>Update the download page on the website at <a href="/downloads.cgi">downloads</a> to point to the new release. For this you need to modify the <a href="https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl">according Groovy Template</a>.</li>
+<li>For new modules, update the download page on the website at <a href="/downloads.cgi">downloads</a> to point to the new release. For this you need to modify the <a href="https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl">according Groovy Template</a>. For existing modules the <a href="https://github.com/renovatebot/renovate/">renovate app</a> will generate a pull request. The pull request must be manually merged.</li>
 <li>If you think that this release is worth a news entry, update the website at  <a href="/news.html">news</a></li>
 </ol>
 <p>For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.</p>
@@ -547,7 +547,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-06-13</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2023-09-29</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
