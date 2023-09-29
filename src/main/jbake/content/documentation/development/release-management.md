@@ -212,7 +212,7 @@ If the vote passes:
     2. Once the release is promoted click on *Repositories* on the left, select the *Releases* repository and validate that your artifacts are all there.
 3. Following the release promotion you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports. To simplify this task you can use the script from [https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh](https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh).
 2. Update the releases section on the website at [releases](/releases.html).
-3. Update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl).
+3. For new modules, update the download page on the website at [downloads](/downloads.cgi) to point to the new release. For this you need to modify the [according Groovy Template](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl). For existing modules the [renovate app](https://github.com/renovatebot/renovate/) will generate a pull request. The pull request must be manually merged.
 4. If you think that this release is worth a news entry, update the website at  [news](/news.html)
 
 For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
