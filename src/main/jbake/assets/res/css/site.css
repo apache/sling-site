@@ -35,7 +35,7 @@ a:hover {
 
 
 .sidemenu {
-    border-top: 10px solid #f9bb00;
+    border-top: var(--page-border-top-height,10px) solid #f9bb00;
 }
 
 .sidemenu ul,.sidemenu p {
@@ -47,7 +47,7 @@ a:hover {
 }
 
 .main {
-    border-top: 10px solid #cde0ea;
+    border-top: var(--page-border-top-height,10px)  solid #cde0ea;
     max-width: 1000px;
 }
 
@@ -150,4 +150,15 @@ ul.repolist {
     color: #060;
     margin: 0;
     padding: 0;
+}
+
+#searchbox {
+    width: 100%;
+    --pagefind-ui-border: #cde0ea;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 1px;
+}
+
+:root {
+    --page-border-top-height: 5px;
 }
