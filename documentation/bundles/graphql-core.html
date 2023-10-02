@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -130,11 +138,11 @@
                         </div><h1 class="title">
                             Sling GraphQL Support
                         </h1><div class="content is-marginless">
-<div class="row"><div><section><p>The <a href="https://github.com/apache/sling-org-apache-sling-graphql-core/">Sling GraphQL Core</a> module allows for running GraphQL queries in Sling, using dynamically built GraphQL schemas and OSGi services for data fetchers (aka &quot;resolvers&quot;) which provide the data.</p>
+<div class="row" data-pagefind-body="true"><div><section><p>The <a href="https://github.com/apache/sling-org-apache-sling-graphql-core/">Sling GraphQL Core</a> module allows for running GraphQL queries in Sling, using dynamically built GraphQL schemas and OSGi services for data fetchers (aka &quot;resolvers&quot;) which provide the data.</p>
 <p>See the <a href="https://github.com/apache/sling-org-apache-sling-graphql-core/">o.a.s.graphql.core Git repository</a> for more information.</p>
 <p>The <a href="https://github.com/apache/sling-samples/tree/master/org.apache.sling.graphql.samples.website">GraphQL Sample Website module</a> provides a complete sample which uses GraphQL queries (and Handlebars templates) on both the server and client sides, to demonstrate the various modes that the GraphQL Core module supports.</p>
 <p>Other Sling GraphQL modules can be listed with <a href="https://github.com/search?q=topic%3Asling+topic%3Agraphql+org%3Aapache&amp;type=Repositories">this GitHub repository query</a>.</p>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Sling GraphQL Support )</div>                            
                         </div>
                     </div>
                 </div>

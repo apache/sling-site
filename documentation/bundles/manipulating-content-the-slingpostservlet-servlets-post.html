@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -134,7 +142,7 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
+<div class="row" data-pagefind-body="true"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#multiple-ways-to-modify-content" id="multiple-ways-to-modify-content">Multiple Ways to Modify Content</a></h2>
 <p>As always in life there is more than one way to do it. So to modify content in Sling, you have multiple options, the Sling default POST Servlet also called the <em>SlingPostServlet</em> is one of them. This page is about how you can modify - create, modify, copy, move, delete, import - content through the <em>SlingPostServlet</em>. In addition it also explains how to extend the SlingPostServlet with new operations.</p>
@@ -778,7 +786,7 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 <p>OSGi services of the <code>org.apache.sling.servlets.post.SlingPostOperation</code> type can be used to post process <code>PostOperation</code>s. They are called after the operation has performed its changes but before the changes are persisted (via commit). All registered SlingPostProcessors are always called in the reverse order of their service ranking (i.e. the one with the highest service ranking first).</p>
 <p>A <code>SlingPostProcessor</code> may perform additional changes or revert previous ones. It is important that the <code>SlingPostProcessor</code> does not commit its changes but rather only performs the changes in the transient space (with the resource resolver bound to the current request) and in addition reports the changes through the 2nd parameter of the method <code>process(SlingHttpServletRequest, List&lt;Modification&gt;)</code>.</p>
 <p>Two examples of SlingPostProcessors are found in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/post">test-services</a> module, with the corresponding test code in the <a href="https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/src/main/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/post/SlingPostProcessorTest.java">integration-tests</a> module.</p>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Manipulating Content - The SlingPostServlet (servlets.post) )</div>                            
                         </div>
                     </div>
                 </div>

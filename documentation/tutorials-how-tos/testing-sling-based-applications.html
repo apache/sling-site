@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -134,7 +142,7 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><p>Automated testing of OSGi components and services can be challenging, as many of them depend on other services that must be present or simulated for testing.</p>
+<div class="row" data-pagefind-body="true"><div><section><p>Automated testing of OSGi components and services can be challenging, as many of them depend on other services that must be present or simulated for testing.</p>
 <p>This page describes the various approaches that we use to test Sling itself, and introduces a number of tools that can help testing OSGi and HTTP-based applications.</p>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
@@ -200,7 +208,7 @@ resolverField.set(servletResolver, factory);
 </code></pre>
 <h2><a href="#summary" id="summary">Summary</a></h2>
 <p>Combining the above testing techniques has worked well for us in creating and testing Sling. Being able to test things at different levels of integration has proved an efficient way to get good test coverage without having to write too much boring test code.</p>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Testing Sling-based applications )</div>                            
                         </div>
                     </div>
                 </div>

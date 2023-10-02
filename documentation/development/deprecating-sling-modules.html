@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -134,7 +142,7 @@
                         </div><h1 class="title">
                             Deprecating Sling Modules
                         </h1><div class="content is-marginless">
-<div class="row"><div><section><p>The following procedure is recommended to deprecate Sling Git repositories, indicating that they should no longer be used.</p>
+<div class="row" data-pagefind-body="true"><div><section><p>The following procedure is recommended to deprecate Sling Git repositories, indicating that they should no longer be used.</p>
 <ul>
 <li>Get consensus on our dev list or do a PMC vote, depending on the importance of the module</li>
 <li>Create a branch named <code>maintenance</code> with the last version before deprecation.</li>
@@ -160,7 +168,7 @@
 <li><a href="https://cwiki.apache.org/confluence/display/SLING/Using+Git+with+Sling#UsingGitwithSling-Boilerplatefiles">Using Git with Sling boilerplate files</a>.</li>
 <li>The previously used <a href="https://svn.apache.org/repos/asf/sling/attic/">svn attic</a> is where older deprecated modules are found.</li>
 </ul>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Deprecating Sling Modules )</div>                            
                         </div>
                     </div>
                 </div>

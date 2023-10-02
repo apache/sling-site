@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -122,7 +130,7 @@
                         </div><h1 class="title">
                             API Docs
                         </h1><div class="content is-marginless">
-<div class="row"><div><section><h2><a href="#sling-api-documentation" id="sling-api-documentation">Sling API Documentation</a></h2>
+<div class="row" data-pagefind-body="true"><div><section><h2><a href="#sling-api-documentation" id="sling-api-documentation">Sling API Documentation</a></h2>
 <p>Use these links to access the API docs of the various Sling versions:</p>
 <ul>
 <li><a href="/apidocs/sling12/index.html">Sling 12</a></li>
@@ -137,7 +145,7 @@
 <p>These apply to the &quot;big&quot; Sling releases, but in between those we often release individual modules, including their version-specific javadocs.</p>
 <p><a href="http://www.javadoc.io/">javadocs.io</a> also provides archived javadocs for all Sling modules, and actually for all open source software hosted at Maven Central.</p>
 <p>To get the javadocs of a particular module there, use an URL like <code>http://javadoc.io/doc/{org}/{artifact}/{version}</code>, like for example <a href="http://www.javadoc.io/doc/org.apache.sling/org.apache.sling.api/2.9.0">http://www.javadoc.io/doc/org.apache.sling/org.apache.sling.api/2.9.0</a></p>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( API Docs )</div>                            
                         </div>
                     </div>
                 </div>

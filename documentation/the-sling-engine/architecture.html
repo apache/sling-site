@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -130,7 +138,7 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row"><div><section><p>The following is a short list of highlights of Sling:</p>
+<div class="row" data-pagefind-body="true"><div><section><p>The following is a short list of highlights of Sling:</p>
 <ul>
 <li><strong><a href="#osgi">OSGi</a></strong> — The Sling application is built as a series of OSGi bundles and makes heavy use of a number of OSGi core and compendium services.</li>
 <li><strong><a href="#sling-api">Sling API</a></strong> — To implement content based Web applications with Sling, an API has been defined, this extends the Servlet API and provides more functionality to work on the content.</li>
@@ -183,7 +191,7 @@
 <p>As we have seen, Sling may be launched as a standalone Java Application or as a Web Application inside any compliant Servlet Container. To hide the differences of the launching mechanism, Sling internally registers a Servlet with an OSGi <code>HttpService</code>. Regardless of how Sling is launched, the Felix implementation of the OSGi <code>HttpService</code> specification is used. When Sling is launched as a standalone Java Application, Felix HttpService uses an embedded version of the Jetty servlet container. When Sling is launched as a Web Application, the Felix HttpService Bridge is used.</p>
 <p>Optionally, PAX Web's implementation of HttpService can be used when Sling is launched as a standalone Java Application. See the <a href="/documentation/development/maven-launchpad-plugin.html">Maven Launchpad Plugin</a> page for information on how to do this.</p>
 <p>See <a href="/documentation/the-sling-engine/the-sling-launchpad.html">The Sling Launchpad</a> for more information.</p>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Architecture )</div>                            
                         </div>
                     </div>
                 </div>

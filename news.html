@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -114,7 +122,7 @@
                         </div><h1 class="title">
                             News
                         </h1><div class="content is-marginless">
-<div class="row"><div><section><ul>
+<div class="row" data-pagefind-body="true"><div><section><ul>
 <li>Vulnerability report: CVE-2022-47937: Multiple parsing problems in the Apache Sling Commons JSON module, see  <a href="https://www.cve.org/CVERecord?id=CVE-2022-47937">https://www.cve.org/CVERecord?id=CVE-2022-47937</a></li>
 <li>Vulnerability report and fix: CVE-2022-37734: Apache GraphQL Core: Upgraded graphql-java to version 20.1 which contains the fix for the vulnerability, see <a href="https://www.cve.org/CVERecord?id=CVE-2022-37734">https://www.cve.org/CVERecord?id=CVE-2022-37734</a></li>
 <li>Vulnerability report and fix: CVE-2022-45064: Apache Sling Engine: Include-based XSS (April 12th, 2023), see <a href="https://www.cve.org/CVERecord?id=CVE-2022-45064">https://www.cve.org/CVERecord?id=CVE-2022-45064</a></li>
@@ -163,7 +171,7 @@
 <p>[The name is] Biblical in nature.  The story of David: the weapon he uses to slay the giant Goliath is a sling.  Hence, our David's [David Nuescheler, CTO of Day Software] favorite weapon.</p>
 <p>It is also the simplest device for delivering content very fast.</p>
 </blockquote>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( News )</div>                            
                         </div>
                     </div>
                 </div>

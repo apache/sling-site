@@ -27,6 +27,12 @@
 	})();
 	</script>
 	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
 	
     </head>    <body>
         <div class="section">
@@ -40,7 +46,9 @@
                         <img border="0" alt="Apache" src="/res/logos/apache.png"/>
                     </a>
                 </div>                
-            </div><div class="columns is-gapless">
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
                 <div class="column is-narrow sidemenu">
 <div class="container">
                         <nav class="menu">
@@ -114,7 +122,7 @@
                         </div><h1 class="title">
                             Contributing
                         </h1><div class="content is-marginless">
-<div class="row"><div><section><p>Thanks for choosing to contribute to Apache Sling! The following are a set of guidelines to follow when contributing to this project.</p>
+<div class="row" data-pagefind-body="true"><div><section><p>Thanks for choosing to contribute to Apache Sling! The following are a set of guidelines to follow when contributing to this project.</p>
 <h2><a href="#code-of-conduct" id="code-of-conduct">Code of Conduct</a></h2>
 <p>Being an Apache project, Apache Sling adheres to the Apache Software Foundation's <a href="https://www.apache.org/foundation/policies/conduct.html">Code of Conduct</a>.</p>
 <h2><a href="#legal" id="legal">Legal</a></h2>
@@ -160,7 +168,7 @@ against null values.
 <li>Use the latest version of the bundle(s) you changed in the Sling Starter. Running <code>git grep ARTIFACT_ID</code> will indicate the potential places where you need to make changes</li>
 <li>Run <code>mvn clean verify</code> in the Sling Starter checkout. This runs the full set of integration tests that we use for Sling modules.</li>
 </ul>
-</section></div></div>                            
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Contributing )</div>                            
                         </div>
                     </div>
                 </div>
