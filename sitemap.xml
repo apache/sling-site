@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/index.html</loc><lastmod>2023-10-02</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/development/release-management.html</loc><lastmod>2023-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation.html</loc><lastmod>2023-09-28</lastmod>
@@ -122,8 +124,6 @@
         <loc>https://sling.apache.org/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
         <loc>https://sling.apache.org/news/sling-11-released.html</loc><lastmod>2018-10-23</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/index.html</loc><lastmod>2021-07-30</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/tutorials-how-tos/jackrabbit-persistence.html</loc><lastmod>2018-07-17</lastmod>
     </url><url>
