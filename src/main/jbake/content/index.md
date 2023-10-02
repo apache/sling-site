@@ -20,10 +20,8 @@ Sling serves as basis for a variety of applications ranging from
 blogging engines all the way to enterprise content management
 systems.
 
-Our [Getting Started](/documentation/getting-started.html) page will help you
-start playing with Sling.
-
-If you want to jump straight into the code, see our [list of repositories](/repolist.html).
+Our [Documentation Overview](/documentation.html) page will help you
+get started.
 
 Discussions about Sling happen on our mailing lists, see our 
 [Project Information](/project-information.html) page for more info.
