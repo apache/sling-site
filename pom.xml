@@ -41,6 +41,9 @@
 
     <!-- pagefind needs to run after compile and before package... -->
     <pagefind.maven.phase>test</pagefind.maven.phase>
+
+    <!-- getting GLIBC_2.28 not found on Jenkins with Node > 16 -->
+    <pagefind.node.version>v16.6.0</pagefind.node.version>
   </properties>
 
   <build>
@@ -237,7 +240,7 @@
                                 </goals>
                                 <phase>${pagefind.maven.phase}</phase>
                                 <configuration>
-                                    <nodeVersion>v20.7.0</nodeVersion>
+                                    <nodeVersion>${pagefind.node.version}</nodeVersion>
                                 </configuration>
                             </execution>
                             <execution>
