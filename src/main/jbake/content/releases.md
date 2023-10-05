@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2023
+
+* JCR Base 3.2.0 (5th)
+
 ## September 2023
 
 * Commons Prometheus Metrics Exporter 0.1.0 (27th)
