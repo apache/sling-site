@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2023
 
+* Servlets Get 2.2.0, Servlets Post 2.6.0 and Servlets Resolver 2.10.0 (8th)
 * JCR Base 3.2.0 (5th)
 
 ## September 2023
