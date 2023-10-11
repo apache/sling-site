@@ -55,6 +55,10 @@ Since osgi-mock 2.0.0:
 
 * Support OSGi R6 and Declarative Services 1.3: Field-based reference bindings and component property types
 
+Since osgi-mock 3.4.0:
+
+* Support direct construction of component property type [("Config") annotations][config-annotations].
+
 
 ## Usage
 
@@ -231,3 +235,192 @@ More examples:
 [mockito-junit5-extension]: https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html
 [caconfig-mock-plugin]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java
 [caconfig-mock-plugin-test]: https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java
+
+## Config Annotations
+
+Since osgi-mock 3.4.0, it is possible to use the provided `@UpdateConfig` and `@ApplyConfig` annotations to directly construct component property type ("Config") annotations for use as first-class values in unit tests. Both osgi-mock.junit4 and osgi-mock.junit5 provide different approaches for convenient reflection and injection of these annotations.
+
+### JUnit 5: OSGi Config Parameters JUnit Extension
+
+Given an OSGi component class that looks like this:
+
+    #!java
+    import org.osgi.service.component.annotations.Activate;
+    import org.osgi.service.component.annotations.Component;
+    import java.lang.annotation.Retention;
+    import java.lang.annotation.RetentionPolicy;
+
+    @Component(service = MyService.class)
+    public class MyService {
+
+        // specify runtime retention to allow for direct usage in unit tests 
+        @Retention(RetentionPolicy.RUNTIME)
+        public @interface Config {
+            String path() default "/";
+        }
+
+        private final String path;
+
+        @Activate
+        public MyService(Config config) {
+            this.path = config.path();
+        }
+
+        public String getPath() {
+            return path;
+        }
+    }
+
+A companion unit test in JUnit 5 might look like this:
+
+    #!java
+    import org.apache.sling.testing.mock.osgi.config.annotations.ApplyConfig;
+    import org.apache.sling.testing.mock.osgi.config.annotations.UpdateConfig;
+    import org.apache.sling.testing.mock.osgi.junit5.OsgiConfigParametersExtension;
+    import org.junit.jupiter.api.Test;
+    import org.junit.jupiter.api.extension.ExtendWith;
+
+    import static org.junit.jupiter.api.Assertions.assertEquals;
+
+    @ExtendWith(OsgiConfigParametersExtension.class)
+    class MyServiceTest {
+
+        @Test
+        @MyService.Config(path = "/apps") // requires @Retention(RetentionPolicy.RUNTIME)
+        void getPath(MyService.Config config) {
+            MyService myService = new MyService(config);
+            assertEquals("/apps", myService.getPath());
+        }
+
+        @Test
+        @ApplyConfig(type = MyService.Config.class, property = "path=/libs")
+        void getPath_applyConfig(MyService.Config config) {
+            MyService myService = new MyService(config);
+            assertEquals("/libs", myService.getPath());
+        }
+
+        @Test
+        @UpdateConfig(pid = "new-pid", property = "path=/content")
+        @ApplyConfig(pid = "new-pid", type = MyService.Config.class)
+        void getPath_updateConfig(MyService.Config config) {
+            MyService myService = new MyService(config);
+            assertEquals("/content", myService.getPath());
+        }
+    }
+
+
+### JUnit 4: Config Collector JUnit Rule
+
+Given the same example OSGi component from before:
+
+    #!java
+    import org.osgi.service.component.annotations.Activate;
+    import org.osgi.service.component.annotations.Component;
+    import java.lang.annotation.Retention;
+    import java.lang.annotation.RetentionPolicy;
+
+    @Component(service = MyService.class)
+    public class MyService {
+
+        // specify runtime retention to allow for direct usage in unit tests 
+        @Retention(RetentionPolicy.RUNTIME)
+        public @interface Config {
+            String path() default "/";
+        }
+
+        private final String path;
+
+        @Activate
+        public MyService(Config config) {
+            this.path = config.path();
+        }
+
+        public String getPath() {
+            return path;
+        }
+    }
+
+
+A companion unit test in JUnit 4 might look like this:
+
+    #!java
+    import org.apache.sling.testing.mock.osgi.config.annotations.ApplyConfig;
+    import org.apache.sling.testing.mock.osgi.config.annotations.UpdateConfig;
+    import org.apache.sling.testing.mock.osgi.junit.ConfigCollector;
+    import org.apache.sling.testing.mock.osgi.junit.OsgiContext;
+    import org.apache.sling.testing.mock.osgi.junit.OsgiContextBuilder;
+    import org.junit.Rule;
+
+    import static org.junit.Assert.assertEquals;
+
+    public class MyServiceTest {
+
+        @Rule
+        public OsgiContext context = new OsgiContextBuilder().build();
+
+        @Rule
+        public ConfigCollector configs = new ConfigCollector(context, MyService.Config.class);
+
+        @Test
+        @MyService.Config(path = "/apps") // requires @Retention(RetentionPolicy.RUNTIME)
+        public void myServiceMethod() {
+            MyService.Config config = configs.configStream(MyService.Config.class)
+                    .findFirst()
+                    .orElseThrow();
+            MyService myService = new MyService(config);
+            assertEquals("/apps", myService.getPath());
+        }
+
+        @Test
+        @ApplyConfig(type = MyService.Config.class, property = "path=/libs")
+        public void myServiceMethod() {
+            MyService.Config config = configs.configStream(MyService.Config.class)
+                    .findFirst()
+                    .orElseThrow();
+            MyService myService = new MyService(config);
+            assertEquals("/libs", myService.getPath());
+        }
+
+        @Test
+        @UpdateConfig(pid = "new-pid", property = "path=/content")
+        @ApplyConfig(pid = "new-pid", type = MyService.Config.class)
+        public void myServiceMethod() {
+            MyService.Config config = configs.configStream(MyService.Config.class)
+                    .findFirst()
+                    .orElseThrow();
+            MyService myService = new MyService(config);
+            assertEquals("/content", myService.getPath());
+        }
+    }
+
+### Config Annotations: SlingContext Compatibility
+
+The OSGi Mock Config Annotations and JUnit4/JUnit5 extensions are compatible with the `SlingContext` from Sling Mocks and other libraries that provide extensions of `OsgiContextImpl`.
+
+To setup a project with Sling Mocks and OSGi Mocks Config Annotations, adjust the project pom.xml for either JUnit4 or JUnit5:
+
+For JUnit 5:
+
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.osgi-mock.junit5</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.sling-mock.junit5</artifactId>
+    </dependency>
+
+For JUnit 4:
+
+    #!xml
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.osgi-mock.junit4</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
+    </dependency>
+
+See latest versions on the [downloads page](/downloads.cgi).
