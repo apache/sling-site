@@ -57,7 +57,7 @@ Since osgi-mock 2.0.0:
 
 Since osgi-mock 3.4.0:
 
-* Support direct construction of component property type [("Config") annotations][config-annotations].
+* Support direct construction of component property type [Config Annotations](#config-annotations).
 
 
 ## Usage
