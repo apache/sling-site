@@ -238,9 +238,27 @@ More examples:
 
 ## Config Annotations
 
-Since osgi-mock 3.4.0, it is possible to use the provided `@UpdateConfig` and `@ApplyConfig` annotations to directly construct component property type ("Config") annotations for use as first-class values in unit tests. Both osgi-mock.junit4 and osgi-mock.junit5 provide different approaches for convenient reflection and injection of these annotations.
+Since osgi-mock 3.4.0, it is possible to use the provided `@UpdateConfig` and `@ConfigType` annotations to directly construct component property type ("Config") annotations for use as first-class values in unit tests. 
 
-### JUnit 5: OSGi Config Parameters JUnit Extension
+### `@UpdateConfig` 
+
+`@UpdateConfig` is used to declare a ConfigurationAdmin configuration update prior to execution of a test using a `@Component`-style property declaration. 
+
+Either the `pid` or `component` Class attribute must be specified for it to have any effect. If both are specified, the `pid` attribute takes precedence. 
+
+Multiple `@UpdateConfig` annotations may be specified on the test class and the test method. They will be applied in the order they are declared, **starting with the class annotations, then the method annotations**.
+
+### `@ConfigType` 
+
+`@ConfigType` is used to map a service component's `Config` annotation type to an optional `@Component`-style property declaration, or to a pid to get a configuration from `ConfigurationAdmin` when the type is injected as a test parameter or collected by a `ConfigCollector`.
+
+All `@UpdateConfig` annotations in scope will be applied before a matching `@ConfigType` annotation is constructed.
+
+Multiple `@ConfigType` annotations may be specified on the test class and the test method. They will be injected into matching parameters in the order they are declared, **starting with the method annotations, then the class annotations**.
+
+Both osgi-mock.junit4 and osgi-mock.junit5 provide different approaches for convenient reflection and injection of these annotations.
+
+### JUnit 5: `OsgiConfigParametersExtension` JUnit Extension
 
 Given an OSGi component class that looks like this:
 
@@ -274,7 +292,7 @@ Given an OSGi component class that looks like this:
 A companion unit test in JUnit 5 might look like this:
 
     #!java
-    import org.apache.sling.testing.mock.osgi.config.annotations.ApplyConfig;
+    import org.apache.sling.testing.mock.osgi.config.annotations.ConfigType;
     import org.apache.sling.testing.mock.osgi.config.annotations.UpdateConfig;
     import org.apache.sling.testing.mock.osgi.junit5.OsgiConfigParametersExtension;
     import org.junit.jupiter.api.Test;
@@ -293,15 +311,15 @@ A companion unit test in JUnit 5 might look like this:
         }
 
         @Test
-        @ApplyConfig(type = MyService.Config.class, property = "path=/libs")
-        void getPath_applyConfig(MyService.Config config) {
+        @ConfigType(type = MyService.Config.class, property = "path=/libs")
+        void getPath_ConfigType(MyService.Config config) {
             MyService myService = new MyService(config);
             assertEquals("/libs", myService.getPath());
         }
 
         @Test
         @UpdateConfig(pid = "new-pid", property = "path=/content")
-        @ApplyConfig(pid = "new-pid", type = MyService.Config.class)
+        @ConfigType(pid = "new-pid", type = MyService.Config.class)
         void getPath_updateConfig(MyService.Config config) {
             MyService myService = new MyService(config);
             assertEquals("/content", myService.getPath());
@@ -309,7 +327,7 @@ A companion unit test in JUnit 5 might look like this:
     }
 
 
-### JUnit 4: Config Collector JUnit Rule
+### JUnit 4: `ConfigCollector` JUnit Rule
 
 Given the same example OSGi component from before:
 
@@ -344,7 +362,7 @@ Given the same example OSGi component from before:
 A companion unit test in JUnit 4 might look like this:
 
     #!java
-    import org.apache.sling.testing.mock.osgi.config.annotations.ApplyConfig;
+    import org.apache.sling.testing.mock.osgi.config.annotations.ConfigType;
     import org.apache.sling.testing.mock.osgi.config.annotations.UpdateConfig;
     import org.apache.sling.testing.mock.osgi.junit.ConfigCollector;
     import org.apache.sling.testing.mock.osgi.junit.OsgiContext;
@@ -372,7 +390,7 @@ A companion unit test in JUnit 4 might look like this:
         }
 
         @Test
-        @ApplyConfig(type = MyService.Config.class, property = "path=/libs")
+        @ConfigType(type = MyService.Config.class, property = "path=/libs")
         public void myServiceMethod() {
             MyService.Config config = configs.configStream(MyService.Config.class)
                     .findFirst()
@@ -383,7 +401,7 @@ A companion unit test in JUnit 4 might look like this:
 
         @Test
         @UpdateConfig(pid = "new-pid", property = "path=/content")
-        @ApplyConfig(pid = "new-pid", type = MyService.Config.class)
+        @ConfigType(pid = "new-pid", type = MyService.Config.class)
         public void myServiceMethod() {
             MyService.Config config = configs.configStream(MyService.Config.class)
                     .findFirst()
@@ -395,32 +413,4 @@ A companion unit test in JUnit 4 might look like this:
 
 ### Config Annotations: SlingContext Compatibility
 
-The OSGi Mock Config Annotations and JUnit4/JUnit5 extensions are compatible with the `SlingContext` from Sling Mocks and other libraries that provide extensions of `OsgiContextImpl`.
-
-To setup a project with Sling Mocks and OSGi Mocks Config Annotations, adjust the project pom.xml for either JUnit4 or JUnit5:
-
-For JUnit 5:
-
-    #!xml
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.osgi-mock.junit5</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.sling-mock.junit5</artifactId>
-    </dependency>
-
-For JUnit 4:
-
-    #!xml
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.osgi-mock.junit4</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
-    </dependency>
-
-See latest versions on the [downloads page](/downloads.cgi).
+The OSGi Mock Config Annotations and JUnit4/JUnit5 extensions are compatible with the `SlingContext` from Sling Mocks and other libraries that provide extensions of `OsgiContextImpl`. The JUnit4 Rule or JUnit5 Extension will be available in test code as long as the osgi context provider's junit4 or junit5 library is explicitly or transitively dependent on the respective osgi-mock.junit4 or osgi-mock.junit5 dependency.
