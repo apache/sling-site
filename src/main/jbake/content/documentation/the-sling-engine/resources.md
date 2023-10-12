@@ -169,6 +169,14 @@ Metadata Property | Backed by
 
 For binary nodes all properties except `jcr:created` are retrieved from the child node `jcr:content`.
 
+#### `ResourceResolver` Attributes
+
+The following attributes are exposed from a JCR backed `ResourceResolver` in its [`getAttribute(...)`][10] and [`getAttributeNames(...)`][11] methods (in addition to the default attributes)
+
+Attribute Name | Description
+--- | ---
+`user.name` | The User ID bound to the current `javax.jcr.Session` as exposed by `getUserID()`
+all `javax.jcr.Session` attributes | For Oak based repositories those are described in [Oak Session Attributes][12]
 
 ### Bundle-based Resources
 
@@ -248,3 +256,6 @@ The Sling API provides an easy way to wrap or decorate a resource before returni
   [7]: https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java
   [8]: https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html
   [9]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html
+  [10]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html#getAttribute-java.lang.String-
+  [11]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html#getAttributeNames--
+  [12]: https://jackrabbit.apache.org/oak/docs/differences.html#session-attributes
