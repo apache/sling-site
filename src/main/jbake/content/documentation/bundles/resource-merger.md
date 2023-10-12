@@ -21,7 +21,7 @@ Each `MergedResourcePicker` service implementation in the system provides one un
 The exact merging mechanism depends on the resource picker implementation (see below). The order of the merging is important as the overlying resource may overwrite properties/child resources from the underlying resource (but not vice-versa). 
 It is possible to
 
-* remove existing resource/properties from the underlying resources,
+* remove existing resources/properties from the underlying resources,
 * modify existing properties/child resources of the underlying resources and
 * add new properties/child resources
 
