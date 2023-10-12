@@ -238,21 +238,27 @@ More examples:
 
 ## Config Annotations
 
-Since osgi-mock 3.4.0, it is possible to use the provided `@UpdateConfig` and `@ConfigType` annotations to directly construct component property type ("Config") annotations for use as first-class values in unit tests. 
+Since osgi-mock 3.4.0, it is possible to use the provided `@SetConfig` and `@ConfigType` annotations to directly construct component property type ("Config") annotations for use as first-class values in unit tests. 
 
-### `@UpdateConfig` 
+### `@SetConfig` 
 
-`@UpdateConfig` is used to declare a ConfigurationAdmin configuration update prior to execution of a test using a `@Component`-style property declaration. 
+`@SetConfig` is used to declare a ConfigurationAdmin configuration update prior to execution of a test using a `@Component`-style property declaration. 
 
 Either the `pid` or `component` Class attribute must be specified for it to have any effect. If both are specified, the `pid` attribute takes precedence. 
 
-Multiple `@UpdateConfig` annotations may be specified on the test class and the test method. They will be applied in the order they are declared, **starting with the class annotations, then the method annotations**.
+Multiple `@SetConfig` annotations may be specified on the test class and the test method. They will be applied in the order they are declared, **starting with the class annotations, then the method annotations**.
 
 ### `@ConfigType` 
 
 `@ConfigType` is used to map a service component's `Config` annotation type to an optional `@Component`-style property declaration, or to a pid to get a configuration from `ConfigurationAdmin` when the type is injected as a test parameter or collected by a `ConfigCollector`.
 
-All `@UpdateConfig` annotations in scope will be applied before a matching `@ConfigType` annotation is constructed.
+### `@AutoConfig`
+
+`@AutoConfig(MyService.class)` is used to automatically convert a runtime-retained component property type annotation in scope to a property map and merge it into a ConfigurationAdmin update for the designated component class, so that a matching `context.registerInjectActivateService(MyService.class)` call within the test body will reflect the values of the statically-typed config annotation, without having to explicitly pass them as a `Map<String, Object>` in the method arguments.
+
+An `@AutoConfig` annotation may be specified on the test class or the test method. If both are specified, the method annotation takes precedence.
+
+All `@SetConfig` annotations in scope will be applied before `@AutoConfig`, if present, and `@ConfigType` annotations will be constructed after that.
 
 Multiple `@ConfigType` annotations may be specified on the test class and the test method. They will be injected into matching parameters in the order they are declared, **starting with the method annotations, then the class annotations**.
 
@@ -293,7 +299,7 @@ A companion unit test in JUnit 5 might look like this:
 
     #!java
     import org.apache.sling.testing.mock.osgi.config.annotations.ConfigType;
-    import org.apache.sling.testing.mock.osgi.config.annotations.UpdateConfig;
+    import org.apache.sling.testing.mock.osgi.config.annotations.SetConfig;
     import org.apache.sling.testing.mock.osgi.junit5.OsgiConfigParametersExtension;
     import org.junit.jupiter.api.Test;
     import org.junit.jupiter.api.extension.ExtendWith;
@@ -318,9 +324,9 @@ A companion unit test in JUnit 5 might look like this:
         }
 
         @Test
-        @UpdateConfig(pid = "new-pid", property = "path=/content")
+        @SetConfig(pid = "new-pid", property = "path=/content")
         @ConfigType(pid = "new-pid", type = MyService.Config.class)
-        void getPath_updateConfig(MyService.Config config) {
+        void getPath_SetConfig(MyService.Config config) {
             MyService myService = new MyService(config);
             assertEquals("/content", myService.getPath());
         }
@@ -363,7 +369,7 @@ A companion unit test in JUnit 4 might look like this:
 
     #!java
     import org.apache.sling.testing.mock.osgi.config.annotations.ConfigType;
-    import org.apache.sling.testing.mock.osgi.config.annotations.UpdateConfig;
+    import org.apache.sling.testing.mock.osgi.config.annotations.SetConfig;
     import org.apache.sling.testing.mock.osgi.junit.ConfigCollector;
     import org.apache.sling.testing.mock.osgi.junit.OsgiContext;
     import org.apache.sling.testing.mock.osgi.junit.OsgiContextBuilder;
@@ -377,14 +383,12 @@ A companion unit test in JUnit 4 might look like this:
         public OsgiContext context = new OsgiContextBuilder().build();
 
         @Rule
-        public ConfigCollector configs = new ConfigCollector(context, MyService.Config.class);
+        public ConfigCollector configs = new ConfigCollector(context);
 
         @Test
         @MyService.Config(path = "/apps") // requires @Retention(RetentionPolicy.RUNTIME)
         public void myServiceMethod() {
-            MyService.Config config = configs.configStream(MyService.Config.class)
-                    .findFirst()
-                    .orElseThrow();
+            MyService.Config config = configs.firstConfig(MyService.Config.class);
             MyService myService = new MyService(config);
             assertEquals("/apps", myService.getPath());
         }
@@ -392,20 +396,16 @@ A companion unit test in JUnit 4 might look like this:
         @Test
         @ConfigType(type = MyService.Config.class, property = "path=/libs")
         public void myServiceMethod() {
-            MyService.Config config = configs.configStream(MyService.Config.class)
-                    .findFirst()
-                    .orElseThrow();
+            MyService.Config config = configs.firstConfig(MyService.Config.class);
             MyService myService = new MyService(config);
             assertEquals("/libs", myService.getPath());
         }
 
         @Test
-        @UpdateConfig(pid = "new-pid", property = "path=/content")
+        @SetConfig(pid = "new-pid", property = "path=/content")
         @ConfigType(pid = "new-pid", type = MyService.Config.class)
         public void myServiceMethod() {
-            MyService.Config config = configs.configStream(MyService.Config.class)
-                    .findFirst()
-                    .orElseThrow();
+            MyService.Config config = configs.firstConfig(MyService.Config.class);
             MyService myService = new MyService(config);
             assertEquals("/content", myService.getPath());
         }
