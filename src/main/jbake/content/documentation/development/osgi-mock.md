@@ -238,7 +238,7 @@ More examples:
 
 ## Config Annotations
 
-Since osgi-mock 3.4.0, it is possible to use the provided `@SetConfig` and `@ConfigType` annotations to directly construct component property type ("Config") annotations for use as first-class values in unit tests. 
+Since osgi-mock 3.4.0, it is possible to use your component `Config` annotation test methods and classes, or use the provided `@SetConfig` and `@ConfigType` annotations to construct them for use as first-class values in unit tests. 
 
 ### `@SetConfig` 
 
@@ -254,7 +254,7 @@ Multiple `@SetConfig` annotations may be specified on the test class and the tes
 
 ### `@AutoConfig`
 
-`@AutoConfig(MyService.class)` is used to automatically convert a runtime-retained component property type annotation in scope to a property map and merge it into a ConfigurationAdmin update for the designated component class, so that a matching `context.registerInjectActivateService(MyService.class)` call within the test body will reflect the values of the statically-typed config annotation, without having to explicitly pass them as a `Map<String, Object>` in the method arguments.
+`@AutoConfig(MyService.class)` is used to automatically convert a component property type annotation to a property map and install it using ConfigurationAdmin for the designated component class, so that a matching `context.registerInjectActivateService(MyService.class)` call will reflect the values of config annotation, without having to explicitly pass them as a `Map<String, Object>` in the method arguments.
 
 An `@AutoConfig` annotation may be specified on the test class or the test method. If both are specified, the method annotation takes precedence.
 
@@ -330,6 +330,47 @@ A companion unit test in JUnit 5 might look like this:
             MyService myService = new MyService(config);
             assertEquals("/content", myService.getPath());
         }
+    }
+
+There are multiple ways to declare a `Config` annotation and then use it as a test parameter.
+
+Directly use the annotation on the test method and declare it as a test parameter:
+
+    #!java
+    @Test
+    @MyService.Config(path = "/apps")
+    void getPath(MyService.Config config) {
+        MyService myService = new MyService(config);
+        assertEquals("/apps", myService.getPath());
+    }
+
+Directly use the annotation on the test method, but use the `@AutoConfig(MyService.class)` annotation to install your component configuration behind the scenes, so that `registerInjectActivateService` will load it from ConfigurationAdmin:
+
+    #!java
+    @Test
+    @AutoConfig(MyService.class)
+    @MyService.Config(path = "/apps")
+    void getPath() {
+        MyService myService = context.registerInjectActivateService(MyService.class);
+        assertEquals("/apps", myService.getPath());
+    }
+
+To create more than one configurable service in your test, use the `@ConfigMapParameter` annotation on a `Map<String, Object>` parameters to have the typed config annotations converted for use as Map arguments to `registerInjectActivateService`:
+
+    #!java
+
+    @Test
+    @MyServiceDependency.Config(allowedPaths = "/apps")
+    @MyService.Config(path = "/apps")
+    void getPath(@ConfigMapParameter(MyServiceDependency.Config.class) 
+                 Map<String, Object> myDependencyConfig,
+                 @ConfigMapParameter(MyService.Config.class) 
+                 Map<String, Object> myServiceConfig) {
+        MyServiceDependency myDependency = 
+            context.registerInjectActivateService(MyServiceDependency.class, myDependencyConfig);
+        MyService myService = 
+            context.registerInjectActivateService(MyService.class, myServiceConfig);
+        assertEquals("/apps", myService.getPath());
     }
 
 
@@ -410,6 +451,54 @@ A companion unit test in JUnit 4 might look like this:
             assertEquals("/content", myService.getPath());
         }
     }
+
+In JUnit4 are multiple ways to declare a `Config` annotation and then use it as a test parameter.
+
+Directly use the annotation on the test method and retrieve it from the `ConfigCollector` using the `firstConfig(Config.class)` method to pass to your component's `@Activate` constructor:
+
+    #!java
+    @Rule
+    public ConfigCollector configs = new ConfigCollector(context);
+
+    @Test
+    @MyService.Config(path = "/apps")
+    public void testGetPath() {
+        MyService.Config config = configs.firstConfig(MyService.Config.class);
+        MyService myService = new MyService(config);
+        assertEquals("/apps", myService.getPath());
+    }
+
+Directly use the annotation on the test method, but use the `@AutoConfig(MyService.class)` annotation to install your component configuration behind the scenes, so that `registerInjectActivateService` will load it from ConfigurationAdmin:
+
+    #!java
+    @Rule
+    public ConfigCollector configs = new ConfigCollector(context);
+
+    @Test
+    @AutoConfig(MyService.class)
+    @MyService.Config(path = "/apps")
+    public void testGetPath() {
+        MyService myService = context.registerInjectActivateService(MyService.class);
+        assertEquals("/apps", myService.getPath());
+    }
+
+To create more than one configurable service in your test, use the `ConfigCollector.firstConfigMap(Config.class)` method to return a `Map<String, Object>` converted from each `@Config` annotation for use as Map arguments to `registerInjectActivateService`:
+
+    #!java
+    @Rule
+    public ConfigCollector configs = new ConfigCollector(context);
+
+    @Test
+    @MyServiceDependency.Config(allowedPaths = "/apps")
+    @MyService.Config(path = "/apps")
+    public void testGetPath() {
+        Map<String, Object> myDependencyConfig = configs.firstConfigMap(MyServiceDependency.Config.class);
+        Map<String, Object> myServiceConfig = configs.firstConfigMap(MyService.Config.class);
+        MyServiceDependency myDependency = context.registerInjectActivateService(MyServiceDependency.class, myDependencyConfig);
+        MyService myService = context.registerInjectActivateService(MyService.class, myServiceConfig);
+        assertEquals("/apps", myService.getPath());
+    }
+
 
 ### Config Annotations: SlingContext Compatibility
 
