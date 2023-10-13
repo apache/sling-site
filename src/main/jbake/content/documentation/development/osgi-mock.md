@@ -355,16 +355,16 @@ Directly use the annotation on the test method, but use the `@AutoConfig(MyServi
         assertEquals("/apps", myService.getPath());
     }
 
-To create more than one configurable service in your test, use the `@ConfigMapParameter` annotation on a `Map<String, Object>` parameters to have the typed config annotations converted for use as Map arguments to `registerInjectActivateService`:
+To create more than one configurable service in your test, use the `@ConfigMap` annotation on a `Map<String, Object>` parameters to have the typed config annotations converted for use as Map arguments to `registerInjectActivateService`:
 
     #!java
 
     @Test
     @MyServiceDependency.Config(allowedPaths = "/apps")
     @MyService.Config(path = "/apps")
-    void getPath(@ConfigMapParameter(MyServiceDependency.Config.class) 
+    void getPath(@ConfigMap(MyServiceDependency.Config.class) 
                  Map<String, Object> myDependencyConfig,
-                 @ConfigMapParameter(MyService.Config.class) 
+                 @ConfigMap(MyService.Config.class) 
                  Map<String, Object> myServiceConfig) {
         MyServiceDependency myDependency = 
             context.registerInjectActivateService(MyServiceDependency.class, myDependencyConfig);
