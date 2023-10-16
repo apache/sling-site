@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2023
 
-* Event 4.3.14 (16th)
+* Event 4.3.14, Testing Sling Mock 3.4.14 (16th)
 * JCR Maintenance 1.1.0, JCR Oak Server 1.4.0 (15th)
 * Auth Core 1.7.0 (9th)
 * Servlets Get 2.2.0, Servlets Post 2.6.0 and Servlets Resolver 2.10.0 (8th)
