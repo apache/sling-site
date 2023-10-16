@@ -1,4 +1,4 @@
-title=Mappings for Resource Resolution		
+title=Mappings for Resource Resolution
 type=page
 status=published
 tags=core,resources,resourcemappings
@@ -8,29 +8,40 @@ tags=core,resources,resourcemappings
 
 ## Configuration
 
-The resource resolution (mapping a request path to a resource in Sling's resource tree) can be influenced in different ways:
+The 
+
+1. resource resolution/incoming mapping (i.e. mapping a request path to a resource in Sling's resource tree) as well as 
+2. mapping a resource path to an external URL/path (aka reverse mapping or outgoing mapping)
+
+can be influenced in different ways:
 
 - Root Level Mappings
 - Alias Configurations
 - Vanity Path Configurations
-- Namespace Mangling
+
+In addition Namespace (De-)Mangling is always applied
 
 ## Root Level Mappings
 
-The mapping of request URLs to resources is mainly configured in a configuration tree which is (by default) located below `/etc/map`. While the actual location can be configured with the property `resource.resolver.map.location` of the OSGi configuration `org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl`, it is suggested to leave the default value.
+The mapping of request URLs to resources (and vice-versa) is mainly configured in a configuration tree which is (by default) located below `/etc/map` (containing resource based mapping entries). While the actual location can be configured with the property `resource.resolver.map.location` of the OSGi configuration `org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl`, it is suggested to leave the default value.
+In addition the OSGi configuration allows to configure URL mappings directly in the OSGi configuration property named `resource.resolver.mapping`, which has the advantage that different rules for outgoing and incoming mapping can be defined.
+On the other hand only resource based mapping entries allow to have different mappings per host.
+Both means are *translated* into internal mapping entries for resolving (incoming) and mapping (outgoing). Both tables are separate.
 
-When dealing with the resource resolution we have a number of properties influencing the process:
+The following properties in resource based mapping entries are detected inside the tree referenced via property `resource.resolver.map.location`:
 
 * `sling:match` &ndash; This property when set on a resource in the `/etc/map` tree (see below) defines a partial regular expression which is used instead of the resource's name to match the incoming request. This property is only needed if the regular expression includes characters which are not valid JCR name characters. The list of invalid characters for JCR names is: `/, :, [, ], *, ', ", \, |` and any whitespace except blank space. In addition a name without a name space may not be `.` or `..` and a blank space is only allowed inside the name.
 * `sling:redirect` &ndash; This property when set on a resource in the `/etc/map` tree (see below) causes a redirect response to be sent to the client, which causes the client to send in a new request with the modified location. The value of this property is applied to the actual request and sent back as the value of `Location` response header field.
 * `sling:status` &ndash; This property defines the HTTP status code sent to the client with the `sling:redirect` response. If this property is not set, it defaults to 302 (Found). Other status codes supported are 300 (Multiple Choices), 301 (Moved Permanently), 303 (See Other), 307 (Temporary Redirect), and 308 (Permanent Redirect).
 * `sling:internalRedirect` &ndash; This property when set on a resource in the `/etc/map` tree (see below) causes the current path to be modified internally to continue with resource resolution. This is a multi-value property, i.e. multiple paths can be given here, which are tried one after another until one resolved to a resource.
 
-Root Level Mappings apply to the request at large including the scheme, host, port and uri path. To accomplish this a path is constructed from the request like this `{scheme}/{host}.{port}/{uri_path}`. This string is then matched against mapping entries below `/etc/map` which are structured in the content analogously. The longest matching entry string is used and the replacement, that is the redirection property, is applied.
+### Incoming Mapping
+
+Incoming mapping entries are matched against the request's *scheme*, *host*, *port* and *uri path*. To accomplish this a virtual path is constructed from the request like this `{scheme}/{host}.{port}/{uri_path}`. This string is then matched against internal (incoming) mapping entries. The longest matching entry string is used and the replacement, that is the redirection property, is applied. There might even be multiple replacements for one entry, where the first one retuning an existing resource wins.
 
 ### Mapping Entry Specification
 
-Each entry in the mapping table is a regular expression, which is constructed from the resource path below `/etc/map`. If any resource along the path has a `sling:match` property, the respective value is used in the corresponding segment instead of the resource name. Only resources either having a `sling:redirect` or `sling:internalRedirect` property are used as table entries. Other resources in the tree are just used to build the mapping structure.
+Each entry in the (incoming) mapping table (and potentially also in the outgoing mapping table) is a regular expression, which is constructed from the resources below the path given via OSGi configuration property `resource.resolver.map.location`. If any resource along the resolved path has a `sling:match` property, the respective value is used in the corresponding segment instead of the resource name. Only resources either having a `sling:redirect` or `sling:internalRedirect` property are used as table entries. Other resources in the tree are just used to build the mapping structure.
 
 *Example*
 
@@ -93,11 +104,24 @@ To illustrate the matching and replacement is applied according to the following
 
 At the end of the loop, `result` contains the mapped path or `null` if no entry matches the request `path`.
 
-**NOTE:** Since the entries in the `/etc/map` are also used to reverse map any resource paths to URLs, using regular expressions with wildcards in the Root Level Mappings prevent the respective entries from being used for reverse mappings. Therefore, it is strongly recommended to not use regular expression matching, unless you have a strong need.
+**NOTE:** Since the entries in `/etc/map` are also used to reverse map any resource paths to URLs, using regular expressions with wildcards in the Root Level Mappings prevent the respective entries from being used for reverse mappings. Therefore, it is strongly recommended to not use regular expression matching, unless you have a strong need.
 
-#### Regular Expressions for Reverse Mappings
+### Reverse/Outgoing Mapping
 
-By default using regular expressions with wildcards will prevent to use the mapping entry for reverse mappings (see above).
+By default all resource based mapping entries define mappings in both directions (i.e. both incoming and outgoing). There are edge cases outlined below where this isn't the case, though.
+For outgoing mappings (i.e. via [`ResourceResolver.map(...)`][1] or [`ResourceResolver.getMapping()`/`ResourceResolver.getAllMappings()`][3]) the returned URL is either an absolute URL including the host (and port) or just the absolute path. The following table outlines when you can expect which of the two formats
+
+API Call | Condition for returning absolute URL (including host and port)
+--- | ---
+[`ResourceResolver.map(String)`][2] or<br />[`ResourceMapper.getMapping(String)`/<br />`ResourceMapper.getAllMappings(String)`][3] | Whenever there is a resource-based mapping entry not using a wildcard in its `sling:match` property or not having a `sling:match` property at all, otherwise just an absolute path.
+[`ResourceResolver.map(HttpServletRequest,,String)`][2] or<br />[`ResourceMapper.getMapping(HttpServletRequest,String)`/<br />`ResourceMapper.getAllMappings(HttpServletRequest,String)`][3] | Whenever there is a resource-based mapping entry (not using a wildcard in its sling:match property or not having a sling:match property) and the `host` header of the passed request contains a different host and port than the one being mapped, otherwise just an absolute path.
+
+*As in general it is not predictable which rule applies if multiple matches for outgoing mapping it is recommended to not have conflicting `sling:match` entries below different protocols/hosts/ports.*
+
+
+#### Regular Expressions for Reverse/Outgoing Mappings
+
+By default using regular expressions with wildcards will prevent to use the mapping entry for reverse/outgoing mappings (see above).
 
 There is one exception though: If there is a `sling:internalRedirect` property containing a regular expression the map entry will be *exclusively used for reverse mappings* (i.e. used only for `ResourceResolver.map(...)`) (see also [SLING-2560](https://issues.apache.org/jira/browse/SLING-2560)). The same resource may carry a `sling:match` property with wildcards and groups referring to the groups being defined in the `sling:internalRedirect` property.
 
@@ -133,7 +157,7 @@ As soon as the result of applying the map entries is an absolute or relative pat
 
 ## Resource Tree Access
 
-The result of Root Level Mapping is an absolute or relative path to a resource. If the path is relative &ndash; e.g. `myproject/docroot/sample.gif` &ndash; the resource resolver search path (`ResourceResolver.getSearchPath()` is used to build absolute paths and resolve the resource. In this case the first resource found is used. If the result of Root Level Mapping is an absolute path, the path is used as is.
+The result of *incoming mapping* is an absolute or relative path to a resource. If the path is relative &ndash; e.g. `myproject/docroot/sample.gif` &ndash; the resource resolver search path (`ResourceResolver.getSearchPath()` is used to build absolute paths and resolve the resource. In this case the first resource found is used. If the result of Root Level Mapping is an absolute path, the path is used as is.
 
 Accessing the resource tree after applying the Root Level Mappings has four options:
 
@@ -329,3 +353,7 @@ To ease with the definition of redirects and aliases when using nodes in a JCR r
 * `sling:Mapping` &ndash; Primary node type which may be used to easily construct entries in the `/etc/map` tree. The node type extends the `sling:MappingSpec` mixin node type to allow setting the required matching and redirection. In addition the `sling:Resource` mixin node type is extended to allow setting a resource type and the `nt:hierarchyNode` node type is extended to allow locating nodes of this node type below `nt:folder` nodes.
 
 Note, that these node types only help setting the properties. The implementation itself only cares for the properties and their values and not for any of these node types.
+
+  [1]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html#map-javax.servlet.http.HttpServletRequest-java.lang.String-
+  [2]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html#map-java.lang.String-
+  [3]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/mapping/ResourceMapper.html
