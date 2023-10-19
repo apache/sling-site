@@ -191,6 +191,10 @@
 <ul>
 <li>Support OSGi R6 and Declarative Services 1.3: Field-based reference bindings and component property types</li>
 </ul>
+<p>Since osgi-mock 3.4.0:</p>
+<ul>
+<li>Support direct construction of component property type <a href="#config-annotations">Config Annotations</a>.</li>
+</ul>
 <h2><a href="#usage" id="usage">Usage</a></h2>
 <p>The <code>OsgiContext</code> object provides access to mock implementations of:</p>
 <ul>
@@ -312,6 +316,231 @@ myServiceConfig.update(props);
 <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/main/java/org/apache/sling/testing/mock/caconfig/ContextPlugins.java">Apache Sling Context-Aware Configuration Mock Plugin</a></li>
 <li><a href="https://github.com/apache/sling-org-apache-sling-testing-caconfig-mock-plugin/blob/master/src/test/java/org/apache/sling/testing/mock/caconfig/ContextPluginsTest.java">Apache Sling Context-Aware Configuration Mock Plugin Test</a></li>
 </ul>
+<h2><a href="#config-annotations" id="config-annotations">Config Annotations</a></h2>
+<p>Since osgi-mock 3.4.0, it is possible to use your component <code>Config</code> annotation test methods and classes, or use the provided <code>@SetConfig</code> and <code>@ConfigType</code> annotations to construct them for use as first-class values in unit tests.</p>
+<h3><a href="#setconfig" id="setconfig"><code>@SetConfig</code></a></h3>
+<p><code>@SetConfig</code> is used to declare a ConfigurationAdmin configuration update prior to execution of a test using a <code>@Component</code>-style property declaration.</p>
+<p>Either the <code>pid</code> or <code>component</code> Class attribute must be specified for it to have any effect. If both are specified, the <code>pid</code> attribute takes precedence.</p>
+<p>Multiple <code>@SetConfig</code> annotations may be specified on the test class and the test method. They will be applied in the order they are declared, <strong>starting with the class annotations, then the method annotations</strong>.</p>
+<h3><a href="#configtype" id="configtype"><code>@ConfigType</code></a></h3>
+<p><code>@ConfigType</code> is used to map a service component's <code>Config</code> annotation type to an optional <code>@Component</code>-style property declaration, or to a pid to get a configuration from <code>ConfigurationAdmin</code> when the type is injected as a test parameter or collected by a <code>ConfigCollector</code>.</p>
+<h3><a href="#autoconfig" id="autoconfig"><code>@AutoConfig</code></a></h3>
+<p><code>@AutoConfig(MyService.class)</code> is used to automatically convert a component property type annotation to a property map and install it using ConfigurationAdmin for the designated component class, so that a matching <code>context.registerInjectActivateService(MyService.class)</code> call will reflect the values of config annotation, without having to explicitly pass them as a <code>Map&lt;String, Object&gt;</code> in the method arguments.</p>
+<p>An <code>@AutoConfig</code> annotation may be specified on the test class or the test method. If both are specified, the method annotation takes precedence.</p>
+<p>All <code>@SetConfig</code> annotations in scope will be applied before <code>@AutoConfig</code>, if present, and <code>@ConfigType</code> annotations will be constructed after that.</p>
+<p>Multiple <code>@ConfigType</code> annotations may be specified on the test class and the test method. They will be injected into matching parameters in the order they are declared, <strong>starting with the method annotations, then the class annotations</strong>.</p>
+<p>Both osgi-mock.junit4 and osgi-mock.junit5 provide different approaches for convenient reflection and injection of these annotations.</p>
+<h3><a href="#junit-5-osgiconfigparametersextension-junit-extension" id="junit-5-osgiconfigparametersextension-junit-extension">JUnit 5: <code>OsgiConfigParametersExtension</code> JUnit Extension</a></h3>
+<p>Given an OSGi component class that looks like this:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Component(service = MyService.class)
+public class MyService {
+
+    // specify runtime retention to allow for direct usage in unit tests 
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Config {
+        String path() default &quot;/&quot;;
+    }
+
+    private final String path;
+
+    @Activate
+    public MyService(Config config) {
+        this.path = config.path();
+    }
+
+    public String getPath() {
+        return path;
+    }
+}
+</code></pre>
+<p>A companion unit test in JUnit 5 might look like this:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->import org.apache.sling.testing.mock.osgi.config.annotations.ConfigType;
+import org.apache.sling.testing.mock.osgi.config.annotations.SetConfig;
+import org.apache.sling.testing.mock.osgi.junit5.OsgiConfigParametersExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(OsgiConfigParametersExtension.class)
+class MyServiceTest {
+
+    @Test
+    @MyService.Config(path = &quot;/apps&quot;) // requires @Retention(RetentionPolicy.RUNTIME)
+    void getPath(MyService.Config config) {
+        MyService myService = new MyService(config);
+        assertEquals(&quot;/apps&quot;, myService.getPath());
+    }
+
+    @Test
+    @ConfigType(type = MyService.Config.class, property = &quot;path=/libs&quot;)
+    void getPath_ConfigType(MyService.Config config) {
+        MyService myService = new MyService(config);
+        assertEquals(&quot;/libs&quot;, myService.getPath());
+    }
+
+    @Test
+    @SetConfig(pid = &quot;new-pid&quot;, property = &quot;path=/content&quot;)
+    @ConfigType(pid = &quot;new-pid&quot;, type = MyService.Config.class)
+    void getPath_SetConfig(MyService.Config config) {
+        MyService myService = new MyService(config);
+        assertEquals(&quot;/content&quot;, myService.getPath());
+    }
+}
+</code></pre>
+<p>There are multiple ways to declare a <code>Config</code> annotation and then use it as a test parameter.</p>
+<p>Directly use the annotation on the test method and declare it as a test parameter:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->@Test
+@MyService.Config(path = &quot;/apps&quot;)
+void getPath(MyService.Config config) {
+    MyService myService = new MyService(config);
+    assertEquals(&quot;/apps&quot;, myService.getPath());
+}
+</code></pre>
+<p>Directly use the annotation on the test method, but use the <code>@AutoConfig(MyService.class)</code> annotation to install your component configuration behind the scenes, so that <code>registerInjectActivateService</code> will load it from ConfigurationAdmin:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->@Test
+@AutoConfig(MyService.class)
+@MyService.Config(path = &quot;/apps&quot;)
+void getPath() {
+    MyService myService = context.registerInjectActivateService(MyService.class);
+    assertEquals(&quot;/apps&quot;, myService.getPath());
+}
+</code></pre>
+<p>To create more than one configurable service in your test, use the <code>@ConfigMap</code> annotation on a <code>Map&lt;String, Object&gt;</code> parameters to have the typed config annotations converted for use as Map arguments to <code>registerInjectActivateService</code>:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->
+@Test
+@MyServiceDependency.Config(allowedPaths = &quot;/apps&quot;)
+@MyService.Config(path = &quot;/apps&quot;)
+void getPath(@ConfigMap(MyServiceDependency.Config.class) 
+             Map&lt;String, Object&gt; myDependencyConfig,
+             @ConfigMap(MyService.Config.class) 
+             Map&lt;String, Object&gt; myServiceConfig) {
+    MyServiceDependency myDependency = 
+        context.registerInjectActivateService(MyServiceDependency.class, myDependencyConfig);
+    MyService myService = 
+        context.registerInjectActivateService(MyService.class, myServiceConfig);
+    assertEquals(&quot;/apps&quot;, myService.getPath());
+}
+</code></pre>
+<h3><a href="#junit-4-configcollector-junit-rule" id="junit-4-configcollector-junit-rule">JUnit 4: <code>ConfigCollector</code> JUnit Rule</a></h3>
+<p>Given the same example OSGi component from before:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Component(service = MyService.class)
+public class MyService {
+
+    // specify runtime retention to allow for direct usage in unit tests 
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Config {
+        String path() default &quot;/&quot;;
+    }
+
+    private final String path;
+
+    @Activate
+    public MyService(Config config) {
+        this.path = config.path();
+    }
+
+    public String getPath() {
+        return path;
+    }
+}
+</code></pre>
+<p>A companion unit test in JUnit 4 might look like this:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->import org.apache.sling.testing.mock.osgi.config.annotations.ConfigType;
+import org.apache.sling.testing.mock.osgi.config.annotations.SetConfig;
+import org.apache.sling.testing.mock.osgi.junit.ConfigCollector;
+import org.apache.sling.testing.mock.osgi.junit.OsgiContext;
+import org.apache.sling.testing.mock.osgi.junit.OsgiContextBuilder;
+import org.junit.Rule;
+
+import static org.junit.Assert.assertEquals;
+
+public class MyServiceTest {
+
+    @Rule
+    public OsgiContext context = new OsgiContextBuilder().build();
+
+    @Rule
+    public ConfigCollector configs = new ConfigCollector(context);
+
+    @Test
+    @MyService.Config(path = &quot;/apps&quot;) // requires @Retention(RetentionPolicy.RUNTIME)
+    public void myServiceMethod() {
+        MyService.Config config = configs.firstConfig(MyService.Config.class);
+        MyService myService = new MyService(config);
+        assertEquals(&quot;/apps&quot;, myService.getPath());
+    }
+
+    @Test
+    @ConfigType(type = MyService.Config.class, property = &quot;path=/libs&quot;)
+    public void myServiceMethod() {
+        MyService.Config config = configs.firstConfig(MyService.Config.class);
+        MyService myService = new MyService(config);
+        assertEquals(&quot;/libs&quot;, myService.getPath());
+    }
+
+    @Test
+    @SetConfig(pid = &quot;new-pid&quot;, property = &quot;path=/content&quot;)
+    @ConfigType(pid = &quot;new-pid&quot;, type = MyService.Config.class)
+    public void myServiceMethod() {
+        MyService.Config config = configs.firstConfig(MyService.Config.class);
+        MyService myService = new MyService(config);
+        assertEquals(&quot;/content&quot;, myService.getPath());
+    }
+}
+</code></pre>
+<p>In JUnit4 are multiple ways to declare a <code>Config</code> annotation and then use it as a test parameter.</p>
+<p>Directly use the annotation on the test method and retrieve it from the <code>ConfigCollector</code> using the <code>firstConfig(Config.class)</code> method to pass to your component's <code>@Activate</code> constructor:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->@Rule
+public ConfigCollector configs = new ConfigCollector(context);
+
+@Test
+@MyService.Config(path = &quot;/apps&quot;)
+public void testGetPath() {
+    MyService.Config config = configs.firstConfig(MyService.Config.class);
+    MyService myService = new MyService(config);
+    assertEquals(&quot;/apps&quot;, myService.getPath());
+}
+</code></pre>
+<p>Directly use the annotation on the test method, but use the <code>@AutoConfig(MyService.class)</code> annotation to install your component configuration behind the scenes, so that <code>registerInjectActivateService</code> will load it from ConfigurationAdmin:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->@Rule
+public ConfigCollector configs = new ConfigCollector(context);
+
+@Test
+@AutoConfig(MyService.class)
+@MyService.Config(path = &quot;/apps&quot;)
+public void testGetPath() {
+    MyService myService = context.registerInjectActivateService(MyService.class);
+    assertEquals(&quot;/apps&quot;, myService.getPath());
+}
+</code></pre>
+<p>To create more than one configurable service in your test, use the <code>ConfigCollector.firstConfigMap(Config.class)</code> method to return a <code>Map&lt;String, Object&gt;</code> converted from each <code>@Config</code> annotation for use as Map arguments to <code>registerInjectActivateService</code>:</p>
+<pre><code><!-- TODO syntax marker (#!java) disabled -->@Rule
+public ConfigCollector configs = new ConfigCollector(context);
+
+@Test
+@MyServiceDependency.Config(allowedPaths = &quot;/apps&quot;)
+@MyService.Config(path = &quot;/apps&quot;)
+public void testGetPath() {
+    Map&lt;String, Object&gt; myDependencyConfig = configs.firstConfigMap(MyServiceDependency.Config.class);
+    Map&lt;String, Object&gt; myServiceConfig = configs.firstConfigMap(MyService.Config.class);
+    MyServiceDependency myDependency = context.registerInjectActivateService(MyServiceDependency.class, myDependencyConfig);
+    MyService myService = context.registerInjectActivateService(MyService.class, myServiceConfig);
+    assertEquals(&quot;/apps&quot;, myService.getPath());
+}
+</code></pre>
+<h3><a href="#config-annotations-slingcontext-compatibility" id="config-annotations-slingcontext-compatibility">Config Annotations: SlingContext Compatibility</a></h3>
+<p>The OSGi Mock Config Annotations and JUnit4/JUnit5 extensions are compatible with the <code>SlingContext</code> from Sling Mocks and other libraries that provide extensions of <code>OsgiContextImpl</code>. The JUnit4 Rule or JUnit5 Extension will be available in test code as long as the osgi context provider's junit4 or junit5 library is explicitly or transitively dependent on the respective osgi-mock.junit4 or osgi-mock.junit5 dependency.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( OSGi Mocks )</div>                            
                         </div>
                     </div>
@@ -323,7 +552,7 @@ myServiceConfig.update(props);
                             content/documentation/development/osgi-mock.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">sseifert</span> on <span class="comment">2019-03-17</span>
+                        Last modified by <span class="author">Mark Adamcin</span> on <span class="comment">2023-10-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
