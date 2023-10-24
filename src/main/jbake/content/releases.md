@@ -11,6 +11,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * JCR Jackrabbit Access Manager 4.0.0, JCR Jackrabbit User Manager 2.2.28, Starter Content 1.0.14 (23rd)
 * Event 4.3.14, Testing Sling Mock 3.4.14 (16th)
 * JCR Maintenance 1.1.0, JCR Oak Server 1.4.0 (15th)
+* Commons MIME 2.2.4 (13th)
 * Auth Core 1.7.0 (9th)
 * Servlets Get 2.2.0, Servlets Post 2.6.0 and Servlets Resolver 2.10.0 (8th)
 * JCR Base 3.2.0 (5th)

@@ -93,7 +93,7 @@ def bundles=[
   "Commons Metrics|org.apache.sling.commons.metrics|1.2.12|Y|jar",
   "Commons Metrics Prometheus|org.apache.sling.commons.metrics.prometheus|0.1.0|Y|jar",
   "Commons Metrics RRD4J|org.apache.sling.commons.metrics-rrd4j|1.0.6|Y|jar",
-  "Commons Mime Type Service|org.apache.sling.commons.mime|2.2.2|Y|jar",
+  "Commons Mime Type Service|org.apache.sling.commons.mime|2.2.4|Y|jar",
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.2|Y|jar",
   "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.12|Y|jar",
   "Commons Testing|org.apache.sling.commons.testing|2.1.2|Y|jar",
