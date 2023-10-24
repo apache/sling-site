@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2023
 
+* JCR Jackrabbit Access Manager 4.0.0, JCR Jackrabbit User Manager 2.2.28, Starter Content 1.0.14 (23rd)
 * Event 4.3.14, Testing Sling Mock 3.4.14 (16th)
 * JCR Maintenance 1.1.0, JCR Oak Server 1.4.0 (15th)
 * Auth Core 1.7.0 (9th)
