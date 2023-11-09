@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2023
+
+* Apache Sling App CMS 1.1.8
+
 ## October 2023
 
 * Apache Sling OSGi Feature Maven Plugin 1.7.4, Apache Sling Feature Model Analyser 2.0.2
