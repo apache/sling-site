@@ -10,6 +10,10 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 * Apache Sling App CMS 1.1.8
 
+## November 2023
+
+* Content Distribution Journal Messages 0.5.6 (10th)
+
 ## October 2023
 
 * Apache Sling OSGi Feature Maven Plugin 1.7.4, Apache Sling Feature Model Analyser 2.0.2
