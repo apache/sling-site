@@ -8,11 +8,9 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2023
 
-* Apache Sling App CMS 1.1.8
-
-## November 2023
-
+* Resource Resolver 1.11.2 (12th)
 * Content Distribution Journal Messages 0.5.6 (10th)
+* Apache Sling App CMS 1.1.8 (9th)
 
 ## October 2023
 
