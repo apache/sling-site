@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2023
 
+* XSS Protection API 2.4.0 (13th)
 * Resource Resolver 1.11.2 (12th)
 * Content Distribution Journal Messages 0.5.6 (10th)
 * Apache Sling App CMS 1.1.8 (9th)
