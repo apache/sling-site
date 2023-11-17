@@ -170,6 +170,7 @@
 <p>The language grammar is defined (using the JavaCC compiler-compiler, which has no runtime dependencies) in the <code>RepoInitGrammar.jjt</code> file in that module, and the automated tests provide a number of <a href="https://github.com/apache/sling-org-apache-sling-repoinit-parser/tree/master/src/test/resources/testcases">test cases</a> which demonstrate various features.</p>
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
 <p>The language is mostly self-explaining, the test suite listed below in Appendix A exposes all language constructs and options.</p>
+<p>When a repoinit script is applied with the <code>org.apache.sling.jcr.repoinit</code> module, the execution order of the individual statements is slightly different from their order within the script. Namely, all statements creating namespaces are executed before any other statements. Next, all statements registering nodetypes or privileges are executed. And finally, all other statements are executed in the order they are defined. This reordering is intended to avoid issues due to missing namespaces, nodetypes or privileges when content is created.</p>
 <h2><a href="#validating-repoinit-statements" id="validating-repoinit-statements">Validating repoinit statements</a></h2>
 <p>There are multiple means to validate the syntax of repoinit statements (only leveraging the parser, but not the actual JCR Repoinit implementation) outlined below.</p>
 <h3><a href="#filevault-validator" id="filevault-validator">FileVault Validator</a></h3>
@@ -946,7 +947,7 @@ end
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-04-28</span>
+                        Last modified by <span class="author">Julian Sedding</span> on <span class="comment">2023-11-17</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
