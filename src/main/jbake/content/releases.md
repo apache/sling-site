@@ -8,15 +8,15 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2023
 
+* Repoinit JCR 1.1.46 (17th)
 * Apache Sling OSGi Feature Maven Plugin 1.8.0 (16th)
 * XSS Protection API 2.4.0 (13th)
 * Resource Resolver 1.11.2 (12th)
 * Content Distribution Journal Messages 0.5.6 (10th)
 * Apache Sling App CMS 1.1.8 (9th)
+* Apache Sling OSGi Feature Maven Plugin 1.7.4, Apache Sling Feature Model Analyser 2.0.2 (8th)
 
 ## October 2023
-
-* Apache Sling OSGi Feature Maven Plugin 1.7.4, Apache Sling Feature Model Analyser 2.0.2
 * JCR Jackrabbit Access Manager 4.0.0, JCR Jackrabbit User Manager 2.2.28, Starter Content 1.0.14, Thumbnails 1.0.2 (23rd)
 * Event 4.3.14, Testing Sling Mock 3.4.14 (16th)
 * JCR Maintenance 1.1.0, JCR Oak Server 1.4.0 (15th)

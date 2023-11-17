@@ -214,7 +214,7 @@ def bundles=[
   "Pipes|org.apache.sling.pipes|4.5.0|Y|jar",
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.6|Y|jar",
   "Project Archetype|sling-project-archetype|1.0.12|Y|jar",
-  "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.44|Y|jar",
+  "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.46|Y|jar",
   "Repoinit Parser|org.apache.sling.repoinit.parser|1.9.0|Y|jar",
   "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.1.0|Y|jar",
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.4|Y|jar",
