@@ -49,6 +49,12 @@ of the repoinit parser to a JCR repository.
 The language is mostly self-explaining, the test suite listed below in Appendix A exposes
 all language constructs and options.
 
+When a repoinit script is applied with the `org.apache.sling.jcr.repoinit` module, the execution order of the individual
+statements is slightly different from their order within the script. Namely, all statements creating namespaces are
+executed before any other statements. Next, all statements registering nodetypes or privileges are executed. And finally,
+all other statements are executed in the order they are defined. This reordering is intended to avoid issues due to
+missing namespaces, nodetypes or privileges when content is created. 
+
 ## Validating repoinit statements
 
 There are multiple means to validate the syntax of repoinit statements (only leveraging the parser, but not the actual JCR Repoinit implementation) outlined below.
