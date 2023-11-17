@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2023
 
+* Resource Resolver 1.11.4 (17th)
 * Engine 2.15.8 (17th)
 * Repoinit JCR 1.1.46 (17th)
 * Apache Sling OSGi Feature Maven Plugin 1.8.0 (16th)
