@@ -50,7 +50,7 @@ def bndPlugins=[
   "Context-Aware Configuration bnd Plugin|org.apache.sling.caconfig.bnd-plugin|1.0.2|Y",
   "Models bnd Plugin|org.apache.sling.bnd.models|1.0.0|Y",
   "bnd Remove Parameters from OSGi Headers Plugin|org.apache.sling.bnd.plugin.headers.parameters.remove|1.0.0|Y",
-  "Scripting Bundle (Maven) Plugin|scriptingbundle-maven-plugin|0.4.0|Y",
+  "Scripting Bundle (Maven) Plugin|scriptingbundle-maven-plugin|0.5.2|Y",
   "Provider Type Checker Bnd Plugin|org.apache.sling.providertype.bnd-plugin|1.0.0|Y"
 ]
 
