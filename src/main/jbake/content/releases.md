@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## December 2023
+
+* Provider Type Checker Bnd Plugin 1.0.0 (9th)
+
 ## November 2023
 
 * Testing OSGi Mock 3.4.0 (20th)
