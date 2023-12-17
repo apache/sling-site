@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2023
 
+* GraphQL Core 0.0.26 (17th)
 * Context-Aware Configuration Mock Plugin 1.5.4 (15th)
 * Testing Sling Mock 3.4.16 (12th)
 * Commons Johnzon 2.0.0, Commons Mime 2.3.0 (10th)
