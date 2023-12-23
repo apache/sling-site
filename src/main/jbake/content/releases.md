@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2023
 
+* Testing JCR Mock 1.6.12, JCR Jackrabbit User Manager 2.2.30 (23rd)
 * Engine 2.15.10 (18th)
 * GraphQL Core 0.0.26 (17th)
 * Context-Aware Configuration Mock Plugin 1.5.4 (15th)
