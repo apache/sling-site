@@ -12,6 +12,10 @@ We strongly encourage folks to report such problems to our private security mail
 
 *Please note that the security mailing list should only be used for reporting undisclosed security vulnerabilities in Apache Sling and managing the process of fixing such vulnerabilities. We cannot accept regular bug reports or other queries at this address. All mail sent to this address that does not relate to an undisclosed security problem in the Apache Sling source code will be ignored.*
 
+In Sling OSGi bundles we have long had a policy of depending on the lowest possible version of a library/API, to ensure that our bundles are deployable in the widest possible range of environments. Therefore the responsibility of
+ensuring that the environment is secure lies with the assembler and/or deployer of the application, which should make sure that the OSGi bundles they deploy are secure. As such, **we don't consider vulnerable dependencies of our bundles as security issues** by themselves. Usually the dependencies used by Sling [are semantically versioned](https://docs.osgi.org/whitepaper/semantic-versioning/index.html) and therefore security related version updates are fully binary backwards-compatible.
+Further detail and some exceptions from that policy are outlined in [our wiki](https://cwiki.apache.org/confluence/display/SLING/Dependabot).
+
 If you need to report a bug that isn't an undisclosed security vulnerability, please use our [public issue tracker](https://issues.apache.org/jira/browse/SLING).
 
 Questions about:
