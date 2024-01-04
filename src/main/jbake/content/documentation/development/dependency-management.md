@@ -34,7 +34,7 @@ The parent POM only does dependency management for build time dependencies and a
 
    * All plugin dependencies. That is `pluginManagement` is still used. Maven plugins are actually build time dependencies and therefore have no influence on the actual deployment.
    * Dependencies on commonly used testing environment helpers. Test helper classes are also build time dependencies used to run the unit and integration tests. As such, they may well be managed.
-   * Sling makes a small number of assumptions about the environment, which we codify in the dependency management: The minimum version number of the OSGi specificaiton used, the Servlet API version and the JCR API version.
+   * Sling makes a small number of assumptions about the environment, which we codify in the dependency management: The minimum version number of the OSGi specification chapters used, the Servlet API version and the JCR API version.
 
 The `<dependencyManagement>` element currently contains the following managed dependencies:
 
@@ -49,8 +49,10 @@ All dependencies per module are fully described in terms of version, scope, and 
 
 The version of the module dependency should be selected according to the following rule: **The lowest version providing the functionality required by the module (or bundle)**. By required functionality we basically mean provided API.
 
-Generally there is a constant flow of releases of dependent libraries. In general this should not cause the dependency version number of a using module to be increased. There is one exception though: If the fixed library version contains a bug fix, which has an influence on the operation of the module, an increase in the version number is indicated and should also be applied.
+Generally there is a constant flow of releases of dependent libraries. In general this should not cause the dependency version number of a using module to be increased. There is two exceptions, though: 
 
+1. If the fixed library version contains a bug fix, which has an influence on the operation of the module, an increase in the version number is indicated and should also be applied. 
+2. In order to reduce warnings about CVEs derived from Maven dependencies (which do not affect the version deployed at run time but still lead to complaints from users) one should also update to the oldest version that doesn't contain any known vulnerabilities. In case this modifies the `Import-Package` version range this requires a bump on the minor segment of the bundle version.
 
 ## References
 
