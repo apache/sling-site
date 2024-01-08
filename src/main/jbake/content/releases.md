@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2024
+
+* GraphQL Core 0.0.28 (8th)
+
 ## December 2023
 
 * Testing JCR Mock 1.6.12, JCR Jackrabbit User Manager 2.2.30 (23rd)
