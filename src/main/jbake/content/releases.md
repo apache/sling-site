@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2024
 
+* JCR Jackrabbit Access Manager 4.0.0 (14th)
 * GraphQL Core 0.0.28 (8th)
 
 ## December 2023
