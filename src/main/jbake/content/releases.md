@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2024
 
+* Resource Resolver 1.11.6 (23rd)
 * Installer Core 3.14.0, Installer Factory Feature 0.8.0, Feature Extension Unpack 0.4.0 (22nd)
 * Rewriter 1.3.8 (18th)
 * JCR Jackrabbit Access Manager 4.0.0 (14th)
