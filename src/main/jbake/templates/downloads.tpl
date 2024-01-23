@@ -225,7 +225,7 @@ def bundles=[
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8|Y|jar",
   "Resource Merger|org.apache.sling.resourcemerger|1.4.4|Y|jar",
   "Resource Presence|org.apache.sling.resource.presence|0.0.2|Y|jar",
-  "Resource Resolver|org.apache.sling.resourceresolver|1.11.4|Y|jar",
+  "Resource Resolver|org.apache.sling.resourceresolver|1.11.6|Y|jar",
   "Rewriter|org.apache.sling.rewriter|1.3.8|Y|jar",
   "Failing Server-Side Tests|org.apache.sling.testing.samples.failingtests|1.0.6|N|jar",
   "SAML2 Service Provider|org.apache.sling.auth.saml2|0.2.6|Y|jar",
