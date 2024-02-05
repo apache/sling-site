@@ -5,6 +5,7 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
+* Vulnerability report: CVE-2024-23673: Apache Sling Servlets Resolver: Malicious code execution via path traversal, see [https://www.cve.org/CVERecord?id=CVE-2024-23673](https://www.cve.org/CVERecord?id=CVE-2024-23673)
 * Vulnerability report: CVE-2022-47937: Multiple parsing problems in the Apache Sling Commons JSON module, see  [https://www.cve.org/CVERecord?id=CVE-2022-47937](https://www.cve.org/CVERecord?id=CVE-2022-47937)
 * Vulnerability report and fix: CVE-2022-37734: Apache GraphQL Core: Upgraded graphql-java to version 20.1 which contains the fix for the vulnerability, see [https://www.cve.org/CVERecord?id=CVE-2022-37734](https://www.cve.org/CVERecord?id=CVE-2022-37734)
 * Vulnerability report and fix: CVE-2022-45064: Apache Sling Engine: Include-based XSS (April 12th, 2023), see [https://www.cve.org/CVERecord?id=CVE-2022-45064](https://www.cve.org/CVERecord?id=CVE-2022-45064)
