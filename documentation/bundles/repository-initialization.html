@@ -151,7 +151,7 @@
 <p>For historical reasons two statements deviate from that by not failing in case the desired repository state cannot be achieved:</p>
 <ol>
 <li><code>create path</code> will not touch/modify existing nodes (i.e. does neither adjust primary nor mixin types if they differ), therefore it has been deprecated and replaced by <code>ensure nodes</code> <a href="https://issues.apache.org/jira/browse/SLING-11736">SLING-11736</a></li>
-<li><code>set principal ACL</code> will not fail in case the principal ACL cannot be applied for whatever reason, therefore it has been deprecated and replaced by <code>ensure princial ACL</code> <a href="https://issues.apache.org/jira/browse/SLING-10281">SLING-10281</a></li>
+<li><code>set principal ACL</code> will not fail in case the principal ACL cannot be applied for whatever reason, therefore it has been deprecated and replaced by <code>ensure principal ACL</code> <a href="https://issues.apache.org/jira/browse/SLING-10281">SLING-10281</a></li>
 </ol>
 <p>Starting with version 1.1.40 of the bundle <code>org.apache.sling.jcr.repoinit</code> repoinit scripts are safely executed also in environments with a shared repository; this is implemented by a retry-mechanism with randomized delays.</p>
 <h2><a href="#slingrepositoryinitializer" id="slingrepositoryinitializer">SlingRepositoryInitializer</a></h2>
@@ -171,6 +171,8 @@
 <p>The companion <code>org.apache.sling.jcr.repoinit</code> module implements those operations on an Oak JCR repository, using a <code>SlingRepositoryInitializer</code> registered by default with a service ranking of 100. It also provides a <code>JcrRepoInitOpsProcessor</code> service to explicitly apply the output of the repoinit parser to a JCR repository.</p>
 <p>The language is mostly self-explaining, the test suite listed below in Appendix A exposes all language constructs and options.</p>
 <p>When a repoinit script is applied with the <code>org.apache.sling.jcr.repoinit</code> module, the execution order of the individual statements is slightly different from their order within the script. Namely, all statements creating namespaces are executed before any other statements. Next, all statements registering nodetypes or privileges are executed. And finally, all other statements are executed in the order they are defined. This reordering is intended to avoid issues due to missing namespaces, nodetypes or privileges when content is created.</p>
+<h2><a href="#executing-repoinit-statements-outside-of-the-startup-sequence" id="executing-repoinit-statements-outside-of-the-startup-sequence">Executing repoinit statements outside of the startup sequence</a></h2>
+<p>As demonstrated by the <a href="https://github.com/apache/sling-org-apache-sling-jcr-repoinit/blob/master/src/test/java/org/apache/sling/jcr/repoinit/it/MinimalRepoInitIT.java#L43">MinimalRepoInitIT</a> test, the <code>RepoInitParser</code> and <code>JcrRepoInitOpsProcessor</code>services allow for parsing and executing repoinit statements independently of the repository startup sequence.</p>
 <h2><a href="#validating-repoinit-statements" id="validating-repoinit-statements">Validating repoinit statements</a></h2>
 <p>There are multiple means to validate the syntax of repoinit statements (only leveraging the parser, but not the actual JCR Repoinit implementation) outlined below.</p>
 <h3><a href="#filevault-validator" id="filevault-validator">FileVault Validator</a></h3>
@@ -947,7 +949,7 @@ end
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Julian Sedding</span> on <span class="comment">2023-11-17</span>
+                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2024-02-06</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
