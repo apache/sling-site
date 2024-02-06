@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## February 2024
+
+* Commons Log 5.5.0 (6th)
+
 ## January 2024
 
 * Servlets Resolver 2.11.0, Rewriter 1.3.10 (27th)
