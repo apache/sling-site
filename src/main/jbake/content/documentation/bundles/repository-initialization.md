@@ -13,7 +13,7 @@ This may happen in case the existing parent nodes have node type restrictions wh
 For historical reasons two statements deviate from that by not failing in case the desired repository state cannot be achieved:
 
 1. `create path` will not touch/modify existing nodes (i.e. does neither adjust primary nor mixin types if they differ), therefore it has been deprecated and replaced by `ensure nodes` [SLING-11736](https://issues.apache.org/jira/browse/SLING-11736)
-1. `set principal ACL` will not fail in case the principal ACL cannot be applied for whatever reason, therefore it has been deprecated and replaced by `ensure princial ACL` [SLING-10281](https://issues.apache.org/jira/browse/SLING-10281)
+1. `set principal ACL` will not fail in case the principal ACL cannot be applied for whatever reason, therefore it has been deprecated and replaced by `ensure principal ACL` [SLING-10281](https://issues.apache.org/jira/browse/SLING-10281)
 
 Starting with version 1.1.40 of the bundle `org.apache.sling.jcr.repoinit` repoinit scripts are safely executed also in environments with a shared repository; this is implemented by a retry-mechanism with randomized delays.
 
