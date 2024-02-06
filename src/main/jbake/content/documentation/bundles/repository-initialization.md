@@ -55,6 +55,13 @@ executed before any other statements. Next, all statements registering nodetypes
 all other statements are executed in the order they are defined. This reordering is intended to avoid issues due to
 missing namespaces, nodetypes or privileges when content is created. 
 
+## Executing repoinit statements outside of the startup sequence
+
+As demonstrated by the
+[MinimalRepoInitIT](https://github.com/apache/sling-org-apache-sling-jcr-repoinit/blob/master/src/test/java/org/apache/sling/jcr/repoinit/it/MinimalRepoInitIT.java#L43)
+test, the `RepoInitParser` and `JcrRepoInitOpsProcessor`services allow for parsing and executing repoinit statements independently
+of the repository startup sequence.
+
 ## Validating repoinit statements
 
 There are multiple means to validate the syntax of repoinit statements (only leveraging the parser, but not the actual JCR Repoinit implementation) outlined below.
