@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2024
 
+* Servlets Resolver 2.11.2 (27th)
 * GraphQL Core 0.0.30 (21th)
 * Commons Log 5.5.0 (6th)
 
