@@ -197,7 +197,8 @@ A queue configuration can have the following properties:
 | `queue.priority` | The thread priority: NORM, MIN, or MAX |
 | `service.ranking` | A ranking for this configuration.|
 
-The configurations are processed in order of their service ranking. The first matching queue configuration is used for the job.
+The configurations are processed in descending order of their service ranking (same as in [`BundleContext.getServiceReference(...)`](https://docs.osgi.org/javadoc/osgi.core/7.0.0/org/osgi/framework/BundleContext.html#getServiceReference-java.lang.Class-). In case of a tie in the service ranking the config which was registered earlier is processed before the config which was registered later.
+The first matching queue configuration is used for the job.
 
 #### Ordered Queues
 
