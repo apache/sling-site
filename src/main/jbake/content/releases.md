@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## March 2024
+
+* Content-Package to Feature Model Converter 1.3.6 (4th)
+
 ## February 2024
 
 * Servlets Resolver 2.11.2 (27th)
