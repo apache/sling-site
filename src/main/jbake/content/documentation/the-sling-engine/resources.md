@@ -231,6 +231,34 @@ Property | Description
 [ResourceChangeListener.CHANGES](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#CHANGES)| the type of changes you are interested in (optional)
 [ResourceChangeListener.PROPERTY_NAMES_HINT](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PROPERTY_NAMES_HINT)| filter only for events affecting the properties with the given names (optional)
 
+#### OSGi Component Property Type
+
+In order to ease creating `ResourceChangeListener`s, there is an according [OSGi component property type](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.component.html#service.component-component.property.types) provided through artifact
+
+    <groupId>org.apache.sling</groupId>
+    <artifactId>org.apache.sling.resource.observation.annotations</artifactId>
+
+It can be used like this:
+
+    ::java
+    import org.apache.sling.api.resource.observation.ResourceChange;
+    import org.apache.sling.api.resource.observation.ResourceChange.ChangeType;
+    import org.apache.sling.api.resource.observation.ResourceChangeListener;
+    import org.osgi.service.component.annotations.Component;
+    
+    @Component
+    @SlingResourceChangeListener(
+            paths = "/examplepath",
+            change_types = {ChangeType.ADDED, ChangeType.REMOVED})
+    public class SampleResourceChangeListener implements ResourceChangeListener {
+    
+        @Override
+        public void onChange(List<ResourceChange> changes) {
+            // Do something here
+        }
+    }
+
+This will generate the necessary service properties automatically (with the help of the Bnd plugin, compare with [Sling Servlet Annotations](./servlets.html#registering-a-servlet-using-java-annotations)).
 
 ### OSGi Event based resource changes (deprecated)
 
@@ -247,9 +275,9 @@ This approach is deprecated in favor of the ResourceChangeListener described abo
 The Sling API provides an easy way to wrap or decorate a resource before returning. Details see [Wrap or Decorate Resources](/documentation/the-sling-engine/wrap-or-decorate-resources.html).
 
 
-  [1]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html
-  [2]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html
-  [3]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html
+  [1]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceMetadata.html
+  [2]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/Resource.html
+  [3]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/AbstractResource.html
   [4]: https://github.com/apache/sling-org-apache-sling-launchpad-test-services/tree/master/src/main/java/org/apache/sling/launchpad/testservices/resourceprovider
   [5]: https://github.com/apache/sling-org-apache-sling-launchpad-test-services/blob/master/src/main/java/org/apache/sling/launchpad/testservices/serversidetests/WriteableResourcesTest.java
   [6]: https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java
