@@ -158,10 +158,10 @@
 <tr><td> Resource Type </td><td> Each resource has a resource type which is used by the Servlet and Script resolver to find the appropriate Servlet or Script to handle the request for the Resource. </td></tr>
 <tr><td> Resource Super Type </td><td> The (optional explicit) super type of the Resource. See the section <em>Resource Types</em> below for more details. </td></tr>
 <tr><td> Adapters </td><td> Resources are always <code>Adaptable</code> and therefore can be adapted to a different view. See the section <em>Resource Adapters</em> below for more details. </td></tr>
-<tr><td> Metadata </td><td> Resources in general support <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceMetadata.html"><code>ResourceMetadata</code></a> providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. </td></tr>
+<tr><td> Metadata </td><td> Resources in general support <a href="https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceMetadata.html"><code>ResourceMetadata</code></a> providing access to values such as the length of a binary resource (which can be streamed) or the Resource's content type. </td></tr>
 </tbody>
 </table>
-<p>For a complete description of the <code>Resource</code> interface, please refer to the <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a> JavaDoc.</p>
+<p>For a complete description of the <code>Resource</code> interface, please refer to the <a href="https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/Resource.html"><code>Resource</code></a> JavaDoc.</p>
 <p>The properties are either exposed via the <code>ValueMap</code> or <code>ModifiableValueMap</code> adaptable or by calling <code>Resource.getValueMap()</code>.</p>
 <p>To get the <em>main</em> binary property from a given resource one can adapt it to an <code>InputStream</code>. Most resource providers return the underlying wrapper binary in that case. The handling of arbitrary binary properties is resource provider specific (some expose lazy <code>InputStreams</code> others may not support binary properties via <code>ValueMap</code> at all).</p>
 <h3><a href="#resource-types" id="resource-types">Resource Types</a></h3>
@@ -180,7 +180,7 @@
 <p>Resource Types form a type hierarchy much like Java classes form a type hierarchy. Each resource type has a resource super type, either explicitly defined as for example for JCR or Servlet Resources or implicitly. The implicit Resource Super Type is at the same time the root Resource Type much like the <code>java.lang.Object</code> class is called <code>sling/servlet/default</code> (for historical reasons). The <code>sling/servlet/default</code> Resource Type is the only type without a super type.</p>
 <h3><a href="#adapters" id="adapters">Adapters</a></h3>
 <p>The object types to which Resources may be adapted mostly depends on the Resource Provider providing the resource. For example all JCR node based resources always adapt to <code>javax.jcr.Node</code> objects.</p>
-<p>If the actual Resource object class implementation extends from the <code>SlingAdaptable</code> class, then in addition all <code>AdapterFactory</code> services adapting <code>Resource</code> objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/AbstractResource.html"><code>AbstractResource</code></a> which guarantees the Resource implementation to extend from <code>SlingAdaptable</code> and thus supporting Adapter Factories.</p>
+<p>If the actual Resource object class implementation extends from the <code>SlingAdaptable</code> class, then in addition all <code>AdapterFactory</code> services adapting <code>Resource</code> objects are considered when trying to adapt the Resource. In general Resource Providers are recommended to have their Resource implementation extend from <a href="https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/AbstractResource.html"><code>AbstractResource</code></a> which guarantees the Resource implementation to extend from <code>SlingAdaptable</code> and thus supporting Adapter Factories.</p>
 <h2><a href="#how-to-get-a-resource" id="how-to-get-a-resource">How to get a Resource</a></h2>
 <p>To get at Resources, you need a <code>ResourceResolver</code>. This interface defines four kinds of methods to access resources:</p>
 <ul>
@@ -324,6 +324,30 @@
 <tr><td><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/observation/ResourceChangeListener.html#PROPERTY_NAMES_HINT">ResourceChangeListener.PROPERTY_NAMES_HINT</a></td><td> filter only for events affecting the properties with the given names (optional)</td></tr>
 </tbody>
 </table>
+<h4><a href="#osgi-component-property-type" id="osgi-component-property-type">OSGi Component Property Type</a></h4>
+<p>In order to ease creating <code>ResourceChangeListener</code>s, there is an according <a href="https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.component.html#service.component-component.property.types">OSGi component property type</a> provided through artifact</p>
+<pre><code>&lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+&lt;artifactId&gt;org.apache.sling.resource.observation.annotations&lt;/artifactId&gt;
+</code></pre>
+<p>It can be used like this:</p>
+<pre><code><!-- TODO syntax marker (::java) disabled -->import org.apache.sling.api.resource.observation.ResourceChange;
+import org.apache.sling.api.resource.observation.ResourceChange.ChangeType;
+import org.apache.sling.api.resource.observation.ResourceChangeListener;
+import org.osgi.service.component.annotations.Component;
+
+@Component
+@SlingResourceChangeListener(
+        paths = &quot;/examplepath&quot;,
+        change_types = {ChangeType.ADDED, ChangeType.REMOVED})
+public class SampleResourceChangeListener implements ResourceChangeListener {
+
+    @Override
+    public void onChange(List&lt;ResourceChange&gt; changes) {
+        // Do something here
+    }
+}
+</code></pre>
+<p>This will generate the necessary service properties automatically (with the help of the Bnd plugin, compare with <a href="./servlets.html#registering-a-servlet-using-java-annotations">Sling Servlet Annotations</a>).</p>
 <h3><a href="#osgi-event-based-resource-changes-deprecated" id="osgi-event-based-resource-changes-deprecated">OSGi Event based resource changes (deprecated)</a></h3>
 <p>Resource events are sent out via the OSGi Event Admin. You can subscribe to those events by registering an OSGi service for <a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html"><code>org.osgi.service.event.EventHandler</code></a>. Several properties should be used to restrict the subscription to only the relevant event(s). The event topics which are used for resources are listed as constants in <a href="http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html"><code>org.apache.sling.api.SlingConstants</code></a> starting with the prefix <code>TOPIC_</code>.</p>
 <p>You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the <a href="/apache-sling-eventing-and-job-handling.html#basic-principles">event attribute <code>event.application</code></a>, which is only set in case the event was triggered from an external resource modification (compare with <a href="https://sling.apache.org/apidocs/sling9/org/apache/sling/event/dea/DEAConstants.html"><code>DEAConstants</code></a> and try to reuse the constant from there).</p>
@@ -342,7 +366,7 @@
                             content/documentation/the-sling-engine/resources.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-10-24</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-03-07</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
