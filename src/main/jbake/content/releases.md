@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2024
 
+* Commons JSON 2.0.24 (28th)
 * Resource Observation Annotations 1.0.0 (7th)
 * Content-Package to Feature Model Converter 1.3.6 (4th)
 
