@@ -299,7 +299,7 @@ public class MyComponent {
 <tr><td> <code>service.ranking</code> </td><td> A ranking for this configuration.</td></tr>
 </tbody>
 </table>
-<p>The configurations are processed in order of their service ranking. The first matching queue configuration is used for the job.</p>
+<p>The configurations are processed in descending order of their service ranking (same as in <a href="https://docs.osgi.org/javadoc/osgi.core/7.0.0/org/osgi/framework/BundleContext.html#getServiceReference-java.lang.Class-"><code>BundleContext.getServiceReference(...)</code></a>. In case of a tie in the service ranking the config which was registered earlier is processed before the config which was registered later. The first matching queue configuration is used for the job.</p>
 <h4><a href="#ordered-queues" id="ordered-queues">Ordered Queues</a></h4>
 <p>An ordered queue processes one job after the other.</p>
 <h4><a href="#unordered-queues-or-parallel-queues" id="unordered-queues-or-parallel-queues">Unordered Queues (or Parallel queues)</a></h4>
@@ -345,7 +345,7 @@ public class MyComponent {
                             content/documentation/bundles/apache-sling-eventing-and-job-handling.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2023-08-06</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-02-29</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
