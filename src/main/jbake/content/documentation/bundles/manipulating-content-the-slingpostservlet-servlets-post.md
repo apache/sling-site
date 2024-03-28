@@ -168,15 +168,22 @@ Otherwise, file uploads are typically done using the `<input type="file""/>` ele
 * `jcr:data` -- The actual file contents
 * `jcr:lastModified` -- The time stamp of processing the uploaded file
 * `jcr:mimeType` -- The MIME type from the original file submission (if contained in the file body part) or derived from the original file name
+
+The name of the node is either taken from the parameter `name` or if the value of parameter `name` is `*` then node name is taken from the name of the uploaded file. For example, if the name of uploaded file is `logo.jpg`, then for parameter `name="image"`, the node name will be `image` and for the parameter `name="*"`, the node name will be `logo.jpg`. Note that the parameter name can also include extension in its value, for example, `name="image.jpg"`, then node name will be `image.jpg`.
+
+The primary node type of the uploaded file depends on two factors which includes - the `node name` (based on the `name` parameter explained above) and `@TypeHint` parameter value in the request. The primary node type of the uploaded file is selected using the following algorithm:
+
+* If the generated node name has NO extension, for example, `image` and there is no `@TypeHint` parameter or there is a non-existing/unknown node type in the `@TypeHint` parameter in the request (for eg. `image@TypeHint=nt:file123`), then the node type is used as `nt:resource` which stores the binary data.
+
+* If the generated node name has NO extension, for example, `image` and there is a valid (known non-mixin) node type value in `@TypeHint` parameter in the request (for eg., `nt:file`), then the node type is always taken as provided node type value and a child node 'jcr:content' is created under it with type `nt:resource` which contains the actual binary data.
     
-The name of the node is either taken from the parameter name or if the name is `*` from the name of the uploaded file.
-    
-The primary node type of the uploaded file is selected using the following algorithm:
-    
-* If a `@TypeHint suffixed parameter (see below for a description) is present check whether the value is a known non-mixin node type. If so, the node is created with this primary node type.
-* If a `@TypeHint` suffixed parameter is not present or the value does not denote an existing non-mixin node type, the node will be created as an `nt:file` node if the parent node is of type `nt:folder`. Otherwise the node will be created with primary node type `nt:resource`.
-    
-If the node to be created is `nt:file`, the actual file data will really be stored in the `jcr:content` child node of the new `nt:file` node whose primary node type is then set as `nt:resource`.
+* Special Case: If the generated node name has NO extension, for example, `image` but the parent node of the new node to be created is `nt:folder`, then the node type is always taken as `nt:file` and a child node `jcr:content` is created under it with type `nt:resource` which contains the actual binary data..
+
+* If the node name has an extension in its value, for example, - `logo.jpg` or `image.png` etc., and there is no `@TypeHint` parameter or there is a non-existing/unknown node type in the `@TypeHint` parameter in the request (for eg. `image@TypeHint=nt:file123`), then the node type is used as `nt:file` and a child node `jcr:content` is created under it with type `nt:resource` which contains the actual binary data.
+
+* If the node name has an extension in its value, for example, - `logo.jpg` or `image.png` etc., and there is a valid(known non-mixin) node type value in `@TypeHint` parameter in the request (for eg., `nt:file`), then the node type is always taken as provided node type value and a child node `jcr:content` is created under it with type `nt:resource` which contains the actual binary data.
+
+Note: Be careful when providing the node type value in `@TypeHint` parameter. If the provided node type violates its constraints then the file upload operation will fail. For example, if the provided `@TypeHint` value is `nt:folder`, then Sling uses this value as node type and then will try to create a child node `jcr:content` as its child, however `nt:folder` node type has a constaint which does not allow a `nt:resource` as its child, so the file upload operation will fail.
     
 Example 1: Upload an image to a node named `image` below `/content/page`:
     
