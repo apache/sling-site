@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## April 2024
+
+* Content Parser JSON 2.1.0 (12th)
+
 ## March 2024
 
 * Commons JSON 2.0.24 (28th)

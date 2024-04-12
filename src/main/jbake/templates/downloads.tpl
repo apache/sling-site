@@ -99,7 +99,7 @@ def bundles=[
   "Commons Threads|org.apache.sling.commons.threads|3.2.22|Y|jar",
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.4|Y|jar",
   "Content Parser API|org.apache.sling.contentparser.api|2.0.0|Y|jar",
-  "Content Parser JSON|org.apache.sling.contentparser.json|2.0.0|Y|jar",
+  "Content Parser JSON|org.apache.sling.contentparser.json|2.1.0|Y|jar",
   "Content Parser XML|org.apache.sling.contentparser.xml|2.0.0|Y|jar",
   "Content Parser XML JCR|org.apache.sling.contentparser.xml-jcr|2.0.0|Y|jar",
   "Content Parser Test Utilities|org.apache.sling.contentparser.testutils|2.0.0|Y|jar",
