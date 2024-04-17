@@ -296,7 +296,7 @@ def deprecated=[
   "Auth Selector|Not Maintained|org.apache.sling.auth.selector|1.0.6",
   "Background Servlets Engine|Not Maintained|org.apache.sling.bgservlets|1.0.8",
   "Background Servlets Integration Test|Not Maintained|org.apache.sling.bgservlets.testing|1.0.0",
-  "Commons JSON|Replaced with Commons Johnzon|org.apache.sling.commons.json|2.0.24",
+  "Commons JSON|Replaced with Commons Johnzon|org.apache.sling.commons.json|2.0.26",
   "Crankstart API|Use OSGi Feature Model instead|org.apache.sling.crankstart.api|1.0.0|jar",
   "Crankstart API Fragment|Use OSGi Feature Model instead|org.apache.sling.crankstart.api.fragment|1.0.2|jar",
   "Crankstart Core|Use OSGi Feature Model instead|org.apache.sling.crankstart.core|1.0.0|jar",
