@@ -242,6 +242,7 @@ public class ExampleTest {
 }
 </code></pre>
 <p>It is possible to combine such a unit test with a <code>@ExtendWith</code> annotation e.g. for <a href="https://www.javadoc.io/page/org.mockito/mockito-junit-jupiter/latest/org/mockito/junit/jupiter/MockitoExtension.html">Mockito JUnit Jupiter Extension</a>.</p>
+<p>The SlingContext has to be defined as non-static field in combination with <code>@BeforeEach</code> and <code>@AfterEach</code> methods if you want to execute setup or tear down code for each test run. It is not supported to use a static field with <code>@BeforeAll</code> and <code>@AfterAll</code> methods. You should never try to instantiate a SlingContext object within a <code>@BeforeEach</code> method, this may lead to duplicate context instances.</p>
 <h3><a href="#junit-4-sling-context-junit-rule" id="junit-4-sling-context-junit-rule">JUnit 4: Sling Context JUnit Rule</a></h3>
 <p>The Sling mock context can be injected into a JUnit test using a custom JUnit rule named <code>SlingContext</code>. This rule takes care of all initialization and cleanup tasks required to make sure all unit tests can run independently (and in parallel, if required).</p>
 <p>Example:</p>
@@ -512,7 +513,7 @@ assertArrayEquals(TEST_DATA, response.getOutput());
                             content/documentation/development/sling-mock.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Stefan Seifert</span> on <span class="comment">2022-08-22</span>
+                        Last modified by <span class="author">Stefan Seifert</span> on <span class="comment">2024-04-22</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
