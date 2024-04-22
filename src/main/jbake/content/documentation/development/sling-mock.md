@@ -116,6 +116,7 @@ Example:
 It is possible to combine such a unit test with a `@ExtendWith` annotation e.g. for
 [Mockito JUnit Jupiter Extension][mockito-junit5-extension].
 
+The SlingContext has to be defined as non-static field in combination with `@BeforeEach` and `@AfterEach` methods if you want to execute setup or tear down code for each test run. It is not supported to use a static field with `@BeforeAll` and `@AfterAll` methods. You should never try to instantiate a SlingContext object within a `@BeforeEach` method, this may lead to duplicate context instances.
 
 ### JUnit 4: Sling Context JUnit Rule
 
