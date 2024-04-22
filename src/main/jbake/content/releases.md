@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2024
 
+* Rewriter 1.4.0 (22nd)
 * Tenant 1.1.8 (19th)
 * Commons JSON 2.0.26 (17th)
 * Content Parser JSON 2.1.0 (12th)
