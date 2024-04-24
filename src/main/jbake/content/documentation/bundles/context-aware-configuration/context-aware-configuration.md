@@ -148,10 +148,10 @@ Example for accessing a property of a configuration list (with a config name `x.
         <li>stringParam: ${item.stringParam}</li>
     </ul>
 
-If you want to access nested configurations you have to use a slash "/" as separator in the property name. Example:
+If you want to access nested configurations, you have to use a slash "/" as a separator in the config name. Example:
 
     #!html
-    ${caconfig['x.y.z.ConfigSample']['nestedConfig/stringParam']}
+    ${caconfig['x.y.z.ConfigSample/nestedConfig'].stringParam}
 
 
 # Context-Aware Configuration bnd plugin
