@@ -223,8 +223,8 @@ public @interface MyConfig {
     &lt;li&gt;stringParam: ${item.stringParam}&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<p>If you want to access nested configurations you have to use a slash &quot;/&quot; as separator in the property name. Example:</p>
-<pre><code><!-- TODO syntax marker (#!html) disabled -->${caconfig['x.y.z.ConfigSample']['nestedConfig/stringParam']}
+<p>If you want to access nested configurations, you have to use a slash &quot;/&quot; as a separator in the config name. Example:</p>
+<pre><code><!-- TODO syntax marker (#!html) disabled -->${caconfig['x.y.z.ConfigSample/nestedConfig'].stringParam}
 </code></pre>
 <h1><a href="#context-aware-configuration-bnd-plugin" id="context-aware-configuration-bnd-plugin">Context-Aware Configuration bnd plugin</a></h1>
 <p>A <a href="http://bnd.bndtools.org/">bnd</a> plugin is provided that scans the classpath of a bundle Maven project at build time and automatically generates a <code>Sling-ContextAware-Configuration-Classes</code> bundle header for all annotation classes annotated with <code>@Configuration</code>. It can be used by both <a href="http://felix.apache.org/components/bundle-plugin/">maven-bundle-plugin</a> and <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin</a>, as both use the bnd library internally.</p>
@@ -325,7 +325,7 @@ public class MyTest {
                             content/documentation/bundles/context-aware-configuration/context-aware-configuration.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">sseifert</span> on <span class="comment">2019-11-15</span>
+                        Last modified by <span class="author">Karol Lewandowski</span> on <span class="comment">2024-04-24</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
