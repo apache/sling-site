@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2024
 
+* OSGi Feature Maven Plugin (27th)
 * JUnit Tests Teleporter (25th)
 * Rewriter 1.4.0, Testing Sling Mock 3.5.0, Sling Mock Oak 3.2.0-1.22.15, Sling Mock Oak 4.0.0-1.62.0 (22nd)
 * Tenant 1.1.8 (19th)
