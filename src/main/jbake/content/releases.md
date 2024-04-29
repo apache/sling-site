@@ -8,8 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2024
 
-* Engine 2.15.14 (29th)
-* Rewriter 1.4.2 (29th)
+* Rewriter 1.4.2, Engine 2.15.14, Commons JSON 2.0.28 (29th)
 * OSGi Feature Maven Plugin (27th)
 * JUnit Tests Teleporter (25th)
 * Rewriter 1.4.0, Testing Sling Mock 3.5.0, Sling Mock Oak 3.2.0-1.22.15, Sling Mock Oak 4.0.0-1.62.0 (22nd)
