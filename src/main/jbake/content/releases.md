@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2024
+
+* Rewriter 1.4.4 (3rd)
+
 ## April 2024
 
 * Rewriter 1.4.2, Engine 2.15.14, Commons JSON 2.0.28 (29th)
