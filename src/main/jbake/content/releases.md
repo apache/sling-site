@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2024
 
+* JCR Resource 3.3.0 (14th)
 * Rewriter 1.4.4 (3rd)
 
 ## April 2024
