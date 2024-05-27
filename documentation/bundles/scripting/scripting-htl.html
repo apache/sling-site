@@ -432,7 +432,7 @@ sightly         // the namespace object under which the asynchronous Resource-AP
 use             // the use function
 </code></pre>
 <p>With the exception of the <code>console</code> and <code>use</code> objects, all the other global objects implemented by the JavaScript Use Provider are present in order to support the asynchronous Resource-API implemented by <code>org.apache.sling.scripting.sightly.js.provider</code>. However, this was deprecated starting with version 1.0.8 - see <a href="https://issues.apache.org/jira/browse/SLING-4964">SLING-4964</a>.</p>
-<h4><a href="#passing-parameters-to-javascript-use-objects" id="passing-parameters-to-javascript-use-objects">#### Passing parameters to JavaScript Use-objects</a></h4>
+<h4><a href="#passing-parameters-to-javascript-use-objects" id="passing-parameters-to-javascript-use-objects">Passing parameters to JavaScript Use-objects</a></h4>
 <p>Passed parameters will be made available to the Use object as properties of <code>this</code>. Assuming the following markup:</p>
 <pre><code>    &lt;div data-sly-use.logic=&quot;${'logic.js' @ colour='red', year=2017}&quot;&gt;
         My colour is ${logic.colour ? logic.colour : 'not important'} and I'm from ${logic.year}
@@ -618,7 +618,7 @@ use             // the use function
                             content/documentation/bundles/scripting/scripting-htl.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Dirk Rudolph</span> on <span class="comment">2022-10-26</span>
+                        Last modified by <span class="author">Paulo Chang</span> on <span class="comment">2024-05-27</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
