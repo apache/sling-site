@@ -342,7 +342,7 @@ Besides the global objects available to all Use Providers, the JavaScript Use Pr
 
 With the exception of the `console` and `use` objects, all the other global objects implemented by the JavaScript Use Provider are present in order to support the asynchronous Resource-API implemented by `org.apache.sling.scripting.sightly.js.provider`. However, this was deprecated starting with version 1.0.8 - see [SLING-4964](https://issues.apache.org/jira/browse/SLING-4964).
 
-#### #### Passing parameters to JavaScript Use-objects
+#### Passing parameters to JavaScript Use-objects
 Passed parameters will be made available to the Use object as properties of `this`. Assuming the following markup:
 
         <div data-sly-use.logic="${'logic.js' @ colour='red', year=2017}">
