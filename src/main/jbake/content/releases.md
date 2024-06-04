@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2024
 
+* Engine 2.15.16 (4th)
 * Repoinit JCR 1.1.48 (4th)
 
 ## May 2024
