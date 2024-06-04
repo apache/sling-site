@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## June 2024
+
+* Repoinit JCR 1.1.48 (4th)
+
 ## May 2024
 
 * JCR Resource 3.3.2 (27th)
