@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2024
 
+* Repoinit JCR 1.1.50 (26th)
 * OSGi Feature Maven Plugin 1.8.4 (26th)
 * Feature Model Analyser 2.0.8 (26th)
 * Apache Sling Feature Model Analyser 2.0.4 (11th)
