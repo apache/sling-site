@@ -37,7 +37,7 @@ def mavenPlugins=[
   "Maven Launchpad Plugin|maven-launchpad-plugin|2.3.4|Y",
   "Scripting Bundle Maven Plugin|scriptingbundle-maven-plugin|0.5.2|Y",
   "Sling Maven Plugin|sling-maven-plugin|3.0.2|Y",
-  "Sling Feature Maven Plugin|slingfeature-maven-plugin|1.8.2|Y",
+  "Sling Feature Maven Plugin|slingfeature-maven-plugin|1.8.4|Y",
   "Sling Feature Converter Maven Plugin|sling-feature-converter-maven-plugin|1.0.12|Y",
   "Sling Feature Launcher Maven Plugin|sling-feature-launcher-maven-plugin|0.1.6|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.9.12|Y",
