@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## July 2024
+
+* Models API 1.5.4 (5th)
+
 ## June 2024
 
 * Models API 1.5.2, Models Implementation 1.7.0 (28th)
