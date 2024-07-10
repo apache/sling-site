@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2024
 
-* Sling API 2.27.6 (10th)
+* Sling API 2.27.6, Scripting HTL Testing Content 1.0.32-1.4.0, Scripting HTL Testing 1.0.34-1.4.0, Scripting HTL Engine 1.4.24-1.4.0 (10th)
 * Models API 1.5.4 (5th)
 
 ## June 2024
