@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2024
 
+* Sling API 2.27.6 (10th)
 * Models API 1.5.4 (5th)
 
 ## June 2024
