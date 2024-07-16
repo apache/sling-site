@@ -212,6 +212,17 @@ Unordered queues process jobs in parallel.
 
 The jobs are processed in parallel. Scheduling of the jobs is based on the topic of the jobs. These are started by doing round-robin on the available topics.
 
+The configurations are processed in descending order of their service ranking (same as in [`BundleContext.getServiceReference(...)`](https://docs.osgi.org/javadoc/osgi.core/7.0.0/org/osgi/framework/BundleContext.html#getServiceReference-java.lang.Class-). In case of a tie in the service ranking the config which was registered earlier is processed before the config which was registered later.
+The first matching queue configuration is used for the job.
+
+#### Eventing Thread Pool
+
+This is the thread pool used by the Apache Sling job handling. The threads from this pool are merely used for executing jobs. By limiting this pool, it is possible to limit the maximum number of parallel processed jobs - regardless of the queue configuration
+
+| Property Name | Description |
+|---|---|
+| `min.pool.size` | The size of the thread pool. This pool is used to execute jobs and therefore limits the maximum number of jobs executed in parallel. A value of -1 is substituted with the number of available processors. A decimal number between 0.0 and 1.0 is treated as a fraction of available processors. For example 0.5 means half of the available processors.
+
 
 ### Job Distributing
 
