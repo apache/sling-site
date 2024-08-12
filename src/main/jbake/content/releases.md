@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2024
+
+* Resource Resolver 1.20.0 (12th)
+
 ## July 2024
 
 * Launchpad Base 2.8.0 (16th)
