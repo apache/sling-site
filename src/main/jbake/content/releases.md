@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2024
 
+* Feature Analyser 2.0.10 (14th)
 * Resource Resolver 1.20.0 (12th)
 
 ## July 2024
