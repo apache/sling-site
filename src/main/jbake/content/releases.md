@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2024
 
+* XSS 2.4.2 (19th)
 * Feature Analyser 2.0.10, Scripting HTL Testing 1.0.36-1.4.0, Scripting HTL JS Use Provider 1.2.10, Scripting HTL Testing Content 1.0.34-1.4.0 (14th)
 * Resource Resolver 1.20.0 (12th)
 
