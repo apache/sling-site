@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2024
 
+* I18N Support 2.6.4 (27th)
 * Testing ResourceResolver Mock 1.5.0, OSGi Mock 3.5.0, Sling Mock 3.5.2 (26th)
 * Installer Configuration Factory 1.4.6 (21st)
 * XSS 2.4.2, Commons Prometheus Metrics Exporter 0.1.2 (19th)
