@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2024
+
+* Scripting Core 2.4.10 (5th)
+
 ## August 2024
 
 * JCR Repoinit 1.1.52 (30th)
