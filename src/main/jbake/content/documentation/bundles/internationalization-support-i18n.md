@@ -52,7 +52,7 @@ Two different types of storage formats are supported for the individual dictiona
 The (direct) child nodes of the `mix:language` node must have the `jcr:primaryType` set to `sling:MessageEntry` and must contain two special properties naming the key string and the message:
 
    * `sling:key` -- The `sling:key` property is a string property being the key for which the node contains the message(s). This property is optional. If it is not set the key is determined by the name of this `sling:messageEntry` resource.
-   * `sling:message` -- The `sling:message` property represents the resource for the key.
+   * `sling:message` -- The `sling:message` property represents the string for the key.
 
 It is only required that the message nodes are located below `mix:language` nodes. Such structures may also be scattered in the repository to allow storing message resources next to where they are most likely used, such as request scripts.
 
