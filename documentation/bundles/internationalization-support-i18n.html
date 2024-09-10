@@ -173,7 +173,7 @@
 <p>The (direct) child nodes of the <code>mix:language</code> node must have the <code>jcr:primaryType</code> set to <code>sling:MessageEntry</code> and must contain two special properties naming the key string and the message:</p>
 <ul>
 <li><code>sling:key</code> -- The <code>sling:key</code> property is a string property being the key for which the node contains the message(s). This property is optional. If it is not set the key is determined by the name of this <code>sling:messageEntry</code> resource.</li>
-<li><code>sling:message</code> -- The <code>sling:message</code> property represents the resource for the key.</li>
+<li><code>sling:message</code> -- The <code>sling:message</code> property represents the string for the key.</li>
 </ul>
 <p>It is only required that the message nodes are located below <code>mix:language</code> nodes. Such structures may also be scattered in the repository to allow storing message resources next to where they are most likely used, such as request scripts.</p>
 <h5><a href="#sample-resources" id="sample-resources">Sample Resources</a></h5>
@@ -295,7 +295,7 @@ Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/li
                             content/documentation/bundles/internationalization-support-i18n.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2021-03-11</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-09-10</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
