@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2024
 
+* OSGi Feature Maven Plugin 1.8.4 (19th) 
 * Scripting Core 2.4.10 (5th)
 
 ## August 2024
