@@ -155,6 +155,10 @@ The main binary property (i.e. the one being exposed by `Resource.adaptTo(InputS
 
 For node type `nt:file` the property is looked up in the child node `jcr:content` for both cases. For all other node types it is looked up in the underlying node of the current resource.
 
+##### External Binaries
+
+In case when binaries are stored externally (e.g. in a Cloud Storage) accessing those via Sling just induces additional overhead. Therefore with [SLING-7140](https://issues.apache.org/jira/browse/SLING-7140) support for [Oak's Direct Binary Access](https://jackrabbit.apache.org/oak/docs/features/direct-binary-access.html) was added. External binaries now expose also as [`o.a.s.ai.resource.external.ExternalizableInputStream`](https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/external/ExternalizableInputStream.java) allowing to access the direct streaming URI. This is leveraged e.g. in the [default GET servlet's stream rendering](https://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html).
+
 #### Resource Metadata
 
 The resource metadata exposed in `Resource.getResourceMetadata` get their values from JCR properties:
