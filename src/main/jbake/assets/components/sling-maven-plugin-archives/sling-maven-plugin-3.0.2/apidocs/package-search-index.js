@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.apache.sling.maven.bundlesupport"},{"l":"org.apache.sling.maven.bundlesupport.deploy"},{"l":"org.apache.sling.maven.bundlesupport.deploy.method"},{"l":"org.apache.sling.maven.bundlesupport.fsresource"}]
