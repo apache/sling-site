@@ -421,12 +421,12 @@ To publish the plugin documentation execute the following steps after the releas
 
         $ git clone https://github.com/apache/sling-site.git
 
-4. Replace the content of the existing folder `src/main/jbake/assets/components/<plugin-name>` with the generated Maven site from `target/site`
+4. Switch to branch `asf-site`
 
-5. Create a new folder `src/main/jbake/assets/components/<plugin-name>-archives/<plugin-name>-<version>` and copy the generated maven site there as well
+5. Replace the content of the existing folder `components/<plugin-name>` with the generated Maven site from `target/site`
 
-6. Commit the changes
+6. Create a new folder `src/main/jbake/assets/components/<plugin-name>-archives/<plugin-name>-<version>` and copy the generated maven site there as well
 
-7. Publish the Sling site to production (should happen automatically)
+7. Commit the changes
 
 8. Check the results at [http://sling.apache.org/components/](http://sling.apache.org/components/)

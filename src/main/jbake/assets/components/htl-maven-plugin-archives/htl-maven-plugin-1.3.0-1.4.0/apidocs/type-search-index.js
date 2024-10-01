@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.apache.sling.maven.htl","l":"HelpMojo"},{"p":"org.apache.sling.maven.htl.compiler","l":"HTLClassInfo"},{"p":"org.apache.sling.maven.htl.compiler","l":"HTLJavaImportsAnalyzer"},{"p":"org.apache.sling.maven.htl.compiler","l":"ScriptCompilationUnit"},{"p":"org.apache.sling.maven.htl","l":"ValidateMojo"}]

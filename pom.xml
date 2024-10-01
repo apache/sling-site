@@ -129,6 +129,8 @@
             <!-- the setting for website publication must not be removed: https://cwiki.apache.org/confluence/display/INFRA/git+-+.asf.yaml+features#Git.asf.yamlfeatures-WebSiteDeploymentServiceforGitRepositories -->
             <ignorePathsToDelete>
                 <ignore>.asf.yaml</ignore>
+                <ignore>apidocs/**</ignore>
+                <ignore>components/**</ignore>
             </ignorePathsToDelete>
         </configuration>
       </plugin>
