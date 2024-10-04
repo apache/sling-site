@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2024
+
+* Resource Resolver 1.12.2 (4th)
+
 ## September 2024
 
 * OSGi Feature Maven Plugin 1.8.4 (19th) 
@@ -20,7 +24,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * Installer Configuration Factory 1.4.6 (21st)
 * XSS 2.4.2, Commons Prometheus Metrics Exporter 0.1.2 (19th)
 * Feature Analyser 2.0.10, Scripting HTL Testing 1.0.36-1.4.0, Scripting HTL JS Use Provider 1.2.10, Scripting HTL Testing Content 1.0.34-1.4.0 (14th)
-* Resource Resolver 1.20.0 (12th)
+* Resource Resolver 1.12.0 (12th)
 
 ## July 2024
 
