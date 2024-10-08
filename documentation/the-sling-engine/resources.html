@@ -265,6 +265,8 @@
 <li>the primary item of the underlying node (as defined by <a href="https://docs.adobe.com/docs/en/spec/jsr170/javadocs/jcr-2.0/javax/jcr/Node.html#getPrimaryItem()">Node.getPrimaryItem()</a>).</li>
 </ol>
 <p>For node type <code>nt:file</code> the property is looked up in the child node <code>jcr:content</code> for both cases. For all other node types it is looked up in the underlying node of the current resource.</p>
+<h5><a href="#external-binaries" id="external-binaries">External Binaries</a></h5>
+<p>In case when binaries are stored externally (e.g. in a Cloud Storage) accessing those via Sling just induces additional overhead. Therefore with <a href="https://issues.apache.org/jira/browse/SLING-7140">SLING-7140</a> support for <a href="https://jackrabbit.apache.org/oak/docs/features/direct-binary-access.html">Oak's Direct Binary Access</a> was added. External binaries now expose also as <a href="https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/external/ExternalizableInputStream.java"><code>o.a.s.ai.resource.external.ExternalizableInputStream</code></a> allowing to access the direct streaming URI. This is leveraged e.g. in the <a href="https://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html">default GET servlet's stream rendering</a>.</p>
 <h4><a href="#resource-metadata" id="resource-metadata">Resource Metadata</a></h4>
 <p>The resource metadata exposed in <code>Resource.getResourceMetadata</code> get their values from JCR properties:</p>
 <table>
@@ -366,7 +368,7 @@ public class SampleResourceChangeListener implements ResourceChangeListener {
                             content/documentation/the-sling-engine/resources.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-03-07</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-09-30</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
