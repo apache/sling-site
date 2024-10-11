@@ -173,11 +173,11 @@ private volatile CryptoService cryptoService;
 </code></pre>
 <h4><a href="#file-password-provider" id="file-password-provider">File Password Provider</a></h4>
 <p>The file-based password provider reads the password for encryption/decryption from a given file.</p>
-<p><img src="commons-crypto/FilePasswordProvider~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
+<p><img src="commons-crypto/FilePasswordProvider~sample.png" alt="FilePasswordProvider Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
 <h2><a href="#jasypt-implementation" id="jasypt-implementation">Jasypt implementation</a></h2>
 <p>The Commons Crypto module provides a crypto service implementation based on the <a href="http://www.jasypt.org">Jasypt</a> <code>StandardPBEStringEncryptor</code>.</p>
-<p>The <code>JasyptStandardPBEStringCryptoService</code> requires at least a password provider and an initialization vector (IV) generator (<code>IvGenerator</code>) to set up the internal <code>StandardPBEStringEncryptor</code>.</p>
-<p><img src="commons-crypto/JasyptStandardPBEStringCryptoService~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
+<p>The <code>JasyptStandardPbeStringCryptoService</code> requires at least a password provider and an initialization vector (IV) generator (<code>IvGenerator</code>) to set up the internal <code>StandardPBEStringEncryptor</code>.</p>
+<p><img src="commons-crypto/JasyptStandardPBEStringCryptoService~sample.png" alt="JasyptStandardPbeStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
 <p><img src="commons-crypto/JasyptRandomIvGeneratorRegistrar~sample.png" alt="JasyptRandomIvGeneratorRegistrar Sample Configuration" style="width: 50%; border: 1px solid silver"></p>
 <h2><a href="#web-console-plugin" id="web-console-plugin">Web Console Plugin</a></h2>
 <p>The plugin (<code>/system/console/sling-commons-crypto-encrypt</code>) allows message encryption with a selected crypto service.</p>
@@ -197,7 +197,7 @@ private volatile CryptoService cryptoService;
   &quot;algorithm&quot;: &quot;SHA1PRNG&quot;
 }
 </code></pre>
-<p><code>org.apache.sling.commons.crypto.jasypt.internal.JasyptStandardPBEStringCryptoService~sample.json</code></p>
+<p><code>org.apache.sling.commons.crypto.jasypt.internal.JasyptStandardPbeStringCryptoService~sample.json</code></p>
 <pre><code>{
   &quot;jcr:primaryType&quot;: &quot;sling:OsgiConfig&quot;,
   &quot;names&quot;: [&quot;sample&quot;], // names is optional
@@ -215,7 +215,7 @@ private volatile CryptoService cryptoService;
                             content/documentation/bundles/commons-crypto.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">2019-12-14</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2024-10-11</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
