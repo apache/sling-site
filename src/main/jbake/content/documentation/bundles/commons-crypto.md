@@ -52,16 +52,16 @@ Password providers are useful when dealing with password-based encryption (PBE, 
 
 The file-based password provider reads the password for encryption/decryption from a given file.
 
-<img src="commons-crypto/FilePasswordProvider~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver">
+<img src="commons-crypto/FilePasswordProvider~sample.png" alt="FilePasswordProvider Sample Configuration" style="width: 50%; border: 1px solid silver">
 
 
 ## Jasypt implementation
 
 The Commons Crypto module provides a crypto service implementation based on the [Jasypt](http://www.jasypt.org) `StandardPBEStringEncryptor`.
 
-The `JasyptStandardPBEStringCryptoService` requires at least a password provider and an initialization vector (IV) generator (`IvGenerator`) to set up the internal `StandardPBEStringEncryptor`.
+The `JasyptStandardPbeStringCryptoService` requires at least a password provider and an initialization vector (IV) generator (`IvGenerator`) to set up the internal `StandardPBEStringEncryptor`.
 
-<img src="commons-crypto/JasyptStandardPBEStringCryptoService~sample.png" alt="JasyptStandardPBEStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver">
+<img src="commons-crypto/JasyptStandardPBEStringCryptoService~sample.png" alt="JasyptStandardPbeStringCryptoService Sample Configuration" style="width: 50%; border: 1px solid silver">
 
 <img src="commons-crypto/JasyptRandomIvGeneratorRegistrar~sample.png" alt="JasyptRandomIvGeneratorRegistrar Sample Configuration" style="width: 50%; border: 1px solid silver">
 
@@ -93,7 +93,7 @@ A module with (minimal) sample configurations can be found in [Sling's samples G
     }
 
 
-`org.apache.sling.commons.crypto.jasypt.internal.JasyptStandardPBEStringCryptoService~sample.json`
+`org.apache.sling.commons.crypto.jasypt.internal.JasyptStandardPbeStringCryptoService~sample.json`
 
     {
       "jcr:primaryType": "sling:OsgiConfig",
