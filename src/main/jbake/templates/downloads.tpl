@@ -89,7 +89,7 @@ def bundles=[
   "Commons Log Service|org.apache.sling.commons.logservice|1.1.0|Y|jar",
   "Commons Messaging|org.apache.sling.commons.messaging|1.0.2|Y|jar",
   "Commons Messaging Mail|org.apache.sling.commons.messaging.mail|2.0.0|Y|jar",
-  "Commons Metrics|org.apache.sling.commons.metrics|1.2.12|Y|jar",
+  "Commons Metrics|org.apache.sling.commons.metrics|1.2.14|Y|jar",
   "Commons Metrics Prometheus|org.apache.sling.commons.metrics.prometheus|0.1.2|Y|jar",
   "Commons Metrics RRD4J|org.apache.sling.commons.metrics-rrd4j|1.0.6|Y|jar",
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.3.0|Y|jar",
