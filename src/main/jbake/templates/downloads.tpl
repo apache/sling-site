@@ -162,7 +162,7 @@ def bundles=[
   "JCR Jackrabbit AccessManager|org.apache.sling.jcr.jackrabbit.accessmanager|4.0.2|Y|jar",
   "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|2.2.30|Y|jar",
   "JCR Maintenance|org.apache.sling.jcr.maintenance|1.1.0|Y|jar",
-  "JCR Oak Server|org.apache.sling.jcr.oak.server|1.4.0|Y|jar",
+  "JCR Oak Server|org.apache.sling.jcr.oak.server|1.4.2|Y|jar",
   "JCR Package Init|org.apache.sling.jcr.packageinit|1.0.4|Y|jar",
   "JCR Registration|org.apache.sling.jcr.registration|1.0.6|Y|jar",
   "JCR Resource|org.apache.sling.jcr.resource|3.3.2|Y|jar",

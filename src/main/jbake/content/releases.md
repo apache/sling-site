@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2024
 
+* JCR Oak Server 1.4.2 (23th)
 * Commons Metrics 1.2.14 (18th)
 * Resource Resolver 1.12.2 (4th)
 
