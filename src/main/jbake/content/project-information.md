@@ -65,7 +65,7 @@ The [Sling+Jenkins+Setup](https://cwiki.apache.org/confluence/display/SLING/Slin
 the setup that runs Sling builds automatically (triggered by commits) on the 
 [ASF's Jenkins instance](https://builds.apache.org/). 
 
-The [Sling Monitor](https://builds.apache.org/view/Sling-Monitor/) page lists jobs that need attention.
+The [Sling Monitor](https://ci-builds.apache.org/job/Sling/view/Monitor/) page lists jobs that need attention.
 
 The [Sling Folder](https://builds.apache.org/job/Sling/) page lists all jobs.
 
