@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2024
 
-* Engine 2.15.18 (29th)
+* Engine 2.15.18, Models Implementation 1.7.2 (29th)
 * I18n 2.6.6 (25th)
 * JCR Oak Server 1.4.2 (23th)
 * Commons Metrics 1.2.14 (18th)
