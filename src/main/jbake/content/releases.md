@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2024
+
+* Servlets Resolver 2.11.4 (1st)
+ 
 ## October 2024
 
 * Engine 2.15.18, Models Implementation 1.7.2 (29th)
