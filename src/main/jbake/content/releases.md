@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2024
 
+* Parent 61 and Bundle Parent 61 (4th)
 * Servlets Resolver 2.11.4 (1st)
  
 ## October 2024
