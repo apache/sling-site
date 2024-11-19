@@ -29,7 +29,7 @@ def slingApplication=[
   "Sling Starter Source Release|The released Sling Starter source code|org.apache.sling.starter|-source-release.zip|${starterVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.feature|.jar|1.1.8|org.apache.sling.app.cms",
   "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.3.0|Y",
-  "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.3.4|Y",
+  "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.3.8|Y",
 ]
 
 def mavenPlugins=[
@@ -132,7 +132,7 @@ def bundles=[
   "Feature Model|org.apache.sling.feature|2.0.0|Y|jar",
   "Feature Model Analyser|org.apache.sling.feature.analyser|2.0.10|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.14|Y|jar",
-  "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.3.6|Y|jar",
+  "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.3.8",
   "Feature Model Extension API Regions|org.apache.sling.feature.extension.apiregions|2.0.0|Y|jar",
   "Feature Model Content Extension|org.apache.sling.feature.extension.content|1.0.12|Y|jar",
   "Feature Model Extension Unpack|org.apache.sling.feature.extension.unpack|0.4.0|Y|jar",
