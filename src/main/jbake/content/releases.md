@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2024
 
+* Scripting HTL Engine 1.4.26-1.4.0 (28th)
 * Engine 2.16.0 (26th)
 * Parent and Bundle Parent 62, Installer Configuration Factory 1.4.8 (21st)
 * Content-Package to Feature Model Converter 1.3.8 (19th)
