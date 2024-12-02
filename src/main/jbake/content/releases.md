@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## December 2024
+* Apache Sling Feature Model 2.0.2, Apache Sling Feature Model Analyser 2.0.12 (2nd)
+
 ## November 2024
 
 * Scripting HTL Engine 1.4.26-1.4.0 (28th)
