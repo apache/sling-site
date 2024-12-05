@@ -8,4 +8,4 @@ Sling includes a Maven archetype to quick start development. See [http://maven.a
 
 ### sling-project-archetype
 
-See GitHub project: https://github.com/apache/sling-project-archetype with documentation in the README file.
+See GitHub project: [https://github.com/apache/sling-project-archetype](https://github.com/apache/sling-project-archetype) with documentation in the README file.
