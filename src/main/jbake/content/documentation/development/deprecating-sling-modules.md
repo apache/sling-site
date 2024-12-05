@@ -33,6 +33,11 @@ the `README` from another module.
 
 For examples, see the list of deprecated repositories below.
 
+## Update list of modules
+
+Update the list of Sling modules (default.xml) in [Sling Aggregator](https://github.com/apache/sling-aggregator), as the project labels now contain the deprecated hint.
+
+
 ## See Also
 
  * [List of deprecated Sling repositories](https://github.com/search?q=topic%3Asling+topic%3Adeprecated+org%3Aapache) based on a GitHub query.
