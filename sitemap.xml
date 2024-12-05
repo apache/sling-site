@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://sling.apache.org/releases.html</loc><lastmod>2024-12-02</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/development/maven-archetypes.html</loc><lastmod>2024-12-05</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/development/deprecating-sling-modules.html</loc><lastmod>2024-12-05</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/releases.html</loc><lastmod>2024-12-02</lastmod>
     </url><url>
         <loc>https://sling.apache.org/project-information.html</loc><lastmod>2024-10-24</lastmod>
     </url><url>
@@ -222,8 +224,6 @@
         <loc>https://sling.apache.org/documentation/bundles/sling-oak-restrictions.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/hamcrest.html</loc><lastmod>2021-11-23</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/development/deprecating-sling-modules.html</loc><lastmod>2020-03-31</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/configuration.html</loc><lastmod>2019-07-26</lastmod>
     </url><url>
