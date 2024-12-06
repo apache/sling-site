@@ -10,9 +10,9 @@ should no longer be used.
 
  * Get consensus on our dev list or do a PMC vote, depending on the importance of the module
  * Create a branch named `maintenance` with the last version before deprecation.
- * Empty the `master` branch, keeping just `README.md` file.
+ * Empty the `master` branch, keeping just `README.md`, `LICENSE`,`.gitignore` and `.asf.yaml` files.
  * Add the `deprecated` GitHub topic to the module, using a [.asf.yaml](https://cwiki.apache.org/confluence/display/INFRA/.asf.yaml+features+for+git+repositories) file in the `master` branch.
- 
+
 Deprecated modules can then be found with a GitHub query, see below.
 
 The reasoning is that keeping just a `README` file makes it obvious that the repository is deprecated, and having the `maintenance` branch makes
