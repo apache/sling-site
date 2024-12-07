@@ -117,7 +117,7 @@ def bundles=[
   "Discovery Support|org.apache.sling.discovery.support|1.0.6|Y|jar",
   "Distributed Event Admin|org.apache.sling.event.dea|1.1.4|Y|jar",
   "Distribution API|org.apache.sling.distribution.api|0.7.2|Y|jar",
-  "Distribution Core|org.apache.sling.distribution.core|0.5.0|Y|jar",
+  "Distribution Core|org.apache.sling.distribution.core|0.6.0|Y|jar",
   "Distribution Integration Tests|org.apache.sling.distribution.it|0.1.2|Y|jar",
   "Distribution Sample|org.apache.sling.distribution.sample|0.1.6|Y|jar",
   "Distribution Journal Core|org.apache.sling.distribution.journal|0.3.0|Y|jar",
