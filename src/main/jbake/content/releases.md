@@ -7,6 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## December 2024
+
+* Apache Sling Models Impl 1.7.6 (7th)
 * Apache Sling Feature Model 2.0.2, Apache Sling Feature Model Analyser 2.0.12 (2nd)
 
 ## November 2024
