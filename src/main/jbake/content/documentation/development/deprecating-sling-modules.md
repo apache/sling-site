@@ -37,7 +37,7 @@ For examples, see the list of deprecated repositories below.
 
 1. Update the list of Sling modules (default.xml) in [Sling Aggregator](https://github.com/apache/sling-aggregator), as the project labels now contain the deprecated hint.
 2. Move module to the "Deprecated" group in the [Sling Site Download List](https://sling.apache.org/downloads.cgi), [downloads.tpl](https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl)
-3. Remove unreleased empty versions for this module from [JIRA Releases](https://issues.apache.org/jira/projects/SLING?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=released-unreleased)
+3. Set unreleased versions for this module from [JIRA Releases](https://issues.apache.org/jira/projects/SLING?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=released-unreleased) to "Archived"
 
 
 ## See Also
