@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2024
 
+* Apache Sling Servlets Resolver 2.11.6 (12th)
 * Apache Sling Models Impl 1.7.6 (7th)
 * Apache Sling Feature Model 2.0.2, Apache Sling Feature Model Analyser 2.0.12 (2nd)
 
