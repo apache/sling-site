@@ -21,3 +21,31 @@ Modules started to switch to Java 11 as minimum version, so Java 8 is no longer 
 
 [Apache Jackrabbit Oak](https://jackrabbit.apache.org/oak/) 1.72.0 brings numerous performance improvements and new features that are now available in the Sling Starter.
 
+
+## Switch to jakarta.json
+
+A lot of modules have been migrated from `org.json` to `jakarta.json`, some modules are still jusing `org.json`. Thus the Sling Starte includes both [Apache Johnzon](https://johnzon.apache.org/) 1.x and 2.x for supporting both. It is expected that all modules will be migrated to `jakarta.json` soon and Johnzon 1.x will be removed from the Sling Starter.
+
+
+## Version updates
+
+All bundles have been updated to the latest versions.
+
+New bundles added to Sling Starter:
+* `com.fasterxml.jackson.dataformat:jackson-dataformat-xml`
+* `com.fasterxml.woodstox:woodstox-core`
+* `org.apache.commons:commons-text`
+* `org.apache.felix:org.apache.felix.http.inventoryprinter`
+* `org.apache.felix:org.apache.felix.http.webconsoleplugin`
+* `org.owasp.encoder:encoder`                  
+
+The following bundles are removed from the Sling Starter:
+* `com.google.guava:guava`
+* `org.apache.jackrabbit:jackrabbit-jcr-rmi`
+
+A couple of bundles changed their artifact ID and are thus replaces with the latest version using the latest arficat ID (e.g. Groovy).
+
+
+### OSGi Core R8 compliance
+
+Sling Starter ships with [Apache Felix 7](https://felix.apache.org/documentation/index.html) which implements [OSGi Core R8](https://docs.osgi.org/specification/osgi.core/8.0.0/) fully. In addition it comes with Felix SCR 2.2 which implements [Declarative Services 1.5](https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html) (part of OSGi Compendium R8).
