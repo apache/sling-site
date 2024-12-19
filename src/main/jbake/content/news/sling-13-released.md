@@ -27,7 +27,7 @@ Some of the Sling modules and their dependencies started to switch to Java 11 as
 
 ## Switch to jakarta.json
 
-A lot of modules have been migrated from `org.json` to `jakarta.json`, some modules are still jusing `org.json`. Thus the Sling Starte includes both [Apache Johnzon](https://johnzon.apache.org/) 1.x and 2.x for supporting both. It is expected that all modules will be migrated to `jakarta.json` soon and Johnzon 1.x will be removed from the Sling Starter.
+A lot of modules have been migrated from `org.json` to `jakarta.json`, some modules are still using `org.json`. Thus the Sling Starter includes both [Apache Johnzon](https://johnzon.apache.org/) 1.x and 2.x for supporting both. It is expected that all modules will be migrated to `jakarta.json` soon and Johnzon 1.x will be removed from the Sling Starter.
 
 ## Sling Models
 
@@ -58,7 +58,7 @@ The following bundles are removed from the Sling Starter:
 * `com.google.guava:guava`
 * `org.apache.jackrabbit:jackrabbit-jcr-rmi`
 
-A couple of bundles changed their artifact ID and are thus replaces with the latest version using the latest arficat ID (e.g. switch to Groovy 4).
+A couple of bundles changed their artifact ID and are thus replaced with the latest version using the latest artifact ID (e.g. switch to Groovy 4).
 
 
 ### OSGi Core R8 compliance
