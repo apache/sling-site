@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2024
 
+* Apache Sling XSS 2.4.4 (19th)
 * Apache Sling Commons FileSystem ClassLoader 1.0.16, Commons Log WebConsole 1.0.2, Commons Log Service 1.1.2, Commons Scheduler 2.7.14, JCR API 2.4.2, JCR Davex 1.3.12, JCR Webdav 2.3.10, Scripting API 2.2.2, Scripting JSP Taglib 2.4.2, Distributed Event Admin 1.1.6, Discovery Oak 1.2.46, Discovery Support 1.0.8, Discovery API 1.0.6, Extensions Web Console Branding 1.0.4, Service User WebConsole 1.0.4, Validation API 1.0.2, Starter Content 1.0.16, Launchpad Test Services 13, Launchpad Integration Tests 13 (16th)
 * Apache Sling Servlets Resolver 2.11.6, Testing OSGi Mock 3.5.2 (12th)
 * Apache Sling Models Impl 1.7.6 (7th)
