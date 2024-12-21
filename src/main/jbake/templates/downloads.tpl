@@ -28,7 +28,7 @@ def slingApplication=[
   "Sling Starter Feature Archive (Oak-Mongo)|A self-container feature archive, for experimenting and learning. Requires the Feature Model Launcher (see below) |org.apache.sling.starter|-oak_tar_far.far|${starterVersion}|Y|apache/sling:${starterVersion}",
   "Sling Starter Source Release|The released Sling Starter source code|org.apache.sling.starter|-source-release.zip|${starterVersion}|Y",
   "Sling CMS App|A reference CMS App built on Apache Sling|org.apache.sling.cms.feature|.jar|1.1.8|org.apache.sling.app.cms",
-  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.3.0|Y",
+  "Sling Feature Model Launcher|A tool for launching OSGi applications|org.apache.sling.feature.launcher|.zip|1.3.2|Y",
   "Sling Feature Model converter|A CLI tool for converting from content packages to feature model files|org.apache.sling.feature.cpconverter|.zip|1.3.8|Y",
 ]
 
@@ -129,7 +129,7 @@ def bundles=[
   "Event|org.apache.sling.event|4.3.14|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.4|Y|jar",
   "Feature API Regions Runtime|org.apache.sling.feature.apiregions|1.1.10|Y|jar",
-  "Feature Model|org.apache.sling.feature|2.0.2|Y|jar",
+  "Feature Model|org.apache.sling.feature|2.0.4|Y|jar",
   "Feature Model Analyser|org.apache.sling.feature.analyser|2.0.12|Y|jar",
   "Feature Model Converter|org.apache.sling.feature.modelconverter|1.0.14|Y|jar",
   "Feature Model Content Package Converter|org.apache.sling.feature.cpconverter|1.3.8|Y|jar",
