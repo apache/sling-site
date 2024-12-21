@@ -142,7 +142,7 @@ def bundles=[
   "GraphQL Core|org.apache.sling.graphql.core|0.0.30|Y|jar",
   "I18n|org.apache.sling.i18n|2.6.6|Y|jar",
   "HApi|org.apache.sling.hapi|1.1.0|Y|jar",
-  "Installer Core|org.apache.sling.installer.core|3.14.0|Y|jar",
+  "Installer Core|org.apache.sling.installer.core|3.14.2|Y|jar",
   "Installer Configuration Support|org.apache.sling.installer.factory.configuration|1.4.8|Y|jar",
   "Installer Console|org.apache.sling.installer.console|1.1.2|Y|jar",
   "Installer Content Package Support|org.apache.sling.installer.factory.packages|1.0.4|Y|jar",
