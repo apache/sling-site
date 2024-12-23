@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2024
 
+* OAuth Client 0.1.0 (23rd)
 * Feature Model 2.0.4, Feature Model Launcher 1.3.2, Installer Core 3.14.2 (21th)
 * Models Implementation 1.7.8, Testing Clients 3.1.0 (20th)
 * XSS 2.4.4, Apache Sling Feature Model Content Extension 1.0.14 (19th)

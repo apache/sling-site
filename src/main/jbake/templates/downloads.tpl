@@ -192,6 +192,7 @@ def bundles=[
   "NoSQL Couchbase Resource Provider|org.apache.sling.nosql.couchbase-resourceprovider|1.1.0|Y|jar",
   "NoSQL MongoDB Resource Provider|org.apache.sling.nosql.mongodb-resourceprovider|1.1.0|Y|jar",
   "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.2|Y|jar",
+  "OAuth Client|org.apache.sling.auth.oauth-client|0.1.0|Y|jar",
   "Pipes|org.apache.sling.pipes|4.5.0|Y|jar",
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.6|Y|jar",
   "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.52|Y|jar",
