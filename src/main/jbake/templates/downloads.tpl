@@ -267,7 +267,7 @@ def helpers=[
   "Kickstart Project|org.apache.sling.kickstart|0.0.12|Y|jar",
   "Pax Exam Utilities|org.apache.sling.paxexam.util|1.0.4|Y|jar",
   "Performance Test Utilities|org.apache.sling.performance.base|1.0.2|org.apache.sling.performance|jar",
-  "Project Archetype|sling-project-archetype|1.0.12|Y|jar",
+  "Project Archetype|sling-project-archetype|1.0.14|Y|jar",
   "Sample Integration Tests|org.apache.sling.testing.samples.integrationtests|1.0.6|N|jar",
   "Servlet Annotations|org.apache.sling.servlets.annotations|1.2.6|Y|jar",
   "Testing Clients|org.apache.sling.testing.clients|3.1.0|Y|jar",

@@ -6,9 +6,13 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2025
+
+* Project Archetype 1.0.14
+
 ## December 2024
 
-* Serlvets Resolver 2.11.8 (26th)
+* Servlets Resolver 2.11.8 (26th)
 * OAuth Client 0.1.0 (23rd)
 * Feature Model 2.0.4, Feature Model Launcher 1.3.2, Installer Core 3.14.2 (21th)
 * Models Implementation 1.7.8, Testing Clients 3.1.0 (20th)
