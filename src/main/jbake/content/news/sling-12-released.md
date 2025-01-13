@@ -4,7 +4,7 @@ status=published
 tags=launchpad
 ~~~~~~
 
-The Sling 12 release contains numerous improvements, such as official Java 17 support, complete migration to the [OSGi Feature Model](/documentation/development/feature-model.html], and various performance improvements and updates.
+The Sling 12 release contains numerous improvements, such as official Java 17 support, complete migration to the [OSGi Feature Model](/documentation/development/feature-model.html), and various performance improvements and updates.
 
 Read on to see more details about the individual improvements. To find out more about running Sling, see our [getting started page](/documentation/getting-started.html).
 
