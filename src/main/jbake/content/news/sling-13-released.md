@@ -41,6 +41,9 @@ Sling Models comes with a couple of small improvements:
 
 The Sling XSS module implementation switched from [OWASP AntiSamy](https://www.owasp.org/index.php/Category:OWASP_AntiSamy_Project) to the [OWASP Java HTML Sanitizer](https://www.owasp.org/index.php/OWASP_Java_HTML_Sanitizer_Project) library ([SLING-7231](https://issues.apache.org/jira/browse/SLING-7231)).
 
+## Multi-arch container image
+
+The official Apache Sling Starter images pushed to DockerHub support the `linux/arm64` architecture, in addition to the existing `linux/amd64` one. This allows deploying the Sling Starter on a wider varierty of platforms.
 
 ## Version updates
 
