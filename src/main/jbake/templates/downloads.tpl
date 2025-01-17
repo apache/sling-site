@@ -17,7 +17,7 @@
 // ------------------------------------------------------------------------------------------------
 U = new includes.U(config)
 def PIPE_SEP = "\\|"
-def starterVersion="12"
+def starterVersion="13"
 
 def slingIDETooling=[
   "Sling IDE Tooling for Eclipse|eclipse|1.2.2|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
