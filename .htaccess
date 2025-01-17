@@ -22,7 +22,7 @@ AddDefaultCharset utf-8
 
 # Redirect to API docs of latest sling release
 RewriteCond %{REQUEST_URI} ^/apidocs/latest/?$
-RewriteRule ^ /apidocs/sling13/ [R=302,L]
+RewriteRule ^ /apidocs/sling12/ [R=302,L]
 
 # Error pages
 ErrorDocument 403 /errors/403.html
