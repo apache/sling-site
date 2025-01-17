@@ -5,7 +5,7 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
-* Released [Apache Sling 13](/news/sling-13-released.html) (January 14th, 2025).
+* Released [Apache Sling 13](/news/sling-13-released.html) (January 17th, 2025).
 * Security Advisory: [Apache Sling advisory regarding CVE-2023-6378](./security/CVE-2023-6378.html)
 * Vulnerability report: CVE-2024-23673: Apache Sling Servlets Resolver: Malicious code execution via path traversal, see [https://www.cve.org/CVERecord?id=CVE-2024-23673](https://www.cve.org/CVERecord?id=CVE-2024-23673)
 * Vulnerability report: CVE-2022-47937: Multiple parsing problems in the Apache Sling Commons JSON module, see  [https://www.cve.org/CVERecord?id=CVE-2022-47937](https://www.cve.org/CVERecord?id=CVE-2022-47937)
