@@ -247,6 +247,11 @@
 </tbody>
 </table>
 <p><em>Note:</em> The <code>form.token.file</code> parameter currently refers to a file stored in the file system. If the path is a relative path, the file is either stored in the Authentication Handler bundle private data area or -- if not possible -- below the location indicated by the <code>sling.home</code> framework property or -- if <code>sling.home</code> is not set -- the current working directory. In the future this file may be store in the JCR Repository to support clustering scenarios.</p>
+<h4><a href="#overriding-the-default-login-page" id="overriding-the-default-login-page">Overriding the default login page</a></h4>
+<p>The default login page can be overridden by providing a custom login page. To do so, create a <a href="https://docs.osgi.org/specification/osgi.core/8.0.0/framework.module.html#framework.module.fragmentbundles">Fragment Bundle</a> that contains the custom login page.</p>
+<p>The bundle must attach itself to the <code>org.apache.sling.auth.form</code> bundle using the <code>Fragment-Host</code> header in the <code>MANIFEST.MF</code> file. The value of the <code>Fragment-Host</code> header must be <code>org.apache.sling.auth.form</code>.</p>
+<p>The custom login page must be located at <code>org/apache/sling/auth/form/impl/custom_login.html</code> in the fragment bundle.</p>
+<p>An example of such a bundle is available in the Sling Samples repository at https://github.com/apache/sling-samples/tree/master/custom-login-form.</p>
 <h3><a href="#security-considerations" id="security-considerations">Security Considerations</a></h3>
 <p>Form Based Authentication has some limitations in terms of security:</p>
 <ol>
@@ -265,7 +270,7 @@
                             content/documentation/the-sling-engine/authentication/authentication-authenticationhandler/form-based-authenticationhandler.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2018-07-13</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2025-01-17</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
