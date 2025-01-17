@@ -8,7 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2025
 
-* Project Archetype 1.0.14
+* Starter 13 (17th)
+* Project Archetype 1.0.14 (7th)
 
 ## December 2024
 
