@@ -111,6 +111,15 @@ The Form Based Authentication Handler is configured with configuration provided 
 
 *Note:* The `form.token.file` parameter currently refers to a file stored in the file system. If the path is a relative path, the file is either stored in the Authentication Handler bundle private data area or -- if not possible -- below the location indicated by the `sling.home` framework property or -- if `sling.home` is not set -- the current working directory. In the future this file may be store in the JCR Repository to support clustering scenarios.
 
+#### Overriding the default login page
+
+The default login page can be overridden by providing a custom login page. To do so, create a [Fragment Bundle](https://docs.osgi.org/specification/osgi.core/8.0.0/framework.module.html#framework.module.fragmentbundles) that contains the custom login page.
+
+The bundle must attach itself to the `org.apache.sling.auth.form` bundle using the `Fragment-Host` header in the `MANIFEST.MF` file. The value of the `Fragment-Host` header must be `org.apache.sling.auth.form`.
+
+The custom login page must be located at `org/apache/sling/auth/form/impl/custom_login.html` in the fragment bundle.
+
+An example of such a bundle is available in the Sling Samples repository at https://github.com/apache/sling-samples/tree/master/custom-login-form.
 
 ### Security Considerations
 
