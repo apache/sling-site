@@ -62,7 +62,7 @@ div(class:"container") {
                 }
                 ul() {
                     li(){a(href:"${config.site_contextPath}repolist.html", "Repositories")}
-                    li(){a(href:"https://gitbox.apache.org/repos/asf?s=sling", "Git at Apache")}
+                    li(){a(href:"https://gitbox.apache.org/repos/asf#sling", "Git at Apache")}
                 }
             }
             li(){
