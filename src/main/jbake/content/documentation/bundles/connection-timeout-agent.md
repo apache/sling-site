@@ -62,10 +62,12 @@ All HTTP client libraries offer a way of setting connect and read timeouts, and 
 * [WCM.io Caravan - Commons HTTP Client](https://caravan.wcm.io/commons/httpclient/)
 
 
-## Tested platforms
+## Tested platforms for version 1.0.4
 
-* openjdk version "1.8.0_212"
-* openjdk version "11.0.2" 2019-01-15
+* openjdk version "1.8.0_423"
+* openjdk version "11.0.25" 2024-10-15
+* openjdk version "17.0.13" 2024-10-15
+* openjdk version "21.0.5" 2024-10-15
 * commons-httpclient 3.1
 * httpclient 4.5.4
 * okhttp 3.14.2
