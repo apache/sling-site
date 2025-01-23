@@ -47,9 +47,9 @@ The exact location of these nodes is not relevant as the `ResourceBundleProvider
 
 Two different types of storage formats are supported for the individual dictionaries
 
-#### `sling:MessageEntry` based
+#### `sling:MessageEntry` or `sling:message` based
 
-The (direct) child nodes of the `mix:language` node must have the `jcr:primaryType` set to `sling:MessageEntry` and must contain two special properties naming the key string and the message:
+The (direct) child nodes of the `mix:language` node must either have the `jcr:primaryType` set to `sling:MessageEntry` or a `jcr:mixinTypes` containing `sling:Message` and must contain two special properties naming the key string and the message:
 
    * `sling:key` -- The `sling:key` property is a string property being the key for which the node contains the message(s). This property is optional. If it is not set the key is determined by the name of this `sling:messageEntry` resource.
    * `sling:message` -- The `sling:message` property represents the string for the key.
@@ -66,7 +66,8 @@ Content for dictionaries in this format might look like this:
                |    +-- m1 (sling:MessageEntry)
                |    |    +-- sling:key = "msg001"
                |    |    +-- sling:message = "This is a message"
-               |    +-- m2 (sling:MessageEntry)
+               |    +-- m2 (nt:folder)
+               |         +-- jcr:mixinTypes = ["sling:Message"]
                |         +-- sling:key = "msg002"
                |         +-- sling:message = "Another message"
                +-- Deutsch (nt:folder, mix:language)
