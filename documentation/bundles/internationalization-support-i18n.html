@@ -169,8 +169,8 @@
 <p>The sling.i18n Bundle provides the implementation of the <code>ResourceBundleProvider</code> interface, which may also be used outside of Sling requests for service tasks. This implementation gets the messages from a JCR Repository stored below nodes of the mixin node type <code>mix:language</code>. These language nodes have a <code>jcr:language</code> property naming the language of the resources. In the context of the JCR based <code>ResourceBundleProvider</code> this is of course expected to be the string value of respective <code>Locale</code>. The format may either be the format as described in <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString%28%29">Locale.toString</a> or as described in <a href="https://tools.ietf.org/html/bcp47">BCP 47</a>, while for the latter you may only provide ISO 3166-1 country codes (for the region) and ISO 639-1 alpha 2 language codes (for the language). Both formats are also accepted in lower-case.</p>
 <p>The exact location of these nodes is not relevant as the <code>ResourceBundleProvider</code> finds them by applying a JCR search.</p>
 <p>Two different types of storage formats are supported for the individual dictionaries</p>
-<h4><a href="#slingmessageentry-based" id="slingmessageentry-based"><code>sling:MessageEntry</code> based</a></h4>
-<p>The (direct) child nodes of the <code>mix:language</code> node must have the <code>jcr:primaryType</code> set to <code>sling:MessageEntry</code> and must contain two special properties naming the key string and the message:</p>
+<h4><a href="#slingmessageentry-or-slingmessage-based" id="slingmessageentry-or-slingmessage-based"><code>sling:MessageEntry</code> or <code>sling:message</code> based</a></h4>
+<p>The (direct) child nodes of the <code>mix:language</code> node must either have the <code>jcr:primaryType</code> set to <code>sling:MessageEntry</code> or a <code>jcr:mixinTypes</code> containing <code>sling:Message</code> and must contain two special properties naming the key string and the message:</p>
 <ul>
 <li><code>sling:key</code> -- The <code>sling:key</code> property is a string property being the key for which the node contains the message(s). This property is optional. If it is not set the key is determined by the name of this <code>sling:messageEntry</code> resource.</li>
 <li><code>sling:message</code> -- The <code>sling:message</code> property represents the string for the key.</li>
@@ -184,7 +184,8 @@
            |    +-- m1 (sling:MessageEntry)
            |    |    +-- sling:key = &quot;msg001&quot;
            |    |    +-- sling:message = &quot;This is a message&quot;
-           |    +-- m2 (sling:MessageEntry)
+           |    +-- m2 (nt:folder)
+           |         +-- jcr:mixinTypes = [&quot;sling:Message&quot;]
            |         +-- sling:key = &quot;msg002&quot;
            |         +-- sling:message = &quot;Another message&quot;
            +-- Deutsch (nt:folder, mix:language)
@@ -295,7 +296,7 @@ Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/li
                             content/documentation/bundles/internationalization-support-i18n.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-09-10</span>
+                        Last modified by <span class="author">Roy Teeuwen</span> on <span class="comment">2025-01-23</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
