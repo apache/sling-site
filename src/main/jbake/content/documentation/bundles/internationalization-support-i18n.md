@@ -47,7 +47,7 @@ The exact location of these nodes is not relevant as the `ResourceBundleProvider
 
 Two different types of storage formats are supported for the individual dictionaries
 
-#### `sling:MessageEntry` or `sling:message` based
+#### `sling:MessageEntry` jcr:primaryType or `sling:Message` jcr:mixinTypes based
 
 The (direct) child nodes of the `mix:language` node must either have the `jcr:primaryType` set to `sling:MessageEntry` or a `jcr:mixinTypes` containing `sling:Message` and must contain two special properties naming the key string and the message:
 
