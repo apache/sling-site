@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2025
 
+* XSS 2.4.6 (26th)
 * Starter 13 (17th)
 * Project Archetype 1.0.14 (7th)
 
