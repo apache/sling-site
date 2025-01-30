@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2025
 
+* Apache Sling Resource Resolver 1.12.4 (30th)
 * Connection Timeout Agent 1.0.4 (27th)
 * XSS 2.4.6 (26th)
 * Starter 13 (17th)
