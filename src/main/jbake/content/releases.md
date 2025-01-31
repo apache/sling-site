@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## January 2025
 
+* Scripting HTL JS Use Provider 1.2.12, Scripting HTL Testing 1.0.38-1.4.0 (31th)
 * Apache Sling Resource Resolver 1.12.4 (30th)
 * Connection Timeout Agent 1.0.4 (27th)
 * XSS 2.4.6 (26th)
