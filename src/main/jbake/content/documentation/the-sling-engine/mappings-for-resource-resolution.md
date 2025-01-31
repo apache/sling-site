@@ -295,7 +295,7 @@ While an alias can provide a variation for a resource name, a vanity path can pr
 * `sling:redirectStatus` &ndash; This property defines the HTTP status code sent to the client with the `sling:redirect` response. If this property is not set, it defaults to 302 (Found). Other status codes supported are 300 (Multiple Choices), 301 (Moved Permanently), 303 (See Other), 307 (Temporary Redirect), and 308 (Permanent Redirect).
 * `sling:vanityOrder` &ndash; It might happen that several resources in the resource tree specify the same vanity path. In that case the one with the highest order is used. This property can be used to set such an order.
 
-Vanity Paths are similar to symbolic links in POST systems.
+Vanity Paths are similar to symbolic links in POSIX systems.
 
 ### Rebuilding The Vanity Bloom Filter
 
