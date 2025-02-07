@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## February 2025
+
+* Installer Configuration Factory 1.4.10 (7th)
+
 ## January 2025
 
 * Scripting HTL JS Use Provider 1.2.12, Scripting HTL Testing 1.0.38-1.4.0 (31th)
