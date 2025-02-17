@@ -124,7 +124,7 @@ def bundles=[
   "Distribution Journal Messages|org.apache.sling.distribution.journal.messages|0.5.10|Y|jar",
   "Distribution Journal Kafka|org.apache.sling.distribution.journal.kafka|0.3.0|Y|jar",
   "Distribution Journal ITs|org.apache.sling.distribution.journal.it|0.1.2|Y|jar",
-  "Dynamic Include|org.apache.sling.dynamic-include|3.3.0|Y|jar",
+  "Dynamic Include|org.apache.sling.dynamic-include|3.3.2|Y|jar",
   "Engine|org.apache.sling.engine|2.16.0|Y|jar",
   "Event|org.apache.sling.event|4.3.14|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.4|Y|jar",
