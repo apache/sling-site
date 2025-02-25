@@ -372,8 +372,6 @@ for (String segment: segments) {
 <li><code>sling:vanityOrder</code> – It might happen that several resources in the resource tree specify the same vanity path. In that case the one with the highest order is used. This property can be used to set such an order.</li>
 </ul>
 <p>Vanity Paths are similar to symbolic links in POSIX systems.</p>
-<h3><a href="#rebuilding-the-vanity-bloom-filter" id="rebuilding-the-vanity-bloom-filter">Rebuilding The Vanity Bloom Filter</a></h3>
-<p><a href="https://issues.apache.org/jira/browse/SLING-4216">SLING-4216</a> introduced the usage of a bloom filter in order to resolve long startup time with many vanityPath entries. The bloom filter is handled automatically by the Sling framework.</p>
 <h2><a href="#interactions-between-mappings-and-authentication-requirements" id="interactions-between-mappings-and-authentication-requirements">Interactions between mappings and authentication requirements</a></h2>
 <p>The <a href="/documentation/the-sling-engine/authentication.html">Sling authentication</a> mechanism works by registering authentication requirements for paths which are protected. Normally these authentication requirements transparently apply to child resources as well due to the hierarchical nature of the paths used.</p>
 <p>Additional mappings complicate the situation, therefore additional authentication requirements are automatically registered by Sling. For instance, assuming the following repository structure:</p>
@@ -423,7 +421,7 @@ for (String segment: segments) {
                             content/documentation/the-sling-engine/mappings-for-resource-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2025-01-31</span>
+                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2025-02-25</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
