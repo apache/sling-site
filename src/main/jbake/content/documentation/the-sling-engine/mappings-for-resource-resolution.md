@@ -297,11 +297,6 @@ While an alias can provide a variation for a resource name, a vanity path can pr
 
 Vanity Paths are similar to symbolic links in POSIX systems.
 
-### Rebuilding The Vanity Bloom Filter
-
-[SLING-4216](https://issues.apache.org/jira/browse/SLING-4216) introduced the usage of a bloom filter in order to resolve long startup time with many vanityPath entries.
-The bloom filter is handled automatically by the Sling framework.
-
 ## Interactions between mappings and authentication requirements
 
 The [Sling authentication](/documentation/the-sling-engine/authentication.html) mechanism works by registering authentication requirements for paths which are protected. Normally these authentication requirements transparently apply to child resources as well due to the hierarchical nature of the paths used.
