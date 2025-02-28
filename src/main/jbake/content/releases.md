@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2025
 
+* Repoinit Parser 1.9.2, Repoinit JCR 1.1.54 (28th)
 * Sling Dynamic Include 3.3.2 (17th)
 * Installer Configuration Factory 1.4.10 (7th)
 
