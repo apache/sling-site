@@ -220,7 +220,7 @@ public class MyComponent {
 <p><strong>NOTE</strong>: A scheduled job is only automatically unscheduled, when it's scheduled for a specific date. Periodic jobs (using a CRON expression) are not automatically unscheduled, but you have to remove it when it's no longer needed.</p>
 <pre><code>  public void stopScheduledJob() {
       Collection&lt;ScheduledJobInfo&gt; myJobs = jobManager.getScheduledJobs(TOPIC, 10, null);
-      myJobs.foreach(sji -&gt; sji.unschedule());
+      myJobs.forEach(sji -&gt; sji.unschedule());
   }
 </code></pre>
 <p>Therefor it is best to check upfront, if the scheduling already exists. Only it does not yet exist you should register it (like shown above).</p>
@@ -345,7 +345,7 @@ public class MyComponent {
                             content/documentation/bundles/apache-sling-eventing-and-job-handling.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-02-29</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-03-05</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
