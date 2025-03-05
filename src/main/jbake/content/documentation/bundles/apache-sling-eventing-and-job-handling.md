@@ -108,7 +108,7 @@ Internally the scheduled Jobs use the [Commons Scheduler Service](/documentation
 
       public void stopScheduledJob() {
           Collection<ScheduledJobInfo> myJobs = jobManager.getScheduledJobs(TOPIC, 10, null);
-          myJobs.foreach(sji -> sji.unschedule());
+          myJobs.forEach(sji -> sji.unschedule());
       }
 
 Therefor it is best to check upfront, if the scheduling already exists. Only it does not yet exist you should register it (like shown above).
