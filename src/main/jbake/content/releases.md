@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## March 2025
+
+* File System Resource Provider 2.3.0, Sling Maven Plugin 3.0.4 (10th)
+
 ## February 2025
 
 * Repoinit Parser 1.9.2, Repoinit JCR 1.1.54 (28th)
