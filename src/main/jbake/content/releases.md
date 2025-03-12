@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2025
 
+* Adapter 2.3.0, Bundle Resource Provider 2.4.0 (12th)
 * File System Resource Provider 2.3.0, Sling Maven Plugin 3.0.4 (10th)
 
 ## February 2025
