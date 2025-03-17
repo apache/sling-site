@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2025
 
+* Context-Aware Configuration Impl 1.7.2 (17th)
 * Content Distribution Core 0.7.2 (14th)
 * Adapter 2.3.0, Bundle Resource Provider 2.4.0 (12th)
 * File System Resource Provider 2.3.0, Sling Maven Plugin 3.0.4 (10th)
