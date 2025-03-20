@@ -279,9 +279,9 @@ def helpers=[
   "Testing OSGi Mock JUnit 5|org.apache.sling.testing.osgi-mock.junit5|3.5.2|org.apache.sling.testing.osgi-mock|jar",
   "Testing PaxExam|org.apache.sling.testing.paxexam|4.0.0|Y|jar",
   "Testing Resource Resolver Mock|org.apache.sling.testing.resourceresolver-mock|1.5.0|Y|jar",
-  "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|3.5.2|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|3.5.2|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|3.5.2|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|3.5.4|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|3.5.4|org.apache.sling.testing.sling-mock|jar",
+  "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|3.5.4|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|4.0.0-1.62.0|Y|jar",
 ]
 

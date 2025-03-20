@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2025
 
+* Testing Sling Mock 3.5.4 (20th)
 * Security 1.3.0 (18th)
 * Context-Aware Configuration Impl 1.7.2 (17th)
 * Content Distribution Core 0.7.2 (14th)
