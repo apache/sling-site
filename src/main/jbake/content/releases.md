@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2025
 
+* Testing PaxExam 4.1.0 (25th)
 * Testing Sling Mock 3.5.4 (20th)
 * Security 1.3.0 (18th)
 * Context-Aware Configuration Impl 1.7.2 (17th)

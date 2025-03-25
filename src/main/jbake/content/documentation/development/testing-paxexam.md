@@ -36,7 +36,7 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
-      <version>4.0.0</version>
+      <version>4.1.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -59,31 +59,31 @@ Add the required dependencies for testing with JUnit and Pax Exam in Sling:
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <version>4.13.3</version>
+      <version>4.14.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-cm</artifactId>
-      <version>4.13.3</version>
+      <version>4.14.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-container-forked</artifactId>
-      <version>4.13.3</version>
+      <version>4.14.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-junit4</artifactId>
-      <version>4.13.3</version>
+      <version>4.14.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-link-mvn</artifactId>
-      <version>4.13.3</version>
+      <version>4.14.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -115,7 +115,7 @@ Add `depends-maven-plugin` when using `TestSupport#baseConfiguration()` or `Slin
       <plugin>
         <groupId>org.apache.servicemix.tooling</groupId>
         <artifactId>depends-maven-plugin</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
         <executions>
           <execution>
             <goals>
