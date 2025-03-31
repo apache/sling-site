@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2025
 
+* JUnit Tests Teleporter 1.1.0, JUnit Core 1.2.0 (31th)
 * Apache Sling Resource Resolver 1.12.6 (28th)
 * Testing PaxExam 4.1.0 (25th)
 * Testing Sling Mock 3.5.4 (20th)
