@@ -95,7 +95,7 @@ def bundles=[
   "Commons Mime Type Service|org.apache.sling.commons.mime|2.3.0|Y|jar",
   "Commons OSGi|org.apache.sling.commons.osgi|2.4.2|Y|jar",
   "Commons Scheduler|org.apache.sling.commons.scheduler|2.7.14|Y|jar",
-  "Commons Testing|org.apache.sling.commons.testing|2.1.2|Y|jar",
+  "Commons Testing|org.apache.sling.commons.testing|2.2.0|Y|jar",
   "Commons Threads|org.apache.sling.commons.threads|3.3.0|Y|jar",
   "Content Detection Support|org.apache.sling.commons.contentdetection|1.0.4|Y|jar",
   "Content Parser API|org.apache.sling.contentparser.api|2.0.0|Y|jar",
