@@ -257,6 +257,28 @@
 <tr><td> <code>v</code> </td><td> <code>1.0</code> </td><td> Retrieves the underlying JCR node from the <a href="https://docs.adobe.com/docs/en/spec/jcr/2.0/15_Versioning.html">version history</a> leveraging the version label given in the value. </td><td> <a href="https://issues.apache.org/jira/browse/SLING-848">SLING-848</a></td></tr>
 </tbody>
 </table>
+<h4><a href="#type-mapping" id="type-mapping">Type Mapping</a></h4>
+<p>The following mapping table is used when writing resource's properties to JCR nodes:</p>
+<table>
+<thead>
+<tr><th>Java Type </th><th> JCR Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>java.util.Calendar</code> </td><td> Date</td></tr>
+<tr><td><code>java.io.InputStream</code> </td><td> Binary</td></tr>
+<tr><td><code>javax.jcr.Node</code> </td><td> Reference</td></tr>
+<tr><td><code>java.math.BigDecimal</code> </td><td> Decimal</td></tr>
+<tr><td><code>Long</code> </td><td> Long</td></tr>
+<tr><td><code>Short</code> </td><td> Long</td></tr>
+<tr><td><code>Integer</code> </td><td> Long</td></tr>
+<tr><td><code>Number</code> </td><td> Double</td></tr>
+<tr><td><code>Boolean</code> </td><td> Boolean</td></tr>
+<tr><td><code>String</code> </td><td> String</td></tr>
+<tr><td><code>Serializable</code> </td><td> Binary</td></tr>
+</tbody>
+</table>
+<p>All arrays are stored as multivalue properties.</p>
+<p>For reading a lot more type conversions are supported.</p>
 <h4><a href="#binary-support" id="binary-support">Binary Support</a></h4>
 <p>Binary properties are exposed as <code>InputStream</code> in the resource's <code>ValueMap</code>. That input stream only needs to be closed in case one reads from it. This prevents always checking the <code>ValueMap</code> for dangling <code>InputStream</code> properties.</p>
 <p>The main binary property (i.e. the one being exposed by <code>Resource.adaptTo(InputStream.class)</code>) is determined like follows:</p>
@@ -368,7 +390,7 @@ public class SampleResourceChangeListener implements ResourceChangeListener {
                             content/documentation/the-sling-engine/resources.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-09-30</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-04-06</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
