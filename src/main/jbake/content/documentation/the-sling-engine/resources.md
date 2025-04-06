@@ -144,6 +144,28 @@ Path Parameter | Example Value | Description | Since
  --- | --- | --- | ---
 | `v` | `1.0` | Retrieves the underlying JCR node from the [version history](https://docs.adobe.com/docs/en/spec/jcr/2.0/15_Versioning.html) leveraging the version label given in the value. | [SLING-848](https://issues.apache.org/jira/browse/SLING-848)
 
+#### Type Mapping
+
+The following mapping table is used when writing resource's properties to JCR nodes:
+
+Java Type | JCR Type
+--- | ---
+`java.util.Calendar` | Date
+`java.io.InputStream` | Binary
+`javax.jcr.Node` | Reference
+`java.math.BigDecimal` | Decimal
+`Long` | Long
+`Short` | Long
+`Integer` | Long
+`Number` | Double
+`Boolean` | Boolean
+`String` | String
+`Serializable` | Binary
+
+All arrays are stored as multivalue properties.
+
+For reading a lot more type conversions are supported.
+
 #### Binary Support
 
 Binary properties are exposed as `InputStream` in the resource's `ValueMap`. That input stream only needs to be closed in case one reads from it. This prevents always checking the `ValueMap` for dangling `InputStream` properties.
