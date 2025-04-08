@@ -18,7 +18,7 @@ Otherwise (for a path not matching any existing resource) the resource path ends
 In addition since [SLING-848](https://issues.apache.org/jira/browse/SLING-848) there may be one or multiple **request path parameters**  passed in the form `;<key>=<value>`. Those request path parameters are only supported directly after the *Resource Path* or after the *Extension*. The value needs to be enclosed in `'` if it contains a `.` and is not located after the extension.
 It is up to the [Resource Provider](resources.html#providing-resources) to decide for what purpose those parameters are being used and which ones are supported at all.
 
-The decomposed parts can be accessed through the `RequestPathInfo` object, which is retrieved via [SlingHttpServletRequest.getPathInfo()](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/SlingHttpServletRequest.html#getRequestPathInfo--).
+The decomposed parts can be accessed through the `RequestPathInfo` object, which is retrieved via [SlingHttpServletRequest.getRequestPathInfo()](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/SlingHttpServletRequest.html#getRequestPathInfo--).
 
 There's a cheat sheet in Adobe's AEM documentation at [https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html) available to get you familiar with the URL decomposition of Sling.
 
