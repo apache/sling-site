@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html</loc><lastmod>2025-04-08</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2025-03-31</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/resources.html</loc><lastmod>2025-04-06</lastmod>
@@ -94,8 +96,6 @@
         <loc>https://sling.apache.org/documentation/tutorials-how-tos/testing-sling-based-applications.html</loc><lastmod>2017-12-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/tutorials-how-tos/getting-resources-and-properties-in-sling.html</loc><lastmod>2018-01-05</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html</loc><lastmod>2021-05-19</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/servlets.html</loc><lastmod>2023-04-12</lastmod>
     </url><url>
