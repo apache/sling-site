@@ -4,9 +4,9 @@ status=published
 tags=logging,operations
 ~~~~~~
 
-<div class="note">
+## NOTE
+
 This document is for 3.x release of Sling Commons Log components. Refer to [Logging](/documentation/development/logging.html) for documentation related to newer version.
-</div>
 
 ## Introduction
 
