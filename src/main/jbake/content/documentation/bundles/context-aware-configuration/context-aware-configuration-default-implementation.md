@@ -1,4 +1,4 @@
-title=Apache Sling Context-Aware Configuration - Default Implementation		
+title=Apache Sling Context-Aware Configuration - Default Implementation
 type=page
 status=published
 tags=configuration
@@ -8,7 +8,7 @@ tags=configuration
 
 # About
 
-By default the 'default implementation' us used by the Context-Aware Configuration concerning lookup and persistence of configuration data, resource and property inheritance and context path detection. Using the [SPI](http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html) it is possible to overlay, extend or replace this functionality.
+By default the 'default implementation' us used by the Context-Aware Configuration concerning lookup and persistence of configuration data, resource and property inheritance and context path detection. Using the [SPI](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html) it is possible to overlay, extend or replace this functionality.
 
 This page documents the details of the default implementation.
 
@@ -69,7 +69,7 @@ Explanation:
 * It is possible to use deeper hierarchies below `sling:configs` as well.
 * Nested configurations are supported as well. This can be mapped to annotation classes referencing other annotation classes.
 
-                          
+
 # Resource inheritance
 
 We distinguish between:

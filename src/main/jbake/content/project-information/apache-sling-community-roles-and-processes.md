@@ -1,4 +1,4 @@
-title=Apache Sling Community Roles and Processes		
+title=Apache Sling Community Roles and Processes
 type=page
 status=published
 tags=community,pmc
@@ -8,11 +8,11 @@ The Community Roles and Processes are put in effect as of 13/May/2009. Updated 7
 
 ## Roles
 
-There are different roles with which Sling community members may be associated: User, Contributor, Committer, and PMC (Project Management Committee) Member. These roles are assigned and assumed based on merit. 
+There are different roles with which Sling community members may be associated: User, Contributor, Committer, and PMC (Project Management Committee) Member. These roles are assigned and assumed based on merit.
 
 The User and Contributor roles are acquired by using the software and participating in the community, but the Committer and PMC member roles can only be granted by a PMC vote.
 
-The roles defined here conform to the ASF's [definition of roles](http://www.apache.org/foundation/how-it-works.html#roles).
+The roles defined here conform to the ASF's [definition of roles](https://www.apache.org/foundation/how-it-works.html#roles).
 
 ### Users
 
@@ -24,11 +24,11 @@ Contributors are the people who write code or documentation patches or contribut
 
 ### Committers
 
-Contributors who give frequent and valuable contributions to a subproject of Sling can have their status promoted to that of a *[Committer](http://www.apache.org/dev/committers.html)*. A Committer has write access to Sling's source code repository. Contributors of documentation are eligible as committers in the same way as contributors of pure code.
+Contributors who give frequent and valuable contributions to a subproject of Sling can have their status promoted to that of a *[Committer](https://www.apache.org/dev/committers.html)*. A Committer has write access to Sling's source code repository. Contributors of documentation are eligible as committers in the same way as contributors of pure code.
 
 ### PMC Members
 
-Committers showing continued interest in the project and taking an active part in the evolution of the project may be elected as  *[PMC](http://www.apache.org/dev/pmc.html) members*. The PMC (Project Management Committee) is the official managing body of project and is responsible for setting its overall direction.
+Committers showing continued interest in the project and taking an active part in the evolution of the project may be elected as  *[PMC](https://www.apache.org/dev/pmc.html) members*. The PMC (Project Management Committee) is the official managing body of project and is responsible for setting its overall direction.
 
 ## Processes
 

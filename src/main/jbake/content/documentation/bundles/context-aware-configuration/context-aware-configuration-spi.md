@@ -1,4 +1,4 @@
-title=Apache Sling Context-Aware Configuration - SPI		
+title=Apache Sling Context-Aware Configuration - SPI
 type=page
 status=published
 tags=configuration
@@ -11,7 +11,7 @@ tags=configuration
 
 The Context-Aware Configuration implementation provides a set of Service Provider Interfaces (SPI) that allows you to overlay, enhance or replace the default implementation and adapt it to your needs.
 
-Please use the SPI with care, and first check if the [Default Implementation](http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html) does not already fulfill your needs.
+Please use the SPI with care, and first check if the [Default Implementation](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html) does not already fulfill your needs.
 
 
 
@@ -59,4 +59,4 @@ By providing an implementation of `org.apache.sling.caconfig.spi.ConfigurationMe
 
 By providing an implementation of `org.apache.sling.caconfig.spi.ConfigurationOverrideProvider` you can provide your own overrides - if the built-in override providers do not fit your needs.
 
-See [Override](http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-override.html) for the list of built-in providers and the override syntax.
+See [Override](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-override.html) for the list of built-in providers and the override syntax.

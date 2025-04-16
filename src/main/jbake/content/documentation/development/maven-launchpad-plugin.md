@@ -1,11 +1,11 @@
-title=Maven Launchpad Plugin		
+title=Maven Launchpad Plugin
 type=page
 status=published
 tags=development,maven
 ~~~~~~
 
 <div class="note">
-The launchpad plugin has been retired in favour of the provisioning model and associated tooling, see <a href="http://sling.apache.org/documentation/development/slingstart.html">the provisioning model documentation</a>.
+The launchpad plugin has been retired in favour of the provisioning model and associated tooling, see <a href="https://sling.apache.org/documentation/development/slingstart.html">the provisioning model documentation</a>.
 </div>
 
 The Maven Launchpad Plugin provides goals which facilitate the creation of OSGi applications. It supports the following runtime scenarios:
@@ -19,15 +19,15 @@ In addition, the Maven Launchpad Plugin supports the publishing of an applicatio
  * [org.apache.sling.starter](https://github.com/apache/sling-org-apache-sling-starter) - produces an application descriptor.
  * [org.apache.sling.launchpad.testing](https://github.com/apache/sling-org-apache-sling-launchpad-testing) - uses the application descriptor from `org.apache.sling.launchpad` and adds two bundles.
 
-Maven Launchpad Plugin provides the following goals: 
+Maven Launchpad Plugin provides the following goals:
 
-| Goals | Description | 
+| Goals | Description |
 |---|---|
-| launchpad:prepare-package | Create the file system structure required by Sling's Launchpad framework. | 
-| launchpad:attach-bundle-list | Attach the bundle list descriptor to the current project as a Maven artifact. | 
-| launchpad:create-karaf-descriptor | Create an Apache Karaf Feature descriptor. | 
-| launchpad:create-bundle-jar | Create a JAR file containing the bundles in a Launchpad-structured JAR file. | 
-| launchpad:check-bundle-list-for-snapshots | Validate that the bundle list does not contain any SNAPSHOT versions. | 
+| launchpad:prepare-package | Create the file system structure required by Sling's Launchpad framework. |
+| launchpad:attach-bundle-list | Attach the bundle list descriptor to the current project as a Maven artifact. |
+| launchpad:create-karaf-descriptor | Create an Apache Karaf Feature descriptor. |
+| launchpad:create-bundle-jar | Create a JAR file containing the bundles in a Launchpad-structured JAR file. |
+| launchpad:check-bundle-list-for-snapshots | Validate that the bundle list does not contain any SNAPSHOT versions. |
 | launchpad:run | Run a Launchpad application. |
 | launchpad:start | Start a Launchpad application. |
 | launchpad:stop | Stop a Launchpad application. |
@@ -73,7 +73,7 @@ The bundle list file uses a simple XML syntax representing a list of bundles org
                 <version>3.2.1</version>
             </bundle>
         </startLevel>
-    
+
         <startLevel level="10">
             <bundle>
                 <groupId>org.apache.felix</groupId>
@@ -81,7 +81,7 @@ The bundle list file uses a simple XML syntax representing a list of bundles org
                 <version>1.0.0</version>
             </bundle>
         </startLevel>
-    
+
         <startLevel level="15">
             <bundle>
                 <groupId>org.apache.sling</groupId>
@@ -152,7 +152,7 @@ For integration testing examples, see `/samples/inplace-integration-test` and `l
 
 ## Bundle List Rewriting
 
-The Maven Launchpad Plugin supports the use of rules to rewrite the bundle list. These rules are executed by the [Drools](http://www.jboss.org/drools) rule engine. Typically, this is used along with Maven profiles. For example, Sling's testing project includes a profile called `test-reactor-sling-bundles`. When activated, this profile runs a Drools rule file which scans the project list from the Maven reactor and modifies the version number for bundles which were contained within the reactor.
+The Maven Launchpad Plugin supports the use of rules to rewrite the bundle list. These rules are executed by the [Drools](https://www.jboss.org/drools) rule engine. Typically, this is used along with Maven profiles. For example, Sling's testing project includes a profile called `test-reactor-sling-bundles`. When activated, this profile runs a Drools rule file which scans the project list from the Maven reactor and modifies the version number for bundles which were contained within the reactor.
 
 In order for rules to interact with the Maven build, the following global variables are made available:
 

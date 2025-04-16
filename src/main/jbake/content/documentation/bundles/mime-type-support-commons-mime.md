@@ -1,4 +1,4 @@
-title=MIME Type Support (commons.mime and commons.contentdetection)		
+title=MIME Type Support (commons.mime and commons.contentdetection)
 type=page
 status=published
 tags=mimetypes
@@ -33,7 +33,7 @@ Two more methods allow to programmatically add MIME type mappings:
 
 ## The Sling ContentAwareMimeTypeService
 
-For content-based mime type detection (as opposed to filename-based detection), the `org.apache.sling.commons.contentdetection` bundle 
+For content-based mime type detection (as opposed to filename-based detection), the `org.apache.sling.commons.contentdetection` bundle
 provides the `ContentAwareMimeTypeService`, which takes an `InputStream` that's analyzed to detect its mime type, using Apache Tika
 by default:
 
@@ -51,7 +51,7 @@ Besides the `MimeTypeService` provided by Apache Sling, there is actually more:
 
 The implementation of the `MimeTypeService` in the Apache Sling MIME type mapping support (`org.apache.sling.commons.mime`) bundle supports a numnber of ways to configure and extend the set of MIME type mappings:
 
-* Default configuration. The default configuration is based on the [`mime.types`](http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types) file maintained by Roy Fielding for the Apache httpd project and some extensions by Apache Sling.
+* Default configuration. The default configuration is based on the [`mime.types`](https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types) file maintained by Roy Fielding for the Apache httpd project and some extensions by Apache Sling.
 * Bundle provided mappings. Bundles registered in the OSGi framework may contain MIME type mappings files `META-INF/mime.types` which are loaded automatically by the Apache Sling MIME type mapping support bundle.
 * Configuration. Mappings may be supplied by configuration of the `MimeTypeService` implementation as the multi-value string property `mime.types`. Each value of the property corresponds to a line in a MIME type configuration file (see below for the format).
 * Registered Mappings. Mappings may be registered with the `MimeTypeService.registerMapping` methods.

@@ -8,9 +8,9 @@ tags=core,resources,resourcemappings
 
 ## Configuration
 
-The 
+The
 
-1. resource resolution/incoming mapping (i.e. mapping a request path to a resource in Sling's resource tree) as well as 
+1. resource resolution/incoming mapping (i.e. mapping a request path to a resource in Sling's resource tree) as well as
 2. mapping a resource path to an external URL/path (aka reverse mapping or outgoing mapping)
 
 can be influenced in different ways:
@@ -50,19 +50,19 @@ Consider the following content
     /etc/map
           +-- http
                +-- example.com.80
-               |    +-- sling:redirect = "http://www.example.com/"
+               |    +-- sling:redirect = "https://www.example.com/"
                +-- www.example.com.80
                |    +-- sling:internalRedirect = "/example"
                +-- any_example.com.80
                |    +-- sling:match = ".+\.example\.com\.80"
-               |    +-- sling:redirect = "http://www.example.com/"
+               |    +-- sling:redirect = "https://www.example.com/"
                +-- localhost_any
                |    +-- sling:match = "localhost\.\d*"
                |    +-- sling:internalRedirect = "/content"
                |    +-- cgi-bin
                |    |    +-- sling:internalRedirect = "/scripts"
                |    +-- gateway
-               |    |    +-- sling:internalRedirect = "http://gbiv.com"
+               |    |    +-- sling:internalRedirect = "https://gbiv.com"
                |    +-- (stories)
                |         +-- sling:internalRedirect = "/anecdotes/$1"
                +-- regexmap
@@ -73,12 +73,12 @@ This would define the following mapping entries:
 
 | Regular Expression | Redirect | Internal | Description |
 |---|---|---|---|
-| http/example.com.80 | http://www.example.com | no | Redirect all requests to the Second Level Domain to www |
+| http/example.com.80 | https://www.example.com | no | Redirect all requests to the Second Level Domain to www |
 | http/www.example.com.80 | /example | yes | Prefix the URI paths of the requests sent to this domain with the string `/example` |
-| http/.+\.example\.com\.80 | http://www.example.com | no | Redirect all requests to sub domains to www. The actual regular expression for the host.port segment is taken from the `sling:match` property. |
+| http/.+\.example\.com\.80 | https://www.example.com | no | Redirect all requests to sub domains to www. The actual regular expression for the host.port segment is taken from the `sling:match` property. |
 | http/localhost\.\d\* | /content | yes | Prefix the URI paths with `/content` for requests to localhost, regardless of actual port the request was received on. This entry only applies if the URI path does not start with `/cgi-bin`, `gateway` or `stories` because there are longer match entries. The actual regular expression for the host.port segment is taken from the `sling:match` property. |
 | http/localhost\.\d*/cgi-bin | /scripts | yes | Replace the `/cgi-bin` prefix in the URI path with `/scripts` for requests to localhost, regardless of actual port the request was received on. |
-| http/localhost\.\d*/gateway | http://gbiv.com | yes | Replace the `/gateway` prefix in the URI path with `http://gbiv.com` for requests to localhost, regardless of actual port the request was received on. |
+| http/localhost\.\d*/gateway | https://gbiv.com | yes | Replace the `/gateway` prefix in the URI path with `https://gbiv.com` for requests to localhost, regardless of actual port the request was received on. |
 | http/localhost\.\d*/(stories) | /anecdotes/stories | yes | Prepend the URI paths starting with `/stories` with `/anecdotes` for requests to localhost, regardless of actual port the request was received on. |
 
 ### Regular Expression Matching
@@ -137,7 +137,7 @@ leads to the following entry being used in the reverse mapping table:
 
 | Pattern | Replacement |
 | ------- | ----------- |
-| /content/([^/]+)/home/(.*) | http://example.com/$1/index/$2 |
+| /content/([^/]+)/home/(.*) | https://example.com/$1/index/$2 |
 
 
 ### Redirection Values
@@ -212,7 +212,7 @@ The placeholders have this format: **$['type':'name';default='default value']**.
 The type can be:
 
  * **env**: taken from the [Environment Variables](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
- * **prop**: taken from the [Bundle Context Properties](https://docs.osgi.org/javadoc/r6/core/org/osgi/framework/BundleContext.html#getProperty(java.lang.String)) (first evaluates OSGi Framework Properties, then System Properties) 
+ * **prop**: taken from the [Bundle Context Properties](https://docs.osgi.org/javadoc/r6/core/org/osgi/framework/BundleContext.html#getProperty(java.lang.String)) (first evaluates OSGi Framework Properties, then System Properties)
  * **config**: taken from the String Interpolation Configuration
 
 With this it is possible to create a single set of `/etc/map` definitions and then adjust the actual values of an instance by an OSGi configuration.
@@ -255,7 +255,7 @@ For local testing open your **hosts** file (/etc/hosts on Unix) and add a line l
 ```
 127.0.0.1 qa.author.acme.com
 ```
-save it and test with `ping qa.author.acme.com` to make sure the name resolves. Now you should be able to open the same page with: **http://qa.author.acme.com/starter/index.html**.
+save it and test with `ping qa.author.acme.com` to make sure the name resolves. Now you should be able to open the same page with: **https://qa.author.acme.com/starter/index.html**.
 
 Now do the same with **phv.fq.host.name=staging.author.acme.com**.
 

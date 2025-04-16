@@ -1,4 +1,4 @@
-title=Internationalization Support (i18n)		
+title=Internationalization Support (i18n)
 type=page
 status=published
 tags=i18n
@@ -33,7 +33,7 @@ NOTE: Unlike the default implementations of the `ResourceBundle` abstract class 
 
 The `org.apache.sling.i18n` Bundle implements a request level `Filter` providing extensible implementations of the above mentioned three methods. Extensibility is attained by defining two service interfaces:
 
-   * `LocaleResolver` -- The `LocaleResolver` interface defines a method which may be implemented by a service outside of the sling.i18n bundle. If no such service is registered the default behaviour is as described above for the sling.core bundle. The service described by this interface is used to implement the `getLocale()` and `getLocales()` method. 
+   * `LocaleResolver` -- The `LocaleResolver` interface defines a method which may be implemented by a service outside of the sling.i18n bundle. If no such service is registered the default behaviour is as described above for the sling.core bundle. The service described by this interface is used to implement the `getLocale()` and `getLocales()` method.
 
    * `ResourceBundleProvider` -- The `ResourceBundleProvider` interface defines two methods to acquire a `ResourceBundle` for any `Locale` and an optional base name. This service interface is not intended to be implemented outside of the sling.i18n bundle: A JCR Repository based implementation is contained in the sling.i18n bundle. The `ResourceBundleProvider` service is not only used within the sling.i18n bundle to implement the `SlingHttpServletRequest.getResourceBundle(Locale)` and  `SlingHttpServletRequest.getResourceBundle(String, Locale)` methods. The service may also be used by Sling applications to acquire `ResourceBundle` instances without having a request object by getting the service and calling its `getResourceBundle(Locale)` or `getResourceBundle(String, Locale)` method directly.
 
@@ -41,7 +41,7 @@ The `org.apache.sling.i18n` Bundle implements a request level `Filter` providing
 
 ### JCR Repository based `ResourceBundleProvider`
 
-The sling.i18n Bundle provides the implementation of the `ResourceBundleProvider` interface, which may also be used outside of Sling requests for service tasks. This implementation gets the messages from a JCR Repository stored below nodes of the mixin node type `mix:language`. These language nodes have a `jcr:language` property naming the language of the resources. In the context of the JCR based `ResourceBundleProvider` this is of course expected to be the string value of respective `Locale`. The format may either be the format as described in [Locale.toString](http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString%28%29) or as described in [BCP 47](https://tools.ietf.org/html/bcp47), while for the latter you may only provide ISO 3166-1 country codes (for the region) and ISO 639-1 alpha 2 language codes (for the language). Both formats are also accepted in lower-case.
+The sling.i18n Bundle provides the implementation of the `ResourceBundleProvider` interface, which may also be used outside of Sling requests for service tasks. This implementation gets the messages from a JCR Repository stored below nodes of the mixin node type `mix:language`. These language nodes have a `jcr:language` property naming the language of the resources. In the context of the JCR based `ResourceBundleProvider` this is of course expected to be the string value of respective `Locale`. The format may either be the format as described in [Locale.toString](https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString%28%29) or as described in [BCP 47](https://tools.ietf.org/html/bcp47), while for the latter you may only provide ISO 3166-1 country codes (for the region) and ISO 639-1 alpha 2 language codes (for the language). Both formats are also accepted in lower-case.
 
 The exact location of these nodes is not relevant as the `ResourceBundleProvider` finds them by applying a JCR search.
 
@@ -78,7 +78,7 @@ Content for dictionaries in this format might look like this:
                     +-- m2 (sling:MessageEntry)
                          +-- sling:key = "msg002"
                          +-- sling:message = "Ein anderer Text"
-    
+
        /apps/myApp
                +-- English (nt:folder, mix:language)
                |    +-- jcr:language = en
@@ -130,8 +130,8 @@ The `mix:language` mixin node type allows setting the `jcr:language` property re
         mixin
       - sling:key (string)
       - sling:message (undefined)
-    
-    [sling:MessageEntry] > nt:hierarchyNode, sling:Message  
+
+    [sling:MessageEntry] > nt:hierarchyNode, sling:Message
 
 
 The `sling:Message` and `sling:MessageEntry` are helper node types. The latter must be used to create the nodes for the `sling:MessageEntry` based format.
@@ -185,7 +185,7 @@ Since version 2.5.16 the i18n bundle supports locating ResourceBundle resources 
 For example, the bundle providing the ResourceBundle resources can define something like this:
 
     Require-Capability: osgi.extender;filter:="(&(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version<=1.0.0)(!(version>=2.0.0)))"
-    
+
     Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths="/libs/i18n/path123";depth=1
 
 The "Provide-Capability" instruction defines which (csv) resource paths to traverse via the "paths" clause and how deep to drill down via the optional "depth" clause (depth=1 by default) looking for candidates.

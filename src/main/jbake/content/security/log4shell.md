@@ -9,7 +9,7 @@ On 9th December 2021, a new zero-day vulnerability for [Apache Log4j 2](https://
 https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228) and affects Log4j versions from 2.0-beta9 (inclusive) to 2.15.0
 (exclusive). It is also known under the *Log4Shell* name.
 
-Apache Sling modules use the [Simple Logging Facade for Java](http://www.slf4j.org) (slf4j) for logging, backed by the [Sling Commons Log
+Apache Sling modules use the [Simple Logging Facade for Java](https://www.slf4j.org) (slf4j) for logging, backed by the [Sling Commons Log
 bundle](https://github.com/apache/sling-org-apache-sling-commons-log/). There are no Sling modules using versions of Log4j
 affected by *Log4Shell*. The Sling Starter and Sling CMS applications do not include any vulnerable version of the Log4j library.
 

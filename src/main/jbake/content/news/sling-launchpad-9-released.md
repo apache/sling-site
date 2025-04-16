@@ -1,4 +1,4 @@
-title=Apache Sling Launchpad 9 released		
+title=Apache Sling Launchpad 9 released
 type=page
 status=published
 tags=launchpad
@@ -15,7 +15,7 @@ runtime characteristics when compared to the oak-segment persistence and also
 allows reliable online compaction of the repository.
 
 If you're upgrading from a previous version of Sling you will need to manually
-upgrade the repository. See the [Oak documentation on Repository migration](http://jackrabbit.apache.org/oak/docs/migration.html)
+upgrade the repository. See the [Oak documentation on Repository migration](https://jackrabbit.apache.org/oak/docs/migration.html)
 for more details.
 
 The Sling Explorer is replaced with Composum
@@ -51,7 +51,7 @@ A number of new general-purpose modules have been added to the Sling Launchpad:
 Tooling: HTL Maven Plugin
 ---
 
-The [HTL Maven Plugin](http://sling.apache.org/components/htl-maven-plugin/) provides build-time validation for projects using HTL. Furthermore, the HTL engine has been modularised into an HTL Compiler, an HTL Java Compiler and an HTL Script Engine, with the first two allowing to build other HTL tools in a Sling-independent way.
+The [HTL Maven Plugin](https://sling.apache.org/components/htl-maven-plugin/) provides build-time validation for projects using HTL. Furthermore, the HTL engine has been modularised into an HTL Compiler, an HTL Java Compiler and an HTL Script Engine, with the first two allowing to build other HTL tools in a Sling-independent way.
 
 Streaming Upload Support
 ---
@@ -81,7 +81,7 @@ Documentation available at [Service Authentication](/documentation/the-sling-eng
 Removed org.apache.sling.commons.json and org.json bundles
 ---
 
-Apache projects are no longer allowed, for legal reasons, to ship code which uses or links to the 
+Apache projects are no longer allowed, for legal reasons, to ship code which uses or links to the
 JSON.org Java implementation. As a consequence we have removed all code which references that
 API.
 

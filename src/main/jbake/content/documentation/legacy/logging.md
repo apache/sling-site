@@ -5,9 +5,7 @@ tags=logging,operations
 ~~~~~~
 
 <div class="note">
-This document is for 3.x release of Sling Commons Log components. Refer to
-<a href="http://sling.apache.org/documentation/development/logging.html">Logging</a> for documentation related
-to newer version.
+This document is for 3.x release of Sling Commons Log components. Refer to [Logging](/documentation/development/logging.html) for documentation related to newer version.
 </div>
 
 ## Introduction
@@ -16,10 +14,10 @@ Logging in Sling is supported by the `org.apache.sling.commons.log` bundle, whic
 
    * Implements the OSGi Log Service Specification and registers the `LogService` and `LogReader` services
    * Exports three commonly used logging APIs:
-      * [Simple Logging Facade for Java (SLF4J)](http://www.slf4j.org)
-      * [Apache Commons Logging](http://jakarta.apache.org/commons/logging)
-      * [log4j](http://logging.apache.org/log4j/index.html)
-      * [java.util.logging](http://download.oracle.com/javase/6/docs/api/java/util/logging/package-summary.html) (as of r1169918)
+      * [Simple Logging Facade for Java (SLF4J)](https://www.slf4j.org)
+      * [Apache Commons Logging](https://jakarta.apache.org/commons/logging)
+      * [log4j](https://logging.apache.org/log4j/index.html)
+      * [java.util.logging](https://download.oracle.com/javase/6/docs/api/java/util/logging/package-summary.html) (as of r1169918)
    * Configures logging through our own implementation of the SLF4J backend API
 
 
@@ -57,7 +55,7 @@ The following properties may be set:
 | `org.apache.sling.commons.log.names` | `String\[\]` | -- | A list of logger names to which this configuration applies. |
 
 
-Note that multiple Logger Configurations may refer to the same Log Writer Configuration. If no Log Writer Configuration exists whose file name matches the file name set on the Logger Configuration an implicit Log Writer Configuration with default setup (daily log rotation) is internally created. 
+Note that multiple Logger Configurations may refer to the same Log Writer Configuration. If no Log Writer Configuration exists whose file name matches the file name set on the Logger Configuration an implicit Log Writer Configuration with default setup (daily log rotation) is internally created.
 
 
 ### Log Writer Configuration

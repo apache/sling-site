@@ -1,10 +1,10 @@
-title=Servlet Filter Support		
+title=Servlet Filter Support
 type=page
 status=published
 tags=core,servlets
 ~~~~~~
 
-Sling supports filtering the request processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface. 
+Sling supports filtering the request processing by applying filter chains to the requests before actually dispatching to the servlet or script for processing. Filters to be used in such filter processing are plain OSGi services of type `javax.servlet.Filter` which of course means that the services implement this interface.
 An implementation will have to resume the filtering and rendering process by calling the `doFilter` method of the `FilterChain` object. It must call it one and only once. Calling it more than once will break the rendering process,
 with an ArrayIndexOutOfBoundException (<= 2.7.4) or IllegalStateException (> 2.7.4).
 For Sling to pick up a `javax.servlet.Filter` service for filter processing some service properties must be set. Following is a table describing those properties, in the next section you learn how to best implement such filters.
@@ -32,7 +32,7 @@ Coding the above being a bit tedious, [Apache Sling Servlets Annotations](https:
        import org.apache.sling.servlets.annotations.SlingServletFilter;
        import org.apache.sling.servlets.annotations.SlingServletFilterScope;
        import org.osgi.service.component.annotations.Component;
-    ...   
+    ...
        @Component
        @SlingServletFilter(scope = {SlingServletFilterScope.REQUEST},
                            suffix_pattern = "/suffix/foo",
@@ -162,6 +162,6 @@ The first numbers on those lines are the filter priorities, and the last number 
 
 Up to and including Sling Engine 2.1.0 support for Servlet Filters has been as follows:
 
-* Any `javax.servlet.Filter` service is accepted as a filter for Sling unless the `pattern` property used by the [Apache Felix HttpService whiteboard support](http://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard) is set in the service registration properties.
+* Any `javax.servlet.Filter` service is accepted as a filter for Sling unless the `pattern` property used by the [Apache Felix HttpService whiteboard support](https://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard) is set in the service registration properties.
 * The `filter.scope` property is optional and supports the case-sensitive values `request` and `component`.
 * Filter ordering is defined by the `filter.order` property whose default value is `Integer.MAX_VALUE` where smaller values have higher priority over higher values.

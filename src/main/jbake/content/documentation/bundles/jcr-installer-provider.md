@@ -1,4 +1,4 @@
-title=JCR Installer Provider		
+title=JCR Installer Provider
 type=page
 status=published
 tags=installer
@@ -10,7 +10,7 @@ The JCR installer provider scans the JCR repository for artifacts and provides t
 
 The JCR installer provider can be configured with weighted paths which are scanned. By default, the installer scans in `/apps` and `/libs` where artifacts found in `/apps` get a higher priority. The installer does a deep scan and uses a regular expression to detect folders containing artifacts to be installed. By default, artifacts from within a folder named `install` are provided to the OSGi installer.
 
-If such an install folder contains a binary artifact (e.g. a bundle or a config file as described in [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)) this is provided to the OSGi installer. 
+If such an install folder contains a binary artifact (e.g. a bundle or a config file as described in [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html)) this is provided to the OSGi installer.
 
 In addition every node of type `sling:OsgiConfig` is provided as a configuration to the installer. This has the advantage of leveraging the JCR structure better than binary files, but has the known limitations outlined in [SLING-4183](https://issues.apache.org/jira/browse/SLING-4183) and [SLING-2477](https://issues.apache.org/jira/browse/SLING-2477), therefore it is recommended to stick to one of the binary formats described in [Configuration Installer Factory](/documentation/bundles/configuration-installer-factory.html).
 
@@ -26,7 +26,7 @@ Artifacts from folders with a run mode get a higher priority. For example by def
 
 ## Start Level Support
 
-If the parent folder of a bundle has a name which is a number, this is used as the start level (when installing the bundle for the first time, compare with [SLING-2011](https://issues.apache.org/jira/browse/SLING-2011)). So e.g. a bundle in the path `/libs/sling/install/15/somebundle.jar` is having the start level `15`. 
+If the parent folder of a bundle has a name which is a number, this is used as the start level (when installing the bundle for the first time, compare with [SLING-2011](https://issues.apache.org/jira/browse/SLING-2011)). So e.g. a bundle in the path `/libs/sling/install/15/somebundle.jar` is having the start level `15`.
 
 ## Write Back Support
 
@@ -50,7 +50,7 @@ To watch the logs produced by these modules, you can filter `sling/logs/error.lo
 
 ## Install and remove a bundle
 
-We'll use the [Knopflerfish Desktop](http://www.knopflerfish.org/releases/2.0.5/jars/desktop_awt/desktop_awt_all-2.0.0.jar) bundle for this example, it is convenient as it displays a graphical user interface when started.
+We'll use the [Knopflerfish Desktop](https://www.knopflerfish.org/releases/2.0.5/jars/desktop_awt/desktop_awt_all-2.0.0.jar) bundle for this example, it is convenient as it displays a graphical user interface when started.
 
 We use `curl` to create content, to make it easy to reproduce the example by copying and pasting the `curl` commands. Any other way to create content in the repository will work, of course.
 

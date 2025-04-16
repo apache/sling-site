@@ -1,4 +1,4 @@
-title=Apache Sling 10 released		
+title=Apache Sling 10 released
 type=page
 status=published
 tags=launchpad
@@ -59,7 +59,7 @@ The OSGi configuration differs from the standard model by using an array to hold
         "org.apache.sling.resourceresolver:mapping\=[repository-reader-service]"
       ]
 
-See the [Oak documentation on pre-authentication](http://jackrabbit.apache.org/oak/docs/security/authentication/preauthentication.html#withoutrepository) for more details.
+See the [Oak documentation on pre-authentication](https://jackrabbit.apache.org/oak/docs/security/authentication/preauthentication.html#withoutrepository) for more details.
 
 ## Enhancements to the repoinit language
 

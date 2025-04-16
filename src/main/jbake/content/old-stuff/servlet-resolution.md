@@ -104,10 +104,10 @@ The pseudo-code for Servlet resolution is as follows:
 
 
     Servlet resolveServlet(SlingHttpServletRequest request) {
-    
+
         String resourceType = request.getResource().getResourceType();
         resourceType = resourceType.replaceAll("\\:", "/");
-    
+
         String baseName;
         if (("GET".equals(request.getMethod()) || "HEAD".equals(request.getMethod())
                 && request.getRequestPathInfo().getExtension() != null) {
@@ -115,7 +115,7 @@ The pseudo-code for Servlet resolution is as follows:
         } else {
             baseName = request.getMethod();
         }
-    
+
         if (request.getRequestPath().getSelectorString() != null) {
             String selectors = request.getRequestPath().getSelectorString();
             selectors = selectors.replace('.', '/');
@@ -125,7 +125,7 @@ The pseudo-code for Servlet resolution is as follows:
                 if (servlet != null) {
                     return servlet;
                 }
-    
+
                 int lastSlash = selectors.lastIndexOf('/');
                 if (lastSlash > 0) {
                     selectors = selectors.substring(0, lastSlash);
@@ -134,11 +134,11 @@ The pseudo-code for Servlet resolution is as follows:
                 }
             }
         }
-            
+
         String path = resourceType + "/" + baseName;
         return findScriptFor(path);
     }
-    
+
     Servlet findScriptFor(path) {
         // Find a Servlet or Script with the given path in the search path
         // where the Script is allowed to have Script language specific
@@ -168,8 +168,8 @@ The `sling/servlet-resolver` project also provides an implementation of the Slin
    * *Throwable Handling*: To handle uncaught `Throwables` the simple name of the `Throwable` class is used as the Servlet name. Similarly to the Java `try-catch` clauses the class hierarchy is supported. That is to handle an uncaught `FileNotFoundException`, the names `FileNotFoundException`, `IOException`, `Exception`, `Throwable` are checked for a Servlet and the first one found is then used. Again, the Serlvet may be a Servlet registered as an OSGi service or may be a plain script stored in the JCR repository or provided through some custom Resource provider.
 
 ## Integration tests
-A set of simple example servlets is available in the [launchpad/test-services module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/test-services.path }}). 
+A set of simple example servlets is available in the [launchpad/test-services module]({{ refs.https://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/test-services.path }}).
 
-Integration tests in the [launchpad/testing module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution.path }}) verify that these examples are correct.
+Integration tests in the [launchpad/testing module]({{ refs.https://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution.path }}) verify that these examples are correct.
 
 Contributions to these tests and examples are welcome, of course!

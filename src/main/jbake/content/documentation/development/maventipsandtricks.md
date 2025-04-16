@@ -1,10 +1,10 @@
-title=Maven Tips And Tricks		
+title=Maven Tips And Tricks
 type=page
 status=published
 tags=development,maven
 ~~~~~~
 
-Here's our collection of tips and tricks for building Sling with [Maven](http://maven.apache.org).
+Here's our collection of tips and tricks for building Sling with [Maven](https://maven.apache.org).
 
 # Maven local repository
 

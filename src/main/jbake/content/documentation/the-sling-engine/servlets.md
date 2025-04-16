@@ -1,4 +1,4 @@
-title=Servlets and Scripts		
+title=Servlets and Scripts
 type=page
 status=published
 tags=servlets,core
@@ -8,13 +8,13 @@ tags=servlets,core
 
 ## Servlet Resolving
 
-First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the `sling:resourceType` property 
-which defines the resource type of that resource. Using this resource type (which is usually a relative resource path, 
+First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the `sling:resourceType` property
+which defines the resource type of that resource. Using this resource type (which is usually a relative resource path,
 eg. "myblog/comment"), servlets (or scripts) are looked up. For more details about how the initial resource is identified for a specific request URL look at [URL decomposition](/documentation/the-sling-engine/url-decomposition.html).
 
-Servlets and scripts are themselves resources in Sling and thus have a resource path: this is either the location in the 
-resource repository, the resource type in a servlet component configuration or the "virtual" bundle resource path 
-(if a script is provided inside a bundle without being installed into the JCR repository). 
+Servlets and scripts are themselves resources in Sling and thus have a resource path: this is either the location in the
+resource repository, the resource type in a servlet component configuration or the "virtual" bundle resource path
+(if a script is provided inside a bundle without being installed into the JCR repository).
 
 For details on which script/servlet is selected in case there are multiple candidates refer to the sections below.
 
@@ -70,7 +70,7 @@ Binding servlets by paths has several disadvantages when compared to binding by 
 * if a path-bound servlet is not active, e.g. if the bundle is missing or not started, a POST might result in unexpected results. usually creating a node at /bin/xyz which subsequently overlays the servlets path binding
 * the mapping is not transparent to a developer looking just at the repository
 
-Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths. 
+Given these drawbacks it is strongly recommended to bind servlets to resource types rather than paths.
 
 The `sling.servlet.paths.strict` mode described on this page slightly improves things by enabling a stricter
 selection of path-bound servlets, but that's only minor improvements.
@@ -81,11 +81,11 @@ The "new" (as of 2018) Sling Servlet annotations were presented by Konrad Windsz
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7CBjnQnrxTw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-If you are working with the default Apache Sling development stack you can either use 
+If you are working with the default Apache Sling development stack you can either use
 
 * [OSGi DS 1.4 (R7) component property type annotations](https://github.com/apache/sling-org-apache-sling-servlets-annotations) (introduced with DS 1.4/OSGi R7, supported since [bnd 4.1](https://github.com/bndtools/bndtools/wiki/Changes-in-4.1.0) being used in [bnd-maven-plugin 4.1.0+](https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin) and `maven-bundle-plugin 4.1.0+`),
-* [OSGi DS annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) (introduced with DS 1.2/OSGi R5, properly supported since [bnd 3.0](https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0), being used in [maven-bundle-plugin 3.0.0](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html)) or 
-* Generic Felix SCR or Sling-specific `@SlingServlet` annotations from [Apache Felix Maven SCR Plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html) to register your Sling servlets:
+* [OSGi DS annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) (introduced with DS 1.2/OSGi R5, properly supported since [bnd 3.0](https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0), being used in [maven-bundle-plugin 3.0.0](https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html)) or
+* Generic Felix SCR or Sling-specific `@SlingServlet` annotations from [Apache Felix Maven SCR Plugin](https://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html) to register your Sling servlets:
 
 The following examples show example code how you can register Servlets with Sling
 
@@ -94,7 +94,7 @@ The following examples show example code how you can register Servlets with Slin
         ::java
         @Component(service = { Servlet.class })
         @SlingServletResourceTypes(
-            resourceTypes="/apps/my/type", 
+            resourceTypes="/apps/my/type",
             methods= "GET",
             extensions="html",
             selectors="hello")
@@ -107,7 +107,7 @@ The following examples show example code how you can register Servlets with Slin
         }
 
     This is only supported though if you use either the `bnd-maven-plugin` or the `maven-bundle-plugin` in version 4.0.0 or newer and use Sling which is at least compliant with OSGi R6 (DS 1.3). There is no actual run-time dependency to OSGi R7! The configuration for the `bnd-maven-plugin` should look like this in your `pom.xml`
-    
+
         ::xml
         <build>
           ...
@@ -139,17 +139,17 @@ The following examples show example code how you can register Servlets with Slin
           </dependency>
           ...
         </dependencies>
-    
+
     Please refer to the [Javadoc of the package](https://github.com/apache/sling-org-apache-sling-servlets-annotations/tree/master/src/main/java/org/apache/sling/servlets/annotations) for other related annotations.
 
-    Starting with version `1.2.4` of the `org.apache.sling.servlets.annotations` you can also generate a value for the `sling.servlet.resourceSuperType` registration property, by using the `resourceSuperType` annotation property (its default value is `sling/bundle/resource`). In order for the property to be taken into consideration, your Sling instance has to provide version `2.5.2` or newer of the `org.apache.sling.servlets.resolver` bundle.  
-            
+    Starting with version `1.2.4` of the `org.apache.sling.servlets.annotations` you can also generate a value for the `sling.servlet.resourceSuperType` registration property, by using the `resourceSuperType` annotation property (its default value is `sling/bundle/resource`). In order for the property to be taken into consideration, your Sling instance has to provide version `2.5.2` or newer of the `org.apache.sling.servlets.resolver` bundle.
+
 1. Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)
 
         ::java
         @Component(
         service = { Servlet.class },
-        property = { 
+        property = {
             SLING_SERVLET_RESOURCE_TYPES + "=/apps/my/type"
             SLING_SERVLET_METHODS + "=GET",
             SLING_SERVLET_EXTENSIONS + "=html",
@@ -304,13 +304,13 @@ The following order rules are being followed when trying to resolve a servlet fo
 
 In case of an `OptingServlet` not matching the next candidate is being used.
 
-### Resource Type Inheritance 
+### Resource Type Inheritance
 
-Resource type inheritance as implemented for [SLING-278](https://issues.apache.org/jira/browse/SLING-278) plays a vital role in servlet resolution. 
+Resource type inheritance as implemented for [SLING-278](https://issues.apache.org/jira/browse/SLING-278) plays a vital role in servlet resolution.
 
-Each resource type may have a resource super type, which may be defined in various ways. One example is having a `sling:resourceSuperType` property in the resource addressed by the resource type. See [http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html](http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html) and [SLING-278](http://issues.apache.org/jira/browse/SLING-278) for more details. Also the servlet (or script) itself may define a resource super type (which is only used in case the request resource does not define one).
+Each resource type may have a resource super type, which may be defined in various ways. One example is having a `sling:resourceSuperType` property in the resource addressed by the resource type. See [https://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html](https://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html) and [SLING-278](https://issues.apache.org/jira/browse/SLING-278) for more details. Also the servlet (or script) itself may define a resource super type (which is only used in case the request resource does not define one).
 
-If a resource type has no explicit resource super type, the resource super type is assumed to be `sling/servlet/default`. That is the resource type used for default script selection is also acting as a basic resource type much like `java.lang.Object` does for other types in the Java language. 
+If a resource type has no explicit resource super type, the resource super type is assumed to be `sling/servlet/default`. That is the resource type used for default script selection is also acting as a basic resource type much like `java.lang.Object` does for other types in the Java language.
 
 
 ## Error Handler Servlet(s) or Scripts

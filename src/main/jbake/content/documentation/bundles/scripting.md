@@ -1,4 +1,4 @@
-title=Sling Scripting		
+title=Sling Scripting
 type=page
 status=published
 tags=scripts
@@ -15,7 +15,7 @@ The script engines are managed in `SlingScriptEngineManager` ([Scripting Core][8
 | Engine | Language Name | Language Version | Names | Extensions | Mime Types | GitHub Repo(s) | Documentation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [FreeMarker](https://freemarker.apache.org) | `FreeMarker` | `freemarker.template.Configuration#getVersion().toString()` | `FreeMarker`<br>`freemarker`<br>(configurable) | `ftl`<br>(configurable) | `text/x-freemarker`<br>(configurable) | [sling-org-apache-sling-scripting-freemarker](https://github.com/apache/sling-org-apache-sling-scripting-freemarker) | |
-| [Groovy (GString)](http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html#_gstringtemplateengine) | `Groovy GString` | `org.codehaus.groovy.util.ReleaseInfo#getVersion()` | `GString`<br>`gstring`<br>(configurable) | `gst`<br>(configurable) | (configurable) | [sling-org-apache-sling-scripting-groovy](https://github.com/apache/sling-org-apache-sling-scripting-groovy) | |
+| [Groovy (GString)](https://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html#_gstringtemplateengine) | `Groovy GString` | `org.codehaus.groovy.util.ReleaseInfo#getVersion()` | `GString`<br>`gstring`<br>(configurable) | `gst`<br>(configurable) | (configurable) | [sling-org-apache-sling-scripting-groovy](https://github.com/apache/sling-org-apache-sling-scripting-groovy) | |
 | [HTL](https://github.com/adobe/htl-spec) | `The HTL Templating Language` | `1.4` | `htl`<br>`HTL`<br>`sightly` | `html` | | [sling-org-apache-sling-scripting-sightly](https://github.com/apache/sling-org-apache-sling-scripting-sightly) | [Scripting HTL](/documentation/bundles/scripting/scripting-htl.html) |
 | Java | `Java Servlet Compiler` | `1.5`| `java`<br>`Java` | `java` | | [sling-org-apache-sling-scripting-java](https://github.com/apache/sling-org-apache-sling-scripting-java) | |
 | JavaScript | `ECMAScript` | `partial ECMAScript 2015 support` | `rhino`<br>`Rhino`<br>`javascript`<br>`JavaScript`<br>`ecmascript`<br>`ECMAScript` | `esp`<br>`ecma` | `text/ecmascript`<br>`text/javascript`<br>`application/ecmascript`<br>`application/javascript` | [sling-org-apache-sling-scripting-javascript](https://github.com/apache/sling-org-apache-sling-scripting-javascript) | |
@@ -77,41 +77,41 @@ From the perspective of the [Servlet resolver][7], scripts and servlets are hand
 
 ## Resource Scripts
 
-Scripts are looked up in a series of resource resolver locations defined by the `ResourceResolver.getSearchPath()` and the resource type (and resource super types) of the requested resource: 
+Scripts are looked up in a series of resource resolver locations defined by the `ResourceResolver.getSearchPath()` and the resource type (and resource super types) of the requested resource:
 
-    {scriptPathPrefix}/{resourceTypePath} 
-    
-The pseudo code for iterating the locations would be something like: 
-    
+    {scriptPathPrefix}/{resourceTypePath}
 
-    var type = resource.getResourceType(); 
-    while (type != null) { 
-        for (String root: resourceResolver.getSearchPath()) { 
-            String path = root + type.toPath(); 
-            findScriptsIn(path); 
-        } 
+The pseudo code for iterating the locations would be something like:
 
-        if (type == defaultServlet) { 
-            type = null; 
-        } else { 
-            type = getResourceSuperType(type); 
-            if (type == null) { 
-                type = defaultServlet; 
-            } 
-        } 
-    } 
+
+    var type = resource.getResourceType();
+    while (type != null) {
+        for (String root: resourceResolver.getSearchPath()) {
+            String path = root + type.toPath();
+            findScriptsIn(path);
+        }
+
+        if (type == defaultServlet) {
+            type = null;
+        } else {
+            type = getResourceSuperType(type);
+            if (type == null) {
+                type = defaultServlet;
+            }
+        }
+    }
 
 All [resource providers][10] may contribute scripts (this includes particularly the `JcrResourceProvider` but also `BundleResourceProvider`)
 
 
 ### Resource script naming conventions
 
-Depending on whether request selectors are considered, a script may have two forms: 
+Depending on whether request selectors are considered, a script may have two forms:
 
-1. Ignoring request selectors (e.g. there are none in the request URI): `{resourceTypeLabel}.{requestExtension}.{requestMethod}.{scriptExtension}` 
+1. Ignoring request selectors (e.g. there are none in the request URI): `{resourceTypeLabel}.{requestExtension}.{requestMethod}.{scriptExtension}`
 2. Handling request selectors: `{selectorStringPath}.{requestExtension}.{requestMethod}.{scriptExtension}`
 
-The constituents of these script names are as follows: 
+The constituents of these script names are as follows:
 
 * `{resourceTypeLabel}` - The last path segment of the path created from the resource type. This part is optional if the `{requestExtension}` is used in the script name. The resource type might either be set via the `sling:resourceType` property on the accessed node or if that property is not there its primary node type (property `jcr:primaryType`) is taken as fall-back.
 * `{requestExtension}` - The request extension. This part may be omitted if the request extension is `html`, otherwise this part is required. If this part is omitted, the `{resourceTypeLabel}` is required in the case of ignoring the selectors.
@@ -137,7 +137,7 @@ context. As such, scripts should be handled like code:
   2. they can evolve in a [_semantical_  way][1];
   3. they have a _developer audience_.
 
-  
+
 ### Technical Background
 
 Being built around a [`BundleTrackerCustomizer`][2], the `org.apache.sling.servlets.resolver.internal.bundle.BundledScriptTracker`
@@ -185,26 +185,26 @@ The integration tests for bundled scripts are provided by the [`org.apache.sling
 
 ## Script resolution order
 
-The [same rules as for servlets][6] are being followed but in addition keep in mind that bundled scripts (as well as servlets) are prefered over resource scripts (in case there are multiple equally ranked candidates left after all other criteria). 
+The [same rules as for servlets][6] are being followed but in addition keep in mind that bundled scripts (as well as servlets) are prefered over resource scripts (in case there are multiple equally ranked candidates left after all other criteria).
 
 ### Example for resource script
 
-Let's consider the following script paths for a request of a resource whose resource type is `sling\sample` and the request selectors are *print.a4* and the request extension is *html*: 
-    
-1. GET.esp 
-1. sample.esp 
-1. html.esp 
-1. print.esp 
-1. print/a4.esp 
-1. print.html.esp 
+Let's consider the following script paths for a request of a resource whose resource type is `sling\sample` and the request selectors are *print.a4* and the request extension is *html*:
+
+1. GET.esp
+1. sample.esp
+1. html.esp
+1. print.esp
+1. print/a4.esp
+1. print.html.esp
 1. print/a4.html.esp
 1. a4.html.esp
-1. a4/print.html.esp 
-    
-The priority of script selection would be (starting with the best one): 
+1. a4/print.html.esp
+
+The priority of script selection would be (starting with the best one):
 
 ```
-(7) - (5) - (6) - (4) - (3) - (2) - (1). 
+(7) - (5) - (6) - (4) - (3) - (2) - (1).
 ```
 
 Note that (5) is a better match than (6) because it matches more selectors even though (6) has an extension match where (5) does not. (8) is not a candidate because it does not include the first selector (print) and (9) is not a candidate because it has the wrong order of selectors.
@@ -222,7 +222,7 @@ See also [Scripting variables](https://cwiki.apache.org/confluence/display/SLING
 
 [1]: https://semver.org/
 [2]: https://osgi.org/javadoc/r6/core/org/osgi/util/tracker/BundleTrackerCustomizer.html
-[3]: http://docs.osgi.org/specification/osgi.core/7.0.0/framework.module.html#d0e2821 "Bundle Capabilities"
+[3]: https://docs.osgi.org/specification/osgi.core/7.0.0/framework.module.html#d0e2821 "Bundle Capabilities"
 [4]: /documentation/the-sling-engine/servlets.html#servlet-registration
 [5]: #resource-script-naming-conventions
 [6]: /documentation/the-sling-engine/servlets.html#servlet-resolution-order

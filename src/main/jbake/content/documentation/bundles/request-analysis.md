@@ -1,4 +1,4 @@
-title=Request Processing Analyzer (reqanalyzer)		
+title=Request Processing Analyzer (reqanalyzer)
 type=page
 status=published
 tags=requests
@@ -10,7 +10,7 @@ tags=requests
 ## Introduction
 
 Sling provides a helpful functionality to track progress of requests
-being processed: The [RequestProgressTracker](http://sling.apache.org/apidocs/sling6/org/apache/sling/api/request/RequestProgressTracker.html) which is available through the [SlingHttpServletRequest](http://sling.apache.org/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html#getRequestProgressTracker%28%29).
+being processed: The [RequestProgressTracker](https://sling.apache.org/apidocs/sling6/org/apache/sling/api/request/RequestProgressTracker.html) which is available through the [SlingHttpServletRequest](https://sling.apache.org/apidocs/sling6/org/apache/sling/api/SlingHttpServletRequest.html#getRequestProgressTracker%28%29).
 
 This tool provides mechanims to record states of request processing and a simple mechanism to time periods of processing. By default Sling itself uses this tool to track progress through Sling like script resolution and calling scripts.
 

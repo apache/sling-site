@@ -1,4 +1,4 @@
-title=OpenID AuthenticationHandler		
+title=OpenID AuthenticationHandler
 type=page
 status=published
 tags=core,authentication,openid
@@ -10,7 +10,7 @@ tags=core,authentication,openid
 This module has been deprecated and retired. It can be found in the <a href="https://svn.apache.org/repos/asf/sling/attic/openid/">Sling attic: OpenID module</a> but is no longer maintained or supported.
 </div>
 
-The OpenID Authentication Handler supports authentication of request users using the [OpenID](http://www.openid.net) authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.
+The OpenID Authentication Handler supports authentication of request users using the [OpenID](https://www.openid.net) authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.
 
 Since generally an OpenID identity is an URL and URLs may not be used as JCR user names, an association mechanism is used by the OpenID authentication handler to associate an OpenID identity with an existing JCR user: The OpenID identity URL is set as the value of a JCR user property. When a user authenticates with his OpenID identity the matching user searched for by looking for a match in this property.
 

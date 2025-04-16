@@ -1,4 +1,4 @@
-title=Apache Sling Dynamic Include		
+title=Apache Sling Dynamic Include
 type=page
 status=published
 tags=publishing
@@ -6,7 +6,7 @@ tags=publishing
 
 ## Introduction
 
-This module introduces a Servlet Filter that replaces dynamic components (eg. current time or foreign exchange rates) with server-side include tags (eg. [SSI](http://httpd.apache.org/docs/current/howto/ssi.html) or [ESI](http://www.w3.org/TR/esi-lang)).
+This module introduces a Servlet Filter that replaces dynamic components (eg. current time or foreign exchange rates) with server-side include tags (eg. [SSI](https://httpd.apache.org/docs/current/howto/ssi.html) or [ESI](https://www.w3.org/TR/esi-lang)).
 Thanks to this approach, the whole page can be cached by the Dispatcher or a Content Delivery Network while dynamic components are generated and included with every request. Components to include in this manner are specified by `resourceType` in the filter's configuration.
 
 When the filter intercepts a request for a component with a matching `resourceType`, it'll return a server-side include tag (eg. `<!--#include virtual="/path/to/resource" -->` when the Apache HTTP server with `mod_include` is used).
@@ -170,9 +170,9 @@ The selector is necessary because without it the filter would replace the compon
 
 # External resources
 
-* [SDI presentation](http://www.pro-vision.de/content/medialib/pro-vision/production/adaptto/2012/adaptto2012-sling-dynamic-include-tomasz-rekaweki-pdf/_jcr_content/renditions/rendition.file/adaptto2012-sling-dynamic-include-tomasz-rekaweki.pdf) on [adaptTo() 2012](http://www.pro-vision.de/de/adaptto/adaptto-2012.html)
-* [SDI blog](http://www.cognifide.com/blogs/cq/sling-dynamic-include/) post on the Cognifide website
-* See the [Apache Sling website](http://sling.apache.org/) for the Sling reference documentation. Apache Sling, Apache and Sling are trademarks of the [Apache Software Foundation](http://apache.org).
+* [SDI presentation](https://www.pro-vision.de/content/medialib/pro-vision/production/adaptto/2012/adaptto2012-sling-dynamic-include-tomasz-rekaweki-pdf/_jcr_content/renditions/rendition.file/adaptto2012-sling-dynamic-include-tomasz-rekaweki.pdf) on [adaptTo() 2012](https://www.pro-vision.de/de/adaptto/adaptto-2012.html)
+* [SDI blog](https://www.cognifide.com/blogs/cq/sling-dynamic-include/) post on the Cognifide website
+* See the [Apache Sling website](https://sling.apache.org/) for the Sling reference documentation. Apache Sling, Apache and Sling are trademarks of the [Apache Software Foundation](https://apache.org).
 
 # Release notes
 

@@ -1,4 +1,4 @@
-title=Project Team		
+title=Project Team
 type=page
 status=published
 tags=community,pmc
@@ -14,7 +14,7 @@ List of developers with commit privileges that have directly contributed to the 
 
 [Apache Sling Committers and PMC Members](https://people.apache.org/phonebook.html?pmc=sling)
 
-The members of the Sling Project Management Commitee ([PMC](http://www.apache.org/dev/pmc.html)) as defined in [Apache Sling Community Roles and Processes](/project-information/apache-sling-community-roles-and-processes.html) are listed separately.
+The members of the Sling Project Management Commitee ([PMC](https://www.apache.org/dev/pmc.html)) as defined in [Apache Sling Community Roles and Processes](/project-information/apache-sling-community-roles-and-processes.html) are listed separately.
 
 
 ## Emeritus Committers and PMC members

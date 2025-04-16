@@ -1,4 +1,4 @@
-title=HTL Scripting Engine		
+title=HTL Scripting Engine
 type=page
 status=published
 tags=scripts,htl
@@ -61,7 +61,7 @@ The HTL implementation from Sling provides the basic POJO support through the [`
 The HTL Specification talks about the following types which are supported to be used with native Java types. The conversion rules are outlined in the table below.
 
 HTL Type | Conversion from Java Type | Code Link
---- | --- | --- 
+--- | --- | ---
 `Boolean` | `java.lang.Boolean` (no conversion necessary). In addition it returns `true` for every other Java object except for `null`, `java.lang.Number` having value `0`, empty String, array, Collection, Map, Iterator or Iterable's iterator  | [`ObjectModel.toBoolean(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/org.apache.sling.scripting.sightly.runtime-1.2.4-1.4.0/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L151)
 `String` | Almost every type via `Object.toString()`. `Collections` are handled differently, by joining their elements. All types supported since HTL Runtime 1.2.6-1.4.0 ([SLING-9968](https://issues.apache.org/jira/browse/SLING-9968)).| [`ObjectModel.toString(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/org.apache.sling.scripting.sightly.runtime-1.2.4-1.4.0/src/main/java/org/apache/sling/scripting/sightly/render/ObjectModel.java#L238)
 `Date` | `java.util.Date`, `java.util.Calendar`, `java.time.Instant` ([SLING-10651](https://issues.apache.org/jira/browse/SLING-10651)) | [`AbstractRuntimeObjectModel.toDate(Object)`](https://github.com/apache/sling-org-apache-sling-scripting-sightly-runtime/blob/6bcc04f159290aac39f0f6fa725da0a87f59076b/src/main/java/org/apache/sling/scripting/sightly/render/AbstractRuntimeObjectModel.java#L91)
@@ -80,7 +80,7 @@ As the HTL Engine in Sling is a Java implementation even the objects provided by
 
 # Extensions of the HTL Specification
 
-The Sling HTL Scripting engine fully complies with the [HTML Template Language Specification 1.4](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md). In addition it adds some extensions which are not part of the specification. 
+The Sling HTL Scripting engine fully complies with the [HTML Template Language Specification 1.4](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md). In addition it adds some extensions which are not part of the specification.
 
 ## Block Elements
 
@@ -109,13 +109,13 @@ In addition to the options defined for [i18n](https://github.com/adobe/htl-spec/
 ### Format Date
 
 In addition to the regular patterns defined for [date formatting](https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates), the following special formatting patterns are supported ([SLING-9983](https://issues.apache.org/jira/browse/SLING-9983)) for formatting dates only (disregarding time) in a decent format for the used locale.
-*The resulting format depends on the JDK version though, as it changed fundamentally with [JDK 8](https://openjdk.java.net/jeps/252), and even afterwards the different [CLDR releases](http://cldr.unicode.org/index/downloads) implemented in the different JDK versions differ quite substantially.*
+*The resulting format depends on the JDK version though, as it changed fundamentally with [JDK 8](https://openjdk.java.net/jeps/252), and even afterwards the different [CLDR releases](https://cldr.unicode.org/index/downloads) implemented in the different JDK versions differ quite substantially.*
 
 
 Pattern | Description | Example (for Locale en_US)
 --- | --- | ---
 `short` | A short representation of the date (disregarding time), typically numeric | 10/26/85
-`medium` | A medium representation of the date (disregarding time), with some detail | Oct 26, 1985 
+`medium` | A medium representation of the date (disregarding time), with some detail | Oct 26, 1985
 `long` | A long representation of the date (disregarding time), with lots of detail | October 26, 1985
 `full` | The full represenation of the date (disregarding time), with the most detail | Saturday, October 26, 1985
 `default` | Is equal to `medium` | Oct 26, 1985
@@ -133,9 +133,9 @@ When the [icu4j bundle](https://github.com/unicode-org/icu/releases) is availabl
     ${ '{0, plural, one{# result} other{# results}}' @format=properties.result }
     ${ '{0, plural, one{# výsledek} few{# výsledky} other{# výsledků}}' @format=properties.result }
 
-Other than for the regular variable-element placeholder replacement, parameters passed to the format option are not converted to any other type. If they do not match the pattern an `IllegalArgumentException` may be throw. 
+Other than for the regular variable-element placeholder replacement, parameters passed to the format option are not converted to any other type. If they do not match the pattern an `IllegalArgumentException` may be throw.
 
-If the icu4j bundle is not available at runtime, only simple variable-element placeholders will be replaced and expessions that use complex argument types will be removed. 
+If the icu4j bundle is not available at runtime, only simple variable-element placeholders will be replaced and expessions that use complex argument types will be removed.
 
 ## Use-API Extensions
 
@@ -332,8 +332,8 @@ Similar to the Java Use Provider, loading the script using a relative path allow
 Besides the global objects available to all Use Providers, the JavaScript Use Provider also provides the following global objects available in the context of the `use` function:
 
     console         // basic wrapper on top of log, but without formatting / throwable support
-    exports         // basic Java implementation of CommonJS - http://requirejs.org/docs/commonjs.html
-    module          // basic Java implementation of CommonJS - http://requirejs.org/docs/commonjs.html
+    exports         // basic Java implementation of CommonJS - https://requirejs.org/docs/commonjs.html
+    module          // basic Java implementation of CommonJS - https://requirejs.org/docs/commonjs.html
     setImmediate    // Java implementation of the Node.js setImmediate function
     setTimeout      // Java implementation of the Node.js setTimeout function
     sightly         // the namespace object under which the asynchronous Resource-API implemented by

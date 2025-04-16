@@ -128,7 +128,7 @@ Remove elements from the collection.
 Replace each element in the collection with its parent.
 
     $(resource).find("cq:PageContent[jcr:title=My page]:first").parent(); // find the parent of the first `cq:PageContent` resource with given attribute in the subtree
-    
+
 ### `.parents([selector])`
 
 For each element in the collection find all of its ancestors, optionally filtering them by a selector.
@@ -140,7 +140,7 @@ For each element in the collection find all of its ancestors, optionally filteri
 For each element in the collection find all of its ancestors until a resource matching the selector is found.
 
     ($currentResource).parentsUntil("cq:Page"); // find all ancestor components on the current page
-    
+
 ### `.prev([selector])`
 
 Return the previous sibling for each resource in the collection and optionally filter it by a selector. If the selector is given, but the sibling doesn't match it, empty collection will be returned.
@@ -167,8 +167,8 @@ Return all preceding siblings for each resource in the collection up to, but not
 
 Select new search strategy, which will be used in following [`find()`](#findselector) and [`has()`](#hasselector) function invocations. There 3 options:
 
-* `SearchStrategy.DFS` - [depth-first search](http://en.wikipedia.org/wiki/Depth-first_search)
-* `SearchStrategy.BFS` - [breadth-first search](http://en.wikipedia.org/wiki/Breadth-first_search)
+* `SearchStrategy.DFS` - [depth-first search](https://en.wikipedia.org/wiki/Depth-first_search)
+* `SearchStrategy.BFS` - [breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
 * `SearchStrategy.QUERY` - use JCR SQL2 query (default since 1.4.0)
 
 DFS and BFS iterate through descendants using appropriate algorithm. QUERY strategy tries to transform SlingQuery selector into a SQL2 query and invokes it. Because there are SlingQuery operations that can't be translated (eg. `:has()` modifier), the SQL2 query result is treated as a initial collection that needs further processing.

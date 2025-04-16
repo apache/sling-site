@@ -53,7 +53,7 @@ With the advent of the Java Collection framework in Java 2, the `Enumeration` ha
 
 Unlike traditional Servlet API request processing, a Sling API request is processed by the Sling Framework in three basic steps:
 
-1. *Resource Resolution* - The Sling Framework derives a Resource instance from the client request URL. The details of how to resolve the Resource. One possible solution would be to map the request URL to a [Java Content Repository]({{ refs.http://www.jcp.org/en/jsr/detail?id=170.path }}) Node and return a Resource representing that Node.
+1. *Resource Resolution* - The Sling Framework derives a Resource instance from the client request URL. The details of how to resolve the Resource. One possible solution would be to map the request URL to a [Java Content Repository]({{ refs.https://www.jcp.org/en/jsr/detail?id=170.path }}) Node and return a Resource representing that Node.
 1. *Servlet and Script Resolution* - From the Resource created in the first step, the Servlet or Script is resolved based on the type of the Resource. The resource type is a simple string, whose semantics is defined by the Sling Framework. One possible definition could be for the resource type to be the primary node type of the Node underlying the Resource.
 1. *Input Processing and Response Generation* -  After getting the Resource and the Servlet or Script, the `service()` method is called or the script is evaluated to process any user supplied input and send the response to the client. To structure the rendered response page, this method is responsible to include other resources. See *Dispatching Requests* below for details. See *Error Handling* below for a discussion on how exceptions and HTTP stati are handled.
 
@@ -86,7 +86,7 @@ During the *Resource Resolution* step, the client request URL is decomposed into
 | /a/b.s1.s2.html/c/d.s.txt | /a/b | s1.s2 | html | /c/d.s.txt |
 
 <div class="info">
-The [SlingRequestPathInfoTest]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java.path }}) demonstrates and tests this decomposition. Feel free to suggest additional tests that help clarify how this works!
+The [SlingRequestPathInfoTest]({{ refs.https://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java.path }}) demonstrates and tests this decomposition. Feel free to suggest additional tests that help clarify how this works!
 </div>
 
 ## The SlingHttpServletRequest
@@ -226,8 +226,8 @@ If such an exception is thrown, the Component Framework must act upon the except
 * If the request is processed through Servlet API request inclusion, the exception must be given back to the servlet container. A `ComponentException` is just forwarded as a `ServletException`. This is a requirement of the Servlet API specification which states for included requests:
 
 {quote}
-  
-  
+
+
 {quote}
 
 * Otherwise, the Component Framework may handle the error itself in a manner similar to the error handling approach defined the Servlet API specification (Section SRV 9.9 Error Handling of the Java Servlet Specification 2.4). Specifically the request attributes defined by the Servlet API specification must be set for the error handler:

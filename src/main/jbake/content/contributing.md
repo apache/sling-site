@@ -21,10 +21,10 @@ An [Apache iCLA](https://www.apache.org/licenses/icla.pdf) is welcome if you sta
 
 ## How to contribute
 
-Apache Sling is a volunteer effort, so there is always plenty of work that needs to be accomplished. If you want to help supporting Apache Sling, this page is intended as a starting point for specific contribution ideas. To further understand how the Sling community operates, refer to the [Community Roles and Processes document](https://www.apache.org/foundation/how-it-works.html) and/or join our [mailing lists](http://sling.apache.org/project-information.html#mailing-lists).
+Apache Sling is a volunteer effort, so there is always plenty of work that needs to be accomplished. If you want to help supporting Apache Sling, this page is intended as a starting point for specific contribution ideas. To further understand how the Sling community operates, refer to the [Community Roles and Processes document](https://www.apache.org/foundation/how-it-works.html) and/or join our [mailing lists](https://sling.apache.org/project-information.html#mailing-lists).
 
 For people who are completely new to contributing to an Apache Software Foundation project, the
-[Get Involved](https://www.apache.org/foundation/getinvolved.html) page provides you with enough resources to understand how the foundation works and how its projects are structured - and don't hesitate to ask on our [mailing lists](http://sling.apache.org/project-information.html#mailing-lists)!
+[Get Involved](https://www.apache.org/foundation/getinvolved.html) page provides you with enough resources to understand how the foundation works and how its projects are structured - and don't hesitate to ask on our [mailing lists](https://sling.apache.org/project-information.html#mailing-lists)!
 
 See [Project Information](/project-information.html) for details about the tools mentioned below.
 

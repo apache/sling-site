@@ -93,7 +93,7 @@ Since in contrast to [Sling Jobs](/documentation/bundles/apache-sling-eventing-a
 
 ## The Scheduler API
 
-The scheduler has methods to execute jobs periodically, based on a cron expression or at a given time. For more details please refer to the [javadocs](http://sling.apache.org/apidocs/sling6/org/apache/sling/commons/scheduler/Scheduler.html).
+The scheduler has methods to execute jobs periodically, based on a cron expression or at a given time. For more details please refer to the [javadocs](https://sling.apache.org/apidocs/sling6/org/apache/sling/commons/scheduler/Scheduler.html).
 
 ## Examples of scheduled jobs registered through the scheduler API
 
@@ -120,7 +120,7 @@ To execute the job as defined above at 10:15am every Monday, Tuesday, Wednesday,
     this.scheduler.addJob("myJob", job, null, schedulingExpression, true);
 
 
-Refer to http://www.docjar.com/docs/api/org/quartz/CronTrigger.html
+Refer to https://www.docjar.com/docs/api/org/quartz/CronTrigger.html
  to define more scheduling expressions.
 
 ### Scheduling at periodic times

@@ -1,4 +1,4 @@
-title=Apache Sling Launchpad 8 released		
+title=Apache Sling Launchpad 8 released
 type=page
 status=published
 tags=launchpad
@@ -9,12 +9,12 @@ Here are some of the more noteworthy things available in this release.
 Switched to Apache Jackrabbit Oak
 ---
 
-The Sling launchpad has switched from Apache Jackrabbit 2.7.5 to Apache Jackrabbit Oak 1.3.7 as a persistence engine. Apache Jackrabbit Oak is now supported in Sling with two persistence modes: SegmentNodeStore ( file-based ) and DocumentNodeStore ( MongoDB-based ). See [the Oak documentation](http://jackrabbit.apache.org/oak/docs/index.html) for more details about the Oak persistence modes and [the Sling Launchpad documentation](https://sling.apache.org/documentation/the-sling-engine/the-sling-launchpad.html#launchpad-app-and-launchpad-webapp) for details about configuring the persistence mode.
+The Sling launchpad has switched from Apache Jackrabbit 2.7.5 to Apache Jackrabbit Oak 1.3.7 as a persistence engine. Apache Jackrabbit Oak is now supported in Sling with two persistence modes: SegmentNodeStore ( file-based ) and DocumentNodeStore ( MongoDB-based ). See [the Oak documentation](https://jackrabbit.apache.org/oak/docs/index.html) for more details about the Oak persistence modes and [the Sling Launchpad documentation](https://sling.apache.org/documentation/the-sling-engine/the-sling-launchpad.html#launchpad-app-and-launchpad-webapp) for details about configuring the persistence mode.
 
 Provisioning model
 ---
 
-Sling is now provisioned using a simple, text-based, model. See See [the Sling Provisioning Model documentation](http://sling.apache.org/documentation/development/slingstart.html) for details.
+Sling is now provisioned using a simple, text-based, model. See See [the Sling Provisioning Model documentation](https://sling.apache.org/documentation/development/slingstart.html) for details.
 
 Sightly
 ---

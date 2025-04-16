@@ -1,21 +1,21 @@
-title=Sling Scripting Thymeleaf		
+title=Sling Scripting Thymeleaf
 type=page
 status=published
 tags=scripts,thymeleaf
 ~~~~~~
 
-Sling Scripting Thymeleaf is the scripting engine for [_Thymeleaf_](http://www.thymeleaf.org) (3.0) templates.
+Sling Scripting Thymeleaf is the scripting engine for [_Thymeleaf_](https://www.thymeleaf.org) (3.0) templates.
 
 [TOC]
 
 # Features
 
-* Supporting all of Thymeleaf's extension points: [_TemplateResolver_](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateresolver/ITemplateResolver.html)﻿s, [_MessageResolver_](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/messageresolver/IMessageResolver.html)﻿s, [_Dialect_﻿](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/dialect/IDialect.html)s, [_LinkBuilder_](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/linkbuilder/ILinkBuilder.html)﻿s, [_DecoupledTemplateLogicResolver_](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateparser/markup/decoupled/IDecoupledTemplateLogicResolver.html), [_CacheManager_](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/cache/ICacheManager.html) and [_EngineContextFactory_](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/context/IEngineContext.html)
+* Supporting all of Thymeleaf's extension points: [_TemplateResolver_](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateresolver/ITemplateResolver.html)﻿s, [_MessageResolver_](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/messageresolver/IMessageResolver.html)﻿s, [_Dialect_﻿](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/dialect/IDialect.html)s, [_LinkBuilder_](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/linkbuilder/ILinkBuilder.html)﻿s, [_DecoupledTemplateLogicResolver_](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templateparser/markup/decoupled/IDecoupledTemplateLogicResolver.html), [_CacheManager_](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/cache/ICacheManager.html) and [_EngineContextFactory_](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/context/IEngineContext.html)
 * `SlingResourceTemplateResolver` customizable through `TemplateModeProvider`﻿
 * `ResourceBundleMessageResolver` backed by `ResourceBundleProvider` from [Sling i18n](https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html) customizable through optional `AbsentMessageRepresentationProvider`﻿
-* `PatternTemplateModeProvider` supporting [`Pattern`](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) configurations for all [template modes](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templatemode/TemplateMode.html) (`HTML`, `XML`, `TEXT`, `JAVASCRIPT`, `CSS` and `RAW`)
+* `PatternTemplateModeProvider` supporting [`Pattern`](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) configurations for all [template modes](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/templatemode/TemplateMode.html) (`HTML`, `XML`, `TEXT`, `JAVASCRIPT`, `CSS` and `RAW`)
 * `SlingDialect`
-* Thymeleaf's [`TemplateEngine`](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html) registered as OSGi Service ([`ITemplateEngine`](http://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html)) for direct use
+* Thymeleaf's [`TemplateEngine`](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html) registered as OSGi Service ([`ITemplateEngine`](https://www.thymeleaf.org/apidocs/thymeleaf/3.0.0.RELEASE/org/thymeleaf/ITemplateEngine.html)) for direct use
 
 # Installation
 
@@ -30,7 +30,7 @@ There is a feature for Karaf:
 
     karaf@root()> feature:install sling-scripting-thymeleaf
 
-**Note:** Sling Scripting Thymeleaf requires an implementation of OSGi Declarative Services 1.3 (e.g. [Apache Felix Service Component Runtime](http://felix.apache.org/documentation/subprojects/apache-felix-service-component-runtime.html) 2.0.0 or greater)
+**Note:** Sling Scripting Thymeleaf requires an implementation of OSGi Declarative Services 1.3 (e.g. [Apache Felix Service Component Runtime](https://felix.apache.org/documentation/subprojects/apache-felix-service-component-runtime.html) 2.0.0 or greater)
 
 # Configuration
 
@@ -66,9 +66,9 @@ Sling Scripting Thymeleaf comes with its own dialect using the `sling` prefix/na
 
 `<header data-sling-include="${resource}" data-sling-resourceType="'example/page/header'" data-sling-unwrap="true"/>`
 
-`include` - The resource object ([`Resource`](http://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/Resource.html)) or the path (`String`) of the resource object to include in the current request processing. If this path is relative it is appended to the path of the current resource whose script is including the given resource.
+`include` - The resource object ([`Resource`](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/Resource.html)) or the path (`String`) of the resource object to include in the current request processing. If this path is relative it is appended to the path of the current resource whose script is including the given resource.
 
-### supported options (* = [RequestDispatcher option](http://sling.apache.org/apidocs/sling7/org/apache/sling/api/request/RequestDispatcherOptions.html))
+### supported options (* = [RequestDispatcher option](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/request/RequestDispatcherOptions.html))
 
 * `addSelectors` (`String`) *: When dispatching, add the value provided by this option to the selectors.
 * `replaceSelectors` (`String`) *: When dispatching, replace selectors by the value provided by this option.

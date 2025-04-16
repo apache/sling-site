@@ -1,4 +1,4 @@
-title=Repository Based Development		
+title=Repository Based Development
 type=page
 status=published
 tags=development,repository
@@ -8,27 +8,27 @@ tags=development,repository
 
 # WebDAV Support
 
-WebDAV support in Sling is based on the [Simple WebDAV](http://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#Simple_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/webdav` project. This bundle provides WebDAV access to Sling's repository in two flavours: 
+WebDAV support in Sling is based on the [Simple WebDAV](https://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#Simple_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/webdav` project. This bundle provides WebDAV access to Sling's repository in two flavours:
 
-1. Access to all workspaces of the repository on a separate URI space -- by default rooted at `/dav` in the Sling context -- and 
+1. Access to all workspaces of the repository on a separate URI space -- by default rooted at `/dav` in the Sling context -- and
 2. access to the workspace used by Sling itself at the root of the Sling context.
 
 
 ## Example
 
-Consider Sling be installed on a Servlet container in the `/sling` context on `some.host.net:8080`. Here you would access the Sling workspace by directing your WebDAV client to the URL `http://some.host.net:8080/sling`. To access the `sample` workspace, which is not used by Sling itself, you would direct your WebDAV client to the URL `http://some.host.net:8080/sling/dav/sample`.
+Consider Sling be installed on a Servlet container in the `/sling` context on `some.host.net:8080`. Here you would access the Sling workspace by directing your WebDAV client to the URL `https://some.host.net:8080/sling`. To access the `sample` workspace, which is not used by Sling itself, you would direct your WebDAV client to the URL `https://some.host.net:8080/sling/dav/sample`.
 
 Please note that accessing the repository in the separate URI space is actually faster, since requests do not pass the Sling resource and script resolution framework but instead hit the Jackrabbit Simple WebDAV Servlet directly.
 
 
-## Separate URI Space WebDAV 
+## Separate URI Space WebDAV
 
 When accessing the repository through WebDAV in its separate URI Space, the URLs have the following generic structure:
 
     <slingroot>/<prefix>/<workspace>/<item>
 
 
-   * `slingroot` is the URL of the Sling web application context. In the above example, this would `http://some.host.net:8080/sling`.
+   * `slingroot` is the URL of the Sling web application context. In the above example, this would `https://some.host.net:8080/sling`.
    * `prefix` is the URL prefix to address the WebDAV servlet. By default this is set to `/dav` but may be configured to any valid path.
    * `workspace` is the name of the workspace to be accessed through WebDAV.
    * `item` is the path to the JCR Item to access.
@@ -42,7 +42,7 @@ The Jackrabbit Simple WebDAV support in Sling has the following configuration op
 
 Property | Default | Description
 ---- | ---- | ----
-Root Path | `/dav` | The root path at which the Simple WebDAV Servlet is accessible. Access to the repository is provided in two ways. You may connect your WebDAV client directly to the root of the Sling web application to access the workspace of Sling directly. The other way is required if you want to connect your WebDAV client to any other workspace besides the Sling workspace. In this case you connect your WebDAV client to another a path comprised of this root path plus the name of the workspace. For example to connect to the `some*other` workspace, you might connect to `http://slinghost/dav/some*other`.
+Root Path | `/dav` | The root path at which the Simple WebDAV Servlet is accessible. Access to the repository is provided in two ways. You may connect your WebDAV client directly to the root of the Sling web application to access the workspace of Sling directly. The other way is required if you want to connect your WebDAV client to any other workspace besides the Sling workspace. In this case you connect your WebDAV client to another a path comprised of this root path plus the name of the workspace. For example to connect to the `some*other` workspace, you might connect to `https://slinghost/dav/some*other`.
 Authentication Realm | `Sling WebDAV` | The name of the HTTP Basic Authentication Realm presented to the client to ask for authentication credentials to access the repository.
 Non Collection Node Types | `nt:file`, `nt:resource` | The JCR Node Types considered being non-collection resources by WebDAV. Any node replying `true` to `Node.isNodeType()` for one of the listed types is considered a non-collection resource. Otherwise the respective node is considered a collection resource.
 Filter Prefixes | `jcr`, `rep` | A list of namespace prefixes indicating JCR items filtered from being reported as collection members or properties. The default list includes jcr and rep (Jackrabbit internal namespace prefix) items. Do not modify this setting unless you know exactly what you are doing.
@@ -74,7 +74,7 @@ This implementation only supports listing node types which are considered repres
 
 # DavEx Support
 
-[DavEx](https://wiki.apache.org/jackrabbit/RemoteAccess) (WebDAV with JCR Extensions) allows to remotely access a JCR repository. Sling provides support based on the [JCR WebDAV Server](http://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#JCR_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/davex` project. By default the server listens on request urls starting with `/server`.
+[DavEx](https://wiki.apache.org/jackrabbit/RemoteAccess) (WebDAV with JCR Extensions) allows to remotely access a JCR repository. Sling provides support based on the [JCR WebDAV Server](https://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#JCR_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/davex` project. By default the server listens on request urls starting with `/server`.
 
 
 # Eclipse plugin for JCR

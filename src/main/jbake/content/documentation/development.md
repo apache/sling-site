@@ -1,4 +1,4 @@
-title=Development		
+title=Development
 type=page
 status=published
 tags=development,pmc
@@ -41,11 +41,11 @@ Look here for more information on developer support when your are using Sling to
 
 Sling is using Apache Maven 3 as its build system. Over time we have created a number of Maven 3 plugins and gathered a whole range of knowledge about using Maven.
 
-* [Sling Maven Plugin](http://sling.apache.org/components/sling-maven-plugin/)
-* [HTL Maven Plugin](http://sling.apache.org/components/htl-maven-plugin/)
-* [SlingStart Maven Plugin](http://sling.apache.org/components/slingstart-maven-plugin/)
+* [Sling Maven Plugin](https://sling.apache.org/components/sling-maven-plugin/)
+* [HTL Maven Plugin](https://sling.apache.org/components/htl-maven-plugin/)
+* [SlingStart Maven Plugin](https://sling.apache.org/components/slingstart-maven-plugin/)
 * [Maven Launchpad Plugin](/documentation/development/maven-launchpad-plugin.html)
-* [JspC Maven Plugin](http://sling.apache.org/components/jspc-maven-plugin/)
+* [JspC Maven Plugin](https://sling.apache.org/components/jspc-maven-plugin/)
 * [Maven Archetypes](/documentation/development/maven-archetypes.html)
 * [Maven Tips & Tricks](/documentation/development/maventipsandtricks.html)
 
@@ -60,5 +60,5 @@ Last but not least, here is some more information on how we ourselves are workin
 * [Release Management](/documentation/development/release-management.html)
 * [Deprecating Sling Modules](/documentation/development/deprecating-sling-modules.html)
 * [Maven Usage](/documentation/development/maven-usage.html)
-* [Build Setup](/project-information.html#continuous-integration) 
+* [Build Setup](/project-information.html#continuous-integration)
 * To run our integration tests suite see the [Sling Starter module README](https://github.com/apache/sling-org-apache-sling-starter/blob/master/README.md) and the [launchpad/integration-tests README](https://github.com/apache/sling-org-apache-sling-launchpad-integration-tests/blob/master/README.md) for how to run individual integration tests. We use the [sling-IT](https://issues.apache.org/jira/issues/?jql=labels%20%3D%20sling-IT) label in JIRA for known issues with our integration tests.

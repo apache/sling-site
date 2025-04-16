@@ -1,4 +1,4 @@
-title=Well-known Sling Properties		
+title=Well-known Sling Properties
 type=page
 status=published
 tags=core,configuration
@@ -35,11 +35,11 @@ Logging configuration defined by these properties sets up initial configuration 
 | `org.apache.sling.commons.log.level` | `INFO` | Sets the initial logging level of the root logger. This may be any of the defined logging levels `DEBUG`, `INFO`, `WARN`, or `ERROR`.  This property can also be set with the `-l` command line option. |
 | `org.apache.sling.commons.log.file` | `${sling.home}/logs/error.log` | Sets the log file to which log messages are written. If this property is empty or missing, log messages are written to System.out. This property can also be set with the `-f` command line option. |
 | `org.apache.sling.commons.log.file.number` | `5` | The number of rotated files to keep. |
-| `org.apache.sling.commons.log.file.size` | `'.'yyyy-MM-dd` | Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section [Log File Rotation](http://sling.apache.org/site/logging.html#Logging-LogFileRotation) for full details on log file rotation. |
+| `org.apache.sling.commons.log.file.size` | `'.'yyyy-MM-dd` | Defines how the log file is rotated (by schedule or by size) and when to rotate. See the section [Log File Rotation](https://sling.apache.org/site/logging.html#Logging-LogFileRotation) for full details on log file rotation. |
 | `org.apache.sling.commons.log.pattern` | `{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* [{2}] {3} {5}` | The MessageFormat pattern to use for formatting log messages with the root logger. |
 | org.apache.sling.commons.log.julenabled | `false` | Enables the java.util.logging support. |
 
-See [Logging](http://sling.apache.org/site/logging.html) for full information on configuring the Sling Logging system.
+See [Logging](https://sling.apache.org/site/logging.html) for full information on configuring the Sling Logging system.
 
 
 ## Http Service Properties

@@ -1,4 +1,4 @@
-title=Content Loading and Node Type/Namespace Support (jcr.contentloader)		
+title=Content Loading and Node Type/Namespace Support (jcr.contentloader)
 type=page
 status=published
 tags=contentloading,nodetypes
@@ -16,7 +16,7 @@ Adding this content preserves the paths of the entries as shown in this table, w
 |---|---|
 | `SLING-INF/content/home` | `/home` |
 | `SLING-INF/content/content/playground/en/home` | `/content/playground/en/home` |
-| `SLING-INF/someothercontent/playground/en/home` | not installed at all, because not below the `Sling-Initial-Content` header entry | 
+| `SLING-INF/someothercontent/playground/en/home` | not installed at all, because not below the `Sling-Initial-Content` header entry |
 
 Bundle entries are installed as follows:
 
@@ -78,19 +78,19 @@ Nodes, Properties and in fact complete subtrees may be described in XML files us
            required for child nodes
         -->
         <name>xyz</name>
-    
+
         <!--
             optional, defaults to nt:unstructured
         -->
         <primaryNodeType>nt:file</primaryNodeType>
-    
+
         <!--
             optional mixin node type
             may be repeated for multiple mixin node types
         -->
         <mixinNodeType>mix:versionable</mixinNodeType>
         <mixinNodeType>mix:lockable</mixinNodeType>
-    
+
         <!--
             Optional properties for the node. Each <property> element defines
             a single property of the node. The element may be repeated.
@@ -100,7 +100,7 @@ Nodes, Properties and in fact complete subtrees may be described in XML files us
                 required property name
             -->
             <name>prop</name>
-    
+
             <!--
                 value of the property.
                 For multi-value properties, the values are defined by multiple
@@ -108,7 +108,7 @@ Nodes, Properties and in fact complete subtrees may be described in XML files us
                 single <value> element
             -->
             <value>property value as string</value>
-    
+
             <!--
                 Optional type of the property value, defaults to String.
                 This must be one of the property type strings defined in the
@@ -116,7 +116,7 @@ Nodes, Properties and in fact complete subtrees may be described in XML files us
             -->
             <type>String</type>
         </property>
-    
+
         <!--
             Additional child nodes. May be further nested.
         -->
@@ -128,11 +128,11 @@ Nodes, Properties and in fact complete subtrees may be described in XML files us
 
 #### Using a custom XML format
 
-By writing an XSLT stylesheet file, you can use whatever XML format you prefer. The XML file references an XSLT stylesheet by using the xml-stylesheet processing instruction: 
+By writing an XSLT stylesheet file, you can use whatever XML format you prefer. The XML file references an XSLT stylesheet by using the xml-stylesheet processing instruction:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <?xml-stylesheet href="my-transform.xsl" type="text/xsl"?> <!-- The path to my-transform.xsl is relative to this file -->
-    
+
     <your_custom_root_node>
        <your_custom_element>
        ...
@@ -144,11 +144,11 @@ By writing an XSLT stylesheet file, you can use whatever XML format you prefer. 
 The my-transform.xsl file is then responsible for translating your format into one of the supported XML formats:
 
 
-    
-    <xsl:stylesheet version="1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" 
-      xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-      xmlns:rep="internal" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    
+
+    <xsl:stylesheet version="1.0" xmlns:jcr="https://www.jcp.org/jcr/1.0" xmlns:mix="https://www.jcp.org/jcr/mix/1.0"
+      xmlns:sv="https://www.jcp.org/jcr/sv/1.0" xmlns:sling="https://sling.apache.org/jcr/sling/1.0"
+      xmlns:rep="internal" xmlns:nt="https://www.jcp.org/jcr/nt/1.0" xmlns:xsl="https://www.w3.org/1999/XSL/Transform">
+
       <xsl:template match="your_custom_element">
         <node>
           ...
@@ -156,12 +156,12 @@ The my-transform.xsl file is then responsible for translating your format into o
       </xsl:template>
       ...
     </xsl:stylesheet>
-    
+
 
 
 ### JSON Descriptor Files
 
-Nodes, Properties and in fact complete subtrees may be described in JSON files using the following skeleton structure (see [http://www.json.org](http://www.json.org) or information on the syntax of JSON) :
+Nodes, Properties and in fact complete subtrees may be described in JSON files using the following skeleton structure (see [https://www.json.org](https://www.json.org) or information on the syntax of JSON) :
 
     {
         // child node name
@@ -172,7 +172,7 @@ Nodes, Properties and in fact complete subtrees may be described in JSON files u
 
             // optional mixin node types as array
             "jcr:mixinTypes": [ ],
-    
+
             // additional properties as name value pairs.
             // Multi-value properties are defined as JSON array.
             // Property type is derived from the value
@@ -200,7 +200,7 @@ Nodes, Properties and in fact complete subtrees may be described in JSON files u
             "jcr:name:sampleName": "data",
 
             // URI with name prefix (removed to derive node name)
-            "jcr:uri:sampleUri": "http://sling.apache.org/",
+            "jcr:uri:sampleUri": "https://sling.apache.org/",
 
             // Child nodes are simple JSON objects
             "sling:scripts": {
@@ -227,7 +227,7 @@ Example: `jcr%3Acontent.txt` will be loaded into a node named `jcr:content.txt`.
 
 ### Workspace Targetting
 
-By default, initial content will be loaded into the default workspace. To override this, add a `Sling-Initial-Content-Workspace` bundle manifest header to specify the workspace. Note that *all* content from a bundle will be loaded into the same workspace. 
+By default, initial content will be loaded into the default workspace. To override this, add a `Sling-Initial-Content-Workspace` bundle manifest header to specify the workspace. Note that *all* content from a bundle will be loaded into the same workspace.
 
 ### Example: Load i18n JSON files
 
@@ -260,7 +260,7 @@ Example for the content descriptor:
             <type>String</type>
         </property>
     </node>
-    
+
 
 
 ## Declared Node Type and Namespace Registration
@@ -275,7 +275,7 @@ Bundles may list node type definition files in CND format in the `Sling-Nodetype
 
 After a bundle has entered the *resolved* state, the node types listed in the `Sling-Nodetypes` bundle header are registered with the repository.
 
-Node types installed by this mechanism will never be removed again by the `sling-jcr-base` bundle. 
+Node types installed by this mechanism will never be removed again by the `sling-jcr-base` bundle.
 
 Starting with revision 911430, re-registration of existing node types is enabled by default. To disable this, add `;reregister:=false` to the resource names for which re-registration should be disabled.
 
@@ -285,7 +285,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 
 ### Namespace Definitions
 
-Instead of using a CND file for defining namespace one can use the bundle header `Sling-Namespaces` as well. It contains a comma-separated list of `<prefix>=<uri>` strings. 
+Instead of using a CND file for defining namespace one can use the bundle header `Sling-Namespaces` as well. It contains a comma-separated list of `<prefix>=<uri>` strings.
 Those are processed in [`org.apache.sling.content.jcr.base.internal.loader.Loader`](https://github.com/apache/sling-org-apache-sling-jcr-base/blob/66be360910c265473799635fcac0e23895898913/src/main/java/org/apache/sling/jcr/base/internal/loader/Loader.java#L192).
 
 ## ACLs and Principals
@@ -323,8 +323,8 @@ When adding a `security:acl` object to a content node definition in JSON you can
 
     {
         "security:acl": [
-            { 
-                "principal": "TestUser1", 
+            {
+                "principal": "TestUser1",
                 "granted": [
                     "jcr:read",
                     "jcr:write"
@@ -333,8 +333,8 @@ When adding a `security:acl` object to a content node definition in JSON you can
                     "rep:glob": "glob1"
                 }
             },
-            { 
-                "principal": "TestGroup1", 
+            {
+                "principal": "TestGroup1",
                 "granted": [
                     "jcr:modifyAccessControl"
                 ],

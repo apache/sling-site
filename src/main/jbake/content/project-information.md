@@ -1,4 +1,4 @@
-title=Project Information		
+title=Project Information
 type=page
 status=published
 tags=mailinglists,issuetracker,sourcecode,git,github
@@ -21,23 +21,23 @@ This document provides an overview of the various documents and links that are p
 The following English-speaking mailing lists have been established for this project. For each list, there is a subscribe,
 unsubscribe, and an archive link.
 
-The Sling Users List is the preferred way of getting help with Sling. However, you can also [Ask a Sling question on StackOverflow](http://stackoverflow.com/questions/ask?tags=sling) if you prefer.
+The Sling Users List is the preferred way of getting help with Sling. However, you can also [Ask a Sling question on StackOverflow](https://stackoverflow.com/questions/ask?tags=sling) if you prefer.
 
 Please subscribe before posting messages to these lists. If you don't, your messages are likely to be delayed, as we need to moderate them,
 or maybe even become lost in the flow of spam that we get from non-subscribed senders.
 
 | Name | Subscribe | Unsubscribe | Post | ASF Archive | Other Archives |
 |---|---|---|---|---|---|
-| Users List | [Subscribe](mailto:users-subscribe@sling.apache.org) | [Unsubscribe](mailto:users-unsubscribe@sling.apache.org) | users at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?users@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/users@sling.apache.org/) |
-| Developers List | [Subscribe](mailto:dev-subscribe@sling.apache.org) | [Unsubscribe](mailto:dev-unsubscribe@sling.apache.org) | dev at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?dev@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/dev@sling.apache.org/) |
-| Commit Events List | [Subscribe](mailto:commits-subscribe@sling.apache.org) | [Unsubscribe](mailto:commits-unsubscribe@sling.apache.org) | <automated> | [lists.apache.org](https://lists.apache.org/list.html?commits@sling.apache.org) | [www.mail-archive.com](http://www.mail-archive.com/commits@sling.apache.org/) |
+| Users List | [Subscribe](mailto:users-subscribe@sling.apache.org) | [Unsubscribe](mailto:users-unsubscribe@sling.apache.org) | users at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?users@sling.apache.org) | [www.mail-archive.com](https://www.mail-archive.com/users@sling.apache.org/) |
+| Developers List | [Subscribe](mailto:dev-subscribe@sling.apache.org) | [Unsubscribe](mailto:dev-unsubscribe@sling.apache.org) | dev at sling.apache.org | [lists.apache.org](https://lists.apache.org/list.html?dev@sling.apache.org) | [www.mail-archive.com](https://www.mail-archive.com/dev@sling.apache.org/) |
+| Commit Events List | [Subscribe](mailto:commits-subscribe@sling.apache.org) | [Unsubscribe](mailto:commits-unsubscribe@sling.apache.org) | <automated> | [lists.apache.org](https://lists.apache.org/list.html?commits@sling.apache.org) | [www.mail-archive.com](https://www.mail-archive.com/commits@sling.apache.org/) |
 
 
 ## Issue Tracking
 
 This project uses JIRA a J2EE-based, issue tracking and project management application. Issues, bugs, and feature requests should be submitted to the following issue tracking system for this project.
 
-The issue tracker can be found at [http://issues.apache.org/jira/browse/SLING](http://issues.apache.org/jira/browse/SLING)
+The issue tracker can be found at [https://issues.apache.org/jira/browse/SLING](https://issues.apache.org/jira/browse/SLING)
 
 ## Source Repository
 
@@ -50,7 +50,7 @@ For additional information see [Using Git with Sling](https://cwiki.apache.org/c
 
 ### Web Access
 
-The source code can be accessed using either the GitHub or GitBox setup. 
+The source code can be accessed using either the GitHub or GitBox setup.
 
 To list all modules on GitHub you can use this search query: [https://github.com/apache/?q=sling](https://github.com/apache/?q=sling), or
 see our [list of repositories](/repolist.html) on this website.
@@ -62,8 +62,8 @@ module deprecation.
 ## Continuous Integration
 
 The [Sling+Jenkins+Setup](https://cwiki.apache.org/confluence/display/SLING/Sling+Jenkins+Setup) wiki page describes
-the setup that runs Sling builds automatically (triggered by commits) on the 
-[ASF's Jenkins instance](https://builds.apache.org/). 
+the setup that runs Sling builds automatically (triggered by commits) on the
+[ASF's Jenkins instance](https://builds.apache.org/).
 
 The [Sling Monitor](https://ci-builds.apache.org/job/Sling/view/Monitor/) page lists jobs that need attention.
 

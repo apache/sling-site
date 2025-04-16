@@ -1,10 +1,10 @@
-title=Hamcrest Integration		
+title=Hamcrest Integration
 type=page
 status=published
 tags=development
 ~~~~~~
 
-Deeper integration with the [Hamcrest matcher library](http://hamcrest.org/).
+Deeper integration with the [Hamcrest matcher library](https://hamcrest.org/).
 
 ## Maven Dependency
 
@@ -24,14 +24,14 @@ The class [`org.apache.sling.testing.hamcrest.ResourceMatchers`](https://github.
 
     #!java
     import static org.apache.sling.hamcrest.ResourceMatchers.resourceOfType;
-    
+
     public void MyServiceTest {
-    
-      @Test 
+
+      @Test
       public void loadResources() {
         Map<String, Object> expectedProperties = /* define properties */;
         Resource resource = /* load resource */ null;
-        
+
         assertThat(resource, resourceOfType("my/app"));
         assertThat(resource, hasChildren("header", "body"));
         assertThat(resource, resourceWithProps(expectedProperties));

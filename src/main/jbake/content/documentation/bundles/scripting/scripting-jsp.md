@@ -1,4 +1,4 @@
-title=JSP Scripting Engine		
+title=JSP Scripting Engine
 type=page
 status=published
 tags=scripts,jsp
@@ -12,20 +12,20 @@ On top of that Apache Sling also provides its own JSP Taglib, implemented by the
 
 The Sling Scripting JSP Taglib supports the use of Sling as an application in JSP pages.  The Sling Taglib provides the
  ability to invoke JSP scripts, include Resources and interact with the Sling Repository, all with JSP tags and
- [Expression Language (EL)](http://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html) functions.
+ [Expression Language (EL)](https://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html) functions.
 
 ## Use
 
 Using the Sling Taglib in a JSP page is as simple as including the Taglib include in your JSP, with the correct URI for the
 version of the Sling Taglib installed.
 
-    <%@taglib prefix="sling" uri="http://sling.apache.org/taglibs/sling" %>
+    <%@taglib prefix="sling" uri="https://sling.apache.org/taglibs/sling" %>
 
 Generally, the prefix to use is `sling`.  Often applications include a global JSP file which includes the Sling Taglib
 and sets up all of the application variables and methods.
 
 The Sling Taglib does not attempt to reproduce the functionality of other Tag Libraries, such as
-[JSTL](http://www.oracle.com/technetwork/java/index-jsp-135995.html); additional Tag Libraries may be required to fully leverage
+[JSTL](https://www.oracle.com/technetwork/java/index-jsp-135995.html); additional Tag Libraries may be required to fully leverage
 the Sling Taglib.
 
 ## Taglib Versions
@@ -34,12 +34,12 @@ There have been a number of releases of the Sling Taglibs, including versions wi
 
 | Taglib Version | Bundle Version | URI |
 |---|---|---|
-| 1.0 | 2.0.6 | http://sling.apache.org/taglibs/sling/1.0 |
-| 1.1 | 2.1.0 | http://sling.apache.org/taglibs/sling/1.1 |
-| 1.2 | 2.1.8 | http://sling.apache.org/taglibs/sling/1.2 |
-| 1.3 | 2.2.0 | http://sling.apache.org/taglibs/sling |
+| 1.0 | 2.0.6 | https://sling.apache.org/taglibs/sling/1.0 |
+| 1.1 | 2.1.0 | https://sling.apache.org/taglibs/sling/1.1 |
+| 1.2 | 2.1.8 | https://sling.apache.org/taglibs/sling/1.2 |
+| 1.3 | 2.2.0 | https://sling.apache.org/taglibs/sling |
 
-All releases from 1.3 onward are expected to use the URI `http://sling.apache.org/taglibs/sling` to ensure ease of
+All releases from 1.3 onward are expected to use the URI `https://sling.apache.org/taglibs/sling` to ensure ease of
 upgrading to newer versions of the Taglib.
 
 ## Expression Language Functions
@@ -90,7 +90,7 @@ Searches for resources using the given query formulated in the given language.
     <c:forEach var="found" items="${sling:findResources(resourceResolver,'/jcr:root//*[jcr:contains(., 'Sling')] order by @jcr:score','xpath')">
         <li>${found.path}</li>
     </c:forEach>
-    
+
 ### getAbsoluteParent
 
 Method for retrieving an absolute parent resource.
@@ -368,7 +368,7 @@ Retrieves the parent of the resource or the absolute parent at the level if spec
 *Example Usage*
 
     <sling:getParent resource="${resource}" level="2" var="parent" />
-    
+
 ### getParents
 
 Retrieves all of the parent resources of a specified resource, returning them in hierarchy order.

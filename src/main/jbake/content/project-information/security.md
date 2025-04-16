@@ -1,4 +1,4 @@
-title=Security		
+title=Security
 type=page
 status=published
 tags=security,pmc
@@ -31,7 +31,7 @@ The private security mailing address is: security(at)sling.apache.org.
 
 Note that all networked servers are subject to denial of service attacks, and we cannot promise magic workarounds to generic problems (such as a client streaming lots of data to your server, or re-requesting the same URL repeatedly). In general our philosophy is to avoid any attacks which can cause the server to consume resources in a non-linear relationship to the size of inputs.
 
-For more information on handling security issues at the Apache Software Foundation please refer to the [ASF Security Team](http://www.apache.org/security/) page and to the [security process description for committers](http://www.apache.org/security/committers.html).
+For more information on handling security issues at the Apache Software Foundation please refer to the [ASF Security Team](https://www.apache.org/security/) page and to the [security process description for committers](https://www.apache.org/security/committers.html).
 
 # Errors and omissions
 

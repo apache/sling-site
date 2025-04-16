@@ -1,4 +1,4 @@
-title=Apache Sling Context-Aware Configuration		
+title=Apache Sling Context-Aware Configuration
 type=page
 status=published
 tags=configuration
@@ -73,7 +73,7 @@ Alternatively you can directly adapt your content resource directly to the Confi
     Resource contentResource = resourceResolver.getResource("/content/mysite/page1");
 
     MyConfig config = contentResource.adaptTo(ConfigurationBuilder.class).as(MyConfig.class);
-    
+
 Or if you want to get a list of configurations:
 
     #!java
@@ -105,18 +105,18 @@ The annotation class may look like this:
     #!java
     @Configuration(label="My Configuration", description="Describe me")
     public @interface MyConfig {
-      	
+
         @Property(label="Parameter #1", description="Describe me")
         String param1();
-        
+
         @Property(label="Parameter with Default value", description="Describe me")
         String paramWithDefault() default "defValue";
-        
+
         @Property(label="Integer parameter", description="Describe me")
         int intParam();
     }
 
-The `@Configuration` annotation is mandatory. All properties on the `@Configuration` annotation and the `@Property` annotations are optional - they provide additional metadata for tooling e.g. configuration editors. 
+The `@Configuration` annotation is mandatory. All properties on the `@Configuration` annotation and the `@Property` annotations are optional - they provide additional metadata for tooling e.g. configuration editors.
 
 By default the annotation class name is used as configuration name, which is also the recommended option. If you want to use an arbitrary configuration name you can specify it via a `name` property on the `@Configuration` annotation.
 
@@ -126,7 +126,7 @@ If you provide your own configuration annotation classes in your bundle, you hav
 
     Sling-ContextAware-Configuration-Classes: x.y.z.MyConfig, x.y.z.MyConfig2
 
-To automate this you can use the Context-Aware Configuration bnd plugin (see next chapter). 	
+To automate this you can use the Context-Aware Configuration bnd plugin (see next chapter).
 
 
 # Accessing configuration from HTL/Sightly templates
@@ -156,7 +156,7 @@ If you want to access nested configurations, you have to use a slash "/" as a se
 
 # Context-Aware Configuration bnd plugin
 
-A [bnd](http://bnd.bndtools.org/) plugin is provided that scans the classpath of a bundle Maven project at build time and automatically generates a `Sling-ContextAware-Configuration-Classes` bundle header for all annotation classes annotated with `@Configuration`. It can be used by both [maven-bundle-plugin](http://felix.apache.org/components/bundle-plugin/) and [bnd-maven-plugin](https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin), as both use the bnd library internally.
+A [bnd](https://bnd.bndtools.org/) plugin is provided that scans the classpath of a bundle Maven project at build time and automatically generates a `Sling-ContextAware-Configuration-Classes` bundle header for all annotation classes annotated with `@Configuration`. It can be used by both [maven-bundle-plugin](https://felix.apache.org/components/bundle-plugin/) and [bnd-maven-plugin](https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin), as both use the bnd library internally.
 
 Example configuration:
 
@@ -179,7 +179,7 @@ Example configuration:
             </dependency>
         </dependencies>
     </plugin>
-    
+
 If you use the bnd-maven-plugin and raw bnd statements, you have to configure it with this bnd statement:
 
     #!xml
@@ -199,7 +199,7 @@ If you use the bnd-maven-plugin and raw bnd statements, you have to configure it
                 <version>1.0.2</version>
             </dependency>
         </dependencies>
-    </plugin>	
+    </plugin>
 
 
 # Unit Tests with Context-Aware Configuration
@@ -269,8 +269,8 @@ Whenever configuration data is read or written from the configuration resources 
 * [Context-Aware Configuration - SPI][spi]
 * [Context-Aware Configuration - Override][override]
 * [Sling Context-Aware Configuration - Talk from adaptTo() 2016](https://adapt.to/2016/en/schedule/sling-context-aware-configuration.html)
- 
 
-[default-impl]: http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html
-[spi]: http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html
-[override]: http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-override.html
+
+[default-impl]: https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html
+[spi]: https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html
+[override]: https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-override.html

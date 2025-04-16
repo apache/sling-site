@@ -10,7 +10,7 @@ tags=downloads,community,pmc
 
 To get the latest development release of Apache Sling, you can [check out the source code and build Sling yourself](documentation/development/getting-and-building-sling.html). Otherwise, the releases below are available for download. To install, just download and extract.
 
-All Apache Sling products are distributed under the terms of the [Apache Software License](http://apache.org/licenses/) (version 2.0). See our license, or the LICENSE file included in each distribution.
+All Apache Sling products are distributed under the terms of the [Apache Software License](https://apache.org/licenses/) (version 2.0). See our license, or the LICENSE file included in each distribution.
 
 For each module the following artifact types are provided
 
@@ -36,4 +36,4 @@ All Sling modules are provided from [Maven Central with groupId `org.apache.slin
 The links on this page point to the latest Apache Sling releases, provided
 by the ASF's [CDN distribution services](https://blogs.apache.org/foundation/entry/apache-software-foundation-moves-to).
 
-Older releases are available at [http://archive.apache.org/dist/sling/](http://archive.apache.org/dist/sling/).
+Older releases are available at [https://archive.apache.org/dist/sling/](https://archive.apache.org/dist/sling/).

@@ -1,4 +1,4 @@
-title=Commons Crypto		
+title=Commons Crypto
 type=page
 status=published
 tags=commons,crypto
@@ -6,7 +6,7 @@ tags=commons,crypto
 
 [TOC]
 
-**[Commons Crypto](https://github.com/apache/sling-org-apache-sling-commons-crypto) provides a simple API to encrypt and decrypt messages and an extensible implementation based on [Jasypt](http://www.jasypt.org).**
+**[Commons Crypto](https://github.com/apache/sling-org-apache-sling-commons-crypto) provides a simple API to encrypt and decrypt messages and an extensible implementation based on [Jasypt](https://www.jasypt.org).**
 
 The Jasypt implementation and Web Console plugin are optional.
 
@@ -57,7 +57,7 @@ The file-based password provider reads the password for encryption/decryption fr
 
 ## Jasypt implementation
 
-The Commons Crypto module provides a crypto service implementation based on the [Jasypt](http://www.jasypt.org) `StandardPBEStringEncryptor`.
+The Commons Crypto module provides a crypto service implementation based on the [Jasypt](https://www.jasypt.org) `StandardPBEStringEncryptor`.
 
 The `JasyptStandardPbeStringCryptoService` requires at least a password provider and an initialization vector (IV) generator (`IvGenerator`) to set up the internal `StandardPBEStringEncryptor`.
 

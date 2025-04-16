@@ -1,10 +1,10 @@
-title=Log Tracer		
+title=Log Tracer
 type=page
 status=published
 tags=logging
 ~~~~~~
 
-[Log Tracer][SLING-4739] provides support for enabling the logs for specific category at specific 
+[Log Tracer][SLING-4739] provides support for enabling the logs for specific category at specific
 level and only for specific request. It provides a very fine level of control via config provided
 as part of HTTP request around how the logging should be performed for given category.
 
@@ -27,14 +27,14 @@ an extra request parameters.
 
 ![Tracer Config](/documentation/bundles/tracer-config.png)
 
-**Note that by default Tracer would not be enabled and you would need to save the OSGi config to 
+**Note that by default Tracer would not be enabled and you would need to save the OSGi config to
 get it activated**
 
 Tracer support two ways to enable logging.
 
 ### Tracer Sets
 
-Tracer sets are collection of predefined logging categories matching specific area of an application. 
+Tracer sets are collection of predefined logging categories matching specific area of an application.
 These can for now be configured as part of OSGi config
 
     oak-query : org.apache.jackrabbit.oak.query.QueryEngineImpl;level=debug
@@ -56,14 +56,14 @@ Currently following attributes are support
 * `caller` - Used to dump stacktrace of caller. It can have following value (_since 1.0.0_, [SLING-5505][SLING-5505])
     * `true` - Complete call stack for that logger would be included
     * `<depth>` - Call stack upto depth (integer) would be included e.g. caller=5
-* `caller-exclude-filter` - (optional) - '|' separated package prefixes which should not be 
-   included in the output. e.g. _org.apache.jackrabbit.oak.query.QueryImpl;caller=28;caller-exclude-filter="org.eclipse|org.felix"_ 
+* `caller-exclude-filter` - (optional) - '|' separated package prefixes which should not be
+   included in the output. e.g. _org.apache.jackrabbit.oak.query.QueryImpl;caller=28;caller-exclude-filter="org.eclipse|org.felix"_
    this would exclude eclipse and felix packages from the resulting stack
 
 ### Performance Impact
 
-Tracer makes use of [Logback TuboFilter][1] to intercept the logging calls and only enable them for 
-those which are enabled via tracer config for the request. The filter is only registered for the 
+Tracer makes use of [Logback TuboFilter][1] to intercept the logging calls and only enable them for
+those which are enabled via tracer config for the request. The filter is only registered for the
 duration of that request hence would avoid adding the cost for normal run.
 
 You can also disable the Tracer completely via OSGi config.
@@ -74,12 +74,12 @@ The logs captured are logged at two places
 
 ### RequestProgressTracker
 
-Sling provides support for recording recent requests which can be accessed via [Recent Requests 
-Plugin][2]. It would list down the list of recent request and then on clicking them you can see the 
+Sling provides support for recording recent requests which can be accessed via [Recent Requests
+Plugin][2]. It would list down the list of recent request and then on clicking them you can see the
 logs showed on the UI.
 
-The logging there is done via [RequestProgressTracker][3] ([intro][4]). By default recent request 
-plugin gets overflown as it captures request even for css, js files. To avoid that you can modify 
+The logging there is done via [RequestProgressTracker][3] ([intro][4]). By default recent request
+plugin gets overflown as it captures request even for css, js files. To avoid that you can modify
 the config as part of _Sling Main Servlet_ config
 
 ![Sling Main Servlet Config](/documentation/bundles/sling-main-servlet-config.png)
@@ -96,8 +96,8 @@ With that you can see log entries like below at http://localhost:8080/system/con
 
 ### Server Logs
 
-Further the logs also go to normal server side logs. By default they would go to the error.log. If 
-you have routed the logs of specific categories to different files then normal Logback logging rules 
+Further the logs also go to normal server side logs. By default they would go to the error.log. If
+you have routed the logs of specific categories to different files then normal Logback logging rules
 would apply
 
 ## Usage
@@ -126,21 +126,21 @@ Above request would turn on debug level logging (default level for tracer) for `
      -d "tracers=oak-writes" \
      http://localhost:4502/content/dam/
 
-Above request would create a folder in Assets and for that we have enabled the `oak-writes` tracer. This would result in following output 
+Above request would create a folder in Assets and for that we have enabled the `oak-writes` tracer. This would result in following output
 
-    2015-05-11 17:30:42,840 INFO  admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] c.a.acs.acs-aem-tools-bundle - Service [4858] ServiceEvent REGISTERED 
-    2015-05-11 17:30:42,846 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection] 
-    2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
-    2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection/jcr:content] 
-    2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Setting property [/content/dam/summer-collection/jcr:content/jcr:title] 
-    2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
-    2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
-    2015-05-11 17:30:42,856 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] save 
+    2015-05-11 17:30:42,840 INFO  admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] c.a.acs.acs-aem-tools-bundle - Service [4858] ServiceEvent REGISTERED
+    2015-05-11 17:30:42,846 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection]
+    2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType
+    2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection/jcr:content]
+    2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Setting property [/content/dam/summer-collection/jcr:content/jcr:title]
+    2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType
+    2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType
+    2015-05-11 17:30:42,856 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] save
 
 ### Request Headers
 
-Some request like initial authentication processing does not involve Sling MainServlet and hence for 
-those request logging cannot be done to RequestProgressTracker. Instead we can just get logs enabled 
+Some request like initial authentication processing does not involve Sling MainServlet and hence for
+those request logging cannot be done to RequestProgressTracker. Instead we can just get logs enabled
 and route them to normal logging on server side. For that you need to use HTTP header
 
 * `Sling-Tracers` - Set of tracer set names
@@ -156,12 +156,12 @@ So to enable authentication related logging following request can be sent
 
 This would result in following server side logs
 
-    2015-05-11 17:34:56,531 INFO  NA [qtp1395423247-193] c.a.acs.acs-aem-tools-bundle - Service [4859] ServiceEvent REGISTERED 
-    2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.s.a.c.i.SlingAuthenticator - doHandleSecurity: Trying to get a session for null 
-    2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 
-    2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 
-    2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding Credentials to shared state. 
-    2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding login name to shared state. 
+    2015-05-11 17:34:56,531 INFO  NA [qtp1395423247-193] c.a.acs.acs-aem-tools-bundle - Service [4859] ServiceEvent REGISTERED
+    2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.s.a.c.i.SlingAuthenticator - doHandleSecurity: Trying to get a session for null
+    2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required.
+    2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required.
+    2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding Credentials to shared state.
+    2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding login name to shared state.
 
 ## Tracer Recording
 
@@ -184,7 +184,7 @@ Recording features works as explained below
          -d "tracers=oak-writes" \
          http://localhost:4802/content/dam/
 
-2. Server includes a request id as part of `Sling-Tracer-Request-Id` response headers  
+2. Server includes a request id as part of `Sling-Tracer-Request-Id` response headers
 
         HTTP/1.1 201 Created
         Date: Wed, 27 Jan 2016 07:30:22 GMT
@@ -195,8 +195,8 @@ Recording features works as explained below
         Content-Type: text/html; charset=UTF-8
         Transfer-Encoding: chunked
 
-3. The logs in json format can then be fetched from server at `/system/console/tracer` like 
-   http://localhost:8080/system/console/tracer/9b5b01f6-f269-47c3-a889-2dc8d4d7938f.json. 
+3. The logs in json format can then be fetched from server at `/system/console/tracer` like
+   http://localhost:8080/system/console/tracer/9b5b01f6-f269-47c3-a889-2dc8d4d7938f.json.
 
         curl -s -D - -H "Sling-Tracer-Record : true" -H "Sling-Tracers : oak-query" \
         -H "Sling-Tracer-Config : org.apache.jackrabbit.oak.query" \
@@ -233,7 +233,7 @@ Recording features works as explained below
             ...
           ]
         }
-        
+
 JSON output consist of following sections
 
 1. `method` - Request method
@@ -259,11 +259,11 @@ Download the bundle from [here][5] or use following Maven dependency
     </dependency>
 
 
-[1]: http://logback.qos.ch/manual/filters.html#TurboFilter
+[1]: https://logback.qos.ch/manual/filters.html#TurboFilter
 [2]: https://sling.apache.org/documentation/development/monitoring-requests.html
 [3]: https://sling.apache.org/apidocs/sling5/org/apache/sling/api/request/RequestProgressTracker.html
-[4]: http://dev.day.com/content/ddc/blog/2008/06/requestprogresstracker.html
+[4]: https://dev.day.com/content/ddc/blog/2008/06/requestprogresstracker.html
 [SLING-4739]: https://issues.apache.org/jira/browse/SLING-4739
 [SLING-5505]: https://issues.apache.org/jira/browse/SLING-5505
 [SLING-5459]: https://issues.apache.org/jira/browse/SLING-5459
-[5]: http://sling.apache.org/downloads.cgi
+[5]: https://sling.apache.org/downloads.cgi

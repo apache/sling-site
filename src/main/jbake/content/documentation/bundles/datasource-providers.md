@@ -1,4 +1,4 @@
-title=DataSource Provider		
+title=DataSource Provider
 type=page
 status=published
 tags=databases
@@ -60,7 +60,7 @@ converted to OSGi bundles. For them we can use the [Bnd Wrap][2] command.
 For example to convert the Postgres driver jar follow the steps below
 
     $ wget https://github.com/bndtools/bnd/releases/download/2.3.0.REL/biz.aQute.bnd-2.3.0.jar -O bnd.jar
-    $ wget http://jdbc.postgresql.org/download/postgresql-9.3-1101.jdbc41.jar
+    $ wget https://jdbc.postgresql.org/download/postgresql-9.3-1101.jdbc41.jar
     $ cat > bnd.bnd <<EOT
     Bundle-Version: 9.3.1101
     Bundle-SymbolicName: org.postgresql
@@ -119,6 +119,6 @@ Download the bundle from [here][3] or use following Maven dependency
         <version>1.0.0</version>
     </dependency>
 
-[1]: http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html
-[2]: http://bnd.bndtools.org/chapters/390-wrapping.html
-[3]: http://sling.apache.org/downloads.cgi
+[1]: https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html
+[2]: https://bnd.bndtools.org/chapters/390-wrapping.html
+[3]: https://sling.apache.org/downloads.cgi

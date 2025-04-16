@@ -1,4 +1,4 @@
-title=The Apache Sling Provisioning Model and Apache SlingStart		
+title=The Apache Sling Provisioning Model and Apache SlingStart
 type=page
 status=published
 tags=slingstart,maven,launchers
@@ -15,7 +15,7 @@ The Apache Sling provisioning model is a model to describe OSGi based applicatio
 
 The model is describing an instance, it is not directly related to any particular tooling or packaging/provisioning vehicle.
 
-For Apache Maven users, the `slingstart-maven-plugin` uses the model to create an executable application and/or a web application based on the model. Sling's Launchpad is defined using the model and built by this Maven plugin. See [SlingStart Maven Plugin](http://sling.apache.org/components/slingstart-maven-plugin/) for a documentation of the supported goals and parameters.
+For Apache Maven users, the `slingstart-maven-plugin` uses the model to create an executable application and/or a web application based on the model. Sling's Launchpad is defined using the model and built by this Maven plugin. See [SlingStart Maven Plugin](https://sling.apache.org/components/slingstart-maven-plugin/) for a documentation of the supported goals and parameters.
 
 
 ## The Model
@@ -38,10 +38,10 @@ Custom run modes can be used to configure for different situations. Depending on
 Each run mode is associated with a set of run mode names. Only if all listed run modes are active, the definition is used.
 
 The model also supports special run modes, which have special meaning. By default, these pre defined special run modes are available:
- 
+
  * :standalone Artifacts for the standalone application - in contrast to a war.
  * :webapp Artifacts for the webapp only
- 
+
 Other special run modes can be defined by using a single run mode name which starts with a colon, like :test. These run modes can be used by special tooling.
 
 ### Start Levels
@@ -59,9 +59,9 @@ If you want to specify the type, it's appended after the version:
 
                 groupId/artifactId/version/type
                 org.apache.sling/api/2.8.0/jar
-                
+
 If you want to specify the classifier, it gets appended after the type:
-                
+
                 groupId/artifactId/version/type/classifier
                 org.apache.sling/api/2.8.0/jar/test
 
@@ -72,7 +72,7 @@ A configuration has a pid, or a factory pid and an alias and of course the prope
 Special configurations can be marked with a leading ":" of the pid. Special configurations are not added to the OSGi config admin. There are some predefined special configurations
 
  * :web.xml This configuration must be part of the :webapp runmode and contains a complete web.xml for the web application
- * :bootstrap This configuration must be part of either the :boot, :base, :standalone, or :webapp run mode and define the contents for the bootstrap command file executed by Launchpad. 
+ * :bootstrap This configuration must be part of either the :boot, :base, :standalone, or :webapp run mode and define the contents for the bootstrap command file executed by Launchpad.
 
 #### Bootstrap Command File
 
@@ -114,7 +114,7 @@ The model comes also with a textual description language:
            org.apache.sling/eventadmin/${eventadmin.version}
            org.apache.sling/metatype/${metatype.version}
            org.apache.sling/coordinator/3.0.0
-           
+
         [configurations]
            org.apache.sling.eventadmin
               useQueue=true
@@ -132,12 +132,12 @@ A configuration for a run mode looks like this:
 
         [artifacts startLevel=5 runModes=mymode]
            org.apache.sling/eventadmin/${eventadmin.version}
-        
+
         [configurations runModes=mymode]
            org.apache.sling.eventadmin
               useQueue=true
               ignoreTopics=["myTopic"]
-              
+
 The following paragraphs describes the different sections in a provisioning model file.
 
 Each section header may contain arbitrarily many parameters and has the following format:
@@ -175,7 +175,7 @@ The parameter `runModes` described for the features section can be set for artif
 Each line in the artifact section specifies a Maven artifact url in the following format
 
     artifactUrl ::= [ <repository-url> '!' ] <group-id> '/' <artifact-id> [ '/' [version] [ '/' [type] [ '/' classifier ] ] ] ]
-    
+
 The version may be left out in which case either `LATEST` is assumed or the version is being resolved from the connected pom.
 
 After the `artifactUrl` there may follow arbitrary parameters enclosed in `[...]`
@@ -183,7 +183,7 @@ After the `artifactUrl` there may follow arbitrary parameters enclosed in `[...]
 The parameter name `bundle:rename-bsn` ([SLING-5379](https://issues.apache.org/jira/browse/SLING-5379)) may be used to rewrite the `Bundle-SymbolicName` (BSN) header in the bundle's manifest. It gets the new symbolic name as value. The original symbolic name is accessible in the manifest header `X-Original-Bundle-SymbolicName`
 
     org.apache.sling/org.apache.sling.commons.johnzon/1.0.0 [bundle:rename-bsn=r-foo.bar.renamed.sling.commons.johnzon]
-    
+
 This example would rewrite the BSN of the the bundle Commons Johnzon to `r-foo.bar.renamed.sling.commons.johnzon`
 
 ### Variables
@@ -195,12 +195,12 @@ The variable section header must not contain any parameters
 Each line has the following format
 
     <variable-name> '=' <variable-value>
-    
+
 The variables may be referenced in all other sections via `${<variable-name>}` and get replaced at run time with the assigned `<variable-value>`.
 
 ### Settings
 
-This section defines OSGi framework properties. 
+This section defines OSGi framework properties.
 
 ####  Header Parameters
 
@@ -208,7 +208,7 @@ The parameter `runModes` described for the features section can be set for setti
 
 #### Content
 
-Each line contains an OSGi framework property. The framework properties of Apache Felix are documented [here](http://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html).
+Each line contains an OSGi framework property. The framework properties of Apache Felix are documented [here](https://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html).
 
     <framework-property-name> '=' <framework-property-value>
 
@@ -217,24 +217,24 @@ Each line contains an OSGi framework property. The framework properties of Apach
 ####  Header Parameters
 
 The parameter `runModes` described for the features section can be set for configurations sections as well.
- 	 
+
 #### Content
 
 Configuration names are related to the PID and factory PID. The structure of the name is as follows:
- 	 
+
 
     name ::= <pid> ( '-' <subname> )
 
- 	 
+
 If the form is just `<pid>`, the configuration contains the properties for a Managed Service. The `<pid>` is then the PID of the Managed Service. See the Configuration Admin service for details.
- 	 
+
 When a Managed Service Factory is used, the situation is different. The `<pid>` part then describes the PID of the Managed Service Factory. You can pick any `<subname>` which is used as a unique alias. For example:
- 	 
+
     # Configuration for Managed Service com.acme.xyz
-    com.acme.xyz // 
+    com.acme.xyz //
     # Managed Service Factory, creates an instance for com.acme.abc
     com.acme.abc-default
-    
+
 In the line after the name follows the actual configuration content.
 
 ##### Default Configuration Format
@@ -249,10 +249,10 @@ The format is:
     comment ::= '#' <any>
     header ::= prop '=' value
     prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
-    symbolic-name ::= token { '.' token } 
+    symbolic-name ::= token { '.' token }
     token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' }
-    value ::= [ type ] ( '[' values ']' | '(' values ')' | simple ) 
-    values ::= simple { ',' simple } 
+    value ::= [ type ] ( '[' values ']' | '(' values ')' | simple )
+    values ::= simple { ',' simple }
     simple ::= '"' stringsimple '"'
     type ::= <1-char type code>
     stringsimple ::= <quoted string representation of the value> (see below)
@@ -276,9 +276,9 @@ Apart from the escaping of the usual characters like the quotes, double quotes, 
 
 While the default configuration form is very powerful, it might also sometimes be a little bit too heavy to specify a configuration. For these usage cases, the configuration can be described as properties:
 
-    com.acme.xyz [format=properties] 	 
+    com.acme.xyz [format=properties]
         ftp.port = 21
-        
+
 Notice that this definition only supports string properties. Therefore the service consuming the configuration needs to be able to adapt a string value to the correct type.
 
 ### Additional Section
@@ -308,9 +308,9 @@ By default the Maven classpath is extended by the dependencies of the merged mod
 
 ## Model Merging
 
-If two or more models are supplied, they are merged feature by feature, each feature being treated as a separate unit. 
+If two or more models are supplied, they are merged feature by feature, each feature being treated as a separate unit.
 
-Within a feature each run mode is treated separately as well. 
+Within a feature each run mode is treated separately as well.
 
 Within a run mode, a model can overwrite definitions from the base model. For example, it can define a different configuration or a different version and/or start level for an artifact.
 
@@ -325,7 +325,7 @@ Let's look at an example base model
     [artifacts]
         my/special/artifact/1.0.0
         commons/library/1.0.0
-       
+
     [artifacts runModes=test]
         another/one/2.1.0
 
@@ -339,10 +339,10 @@ The changing model would mention the above as one artifact and in addition have:
 
     [artifacts startLevel=5]
         commons/library/1.1.0
-    
+
     [artifacts runModes=:remove]
         my/special/artifact/0.0.0
-    
+
     [artifacts runModes=:remove,test]
         another/one/0.0.0
 
@@ -367,7 +367,7 @@ When this model is merged with the following model, the resulting model has a di
     [configurations runModes=:remove]
         another.special.configuration.a
 
-By default if a model inherits from another and uses the same configuration pid, the configuration is overwritten! In the above example, the configuration my.special.configuration.b contains a single property named "a". 
+By default if a model inherits from another and uses the same configuration pid, the configuration is overwritten! In the above example, the configuration my.special.configuration.b contains a single property named "a".
 
 It is also possible to merge configurations:
 
@@ -406,10 +406,10 @@ stdOutFile | String | The relative filename of the file which receives both the 
 
 ### Debugging
 
-Since version 1.2.0 of this plugin it is possible to easily start a Sling server in debug mode ([SLING-4677](https://issues.apache.org/jira/browse/SLING-4677)). For that you either configure the property `debug` inside you server configuration in the pom.xml accordingly or by using the parameter `Dlaunchpad.debug`. Both values can either be `true` (in which case the [JDWP options](http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation) `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000` are appended to the VM options) or just some arbitrary string defining debugging options.
+Since version 1.2.0 of this plugin it is possible to easily start a Sling server in debug mode ([SLING-4677](https://issues.apache.org/jira/browse/SLING-4677)). For that you either configure the property `debug` inside you server configuration in the pom.xml accordingly or by using the parameter `Dlaunchpad.debug`. Both values can either be `true` (in which case the [JDWP options](https://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation) `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000` are appended to the VM options) or just some arbitrary string defining debugging options.
 In case both are used the parameter `Dlaunchpad.debug` takes precedence.
 
-## Stopping a server 
+## Stopping a server
 
 Use the goal with name `stop` to stop one or multiple servers. The goal is bound by default to the [`post-integration-test` lifecycle phase](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference).
 

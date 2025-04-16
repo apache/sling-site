@@ -1,10 +1,10 @@
-title=Sling Health Checks Migration Guide to Felix Health Checks		
+title=Sling Health Checks Migration Guide to Felix Health Checks
 type=page
 status=published
 tags=healthchecks,operations
 ~~~~~~
 
-**The Sling Health Check Runtime is deprecated** and superseded by [Felix Health Checks](http://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html). See [Sling Health Check Tools (deprecated)](sling-health-check-tool-deprecated.html) for documentation prior to deprecation and [Sling Health Checks](sling-health-checks.html) for checks implemented against the Felix Health Checks Runtime.
+**The Sling Health Check Runtime is deprecated** and superseded by [Felix Health Checks](https://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html). See [Sling Health Check Tools (deprecated)](sling-health-check-tool-deprecated.html) for documentation prior to deprecation and [Sling Health Checks](sling-health-checks.html) for checks implemented against the Felix Health Checks Runtime.
 
 ## Migrate custom checks
 
@@ -26,7 +26,7 @@ tags=healthchecks,operations
             <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
-        
+
 ### Adjust Health Check Code
 
 Typically necessary steps:

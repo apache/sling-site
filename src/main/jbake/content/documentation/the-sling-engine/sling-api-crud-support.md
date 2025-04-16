@@ -1,4 +1,4 @@
-title=Sling API CRUD Support		
+title=Sling API CRUD Support
 type=page
 status=published
 tags=api,core
@@ -17,7 +17,7 @@ As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD
  * [`boolean hasChanges()`](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#hasChanges--)
  * [`void refresh()`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#refresh--)
  * `orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException` (since [API 2.24.0](https://issues.apache.org/jira/browse/SLING-7975))
- 
+
 Those methods provide the ability to create and delete resources as well. In addition you can adapt a `Resource` to a `ModifiableValueMap` interface which is similar to the `ValueMap` interface, but allows for updating properties on a resource.
 
 # Examples
@@ -34,7 +34,7 @@ Update `/myresource`, setting the title and body:
       <input type="text" name="title">
       <textarea name="body">
     </form>
-    
+
 **Sling API CRUD**
 
     Resource myResource = resourceResolver.getResource("/myresource");
@@ -42,7 +42,7 @@ Update `/myresource`, setting the title and body:
     properties.put("title", {TITLE});
     properties.put("body", {BODY});
     resourceResolver.commit();
-    
+
 ## Create New Resource
 
 Create a new resource below `/myresource`
@@ -144,9 +144,9 @@ Delete the resource `/myresource`
     <form action="/myresource" method="POST">
       <input type="hidden" name=":operation" value="delete">
     </form>
-    
+
 **Sling API CRUD**
-    
+
     Resource myResource = resourceResolver.getResource("/myresource");
     resourceResolver.delete(myResource);
     resourceResolver.commit();
@@ -160,9 +160,9 @@ Reorder the resource `/myresource` before sibling node `child1`
     <form action="/myresource" method="POST">
       <input type="hidden" name=":order" value="before child1">
     </form>
-    
+
 **Sling API CRUD**
-    
+
     Resource parentResource = resourceResolver.getResource("/");
     resourceResolver.orderBefore(parentResource, "myresource", "child1");
     resourceResolver.commit();
@@ -172,20 +172,20 @@ Reorder the resource `/myresource` before sibling node `child1`
 
 
 <div class="info">
-	Please note, this information is specific to the Sling JCR Resource implementation provided by the Apache Sling project.  Other implementations may have different value class support.  
+	Please note, this information is specific to the Sling JCR Resource implementation provided by the Apache Sling project.  Other implementations may have different value class support.
 </div>
 
 The classes implementing the following types are supported directly when setting properties:
 
- * [Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html)
- * [InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
+ * [Calendar](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html)
+ * [InputStream](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
  * [Node](https://s.apache.org/jcr-2.0-javadoc/javax/jcr/Node.html)
- * [BigDecimal](http://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html)
- * [Long](http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html)
- * [Short](http://docs.oracle.com/javase/8/docs/api/java/lang/Short.html)
- * [Integer](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)
- * [Number](http://docs.oracle.com/javase/8/docs/api/java/lang/Number.html)
- * [Boolean](http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html)
- * [String](http://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
- 
+ * [BigDecimal](https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html)
+ * [Long](https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html)
+ * [Short](https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html)
+ * [Integer](https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)
+ * [Number](https://docs.oracle.com/javase/8/docs/api/java/lang/Number.html)
+ * [Boolean](https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html)
+ * [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
+
 As well as the corresponding primitive types.  Any object which implements the Serializable interface will be serialized and the result of the serialization will be saved as a binary value for the property.

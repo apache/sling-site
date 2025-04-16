@@ -1,4 +1,4 @@
-title=Content Distribution	
+title=Content Distribution
 type=page
 status=published
 tags=distribution
@@ -6,9 +6,9 @@ tags=distribution
 
 ## Overview
 
-The Sling Content Distribution module main goal is allowing distribution of content (Sling resources) among different Sling 
-instances. The term "distribution" here means the ability of picking one or more resources on a certain Sling instance in order 
-to copy and persist them onto another Sling instance. The Sling Content Distribution module is able to distribute content 
+The Sling Content Distribution module main goal is allowing distribution of content (Sling resources) among different Sling
+instances. The term "distribution" here means the ability of picking one or more resources on a certain Sling instance in order
+to copy and persist them onto another Sling instance. The Sling Content Distribution module is able to distribute content
 by:
 
  - "pushing" from Sling instance A to Sling instance B
@@ -23,20 +23,20 @@ The Sling Content Distribution module consists of the following bundles:
  - `org.apache.sling.distribution.core`: this is where the basic infrastructure for distributing content is implemented
  - `org.apache.sling.distribution.kryo-serializer`: Kryo based distribution package serializer
  - `org.apache.sling.distribution.avro-serializer`: Apache Avro based distribution package serializer
- - `org.apache.sling.distribution.sample`: this is a set of sample configurations and implementations for demo purpose 
+ - `org.apache.sling.distribution.sample`: this is a set of sample configurations and implementations for demo purpose
  - `org.apache.sling.distribution.it`: this is the integration testing suite
- 
+
 ## Design
 
 The Sling Content Distribution aims to be: _Reliable_, _simple_ and _extensible_.
 
 Reliability means that the system should be able to keep working also in presence of failures regarding I/O, network, etc.
-An example of such problems is when pushing content from instance A to instance B fails because B is unreachable: in such 
+An example of such problems is when pushing content from instance A to instance B fails because B is unreachable: in such
  scenarios instance A should be able to keep pushing (pulling, etc.) content to other instances seamlessly. Another example
- is when delivery of a certain content (package) fails too many times the distribution module should be able to either drop 
+ is when delivery of a certain content (package) fails too many times the distribution module should be able to either drop
  it or move it into a different "bucket" of failed items.
-Simplicity means that this module should be able to accomplish its tasks by providing clear, minimal and easy to use APIs together 
-with smart but not overly complicated or "hacky" implementations (see ["Simple software is hard"](http://events.linuxfoundation.org/events/apachecon-europe/program/schedule)).
+Simplicity means that this module should be able to accomplish its tasks by providing clear, minimal and easy to use APIs together
+with smart but not overly complicated or "hacky" implementations (see ["Simple software is hard"](https://events.linuxfoundation.org/events/apachecon-europe/program/schedule)).
 Extensibility means that the Sling Content Distribution module provides a set of APIs for distributing resources where each
 component coming into place during the distribution lifecycle can be extended or totally replaced.
 
@@ -44,24 +44,24 @@ A distribution _request_ represents the need of aggregating some resources and t
 Such requests are handled by _agents_ that are the main entry point for working with the distribution module.
 Each agent distributes content from one or more sources to one or more targets, such distribution can be triggered by:
 
- - "pushing" the content to the (remote) target instances 
+ - "pushing" the content to the (remote) target instances
  - "pulling" content from the (remote) source instances
  - "coordinating" instances, that is they are used to synchronize multiple instances by having them as both sources and targets
 
-An _agent_ is capable of handling a certain distribution _request_ by creating one or more _packages_ of resources out of it 
-from the source(s), dispatching such _packages_ to one or more _queues_ and of processing such queued _packages_ by persisting 
+An _agent_ is capable of handling a certain distribution _request_ by creating one or more _packages_ of resources out of it
+from the source(s), dispatching such _packages_ to one or more _queues_ and of processing such queued _packages_ by persisting
 them into the target instance(s).
 
-The process of creating one or more packages is called _exporting_ as such operation may either happen locally to the agent 
+The process of creating one or more packages is called _exporting_ as such operation may either happen locally to the agent
 (the "push" scenario) or remotely (the "pull" scenario).
 
-The process of persisting one or more packages is called _importing_ as such operation may either happen locally (the "pull" 
+The process of persisting one or more packages is called _importing_ as such operation may either happen locally (the "pull"
 scenario) or remotely (the "push" scenario).
 
-In order to properly handle large number of _requests_ against the same _agent_ each of them is provided with _queues_ 
-where the exported _packages_ are sent, the _agent_ takes then care to process such a _queue_ in order to _import_ each 
-_package_. 
- 
+In order to properly handle large number of _requests_ against the same _agent_ each of them is provided with _queues_
+where the exported _packages_ are sent, the _agent_ takes then care to process such a _queue_ in order to _import_ each
+_package_.
+
 
 ### Distribution agents configuration
 
@@ -140,7 +140,7 @@ The currently available distribution strategies are
 - priority path: the agent can route a configurable set of paths (note that this configuration is currently global for the system, not per agent) to a dedicated priority queue while all the others go to the default queue
 - error aware: the agent has one default queue for all the items, items failing for a configurable amount of times are either dropped or moved to an error queue (depending on configuration)
 
- 
+
 ## Usecases
 
 ### Forward distribution
@@ -210,8 +210,8 @@ We need to expose APIs for configuring, commanding and monitoring distribution a
 - Monitoring API should allow:
  - inspection to internal queues of distribution agents
  - inspection of commands history
- 
-### API endpoints 
+
+### API endpoints
 
 #### Configuration API
 - Create config:  - POST _/libs/sling/distribution/settings/agents_
@@ -239,10 +239,10 @@ There is a single entry point in triggering a distribution workflow, via [Distri
 The following extensions for Apache Sling Content Distribution exist.
 
 ### Apache Avro serializer
-The _org.apache.sling.distribution.avro-serializer_ contains a _DistributionContentSerializer_ based on [Apache Avro](http://avro.apache.org).
+The _org.apache.sling.distribution.avro-serializer_ contains a _DistributionContentSerializer_ based on [Apache Avro](https://avro.apache.org).
 
 ### Kryo serializer
-The _org.apache.sling.distribution.kryo-serializer_ contains a _DistributionContentSerializer_ based on [Kryo](http://github.com/EsotericSoftware/kryo).
+The _org.apache.sling.distribution.kryo-serializer_ contains a _DistributionContentSerializer_ based on [Kryo](https://github.com/EsotericSoftware/kryo).
 
 ## Ideas for future developments
 

@@ -1,4 +1,4 @@
-title=Apache Sling Context-Aware Configuration - Override		
+title=Apache Sling Context-Aware Configuration - Override
 type=page
 status=published
 tags=configuration
@@ -13,7 +13,7 @@ Using overrides it is possible to override context-aware configuration values gl
 
 An example use case is to overwrite the Site URLs on your staging system which has a copy of the configuration content of the production system installed.
 
-Via the [SPI](http://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html) you can add your own override providers - but in most cases the built-in ones described in this page are sufficient. All override providers use the same override syntax.
+Via the [SPI](https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html) you can add your own override providers - but in most cases the built-in ones described in this page are sufficient. All override providers use the same override syntax.
 
 
 # Override syntax
@@ -47,7 +47,7 @@ Override string examples with real values:
 
 If multiple statements are defined affecting the same content path, configuration name and property name, they overwrite each other. That means the override string defined last wins.
 
-    
+
 # Built-in override providers
 
 ## Override via system properties

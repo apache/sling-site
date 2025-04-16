@@ -1,4 +1,4 @@
-title=How to Manage Jobs in Sling		
+title=How to Manage Jobs in Sling
 type=page
 status=published
 tags=jobs
@@ -9,7 +9,7 @@ Apache Sling supports the execution of jobs with the guarantee of processing the
 For more details please refer to the following resources:
 
 * [Eventing and Job Handling](/documentation/bundles/apache-sling-eventing-and-job-handling.html) to get detailed information on the eventing mechanisms in Sling.
-* Package [org.osgi.service.event](http://www.osgi.org/javadoc/r4v42/org/osgi/service/event/package-summary.html) of the OSGI API.
+* Package [org.osgi.service.event](https://www.osgi.org/javadoc/r4v42/org/osgi/service/event/package-summary.html) of the OSGI API.
 * Package [org.apache.sling.event](/apidocs/sling6/org/apache/sling/event/package-summary.html) of the Sling API.
 
 This page drives you through the implementation of two services that rely on the Sling job mechanism. The services implement the following use case: whenever a file is uploaded to a temporary location in your web application, the file is moved to a specific location according to its MIME type.
@@ -34,10 +34,10 @@ The second one, called **DropBoxEventHandler**:
 * Moves the file according to its extension.
 
 ## Listening to OSGI Events
-To listen to OSGi events in Sling you just need to register an **org.osgi.service.event.EventHandler** service with 
+To listen to OSGi events in Sling you just need to register an **org.osgi.service.event.EventHandler** service with
 an **event.topics** property that describes which event topics the handler is interested in.
 
-To listen to a Sling **resource added** events, for example, you'll set the *event.topics* property to 
+To listen to a Sling **resource added** events, for example, you'll set the *event.topics* property to
 **org.apache.sling.api.SlingConstants.TOPIC_RESOURCE_ADDED** in the class annotations:
 
      ::java
@@ -76,7 +76,7 @@ To start the job we need a reference to the JobManager:
     @Reference
     private JobManager jobManager;
 
-	
+
 The job topic for dropbox job events needs to be defined:
 
     ::java
@@ -92,7 +92,7 @@ Its logic is as follows:
 * If the event is a file that has been added to */tmp/dropbox*:
     * An job is created with 1 property:
         * A property for the file path.
-    * The job is started 
+    * The job is started
 
 For example:
 
@@ -146,16 +146,16 @@ For example:
 
     @Reference
     private ResourceResolverFactory resolverFactory;
-    
+
     private final static String IMAGES_PATH = "/dropbox/images/";
     private final static String MUSIC_PATH = "/dropbox/music/";
     private final static String MOVIES_PATH = "/dropbox/movies/";
     private final static String OTHER_PATH = "/dropbox/other/";
 
-    
+
 The **org.apache.sling.event.jobs.consumer.JobConsume#process(Job job)** method needs to be implemented:
 
-    
+
 Its logic is as follows:
 
 * The resource path is extracted from the job.
@@ -205,5 +205,5 @@ or in Java Code:
             }
         }
 	}
-        
+
 The complete code for the **DropBoxEventHandler** service is available [here](DropBoxEventHandler.java).

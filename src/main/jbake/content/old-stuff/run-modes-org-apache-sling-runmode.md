@@ -17,7 +17,7 @@ Run modes are meant to define different sets of configuration parameters for var
 
 In a web publishing environment, for example, one could use run modes like *staging, production, dev, dmz* or combinations of such values.
 
-The *[org.apache.sling.runmode]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode.path }})* bundle provides a simple way of defining and querying a list of run modes.
+The *[org.apache.sling.runmode]({{ refs.https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode.path }})* bundle provides a simple way of defining and querying a list of run modes.
 
 # Installation
 
@@ -27,18 +27,18 @@ The run mode service is not present in the default Sling launchpad builds, to ac
 
 Run modes can only be configured using a system property, or via the *sling.properties* file.
 
-Using *-Dsling.run.modes=foo,bar* on the JVM command-line, for example, activates the *foo* and *bar* run modes. 
+Using *-Dsling.run.modes=foo,bar* on the JVM command-line, for example, activates the *foo* and *bar* run modes.
 
 This command-line parameter takes precedence over a similar definition (*sling.run.modes=dev,staging*) that might be present in the *sling.properties* file found in the Sling home directory.
 
 # Getting the current list of run modes
 
-The [RunMode service]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:
+The [RunMode service]({{ refs.https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:
 
     ::java
     RunMode r = ...get from BundleContext...
     String [] currentRunModes = r.getCurrentRunModes();
-    
+
     String [] expectedRunModes = { "foo", "wii" };
     if(r.isActive(expectedRunModes)) {
       // at least one of (foo,wii) run modes

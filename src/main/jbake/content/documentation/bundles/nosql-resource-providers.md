@@ -1,4 +1,4 @@
-title=NoSQL Resource Providers (org.apache.sling.nosql)		
+title=NoSQL Resource Providers (org.apache.sling.nosql)
 type=page
 status=published
 tags=resourceproviders,nosql
@@ -47,7 +47,7 @@ Please note: there is an [alternative MongoDB resource provider implementation](
 
 ## Couchbase NoSQL Resource Provider
 
-Resource provider for [Couchbase](http://www.couchbase.com/) NoSQL database.
+Resource provider for [Couchbase](https://www.couchbase.com/) NoSQL database.
 
 Tested with Couchbase Server 4.0.0 and Couchbase Java SDK 2.2.4. Please note: Couchbase 4 or higher is mandatory because N1QL support is required.
 

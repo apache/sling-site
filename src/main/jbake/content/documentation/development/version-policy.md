@@ -1,4 +1,4 @@
-title=Version Policy		
+title=Version Policy
 type=page
 status=published
 excerpt=This page is about how we assign versions to exported packages and bundles and defines when to increase which part of the version number.
@@ -21,7 +21,7 @@ In comments to [SLING-1176](https://issues.apache.org/jira/browse/SLING-2944) Ia
 
 I agree, that this is a problem. So let me reasonate on this a bit ;-)
 
-As a reference you might want to read [my blog post on version numbers](http://blog.meschberger.ch/2009/10/on-version-numbers.html) and also what the [Eclipse guys have to say](http://wiki.eclipse.org/index.php/Version_Numbering) (great read, btw). The OSGi Alliance has come up with a good definition for [Semantic Versioning](http://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf) to which the definitions described below perfectly match.
+As a reference you might want to read [my blog post on version numbers](https://blog.meschberger.ch/2009/10/on-version-numbers.html) and also what the [Eclipse guys have to say](https://wiki.eclipse.org/index.php/Version_Numbering) (great read, btw). The OSGi Alliance has come up with a good definition for [Semantic Versioning](https://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf) to which the definitions described below perfectly match.
 
 For Sling we have three kinds of version numbers:
 
@@ -84,7 +84,7 @@ Using this syntax something like the following would be easily possible:
     import aQute.bnd.annotation.Export;
 
 
-See [bnd Versioning](http://bnd.bndtools.org/chapters/170-versioning.html) for details.
+See [bnd Versioning](https://bnd.bndtools.org/chapters/170-versioning.html) for details.
 
 
 ## Version Number Syntax
@@ -201,12 +201,12 @@ This allows for the implementation to work correctly with bug fixed package expo
 
 ### Future
 
-Recent versions of the bnd library support automatic differentiation between _use_ and _implementation_ of API and to set the import version ranges accordingly. See [bnd Versioning](http://bnd.bndtools.org/chapters/170-versioning.html) for details.
+Recent versions of the bnd library support automatic differentiation between _use_ and _implementation_ of API and to set the import version ranges accordingly. See [bnd Versioning](https://bnd.bndtools.org/chapters/170-versioning.html) for details.
 
 ## References
 
-* [Version Numbers](http://markmail.org/thread/zshobgjwtqrncajt) -- The mail thread discussing version numbering
-* [On Version Numbers](http://blog.meschberger.ch/2009/10/on-version-numbers.html) -- Blog about version numbers
-* [Version Numbering](http://wiki.eclipse.org/index.php/Version_Numbering) -- An Eclipse paper on assigning version numbers. Very good read.
-* [Semantic Versioning](http://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf) -- An OSGi Alliance paper on semantic versioning.
-* [bnd Versioning](http://bnd.bndtools.org/chapters/170-versioning.html) -- Describes how the bnd library used by the Maven Bundle plugin supports package versioning
+* [Version Numbers](https://markmail.org/thread/zshobgjwtqrncajt) -- The mail thread discussing version numbering
+* [On Version Numbers](https://blog.meschberger.ch/2009/10/on-version-numbers.html) -- Blog about version numbers
+* [Version Numbering](https://wiki.eclipse.org/index.php/Version_Numbering) -- An Eclipse paper on assigning version numbers. Very good read.
+* [Semantic Versioning](https://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf) -- An OSGi Alliance paper on semantic versioning.
+* [bnd Versioning](https://bnd.bndtools.org/chapters/170-versioning.html) -- Describes how the bnd library used by the Maven Bundle plugin supports package versioning

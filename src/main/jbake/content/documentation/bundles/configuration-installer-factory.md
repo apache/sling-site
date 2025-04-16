@@ -1,4 +1,4 @@
-title=Configuration Installer Factory		
+title=Configuration Installer Factory
 type=page
 status=published
 tags=installer
@@ -71,7 +71,7 @@ This is an example file
 
 ### Configuration Files (.config)
 
-Configuration files ending in `.config` use the format of the [Apache Felix ConfigAdmin implementation](http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup) (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding. This format is preferred over properties files and nodes stored in the repository.
+Configuration files ending in `.config` use the format of the [Apache Felix ConfigAdmin implementation](https://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup) (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding. This format is preferred over properties files and nodes stored in the repository.
 
 The first line of such a file might start with a comment line (a line starting with a `#`). Comments within the file are not allowed.
 
@@ -89,7 +89,7 @@ The format is:
     type ::= <1-char type code>
     stringsimple ::= <quoted string representation of the value where both '"' and '=' need to be escaped>
 
-The quoted string format is equal to the definition from HTTP 1.1 ([RFC2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html)), except that both '"' and '=' need to be escaped.
+The quoted string format is equal to the definition from HTTP 1.1 ([RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html)), except that both '"' and '=' need to be escaped.
 
 The 1 character type code is one of:
 

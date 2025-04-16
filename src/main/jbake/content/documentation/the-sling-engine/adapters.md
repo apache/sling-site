@@ -1,4 +1,4 @@
-title=Adapters		
+title=Adapters
 type=page
 status=published
 tags=core,adaptTo
@@ -48,12 +48,12 @@ The web console plugin evaluates metadata being provided by any `AdapterFactory`
 
 # Implementing Adaptable
 
-Each adaptable should derive from `SlingAdaptable` to automatically profit from all according `AdapterFactories` registered in the system. 
-In case the `adaptTo(...)` method is being overwritten an according `SLING-INF/adapters.json` should be included in the providing bundle 
-listing all adaptation possibilities. While this file is not strictly necessary for the actual adaptation to work, it provides useful information to the Web Console plugin. 
+Each adaptable should derive from `SlingAdaptable` to automatically profit from all according `AdapterFactories` registered in the system.
+In case the `adaptTo(...)` method is being overwritten an according `SLING-INF/adapters.json` should be included in the providing bundle
+listing all adaptation possibilities. While this file is not strictly necessary for the actual adaptation to work, it provides useful information to the Web Console plugin.
 Otherwise developers will not know which adaptations are supported. The format of this JSON file looks like this ([SLING-2295](https://issues.apache.org/jira/browse/SLING-2295)):
 
-    { 
+    {
       <fully qualified class name of adaptable> : {
         <condition> :  <fully qualified class name of adapter, may be a JSON array>
       }
@@ -77,7 +77,7 @@ For example
 
 The [Adapter Annotations](https://github.com/apache/sling-org-apache-sling-adapter-annotations) provide OSGi DS 1.4 component property types that ease implementing `Adaptable` services.
 
-For adaptable implementations not provided by a dedicated OSGi service implementing `Adaptable` you should consider creating the JSON file described in the previous section with the help of the annotations from the module [Adapter Annotations (JSON)](https://github.com/apache/sling-adapter-annotations) which are evaluated by goal `generate-adapter-metadata` from the [Maven Sling Plugin](http://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html) ([SLING-2313](https://issues.apache.org/jira/browse/SLING-2313)).
+For adaptable implementations not provided by a dedicated OSGi service implementing `Adaptable` you should consider creating the JSON file described in the previous section with the help of the annotations from the module [Adapter Annotations (JSON)](https://github.com/apache/sling-adapter-annotations) which are evaluated by goal `generate-adapter-metadata` from the [Maven Sling Plugin](https://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html) ([SLING-2313](https://issues.apache.org/jira/browse/SLING-2313)).
 
 
 # Extending Adapters

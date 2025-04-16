@@ -1,4 +1,4 @@
-title=Incremental Builds in Sling IDE tooling for Eclipse		
+title=Incremental Builds in Sling IDE tooling for Eclipse
 type=page
 status=published
 tags=development,eclipse
@@ -8,14 +8,14 @@ tags=development,eclipse
 
 ## Overview
 
-The Sling IDE Tooling relies on the [m2e incremental build support](https://wiki.eclipse.org/M2E_compatible_maven_plugins) for the generation of the bundle's manifest, the component descriptions as well as the metatype resources (the latter two being generated through OSGi 6 [component annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) and [metatype annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/metatype/annotations/package-summary.html) or through [Apache Felix SCR annotations](http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html)). That means whenever at least one java class is touched and the auto-build in Eclipse is enabled the annotations on that class should be reevaluated. This may lead to a modification of the bundle's manifest and/or generation/modification of service description XMLs and/or Metatype resource files.
+The Sling IDE Tooling relies on the [m2e incremental build support](https://wiki.eclipse.org/M2E_compatible_maven_plugins) for the generation of the bundle's manifest, the component descriptions as well as the metatype resources (the latter two being generated through OSGi 6 [component annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html) and [metatype annotations](https://osgi.org/javadoc/r6/cmpn/org/osgi/service/metatype/annotations/package-summary.html) or through [Apache Felix SCR annotations](https://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html)). That means whenever at least one java class is touched and the auto-build in Eclipse is enabled the annotations on that class should be reevaluated. This may lead to a modification of the bundle's manifest and/or generation/modification of service description XMLs and/or Metatype resource files.
 Depending on which maven plugins you use you must adjust their configuration accordingly to properly support incremental builds.
 
 ## Manifest Generation
 
 ### maven-bundle-plugin
 
-The [maven-bundle-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html) is based on the [bnd library](http://bnd.bndtools.org/). It uses bnd to generate the bundle's manifest.
+The [maven-bundle-plugin](https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html) is based on the [bnd library](https://bnd.bndtools.org/). It uses bnd to generate the bundle's manifest.
 
 #### maven-bundle-plugin prior to version 3.2.0
 
@@ -23,7 +23,7 @@ This version needs [m2eclipse-tycho](https://github.com/tesla/m2eclipse-tycho) (
 
 #### maven-bundle-plugin since version 3.2.0
 
-Natively supports incremental builds for the `manifest` goal ([FELIX-4009](https://issues.apache.org/jira/browse/FELIX-4009)) which needs to be explicitly configured as outlined in the [maven-bundle-plugin FAQ](http://felix.apache.org/documentation/faqs/apache-felix-bundle-plugin-faq.html#use-scr-metadata-generated-by-bnd-in-unit-tests). Older versions of m2e-tycho are incompatible with that version, because it leads to errors like `Duplicate bundle executions found. Please remove any explicitly defined bundle executions in your pom.xml.` and `Duplicate manifest executions found. Please remove any explicitly defined manifest executions in your pom.xml.` It is therefore recommended to install m2e-tycho version 0.9.0.201811261502 or newer. The update sites for m2e-tycho can be found at.
+Natively supports incremental builds for the `manifest` goal ([FELIX-4009](https://issues.apache.org/jira/browse/FELIX-4009)) which needs to be explicitly configured as outlined in the [maven-bundle-plugin FAQ](https://felix.apache.org/documentation/faqs/apache-felix-bundle-plugin-faq.html#use-scr-metadata-generated-by-bnd-in-unit-tests). Older versions of m2e-tycho are incompatible with that version, because it leads to errors like `Duplicate bundle executions found. Please remove any explicitly defined bundle executions in your pom.xml.` and `Duplicate manifest executions found. Please remove any explicitly defined manifest executions in your pom.xml.` It is therefore recommended to install m2e-tycho version 0.9.0.201811261502 or newer. The update sites for m2e-tycho can be found at.
 
 ### bnd-maven-plugin
 
@@ -33,4 +33,4 @@ The [bnd-maven-plugin](https://github.com/bndtools/bnd/tree/master/maven/bnd-mav
 
 OSGi component and metatype annotations (for OSGi 6) are natively supported through bnd (and therefore automatically generated through both maven-bundle-plugin and bnd-maven-plugin). You don't need to configure anything explicitly since version 3.0.0 of bnd ([issue 1041](https://github.com/bndtools/bnd/issues/1041)).
 
-The maven-bundle-plugin can be optionally coupled with the [maven-scr-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.html). Both maven-bundle-plugin as well as bnd-maven-plugin can be optionally coupled with the [scr-bnd-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.html). Both approaches can be used to generate components descriptions and metatype resources out of the [Felix SCR annotations](http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html). The recommended way for new projects though is to rely on OSGi 6 annotations. However if you need to rely on Felix SCR annotations though it is recommended to rather use the scr-bnd-plugin over the maven-scr-plugin, as the former is nicely integrated into bnd and therefore means less overhead during the build.
+The maven-bundle-plugin can be optionally coupled with the [maven-scr-plugin](https://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.html). Both maven-bundle-plugin as well as bnd-maven-plugin can be optionally coupled with the [scr-bnd-plugin](https://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.html). Both approaches can be used to generate components descriptions and metatype resources out of the [Felix SCR annotations](https://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.html). The recommended way for new projects though is to rely on OSGi 6 annotations. However if you need to rely on Felix SCR annotations though it is recommended to rather use the scr-bnd-plugin over the maven-scr-plugin, as the former is nicely integrated into bnd and therefore means less overhead during the build.

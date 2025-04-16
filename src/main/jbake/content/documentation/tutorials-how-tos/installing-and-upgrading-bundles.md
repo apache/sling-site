@@ -1,4 +1,4 @@
-title=Installing and Upgrading Bundles		
+title=Installing and Upgrading Bundles
 type=page
 status=published
 excerpt=Explains how to install, upgrade and uninstall Bundles using the Sling Management console.
@@ -6,7 +6,7 @@ tags=operations,bundles
 ~~~~~~
 
 <div class="note">
-We recommend to use the Apache Felix Web Console. The documentation below describes the old Sling Management Console, which isn't in use any more. Please refer to the documentation of the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-web-console.html">Apache Felix Web Console</a>.
+We recommend to use the Apache Felix Web Console. The documentation below describes the old Sling Management Console, which isn't in use any more. Please refer to the documentation of the <a href="https://felix.apache.org/documentation/subprojects/apache-felix-web-console.html">Apache Felix Web Console</a>.
 </div>
 
 OSGi bundles installed in the OSGi framework, which is provided by Sling, may be upgraded or removed and new bundles may be installed by using the Sling Management Console. This page is about using the Sling Management Console for those tasks.
@@ -17,7 +17,7 @@ Basically, you have two choices to install and upgrade bundles: Upload the bundl
 
 ## Sling Management Console
 
-The Sling Management Console is installed by default when Sling is running and may be reached at on the page `/system/console` in the Sling Context by default. For example if you installed the Sling Web Application in the `/sample` context of the Servlet Container running at `http://somehost:4402`, you would access the Sling Management Console at `http://somehost:4402/sample/system/console`.
+The Sling Management Console is installed by default when Sling is running and may be reached at on the page `/system/console` in the Sling Context by default. For example if you installed the Sling Web Application in the `/sample` context of the Servlet Container running at `https://somehost:4402`, you would access the Sling Management Console at `https://somehost:4402/sample/system/console`.
 
 You will be prompted for a user name and password to access the Sling Management Console. This password is preset to be *admin* for the user name and *admin* for the password.
 

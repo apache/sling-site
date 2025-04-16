@@ -1,4 +1,4 @@
-title=Request Parameter Handling in Sling		
+title=Request Parameter Handling in Sling
 type=page
 status=published
 excerpt=Explains how Sling provides request parameters to the `Component`.
@@ -19,7 +19,7 @@ The Servlet API specification provides the following methods to access the param
 | `ServletRequest.getParts()` | Returns all parts of the multipart request (since v3.0) |
 | `ServletRequest.getPart(String)` | Returns the request part with that name in case of multipart requests (since v3.0) |
 
-The actual encoding of the parameters is all but safe because the encoding of URLs is not very well defined and browsers do not set the character encoding when sending post data. Fortunately, they use the same character encoding for sending back form content as was used by the server to send the form. 
+The actual encoding of the parameters is all but safe because the encoding of URLs is not very well defined and browsers do not set the character encoding when sending post data. Fortunately, they use the same character encoding for sending back form content as was used by the server to send the form.
 
 
 ## Sling API
@@ -45,7 +45,7 @@ All parameters are handled the same, that is all methods give access to the same
 As of Sling Engine 2.1.0 the order or request parameters in the `getRequestParameterMap()`, `getParameterMap()`, and `getParameterNams()` is preserved as follows:
 
 * The first entries are the parameters reported by the servlet container. The order of these parameters amongst each other is not defined. The `SlingHttpServletRequest` provides them in the same order as provided by the servlet container.
-* After the servlet container provided parameters are parameters extracted from the request in case `multipart/form-data` POST requests. The order of these parameters is preserved as they are submitted in the request. This conforms to HTML 4.01 spec on forms submitted with multipart/form-data encoding: *A "multipart/form-data" message contains a series of parts, each representing a successful control. The parts are sent to the processing agent in the same order the corresponding controls appear in the document stream. Part boundaries should not occur in any of the data; how this is done lies outside the scope of this specification* ([17.13.4 Form content types](http://www.w3.org/TR/html401/interact/forms.html))
+* After the servlet container provided parameters are parameters extracted from the request in case `multipart/form-data` POST requests. The order of these parameters is preserved as they are submitted in the request. This conforms to HTML 4.01 spec on forms submitted with multipart/form-data encoding: *A "multipart/form-data" message contains a series of parts, each representing a successful control. The parts are sent to the processing agent in the same order the corresponding controls appear in the document stream. Part boundaries should not occur in any of the data; how this is done lies outside the scope of this specification* ([17.13.4 Form content types](https://www.w3.org/TR/html401/interact/forms.html))
 
 Be warned: Only rely on request parameter ordering `multipart/form-data` POST requests without a query part in the request URL.
 
@@ -58,7 +58,7 @@ From within Sling servlets/scripts you can no longer rely on the original semant
 * `ServletRequest.getParameterMap()`
 * `ServletRequest.getParameterNames()`
 * `ServletRequest.getParts()` and
-* `ServletRequest.getPart(String)` 
+* `ServletRequest.getPart(String)`
 
 internally use the Sling parameter support (and therefore have the same implications on e.g. encoding). You should preferably use the Sling methods `getRequestParameter*` instead.
 
@@ -80,6 +80,6 @@ When Sling is now receiving a request and is asked for the parameters, the param
    * If the parameter is an uploaded file, the file name is re-encoded on the fly when accessed
 
 <div class="info">
-Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing. 
+Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing.
 To enable this functionality set the <code>sling.default.parameter.encoding</code> parameter of the Sling Main Servlet (PID <code>org.apache.sling.engine.impl.SlingMainServlet</code>) configuration (for Sling Engine < 2.3.0) or the same parameter of the Sling Request Parameter Handling (PID <code>org.apache.sling.engine.parameters</code>) configuration (for Sling Engine >= 2.3.0 ) to the desired encoding, which of course must be supported by the actual Java Platform.
 </div>

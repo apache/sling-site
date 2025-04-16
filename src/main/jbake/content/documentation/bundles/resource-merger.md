@@ -1,4 +1,4 @@
-title=Resource Merger (org.apache.sling.resourcemerger)		
+title=Resource Merger (org.apache.sling.resourcemerger)
 type=page
 status=published
 tags=resources
@@ -16,16 +16,16 @@ The Resource Merger bundle provides two resource provider factories
 
 Those providers give access to virtual resources which provide a merged view on multiple other resources.
 
-Each `MergedResourcePicker` service implementation in the system provides one unique mount point/root path (usually starting with `/mnt`) exposing a view on merged resources from at least two different locations. 
+Each `MergedResourcePicker` service implementation in the system provides one unique mount point/root path (usually starting with `/mnt`) exposing a view on merged resources from at least two different locations.
 
-The exact merging mechanism depends on the resource picker implementation (see below). The order of the merging is important as the overlying resource may overwrite properties/child resources from the underlying resource (but not vice-versa). 
+The exact merging mechanism depends on the resource picker implementation (see below). The order of the merging is important as the overlying resource may overwrite properties/child resources from the underlying resource (but not vice-versa).
 It is possible to
 
 * remove existing resources/properties from the underlying resources,
 * modify existing properties/child resources of the underlying resources and
 * add new properties/child resources
 
-You may use any of the merge properties described below to influence the merging behaviour. All those special properties are not exposed below the mount point. 
+You may use any of the merge properties described below to influence the merging behaviour. All those special properties are not exposed below the mount point.
 
 The `CRUDMergingResourceProvider` not only gives read-access to the merged resources but even allows to write. This provider always writes inside the topmost resource path (being returned as last item by the resource picker). Currently both resource pickers shipped with the Sling Resource Merger bundle do not allow to write though. Further details can be found in the description of [SLING-3909](https://issues.apache.org/jira/browse/SLING-3909).
 
@@ -41,7 +41,7 @@ sling:orderBefore | String | Contains the name of the preceding sibling resource
 
 ## sling:hideProperties/hideChildren syntax
 Both properties `sling:hideProperties` and `sling:hideChildren` take multiple string values which either act as allow list or as deny list.
-They are treated as deny list if the first value is starting with an odd number of `!` otherwise as allow list. 
+They are treated as deny list if the first value is starting with an odd number of `!` otherwise as allow list.
 
 In case negated (odd number of leader `!` ) and non-negated values are mixed in one property the first one determines the list type, and all values of the other type are just skipped!
 
@@ -58,7 +58,7 @@ name | name | no
 !!!!name!test | !!name!test | no
 
 The matching algorithm just compares the item name (either resource or property name) with each of the given unescaped values. It matches if at least one is equal from an allow list or none is equal from a deny list.
- 
+
 Since version 1.3.2 the wildcard only affects underlying child resources and no longer local ones, see also [SLING-5468](https://issues.apache.org/jira/browse/SLING-5468).
 
 
@@ -69,24 +69,24 @@ First the ones from the underlying resource, then the ones from the overlying re
 
 In case the same child is defined in more than one resource, its position is taken from the highest overlaying resource (since version 1.3.2, see also [SLING-4915](https://issues.apache.org/jira/browse/SLING-4915), for some more examples for more complicated merges look at [SLING-6956](https://issues.apache.org/jira/browse/SLING-6956)).
 For example:
-    
+
     base/
     	+--child1
     	+--child3
     	+--child5
-    	
+
     overlay/
     	+--child2
     	+--child3
     	+--child4
-    	
+
     resulting order: child1, child5, child2, child3, child4
 
 You can overwrite that behaviour by leveraging the `sling:orderBefore` property.
 
 # Resource Type Handling
 
-When resources are merged into a new resource, the resource type of the merged resource is set to the resource type of the last resource used for merging (see Resource Picks). 
+When resources are merged into a new resource, the resource type of the merged resource is set to the resource type of the last resource used for merging (see Resource Picks).
 
 The resource super type is set to the merged value of the 'sling:resourceType' property - if it exists and its value is not the same as the resource type.
 
@@ -96,12 +96,12 @@ However, the 'sling:resourceType' and 'sling:resourceSuperType' property in the 
 
 ## Merging Resource Picker (Overlay approach)
 
- Description | Merged Resource Path | Merging Order | Read-Only | Related Ticket 
+ Description | Merged Resource Path | Merging Order | Read-Only | Related Ticket
 ------------ | -------------------- | ------------- | --------- | ---------------
-Merging based on the resource resolver's search path | `/mnt/overlay/<relative resource path>` | Last resource resolver search path first (Order = Descending search paths). | `true` |  [SLING-2986](http://issues.apache.org/jira/browse/SLING-2986) 
+Merging based on the resource resolver's search path | `/mnt/overlay/<relative resource path>` | Last resource resolver search path first (Order = Descending search paths). | `true` |  [SLING-2986](https://issues.apache.org/jira/browse/SLING-2986)
 
 This picker is thought for globally overlaying content by placing the diff-resource in "/apps" without actually touching anything in "/libs" (since this is only thought for Sling itself). This should be used whenever some deviation of content is desired which is initially shipped with Sling. The client (i.e. the code using the merged resource) does not have to know if there is an overlay in place.
- 
+
 
 ### Example
 
@@ -113,8 +113,8 @@ This picker is thought for globally overlaying content by placing the diff-resou
          |   +-- property1 = "property from /libs/sling/example/child2"
          +-- child3 (nt:folder)
          |   +-- property1 = "property from /libs/sling/example/child3"
-         
-    
+
+
     /apps/sling/example (sling:Folder)
          +-- property1 = "property added in apps"
          +-- child1 (nt:folder)
@@ -123,8 +123,8 @@ This picker is thought for globally overlaying content by placing the diff-resou
          |   +-- property1 = "property from /apps/sling/example/child2"
          +-- child3 (nt:folder)
          |   +-- property2 = "property from /apps/sling/example/child3"
-    
-    
+
+
     /mnt/overlay/sling/example (sling:Folder)
          +-- sling:resourceType = "some/resource/type"
          +-- property1 = "property added in apps"
@@ -153,8 +153,8 @@ This picker is thought for extending content of another already existing resourc
          |   +-- property1 = "property from /libs/sling/example/child2"
          +-- child3 (nt:folder)
          |   +-- property1 = "property from /libs/sling/example/child3"
-         
-    
+
+
     /apps/sling/example (sling:Folder)
     	 +-- sling:resourceSuperType = "/apps/sling/base"
          +-- property1 = "property added in /apps/sling/example"
@@ -164,8 +164,8 @@ This picker is thought for extending content of another already existing resourc
          |   +-- property1 = "property from /apps/sling/example/child2"
          +-- child3 (nt:folder)
          |   +-- property2 = "property from /apps/sling/example/child3"
-    
-    
+
+
     /mnt/override/apps/sling/example (sling:Folder)
          +-- sling:resourceSuperType = "/apps/sling/base"
          +-- property1 = "property added in /apps/sling/example"

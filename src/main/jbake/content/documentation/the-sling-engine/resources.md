@@ -271,13 +271,13 @@ It can be used like this:
     import org.apache.sling.api.resource.observation.ResourceChange.ChangeType;
     import org.apache.sling.api.resource.observation.ResourceChangeListener;
     import org.osgi.service.component.annotations.Component;
-    
+
     @Component
     @SlingResourceChangeListener(
             paths = "/examplepath",
             change_types = {ChangeType.ADDED, ChangeType.REMOVED})
     public class SampleResourceChangeListener implements ResourceChangeListener {
-    
+
         @Override
         public void onChange(List<ResourceChange> changes) {
             // Do something here
@@ -292,7 +292,7 @@ Resource events are sent out via the OSGi Event Admin. You can subscribe to thos
 
 You receive events no matter whether they originate from the local repository or from a remote clustered repository. You can check though in your event listener for the [event attribute `event.application`](/apache-sling-eventing-and-job-handling.html#basic-principles), which is only set in case the event was triggered from an external resource modification (compare with [`DEAConstants`](https://sling.apache.org/apidocs/sling9/org/apache/sling/event/dea/DEAConstants.html) and try to reuse the constant from there).
 
-The OSGi event handlers may be [blacklisted by Apache Felix](http://felix.apache.org/documentation/subprojects/apache-felix-event-admin.html#configuration) in case the processing takes too long. Therefore dispatch all long-lasting operations to a new thread or start a new Sling Job.
+The OSGi event handlers may be [blacklisted by Apache Felix](https://felix.apache.org/documentation/subprojects/apache-felix-event-admin.html#configuration) in case the processing takes too long. Therefore dispatch all long-lasting operations to a new thread or start a new Sling Job.
 
 This approach is deprecated in favor of the ResourceChangeListener described above, because the the ResourceChangeListeners allows the implementation to send out only relevant events (i.e. those which have subscribers), while the OSGI event based approach needs to create OSGI events for **all** repository events. To ease the transition the implementation will warn whenever an listener is registered which listens for the Resource (`org/apache/sling/api/resource/Resource/*`) or ResourceProvider (`org/apache/sling/api/resource/ResourceProvider/*`) topics.
 
@@ -309,7 +309,7 @@ The Sling API provides an easy way to wrap or decorate a resource before returni
   [6]: https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ResourceChangeListener.java
   [7]: https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/observation/ExternalResourceChangeListener.java
   [8]: https://osgi.org/javadoc/r6/cmpn/org/osgi/service/event/EventHandler.html
-  [9]: http://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html
+  [9]: https://sling.apache.org/apidocs/sling8/org/apache/sling/api/SlingConstants.html
   [10]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html#getAttribute-java.lang.String-
   [11]: https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html#getAttributeNames--
   [12]: https://jackrabbit.apache.org/oak/docs/differences.html#session-attributes

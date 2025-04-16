@@ -1,28 +1,28 @@
-title=Discover Sling in 15 minutes		
+title=Discover Sling in 15 minutes
 type=page
 status=published
 tags=tutorials
 ~~~~~~
 
-The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded content 
+The Sling Launchpad is a ready-to-run Sling configuration, providing an embedded content
  repository, a web server, a selection of Sling modules, documentation and examples. The
   Launchpad makes it easy to get started with Sling and to develop script-based applications.
 
-This page will help you get started with the Launchpad. Fifteen minutes should be enough 
+This page will help you get started with the Launchpad. Fifteen minutes should be enough
  to get an overview of what Sling does.
 
-While simple to run and understand, the Launchpad is a full-featured instance of Sling, 
- an example configuration that we have created with the most common modules and configurations. 
+While simple to run and understand, the Launchpad is a full-featured instance of Sling,
+ an example configuration that we have created with the most common modules and configurations.
  The full functionality of Sling is available by loading additional Sling modules as needed.
 
 [TOC]
 
 ## See Also
 
-More Sling samples can be found under 
+More Sling samples can be found under
 [https://github.com/apache/sling-samples/](https://github.com/apache/sling-samples/)
 
-Once you grok the basic examples of this page, we recommend studying the 
+Once you grok the basic examples of this page, we recommend studying the
 *slingbucks* and *espblog* samples. Both have README files with more info.
 
 ## Prerequisites
@@ -31,22 +31,22 @@ You'll need a running Sling application. If you haven't started Sling yet, have 
  the [Getting Started](/documentation/getting-started.html) page on how to run Sling. If
  you follow the instructions on that page, you should have Sling running on port 8080. If
  you choose a different port, replace the port 8080 in the examples below with your port.
- 
 
-To show the simplicity of the REST-style approach taken by Sling the examples below will be 
- using [cURL](http://curl.haxx.se/). Any HTTP client would do, but cURL is the easiest to 
+
+To show the simplicity of the REST-style approach taken by Sling the examples below will be
+ using [cURL](https://curl.haxx.se/). Any HTTP client would do, but cURL is the easiest to
  document in a reproducible way.
 
 
 
 ## Getting Started
 
-Once started, look at [http://localhost:8080/system/console/bundles](http://localhost:8080/system/console/bundles) 
+Once started, look at [http://localhost:8080/system/console/bundles](http://localhost:8080/system/console/bundles)
  with your browser. Use *admin* with password *admin* if Sling asks you for a login.
  Sling then displays the *Felix Web Management Console* page.
 
 
-On the bundles page, all bundles should be marked *Active*. They're all [OSGi](http://www.osgi.org/) bundles powered by [Apache Felix](http://felix.apache.org), but that doesn't really matter to us right now.
+On the bundles page, all bundles should be marked *Active*. They're all [OSGi](https://www.osgi.org/) bundles powered by [Apache Felix](https://felix.apache.org), but that doesn't really matter to us right now.
 
 *Log files: If things go wrong, have a look at the `sling/logs/error.log` log file \- that's where Sling writes any error messages.*
 
@@ -54,7 +54,7 @@ On the bundles page, all bundles should be marked *Active*. They're all [OSGi](h
 
 Until we have ready-to-test forms, you can create content with cURL, or you can create an HTML form that posts to the specified URL.
 
-To create a content node (nodes are a [JCR](http://jackrabbit.apache.org/) concept, a unit of storage) with cURL, use:
+To create a content node (nodes are a [JCR](https://jackrabbit.apache.org/) concept, a unit of storage) with cURL, use:
 
 
     curl -u admin:admin -F"sling:resourceType=foo/bar" -F"title=some title" http://localhost:8080/content/mynode
@@ -64,7 +64,7 @@ The resulting node can be seen at [http://localhost:8080/content/mynode.html](ht
 
     $ curl http://localhost:8080/content/mynode.json
 
-This returns the properties of the `/content/mynode` in JSON format as we have created it above. 
+This returns the properties of the `/content/mynode` in JSON format as we have created it above.
 
     {"title":"some title","sling:resourceType":"foo/bar","jcr:primaryType":"nt:unstructured"}
 
@@ -92,7 +92,7 @@ That is the case in our example, so the following script will be used by Sling t
 To select the script, Sling:
 
 * looks under */apps*
-* and appends the *sling:resourceType* value of our node ( which is *foo/bar* ) 
+* and appends the *sling:resourceType* value of our node ( which is *foo/bar* )
 * and appends *html.esp*, as the extension of our URL is *html* and the language of our script is *esp*.
 
 Store this script under */apps/foo/bar/html.esp*, either using a WebDAV client (connected to [http://admin:admin@localhost:8080/](http://admin:admin@localhost:8080/)), or using cURL as shown here, after creating the *html.esp* script in the current directory on your system:
@@ -117,7 +117,7 @@ Servlets can also be easily "wired" to handle specific resource types, extension
 
 ## What next?
 
-These simple examples show how Sling uses scripts to work with JCR data, based 
+These simple examples show how Sling uses scripts to work with JCR data, based
 on *sling:resourceType* or node types.
 
 There's much more to Sling of course - you'll find some additional simple examples below, as
