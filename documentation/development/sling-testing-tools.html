@@ -144,7 +144,7 @@
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row" data-pagefind-body="true"><div><section><div class="warning">
 While this information is still valid, we recommend using the tools and techniques described
-in the newer "Junit Server-Side Tests Support" page instead, see link below. 
+in the newer "Junit Server-Side Tests Support" page instead, see link below.
 </div>
 <p>As mentioned above, this is now replaced by the <a href="/documentation/bundles/org-apache-sling-junit-bundles.html">Junit Server-Side Tests Support</a> page.</p>
 <p>Sling provides a number of testing tools to support the following use cases:</p>
@@ -226,7 +226,7 @@ TEST_PASSED
 <div class="warning">
 The information below is outdated and needs an update, please rather directly check the source files linked above.
 </div>
-<p>The sample uses the <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/tools">testing/tools</a> to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.</p>
+<p>The sample uses the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/tools">testing/tools</a> to make the test code simpler. See the [OsgiConsoleTest|https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/http/OsgiConsoleTest.java] class for an example of a test that's very readable and requires no test setup or boilerplate code.</p>
 <p>The following steps are executed in the <code>integration-test</code> phase of this module's Maven  build:</p>
 <ol>
 <li>A random port number for the Sling server is selected by the Maven build helper plugin, unless explicitely set (see pom.xml for such options).</li>
@@ -245,15 +245,15 @@ The information below is outdated and needs an update, please rather directly ch
 <h1><a href="#remote-test-execution" id="remote-test-execution">Remote test execution</a></h1>
 <p>The testing tools support two types of remote test execution.</p>
 <h2><a href="#slingremotetestrunner" id="slingremotetestrunner">SlingRemoteTestRunner</a></h2>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/testrunner/SlingRemoteTestRunner.java">SlingRemoteTestRunner</a> is used to run tests using the <code>JUnitServlet</code> described above. In this case, the client-side JUnit test only defines which tests to run and some optional assertions. Checking the number of tests executed, for example, can be useful to make sure all test bundles have been activated as expected, to avoid ignoring missing test bundles.</p>
+<p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/testrunner/SlingRemoteTestRunner.java">SlingRemoteTestRunner</a> is used to run tests using the <code>JUnitServlet</code> described above. In this case, the client-side JUnit test only defines which tests to run and some optional assertions. Checking the number of tests executed, for example, can be useful to make sure all test bundles have been activated as expected, to avoid ignoring missing test bundles.</p>
 <p>See the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/ServerSideSampleTest.java">ServerSideSampleTest</a> class for an example.</p>
 <p>It's a good idea to check that the JUnit servlet is ready before running those tests, see the <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/samples/integration-tests/src/test/java/org/apache/sling/testing/samples/integrationtests/serverside/sling/SlingServerSideTestsBase.java">ServerSideTestsBase</a> for an example of how to do that.</p>
 <h2><a href="#slingremoteexecutionrule" id="slingremoteexecutionrule">SlingRemoteExecutionRule</a></h2>
-<p>The <a href="http://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/ide/SlingRemoteExecutionRule.java">SlingRemoteExecutionRule</a> is a JUnit Rule that allows tests to be executed remotely in a Sling instance from an IDE, assuming the test is available on both sides.</p>
+<p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/ide/SlingRemoteExecutionRule.java">SlingRemoteExecutionRule</a> is a JUnit Rule that allows tests to be executed remotely in a Sling instance from an IDE, assuming the test is available on both sides.</p>
 <p>The <a href="https://svn.apache.org/repos/asf/sling/trunk/testing/junit/remote/src/main/java/org/apache/sling/junit/remote/exported/ExampleRemoteTest.java">ExampleRemoteTest</a> class demonstrates this. To run it from your IDE, set the <code>sling.remote.test.url</code> in the IDE to the URL of the JUnitServlet, like http://localhost:8080/system/sling/junit for example.</p>
 <h1><a href="#debugging-its" id="debugging-its">Debugging ITs</a></h1>
-<p>The JVM is usually forked twice during the execution of integration tests. The first time by the <code>maven-surefire-plugin</code> which executes the client-side (i.e. Maven-side) part of the tests. To debug this side the option <code>-Dmaven.surefire.debug</code> can be used which waits for a debugger to be attached on port 5005 before the (client-side) test is executed. More information is available in the <a href="http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html">documentation of the maven-surefire-plugin</a>.</p>
-<p>Then the <code>JarExecutor</code> is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable <code>jar.executor.vm.options</code> can be used to start that VM with debug options. All debug options are described at the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JPDA documentation</a>. If running</p>
+<p>The JVM is usually forked twice during the execution of integration tests. The first time by the <code>maven-surefire-plugin</code> which executes the client-side (i.e. Maven-side) part of the tests. To debug this side the option <code>-Dmaven.surefire.debug</code> can be used which waits for a debugger to be attached on port 5005 before the (client-side) test is executed. More information is available in the <a href="https://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html">documentation of the maven-surefire-plugin</a>.</p>
+<p>Then the <code>JarExecutor</code> is forking the VM a second time to start the server (this does not happen if connecting to an already running instance). The system environment variable <code>jar.executor.vm.options</code> can be used to start that VM with debug options. All debug options are described at the <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JPDA documentation</a>. If running</p>
 <pre><code>mvn test -Djar.executor.vm.options=&quot;-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000&quot;
 </code></pre>
 <p>the server start is interrupted until a debugger is connected on port 8000.</p>
@@ -268,7 +268,7 @@ The information below is outdated and needs an update, please rather directly ch
                             content/documentation/development/sling-testing-tools.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2017-12-09</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

@@ -149,10 +149,10 @@
 <li>To prepare or perform a release you <em>MUST BE</em> at least be an Apache Sling Committer.</li>
 <li>Try to update to the most recent parent release prior to doing a release</li>
 <li>Each release must be signed, see <em>Appendix A</em> below about creating and registering your key.</li>
-<li>Make sure you have all <a href="http://maven.apache.org/developers/committer-settings.html">Apache servers</a> defined in your <code>settings.xml</code></li>
+<li>Make sure you have all <a href="https://maven.apache.org/developers/committer-settings.html">Apache servers</a> defined in your <code>settings.xml</code></li>
 <li>See Appendix B for Maven and SCM credentials</li>
 </ul>
-<p><em>Note</em>: Listing the Apache servers in the <code>settings.xml</code> file also requires adding the password to that file. Starting with Maven 2.1 this password may be encrypted and needs not be give in plaintext. Please refer to <a href="http://maven.apache.org/guides/mini/guide-encryption.html">Password Encryption</a> for more information.</p>
+<p><em>Note</em>: Listing the Apache servers in the <code>settings.xml</code> file also requires adding the password to that file. Starting with Maven 2.1 this password may be encrypted and needs not be give in plaintext. Please refer to <a href="https://maven.apache.org/guides/mini/guide-encryption.html">Password Encryption</a> for more information.</p>
 <p>In the past we staged release candidates on our local machines using a semi-manual process. Now that we inherit from the Apache parent POM version 6, a repository manager will automatically handle staging for you. This means you now only need to specify your GPG passphrase in the release profile of your <code>$\{user.home\}/.m2/settings.xml</code>:</p>
 <pre><code>&lt;settings&gt;
     ...
@@ -196,7 +196,7 @@
 <ul>
 <li>If you experience an error during deployment like a HTTP 401 check your settings for the required server entries as outlined in the <em>Prerequisites</em></li>
 <li>Depending on the OS &amp; the gpg version you have, you might hit https://issues.apache.org/jira/browse/MGPG-59, in which case you need, before maven command, to run <code>gpg --use-agent --armor --detach-sign --output $(mktemp) pom.xml</code></li>
-<li>Make sure the generated artifacts respect the Apache release <a href="http://www.apache.org/dev/release.html">rules</a>: NOTICE and LICENSE files should be present in the META-INF directory within the jar. For -sources artifacts, be sure that your POM does not use the maven-source-plugin:2.0.3 which is broken. The recommended version at this time is 2.0.4</li>
+<li>Make sure the generated artifacts respect the Apache release <a href="https://www.apache.org/dev/release.html">rules</a>: NOTICE and LICENSE files should be present in the META-INF directory within the jar. For -sources artifacts, be sure that your POM does not use the maven-source-plugin:2.0.3 which is broken. The recommended version at this time is 2.0.4</li>
 <li>You should verify the deployment under the <a href="https://repository.apache.org/content/groups/snapshots/org/apache/sling">snapshot</a> repository on Apache</li>
 </ul>
 </li>
@@ -214,7 +214,7 @@ $ mvn release:prepare
 <pre><code>$ mvn release:perform
 </code></pre>
 <ul>
-<li>The release will automatically be inserted into a temporary staging repository for you, see the Nexus <a href="http://www.sonatype.com/books/nexus-book/reference/staging.html">staging documentation</a> for full details</li>
+<li>The release will automatically be inserted into a temporary staging repository for you, see the Nexus <a href="https://www.sonatype.com/books/nexus-book/reference/staging.html">staging documentation</a> for full details</li>
 <li>You can continue to use <code>mvn release:prepare</code> and <code>mvn release:perform</code> on other sub-projects as necessary on the same machine and they will be combined in the same staging repository - this is useful when making a release of multiple Sling modules.</li>
 </ul>
 </li>
@@ -274,7 +274,7 @@ Please vote to approve this release:
 This majority vote is open for at least 72 hours.
 </code></pre>
 <h2><a href="#wait-for-the-results" id="wait-for-the-results">Wait for the Results</a></h2>
-<p>From <a href="http://www.apache.org/foundation/voting.html">Votes on Package Releases</a>:</p>
+<p>From <a href="https://www.apache.org/foundation/voting.html">Votes on Package Releases</a>:</p>
 <blockquote>
 <p>Votes on whether a package is ready to be released follow a format similar to majority approval -- except that the decision is officially determined solely by whether at least three +1 votes were registered. Releases may not be vetoed. Generally the community will table the vote to release if anyone identifies serious problems, but in most cases the ultimate decision, once three or more positive votes have been garnered, lies with the individual serving as release manager. The specifics of the process may vary from project to project, but the 'minimum of three +1 votes' rule is universal.</p>
 </blockquote>
@@ -319,9 +319,9 @@ promote the artifacts to the central Maven repository.
 <h2><a href="#promoting-the-release" id="promoting-the-release">Promoting the Release</a></h2>
 <p>If the vote passes:</p>
 <ol>
-<li>Push the release to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a>. This is only possible for PMC members (for a reasoning look at <a href="http://www.apache.org/dev/release.html#upload-ci">http://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you.
+<li>Push the release to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a>. This is only possible for PMC members (for a reasoning look at <a href="https://www.apache.org/dev/release.html#upload-ci">https://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you.
 <ol>
-<li>Commit the released artifacts to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a> which is replicated to <a href="http://www.apache.org/dist/sling/">http://www.apache.org/dist/sling/</a> quickly via svnpubsub. See <a href="#quick-update-of-artifacts-in-dist">the section on quick artifact updates</a> for a way to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check_staged_release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file *.asc.*).
+<li>Commit the released artifacts to <a href="https://dist.apache.org/repos/dist/release/sling/">https://dist.apache.org/repos/dist/release/sling/</a> which is replicated to <a href="https://www.apache.org/dist/sling/">https://www.apache.org/dist/sling/</a> quickly via svnpubsub. See <a href="#quick-update-of-artifacts-in-dist">the section on quick artifact updates</a> for a way to avoid having to checkout the whole folder first. The easiest to do this is to get the released artifact using the check script (check_staged_release.sh) and then simply copy the artifacts from the downloaded folder to your local checkout folder. Make sure to not add the checksum files for the signature file *.asc.*).
 <ul>
 <li>Make sure to <em>not</em> change the end-of-line encoding of the .pom when uploaded via svn import! Eg when a windows style eol encoded file is uploaded with the setting '*.pom = svn:eol-style=native' this would later fail the signature checks!</li>
 </ul>
@@ -364,16 +364,16 @@ Subject: [ANN] Apache Sling ABC version X.Y.Z Released
 
 The Apache Sling team is pleased to announce the release of Apache Sling ABC version X.Y.Z
 
-Apache Sling is a web framework that uses a Java Content Repository, such as Apache 
-Jackrabbit, to store and manage content.  Sling applications use either scripts or 
-Java servlets, selected based on simple name conventions, to process HTTP requests 
+Apache Sling is a web framework that uses a Java Content Repository, such as Apache
+Jackrabbit, to store and manage content.  Sling applications use either scripts or
+Java servlets, selected based on simple name conventions, to process HTTP requests
 in a RESTful way.
 
 &lt;&lt;insert short description of the sub-project&gt;&gt;
 
-http://sling.apache.org/site/apache-sling-ABC.html
+https://sling.apache.org/site/apache-sling-ABC.html
 
-This release is available from http://sling.apache.org/site/downloads.cgi
+This release is available from https://sling.apache.org/site/downloads.cgi
 
 Building from verified sources is recommended, but convenience binaries are
 also available via Maven:
@@ -383,7 +383,7 @@ also available via Maven:
     &lt;artifactId&gt;org.apache.sling.ABC&lt;/artifactId&gt;
     &lt;version&gt;X.Y.Z&lt;/version&gt;
 &lt;/dependency&gt;
-    
+
 Release Notes:
 
 &lt;&lt;insert release notes in text format from JIRA&gt;&gt;
@@ -395,11 +395,11 @@ Enjoy!
 <p><em>Important</em>: Add the release to the Software section of the next board report below <a href="https://cwiki.apache.org/confluence/display/SLING/Reports">Reports</a>.</p>
 <h2><a href="#related-links" id="related-links">Related Links</a></h2>
 <ol>
-<li><a href="http://www.apache.org/dev/release-signing.html">http://www.apache.org/dev/release-signing.html</a></li>
-<li><a href="http://wiki.apache.org/incubator/SigningReleases">http://wiki.apache.org/incubator/SigningReleases</a></li>
+<li><a href="https://www.apache.org/dev/release-signing.html">https://www.apache.org/dev/release-signing.html</a></li>
+<li><a href="https://wiki.apache.org/incubator/SigningReleases">https://wiki.apache.org/incubator/SigningReleases</a></li>
 </ol>
 <h2><a href="#releasing-the-sling-ide-tooling" id="releasing-the-sling-ide-tooling">Releasing the Sling IDE Tooling</a></h2>
-<div class="note">Eclipse is very aggresive about caching artifacts with the same coordinates. Make sure that once you build the artifacts 
+<div class="note">Eclipse is very aggresive about caching artifacts with the same coordinates. Make sure that once you build the artifacts
 with code signing enabled you install the right ones. If you install artifacts with the same version but not signed, Eclipse will cache
 that version indefinitely with no known workaround except setting up a new installation of Eclipse.</div>
 <p>While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see <a href="https://reference.apache.org/pmc/codesigning">Using the code signing service</a> for details.</p>
@@ -452,7 +452,7 @@ the update site which is found at p2update/target/repository after
 building the project.
 
 You can use this UNIX script to download the release and verify the signatures:
-https://gitbox.apache.org/repos/asf?p=sling-ide-tooling.git;a=blob_plain;f=check_staged_release.sh;hb=HEAD 
+https://gitbox.apache.org/repos/asf?p=sling-ide-tooling.git;a=blob_plain;f=check_staged_release.sh;hb=HEAD
 
 Usage:
 sh check_staged_release.sh X.Y.Z /tmp/sling-staging
@@ -498,7 +498,7 @@ This majority vote is open for at least 72 hours
 <p>When gpg asks for e-mail linked the key you <em>MUST USE</em> the &lt;committer&gt;@apache.org one. When gpg asks for comment linked the key you <em>SHOULD USE</em> &quot;CODE SIGNING KEY&quot;</p>
 </li>
 <li>
-<p>Add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>. This is only possible for PMC members (for a reasoning look at <a href="http://www.apache.org/dev/release.html#upload-ci">http://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via</p>
+<p>Add your public key to <a href="https://downloads.apache.org/sling/KEYS">https://downloads.apache.org/sling/KEYS</a> by adding it via SVN to <a href="https://dist.apache.org/repos/dist/release/sling/KEYS">https://dist.apache.org/repos/dist/release/sling/KEYS</a>. This is only possible for PMC members (for a reasoning look at <a href="https://www.apache.org/dev/release.html#upload-ci">https://www.apache.org/dev/release.html#upload-ci</a>). If you are not a PMC member, please ask one to do the upload for you. The actual update can be achieved e.g. via</p>
 <pre><code>$ svn checkout https://dist.apache.org/repos/dist/release/sling/ sling --depth empty
 $ cd sling
 $ svn up KEYS
@@ -512,7 +512,7 @@ $ svn up KEYS
 <li>It's also good to upload your key to a public key server, see the <a href="https://infra.apache.org/release-signing.html">ASF Infrastructure Release Signing</a> page for more info.</li>
 </ol>
 <h2><a href="#appendix-b-deploy-maven-plugin-documentation-if-applicable" id="appendix-b-deploy-maven-plugin-documentation-if-applicable">Appendix B: Deploy Maven plugin documentation (if applicable)</a></h2>
-<p>When releasing a Maven plugin, the Maven-generated documentation published under <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a> needs to be updated.</p>
+<p>When releasing a Maven plugin, the Maven-generated documentation published under <a href="https://sling.apache.org/components/">https://sling.apache.org/components/</a> needs to be updated.</p>
 <p>To publish the plugin documentation execute the following steps after the release:</p>
 <ol>
 <li>
@@ -541,7 +541,7 @@ $ svn up KEYS
 <p>Commit the changes</p>
 </li>
 <li>
-<p>Check the results at <a href="http://sling.apache.org/components/">http://sling.apache.org/components/</a></p>
+<p>Check the results at <a href="https://sling.apache.org/components/">https://sling.apache.org/components/</a></p>
 </li>
 </ol>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Release Management )</div>                            
@@ -555,7 +555,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2024-10-01</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

@@ -179,19 +179,19 @@
 <pre><code>/etc/map
       +-- http
            +-- example.com.80
-           |    +-- sling:redirect = &quot;http://www.example.com/&quot;
+           |    +-- sling:redirect = &quot;https://www.example.com/&quot;
            +-- www.example.com.80
            |    +-- sling:internalRedirect = &quot;/example&quot;
            +-- any_example.com.80
            |    +-- sling:match = &quot;.+\.example\.com\.80&quot;
-           |    +-- sling:redirect = &quot;http://www.example.com/&quot;
+           |    +-- sling:redirect = &quot;https://www.example.com/&quot;
            +-- localhost_any
            |    +-- sling:match = &quot;localhost\.\d*&quot;
            |    +-- sling:internalRedirect = &quot;/content&quot;
            |    +-- cgi-bin
            |    |    +-- sling:internalRedirect = &quot;/scripts&quot;
            |    +-- gateway
-           |    |    +-- sling:internalRedirect = &quot;http://gbiv.com&quot;
+           |    |    +-- sling:internalRedirect = &quot;https://gbiv.com&quot;
            |    +-- (stories)
            |         +-- sling:internalRedirect = &quot;/anecdotes/$1&quot;
            +-- regexmap
@@ -204,12 +204,12 @@
 <tr><th> Regular Expression </th><th> Redirect </th><th> Internal </th><th> Description </th></tr>
 </thead>
 <tbody>
-<tr><td> http/example.com.80 </td><td> http://www.example.com </td><td> no </td><td> Redirect all requests to the Second Level Domain to www </td></tr>
+<tr><td> http/example.com.80 </td><td> https://www.example.com </td><td> no </td><td> Redirect all requests to the Second Level Domain to www </td></tr>
 <tr><td> http/www.example.com.80 </td><td> /example </td><td> yes </td><td> Prefix the URI paths of the requests sent to this domain with the string <code>/example</code> </td></tr>
-<tr><td> http/.+.example.com.80 </td><td> http://www.example.com </td><td> no </td><td> Redirect all requests to sub domains to www. The actual regular expression for the host.port segment is taken from the <code>sling:match</code> property. </td></tr>
+<tr><td> http/.+.example.com.80 </td><td> https://www.example.com </td><td> no </td><td> Redirect all requests to sub domains to www. The actual regular expression for the host.port segment is taken from the <code>sling:match</code> property. </td></tr>
 <tr><td> http/localhost.\d* </td><td> /content </td><td> yes </td><td> Prefix the URI paths with <code>/content</code> for requests to localhost, regardless of actual port the request was received on. This entry only applies if the URI path does not start with <code>/cgi-bin</code>, <code>gateway</code> or <code>stories</code> because there are longer match entries. The actual regular expression for the host.port segment is taken from the <code>sling:match</code> property. </td></tr>
 <tr><td> http/localhost.\d*/cgi-bin </td><td> /scripts </td><td> yes </td><td> Replace the <code>/cgi-bin</code> prefix in the URI path with <code>/scripts</code> for requests to localhost, regardless of actual port the request was received on. </td></tr>
-<tr><td> http/localhost.\d*/gateway </td><td> http://gbiv.com </td><td> yes </td><td> Replace the <code>/gateway</code> prefix in the URI path with <code>http://gbiv.com</code> for requests to localhost, regardless of actual port the request was received on. </td></tr>
+<tr><td> http/localhost.\d*/gateway </td><td> https://gbiv.com </td><td> yes </td><td> Replace the <code>/gateway</code> prefix in the URI path with <code>https://gbiv.com</code> for requests to localhost, regardless of actual port the request was received on. </td></tr>
 <tr><td> http/localhost.\d*/(stories) </td><td> /anecdotes/stories </td><td> yes </td><td> Prepend the URI paths starting with <code>/stories</code> with <code>/anecdotes</code> for requests to localhost, regardless of actual port the request was received on. </td></tr>
 </tbody>
 </table>
@@ -260,7 +260,7 @@ for (MapEntry entry: mapEntries) {
 <tr><th> Pattern </th><th> Replacement </th></tr>
 </thead>
 <tbody>
-<tr><td> /content/([^/]+)/home/(.*) </td><td> http://example.com/$1/index/$2 </td></tr>
+<tr><td> /content/([^/]+)/home/(.*) </td><td> https://example.com/$1/index/$2 </td></tr>
 </tbody>
 </table>
 <h3><a href="#redirection-values" id="redirection-values">Redirection Values</a></h3>
@@ -345,7 +345,7 @@ for (String segment: segments) {
 </code></pre>
 <h3><a href="#testing-etcmap-interpolation" id="testing-etcmap-interpolation">Testing /etc/map interpolation</a></h3>
 <p>Now got back to the String Interpolation configuration and change the value to <strong>qa.author.acme.com</strong> and save it.</p>
-<p>For local testing open your <strong>hosts</strong> file (/etc/hosts on Unix) and add a line like this: <code>127.0.0.1 qa.author.acme.com</code> save it and test with <code>ping qa.author.acme.com</code> to make sure the name resolves. Now you should be able to open the same page with: <strong>http://qa.author.acme.com/starter/index.html</strong>.</p>
+<p>For local testing open your <strong>hosts</strong> file (/etc/hosts on Unix) and add a line like this: <code>127.0.0.1 qa.author.acme.com</code> save it and test with <code>ping qa.author.acme.com</code> to make sure the name resolves. Now you should be able to open the same page with: <strong>https://qa.author.acme.com/starter/index.html</strong>.</p>
 <p>Now do the same with <strong>phv.fq.host.name=staging.author.acme.com</strong>.</p>
 <p>The String Interpolation works with any part of the etc-map tree.</p>
 <h2><a href="#alias-configurations" id="alias-configurations">Alias Configurations</a></h2>
@@ -421,7 +421,7 @@ for (String segment: segments) {
                             content/documentation/the-sling-engine/mappings-for-resource-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2025-02-25</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

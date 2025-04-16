@@ -154,7 +154,7 @@ Please note that this page is currently in draft stage and still being discussed
 <p>The exports in bundle/api/pom.xml look like they might become problematic from a support point of view, although we probably can't avoid this. [...] [The problem is the] manual maintenance of the version numbers. (not a big problem but needs to be done)</p>
 </blockquote>
 <p>I agree, that this is a problem. So let me reasonate on this a bit ;-)</p>
-<p>As a reference you might want to read <a href="http://blog.meschberger.ch/2009/10/on-version-numbers.html">my blog post on version numbers</a> and also what the <a href="http://wiki.eclipse.org/index.php/Version_Numbering">Eclipse guys have to say</a> (great read, btw). The OSGi Alliance has come up with a good definition for <a href="http://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf">Semantic Versioning</a> to which the definitions described below perfectly match.</p>
+<p>As a reference you might want to read <a href="https://blog.meschberger.ch/2009/10/on-version-numbers.html">my blog post on version numbers</a> and also what the <a href="https://wiki.eclipse.org/index.php/Version_Numbering">Eclipse guys have to say</a> (great read, btw). The OSGi Alliance has come up with a good definition for <a href="https://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf">Semantic Versioning</a> to which the definitions described below perfectly match.</p>
 <p>For Sling we have three kinds of version numbers:</p>
 <ol>
 <li>Big Sling Releases</li>
@@ -197,7 +197,7 @@ Please note that this page is currently in draft stage and still being discussed
 package org.apache.sling.api.auth;
 import aQute.bnd.annotation.Export;
 </code></pre>
-<p>See <a href="http://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>
+<p>See <a href="https://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>
 <h2><a href="#version-number-syntax" id="version-number-syntax">Version Number Syntax</a></h2>
 <p>As a small reminder, this is how a version number is constructed:  In OSGi version numbers are composed of four (4) segments: three integers and one string named <em>major</em>.<em>minor</em>.<em>micro</em>.<em>qualifier</em>.</p>
 <p>Each segment captures a different intent:</p>
@@ -279,14 +279,14 @@ import aQute.bnd.annotation.Export;
 </code></pre>
 <p>This allows for the implementation to work correctly with bug fixed package exports but as soon as there are any <em>externally visible</em> changes, the implementation bundle has to be adapted -- even if this just means increasing the upper version bound in the <code>Import-Package</code> statement thus guaranteeing compliance (again).</p>
 <h3><a href="#future" id="future">Future</a></h3>
-<p>Recent versions of the bnd library support automatic differentiation between <em>use</em> and <em>implementation</em> of API and to set the import version ranges accordingly. See <a href="http://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>
+<p>Recent versions of the bnd library support automatic differentiation between <em>use</em> and <em>implementation</em> of API and to set the import version ranges accordingly. See <a href="https://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> for details.</p>
 <h2><a href="#references" id="references">References</a></h2>
 <ul>
-<li><a href="http://markmail.org/thread/zshobgjwtqrncajt">Version Numbers</a> -- The mail thread discussing version numbering</li>
-<li><a href="http://blog.meschberger.ch/2009/10/on-version-numbers.html">On Version Numbers</a> -- Blog about version numbers</li>
-<li><a href="http://wiki.eclipse.org/index.php/Version_Numbering">Version Numbering</a> -- An Eclipse paper on assigning version numbers. Very good read.</li>
-<li><a href="http://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf">Semantic Versioning</a> -- An OSGi Alliance paper on semantic versioning.</li>
-<li><a href="http://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> -- Describes how the bnd library used by the Maven Bundle plugin supports package versioning</li>
+<li><a href="https://markmail.org/thread/zshobgjwtqrncajt">Version Numbers</a> -- The mail thread discussing version numbering</li>
+<li><a href="https://blog.meschberger.ch/2009/10/on-version-numbers.html">On Version Numbers</a> -- Blog about version numbers</li>
+<li><a href="https://wiki.eclipse.org/index.php/Version_Numbering">Version Numbering</a> -- An Eclipse paper on assigning version numbers. Very good read.</li>
+<li><a href="https://www.osgi.org/wiki/uploads/Links/SemanticVersioning.pdf">Semantic Versioning</a> -- An OSGi Alliance paper on semantic versioning.</li>
+<li><a href="https://bnd.bndtools.org/chapters/170-versioning.html">bnd Versioning</a> -- Describes how the bnd library used by the Maven Bundle plugin supports package versioning</li>
 </ul>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Version Policy )</div>                            
                         </div>
@@ -299,7 +299,7 @@ import aQute.bnd.annotation.Export;
                             content/documentation/development/version-policy.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2018-07-13</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

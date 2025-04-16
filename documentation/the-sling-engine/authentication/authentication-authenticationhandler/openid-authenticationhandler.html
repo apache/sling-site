@@ -159,7 +159,7 @@
 <div class="note">
 This module has been deprecated and retired. It can be found in the <a href="https://svn.apache.org/repos/asf/sling/attic/openid/">Sling attic: OpenID module</a> but is no longer maintained or supported.
 </div>
-<p>The OpenID Authentication Handler supports authentication of request users using the <a href="http://www.openid.net">OpenID</a> authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.</p>
+<p>The OpenID Authentication Handler supports authentication of request users using the <a href="https://www.openid.net">OpenID</a> authentication protocol. If the user has successfully authenticated with his OpenID provider a signed OpenID identity is further used to identify the user.</p>
 <p>Since generally an OpenID identity is an URL and URLs may not be used as JCR user names, an association mechanism is used by the OpenID authentication handler to associate an OpenID identity with an existing JCR user: The OpenID identity URL is set as the value of a JCR user property. When a user authenticates with his OpenID identity the matching user searched for by looking for a match in this property.</p>
 <p><em>NOTE:</em> This association currently only works with Jackrabbit (or Jackrabbit based repositories) because user management is not part of the JCR 2 specification and the OpenID authentication handler uses the Jackrabbit <code>UserManager</code> to find users by a user property value.</p>
 <h3><a href="#credentials-extraction" id="credentials-extraction">Credentials Extraction</a></h3>
@@ -260,7 +260,7 @@ This module has been deprecated and retired. It can be found in the <a href="htt
                             content/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2018-07-13</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

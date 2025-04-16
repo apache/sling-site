@@ -168,7 +168,7 @@
    import org.apache.sling.servlets.annotations.SlingServletFilter;
    import org.apache.sling.servlets.annotations.SlingServletFilterScope;
    import org.osgi.service.component.annotations.Component;
-...   
+...
    @Component
    @SlingServletFilter(scope = {SlingServletFilterScope.REQUEST},
                        suffix_pattern = &quot;/suffix/foo&quot;,
@@ -295,7 +295,7 @@ Component Filters:
 <h2><a href="#support-in-sling-engine-210" id="support-in-sling-engine-210">Support in Sling Engine 2.1.0</a></h2>
 <p>Up to and including Sling Engine 2.1.0 support for Servlet Filters has been as follows:</p>
 <ul>
-<li>Any <code>javax.servlet.Filter</code> service is accepted as a filter for Sling unless the <code>pattern</code> property used by the <a href="http://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard">Apache Felix HttpService whiteboard support</a> is set in the service registration properties.</li>
+<li>Any <code>javax.servlet.Filter</code> service is accepted as a filter for Sling unless the <code>pattern</code> property used by the <a href="https://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard">Apache Felix HttpService whiteboard support</a> is set in the service registration properties.</li>
 <li>The <code>filter.scope</code> property is optional and supports the case-sensitive values <code>request</code> and <code>component</code>.</li>
 <li>Filter ordering is defined by the <code>filter.order</code> property whose default value is <code>Integer.MAX_VALUE</code> where smaller values have higher priority over higher values.</li>
 </ul>
@@ -310,7 +310,7 @@ Component Filters:
                             content/documentation/the-sling-engine/filters.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">2021-03-02</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

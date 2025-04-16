@@ -178,13 +178,13 @@ attributes := attributeName '=' attributeValue
 <li><code>caller-exclude-filter</code> - (optional) - '|' separated package prefixes which should not be included in the output. e.g. <em>org.apache.jackrabbit.oak.query.QueryImpl;caller=28;caller-exclude-filter=&quot;org.eclipse|org.felix&quot;</em> this would exclude eclipse and felix packages from the resulting stack</li>
 </ul>
 <h3><a href="#performance-impact" id="performance-impact">Performance Impact</a></h3>
-<p>Tracer makes use of <a href="http://logback.qos.ch/manual/filters.html#TurboFilter">Logback TuboFilter</a> to intercept the logging calls and only enable them for those which are enabled via tracer config for the request. The filter is only registered for the duration of that request hence would avoid adding the cost for normal run.</p>
+<p>Tracer makes use of <a href="https://logback.qos.ch/manual/filters.html#TurboFilter">Logback TuboFilter</a> to intercept the logging calls and only enable them for those which are enabled via tracer config for the request. The filter is only registered for the duration of that request hence would avoid adding the cost for normal run.</p>
 <p>You can also disable the Tracer completely via OSGi config.</p>
 <h2><a href="#where-do-logs-go" id="where-do-logs-go">Where do logs go</a></h2>
 <p>The logs captured are logged at two places</p>
 <h3><a href="#requestprogresstracker" id="requestprogresstracker">RequestProgressTracker</a></h3>
 <p>Sling provides support for recording recent requests which can be accessed via <a href="https://sling.apache.org/documentation/development/monitoring-requests.html">Recent Requests Plugin</a>. It would list down the list of recent request and then on clicking them you can see the logs showed on the UI.</p>
-<p>The logging there is done via <a href="https://sling.apache.org/apidocs/sling5/org/apache/sling/api/request/RequestProgressTracker.html">RequestProgressTracker</a> (<a href="http://dev.day.com/content/ddc/blog/2008/06/requestprogresstracker.html">intro</a>). By default recent request plugin gets overflown as it captures request even for css, js files. To avoid that you can modify the config as part of <em>Sling Main Servlet</em> config</p>
+<p>The logging there is done via <a href="https://sling.apache.org/apidocs/sling5/org/apache/sling/api/request/RequestProgressTracker.html">RequestProgressTracker</a> (<a href="https://dev.day.com/content/ddc/blog/2008/06/requestprogresstracker.html">intro</a>). By default recent request plugin gets overflown as it captures request even for css, js files. To avoid that you can modify the config as part of <em>Sling Main Servlet</em> config</p>
 <p><img src="/documentation/bundles/sling-main-servlet-config.png" alt="Sling Main Servlet Config" /></p>
 <p>Using a regex like <code>^.*\.(?!jpg$|png$|js$|css$|woff$)[^.]+$</code> would avoid noise</p>
 <p>With that you can see log entries like below at http://localhost:8080/system/console/requests?index=xxx</p>
@@ -220,14 +220,14 @@ attributes := attributeName '=' attributeValue
  http://localhost:4502/content/dam/
 </code></pre>
 <p>Above request would create a folder in Assets and for that we have enabled the <code>oak-writes</code> tracer. This would result in following output</p>
-<pre><code>2015-05-11 17:30:42,840 INFO  admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] c.a.acs.acs-aem-tools-bundle - Service [4858] ServiceEvent REGISTERED 
-2015-05-11 17:30:42,846 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection] 
-2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
-2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection/jcr:content] 
-2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Setting property [/content/dam/summer-collection/jcr:content/jcr:title] 
-2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
-2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType 
-2015-05-11 17:30:42,856 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] save 
+<pre><code>2015-05-11 17:30:42,840 INFO  admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] c.a.acs.acs-aem-tools-bundle - Service [4858] ServiceEvent REGISTERED
+2015-05-11 17:30:42,846 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection]
+2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType
+2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Adding node [/content/dam/summer-collection/jcr:content]
+2015-05-11 17:30:42,849 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] Setting property [/content/dam/summer-collection/jcr:content/jcr:title]
+2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType
+2015-05-11 17:30:42,850 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] setPrimaryType
+2015-05-11 17:30:42,856 TRACE admin [127.0.0.1 [1431345642836] POST /content/dam/ HTTP/1.1] o.a.j.o.jcr.operations.writes session-12895- [session-12895] save
 </code></pre>
 <h3><a href="#request-headers" id="request-headers">Request Headers</a></h3>
 <p>Some request like initial authentication processing does not involve Sling MainServlet and hence for those request logging cannot be done to RequestProgressTracker. Instead we can just get logs enabled and route them to normal logging on server side. For that you need to use HTTP header</p>
@@ -243,12 +243,12 @@ attributes := attributeName '=' attributeValue
     http://localhost:8080/libs/content/login.html/j_security_check
 </code></pre>
 <p>This would result in following server side logs</p>
-<pre><code>2015-05-11 17:34:56,531 INFO  NA [qtp1395423247-193] c.a.acs.acs-aem-tools-bundle - Service [4859] ServiceEvent REGISTERED 
-2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.s.a.c.i.SlingAuthenticator - doHandleSecurity: Trying to get a session for null 
-2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 
-2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required. 
-2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding Credentials to shared state. 
-2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding login name to shared state. 
+<pre><code>2015-05-11 17:34:56,531 INFO  NA [qtp1395423247-193] c.a.acs.acs-aem-tools-bundle - Service [4859] ServiceEvent REGISTERED
+2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.s.a.c.i.SlingAuthenticator - doHandleSecurity: Trying to get a session for null
+2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required.
+2015-05-11 17:34:56,532 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.LoginContextProviderImpl - Found pre-authenticated subject: No further login actions required.
+2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding Credentials to shared state.
+2015-05-11 17:34:56,548 DEBUG NA [qtp1395423247-193] o.a.j.o.s.a.u.LoginModuleImpl - Adding login name to shared state.
 </code></pre>
 <h2><a href="#tracer-recording" id="tracer-recording">Tracer Recording</a></h2>
 <p><em>Since 1.0.0 <a href="https://issues.apache.org/jira/browse/SLING-5459">SLING-5459</a></em></p>
@@ -328,7 +328,7 @@ Transfer-Encoding: chunked
 </ol>
 <p>The recordings are held in memory for 15 mins (per default setting) and can be seen listed at http://localhost:8080/system/console/tracer. Look into the OSGi config for more config options around this.</p>
 <h2><a href="#installation" id="installation">Installation</a></h2>
-<p>Download the bundle from <a href="http://sling.apache.org/downloads.cgi">here</a> or use following Maven dependency</p>
+<p>Download the bundle from <a href="https://sling.apache.org/downloads.cgi">here</a> or use following Maven dependency</p>
 <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependency&gt;
     &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
     &lt;artifactId&gt;org.apache.sling.tracer&lt;/artifactId&gt;
@@ -346,7 +346,7 @@ Transfer-Encoding: chunked
                             content/documentation/bundles/log-tracers.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">2018-07-17</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

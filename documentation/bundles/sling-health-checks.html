@@ -142,7 +142,7 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row" data-pagefind-body="true"><div><section><p>Custom Sling Health Checks run on the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html">Felix Health Checks</a> runtime.</p>
+<div class="row" data-pagefind-body="true"><div><section><p>Custom Sling Health Checks run on the <a href="https://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html">Felix Health Checks</a> runtime.</p>
 <h1><a href="#best-location-for-health-checks" id="best-location-for-health-checks">Best location for Health Checks</a></h1>
 <p>It is best practice to place health check next to the functionality they check. Also documentation of those check should be provided along with the documentation of the functionality.</p>
 <p>The below checks are exceptions to that rule as they are generic in what they check (but still require Sling features, that's whey they are not in Apache Felix).</p>
@@ -160,8 +160,7 @@
 <h1><a href="#health-checks-as-server-side-junit-tests" id="health-checks-as-server-side-junit-tests">Health Checks as server-side JUnit tests</a></h1>
 <p>The <code>org.apache.sling.hc.junit.bridge</code> bundle makes selected Health Checks available as server-side JUnit tests.</p>
 <p>It requires the <code>org.apache.sling.junit.core bundle</code> which provides the server-side JUnit tests infrastructure.</p>
-<p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the  <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a><br />
-remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
+<p>The idea is to implement the smoke tests of your system, for example, as health checks. You can then run them as part of integration testing, using the  <a href="/documentation/development/sling-testing-tools.html">Sling Testing Tools</a> remote testing utilities, and also as plain Health Checks for monitoring or troubleshooting Sling instances.</p>
 <p>To use this module, configure sets of tags at <code>/system/console/configMgr/org.apache.sling.hc.junitbridge.HealthCheckTestsProvider</code> using the standard <code>includeThisTag,-omitThatTag</code> syntax, and JUnit tests will be available at /system/sling/junit/HealthChecks.html to run the corresponding Health Checks.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Custom Sling Health Checks )</div>                            
                         </div>
@@ -174,7 +173,7 @@ remote testing utilities, and also as plain Health Checks for monitoring or trou
                             content/documentation/bundles/sling-health-checks.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">georg.henzler</span> on <span class="comment">2020-10-27</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

@@ -147,7 +147,7 @@ Sling Settings Bundle, though.
 <h1><a href="#overview" id="overview">Overview</a></h1>
 <p>Run modes are meant to define different sets of configuration parameters for various Sling instances.</p>
 <p>In a web publishing environment, for example, one could use run modes like <em>staging, production, dev, dmz</em> or combinations of such values.</p>
-<p>The <em>[org.apache.sling.runmode]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode.path }})</em> bundle provides a simple way of defining and querying a list of run modes.</p>
+<p>The <em>[org.apache.sling.runmode]({{ refs.https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode.path }})</em> bundle provides a simple way of defining and querying a list of run modes.</p>
 <h1><a href="#installation" id="installation">Installation</a></h1>
 <p>The run mode service is not present in the default Sling launchpad builds, to activate it install and start the <em>org.apache.sling.runmode</em> bundle.</p>
 <h1><a href="#configuration" id="configuration">Configuration</a></h1>
@@ -155,7 +155,7 @@ Sling Settings Bundle, though.
 <p>Using <em>-Dsling.run.modes=foo,bar</em> on the JVM command-line, for example, activates the <em>foo</em> and <em>bar</em> run modes.</p>
 <p>This command-line parameter takes precedence over a similar definition (<em>sling.run.modes=dev,staging</em>) that might be present in the <em>sling.properties</em> file found in the Sling home directory.</p>
 <h1><a href="#getting-the-current-list-of-run-modes" id="getting-the-current-list-of-run-modes">Getting the current list of run modes</a></h1>
-<p>The [RunMode service]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:</p>
+<p>The [RunMode service]({{ refs.https://svn.apache.org/repos/asf/sling/trunk/contrib/extensions/runmode/src/main/java/org/apache/sling/runmode/RunMode.java.path }}) provides the current list of run modes, examples:</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->RunMode r = ...get from BundleContext...
 String [] currentRunModes = r.getCurrentRunModes();
 
@@ -178,7 +178,7 @@ if(r.isActive(expectedRunModes)) {
                             content/old-stuff/run-modes-org-apache-sling-runmode.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">2018-07-17</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

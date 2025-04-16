@@ -175,7 +175,7 @@
 <p>The web console plugin evaluates metadata being provided by any <code>AdapterFactory</code> services as well as metadata being provided through the file <code>SLING-INF/adapters.json</code></p>
 <h1><a href="#implementing-adaptable" id="implementing-adaptable">Implementing Adaptable</a></h1>
 <p>Each adaptable should derive from <code>SlingAdaptable</code> to automatically profit from all according <code>AdapterFactories</code> registered in the system. In case the <code>adaptTo(...)</code> method is being overwritten an according <code>SLING-INF/adapters.json</code> should be included in the providing bundle listing all adaptation possibilities. While this file is not strictly necessary for the actual adaptation to work, it provides useful information to the Web Console plugin. Otherwise developers will not know which adaptations are supported. The format of this JSON file looks like this (<a href="https://issues.apache.org/jira/browse/SLING-2295">SLING-2295</a>):</p>
-<pre><code>{ 
+<pre><code>{
   &lt;fully qualified class name of adaptable&gt; : {
     &lt;condition&gt; :  &lt;fully qualified class name of adapter, may be a JSON array&gt;
   }
@@ -196,7 +196,7 @@
 </code></pre>
 <h2><a href="#adapter-annotations" id="adapter-annotations">Adapter Annotations</a></h2>
 <p>The <a href="https://github.com/apache/sling-org-apache-sling-adapter-annotations">Adapter Annotations</a> provide OSGi DS 1.4 component property types that ease implementing <code>Adaptable</code> services.</p>
-<p>For adaptable implementations not provided by a dedicated OSGi service implementing <code>Adaptable</code> you should consider creating the JSON file described in the previous section with the help of the annotations from the module <a href="https://github.com/apache/sling-adapter-annotations">Adapter Annotations (JSON)</a> which are evaluated by goal <code>generate-adapter-metadata</code> from the <a href="http://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html">Maven Sling Plugin</a> (<a href="https://issues.apache.org/jira/browse/SLING-2313">SLING-2313</a>).</p>
+<p>For adaptable implementations not provided by a dedicated OSGi service implementing <code>Adaptable</code> you should consider creating the JSON file described in the previous section with the help of the annotations from the module <a href="https://github.com/apache/sling-adapter-annotations">Adapter Annotations (JSON)</a> which are evaluated by goal <code>generate-adapter-metadata</code> from the <a href="https://sling.apache.org/components/sling-maven-plugin/generate-adapter-metadata-mojo.html">Maven Sling Plugin</a> (<a href="https://issues.apache.org/jira/browse/SLING-2313">SLING-2313</a>).</p>
 <h1><a href="#extending-adapters" id="extending-adapters">Extending Adapters</a></h1>
 <p>Sometimes an <code>Adaptable</code> implementation cannot foresee future uses and requirements. To cope with such extensibility requirements two interfaces and an abstract base class are defined:</p>
 <ul>
@@ -271,7 +271,7 @@
                             content/documentation/the-sling-engine/adapters.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-08-08</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

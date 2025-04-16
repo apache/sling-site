@@ -198,7 +198,7 @@
 </ul>
 <h3><a href="#initial-content-file-system-layout" id="initial-content-file-system-layout">INITIAL_CONTENT file system layout</a></h3>
 <p>The mode maps files and folders, and content files stored in JSON or jcr.xml files. The layout has to match the conventions of the <a href="content-loading-jcr-contentloader.html">Apache Sling JCR Content Loader</a>. The bundle header <code>Sling-Initial-Content</code> defines where and how the content should be loaded to.</p>
-<p>This mode is best use together with the <a href="http://sling.apache.org/components/sling-maven-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations for a Maven bundle project containing content structures. For each path an individual configuration is created.</p>
+<p>This mode is best use together with the <a href="https://sling.apache.org/components/sling-maven-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations for a Maven bundle project containing content structures. For each path an individual configuration is created.</p>
 <p>Usage - deploy OSGi bundle from current maven project and register the appropriate OSGi configuration mappings:</p>
 <pre><code>$ mvn -Dsling.mountByFS=true sling:install
 </code></pre>
@@ -215,8 +215,8 @@
 <li>When 'overwrite:=true' is not set for a path in the <code>Sling-Initial-Content</code> header the resource provider falls back to the parent resource provider (e.g. JCR repository) if a requested resource is not find in the file system (version 2.x, with version 1.x this always happens).</li>
 </ul>
 <h3><a href="#filevault-xml-file-system-layout" id="filevault-xml-file-system-layout">FILEVAULT_XML file system layout</a></h3>
-<p>The mode maps an maven project containing an expanded content package which uses the <a href="http://jackrabbit.apache.org/filevault/vaultfs.html">Jackrabbit FileVault XML layout</a> in the running Sling instance. The existing of a filter file <code>META-INF/vault/filter.xml</code> is mandatory.</p>
-<p>This mode is best use together with the <a href="http://sling.apache.org/components/sling-maven-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations. For each path defined in the filter.xml one mapping configuration is created. The include/exclude definitions are respected as well.</p>
+<p>The mode maps an maven project containing an expanded content package which uses the <a href="https://jackrabbit.apache.org/filevault/vaultfs.html">Jackrabbit FileVault XML layout</a> in the running Sling instance. The existing of a filter file <code>META-INF/vault/filter.xml</code> is mandatory.</p>
+<p>This mode is best use together with the <a href="https://sling.apache.org/components/sling-maven-plugin/">Maven Sling Plugin</a>, which automatically creates the appropriate File System Resource Provider configurations. For each path defined in the filter.xml one mapping configuration is created. The include/exclude definitions are respected as well.</p>
 <p>Usage - register the appropriate mappings:</p>
 <pre><code>$ mvn sling:fsmount
 </code></pre>
@@ -240,7 +240,7 @@
                             content/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">sseifert</span> on <span class="comment">2019-01-14</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

@@ -228,7 +228,7 @@ use(['dep1.js', 'dep2.js'], function (Dep1, Dep2) {
 <h3><a href="#i18n" id="i18n">I18n</a></h3>
 <p>In addition to the options defined for <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#123-i18n">i18n</a> the <code>basename</code> option can be used to set the basename of the used <a href="../internationalization-support-i18n.html#resourcebundle-with-base-names">Sling i18n Resource bundle</a> (<a href="https://issues.apache.org/jira/browse/SLING-5314">SLING-5314</a>).</p>
 <h3><a href="#format-date" id="format-date">Format Date</a></h3>
-<p>In addition to the regular patterns defined for <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates">date formatting</a>, the following special formatting patterns are supported (<a href="https://issues.apache.org/jira/browse/SLING-9983">SLING-9983</a>) for formatting dates only (disregarding time) in a decent format for the used locale. <em>The resulting format depends on the JDK version though, as it changed fundamentally with <a href="https://openjdk.java.net/jeps/252">JDK 8</a>, and even afterwards the different <a href="http://cldr.unicode.org/index/downloads">CLDR releases</a> implemented in the different JDK versions differ quite substantially.</em></p>
+<p>In addition to the regular patterns defined for <a href="https://github.com/adobe/htl-spec/blob/1.4/SPECIFICATION.md#1222-dates">date formatting</a>, the following special formatting patterns are supported (<a href="https://issues.apache.org/jira/browse/SLING-9983">SLING-9983</a>) for formatting dates only (disregarding time) in a decent format for the used locale. <em>The resulting format depends on the JDK version though, as it changed fundamentally with <a href="https://openjdk.java.net/jeps/252">JDK 8</a>, and even afterwards the different <a href="https://cldr.unicode.org/index/downloads">CLDR releases</a> implemented in the different JDK versions differ quite substantially.</em></p>
 <table>
 <thead>
 <tr><th>Pattern </th><th> Description </th><th> Example (for Locale en_US)</th></tr>
@@ -423,8 +423,8 @@ public class RequestAdapterFactory implements AdapterFactory {
 <h4><a href="#global-objects" id="global-objects">Global Objects</a></h4>
 <p>Besides the global objects available to all Use Providers, the JavaScript Use Provider also provides the following global objects available in the context of the <code>use</code> function:</p>
 <pre><code>console         // basic wrapper on top of log, but without formatting / throwable support
-exports         // basic Java implementation of CommonJS - http://requirejs.org/docs/commonjs.html
-module          // basic Java implementation of CommonJS - http://requirejs.org/docs/commonjs.html
+exports         // basic Java implementation of CommonJS - https://requirejs.org/docs/commonjs.html
+module          // basic Java implementation of CommonJS - https://requirejs.org/docs/commonjs.html
 setImmediate    // Java implementation of the Node.js setImmediate function
 setTimeout      // Java implementation of the Node.js setTimeout function
 sightly         // the namespace object under which the asynchronous Resource-API implemented by
@@ -618,7 +618,7 @@ use             // the use function
                             content/documentation/bundles/scripting/scripting-htl.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Paulo Chang</span> on <span class="comment">2024-05-27</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

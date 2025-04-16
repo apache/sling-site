@@ -195,12 +195,12 @@
 	+--child1
 	+--child3
 	+--child5
-	
+
 overlay/
 	+--child2
 	+--child3
 	+--child4
-	
+
 resulting order: child1, child5, child2, child3, child4
 </code></pre>
 <p>You can overwrite that behaviour by leveraging the <code>sling:orderBefore</code> property.</p>
@@ -215,7 +215,7 @@ resulting order: child1, child5, child2, child3, child4
 <tr><th>Description </th><th> Merged Resource Path </th><th> Merging Order </th><th> Read-Only </th><th> Related Ticket</th></tr>
 </thead>
 <tbody>
-<tr><td>Merging based on the resource resolver's search path </td><td> <code>/mnt/overlay/&lt;relative resource path&gt;</code> </td><td> Last resource resolver search path first (Order = Descending search paths). </td><td> <code>true</code> </td><td>  <a href="http://issues.apache.org/jira/browse/SLING-2986">SLING-2986</a></td></tr>
+<tr><td>Merging based on the resource resolver's search path </td><td> <code>/mnt/overlay/&lt;relative resource path&gt;</code> </td><td> Last resource resolver search path first (Order = Descending search paths). </td><td> <code>true</code> </td><td>  <a href="https://issues.apache.org/jira/browse/SLING-2986">SLING-2986</a></td></tr>
 </tbody>
 </table>
 <p>This picker is thought for globally overlaying content by placing the diff-resource in &quot;/apps&quot; without actually touching anything in &quot;/libs&quot; (since this is only thought for Sling itself). This should be used whenever some deviation of content is desired which is initially shipped with Sling. The client (i.e. the code using the merged resource) does not have to know if there is an overlay in place.</p>
@@ -228,7 +228,7 @@ resulting order: child1, child5, child2, child3, child4
      |   +-- property1 = &quot;property from /libs/sling/example/child2&quot;
      +-- child3 (nt:folder)
      |   +-- property1 = &quot;property from /libs/sling/example/child3&quot;
-     
+
 
 /apps/sling/example (sling:Folder)
      +-- property1 = &quot;property added in apps&quot;
@@ -267,7 +267,7 @@ resulting order: child1, child5, child2, child3, child4
      |   +-- property1 = &quot;property from /libs/sling/example/child2&quot;
      +-- child3 (nt:folder)
      |   +-- property1 = &quot;property from /libs/sling/example/child3&quot;
-     
+
 
 /apps/sling/example (sling:Folder)
 	 +-- sling:resourceSuperType = &quot;/apps/sling/base&quot;
@@ -300,7 +300,7 @@ resulting order: child1, child5, child2, child3, child4
                             content/documentation/bundles/resource-merger.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-10-12</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

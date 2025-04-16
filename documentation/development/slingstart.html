@@ -154,7 +154,7 @@
 </div>
 <p>The Apache Sling provisioning model is a model to describe OSGi based application. It can also be used to define a partial application aka feature (or subsystem in OSGi terms).</p>
 <p>The model is describing an instance, it is not directly related to any particular tooling or packaging/provisioning vehicle.</p>
-<p>For Apache Maven users, the <code>slingstart-maven-plugin</code> uses the model to create an executable application and/or a web application based on the model. Sling's Launchpad is defined using the model and built by this Maven plugin. See <a href="http://sling.apache.org/components/slingstart-maven-plugin/">SlingStart Maven Plugin</a> for a documentation of the supported goals and parameters.</p>
+<p>For Apache Maven users, the <code>slingstart-maven-plugin</code> uses the model to create an executable application and/or a web application based on the model. Sling's Launchpad is defined using the model and built by this Maven plugin. See <a href="https://sling.apache.org/components/slingstart-maven-plugin/">SlingStart Maven Plugin</a> for a documentation of the supported goals and parameters.</p>
 <h2><a href="#the-model" id="the-model">The Model</a></h2>
 <p>The model is a simple API consisting of data objects:</p>
 <ul>
@@ -229,7 +229,7 @@
        org.apache.sling/eventadmin/${eventadmin.version}
        org.apache.sling/metatype/${metatype.version}
        org.apache.sling/coordinator/3.0.0
-       
+
     [configurations]
        org.apache.sling.eventadmin
           useQueue=true
@@ -246,7 +246,7 @@
 
     [artifacts startLevel=5 runModes=mymode]
        org.apache.sling/eventadmin/${eventadmin.version}
-    
+
     [configurations runModes=mymode]
        org.apache.sling.eventadmin
           useQueue=true
@@ -304,7 +304,7 @@
 <h4><a href="#header-parameters" id="header-parameters">Header Parameters</a></h4>
 <p>The parameter <code>runModes</code> described for the features section can be set for setting sections as well.</p>
 <h4><a href="#content" id="content">Content</a></h4>
-<p>Each line contains an OSGi framework property. The framework properties of Apache Felix are documented <a href="http://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html">here</a>.</p>
+<p>Each line contains an OSGi framework property. The framework properties of Apache Felix are documented <a href="https://felix.apache.org/documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.html">here</a>.</p>
 <pre><code>&lt;framework-property-name&gt; '=' &lt;framework-property-value&gt;
 </code></pre>
 <h3><a href="#configurations" id="configurations">Configurations</a></h3>
@@ -317,7 +317,7 @@
 <p>If the form is just <code>&lt;pid&gt;</code>, the configuration contains the properties for a Managed Service. The <code>&lt;pid&gt;</code> is then the PID of the Managed Service. See the Configuration Admin service for details.</p>
 <p>When a Managed Service Factory is used, the situation is different. The <code>&lt;pid&gt;</code> part then describes the PID of the Managed Service Factory. You can pick any <code>&lt;subname&gt;</code> which is used as a unique alias. For example:</p>
 <pre><code># Configuration for Managed Service com.acme.xyz
-com.acme.xyz // 
+com.acme.xyz //
 # Managed Service Factory, creates an instance for com.acme.abc
 com.acme.abc-default
 </code></pre>
@@ -330,10 +330,10 @@ com.acme.abc-default
 comment ::= '#' &lt;any&gt;
 header ::= prop '=' value
 prop ::= symbolic-name // 1.4.2 of OSGi Core Specification
-symbolic-name ::= token { '.' token } 
+symbolic-name ::= token { '.' token }
 token ::= { [ 0..9 ] | [ a..z ] | [ A..Z ] | '_' | '-' }
-value ::= [ type ] ( '[' values ']' | '(' values ')' | simple ) 
-values ::= simple { ',' simple } 
+value ::= [ type ] ( '[' values ']' | '(' values ')' | simple )
+values ::= simple { ',' simple }
 simple ::= '&quot;' stringsimple '&quot;'
 type ::= &lt;1-char type code&gt;
 stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
@@ -353,7 +353,7 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 <p>Apart from the escaping of the usual characters like the quotes, double quotes, backslash etc. the equals sign and spaces need to be escaped as well!</p>
 <h5><a href="#configurations-defined-through-properties" id="configurations-defined-through-properties">Configurations Defined through Properties</a></h5>
 <p>While the default configuration form is very powerful, it might also sometimes be a little bit too heavy to specify a configuration. For these usage cases, the configuration can be described as properties:</p>
-<pre><code>com.acme.xyz [format=properties] 	 
+<pre><code>com.acme.xyz [format=properties]
     ftp.port = 21
 </code></pre>
 <p>Notice that this definition only supports string properties. Therefore the service consuming the configuration needs to be able to adapt a string value to the correct type.</p>
@@ -385,7 +385,7 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 <pre><code>[artifacts]
     my/special/artifact/1.0.0
     commons/library/1.0.0
-   
+
 [artifacts runModes=test]
     another/one/2.1.0
 </code></pre>
@@ -458,7 +458,7 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
 </tbody>
 </table>
 <h3><a href="#debugging" id="debugging">Debugging</a></h3>
-<p>Since version 1.2.0 of this plugin it is possible to easily start a Sling server in debug mode (<a href="https://issues.apache.org/jira/browse/SLING-4677">SLING-4677</a>). For that you either configure the property <code>debug</code> inside you server configuration in the pom.xml accordingly or by using the parameter <code>Dlaunchpad.debug</code>. Both values can either be <code>true</code> (in which case the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JDWP options</a> <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000</code> are appended to the VM options) or just some arbitrary string defining debugging options. In case both are used the parameter <code>Dlaunchpad.debug</code> takes precedence.</p>
+<p>Since version 1.2.0 of this plugin it is possible to easily start a Sling server in debug mode (<a href="https://issues.apache.org/jira/browse/SLING-4677">SLING-4677</a>). For that you either configure the property <code>debug</code> inside you server configuration in the pom.xml accordingly or by using the parameter <code>Dlaunchpad.debug</code>. Both values can either be <code>true</code> (in which case the <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/jpda/conninv.html#Invocation">JDWP options</a> <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000</code> are appended to the VM options) or just some arbitrary string defining debugging options. In case both are used the parameter <code>Dlaunchpad.debug</code> takes precedence.</p>
 <h2><a href="#stopping-a-server" id="stopping-a-server">Stopping a server</a></h2>
 <p>Use the goal with name <code>stop</code> to stop one or multiple servers. The goal is bound by default to the <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference"><code>post-integration-test</code> lifecycle phase</a>.</p>
 <h2><a href="#known-issues" id="known-issues">Known Issues</a></h2>
@@ -491,7 +491,7 @@ stringsimple ::= &lt;quoted string representation of the value&gt; (see below)
                             content/documentation/development/slingstart.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2022-03-18</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

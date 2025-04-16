@@ -241,7 +241,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
             }
         }
     }
-        
+
     String path = resourceType + &quot;/&quot; + baseName;
     return findScriptFor(path);
 }
@@ -268,8 +268,8 @@ Servlet findScriptFor(path) {
 <li><em>Throwable Handling</em>: To handle uncaught <code>Throwables</code> the simple name of the <code>Throwable</code> class is used as the Servlet name. Similarly to the Java <code>try-catch</code> clauses the class hierarchy is supported. That is to handle an uncaught <code>FileNotFoundException</code>, the names <code>FileNotFoundException</code>, <code>IOException</code>, <code>Exception</code>, <code>Throwable</code> are checked for a Servlet and the first one found is then used. Again, the Serlvet may be a Servlet registered as an OSGi service or may be a plain script stored in the JCR repository or provided through some custom Resource provider.</li>
 </ul>
 <h2><a href="#integration-tests" id="integration-tests">Integration tests</a></h2>
-<p>A set of simple example servlets is available in the [launchpad/test-services module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/test-services.path }}).</p>
-<p>Integration tests in the [launchpad/testing module]({{ refs.http://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution.path }}) verify that these examples are correct.</p>
+<p>A set of simple example servlets is available in the [launchpad/test-services module]({{ refs.https://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/test-services.path }}).</p>
+<p>Integration tests in the [launchpad/testing module]({{ refs.https://svn.apache.org/repos/asf/incubator/sling/trunk/launchpad/testing/src/test/java/org/apache/sling/launchpad/webapp/integrationtest/servlets/resolution.path }}) verify that these examples are correct.</p>
 <p>Contributions to these tests and examples are welcome, of course!</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Servlet Resolution )</div>                            
                         </div>
@@ -282,7 +282,7 @@ Servlet findScriptFor(path) {
                             content/old-stuff/servlet-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2018-07-13</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

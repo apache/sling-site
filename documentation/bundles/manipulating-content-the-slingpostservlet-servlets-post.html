@@ -148,22 +148,22 @@
 <p>As always in life there is more than one way to do it. So to modify content in Sling, you have multiple options, the Sling default POST Servlet also called the <em>SlingPostServlet</em> is one of them. This page is about how you can modify - create, modify, copy, move, delete, import - content through the <em>SlingPostServlet</em>. In addition it also explains how to extend the SlingPostServlet with new operations.</p>
 <h2><a href="#quickstart-creating-content" id="quickstart-creating-content">Quickstart: Creating Content</a></h2>
 <p>To create content you simply send an HTTP POST request using the path of the resource to store the content in and include the actual content as request parameters. So one possibility to do just that is by having an HTML Form like the following:</p>
-<pre><code>&lt;form method=&quot;POST&quot; action=&quot;http://host/some/new/content&quot; enctype=&quot;multipart/form-data&quot;&gt;
+<pre><code>&lt;form method=&quot;POST&quot; action=&quot;https://host/some/new/content&quot; enctype=&quot;multipart/form-data&quot;&gt;
    &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;&quot; /&gt;
    &lt;input type=&quot;text&quot; name=&quot;text&quot; value=&quot;&quot; /&gt;
 &lt;/form&gt;
 </code></pre>
 <p>This simple form will set the <code>title</code> and <code>text</code> properties on a resource at <code>/some/new/content</code>. If this resource does not exist it is just created otherwise the existing content would be modified.</p>
 <p>Similarly, you can do this using the <code>curl</code> command line tool:</p>
-<pre><code>$ curl -Ftitle=&quot;some title text&quot; -Ftext=&quot;some body text content&quot; http://host/some/new/content
+<pre><code>$ curl -Ftitle=&quot;some title text&quot; -Ftext=&quot;some body text content&quot; https://host/some/new/content
 </code></pre>
 <p>You might want to set a specific Sling resource type using the <code>sling:resourceType</code> property:</p>
-<pre><code>$ curl -F&quot;sling:resourceType=sling:sample&quot; -Ftitle=&quot;some title text&quot; \    
-    -Ftext=&quot;some body text content&quot; http://host/some/new/content
+<pre><code>$ curl -F&quot;sling:resourceType=sling:sample&quot; -Ftitle=&quot;some title text&quot; \
+    -Ftext=&quot;some body text content&quot; https://host/some/new/content
 </code></pre>
 <p>If you deal with a JCR repository you might want to set the node type (however using Sling resource type is the preferred way):</p>
 <pre><code>$ curl -F&quot;jcr:primaryType=nt:unstructured&quot; -Ftitle=&quot;some title text&quot; \
-    -Ftext=&quot;some body text content&quot; http://host/some/new/content
+    -Ftext=&quot;some body text content&quot; https://host/some/new/content
 </code></pre>
 <p>Similarly, you may assign JCR mixin node types using the <code>jcr:mixinTypes</code> property.</p>
 <h2><a href="#preface-multipartform-data-posts" id="preface-multipartform-data-posts">Preface: multipart/form-data POSTs</a></h2>
@@ -190,7 +190,7 @@ Note that the launchpad test services module contains a number of <a href="https
 </div>
 <div class="note">
 <b>Trailing star in the :applyTo parameter</b>:
-This applies to operations that use this parameter, since version 2.1.2 of the *org.apache.sling.servlets.post* bundle: If the last segment of the `:applyTo` value is '*' then the operation applies to all the children of the resolved parent resource. This can be used to act on all the children 
+This applies to operations that use this parameter, since version 2.1.2 of the *org.apache.sling.servlets.post* bundle: If the last segment of the `:applyTo` value is '*' then the operation applies to all the children of the resolved parent resource. This can be used to act on all the children
 of a resource without having to specify the path of each individual child resource.
 </div>
 <h3><a href="#content-creation-or-modification" id="content-creation-or-modification">Content Creation or Modification</a></h3>
@@ -228,7 +228,7 @@ of a resource without having to specify the path of each individual child resour
 </code></pre>
 <p>If this form is submitted with <em>title</em> and <em>This is some Text</em> as values for the <code>title</code> and <code>text</code> fields respectively, a new resource is created at the path <code>/content/page/first</code> and the <code>title</code> and <code>text</code> properties set to the respective field values. If a resource at <code>/content/page/first</code> already existed before submitting the form, the <code>title</code> and <code>text</code> properties are just updated to the new values from the form fields.</p>
 <p>If a parameter has multiple values, the respective property will be created as a multi-value property. So for example the command line:</p>
-<pre><code>$ curl -Fmulti=one -Fmulti=two http://host/content/page
+<pre><code>$ curl -Fmulti=one -Fmulti=two https://host/content/page
 </code></pre>
 <p>Would assign the <code>/content/page/multi</code> property the value <em>[ &quot;one&quot;, &quot;two&quot; ]</em>.</p>
 <p>This is pretty much all there is to know about creating and modifying content. The following sections will now introduce more functionality which help you with more fine-grained control in your content management application.</p>
@@ -353,7 +353,7 @@ of a resource without having to specify the path of each individual child resour
 <p>As described above, <code>@DefaultValue</code> only takes effect if no value is provided for a particular parameter. However, in some cases, such as HTML checkboxes, this isn't sufficient because the parameter isn't submitted at all. To handle this scenario, you can use the <code>@UseDefaultWhenMissing</code> suffixed parameter.</p>
 <pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content/page/first&quot; enctype=&quot;multipart/form-data&quot;&gt;
     &lt;input name=&quot;queryIgnoreNoise&quot; class=&quot;input&quot; type=&quot;checkbox&quot; value=&quot;true&quot;/&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;queryIgnoreNoise@DefaultValue&quot; value=&quot;false&quot;/&gt; 
+    &lt;input type=&quot;hidden&quot; name=&quot;queryIgnoreNoise@DefaultValue&quot; value=&quot;false&quot;/&gt;
     &lt;input type=&quot;hidden&quot; name=&quot;queryIgnoreNoise@UseDefaultWhenMissing&quot; value=&quot;true&quot;/&gt;
 &lt;/form&gt;
 </code></pre>
@@ -498,7 +498,7 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 </table>
 <h3><a href="#content-removal" id="content-removal">Content Removal</a></h3>
 <p>To remove existing content just address the item to be removed and set the <code>:operation</code> parameter to <code>delete</code>. For example the following command line removes the <code>/content/sample</code> page:</p>
-<pre><code>$ curl -F&quot;:operation=delete&quot; http://host/content/sample
+<pre><code>$ curl -F&quot;:operation=delete&quot; https://host/content/sample
 </code></pre>
 <h5><a href="#response-status" id="response-status">Response Status</a></h5>
 <p>The delete operation has the following status responses:</p>
@@ -516,11 +516,11 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 <p>By using the <code>:applyTo</code> request parameter it is possible to remove multiple items in one single request. Deleting items in this way leaves you with less control, though. In addition, if a single item removal fails, no item at all is removed.</p>
 <p>When specifying the item(s) to be removed with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
 <p>To remove the <code>/content/page1</code> and <code>/content/page2</code> nodes, for example, you might use the following command line:</p>
-<pre><code>$ curl -F&quot;:operation=delete&quot; -F&quot;:applyTo=/content/page1&quot; \    
-    -F&quot;:applyTo=/content/page2&quot; http://host/content/sample
+<pre><code>$ curl -F&quot;:operation=delete&quot; -F&quot;:applyTo=/content/page1&quot; \
+    -F&quot;:applyTo=/content/page2&quot; https://host/content/sample
 </code></pre>
 <p>Using a trailing star in the :applyTo parameter (as mentioned before), you can remove all the children of the <code>/content</code> node, for example, as follows:</p>
-<pre><code>$ curl -F&quot;:operation=delete&quot; -F&quot;:applyTo=/content/*&quot; http://host/content/sample
+<pre><code>$ curl -F&quot;:operation=delete&quot; -F&quot;:applyTo=/content/*&quot; https://host/content/sample
 </code></pre>
 <p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored.</p>
 <h6><a href="#response-status" id="response-status">Response Status</a></h6>
@@ -567,13 +567,13 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 <p>By using the <code>:applyTo</code> request parameter it is possible to copy multiple items in one single request. Copying items in this way leaves you with less control, though. In addition, if a single item copy fails, no item at all is copied.</p>
 <p>When specifying the item(s) to be copied with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
 <p>To copy the <code>/content/page1</code> and <code>/content/page2</code> nodes to <code>/content/target</code>, for example, use:</p>
-<pre><code>$ curl -F&quot;:operation=copy&quot; -F&quot;:applyTo=/content/page1&quot; -F&quot;:applyTo=/content/page2&quot; \    
-    -F&quot;:dest=/content/target/&quot; http://host/content/sample
+<pre><code>$ curl -F&quot;:operation=copy&quot; -F&quot;:applyTo=/content/page1&quot; -F&quot;:applyTo=/content/page2&quot; \
+    -F&quot;:dest=/content/target/&quot; https://host/content/sample
 </code></pre>
 <p>Please note the trailing slash character (<code>/</code>) in the value of the <code>:dest</code> parameter. This is required for multi-item copy operations using the <code>:applyTo</code> parameter. The copied items are created below the node indicated by the <code>:dest</code>.</p>
 <p>Using a trailing star in the :applyTo parameter (as mentioned before), you can copy all the children of the <code>/content</code> node, for example, as follows:</p>
-<pre><code>$ curl -F&quot;:operation=copy&quot; -F&quot;:applyTo=/content/*&quot; -F&quot;:dest=/content/target/&quot; \    
-    http://host/content/sample
+<pre><code>$ curl -F&quot;:operation=copy&quot; -F&quot;:applyTo=/content/*&quot; -F&quot;:dest=/content/target/&quot; \
+    https://host/content/sample
 </code></pre>
 <p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored. Any item already existing at the copy destination whose name is the same as the name of an item to be copied is silently overwritten with the source item.</p>
 <h6><a href="#response-status" id="response-status">Response Status</a></h6>
@@ -621,13 +621,13 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 <p>By using the <code>:applyTo</code> request parameter it is possible to move multiple items in one single request. Moving items in this way leaves you with less control, though. In addition, if a single item move fails, no item at all is moved.</p>
 <p>When specifying the item(s) to be moved with the <code>:applyTo</code> parameter, the request resource is left untouched (unless of course if listed in the <code>:applyTo</code> parameter) and only used to resolve any relative paths in the <code>:applyTo</code> parameter.</p>
 <p>To for example move the <code>/content/page1</code> and <code>/content/page2</code> nodes to <code>/content/target</code>, you might use the following command line:</p>
-<pre><code>$ curl -F&quot;:operation=move&quot; -F&quot;:applyTo=/content/page1&quot; -F&quot;:applyTo=/content/page2&quot; \    
-     -F&quot;:dest=/content/target/&quot; http://host/content/sample
+<pre><code>$ curl -F&quot;:operation=move&quot; -F&quot;:applyTo=/content/page1&quot; -F&quot;:applyTo=/content/page2&quot; \
+     -F&quot;:dest=/content/target/&quot; https://host/content/sample
 </code></pre>
 <p>Please note the trailing slash character (<code>/</code>) in the value of the <code>:dest</code> parameter. This is required for multi-item move operations using the <code>:applyTo</code> parameter. The moved items are created below the node indicated by the <code>:dest</code>.</p>
 <p>Using a trailing star in the :applyTo parameter (as mentioned before), you can move all the children of the <code>/content</code> node, for example, as follows:</p>
-<pre><code>$ curl -F&quot;:operation=move&quot; -F&quot;:applyTo=/content/*&quot; -F&quot;:dest=/content/target/&quot; \    
-    http://host/content/sample
+<pre><code>$ curl -F&quot;:operation=move&quot; -F&quot;:applyTo=/content/*&quot; -F&quot;:dest=/content/target/&quot; \
+    https://host/content/sample
 </code></pre>
 <p>If any resource listed in the <code>:applyTo</code> parameter does not exist, it is silently ignored. Any item already existing at the move destination whose name is the same as the name of an item to be moved is silently overwritten with the source item.</p>
 <h6><a href="#response-status" id="response-status">Response Status</a></h6>
@@ -663,12 +663,12 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 <p>For example the following command line imports the <code>/content/sample</code> page:</p>
 <pre><code>$ curl -F&quot;:operation=import&quot; -F&quot;:contentType=json&quot; -F&quot;:name=sample&quot; \
    -F':content={ &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;, &quot;p1&quot; : &quot;p1Value&quot;, &quot;child1&quot; : { &quot;childProp1&quot; : true } }' \
-   http://host/content
+   https://host/content
 </code></pre>
 <p>For example the following command line imports the <code>/content/sample</code> page without the optional name parameter:</p>
 <pre><code>$ curl -F&quot;:operation=import&quot; -F&quot;:contentType=json&quot;
-   -F':content={ &quot;sample&quot; : {&quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } } }' \    
-   http://host/content
+   -F':content={ &quot;sample&quot; : {&quot;propOne&quot; : &quot;propOneValue&quot;, &quot;childOne&quot; : { &quot;childPropOne&quot; : true } } }' \
+   https://host/content
 </code></pre>
 <p>For example the following form imports the <code>/content/sample</code> page:</p>
 <pre><code>&lt;form method=&quot;POST&quot; action=&quot;/content&quot; enctype=&quot;multipart/form-data&quot;&gt;
@@ -739,7 +739,7 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 </tbody>
 </table>
 <p>Note that simple content reordering can be requested without applying any other operations. This is easiest done by placing a request to the resource to be reordered and just setting the <code>:order</code> parameter. For example to order the <code>/content/sample/page5</code> resource above its sibling resource <code>/content/sample/other</code> a simple request</p>
-<pre><code>$ curl -F&quot;:order=before other&quot; http://host/content/sample/page5
+<pre><code>$ curl -F&quot;:order=before other&quot; https://host/content/sample/page5
 </code></pre>
 <p>does the trick. To be redirected after the reodering, the <code>:redirect</code> parameter may optionally also be specified.</p>
 <h3><a href="#redirect" id="redirect"><code>:redirect</code></a></h3>
@@ -759,7 +759,7 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
 <li>Accept: application/json,<strong>/</strong>;q=0.9</li>
 </ol>
 <p>In example #1, SlingPostServlet will return HTML, since the client has specified a preference for text/html. In example #2, SlingPostServlet will return JSON.</p>
-<p>See <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1">RFC 2616, section 14.1</a> for information on the HTTP Accept header.</p>
+<p>See <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1">RFC 2616, section 14.1</a> for information on the HTTP Accept header.</p>
 <h2><a href="#versionable-node-support" id="versionable-node-support">Versionable Node Support</a></h2>
 <p>The modify (default), delete, move, and copy operations of the SlingPostServlet support JCR Versionable Nodes. By default, when a node needs to be checked out for a modification to occur, it will be checked out and any nodes the operation checks out will be checked in upon completion of the request. Newly created versionable nodes (or non-versionable nodes made versionable by adding the mix:versionable mixin) will be left in their default, checked out state.</p>
 <p>This default behavior can be modified either globally (i.e. for all requests) or on a per-request basis. The global behavior is changed through OSGi ConfigAdmin using these three properties of the PID <code>org.apache.sling.servlets.post.impl.SlingPostServlet</code>:</p>
@@ -797,7 +797,7 @@ See <a href="https://issues.apache.org/jira/browse/SLING-8186">SLING-8186</a> an
                             content/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">bfoster-discovery</span> on <span class="comment">2023-07-26</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

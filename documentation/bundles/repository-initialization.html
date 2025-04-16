@@ -249,7 +249,7 @@ delete service user Leonardo,Winston_32
 # And some punctuation: .,;-_[]+&quot;*ç%&amp;/()=?^`&quot;
    # Also with leading whitespace.
 
-# blank lines work, of course   
+# blank lines work, of course
 create service user comments_test_passed
 
 # test-4.txt
@@ -268,7 +268,7 @@ create service user comments_test_passed
 
 # Set ACL example from SLING-5355
 # Without the &quot;with glob&quot; option, we're not planning to support
-# that at this time. 
+# that at this time.
 set ACL on /libs,/apps, /, /content/example.com/some-other_path
     remove * for user1,user2
     allow jcr:read for user1,user2
@@ -395,7 +395,7 @@ set ACL for user1,u2
     allow jcr:read on /content
 
     deny jcr:write on /apps
-    
+
     # Optional nodetypes clause
     deny jcr:lockManagement on /apps, /content nodetypes sling:Folder, nt:unstructured
     # nodetypes clause with restriction clause
@@ -442,7 +442,7 @@ end
 # Set principal-based access control (see SLING-8602 and SLING-10281), requires
 # o.a.s.repoinit.parser 1.9.0 and
 # o.a.s.jcr.repoinit 1.1.44
-# precondition for o.a.s.jcr.repoinit: 
+# precondition for o.a.s.jcr.repoinit:
 # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
 # Also, this only works for users selected by the Jackrabbit/Oak FilterProvider, see
 # https://jackrabbit.apache.org/oak/docs/security/authorization/principalbased.html#configuration
@@ -488,7 +488,7 @@ end
 
 # repository level
 ensure principal ACL for principal1,principal2
-    allow jcr:namespaceManagement on :repository 
+    allow jcr:namespaceManagement on :repository
 end
 
 ensure principal ACL for principal1
@@ -603,21 +603,21 @@ register privilege priv with declared_aggregate_priv1,namespaced:_priv4
 
 register nodetypes
 &lt;&lt;===
-    &lt;slingevent='http://sling.apache.org/jcr/event/1.0'&gt;
-    &lt;nt='http://www.jcp.org/jcr/nt/1.0'&gt;
-    &lt;mix='http://www.jcp.org/jcr/mix/1.0'&gt;
-    
+    &lt;slingevent='https://sling.apache.org/jcr/event/1.0'&gt;
+    &lt;nt='https://www.jcp.org/jcr/nt/1.0'&gt;
+    &lt;mix='https://www.jcp.org/jcr/mix/1.0'&gt;
+
     [slingevent:Event] &gt; nt:unstructured, nt:hierarchyNode
       - slingevent:topic (string)
       - slingevent:application (string)
       - slingevent:created (date)
       - slingevent:properties (binary)
-      
+
     [slingevent:Job] &gt; slingevent:Event, mix:lockable
       - slingevent:processor (string)
       - slingevent:id (string)
       - slingevent:finished (date)
-     
+
     [slingevent:TimedEvent] &gt; slingevent:Event, mix:lockable
       - slingevent:processor (string)
       - slingevent:id (string)
@@ -824,7 +824,7 @@ end
 add user1,&quot;Test Group 2000&quot;,user2 to group &quot;Parent Group&quot;
 remove user1,&quot;Test Group 2000&quot;,user2 from group &quot;Parent Group&quot;
 
-# Test other escaped characters 
+# Test other escaped characters
 create group &quot;Tab	Group&quot;
 create group &quot;Untrimmed Group &quot;
 create group &quot; Really Untrimmed Group &quot;
@@ -886,7 +886,7 @@ end
 # Set principal-based access control (see SLING-8602), requires
 # o.a.s.repoinit.parser 1.2.8 and
 # o.a.s.jcr.repoinit 1.1.14
-# precondition for o.a.s.jcr.repoinit: 
+# precondition for o.a.s.jcr.repoinit:
 # repository needs to support 'o.a.j.api.security.authorization.PrincipalAccessControlList'
 # Also, this only works for users selected by the Jackrabbit/Oak FilterProvider, see
 # https://jackrabbit.apache.org/oak/docs/security/authorization/principalbased.html#configuration
@@ -931,7 +931,7 @@ end
 
 # repository level
 set principal ACL for principal1,principal2
-    allow jcr:namespaceManagement on :repository 
+    allow jcr:namespaceManagement on :repository
 end
 
 set principal ACL for principal1
@@ -949,7 +949,7 @@ end
                             content/documentation/bundles/repository-initialization.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2024-02-06</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

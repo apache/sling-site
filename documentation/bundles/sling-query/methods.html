@@ -259,8 +259,8 @@ $(resource).children().last().prevUntil(&quot;[jcr:title=Page]&quot;); // return
 <h3><a href="#searchstrategystrategy" id="searchstrategystrategy"><code>.searchStrategy(strategy)</code></a></h3>
 <p>Select new search strategy, which will be used in following <a href="#findselector"><code>find()</code></a> and <a href="#hasselector"><code>has()</code></a> function invocations. There 3 options:</p>
 <ul>
-<li><code>SearchStrategy.DFS</code> - <a href="http://en.wikipedia.org/wiki/Depth-first_search">depth-first search</a></li>
-<li><code>SearchStrategy.BFS</code> - <a href="http://en.wikipedia.org/wiki/Breadth-first_search">breadth-first search</a></li>
+<li><code>SearchStrategy.DFS</code> - <a href="https://en.wikipedia.org/wiki/Depth-first_search">depth-first search</a></li>
+<li><code>SearchStrategy.BFS</code> - <a href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth-first search</a></li>
 <li><code>SearchStrategy.QUERY</code> - use JCR SQL2 query (default since 1.4.0)</li>
 </ul>
 <p>DFS and BFS iterate through descendants using appropriate algorithm. QUERY strategy tries to transform SlingQuery selector into a SQL2 query and invokes it. Because there are SlingQuery operations that can't be translated (eg. <code>:has()</code> modifier), the SQL2 query result is treated as a initial collection that needs further processing.</p>
@@ -284,7 +284,7 @@ $(resource).children().slice(1, 2); // return child1 and child2
                             content/documentation/bundles/sling-query/methods.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2017-09-29</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

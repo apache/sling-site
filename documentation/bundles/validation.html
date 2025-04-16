@@ -174,7 +174,7 @@
   	if (!result.isValid()) {
     	// give out validation messages from result.getFailureMessages()
   	}
-    
+
 } catch (IllegalStateException e) {
     // give out error message that an invalid validation model for at least one sub resource was found
 } catch (IllegalArgumentException e) {
@@ -235,7 +235,7 @@ public void validate() {
     ValidationModel validationModel = validation.getValidationModel(resource);
     if (validationModel == null) {
         LOG.warn(&quot;No validation defined for resource '{}' with type '{}'&quot;, resource.getPath(), resource.getResourceType());
-   
+
     } else {
         ValidationResult result = validation.validate(resource, validationModel);
         if (!result.isValid()) {
@@ -253,7 +253,7 @@ public void validate() {
 <tr><th>Validator ID </th><th> Description </th><th> Parameters </th><th> Since</th></tr>
 </thead>
 <tbody>
-<tr><td><a href="https://github.com/apache/sling-org-apache-sling-validation-core/blob/master/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> </td><td> Validates that a property value matches a given regular expression </td><td> <code>regex</code>, mandatory parameter giving a regular expression according to the pattern described in <a href="http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">java.util.regex.Pattern</a>. Only if the property value matches this expression it is considered valid. </td><td> 1.0.0</td></tr>
+<tr><td><a href="https://github.com/apache/sling-org-apache-sling-validation-core/blob/master/src/main/java/org/apache/sling/validation/impl/validators/RegexValidator.java"><code>org.apache.sling.validation.core.RegexValidator</code></a> </td><td> Validates that a property value matches a given regular expression </td><td> <code>regex</code>, mandatory parameter giving a regular expression according to the pattern described in <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">java.util.regex.Pattern</a>. Only if the property value matches this expression it is considered valid. </td><td> 1.0.0</td></tr>
 </tbody>
 </table>
 <h1><a href="#writing-validators" id="writing-validators">Writing Validators</a></h1>
@@ -262,7 +262,7 @@ public void validate() {
 <p>A validator may also expose a service property named <code>validation.severity</code> with an Integer value. This defines the default severity of the Validator (which may be overwritten in the validation model).</p>
 <h1><a href="#references" id="references">References</a></h1>
 <ol>
-<li><a href="http://www.slideshare.net/raducotescu/apache-sling-generic-validation-framework">Apache Sling Generic Validation Framework, adaptTo 2014</a></li>
+<li><a href="https://www.slideshare.net/raducotescu/apache-sling-generic-validation-framework">Apache Sling Generic Validation Framework, adaptTo 2014</a></li>
 </ol>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Sling Validation )</div>                            
                         </div>
@@ -275,7 +275,7 @@ public void validate() {
                             content/documentation/bundles/validation.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2017-11-22</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

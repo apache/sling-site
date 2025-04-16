@@ -166,7 +166,7 @@
 </li>
 </ul>
 <h3><a href="#jcr-repository-based-resourcebundleprovider" id="jcr-repository-based-resourcebundleprovider">JCR Repository based <code>ResourceBundleProvider</code></a></h3>
-<p>The sling.i18n Bundle provides the implementation of the <code>ResourceBundleProvider</code> interface, which may also be used outside of Sling requests for service tasks. This implementation gets the messages from a JCR Repository stored below nodes of the mixin node type <code>mix:language</code>. These language nodes have a <code>jcr:language</code> property naming the language of the resources. In the context of the JCR based <code>ResourceBundleProvider</code> this is of course expected to be the string value of respective <code>Locale</code>. The format may either be the format as described in <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString%28%29">Locale.toString</a> or as described in <a href="https://tools.ietf.org/html/bcp47">BCP 47</a>, while for the latter you may only provide ISO 3166-1 country codes (for the region) and ISO 639-1 alpha 2 language codes (for the language). Both formats are also accepted in lower-case.</p>
+<p>The sling.i18n Bundle provides the implementation of the <code>ResourceBundleProvider</code> interface, which may also be used outside of Sling requests for service tasks. This implementation gets the messages from a JCR Repository stored below nodes of the mixin node type <code>mix:language</code>. These language nodes have a <code>jcr:language</code> property naming the language of the resources. In the context of the JCR based <code>ResourceBundleProvider</code> this is of course expected to be the string value of respective <code>Locale</code>. The format may either be the format as described in <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString%28%29">Locale.toString</a> or as described in <a href="https://tools.ietf.org/html/bcp47">BCP 47</a>, while for the latter you may only provide ISO 3166-1 country codes (for the region) and ISO 639-1 alpha 2 language codes (for the language). Both formats are also accepted in lower-case.</p>
 <p>The exact location of these nodes is not relevant as the <code>ResourceBundleProvider</code> finds them by applying a JCR search.</p>
 <p>Two different types of storage formats are supported for the individual dictionaries</p>
 <h4><a href="#slingmessageentry-jcrprimarytype-or-slingmessage-jcrmixintypes-based" id="slingmessageentry-jcrprimarytype-or-slingmessage-jcrmixintypes-based"><code>sling:MessageEntry</code> jcr:primaryType or <code>sling:Message</code> jcr:mixinTypes based</a></h4>
@@ -236,7 +236,7 @@
   - sling:key (string)
   - sling:message (undefined)
 
-[sling:MessageEntry] &gt; nt:hierarchyNode, sling:Message  
+[sling:MessageEntry] &gt; nt:hierarchyNode, sling:Message
 </code></pre>
 <p>The <code>sling:Message</code> and <code>sling:MessageEntry</code> are helper node types. The latter must be used to create the nodes for the <code>sling:MessageEntry</code> based format.</p>
 <h3><a href="#resourcebundle-with-base-names" id="resourcebundle-with-base-names"><code>ResourceBundle</code> with base names</a></h3>
@@ -296,7 +296,7 @@ Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/li
                             content/documentation/bundles/internationalization-support-i18n.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Roy Teeuwen</span> on <span class="comment">2025-01-24</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

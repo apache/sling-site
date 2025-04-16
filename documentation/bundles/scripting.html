@@ -149,7 +149,7 @@
 </thead>
 <tbody>
 <tr><td> <a href="https://freemarker.apache.org">FreeMarker</a> </td><td> <code>FreeMarker</code> </td><td> <code>freemarker.template.Configuration#getVersion().toString()</code> </td><td> <code>FreeMarker</code><br><code>freemarker</code><br>(configurable) </td><td> <code>ftl</code><br>(configurable) </td><td> <code>text/x-freemarker</code><br>(configurable) </td><td> <a href="https://github.com/apache/sling-org-apache-sling-scripting-freemarker">sling-org-apache-sling-scripting-freemarker</a> </td><td> </td></tr>
-<tr><td> <a href="http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html#_gstringtemplateengine">Groovy (GString)</a> </td><td> <code>Groovy GString</code> </td><td> <code>org.codehaus.groovy.util.ReleaseInfo#getVersion()</code> </td><td> <code>GString</code><br><code>gstring</code><br>(configurable) </td><td> <code>gst</code><br>(configurable) </td><td> (configurable) </td><td> <a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy">sling-org-apache-sling-scripting-groovy</a> </td><td> </td></tr>
+<tr><td> <a href="https://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html#_gstringtemplateengine">Groovy (GString)</a> </td><td> <code>Groovy GString</code> </td><td> <code>org.codehaus.groovy.util.ReleaseInfo#getVersion()</code> </td><td> <code>GString</code><br><code>gstring</code><br>(configurable) </td><td> <code>gst</code><br>(configurable) </td><td> (configurable) </td><td> <a href="https://github.com/apache/sling-org-apache-sling-scripting-groovy">sling-org-apache-sling-scripting-groovy</a> </td><td> </td></tr>
 <tr><td> <a href="https://github.com/adobe/htl-spec">HTL</a> </td><td> <code>The HTL Templating Language</code> </td><td> <code>1.4</code> </td><td> <code>htl</code><br><code>HTL</code><br><code>sightly</code> </td><td> <code>html</code> </td><td> </td><td> <a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly">sling-org-apache-sling-scripting-sightly</a> </td><td> <a href="/documentation/bundles/scripting/scripting-htl.html">Scripting HTL</a> </td></tr>
 <tr><td> Java </td><td> <code>Java Servlet Compiler</code> </td><td> <code>1.5</code></td><td> <code>java</code><br><code>Java</code> </td><td> <code>java</code> </td><td> </td><td> <a href="https://github.com/apache/sling-org-apache-sling-scripting-java">sling-org-apache-sling-scripting-java</a> </td><td> </td></tr>
 <tr><td> JavaScript </td><td> <code>ECMAScript</code> </td><td> <code>partial ECMAScript 2015 support</code> </td><td> <code>rhino</code><br><code>Rhino</code><br><code>javascript</code><br><code>JavaScript</code><br><code>ecmascript</code><br><code>ECMAScript</code> </td><td> <code>esp</code><br><code>ecma</code> </td><td> <code>text/ecmascript</code><br><code>text/javascript</code><br><code>application/ecmascript</code><br><code>application/javascript</code> </td><td> <a href="https://github.com/apache/sling-org-apache-sling-scripting-javascript">sling-org-apache-sling-scripting-javascript</a> </td><td> </td></tr>
@@ -198,25 +198,25 @@
 <p>From the perspective of the <a href="/documentation/the-sling-engine/servlets.html">Servlet resolver</a>, scripts and servlets are handled exactly the same. In fact, internally, Sling only deals with Servlets, whereas scripts are packed inside a Servlet wrapping and representing the script.</p>
 <h2><a href="#resource-scripts" id="resource-scripts">Resource Scripts</a></h2>
 <p>Scripts are looked up in a series of resource resolver locations defined by the <code>ResourceResolver.getSearchPath()</code> and the resource type (and resource super types) of the requested resource:</p>
-<pre><code>{scriptPathPrefix}/{resourceTypePath} 
+<pre><code>{scriptPathPrefix}/{resourceTypePath}
 </code></pre>
 <p>The pseudo code for iterating the locations would be something like:</p>
-<pre><code>var type = resource.getResourceType(); 
-while (type != null) { 
-    for (String root: resourceResolver.getSearchPath()) { 
-        String path = root + type.toPath(); 
-        findScriptsIn(path); 
-    } 
+<pre><code>var type = resource.getResourceType();
+while (type != null) {
+    for (String root: resourceResolver.getSearchPath()) {
+        String path = root + type.toPath();
+        findScriptsIn(path);
+    }
 
-    if (type == defaultServlet) { 
-        type = null; 
-    } else { 
-        type = getResourceSuperType(type); 
-        if (type == null) { 
-            type = defaultServlet; 
-        } 
-    } 
-} 
+    if (type == defaultServlet) {
+        type = null;
+    } else {
+        type = getResourceSuperType(type);
+        if (type == null) {
+            type = defaultServlet;
+        }
+    }
+}
 </code></pre>
 <p>All <a href="/documentation/the-sling-engine/resources.html#providing-resources">resource providers</a> may contribute scripts (this includes particularly the <code>JcrResourceProvider</code> but also <code>BundleResourceProvider</code>)</p>
 <h3><a href="#resource-script-naming-conventions" id="resource-script-naming-conventions">Resource script naming conventions</a></h3>
@@ -243,7 +243,7 @@ while (type != null) {
 <li>they have a <em>developer audience</em>.</li>
 </ol>
 <h3><a href="#technical-background" id="technical-background">Technical Background</a></h3>
-<p>Being built around a <a href="https://osgi.org/javadoc/r6/core/org/osgi/util/tracker/BundleTrackerCustomizer.html"><code>BundleTrackerCustomizer</code></a>, the <code>org.apache.sling.servlets.resolver.internal.bundle.BundledScriptTracker</code> monitors the instance's bundles wired to the <code>org.apache.sling.servlets.resolver</code> bundle and scans the ones providing a <code>sling.servlet</code> <a href="http://docs.osgi.org/specification/osgi.core/7.0.0/framework.module.html#d0e2821" title="Bundle Capabilities">capability</a>. The wiring is created by placing a <code>Require-Capability</code> header in the bundles that provide the <code>sling.servlet</code> capability:</p>
+<p>Being built around a <a href="https://osgi.org/javadoc/r6/core/org/osgi/util/tracker/BundleTrackerCustomizer.html"><code>BundleTrackerCustomizer</code></a>, the <code>org.apache.sling.servlets.resolver.internal.bundle.BundledScriptTracker</code> monitors the instance's bundles wired to the <code>org.apache.sling.servlets.resolver</code> bundle and scans the ones providing a <code>sling.servlet</code> <a href="https://docs.osgi.org/specification/osgi.core/7.0.0/framework.module.html#d0e2821" title="Bundle Capabilities">capability</a>. The wiring is created by placing a <code>Require-Capability</code> header in the bundles that provide the <code>sling.servlet</code> capability:</p>
 <p><code>osgi.extender;filter:=&quot;(&amp;(osgi.extender=sling.scripting)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;</code></p>
 <p>A <code>sling.servlet</code> capability has almost the same attributes as the properties required to <a href="/documentation/the-sling-engine/servlets.html#servlet-registration">register a servlet on the Sling platform</a>:</p>
 <ol>
@@ -301,7 +301,7 @@ while (type != null) {
                             content/documentation/bundles/scripting.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2021-08-23</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

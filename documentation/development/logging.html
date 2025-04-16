@@ -144,6 +144,7 @@
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
 <div class="row" data-pagefind-body="true"><div><section><div class="note">
 Please make sure to always use the latest release of Apache Sling Commons Log. Check [Sling Releases](https://downloads.apache.org/sling/) for the latest available version.
+Additionally, the latest version of (SLF4J)](https://www.slf4j.org), [logback](https://logback.qos.ch/) and any bridge for other logging frameworks should be installed.
 </div>
 <p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
@@ -151,16 +152,15 @@ Please make sure to always use the latest release of Apache Sling Commons Log. C
 <p>Logging in Sling is supported by three bundles:</p>
 <ul>
 <li><code>org.apache.felix.log</code> : This is an implementation of the OSGi Log Service specification and providers OSGi services like the <code>LogService</code> and <code>LogReader</code> services</li>
-<li><code>org.apache.sling.commons.log</code> : This bundle contains <a href="https://logback.qos.ch/">logback</a> and allows to configure logback logging based on OSGi configurations or logback XML. It also supports registering of some logback services via the OSGi service registry.</li>
-<li><code>org.apache.sling.commons.logservice</code> : This bundle binds (SLF4J)](http://www.slf4j.org) to the OSGi log service. and started by the Sling Launcher. This bundle along with other bundles manages the Sling Logging and provides the following features:</li>
+<li><code>org.apache.sling.commons.log</code> : This bundle requires <a href="https://logback.qos.ch/">logback</a> and allows to configure logback logging based on OSGi configurations or logback XML. It also supports registering of some logback services via the OSGi service registry.</li>
+<li><code>org.apache.sling.commons.logservice</code> : This bundle binds (SLF4J)](https://www.slf4j.org) to the OSGi log service. and started by the Sling Launcher. This bundle along with other bundles manages the Sling Logging and provides the following features:</li>
 </ul>
-<p>Additionally, the latest version of (SLF4J)](http://www.slf4j.org) should be installed as bundles as well as any bridge for other logging frameworks.</p>
-<h2><a href="#important-changes" id="important-changes">Important Changes</a></h2>
-<p>This document describes the latest version. For older releases have a look at <a href="http://sling.apache.org/documentation/legacy/logging.html">Logging 3.x</a>.</p>
-<p>The latest release of commons log includes the latest version of logback.</p>
-<h3><a href="#v500-release" id="v500-release">v5.0.0 release</a></h3>
-<p>With Sling Commons Log 5.0.0. release the webconsole support has been moved to a different bundle named Sling Commons Log WebConsole (org.apache.sling.commons.log.webconsole)</p>
-<p>Also with this release Logback 1.1.7 version is embedded and thus it requires at least slf4j-api:1.7.15. See <a href="https://issues.apache.org/jira/browse/SLING-6144">SLING-6144</a> for details</p>
+<h2><a href="#installation" id="installation">Installation</a></h2>
+<p>There are two options to install Apache Sling Commons Log. The first option allows you to manage all dependencies individually while it requires a more complex deployment.</p>
+<h3><a href="#separate-logback-slf4j-installation" id="separate-logback-slf4j-installation">Separate Logback, SLF4j Installation</a></h3>
+<p>If you install the default Commons Log bundle, in addition install the latest version of Logback Core, Logback Classic and SLF4J 2.x. In addition make sure to install <a href="https://aries.apache.org/documentation/modules/spi-fly.html">Apache Aries Spifly</a>.</p>
+<h3><a href="#embedded-installation" id="embedded-installation">Embedded Installation</a></h3>
+<p>For a simpler installation, the Commons Log <code>all</code> bundle embeds Logback Core, Logback Classic and SLF4J 2.x and does not not Spifly.</p>
 <h2><a href="#initial-configuration" id="initial-configuration">Initial Configuration</a></h2>
 <p>The <code>org.apache.sling.commons.log</code> bundle gets its initial configuration from the following <code>BundleContext</code> properties:</p>
 <table>
@@ -175,7 +175,7 @@ Please make sure to always use the latest release of Apache Sling Commons Log. C
 <tr><td> <code>org.apache.sling.commons.log.pattern</code> </td><td> {0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* {2} {3} {5} </td><td> The <code>MessageFormat</code> pattern to use for formatting log messages with the root logger. </td></tr>
 <tr><td> <code>org.apache.sling.commons.log.julenabled</code> </td><td> n/a </td><td> Enables the <code>java.util.logging</code> support. </td></tr>
 <tr><td> <code>org.apache.sling.commons.log.configurationFile</code> </td><td> n/a </td><td> Path for the Logback config file which would be used to configure logging. If the path is not absolute then it would be resolved against Sling Home </td></tr>
-<tr><td> <code>org.apache.sling.commons.log.packagingDataEnabled</code> </td><td> true </td><td> Boolean property to control packaging data support of Logback. See <a href="http://www.slf4j.org/manual.html#mdc">Packaging Data</a> section of Logback for more details </td></tr>
+<tr><td> <code>org.apache.sling.commons.log.packagingDataEnabled</code> </td><td> true </td><td> Boolean property to control packaging data support of Logback. See <a href="https://www.slf4j.org/manual.html#mdc">Packaging Data</a> section of Logback for more details </td></tr>
 <tr><td> <code>org.apache.sling.commons.log.numOfLines</code> </td><td> 1000 </td><td> Number of lines from each log files to include while generating the dump in 'txt' mode. If set to -1 then whole file would be included </td></tr>
 <tr><td> <code>org.apache.sling.commons.log.maxOldFileCountInDump</code> </td><td> 3 </td><td> Maximum number of old rolled over files for each active file to be included while generating the dump as part of Status zip support </td></tr>
 <tr><td> <code>sling.log.root</code> </td><td> Sling Home </td><td> The directory, which is used to resolve relative path names against. If not specified it would map to sling.home. Since <a href="https://issues.apache.org/jira/browse/SLING-4225">4.0.2</a></td></tr>
@@ -218,7 +218,7 @@ Please make sure to always use the latest release of Apache Sling Commons Log. C
 <p>Log files can grow rather quickly and fill up available disk space. To cope with this growth log files may be rotated in two ways: At specific times or when the log file reaches a configurable size. The first method is called <em>Scheduled Rotation</em> and is used by specifying a <code>SimpleDateFormat</code> pattern as the log file &quot;size&quot;. The second method is called <em>Size Rotation</em> and is used by setting a maximum file size as the log file size.</p>
 <p>As of version 2.0.6 of the Sling Commons Log bundle, the default value for log file scheduling is <code>'.'yyyy-MM-dd</code> causing daily log rotation. In previous version, log rotation defaults to a 10MB file size limit.</p>
 <h5><a href="#scheduled-rotation" id="scheduled-rotation">Scheduled Rotation</a></h5>
-<p>The rolling schedule is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a <code>java.text.SimpleDateFormat</code> pattern. Literal text (such as a leading dot) to be included must be <em>enclosed</em> within a pair of single quotes. A formatted version of the date pattern is used as the suffix for the rolled file name. Internally the Log bundle configures a <code>TimeBasedRollingPolicy</code> for the appender. Refer to <a href="http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy">TimeBasedRollingPolicy</a> for more details around the pattern format</p>
+<p>The rolling schedule is specified by setting the <code>org.apache.sling.commons.log.file.size</code> property to a <code>java.text.SimpleDateFormat</code> pattern. Literal text (such as a leading dot) to be included must be <em>enclosed</em> within a pair of single quotes. A formatted version of the date pattern is used as the suffix for the rolled file name. Internally the Log bundle configures a <code>TimeBasedRollingPolicy</code> for the appender. Refer to <a href="https://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy">TimeBasedRollingPolicy</a> for more details around the pattern format</p>
 <p>For example, if the log file is configured as <code>/foo/bar.log</code> and the pattern set to <code>'.'yyyy-MM-dd</code>, on 2001-02-16 at midnight, the logging file <code>/foo/bar.log</code> will be renamed to <code>/foo/bar.log.2001-02-16</code> and logging for 2001-02-17 will continue in a new <code>/foo/bar.log</code> file until it rolls over the next day.</p>
 <p>It is possible to specify monthly, weekly, half-daily, daily, hourly, or minutely rollover schedules.</p>
 <table>
@@ -279,7 +279,7 @@ Please make sure to always use the latest release of Apache Sling Commons Log. C
 <p>Note, that for all loggers configured via OSGi configurations (see above) certain characters are escaped when outputting the log message and the exception message. For example newline and carriage return are replaced with an underscore.</p>
 <p>The following sections provide more details.</p>
 <h3><a href="#turbofilters-as-osgi-services" id="turbofilters-as-osgi-services">TurboFilters as OSGi Services</a></h3>
-<p><a href="http://logback.qos.ch/manual/filters.html#TurboFilter">Logback TurboFilters</a> operate globally and are invoked for every Logback call. To register an OSGi <code>TurboFilter</code>, just to register an service that implements the <code>ch.qos.logback.classic.turbo.TurboFilter</code> interface.</p>
+<p><a href="https://logback.qos.ch/manual/filters.html#TurboFilter">Logback TurboFilters</a> operate globally and are invoked for every Logback call. To register an OSGi <code>TurboFilter</code>, just to register an service that implements the <code>ch.qos.logback.classic.turbo.TurboFilter</code> interface.</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->import import ch.qos.logback.classic.turbo.MatchingFilter;
 
 SimpleTurboFilter stf = new SimpleTurboFilter();
@@ -298,7 +298,7 @@ private static class SimpleTurboFilter extends MatchingFilter {
 </code></pre>
 <p>As these filters are invoked for every call they must execute quickly.</p>
 <h3><a href="#filters-as-osgi-services" id="filters-as-osgi-services">Filters as OSGi services</a></h3>
-<p><a href="http://logback.qos.ch/manual/filters.html">Logback Filters</a> are attached to appenders and are used to determine if any LoggingEvent needs to be passed to the appender. When registering a filter the bundle needs to configure a service property <code>appenders</code> which refers to list of appender names to which the Filter must be attached</p>
+<p><a href="https://logback.qos.ch/manual/filters.html">Logback Filters</a> are attached to appenders and are used to determine if any LoggingEvent needs to be passed to the appender. When registering a filter the bundle needs to configure a service property <code>appenders</code> which refers to list of appender names to which the Filter must be attached</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->import ch.qos.logback.core.filter.Filter;
 
 SimpleFilter stf = new SimpleFilter();
@@ -319,7 +319,7 @@ private static class SimpleFilter extends Filter&lt;ILoggingEvent&gt; {
 </code></pre>
 <p>If the <code>appenders</code> value is set to <code>*</code> then the filter would be registered with all the appenders (<code>Since 4.0.4</code>)</p>
 <h3><a href="#appenders-as-osgi-services" id="appenders-as-osgi-services">Appenders as OSGi services</a></h3>
-<p><a href="http://logback.qos.ch/manual/appenders.html">Logback Appenders</a> handle the logging events produced by Logback. To register an OSGi <code>Appender</code>, just register a service that implements the <code>ch.qos.logback.core.Appender</code> interface.  Such a service must have a <code>loggers</code> service property, which refers to list of logger names to which the Appender must be attached.</p>
+<p><a href="https://logback.qos.ch/manual/appenders.html">Logback Appenders</a> handle the logging events produced by Logback. To register an OSGi <code>Appender</code>, just register a service that implements the <code>ch.qos.logback.core.Appender</code> interface.  Such a service must have a <code>loggers</code> service property, which refers to list of logger names to which the Appender must be attached.</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->Dictionary&lt;String,Object&gt; props = new Hashtable&lt;String, Object&gt;();
 
 String[] loggers = {
@@ -331,7 +331,7 @@ props.put(&quot;loggers&quot;,loggers);
 sr = bundleContext.registerService(Appender.class.getName(),this,props);
 </code></pre>
 <h3><a href="#logback-config-fragment-support" id="logback-config-fragment-support">Logback Config Fragment Support</a></h3>
-<p>Logback supports including parts of a configuration file from another file (See <a href="http://logback.qos.ch/manual/configuration.html#fileInclusion">File Inclusion</a>). This module extends that support by allowing other bundles to provide config fragments. There are two ways to achieve that, described below.</p>
+<p>Logback supports including parts of a configuration file from another file (See <a href="https://logback.qos.ch/manual/configuration.html#fileInclusion">File Inclusion</a>). This module extends that support by allowing other bundles to provide config fragments. There are two ways to achieve that, described below.</p>
 <h4><a href="#logback-config-fragments-as-string-objects" id="logback-config-fragments-as-string-objects">Logback config fragments as String objects</a></h4>
 <p>If you have the config as string then you can register that String instance as a service with property <code>logbackConfig</code> set to true. The Sling Logback Extension monitors such objects and passes them to logback.</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->Properties props = new Properties();
@@ -382,11 +382,11 @@ public class ConfigProviderExample implements ConfigProvider {
 </code></pre>
 <p>The <code>osgi</code> element enables the OSGi integration support</p>
 <h3><a href="#java-util-logging-jul-integration" id="java-util-logging-jul-integration">Java Util Logging (JUL) Integration</a></h3>
-<p>The bundle also support <a href="http://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html">SLF4JBridgeHandler</a>. The two steps listed below enable the JUL integration. This allows for routing logging messages from JUL to the Logbback appenders.</p>
+<p>The bundle also support <a href="https://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html">SLF4JBridgeHandler</a>. The two steps listed below enable the JUL integration. This allows for routing logging messages from JUL to the Logbback appenders.</p>
 <ol>
 <li>Set the <code>org.apache.sling.commons.log.julenabled</code> framework property to true.</li>
 </ol>
-<p>If <code>org.apache.sling.commons.log.julenabled</code> is found to be true then <a href="http://logback.qos.ch/manual/configuration.html#LevelChangePropagator">LevelChangePropagator</a> would be registered automatically with Logback</p>
+<p>If <code>org.apache.sling.commons.log.julenabled</code> is found to be true then <a href="https://logback.qos.ch/manual/configuration.html#LevelChangePropagator">LevelChangePropagator</a> would be registered automatically with Logback</p>
 <h3><a href="#configuring-osgi-appenders-in-the-logback-config" id="configuring-osgi-appenders-in-the-logback-config"><a name="config-override"></a>Configuring OSGi appenders in the Logback Config</a></h3>
 <p>So far Sling used to configure the appenders based on OSGi config. This provides a very limited set of configuration options. To make use of other Logback features you can override the OSGi config from within the Logback config file. OSGi config based appenders are named based on the file name.</p>
 <p>For example, for the following OSGi config</p>
@@ -406,8 +406,100 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 &lt;/appender&gt;
 </code></pre>
 <p>In this case the logging module creates an appender based on the Logback config instead of the OSGi config. This can be used to move the application from OSGi based configs to Logback based configs.</p>
-<h2><a href="#using-slf4j-api-17" id="using-slf4j-api-17">Using Slf4j API 1.7</a></h2>
-<p>With Slf4j API 1.7 onwards its possible to use logger methods with varargs i.e. log n arguments without constructing an object array e.g. <code>log.info(&quot;This is a test {} , {}, {}, {}&quot;,1,2,3,4)</code>. Without var args you need to construct an object array <code>log.info(&quot;This is a test {} , {}, {}, {}&quot;,new Object[] {1,2,3,4})</code>. To make use of this API and still be able to use your bundle on Sling systems which package older version of the API jar, follow the below steps. (See <a href="https://issues.apache.org/jira/browse/SLING-3243">SLING-3243</a>) for more details.</p>
+<h2><a href="#log-tracer" id="log-tracer">Log Tracer</a></h2>
+<p>Log Tracer provides support for enabling the logs for specific category at specific level and only for specific request. It provides a very fine level of control via config provided as part of HTTP request around how the logging should be performed for given category.</p>
+<p>Refer to <a href="/documentation/bundles/log-tracers.html">Log Tracer Doc</a> for more details</p>
+<h2><a href="#slf4j-mdc" id="slf4j-mdc">Slf4j MDC</a></h2>
+<p>Sling MDC Inserting Filter exposes various request details as part of <a href="https://www.slf4j.org/manual.html#mdc">MDC</a>.</p>
+<p>Currently it exposes following variables:</p>
+<ol>
+<li><code>req.remoteHost</code> - Request remote host</li>
+<li><code>req.userAgent</code> - User Agent Header</li>
+<li><code>req.requestURI</code> - Request URI</li>
+<li><code>req.queryString</code> - Query String from request</li>
+<li><code>req.requestURL</code> -</li>
+<li><code>req.xForwardedFor</code> -</li>
+<li><code>sling.userId</code> - UserID associated with the request. Obtained from ResourceResolver</li>
+<li><code>jcr.sessionId</code> - Session ID of the JCR Session associated with current request.</li>
+</ol>
+<p>The filter also allow configuration to extract data from request cookie, header and parameters. Look for configuration with name 'Apache Sling Logging MDC Inserting Filter' for details on specifying header, cookie, param names.</p>
+<p><img src="/documentation/bundles/mdc-filter-config.png" alt="MDC Filter Config" /></p>
+<p><a name="mdc-pattern"></p>
+<h3><a href="#including-mdc-in-log-message" id="including-mdc-in-log-message">Including MDC in Log Message</a></h3>
+<p>To include the MDC value in log message you MUST use the <a href="https://logback.qos.ch/manual/layouts.html#conversionWord">Logback pattern</a> based on Logback and not the old MessageFormat based pattern.</p>
+<pre><code>%d{dd.MM.yyyy HH:mm:ss.SSS} *%p* [%X{req.remoteHost}] [%t] %c %msg%n
+</code></pre>
+<h3><a href="#installation" id="installation">Installation</a></h3>
+<p>Download the bundle from <a href="https://sling.apache.org/downloads.cgi">here</a> or use following Maven dependency</p>
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+    &lt;artifactId&gt;org.apache.sling.extensions.slf4j.mdc&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2><a href="#logback-groovy-fragment" id="logback-groovy-fragment">Logback Groovy Fragment</a></h2>
+<p>This fragment is required to make use of Groovy based event evaluation support provided by Logback. This enables programatic filtering of the log messages and is useful to get desired logs without flooding the system. For example Oak logs the JCR operations being performed via a particular session. if this lo is enabled it would flood the log with messages from all the active session. However if you need logging only from session created in a particular thread then that can be done in following way</p>
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;configuration scan=&quot;true&quot; scanPeriod=&quot;1 second&quot;&gt;
+  &lt;jmxConfigurator/&gt;
+  &lt;newRule pattern=&quot;*/configuration/osgi&quot; actionClass=&quot;org.apache.sling.commons.log.logback.OsgiAction&quot;/&gt;
+  &lt;newRule pattern=&quot;*/configuration/appender-ref-osgi&quot; actionClass=&quot;org.apache.sling.commons.log.logback.OsgiAppenderRefAction&quot;/&gt;
+  &lt;osgi/&gt;
+
+   &lt;appender name=&quot;OAK&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;
+    &lt;filter class=&quot;ch.qos.logback.core.filter.EvaluatorFilter&quot;&gt;
+      &lt;evaluator class=&quot;ch.qos.logback.classic.boolex.GEventEvaluator&quot;&gt;
+        &lt;expression&gt;&lt;![CDATA[
+            return e.getThreadName().contains(&quot;JobHandler&quot;);
+        ]]&gt;&lt;/expression&gt;
+      &lt;/evaluator&gt;
+      &lt;OnMismatch&gt;DENY&lt;/OnMismatch&gt;
+      &lt;OnMatch&gt;ACCEPT&lt;/OnMatch&gt;
+    &lt;/filter&gt;
+    &lt;file&gt;${sling.home}/logs/oak.log&lt;/file&gt;
+    &lt;encoder&gt;
+      &lt;pattern&gt;%d %-5level [%thread] %marker- %msg %n&lt;/pattern&gt;
+      &lt;immediateFlush&gt;true&lt;/immediateFlush&gt;
+    &lt;/encoder&gt;
+  &lt;/appender&gt;
+
+  &lt;logger name=&quot;org.apache.jackrabbit.oak.jcr.operations&quot; level=&quot;DEBUG&quot; additivity=&quot;false&quot;&gt;
+      &lt;appender-ref ref=&quot;OAK&quot;/&gt;
+  &lt;/logger&gt;
+&lt;/configuration&gt;
+</code></pre>
+<p>Logback exposes a variable <code>e</code> which is of type <a href="https://logback.qos.ch/apidocs/ch/qos/logback/classic/spi/ILoggingEvent.html">ILoggingEvent</a>. It provides access to current logging event. Above logback config would route all log messages from <code>org.apache.jackrabbit.oak.jcr.operations</code> category to <code>${sling.home}/logs/oak.log</code>. Further only those log messages would be logged where the <code>threadName</code> contains <code>JobHandler</code>. Depending on the requirement the expression can be customised.</p>
+<h3><a href="#installation" id="installation">Installation</a></h3>
+<p>Currently the bundle is not released and has to be build from <a href="https://github.com/apache/sling-org-apache-sling-extensions-logback-groovy-fragment">here</a></p>
+<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
+    &lt;artifactId&gt;org.apache.sling.extensions.logback-groovy-fragment&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2><a href="#important-changes" id="important-changes">Important Changes</a></h2>
+<p>This document describes the latest version. For older releases have a look at <a href="/documentation/legacy/logging.html">Logging 3.x</a>.</p>
+<h3><a href="#version-6-release" id="version-6-release">Version 6 Release</a></h3>
+<p>With the release of version 6.0.0 of the Log bundle, support for SLF4J 2.x has been added. The packaging has changed as well. By default Logback is not embedded anymore and needs to be installed separately. Have a look at the installation section for more information.</p>
+<h3><a href="#version-5-release" id="version-5-release">Version 5 Release</a></h3>
+<p>With Sling Commons Log 5.0.0. release the webconsole support has been moved to a different bundle named Sling Commons Log WebConsole (org.apache.sling.commons.log.webconsole)</p>
+<p>Also with this release Logback 1.1.7 version is embedded and thus it requires at least slf4j-api:1.7.15. See <a href="https://issues.apache.org/jira/browse/SLING-6144">SLING-6144</a> for details</p>
+<h2><a href="#faq" id="faq">FAQ</a></h2>
+<h5><a href="#q-can-sling-commons-log-bundle-be-used-in-non-sling-environments" id="q-can-sling-commons-log-bundle-be-used-in-non-sling-environments">Q. Can Sling Commons Log bundle be used in non Sling environments</a></h5>
+<p>This bundle does not depend on any other Sling bundle and can be easily used in any OSGi framework. To get complete log support working, have a look at the Installation section. In addition, you may need to deploy following bundles</p>
+<ul>
+<li>Jcl over Slf4j - org.slf4j:jcl-over-slf4j</li>
+<li>Log4j over Slf4j - org.slf4j:log4j-over-slf4j</li>
+<li>Apache Felix Log - org.apache.felix:org.apache.felix.log:1.3.0 or abpve</li>
+<li>Sling Log Service - org.apache.sling:org.apache.sling.commons.logservice:1.1.2 or above</li>
+<li>Sling Log WebConsole - org.apache.sling.commons.log.webconsole:1.0.2 or above</li>
+</ul>
+<h5><a href="#q-how-to-start-sling-with-an-external-logbackxml-file" id="q-how-to-start-sling-with-an-external-logbackxml-file">Q. How to start Sling with an external logback.xml file</a></h5>
+<p>You need to specify the location of logback.xml via <code>org.apache.sling.commons.log.configurationFile</code></p>
+<pre><code>    java -jar org.apache.sling.starter-XXX-standalone.jar -Dorg.apache.sling.commons.log.configurationFile=/path/to/logback
+</code></pre>
+<h5><a href="#q-how-to-use-slf4j-api-17-with-older-commons-log-releases" id="q-how-to-use-slf4j-api-17-with-older-commons-log-releases">Q. How to use Slf4j API 1.7 with older Commons Log releases</a></h5>
+<p>The extra steps described here are only necessary if you use an older Commons Log release. With the latest version, SLF4J API is supported out of the box. With Slf4j API 1.7 onwards its possible to use logger methods with varargs i.e. log n arguments without constructing an object array e.g. <code>log.info(&quot;This is a test {} , {}, {}, {}&quot;,1,2,3,4)</code>. Without var args you need to construct an object array <code>log.info(&quot;This is a test {} , {}, {}, {}&quot;,new Object[] {1,2,3,4})</code>. To make use of this API and still be able to use your bundle on Sling systems which package older version of the API jar, follow the below steps. (See <a href="https://issues.apache.org/jira/browse/SLING-3243">SLING-3243</a>) for more details.</p>
 <ol>
 <li>
 <p>Update the api version in the pom:</p>
@@ -448,92 +540,6 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
 </ol>
 <p>The Slf4j API bundle 1.7.x is binary compatible with 1.6.x.</p>
 <p>This setup allows your bundles to make use of the var args feature while making logging calls, but the bundles can still be deployed on older systems which provide only the 1.6.4 version of the slf4j api.</p>
-<h2><a href="#log-tracer" id="log-tracer">Log Tracer</a></h2>
-<p>Log Tracer provides support for enabling the logs for specific category at specific level and only for specific request. It provides a very fine level of control via config provided as part of HTTP request around how the logging should be performed for given category.</p>
-<p>Refer to <a href="/documentation/bundles/log-tracers.html">Log Tracer Doc</a> for more details</p>
-<h2><a href="#slf4j-mdc" id="slf4j-mdc">Slf4j MDC</a></h2>
-<p>Sling MDC Inserting Filter exposes various request details as part of <a href="http://www.slf4j.org/manual.html#mdc">MDC</a>.</p>
-<p>Currently it exposes following variables:</p>
-<ol>
-<li><code>req.remoteHost</code> - Request remote host</li>
-<li><code>req.userAgent</code> - User Agent Header</li>
-<li><code>req.requestURI</code> - Request URI</li>
-<li><code>req.queryString</code> - Query String from request</li>
-<li><code>req.requestURL</code> -</li>
-<li><code>req.xForwardedFor</code> -</li>
-<li><code>sling.userId</code> - UserID associated with the request. Obtained from ResourceResolver</li>
-<li><code>jcr.sessionId</code> - Session ID of the JCR Session associated with current request.</li>
-</ol>
-<p>The filter also allow configuration to extract data from request cookie, header and parameters. Look for configuration with name 'Apache Sling Logging MDC Inserting Filter' for details on specifying header, cookie, param names.</p>
-<p><img src="/documentation/bundles/mdc-filter-config.png" alt="MDC Filter Config" /></p>
-<p><a name="mdc-pattern"></p>
-<h3><a href="#including-mdc-in-log-message" id="including-mdc-in-log-message">Including MDC in Log Message</a></h3>
-<p>To include the MDC value in log message you MUST use the <a href="http://logback.qos.ch/manual/layouts.html#conversionWord">Logback pattern</a> based on Logback and not the old MessageFormat based pattern.</p>
-<pre><code>%d{dd.MM.yyyy HH:mm:ss.SSS} *%p* [%X{req.remoteHost}] [%t] %c %msg%n
-</code></pre>
-<h3><a href="#installation" id="installation">Installation</a></h3>
-<p>Download the bundle from <a href="http://sling.apache.org/downloads.cgi">here</a> or use following Maven dependency</p>
-<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
-    &lt;artifactId&gt;org.apache.sling.extensions.slf4j.mdc&lt;/artifactId&gt;
-    &lt;version&gt;1.0.0&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-<h2><a href="#logback-groovy-fragment" id="logback-groovy-fragment">Logback Groovy Fragment</a></h2>
-<p>This fragment is required to make use of Groovy based event evaluation support provided by Logback. This enables programatic filtering of the log messages and is useful to get desired logs without flooding the system. For example Oak logs the JCR operations being performed via a particular session. if this lo is enabled it would flood the log with messages from all the active session. However if you need logging only from session created in a particular thread then that can be done in following way</p>
-<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;configuration scan=&quot;true&quot; scanPeriod=&quot;1 second&quot;&gt;
-  &lt;jmxConfigurator/&gt;
-  &lt;newRule pattern=&quot;*/configuration/osgi&quot; actionClass=&quot;org.apache.sling.commons.log.logback.OsgiAction&quot;/&gt;
-  &lt;newRule pattern=&quot;*/configuration/appender-ref-osgi&quot; actionClass=&quot;org.apache.sling.commons.log.logback.OsgiAppenderRefAction&quot;/&gt;
-  &lt;osgi/&gt;
-
-   &lt;appender name=&quot;OAK&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;
-    &lt;filter class=&quot;ch.qos.logback.core.filter.EvaluatorFilter&quot;&gt;      
-      &lt;evaluator class=&quot;ch.qos.logback.classic.boolex.GEventEvaluator&quot;&gt; 
-        &lt;expression&gt;&lt;![CDATA[
-            return e.getThreadName().contains(&quot;JobHandler&quot;);
-        ]]&gt;&lt;/expression&gt;
-      &lt;/evaluator&gt;
-      &lt;OnMismatch&gt;DENY&lt;/OnMismatch&gt;
-      &lt;OnMatch&gt;ACCEPT&lt;/OnMatch&gt;
-    &lt;/filter&gt;
-    &lt;file&gt;${sling.home}/logs/oak.log&lt;/file&gt;
-    &lt;encoder&gt;
-      &lt;pattern&gt;%d %-5level [%thread] %marker- %msg %n&lt;/pattern&gt; 
-      &lt;immediateFlush&gt;true&lt;/immediateFlush&gt;
-    &lt;/encoder&gt;
-  &lt;/appender&gt;
-
-  &lt;logger name=&quot;org.apache.jackrabbit.oak.jcr.operations&quot; level=&quot;DEBUG&quot; additivity=&quot;false&quot;&gt;
-      &lt;appender-ref ref=&quot;OAK&quot;/&gt;
-  &lt;/logger&gt;
-&lt;/configuration&gt;
-</code></pre>
-<p>Logback exposes a variable <code>e</code> which is of type <a href="http://logback.qos.ch/apidocs/ch/qos/logback/classic/spi/ILoggingEvent.html">ILoggingEvent</a>. It provides access to current logging event. Above logback config would route all log messages from <code>org.apache.jackrabbit.oak.jcr.operations</code> category to <code>${sling.home}/logs/oak.log</code>. Further only those log messages would be logged where the <code>threadName</code> contains <code>JobHandler</code>. Depending on the requirement the expression can be customised.</p>
-<h3><a href="#installation" id="installation">Installation</a></h3>
-<p>Currently the bundle is not released and has to be build from <a href="https://github.com/apache/sling-org-apache-sling-extensions-logback-groovy-fragment">here</a></p>
-<pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
-    &lt;artifactId&gt;org.apache.sling.extensions.logback-groovy-fragment&lt;/artifactId&gt;
-    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-<h2><a href="#faq" id="faq">FAQ</a></h2>
-<h5><a href="#q-can-sling-commons-log-bundle-be-used-in-non-sling-environments" id="q-can-sling-commons-log-bundle-be-used-in-non-sling-environments">Q. Can Sling Commons Log bundle be used in non Sling environments</a></h5>
-<p>This bundle does not depend on any other Sling bundle and can be easily used in any OSGi framework. To get complete log support working you need to deploy following bundles</p>
-<ul>
-<li>Slf4j-Api - org.slf4j:slf4j-api</li>
-<li>Jcl over Slf4j - org.slf4j:jcl-over-slf4j</li>
-<li>Log4j over Slf4j - org.slf4j:log4j-over-slf4j</li>
-<li>Sling Log Service - org.apache.sling:org.apache.sling.commons.logservice:1.0.2</li>
-<li>Sling Commons Log - org.apache.sling:org.apache.sling.commons.log:4.0.0 or above</li>
-<li>Sling Log WebConsole - org.apache.sling.commons.log.webconsole:1.0.0 or above</li>
-</ul>
-<h5><a href="#q-how-to-start-sling-with-an-external-logbackxml-file" id="q-how-to-start-sling-with-an-external-logbackxml-file">Q. How to start Sling with an external logback.xml file</a></h5>
-<p>You need to specify the location of logback.xml via <code>org.apache.sling.commons.log.configurationFile</code></p>
-<pre><code>    java -jar org.apache.sling.starter-XXX-standalone.jar -Dorg.apache.sling.commons.log.configurationFile=/path/to/logback
-</code></pre>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Logging )</div>                            
                         </div>
                     </div>
@@ -545,7 +551,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
                             content/documentation/development/logging.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2022-06-13</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

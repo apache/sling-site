@@ -157,7 +157,7 @@
 </ul>
 <h2><a href="#design" id="design">Design</a></h2>
 <p>The Sling Content Distribution aims to be: <em>Reliable</em>, <em>simple</em> and <em>extensible</em>.</p>
-<p>Reliability means that the system should be able to keep working also in presence of failures regarding I/O, network, etc. An example of such problems is when pushing content from instance A to instance B fails because B is unreachable: in such scenarios instance A should be able to keep pushing (pulling, etc.) content to other instances seamlessly. Another example is when delivery of a certain content (package) fails too many times the distribution module should be able to either drop it or move it into a different &quot;bucket&quot; of failed items. Simplicity means that this module should be able to accomplish its tasks by providing clear, minimal and easy to use APIs together with smart but not overly complicated or &quot;hacky&quot; implementations (see <a href="http://events.linuxfoundation.org/events/apachecon-europe/program/schedule">&quot;Simple software is hard&quot;</a>). Extensibility means that the Sling Content Distribution module provides a set of APIs for distributing resources where each component coming into place during the distribution lifecycle can be extended or totally replaced.</p>
+<p>Reliability means that the system should be able to keep working also in presence of failures regarding I/O, network, etc. An example of such problems is when pushing content from instance A to instance B fails because B is unreachable: in such scenarios instance A should be able to keep pushing (pulling, etc.) content to other instances seamlessly. Another example is when delivery of a certain content (package) fails too many times the distribution module should be able to either drop it or move it into a different &quot;bucket&quot; of failed items. Simplicity means that this module should be able to accomplish its tasks by providing clear, minimal and easy to use APIs together with smart but not overly complicated or &quot;hacky&quot; implementations (see <a href="https://events.linuxfoundation.org/events/apachecon-europe/program/schedule">&quot;Simple software is hard&quot;</a>). Extensibility means that the Sling Content Distribution module provides a set of APIs for distributing resources where each component coming into place during the distribution lifecycle can be extended or totally replaced.</p>
 <p>A distribution <em>request</em> represents the need of aggregating some resources and to copy them from / to another Sling instance. Such requests are handled by <em>agents</em> that are the main entry point for working with the distribution module. Each agent distributes content from one or more sources to one or more targets, such distribution can be triggered by:</p>
 <ul>
 <li>&quot;pushing&quot; the content to the (remote) target instances</li>
@@ -296,9 +296,9 @@ $ curl -u admin:admin http://localhost:8080/libs/sling/distribution/services/age
 <h2><a href="#extensions" id="extensions">Extensions</a></h2>
 <p>The following extensions for Apache Sling Content Distribution exist.</p>
 <h3><a href="#apache-avro-serializer" id="apache-avro-serializer">Apache Avro serializer</a></h3>
-<p>The <em>org.apache.sling.distribution.avro-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="http://avro.apache.org">Apache Avro</a>.</p>
+<p>The <em>org.apache.sling.distribution.avro-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="https://avro.apache.org">Apache Avro</a>.</p>
 <h3><a href="#kryo-serializer" id="kryo-serializer">Kryo serializer</a></h3>
-<p>The <em>org.apache.sling.distribution.kryo-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="http://github.com/EsotericSoftware/kryo">Kryo</a>.</p>
+<p>The <em>org.apache.sling.distribution.kryo-serializer</em> contains a <em>DistributionContentSerializer</em> based on <a href="https://github.com/EsotericSoftware/kryo">Kryo</a>.</p>
 <h2><a href="#ideas-for-future-developments" id="ideas-for-future-developments">Ideas for future developments</a></h2>
 <ul>
 <li>distributed configuration</li>
@@ -317,7 +317,7 @@ $ curl -u admin:admin http://localhost:8080/libs/sling/distribution/services/age
                             content/documentation/bundles/distribution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">2017-12-18</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

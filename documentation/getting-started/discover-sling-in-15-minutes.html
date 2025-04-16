@@ -148,14 +148,14 @@
 <p>Once you grok the basic examples of this page, we recommend studying the <em>slingbucks</em> and <em>espblog</em> samples. Both have README files with more info.</p>
 <h2><a href="#prerequisites" id="prerequisites">Prerequisites</a></h2>
 <p>You'll need a running Sling application. If you haven't started Sling yet, have a look at the <a href="/documentation/getting-started.html">Getting Started</a> page on how to run Sling. If you follow the instructions on that page, you should have Sling running on port 8080. If you choose a different port, replace the port 8080 in the examples below with your port.</p>
-<p>To show the simplicity of the REST-style approach taken by Sling the examples below will be using <a href="http://curl.haxx.se/">cURL</a>. Any HTTP client would do, but cURL is the easiest to document in a reproducible way.</p>
+<p>To show the simplicity of the REST-style approach taken by Sling the examples below will be using <a href="https://curl.haxx.se/">cURL</a>. Any HTTP client would do, but cURL is the easiest to document in a reproducible way.</p>
 <h2><a href="#getting-started" id="getting-started">Getting Started</a></h2>
 <p>Once started, look at <a href="http://localhost:8080/system/console/bundles">http://localhost:8080/system/console/bundles</a> with your browser. Use <em>admin</em> with password <em>admin</em> if Sling asks you for a login. Sling then displays the <em>Felix Web Management Console</em> page.</p>
-<p>On the bundles page, all bundles should be marked <em>Active</em>. They're all <a href="http://www.osgi.org/">OSGi</a> bundles powered by <a href="http://felix.apache.org">Apache Felix</a>, but that doesn't really matter to us right now.</p>
+<p>On the bundles page, all bundles should be marked <em>Active</em>. They're all <a href="https://www.osgi.org/">OSGi</a> bundles powered by <a href="https://felix.apache.org">Apache Felix</a>, but that doesn't really matter to us right now.</p>
 <p><em>Log files: If things go wrong, have a look at the <code>sling/logs/error.log</code> log file - that's where Sling writes any error messages.</em></p>
 <h2><a href="#create-some-content" id="create-some-content">Create some content</a></h2>
 <p>Until we have ready-to-test forms, you can create content with cURL, or you can create an HTML form that posts to the specified URL.</p>
-<p>To create a content node (nodes are a <a href="http://jackrabbit.apache.org/">JCR</a> concept, a unit of storage) with cURL, use:</p>
+<p>To create a content node (nodes are a <a href="https://jackrabbit.apache.org/">JCR</a> concept, a unit of storage) with cURL, use:</p>
 <pre><code>curl -u admin:admin -F&quot;sling:resourceType=foo/bar&quot; -F&quot;title=some title&quot; http://localhost:8080/content/mynode
 </code></pre>
 <p>The resulting node can be seen at <a href="http://localhost:8080/content/mynode.html">http://localhost:8080/content/mynode.html</a>, or as json format under <a href="http://localhost:8080/content/mynode.json">http://localhost:8080/content/mynode.json</a>. Lets try with cURL:</p>
@@ -261,7 +261,7 @@ curl -u admin:admin -T sling.jpg http://localhost:8080/images/sling.jpg
                             content/documentation/getting-started/discover-sling-in-15-minutes.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Swapnil M Mane</span> on <span class="comment">2019-07-09</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

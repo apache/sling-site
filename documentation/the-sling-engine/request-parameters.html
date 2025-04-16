@@ -186,7 +186,7 @@
 <p>As of Sling Engine 2.1.0 the order or request parameters in the <code>getRequestParameterMap()</code>, <code>getParameterMap()</code>, and <code>getParameterNams()</code> is preserved as follows:</p>
 <ul>
 <li>The first entries are the parameters reported by the servlet container. The order of these parameters amongst each other is not defined. The <code>SlingHttpServletRequest</code> provides them in the same order as provided by the servlet container.</li>
-<li>After the servlet container provided parameters are parameters extracted from the request in case <code>multipart/form-data</code> POST requests. The order of these parameters is preserved as they are submitted in the request. This conforms to HTML 4.01 spec on forms submitted with multipart/form-data encoding: <em>A &quot;multipart/form-data&quot; message contains a series of parts, each representing a successful control. The parts are sent to the processing agent in the same order the corresponding controls appear in the document stream. Part boundaries should not occur in any of the data; how this is done lies outside the scope of this specification</em> (<a href="http://www.w3.org/TR/html401/interact/forms.html">17.13.4 Form content types</a>)</li>
+<li>After the servlet container provided parameters are parameters extracted from the request in case <code>multipart/form-data</code> POST requests. The order of these parameters is preserved as they are submitted in the request. This conforms to HTML 4.01 spec on forms submitted with multipart/form-data encoding: <em>A &quot;multipart/form-data&quot; message contains a series of parts, each representing a successful control. The parts are sent to the processing agent in the same order the corresponding controls appear in the document stream. Part boundaries should not occur in any of the data; how this is done lies outside the scope of this specification</em> (<a href="https://www.w3.org/TR/html401/interact/forms.html">17.13.4 Form content types</a>)</li>
 </ul>
 <p>Be warned: Only rely on request parameter ordering <code>multipart/form-data</code> POST requests without a query part in the request URL.</p>
 <h3><a href="#effects-of-sling-on-servlet-api-parameter-methods" id="effects-of-sling-on-servlet-api-parameter-methods">Effects of Sling on Servlet API parameter methods</a></h3>
@@ -215,7 +215,7 @@
 <li>If the parameter is an uploaded file, the file name is re-encoded on the fly when accessed</li>
 </ul>
 <div class="info">
-Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing. 
+Up to and including Sling Engine 2.2.2 request parameters are always decoded with ISO-8859-1 encoding if the <code>_charset_</code> request parameter is missing. As of Sling Engine 2.2.4 the <code>_charset_</code> request parameter is optional. As of this version the Sling Main Servlet supports a configuration setting which allows to change the default character encoding used if the <code>_charset_</code> request parameter is missing.
 To enable this functionality set the <code>sling.default.parameter.encoding</code> parameter of the Sling Main Servlet (PID <code>org.apache.sling.engine.impl.SlingMainServlet</code>) configuration (for Sling Engine < 2.3.0) or the same parameter of the Sling Request Parameter Handling (PID <code>org.apache.sling.engine.parameters</code>) configuration (for Sling Engine >= 2.3.0 ) to the desired encoding, which of course must be supported by the actual Java Platform.
 </div>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Request Parameter Handling in Sling )</div>                            
@@ -229,7 +229,7 @@ To enable this functionality set the <code>sling.default.parameter.encoding</cod
                             content/documentation/the-sling-engine/request-parameters.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2018-07-13</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

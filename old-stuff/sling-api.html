@@ -162,7 +162,7 @@ The contents of this page is being created at the moment. It contains incomplete
 <h2><a href="#request-processing" id="request-processing">Request Processing</a></h2>
 <p>Unlike traditional Servlet API request processing, a Sling API request is processed by the Sling Framework in three basic steps:</p>
 <ol>
-<li><em>Resource Resolution</em> - The Sling Framework derives a Resource instance from the client request URL. The details of how to resolve the Resource. One possible solution would be to map the request URL to a [Java Content Repository]({{ refs.http://www.jcp.org/en/jsr/detail?id=170.path }}) Node and return a Resource representing that Node.</li>
+<li><em>Resource Resolution</em> - The Sling Framework derives a Resource instance from the client request URL. The details of how to resolve the Resource. One possible solution would be to map the request URL to a [Java Content Repository]({{ refs.https://www.jcp.org/en/jsr/detail?id=170.path }}) Node and return a Resource representing that Node.</li>
 <li><em>Servlet and Script Resolution</em> - From the Resource created in the first step, the Servlet or Script is resolved based on the type of the Resource. The resource type is a simple string, whose semantics is defined by the Sling Framework. One possible definition could be for the resource type to be the primary node type of the Node underlying the Resource.</li>
 <li><em>Input Processing and Response Generation</em> -  After getting the Resource and the Servlet or Script, the <code>service()</code> method is called or the script is evaluated to process any user supplied input and send the response to the client. To structure the rendered response page, this method is responsible to include other resources. See <em>Dispatching Requests</em> below for details. See <em>Error Handling</em> below for a discussion on how exceptions and HTTP stati are handled.</li>
 </ol>
@@ -195,7 +195,7 @@ The contents of this page is being created at the moment. It contains incomplete
 </tbody>
 </table>
 <div class="info">
-The [SlingRequestPathInfoTest]({{ refs.http://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java.path }}) demonstrates and tests this decomposition. Feel free to suggest additional tests that help clarify how this works!
+The [SlingRequestPathInfoTest]({{ refs.https://svn.apache.org/repos/asf/sling/trunk/bundles/engine/src/test/java/org/apache/sling/engine/impl/request/SlingRequestPathInfoTest.java.path }}) demonstrates and tests this decomposition. Feel free to suggest additional tests that help clarify how this works!
 </div>
 <h2><a href="#the-slinghttpservletrequest" id="the-slinghttpservletrequest">The SlingHttpServletRequest</a></h2>
 <p>The <code>org.apache.sling.api.SlingHttpServletRequest</code> interface defines the basic data available from the client request to both action processing and response rendering. The <code>SlingHttpServletRequest</code> extends the <code>javax.servlet.http.HTTPServletRequest</code>.</p>
@@ -304,7 +304,7 @@ The [SlingRequestPathInfoTest]({{ refs.http://svn.apache.org/repos/asf/sling/tru
                             content/old-stuff/sling-api.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2018-07-13</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

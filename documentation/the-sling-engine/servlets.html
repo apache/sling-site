@@ -209,8 +209,8 @@
 <p>If you are working with the default Apache Sling development stack you can either use</p>
 <ul>
 <li><a href="https://github.com/apache/sling-org-apache-sling-servlets-annotations">OSGi DS 1.4 (R7) component property type annotations</a> (introduced with DS 1.4/OSGi R7, supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-4.1.0">bnd 4.1</a> being used in <a href="https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin">bnd-maven-plugin 4.1.0+</a> and <code>maven-bundle-plugin 4.1.0+</code>),</li>
-<li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi R5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li>
-<li>Generic Felix SCR or Sling-specific <code>@SlingServlet</code> annotations from <a href="http://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html">Apache Felix Maven SCR Plugin</a> to register your Sling servlets:</li>
+<li><a href="https://osgi.org/javadoc/r6/cmpn/org/osgi/service/component/annotations/package-summary.html">OSGi DS annotations</a> (introduced with DS 1.2/OSGi R5, properly supported since <a href="https://github.com/bndtools/bndtools/wiki/Changes-in-3.0.0">bnd 3.0</a>, being used in <a href="https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin 3.0.0</a>) or</li>
+<li>Generic Felix SCR or Sling-specific <code>@SlingServlet</code> annotations from <a href="https://felix.apache.org/documentation/subprojects/apache-felix-maven-scr-plugin.html">Apache Felix Maven SCR Plugin</a> to register your Sling servlets:</li>
 </ul>
 <p>The following examples show example code how you can register Servlets with Sling</p>
 <ol>
@@ -218,7 +218,7 @@
 <p>OSGi DS 1.4 (R7) component property type annotations for Sling Servlets (recommended)</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Component(service = { Servlet.class })
 @SlingServletResourceTypes(
-    resourceTypes=&quot;/apps/my/type&quot;, 
+    resourceTypes=&quot;/apps/my/type&quot;,
     methods= &quot;GET&quot;,
     extensions=&quot;html&quot;,
     selectors=&quot;hello&quot;)
@@ -269,7 +269,7 @@ public class MyServlet extends SlingSafeMethodsServlet {
 <p>Simple OSGi DS 1.2 annotations (use only if you cannot use approach 1.)</p>
 <pre><code><!-- TODO syntax marker (::java) disabled -->@Component(
 service = { Servlet.class },
-property = { 
+property = {
     SLING_SERVLET_RESOURCE_TYPES + &quot;=/apps/my/type&quot;
     SLING_SERVLET_METHODS + &quot;=GET&quot;,
     SLING_SERVLET_EXTENSIONS + &quot;=html&quot;,
@@ -376,7 +376,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
 <p>In case of an <code>OptingServlet</code> not matching the next candidate is being used.</p>
 <h3><a href="#resource-type-inheritance" id="resource-type-inheritance">Resource Type Inheritance</a></h3>
 <p>Resource type inheritance as implemented for <a href="https://issues.apache.org/jira/browse/SLING-278">SLING-278</a> plays a vital role in servlet resolution.</p>
-<p>Each resource type may have a resource super type, which may be defined in various ways. One example is having a <code>sling:resourceSuperType</code> property in the resource addressed by the resource type. See <a href="http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html">http://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html</a> and <a href="http://issues.apache.org/jira/browse/SLING-278">SLING-278</a> for more details. Also the servlet (or script) itself may define a resource super type (which is only used in case the request resource does not define one).</p>
+<p>Each resource type may have a resource super type, which may be defined in various ways. One example is having a <code>sling:resourceSuperType</code> property in the resource addressed by the resource type. See <a href="https://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html">https://www.mail-archive.com/sling-dev@incubator.apache.org/msg02365.html</a> and <a href="https://issues.apache.org/jira/browse/SLING-278">SLING-278</a> for more details. Also the servlet (or script) itself may define a resource super type (which is only used in case the request resource does not define one).</p>
 <p>If a resource type has no explicit resource super type, the resource super type is assumed to be <code>sling/servlet/default</code>. That is the resource type used for default script selection is also acting as a basic resource type much like <code>java.lang.Object</code> does for other types in the Java language.</p>
 <h2><a href="#error-handler-servlets-or-scripts" id="error-handler-servlets-or-scripts">Error Handler Servlet(s) or Scripts</a></h2>
 <p>Error handling support is described on the <a href="/documentation/the-sling-engine/errorhandling.html">Errorhandling</a> page.</p>
@@ -393,7 +393,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
                             content/documentation/the-sling-engine/servlets.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-04-12</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

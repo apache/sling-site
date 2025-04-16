@@ -156,10 +156,10 @@
 <h2><a href="#mock-classes-and-services" id="mock-classes-and-services">Mock classes and services</a></h2>
 <p>The next step is to use mock classes and services to simulate components that are needed for testing. This makes it possible to test OSGi service classes without an OSGi framework, or classes accessing the Sling or JCR API without a running Sling instance or JCR repository.</p>
 <p>The <a href="/documentation/development.html">Development</a> documentation page contains a section &quot;Testing Sling-based Applications&quot; lising all mock implementations available as part of the Apache Sling project.</p>
-<p>In other cases we use <a href="http://www.jmock.org/">jmock</a> or <a href="https://code.google.com/p/mockito/">Mockito</a> to help create mock objects without having to write much code - such mocking libraries take care of the plumbing and allow you to write just the bits of code that matter (often with funny syntaxes). The tests of the <a href="https://github.com/apache/sling-org-apache-sling-event">org.apache.sling.event</a> bundle, for example, make extensive use of such mock services.</p>
+<p>In other cases we use <a href="https://www.jmock.org/">jmock</a> or <a href="https://code.google.com/p/mockito/">Mockito</a> to help create mock objects without having to write much code - such mocking libraries take care of the plumbing and allow you to write just the bits of code that matter (often with funny syntaxes). The tests of the <a href="https://github.com/apache/sling-org-apache-sling-event">org.apache.sling.event</a> bundle, for example, make extensive use of such mock services.</p>
 <p>The problem with mocks is that it can become hard to make sure you're actually testing something, and not just &quot;mocking mocks&quot;. At a certain level of complexity, it becomes quicker and clearer to actually start an OSGi framework for automated tests.</p>
 <h3><a href="#side-note-injecting-services-in-private-fields" id="side-note-injecting-services-in-private-fields">Side note: injecting services in private fields</a></h3>
-<p>To inject (real or fake) services in others for testing, without having to create getters and setters just for this, you could use a reflection-based trick, as in the below example. Utilities such as the <a href="http://junit-addons.sourceforge.net/junitx/util/PrivateAccessor.html">PrivateAccessor</a> from <a href="http://junit-addons.sourceforge.net/">junit-addons</a> make that simpler.</p>
+<p>To inject (real or fake) services in others for testing, without having to create getters and setters just for this, you could use a reflection-based trick, as in the below example. Utilities such as the <a href="https://junit-addons.sourceforge.net/junitx/util/PrivateAccessor.html">PrivateAccessor</a> from <a href="https://junit-addons.sourceforge.net/">junit-addons</a> make that simpler.</p>
 <pre><code><!-- TODO syntax marker (#!java) disabled -->// set resource resolver factory
 // in a ServletResolver object which has a private resourceResolverFactory field
 
@@ -185,7 +185,7 @@ resolverField.set(servletResolver, factory);
 <pre><code><!-- TODO syntax marker (#!xml) disabled -->&lt;dependency&gt;
     &lt;groupId&gt;org.apache.sling&lt;/groupId&gt;
     &lt;artifactId&gt;org.apache.sling.testing.rules&lt;/artifactId&gt;
-    &lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;        
+    &lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 <h4><a href="#simple-example-using-slinginstancerule" id="simple-example-using-slinginstancerule">Simple Example using SlingInstanceRule</a></h4>
@@ -203,8 +203,8 @@ resolverField.set(servletResolver, factory);
        client.createNode(&quot;/content/myNode&quot;, &quot;nt:unstructured&quot;);
        Assert.assertTrue(&quot;Node should be there&quot;, client.exists(&quot;/content/myNode&quot;));
        //client.adaptTo(OsgiConsoleClient.class).editConfigurationWithWait(10, &quot;MYPID&quot;, null, myMap);
-    }            
-} 
+    }
+}
 </code></pre>
 <h2><a href="#summary" id="summary">Summary</a></h2>
 <p>Combining the above testing techniques has worked well for us in creating and testing Sling. Being able to test things at different levels of integration has proved an efficient way to get good test coverage without having to write too much boring test code.</p>
@@ -219,7 +219,7 @@ resolverField.set(servletResolver, factory);
                             content/documentation/tutorials-how-tos/testing-sling-based-applications.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Oliver Lietz</span> on <span class="comment">2017-12-29</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

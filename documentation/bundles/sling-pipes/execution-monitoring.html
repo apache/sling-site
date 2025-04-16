@@ -182,7 +182,7 @@
 <p>will search for resource of type <code>to/delete</code> and remove them.</p>
 <p>PipeBuilder will configure a container pipe, chaining pipes you can configure with a fluent API. This works pretty well with a groovy console just by entering following set of instruction</p>
 <pre><code>     def plumber = getService(&quot;org.apache.sling.pipes.Plumber&quot;);
-     
+
      plumber.newPipe(resourceResolver)
          .echo(&quot;/content/mySite&quot;)
          .run();
@@ -225,7 +225,7 @@
 </tbody>
 </table>
 <h3><a href="#apache-felix-gogo" id="apache-felix-gogo">Apache Felix Gogo</a></h3>
-<p>when installing pipes bundle, <a href="http://felix.apache.org/documentation/subprojects/apache-felix-gogo.html">apache felix gogo</a> commands are exposed to the console that allow you to - build (pipe:build or just build if no other command) - run (pipe:run or just run if no other command) - execute (pipe:execute or just execute if no other command) - and print help on how to use the above</p>
+<p>when installing pipes bundle, <a href="https://felix.apache.org/documentation/subprojects/apache-felix-gogo.html">apache felix gogo</a> commands are exposed to the console that allow you to - build (pipe:build or just build if no other command) - run (pipe:run or just run if no other command) - execute (pipe:execute or just execute if no other command) - and print help on how to use the above</p>
 <p>the pipe is here represented as <code>/</code> character as <code>|</code> is already used by gogo console, an heavy usage of the gogo console is made in the <a href="http://localhost:8820/documentation/bundles/sling-pipes.html#adaptto-introductions">main page videos</a>, or you can direcly check in there for sample gogo commands for <a href="https://github.com/npeltier/99-bottles-of-beers-with-sling">99 bottles of beer</a> sample.</p>
 <h3><a href="#http-api" id="http-api">HTTP API</a></h3>
 <h4><a href="#build-run-pipe-from-command-line" id="build-run-pipe-from-command-line">Build &amp; Run Pipe from command line</a></h4>
@@ -285,7 +285,7 @@
 <p>so a breadcrumb pipe could be something like</p>
 <pre><code>    .echo('${path.currentResource}')
     .parents(&quot;my:PageContent[showInNav=true]&quot;)
-    .parent(&quot;my:Page&quot;)  
+    .parent(&quot;my:Page&quot;)
 </code></pre>
 <h3><a href="#jmx" id="jmx">JMX</a></h3>
 <p>as soon as you add <code>monitored=true</code> flag to a pipe configuration, you'll make the given pipe monitored by JMX, giving stats, status, and an entry point to execute it. Note that if you don't see the pipe you just added, you might have to refresh monitored pipes by hitting the related button in plumber mbean.</p>
@@ -300,7 +300,7 @@
                             content/documentation/bundles/sling-pipes/execution-monitoring.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Nicolas Peltier</span> on <span class="comment">2021-01-28</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

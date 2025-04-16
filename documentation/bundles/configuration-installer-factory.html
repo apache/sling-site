@@ -183,7 +183,7 @@ com.acme.abc-default.cfg // factory configuration
 <li>No support of multiline String values (<a href="https://issues.apache.org/jira/browse/SLING-10217">SLING-10217</a>), therefore, for repoinit rather use <code>.config</code>.</li>
 </ul>
 <h3><a href="#configuration-files-config" id="configuration-files-config">Configuration Files (.config)</a></h3>
-<p>Configuration files ending in <code>.config</code> use the format of the <a href="http://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup">Apache Felix ConfigAdmin implementation</a> (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding. This format is preferred over properties files and nodes stored in the repository.</p>
+<p>Configuration files ending in <code>.config</code> use the format of the <a href="https://svn.apache.org/viewvc/felix/releases/org.apache.felix.configadmin-1.8.12/src/main/java/org/apache/felix/cm/file/ConfigurationHandler.java?view=markup">Apache Felix ConfigAdmin implementation</a> (in version 1.8.12). This format allows to specify the type and cardinality of a configuration property and is not limited to string values. It must be stored in UTF-8 encoding. This format is preferred over properties files and nodes stored in the repository.</p>
 <p>The first line of such a file might start with a comment line (a line starting with a <code>#</code>). Comments within the file are not allowed.</p>
 <p>The format is:</p>
 <pre><code>file ::= (comment) (header) *
@@ -198,7 +198,7 @@ simple ::= '&quot;' stringsimple '&quot;'
 type ::= &lt;1-char type code&gt;
 stringsimple ::= &lt;quoted string representation of the value where both '&quot;' and '=' need to be escaped&gt;
 </code></pre>
-<p>The quoted string format is equal to the definition from HTTP 1.1 (<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html">RFC2616</a>), except that both '&quot;' and '=' need to be escaped.</p>
+<p>The quoted string format is equal to the definition from HTTP 1.1 (<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html">RFC2616</a>), except that both '&quot;' and '=' need to be escaped.</p>
 <p>The 1 character type code is one of:</p>
 <ul>
 <li><code>T</code> : <code>String</code></li>
@@ -276,7 +276,7 @@ ftp.port = 21
                             content/documentation/bundles/configuration-installer-factory.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2023-04-28</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

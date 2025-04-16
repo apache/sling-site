@@ -206,7 +206,7 @@ public class ScheduledPeriodicJob implements Runnable {
 </code></pre>
 <p>Since in contrast to <a href="/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs</a> the scheduler queue is only held in memory, there will be no distribution of jobs. So if job '1' was scheduled on instance 'a' with the option to run on the leader only, but the leader is instance 'b', which hasn't the job in the queue, the job will never be executed by any instance!</p>
 <h2><a href="#the-scheduler-api" id="the-scheduler-api">The Scheduler API</a></h2>
-<p>The scheduler has methods to execute jobs periodically, based on a cron expression or at a given time. For more details please refer to the <a href="http://sling.apache.org/apidocs/sling6/org/apache/sling/commons/scheduler/Scheduler.html">javadocs</a>.</p>
+<p>The scheduler has methods to execute jobs periodically, based on a cron expression or at a given time. For more details please refer to the <a href="https://sling.apache.org/apidocs/sling6/org/apache/sling/commons/scheduler/Scheduler.html">javadocs</a>.</p>
 <h2><a href="#examples-of-scheduled-jobs-registered-through-the-scheduler-api" id="examples-of-scheduled-jobs-registered-through-the-scheduler-api">Examples of scheduled jobs registered through the scheduler API</a></h2>
 <p>The following examples show you how to define and schedule a job that is registered through the scheduler api.</p>
 <h3><a href="#defining-the-job" id="defining-the-job">Defining the job</a></h3>
@@ -222,7 +222,7 @@ public class ScheduledPeriodicJob implements Runnable {
 <pre><code>String schedulingExpression = &quot;0 15 10 ? * MON-FRI&quot;;
 this.scheduler.addJob(&quot;myJob&quot;, job, null, schedulingExpression, true);
 </code></pre>
-<p>Refer to http://www.docjar.com/docs/api/org/quartz/CronTrigger.html to define more scheduling expressions.</p>
+<p>Refer to https://www.docjar.com/docs/api/org/quartz/CronTrigger.html to define more scheduling expressions.</p>
 <h3><a href="#scheduling-at-periodic-times" id="scheduling-at-periodic-times">Scheduling at periodic times</a></h3>
 <p>To execute the job as defined above every 3 minutes (180 seconds), you can use the <em>addPeriodicJob()</em> method with the following parameters:</p>
 <pre><code>long period = 3*60; //the period is expressed in seconds
@@ -345,7 +345,7 @@ public class HelloWorldScheduledService {
                             content/documentation/bundles/scheduler-service-commons-scheduler.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Jörg Hoh</span> on <span class="comment">2022-01-04</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

@@ -152,7 +152,7 @@
 <p>Annotations which support setting the default null semantics of return values and or parameters on a package level are not used.</p>
 <p>In case no annotations have been set on method arguments those accept <code>null</code> as a value. Return values should always be explicitly annotated, as from both cases checks can be derived.</p>
 <h1><a href="#use-with-eclipse" id="use-with-eclipse">Use With Eclipse</a></h1>
-<p>Eclipse since Juno supports <a href="http://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcompiler%2Fref-preferences-errors-warnings.htm&amp;anchor=null_analysis">null analysis based on any annotations</a>. Those need to be enabled in <em>Preferences-&gt;Java-&gt;Compiler-&gt;Errors/Warnings</em> via <strong>Enable annoation-based null analysis</strong>. Also the annotations need to be configured. For Sling/JSR 305 those are</p>
+<p>Eclipse since Juno supports <a href="https://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcompiler%2Fref-preferences-errors-warnings.htm&amp;anchor=null_analysis">null analysis based on any annotations</a>. Those need to be enabled in <em>Preferences-&gt;Java-&gt;Compiler-&gt;Errors/Warnings</em> via <strong>Enable annoation-based null analysis</strong>. Also the annotations need to be configured. For Sling/JSR 305 those are</p>
 <ul>
 <li><code>org.jetbrains.annotations.NotNull</code> as <strong>'Nullable' annotation</strong> (primary annotation)</li>
 <li><code>org.jetbrains.annotations.Nullable</code> as <strong>'NonNull' annotation</strong> (primary annotation)</li>
@@ -160,10 +160,10 @@
 <p><img src="eclipse-settings-null-analysis.png" alt="Eclipse Settings for Null analysis" /></p>
 <p>Unfortunately Eclipse cannot infer information about fields which are for sure either null or not null (reasoning is available in <a href="https://wiki.eclipse.org/JDT_Core/Null_Analysis/Options#Risks_of_flow_analysis_for_fields">https://wiki.eclipse.org/JDT_Core/Null_Analysis/Options#Risks_of_flow_analysis_for_fields</a> and <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247564">Eclipse Bug 247564</a>). This also affecs constants (static final fields) or enums which are known to be non null, but still Eclipse will emit a warning like <em>The expression of type 'String' needs unchecked conversion to conform to '@Nonnull String'</em>. The only known workaround is to disable the <strong>&quot;Unchecked conversion from non-annotated type to @NonNull type&quot;</strong> or to annotate also the field with <code>@Nonnull</code>.</p>
 <p>More information are available at <a href="https://wiki.eclipse.org/JDT_Core/Null_Analysis">https://wiki.eclipse.org/JDT_Core/Null_Analysis</a>.</p>
-<p>Since Eclipse 4.5 (Mars) <strong>external annotations</strong> are supported as well (i.e. annotations maintained outside of the source code of the libraries, e.g. for the JRE, Apache Commons Lang). There are some external annotations being mainted at <a href="http://www.lastnpe.org/">lastnpe.org</a> and <a href="https://github.com/tracecompass/tracecompass/tree/master/common/org.eclipse.tracecompass.common.core/annotations">TraceCompass</a>. There is no official repository yet though (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=449653">Eclipse Bug 449653</a>). <a href="http://www.lastnpe.org/">Lastnpe.org</a> provides also an m2e extension to ease setting up the classpaths with external annotations from within your pom.xml.</p>
+<p>Since Eclipse 4.5 (Mars) <strong>external annotations</strong> are supported as well (i.e. annotations maintained outside of the source code of the libraries, e.g. for the JRE, Apache Commons Lang). There are some external annotations being mainted at <a href="https://www.lastnpe.org/">lastnpe.org</a> and <a href="https://github.com/tracecompass/tracecompass/tree/master/common/org.eclipse.tracecompass.common.core/annotations">TraceCompass</a>. There is no official repository yet though (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=449653">Eclipse Bug 449653</a>). <a href="https://www.lastnpe.org/">Lastnpe.org</a> provides also an m2e extension to ease setting up the classpaths with external annotations from within your pom.xml.</p>
 <h1><a href="#use-with-maven" id="use-with-maven">Use With Maven</a></h1>
 <h2><a href="#leveraging-eclipse-jdt-compiler-recommended" id="leveraging-eclipse-jdt-compiler-recommended">Leveraging Eclipse JDT Compiler (recommended)</a></h2>
-<p>You can use Eclipse JDT also in Maven (with null analysis enabled) for the regular compilation. That way it will give out the same warnings/errors as Eclipse and will also consider external annotations. JDT in its most recent version is provided by the <code>tycho-compiler-plugin</code> which can be hooked up with the <code>maven-compiler-plugin</code>. The full list of options for JDT is described in <a href="http://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_batch_compiler.htm">here</a>. This method was presented by Michael Vorburger in his presentation <a href="https://www.slideshare.net/mikervorburger/the-end-of-the-world-as-we-know-it-aka-your-last-nullpointerexception-1b-bugs/14">The end of the world as we know it</a>.</p>
+<p>You can use Eclipse JDT also in Maven (with null analysis enabled) for the regular compilation. That way it will give out the same warnings/errors as Eclipse and will also consider external annotations. JDT in its most recent version is provided by the <code>tycho-compiler-plugin</code> which can be hooked up with the <code>maven-compiler-plugin</code>. The full list of options for JDT is described in <a href="https://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_batch_compiler.htm">here</a>. This method was presented by Michael Vorburger in his presentation <a href="https://www.slideshare.net/mikervorburger/the-end-of-the-world-as-we-know-it-aka-your-last-nullpointerexception-1b-bugs/14">The end of the world as we know it</a>.</p>
 <pre><code><!-- TODO syntax marker (::xml) disabled -->&lt;plugin&gt;
   &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
   &lt;version&gt;3.5.1&lt;/version&gt;
@@ -177,7 +177,7 @@
       &lt;annotationpath&gt;CLASSPATH&lt;/annotationpath&gt;
     &lt;/compilerArguments&gt;
     &lt;!-- maintain the org.eclipse.jdt.core.prefs properties to options listed on
-         http://help.eclipse.org/neon/index.jsp?topic=/org.eclipse.jdt.doc.user/tasks/task-using_batch_compiler.htm --&gt;
+         https://help.eclipse.org/neon/index.jsp?topic=/org.eclipse.jdt.doc.user/tasks/task-using_batch_compiler.htm --&gt;
     &lt;compilerArgument&gt;-err:nullAnnot,null,-missingNullDefault&lt;/compilerArgument&gt;
  &lt;/configuration&gt;
  &lt;dependencies&gt;
@@ -208,7 +208,7 @@
   &lt;/executions&gt;
 &lt;/plugin&gt;
 </code></pre>
-<p>The results are often very imprecise (<a href="http://jira.codehaus.org/browse/MFINDBUGS-208">MFINDBUGS-208</a>), especially when it comes to line numbers, therefore it is best to start the Findbugs GUI in case of errors found by this plugin via <code>mvn findbugs:gui</code>.</p>
+<p>The results are often very imprecise (<a href="https://jira.codehaus.org/browse/MFINDBUGS-208">MFINDBUGS-208</a>), especially when it comes to line numbers, therefore it is best to start the Findbugs GUI in case of errors found by this plugin via <code>mvn findbugs:gui</code>.</p>
 <h1><a href="#use-with-findbugs" id="use-with-findbugs">Use With FindBugs</a></h1>
 <p>FindBugs evaluates the JSR-305 annotations by default. You can restrict the rules to only the ones which check for those annotations, which are</p>
 <ul>
@@ -217,8 +217,8 @@
 <li>FindNullDeref</li>
 <li>FindNullDerefsInvolvingNonShortCircuitEvaluation</li>
 </ul>
-<p>A complete list of visitors class names in Findbugs can be found in the <a href="https://code.google.com/p/findbugs/source/browse/#git%2Ffindbugs%2Fsrc%2Fjava%2Fedu%2Fumd%2Fcs%2Ffindbugs%2Fdetect%253Fstate%253Dclosed">sourcecode</a>. The according <a href="http://findbugs.sourceforge.net/bugDescriptions.html">bug patterns</a> have an identifier (in parenthesis) for which you can search in the according Java classes, in case you want to extend the checks.</p>
-<p>Findbugs is also integrated in <a href="http://docs.sonarqube.org/display/SONAR/Findbugs+Plugin">SonarQube</a> but for SonarQube you should now rather use the native Java plugin (look at <a href="#use-with-sonarqube">Use with SonarQube</a>).</p>
+<p>A complete list of visitors class names in Findbugs can be found in the <a href="https://code.google.com/p/findbugs/source/browse/#git%2Ffindbugs%2Fsrc%2Fjava%2Fedu%2Fumd%2Fcs%2Ffindbugs%2Fdetect%253Fstate%253Dclosed">sourcecode</a>. The according <a href="https://findbugs.sourceforge.net/bugDescriptions.html">bug patterns</a> have an identifier (in parenthesis) for which you can search in the according Java classes, in case you want to extend the checks.</p>
+<p>Findbugs is also integrated in <a href="https://docs.sonarqube.org/display/SONAR/Findbugs+Plugin">SonarQube</a> but for SonarQube you should now rather use the native Java plugin (look at <a href="#use-with-sonarqube">Use with SonarQube</a>).</p>
 <h1><a href="#use-with-sonarqube" id="use-with-sonarqube">Use with SonarQube</a></h1>
 <p>At least rule <a href="https://sonarqube.com/coding_rules#rule_key=squid%3AS2259">squid:S2259</a> in SonarQube supports JSR-305 annotations as well for null checks.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Leveraging @NotNull/@Nullable annotations to prevent NullPointerExceptions )</div>                            
@@ -232,7 +232,7 @@
                             content/documentation/development/null-analysis.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">sseifert</span> on <span class="comment">2018-08-18</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

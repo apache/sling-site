@@ -149,7 +149,7 @@
 <div class="row" data-pagefind-body="true"><div><section><div class="note">
 Recent versions of Apache Sling no longer use Apache Jackrabbit as their persistence engine, but
 Apache Jackrabbit Oak. Oak is configured in a different, more OSGi-friendly way. For more details,
-see <a href="http://jackrabbit.apache.org/oak/docs/">The Jackrabbit Oak documentation</a>. The Jackrabbit integration has also been moved to the attic and is no longer maintained.
+see <a href="https://jackrabbit.apache.org/oak/docs/">The Jackrabbit Oak documentation</a>. The Jackrabbit integration has also been moved to the attic and is no longer maintained.
 </div>
 <p>Out-of-the-box the embedded Jackrabbit repository used by Sling (the Embedded Jackrabbit Repository bundle) uses Derby to persist the JCR nodes and properties. For some applications or environments it may be required or required to replace Derby with another backing store such as PostgreSQL or Oracle.</p>
 <p>This page is based on the journey of Tony Giaccone to get Sling running with a PostgreSQL based Jackrabbit instance.</p>
@@ -162,8 +162,8 @@ see <a href="http://jackrabbit.apache.org/oak/docs/">The Jackrabbit Oak document
 </ol>
 <p>When you are not using the Derby persistence manager, you may safely remove the Derby bundle from your Sling instance.</p>
 <h2><a href="#jdbc-driver" id="jdbc-driver">JDBC Driver</a></h2>
-<p>The hardest thing to do is probably getting the JDBC driver for your database. One option is to look at the bundles provided by Spring Source in their repository at <a href="http://www.springsource.com/repository/">http://www.springsource.com/repository/</a>.</p>
-<p>Another option is to create the bundle on your own using Peter Kriens' <a href="http://bnd.bndtools.org/">bnd Tool</a>:</p>
+<p>The hardest thing to do is probably getting the JDBC driver for your database. One option is to look at the bundles provided by Spring Source in their repository at <a href="https://www.springsource.com/repository/">https://www.springsource.com/repository/</a>.</p>
+<p>Another option is to create the bundle on your own using Peter Kriens' <a href="https://bnd.bndtools.org/">bnd Tool</a>:</p>
 <ol>
 <li>Get the JDBC driver for your database from the driver provider</li>
 <li>Wrap the JDBC driver library into an OSGi bundle:
@@ -174,8 +174,8 @@ $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar
 </li>
 <li>
 <p>Deploy the driver to your local Maven 2 Repository (Required if adding the JDBC driver to a Maven build, e.g. using the Sling Launchpad Plugin)</p>
-<pre><code><!-- TODO syntax marker (::sh) disabled -->$ mvn install:install-file \  
-    -DgroupId=postgresql -DartifactId=postgresql -Dversion=8.4.701.jdbc3 \  
+<pre><code><!-- TODO syntax marker (::sh) disabled -->$ mvn install:install-file \
+    -DgroupId=postgresql -DartifactId=postgresql -Dversion=8.4.701.jdbc3 \
     -Dpackaging=jar -Dfile=postgresql-8.4-701.jdbc3-bnd.jar
 </code></pre>
 </li>
@@ -186,8 +186,7 @@ $ mv postgresql-8.4-701.jdbc3.bar postgresql-8.4-701.jdbc3-bnd.jar
 <ol>
 <li>Uninstall the Apache Derby bundle</li>
 <li>Install the JDBC bundle prepared in the first step</li>
-<li>Stop the Jackrabbit Embedded Repository bundle<br />
-This needs to be reconfigured and restarted anyway. So lets just stop it to prevent failures in the next step.</li>
+<li>Stop the Jackrabbit Embedded Repository bundle This needs to be reconfigured and restarted anyway. So lets just stop it to prevent failures in the next step.</li>
 <li>Refresh the packages (click the <em>Refresh Packages</em> button)</li>
 </ol>
 <p>Alternatively, you may wish to stop Sling after uninstalling Derby and installing the JDBC bundle. Technically, this is not required, though.</p>
@@ -231,7 +230,7 @@ This needs to be reconfigured and restarted anyway. So lets just stop it to prev
 <p>If you reconfigure Jackrabbit to use the new persistence manager, the existing repository data in the <code>sling/jackrabbit</code> directory, except the <code>repository.xml</code> file, of course, should now be removed.</p>
 <p>Finally either start Sling or start the Jackrabbit Embedded Repository bundle.</p>
 <h2><a href="#credits" id="credits">Credits</a></h2>
-<p>This description is based on Tony Giaccone's description <a href="http://markmail.org/message/wlbfrukmjjsl33hh">Swapping Postgres for Derby</a> sent to the Sling Users mailing list.</p>
+<p>This description is based on Tony Giaccone's description <a href="https://markmail.org/message/wlbfrukmjjsl33hh">Swapping Postgres for Derby</a> sent to the Sling Users mailing list.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Jackrabbit Persistence )</div>                            
                         </div>
                     </div>
@@ -243,7 +242,7 @@ This needs to be reconfigured and restarted anyway. So lets just stop it to prev
                             content/documentation/tutorials-how-tos/jackrabbit-persistence.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Thomas Wolfart</span> on <span class="comment">2018-07-17</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

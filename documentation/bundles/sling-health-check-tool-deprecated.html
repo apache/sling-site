@@ -142,7 +142,7 @@
                                 </li>
                             </ul>
                         </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
-<div class="row" data-pagefind-body="true"><div><section><p><strong>Sling Health Checks are deprecated - please migrate to <a href="http://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html">Felix Health Checks</a> - see <a href="sling-health-check-tool.html">migration guide</a> for instructions</strong></p>
+<div class="row" data-pagefind-body="true"><div><section><p><strong>Sling Health Checks are deprecated - please migrate to <a href="https://felix.apache.org/documentation/subprojects/apache-felix-healthchecks.html">Felix Health Checks</a> - see <a href="sling-health-check-tool.html">migration guide</a> for instructions</strong></p>
 <p><strong><em>This documentation is kept temporarily for projects that have not yet migrated</em></strong></p>
 <h2><a href="#overview" id="overview">Overview</a></h2>
 <p>Based on simple <code>HealthCheck</code> OSGi services, the Sling Health Check Tools (&quot;hc&quot; in short form) are used to check the health of live Sling systems, based on inputs like JMX MBean attribute values, OSGi framework information, Sling requests status, etc.</p>
@@ -178,8 +178,8 @@
 <h2><a href="#whats-a-healthcheck-" id="whats-a-healthcheck-">What's a <code>HealthCheck</code> ?</a></h2>
 <p>A <code>HealthCheck</code> is just an OSGi service that returns a <code>Result</code>.</p>
 <pre><code>public interface HealthCheck {
-    
-    /** Execute this health check and return a {@link Result} 
+
+    /** Execute this health check and return a {@link Result}
      *  This is meant to execute quickly, access to external
      *  systems, for example, should be managed asynchronously.
      */
@@ -201,15 +201,15 @@
     public Iterator&lt;ResultLog.Entry&gt; iterator() {
         return resultLog.iterator();
     }
-    
+
     ... details omitted
-} 
+}
 </code></pre>
 <h3><a href="#slinghealthcheck-annotation" id="slinghealthcheck-annotation">SlingHealthCheck annotation</a></h3>
 <p>The <code>SlingHealthCheck</code> annotation makes it easier to specify the required <code>HealthCheck</code> service properties.</p>
 <p>Here's an example from the <code>samples</code> module - see the <code>annotations</code> module for more details.</p>
 <pre><code>@SlingHealthCheck(
-    name=&quot;Annotated Health Check Sample&quot;, 
+    name=&quot;Annotated Health Check Sample&quot;,
     mbeanName=&quot;annotatedHC&quot;,
     description=&quot;Sample Health Check defined by a java annotation&quot;,
     tags={&quot;sample&quot;,&quot;annotation&quot;})
@@ -271,11 +271,11 @@ public class AnnotatedHealthCheckSample implements HealthCheck {
 <p>All service properties are optional.</p>
 <p>As an example, here's a <code>ScriptableHealthCheck</code> configuration provided by the <code>org.apache.sling.hc.samples</code> bundle:</p>
 <pre><code>Factory PID = org.apache.sling.hc.ScriptableHealthCheck
-&quot;hc.name&quot; : &quot;LoadedClassCount and ManagementSpecVersion are in range&quot; 
+&quot;hc.name&quot; : &quot;LoadedClassCount and ManagementSpecVersion are in range&quot;
 &quot;hc.mbean.name&quot; : &quot;LoadedClassCount and ManagementSpecVersion&quot;
 &quot;hc.tags&quot; : [jvm, script]
-&quot;expression&quot; : &quot;jmx.attribute('java.lang:type=ClassLoading', 'LoadedClassCount') &gt; 10 &amp;&amp;  jmx.attribute('java.lang:type=Runtime', 'ManagementSpecVersion') &gt; 1&quot; 
-&quot;language.extension&quot; : &quot;ecma&quot; 
+&quot;expression&quot; : &quot;jmx.attribute('java.lang:type=ClassLoading', 'LoadedClassCount') &gt; 10 &amp;&amp;  jmx.attribute('java.lang:type=Runtime', 'ManagementSpecVersion') &gt; 1&quot;
+&quot;language.extension&quot; : &quot;ecma&quot;
 </code></pre>
 <p>The service properties starting with the <code>hc.</code> prefix in this example should be provided by all <code>HealthCheck</code> services.</p>
 <h2><a href="#configuring-the-health-check-executor" id="configuring-the-health-check-executor">Configuring the Health Check Executor</a></h2>
@@ -320,7 +320,7 @@ servletPath = /system/health
                             content/documentation/bundles/sling-health-check-tool-deprecated.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">georg.henzler</span> on <span class="comment">2019-04-03</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

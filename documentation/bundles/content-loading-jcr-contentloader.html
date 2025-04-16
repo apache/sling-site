@@ -275,9 +275,9 @@
 &lt;/your_custom_root_node&gt;
 </code></pre>
 <p>The my-transform.xsl file is then responsible for translating your format into one of the supported XML formats:</p>
-<pre><code>&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot; xmlns:mix=&quot;http://www.jcp.org/jcr/mix/1.0&quot; 
-  xmlns:sv=&quot;http://www.jcp.org/jcr/sv/1.0&quot; xmlns:sling=&quot;http://sling.apache.org/jcr/sling/1.0&quot;
-  xmlns:rep=&quot;internal&quot; xmlns:nt=&quot;http://www.jcp.org/jcr/nt/1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+<pre><code>&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:jcr=&quot;https://www.jcp.org/jcr/1.0&quot; xmlns:mix=&quot;https://www.jcp.org/jcr/mix/1.0&quot;
+  xmlns:sv=&quot;https://www.jcp.org/jcr/sv/1.0&quot; xmlns:sling=&quot;https://sling.apache.org/jcr/sling/1.0&quot;
+  xmlns:rep=&quot;internal&quot; xmlns:nt=&quot;https://www.jcp.org/jcr/nt/1.0&quot; xmlns:xsl=&quot;https://www.w3.org/1999/XSL/Transform&quot;&gt;
 
   &lt;xsl:template match=&quot;your_custom_element&quot;&gt;
     &lt;node&gt;
@@ -288,7 +288,7 @@
 &lt;/xsl:stylesheet&gt;
 </code></pre>
 <h3><a href="#json-descriptor-files" id="json-descriptor-files">JSON Descriptor Files</a></h3>
-<p>Nodes, Properties and in fact complete subtrees may be described in JSON files using the following skeleton structure (see <a href="http://www.json.org">http://www.json.org</a> or information on the syntax of JSON) :</p>
+<p>Nodes, Properties and in fact complete subtrees may be described in JSON files using the following skeleton structure (see <a href="https://www.json.org">https://www.json.org</a> or information on the syntax of JSON) :</p>
 <pre><code>{
     // child node name
     &quot;nodename&quot; : {
@@ -326,7 +326,7 @@
         &quot;jcr:name:sampleName&quot;: &quot;data&quot;,
 
         // URI with name prefix (removed to derive node name)
-        &quot;jcr:uri:sampleUri&quot;: &quot;http://sling.apache.org/&quot;,
+        &quot;jcr:uri:sampleUri&quot;: &quot;https://sling.apache.org/&quot;,
 
         // Child nodes are simple JSON objects
         &quot;sling:scripts&quot;: {
@@ -415,8 +415,8 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
 <p>When adding a <code>security:acl</code> object to a content node definition in JSON you can also define restrictions on the ACEs to further filter the impact. Example:</p>
 <pre><code>{
     &quot;security:acl&quot;: [
-        { 
-            &quot;principal&quot;: &quot;TestUser1&quot;, 
+        {
+            &quot;principal&quot;: &quot;TestUser1&quot;,
             &quot;granted&quot;: [
                 &quot;jcr:read&quot;,
                 &quot;jcr:write&quot;
@@ -425,8 +425,8 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
                 &quot;rep:glob&quot;: &quot;glob1&quot;
             }
         },
-        { 
-            &quot;principal&quot;: &quot;TestGroup1&quot;, 
+        {
+            &quot;principal&quot;: &quot;TestGroup1&quot;,
             &quot;granted&quot;: [
                 &quot;jcr:modifyAccessControl&quot;
             ],
@@ -454,7 +454,7 @@ Support for re-registration of node types is relatively limited. In Jackrabbit, 
                             content/documentation/bundles/content-loading-jcr-contentloader.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2023-03-02</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
