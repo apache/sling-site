@@ -4,12 +4,12 @@ status=published
 tags=logging,operations
 ~~~~~~
 
-<div class="note">
-Please make sure to always use the latest release of Apache Sling Commons Log. Check [Sling Releases](https://downloads.apache.org/sling/) for the latest available version.
-Additionally, the latest version of (SLF4J)](https://www.slf4j.org), [logback](https://logback.qos.ch/) and any bridge for other logging frameworks should be installed.
-</div>
-
 [TOC]
+
+## NOTE
+
+Please make sure to always use the latest release of Apache Sling Commons Log. Check [Sling Releases](https://downloads.apache.org/sling/) for the latest available version.
+Additionally, the latest version of [SLF4J](https://www.slf4j.org), [logback](https://logback.qos.ch/) and any bridge for other logging frameworks should be installed.
 
 ## Introduction
 
@@ -17,7 +17,7 @@ Logging in Sling is supported by three bundles:
 
 * `org.apache.felix.log` : This is an implementation of the OSGi Log Service specification and providers OSGi services like the `LogService` and `LogReader` services
 * `org.apache.sling.commons.log` : This bundle requires [logback](https://logback.qos.ch/) and allows to configure logback logging based on OSGi configurations or logback XML. It also supports registering of some logback services via the OSGi service registry.
-* `org.apache.sling.commons.logservice` : This bundle binds (SLF4J)](https://www.slf4j.org) to the OSGi log service.
+* `org.apache.sling.commons.logservice` : This bundle binds [SLF4J](https://www.slf4j.org) to the OSGi log service.
 and started by the Sling Launcher. This bundle along with other bundles manages the Sling Logging and provides the
 following features:
 
