@@ -126,7 +126,7 @@ def bundles=[
   "Distribution Journal ITs|org.apache.sling.distribution.journal.it|0.1.2|Y|jar",
   "Dynamic Include|org.apache.sling.dynamic-include|3.3.2|Y|jar",
   "Engine|org.apache.sling.engine|2.16.0|Y|jar",
-  "Event|org.apache.sling.event|4.3.14|Y|jar",
+  "Event|org.apache.sling.event|4.3.16|Y|jar",
   "Event API|org.apache.sling.event.api|1.0.4|Y|jar",
   "Feature API Regions Runtime|org.apache.sling.feature.apiregions|1.1.10|Y|jar",
   "Feature Model|org.apache.sling.feature|2.0.4|Y|jar",
