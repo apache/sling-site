@@ -31,7 +31,7 @@ If you install the default Commons Log bundle, in addition install the latest ve
 
 ### Embedded Installation
 
-For a simpler installation, the Commons Log `all` bundle embeds Logback Core, Logback Classic and SLF4J 2.x and does not not Spifly.
+For a simpler installation, the Commons Log `all` bundle embeds Logback Core, Logback Classic and SLF4J 2.x API and does not need Spifly. Make sure to *not* install SLF4J API separately.
 
 ## Initial Configuration
 
