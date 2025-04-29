@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2025
 
+* Feature Model Content Extension 1.0.16 (29th)
 * Event 4.3.16
 * Testing PaxExam 4.1.2 (23rd)
 
