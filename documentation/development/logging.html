@@ -158,7 +158,7 @@
 <h3><a href="#separate-logback-slf4j-installation" id="separate-logback-slf4j-installation">Separate Logback, SLF4j Installation</a></h3>
 <p>If you install the default Commons Log bundle, in addition install the latest version of Logback Core, Logback Classic and SLF4J 2.x. In addition make sure to install <a href="https://aries.apache.org/documentation/modules/spi-fly.html">Apache Aries Spifly</a>.</p>
 <h3><a href="#embedded-installation" id="embedded-installation">Embedded Installation</a></h3>
-<p>For a simpler installation, the Commons Log <code>all</code> bundle embeds Logback Core, Logback Classic and SLF4J 2.x and does not not Spifly.</p>
+<p>For a simpler installation, the Commons Log <code>all</code> bundle embeds Logback Core, Logback Classic and SLF4J 2.x API and does not need Spifly. Make sure to <em>not</em> install SLF4J API separately.</p>
 <h2><a href="#initial-configuration" id="initial-configuration">Initial Configuration</a></h2>
 <p>The <code>org.apache.sling.commons.log</code> bundle gets its initial configuration from the following <code>BundleContext</code> properties:</p>
 <table>
@@ -549,7 +549,7 @@ org.apache.sling.commons.log.pattern=&quot;{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}
                             content/documentation/development/logging.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-29</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
