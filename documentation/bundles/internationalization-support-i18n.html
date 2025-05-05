@@ -239,6 +239,14 @@
 [sling:MessageEntry] &gt; nt:hierarchyNode, sling:Message
 </code></pre>
 <p>The <code>sling:Message</code> and <code>sling:MessageEntry</code> are helper node types. The latter must be used to create the nodes for the <code>sling:MessageEntry</code> based format.</p>
+<h3><a href="#non-jcr-based-resourcebundle-resources" id="non-jcr-based-resourcebundle-resources">Non-JCR based ResourceBundle resources</a></h3>
+<p>Since <a href="https://issues.apache.org/jira/browse/SLING-10135">version 2.5.16</a> the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.</p>
+<p>For example, the bundle providing the ResourceBundle resources can define something like this:</p>
+<pre><code>Require-Capability: osgi.extender;filter:=&quot;(&amp;(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version&lt;=1.0.0)(!(version&gt;=2.0.0)))&quot;
+
+Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/libs/i18n/path123&quot;;depth=1
+</code></pre>
+<p>The &quot;Provide-Capability&quot; instruction defines which (csv) resource paths to traverse via the &quot;paths&quot; clause and how deep to drill down via the optional &quot;depth&quot; clause (depth=1 by default) looking for candidates.</p>
 <h3><a href="#resourcebundle-with-base-names" id="resourcebundle-with-base-names"><code>ResourceBundle</code> with base names</a></h3>
 <p>Similar to standard Java <code>ResourceBundle</code> instances, Sling <code>ResourceBundle</code> instances may be created for base names through any of the <code>getResourceBundle(String, Locale)</code> methods. These methods use the base name parameter as a selector for the values of the <code>sling:basename</code> property of the <code>mix:language</code> nodes.</p>
 <p>The base name argument can take one three values:</p>
@@ -277,14 +285,6 @@
 <li><code>en</code></li>
 </ol>
 <p>In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale). The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.</p>
-<h3><a href="#osgi-bundle-based-resourcebundle-resources" id="osgi-bundle-based-resourcebundle-resources">OSGi bundle based ResourceBundle resources</a></h3>
-<p>Since <a href="https://issues.apache.org/jira/browse/SLING-10135">version 2.5.16</a> the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.</p>
-<p>For example, the bundle providing the ResourceBundle resources can define something like this:</p>
-<pre><code>Require-Capability: osgi.extender;filter:=&quot;(&amp;(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version&lt;=1.0.0)(!(version&gt;=2.0.0)))&quot;
-
-Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/libs/i18n/path123&quot;;depth=1
-</code></pre>
-<p>The &quot;Provide-Capability&quot; instruction defines which (csv) resource paths to traverse via the &quot;paths&quot; clause and how deep to drill down via the optional &quot;depth&quot; clause (depth=1 by default) looking for candidates.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Internationalization Support (i18n) )</div>                            
                         </div>
                     </div>
