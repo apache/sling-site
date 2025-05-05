@@ -136,6 +136,18 @@ The `mix:language` mixin node type allows setting the `jcr:language` property re
 
 The `sling:Message` and `sling:MessageEntry` are helper node types. The latter must be used to create the nodes for the `sling:MessageEntry` based format.
 
+### Non-JCR based ResourceBundle resources
+
+Since [version 2.5.16](https://issues.apache.org/jira/browse/SLING-10135) the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.
+
+For example, the bundle providing the ResourceBundle resources can define something like this:
+
+    Require-Capability: osgi.extender;filter:="(&(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version<=1.0.0)(!(version>=2.0.0)))"
+
+    Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths="/libs/i18n/path123";depth=1
+
+The "Provide-Capability" instruction defines which (csv) resource paths to traverse via the "paths" clause and how deep to drill down via the optional "depth" clause (depth=1 by default) looking for candidates.
+
 ### `ResourceBundle` with base names
 
 Similar to standard Java `ResourceBundle` instances, Sling `ResourceBundle` instances may be created for base names through any of the `getResourceBundle(String, Locale)` methods. These methods use the base name parameter as a selector for the values of the `sling:basename` property of the `mix:language` nodes.
@@ -151,6 +163,7 @@ The base name argument can take one three values:
 The `sling:basename` property may be multi-valued, that is the messages of a `mix:language` nodes may belong to multiple base names and thus `ResourceBundle` instances.
 
 ### `ResourceBundle` hierarchies
+
 The dictionary entries for one `JcrResourceBundle` are always ordered like the resource resolver search paths, so usually
 
    1. dictionary entries below `/apps`
@@ -177,16 +190,3 @@ So for the locale `de-DE-MAC` the fallback order would be
 
 In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale).
 The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.
-
-### OSGi bundle based ResourceBundle resources
-
-Since [version 2.5.16](https://issues.apache.org/jira/browse/SLING-10135) the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.
-
-For example, the bundle providing the ResourceBundle resources can define something like this:
-
-    Require-Capability: osgi.extender;filter:="(&(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version<=1.0.0)(!(version>=2.0.0)))"
-
-    Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths="/libs/i18n/path123";depth=1
-
-The "Provide-Capability" instruction defines which (csv) resource paths to traverse via the "paths" clause and how deep to drill down via the optional "depth" clause (depth=1 by default) looking for candidates.
-
