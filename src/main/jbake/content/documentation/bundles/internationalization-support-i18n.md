@@ -144,7 +144,7 @@ The base name argument can take one three values:
 
 | Value | `ResourceBundle` selection |
 |---|---|
-| `null` | Selects messages of `mix:language` nodes ignoring the existence or absence of `sling:basename` properties |
+| `null` | Selects messages of `mix:language` nodes ignoring the existence or absence of `sling:basename` properties. This is also used when `getResourceBundle(Locale)` is called.  |
 | Empty String | Selects messages of `mix:language` nodes which have `sling:basename` properties, ignoring the actual values |
 | Any other Value | Selects messages of `mix:language` nodes whose `sling:basename` properties has any value which matches the base name string |
 
@@ -178,9 +178,9 @@ So for the locale `de-DE-MAC` the fallback order would be
 In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale).
 The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.
 
-#### Locate non JCR based ResourceBundle resources
+### OSGi bundle based ResourceBundle resources
 
-Since version 2.5.16 the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that a bundle can declare certain paths that should be traversed to locate ResourceBundle resources.
+Since [version 2.5.16]() the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.
 
 For example, the bundle providing the ResourceBundle resources can define something like this:
 
