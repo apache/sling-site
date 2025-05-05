@@ -247,7 +247,7 @@
 <tr><th> Value </th><th> <code>ResourceBundle</code> selection </th></tr>
 </thead>
 <tbody>
-<tr><td> <code>null</code> </td><td> Selects messages of <code>mix:language</code> nodes ignoring the existence or absence of <code>sling:basename</code> properties </td></tr>
+<tr><td> <code>null</code> </td><td> Selects messages of <code>mix:language</code> nodes ignoring the existence or absence of <code>sling:basename</code> properties. This is also used when <code>getResourceBundle(Locale)</code> is called.  </td></tr>
 <tr><td> Empty String </td><td> Selects messages of <code>mix:language</code> nodes which have <code>sling:basename</code> properties, ignoring the actual values </td></tr>
 <tr><td> Any other Value </td><td> Selects messages of <code>mix:language</code> nodes whose <code>sling:basename</code> properties has any value which matches the base name string </td></tr>
 </tbody>
@@ -277,8 +277,8 @@
 <li><code>en</code></li>
 </ol>
 <p>In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale). The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.</p>
-<h4><a href="#locate-non-jcr-based-resourcebundle-resources" id="locate-non-jcr-based-resourcebundle-resources">Locate non JCR based ResourceBundle resources</a></h4>
-<p>Since version 2.5.16 the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that a bundle can declare certain paths that should be traversed to locate ResourceBundle resources.</p>
+<h3><a href="#osgi-bundle-based-resourcebundle-resources" id="osgi-bundle-based-resourcebundle-resources">OSGi bundle based ResourceBundle resources</a></h3>
+<p>Since <a href="">version 2.5.16</a> the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.</p>
 <p>For example, the bundle providing the ResourceBundle resources can define something like this:</p>
 <pre><code>Require-Capability: osgi.extender;filter:=&quot;(&amp;(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version&lt;=1.0.0)(!(version&gt;=2.0.0)))&quot;
 
@@ -296,7 +296,7 @@ Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/li
                             content/documentation/bundles/internationalization-support-i18n.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-05-05</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
