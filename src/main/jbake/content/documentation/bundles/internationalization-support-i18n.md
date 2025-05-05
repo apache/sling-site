@@ -180,7 +180,7 @@ The last resort (root resource bundle in all hierarchies) is always the bundle w
 
 ### OSGi bundle based ResourceBundle resources
 
-Since [version 2.5.16]() the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.
+Since [version 2.5.16](https://issues.apache.org/jira/browse/SLING-10135) the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.
 
 For example, the bundle providing the ResourceBundle resources can define something like this:
 
