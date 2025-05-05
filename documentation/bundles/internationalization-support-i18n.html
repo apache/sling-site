@@ -278,7 +278,7 @@
 </ol>
 <p>In case there is a resource bundle requested for a locale without country or variant, there is only 1 fallback (i.e. the default locale). The last resort (root resource bundle in all hierarchies) is always the bundle which returns the requested key as the value.</p>
 <h3><a href="#osgi-bundle-based-resourcebundle-resources" id="osgi-bundle-based-resourcebundle-resources">OSGi bundle based ResourceBundle resources</a></h3>
-<p>Since <a href="">version 2.5.16</a> the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.</p>
+<p>Since <a href="https://issues.apache.org/jira/browse/SLING-10135">version 2.5.16</a> the i18n bundle supports locating ResourceBundle resources that exist outside of the JCR repository.  A new osgi.extender technique can be utilized so that an OSGi bundle can declare certain paths that should be traversed to locate ResourceBundle resources.</p>
 <p>For example, the bundle providing the ResourceBundle resources can define something like this:</p>
 <pre><code>Require-Capability: osgi.extender;filter:=&quot;(&amp;(osgi.extender=org.apache.sling.i18n.resourcebundle.locator.registrar)(version&lt;=1.0.0)(!(version&gt;=2.0.0)))&quot;
 
