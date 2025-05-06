@@ -206,7 +206,7 @@ all `javax.jcr.Session` attributes | For Oak based repositories those are descri
 
 ### Bundle-based Resources
 
-Resources may by provided by OSGi bundles. Providing bundles have a Bundle manifest header `Sling-Bundle-Resources` containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).
+Resources may be provided by OSGi bundles. Providing bundles have a Bundle manifest header `Sling-Bundle-Resources` containing a list of absolute paths provided by the bundle. The path are separated by comma or whitespace (SP, TAB, VTAB, CR, LF).
 
 The `BundleResourceProvider` supporting bundle-based Resources provides directories as Resources of type `nt:folder` and files as Resources of type `nt:file`. This matches the default primary node types intended to be used for directories and files in JCR repositories.
 
