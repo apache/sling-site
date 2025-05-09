@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2025
 
+* Commons Log 6.0.0 (9th)
 * Scripting HTL JS Use Provider 1.2.14, Scripting HTL Engine 1.4.28-1.4.0, Scripting HTL Testing 1.0.40-1.4.0 (8th)
 * Engine 2.16.2 (5th)
 
