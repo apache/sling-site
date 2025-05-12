@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2025
 
+* Apache Sling Resource Resolver 1.12.8 (12th)
 * JCR Package Init 1.0.6, Feature Model Content Extension 1.0.18 (12th)
 * Commons Log 6.0.0, Models Jackson Exporter 1.1.6 (9th)
 * Scripting HTL JS Use Provider 1.2.14, Scripting HTL Engine 1.4.28-1.4.0, Scripting HTL Testing 1.0.40-1.4.0 (8th)
