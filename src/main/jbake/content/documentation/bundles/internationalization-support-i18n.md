@@ -152,13 +152,13 @@ The "Provide-Capability" instruction defines which (csv) resource paths to trave
 
 Similar to standard Java `ResourceBundle` instances, Sling `ResourceBundle` instances may be created for base names through any of the `getResourceBundle(String, Locale)` methods. These methods use the base name parameter as a selector for the values of the `sling:basename` property of the `mix:language` nodes.
 
-The base name argument can take one three values:
+The base name argument can take one of three value types:
 
 | Value | `ResourceBundle` selection |
 |---|---|
 | `null` | Selects messages of `mix:language` nodes ignoring the existence or absence of `sling:basename` properties. This is also used when `getResourceBundle(Locale)` is called.  |
-| Empty String | Selects messages of `mix:language` nodes which have `sling:basename` properties, ignoring the actual values |
-| Any other Value | Selects messages of `mix:language` nodes whose `sling:basename` properties has any value which matches the base name string |
+| Empty string | Selects messages of `mix:language` nodes which have `sling:basename` properties, ignoring the actual values |
+| Any other value | Selects messages of `mix:language` nodes whose `sling:basename` properties has any value which matches the base name string |
 
 The `sling:basename` property may be multi-valued, that is the messages of a `mix:language` nodes may belong to multiple base names and thus `ResourceBundle` instances.
 
