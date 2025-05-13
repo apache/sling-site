@@ -249,15 +249,15 @@ Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/li
 <p>The &quot;Provide-Capability&quot; instruction defines which (csv) resource paths to traverse via the &quot;paths&quot; clause and how deep to drill down via the optional &quot;depth&quot; clause (depth=1 by default) looking for candidates.</p>
 <h3><a href="#resourcebundle-with-base-names" id="resourcebundle-with-base-names"><code>ResourceBundle</code> with base names</a></h3>
 <p>Similar to standard Java <code>ResourceBundle</code> instances, Sling <code>ResourceBundle</code> instances may be created for base names through any of the <code>getResourceBundle(String, Locale)</code> methods. These methods use the base name parameter as a selector for the values of the <code>sling:basename</code> property of the <code>mix:language</code> nodes.</p>
-<p>The base name argument can take one three values:</p>
+<p>The base name argument can take one of three value types:</p>
 <table>
 <thead>
 <tr><th> Value </th><th> <code>ResourceBundle</code> selection </th></tr>
 </thead>
 <tbody>
 <tr><td> <code>null</code> </td><td> Selects messages of <code>mix:language</code> nodes ignoring the existence or absence of <code>sling:basename</code> properties. This is also used when <code>getResourceBundle(Locale)</code> is called.  </td></tr>
-<tr><td> Empty String </td><td> Selects messages of <code>mix:language</code> nodes which have <code>sling:basename</code> properties, ignoring the actual values </td></tr>
-<tr><td> Any other Value </td><td> Selects messages of <code>mix:language</code> nodes whose <code>sling:basename</code> properties has any value which matches the base name string </td></tr>
+<tr><td> Empty string </td><td> Selects messages of <code>mix:language</code> nodes which have <code>sling:basename</code> properties, ignoring the actual values </td></tr>
+<tr><td> Any other value </td><td> Selects messages of <code>mix:language</code> nodes whose <code>sling:basename</code> properties has any value which matches the base name string </td></tr>
 </tbody>
 </table>
 <p>The <code>sling:basename</code> property may be multi-valued, that is the messages of a <code>mix:language</code> nodes may belong to multiple base names and thus <code>ResourceBundle</code> instances.</p>
@@ -296,7 +296,7 @@ Provide-Capability: org.apache.sling.i18n.resourcebundle.locator;paths=&quot;/li
                             content/documentation/bundles/internationalization-support-i18n.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-05-05</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-05-13</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
