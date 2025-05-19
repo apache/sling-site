@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2025
 
-* Content Distribution Journal Messages 0.5.12, Content Distribution Core 0.7.4, Content-Package To Feature Model Converter 1.3.10, OSGi Feature Maven Plugin 1.9.2 (19th)
+* Content Distribution Journal Messages 0.5.12, Content Distribution Core 0.7.4, Content-Package To Feature Model Converter 1.3.10, OSGi Feature Maven Plugin 1.9.2, Feature Model Analyser 2.0.14 (19th)
 * Apache Sling Resource Resolver 1.12.8 (12th)
 * JCR Package Init 1.0.6, Feature Model Content Extension 1.0.18 (12th)
 * Commons Log 6.0.0, Models Jackson Exporter 1.1.6 (9th)
