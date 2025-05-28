@@ -162,7 +162,7 @@ Java Type | JCR Type
 `String` | String
 `Serializable` | Binary
 
-All arrays are stored as multivalue properties.
+All arrays are stored as multi-value properties. `java.util.Collection` types are not detected as multi-value type but in most cases are stored as serialized single-value binary property ([SLING-12811](https://issues.apache.org/jira/browse/SLING-12811)).
 
 For reading a lot more type conversions are supported.
 
