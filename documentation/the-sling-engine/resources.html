@@ -277,7 +277,7 @@
 <tr><td><code>Serializable</code> </td><td> Binary</td></tr>
 </tbody>
 </table>
-<p>All arrays are stored as multivalue properties.</p>
+<p>All arrays are stored as multi-value properties. <code>java.util.Collection</code> types are not detected as multi-value type but in most cases are stored as serialized single-value binary property (<a href="https://issues.apache.org/jira/browse/SLING-12811">SLING-12811</a>).</p>
 <p>For reading a lot more type conversions are supported.</p>
 <h4><a href="#binary-support" id="binary-support">Binary Support</a></h4>
 <p>Binary properties are exposed as <code>InputStream</code> in the resource's <code>ValueMap</code>. That input stream only needs to be closed in case one reads from it. This prevents always checking the <code>ValueMap</code> for dangling <code>InputStream</code> properties.</p>
@@ -390,7 +390,7 @@ public class SampleResourceChangeListener implements ResourceChangeListener {
                             content/documentation/the-sling-engine/resources.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-05-06</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-05-28</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
