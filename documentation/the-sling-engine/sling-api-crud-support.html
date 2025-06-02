@@ -157,7 +157,7 @@
 <li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#orderBefore(org.apache.sling.api.resource.Resource,java.lang.String,java.lang.String)"><code>orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException</code></a> (since <a href="https://issues.apache.org/jira/browse/SLING-7975">API 2.24.0</a>)</li>
 </ul>
 <p>Those methods provide the ability to create and delete resources as well. In addition you can adapt a <code>Resource</code> to a <code>ModifiableValueMap</code> interface which is similar to the <code>ValueMap</code> interface, but allows for updating properties on a resource.</p>
-<p>Notably missing is renaming support (<a href="https://issues.apache.org/jira/browse/SLING-11712">SLING-11712</a> which currently requires a combination of create and move operations.</p>
+<p>Notably missing is renaming support (<a href="https://issues.apache.org/jira/browse/SLING-11712">SLING-11712</a>) which currently requires a combination of create and move operations.</p>
 <h1><a href="#examples" id="examples">Examples</a></h1>
 <p>Here are some examples of common operations performed using the Sling Post Servlet and Sling API CRUD support.  Note, the examples are derived from the cheat sheet in Adobe's AEM documentation at <a href="https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html">https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html</a>.</p>
 <h2><a href="#updating-a-property" id="updating-a-property">Updating a Property</a></h2>
