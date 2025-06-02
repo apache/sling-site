@@ -147,15 +147,17 @@
 <h1><a href="#apache-sling-api-support" id="apache-sling-api-support">Apache Sling API Support</a></h1>
 <p>As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD) features.  CRUD support is provided by the addition of the following methods to the ResourceResolver:</p>
 <ul>
-<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#delete-org.apache.sling.api.resource.Resource-"><code>void delete(Resource resource) throws PersistenceException</code></a></li>
-<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#create-org.apache.sling.api.resource.Resource-java.lang.String-java.util.Map-"><code>Resource create(Resource parent, String name, Map&lt;String, Object&gt; properties) throws PersistenceException</code></a></li>
-<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#revert--"><code>void revert()</code></a></li>
-<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#commit--"><code>void commit() throws PersistenceException</code></a></li>
-<li><a href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#hasChanges--"><code>boolean hasChanges()</code></a></li>
-<li><a href="https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#refresh--"><code>void refresh()</code></a></li>
-<li><code>orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException</code> (since <a href="https://issues.apache.org/jira/browse/SLING-7975">API 2.24.0</a>)</li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#delete(org.apache.sling.api.resource.Resource)"><code>void delete(Resource resource) throws PersistenceException</code></a></li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#create(org.apache.sling.api.resource.Resource,java.lang.String,java.util.Map)"><code>Resource create(Resource parent, String name, Map&lt;String, Object&gt; properties) throws PersistenceException</code></a></li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#move(java.lang.String,java.lang.String)"><code>Resource move(String srcAbsPath, String destAbsPath) throws PersistenceException</code></a></li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#revert()"><code>void revert()</code></a></li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#commit()"><code>void commit() throws PersistenceException</code></a></li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#hasChanges()"><code>boolean hasChanges()</code></a></li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#refresh()"><code>void refresh()</code></a></li>
+<li><a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#orderBefore(org.apache.sling.api.resource.Resource,java.lang.String,java.lang.String)"><code>orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException</code></a> (since <a href="https://issues.apache.org/jira/browse/SLING-7975">API 2.24.0</a>)</li>
 </ul>
 <p>Those methods provide the ability to create and delete resources as well. In addition you can adapt a <code>Resource</code> to a <code>ModifiableValueMap</code> interface which is similar to the <code>ValueMap</code> interface, but allows for updating properties on a resource.</p>
+<p>Notably missing is renaming support (<a href="https://issues.apache.org/jira/browse/SLING-11712">SLING-11712</a> which currently requires a combination of create and move operations.</p>
 <h1><a href="#examples" id="examples">Examples</a></h1>
 <p>Here are some examples of common operations performed using the Sling Post Servlet and Sling API CRUD support.  Note, the examples are derived from the cheat sheet in Adobe's AEM documentation at <a href="https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html">https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/developing/full-stack/sling-cheatsheet.html</a>.</p>
 <h2><a href="#updating-a-property" id="updating-a-property">Updating a Property</a></h2>
@@ -216,17 +218,16 @@ Resource myResource2 = resourceResolver.create(null, &quot;myresource2&quot;, pr
 resourceResolver.commit();
 </code></pre>
 <h2><a href="#move-a-resource" id="move-a-resource">Move a Resource</a></h2>
-<p>Move the resource <code>/myresource2</code> to <code>/myresource3</code></p>
+<p>Move the resource <code>/apps/myresource2</code> to <code>/libs/myresource2</code></p>
 <p><strong>Sling Post Servlet</strong></p>
-<pre><code>&lt;form action=&quot;/myresource2&quot; method=&quot;POST&quot;&gt;
+<pre><code>&lt;form action=&quot;/apps/myresource2&quot; method=&quot;POST&quot;&gt;
   &lt;input type=&quot;hidden&quot; name=&quot;:operation&quot; value=&quot;move&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;:dest&quot; value=&quot;/myresource3&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;:dest&quot; value=&quot;/libs/&quot;&gt;
 &lt;/form&gt;
 </code></pre>
 <p><strong>Sling API CRUD</strong></p>
-<pre><code>Resource myResource2 = resourceResolver.getResource(&quot;/myresource2&quot;);
-Map&lt;String,Object&gt; properties = myResource2.adaptTo(ValueMap.class);
-Resource myResource3 = resourceResolver.create(null, &quot;myresource3&quot;, properties);
+<pre><code>Resource myResource2 = resourceResolver.getResource(&quot;/apps/myresource2&quot;);
+Resource myResource3 = resourceResolver.move(myResource.getPath(), &quot;/libs&quot;, properties);
 resourceResolver.delete(myResource2);
 resourceResolver.commit();
 </code></pre>
@@ -286,7 +287,7 @@ resourceResolver.commit();
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html">Boolean</a></li>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></li>
 </ul>
-<p>As well as the corresponding primitive types.  Any object which implements the Serializable interface will be serialized and the result of the serialization will be saved as a binary value for the property.</p>
+<p>As well as the corresponding primitive types.  Any object which implements the Serializable interface will be serialized and the result of the serialization will be saved as a binary value for the property. Any array is persisted as multi-value property (Collections are treated as Serializables -&gt; end up as binaries).</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Sling API CRUD Support )</div>                            
                         </div>
                     </div>
@@ -298,7 +299,7 @@ resourceResolver.commit();
                             content/documentation/the-sling-engine/sling-api-crud-support.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-06-02</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
