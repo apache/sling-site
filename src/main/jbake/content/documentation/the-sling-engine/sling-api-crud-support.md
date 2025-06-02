@@ -21,7 +21,7 @@ As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD
 
 Those methods provide the ability to create and delete resources as well. In addition you can adapt a `Resource` to a `ModifiableValueMap` interface which is similar to the `ValueMap` interface, but allows for updating properties on a resource.
 
-Notably missing is renaming support ([SLING-11712](https://issues.apache.org/jira/browse/SLING-11712) which currently requires a combination of create and move operations.
+Notably missing is renaming support ([SLING-11712](https://issues.apache.org/jira/browse/SLING-11712)) which currently requires a combination of create and move operations.
 
 # Examples
 
