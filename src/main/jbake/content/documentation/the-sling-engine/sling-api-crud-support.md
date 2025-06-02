@@ -10,15 +10,18 @@ tags=api,core
 
 As of version 2.3.0, the Sling API provides full Create Read Update Delete (CRUD) features.  CRUD support is provided by the addition of the following methods to the ResourceResolver:
 
- * [`void delete(Resource resource) throws PersistenceException`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#delete-org.apache.sling.api.resource.Resource-)
- * [`Resource create(Resource parent, String name, Map<String, Object> properties) throws PersistenceException`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#create-org.apache.sling.api.resource.Resource-java.lang.String-java.util.Map-)
- * [`void revert()`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#revert--)
- * [`void commit() throws PersistenceException`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#commit--)
- * [`boolean hasChanges()`](https://sling.apache.org/apidocs/sling7/org/apache/sling/api/resource/ResourceResolver.html#hasChanges--)
- * [`void refresh()`](https://sling.apache.org/apidocs/sling11/org/apache/sling/api/resource/ResourceResolver.html#refresh--)
- * `orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException` (since [API 2.24.0](https://issues.apache.org/jira/browse/SLING-7975))
+ * [`void delete(Resource resource) throws PersistenceException`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#delete(org.apache.sling.api.resource.Resource))
+ * [`Resource create(Resource parent, String name, Map<String, Object> properties) throws PersistenceException`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#create(org.apache.sling.api.resource.Resource,java.lang.String,java.util.Map))
+ * [`Resource move(String srcAbsPath, String destAbsPath) throws PersistenceException`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#move(java.lang.String,java.lang.String))
+ * [`void revert()`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#revert())
+ * [`void commit() throws PersistenceException`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#commit())
+ * [`boolean hasChanges()`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#hasChanges())
+ * [`void refresh()`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#refresh())
+ * [`orderBefore(Resource parent, String name, String followingSiblingName) throws UnsupportedOperationException, PersistenceException, IllegalArgumentException`](https://sling.apache.org/apidocs/sling13/org/apache/sling/api/resource/ResourceResolver.html#orderBefore(org.apache.sling.api.resource.Resource,java.lang.String,java.lang.String)) (since [API 2.24.0](https://issues.apache.org/jira/browse/SLING-7975))
 
 Those methods provide the ability to create and delete resources as well. In addition you can adapt a `Resource` to a `ModifiableValueMap` interface which is similar to the `ValueMap` interface, but allows for updating properties on a resource.
+
+Notably missing is renaming support ([SLING-11712](https://issues.apache.org/jira/browse/SLING-11712) which currently requires a combination of create and move operations.
 
 # Examples
 
@@ -99,20 +102,19 @@ Copy the resource `/myresource` to `/myresource2`
 
 ## Move a Resource
 
-Move the resource `/myresource2` to `/myresource3`
+Move the resource `/apps/myresource2` to `/libs/myresource2`
 
 **Sling Post Servlet**
 
-    <form action="/myresource2" method="POST">
+    <form action="/apps/myresource2" method="POST">
       <input type="hidden" name=":operation" value="move">
-      <input type="hidden" name=":dest" value="/myresource3">
+      <input type="hidden" name=":dest" value="/libs/">
     </form>
 
 **Sling API CRUD**
 
-    Resource myResource2 = resourceResolver.getResource("/myresource2");
-    Map<String,Object> properties = myResource2.adaptTo(ValueMap.class);
-    Resource myResource3 = resourceResolver.create(null, "myresource3", properties);
+    Resource myResource2 = resourceResolver.getResource("/apps/myresource2");
+    Resource myResource3 = resourceResolver.move(myResource.getPath(), "/libs", properties);
     resourceResolver.delete(myResource2);
     resourceResolver.commit();
 
@@ -189,3 +191,4 @@ The classes implementing the following types are supported directly when setting
  * [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
 
 As well as the corresponding primitive types.  Any object which implements the Serializable interface will be serialized and the result of the serialization will be saved as a binary value for the property.
+Any array is persisted as multi-value property (Collections are treated as Serializables -> end up as binaries).
