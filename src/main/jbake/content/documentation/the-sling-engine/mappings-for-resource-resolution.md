@@ -275,7 +275,7 @@ The following characters are not allowed in `sling:alias` values: `/?#`. Using a
 
 In general, the number of aliases have a direct impact on the performance of the resource resolution - as basically all possible permutations of paths for a resource have to be tested against the incoming request path. By default a cache is used to speed up handling aliases during resolving resources. It is highly recommended to have this cache enabled to avoid slowing down request performance. However, the cache might have an impact on startup time and on the alias update time if the number of aliases is huge (over 10000).
 
-The cache can be disabled by setting the property `resource.resolver.optimize.alias.resolution` of the OSGi configuration `org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl` to `false`. Note that this is not recommended because of the aforementioned performance issues and also differences in behavior with respect to `jcr:content` nodes (see [SLING-12025](https://issues.apache.org/jira/browse/SLING-12025)).
+The cache can be disabled by setting the property `resource.resolver.optimize.alias.resolution` of the OSGi configuration `org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl` to `false`. Note that this is not recommended because of the aforementioned performance issues.
 
 ### Limitation of `sling:alias` for Principal with a limited access
 
