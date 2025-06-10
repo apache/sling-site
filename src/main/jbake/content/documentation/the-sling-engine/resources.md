@@ -17,7 +17,7 @@ Resources have a number of essential properties:
 | Property | Description |
 |---|---|
 | Path | Resources are part of a Resource Tree. As such each Resource has a path which is formed by concatenating the names of all Resources along the root to the Resource separated by a slash. Ok, really, this is much like a URL path or a file system path where the slash (`/`) is the separator character. |
-| Name | The name of the Resource is the last element (or segment) in the path. |
+| Name | The name of the Resource is the last element (or segment) in the path. Sling itself allows all characters except for `/` or names only consisting of (arbitrarily many) dots (`.`), however the individual resource providers may impose additional restrictions on top. |
 | Resource Type | Each resource has a resource type which is used by the Servlet and Script resolver to find the appropriate Servlet or Script to handle the request for the Resource. |
 | Resource Super Type | The (optional explicit) super type of the Resource. See the section _Resource Types_ below for more details. |
 | Adapters | Resources are always `Adaptable` and therefore can be adapted to a different view. See the section _Resource Adapters_ below for more details. |
@@ -180,6 +180,18 @@ For node type `nt:file` the property is looked up in the child node `jcr:content
 ##### External Binaries
 
 In case when binaries are stored externally (e.g. in a Cloud Storage) accessing those via Sling just induces additional overhead. Therefore with [SLING-7140](https://issues.apache.org/jira/browse/SLING-7140) support for [Oak's Direct Binary Access](https://jackrabbit.apache.org/oak/docs/features/direct-binary-access.html) was added. External binaries now expose also as [`o.a.s.ai.resource.external.ExternalizableInputStream`](https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/external/ExternalizableInputStream.java) allowing to access the direct streaming URI. This is leveraged e.g. in the [default GET servlet's stream rendering](https://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html).
+
+#### Resource/Property names
+
+Apart from the regular Sling restrictions on resource names JCR further restricts which names a JCR item (backing a resource/property) may have. The restrictions are outlined in the [JCR spec's grammar for JCR names](https://s.apache.org/jcr-2.0-spec/3_Repository_Model.html#3.2%20Names).
+
+In contrast to JCR API, the Sling Resource API only allows access via names in [qualified form](https://s.apache.org/jcr-2.0-spec/3_Repository_Model.html#3.2.5.2%20Qualified%20Form) but not in [expanded form](https://s.apache.org/jcr-2.0-spec/3_Repository_Model.html#3.2.5.1%20Expanded%20Form).
+
+##### Escaping/Unescaping
+
+There is no automatic escaping of resource names (i.e. the callers of Sling Resource API must make sure to either use only valid JCR names or take care of escaping and potentially unescaping manually). For property names however the JCR provider automatically escapes during write operations with [`org.apache.jackrabbit.util.Text.escapeIllegalJcrChars(...)`](https://jackrabbit.apache.org/api/trunk/org/apache/jackrabbit/util/Text.html#escapeIllegalJcrChars(java.lang.String)) and automatically unescapes names during read operations with [`ISO9075.decode(...)`](https://jackrabbit.apache.org/api/trunk/org/apache/jackrabbit/util/ISO9075.html#decode(java.lang.String)) in case the name contains `_x` and otherwise with [`org.apache.jackrabbit.util.Text.unescapeIllegalJcrChars(...)`](https://jackrabbit.apache.org/api/trunk/org/apache/jackrabbit/util/Text.html#unescapeIllegalJcrChars(java.lang.String)) (compare with [SLING-2425](https://issues.apache.org/jira/browse/SLING-2425)). There is a special rule for leading colons though, as those are always assumed to separate the namespace prefix from the local name (i.e. don't get escaped automatically).
+
+The recommended name escaping for JCR is outlined at <https://jackrabbit.apache.org/archive/wiki/JCR/EncodingAndEscaping_115513396.html> which coincidentally also takes care of escaping invalid Sling characters (`/` and dots).
 
 #### Resource Metadata
 
