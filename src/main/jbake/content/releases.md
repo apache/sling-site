@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2025
 
+* Resource Access Security 1.1.2 (10th)
 * Event 4.3.18
 * JUnit Remote 1.0.14 (10th)
 * Engine 2.16.4 (6th)
