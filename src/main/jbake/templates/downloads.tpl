@@ -193,7 +193,7 @@ def bundles=[
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.6|Y|jar",
   "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.54|Y|jar",
   "Repoinit Parser|org.apache.sling.repoinit.parser|1.9.2|Y|jar",
-  "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.1.0|Y|jar",
+  "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.1.2|Y|jar",
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.4|Y|jar",
   "Resource Collection|org.apache.sling.resourcecollection|1.0.4|Y|jar",
   "Resource Filter|org.apache.sling.resource.filter|1.0.0|Y|jar",
