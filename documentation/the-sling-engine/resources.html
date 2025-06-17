@@ -154,7 +154,7 @@
 </thead>
 <tbody>
 <tr><td> Path </td><td> Resources are part of a Resource Tree. As such each Resource has a path which is formed by concatenating the names of all Resources along the root to the Resource separated by a slash. Ok, really, this is much like a URL path or a file system path where the slash (<code>/</code>) is the separator character. </td></tr>
-<tr><td> Name </td><td> The name of the Resource is the last element (or segment) in the path. </td></tr>
+<tr><td> Name </td><td> The name of the Resource is the last element (or segment) in the path. Sling itself allows all characters except for <code>/</code> or names only consisting of (arbitrarily many) dots (<code>.</code>), however the individual resource providers may impose additional restrictions on top. </td></tr>
 <tr><td> Resource Type </td><td> Each resource has a resource type which is used by the Servlet and Script resolver to find the appropriate Servlet or Script to handle the request for the Resource. </td></tr>
 <tr><td> Resource Super Type </td><td> The (optional explicit) super type of the Resource. See the section <em>Resource Types</em> below for more details. </td></tr>
 <tr><td> Adapters </td><td> Resources are always <code>Adaptable</code> and therefore can be adapted to a different view. See the section <em>Resource Adapters</em> below for more details. </td></tr>
@@ -289,6 +289,12 @@
 <p>For node type <code>nt:file</code> the property is looked up in the child node <code>jcr:content</code> for both cases. For all other node types it is looked up in the underlying node of the current resource.</p>
 <h5><a href="#external-binaries" id="external-binaries">External Binaries</a></h5>
 <p>In case when binaries are stored externally (e.g. in a Cloud Storage) accessing those via Sling just induces additional overhead. Therefore with <a href="https://issues.apache.org/jira/browse/SLING-7140">SLING-7140</a> support for <a href="https://jackrabbit.apache.org/oak/docs/features/direct-binary-access.html">Oak's Direct Binary Access</a> was added. External binaries now expose also as <a href="https://github.com/apache/sling-org-apache-sling-api/blob/master/src/main/java/org/apache/sling/api/resource/external/ExternalizableInputStream.java"><code>o.a.s.ai.resource.external.ExternalizableInputStream</code></a> allowing to access the direct streaming URI. This is leveraged e.g. in the <a href="https://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html">default GET servlet's stream rendering</a>.</p>
+<h4><a href="#resourceproperty-names" id="resourceproperty-names">Resource/Property names</a></h4>
+<p>Apart from the regular Sling restrictions on resource names JCR further restricts which names a JCR item (backing a resource/property) may have. The restrictions are outlined in the <a href="https://s.apache.org/jcr-2.0-spec/3_Repository_Model.html#3.2%20Names">JCR spec's grammar for JCR names</a>.</p>
+<p>In contrast to JCR API, the Sling Resource API only allows access via names in <a href="https://s.apache.org/jcr-2.0-spec/3_Repository_Model.html#3.2.5.2%20Qualified%20Form">qualified form</a> but not in <a href="https://s.apache.org/jcr-2.0-spec/3_Repository_Model.html#3.2.5.1%20Expanded%20Form">expanded form</a>.</p>
+<h5><a href="#escapingunescaping" id="escapingunescaping">Escaping/Unescaping</a></h5>
+<p>There is no automatic escaping of resource names (i.e. the callers of Sling Resource API must make sure to either use only valid JCR names or take care of escaping and potentially unescaping manually). For property names however the JCR provider automatically escapes during write operations with <a href="https://jackrabbit.apache.org/api/trunk/org/apache/jackrabbit/util/Text.html#escapeIllegalJcrChars(java.lang.String)"><code>org.apache.jackrabbit.util.Text.escapeIllegalJcrChars(...)</code></a> and automatically unescapes names during read operations with <a href="https://jackrabbit.apache.org/api/trunk/org/apache/jackrabbit/util/ISO9075.html#decode(java.lang.String)"><code>ISO9075.decode(...)</code></a> in case the name contains <code>_x</code> and otherwise with <a href="https://jackrabbit.apache.org/api/trunk/org/apache/jackrabbit/util/Text.html#unescapeIllegalJcrChars(java.lang.String)"><code>org.apache.jackrabbit.util.Text.unescapeIllegalJcrChars(...)</code></a> (compare with <a href="https://issues.apache.org/jira/browse/SLING-2425">SLING-2425</a>). There is a special rule for leading colons though, as those are always assumed to separate the namespace prefix from the local name (i.e. don't get escaped automatically).</p>
+<p>The recommended name escaping for JCR is outlined at <a href="https://jackrabbit.apache.org/archive/wiki/JCR/EncodingAndEscaping_115513396.html">https://jackrabbit.apache.org/archive/wiki/JCR/EncodingAndEscaping_115513396.html</a> which coincidentally also takes care of escaping invalid Sling characters (<code>/</code> and dots).</p>
 <h4><a href="#resource-metadata" id="resource-metadata">Resource Metadata</a></h4>
 <p>The resource metadata exposed in <code>Resource.getResourceMetadata</code> get their values from JCR properties:</p>
 <table>
@@ -390,7 +396,7 @@ public class SampleResourceChangeListener implements ResourceChangeListener {
                             content/documentation/the-sling-engine/resources.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-05-28</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-06-10</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
