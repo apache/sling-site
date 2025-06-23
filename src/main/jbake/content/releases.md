@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2025
 
+* Apache Sling Resource Resolver 1.12.10 (23th)
 * Discovery Base 2.1.0, Discovery Commons 1.1.0 (14th)
 * Resource Access Security 1.1.2 (10th)
 * Event 4.3.18
