@@ -271,7 +271,7 @@ def helpers=[
   "Sample Integration Tests|org.apache.sling.testing.samples.integrationtests|1.0.6|N|jar",
   "Servlet Annotations|org.apache.sling.servlets.annotations|1.2.6|Y|jar",
   "Testing Clients|org.apache.sling.testing.clients|3.1.0|Y|jar",
-  "Testing Hamcrest|org.apache.sling.testing.hamcrest|1.0.2|Y|jar",
+  "Testing Hamcrest|org.apache.sling.testing.hamcrest|1.1.0|Y|jar",
   "Testing JCR Mock|org.apache.sling.testing.jcr-mock|1.6.14|Y|jar",
   "Testing Logging Mock|org.apache.sling.testing.logging-mock|2.0.0|Y|jar",
   "Testing OSGi Mock Core|org.apache.sling.testing.osgi-mock.core|3.5.2|org.apache.sling.testing.osgi-mock|jar",

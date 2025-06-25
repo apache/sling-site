@@ -8,7 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2025
 
-* Apache Sling Resource Resolver 1.12.10, OAuth Client 0.1.2 (23th)
+* Testing Hamcrest 1.1.0 (25th)
+* Resource Resolver 1.12.10, OAuth Client 0.1.2 (23th)
 * Feature Model Launcher 1.3.4 (19th)
 * Discovery Base 2.1.0, Discovery Commons 1.1.0 (14th)
 * Resource Access Security 1.1.2 (10th)
@@ -21,7 +22,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 * GraphQL Core 0.0.32 (26th)
 * Feature Launcher Maven Plugin 0.1.8 (23th)
 * Content Distribution Journal Messages 0.5.12, Content Distribution Core 0.7.4, Content-Package To Feature Model Converter 1.3.10, OSGi Feature Maven Plugin 1.9.2, Feature Model Analyser 2.0.14 (19th)
-* Apache Sling Resource Resolver 1.12.8 (12th)
+* Resource Resolver 1.12.8 (12th)
 * JCR Package Init 1.0.6, Feature Model Content Extension 1.0.18 (12th)
 * Commons Log 6.0.0, Models Jackson Exporter 1.1.6 (9th)
 * Scripting HTL JS Use Provider 1.2.14, Scripting HTL Engine 1.4.28-1.4.0, Scripting HTL Testing 1.0.40-1.4.0 (8th)
@@ -36,7 +37,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## March 2025
 
 * JUnit Tests Teleporter 1.1.0, JUnit Core 1.2.0, Commons Testing 2.2.0 (31th)
-* Apache Sling Resource Resolver 1.12.6 (28th)
+* Resource Resolver 1.12.6 (28th)
 * Testing PaxExam 4.1.0 (25th)
 * Testing Sling Mock 3.5.4 (20th)
 * Security 1.3.0 (18th)
@@ -54,7 +55,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## January 2025
 
 * Scripting HTL JS Use Provider 1.2.12, Scripting HTL Testing 1.0.38-1.4.0 (31th)
-* Apache Sling Resource Resolver 1.12.4 (30th)
+* Resource Resolver 1.12.4 (30th)
 * Connection Timeout Agent 1.0.4 (27th)
 * XSS 2.4.6 (26th)
 * Starter 13 (17th)
