@@ -181,7 +181,7 @@ MyConfig config = contentResource.adaptTo(ConfigurationBuilder.class).as(MyConfi
 <pre><code><!-- TODO syntax marker (#!java) disabled -->Collection&lt;MyConfig&gt; configs = contentResource.adaptTo(ConfigurationBuilder.class).asCollection(MyConfig.class);
 </code></pre>
 <p>The ConfigurationBuilder also supports getting the configurations as ValueMap or by adapting the configuration resources e.g. to a Sling Model. In this case you have to specify a configuration name which is otherwise derived automatically from the annotation class.</p>
-<p>Internally the ConfigurationResolver used the ConfigurationResourceResolver to get the configuration resources. It uses always the bucket name <code>sling:configs</code>.</p>
+<p>Internally the ConfigurationResolver uses the ConfigurationResourceResolver to get the configuration resources. It uses always the bucket name <code>sling:configs</code>.</p>
 <h1><a href="#contexts-and-configuration-references" id="contexts-and-configuration-references">Contexts and configuration references</a></h1>
 <p>When you use the <a href="https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html">Default Implementation</a> contexts in the content resource hierarchy is defined by setting <code>sling:configRef</code> properties. Each resource that has a <code>sling:configRef</code> property set defines the root resource of a context, the whole subtree is the context. Within the subtree further nested contexts can be defined. The property contains a resource path pointing to a resource below <code>/conf</code>. This is the configuration reference.</p>
 <p>Example:</p>
@@ -325,7 +325,7 @@ public class MyTest {
                             content/documentation/bundles/context-aware-configuration/context-aware-configuration.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-06-26</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
