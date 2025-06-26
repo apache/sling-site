@@ -81,7 +81,7 @@ Or if you want to get a list of configurations:
 
 The ConfigurationBuilder also supports getting the configurations as ValueMap or by adapting the configuration resources e.g. to a Sling Model. In this case you have to specify a configuration name which is otherwise derived automatically from the annotation class.
 
-Internally the ConfigurationResolver used the ConfigurationResourceResolver to get the configuration resources. It uses always the bucket name `sling:configs`.
+Internally the ConfigurationResolver uses the ConfigurationResourceResolver to get the configuration resources. It uses always the bucket name `sling:configs`.
 
 
 # Contexts and configuration references
