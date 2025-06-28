@@ -5,6 +5,7 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
+* Apache Sling now supports Jakarta Servlet API 6.1 (June 28th)
 * Released [Apache Sling 13](/news/sling-13-released.html) (January 17th, 2025).
 * Security Advisory: [Apache Sling advisory regarding CVE-2023-6378](./security/CVE-2023-6378.html)
 * Vulnerability report: CVE-2024-23673: Apache Sling Servlets Resolver: Malicious code execution via path traversal, see [https://www.cve.org/CVERecord?id=CVE-2024-23673](https://www.cve.org/CVERecord?id=CVE-2024-23673)

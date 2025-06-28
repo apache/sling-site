@@ -8,6 +8,16 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2025
 
+* API 3.0.0 (28th)
+* Auth Core 2.0.0 (28th)
+* Engine 3.0.0 (28th)
+* Resource Resolver 2.0.0 (28th)
+* Scripting SPI 2.0.0 (28th)
+* Scripting Core 3.0.0 (28th)
+* Servlets Resolver 3.0.0 (28th)
+* Servlets Get 3.0.0 (28th)
+* Servlets Post 3.0.0 (28th)
+* Models Jacksonexporter 2.0.0 (28th)
 * Testing Hamcrest 1.1.0 (25th)
 * Resource Resolver 1.12.10, OAuth Client 0.1.2 (23th)
 * Feature Model Launcher 1.3.4 (19th)
