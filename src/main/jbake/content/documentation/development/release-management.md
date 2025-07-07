@@ -1,7 +1,7 @@
 title=Release Management
 type=page
 status=published
-tags=development,pmc
+tags=development,pmc,release
 ~~~~~~
 
 [TOC]
