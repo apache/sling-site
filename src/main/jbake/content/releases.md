@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## July 2025
+
+* GraphQL Core 0.0.34 (10th)
+
 ## June 2025
 
 * API 3.0.0 (28th)
