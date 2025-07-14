@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## July 2025
 
+* Launchpad Base 7.0.5-2.8.2 (14th)
 * GraphQL Core 0.0.34 (10th)
 
 ## June 2025
