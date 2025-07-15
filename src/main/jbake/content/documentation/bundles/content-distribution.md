@@ -47,7 +47,7 @@ The example below distributes the path `/content/sample1`
 
 #### Events
 
-The following OSGi [events|https://github.com/apache/sling-org-apache-sling-distribution-api/blob/master/src/main/java/org/apache/sling/distribution/event] will be raised during the forward distribution process.
+The following OSGi [events](https://github.com/apache/sling-org-apache-sling-distribution-api/blob/master/src/main/java/org/apache/sling/distribution/event) will be raised during the forward distribution process.
 
 | Event                                                     | Instance |
 | --------------------------------------------------------- | -------- |
@@ -206,7 +206,7 @@ export options in order to assemble/import binary references.
 Upon import, if a referenced binary is not visible on the destination instance, SCD will retry distributing the content package
 after a delay has elapsed.
 
-Binary-less is configured by setting the 'useReferences' to true on the VaultDistributionPackageBuilderFactory.
+Binary-less is configured by setting the `useReferences` to `true` on the VaultDistributionPackageBuilderFactory.
 
 ### How to configure priority queue?
 
@@ -216,17 +216,17 @@ than the remaining one (e.g. news flash).
 
 Each agent can be configured with one or more priority queues.
 
-In order to setup the priority queues, configure the 'priorityQueues' agent property by providing the queuePrefix and path regular expression.
+In order to setup the priority queues, configure the `priorityQueues` agent property by providing the queuePrefix and path regular expression.
 
 ### How to configure retry strategy?
 
-The agent behaviour upon failed distribution request can be configured via the Retry Strategy 'retry.strategy' and
-'retry.attempts' properties.
+The agent behaviour upon failed distribution request can be configured via the Retry Strategy `retry.strategy` and
+`retry.attempts` properties.
 
-With the 'none' strategy, an agent will retry distributing an item forever, blocking the queue until the distribution succeeds.
+With the `none` strategy, an agent will retry distributing an item forever, blocking the queue until the distribution succeeds.
 The 'none' strategy guarantees the distribution order but may block the queue until someone resolves the situation.
 
-With the 'errorQueue' strategy, an agent will automatically create an additional error queue. The agent will
-retry up to 'retry.attempts' attempts then move the failed item to the error queue. The error queue is passive and allow
+With the `errorQueue` strategy, an agent will automatically create an additional error queue. The agent will
+retry up to `retry.attempts` attempts then move the failed item to the error queue. The error queue is passive and allow
 to keep track of the failed distribution item for post analysis.
-The 'errorQueue' strategy does not guarantee the distribution order, but it guarantee that the queue is stuck for a bounded number of retries.
+The `errorQueue` strategy does not guarantee the distribution order, but it guarantee that the queue is stuck for a bounded number of retries.
