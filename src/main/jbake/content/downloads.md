@@ -29,7 +29,7 @@ The PGP keys at [https://downloads.apache.org/sling/KEYS](https://downloads.apac
 
 ## Maven Central
 
-All Sling modules are provided from [Maven Central with groupId `org.apache.sling`](https://search.maven.org/search?q=g:org.apache.sling).
+All Sling modules are provided from [Maven Central with groupId `org.apache.sling`](https://central.sonatype.com/search?q=g%3Aorg.apache.sling).
 
 ## Apache
 
