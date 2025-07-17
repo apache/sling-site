@@ -321,3 +321,18 @@ Error handling support is described on the [Errorhandling](/documentation/the-sl
 
 For certain edge cases even in an OSGi runtime running Sling certain servlets are still registered leveraging the [OSGi HTTP Whiteboard](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html) instead of leveraging the Sling servlet registration outlined above.
 Note though, that whenever the Sling engine bundle is deployed it registers a Servlet with the OSGi HTTP Whiteboard for path `/` which will take precedence by default over all other servlets registered through OSGi Http Whiteboard leveraging the *default* servlet context [SLING-11677](https://issues.apache.org/jira/browse/SLING-11677). Therefore, all servlets registered via OSGi HTTP Whiteboard need to be registered with a custom context having a `service.ranking` higher than the one from the Sling Main servlet (=`0`).
+
+## IgnoredServletResourcePredicate
+
+The `IgnoredServletResourcePredicate` API allows specific Scripts and Servlets to be ignored by the servlets resolver.
+
+Implemented since versions 2.11.12 and 3.0.2 of the servlets resolver bundle, it is simply a `Predicate<Resource>`
+which causes a given Script or Servlet resource path to be ignored if the `Predicate` returns `true`.
+
+It was created to allow "soft deprecation" of scripts and servlets, which can remain present in your codebase while
+not being used by Sling.
+
+The test code ([BasicResourceHidingIT](https://github.com/apache/sling-org-apache-sling-servlets-resolver/blob/master/src/test/java/org/apache/sling/servlets/resolver/it/resourcehiding/BasicResourceHidingIT.java) for example) shows how to use this API.
+
+The resolver considers a single OSGi service with this interface, if several are presents the winner is selected
+based on its service ranking.
