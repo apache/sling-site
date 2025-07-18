@@ -141,9 +141,9 @@
 <div class="row" data-pagefind-body="true"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h1><a href="#introduction" id="introduction">Introduction</a></h1>
-<p>The Sling API forces developers to sometimes check for <code>null</code> return values. Most prominently this is the case for <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/adapter/Adaptable.html#adaptTo-java.lang.Class-"><code>Adaptable.adaptTo</code></a> and <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceResolver.html#getResource-java.lang.String-"><code>ResourceResolver.getResource</code></a>. This is often forgotten, which may lead to <code>NullPointerException</code>s. Sling API 2.9.0 introduced the JSR-305 annotations (<a href="https://issues.apache.org/jira/browse/SLING-4377">SLING-4377</a>) which allow tools to check automatically for missing null checks in the code. Since Sling API 2.18.4 JetBrains NotNull annotations are used instead.</p>
+<p>The Sling API forces developers to sometimes check for <code>null</code> return values. Most prominently this is the case for <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/adapter/Adaptable.html#adaptTo-java.lang.Class-"><code>Adaptable.adaptTo</code></a> and <a href="https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceResolver.html#getResource-java.lang.String-"><code>ResourceResolver.getResource</code></a>. This is often forgotten, which may lead to <code>NullPointerException</code>s. Sling API 2.9.0 introduced the JSR-305 annotations (<a href="https://issues.apache.org/jira/browse/SLING-4377">SLING-4377</a>) which allow tools to check automatically for missing null checks in the code. Since Sling API 2.18.4 JetBrains NotNull annotations are used instead (<a href="https://issues.apache.org/jira/browse/SLING-7798">SLING-7798</a>).</p>
 <h1><a href="#annotations" id="annotations">Annotations</a></h1>
-<p>The annotations used within Sling are based on the <a href="https://www.jetbrains.com/help/idea/nullable-and-notnull-annotations.html">Jetbrains Annotations</a>. Although introduced by the company that offers the IntelliJ IDEA IDE,  those annotations are understood by most of the tools and used by other Apache Projects like Apache Oak.</p>
+<p>The annotations used within Sling are based on the <a href="https://www.jetbrains.com/help/idea/nullable-and-notnull-annotations.html">Jetbrains Annotations</a>. Although introduced by the company that offers the IntelliJ IDEA IDE, those annotations are understood by most of the tools and used by other Apache Projects like Apache Oak.</p>
 <p>Sling only uses the following two annotations:</p>
 <ol>
 <li><code>org.jetbrains.annotations.NotNull</code> (on return values and arguments which are never supposed to be <code>null</code>)</li>
@@ -152,7 +152,7 @@
 <p>Annotations which support setting the default null semantics of return values and or parameters on a package level are not used.</p>
 <p>In case no annotations have been set on method arguments those accept <code>null</code> as a value. Return values should always be explicitly annotated, as from both cases checks can be derived.</p>
 <h1><a href="#use-with-eclipse" id="use-with-eclipse">Use With Eclipse</a></h1>
-<p>Eclipse since Juno supports <a href="https://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcompiler%2Fref-preferences-errors-warnings.htm&amp;anchor=null_analysis">null analysis based on any annotations</a>. Those need to be enabled in <em>Preferences-&gt;Java-&gt;Compiler-&gt;Errors/Warnings</em> via <strong>Enable annoation-based null analysis</strong>. Also the annotations need to be configured. For Sling/JSR 305 those are</p>
+<p>Eclipse since Juno supports <a href="https://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcompiler%2Fref-preferences-errors-warnings.htm&amp;anchor=null_analysis">null analysis based on any annotations</a>. Those need to be enabled in <em>Preferences-&gt;Java-&gt;Compiler-&gt;Errors/Warnings</em> via <strong>Enable annoation-based null analysis</strong>. Also the annotations need to be configured. For Sling those are</p>
 <ul>
 <li><code>org.jetbrains.annotations.NotNull</code> as <strong>'Nullable' annotation</strong> (primary annotation)</li>
 <li><code>org.jetbrains.annotations.Nullable</code> as <strong>'NonNull' annotation</strong> (primary annotation)</li>
@@ -210,7 +210,7 @@
 </code></pre>
 <p>The results are often very imprecise (<a href="https://jira.codehaus.org/browse/MFINDBUGS-208">MFINDBUGS-208</a>), especially when it comes to line numbers, therefore it is best to start the Findbugs GUI in case of errors found by this plugin via <code>mvn findbugs:gui</code>.</p>
 <h1><a href="#use-with-findbugs" id="use-with-findbugs">Use With FindBugs</a></h1>
-<p>FindBugs evaluates the JSR-305 annotations by default. You can restrict the rules to only the ones which check for those annotations, which are</p>
+<p>FindBugs evaluates the Jetbrains null annotations by default. You can restrict the rules to only the ones which check for those annotations, which are</p>
 <ul>
 <li>InconsistentAnnotations</li>
 <li>NoteUnconditionalParamDerefs</li>
@@ -220,7 +220,7 @@
 <p>A complete list of visitors class names in Findbugs can be found in the <a href="https://code.google.com/p/findbugs/source/browse/#git%2Ffindbugs%2Fsrc%2Fjava%2Fedu%2Fumd%2Fcs%2Ffindbugs%2Fdetect%253Fstate%253Dclosed">sourcecode</a>. The according <a href="https://findbugs.sourceforge.net/bugDescriptions.html">bug patterns</a> have an identifier (in parenthesis) for which you can search in the according Java classes, in case you want to extend the checks.</p>
 <p>Findbugs is also integrated in <a href="https://docs.sonarqube.org/display/SONAR/Findbugs+Plugin">SonarQube</a> but for SonarQube you should now rather use the native Java plugin (look at <a href="#use-with-sonarqube">Use with SonarQube</a>).</p>
 <h1><a href="#use-with-sonarqube" id="use-with-sonarqube">Use with SonarQube</a></h1>
-<p>At least rule <a href="https://sonarqube.com/coding_rules#rule_key=squid%3AS2259">squid:S2259</a> in SonarQube supports JSR-305 annotations as well for null checks.</p>
+<p>At least rule <a href="https://sonarqube.com/coding_rules#rule_key=squid%3AS2259">squid:S2259</a> in SonarQube supports Jetbrains null annotations as well for null checks.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Leveraging @NotNull/@Nullable annotations to prevent NullPointerExceptions )</div>                            
                         </div>
                     </div>
@@ -232,7 +232,7 @@
                             content/documentation/development/null-analysis.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-07-18</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
