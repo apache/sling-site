@@ -8,11 +8,11 @@ tags=development
 
 # Introduction
 
-The Sling API forces developers to sometimes check for `null` return values. Most prominently this is the case for [`Adaptable.adaptTo`](https://sling.apache.org/apidocs/sling8/org/apache/sling/api/adapter/Adaptable.html#adaptTo-java.lang.Class-) and [`ResourceResolver.getResource`](https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceResolver.html#getResource-java.lang.String-). This is often forgotten, which may lead to `NullPointerException`s. Sling API 2.9.0 introduced the JSR-305 annotations ([SLING-4377](https://issues.apache.org/jira/browse/SLING-4377)) which allow tools to check automatically for missing null checks in the code. Since Sling API 2.18.4 JetBrains NotNull annotations are used instead.
+The Sling API forces developers to sometimes check for `null` return values. Most prominently this is the case for [`Adaptable.adaptTo`](https://sling.apache.org/apidocs/sling8/org/apache/sling/api/adapter/Adaptable.html#adaptTo-java.lang.Class-) and [`ResourceResolver.getResource`](https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceResolver.html#getResource-java.lang.String-). This is often forgotten, which may lead to `NullPointerException`s. Sling API 2.9.0 introduced the JSR-305 annotations ([SLING-4377](https://issues.apache.org/jira/browse/SLING-4377)) which allow tools to check automatically for missing null checks in the code. Since Sling API 2.18.4 JetBrains NotNull annotations are used instead ([SLING-7798](https://issues.apache.org/jira/browse/SLING-7798)).
 
 # Annotations
 
-The annotations used within Sling are based on the [Jetbrains Annotations][jetbrains-annotations-docs]. Although introduced by the company that offers the IntelliJ IDEA IDE,  those annotations are understood by most of the tools and used by other Apache Projects like Apache Oak.
+The annotations used within Sling are based on the [Jetbrains Annotations][jetbrains-annotations-docs]. Although introduced by the company that offers the IntelliJ IDEA IDE, those annotations are understood by most of the tools and used by other Apache Projects like Apache Oak.
 
 Sling only uses the following two annotations:
 
@@ -27,7 +27,7 @@ In case no annotations have been set on method arguments those accept `null` as 
 
 Eclipse since Juno supports [null analysis based on any annotations](https://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcompiler%2Fref-preferences-errors-warnings.htm&anchor=null_analysis). Those need to be enabled in
 *Preferences->Java->Compiler->Errors/Warnings* via **Enable annoation-based null analysis**.
-Also the annotations need to be configured. For Sling/JSR 305 those are
+Also the annotations need to be configured. For Sling those are
 
 * `org.jetbrains.annotations.NotNull` as **'Nullable' annotation** (primary annotation)
 * `org.jetbrains.annotations.Nullable` as **'NonNull' annotation** (primary annotation)
@@ -102,7 +102,7 @@ The results are often very imprecise ([MFINDBUGS-208](https://jira.codehaus.org/
 
 
 # Use With FindBugs
-FindBugs evaluates the JSR-305 annotations by default. You can restrict the rules to only the ones which check for those annotations, which are
+FindBugs evaluates the Jetbrains null annotations by default. You can restrict the rules to only the ones which check for those annotations, which are
 
 * InconsistentAnnotations
 * NoteUnconditionalParamDerefs
@@ -116,8 +116,7 @@ Findbugs is also integrated in [SonarQube](https://docs.sonarqube.org/display/SO
 
 # Use with SonarQube
 
-At least rule [squid:S2259](https://sonarqube.com/coding_rules#rule_key=squid%3AS2259) in SonarQube supports JSR-305 annotations as well for null checks.
-
+At least rule [squid:S2259](https://sonarqube.com/coding_rules#rule_key=squid%3AS2259) in SonarQube supports Jetbrains null annotations as well for null checks.
 
 
 [jetbrains-annotations-docs]: https://www.jetbrains.com/help/idea/nullable-and-notnull-annotations.html
