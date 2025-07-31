@@ -273,7 +273,7 @@ public class ExampleTest {
 <li>Simulates an In-Memory resource tree, does not provide adaptions to JCR API.</li>
 <li>Based on the <a href="/documentation/development/resourceresolver-mock.html">Sling resourceresolver-mock implementation</a> implementation.</li>
 <li>You can use it to make sure the code you want to test does not contain references to JCR API.</li>
-<li>Behaves slightly different from JCR resource mapping e.g. handling binary and date values.</li>
+<li>Behaves slightly different from JCR resource mapping e.g. with respect to handling binary, date and null values.</li>
 <li>This resource resolver type is very fast because data is stored in memory and no JCR mapping is applied.</li>
 </ul>
 <p><strong>RESOURCEPROVIDER_MOCK</strong></p>
@@ -513,7 +513,7 @@ assertArrayEquals(TEST_DATA, response.getOutput());
                             content/documentation/development/sling-mock.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Stefan Seifert</span> on <span class="comment">2024-04-22</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-07-31</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
