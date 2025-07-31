@@ -167,7 +167,7 @@ Resource resolver types currently supported:
 * Simulates an In-Memory resource tree, does not provide adaptions to JCR API.
 * Based on the [Sling resourceresolver-mock implementation][resourceresolver-mock] implementation.
 * You can use it to make sure the code you want to test does not contain references to JCR API.
-* Behaves slightly different from JCR resource mapping e.g. handling binary and date values.
+* Behaves slightly different from JCR resource mapping e.g. with respect to handling binary, date and null values.
 * This resource resolver type is very fast because data is stored in memory and no JCR mapping is applied.
 
 **RESOURCEPROVIDER_MOCK**
