@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## August 2025
+
+* Discovery Oak 1.2.48, Discovery Standalone 1.0.4 (17th)
+
 ## July 2025
 
 * Engine 2.16.6 (26th)
