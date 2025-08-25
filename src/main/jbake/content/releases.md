@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2025
 
+* JCR Jackrabbit Access Manager 5.0.0 (25th)
 * JCR Jackrabbit User Manager 3.0.0 (25th)
 * Auth Core 2.0.2, GraphQL Core 0.0.36 (25th)
 * Discovery Oak 1.2.48, Discovery Standalone 1.0.4 (17th)
