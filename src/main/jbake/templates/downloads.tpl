@@ -159,7 +159,7 @@ def bundles=[
   "JCR Content Parser|org.apache.sling.jcr.contentparser|1.2.8|Y|jar",
   "JCR DavEx|org.apache.sling.jcr.davex|1.3.12|Y|jar",
   "JCR Jackrabbit AccessManager|org.apache.sling.jcr.jackrabbit.accessmanager|4.0.2|Y|jar",
-  "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|2.2.30|Y|jar",
+  "JCR Jackrabbit UserManager|org.apache.sling.jcr.jackrabbit.usermanager|3.0.0|Y|jar",
   "JCR Maintenance|org.apache.sling.jcr.maintenance|1.1.0|Y|jar",
   "JCR Oak Server|org.apache.sling.jcr.oak.server|1.4.4|Y|jar",
   "JCR Package Init|org.apache.sling.jcr.packageinit|1.0.6|Y|jar",
