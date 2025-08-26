@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## August 2025
 
+* Testing ResourceResolver Mock 2.0.0 (26th)
 * Testing Servlet Helpers 2.0.0 (26th)
 * i18n 3.0.0 (25th)
 * JCR Jackrabbit Access Manager 5.0.0 (25th)
