@@ -6,6 +6,6 @@
     }
     div(class:"header") {
         a(href:"https://www.apache.org") {
-            img(border:"0", alt:"Apache", src:"${config.site_contextPath}res/logos/apache.png")
+            img(border:"0", alt:"Apache", src:"https://www.apache.org/img/asf_logo.png", style:"height: 80px;")
         }
     }
