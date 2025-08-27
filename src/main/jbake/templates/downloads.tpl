@@ -182,7 +182,7 @@ def bundles=[
   "Launchpad Integration Tests|org.apache.sling.launchpad.integration-tests|13|Y|jar",
   "Launchpad Testing Services|org.apache.sling.launchpad.test-services|13|Y|jar",
   "Log Tracer|org.apache.sling.tracer|1.0.8|Y|jar",
-  "Models API|org.apache.sling.models.api|1.5.4|Y|jar",
+  "Models API|org.apache.sling.models.api|2.0.0|Y|jar",
   "Models Implementation|org.apache.sling.models.impl|1.7.8|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|2.0.0|Y|jar",
   "Models Validation Implementation|org.apache.sling.models.validation-impl|1.1.0|Y|jar",
