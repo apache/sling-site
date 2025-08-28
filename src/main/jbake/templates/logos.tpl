@@ -4,8 +4,8 @@
             img(border:"0", alt:"Apache Sling", src:"${config.site_contextPath}res/logos/sling.svg")
         }
     }
-    div(class:"header") {
+    div(class:"header asf-logo") {
         a(href:"https://www.apache.org") {
-            img(border:"0", alt:"Apache", src:"${config.site_contextPath}res/logos/apache.png")
+            img(alt:"Apache Software Foundation", src:"https://apache.org/img/asf_logo.png")
         }
     }
