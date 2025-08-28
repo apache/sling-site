@@ -162,3 +162,9 @@ ul.repolist {
 :root {
     --page-border-top-height: 5px;
 }
+
+.asf-logo img,
+.logo img {
+    height: 80px;
+    border: none;
+}
