@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2025
 * Starter Content 2.0.0 (2nd)
+* Models Implementation 2.0.0 (2nd)
 
 ## August 2025
 
