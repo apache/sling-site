@@ -238,7 +238,7 @@ def bundles=[
   "Sitemap|org.apache.sling.sitemap|1.0.6|Y|jar",
   "Slf4j MDC Filter|org.apache.sling.extensions.slf4j.mdc|1.0.0|Y|jar",
   "Sling Query|org.apache.sling.query|4.0.4|Y|jar",
-  "Starter Content|org.apache.sling.starter.content|1.0.16|Y|jar",
+  "Starter Content|org.apache.sling.starter.content|2.0.0|Y|jar",
   "Superimposing Resource Provider|org.apache.sling.superimposing|0.2.0|Y|jar",
   "System Bundle Extension: Activation API|org.apache.sling.fragment.activation|1.0.2|Y|jar",
   "System Bundle Extension: WS APIs|org.apache.sling.fragment.ws|1.0.2|Y|jar",
