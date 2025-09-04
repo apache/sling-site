@@ -7,6 +7,8 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## September 2025
+
+* Resource Resolver 1.12.12 (4th)
 * Starter Content 2.0.0 (2nd)
 * Models Implementation 2.0.0 (2nd)
 
