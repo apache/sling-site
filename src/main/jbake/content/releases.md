@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2025
 
+* XSS Protection API 2.4.8 (8th)
 * Testing Sling Mock 4.0.0 (5th)
 * Resource Resolver 1.12.12 (4th)
 * Starter Content 2.0.0 (2nd)
