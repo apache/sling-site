@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2025
 
+* Scripting HTL Engine 2.0.0-1.4.0 (8th)
 * XSS Protection API 2.4.8, Feature Launcher Maven Plugin 0.1.10 (8th)
 * Testing Sling Mock 4.0.0 (5th)
 * Resource Resolver 1.12.12 (4th)
