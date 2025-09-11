@@ -195,6 +195,7 @@ A queue configuration can have the following properties:
 | `queue.retries` | How often the job should be retried in case of failure (i.e. Job did not finish with succeeded or cancelled result). -1 for endless retries. In case of exceptions there is no retry. |
 | `queue.retrydelay` | The waiting time in milliseconds between job retries. |
 | `queue.priority` | The thread priority: NORM, MIN, or MAX |
+| `queue.keepJobs` | A boolean flag if set to true keeps metadata about successfully executed jobs in the repository instead of immediately removing those. |
 | `service.ranking` | A ranking for this configuration.|
 
 The configurations are processed in descending order of their service ranking (same as in [`BundleContext.getServiceReference(...)`](https://docs.osgi.org/javadoc/osgi.core/7.0.0/org/osgi/framework/BundleContext.html#getServiceReference-java.lang.Class-). In case of a tie in the service ranking the config which was registered earlier is processed before the config which was registered later.
@@ -212,6 +213,22 @@ Unordered queues process jobs in parallel.
 
 The jobs are processed in parallel. Scheduling of the jobs is based on the topic of the jobs. These are started by doing round-robin on the available topics.
 
+### Job Persistence
+
+By default jobs are persisted below `/var/eventing/jobs` or `/var/eventing/scheduled-jobs` (for scheduled jobs) when they are added. Depending on the state of the job they are moved to different child resources.
+
+1. `assigned`, for jobs which are assigned to an instance. The job resource is located below a resource with the name of the instance id.
+1. `unassigned`, for jobs which are not yet assigned to an instance.
+1. `cancelled`, for jobs which failed or were cancelled.
+1. `finished`, for jobs which completed successfully, usually this is empty as successfully finished jobs are immediately removed by default, except if the queue is configured differently.
+
+#### Clean up
+
+There is a regular cleanup job (`CleanUpTask`) which removes old jobs from the repository. By default this is triggered every minute from the `JobManagerImpl`. The history (i.e. cancelled and finished jobs) is by default kept for 2 days and afterwards removed.
+
+#### Auditing
+
+There is an audit logger with category `org.apache.sling.event.jobs.audit` which captures all relevant job state transitions with level `DEBUG`.
 
 ### Job Distributing
 
