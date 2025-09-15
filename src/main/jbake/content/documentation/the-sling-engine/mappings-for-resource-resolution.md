@@ -271,6 +271,15 @@ Aliases are roughly similar to POSIX hard links, restricted to simple names (no 
 
 The following characters are not allowed in `sling:alias` values: `/?#`. Using any of those characters somewhere in the value makes Sling disregard the alias mapping. In addition the aliases `.`, `..` and the empty string are invalid. Invalid aliases are logged with WARN level.
 
+### OSGi Settings For Alias Handling
+
+| Name (prefixed 'resource_resolver_')| Default | Description | Notes |
+| ----- | ------- | ------------| ------|
+| alias_cache_in_background | true | _Alias Cache Init In Background:_ This flag controls whether the alias cache will be initialized synchronously or as a background thread, not blocking the startup. |
+| allowed_alias_locations | | _Allowed Optimized Alias Locations:_ This setting can contain a list of path prefixes, e.g. /libs/, /content/. If such a list is configured, for alias optimization, only paths from resources starting with this prefix are considered. If the list is empty, all paths are used. | Currently only used for Cache Initialization. |
+| optimize_alias_resolution | true | _Optimize alias resolution:_ This flag controls whether to optimize the alias resolution by creating an internal cache of aliases. | Obsolete, should not be disabled. |
+
+
 ### Impact of Alias Handling
 
 In general, the number of aliases have a direct impact on the performance of the resource resolution - as basically all possible permutations of paths for a resource have to be tested against the incoming request path. By default a cache is used to speed up handling aliases during resolving resources. It is highly recommended to have this cache enabled to avoid slowing down request performance. However, the cache might have an impact on startup time and on the alias update time if the number of aliases is huge (over 10000).
@@ -298,6 +307,20 @@ While an alias can provide a variation for a resource name, a vanity path can pr
 * `sling:vanityOrder` &ndash; It might happen that several resources in the resource tree specify the same vanity path. In that case the one with the highest order is used. This property can be used to set such an order.
 
 Vanity Paths are similar to symbolic links in POSIX systems.
+
+### OSGi Settings For Vanity Path Handling
+
+| Name (prefixed 'resource_resolver_') | Default | Description | Notes |
+| ----- | ------- | ------------| ------|
+| default_vanity_redirect_status | 302 | _Default Vanity Path Redirect Status:_ The default status code used when a sling:vanityPath is configured to redirect and does not have a specific status code associated with it (via a sling:redirectStatus property).
+| enable_vanitypath | true | _Enable Vanity Paths:_ This flag controls whether all resources with a sling:vanityPath property are processed and added to the mapping table.
+| vanitypath_cache_in_background | true | _Vanity Path Cache Init In Background:_This flag controls whether the vanity path cache will be initialized immediately or later as a background task.
+| vanitypath_maxEntries | -1 (no limit)| _Maximum number of cached vanity path entries_: The maximum number of cached vanity path entries. |
+| vanitypath_maxEntries_startup | true | _Limit the maximum number of cached vanity path entries only at startup:_ Controls whether vanitypath_maxEntries only affects vanity path initialization.|
+| vanitypath_bloomfilter_maxBytes | 1024000 | _Maximum number of vanity bloom filter bytes:_ The maximum number of vanity bloom filter bytes. | Do not touch. |
+| vanitypath_allowlist | | _Allowed Vanity Path Location:_ This setting can contain a list of path prefixes, e.g. /libs/, /content/. If such a list is configured, only vanity paths from resources starting with this prefix are considered. If the list is empty, all vanity paths are used. |
+| vanitypath_denylist | | _Denied Vanity Path Location:_ This setting can contain a list of path prefixes, e.g. /misc/. If such a list is configured,vanity paths from resources starting with this prefix  are not considered. If the list is empty, all vanity paths are used. |
+| vanity_precedence | false | _Vanity Path Precedence:_ This flag controls whether vanity paths will have precedence over existing /etc/map mapping when resolving paths to resources. |
 
 ## Interactions between mappings and authentication requirements
 
