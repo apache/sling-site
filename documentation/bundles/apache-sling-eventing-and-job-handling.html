@@ -296,6 +296,7 @@ public class MyComponent {
 <tr><td> <code>queue.retries</code> </td><td> How often the job should be retried in case of failure (i.e. Job did not finish with succeeded or cancelled result). -1 for endless retries. In case of exceptions there is no retry. </td></tr>
 <tr><td> <code>queue.retrydelay</code> </td><td> The waiting time in milliseconds between job retries. </td></tr>
 <tr><td> <code>queue.priority</code> </td><td> The thread priority: NORM, MIN, or MAX </td></tr>
+<tr><td> <code>queue.keepJobs</code> </td><td> A boolean flag if set to true keeps metadata about successfully executed jobs in the repository instead of immediately removing those. </td></tr>
 <tr><td> <code>service.ranking</code> </td><td> A ranking for this configuration.</td></tr>
 </tbody>
 </table>
@@ -306,6 +307,18 @@ public class MyComponent {
 <p>Unordered queues process jobs in parallel.</p>
 <h4><a href="#topic-round-robin-queues" id="topic-round-robin-queues">Topic-Round-Robin Queues</a></h4>
 <p>The jobs are processed in parallel. Scheduling of the jobs is based on the topic of the jobs. These are started by doing round-robin on the available topics.</p>
+<h3><a href="#job-persistence" id="job-persistence">Job Persistence</a></h3>
+<p>By default jobs are persisted below <code>/var/eventing/jobs</code> or <code>/var/eventing/scheduled-jobs</code> (for scheduled jobs) when they are added. Depending on the state of the job they are moved to different child resources.</p>
+<ol>
+<li><code>assigned</code>, for jobs which are assigned to an instance. The job resource is located below a resource with the name of the instance id.</li>
+<li><code>unassigned</code>, for jobs which are not yet assigned to an instance.</li>
+<li><code>cancelled</code>, for jobs which failed or were cancelled.</li>
+<li><code>finished</code>, for jobs which completed successfully, usually this is empty as successfully finished jobs are immediately removed by default, except if the queue is configured differently.</li>
+</ol>
+<h4><a href="#clean-up" id="clean-up">Clean up</a></h4>
+<p>There is a regular cleanup job (<code>CleanUpTask</code>) which removes old jobs from the repository. By default this is triggered every minute from the <code>JobManagerImpl</code>. The history (i.e. cancelled and finished jobs) is by default kept for 2 days and afterwards removed.</p>
+<h4><a href="#auditing" id="auditing">Auditing</a></h4>
+<p>There is an audit logger with category <code>org.apache.sling.event.jobs.audit</code> which captures all relevant job state transitions with level <code>DEBUG</code>.</p>
 <h3><a href="#job-distributing" id="job-distributing">Job Distributing</a></h3>
 <p>For job distribution (= distributing the processing in a cluster), the job handling uses the topology feature from Sling - each instance in the topology announces the set of topics (consumers) it currently has - and this defines the job capabilities, a mapping from an instance to the topics it can process.</p>
 <p>When a job is scheduled, the job manager uses these capabilities to find out the set of instances which is able to process the request. If the queue type is <em>ordered</em> then all jobs are processed by the leader of this set. For parallel queues, the jobs are distributed equally amongst those instance.</p>
@@ -345,7 +358,7 @@ public class MyComponent {
                             content/documentation/bundles/apache-sling-eventing-and-job-handling.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-03-05</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-08-19</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
