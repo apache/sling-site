@@ -292,36 +292,17 @@ releases which are just announced on our [news](/news.html) page.
 
 ## Releasing the Sling IDE Tooling
 
-<div class="note">Eclipse is very aggresive about caching artifacts with the same coordinates. Make sure that once you build the artifacts
-with code signing enabled you install the right ones. If you install artifacts with the same version but not signed, Eclipse will cache
-that version indefinitely with no known workaround except setting up a new installation of Eclipse.</div>
+The IDE tools for Eclipse are released using a different process. The artifacts are uploaded to the staging dist area and not published as Maven artifacts.
 
-While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see [Using the code signing service ](https://reference.apache.org/pmc/codesigning) for details.
+Assuming that you plan to release version 1.3.0, you need to check out the project, ensure no local changes are present, and run
 
-Before starting, it is recommended to run throught the [Sling IDE Tooling release testing](https://cwiki.apache.org/confluence/display/SLING/Sling+IDE+Tooling+release+testing),
-to make sure no regressions have snuck in.
+```
+make release RELEASE_VERSION=1.3.0 NEXT_VERSION=1.3.1-SNAPSHOT
+```
 
-<div class="note">While we sort out a proper location you will need to locally build install the <tt>codesign-maven-plugin</tt> from
-<a href="https://github.com/apache/sling-whiteboard/tree/master/codesign">https://github.com/apache/sling-whiteboard/tree/master/codesign</a>.</div>
+At the end of the execution the artifact will be uploaded to https://dist.apache.org/repos/dist/dev/sling/ide-tooling/1.3.0 .
 
-The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.
-
-1. set the fix version as released: `mvn tycho-versions:set-version -DnewVersion=1.0.2`
-1. update the version of the source-bundle project to 1.0.2
-1. commit and push the change
-1. Tag the commit using `git tag -a -m 'Tag 1.0.2 release' sling-ide-tooling-1.0.2`
-1. update to next version: `mvn tycho-versions:set-version -DnewVersion=1.0.3-SNAPSHOT` and also update the version of the source-bundle project
-1. commit and push the change
-1. checkout the version from the tag and proceed with the build from there `git checkout sling-ide-tooling-1.0.2`
-1. In `p2update/pom.xml`, uncomment the `codesign-maven-plugin` declaration and change the code signing service to _Java Signing Sha256_. Note that the process might fail during the code signing with a SAAJ error, retrying usually fixes it.
-1. build the project with p2/gpg signing enabled: `mvn clean package -Pcodesign`
-1. manually build the zipped p2 repository: `cd p2update/target/repository-signed && zip -r org.apache.sling.ide.p2update-1.0.2.zip . && cd -`
-1. build the source bundle from the source-bundle directory: `mvn clean package`
-1. copy the following artifacts to https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2
-    1. source bundle ( org.apache.sling.ide.source-bundle-1.0.2.zip )
-    1. zipped p2 repository ( org.apache.sling.ide.p2update-1.0.2.zip )
-1. ensure the artifacts are checksummed and gpg-signed by using the `sign.sh` script
-1. call the vote
+At this point you can call the vote.
 
 The format of the release vote should be
 
@@ -331,28 +312,17 @@ The format of the release vote should be
     Hi,
 
     We solved N issues in this release:
-    https://issues.apache.org/jira/browse/SLING/fixforversion/
+    https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310710&version=[YOUR JIRA RELEASE VERSION ID]
 
-    There are still some outstanding issues:
-    https://issues.apache.org/jira/browse/SLING/component/12320908
-
-    The release candidate has been uploaded at
-    https://dist.apache.org/repos/dist/dev/sling, The release artifact is
-    the source bundle - org.apache.sling.ide.source-bundle-X.Y.Z.zip -
-    which can be used to build the project using
-
-        mvn clean package
-
-    The resulting binaries can be installed into an Eclipse instance from
-    the update site which is found at p2update/target/repository after
-    building the project.
+    Staging repository:
+    https://dist.apache.org/repos/dist/dev/sling/ide-tooling/X.Y.Z/
 
     You can use this UNIX script to download the release and verify the signatures:
-    https://gitbox.apache.org/repos/asf?p=sling-ide-tooling.git;a=blob_plain;f=check_staged_release.sh;hb=HEAD
+    https://raw.githubusercontent.com/apache/sling-tooling-release/master/check_staged_release.sh
 
     Usage:
-    sh check_staged_release.sh X.Y.Z /tmp/sling-staging
-
+    sh check_staged_release.sh eclipse-1.3.0 /tmp/sling-staging
+        
     Please vote to approve this release:
 
       [ ] +1 Approve the release
@@ -361,19 +331,18 @@ The format of the release vote should be
 
     This majority vote is open for at least 72 hours
 
-
 Once the release has passed, the following must be done:
 
 1. announce the result of the vote, see [Wait for the results](#wait-for-the-results)
 1. update versions in jira, see [Update JIRA](#update-jira)
-1. upload *p2update.zip* to https://dist.apache.org/repos/dist/release/sling/1.0.2
-1. upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
-1. upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
+1. upload *p2update.zip* to https://dist.apache.org/repos/dist/release/sling/1.3.0
+1. upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.3.0
+1. upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.3.0
     1. create GPG signatures and checksums for all uploaded jars using the `ide-tooling/sign.sh` script
-1. update https://dist.apache.org/repos/dist/release/sling/eclipse/composite\{Content,Artifacts}.xml to point version 1.0.2
+1. update https://dist.apache.org/repos/dist/release/sling/eclipse/composite\{Content,Artifacts}.xml to point version 1.3.0
     1. The timestamps in the composite xml files should be refreshed to "now", for instance by using the value of ``echo "`date +%s`000"``
-1. remove the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.0.0/
-1. remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2
+1. remove the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.2.4/
+1. remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.3.0
 1. update the news page and the download pages
 1. update the Eclipse Marketplace listing
 
