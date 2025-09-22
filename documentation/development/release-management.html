@@ -403,35 +403,11 @@ Enjoy!
 <li><a href="https://wiki.apache.org/incubator/SigningReleases">https://wiki.apache.org/incubator/SigningReleases</a></li>
 </ol>
 <h2><a href="#releasing-the-sling-ide-tooling" id="releasing-the-sling-ide-tooling">Releasing the Sling IDE Tooling</a></h2>
-<div class="note">Eclipse is very aggresive about caching artifacts with the same coordinates. Make sure that once you build the artifacts
-with code signing enabled you install the right ones. If you install artifacts with the same version but not signed, Eclipse will cache
-that version indefinitely with no known workaround except setting up a new installation of Eclipse.</div>
-<p>While the Sling IDE tooling is built using Maven, the toolchain that it is based around does not cooperate well with the maven-release-plugin. As such, the release preparation and execution are slightly different. Also note that we sign release using the Symantec code signing service, see <a href="https://reference.apache.org/pmc/codesigning">Using the code signing service</a> for details.</p>
-<p>Before starting, it is recommended to run throught the <a href="https://cwiki.apache.org/confluence/display/SLING/Sling+IDE+Tooling+release+testing">Sling IDE Tooling release testing</a>, to make sure no regressions have snuck in.</p>
-<div class="note">While we sort out a proper location you will need to locally build install the <tt>codesign-maven-plugin</tt> from
-<a href="https://github.com/apache/sling-whiteboard/tree/master/codesign">https://github.com/apache/sling-whiteboard/tree/master/codesign</a>.</div>
-<p>The whole process is outlined below, assuming that we start with a development version of 1.0.1-SNAPSHOT.</p>
-<ol>
-<li>set the fix version as released: <code>mvn tycho-versions:set-version -DnewVersion=1.0.2</code></li>
-<li>update the version of the source-bundle project to 1.0.2</li>
-<li>commit and push the change</li>
-<li>Tag the commit using <code>git tag -a -m 'Tag 1.0.2 release' sling-ide-tooling-1.0.2</code></li>
-<li>update to next version: <code>mvn tycho-versions:set-version -DnewVersion=1.0.3-SNAPSHOT</code> and also update the version of the source-bundle project</li>
-<li>commit and push the change</li>
-<li>checkout the version from the tag and proceed with the build from there <code>git checkout sling-ide-tooling-1.0.2</code></li>
-<li>In <code>p2update/pom.xml</code>, uncomment the <code>codesign-maven-plugin</code> declaration and change the code signing service to <em>Java Signing Sha256</em>. Note that the process might fail during the code signing with a SAAJ error, retrying usually fixes it.</li>
-<li>build the project with p2/gpg signing enabled: <code>mvn clean package -Pcodesign</code></li>
-<li>manually build the zipped p2 repository: <code>cd p2update/target/repository-signed &amp;&amp; zip -r org.apache.sling.ide.p2update-1.0.2.zip . &amp;&amp; cd -</code></li>
-<li>build the source bundle from the source-bundle directory: <code>mvn clean package</code></li>
-<li>copy the following artifacts to https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2
-<ol>
-<li>source bundle ( org.apache.sling.ide.source-bundle-1.0.2.zip )</li>
-<li>zipped p2 repository ( org.apache.sling.ide.p2update-1.0.2.zip )</li>
-</ol>
-</li>
-<li>ensure the artifacts are checksummed and gpg-signed by using the <code>sign.sh</code> script</li>
-<li>call the vote</li>
-</ol>
+<p>The IDE tools for Eclipse are released using a different process. The artifacts are uploaded to the staging dist area and not published as Maven artifacts.</p>
+<p>Assuming that you plan to release version 1.3.0, you need to check out the project, ensure no local changes are present, and run</p>
+<p><code>make release RELEASE_VERSION=1.3.0 NEXT_VERSION=1.3.1-SNAPSHOT</code></p>
+<p>At the end of the execution the artifact will be uploaded to https://dist.apache.org/repos/dist/dev/sling/ide-tooling/1.3.0 .</p>
+<p>At this point you can call the vote.</p>
 <p>The format of the release vote should be</p>
 <pre><code>To: &quot;Sling Developers List&quot; &lt;dev@sling.apache.org&gt;
 Subject: [VOTE] Release Apache Sling IDE Tooling version X.Y.Z
@@ -439,28 +415,17 @@ Subject: [VOTE] Release Apache Sling IDE Tooling version X.Y.Z
 Hi,
 
 We solved N issues in this release:
-https://issues.apache.org/jira/browse/SLING/fixforversion/
+https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310710&amp;version=[YOUR JIRA RELEASE VERSION ID]
 
-There are still some outstanding issues:
-https://issues.apache.org/jira/browse/SLING/component/12320908
-
-The release candidate has been uploaded at
-https://dist.apache.org/repos/dist/dev/sling, The release artifact is
-the source bundle - org.apache.sling.ide.source-bundle-X.Y.Z.zip -
-which can be used to build the project using
-
-    mvn clean package
-
-The resulting binaries can be installed into an Eclipse instance from
-the update site which is found at p2update/target/repository after
-building the project.
+Staging repository:
+https://dist.apache.org/repos/dist/dev/sling/ide-tooling/X.Y.Z/
 
 You can use this UNIX script to download the release and verify the signatures:
-https://gitbox.apache.org/repos/asf?p=sling-ide-tooling.git;a=blob_plain;f=check_staged_release.sh;hb=HEAD
+https://raw.githubusercontent.com/apache/sling-tooling-release/master/check_staged_release.sh
 
 Usage:
-sh check_staged_release.sh X.Y.Z /tmp/sling-staging
-
+sh check_staged_release.sh eclipse-1.3.0 /tmp/sling-staging
+    
 Please vote to approve this release:
 
   [ ] +1 Approve the release
@@ -473,20 +438,20 @@ This majority vote is open for at least 72 hours
 <ol>
 <li>announce the result of the vote, see <a href="#wait-for-the-results">Wait for the results</a></li>
 <li>update versions in jira, see <a href="#update-jira">Update JIRA</a></li>
-<li>upload <em>p2update.zip</em> to https://dist.apache.org/repos/dist/release/sling/1.0.2</li>
-<li>upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2</li>
-<li>upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.0.2
+<li>upload <em>p2update.zip</em> to https://dist.apache.org/repos/dist/release/sling/1.3.0</li>
+<li>upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.3.0</li>
+<li>upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.3.0
 <ol>
 <li>create GPG signatures and checksums for all uploaded jars using the <code>ide-tooling/sign.sh</code> script</li>
 </ol>
 </li>
-<li>update https://dist.apache.org/repos/dist/release/sling/eclipse/composite{Content,Artifacts}.xml to point version 1.0.2
+<li>update https://dist.apache.org/repos/dist/release/sling/eclipse/composite{Content,Artifacts}.xml to point version 1.3.0
 <ol>
 <li>The timestamps in the composite xml files should be refreshed to &quot;now&quot;, for instance by using the value of <code>echo &quot;`date +%s`000&quot;</code></li>
 </ol>
 </li>
-<li>remove the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.0.0/</li>
-<li>remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.0.2</li>
+<li>remove the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.2.4/</li>
+<li>remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.3.0</li>
 <li>update the news page and the download pages</li>
 <li>update the Eclipse Marketplace listing</li>
 </ol>
@@ -559,7 +524,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2025-07-07</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2025-09-22</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
