@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat
 
 p() {
-    yield '''Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project
+    yield '''Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
     may be trademarks or registered trademarks of their respective owners.'''
 }
