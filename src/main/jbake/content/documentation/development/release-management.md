@@ -294,6 +294,8 @@ releases which are just announced on our [news](/news.html) page.
 
 The IDE tools for Eclipse are released using a different process. The artifacts are uploaded to the staging dist area and not published as Maven artifacts.
 
+The instructions assume that you plan to release version 1.3.0 and that the previous release was 1.2.2.
+
 Assuming that you plan to release version 1.3.0, you need to check out the project, ensure no local changes are present, and run
 
 ```
@@ -335,13 +337,12 @@ Once the release has passed, the following must be done:
 
 1. announce the result of the vote, see [Wait for the results](#wait-for-the-results)
 1. update versions in jira, see [Update JIRA](#update-jira)
-1. upload *p2update.zip* to https://dist.apache.org/repos/dist/release/sling/1.3.0
+1. upload *p2update.zip* (with signatures and checksums) to https://dist.apache.org/repos/dist/release/sling
 1. upload unzipped update site to https://dist.apache.org/repos/dist/release/sling/eclipse/1.3.0
 1. upload the source bundle to https://dist.apache.org/repos/dist/release/sling/eclipse/1.3.0
-    1. create GPG signatures and checksums for all uploaded jars using the `ide-tooling/sign.sh` script
-1. update https://dist.apache.org/repos/dist/release/sling/eclipse/composite\{Content,Artifacts}.xml to point version 1.3.0
+1. update https://dist.apache.org/repos/dist/release/sling/eclipse/composite\{Content,Artifacts}.xml to point version 1.3.0 instead of 1.2.2
     1. The timestamps in the composite xml files should be refreshed to "now", for instance by using the value of ``echo "`date +%s`000"``
-1. remove the old artifact versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.2.4/
+1. remove the old update site from https://dist.apache.org/repos/dist/release/sling/eclipse/1.2.2/ versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.2.2/
 1. remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.3.0
 1. update the news page and the download pages
 1. update the Eclipse Marketplace listing
