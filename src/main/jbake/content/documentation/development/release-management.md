@@ -345,7 +345,8 @@ Once the release has passed, the following must be done:
 1. remove the old update site from https://dist.apache.org/repos/dist/release/sling/eclipse/1.2.2/ versions but leave pointers to archive.apache.org, using compositeArtifacts.xml/compositeContent.xml , with a single child entry pointing to https://archive.apache.org/dist/sling/eclipse/1.2.2/
 1. remove the staged artifacts from https://dist.apache.org/repos/dist/dev/sling/ide-tooling-1.3.0
 1. update the news page and the download pages
-1. update the Eclipse Marketplace listing
+1. update the [Eclipse Marketplace listing](https://marketplace.eclipse.org/content/sling-ide-tooling)
+    1. we do not maintain multiple 'solution versions' so just update the version and make sure that supported Eclipse releases and minimum Java version are correct
 
 ## Appendix A: Creating and registering your PGP key
 
