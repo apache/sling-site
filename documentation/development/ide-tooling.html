@@ -146,7 +146,7 @@
 </p>
 <h2><a href="#installation" id="installation">Installation</a></h2>
 <h3><a href="#prerequisites" id="prerequisites">Prerequisites</a></h3>
-<p>The Sling IDE tooling is known to work on Eclipse versions starting with Kepler. There is a hard dependency on the faceted project framework, which is included in the 'Eclipse IDE for Java EE Developers' package. If you're running a different package, you can always install it from the main Eclipse update site.</p>
+<p>The latest version of the Sling IDE tooling is known to work on Eclipse versions starting with 2022-12 (4.26). There is a hard dependency on the faceted project framework, which is included in the 'Eclipse IDE for Java EE Developers' package. If you're running a different package, you can always install it from the main Eclipse update site.</p>
 <p>There is an optional feature which relies on m2eclipse. For now it only provides project creation wizards, so if you don't use Maven you don't have to install it.</p>
 <h3><a href="#update-site-installation" id="update-site-installation">Update site installation</a></h3>
 <p>The links to the latest update site, including a permanent URL which stays up to date, are listed on the <a href="/downloads.cgi#ide-tooling">Download page, IDE tooling section</a>. There are also zipped update sites available from download for the latest version.</p>
@@ -283,6 +283,11 @@
 <p>Maven projects configured with the <code>slingstart-maven-plugin</code> will automatically have their models directory configured as a top-level entry in the project tree. By default, the models directory is <code>src/main/provisioning</code>. This contribution is only available in the <em>Project Explorer</em> view.</p>
 <p>The configuration is done automatically on import, and you can also do it manually by right-clicking on the project and then selecting <em>Maven</em> → <em>Update Project...</em>.</p>
 <p><img src="ide-tooling/launchpad-models-directory.png" alt="Launchpad project" /></p>
+<h2><a href="#feature-model-project-support" id="feature-model-project-support">Feature model project support</a></h2>
+<p><em>Available with Sling IDE Tooling for Eclipse 1.3 or newer</em></p>
+<p>Maven projects configured with the <code>slingfeature-maven-plugin</code> will automatically have their feature models directory configured as a top-level entry in the project tree. By default, the feature models directory is <code>src/main/features</code>. This contribution is only available in the <em>Project Explorer</em> view.</p>
+<p>The configuration is done automatically on import, and you can also do it manually by right-clicking on the project and then selecting <em>Maven</em> → <em>Update Project...</em>.</p>
+<p><img src="ide-tooling/feature-model-directory.png" alt="Feature model project" /></p>
 <h2><a href="#troubleshooting" id="troubleshooting">Troubleshooting</a></h2>
 <h3><a href="#gathering-debug-information" id="gathering-debug-information">Gathering debug information</a></h3>
 <p>All operations that are performed on the Sling launchpad are logged in the Sling console. To view these operations, open the Eclipse console view and select Open Console -&gt; Sling Console.</p>
@@ -318,7 +323,7 @@
                             content/documentation/development/ide-tooling.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-11-28</span>
+                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2025-09-25</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
