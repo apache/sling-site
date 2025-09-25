@@ -20,7 +20,7 @@ def PIPE_SEP = "\\|"
 def starterVersion="13"
 
 def slingIDETooling=[
-  "Sling IDE Tooling for Eclipse|eclipse|1.2.2|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
+  "Sling IDE Tooling for Eclipse|eclipse|1.3.0|A p2 update site which can be installed in Eclipse.|sling-ide-tooling"
 ]
 
 def slingApplication=[

@@ -8,7 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2025
 
-* JCR Resource 3.3.4 (21st(
+* IDE Tooling for Eclipse 1.3.0 (25th)
+* JCR Resource 3.3.4 (21st)
 * Resource Resolver 2.0.2 (10th)
 * Scripting HTL Engine 2.0.0-1.4.0 (8th)
 * XSS Protection API 2.4.8, Feature Launcher Maven Plugin 0.1.10 (8th)
