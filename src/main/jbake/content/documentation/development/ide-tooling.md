@@ -10,7 +10,7 @@ tags=development,eclipse
 
 ### Prerequisites
 
-The Sling IDE tooling is known to work on Eclipse versions starting with Kepler. There is a hard dependency on the faceted project framework, which is included in the 'Eclipse IDE for Java EE Developers' package. If you're running a different package, you can always install it from the main Eclipse update site.
+The latest version of the Sling IDE tooling is known to work on Eclipse versions starting with 2022-12 (4.26). There is a hard dependency on the faceted project framework, which is included in the 'Eclipse IDE for Java EE Developers' package. If you're running a different package, you can always install it from the main Eclipse update site.
 
 There is an optional feature which relies on m2eclipse. For now it only provides project creation wizards, so if you don't use Maven you don't have to install it.
 
@@ -246,6 +246,16 @@ Maven projects configured with the `slingstart-maven-plugin` will automatically 
 The configuration is done automatically on import, and you can also do it manually by right-clicking on the project and then selecting _Maven_ → _Update Project..._.
 
 ![Launchpad project](ide-tooling/launchpad-models-directory.png)
+
+## Feature model project support
+
+_Available with Sling IDE Tooling for Eclipse 1.3 or newer_
+
+Maven projects configured with the `slingfeature-maven-plugin` will automatically have their feature models directory configured as a top-level entry in the project tree. By default, the feature models directory is `src/main/features`. This contribution is only available in the _Project Explorer_ view.
+
+The configuration is done automatically on import, and you can also do it manually by right-clicking on the project and then selecting _Maven_ → _Update Project..._.
+
+![Feature model project](ide-tooling/feature-model-directory.png)
 
 ## Troubleshooting
 
