@@ -134,7 +134,7 @@ Node properties can be edited in a distinct JCR properties view.
 
 #### Formatting
 
-_Available with Sling IDE Tooling for Eclipse 1.2.4 or newer (not yet released)_
+_Available with Sling IDE Tooling for Eclipse 1.3 or newer_
 
 A context menu action is available for formatting the underlying `.content.xml` file corresponding to the selected resource. The formatter uses the exact same settings as FileVault.
 
