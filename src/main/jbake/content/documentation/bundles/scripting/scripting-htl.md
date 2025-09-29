@@ -146,7 +146,7 @@ A full HTL installation provides the following Use Providers, in the order of th
 |Service Ranking  | Use Provider    | Bundle                 | Functionality     |Observations|
 |--------------     |--------------   |-----------------  |---------------    |----------- |
 |100|[`RenderUnitProvider`](https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/RenderUnitProvider.java)|`org.apache.sling.scripting.sightly`|support for loading HTL templates through `data-sly-use`||
-|90|[`JavaUseProvider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java)|`org.apache.sling.scripting.sightly`|support for loading Java objects such as: <ol><li>[Sling Models](https://sling.apache.org/documentation/bundles/models.html)</li><li>OSGi services</li><li>POJOs adaptable from `SlingHttpServletRequest` or `Resource`</li><li>POJOs that implement `Use`</li></ol>|The POJOs can be exported by bundles or can be backed by `Resources`. In the latter case the POJOs' package names should correspond to the backing resource's path; invalid Java characters which are valid path elements should be replaced by an underscore - `_`.|
+|90|[`JavaUseProvider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java)|`org.apache.sling.scripting.sightly`|support for loading Java objects such as: <ol><li>[Sling Models](https://sling.apache.org/documentation/bundles/models.html)</li><li>OSGi services</li><li>POJOs adaptable from `SlingHttpServletRequest`, `SlingJakartaHttpServletRequest` or `Resource`</li><li>POJOs that implement `Use`</li></ol>|The POJOs can be exported by bundles or can be backed by `Resources`. In the latter case the POJOs' package names should correspond to the backing resource's path; invalid Java characters which are valid path elements should be replaced by an underscore - `_`.|
 |80|[`JsUseProvider`](https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/js-use-provider/src/main/java/org/apache/sling/scripting/sightly/js/impl/JsUseProvider.java)|`org.apache.sling.scripting.sightly.js.provider`|support for loading objects defined through the JavaScript `use` function|The `org.apache.sling.scripting.sightly.js.provider` also provides a trimmed down [asynchronous implementation](https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/js-use-provider/src/main/resources/SLING-INF/libs/sling/sightly/js) of the `Resource` API. However this was deprecated in [SLING-4964](https://issues.apache.org/jira/browse/SLING-4964) (version 1.0.8 of the bundle) in favour of the synchronous API provided by the `org.apache.sling.scripting.javascript` bundle.|
 |0  |[`ScriptUseProvider`](https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/ScriptUseProvider.java)|`org.apache.sling.scripting.sightly`|support for loading objects returned by scripts interpreted by other Script Engines available on the platform||
 |-10|[`ResourceUseProvider`](https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/ResourceUseProvider.java)|`org.apache.sling.scripting.sightly`|support for loading `Resources` by path using the request's resource resolver - [SLING-5813](https://issues.apache.org/jira/browse/SLING-5813)||
@@ -164,9 +164,11 @@ The following global objects are available to all Use objects, either as a reque
         properties          // org.apache.sling.api.resource.ValueMap
         reader              // java.io.BufferedReader
         request             // org.apache.sling.api.SlingHttpServletRequest
+        jakartaRequest      // org.apache.sling.api.SlingJakartaHttpServletRequest
         resolver            // org.apache.sling.api.resource.ResourceResolver
         resource            // org.apache.sling.api.resource.Resource
         response            // org.apache.sling.api.SlingHttpServletResponse
+        jakartaResponse     // org.apache.sling.api.SlingJakartaHttpServletResponse
         sling               // org.apache.sling.api.scripting.SlingScriptHelper
 
 ### Java Use Provider
@@ -181,7 +183,7 @@ Loading a Sling Model or a bundled Java Use-object can be done with the followin
 
 Depending on the implementation the above code would either load the implementation with the highest service ranking of `org.example.models.Model3` if `Model3` is an interface, or would load the Sling Model/Java Use-object `org.example.models.Model3` if this is a concrete implementation.
 
-Use-objects that are adaptable from `SlingHttpServletRequest` or `Resource` are adapted automatically. If the Use-object cannot be adapted from either of the two, the adaptable can be passed to the `data-sly-use` block element using the `adaptable` option:
+Use-objects that are adaptable from `SlingHttpServletRequest`, `SlingJakartaHttpServletRequest` or `Resource` are adapted automatically. If the Use-object cannot be adapted from either of the two, the adaptable can be passed to the `data-sly-use` block element using the `adaptable` option:
 
         <div data-sly-use.model3="${'org.example.models.Model3' @ adaptable=anAdaptableObjectInScope }">
             ${model3.shine}
@@ -223,10 +225,20 @@ Passed parameters will be made available to the Use object as request attributes
             ${useObject.shine}
         </div>
 
-a Sling Model could read these values like in the following example:
+a Sling Model could read these values like in the following examples:
 
         @Model(adaptables=SlingHttpServletRequest.class)
         public class MyUseObject {
+
+            @Inject
+            private String colour;
+
+            @Inject
+            private String year;
+        }
+
+        @Model(adaptables=SlingJakartaHttpServletRequest.class)
+        public class MyJakartaUseObject {
 
             @Inject
             private String colour;
@@ -288,6 +300,50 @@ or, if the object is adaptable from a `SlingHttpServletRequest`, through its `Ad
         public <AdapterType> AdapterType getAdapter(Object adaptable, Class<AdapterType> type) {
             if (type == MyUseObject.class && adaptable instanceof SlingHttpServletRequest) {
                 SlingHttpServletRequest request = (SlingHttpServletRequest) adaptable;
+                String colour = PropertiesUtil.toString(request.getAttribute("colour"), "");
+                Integer year = PropertiesUtil.toInteger(request.getAttribute("year"), Calendar.getInstance().get(Calendar.YEAR));
+                /*
+                 * for the sake of this example we assume that MyUseObject has this constructor
+                 */
+                return (AdapterType) new MyUseObject(colour, year);
+            }
+            return null;
+        }
+    }
+
+or, if the object is adaptable from a `SlingJakartaHttpServletRequest`, through its `AdapterFactory`:
+
+    package org.example.use;
+
+    import org.apache.felix.scr.annotations.Component;
+    import org.apache.felix.scr.annotations.Properties;
+    import org.apache.felix.scr.annotations.Property;
+    import org.apache.felix.scr.annotations.Service;
+    import org.apache.sling.api.SlingJakartaHttpServletRequest;
+    import org.apache.sling.api.adapter.AdapterFactory;
+
+    @Component
+    @Service
+    @Properties({
+            @Property(
+                    name = AdapterFactory.ADAPTABLE_CLASSES,
+                    value = {
+                            "org.apache.sling.api.SlingJakartaHttpServletRequest"
+                    }
+            ),
+            @Property(
+                    name = AdapterFactory.ADAPTER_CLASSES,
+                    value = {
+                            "org.example.use.MyUseObject"
+                    }
+            )
+    })
+    public class RequestAdapterFactory implements AdapterFactory {
+
+        @Override
+        public <AdapterType> AdapterType getAdapter(Object adaptable, Class<AdapterType> type) {
+            if (type == MyUseObject.class && adaptable instanceof SlingJakartaHttpServletRequest) {
+                SlingJakartaHttpServletRequest request = (SlingJakartaHttpServletRequest) adaptable;
                 String colour = PropertiesUtil.toString(request.getAttribute("colour"), "");
                 Integer year = PropertiesUtil.toInteger(request.getAttribute("year"), Calendar.getInstance().get(Calendar.YEAR));
                 /*
