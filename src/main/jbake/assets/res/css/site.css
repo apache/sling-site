@@ -48,7 +48,11 @@ a:hover {
 
 .main {
     border-top: var(--page-border-top-height,10px)  solid #cde0ea;
-    max-width: 1000px;
+    overflow-x: auto;
+}
+
+.section {
+    max-width: 80%;
 }
 
 

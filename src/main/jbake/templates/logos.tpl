@@ -6,6 +6,6 @@
     }
     div(class:"header asf-logo") {
         a(href:"https://www.apache.org") {
-            img(alt:"Apache Software Foundation", src:"https://apache.org/img/asf_logo.png")
+            img(alt:"Apache Software Foundation", src:"https://apache.org/images/asflogo_horizontal_color.svg")
         }
     }
