@@ -83,7 +83,7 @@ div(class:"container") {
                     img(
                         border:"0", 
                         alt:"Support the Apache Software Foundation!", 
-                        src:"${config.site_contextPath}res/images/SupportApache-small.png",
+                        src:"https://www.apache.org/images/SupportApache-small.png",
                         width:"125"
                     )
                 }

@@ -219,13 +219,13 @@ For the last two tasks, it's better to give the CDN some time to process the upl
 
 ### Quick update of artifacts in dist
 
-It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow, by using `svn import` and `svn delete` on the remote SVN repository.
+It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow.
 
 Assuming that we are releasing `org.apache.sling.engine 2.6.22` and the old version artifact names start with `org.apache.sling.engine-2.6.20`, we can run the following commands
 
     $ cd <folder where 2.6.22 is found>
-    $ svn import -m "Release org.apache.sling.engine-2.6.22" . https://dist.apache.org/repos/dist/release/sling
-    $ svn delete -m "Remove old version org.apache.sling.engine-2.6.20" $(svn ls https://dist.apache.org/repos/dist/release/sling/ | grep org.apache.sling.engine-2.6.20 | while read line; do echo "https://dist.apache.org/repos/dist/release/sling/$line"; done)
+    $ curl -fsSL https://raw.githubusercontent.com/apache/sling-tooling-release/refs/heads/master/update_dist.sh \
+            | bash -s -- org.apache.sling.engine 2.6.20 2.6.22
 
 This makes sure that the new artifacts are imported and the old ones are deleted.
 
