@@ -9,8 +9,12 @@ tags=servlets,core
 ## Servlet Resolving
 
 First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the `sling:resourceType` property
-which defines the resource type of that resource. Using this resource type (which is usually a relative resource path,
-eg. "myblog/comment"), servlets (or scripts) are looked up. For more details about how the initial resource is identified for a specific request URL look at [URL decomposition](/documentation/the-sling-engine/url-decomposition.html).
+which defines the resource type of that resource.
+The resource type is first *normalized* (which replaces `:` by `\` as `:` cannot be used in resource names, but for example is frequently used by resources provided by JCR provider which leverages `jcr:primaryType` which usually contains namespaced values like `nt:file`).
+Afterwards this normalized resource type (which is usually a relative resource path,
+eg. "myblog/comment") is used to lookup servlets (or scripts). For more details about how the initial resource is identified for a specific request URL look at [URL decomposition](/documentation/the-sling-engine/url-decomposition.html).
+
+Alternatively a servlet can be addressed by requests directly through the path it is registered on (without leveraging the `sling:resourceType` indirection). This option is not available for scripts, though.
 
 Servlets and scripts are themselves resources in Sling and thus have a resource path: this is either the location in the
 resource repository, the resource type in a servlet component configuration or the "virtual" bundle resource path
