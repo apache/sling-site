@@ -43,7 +43,7 @@
                     </a>
                 </div><div class="header asf-logo">
                     <a href="https://www.apache.org">
-                        <img alt="Apache Software Foundation" src="https://apache.org/img/asf_logo.png"/>
+                        <img alt="Apache Software Foundation" src="https://apache.org/images/asflogo_horizontal_color.svg"/>
                     </a>
                 </div>                
             </div><section class="searchbox level is-marginless">
@@ -93,7 +93,7 @@
                                     <a class="acevent" data-format="square" data-event="random"></a>
                                 </li><li>
                                     <a href="https://apache.org/foundation/contributing.html" class="column">
-                                        <img border="0" alt="Support the Apache Software Foundation!" src="/res/images/SupportApache-small.png" width="125"/>
+                                        <img border="0" alt="Support the Apache Software Foundation!" src="https://www.apache.org/images/SupportApache-small.png" width="125"/>
                                     </a>
                                 </li>
                             </ul>
@@ -346,11 +346,11 @@ promote the artifacts to the central Maven repository.
 </ol>
 <p>For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.</p>
 <h3><a href="#quick-update-of-artifacts-in-dist" id="quick-update-of-artifacts-in-dist">Quick update of artifacts in dist</a></h3>
-<p>It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow, by using <code>svn import</code> and <code>svn delete</code> on the remote SVN repository.</p>
+<p>It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow.</p>
 <p>Assuming that we are releasing <code>org.apache.sling.engine 2.6.22</code> and the old version artifact names start with <code>org.apache.sling.engine-2.6.20</code>, we can run the following commands</p>
 <pre><code>$ cd &lt;folder where 2.6.22 is found&gt;
-$ svn import -m &quot;Release org.apache.sling.engine-2.6.22&quot; . https://dist.apache.org/repos/dist/release/sling
-$ svn delete -m &quot;Remove old version org.apache.sling.engine-2.6.20&quot; $(svn ls https://dist.apache.org/repos/dist/release/sling/ | grep org.apache.sling.engine-2.6.20 | while read line; do echo &quot;https://dist.apache.org/repos/dist/release/sling/$line&quot;; done)
+$ curl -fsSL https://raw.githubusercontent.com/apache/sling-tooling-release/refs/heads/master/update_dist.sh \
+        | bash -s -- org.apache.sling.engine 2.6.20 2.6.22
 </code></pre>
 <p>This makes sure that the new artifacts are imported and the old ones are deleted.</p>
 <h2><a href="#update-jira" id="update-jira">Update JIRA</a></h2>
@@ -525,7 +525,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Robert Munteanu</span> on <span class="comment">2025-09-25</span>
+                        Last modified by <span class="author">Radu Cotescu</span> on <span class="comment">2025-10-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
