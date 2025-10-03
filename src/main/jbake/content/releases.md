@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2025
+
+* JCR Resource 3.3.6 (3rd)
+
 ## September 2025
 
 * IDE Tooling for Eclipse 1.3.0 (25th)
