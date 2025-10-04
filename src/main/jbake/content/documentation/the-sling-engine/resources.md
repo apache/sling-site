@@ -36,7 +36,7 @@ implementations provided by Sling, the assignments are as follows:
 
 | Provider | Resource Type | Resource Super Type |
 |---|---|---|
-| JCR | The value of the `sling:resourceType` property or the primary node type if the property is not set (a namespace separator colon is replaced by a slash, e.g. the `nt:file` primary node type is mapped to the `nt/file` resource type | The value of the `sling:resourceSuperType` of the Resource node or resource super type of the resource pointed to by the resource type (when accessed with `ResourceResolver.getResource(String)` |
+| JCR | The value of the `sling:resourceType` property or the primary node type (from `jcr:primaryType`) if the property is not set | The value of the `sling:resourceSuperType` of the Resource node or resource super type of the resource pointed to by the resource type (when accessed with `ResourceResolver.getResource(String)` |
 | File System | File based resources are of type `nt/file`; folder based resources are of type `nt/folder` corresponding to the respective JCR primary node type | none |
 | Bundle | File based resources are of type `nt/file`; folder based resources are of type `nt/folder` corresponding to the respective JCR primary node type | none |
 | Servlet | The absolute path of the resource appended with the suffix `.servlet` | `sling/bundle/resource` |
