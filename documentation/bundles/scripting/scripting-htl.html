@@ -260,7 +260,7 @@ ${ '{0, plural, one{# výsledek} few{# výsledky} other{# výsledků}}' @format=
 </thead>
 <tbody>
 <tr><td>100</td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/RenderUnitProvider.java"><code>RenderUnitProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td colspan="2">support for loading HTL templates through <code>data-sly-use</code></td></tr>
-<tr><td>90</td><td><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java"><code>JavaUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td>support for loading Java objects such as: <ol><li><a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a></li><li>OSGi services</li><li>POJOs adaptable from <code>SlingHttpServletRequest</code> or <code>Resource</code></li><li>POJOs that implement <code>Use</code></li></ol></td><td>The POJOs can be exported by bundles or can be backed by <code>Resources</code>. In the latter case the POJOs' package names should correspond to the backing resource's path; invalid Java characters which are valid path elements should be replaced by an underscore - <code>_</code>.</td></tr>
+<tr><td>90</td><td><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/JavaUseProvider.java"><code>JavaUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td>support for loading Java objects such as: <ol><li><a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models</a></li><li>OSGi services</li><li>POJOs adaptable from <code>SlingHttpServletRequest</code>, <code>SlingJakartaHttpServletRequest</code> or <code>Resource</code></li><li>POJOs that implement <code>Use</code></li></ol></td><td>The POJOs can be exported by bundles or can be backed by <code>Resources</code>. In the latter case the POJOs' package names should correspond to the backing resource's path; invalid Java characters which are valid path elements should be replaced by an underscore - <code>_</code>.</td></tr>
 <tr><td>80</td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/js-use-provider/src/main/java/org/apache/sling/scripting/sightly/js/impl/JsUseProvider.java"><code>JsUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly.js.provider</code></td><td>support for loading objects defined through the JavaScript <code>use</code> function</td><td>The <code>org.apache.sling.scripting.sightly.js.provider</code> also provides a trimmed down <a href="https://github.com/apache/sling/tree/trunk/bundles/scripting/sightly/js-use-provider/src/main/resources/SLING-INF/libs/sling/sightly/js">asynchronous implementation</a> of the <code>Resource</code> API. However this was deprecated in <a href="https://issues.apache.org/jira/browse/SLING-4964">SLING-4964</a> (version 1.0.8 of the bundle) in favour of the synchronous API provided by the <code>org.apache.sling.scripting.javascript</code> bundle.</td></tr>
 <tr><td>0  </td><td><a href="https://github.com/apache/sling/blob/trunk/bundles/scripting/sightly/engine/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/ScriptUseProvider.java"><code>ScriptUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td colspan="2">support for loading objects returned by scripts interpreted by other Script Engines available on the platform</td></tr>
 <tr><td>-10</td><td><a href="https://github.com/apache/sling-org-apache-sling-scripting-sightly/blob/master/src/main/java/org/apache/sling/scripting/sightly/impl/engine/extension/use/ResourceUseProvider.java"><code>ResourceUseProvider</code></a></td><td><code>org.apache.sling.scripting.sightly</code></td><td colspan="2">support for loading <code>Resources</code> by path using the request's resource resolver - <a href="https://issues.apache.org/jira/browse/SLING-5813">SLING-5813</a></td></tr>
@@ -276,9 +276,11 @@ ${ '{0, plural, one{# výsledek} few{# výsledky} other{# výsledků}}' @format=
     properties          // org.apache.sling.api.resource.ValueMap
     reader              // java.io.BufferedReader
     request             // org.apache.sling.api.SlingHttpServletRequest
+    jakartaRequest      // org.apache.sling.api.SlingJakartaHttpServletRequest
     resolver            // org.apache.sling.api.resource.ResourceResolver
     resource            // org.apache.sling.api.resource.Resource
     response            // org.apache.sling.api.SlingHttpServletResponse
+    jakartaResponse     // org.apache.sling.api.SlingJakartaHttpServletResponse
     sling               // org.apache.sling.api.scripting.SlingScriptHelper
 </code></pre>
 <h3><a href="#java-use-provider" id="java-use-provider">Java Use Provider</a></h3>
@@ -290,7 +292,7 @@ ${ '{0, plural, one{# výsledek} few{# výsledky} other{# výsledků}}' @format=
     &lt;/div&gt;
 </code></pre>
 <p>Depending on the implementation the above code would either load the implementation with the highest service ranking of <code>org.example.models.Model3</code> if <code>Model3</code> is an interface, or would load the Sling Model/Java Use-object <code>org.example.models.Model3</code> if this is a concrete implementation.</p>
-<p>Use-objects that are adaptable from <code>SlingHttpServletRequest</code> or <code>Resource</code> are adapted automatically. If the Use-object cannot be adapted from either of the two, the adaptable can be passed to the <code>data-sly-use</code> block element using the <code>adaptable</code> option:</p>
+<p>Use-objects that are adaptable from <code>SlingHttpServletRequest</code>, <code>SlingJakartaHttpServletRequest</code> or <code>Resource</code> are adapted automatically. If the Use-object cannot be adapted from either of the two, the adaptable can be passed to the <code>data-sly-use</code> block element using the <code>adaptable</code> option:</p>
 <pre><code>    &lt;div data-sly-use.model3=&quot;${'org.example.models.Model3' @ adaptable=anAdaptableObjectInScope }&quot;&gt;
         ${model3.shine}
     &lt;/div&gt;
@@ -324,9 +326,19 @@ ${ '{0, plural, one{# výsledek} few{# výsledky} other{# výsledků}}' @format=
         ${useObject.shine}
     &lt;/div&gt;
 </code></pre>
-<p>a Sling Model could read these values like in the following example:</p>
+<p>a Sling Model could read these values like in the following examples:</p>
 <pre><code>    @Model(adaptables=SlingHttpServletRequest.class)
     public class MyUseObject {
+
+        @Inject
+        private String colour;
+
+        @Inject
+        private String year;
+    }
+
+    @Model(adaptables=SlingJakartaHttpServletRequest.class)
+    public class MyJakartaUseObject {
 
         @Inject
         private String colour;
@@ -386,6 +398,49 @@ public class RequestAdapterFactory implements AdapterFactory {
     public &lt;AdapterType&gt; AdapterType getAdapter(Object adaptable, Class&lt;AdapterType&gt; type) {
         if (type == MyUseObject.class &amp;&amp; adaptable instanceof SlingHttpServletRequest) {
             SlingHttpServletRequest request = (SlingHttpServletRequest) adaptable;
+            String colour = PropertiesUtil.toString(request.getAttribute(&quot;colour&quot;), &quot;&quot;);
+            Integer year = PropertiesUtil.toInteger(request.getAttribute(&quot;year&quot;), Calendar.getInstance().get(Calendar.YEAR));
+            /*
+             * for the sake of this example we assume that MyUseObject has this constructor
+             */
+            return (AdapterType) new MyUseObject(colour, year);
+        }
+        return null;
+    }
+}
+</code></pre>
+<p>or, if the object is adaptable from a <code>SlingJakartaHttpServletRequest</code>, through its <code>AdapterFactory</code>:</p>
+<pre><code>package org.example.use;
+
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Properties;
+import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Service;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
+import org.apache.sling.api.adapter.AdapterFactory;
+
+@Component
+@Service
+@Properties({
+        @Property(
+                name = AdapterFactory.ADAPTABLE_CLASSES,
+                value = {
+                        &quot;org.apache.sling.api.SlingJakartaHttpServletRequest&quot;
+                }
+        ),
+        @Property(
+                name = AdapterFactory.ADAPTER_CLASSES,
+                value = {
+                        &quot;org.example.use.MyUseObject&quot;
+                }
+        )
+})
+public class RequestAdapterFactory implements AdapterFactory {
+
+    @Override
+    public &lt;AdapterType&gt; AdapterType getAdapter(Object adaptable, Class&lt;AdapterType&gt; type) {
+        if (type == MyUseObject.class &amp;&amp; adaptable instanceof SlingJakartaHttpServletRequest) {
+            SlingJakartaHttpServletRequest request = (SlingJakartaHttpServletRequest) adaptable;
             String colour = PropertiesUtil.toString(request.getAttribute(&quot;colour&quot;), &quot;&quot;);
             Integer year = PropertiesUtil.toInteger(request.getAttribute(&quot;year&quot;), Calendar.getInstance().get(Calendar.YEAR));
             /*
@@ -618,7 +673,7 @@ use             // the use function
                             content/documentation/bundles/scripting/scripting-htl.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-05-14</span>
+                        Last modified by <span class="author">Eric Norman</span> on <span class="comment">2025-10-03</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

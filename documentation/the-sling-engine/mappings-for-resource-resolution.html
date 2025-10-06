@@ -353,6 +353,17 @@ for (String segment: segments) {
 <p>Note that <code>jcr:content</code> nodes are treated differently. Aliases specified on these nodes apply to the <em>parent</em> node. Setting alias properties both on <code>jcr:content</code> and the parent node is discouraged (and results in the alias lists of both nodes to be concatenated).</p>
 <p>Aliases are roughly similar to POSIX hard links, restricted to simple names (no paths).</p>
 <p>The following characters are not allowed in <code>sling:alias</code> values: <code>/?#</code>. Using any of those characters somewhere in the value makes Sling disregard the alias mapping. In addition the aliases <code>.</code>, <code>..</code> and the empty string are invalid. Invalid aliases are logged with WARN level.</p>
+<h3><a href="#osgi-settings-for-alias-handling" id="osgi-settings-for-alias-handling">OSGi Settings For Alias Handling</a></h3>
+<table>
+<thead>
+<tr><th> Name (prefixed 'resource_resolver_')</th><th> Default </th><th> Description </th><th> Notes </th></tr>
+</thead>
+<tbody>
+<tr><td> alias_cache_in_background </td><td> true </td><td> <em>Alias Cache Init In Background:</em> This flag controls whether the alias cache will be initialized synchronously or as a background thread, not blocking the startup. </td></tr>
+<tr><td> allowed_alias_locations </td><td> </td><td> <em>Allowed Optimized Alias Locations:</em> This setting can contain a list of path prefixes, e.g. /libs/, /content/. If such a list is configured, for alias optimization, only paths from resources starting with this prefix are considered. If the list is empty, all paths are used. </td><td> Currently only used for Cache Initialization. </td></tr>
+<tr><td> optimize_alias_resolution </td><td> true </td><td> <em>Optimize alias resolution:</em> This flag controls whether to optimize the alias resolution by creating an internal cache of aliases. </td><td> Deprecated, do not be disable. </td></tr>
+</tbody>
+</table>
 <h3><a href="#impact-of-alias-handling" id="impact-of-alias-handling">Impact of Alias Handling</a></h3>
 <p>In general, the number of aliases have a direct impact on the performance of the resource resolution - as basically all possible permutations of paths for a resource have to be tested against the incoming request path. By default a cache is used to speed up handling aliases during resolving resources. It is highly recommended to have this cache enabled to avoid slowing down request performance. However, the cache might have an impact on startup time and on the alias update time if the number of aliases is huge (over 10000).</p>
 <p>The cache can be disabled by setting the property <code>resource.resolver.optimize.alias.resolution</code> of the OSGi configuration <code>org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl</code> to <code>false</code>. Note that this is not recommended because of the aforementioned performance issues and also differences in behavior with respect to <code>jcr:content</code> nodes (see <a href="https://issues.apache.org/jira/browse/SLING-12025">SLING-12025</a>).</p>
@@ -373,6 +384,23 @@ for (String segment: segments) {
 <li><code>sling:vanityOrder</code> – It might happen that several resources in the resource tree specify the same vanity path. In that case the one with the highest order is used. This property can be used to set such an order.</li>
 </ul>
 <p>Vanity Paths are similar to symbolic links in POSIX systems.</p>
+<h3><a href="#osgi-settings-for-vanity-path-handling" id="osgi-settings-for-vanity-path-handling">OSGi Settings For Vanity Path Handling</a></h3>
+<table>
+<thead>
+<tr><th> Name (prefixed 'resource_resolver_') </th><th> Default </th><th> Description </th><th> Notes </th></tr>
+</thead>
+<tbody>
+<tr><td> default_vanity_redirect_status </td><td> 302 </td><td> <em>Default Vanity Path Redirect Status:</em> The default status code used when a sling:vanityPath is configured to redirect and does not have a specific status code associated with it (via a sling:redirectStatus property).</td></tr>
+<tr><td> enable_vanitypath </td><td> true </td><td> <em>Enable Vanity Paths:</em> This flag controls whether all resources with a sling:vanityPath property are processed and added to the mapping table.</td></tr>
+<tr><td> vanitypath_cache_in_background </td><td> true </td><td> <em>Vanity Path Cache Init In Background:</em> This flag controls whether the vanity path cache will be initialized synchronously to the startup ('false') or asynchronously as a background task ('true').</td></tr>
+<tr><td> vanitypath_maxEntries </td><td> -1 (no limit)</td><td> <em>Maximum number of cached vanity path entries</em>: The maximum number of cached vanity path entries. </td></tr>
+<tr><td> vanitypath_maxEntries_startup </td><td> true </td><td> <em>Limit the maximum number of cached vanity path entries only at startup:</em> Controls whether vanitypath_maxEntries only affects vanity path initialization ('true').</td></tr>
+<tr><td> vanitypath_bloomfilter_maxBytes </td><td> 1024000 </td><td> <em>Maximum number of vanity bloom filter bytes:</em> The maximum number of vanity bloom filter bytes. </td><td> Do not touch. </td></tr>
+<tr><td> vanitypath_allowlist </td><td> </td><td> <em>Allowed Vanity Path Location:</em> This setting can contain a list of path prefixes, e.g. /libs/, /content/. If such a list is configured, only vanity paths from resources starting with this prefix are considered. If the list is empty, all vanity paths are used. </td></tr>
+<tr><td> vanitypath_denylist </td><td> </td><td> <em>Denied Vanity Path Location:</em> This setting can contain a list of path prefixes, e.g. /misc/. If such a list is configured,vanity paths from resources starting with this prefix  are not considered. If the list is empty, all vanity paths are used. </td></tr>
+<tr><td> vanity_precedence </td><td> false </td><td> <em>Vanity Path Precedence:</em> This flag controls whether vanity paths will have precedence over existing /etc/map mapping when resolving paths to resources ('true'). </td></tr>
+</tbody>
+</table>
 <h2><a href="#interactions-between-mappings-and-authentication-requirements" id="interactions-between-mappings-and-authentication-requirements">Interactions between mappings and authentication requirements</a></h2>
 <p>The <a href="/documentation/the-sling-engine/authentication.html">Sling authentication</a> mechanism works by registering authentication requirements for paths which are protected. Normally these authentication requirements transparently apply to child resources as well due to the hierarchical nature of the paths used.</p>
 <p>Additional mappings complicate the situation, therefore additional authentication requirements are automatically registered by Sling. For instance, assuming the following repository structure:</p>
@@ -422,7 +450,7 @@ for (String segment: segments) {
                             content/documentation/the-sling-engine/mappings-for-resource-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2025-05-27</span>
+                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2025-10-06</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
