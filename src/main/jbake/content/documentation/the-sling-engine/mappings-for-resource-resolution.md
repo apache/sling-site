@@ -316,11 +316,11 @@ Vanity Paths are similar to symbolic links in POSIX systems.
 | enable_vanitypath | true | _Enable Vanity Paths:_ This flag controls whether all resources with a sling:vanityPath property are processed and added to the mapping table.
 | vanitypath_cache_in_background | true | _Vanity Path Cache Init In Background:_ This flag controls whether the vanity path cache will be initialized synchronously to the startup ('false') or asynchronously as a background task ('true').
 | vanitypath_maxEntries | -1 (no limit)| _Maximum number of cached vanity path entries_: The maximum number of cached vanity path entries. |
-| vanitypath_maxEntries_startup | true | _Limit the maximum number of cached vanity path entries only at startup:_ Controls whether vanitypath_maxEntries only affects vanity path initialization.|
+| vanitypath_maxEntries_startup | true | _Limit the maximum number of cached vanity path entries only at startup:_ Controls whether vanitypath_maxEntries only affects vanity path initialization ('true').|
 | vanitypath_bloomfilter_maxBytes | 1024000 | _Maximum number of vanity bloom filter bytes:_ The maximum number of vanity bloom filter bytes. | Do not touch. |
 | vanitypath_allowlist | | _Allowed Vanity Path Location:_ This setting can contain a list of path prefixes, e.g. /libs/, /content/. If such a list is configured, only vanity paths from resources starting with this prefix are considered. If the list is empty, all vanity paths are used. |
 | vanitypath_denylist | | _Denied Vanity Path Location:_ This setting can contain a list of path prefixes, e.g. /misc/. If such a list is configured,vanity paths from resources starting with this prefix  are not considered. If the list is empty, all vanity paths are used. |
-| vanity_precedence | false | _Vanity Path Precedence:_ This flag controls whether vanity paths will have precedence over existing /etc/map mapping when resolving paths to resources. |
+| vanity_precedence | false | _Vanity Path Precedence:_ This flag controls whether vanity paths will have precedence over existing /etc/map mapping when resolving paths to resources ('true'). |
 
 ## Interactions between mappings and authentication requirements
 
