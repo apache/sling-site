@@ -277,7 +277,7 @@ The following characters are not allowed in `sling:alias` values: `/?#`. Using a
 | ----- | ------- | ------------| ------|
 | alias_cache_in_background | true | _Alias Cache Init In Background:_ This flag controls whether the alias cache will be initialized synchronously or as a background thread, not blocking the startup. |
 | allowed_alias_locations | | _Allowed Optimized Alias Locations:_ This setting can contain a list of path prefixes, e.g. /libs/, /content/. If such a list is configured, for alias optimization, only paths from resources starting with this prefix are considered. If the list is empty, all paths are used. | Currently only used for Cache Initialization. |
-| optimize_alias_resolution | true | _Optimize alias resolution:_ This flag controls whether to optimize the alias resolution by creating an internal cache of aliases. | Obsolete, should not be disabled. |
+| optimize_alias_resolution | true | _Optimize alias resolution:_ This flag controls whether to optimize the alias resolution by creating an internal cache of aliases. | Deprecated, do not be disable. |
 
 
 ### Impact of Alias Handling
