@@ -314,7 +314,7 @@ Vanity Paths are similar to symbolic links in POSIX systems.
 | ----- | ------- | ------------| ------|
 | default_vanity_redirect_status | 302 | _Default Vanity Path Redirect Status:_ The default status code used when a sling:vanityPath is configured to redirect and does not have a specific status code associated with it (via a sling:redirectStatus property).
 | enable_vanitypath | true | _Enable Vanity Paths:_ This flag controls whether all resources with a sling:vanityPath property are processed and added to the mapping table.
-| vanitypath_cache_in_background | true | _Vanity Path Cache Init In Background:_This flag controls whether the vanity path cache will be initialized immediately or later as a background task.
+| vanitypath_cache_in_background | true | _Vanity Path Cache Init In Background:_ This flag controls whether the vanity path cache will be initialized synchronously to the startup ('false') or asynchronously as a background task ('true').
 | vanitypath_maxEntries | -1 (no limit)| _Maximum number of cached vanity path entries_: The maximum number of cached vanity path entries. |
 | vanitypath_maxEntries_startup | true | _Limit the maximum number of cached vanity path entries only at startup:_ Controls whether vanitypath_maxEntries only affects vanity path initialization.|
 | vanitypath_bloomfilter_maxBytes | 1024000 | _Maximum number of vanity bloom filter bytes:_ The maximum number of vanity bloom filter bytes. | Do not touch. |
