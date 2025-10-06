@@ -17,6 +17,7 @@ It currently supports setting timeouts for HTTP connections done using:
 * [Apache Commons HttpClient 3.x](https://hc.apache.org/httpclient-3.x/)
 * [Apache HttpComponents Client 4.x](https://hc.apache.org/httpcomponents-client-ga/)
 * [OK Http](https://square.github.io/okhttp/)
+* [JDK HttpClient](https://docs.oracle.com/en/java/javase/21/docs/api/java.net.http/java/net/http/HttpClient.html)
 
 ## Usage
 
