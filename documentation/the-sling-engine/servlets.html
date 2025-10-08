@@ -145,7 +145,8 @@
 <div class="row" data-pagefind-body="true"><div><section><p><!-- TODO reactivate TOC once JBake moves to flexmark-java -->
 </p>
 <h2><a href="#servlet-resolving" id="servlet-resolving">Servlet Resolving</a></h2>
-<p>First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the <code>sling:resourceType</code> property which defines the resource type of that resource. Using this resource type (which is usually a relative resource path, eg. &quot;myblog/comment&quot;), servlets (or scripts) are looked up. For more details about how the initial resource is identified for a specific request URL look at <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>.</p>
+<p>First of all Sling looks up the resource identified by the URL - typically a path inside the JCR repository, which is annotated by the <code>sling:resourceType</code> property which defines the resource type of that resource. The resource type is first <em>normalized</em> (which replaces <code>:</code> by <code>\</code> as <code>:</code> cannot be used in resource names, but for example is frequently used by resources provided by JCR provider which leverages <code>jcr:primaryType</code> which usually contains namespaced values like <code>nt:file</code>). Afterwards this normalized resource type (which is usually a relative resource path, eg. &quot;myblog/comment&quot;) is used to lookup servlets (or scripts). For more details about how the initial resource is identified for a specific request URL look at <a href="/documentation/the-sling-engine/url-decomposition.html">URL decomposition</a>.</p>
+<p>Alternatively a servlet can be addressed by requests directly through the path it is registered on (without leveraging the <code>sling:resourceType</code> indirection). This option is not available for scripts, though.</p>
 <p>Servlets and scripts are themselves resources in Sling and thus have a resource path: this is either the location in the resource repository, the resource type in a servlet component configuration or the &quot;virtual&quot; bundle resource path (if a script is provided inside a bundle without being installed into the JCR repository).</p>
 <p>For details on which script/servlet is selected in case there are multiple candidates refer to the sections below.</p>
 <h2><a href="#servlet-registration" id="servlet-registration">Servlet Registration</a></h2>
@@ -399,7 +400,7 @@ sling.servlet.extensions = [ &quot;html&quot;, &quot;txt&quot;, &quot;json&quot;
                             content/documentation/the-sling-engine/servlets.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Bertrand Delacretaz</span> on <span class="comment">2025-07-17</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-10-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 

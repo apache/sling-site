@@ -171,7 +171,7 @@
 <tr><th> Provider </th><th> Resource Type </th><th> Resource Super Type </th></tr>
 </thead>
 <tbody>
-<tr><td> JCR </td><td> The value of the <code>sling:resourceType</code> property or the primary node type if the property is not set (a namespace separator colon is replaced by a slash, e.g. the <code>nt:file</code> primary node type is mapped to the <code>nt/file</code> resource type </td><td> The value of the <code>sling:resourceSuperType</code> of the Resource node or resource super type of the resource pointed to by the resource type (when accessed with <code>ResourceResolver.getResource(String)</code> </td></tr>
+<tr><td> JCR </td><td> The value of the <code>sling:resourceType</code> property or the primary node type (from <code>jcr:primaryType</code>) if the property is not set </td><td> The value of the <code>sling:resourceSuperType</code> of the Resource node or resource super type of the resource pointed to by the resource type (when accessed with <code>ResourceResolver.getResource(String)</code> </td></tr>
 <tr><td> File System </td><td> File based resources are of type <code>nt/file</code>; folder based resources are of type <code>nt/folder</code> corresponding to the respective JCR primary node type </td><td> none </td></tr>
 <tr><td> Bundle </td><td> File based resources are of type <code>nt/file</code>; folder based resources are of type <code>nt/folder</code> corresponding to the respective JCR primary node type </td><td> none </td></tr>
 <tr><td> Servlet </td><td> The absolute path of the resource appended with the suffix <code>.servlet</code> </td><td> <code>sling/bundle/resource</code> </td></tr>
@@ -396,7 +396,7 @@ public class SampleResourceChangeListener implements ResourceChangeListener {
                             content/documentation/the-sling-engine/resources.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-06-10</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-10-01</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
