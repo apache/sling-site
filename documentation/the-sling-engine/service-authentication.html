@@ -249,11 +249,11 @@ class MyComponent {
 <li><code>SlingRepository.loginAdministrative</code></li>
 </ul>
 <p>The implementations we have in Sling's bundle will remain implemented in the near future. But there will be a configuration switch to disable support for these methods: If the method is disabled, a <code>LoginException</code> is always thrown from these methods. The JavaDoc of the methods is extended with this information.</p>
-<h3><a href="#whitelisting-bundles-for-administrative-login" id="whitelisting-bundles-for-administrative-login">Whitelisting bundles for administrative login</a></h3>
-<p>In order to be able to manage few (hopefully legit) uses of the above deprecated methods, a whitelisting mechanism was introduced with <a href="https://issues.apache.org/jira/browse/SLING-5135">SLING-5153</a> (<em>JCR Base 2.4.2</em>).</p>
-<p>The recommended way to whitelist a bundle for administrative login is via a <em>whitelist fragment configuration</em>. It can be created as an OSGi factory configuration with the factoryPID <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment</code>. E.g. a typical configuration file might be called <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment-myapp.config</code> and could look as follows:</p>
-<pre><code>whitelist.name=&quot;myapp&quot;
-whitelist.bundles=[
+<h3><a href="#allowlisting-bundles-for-administrative-login" id="allowlisting-bundles-for-administrative-login">Allowlisting bundles for administrative login</a></h3>
+<p>In order to be able to manage few (hopefully legit) uses of the above deprecated methods, a allow list mechanism was introduced with <a href="https://issues.apache.org/jira/browse/SLING-5135">SLING-5153</a> (<em>JCR Base 2.4.2</em>) and further improved with <a href="https://issues.apache.org/jira/browse/SLING-11741">11741</a> (<em>JCR Base 3.2.0</em>).</p>
+<p>The recommended way to allowlist a bundle for administrative login is via a <em>allowlist fragment configuration</em>. It can be created as an OSGi factory configuration with the factoryPID <code>org.apache.sling.jcr.base.LoginAdminAllowList.fragment</code>. E.g. a typical configuration file might be called <code>org.apache.sling.jcr.base.LoginAdminAllowList.fragment-myapp.config</code> and could look as follows:</p>
+<pre><code>allowlist.name=&quot;myapp&quot;
+allowlist.bundles=[
     &quot;com.myapp.core&quot;,
     &quot;com.myapp.commons&quot;
 ]
@@ -263,28 +263,34 @@ whitelist.bundles=[
 <tr><th> Property            </th><th> Type     </th><th> Default     </th><th> Description </th></tr>
 </thead>
 <tbody>
-<tr><td> <code>whitelist.name</code>    </td><td> String   </td><td> <code>[unnamed]</code> </td><td> Purely informational property that allows easy identification of different fragments. </td></tr>
-<tr><td> <code>whitelist.bundles</code> </td><td> String[] </td><td> []          </td><td> An array of bundle symbolic names that should be allowed to make use of the administrative login functionality. </td></tr>
+<tr><td> <code>allowlist.name</code>    </td><td> String   </td><td> <code>[unnamed]</code> </td><td> Purely informational property that allows easy identification of different fragments. </td></tr>
+<tr><td> <code>allowlist.bundles</code> </td><td> String[] </td><td> []          </td><td> An array of bundle symbolic names that should be allowed to make use of the administrative login functionality. </td></tr>
 </tbody>
 </table>
-<p>All configured whitelist fragments are taken into account. This makes it easy to separate whitelists for different application layers and purposes.</p>
-<p>For example, some Sling bundles need to be whitelisted, which could be done in a whitelist fragment named <code>sling</code>. In addition <code>myapp</code> adds a whitelist fragment called <code>myapp</code>. For integration tests and additional whitelist fragment <code>myapp-integration-testing</code> may be added.</p>
-<p>Furthermore, there is a global configuration with PID <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist</code>, which should only be used in exceptional cases. It has a switch to turn administrative login on globally (<code>whitelist.bypass</code>) and it allows supplying a regular expression to whitelist matching bundle symbolic names (<code>whitelist.bundles.regexp</code>).</p>
+<p>All configured allowlist fragments are taken into account. This makes it easy to separate allowlists for different application layers and purposes.</p>
+<p>For example, some Sling bundles need to be allowlisted, which could be done in a allowlist fragment named <code>sling</code>. In addition <code>myapp</code> adds a allowlist fragment called <code>myapp</code>. For integration tests and additional allowlist fragment <code>myapp-integration-testing</code> may be added.</p>
+<p>Furthermore, there is a global configuration with PID <code>org.apache.sling.jcr.base.LoginAdminAllowList</code>, which should only be used in exceptional cases. It has a switch to turn administrative login on globally (<code>allowlist.bypass</code>) and it allows supplying a regular expression to allowlist matching bundle symbolic names (<code>allowlist.bundles.regexp</code>).</p>
 <p>The regular expression is most useful for running PaxExam based tests, where bundle symbolic names follow a set pattern but have randomly generated parts.</p>
-<p>Example: to whitelist all bundles generated by PaxExam a configuration file named <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.config</code> might look as follows:</p>
-<pre><code>whitelist.bypass=B&quot;false&quot;
-whitelist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
+<p>Example: to allowlist all bundles generated by PaxExam a configuration file named <code>org.apache.sling.jcr.base.LoginAdminAllowList.config</code> might look as follows:</p>
+<pre><code>allowlist.bypass=B&quot;false&quot;
+allowlist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
 </code></pre>
-<p>The configuration PID is <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist</code>. It supports the following configuration properties.</p>
+<p>The configuration PID is <code>org.apache.sling.jcr.base.LoginAdminAllowList</code>. It supports the following configuration properties.</p>
 <table>
 <thead>
 <tr><th> Property                   </th><th> Type     </th><th> Default     </th><th> Description </th></tr>
 </thead>
 <tbody>
-<tr><td> <code>whitelist.bypass</code>         </td><td> Boolean  </td><td> false       </td><td> Allow all bundles to use administrative login. This is <strong>NOT</strong> recommended for production and warnings will be logged. </td></tr>
-<tr><td> <code>whitelist.bundles.regexp</code> </td><td> String   </td><td> &quot;&quot;          </td><td> A regular expression that whitelists all matching bundle symbolic names. This is <strong>NOT</strong> recommended for production and warnings will be logged. </td></tr>
+<tr><td> <code>allowlist.bypass</code>         </td><td> Boolean  </td><td> false       </td><td> Allow all bundles to use administrative login. This is <strong>NOT</strong> recommended for production and warnings will be logged. </td></tr>
+<tr><td> <code>allowlist.bundles.regexp</code> </td><td> String   </td><td> &quot;&quot;          </td><td> A regular expression that allowlists all matching bundle symbolic names. This is <strong>NOT</strong> recommended for production and warnings will be logged. </td></tr>
 </tbody>
 </table>
+<h3><a href="#deprecated-approach-to-allowlist-bundles-for-administrative-login" id="deprecated-approach-to-allowlist-bundles-for-administrative-login">Deprecated Approach to allowlist bundles for administrative login</a></h3>
+<p>The mechanism introduced with <em>JCR Base 2.4.2</em> has been updated with <em>JCR Base 3.2.0</em> to use more inclusive language. It is recommended to use the above mentioned configurations if needed.</p>
+<p>The older configurations are still partially supported, but should be upgraded to use the new naming.</p>
+<p>The deprecated configurations supported are the factoryPID <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment</code> with the configuration properties <code>whitelist.name</code> and <code>whitelist.bundles</code> for the fragments. The deprecated configuration for the global settings is <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist</code> with the properties <code>whitelist.bypass</code> and <code>whitelist.bundles.regexp</code>.</p>
+<p>The deprecated fragments are still fully supported as they get merged with fragments using the official way of configuring them. Still it is advised to change to the new names.</p>
+<p>However, the global configuration will only be used if there is no new global configuration available. Make sure that you do not have both! But as mentioned the global configuration should only be used for cases like testing anyway. Fragments is the better option.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Service Authentication )</div>                            
                         </div>
                     </div>
@@ -296,7 +302,7 @@ whitelist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
                             content/documentation/the-sling-engine/service-authentication.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2022-12-02</span>
+                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-10-09</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
