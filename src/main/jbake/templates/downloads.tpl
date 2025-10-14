@@ -262,7 +262,7 @@ def bundles=[
 def helpers=[
   "Adapter Annotations (JSON) 1.x|adapter-annotations|1.0.0|Y|jar",
   "Adapter Annotations 2.x|org.apache.sling.adapter.annotations|2.0.0|Y|jar",
-  "Connection Timeout Agent|org.apache.sling.connection-timeout-agent|1.0.4|Y|jar",
+  "Connection Timeout Agent|org.apache.sling.connection-timeout-agent|1.1.0|Y|jar",
   "Installer Vault Package Install Hook|org.apache.sling.installer.provider.installhook|1.1.0|Y|jar",
   "Kickstart Project|org.apache.sling.kickstart|0.0.12|Y|jar",
   "Pax Exam Utilities|org.apache.sling.paxexam.util|1.0.4|Y|jar",
