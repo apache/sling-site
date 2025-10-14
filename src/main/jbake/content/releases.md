@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2025
 
+* Connection Timeout Agent 1.1.0 (14th)
 * JCR Resource 3.3.6 (3rd)
 
 ## September 2025
