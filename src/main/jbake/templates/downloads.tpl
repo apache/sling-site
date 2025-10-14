@@ -282,7 +282,7 @@ def helpers=[
   "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|4.0.0|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock JUnit 4|org.apache.sling.testing.sling-mock.junit4|4.0.0|org.apache.sling.testing.sling-mock|jar",
   "Testing Sling Mock JUnit 5|org.apache.sling.testing.sling-mock.junit5|4.0.0|org.apache.sling.testing.sling-mock|jar",
-  "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|4.0.0-1.62.0|Y|jar",
+  "Testing Sling Mock Oak|org.apache.sling.testing.sling-mock-oak|4.1.0-1.86.0|Y|jar",
 ]
 
 def deprecated=[
