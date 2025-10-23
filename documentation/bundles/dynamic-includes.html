@@ -168,6 +168,7 @@
 <li><strong>Required header</strong> - SDI will be enabled only if the configured header is present in the request. By default it's <code>Server-Agent=Communique-Dispatcher</code> header, added by the AEM Dispatcher. You may enter just the header name only or the name and the value split with <code>=</code>.</li>
 <li><strong>Ignore URL params</strong> - SDI normally skips all requests containing any GET parameters. This option allows to set a list of parameters that should be ignored in the test. See the <a href="https://docs.adobe.com/docs/en/dispatcher/disp-config.html#Ignoring%20URL%20Parameters">Ignoring URL parameters</a> section in the dispatcher documentation.</li>
 <li><strong>Include path rewriting</strong> - enable rewriting link (according to <a href="https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html">Sling mapping</a>) that is used for dynamic content inclusion.</li>
+<li><strong>Disable Ignore UrlParams</strong> - SDI normally skips all requests containing any GET parameters. This option is to allow applications to enable the processing of these requests by SDI, particularly when dispatcher processing rules are set to ignore all URL parameters.</li>
 </ul>
 <h2><a href="#compatibility-with-components" id="compatibility-with-components">Compatibility with components</a></h2>
 <p>The filter is incompatible with the following types of component:</p>
@@ -290,7 +291,7 @@
                             content/documentation/bundles/dynamic-includes.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-04-16</span>
+                        Last modified by <span class="author">Sriharsha Chekuri</span> on <span class="comment">2025-10-23</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
