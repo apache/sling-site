@@ -44,6 +44,7 @@ The filter is delivered as a standard OSGi bundle. SDI is configured via a confi
 * **Required header** - SDI will be enabled only if the configured header is present in the request. By default it's `Server-Agent=Communique-Dispatcher` header, added by the AEM Dispatcher. You may enter just the header name only or the name and the value split with `=`.
 * **Ignore URL params** - SDI normally skips all requests containing any GET parameters. This option allows to set a list of parameters that should be ignored in the test. See the [Ignoring URL parameters](https://docs.adobe.com/docs/en/dispatcher/disp-config.html#Ignoring%20URL%20Parameters) section in the dispatcher documentation.
 * **Include path rewriting** - enable rewriting link (according to [Sling mapping](https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html)) that is used for dynamic content inclusion.
+* **Disable Ignore UrlParams** - SDI normally skips all requests containing any GET parameters. This option is to allow applications to enable the processing of these requests by SDI, particularly when dispatcher processing rules are set to ignore all URL parameters.
 
 ## Compatibility with components
 
