@@ -85,7 +85,7 @@ def bundles=[
   "Commons HTML|org.apache.sling.commons.html|1.1.0|Y|jar",
   "Commons Johnzon|org.apache.sling.commons.johnzon|2.0.0|Y|jar",
   "Commons Log|org.apache.sling.commons.log|6.0.0|Y|jar",
-  "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|1.0.2|Y|jar",
+  "Commons Log WebConsole Plugin|org.apache.sling.commons.log.webconsole|2.0.0|Y|jar",
   "Commons Log Service|org.apache.sling.commons.logservice|1.1.2|Y|jar",
   "Commons Messaging|org.apache.sling.commons.messaging|1.0.2|Y|jar",
   "Commons Messaging Mail|org.apache.sling.commons.messaging.mail|2.0.0|Y|jar",
