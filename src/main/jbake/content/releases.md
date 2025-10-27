@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2025
 
+* Commons Log WebConsole 2.0.0 (27th)
 * Event Impl 4.4.0 (21st)
 * Connection Timeout Agent 1.1.0, Testing Sling Mock Oak 4.1.0-1.86.0 (14th)
 * JCR Resource 3.3.6 (3rd)
