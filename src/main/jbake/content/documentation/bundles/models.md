@@ -88,10 +88,36 @@ Constructor injection is also supported (as of [Sling Models 1.1.0](https://issu
         }
     }
 
-Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation (or a `name` element on injector specific annotations) is mandatory for injectors that require a name for resolving the injection.
+Because the name of a constructor argument parameter cannot be detected via the Java Reflection API a `@Named` annotation (or a `name` element on injector specific annotations) is mandatory for injectors that require a name for resolving the injection. This restriction can be bypassed since [Sling Models 1.7.0](https://issues.apache.org/jira/browse/SLING-11917) when the compiler generates metadata for method names via [javac option `-parameters`](https://docs.oracle.com/en/java/javase/21/docs/specs/man/javac.html#option-parameters) or the according [maven-compiler-plugin parameter](https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html#parameters).
 In order for a constructor to be used for injection *it has to be annotated on method level with `@Inject`*. In addition using injector-specific annotations on parameter level is supported.
+You can also reference the adaptable itself via a constructor argument with the `@Self` annotation.
 
 Constructors may use any visibility modifier (as of [Sling Models 1.5.0](https://issues.apache.org/jira/browse/SLING-8069)).
+
+In addition to that constructors taking a single argument of the adaptable type are supported. Those don't need any annotations. So 
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public class MyModel {    
+        @Inject
+        public MyModel(@Self Resource resource) {
+          // constructor code
+        }
+    }
+
+and 
+
+    ::java
+    @Model(adaptables=Resource.class)
+    public class MyModel {    
+        public MyModel(Resource resource) {
+          // constructor code
+        }
+    }
+
+are functionally equivalent.
+
+The implicit constructors of [record classes] are supported since [Sling Models 1.7.0](https://issues.apache.org/jira/browse/SLING-12359) as well.
 
 ## @Model and Adaptable Types
 
