@@ -6,6 +6,11 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+
+## November 2025
+
+* Settings 1.5.0 (10th)
+
 ## October 2025
 
 * OAuth Client 0.1.4 (28th)
