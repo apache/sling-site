@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2025
 
+* Servlets Resovler 3.0.2, OAuth Client 0.1.6 (18th)
 * Testing JCR Mock 1.7.0, Testing OSGi Mock 3.5.4, Commons Log 6.0.2 (17th)
 * Settings 1.5.0 (10th)
 
