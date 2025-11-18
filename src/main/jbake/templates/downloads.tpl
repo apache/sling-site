@@ -276,7 +276,7 @@ def helpers=[
   "Testing Logging Mock|org.apache.sling.testing.logging-mock|2.0.0|Y|jar",
   "Testing OSGi Mock Core|org.apache.sling.testing.osgi-mock.core|3.5.4|org.apache.sling.testing.osgi-mock|jar",
   "Testing OSGi Mock JUnit 4|org.apache.sling.testing.osgi-mock.junit4|3.5.4|org.apache.sling.testing.osgi-mock|jar",
-  "Testing OSGi Mock JUnit 5|org.apache.sling.testing.osgi-mock.junit5|3.5.2|org.apache.sling.testing.osgi-mock|jar",
+  "Testing OSGi Mock JUnit 5|org.apache.sling.testing.osgi-mock.junit5|3.5.4|org.apache.sling.testing.osgi-mock|jar",
   "Testing PaxExam|org.apache.sling.testing.paxexam|4.1.2|Y|jar",
   "Testing Resource Resolver Mock|org.apache.sling.testing.resourceresolver-mock|2.0.0|Y|jar",
   "Testing Sling Mock Core|org.apache.sling.testing.sling-mock.core|4.0.0|org.apache.sling.testing.sling-mock|jar",
