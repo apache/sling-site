@@ -117,7 +117,7 @@ and
 
 are functionally equivalent.
 
-The implicit constructors of [record classes] are supported since [Sling Models 1.7.0](https://issues.apache.org/jira/browse/SLING-12359) as well.
+The implicit constructors of [record classes](https://docs.oracle.com/en/java/javase/17/language/records.html) are supported since [Sling Models 1.7.0](https://issues.apache.org/jira/browse/SLING-12359) as well.
 
 ## @Model and Adaptable Types
 
