@@ -226,7 +226,7 @@ public class MyModel {
 }
 </code></pre>
 <p>are functionally equivalent.</p>
-<p>The implicit constructors of [record classes] are supported since <a href="https://issues.apache.org/jira/browse/SLING-12359">Sling Models 1.7.0</a> as well.</p>
+<p>The implicit constructors of <a href="https://docs.oracle.com/en/java/javase/17/language/records.html">record classes</a> are supported since <a href="https://issues.apache.org/jira/browse/SLING-12359">Sling Models 1.7.0</a> as well.</p>
 <h2><a href="#model-and-adaptable-types" id="model-and-adaptable-types">@Model and Adaptable Types</a></h2>
 <p>When defining a Sling Model class, the <code>adaptables</code> parameter to the <code>@Model</code> annotation is mostly determined by the injectors being used. The provided class must satisfy the needs of all injectors (for the details see <a href="#available-injectors-1">the table below</a>). For example if the model class only uses the <code>ValueMap</code> injector, the adaptables parameter can be a <code>Resource</code>, a <code>SlingJakartaHttpServletRequest</code>, a <code>SlingHttpServletRequest</code> or both. But if the <code>Request Attribute</code> injector is used, only an adaptable of the type <code>SlingJakartaHttpServletRequest</code> or <code>SlingHttpServletRequest</code> will work.</p>
 <p>In order to increase the reuse it's advised to stick to <code>Resource</code> as adaptables if possible, as such a model can be used in the context of request and outside of it.</p>
@@ -705,7 +705,7 @@ public class MyModel implements MyService {
                             content/documentation/bundles/models.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-10-29</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-11-20</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
