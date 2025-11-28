@@ -9,7 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2025
 
-* Feature Launcher Maven Plugin 1.0.0 (28th)
+* Feature Launcher Maven Plugin 1.0.0, Parent 63 and Bundle Parent 63 (28th)
 * Testing Sling Mock 3.5.6, Sling Mock 4.0.2 (21st)
 * Servlets Resovler 3.0.2, OAuth Client 0.1.6 (18th)
 * Testing JCR Mock 1.7.0, Testing OSGi Mock 3.5.4, Commons Log 6.0.2 (17th)
