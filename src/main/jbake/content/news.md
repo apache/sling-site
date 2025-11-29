@@ -5,6 +5,7 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
+* Released [Apache Sling 14](/news/sling-14-released.html) (Dezember ???, 2025).
 * Apache Sling now supports Jakarta Servlet API 6.1 (June 28th)
 * Released [Apache Sling 13](/news/sling-13-released.html) (January 17th, 2025).
 * Security Advisory: [Apache Sling advisory regarding CVE-2023-6378](./security/CVE-2023-6378.html)
