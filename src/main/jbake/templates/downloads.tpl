@@ -163,7 +163,7 @@ def bundles=[
   "JCR Maintenance|org.apache.sling.jcr.maintenance|1.1.0|Y|jar",
   "JCR Oak Server|org.apache.sling.jcr.oak.server|1.4.4|Y|jar",
   "JCR Package Init|org.apache.sling.jcr.packageinit|1.0.6|Y|jar",
-  "JCR Registration|org.apache.sling.jcr.registration|1.0.6|Y|jar",
+  "JCR Registration|org.apache.sling.jcr.registration|1.0.8|Y|jar",
   "JCR Resource|org.apache.sling.jcr.resource|3.3.6|Y|jar",
   "JCR Resource Security|org.apache.sling.jcr.resourcesecurity|1.1.0|Y|jar",
   "JCR Web Console Plugin|org.apache.sling.jcr.webconsole|1.1.0|Y|jar",
@@ -196,7 +196,7 @@ def bundles=[
   "Resource Access Security|org.apache.sling.resourceaccesssecurity|1.1.2|Y|jar",
   "Resource Builder|org.apache.sling.resourcebuilder|1.0.4|Y|jar",
   "Resource Collection|org.apache.sling.resourcecollection|1.0.4|Y|jar",
-  "Resource Filter|org.apache.sling.resource.filter|1.0.0|Y|jar",
+  "Resource Filter|org.apache.sling.resource.filter|1.0.2|Y|jar",
   "Resource Inventory|org.apache.sling.resource.inventory|1.0.8|Y|jar",
   "Resource Merger|org.apache.sling.resourcemerger|1.4.4|Y|jar",
   "Resource Observation Annotations|org.apache.sling.resource.observation.annotations|1.0.0|Y|jar",
@@ -261,7 +261,7 @@ def bundles=[
 
 def helpers=[
   "Adapter Annotations (JSON) 1.x|adapter-annotations|1.0.0|Y|jar",
-  "Adapter Annotations 2.x|org.apache.sling.adapter.annotations|2.0.0|Y|jar",
+  "Adapter Annotations 2.x|org.apache.sling.adapter.annotations|2.0.2|Y|jar",
   "Connection Timeout Agent|org.apache.sling.connection-timeout-agent|1.1.0|Y|jar",
   "Installer Vault Package Install Hook|org.apache.sling.installer.provider.installhook|1.1.0|Y|jar",
   "Kickstart Project|org.apache.sling.kickstart|0.0.12|Y|jar",
