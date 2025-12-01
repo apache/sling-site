@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2025
 
-* Adapter Annotations 2.0.2, JCR Repository Registration 1.0.8, Resource Filter 1.0.2 (1st)
+* Adapter Annotations 2.0.2, JCR Repository Registration 1.0.8, Resource Filter 1.0.2, Servlets Resolver 3.0.4 (1st)
 
 ## November 2025
 
