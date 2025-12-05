@@ -163,7 +163,7 @@ def bundles=[
   "JCR Maintenance|org.apache.sling.jcr.maintenance|1.1.0|Y|jar",
   "JCR Oak Server|org.apache.sling.jcr.oak.server|1.4.4|Y|jar",
   "JCR Package Init|org.apache.sling.jcr.packageinit|1.0.6|Y|jar",
-  "JCR Registration|org.apache.sling.jcr.registration|1.0.8|Y|jar",
+  "JCR Registration|org.apache.sling.jcr.registration|1.0.10|Y|jar",
   "JCR Resource|org.apache.sling.jcr.resource|3.3.6|Y|jar",
   "JCR Resource Security|org.apache.sling.jcr.resourcesecurity|1.1.0|Y|jar",
   "JCR Web Console Plugin|org.apache.sling.jcr.webconsole|1.1.0|Y|jar",
