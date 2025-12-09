@@ -1,8 +1,8 @@
-#title=Apache Sling 14 released
-#type=page
-#status=published
-#tags=launchpad
-#~~~~~~
+title=Apache Sling 14 released
+type=page
+status=published
+tags=launchpad
+~~~~~~
 
 The Sling 14 release contains numerous improvements, such as official Java 25 Support and supporting the Jakarta Servlet API, and various performance improvements and updates.
 
