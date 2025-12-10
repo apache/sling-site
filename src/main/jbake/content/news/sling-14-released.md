@@ -12,12 +12,7 @@ Read on to see more details about the individual improvements. To find out more 
 
 The Sling Starter and included modules are validated to work on Java 17, 21 and 25.
 
-Note that for Java 17+ the `org.apache.sling.commons.threads` will not clean up leftover `ThreadLocal` instances unless the  `--add-opens java.base/java.lang=ALL-UNNAMED` is passed to the JVM. This fix is already applied to the [official Sling Starter Docker image](https://hub.docker.com/r/apache/sling) and we anticipate further fixes in this area.
-
-
-## Drop support for Java 11
-
-Some of the Sling modules and their dependencies started to switch to Java 17 as minimum version, so Java 11 is no longer supported for the Sling Starter.
+Note that the `org.apache.sling.commons.threads` will not clean up leftover `ThreadLocal` instances unless the  `--add-opens java.base/java.lang=ALL-UNNAMED` is passed to the JVM. This fix is already applied to the [official Sling Starter Docker image](https://hub.docker.com/r/apache/sling) and we anticipate further fixes in this area.
 
 
 ## Support Jakarta Servlet API 6.1 and switch to Jetty 12
@@ -25,6 +20,11 @@ Some of the Sling modules and their dependencies started to switch to Java 17 as
 Sling Starter 14 runs on Jetty 12 and fully supports Jakarta Servlet API 6.1. However, OSGi bundles implemented against the old Servlet API 4 are still supported as well. You don't have to update your application code. New projects should start using the latest Servlet API right away.
 
 See this talk for more details: [adaptTo() 2025 - Seamless Transition: Apache Sling's Adoption of Jakarta Servlet API](https://adapt.to/2025/schedule/seamless-transition-apache-slings-adoption-of-jakarta-servlet-api)
+
+
+## Drop support for Java 11
+
+All Sling modules that have been migrated to Jakarta Servlet API 6.1 have Java 17 as minimum version, so Java 11 is no longer supported for the Sling Starter.
 
 
 ## Switch to jakarta.json completed
