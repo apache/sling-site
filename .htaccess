@@ -21,7 +21,7 @@ RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 AddDefaultCharset utf-8
 
 # Redirect to API docs of latest sling release
-RewriteRule ^/apidocs/latest(/.*)?$ /apidocs/sling13$1 [R=302,L]
+RewriteRule ^apidocs/latest(/.*)?$ /apidocs/sling13$1 [R=302,L]
 
 # Error pages
 ErrorDocument 403 /errors/403.html
