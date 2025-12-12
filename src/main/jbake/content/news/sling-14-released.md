@@ -62,7 +62,6 @@ All bundles have been updated to the latest versions.
 New bundles added to Sling Starter:
 
 * `org.apache.aries.jmx.mbeanserver-platform`
-* `org.apache.sling.event.api`
 * `org.apache.jackrabbit`:`oak-auth-external`
 
 The following bundles are removed from the Sling Starter:
