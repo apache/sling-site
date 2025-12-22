@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## December 2025
 
+* Parent and Bundle Parent 64 (22nd)
 * Starter Test Services 14, Starter Integration Tests 14 (12th)
 * JCR Repository Registration 1.0.10, Parent and Bundle Parent 64 (5th)
 * Adapter Annotations 2.0.2, JCR Repository Registration 1.0.8, Resource Filter 1.0.2, Servlets Resolver 3.0.4 (1st)
