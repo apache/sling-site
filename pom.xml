@@ -252,7 +252,7 @@
                                 </goals>
                                 <phase>${pagefind.maven.phase}</phase>
                                 <configuration>
-                                    <arguments>pagefind --site ${pagefind.site.folder}</arguments>
+                                    <arguments>pagefind@v1.4.0 --site ${pagefind.site.folder}</arguments>
                                 </configuration>
                             </execution>
                         </executions>
