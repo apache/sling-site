@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## January 2026
+
+* Commons Testing 2.2.2, Feature Launcher Maven Plugin 1.0.2 (13th)
+
 ## December 2025
 
 * Parent and Bundle Parent 64 (22nd)
