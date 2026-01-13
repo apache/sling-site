@@ -81,20 +81,6 @@
             </goals>
           </execution>
         </executions>
-        <dependencies>
-            <!-- add exclusions to prevent using old jffi version: https://github.com/jbake-org/jbake/issues/769 -->
-            <dependency>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctorj</artifactId>
-                <version>2.5.13</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-        </dependencies>
       </plugin>
 
       <plugin>
