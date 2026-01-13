@@ -1,15 +1,9 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://sling.apache.org/releases.html</loc><lastmod>2026-01-13</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/the-sling-engine/service-authentication.html</loc><lastmod>2025-12-22</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html</loc><lastmod>2025-11-28</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2025-11-20</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/security/log4shell.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/releases.html</loc><lastmod>2026-01-13</lastmod>
     </url><url>
         <loc>https://sling.apache.org/project-information/project-license.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
@@ -39,8 +33,6 @@
     </url><url>
         <loc>https://sling.apache.org/old-stuff/scriptengineintegration/groovy-support.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/old-stuff/assembly.html</loc><lastmod>2017-09-29</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/news.html</loc><lastmod>2025-06-28</lastmod>
     </url><url>
         <loc>https://sling.apache.org/news/sling-ide-tooling-11-released.html</loc><lastmod>2017-09-29</lastmod>
@@ -65,6 +57,8 @@
     </url><url>
         <loc>https://sling.apache.org/links.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/old-stuff/assembly.html</loc><lastmod>2017-09-29</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/news/sling-ide-tooling-12-released.html</loc><lastmod>2018-01-21</lastmod>
     </url><url>
         <loc>https://sling.apache.org/news/sling-11-released.html</loc><lastmod>2018-10-23</lastmod>
@@ -83,6 +77,8 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/tutorials-how-tos/jackrabbit-persistence.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/tutorials-how-tos/46-line-blog.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/sling-properties.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/tutorials-how-tos.html</loc><lastmod>2020-08-06</lastmod>
@@ -91,11 +87,13 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/sling-api-crud-support.html</loc><lastmod>2025-06-02</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html</loc><lastmod>2025-11-28</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/servlets.html</loc><lastmod>2025-10-01</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/tutorials-how-tos/46-line-blog.html</loc><lastmod>2025-04-16</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/the-sling-launchpad.html</loc><lastmod>2022-03-21</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/the-sling-engine/service-authentication.html</loc><lastmod>2025-12-22</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/resources.html</loc><lastmod>2025-10-01</lastmod>
     </url><url>
@@ -105,13 +103,9 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/authentication/authentication-authenticationhandler.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/the-sling-engine/architecture.html</loc><lastmod>2025-04-16</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/request-parameters.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/featureflags.html</loc><lastmod>2018-07-13</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/the-sling-engine/authentication.html</loc><lastmod>2018-05-14</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/authentication/authentication-authenticationhandler/openid-authenticationhandler.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
@@ -128,6 +122,10 @@
         <loc>https://sling.apache.org/documentation/the-sling-engine/dispatching-requests.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/authentication/authentication-framework.html</loc><lastmod>2021-04-21</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/the-sling-engine/architecture.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/the-sling-engine/authentication.html</loc><lastmod>2018-05-14</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/authentication/authentication-actors.html</loc><lastmod>2017-11-22</lastmod>
     </url><url>
@@ -155,6 +153,8 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/development/version-policy.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/development/testing-paxexam.html</loc><lastmod>2025-04-23</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/feature-model/feature-model-howto.html</loc><lastmod>2020-06-18</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/sling.html</loc><lastmod>2025-04-16</lastmod>
@@ -164,8 +164,6 @@
         <loc>https://sling.apache.org/documentation/development/sling-testing-tools.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/release-management.html</loc><lastmod>2025-10-01</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/development/testing-paxexam.html</loc><lastmod>2025-04-23</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/sling-mock.html</loc><lastmod>2025-07-31</lastmod>
     </url><url>
@@ -177,8 +175,6 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/development/maven-archetypes.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/development/jcr-mock.html</loc><lastmod>2023-04-27</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/development/maventipsandtricks.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/logging.html</loc><lastmod>2025-04-29</lastmod>
@@ -187,19 +183,15 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/development/maven-usage.html</loc><lastmod>2017-11-22</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/development/jsr-305.html</loc><lastmod>2018-08-18</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/development/null-analysis.html</loc><lastmod>2025-07-18</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/maven-launchpad-plugin.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/development/jspc.html</loc><lastmod>2025-04-16</lastmod>
+        <loc>https://sling.apache.org/documentation/development/jcr-mock.html</loc><lastmod>2023-04-27</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/htl-maven-plugin.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/embedding-sling.html</loc><lastmod>2018-07-13</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/development/client-request-logging.html</loc><lastmod>2023-05-17</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/issue-tracker.html</loc><lastmod>2018-07-13</lastmod>
     </url><url>
@@ -207,11 +199,15 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/development/deprecating-sling-modules.html</loc><lastmod>2024-12-10</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/development/jsr-305.html</loc><lastmod>2018-08-18</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/development/ide-tooling.html</loc><lastmod>2025-09-25</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/getting-and-building-sling.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/dependency-management.html</loc><lastmod>2024-01-04</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/development/jspc.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/development/ide-tooling/ide-tooling-incremental-build.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
@@ -221,15 +217,11 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/development.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/development/client-request-logging.html</loc><lastmod>2023-05-17</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/web-console-extensions.html</loc><lastmod>2022-05-31</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-query.html</loc><lastmod>2025-04-16</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/modifiers.html</loc><lastmod>2017-09-29</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-query/basic-ideas.html</loc><lastmod>2017-09-29</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/readers.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/configuration.html</loc><lastmod>2019-07-26</lastmod>
     </url><url>
@@ -239,17 +231,11 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/methods.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/logical.html</loc><lastmod>2021-01-28</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/subsystem-installer-factory.html</loc><lastmod>2020-03-30</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/selectors.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/hierarchy-operators.html</loc><lastmod>2018-01-04</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/writers.html</loc><lastmod>2022-07-22</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/execution-monitoring.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/xml-support.html</loc><lastmod>2017-11-22</lastmod>
     </url><url>
@@ -258,6 +244,18 @@
         <loc>https://sling.apache.org/documentation/bundles/sling-query/operators.html</loc><lastmod>2017-09-29</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-query/examples.html</loc><lastmod>2017-09-29</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-query.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-query/basic-ideas.html</loc><lastmod>2017-09-29</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/readers.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/logical.html</loc><lastmod>2021-01-28</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/writers.html</loc><lastmod>2022-07-22</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/sling-pipes/execution-monitoring.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/sling-pipes/samples.html</loc><lastmod>2021-01-28</lastmod>
     </url><url>
@@ -285,13 +283,9 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/resource-editor.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html</loc><lastmod>2024-09-30</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/scheduler-service-commons-scheduler.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/resource-access-security.html</loc><lastmod>2021-11-04</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/output-rewriting-pipelines-org-apache-sling-rewriter.html</loc><lastmod>2018-07-10</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/resource-merger.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
@@ -301,9 +295,13 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/repository-initialization.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html</loc><lastmod>2024-09-30</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/nosql-resource-providers.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html</loc><lastmod>2025-04-16</lastmod>
+        <loc>https://sling.apache.org/documentation/bundles/output-rewriting-pipelines-org-apache-sling-rewriter.html</loc><lastmod>2018-07-10</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/models.html</loc><lastmod>2025-11-20</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/osgi-installer.html</loc><lastmod>2022-12-05</lastmod>
     </url><url>
@@ -311,9 +309,17 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/org-apache-sling-junit-bundles.html</loc><lastmod>2020-10-22</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/metrics.html</loc><lastmod>2025-04-16</lastmod>
+        <loc>https://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/jcr-installer-provider.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/managing-users-and-groups-jackrabbit-usermanager.html</loc><lastmod>2022-02-04</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html</loc><lastmod>2022-11-18</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/metrics.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/log-tracers.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/graphql-core.html</loc><lastmod>2021-07-26</lastmod>
     </url><url>
@@ -321,15 +327,11 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-override.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/managing-users-and-groups-jackrabbit-usermanager.html</loc><lastmod>2022-02-04</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/internationalization-support-i18n.html</loc><lastmod>2025-05-13</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/file-installer-provider.html</loc><lastmod>2021-12-01</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/datasource-providers.html</loc><lastmod>2025-04-16</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/managing-permissions-jackrabbit-accessmanager.html</loc><lastmod>2022-11-18</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/installer-provider-installhook.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
@@ -337,13 +339,13 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html</loc><lastmod>2025-06-26</lastmod>
     </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/log-tracers.html</loc><lastmod>2025-04-16</lastmod>
-    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/hapi.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/distribution.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/content-distribution.html</loc><lastmod>2025-07-15</lastmod>
     </url><url>
@@ -357,25 +359,23 @@
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/caching-services.html</loc><lastmod>2017-11-22</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/bundles.html</loc><lastmod>2021-07-13</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/content-package-installer-factory.html</loc><lastmod>2021-05-10</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/configuration-installer-factory.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/bundle-resources-extensions-bundleresource.html</loc><lastmod>2018-02-04</lastmod>
     </url><url>
+        <loc>https://sling.apache.org/documentation/apidocs.html</loc><lastmod>2025-04-16</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/documentation/bundles/content-loading-jcr-contentloader.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/commons-html-utilities.html</loc><lastmod>2019-07-18</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/apache-sling-eventing-and-job-handling.html</loc><lastmod>2025-08-19</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation.html</loc><lastmod>2025-04-16</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/accessing-filesystem-resources-extensions-fsresource.html</loc><lastmod>2025-04-16</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles.html</loc><lastmod>2021-07-13</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/apidocs.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/contributing.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
