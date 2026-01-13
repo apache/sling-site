@@ -290,7 +290,8 @@ allowlist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
 <p>The older configurations are still partially supported, but should be upgraded to use the new naming.</p>
 <p>The deprecated configurations supported are the factoryPID <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment</code> with the configuration properties <code>whitelist.name</code> and <code>whitelist.bundles</code> for the fragments. The deprecated configuration for the global settings is <code>org.apache.sling.jcr.base.internal.LoginAdminWhitelist</code> with the properties <code>whitelist.bypass</code> and <code>whitelist.bundles.regexp</code>.</p>
 <p>The deprecated fragments are still fully supported as they get merged with fragments using the official way of configuring them. Still it is advised to change to the new names.</p>
-<p>However, the global configuration will only be used if there is no new global configuration available. Make sure that you do not have both! But as mentioned the global configuration should only be used for cases like testing anyway. Fragments is the better option.</p>
+<p>However, the deprecated global configuration is only applied when no corresponding new global configuration exists. Ensure that both configurations are not present simultaneously.</p>
+<p>Starting with <em>JCR Base 3.2.2</em>, the global configuration behavior has been made more consistent and intuitive. When both deprecated and current global configurations are present, the newer global configuration takes precedence. But as mentioned the global configuration should only be used for cases like testing anyway. Fragments is the better option.</p>
 </section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Service Authentication )</div>                            
                         </div>
                     </div>
@@ -302,13 +303,13 @@ allowlist.bundles.regexp=&quot;^PAXEXAM.*$&quot;
                             content/documentation/the-sling-engine/service-authentication.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Carsten Ziegeler</span> on <span class="comment">2025-10-09</span>
+                        Last modified by <span class="author">Ankur Singla</span> on <span class="comment">2025-12-22</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
     may be trademarks or registered trademarks of their respective owners.
                     </p><p>
-                        Copyright © 2007-2025<a href="https://www.apache.org/">
+                        Copyright © 2007-2026<a href="https://www.apache.org/">
                             The Apache Software Foundation
                         </a>|<a href="https://privacy.apache.org/policies/privacy-policy-public.html">
                             Privacy Policy

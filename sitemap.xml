@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://sling.apache.org/releases.html</loc><lastmod>2025-12-12</lastmod>
+        <loc>https://sling.apache.org/releases.html</loc><lastmod>2026-01-13</lastmod>
+    </url><url>
+        <loc>https://sling.apache.org/documentation/the-sling-engine/service-authentication.html</loc><lastmod>2025-12-22</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html</loc><lastmod>2025-11-28</lastmod>
     </url><url>
@@ -94,8 +96,6 @@
         <loc>https://sling.apache.org/documentation/tutorials-how-tos/46-line-blog.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/the-sling-launchpad.html</loc><lastmod>2022-03-21</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/the-sling-engine/service-authentication.html</loc><lastmod>2025-10-09</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/the-sling-engine/resources.html</loc><lastmod>2025-10-01</lastmod>
     </url><url>
