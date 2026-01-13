@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.sling.maven.feature.launcher"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.sling.feature_launcher_maven_plugin"},{"l":"org.apache.sling.maven.feature.launcher"}];updateSearchResults();
