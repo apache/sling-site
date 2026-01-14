@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.apache.sling.maven.slingstart"},{"l":"org.apache.sling.maven.slingstart.launcher"},{"l":"org.apache.sling.maven.slingstart.run"}]
