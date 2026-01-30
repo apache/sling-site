@@ -151,6 +151,7 @@ def bundles=[
   "Installer Health Checks|org.apache.sling.installer.hc|2.1.0|Y|jar",
   "Installer JCR Provider|org.apache.sling.installer.provider.jcr|3.3.0|Y|jar",
   "javax activation|org.apache.sling.javax.activation|0.3.0|Y|jar",
+  "JAXP Configurator|org.apache.sling.jaxp-configurator|1.0.0|Y|jar",
   "JCR API|org.apache.sling.jcr.api|2.4.2|Y|jar",
   "JCR API Wrapper|org.apache.sling.jcr.jcr-wrapper|2.0.0|Y|jar",
   "JCR Base|org.apache.sling.jcr.base|3.2.0|Y|jar",

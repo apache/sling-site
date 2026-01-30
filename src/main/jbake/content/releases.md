@@ -9,6 +9,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 ## January 2026
 
 * Commons Testing 2.2.2, Feature Launcher Maven Plugin 1.0.2 (13th)
+* JAXP Configurator 1.0.0 (30th)
 
 ## December 2025
 
