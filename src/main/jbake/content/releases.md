@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2026
 
+* XSS Protection API 2.4.10 (10th)
 * Feature Model API Regions Extension 2.1.0 (8th)
 
 ## January 2026
