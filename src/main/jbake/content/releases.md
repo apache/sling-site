@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2026
 
+* Testing JCR Mock 1.8.0, Testing Sling Mock 3.6.0, Testing Sling Mock 4.0.4 (16th)
 * XSS Protection API 2.4.10 (10th)
 * Feature Model API Regions Extension 2.1.0 (8th)
 
