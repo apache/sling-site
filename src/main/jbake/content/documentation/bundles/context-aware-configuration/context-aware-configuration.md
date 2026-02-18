@@ -116,7 +116,7 @@ The annotation class may look like this:
         int intParam();
     }
 
-The `@Configuration` annotation is mandatory. All properties on the `@Configuration` annotation and the `@Property` annotations are optional - they provide additional metadata for tooling e.g. configuration editors.
+The [`@Configuration`][javadoc-component] annotation is mandatory. All properties on the `@Configuration` annotation and the [`@Property`][javadoc-property] annotations are optional - they provide additional metadata for tooling e.g. configuration editors.
 
 By default the annotation class name is used as configuration name, which is also the recommended option. If you want to use an arbitrary configuration name you can specify it via a `name` property on the `@Configuration` annotation.
 
@@ -272,5 +272,7 @@ Whenever configuration data is read or written from the configuration resources 
 
 
 [default-impl]: https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html
+[javadoc-component]: https://sling.apache.org/apidocs/latest/org/apache/sling/caconfig/annotation/Configuration.html
+[javadoc-property]: https://sling.apache.org/apidocs/sling13/org/apache/sling/caconfig/annotation/Property.html
 [spi]: https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-spi.html
 [override]: https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-override.html
