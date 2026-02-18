@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html</loc><lastmod>2026-02-18</lastmod>
+    </url><url>
         <loc>https://sling.apache.org/releases.html</loc><lastmod>2026-02-17</lastmod>
     </url><url>
         <loc>https://sling.apache.org/security/CVE-2025-66516.html</loc><lastmod>2026-02-09</lastmod>
@@ -342,8 +344,6 @@
         <loc>https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration-default-implementation.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/dynamic-includes.html</loc><lastmod>2025-10-23</lastmod>
-    </url><url>
-        <loc>https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html</loc><lastmod>2025-06-26</lastmod>
     </url><url>
         <loc>https://sling.apache.org/documentation/bundles/distribution.html</loc><lastmod>2025-04-16</lastmod>
     </url><url>

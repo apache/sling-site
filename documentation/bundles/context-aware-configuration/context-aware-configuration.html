@@ -203,7 +203,7 @@ public @interface MyConfig {
     int intParam();
 }
 </code></pre>
-<p>The <code>@Configuration</code> annotation is mandatory. All properties on the <code>@Configuration</code> annotation and the <code>@Property</code> annotations are optional - they provide additional metadata for tooling e.g. configuration editors.</p>
+<p>The <a href="https://sling.apache.org/apidocs/latest/org/apache/sling/caconfig/annotation/Configuration.html"><code>@Configuration</code></a> annotation is mandatory. All properties on the <code>@Configuration</code> annotation and the <a href="https://sling.apache.org/apidocs/sling13/org/apache/sling/caconfig/annotation/Property.html"><code>@Property</code></a> annotations are optional - they provide additional metadata for tooling e.g. configuration editors.</p>
 <p>By default the annotation class name is used as configuration name, which is also the recommended option. If you want to use an arbitrary configuration name you can specify it via a <code>name</code> property on the <code>@Configuration</code> annotation.</p>
 <p>You may specify custom properties (via <code>property</code> string array) for the configuration class or each properties. They are not used by the Sling Context-Aware configuration implementation, but may be used by additional tooling to manage the configurations.</p>
 <p>If you provide your own configuration annotation classes in your bundle, you have to export them and list all class names in a bundle header named <code>Sling-ContextAware-Configuration-Classes</code> - example:</p>
@@ -325,7 +325,7 @@ public class MyTest {
                             content/documentation/bundles/context-aware-configuration/context-aware-configuration.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2025-06-26</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2026-02-18</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
