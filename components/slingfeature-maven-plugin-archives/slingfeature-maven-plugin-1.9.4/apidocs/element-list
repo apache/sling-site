@@ -1,0 +1,8 @@
+org.apache.sling.feature.maven
+org.apache.sling.feature.maven.extensions
+org.apache.sling.feature.maven.mojos
+org.apache.sling.feature.maven.mojos.apis
+org.apache.sling.feature.maven.mojos.apis.spi
+org.apache.sling.feature.maven.mojos.reports
+org.apache.sling.feature.maven.mojos.selection
+org.apache.sling.slingfeature_maven_plugin
