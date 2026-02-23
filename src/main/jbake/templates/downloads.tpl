@@ -188,7 +188,7 @@ def bundles=[
   "Models Context-Aware Configuration|org.apache.sling.models.caconfig|1.0.2|Y|jar",
   "Oak Restrictions|org.apache.sling.oak.restrictions|1.0.2|Y|jar",
   "OAuth Client|org.apache.sling.auth.oauth-client|0.1.6|Y|jar",
-  "Pipes|org.apache.sling.pipes|4.5.0|Y|jar",
+  "Pipes|org.apache.sling.pipes|4.5.2|Y|jar",
   "Provisioning Model|org.apache.sling.provisioning.model|1.8.6|Y|jar",
   "Repoinit JCR|org.apache.sling.jcr.repoinit|1.1.54|Y|jar",
   "Repoinit Parser|org.apache.sling.repoinit.parser|1.9.2|Y|jar",

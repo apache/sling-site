@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2026
 
+* Sling Pipes 4.5.2 (23th)
 * OSGi Feature Maven Plugin 1.9.4, Feature Launcher Maven Plugin 1.0.4 (20th)
 * Feature Model API Regions Extension 2.1.2 (17th)
 * Testing JCR Mock 1.8.0, Testing Sling Mock 3.6.0, Testing Sling Mock 4.0.4 (16th)
