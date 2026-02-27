@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2026
 
+* Engine 3.0.2 (27th)
 * Parent 66, Bundle Parent 66 (26th)
 * Pipes 4.5.2 (23th)
 * OSGi Feature Maven Plugin 1.9.4, Feature Launcher Maven Plugin 1.0.4 (20th)
