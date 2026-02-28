@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## February 2026
 
+* Servlets Resolver 3.0.6, Servlets Post 3.0.2, Models Implementation 2.0.2, Scripting Core 3.0.2 (28th)
 * Engine 3.0.2 (27th)
 * Parent 66, Bundle Parent 66 (26th)
 * Pipes 4.5.2 (23th)
