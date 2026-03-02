@@ -46,6 +46,8 @@ The Sling Event API, which was exported by the implementation bundle before, is 
 
 Sling Starter now registers by default an JMX MBean platform powered by [Apache Aries JMX](https://aries.apache.org/documentation/modules/jmx.html).
 
+By including a new JAXP Configurator bundle in the Sling Starter, CVE-2025-66516 is fixed. See [Apache Sling advisory regarding CVE-2025-66516](https://sling.apache.org/security/CVE-2025-66516.html) for details.
+
 
 ## Sling API
 
