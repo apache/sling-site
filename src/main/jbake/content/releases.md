@@ -6,8 +6,28 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## February 2026
+
+* Commons Log 6.0.4 (28th)
+* Servlets Resolver 3.0.6, Servlets Post 3.0.2, Models Implementation 2.0.2, Scripting Core 3.0.2 (28th)
+* Engine 3.0.2 (27th)
+* Parent 66, Bundle Parent 66 (26th)
+* Pipes 4.5.2 (23th)
+* OSGi Feature Maven Plugin 1.9.4, Feature Launcher Maven Plugin 1.0.4 (20th)
+* Feature Model API Regions Extension 2.1.2 (17th)
+* Testing JCR Mock 1.8.0, Testing Sling Mock 3.6.0, Testing Sling Mock 4.0.4 (16th)
+* XSS Protection API 2.4.10 (10th)
+* Feature Model API Regions Extension 2.1.0 (8th)
+
+## January 2026
+
+* Commons Testing 2.2.2, Feature Launcher Maven Plugin 1.0.2 (13th)
+* JAXP Configurator 1.0.0 (30th)
+
 ## December 2025
 
+* Parent and Bundle Parent 64 (22nd)
+* Starter Test Services 14, Starter Integration Tests 14 (12th)
 * JCR Repository Registration 1.0.10, Parent and Bundle Parent 64 (5th)
 * Adapter Annotations 2.0.2, JCR Repository Registration 1.0.8, Resource Filter 1.0.2, Servlets Resolver 3.0.4 (1st)
 

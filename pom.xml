@@ -43,7 +43,7 @@
     <pagefind.maven.phase>test</pagefind.maven.phase>
 
     <!-- renovate: datasource=node depName=node -->
-    <pagefind.node.version>24.11.1</pagefind.node.version>
+    <pagefind.node.version>24.13.0</pagefind.node.version>
   </properties>
 
   <build>
@@ -71,7 +71,7 @@
       <plugin>
         <groupId>org.jbake</groupId>
         <artifactId>jbake-maven-plugin</artifactId>
-        <version>2.7.0-rc.7</version>
+        <version>2.7.0</version>
         <executions>
           <execution>
             <id>default-generate</id>
@@ -81,20 +81,6 @@
             </goals>
           </execution>
         </executions>
-        <dependencies>
-            <!-- add exclusions to prevent using old jffi version: https://github.com/jbake-org/jbake/issues/769 -->
-            <dependency>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctorj</artifactId>
-                <version>2.5.13</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-        </dependencies>
       </plugin>
 
       <plugin>
@@ -228,7 +214,7 @@
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.15.4</version>
+                        <version>2.0.0</version>
                         <configuration>
                             <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
                             <installDirectory>${project.build.directory}</installDirectory>
@@ -252,7 +238,7 @@
                                 </goals>
                                 <phase>${pagefind.maven.phase}</phase>
                                 <configuration>
-                                    <arguments>pagefind --site ${pagefind.site.folder}</arguments>
+                                    <arguments>pagefind@v1.4.0 --site ${pagefind.site.folder}</arguments>
                                 </configuration>
                             </execution>
                         </executions>

@@ -132,7 +132,7 @@ The request traces provided at `/system/console/requests` contain information ab
     8 (2010-09-08 15:22:38) TIMER_END{8,Request Processing} Request Processing
 
 ### Config Status plugin
-The configuration status page at `/system/console/config` includes the current list of active filters in its *Servlet Filters* category, as in this example:
+The configuration status page at `/system/console/status-slingfilter` includes the current list of active filters in its *Servlet Filters* category, as in this example:
 
     Current Apache Sling Servlet Filter Configuration
 

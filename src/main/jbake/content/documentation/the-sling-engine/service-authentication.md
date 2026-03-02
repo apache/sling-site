@@ -315,4 +315,7 @@ The deprecated configurations supported are the factoryPID `org.apache.sling.jcr
 
 The deprecated fragments are still fully supported as they get merged with fragments using the official way of configuring them. Still it is advised to change to the new names.
 
-However, the global configuration will only be used if there is no new global configuration available. Make sure that you do not have both! But as mentioned the global configuration should only be used for cases like testing anyway. Fragments is the better option.
+However, the deprecated global configuration is only applied when no corresponding new global configuration exists. Ensure that both configurations are not present simultaneously.
+
+Starting with *JCR Base 3.2.2*, the global configuration behavior has been made more consistent and intuitive. When both deprecated and current global configurations are present, the newer global configuration takes precedence. But as mentioned the global configuration should only be used for cases like testing anyway. Fragments is the better option.
+

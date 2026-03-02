@@ -8,8 +8,8 @@
                 "additionalMavenParams": "-Ppagefind,publish-site -Dmsg=\"Automatic website deployment from $BUILD_URL\""
             }
         },
-         "jdks": [
-          11
+        "jdks": [
+          17
         ],
         "operatingSystems": [
          "linux"
