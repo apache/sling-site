@@ -84,10 +84,11 @@ Added:
 
 * `org.apache.aries.jmx`:**`org.apache.aries.jmx.mbeanserver-platform`** 0.0.1
 * `org.apache.commons`:**`commons-math3`** 3.6.1
-* `org.apache.felix`:**`org.apache.felix.http.jetty12`** 1.1.6
-* `org.apache.jackrabbit`:**`oak-auth-external`** 1.88.0
-* `org.apache.sling`:**`org.apache.sling.commons.log`** 6.0.2
+* `org.apache.felix`:**`org.apache.felix.http.jetty12`** 1.1.8
+* `org.apache.jackrabbit`:**`oak-auth-external`** 1.90.0
+* `org.apache.sling`:**`org.apache.sling.commons.log`** 6.0.4
 * `org.apache.sling`:**`org.apache.sling.event.api`** 1.0.4
+* `org.apache.sling`:**`org.apache.sling.jaxp-configurator`** 1.0.0
 
 Removed:
 
@@ -103,12 +104,12 @@ Changed:
 * `com.composum.nodes`:**`composum-nodes-jslibs`** 4.3.4 -> 4.3.5
 * `com.composum.nodes`:**`composum-nodes-pckgmgr`** 4.3.4 -> 4.3.5
 * `com.composum.nodes`:**`composum-nodes-usermgr`** 4.3.4 -> 4.3.5
-* `com.fasterxml.jackson.core`:**`jackson-annotations`** 2.18.2 -> 2.20
-* `com.fasterxml.jackson.core`:**`jackson-core`** 2.18.2 -> 2.20.1
-* `com.fasterxml.jackson.core`:**`jackson-databind`** 2.18.2 -> 2.20.1
-* `com.fasterxml.jackson.dataformat`:**`jackson-dataformat-xml`** 2.18.2 -> 2.20.1
+* `com.fasterxml.jackson.core`:**`jackson-annotations`** 2.18.2 -> 2.21
+* `com.fasterxml.jackson.core`:**`jackson-core`** 2.18.2 -> 2.21.1
+* `com.fasterxml.jackson.core`:**`jackson-databind`** 2.18.2 -> 2.21.1
+* `com.fasterxml.jackson.dataformat`:**`jackson-dataformat-xml`** 2.18.2 -> 2.21.1
 * `com.fasterxml.woodstox`:**`woodstox-core`** 7.1.0 -> 7.1.1
-* `commons-codec`:**`commons-codec`** 1.17.2 -> 1.20.0
+* `commons-codec`:**`commons-codec`** 1.17.2 -> 1.21.0
 * `commons-fileupload`:**`commons-fileupload`** 1.5 -> 1.6.0
 * `commons-io`:**`commons-io`** 2.18.0 -> 2.21.0
 * `org.apache.commons`:**`commons-collections4`** 4.4 -> 4.5.0
@@ -119,29 +120,29 @@ Changed:
 * `org.apache.felix`:**`org.apache.felix.http.webconsoleplugin`** 1.2.0 -> 1.2.2
 * `org.apache.felix`:**`org.apache.felix.scr`** 2.2.12 -> 2.2.14
 * `org.apache.felix`:**`org.apache.felix.webconsole`** 5.0.8 -> 5.0.18
-* `org.apache.jackrabbit`:**`jackrabbit-data`** 2.22.0 -> 2.22.2
-* `org.apache.jackrabbit`:**`jackrabbit-jcr-commons`** 2.22.0 -> 2.22.2
-* `org.apache.jackrabbit`:**`jackrabbit-spi`** 2.22.0 -> 2.22.2
-* `org.apache.jackrabbit`:**`jackrabbit-spi-commons`** 2.22.0 -> 2.22.2
-* `org.apache.jackrabbit`:**`jackrabbit-webdav`** 2.22.0 -> 2.22.2
-* `org.apache.jackrabbit`:**`oak-api`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-authorization-principalbased`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-blob`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-blob-plugins`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-commons`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-core`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-core-spi`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-jackrabbit-api`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-jcr`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-lucene`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-query-spi`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-security-spi`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-segment-tar`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-shaded-guava`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-store-composite`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-store-document`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit`:**`oak-store-spi`** 1.72.0 -> 1.88.0
-* `org.apache.jackrabbit.vault`:**`org.apache.jackrabbit.vault`** 3.8.2 -> 4.1.4
+* `org.apache.jackrabbit`:**`jackrabbit-data`** 2.22.0 -> 2.22.3
+* `org.apache.jackrabbit`:**`jackrabbit-jcr-commons`** 2.22.0 -> 2.22.3
+* `org.apache.jackrabbit`:**`jackrabbit-spi`** 2.22.0 -> 2.22.3
+* `org.apache.jackrabbit`:**`jackrabbit-spi-commons`** 2.22.0 -> 2.22.3
+* `org.apache.jackrabbit`:**`jackrabbit-webdav`** 2.22.0 -> 2.22.3
+* `org.apache.jackrabbit`:**`oak-api`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-authorization-principalbased`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-blob`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-blob-plugins`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-commons`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-core`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-core-spi`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-jackrabbit-api`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-jcr`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-lucene`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-query-spi`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-security-spi`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-segment-tar`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-shaded-guava`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-store-composite`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-store-document`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit`:**`oak-store-spi`** 1.72.0 -> 1.90.0
+* `org.apache.jackrabbit.vault`:**`org.apache.jackrabbit.vault`** 3.8.2 -> 4.2.0
 * `org.apache.pdfbox`:**`fontbox`** 2.0.32 -> 2.0.35
 * `org.apache.pdfbox`:**`pdfbox`** 2.0.32 -> 2.0.35
 * `org.apache.servicemix.bundles`:**`org.apache.servicemix.bundles.thymeleaf`** 3.0.15.RELEASE_1 -> 3.1.2.RELEASE_1
@@ -199,7 +200,7 @@ Changed:
     * [SLING-12066 Migrate sling.discovery.commons to jakarta.json](https://issues.apache.org/jira/browse/SLING-12066) (Sub-task)
     * [SLING-12699 Discovery Base & Commons: Make Build compatible with Java 17, Java 21](https://issues.apache.org/jira/browse/SLING-12699) (Task)
 * `org.apache.sling`:**`org.apache.sling.discovery.oak`** 1.2.46 -> 1.2.48
-* `org.apache.sling`:**`org.apache.sling.engine`** 2.16.0 -> 3.0.0
+* `org.apache.sling`:**`org.apache.sling.engine`** 2.16.0 -> 3.0.2
     * [SLING-12607 Implement Jakarta Servlet based Sling API](https://issues.apache.org/jira/browse/SLING-12607) (Sub-task)
     * [SLING-12640 Setting Sling filter service property sling.filter.scope to an invalid value does not disable the filter.](https://issues.apache.org/jira/browse/SLING-12640) (Bug)
     * [SLING-12661 Potential origins of violations to the RequestDispatcher include API may run into OOM error on excessive recursions](https://issues.apache.org/jira/browse/SLING-12661) (Improvement)
@@ -207,6 +208,14 @@ Changed:
     * [SLING-12728 Engine: Update to Parent 62](https://issues.apache.org/jira/browse/SLING-12728) (Task)
     * [SLING-12752 Support Jakarta Servlet 6.1](https://issues.apache.org/jira/browse/SLING-12752) (Improvement)
     * [SLING-12801 Error handler does not reset the response during include](https://issues.apache.org/jira/browse/SLING-12801) (Bug)
+    * [SLING-12844 Potential origins of violations to the RequestDispatcher include API skips too many on committed responses](https://issues.apache.org/jira/browse/SLING-12844) (Bug)
+    * [SLING-12845 ProtectHeadersOnInclude functionality ignores changes to the response buffer size](https://issues.apache.org/jira/browse/SLING-12845) (Bug)
+    * [SLING-13049 Change "Content Type Header" error log to debug in SlingRequestProcessorImpl](https://issues.apache.org/jira/browse/SLING-13049) (Improvement)
+    * [SLING-13071 HTL use objects that adapt from the javax SlingHttpServletRequest cannot be instantiated in a Jakarta context ](https://issues.apache.org/jira/browse/SLING-13071) (Bug)
+    * [SLING-13083 Code acessing the "request-parts-iterator"  request attribute broken after migration to Jakarta](https://issues.apache.org/jira/browse/SLING-13083) (Bug)
+    * [SLING-13089 Filter Web Console Printer should expose HTTP Whiteboard filters for Sling context as well](https://issues.apache.org/jira/browse/SLING-13089) (Improvement)
+    * [SLING-13090 Filter Web Console Printer does not unwrap information for JavaxToJakartaFilterWrapper](https://issues.apache.org/jira/browse/SLING-13090) (Improvement)
+    * [SLING-13102 Add test coverage for TRACE-disabled handling and selector validation](https://issues.apache.org/jira/browse/SLING-13102) (Improvement)
 * `org.apache.sling`:**`org.apache.sling.event`** 4.3.14 -> 4.4.0
     * [SLING-9393 JobManager findJobs doesn't return hits when Templates are used](https://issues.apache.org/jira/browse/SLING-9393) (Bug)
     * [SLING-11422 Stop embedding the event.api package in the event bundle](https://issues.apache.org/jira/browse/SLING-11422) (Improvement)
@@ -257,8 +266,22 @@ Changed:
 * `org.apache.sling`:**`org.apache.sling.models.api`** 1.5.4 -> 2.0.0
     * [SLING-12694 Update to Parent 62](https://issues.apache.org/jira/browse/SLING-12694) (Task)
     * [SLING-12874 migrate ModelFactory to Sling API 3.x and Jakarta Servlet](https://issues.apache.org/jira/browse/SLING-12874) (Sub-task)
-* `org.apache.sling`:**`org.apache.sling.models.impl`** 1.7.8 -> 2.0.0
+* `org.apache.sling`:**`org.apache.sling.models.impl`** 1.7.8 -> 2.0.2
     * [SLING-12875 migrate ModelFactoryImpl to Sling API 3.x and Jakarta Servlet](https://issues.apache.org/jira/browse/SLING-12875) (Sub-task)
+    * [SLING-13050 Models Impl: Include Integration Tests](https://issues.apache.org/jira/browse/SLING-13050) (Task)
+    * [SLING-13052 [SONAR] Add missing assertions to AdapterFactoryTest (java:S2699)](https://issues.apache.org/jira/browse/SLING-13052) (Test)
+    * [SLING-13062 [Sling Models] Migrate basic injectors tests to JUnit 5](https://issues.apache.org/jira/browse/SLING-13062) (Improvement)
+    * [SLING-13063 [Sling Models] Migrate SlingObject, Self, and legacy Injector tests to JUnit 5](https://issues.apache.org/jira/browse/SLING-13063) (Improvement)
+    * [SLING-13064 [Sling Models] Migrate 'via' package unit tests to JUnit 5](https://issues.apache.org/jira/browse/SLING-13064) (Improvement)
+    * [SLING-13066 [Sling Models] Migrate implpicker and basic root tests to JUnit 5](https://issues.apache.org/jira/browse/SLING-13066) (Improvement)
+    * [SLING-13068 Models: Update to Parent 65](https://issues.apache.org/jira/browse/SLING-13068) (Task)
+    * [SLING-13072 [Sling Models] Migrate defaults and inheritance root tests to JUnit 5](https://issues.apache.org/jira/browse/SLING-13072) (Improvement)
+    * [SLING-13077 ExportServlet cannot adapt model to javax SlingHttpServletRequest when running in a Jakarta Servlet environment](https://issues.apache.org/jira/browse/SLING-13077) (Bug)
+    * [SLING-13079 Models Jackson Exporter: Include Integration Tests](https://issues.apache.org/jira/browse/SLING-13079) (Task)
+    * [SLING-13088 [Sling Models] Migrate ModelAdapterFactory, Ordering, and OSGi tests to JUnit 5](https://issues.apache.org/jira/browse/SLING-13088) (Improvement)
+    * [SLING-13092 ModelConfigurationPrinter does not properly emit properties containing an array](https://issues.apache.org/jira/browse/SLING-13092) (Improvement)
+    * [SLING-13101 [Sling Models] Migrate Request, Resource, and PostConstruct Tests to JUnit 5 ](https://issues.apache.org/jira/browse/SLING-13101) (Improvement)
+    * [SLING-13115 [Sling Models] Migrate ServiceAdapters, StaticFieldInjection, and Via Tests to JUnit 5](https://issues.apache.org/jira/browse/SLING-13115) (Improvement)
 * `org.apache.sling`:**`org.apache.sling.models.jacksonexporter`** 1.1.4 -> 2.0.0
     * [SLING-11969 Improve the ConfigurableSerializationModuleProvider](https://issues.apache.org/jira/browse/SLING-11969) (Task)
     * [SLING-12213 Update dependency versions](https://issues.apache.org/jira/browse/SLING-12213) (Task)
@@ -323,11 +346,13 @@ Changed:
     * [SLING-12912 ResourceResolver: alias handling: wire alias bg cache init to OSGi](https://issues.apache.org/jira/browse/SLING-12912) (Sub-task)
     * [SLING-12913 ResourceResolver: update commons-lang3 dependency to 3.18.0](https://issues.apache.org/jira/browse/SLING-12913) (Task)
     * [SLING-12917 ResourceResolver: alias refactoring - log elapsed time for draining observation queue (also add a timing formatter and use it throughout)](https://issues.apache.org/jira/browse/SLING-12917) (Sub-task)
-* `org.apache.sling`:**`org.apache.sling.scripting.core`** 2.4.10 -> 3.0.0
+* `org.apache.sling`:**`org.apache.sling.scripting.core`** 2.4.10 -> 3.0.2
     * [SLING-12609 Implement Jakarta Servlet based Sling API](https://issues.apache.org/jira/browse/SLING-12609) (Sub-task)
     * [SLING-12643 Support Jakarta ServletAPI in Scripting](https://issues.apache.org/jira/browse/SLING-12643) (Sub-task)
     * [SLING-12730 Scripting: Update to Parent 62](https://issues.apache.org/jira/browse/SLING-12730) (Task)
     * [SLING-12752 Support Jakarta Servlet 6.1](https://issues.apache.org/jira/browse/SLING-12752) (Improvement)
+    * [SLING-13070 ScriptContextProvider for bundled scripts does not properly set JAKARTA_REQUEST and JAKARTA_REPONSE](https://issues.apache.org/jira/browse/SLING-13070) (Bug)
+    * [SLING-13103 Wrong ResourceResolver set in script bindings after request dispatch in a Jakarta Context](https://issues.apache.org/jira/browse/SLING-13103) (Bug)
 * `org.apache.sling`:**`org.apache.sling.scripting.sightly`** 1.4.26-1.4.0 -> 2.0.0-1.4.0
     * [SLING-12730 Scripting: Update to Parent 62](https://issues.apache.org/jira/browse/SLING-12730) (Task)
     * [SLING-12755 Break cyclic dependencies between the SightlyScriptEngineFactory and the BundledUnitManagerImpl service](https://issues.apache.org/jira/browse/SLING-12755) (Bug)
@@ -343,12 +368,14 @@ Changed:
     * [SLING-12610 Migrate Servlets Get to Jakarta Servlet API](https://issues.apache.org/jira/browse/SLING-12610) (Sub-task)
     * [SLING-12726 Servlets: Update to Parent 62](https://issues.apache.org/jira/browse/SLING-12726) (Task)
     * [SLING-12751 Switch to SLF4J 2](https://issues.apache.org/jira/browse/SLING-12751) (Improvement)
-* `org.apache.sling`:**`org.apache.sling.servlets.post`** 2.6.0 -> 3.0.0
+* `org.apache.sling`:**`org.apache.sling.servlets.post`** 2.6.0 -> 3.0.2
     * [SLING-11971 Log duration of each PostProcessor](https://issues.apache.org/jira/browse/SLING-11971) (Task)
     * [SLING-12614 Add Jakarta Servlet based API to Post Servlet](https://issues.apache.org/jira/browse/SLING-12614) (Sub-task)
     * [SLING-12726 Servlets: Update to Parent 62](https://issues.apache.org/jira/browse/SLING-12726) (Task)
     * [SLING-12751 Switch to SLF4J 2](https://issues.apache.org/jira/browse/SLING-12751) (Improvement)
-* `org.apache.sling`:**`org.apache.sling.servlets.resolver`** 2.11.8 -> 3.0.4
+    * [SLING-12944 SlingPostServlet fails when resource contains property not backed by JCR property](https://issues.apache.org/jira/browse/SLING-12944) (Bug)
+    * [SLING-13086 SlingPostServlet no longer register PostOperation services after the Jakarta migration](https://issues.apache.org/jira/browse/SLING-13086) (Bug)
+* `org.apache.sling`:**`org.apache.sling.servlets.resolver`** 2.11.8 -> 3.0.6
     * [SLING-12433 [BundledScriptTracker] Fix ConcurrentModificationException](https://issues.apache.org/jira/browse/SLING-12433) (Bug)
     * [SLING-12599 Make dependency to Apache Felix HC optional](https://issues.apache.org/jira/browse/SLING-12599) (Improvement)
     * [SLING-12608 Implement Jakarta Servlet based Sling API](https://issues.apache.org/jira/browse/SLING-12608) (Sub-task)
@@ -359,6 +386,8 @@ Changed:
     * [SLING-12752 Support Jakarta Servlet 6.1](https://issues.apache.org/jira/browse/SLING-12752) (Improvement)
     * [SLING-12854 Allow for hiding scripts/servlets from the resolver (port SLING-12739 to master)](https://issues.apache.org/jira/browse/SLING-12854) (Task)
     * [SLING-13016 RequestWrapper causes NPEs when serving bundled scripts if 'forceResourceType' is not set](https://issues.apache.org/jira/browse/SLING-13016) (Bug)
+    * [SLING-13027 Servlets Resolver: Add Jakarta JSON dependency](https://issues.apache.org/jira/browse/SLING-13027) (Improvement)
+    * [SLING-13091 Sling Servlet Resolver Web Console does not unwrap info about org.apache.sling.servlets.resolver.internal.ServletWrapperUtil$JakartaScriptServletWrapper](https://issues.apache.org/jira/browse/SLING-13091) (Improvement)
 * `org.apache.sling`:**`org.apache.sling.settings`** 1.4.2 -> 1.5.0
     * [SLING-11152 Use official OSGi Converter Implementation](https://issues.apache.org/jira/browse/SLING-11152) (Improvement)
     * [SLING-12988 Concurrent checks for a runmode can block under concurrency](https://issues.apache.org/jira/browse/SLING-12988) (Task)
@@ -379,11 +408,11 @@ Changed:
     * [SLING-12677 Upate to Parent 62](https://issues.apache.org/jira/browse/SLING-12677) (Task)
     * [SLING-12930 XSS API fails to build and run with Java 25 due to missing Unsafe.ensureClassInitialized](https://issues.apache.org/jira/browse/SLING-12930) (Improvement)
 * `org.freemarker`:**`freemarker`** 2.3.32 -> 2.3.34
-* `org.ow2.asm`:**`asm`** 9.7.1 -> 9.9
-* `org.ow2.asm`:**`asm-analysis`** 9.7.1 -> 9.9
-* `org.ow2.asm`:**`asm-commons`** 9.7.1 -> 9.9
-* `org.ow2.asm`:**`asm-tree`** 9.7.1 -> 9.9
-* `org.ow2.asm`:**`asm-util`** 9.7.1 -> 9.9
+* `org.ow2.asm`:**`asm`** 9.7.1 -> 9.9.1
+* `org.ow2.asm`:**`asm-analysis`** 9.7.1 -> 9.9.1
+* `org.ow2.asm`:**`asm-commons`** 9.7.1 -> 9.9.1
+* `org.ow2.asm`:**`asm-tree`** 9.7.1 -> 9.9.1
+* `org.ow2.asm`:**`asm-util`** 9.7.1 -> 9.9.1
 * `org.owasp.encoder`:**`encoder`** 1.3.1 -> 1.4.0
 * `org.slf4j`:**`jcl-over-slf4j`** 1.7.36 -> 2.0.17
 * `org.slf4j`:**`log4j-over-slf4j`** 1.7.36 -> 2.0.17
