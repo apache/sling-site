@@ -1,0 +1,653 @@
+<!DOCTYPE html><html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Apache Sling :: Apache Sling 14 released</title>
+        <link rel="icon" href="/favicon.ico"/>
+        <link rel="stylesheet" href="/res/css/bulma.min.css"/>
+        <link rel="stylesheet" href="/res/css/site.css"/>
+        <script src='https://www.apachecon.com/event-images/snippet.js'></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script><script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        
+	<!-- Matomo Web Analytics -->
+	<script>
+	var _paq = window._paq = window._paq || [];
+	/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+	/* We explicitly disable cookie tracking to avoid privacy issues */
+	_paq.push(['disableCookies']); 
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+	  var u="https://matomo.privacy.apache.org/";
+	  _paq.push(['setTrackerUrl', u+'matomo.php']);
+	  _paq.push(['setSiteId', '6']);
+	  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	  g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+	})();
+	</script>
+	<!-- End Matomo Code -->
+	<link href='/pagefind/pagefind-ui.css' rel='stylesheet'><script src='/pagefind/pagefind-ui.js' type='text/javascript'></script>
+	<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+	</script>
+	
+    </head>    <body>
+        <div class="section">
+            <div class="level is-marginless">
+<div class="logo">
+                    <a href="https://sling.apache.org">
+                        <img border="0" alt="Apache Sling" src="/res/logos/sling.svg"/>
+                    </a>
+                </div><div class="header asf-logo">
+                    <a href="https://www.apache.org">
+                        <img alt="Apache Software Foundation" src="https://apache.org/images/asflogo_horizontal_color.svg"/>
+                    </a>
+                </div>                
+            </div><section class="searchbox level is-marginless">
+                <div id="searchbox"></div>
+            </section><div class="columns is-gapless">
+                <div class="column is-narrow sidemenu">
+<div class="container">
+                        <nav class="menu">
+                            <ul class="menu-list box is-shadowless is-marginless">
+                                <li>
+                                    <p class="menu-label">
+                                        <strong>Documentation</strong>
+                                    </p><ul>
+                                        <li><a href="/documentation.html">Overview</a></li><li><a href="/documentation/getting-started.html">Getting Started</a></li><li><a href="/documentation/the-sling-engine.html">The Sling Engine</a></li><li><a href="/documentation/development.html">Development</a></li><li><a href="/documentation/bundles.html">Bundles</a></li><li><a href="/documentation/tutorials-how-tos.html">Tutorials &amp; How-Tos</a></li><li><a href="/components/">Maven Plugins</a></li><li><a href="/documentation/configuration.html">Configuration</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>API Docs</strong>
+                                    </p><ul>
+                                        <li><a href="/apidocs/sling13/index.html">Sling 13</a></li><li><a href="/apidocs/sling12/index.html">Sling 12</a></li><li><a href="/apidocs/sling11/index.html">Sling 11</a></li><li><a href="/apidocs/sling10/index.html">Sling 10</a></li><li><a href="/apidocs/sling9/index.html">Sling 9</a></li><li><a href="/documentation/apidocs.html">All versions</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Support</strong>
+                                    </p><ul>
+                                        <li><a href="https://s.apache.org/sling.wiki">Wiki</a></li><li><a href="https://s.apache.org/sling.faq">FAQ</a></li><li><a href="/sitemap.html">Sitemap</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Project Info</strong>
+                                    </p><ul>
+                                        <li><a href="/downloads.cgi">Downloads</a></li><li><a href="https://www.apache.org/licenses/">License</a></li><li><a href="/news.html">News</a></li><li><a href="/releases.html">Releases</a></li><li><a href="https://issues.apache.org/jira/browse/SLING">Issue Tracker</a></li><li><a href="/links.html">Links</a></li><li><a href="/contributing.html">Contributing</a></li><li><a href="/project-information.html">Project Information</a></li><li><a href="/project-information/security.html">Security</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Source</strong>
+                                    </p><ul>
+                                        <li><a href="/repolist.html">Repositories</a></li><li><a href="https://gitbox.apache.org/repos/asf#sling">Git at Apache</a></li>
+                                    </ul>
+                                </li><li>
+                                    <p class="menu-label">
+                                        <strong>Apache Software<br>Foundation</strong>
+                                    </p><ul>
+                                        <li><a href="https://www.apache.org/foundation/thanks.html">Thanks!</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html">Become a Sponsor</a></li><li><a href="https://www.apache.org/foundation/buy_stuff.html">Buy Stuff</a></li>
+                                    </ul>
+                                </li><li>
+                                    <a class="acevent" data-format="square" data-event="random"></a>
+                                </li><li>
+                                    <a href="https://apache.org/foundation/contributing.html" class="column">
+                                        <img border="0" alt="Support the Apache Software Foundation!" src="https://www.apache.org/images/SupportApache-small.png" width="125"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div><div class="column main">
+                    <div class="box is-shadowless is-marginless">
+                        <div class="level">
+                            <div class="pagenav">
+<div class="breadcrumb">
+                                    <ul>
+                                        <li>
+                                            <a href="/">
+                                                Home
+                                            </a>
+                                        </li><li>
+                                            <a href="/news.html">
+                                                News
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                                
+                            </div><div class="tags">
+                                <span class="tag">
+                                    <a href="/tags/launchpad.html">
+                                        launchpad
+                                    </a>
+                                </span>
+                            </div>
+                        </div><h1 class="title">
+                            Apache Sling 14 released
+                        </h1><nav class="menu">
+                            <ul class="menu-list box is-shadowless is-paddingless">
+                                <li id="generatedToC">
+                                    <p class="menu-label">
+                                        <strong>Table of Contents</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </nav><script src='/res/jquery-3.2.1.min.js' type='text/javascript'></script><script src='/res/tocjs-1-1-2.js' type='text/javascript'></script><script type='text/javascript'>$(document).ready(function() { $('#generatedToC').toc({'selector':'h1[class!=title],h2,h3','ulClass':'menu-list'}); } );</script><div class="content is-marginless">
+<div class="row" data-pagefind-body="true"><div><section><p>The Sling 14 release contains numerous improvements, such as official Java 25 Support and supporting the Jakarta Servlet API, and various performance improvements and updates.</p>
+<p>Read on to see more details about the individual improvements. To find out more about running Sling, see our <a href="/documentation/getting-started.html">getting started page</a>.</p>
+<h2><a href="#official-support-for-java-25" id="official-support-for-java-25">Official support for Java 25</a></h2>
+<p>The Sling Starter and included modules are validated to work on Java 17, 21 and 25.</p>
+<p>Note that the <code>org.apache.sling.commons.threads</code> will not clean up leftover <code>ThreadLocal</code> instances unless the  <code>--add-opens java.base/java.lang=ALL-UNNAMED</code> is passed to the JVM. This fix is already applied to the <a href="https://hub.docker.com/r/apache/sling">official Sling Starter Docker image</a> and we anticipate further fixes in this area.</p>
+<h2><a href="#support-jakarta-servlet-api-61-and-switch-to-jetty-12" id="support-jakarta-servlet-api-61-and-switch-to-jetty-12">Support Jakarta Servlet API 6.1 and switch to Jetty 12</a></h2>
+<p>Sling Starter 14 runs on Jetty 12 and fully supports Jakarta Servlet API 6.1. However, OSGi bundles implemented against the old Servlet API 4 are still supported as well. You don't have to update your application code. New projects should start using the latest Servlet API right away.</p>
+<p>See this talk for more details: <a href="https://adapt.to/2025/schedule/seamless-transition-apache-slings-adoption-of-jakarta-servlet-api">adaptTo() 2025 - Seamless Transition: Apache Sling's Adoption of Jakarta Servlet API</a></p>
+<h2><a href="#drop-support-for-java-11" id="drop-support-for-java-11">Drop support for Java 11</a></h2>
+<p>All Sling modules that have been migrated to Jakarta Servlet API 6.1 have Java 17 as minimum version, so Java 11 is no longer supported for the Sling Starter.</p>
+<h2><a href="#switch-to-jakartajson-completed" id="switch-to-jakartajson-completed">Switch to jakarta.json completed</a></h2>
+<p>All modules have been migrated from <code>org.json</code> to <code>jakarta.json</code> and the Sling Starter 14 only comes with <a href="https://johnzon.apache.org/">Apache Johnzon</a> 2.x. If you still have modules using <code>org.json</code>, you can continue to use them, but you have to deploy a 1.x version of <code>org.apache.sling.commons.json</code> in addition to the 2.x version.</p>
+<h2><a href="#switch-to-slf4j-2" id="switch-to-slf4j-2">Switch to SLF4J 2</a></h2>
+<p>The Sling starter and a couple of core modules have switched to SLF4J 2. Apache Sling Commons Log 6 is  included in Sling Starter 14 and comes with an updated logback implementation and full support for SLF4J 2. Bundles using SLF4J 1 are still supported.</p>
+<h2><a href="#separate-bundle-for-sling-event-api" id="separate-bundle-for-sling-event-api">Separate Bundle for Sling Event API</a></h2>
+<p>The Sling Event API, which was exported by the implementation bundle before, is now deployed as separate bundle <code>org.apache.sling.event.api</code> - ensuring a proper separation of API and implementation.</p>
+<h2><a href="#sling-starter" id="sling-starter">Sling Starter</a></h2>
+<p>Sling Starter now registers by default an JMX MBean platform powered by <a href="https://aries.apache.org/documentation/modules/jmx.html">Apache Aries JMX</a>.</p>
+<p>By including a new JAXP Configurator bundle in the Sling Starter, CVE-2025-66516 is fixed. See <a href="https://sling.apache.org/security/CVE-2025-66516.html">Apache Sling advisory regarding CVE-2025-66516</a> for details.</p>
+<h2><a href="#sling-api" id="sling-api">Sling API</a></h2>
+<p>Two small additions to Sling API:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12815">SLING-12815</a> Expose methods to escape/unescape characters which are invalid in Sling Resource names</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12441">SLING-12441</a> Support InputStream based request parameters in Builders</li>
+</ul>
+<h2><a href="#version-updates" id="version-updates">Version updates</a></h2>
+<p>All bundles have been updated to the latest versions.</p>
+<p>New bundles added to Sling Starter:</p>
+<ul>
+<li><code>org.apache.aries.jmx.mbeanserver-platform</code></li>
+<li><code>org.apache.jackrabbit</code>:<code>oak-auth-external</code></li>
+</ul>
+<p>The following bundles are removed from the Sling Starter:</p>
+<ul>
+<li><code>org.apache.sling.commons.johnzon</code> 1.x</li>
+</ul>
+<p>A couple of bundles changed their artifact ID and are thus replaced with the latest version using the latest artifact ID (e.g. Commons Math, Jetty).</p>
+<h3><a href="#osgi-core-r8-compliance" id="osgi-core-r8-compliance">OSGi Core R8 compliance</a></h3>
+<p>Sling Starter ships with <a href="https://felix.apache.org/documentation/index.html">Apache Felix 7</a> which implements <a href="https://docs.osgi.org/specification/osgi.core/8.0.0/">OSGi Core R8</a> fully. In addition it comes with Felix SCR 2.2 which implements <a href="https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html">Declarative Services 1.5</a> (part of OSGi Compendium R8).</p>
+<h2><a href="#aggregated-list-of-changes" id="aggregated-list-of-changes">Aggregated list of changes</a></h2>
+<p>Generated by <a href="https://github.com/apache/sling-starter-comparator">starter-comparator</a>: Lists all bundle changes since the last Starter release, including links to issues found in the commit messages of the affected Sling bundles.</p>
+<p>Added:</p>
+<ul>
+<li><code>org.apache.aries.jmx</code>:<strong><code>org.apache.aries.jmx.mbeanserver-platform</code></strong> 0.0.1</li>
+<li><code>org.apache.commons</code>:<strong><code>commons-math3</code></strong> 3.6.1</li>
+<li><code>org.apache.felix</code>:<strong><code>org.apache.felix.http.jetty12</code></strong> 1.1.8</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-auth-external</code></strong> 1.90.0</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.commons.log</code></strong> 6.0.4</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.event.api</code></strong> 1.0.4</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.jaxp-configurator</code></strong> 1.0.0</li>
+</ul>
+<p>Removed:</p>
+<ul>
+<li><code>org.apache.commons</code>:<strong><code>commons-math</code></strong> 2.2</li>
+<li><code>org.apache.felix</code>:<strong><code>org.apache.felix.http.jetty</code></strong> 5.1.26</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.commons.log</code></strong> 5.5.0</li>
+<li><code>org.slf4j</code>:<strong><code>slf4j-api</code></strong> 1.7.36</li>
+</ul>
+<p>Changed:</p>
+<ul>
+<li><code>com.composum.nodes</code>:<strong><code>composum-nodes-commons</code></strong> 4.3.4 -&gt; 4.3.5</li>
+<li><code>com.composum.nodes</code>:<strong><code>composum-nodes-console</code></strong> 4.3.4 -&gt; 4.3.5</li>
+<li><code>com.composum.nodes</code>:<strong><code>composum-nodes-jslibs</code></strong> 4.3.4 -&gt; 4.3.5</li>
+<li><code>com.composum.nodes</code>:<strong><code>composum-nodes-pckgmgr</code></strong> 4.3.4 -&gt; 4.3.5</li>
+<li><code>com.composum.nodes</code>:<strong><code>composum-nodes-usermgr</code></strong> 4.3.4 -&gt; 4.3.5</li>
+<li><code>com.fasterxml.jackson.core</code>:<strong><code>jackson-annotations</code></strong> 2.18.2 -&gt; 2.21</li>
+<li><code>com.fasterxml.jackson.core</code>:<strong><code>jackson-core</code></strong> 2.18.2 -&gt; 2.21.1</li>
+<li><code>com.fasterxml.jackson.core</code>:<strong><code>jackson-databind</code></strong> 2.18.2 -&gt; 2.21.1</li>
+<li><code>com.fasterxml.jackson.dataformat</code>:<strong><code>jackson-dataformat-xml</code></strong> 2.18.2 -&gt; 2.21.1</li>
+<li><code>com.fasterxml.woodstox</code>:<strong><code>woodstox-core</code></strong> 7.1.0 -&gt; 7.1.1</li>
+<li><code>commons-codec</code>:<strong><code>commons-codec</code></strong> 1.17.2 -&gt; 1.21.0</li>
+<li><code>commons-fileupload</code>:<strong><code>commons-fileupload</code></strong> 1.5 -&gt; 1.6.0</li>
+<li><code>commons-io</code>:<strong><code>commons-io</code></strong> 2.18.0 -&gt; 2.21.0</li>
+<li><code>org.apache.commons</code>:<strong><code>commons-collections4</code></strong> 4.4 -&gt; 4.5.0</li>
+<li><code>org.apache.commons</code>:<strong><code>commons-lang3</code></strong> 3.17.0 -&gt; 3.20.0</li>
+<li><code>org.apache.commons</code>:<strong><code>commons-text</code></strong> 1.13.0 -&gt; 1.15.0</li>
+<li><code>org.apache.felix</code>:<strong><code>org.apache.felix.healthcheck.core</code></strong> 2.2.0 -&gt; 2.3.0</li>
+<li><code>org.apache.felix</code>:<strong><code>org.apache.felix.http.servlet-api</code></strong> 3.0.0 -&gt; 6.1.0</li>
+<li><code>org.apache.felix</code>:<strong><code>org.apache.felix.http.webconsoleplugin</code></strong> 1.2.0 -&gt; 1.2.2</li>
+<li><code>org.apache.felix</code>:<strong><code>org.apache.felix.scr</code></strong> 2.2.12 -&gt; 2.2.14</li>
+<li><code>org.apache.felix</code>:<strong><code>org.apache.felix.webconsole</code></strong> 5.0.8 -&gt; 5.0.18</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>jackrabbit-data</code></strong> 2.22.0 -&gt; 2.22.3</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>jackrabbit-jcr-commons</code></strong> 2.22.0 -&gt; 2.22.3</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>jackrabbit-spi</code></strong> 2.22.0 -&gt; 2.22.3</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>jackrabbit-spi-commons</code></strong> 2.22.0 -&gt; 2.22.3</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>jackrabbit-webdav</code></strong> 2.22.0 -&gt; 2.22.3</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-api</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-authorization-principalbased</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-blob</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-blob-plugins</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-commons</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-core</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-core-spi</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-jackrabbit-api</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-jcr</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-lucene</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-query-spi</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-security-spi</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-segment-tar</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-shaded-guava</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-store-composite</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-store-document</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit</code>:<strong><code>oak-store-spi</code></strong> 1.72.0 -&gt; 1.90.0</li>
+<li><code>org.apache.jackrabbit.vault</code>:<strong><code>org.apache.jackrabbit.vault</code></strong> 3.8.2 -&gt; 4.2.0</li>
+<li><code>org.apache.pdfbox</code>:<strong><code>fontbox</code></strong> 2.0.32 -&gt; 2.0.35</li>
+<li><code>org.apache.pdfbox</code>:<strong><code>pdfbox</code></strong> 2.0.32 -&gt; 2.0.35</li>
+<li><code>org.apache.servicemix.bundles</code>:<strong><code>org.apache.servicemix.bundles.thymeleaf</code></strong> 3.0.15.RELEASE_1 -&gt; 3.1.2.RELEASE_1</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.adapter</code></strong> 2.2.0 -&gt; 2.3.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11152">SLING-11152 Use official OSGi Converter Implementation</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12077">SLING-12077 Migrate sling.adapter to jakarta.json</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12677">SLING-12677 Upate to Parent 62</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.api</code></strong> 2.27.6 -&gt; 3.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12390">SLING-12390 Mention IllegalStateException for order operation</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12441">SLING-12441 Support InputStream based request parameters in Builders</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12465">SLING-12465 Remove usage of org.apache.sling.commons.testing in tests</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12466">SLING-12466 Fix javadoc for Authenticator</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12604">SLING-12604 Enhance Sling API to support Jakarta Servlet</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12643">SLING-12643 Support Jakarta ServletAPI in Scripting</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12677">SLING-12677 Upate to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12752">SLING-12752 Support Jakarta Servlet 6.1</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12753">SLING-12753 Add constants for sling.servlet.paths.strict</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12754">SLING-12754 NPE in error handling</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12757">SLING-12757 AbstractResource.getName() can throw exceptions</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12761">SLING-12761 Use default method for deprecated method in ResourceDecorator</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12781">SLING-12781 Expose resource type and resource super type always also via getValueMap()</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12815">SLING-12815 Expose methods to escape/unescape characters which are invalid in Sling Resource names</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12816">SLING-12816 Clarify exceptions thrown from methods of o.a.s.a.r.ValueMap/ModifiableValueMap</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12857">SLING-12857 Allow null value for servlet wrappers</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.auth.core</code></strong> 1.7.0 -&gt; 2.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12403">SLING-12403 Ability to review sling authenticators handling authentication request</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12448">SLING-12448 Ability to review authenticated URL</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12605">SLING-12605 Enhance Auth Core to support Jakarta Servlet API</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12727">SLING-12727 Auth Core: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12752">SLING-12752 Support Jakarta Servlet 6.1</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12885">SLING-12885 AuthenticationHandler.FAILURE_REASON_CODES is deprecated with no non-deprecated replacement</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.auth.form</code></strong> 1.0.24 -&gt; 2.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12573">SLING-12573 Fix build for jdk17+</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12889">SLING-12889 Update to Parent 62</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12890">SLING-12890 bump commons-lang3 to 3.18.0</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12891">SLING-12891 bump pax.exam to 4.14.0</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12957">SLING-12957 migrate to Auth Core 2.x, Sling API 3.x and Jakarta Servlet</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12972">SLING-12972 provide a standalone login page for the o.a.s.auth.form bundle</a> (Sub-task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.bundleresource.impl</code></strong> 2.3.4 -&gt; 2.4.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11649">SLING-11649 Check for null BundleContext while registering bundle resources</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12063">SLING-12063 Migrate sling.bundleresource.impl to jakarta.json</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12694">SLING-12694 Update to Parent 62</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.caconfig.impl</code></strong> 1.6.0 -&gt; 1.7.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12064">SLING-12064 Migrate sling.caconfig.impl to jakarta.json</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12147">SLING-12147 caconfig-impl: Replace Sling XSS with OWASP Encoder</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12361">SLING-12361 caconfig: Update to Parent 60, Java 11 Minimum Version</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12694">SLING-12694 Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12708">SLING-12708 caconfig impl: Fix bnd Import-Package statement</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.commons.log.webconsole</code></strong> 1.0.2 -&gt; 2.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12924">SLING-12924 Migrate common log webconsole plugin to jakarta servlet</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.discovery.base</code></strong> 2.0.14 -&gt; 2.1.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12065">SLING-12065 Migrate sling.discovery.base to jakarta.json</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12699">SLING-12699 Discovery Base &amp; Commons: Make Build compatible with Java 17, Java 21</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.discovery.commons</code></strong> 1.0.28 -&gt; 1.1.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12066">SLING-12066 Migrate sling.discovery.commons to jakarta.json</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12699">SLING-12699 Discovery Base &amp; Commons: Make Build compatible with Java 17, Java 21</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.discovery.oak</code></strong> 1.2.46 -&gt; 1.2.48</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.engine</code></strong> 2.16.0 -&gt; 3.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12607">SLING-12607 Implement Jakarta Servlet based Sling API</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12640">SLING-12640 Setting Sling filter service property sling.filter.scope to an invalid value does not disable the filter.</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12661">SLING-12661 Potential origins of violations to the RequestDispatcher include API may run into OOM error on excessive recursions</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12697">SLING-12697 Potential origins of violations to the RequestDispatcher include API provides creates false positives on a committed response</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12728">SLING-12728 Engine: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12752">SLING-12752 Support Jakarta Servlet 6.1</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12801">SLING-12801 Error handler does not reset the response during include</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12844">SLING-12844 Potential origins of violations to the RequestDispatcher include API skips too many on committed responses</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12845">SLING-12845 ProtectHeadersOnInclude functionality ignores changes to the response buffer size</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13049">SLING-13049 Change &quot;Content Type Header&quot; error log to debug in SlingRequestProcessorImpl</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13071">SLING-13071 HTL use objects that adapt from the javax SlingHttpServletRequest cannot be instantiated in a Jakarta context</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13083">SLING-13083 Code acessing the &quot;request-parts-iterator&quot;  request attribute broken after migration to Jakarta</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13089">SLING-13089 Filter Web Console Printer should expose HTTP Whiteboard filters for Sling context as well</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13090">SLING-13090 Filter Web Console Printer does not unwrap information for JavaxToJakartaFilterWrapper</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13102">SLING-13102 Add test coverage for TRACE-disabled handling and selector validation</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.event</code></strong> 4.3.14 -&gt; 4.4.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-9393">SLING-9393 JobManager findJobs doesn't return hits when Templates are used</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11422">SLING-11422 Stop embedding the event.api package in the event bundle</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12078">SLING-12078 Suspected race condition between TOPOLOGY_INIT and JobManager.addJob</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12261">SLING-12261 Sling Event: Update to sling-bundle-parent 62</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12737">SLING-12737 The method findJobs in JobManagerImpl does not accept a template containing an operation</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12743">SLING-12743 Add condition readiness mechanism in JobManager to ensure system stability.</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12819">SLING-12819 fix flaky RoundRobinMaxParallelIT.testRoundRobinMaxParallel_fast</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12966">SLING-12966 Remove reproducible build workaround</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.fsresource</code></strong> 2.2.0 -&gt; 2.3.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11519">SLING-11519 Generate adapter metadata json for adaptations natively supported by FileResource</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12071">SLING-12071 Migrate sling.fsresource to jakarta.json</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12491">SLING-12491 Update to parent pom 52</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12677">SLING-12677 Upate to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12680">SLING-12680 FSResource: Eliminate ValueMap/Converter classes copied from Sling API</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12685">SLING-12685 FSResource: Fix or work around flaky FileMonitor unit tests on windows</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.i18n</code></strong> 2.6.6 -&gt; 3.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12312">SLING-12312 add support for Sling API 3.x and Jakarta Servlet</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12899">SLING-12899 Update to Parent 62</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.installer.core</code></strong> 3.14.2 -&gt; 3.14.4
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12843">SLING-12843 Sling Installer ignores startlevel change of bundles</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.installer.factory.configuration</code></strong> 1.4.8 -&gt; 1.4.10
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12488">SLING-12488 ConfigurationSerializerWebConsolePlugin: Emit configuration properties in alphabetical order</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12495">SLING-12495 ConfigurationSerializerWebConsolePlugin: Rework &quot;Remove properties&quot; logic</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.jcr.jackrabbit.accessmanager</code></strong> 4.0.2 -&gt; 5.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12868">SLING-12868 migrate to Sling API 3.x and Jakarta Servlet</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12897">SLING-12897 Update to Parent 62</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.jcr.jackrabbit.usermanager</code></strong> 2.2.30 -&gt; 3.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12869">SLING-12869 migrate to Sling API 3.x and Jakarta Servlet</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12898">SLING-12898 Update to Parent 62</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.jcr.oak.server</code></strong> 1.4.2 -&gt; 1.4.4
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12457">SLING-12457 Make creation of Lucene index definition configurable</a> (New Feature)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12848">SLING-12848 Introduce ContentRepository Registration</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.jcr.registration</code></strong> 1.0.6 -&gt; 1.0.10
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11413">SLING-11413 Update parent bundle (48) to sling-jcr-registration</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13013">SLING-13013 Update to Parent 62</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13023">SLING-13023 JCR Repository Registration: Fix optional imports</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.jcr.repoinit</code></strong> 1.1.52 -&gt; 1.1.54
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12642">SLING-12642 Repoinit: Improve privilege retrieval</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12662">SLING-12662 Build with Java 11, 17 and 21</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12663">SLING-12663 Log total execution time for repoinit statements</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12668">SLING-12668 Repoinit JCR: Forced multivalue property with single value is not stored as multiple property</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12670">SLING-12670 RepoInit: Update to Parent 62</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.jcr.resource</code></strong> 3.3.2 -&gt; 3.3.6
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12742">SLING-12742 Don't swallow java.io.NotSerializableException in JcrPropertyMapCacheEntry.createValue()</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12781">SLING-12781 Expose resource type and resource super type always also via getValueMap()</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12940">SLING-12940 ResourceChangeListener reads userData from external events</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.models.api</code></strong> 1.5.4 -&gt; 2.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12694">SLING-12694 Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12874">SLING-12874 migrate ModelFactory to Sling API 3.x and Jakarta Servlet</a> (Sub-task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.models.impl</code></strong> 1.7.8 -&gt; 2.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12875">SLING-12875 migrate ModelFactoryImpl to Sling API 3.x and Jakarta Servlet</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13050">SLING-13050 Models Impl: Include Integration Tests</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13052">SLING-13052 [SONAR] Add missing assertions to AdapterFactoryTest (java:S2699)</a> (Test)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13062">SLING-13062 [Sling Models] Migrate basic injectors tests to JUnit 5</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13063">SLING-13063 [Sling Models] Migrate SlingObject, Self, and legacy Injector tests to JUnit 5</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13064">SLING-13064 [Sling Models] Migrate 'via' package unit tests to JUnit 5</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13066">SLING-13066 [Sling Models] Migrate implpicker and basic root tests to JUnit 5</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13068">SLING-13068 Models: Update to Parent 65</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13072">SLING-13072 [Sling Models] Migrate defaults and inheritance root tests to JUnit 5</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13077">SLING-13077 ExportServlet cannot adapt model to javax SlingHttpServletRequest when running in a Jakarta Servlet environment</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13079">SLING-13079 Models Jackson Exporter: Include Integration Tests</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13088">SLING-13088 [Sling Models] Migrate ModelAdapterFactory, Ordering, and OSGi tests to JUnit 5</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13092">SLING-13092 ModelConfigurationPrinter does not properly emit properties containing an array</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13101">SLING-13101 [Sling Models] Migrate Request, Resource, and PostConstruct Tests to JUnit 5</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13115">SLING-13115 [Sling Models] Migrate ServiceAdapters, StaticFieldInjection, and Via Tests to JUnit 5</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.models.jacksonexporter</code></strong> 1.1.4 -&gt; 2.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11969">SLING-11969 Improve the ConfigurableSerializationModuleProvider</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12213">SLING-12213 Update dependency versions</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12242">SLING-12242 Improve unit tests (JacksonExporterLimitSerializationTest)</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12360">SLING-12360 Models: Update to Parent 60, Java 11 Minimum Version</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12840">SLING-12840 Update to Sling API 3</a> (Sub-task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.repoinit.parser</code></strong> 1.9.0 -&gt; 1.9.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12668">SLING-12668 Repoinit JCR: Forced multivalue property with single value is not stored as multiple property</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12669">SLING-12669 Repoinit: Fix unit test failure on Windows</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12670">SLING-12670 RepoInit: Update to Parent 62</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.resource.filter</code></strong> 1.0.0 -&gt; 1.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11562">SLING-11562 Update parent bundle (49) to sling-resource-filter</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13013">SLING-13013 Update to Parent 62</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13014">SLING-13014 Resource Filter: Update to JavaCC 3.0.1</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.resourceresolver</code></strong> 1.12.2 -&gt; 2.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12636">SLING-12636 Resource Resolver: add test coverage for background init</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12645">SLING-12645 Resource Resolver: VanityPathMapEntriesTest - remove historic test vector for query paging</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12646">SLING-12646 Resource Resolver: MapEntries: give doInit() a meaningful name</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12648">SLING-12648 Resource Resolver: MapEntries: factor out vanity path handling</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12649">SLING-12649 Resource Resolver: VanityPathMapEntriesTest - factor out repeated uses of reflection</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12651">SLING-12651 ResourceResolver: avoid re-assignment of resolveMapsMap</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12653">SLING-12653 ResourceResolver: add test coverage for query exception disabling optimized alias handling</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12658">SLING-12658 Resource Resolver: refactor vanity path handling - encapsulate code for better isolation and unit testing</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12664">SLING-12664 Resource Resolver: MapEntries: drainQueue is part of event handling (move it there)</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12665">SLING-12665 Resource Resolver: MapEntries: extract VanityPathHandler</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12666">SLING-12666 Resource Resolver: VanityPathHandler, address warnings, refactor</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12667">SLING-12667 Resource Resolver: cleanup/improve VanityPathsMapEntriesTest</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12671">SLING-12671 ResourceResolver: add test coverage for vanity paths on resources with name extensions</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12679">SLING-12679 ResourceResolver: incorrect metrics init</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12684">SLING-12684 ResourceResolver: update to latest Sling parent pom</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12686">SLING-12686 Resource Resolver: add test coverage for events during VP bg init</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12688">SLING-12688 Resource Resolver: add test coverage for VP init failure</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12696">SLING-12696 ResourceResolver: alias refactoring - move alias related code into single place</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12700">SLING-12700 Resource Resolver: add test coverage for vanity path cache metrics</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12701">SLING-12701 Resource Resolver: MapEntries - move alias handling into inner class</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12703">SLING-12703 ResourceResolver: initializeAliases after MapEntries.dispose causes NPE</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12716">SLING-12716 Resource Resolver: Switch to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12733">SLING-12733 ResourceMapper.getMapping(...) may return null</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12735">SLING-12735 Resource Resolver: AliasHandler refactoring</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12741">SLING-12741 NPE resource resolver during resource provider unregisteration</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12752">SLING-12752 Support Jakarta Servlet 6.1</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12758">SLING-12758 ResourceResolver: remove redundant check for absolute path in alias</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12759">SLING-12759 ResourceResolver: push 'non-optimized' alias handling from ResourceResolverImpl into AliasHandler</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12763">SLING-12763 ResourceResolver: cleanup API of AliasHandler wrt 'optimized resolution'</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12777">SLING-12777 ResourceResolver: alias refactoring - make ResourceMapperImpl ignorant of optimimized/non-optimized case</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12787">SLING-12787 ResourceResolver: alias refactoring - use Resource instead of Path when getting aliases</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12795">SLING-12795 Resource Resolver: align behavior for cached ('optimized') and non-cached case</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12799">SLING-12799 ResourceResolver: alias refactoring - check behavior when aliases both on node and jcr:content child node</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12804">SLING-12804 ResourceResolver: alias refactoring - improve test coverage of query statements</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12806">SLING-12806 Prevent creating resources with a name only consisting of dots</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12823">SLING-12823 ResourceResolver: alias refactoring - avoid getting the parent resource when path sufficient</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12832">SLING-12832 ResourceResolver: alias refactoring - move alias init into Runnable</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12879">SLING-12879 ResourceResolver: add option to run alias initializer in background</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12884">SLING-12884 ResourceResolver: refactor mocking in AliasMapEntriesTest</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12894">SLING-12894 ResourceResolver: alias refactoring - support observation events while bg init not finished</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12896">SLING-12896 ResourceResolver: alias refactoring - clean up vanity path tests</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12900">SLING-12900 ResourceResolver: improve test coverage for VP bg init vs events, minor refactoring</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12901">SLING-12901 ResourceResolver: alias refactoring - NPE when attempting to alias root</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12908">SLING-12908 ResourceResolver: alias refactoring - remove warn/logging for &quot;non-optimize&quot; case</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12910">SLING-12910 ResourceResolver: log all alias/vanity settings on startup</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12911">SLING-12911 ResourceResolver: alias refactoring - remove dead code 'isOptimized...'</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12912">SLING-12912 ResourceResolver: alias handling: wire alias bg cache init to OSGi</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12913">SLING-12913 ResourceResolver: update commons-lang3 dependency to 3.18.0</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12917">SLING-12917 ResourceResolver: alias refactoring - log elapsed time for draining observation queue (also add a timing formatter and use it throughout)</a> (Sub-task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.scripting.core</code></strong> 2.4.10 -&gt; 3.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12609">SLING-12609 Implement Jakarta Servlet based Sling API</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12643">SLING-12643 Support Jakarta ServletAPI in Scripting</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12730">SLING-12730 Scripting: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12752">SLING-12752 Support Jakarta Servlet 6.1</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13070">SLING-13070 ScriptContextProvider for bundled scripts does not properly set JAKARTA_REQUEST and JAKARTA_REPONSE</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13103">SLING-13103 Wrong ResourceResolver set in script bindings after request dispatch in a Jakarta Context</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.scripting.sightly</code></strong> 1.4.26-1.4.0 -&gt; 2.0.0-1.4.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12730">SLING-12730 Scripting: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12755">SLING-12755 Break cyclic dependencies between the SightlyScriptEngineFactory and the BundledUnitManagerImpl service</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12881">SLING-12881 fix jacoco analysis</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12883">SLING-12883 migrate to Sling API 3.x and Jakarta Servlet</a> (Sub-task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.scripting.sightly.js.provider</code></strong> 1.2.10 -&gt; 1.2.14
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12635">SLING-12635 JS Use Scripts should only be read on-demand</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12730">SLING-12730 Scripting: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12755">SLING-12755 Break cyclic dependencies between the SightlyScriptEngineFactory and the BundledUnitManagerImpl service</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.scripting.spi</code></strong> 1.0.4 -&gt; 2.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12762">SLING-12762 Support Jakarta Servlet API in Scripting SPI</a> (Sub-task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.servlets.get</code></strong> 2.2.0 -&gt; 3.0.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12610">SLING-12610 Migrate Servlets Get to Jakarta Servlet API</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12726">SLING-12726 Servlets: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12751">SLING-12751 Switch to SLF4J 2</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.servlets.post</code></strong> 2.6.0 -&gt; 3.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11971">SLING-11971 Log duration of each PostProcessor</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12614">SLING-12614 Add Jakarta Servlet based API to Post Servlet</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12726">SLING-12726 Servlets: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12751">SLING-12751 Switch to SLF4J 2</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12944">SLING-12944 SlingPostServlet fails when resource contains property not backed by JCR property</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13086">SLING-13086 SlingPostServlet no longer register PostOperation services after the Jakarta migration</a> (Bug)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.servlets.resolver</code></strong> 2.11.8 -&gt; 3.0.6
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12433">SLING-12433 [BundledScriptTracker] Fix ConcurrentModificationException</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12599">SLING-12599 Make dependency to Apache Felix HC optional</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12608">SLING-12608 Implement Jakarta Servlet based Sling API</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12643">SLING-12643 Support Jakarta ServletAPI in Scripting</a> (Sub-task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12726">SLING-12726 Servlets: Update to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12729">SLING-12729 Servlet Resolver: Integration tests fail with Java 21</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12739">SLING-12739 Allow for selectively hiding scripts and servlets from the Sling resolver</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12752">SLING-12752 Support Jakarta Servlet 6.1</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12854">SLING-12854 Allow for hiding scripts/servlets from the resolver (port SLING-12739 to master)</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13016">SLING-13016 RequestWrapper causes NPEs when serving bundled scripts if 'forceResourceType' is not set</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13027">SLING-13027 Servlets Resolver: Add Jakarta JSON dependency</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-13091">SLING-13091 Sling Servlet Resolver Web Console does not unwrap info about org.apache.sling.servlets.resolver.internal.ServletWrapperUtil$JakartaScriptServletWrapper</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.settings</code></strong> 1.4.2 -&gt; 1.5.0
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-11152">SLING-11152 Use official OSGi Converter Implementation</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12988">SLING-12988 Concurrent checks for a runmode can block under concurrency</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12989">SLING-12989 Apply spotless formatting</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12990">SLING-12990 Settings: update to latest parent</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12991">SLING-12991 Settings: update commons-lang test dependency</a> (Task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.starter.content</code></strong> 1.0.16 -&gt; 2.0.2
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12882">SLING-12882 Migrate Starter Content to sling api 3.0 and models api 2.0</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12969">SLING-12969 The OpenSans fonts are corrupted by the build process</a> (Bug)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12971">SLING-12971 move the original auth.form login form to o.a.s.starter.content bundle</a> (Sub-task)</li>
+</ul>
+</li>
+<li><code>org.apache.sling</code>:<strong><code>org.apache.sling.xss</code></strong> 2.4.2 -&gt; 2.4.8
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12531">SLING-12531 Update Sling dependencies</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12563">SLING-12563 Remove java8 support for Sling XSS</a> (New Feature)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12569">SLING-12569 Update esapi to 2.6.0.0</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12616">SLING-12616 Performance improvement in Sling XSS bundle</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12622">SLING-12622 Review improvement of SLING-12616</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12628">SLING-12628 Avoid import of org.apache.commons.fileupload</a> (Improvement)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12677">SLING-12677 Upate to Parent 62</a> (Task)</li>
+<li><a href="https://issues.apache.org/jira/browse/SLING-12930">SLING-12930 XSS API fails to build and run with Java 25 due to missing Unsafe.ensureClassInitialized</a> (Improvement)</li>
+</ul>
+</li>
+<li><code>org.freemarker</code>:<strong><code>freemarker</code></strong> 2.3.32 -&gt; 2.3.34</li>
+<li><code>org.ow2.asm</code>:<strong><code>asm</code></strong> 9.7.1 -&gt; 9.9.1</li>
+<li><code>org.ow2.asm</code>:<strong><code>asm-analysis</code></strong> 9.7.1 -&gt; 9.9.1</li>
+<li><code>org.ow2.asm</code>:<strong><code>asm-commons</code></strong> 9.7.1 -&gt; 9.9.1</li>
+<li><code>org.ow2.asm</code>:<strong><code>asm-tree</code></strong> 9.7.1 -&gt; 9.9.1</li>
+<li><code>org.ow2.asm</code>:<strong><code>asm-util</code></strong> 9.7.1 -&gt; 9.9.1</li>
+<li><code>org.owasp.encoder</code>:<strong><code>encoder</code></strong> 1.3.1 -&gt; 1.4.0</li>
+<li><code>org.slf4j</code>:<strong><code>jcl-over-slf4j</code></strong> 1.7.36 -&gt; 2.0.17</li>
+<li><code>org.slf4j</code>:<strong><code>log4j-over-slf4j</code></strong> 1.7.36 -&gt; 2.0.17</li>
+</ul>
+</section></div></div><div data-pagefind-body="true" data-pagefind-weight="7.0" style="display:none;"> - ( Apache Sling 14 released )</div>                            
+                        </div>
+                    </div>
+                </div>
+            </div><footer class="footer">
+                <div class="content has-text-centered is-small">
+<div class="editpagelink">
+                        This page can be edited on GitHub at <a href="https://github.com/apache/sling-site/edit/master/src/main/jbake/content/news/sling-14-released.md">
+                            content/news/sling-14-released.md
+                        </a>
+                    </div>                    <div class="revisionInfo">
+                        Last modified by <span class="author">Stefan Seifert</span> on <span class="comment">2026-03-09</span>
+                    </div><p>
+                        Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
+    logo are trademarks of The Apache Software Foundation. All other marks mentioned 
+    may be trademarks or registered trademarks of their respective owners.
+                    </p><p>
+                        Copyright © 2007-2026<a href="https://www.apache.org/">
+                            The Apache Software Foundation
+                        </a>|<a href="https://privacy.apache.org/policies/privacy-policy-public.html">
+                            Privacy Policy
+                        </a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
