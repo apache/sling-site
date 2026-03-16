@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## March 2026
 
+* Testing OSGi Mock 3.5.6 (16th)
 * Project Archetype 1.0.16 (12th)
 * Starter 14 (9th)
 * Feature Model API Regions Extension 2.2.0, Engine 2.16.8 (2nd)
