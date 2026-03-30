@@ -181,6 +181,7 @@ def bundles=[
   "Launchpad Base - Web Launcher|org.apache.sling.launchpad.base|7.0.5-2.8.2|Y|war",
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2|Y|jar",
   "Log Tracer|org.apache.sling.tracer|1.0.8|Y|jar",
+  "MCP Server|org.apache.sling.mcp-server|0.1.2|Y|jar",
   "Models API|org.apache.sling.models.api|2.0.0|Y|jar",
   "Models Implementation|org.apache.sling.models.impl|2.0.2|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|2.0.0|Y|jar",
