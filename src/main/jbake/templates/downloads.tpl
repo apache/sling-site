@@ -302,7 +302,7 @@ def deprecated=[
   "Explorer|Replaced with Composum|org.apache.sling.extensions.explorer|1.0.4",
   "GWT Integration|Not Maintained|org.apache.sling.extensions.gwt.servlet|3.0.0",
   "Health Check API|Migrated to Apache Felix Health Checks|org.apache.sling.hc.api|1.0.4",
-  "Health Check Suppor|Migrated to Apache Felix Health Checkst|org.apache.sling.hc.support|1.0.10",
+  "Health Check Support|Migrated to Apache Felix Health Checks|org.apache.sling.hc.support|1.0.10",
   "Health Check Annotations|Migrated to Apache Felix Health Checks|org.apache.sling.hc.annotations|1.0.6",
   "Health Check Core|Migrated to Apache Felix Health Checks|org.apache.sling.hc.core|1.2.10",
   "Health Check Integration Tests|Migrated to Apache Felix Health Checks|org.apache.sling.hc.it|1.0.4",
