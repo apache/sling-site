@@ -229,7 +229,7 @@ def bundles=[
   "Scripting Thymeleaf|org.apache.sling.scripting.thymeleaf|2.0.2|Y|jar",
   "Security|org.apache.sling.security|1.3.0|Y|jar",
   "Service User Mapper|org.apache.sling.serviceusermapper|1.5.8|Y|jar",
-  "Service User WebConsole|org.apache.sling.serviceuser.webconsole|1.0.4|Y|jar",
+  "Service User WebConsole|org.apache.sling.serviceuser.webconsole|2.0.0|Y|jar",
   "Servlet Helpers|org.apache.sling.servlet-helpers|2.0.0|Y|jar",
   "Servlets Get|org.apache.sling.servlets.get|3.0.0|Y|jar",
   "Servlets Post|org.apache.sling.servlets.post|3.0.2|Y|jar",
