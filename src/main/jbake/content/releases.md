@@ -7,7 +7,7 @@ tableOfContents=false
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
 ## April 2026
-* Bundle Resource Provider 3.0.0, Service User WebConsole 2.0.0 (13th)
+* Bundle Resource Provider 3.0.0, Service User WebConsole 2.0.0, Commons Mime 3.0.0 (13th)
 
 ## March 2026
 
