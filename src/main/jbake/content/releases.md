@@ -6,6 +6,9 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## April 2026
+* Bundle Resource Provider 3.0.0 (13th)
+
 ## March 2026
 
 * MCP Server 0.1.2 (30th)
