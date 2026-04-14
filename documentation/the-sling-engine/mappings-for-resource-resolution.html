@@ -151,7 +151,7 @@
 <h2><a href="#configuration" id="configuration">Configuration</a></h2>
 <p>The</p>
 <ol>
-<li>resource resolution/incoming mapping (i.e. mapping a request path to a resource in Sling's resource tree) as well as</li>
+<li>resource resolving (aka incoming mapping, i.e. mapping a request path to a resource in Sling's resource tree) as well as</li>
 <li>mapping a resource path to an external URL/path (aka reverse mapping or outgoing mapping)</li>
 </ol>
 <p>can be influenced in different ways:</p>
@@ -171,7 +171,7 @@
 <li><code>sling:internalRedirect</code> – This property when set on a resource in the <code>/etc/map</code> tree (see below) causes the current path to be modified internally to continue with resource resolution. This is a multi-value property, i.e. multiple paths can be given here, which are tried one after another until one resolved to a resource.</li>
 </ul>
 <h3><a href="#incoming-mapping" id="incoming-mapping">Incoming Mapping</a></h3>
-<p>Incoming mapping entries are matched against the request's <em>scheme</em>, <em>host</em>, <em>port</em> and <em>uri path</em>. To accomplish this a virtual path is constructed from the request like this <code>{scheme}/{host}.{port}/{uri_path}</code>. This string is then matched against internal (incoming) mapping entries. The longest matching entry string is used and the replacement, that is the redirection property, is applied. There might even be multiple replacements for one entry, where the first one retuning an existing resource wins.</p>
+<p>Incoming mapping (aka resolving) entries are matched against the request's <em>scheme</em>, <em>host</em>, <em>port</em> and <em>uri path</em>. To accomplish this a virtual path is constructed from the request like this <code>{scheme}/{host}.{port}/{uri_path}</code>. This string is then matched against internal (incoming) mapping entries. The longest matching entry string is used and the replacement, that is the redirection property, is applied. There might even be multiple replacements for one entry, where the first one retuning an existing resource wins.</p>
 <h3><a href="#mapping-entry-specification" id="mapping-entry-specification">Mapping Entry Specification</a></h3>
 <p>Each entry in the (incoming) mapping table (and potentially also in the outgoing mapping table) is a regular expression, which is constructed from the resources below the path given via OSGi configuration property <code>resource.resolver.map.location</code>. If any resource along the resolved path has a <code>sling:match</code> property, the respective value is used in the corresponding segment instead of the resource name. Only resources either having a <code>sling:redirect</code> or <code>sling:internalRedirect</code> property are used as table entries. Other resources in the tree are just used to build the mapping structure.</p>
 <p><em>Example</em></p>
@@ -450,7 +450,7 @@ for (String segment: segments) {
                             content/documentation/the-sling-engine/mappings-for-resource-resolution.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Julian Reschke</span> on <span class="comment">2025-10-06</span>
+                        Last modified by <span class="author">Konrad Windszus</span> on <span class="comment">2026-04-14</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
