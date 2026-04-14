@@ -10,7 +10,7 @@ tags=core,resources,resourcemappings
 
 The
 
-1. resource resolution/incoming mapping (i.e. mapping a request path to a resource in Sling's resource tree) as well as
+1. resource resolving (aka incoming mapping, i.e. mapping a request path to a resource in Sling's resource tree) as well as
 2. mapping a resource path to an external URL/path (aka reverse mapping or outgoing mapping)
 
 can be influenced in different ways:
@@ -37,7 +37,7 @@ The following properties in resource based mapping entries are detected inside t
 
 ### Incoming Mapping
 
-Incoming mapping entries are matched against the request's *scheme*, *host*, *port* and *uri path*. To accomplish this a virtual path is constructed from the request like this `{scheme}/{host}.{port}/{uri_path}`. This string is then matched against internal (incoming) mapping entries. The longest matching entry string is used and the replacement, that is the redirection property, is applied. There might even be multiple replacements for one entry, where the first one retuning an existing resource wins.
+Incoming mapping (aka resolving) entries are matched against the request's *scheme*, *host*, *port* and *uri path*. To accomplish this a virtual path is constructed from the request like this `{scheme}/{host}.{port}/{uri_path}`. This string is then matched against internal (incoming) mapping entries. The longest matching entry string is used and the replacement, that is the redirection property, is applied. There might even be multiple replacements for one entry, where the first one retuning an existing resource wins.
 
 ### Mapping Entry Specification
 
