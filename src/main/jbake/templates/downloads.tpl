@@ -81,7 +81,7 @@ def bundles=[
   "Commons Content Analyzing|org.apache.sling.commons.content.analyzing|1.0.0|Y|jar",
   "Commons Content Processing|org.apache.sling.commons.content.processing|1.0.0|Y|jar",
   "Commons Crypto|org.apache.sling.commons.crypto|1.2.0|Y|jar",
-  "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|1.0.16|Y|jar",
+  "Commons FileSystem ClassLoader|org.apache.sling.commons.fsclassloader|2.0.0|Y|jar",
   "Commons HTML|org.apache.sling.commons.html|1.1.0|Y|jar",
   "Commons Johnzon|org.apache.sling.commons.johnzon|2.0.0|Y|jar",
   "Commons Log|org.apache.sling.commons.log|6.0.4|Y|jar",
