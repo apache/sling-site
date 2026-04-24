@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2026
 
-* Installer Configuration Factory 2.0.0 (24th)
+* Installer Configuration Factory 2.0.0, Installer Console 2.0.0 (24th)
 * Installer Core 3.14.6 (23rd)
 * Commons FileSystem ClassLoader 2.0.0, JCR ContentLoader 3.0.0 (18th)
 * Testing OSGi Mock 3.5.8, Testing Sling Mock 3.6.2, Testing Sling Mock 4.0.6 (16th)
