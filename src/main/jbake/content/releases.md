@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## April 2026
 
+* Testing JCR Mock 1.8.2 (29th)
 * Installer Configuration Factory 2.0.0, Installer Console 2.0.0 (24th)
 * Installer Core 3.14.6 (23rd)
 * Commons FileSystem ClassLoader 2.0.0, JCR ContentLoader 3.0.0 (18th)
