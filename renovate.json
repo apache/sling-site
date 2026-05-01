@@ -1,18 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     "customManagers:mavenPropertyVersions"
   ],
   "html": {
     "enabled": false
   },
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["src/main/jbake/templates/downloads.tpl"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/src/main/jbake/templates/downloads.tpl/"
+      ],
       "matchStrings": [
-         "\".+\\|(?<depName>.+)\\|(?<currentValue>.+)\\|.+\\|.+\",",
-         "\".+\\|(?<depName>.+)\\|(?<currentValue>.+)\\|.+\\\","
+        "\".+\\|(?<depName>.+)\\|(?<currentValue>.+)\\|.+\\|.+\",",
+        "\".+\\|(?<depName>.+)\\|(?<currentValue>.+)\\|.+\\\","
       ],
       "datasourceTemplate": "maven",
       "depNameTemplate": "org.apache.sling:{{{depName}}}"
