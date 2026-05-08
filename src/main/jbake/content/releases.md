@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## May 2026
+
+* Commons Metrics 2.0.0 (8th)
+
 ## April 2026
 
 * Testing JCR Mock 1.8.2 (29th)
