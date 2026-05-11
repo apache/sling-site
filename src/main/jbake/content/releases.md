@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2026
 
+* Adapter 3.0.0 (11th)
 * Commons Metrics 2.0.0 (8th)
 
 ## April 2026
