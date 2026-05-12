@@ -55,7 +55,7 @@ def bndPlugins=[
 ]
 
 def bundles=[
-  "Adapter|org.apache.sling.adapter|2.3.0|Y|jar",
+  "Adapter|org.apache.sling.adapter|3.0.0|Y|jar",
   "API|org.apache.sling.api|3.0.2|Y|jar",
   "Auth Core|org.apache.sling.auth.core|2.0.2|Y|jar",
   "Form Based Authentication|org.apache.sling.auth.form|2.0.0|Y|jar",
