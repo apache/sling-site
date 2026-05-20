@@ -8,6 +8,8 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2026
 
+* JUnit Core 1.3.0 (20th)
+* Tracer 1.1.0 (20th)
 * Adapter 3.0.0, Webconsole Security Provider 2.0.0 (11th)
 * Commons Metrics 2.0.0 (8th)
 
