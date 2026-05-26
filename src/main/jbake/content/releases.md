@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## May 2026
 
+* MCP Server 0.1.4 (26th)
 * JUnit Core 1.3.0 (20th)
 * Tracer 1.1.0 (20th)
 * Adapter 3.0.0, Webconsole Security Provider 2.0.0 (11th)
