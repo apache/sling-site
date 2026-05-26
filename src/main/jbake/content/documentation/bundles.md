@@ -62,6 +62,7 @@ Libraries and utilities which are not reliant on Sling.
 * [Scripting](/documentation/bundles/scripting.html)
 * [Sling Settings (org.apache.sling.settings)](/documentation/bundles/sling-settings-org-apache-sling-settings.html)
 * [Caching Services](/documentation/bundles/caching-services.html)
+* [MCP Server](/documentation/bundles/mcp-server.html)
 * [Sling Models](/documentation/bundles/models.html)
 * [Sling Pax Exam Utilities](/documentation/pax-exam-utils.html)
 * [Sling Query Library](/documentation/bundles/sling-query.html)
