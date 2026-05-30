@@ -8,44 +8,138 @@ tags=development,pmc,release
 
 ## Prerequisites
 
-* To prepare or perform a release you *MUST BE* at least be an Apache Sling Committer.
-* Try to update to the most recent parent release prior to doing a release
+* To prepare or perform a release you *MUST BE* at least an Apache Sling Committer. Promoting a release to `dist.apache.org` additionally requires PMC membership; a non-PMC committer asks a PMC member to perform that single step (the Committer CLI's `[RESULT]` email does this automatically).
+* Update to the most recent [Sling parent POM](https://github.com/apache/sling-parent) before releasing.
 * Each release must be signed, see _Appendix A_ below about creating and registering your key.
-* Make sure you have all [Apache servers](https://maven.apache.org/developers/committer-settings.html) defined in your `settings.xml`
-* See Appendix B for Maven and SCM credentials
+* Make sure you have all [Apache servers](https://maven.apache.org/developers/committer-settings.html) defined in your `settings.xml`.
 
-*Note*: Listing the Apache servers in the `settings.xml` file also requires adding the password to that file. Starting with Maven 2.1 this password may be encrypted and needs not be give in plaintext. Please refer to [Password Encryption](https://maven.apache.org/guides/mini/guide-encryption.html) for more information.
+*Note*: Listing the Apache servers in `settings.xml` also requires their passwords. Store them encrypted rather than in plaintext — see [Password Encryption](https://maven.apache.org/guides/mini/guide-encryption.html); the master password lives in `$\{user.home\}/.m2/settings-security.xml`.
 
-In the past we staged release candidates on our local machines using a semi-manual process. Now that we inherit from the Apache parent POM version 6, a repository manager will automatically handle staging for you. This means you now only need to specify your GPG passphrase in the release profile of your `$\{user.home\}/.m2/settings.xml`:
+In the past we staged release candidates on our local machines using a semi-manual process. Now that we inherit from the Apache parent POM, a repository manager will automatically handle staging for you. This means you now only need to make your GPG signing key and passphrase available to the release build in your `$\{user.home\}/.m2/settings.xml`.
+
+Recent Sling and Apache parent POMs use `maven-gpg-plugin` 3.x, which reads the passphrase from a `<server>` whose id is given by `gpg.passphraseServerId` (default `gpg.passphrase`) and decrypts it via `settings-security.xml`. The older approach of a plain `<gpg.passphrase>` property in the `apache-release` profile is no longer used — with `maven-gpg-plugin` 3.x that value is passed to `gpg` literally (not decrypted) and signing fails.
 
 
     <settings>
         ...
+        <servers>
+            <!-- maven-gpg-plugin 3.x reads the passphrase from this server id
+                 (gpg.passphraseServerId defaults to "gpg.passphrase") and
+                 decrypts it via settings-security.xml -->
+            <server>
+                <id>gpg.passphrase</id>
+                <passphrase><!-- YOUR (encrypted) KEY PASSPHRASE --></passphrase>
+            </server>
+        </servers>
         <profiles>
             <profile>
                 <id>apache-release</id>
                 <properties>
-                    <gpg.passphrase> <!-- YOUR (encrypted) KEY PASSPHRASE --> </gpg.passphrase>
+                    <!-- the id of your code signing key -->
+                    <gpg.keyname> <!-- YOUR KEY ID --> </gpg.keyname>
+                    <!-- avoid an interactive pinentry prompt -->
+                    <gpg.pinentryMode>loopback</gpg.pinentryMode>
                 </properties>
             </profile>
         </profiles>
         ...
     </settings>
 
+The encrypted passphrase (and the encrypted Apache server passwords) are decrypted using the master password stored in `$\{user.home\}/.m2/settings-security.xml`; see [Password Encryption](https://maven.apache.org/guides/mini/guide-encryption.html) for details.
 
-Everything else has been configured in the latest Sling Parent POM:
+
+Everything else is configured in the [Sling parent POM](https://github.com/apache/sling-parent); your module should inherit from its most recent version:
 
 
     <parent>
         <groupId>org.apache.sling</groupId>
         <artifactId>sling</artifactId>
-        <version>6</version>
+        <version><!-- the most recent release --></version>
     </parent>
 
 
-## Experimental Release Management Docker Image
+## Releasing with the Sling Committer CLI (recommended)
 
-Some the release management steps can be further automated by using the [Sling Commiter CLI Docker Image](https://github.com/apache/sling-org-apache-sling-committer-cli). The image is for now work-in-progress but has been used to drive multiple release. Please see the README file in the linked repository for usage details.
+The [Sling Committer CLI](https://github.com/apache/sling-org-apache-sling-committer-cli) is a Docker
+image that drives a release end-to-end: it closes the staging repository, verifies signatures,
+checksums and CI status, sends the `[VOTE]` and `[RESULT]` emails, promotes to Maven Central, updates
+`dist.apache.org`, JIRA and the Apache Reporter. It performs exactly the steps documented in the
+manual process below, so it is the recommended way to run a release.
+
+### One-time setup
+
+1. Install Docker and pull the image (or build it from the [CLI repository](https://github.com/apache/sling-org-apache-sling-committer-cli)):
+
+        docker pull apache/sling-cli
+
+2. Create a `docker-env` file with your ASF credentials (used for Nexus, JIRA, Whimsy and the mailing lists):
+
+        ASF_USERNAME=your-apache-id
+        ASF_PASSWORD=your-apache-password
+
+Together with the GPG / `settings.xml` configuration from the [Prerequisites](#prerequisites) above,
+that is all that is required. Every command runs in `DRY_RUN` mode by default (it only prints what it
+would do); append `-x AUTO` to actually perform the action. The examples below use this shorthand:
+
+    cli="docker run --rm --env-file=./docker-env apache/sling-cli"
+
+### 1. Stage the release (Maven)
+
+Staging is still performed with Maven, in the module you are releasing; the CLI drives everything
+afterwards:
+
+    mvn release:prepare
+    mvn release:perform
+
+This creates the tag, builds and signs the artifacts, and uploads them to a Nexus staging repository.
+Note the staging repository id from the output (a line containing `orgapachesling-NNNN`). If you miss
+it, list the staging repositories — a freshly staged one is shown as `[open]`, with the committer who
+staged it and its description:
+
+    $cli release list
+
+### 2. Close, verify and call the vote
+
+    # close the staging repository (its description is derived from the staged POM)
+    $cli release close-staging -r <REPO_ID> -x AUTO
+
+    # verify PGP signatures, SHA-1/MD5 checksums and CI status
+    $cli release verify -r <REPO_ID>
+
+    # send the [VOTE] email (run once without -x AUTO to review it first)
+    $cli release prepare-email -r <REPO_ID> -x AUTO
+
+### 3. Tally the votes
+
+After at least 72 hours and three binding +1 votes, send the result email:
+
+    $cli release tally-votes -r <REPO_ID> -x AUTO
+
+PMC membership is detected automatically from your ASF id: a PMC member's email states they will copy
+the release to the dist directory themselves; a non-PMC release manager's email asks a PMC member to
+perform that (PMC-only) step.
+
+If the vote does not pass, drop the staging repository and delete the tag, then start over with a new
+version (see [Canceling the Release](#canceling-the-release)):
+
+    $cli release drop -r <REPO_ID> -x AUTO
+    git push --delete origin <TAG_NAME>
+
+### 4. Finalize
+
+    $cli release finalize -r <REPO_ID> -x AUTO
+
+`finalize` runs, in order: promote to Maven Central, update `dist.apache.org` (only when you are a
+PMC member — the previous version to remove is detected automatically), create the next JIRA version
+and move unresolved issues, mark the JIRA version as released, and update the Apache Reporter.
+
+Afterwards update the website (releases / downloads / news) as described in
+[Promoting the Release](#promoting-the-release); the website diff can be generated with:
+
+    $cli release update-local-site -r <REPO_ID>
+
+The sections below document the same steps performed manually. They are useful for understanding what
+the CLI does and as a fallback when it cannot be used.
 
 ## Staging the Release Candidates
 
@@ -174,6 +268,7 @@ If the vote is successful, post the result to the dev list - for example:
     I will copy this release to the Sling dist directory and
     promote the artifacts to the central Maven repository.
 
+If you are not a PMC member you cannot upload to `dist.apache.org` yourself, so replace the closing line with a request for a PMC member to do it, for example: *"I will promote the artifacts to the central Maven repository. As I am not a PMC member, can a PMC member please copy this release to the Sling dist directory?"* (the Committer CLI generates the correct variant automatically.)
 
 Be sure to include all votes in the list and indicate which votes were binding. Consider \-1 votes very carefully. While there is technically no veto on release votes, there may be reasons for people to vote \-1. So sometimes it may be better to cancel a release when someone, especially a member of the PMC, votes \-1.
 
