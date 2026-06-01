@@ -38,7 +38,7 @@ def mavenPlugins=[
   "Scripting Bundle Maven Plugin|scriptingbundle-maven-plugin|0.5.2|Y",
   "Sling Maven Plugin|sling-maven-plugin|3.0.4|Y",
   "OSGi Feature Maven Plugin|slingfeature-maven-plugin|1.9.4|Y",
-  "Sling Feature Converter Maven Plugin|sling-feature-converter-maven-plugin|1.0.12|Y",
+  "Sling Feature Converter Maven Plugin|sling-feature-converter-maven-plugin|1.0.14|Y",
   "Sling Feature Launcher Maven Plugin|feature-launcher-maven-plugin|1.0.4|Y",
   "Slingstart Maven Plugin|slingstart-maven-plugin|1.9.12|Y",
   "HTL Maven Plugin|htl-maven-plugin|2.0.4-1.4.0|Y",
