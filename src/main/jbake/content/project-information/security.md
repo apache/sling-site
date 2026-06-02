@@ -33,6 +33,8 @@ Note that all networked servers are subject to denial of service attacks, and we
 
 For more information on handling security issues at the Apache Software Foundation please refer to the [ASF Security Team](https://www.apache.org/security/) page and to the [security process description for committers](https://www.apache.org/security/committers.html).
 
+Apache Sling's threat model is available at [docs/threat-model.md](https://github.com/apache/sling/blob/master/docs/threat-model.md).
+
 # Errors and omissions
 
 Please report any errors or omissions to security(at)sling.apache.org.
