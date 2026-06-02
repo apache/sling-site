@@ -182,7 +182,7 @@ def bundles=[
   "Launchpad Installer|org.apache.sling.launchpad.installer|1.2.2|Y|jar",
   "Log Tracer|org.apache.sling.tracer|1.1.0|Y|jar",
   "MCP Server|org.apache.sling.mcp-server|0.1.4|Y|jar",
-  "MCP Server Contributions|org.apache.sling.mcp-server-contributions|0.1.0|Y|jar",
+  "MCP Server Contributions|org.apache.sling.mcp-server-contributions|0.2.0|Y|jar",
   "Models API|org.apache.sling.models.api|2.0.0|Y|jar",
   "Models Implementation|org.apache.sling.models.impl|2.0.2|Y|jar",
   "Models Jackson Exporter|org.apache.sling.models.jacksonexporter|2.0.0|Y|jar",

@@ -8,7 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## June 2026
 
-* Feature Model Analyser 2.0.16 (2nd)
+* Feature Model Analyser 2.0.16, MCP Server Contributions 0.2.0 (2nd)
 
 ## May 2026
 
