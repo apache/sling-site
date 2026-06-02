@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## June 2026
+
+* Feature Model Analyser 2.0.16 (2nd)
+
 ## May 2026
 
 * MCP Server 0.1.4, MCP Server Contributions 0.1.0, Commons Log 6.1.0 (26th)
