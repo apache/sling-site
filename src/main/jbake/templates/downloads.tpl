@@ -360,6 +360,19 @@ def downloadLink(label, artifact, version, suffix, includeSHA512=false) {
 	newLine()
 }
 
+def mavenDownloadLink(label, artifact, version, suffix) {
+	def path = "${artifact}/${version}/${artifact}-${version}${suffix}"
+	def base = "https://repository.apache.org/content/repositories/releases/org/apache/sling/"
+
+	a(href:"${base}${path}", label)
+	yield " ("
+	a(href:"${base}${path}.asc", "asc")
+	yield ", "
+	a(href:"${base}${path}.sha1", "sha1")
+	yield ")"
+	newLine()
+}
+
 def githubLink(artifact,ghflag) {
 	if(ghflag == 'Y') {
 		artifact = artifact.replaceAll('\\.','-')
@@ -486,7 +499,7 @@ layout 'layout/main.tpl', true,
 											githubLink(artifact,ghflag)
 										}
 										td(){
-											downloadLink("Bundle", artifact, version, "." + extension)
+											mavenDownloadLink("Bundle", artifact, version, "." + extension)
 										}
 										td(){
 											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
@@ -512,7 +525,7 @@ layout 'layout/main.tpl', true,
 											githubLink(artifact, ghflag)
 										}
 										td(){
-											downloadLink("Maven Plugin", artifact, version, ".jar")
+											mavenDownloadLink("Maven Plugin", artifact, version, ".jar")
 										}
 										td(){
 											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
@@ -538,7 +551,7 @@ layout 'layout/main.tpl', true,
 											githubLink(artifact, ghflag)
 										}
 										td(){
-											downloadLink("bnd Plugin", artifact, version, ".jar")
+											mavenDownloadLink("bnd Plugin", artifact, version, ".jar")
 										}
 										td(){
 											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
@@ -588,7 +601,7 @@ layout 'layout/main.tpl', true,
 										def artifact = data[2]
 										def version = data[3]
 										td(){
-											downloadLink("Bundle", artifact, version, ".jar")
+											mavenDownloadLink("Bundle", artifact, version, ".jar")
 										}
 										td(){
 											downloadLink("Source ZIP", artifact, version, "-source-release.zip", true)
