@@ -11,7 +11,7 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
-        "/src/main/jbake/templates/downloads.tpl/"
+        "/src/main/jbake/templates/downloads.tpl"
       ],
       "matchStrings": [
         "\".+\\|(?<depName>.+)\\|(?<currentValue>.+)\\|.+\\|.+\",",
