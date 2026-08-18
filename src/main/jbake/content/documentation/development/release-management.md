@@ -152,7 +152,7 @@ First prepare your POMs for release:
 
         $ mvn release:prepare -DdryRun=true
 
-    Compare the original `pom.xml` with the one called `pom.xml.tag` to see if the license or any other info has been removed. This has been known to happen if the starting `<project>` tag is not on a single line. The only things that should be different between these files are the `<version>` and `<scm>` elements. If there are any other changes, you must fix the original `pom.xml` file and commit before proceeding with the release.
+    Compare the original `pom.xml` with the one called `pom.xml.tag` to see if the license or any other info has been removed. This has been known to happen if the starting `<project>` tag is not on a single line. The only things that should be different between these files are the `<version>`, `<project.build.outputTimestamp>` and `<scm>` elements. If there are any other changes, you must fix the original `pom.xml` file and commit before proceeding with the release.
 
 1. Publish a snapshot
 
