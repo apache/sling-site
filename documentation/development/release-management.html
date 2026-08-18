@@ -192,12 +192,12 @@
 &lt;/parent&gt;
 </code></pre>
 <h2><a href="#releasing-with-the-sling-committer-cli-recommended" id="releasing-with-the-sling-committer-cli-recommended">Releasing with the Sling Committer CLI (recommended)</a></h2>
-<p>The <a href="https://github.com/apache/sling-org-apache-sling-committer-cli">Sling Committer CLI</a> is a Docker image that drives a release end-to-end: it closes the staging repository, verifies signatures, checksums and CI status, sends the <code>[VOTE]</code> and <code>[RESULT]</code> emails, promotes to Maven Central, updates <code>dist.apache.org</code>, JIRA and the Apache Reporter. It performs exactly the steps documented in the manual process below, so it is the recommended way to run a release.</p>
+<p>The <a href="https://github.com/apache/sling-org-apache-sling-committer-cli">Sling Committer CLI</a> is a Docker image that drives a release end-to-end: it closes the staging repository, verifies signatures, checksums and CI status, sends the <code>[VOTE]</code> and <code>[RESULT]</code> emails, promotes to Maven Central, updates <code>dist.apache.org</code>, JIRA and the Apache Reporter, and updates the releases and downloads pages on this website. It performs exactly the steps documented in the manual process below, so it is the recommended way to run a release.</p>
 <h3><a href="#one-time-setup" id="one-time-setup">One-time setup</a></h3>
 <ol>
 <li>
 <p>Install Docker and pull the image (or build it from the <a href="https://github.com/apache/sling-org-apache-sling-committer-cli">CLI repository</a>):</p>
-<pre><code>docker pull apache/sling-cli
+<pre><code>docker pull apache/sling-committer-cli
 </code></pre>
 </li>
 <li>
@@ -208,7 +208,7 @@ ASF_PASSWORD=your-apache-password
 </li>
 </ol>
 <p>Together with the GPG / <code>settings.xml</code> configuration from the <a href="#prerequisites">Prerequisites</a> above, that is all that is required. Every command runs in <code>DRY_RUN</code> mode by default (it only prints what it would do); append <code>-x AUTO</code> to actually perform the action. The examples below use this shorthand:</p>
-<pre><code>cli=&quot;docker run --rm --env-file=./docker-env apache/sling-cli&quot;
+<pre><code>cli=&quot;docker run --rm --env-file=./docker-env apache/sling-committer-cli&quot;
 </code></pre>
 <h3><a href="#1-stage-the-release-maven" id="1-stage-the-release-maven">1. Stage the release (Maven)</a></h3>
 <p>Staging is still performed with Maven, in the module you are releasing; the CLI drives everything afterwards:</p>
@@ -240,10 +240,16 @@ git push --delete origin &lt;TAG_NAME&gt;
 <h3><a href="#4-finalize" id="4-finalize">4. Finalize</a></h3>
 <pre><code>$cli release finalize -r &lt;REPO_ID&gt; -x AUTO
 </code></pre>
-<p><code>finalize</code> runs, in order: update <code>dist.apache.org</code> (only when you are a PMC member — the previous version to remove is detected automatically), promote to Maven Central, create the next JIRA version and move unresolved issues, mark the JIRA version as released, and update the Apache Reporter. The dist upload runs first because it is the only step that needs the staging repository, which promoting to Maven Central drops. A JIRA pre-flight check runs before any of these irreversible steps.</p>
-<p>Afterwards update the website (releases / downloads / news) as described in <a href="#promoting-the-release">Promoting the Release</a>; the website diff can be generated with:</p>
+<p><code>finalize</code> runs, in order: update <code>dist.apache.org</code> (only when you are a PMC member — the previous version to remove is detected automatically), promote to Maven Central, create the next JIRA version and move unresolved issues, mark the JIRA version as released, update the Apache Reporter, and update the website. The dist upload runs first because it is the only step that needs the staging repository, which promoting to Maven Central drops. A JIRA pre-flight check runs before any of these irreversible steps.</p>
+<p>The website step adds the release to <a href="/releases.html">releases</a> and bumps the matching entries on the <a href="/downloads.cgi">downloads</a> page, then commits and pushes to <code>sling-site</code>. Downloads entries are matched on the <em>artifact id</em> rather than on the module's display name, because the two often differ (<em>Tracer</em> is listed as <em>Log Tracer</em>) and one release can own several entries. Only entries on the same major version are updated, so a maintenance release of an older line (for example Resource Resolver 1.12.x while the page lists 2.x) never downgrades the page. If a module has no downloads entry at all — typically a brand new module — that is reported so it can be added by hand.</p>
+<p>To review the website changes without pushing them, run the step on its own; like every command it defaults to <code>DRY_RUN</code> and only prints the diff:</p>
 <pre><code>$cli release update-local-site -r &lt;REPO_ID&gt;
 </code></pre>
+<p>The <a href="/news.html">news</a> page is deliberately <em>not</em> updated by <code>finalize</code>, since only releases that warrant an announcement belong there. For those, run:</p>
+<pre><code>$cli release update-news --release &quot;Apache Sling ABC X.Y.Z&quot; \
+    --link /documentation/bundles/abc.html -x AUTO
+</code></pre>
+<p>Every step after the dist upload is independent of the staging repository, so if <code>finalize</code> fails part way through you can re-run it. Before promotion resume with <code>-r &lt;REPO_ID&gt;</code>; afterwards the staging repository is gone, so resume with <code>--release &quot;Apache Sling ABC X.Y.Z&quot;</code>. Completed steps are detected and skipped.</p>
 <p>The sections below document the same steps performed manually. They are useful for understanding what the CLI does and as a fallback when it cannot be used.</p>
 <h2><a href="#staging-the-release-candidates" id="staging-the-release-candidates">Staging the Release Candidates</a></h2>
 <p>First prepare your POMs for release:</p>
@@ -407,10 +413,11 @@ promote the artifacts to the central Maven repository.
 </li>
 <li>Following the release promotion you will receive an email from the 'Apache Reporter Service'. Follow the link and add the release data, as it used by the PMC chair to prepare board reports. To simplify this task you can use the script from <a href="https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh">https://github.com/apache/sling-tooling-release/blob/master/update_reporter.sh</a>. Alternatively you can add the release data directly via <a href="https://reporter.apache.org/addrelease.html?sling">https://reporter.apache.org/addrelease.html?sling</a>.</li>
 <li>Update the releases section on the website at <a href="/releases.html">releases</a>.</li>
-<li>For new modules, update the download page on the website at <a href="/downloads.cgi">downloads</a> to point to the new release. For this you need to modify the <a href="https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl">according Groovy Template</a>. For existing modules the <a href="https://github.com/renovatebot/renovate/">renovate app</a> will generate a pull request. The pull request must be manually merged.</li>
+<li>Update the download page on the website at <a href="/downloads.cgi">downloads</a> to point to the new release. For this you need to modify the <a href="https://github.com/apache/sling-site/blob/master/src/main/jbake/templates/downloads.tpl">according Groovy Template</a>, keeping in mind that the page lists only the most recent major version of a module even when older major versions are still distributed, and that a release may own several entries (one per artifact). So a maintenance release of an older major version normally has nothing to update here, while a new module needs a new entry. If the entry is not updated as part of the release, the <a href="https://github.com/renovatebot/renovate/">renovate app</a> will eventually generate a pull request for it, which must be manually merged.</li>
 <li>If you think that this release is worth a news entry, update the website at  <a href="/news.html">news</a></li>
 </ol>
-<p>For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.</p>
+<p>Steps 2 and 3 are performed automatically by the Committer CLI's <code>finalize</code> command; step 4 is left to you, via <code>release update-news</code>. See <a href="#4-finalize">Finalize</a>.</p>
+<p>For the last two tasks, it's better to give the CDN some time to process the uploaded artifacts (15 minutes should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts. Note that the website itself is only rebuilt and deployed some minutes after the change is pushed, which in practice already covers most of that delay.</p>
 <h3><a href="#quick-update-of-artifacts-in-dist" id="quick-update-of-artifacts-in-dist">Quick update of artifacts in dist</a></h3>
 <p>It is possible to update the artifacts without needing to checkout or update the full dist folder, which can be quite slow.</p>
 <p>Assuming that we are releasing <code>org.apache.sling.engine 2.6.22</code> and the old version artifact names start with <code>org.apache.sling.engine-2.6.20</code>, we can run the following commands</p>
@@ -422,8 +429,8 @@ $ curl -fsSL https://raw.githubusercontent.com/apache/sling-tooling-release/refs
 <h2><a href="#update-jira" id="update-jira">Update JIRA</a></h2>
 <p>Go to <a href="https://issues.apache.org/jira/plugins/servlet/project-config/SLING/versions">Manage Versions</a> section on the SLING JIRA and mark the X.Y.Z version as released setting the release date to the date the vote has been closed.</p>
 <p>Also create a new version X.Y.Z+2, if that hasn't already been done.</p>
-<p>And keep the versions sorted, so when adding a new version moved it down to just above the previous versions.</p>
 <p>Close all issues associated with the released version.</p>
+<p>All of the above is performed by the Committer CLI's <code>finalize</code> command. See <a href="#4-finalize">Finalize</a>.</p>
 <h2><a href="#update-the-sling-starter-module" id="update-the-sling-starter-module">Update the Sling Starter Module</a></h2>
 <p>If the new release should be included in the <a href="https://github.com/apache/sling-org-apache-sling-starter">Sling Starter</a>, please create PR after the artifacts are available on Maven Central. That usually happens within 60 minutes of the staging repository being closed.</p>
 <p>If the released module was already included in the Sling Starter, a pull request will be generated by the <a href="https://github.com/renovatebot/renovate/">renovate app</a>, you can approve it as soon as the automated checks pass.</p>
@@ -591,7 +598,7 @@ $ svn up KEYS
                             content/documentation/development/release-management.md
                         </a>
                     </div>                    <div class="revisionInfo">
-                        Last modified by <span class="author">Roy Teeuwen</span> on <span class="comment">2026-07-29</span>
+                        Last modified by <span class="author">Roy Teeuwen</span> on <span class="comment">2026-08-14</span>
                     </div><p>
                         Apache Sling, Sling, Apache, the ASF logo, and the Apache Sling project
     logo are trademarks of The Apache Software Foundation. All other marks mentioned 
