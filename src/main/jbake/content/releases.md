@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## September 2026
+
+* Scripting HTL JS Use Provider 1.2.16 (7th)
+
 ## August 2026
 
 * Security 1.3.2 (25th)
