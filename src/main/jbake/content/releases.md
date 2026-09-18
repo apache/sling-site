@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## September 2026
 
+* XSS (18th)
 * Scripting HTL JS Use Provider 1.2.16 (7th)
 
 ## August 2026
