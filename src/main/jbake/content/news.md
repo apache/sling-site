@@ -5,6 +5,9 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
+* Security Advisories for Apache Sling XSS: [CVE-2026-73192](https://www.cve.org/CVERecord?id=CVE-2026-73192), [CVE-2026-92001](https://www.cve.org/CVERecord?id=CVE-2026-92001), [CVE-2026-91999](
+https://www.cve.org/CVERecord?id=CVE-2026-91999), [CVE-2026-91928](https://www.cve.org/CVERecord?id=CVE-2026-91928) and [CVE-2026-91852](https://www.cve.org/CVERecord?id=CVE-2026-91852) (September 23, 2026)
+* Security Advisories for Apache Sling Security: [CVE-2026-94243](https://www.cve.org/CVERecord?id=CVE-2026-94243) and [CVE-2026-94251](https://www.cve.org/CVERecord?id=CVE-2026-94251) (September 23, 2026)
 * Released [Apache Sling 14](/news/sling-14-released.html) (March 9th, 2026).
 * Security Advisory: [Apache Sling advisory regarding CVE-2025-66516](./security/CVE-2025-66516.html)
 * Apache Sling now supports Jakarta Servlet API 6.1 (June 28th)
