@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## October 2026
+
+* Engine 3.0.4 (9th)
+
 ## September 2026
 
 * XSS (18th)
