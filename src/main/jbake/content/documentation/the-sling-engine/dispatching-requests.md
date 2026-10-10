@@ -49,13 +49,23 @@ If a servlet or script is including another resource for processing through the 
 
 1. The resource is resolved though ResourceResolver.getResource (if the RequestDispatcher has not been created with a resource already)
 
-1. The servlet or script to handle the resource is resolved calling the `ServletResolver.resolverServlet` method.
+1. The servlet or script to handle the resource is resolved calling the `ServletResolver.resolveServlet` method.
 
 1. The component level filters (registered with the property `filter.scope=component`) are called again (see [Filters](/documentation/the-sling-engine/filters.html) for details).
 
 1. The servlet or script is called to process the request.
 
 Note that these steps are processed for every include or forward call.
+
+Starting with version 2.13.2 of the `org.apache.sling.engine` bundle, the `RequestDispatcher` implementation from Apache Sling can be configured
+to be fully spec-compliant when it comes to processing includes via the
+[`include` method](https://docs.oracle.com/javaee/7/api/javax/servlet/RequestDispatcher.html#include-javax.servlet.ServletRequest-javax.servlet.ServletResponse-),
+namely to not allow included servlets to set the response status code or set any response headers. Two new configuration options for the
+`org.apache.sling.engine.impl.SlingMainServlet` facilitate this behavior:
+
+1. `sling.includes.protectheaders` - when enabled, servlets included via the `RequestDispatcher` will not be able to change the response status code or set headers. Any attempt to make a change is ignored. This behaviour can be overridden per include via the 'protectHeadersOnInclude' RequestDispatcherOptions key;
+
+1. `sling.includes.checkcontenttype` - when enabled, in addition to not allowing servlets included via the `RequestDispatcher` to change the response status code or set headers, it will also check explicit overrides of the `Content-Type` header and will make the Sling Engine throw a `RuntimeException` when such an override is detected.
 
 
 ## Included Request Attributes
