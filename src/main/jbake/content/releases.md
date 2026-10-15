@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2026
 
+* JCR Davex (15th)
 * Engine 3.0.4 (9th)
 
 ## September 2026
