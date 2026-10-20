@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## October 2026
 
+* Resource Resolver 1.12.20 (20th)
 * Resource Resolver 2.0.8 (19th)
 * JCR Davex (15th)
 * Engine 3.0.4 (9th)
