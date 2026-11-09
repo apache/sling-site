@@ -141,7 +141,7 @@ def bundles=[
   "File System Resource Provider|org.apache.sling.fsresource|2.3.0|Y|jar",
   "GraphQL Core|org.apache.sling.graphql.core|0.0.36|Y|jar",
   "GraphQL Schema Aggregator|org.apache.sling.graphql.schema.aggregator|0.0.4|Y|jar",
-  "I18n|org.apache.sling.i18n|3.0.0|Y|jar",
+  "I18n|org.apache.sling.i18n|3.0.4|Y|jar",
   "HApi|org.apache.sling.hapi|1.1.0|Y|jar",
   "Installer Core|org.apache.sling.installer.core|3.14.6|Y|jar",
   "Installer Configuration Support|org.apache.sling.installer.factory.configuration|2.0.0|Y|jar",

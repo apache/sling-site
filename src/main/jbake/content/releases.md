@@ -6,6 +6,10 @@ tableOfContents=false
 ~~~~~~
 This is a list of all our releases, available from our [downloads](/downloads.cgi) page.
 
+## November 2026
+
+* I18N Support 3.0.4 (9th)
+
 ## October 2026
 
 * OSGi Feature Maven Plugin 1.9.8, Feature Model Analyser 2.0.22 (30th)
