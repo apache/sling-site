@@ -74,7 +74,7 @@ This implementation only supports listing node types which are considered repres
 
 # DavEx Support
 
-[DavEx](https://wiki.apache.org/jackrabbit/RemoteAccess) (WebDAV with JCR Extensions) allows to remotely access a JCR repository. Sling provides support based on the [JCR WebDAV Server](https://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#JCR_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/davex` project. By default the server listens on request urls starting with `/server`.
+[DavEx](https://jackrabbit.apache.org/archive/wiki/JCR/RemoteAccess_115513494.html) (WebDAV with JCR Extensions) allows to remotely access a JCR repository. Sling provides support based on the [JCR WebDAV Server](https://jackrabbit.apache.org/jcr/components/jackrabbit-jcr-server.html#JCR_Webdav_Server) implementation of Apache Jackrabbit which is integrated in the `jcr/davex` project. By default the server listens on request urls starting with `/server`.
 
 
 # Eclipse plugin for JCR
