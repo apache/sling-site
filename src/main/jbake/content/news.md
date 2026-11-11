@@ -5,6 +5,7 @@ tags=news
 tableOfContents=false
 ~~~~~~
 
+* Security Avidsory for Apache Sling XSS: [CVE-2026-123765](https://www.cve.org/CVERecord?id=CVE-2026-123765) (November 11, 2026)
 * Security Advisories for Apache Sling Engine: [CVE-2026-103863](https://www.cve.org/CVERecord?id=CVE-2026-103863), [CVE-2026-103864](https://www.cve.org/CVERecord?id=CVE-2026-103864) and [CVE-2026-103866](https://www.cve.org/CVERecord?id=CVE-2026-103866) (November 05, 2026)
 * Security Advisories for Apache Sling XSS: [CVE-2026-73192](https://www.cve.org/CVERecord?id=CVE-2026-73192), [CVE-2026-92001](https://www.cve.org/CVERecord?id=CVE-2026-92001), [CVE-2026-91999](
 https://www.cve.org/CVERecord?id=CVE-2026-91999), [CVE-2026-91928](https://www.cve.org/CVERecord?id=CVE-2026-91928) and [CVE-2026-91852](https://www.cve.org/CVERecord?id=CVE-2026-91852) (September 23, 2026)
