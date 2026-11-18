@@ -8,6 +8,7 @@ This is a list of all our releases, available from our [downloads](/downloads.cg
 
 ## November 2026
 
+* OSGi Feature Maven Plugin 1.9.12, Feature Model API Regions Extension 2.2.4, Feature Model Analyser 2.0.24 (18th)
 * OSGi Feature Maven Plugin 1.9.10, Feature Model API Regions Extension 2.2.2 (15th)
 * I18N Support 3.0.4, XSS Protection API 2.4.14 (9th)
 
